@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-23 04:37+0000\n"
-"X-Generator: Launchpad (build 16179)\n"
+"X-Launchpad-Export-Date: 2012-10-31 04:37+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -46,11 +46,11 @@ msgstr "Més informació:"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr "_Selecciona-ho tot"
+msgstr "Selecciona-ho _tot"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
-msgstr "_Desselecciona-ho tot"
+msgstr "No seleccionis _res"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -63,11 +63,12 @@ msgstr "_Següent"
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
+"Comproveu el sistema i publiqueu els resultats al projecte Ubuntu Friendly"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Prova per detectar dispositius d'àudio"
 
 #. description
 #: ../jobs/audio.txt.in:18
@@ -475,7 +476,7 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Comproveu la dispersió del rellotge."
 
 #. description
 #: ../jobs/cpu.txt.in:31
@@ -496,61 +497,73 @@ msgstr ""
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni atd quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni cron quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni cupsd quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni getty quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni init quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni klogd quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni nmbd quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni smbd quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni syslog quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni udevd quan el paquet està instal·lat."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Comprova si s'està executant el dimoni winbindd quan el paquet està "
+"instal·lat."
 
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr ""
+msgstr "Detecta i mostra els discs connectats al sistema."
 
 #. description
 #: ../jobs/disk.txt.in:9
@@ -560,17 +573,21 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:29
 msgid "SMART test"
-msgstr ""
+msgstr "Test de l'SMART"
 
 #. description
 #: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Màxim espai de disc utilitzat durant una comprovació d'instal·lació "
+"predeterminada"
 
 #. description
 #: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Verifica que el rendiment del sistema d'emmagatzematge siga igual o superior "
+"al rendiment de referència"
 
 #. description
 #: ../jobs/disk.txt.in:82
@@ -662,7 +679,7 @@ msgstr ""
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Comprovació del disquet"
 
 #. description
 #: ../jobs/graphics.txt.in:10
@@ -673,6 +690,8 @@ msgstr ""
 #: ../jobs/benchmarks.txt.in:34
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Executeu el gtkpref per assegurar-vos que les comprovacions basades amb la "
+"GTK funcionen"
 
 #. description
 #: ../jobs/graphics.txt.in:15
@@ -709,12 +728,13 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Comproveu que s'estiga executant el procés de les X."
 
 #. description
 #: ../jobs/graphics.txt.in:37
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
+"Comproveu que les X no s'estiguen executant en mode a prova de fallades."
 
 #. description
 #: ../jobs/graphics.txt.in:44
@@ -742,6 +762,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Assegureu-vos que la resolució actual és igual o superior a la mínima "
+"recomanada (800x600). Podeu obtindre'n més informació a:"
 
 #. description
 #: ../jobs/graphics.txt.in:66
@@ -936,12 +958,12 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:104
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informació del gràfic de procesos d'arrencada."
 
 #. description
 #: ../jobs/info.txt.in:113
 msgid "SATA/IDE device information."
-msgstr ""
+msgstr "Informació del dispositiu SATA/IDE."
 
 #. description
 #: ../jobs/info.txt.in:132
@@ -1101,27 +1123,27 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Comprovacions del Bluetooth"
 
 #. description
 #: ../jobs/local.txt.in:24
 msgid "Camera tests"
-msgstr ""
+msgstr "Comprovacions de la càmera"
 
 #. description
 #: ../jobs/local.txt.in:31
 msgid "Codec tests"
-msgstr ""
+msgstr "Comprovacions dels còdecs"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "CPU tests"
-msgstr ""
+msgstr "Comprovacions de la CPU"
 
 #. description
 #: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Comprovacions dels dimonis del sistema"
 
 #. description
 #: ../jobs/local.txt.in:52
@@ -1141,52 +1163,52 @@ msgstr "Comprovacions de discs Firewire"
 #. description
 #: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Comprovacions del disquet"
 
 #. description
 #: ../jobs/local.txt.in:87
 msgid "Graphics tests"
-msgstr ""
+msgstr "Comprovacions dels gràfics"
 
 #. description
 #: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
-msgstr ""
+msgstr "Comprovacions de la hibernació"
 
 #. description
 #: ../jobs/local.txt.in:101
 msgid "Informational tests"
-msgstr ""
+msgstr "Comprovacions informatives"
 
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Comprovacions dels dispositius d'entrada"
 
 #. description
 #: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Comprovacions de la instal·lació de programari"
 
 #. description
 #: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Comprovacions de les dreceres de teclat"
 
 #. description
 #: ../jobs/local.txt.in:136
 msgid "Media Card tests"
-msgstr ""
+msgstr "Comprovacions de les targetes multimèdia"
 
 #. description
 #: ../jobs/local.txt.in:143
 msgid "Memory tests"
-msgstr ""
+msgstr "Comprovacions de la memòria"
 
 #. description
 #: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Comprovacions miscel·lànies"
 
 #. description
 #: ../jobs/local.txt.in:157
@@ -1196,12 +1218,12 @@ msgstr "Comprovacions de monitor"
 #. description
 #: ../jobs/local.txt.in:164
 msgid "Networking tests"
-msgstr ""
+msgstr "Comprovacions de la xarxa"
 
 #. description
 #: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "Comprovacions de les unitats òptiques"
 
 #. description
 #: ../jobs/local.txt.in:178
@@ -1211,7 +1233,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "Comprovacions de les targetes PCMCIA/PCIX"
 
 #. description
 #: ../jobs/local.txt.in:192
@@ -1221,7 +1243,7 @@ msgstr "Comprovacions dels perifèrics"
 #. description
 #: ../jobs/local.txt.in:199
 msgid "Power Management tests"
-msgstr ""
+msgstr "Comprovacions de la gestió de l'energia"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -1231,7 +1253,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:213
 msgid "Suspend tests"
-msgstr ""
+msgstr "Comprovacions de l'parada temporal"
 
 #. description
 #: ../jobs/local.txt.in:220
@@ -1241,7 +1263,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:234
 msgid "USB tests"
-msgstr ""
+msgstr "Comprovacions de l'USB"
 
 #. description
 #: ../jobs/local.txt.in:241
@@ -1251,12 +1273,12 @@ msgstr "Aplicacions d'usuari"
 #. description
 #: ../jobs/local.txt.in:248
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "Comprovacions de les xarxes sense fil"
 
 #. description
 #: ../jobs/local.txt.in:255
 msgid "Stress tests"
-msgstr ""
+msgstr "Comprovacions d'intensitat"
 
 #. description
 #: ../jobs/local.txt.in:262
@@ -1576,7 +1598,7 @@ msgstr ""
 #. description
 #: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Comprova i exercita la memòria."
 
 #. description
 #: ../jobs/miscellanea.txt.in:3
@@ -1623,6 +1645,8 @@ msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Això executarà algunes comprovacions bàsiques de connectivitat amb un BMC, "
+"comprovant que l'IPMI funciona."
 
 #. description
 #: ../jobs/miscellanea.txt.in:59
@@ -1744,12 +1768,12 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:14
 msgid "Tests whether the system has a working Internet connection."
-msgstr ""
+msgstr "Comprova si el sistema té una connexió a Internet que funcione."
 
 #. description
 #: ../jobs/networking.txt.in:19
 msgid "Network Information"
-msgstr ""
+msgstr "Informació de la xarxa"
 
 #. description
 #: ../jobs/networking.txt.in:43
@@ -1796,6 +1820,8 @@ msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Comprovacions automàtiques per verificar la disponibilitat d'algun sistema a "
+"la xarxa utilitzant paquets ICMP ECHO."
 
 #. description
 #: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
@@ -1803,11 +1829,15 @@ msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Comprovacions automàtiques per assegurar-se que és possible baixar fitxers a "
+"través d'HTTP"
 
 #. description
 #: ../jobs/networking.txt.in:94
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Comprovació per veure si es pot sincronitzar el rellotge local amb un "
+"servidor NTP"
 
 #. description
 #: ../jobs/networking.txt.in:100
@@ -1815,11 +1845,15 @@ msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Verifica que una instal·lació del checkbox-server a la xarxa és accessible "
+"mitjançant SSH."
 
 #. description
 #: ../jobs/networking.txt.in:106
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"Intenta habilitar una impressora remota de la xarxa i imprimir una pàgina de "
+"comprovació."
 
 #. description
 #: ../jobs/networking.txt.in:111
@@ -1830,7 +1864,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:134
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Comprovació per mesurar l'ampla de banda de la xarxa"
 
 #. description
 #: ../jobs/optical.txt.in:4
@@ -2290,6 +2324,8 @@ msgstr ""
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr ""
+"Bolca la informació de la memòria a un fitxer per comparar-lo després que "
+"s'haja executat la comprovació d'parada temporal"
 
 #. description
 #: ../jobs/suspend.txt.in:40
@@ -2297,6 +2333,9 @@ msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
+"Esta comprovació desconnecta totes les connexions i connecta la interfície "
+"sense fil. Llavors comprova la connexió per confirmar que funciona com "
+"s'espera."
 
 #. description
 #: ../jobs/suspend.txt.in:114
@@ -2367,6 +2406,10 @@ msgid ""
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
+"Esta comprovació s'assegura que la interfície sense fil funcione després "
+"d'parar temporalment el sistema. Desconnecta totes les interfícies i llavors "
+"es connecta a la interfície sense fil per comprova que la connexió funcione "
+"com s'esperava."
 
 #. description
 #: ../jobs/suspend.txt.in:228
@@ -2402,6 +2445,9 @@ msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
+"Esta comprovació captura l'adreça de maquinari de l'adaptador Bluetooth "
+"després d'parar temporalment i la compara amb l'adreça capturada abans "
+"d'parar temporalment."
 
 #. description
 #: ../jobs/suspend.txt.in:302
@@ -2443,6 +2489,9 @@ msgid ""
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
+"Esta comprovació comprovarà que els modes de vídeo compatibles funcionen "
+"després d'parar temporalment i reprendre. Esta es realitzarà automàticament "
+"realitzant captures de pantalla i pujant-les com a dades adjuntes."
 
 #. description
 #: ../jobs/suspend.txt.in:368
@@ -2459,6 +2508,10 @@ msgid ""
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
+"Esta comprovació comprovarà que el dispositiu d'àudio funciona correctament "
+"després d'parar temporalment i reprendre. Pot funcionar bé amb altaveus i "
+"micròfons integrats, tot i això funciona millor si s'utilitza un cable que "
+"connecte l'eixida d'àudio amb l'entrada d'àudio."
 
 #. description
 #: ../jobs/suspend.txt.in:384
@@ -2541,7 +2594,7 @@ msgstr ""
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
-msgstr ""
+msgstr "Comprova i mostra els dispositius USB connectats al sistema."
 
 #. description
 #: ../jobs/usb.txt.in:12
@@ -3369,7 +3422,7 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
-"S'està recollint informació d'esta comprovació.\n"
+"S'està recollint informació d'aquesta comprovació.\n"
 "Això pot tardar alguns minuts."
 
 #: ../plugins/apport_prompt.py:118
@@ -3388,7 +3441,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:229
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "La comprovació %s ha fallat."
 
 #: ../plugins/apport_prompt.py:230
 msgid "Do you want to report a bug?"
@@ -3434,6 +3487,11 @@ msgid ""
 "unresponsive. Please save all your work and close all other running "
 "applications before beginning the testing process."
 msgstr ""
+"\n"
+"\n"
+"Atenció: Algunes comprovacions poden provocar que el sistema es congeli o no "
+"responga. Alceu tota la faena i tanqueu totes les altres aplicacions en "
+"execució abans de començar el procés de comprovació."
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
@@ -3640,11 +3698,11 @@ msgstr ""
 
 #: ../qt/frontend/qtfront.cpp:102
 msgid "Not Started"
-msgstr ""
+msgstr "No s'ha iniciat"
 
 #: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
 msgid "Done"
-msgstr ""
+msgstr "Fet"
 
 #: ../qt/frontend/qtfront.cpp:105
 msgid "Not Supported"
@@ -3700,7 +3758,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:644
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 #: ../qt/frontend/ui_qtfront.h:645
 msgid "Select all"
@@ -3712,11 +3770,11 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:647
 msgid "Start testing"
-msgstr ""
+msgstr "Inicia les comprovacions"
 
 #: ../qt/frontend/ui_qtfront.h:648
 msgid " Selection "
-msgstr ""
+msgstr " Selecció "
 
 #: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
 msgid "TextLabel"
@@ -3740,7 +3798,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:661
 msgid " Run "
-msgstr ""
+msgstr " Execució "
 
 #: ../qt/frontend/ui_qtfront.h:624
 msgid ""
@@ -3771,15 +3829,15 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:671
 msgid "Submit results"
-msgstr ""
+msgstr "Tramet els resultats"
 
 #: ../qt/frontend/ui_qtfront.h:672
 msgid "View results"
-msgstr ""
+msgstr "Mostra els resultats"
 
 #: ../qt/frontend/ui_qtfront.h:673
 msgid " Results "
-msgstr ""
+msgstr " Resultats "
 
 #~ msgid "Detecting your sound device(s):"
 #~ msgstr "Detectant els seus dispositius de so:"
@@ -4661,3 +4719,46 @@ msgstr ""
 
 #~ msgid "Is this ok?"
 #~ msgstr "Això és correcte?"
+
+#~ msgid "Unity tests"
+#~ msgstr "Comprovacions de l'Unity"
+
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "Aquesta comprovació automàtica comprova la capacitat de despertar a través "
+#~ "de la LAN (Wake-on-LAN) amb l'ajuda d'un servidor configurat adequadament. "
+#~ "Durant el procés el sistema s'aturarà temporalment, llavors es despertarà "
+#~ "abans de 5 minuts."
+
+#~ msgid ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+#~ msgstr ""
+#~ "Cal la Xlib per a comprovar l'Unity. Aquesta operació cerca la Xlib i "
+#~ "l'instal·la si no està disponible."
+
+#~ msgid "Restart"
+#~ msgstr "Reinicia"
+
+#~ msgid "Recover"
+#~ msgstr "Recupera-la"
+
+#~ msgid "Captures a screenshot."
+#~ msgstr "Fa una captura de pantalla."
+
+#~ msgid ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
+#~ msgstr ""
+#~ "Aquesta comprovació verificarà que l'Unity s'està executant i després "
+#~ "executarà la comprovació autopilot.py amb la interfície de l'Unity."
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr ""
+#~ "Llista de les comprovacions que s'executaran basats en el vostre sistema:"
+
+#~ msgid "Personal details"
+#~ msgstr "Dades personals"
