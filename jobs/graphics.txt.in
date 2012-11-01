@@ -36,13 +36,6 @@ requires: package.name == 'xorg'
 command: ! test -e /var/log/Xorg.failsafe.log
 _description: Test that the X is not running in failsafe mode.
 
-plugin: shell
-name: graphics/xorg-memory
-requires: package.name == 'xorg' and device.driver == 'i915'
-user: root
-command: xorg_memory_test xeyes
-_description: Test that X does not leak memory when running programs on systems with intel based graphics.
-
 plugin: user-verify
 name: graphics/resolution
 requires:
