@@ -36,8 +36,7 @@ import ctypes
 import struct
 import imghdr
 from tempfile import NamedTemporaryFile
-from subprocess import check_output, check_call as call
-from subprocess import CalledProcessError, Popen, PIPE, STDOUT
+from subprocess import check_call, CalledProcessError, STDOUT
 import argparse
 from glob import glob
 from gi.repository import GObject
@@ -55,6 +54,7 @@ _IOC_DIRSHIFT = _IOC_SIZESHIFT + _IOC_SIZEBITS
 _IOC_WRITE = 1
 _IOC_READ = 2
 
+
 def _IOC(dir_, type_, nr, size):
     return (
         ctypes.c_int32(dir_ << _IOC_DIRSHIFT).value |
@@ -62,11 +62,14 @@ def _IOC(dir_, type_, nr, size):
         ctypes.c_int32(nr << _IOC_NRSHIFT).value |
         ctypes.c_int32(size << _IOC_SIZESHIFT).value)
 
+
 def _IOC_TYPECHECK(t):
     return ctypes.sizeof(t)
 
+
 def _IOR(type_, nr, size):
     return _IOC(_IOC_READ, type_, nr, ctypes.sizeof(size))
+
 
 def _IOWR(type_, nr, size):
     return _IOC(_IOC_READ | _IOC_WRITE, type_, nr, _IOC_TYPECHECK(size))
@@ -172,19 +175,19 @@ class CameraTest:
         cap_status = dev_status = 1
         for i in range(10):
             cp = v4l2_capability()
-            device = '/dev/video%d' %i
+            device = '/dev/video%d' % i
             try:
                 with open(device, 'r') as vd:
                     fcntl.ioctl(vd, VIDIOC_QUERYCAP, cp)
             except IOError:
                 continue
             dev_status = 0
-            print("%s: OK" %device)
-            print("    name   : %s" %cp.card.decode('UTF-8'))
-            print("    driver : %s" %cp.driver.decode('UTF-8'))
+            print("%s: OK" % device)
+            print("    name   : %s" % cp.card.decode('UTF-8'))
+            print("    driver : %s" % cp.driver.decode('UTF-8'))
             print("    version: %s.%s.%s"
-            %(cp.version >> 16, (cp.version >> 8) & 0xff, cp.version & 0xff))
-            print("    flags  : 0x%x [" %cp.capabilities,
+            % (cp.version >> 16, (cp.version >> 8) & 0xff, cp.version & 0xff))
+            print("    flags  : 0x%x [" % cp.capabilities,
             ' CAPTURE' if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE else '',
             ' OVERLAY' if cp.capabilities & V4L2_CAP_VIDEO_OVERLAY else '',
             ' READWRITE' if cp.capabilities & V4L2_CAP_READWRITE else '',
@@ -194,7 +197,7 @@ class CameraTest:
             resolutions = self._get_supported_resolutions(device)
             print('    ',
             self._supported_resolutions_to_string(resolutions).replace(
-            "\n"," "),
+            "\n", " "),
             sep="")
 
             if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE:
@@ -252,12 +255,12 @@ class CameraTest:
         command = ["fswebcam", "-S 3", "--no-banner",
                   "-d", self.args.device,
                   "-r", "%dx%d"
-                  % (width, height), filename ]
+                  % (width, height), filename]
         if pixelformat:
             command.extend(["-p", pixelformat])
 
         try:
-            call(command)
+            check_call(command, stdout=open(os.devnull, 'w'), stderr=STDOUT)
         except (CalledProcessError, OSError):
             pipespec = \
                     ("v4l2src device=%(device)s "
@@ -276,7 +279,7 @@ class CameraTest:
 
         if not quiet:
             try:
-                call(["timeout", "-k", "11", "10", "eog", filename])
+                check_call(["timeout", "-k", "11", "10", "eog", filename])
             except CalledProcessError:
                 pass
 
@@ -318,8 +321,8 @@ class CameraTest:
                 f = NamedTemporaryFile(prefix='camera_test_%s%sx%s' %
                     (resolution['pixelformat'], w, h), suffix='.jpg',
                      delete=False)
-                print("Taking a picture at %sx%s" % (w,h))
-                self._still_helper(f.name, w, h, True, 
+                print("Taking a picture at %sx%s" % (w, h))
+                self._still_helper(f.name, w, h, True,
                                    pixelformat=resolution['pixelformat'])
                 if self._validate_image(f.name, w, h):
                     print("Validated image %s" % f.name)
@@ -361,8 +364,8 @@ class CameraTest:
             # EINVAL is the ioctl's way of telling us that there are no
             # more formats, so we ignore it
             if e.errno != errno.EINVAL:
-                print("Unable to determine Pixel Formats, this may be a "\
-                        "driver issue.")
+                print("Unable to determine Pixel Formats, this may be a "
+                      "driver issue.")
             return supported_formats
         return supported_formats
 
@@ -376,8 +379,9 @@ class CameraTest:
         resolution['resolutions'] = [[width, height], [640, 480], [1280, 720] ]
 
         If we are unable to gather any information from the driver, then we
-        return YUYV and 640x480 which seems to be a safe default. Per the v4l2
-        spec the ioctl used here is experimental but seems to be well supported.
+        return YUYV and 640x480 which seems to be a safe default.
+        Per the v4l2 spec the ioctl used here is experimental
+        but seems to be well supported.
         """
         supported_formats = self._get_pixel_formats(device)
         if not supported_formats:
@@ -395,7 +399,9 @@ class CameraTest:
             framesize.pixel_format = supported_format['pixelformat_int']
             with open(device, 'r') as vd:
                 try:
-                    while fcntl.ioctl(vd,VIDIOC_ENUM_FRAMESIZES,framesize) == 0:
+                    while fcntl.ioctl(vd,
+                                      VIDIOC_ENUM_FRAMESIZES,
+                                      framesize) == 0:
                         if framesize.type == V4L2_FRMSIZE_TYPE_DISCRETE:
                             resolutions.append([framesize.discrete.width,
                                 framesize.discrete.height])
@@ -414,7 +420,7 @@ class CameraTest:
                     # EINVAL is the ioctl's way of telling us that there are no
                     # more formats, so we ignore it
                     if e.errno != errno.EINVAL:
-                        print("Unable to determine supported framesizes "\
+                        print("Unable to determine supported framesizes "
                               "(resolutions), this may be a driver issue.")
                         return supported_formats
             supported_format['resolutions'] = resolutions
@@ -434,10 +440,12 @@ class CameraTest:
             b = jpeg.read(1)
             try:
                 while (b and ord(b) != 0xDA):
-                    while (ord(b) != 0xFF): b = jpeg.read(1)
-                    while (ord(b) == 0xFF): b = jpeg.read(1)
+                    while (ord(b) != 0xFF):
+                        b = jpeg.read(1)
+                    while (ord(b) == 0xFF):
+                        b = jpeg.read(1)
                     if (ord(b) >= 0xC0 and ord(b) <= 0xC3):
-                        jpeg.seek(3,1)
+                        jpeg.seek(3, 1)
                         h, w = struct.unpack(">HH", jpeg.read(4))
                         break
                     b = jpeg.read(1)
@@ -457,6 +465,7 @@ class CameraTest:
             return True
 
         return True
+
 
 def parse_arguments(argv):
     """
