@@ -243,17 +243,21 @@ class CameraTest:
                 self._still_helper(f.name, self._width, self._height,
                     self.args.quiet)
 
-    def _still_helper(self, filename, width, height, quiet):
+    def _still_helper(self, filename, width, height, quiet, pixelformat=None):
         """
         Captures an image to a given filename.  width and height specify the
         image size and quiet controls whether the image is displayed to the
         user (quiet = True means do not display image).
         """
-        try:
-            call(["fswebcam", "-S 3", "--no-banner",
+        command = ["fswebcam", "-S 3", "--no-banner",
                   "-d", self.args.device,
                   "-r", "%dx%d"
-                  % (width, height), filename ])
+                  % (width, height), filename ]
+        if pixelformat:
+            command.extend(["-p", pixelformat])
+
+        try:
+            call(command)
         except (CalledProcessError, OSError):
             pipespec = \
                     ("v4l2src device=%(device)s "
@@ -315,7 +319,8 @@ class CameraTest:
                     (resolution['pixelformat'], w, h), suffix='.jpg',
                      delete=False)
                 print("Taking a picture at %sx%s" % (w,h))
-                self._still_helper(f.name, w, h, True)
+                self._still_helper(f.name, w, h, True, 
+                                   pixelformat=resolution['pixelformat'])
                 if self._validate_image(f.name, w, h):
                     print("Validated image %s" % f.name)
                     os.remove(f.name)
