@@ -111,6 +111,8 @@ checkbox (0.14.10) quantal; urgency=low
     to the expresscard test
     setup.cfg - modified the list of job files since I renamed pcmcia-pcix.txt
     po/POTFILES.in - changed the pcmcia-pcix.txt.in pointer to expresscard.txt.in
+  * removed xorg_memory_test and graphics/xorg-memory as the test produces no
+    real benefit and fails about 100% of the time. (LP: #764376)
 
  -- Jeff Lane <jeff@ubuntu.com>  Fri, 26 Oct 2012 16:36:21 -0400
 
