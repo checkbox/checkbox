@@ -49,7 +49,10 @@ def get_sleep_times(start_marker, end_marker, sleep_time, resume_time):
     resume_end_time = 0.0
 
     while start_marker not in line:
-        line = log_fh.readline()
+        try:
+            line = log_fh.readline()
+        except UnicodeDecodeError:
+            continue
         if start_marker in line:
             loglist = log_fh.readlines()
 

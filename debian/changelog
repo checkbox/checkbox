@@ -73,6 +73,8 @@ checkbox (0.14.10) quantal; urgency=low
   * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
   * jobs/power-management.txt.in: Fixed path to the /proc acpi lid button
     (LP: #1068799)
+  * scripts/fwts_test: Properly handle UnicodeDecodeError when parsing syslog
+    (LP: #1075080)
 
   [Zygmunt Krynicki]
   * scripts/removable_storage_watcher - properly detect removal of 'firewire',
