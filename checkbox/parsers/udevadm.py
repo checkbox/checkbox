@@ -239,6 +239,12 @@ class UdevadmDevice:
             if id_type == "video":
                 return "VIDEO"
 
+        if "RFKILL_TYPE" in self._environment:
+            rfkill_type = self._environment["RFKILL_TYPE"]
+
+            if rfkill_type == "bluetooth":
+                return "BLUETOOTH"
+
         if "DEVTYPE" in self._environment:
             devtype = self._environment["DEVTYPE"]
             if devtype == "disk":

@@ -75,6 +75,8 @@ checkbox (0.14.10) quantal; urgency=low
     (LP: #1068799)
   * scripts/fwts_test: Properly handle UnicodeDecodeError when parsing syslog
     (LP: #1075080)
+  * checkbox/parsers/udevadm.py: Enhanced bluetooth detection by looking at the
+    RFKILL_TYPE property (LP: #1075052) 
 
   [Zygmunt Krynicki]
   * scripts/removable_storage_watcher - properly detect removal of 'firewire',
