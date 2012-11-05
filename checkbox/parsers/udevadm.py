@@ -96,7 +96,7 @@ class UdevadmDevice:
 
         if self.bus == "ieee80211":
             return "WIRELESS"
-       
+
         if "PCI_CLASS" in self._environment:
             pci_class_string = self._environment["PCI_CLASS"]
             pci_class = int(pci_class_string, 16)
