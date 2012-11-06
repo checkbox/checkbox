@@ -77,6 +77,8 @@ checkbox (0.14.10) quantal; urgency=low
     (LP: #1068799)
   * scripts/fwts_test: Properly handle UnicodeDecodeError when parsing syslog
     (LP: #1075080)
+  * scripts/camera_test: Fix the camera resolution test to give the pixelformat
+    to use with fswebcam (LP: #1073176)
   * checkbox/parsers/udevadm.py: Enhanced bluetooth detection by looking at the
     RFKILL_TYPE property (LP: #1075052) 
 
