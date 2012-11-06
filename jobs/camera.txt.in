@@ -43,7 +43,7 @@ depends: camera/detect
 requires:
  package.name == 'fswebcam' or package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  device.category == 'CAPTURE'
-command: camera_test resolutions
+command: camera_test resolutions | ansi_parser
 _description:
   Takes multiple pictures based on the resolutions supported by the camera and
   validates their size and that they are of a valid format.
