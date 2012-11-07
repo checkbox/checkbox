@@ -151,7 +151,7 @@ class SuspendTest():
             logging.debug('Error while running pm-suspend')
         self.MarkLog(self.end_marker)
 
-    def GetResults(self, mode, perf, sleep_time, resume_time):
+    def GetResults(self, mode, perf):
         '''
         This will parse /var/log/messages for our start and end markers. Then 
         it'll find a few key phrases that are part of the sleep and resume 
@@ -189,7 +189,7 @@ class SuspendTest():
                                                  loglist[idx])[1].strip()
                     logging.debug('Resume started at %s' % resume_start_time)
                     idx += 1
-                if 'Restarting tasks' in loglist[idx]:
+                if 'PM: Finishing wakeup' in loglist[idx]:
                     resume_end_time = re.split('[\[\]]',
                                                loglist[idx])[1].strip()
                     logging.debug('Resume ended at %s' % resume_end_time)
@@ -201,10 +201,6 @@ class SuspendTest():
 
             sleep_elapsed = float(sleep_end_time) - float(sleep_start_time)
             resume_elapsed = float(resume_end_time) - float(resume_start_time)
-            if sleep_elapsed > float(sleep_time): 
-                run_complete = 'Fail'
-            if resume_elapsed > float(resume_time): 
-                run_complete = 'Fail'
             logging.debug('Sleep elapsed: %.4f seconds' % sleep_elapsed)
             logging.debug('Resume elapsed: %.4f seconds' % resume_elapsed)
         else:
@@ -288,19 +284,6 @@ def main():
                         help='Add some output that tells you how long it ' \
                         'takes to enter a sleep state and how long it ' \
                         'takes to resume.')
-    group.add_option('--sleep-time',
-                        action='store',
-                        default=10,
-                        help='The time in seconds a system should ' \
-                        'suspend in. If the system fails to sleep ' \
-                        'within this time, that test iteration will fail. ' \
-                        'Default is %default')
-    group.add_option('--resume-time',
-                        action='store',
-                        default=3,
-                        help='Exactly like --sleep-time, but applies to the '\
-                        'time the system takes to resume from sleep. Default '\
-                        'is %default')
     parser.add_option('-i', '--iterations',
                         action='store',
                         type='int',
@@ -375,8 +358,7 @@ def main():
         suspender.DoSuspend(options.mode)
         run_count += 1
         run_result[run_count] = suspender.GetResults(options.mode,
-                                options.perf, options.sleep_time,
-                                options.resume_time)
+                                options.perf)
         if suspender.CheckAlarm(options.mode):
             logging.debug('The alarm is still set')
 
@@ -393,10 +375,9 @@ def main():
         resume_avg = resume_total / run_count
         logging.info('Average time to sleep: %.4f' % sleep_avg)
         logging.info('Average time to resume: %.4f' % resume_avg)
-        
-        for run in run_result.keys():
-            if 'Fail' in run_result[run]:
-                fail_count += 1
+    for run in run_result.keys():
+        if 'Fail' in run_result[run]:
+            fail_count += 1
 
     if fail_count > 0:
         logging.error('%s sleep/resume test cycles failed' %
