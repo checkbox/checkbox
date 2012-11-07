@@ -56,6 +56,7 @@ checkbox (0.14.10) quantal; urgency=low
     and simplified horizontal/vertical scrolling tests.
   * scripts/touchpad_scroll_resource, scripts/xinput_resource: Replaced
     the touchpad_scroll_resource by reusing the xinput_resource script.
+  * plugins/error_prompt.py: Fixed call to show_error (LP: #1075605)
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
