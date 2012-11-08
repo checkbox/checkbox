@@ -3,6 +3,7 @@
 import sys
 import argparse
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('filename',
@@ -13,8 +14,9 @@ def main():
                         action='store',
                         type=float,
                         default=10.00,
-                        help=('The max time a system should have taken to enter'
-                             ' a sleep state. (Default: %(default)s)'))
+                        help=('The max time a system should have taken to '
+                              'enter a sleep state. (Default: %(default)s)'
+                              ))
     parser.add_argument('--r',
                         action='store',
                         dest='resume_threshold',
