@@ -13,7 +13,6 @@ name: power-management/hibernate_30_cycles
 depends: power-management/rtc
 environ: CHECKBOX_DATA
 user: root
-environ: CHECKBOX_DATA
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
@@ -40,10 +39,10 @@ user: root
 command: 
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/suspend_30_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=30 |tee $CHECKBOX_DATA/suspend_30_cycles_times.log
+  fwts_test -l $CHECKBOX_DATA/suspend_30_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=30 | tee $CHECKBOX_DATA/suspend_30_cycles_times.log
  else
   echo "Calling sleep_test"
-  sleep_test -p s mem -i 30 |tee $CHECKBOX_DATA/suspend_30_cycles_times.log
+  sleep_test -p s mem -i 30 | tee $CHECKBOX_DATA/suspend_30_cycles_times.log
  fi
 _description:
  PURPOSE:
@@ -92,10 +91,10 @@ user: root
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/suspend_250_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=250 |tee $CHECKBOX_DATA/suspend_250_cycles_times.log
+  fwts_test -l $CHECKBOX_DATA/suspend_250_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=250 | tee $CHECKBOX_DATA/suspend_250_cycles_times.log
  else
   echo "Calling sleep_test"
-  sleep_test -p s mem -i 250 |tee $CHECKBOX_DATA/suspend_250_cycles_times.log
+  sleep_test -p s mem -i 250 | tee $CHECKBOX_DATA/suspend_250_cycles_times.log
  fi
 _description:
  PURPOSE:
