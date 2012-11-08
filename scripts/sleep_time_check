@@ -37,7 +37,7 @@ def main():
             sleep_time = float(line.split(':')[1].strip())
         elif "Average time to resume" in line:
             resume_time = float(line.split(':')[1].strip())
-    
+
     print("Average time to enter sleep state: %s seconds" % sleep_time)
     print("Average time to resume from sleep state: %s seconds" % resume_time)
     
@@ -50,6 +50,10 @@ def main():
         print("System failed to resume in less than %s seconds" %
                 args.resume_threshold)
         failed = True
+    if sleep_time <= 0.00 or resume_time <= 0.00:
+        print("ERROR: One or more times was not reported correctly")
+        failed = True
+
     return failed
 
 if __name__ == "__main__":

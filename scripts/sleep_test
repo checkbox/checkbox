@@ -323,7 +323,7 @@ def main():
 
     # Set up logging handler
     format = '%(asctime)s %(levelname)-8s %(message)s'
-    handler = ListDictHandler()
+    handler = ListDictHandler(sys.stdout)
     handler.setFormatter(logging.Formatter(format))
     handler.setLevel(logging.INFO)
 

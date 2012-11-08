@@ -40,10 +40,10 @@ user: root
 command: 
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/suspend_30_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=30 > >(tee $CHECKBOX_DATA/suspend_30_cycles_times.log >2&)
+  fwts_test -l $CHECKBOX_DATA/suspend_30_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=30 |tee $CHECKBOX_DATA/suspend_30_cycles_times.log
  else
   echo "Calling sleep_test"
-  sleep_test -p s mem -i 30 > >(tee $CHECKBOX_DATA/suspend_30_cycles_times.log >2&)
+  sleep_test -p s mem -i 30 |tee $CHECKBOX_DATA/suspend_30_cycles_times.log
  fi
 _description:
  PURPOSE:
@@ -56,7 +56,7 @@ _description:
  Attaches the log from the 30 cycle Suspend/Resume test if it exists
 
 plugin: shell
-name: suspend/suspend-30-cycles-time-check
+name: power-management/suspend-30-cycles-time-check
 command: [ -e $CHECKBOX_DATA/suspend_30_cycles_times.log ] && sleep_time_check $CHECKBOX_DATA/suspend_30_cycles_times.log
 _description:
  Checks the sleep times to ensure that a machine suspends and resumes within a given threshold
@@ -92,10 +92,10 @@ user: root
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/suspend_250_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=250 > >(tee $CHECKBOX_DATA/suspend_250_cycles_times.log >2&)
+  fwts_test -l $CHECKBOX_DATA/suspend_250_cycles -s s3 --s3-device-check --s3-device-check-delay=30 --s3-sleep-delay=30 --s3-multiple=250 |tee $CHECKBOX_DATA/suspend_250_cycles_times.log
  else
   echo "Calling sleep_test"
-  sleep_test -p s mem -i 250 > >(tee $CHECKBOX_DATA/suspend_250_cycles_times.log >2&)
+  sleep_test -p s mem -i 250 |tee $CHECKBOX_DATA/suspend_250_cycles_times.log
  fi
 _description:
  PURPOSE:
@@ -108,7 +108,7 @@ _description:
  Attaches the log from the 250 cycle Suspend/Resume test if it exists
 
 plugin: shell
-name: suspend/suspend-250-cycles-time-check
+name: stress/suspend-250-cycles-time-check
 command: [ -e $CHECKBOX_DATA/suspend_250_cycles_times.log ] && sleep_time_check $CHECKBOX_DATA/suspend_250_cycles_times.log
 _description:
  Checks the sleep times to ensure that a machine suspends and resumes within a given threshold
