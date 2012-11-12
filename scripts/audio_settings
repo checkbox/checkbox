@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-import sys
+import os
 import re
+import sys
 
 from argparse import ArgumentParser
 from subprocess import check_output, check_call, CalledProcessError
@@ -18,13 +19,28 @@ name_regex = re.compile("(?<=Name:).*")
 entry_pattern = "Name: %s.*?(?=Properties)"
 
 
+def unlocalized_env(reset={"LANG": "C.UTF-8"}):
+    """
+    Create un-localized environment.
+
+    Produce an environment that is suitable for subprocess.Popen() and
+    associated subprocess functions. The returned environment is equal to a
+    copy the current environment, updated with the value of the reset argument.
+    """
+    env = dict(os.environ)
+    env.update(reset)
+    return env
+
+
 def set_profile_hdmi():
     """Sets desired device as active profile. This is typically
     used as a fallback for setting HDMI as the output device.
     """
 
     profile = "output:hdmi-stereo-extra1+input:analog-stereo"
-    output_list = check_output(["pactl", "list"], universal_newlines=True)
+    output_list = check_output(["pactl", "list"],
+                               universal_newlines=True,
+                               env=unlocalized_env())
 
     if profile not in output_list:
         profile = profile.replace("-extra1", "")
@@ -38,7 +54,9 @@ def set_profile_hdmi():
 
 def get_current_profile_setting():
     """Captures and Writes current audio profile setting"""
-    output_list = check_output(["pactl", "list"], universal_newlines=True)
+    output_list = check_output(["pactl", "list"],
+                               universal_newlines=True,
+                               env=unlocalized_env())
     active_profile = re.findall("Active\sProfile.*", output_list)[0]
 
     try:
@@ -64,7 +82,8 @@ def restore_profile_setting():
 
 def move_sinks(name):
     sink_inputs = check_output(["pacmd", "list-sink-inputs"],
-                               universal_newlines=True)
+                               universal_newlines=True,
+                               env=unlocalized_env())
     input_indexes = index_regex.findall(sink_inputs)
 
     for input_index in input_indexes:
@@ -85,14 +104,16 @@ def store_audio_settings(file):
 
     for type in TYPES:
         pactl_status = check_output(["pactl", "stat"],
-                                    universal_newlines=True)
+                                    universal_newlines=True,
+                                    env=unlocalized_env())
         default_regex = re.compile(default_pattern % type.title())
         default = default_regex.search(pactl_status).group()
 
         print("default_%s: %s" % (type, default), file=settings_file)
 
         pactl_list = check_output(["pactl", "list", type + 's'],
-                                  universal_newlines=True)
+                                  universal_newlines=True,
+                                  env=unlocalized_env())
 
         entry_regex = re.compile(entry_pattern % default, re.DOTALL)
         entry = entry_regex.search(pactl_list).group()
@@ -112,7 +133,8 @@ def set_audio_settings(device, mute, volume):
 
     for type in TYPES:
         pactl_entries = check_output(["pactl", "list", type + 's'],
-                                     universal_newlines=True)
+                                     universal_newlines=True,
+                                     env=unlocalized_env())
 
         # Find the name of the sink/source we want to set
         names = name_regex.findall(pactl_entries)
