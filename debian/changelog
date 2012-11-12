@@ -135,6 +135,8 @@ checkbox (0.14.10) quantal; urgency=low
     po/POTFILES.in - changed the pcmcia-pcix.txt.in pointer to expresscard.txt.in
   * removed xorg_memory_test and graphics/xorg-memory as the test produces no
     real benefit and fails about 100% of the time. (LP: #764376)
+  * Added root user requirement to all jobs using removable storage test 
+    (LP: #1014813)
 
  -- Jeff Lane <jeff@ubuntu.com>  Wed, 07 Nov 2012 17:33:46 -0500
 
