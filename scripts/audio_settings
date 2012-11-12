@@ -17,6 +17,7 @@ name_regex = re.compile("(?<=Name:).*")
 
 entry_pattern = "Name: %s.*?(?=Properties)"
 
+
 def set_profile_hdmi():
     """Sets desired device as active profile. This is typically
     used as a fallback for setting HDMI as the output device.
@@ -82,7 +83,6 @@ def store_audio_settings(file):
         print("Failed to save settings: %s" % sys.exc_info()[1])
         sys.exit(1)
 
-
     for type in TYPES:
         pactl_status = check_output(["pactl", "stat"],
                                     universal_newlines=True)
@@ -93,7 +93,7 @@ def store_audio_settings(file):
 
         pactl_list = check_output(["pactl", "list", type + 's'],
                                   universal_newlines=True)
-        
+
         entry_regex = re.compile(entry_pattern % default, re.DOTALL)
         entry = entry_regex.search(pactl_list).group()
 
@@ -148,7 +148,7 @@ def restore_audio_settings(file):
     try:
         settings_file = open(file).read().split()
     except IOError:
-        print("Unable to open existing settings file: %s" % 
+        print("Unable to open existing settings file: %s" %
                 sys.exc_info()[1])
         sys.exit(1)
 
