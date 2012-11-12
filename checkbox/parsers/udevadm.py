@@ -415,8 +415,8 @@ class UdevadmParser:
 
     device_factory = UdevadmDevice
 
-    def __init__(self, stream, bits=None):
-        self.stream = stream
+    def __init__(self, stream_or_string, bits=None):
+        self.stream_or_string = stream_or_string
         self.bits = bits
 
     def _ignoreDevice(self, device):
@@ -455,7 +455,10 @@ class UdevadmParser:
         multi_pattern = re.compile(r"(?P<key>[^=]+)=(?P<value>.*)")
 
         stack = []
-        output = self.stream.read()
+        if isinstance(self.stream_or_string, str):
+            output = self.stream_or_string
+        else:
+            output = self.stream_or_string.read()
         for record in re.split("\n{2,}", output):
             record = record.strip()
             if not record:
