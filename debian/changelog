@@ -135,8 +135,10 @@ checkbox (0.14.10) quantal; urgency=low
     po/POTFILES.in - changed the pcmcia-pcix.txt.in pointer to expresscard.txt.in
   * removed xorg_memory_test and graphics/xorg-memory as the test produces no
     real benefit and fails about 100% of the time. (LP: #764376)
+  * scrips/volume_test - script now only fails if volume is greater than maxvol or
+    less than minvol, not when equal to either. (LP: #1077008)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 07 Nov 2012 17:33:46 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 12 Nov 2012 13:00:19 -0500
 
 checkbox (0.14.6) quantal; urgency=low
 

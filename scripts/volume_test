@@ -6,7 +6,7 @@ import re
 from argparse import ArgumentParser
 from subprocess import check_output
 
-TYPES = ("source","sink")
+TYPES = ("source", "sink")
 
 active_entries_regex = re.compile("\* index.*?(?=properties)", re.DOTALL)
 entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
@@ -14,6 +14,7 @@ index_regex = re.compile("(?<=index: )[0-9]*")
 muted_regex = re.compile("(?<=muted: ).*")
 volume_regex = re.compile("(?<=volume: 0: )\s*[0-9]*")
 name_regex = re.compile("(?<=name:).*")
+
 
 def check_muted():
     """
@@ -23,7 +24,7 @@ def check_muted():
     retval = 0
     for vtype in TYPES:
         try:
-            pacmd_entries = check_output(["pacmd","list-%ss" % vtype],
+            pacmd_entries = check_output(["pacmd", "list-%ss" % vtype],
                                          universal_newlines=True)
         except Exception as e:
             print("Error when running pacmd list-%ss: %s" % (vtype, e),
@@ -63,6 +64,7 @@ def check_muted():
             return 1
     return retval
 
+
 def check_volume(minvol, maxvol):
     """
     Checks that the volume for all sources/sinks is between min and max.
@@ -72,7 +74,7 @@ def check_volume(minvol, maxvol):
     retval = 0
     for vtype in TYPES:
         try:
-            pacmd_entries = check_output(["pacmd","list-%ss" % vtype],
+            pacmd_entries = check_output(["pacmd", "list-%ss" % vtype],
                                          universal_newlines=True)
         except Exception as e:
             print("Error when running pacmd list-%ss: %s" % (vtype, e),
@@ -94,13 +96,13 @@ def check_volume(minvol, maxvol):
             volume_match = volume_regex.search(entry)
             if volume_match:
                 volume = int(volume_match.group().strip())
-                if volume >= maxvol:
-                    print ("FAIL: Volume of %d is greater than or equal to"\
+                if volume > maxvol:
+                    print ("FAIL: Volume of %d is greater than"\
                            " maximum of %d for %s %s" % (volume, maxvol,
                            name, vtype))
                     retval = 1
-                elif volume <= minvol:
-                    print ("FAIL: Volume of %d is less than or equal to"\
+                elif volume < minvol:
+                    print ("FAIL: Volume of %d is less than"\
                            " minimum of %d for %s %s" % (volume, minvol,
                            name, vtype))
                     retval = 1
@@ -108,19 +110,21 @@ def check_volume(minvol, maxvol):
                     print ("PASS: Volume is %d for %s %s" % (volume, name,
                            vtype))
             else:
-                print("Unable to find volume information in the pacmd list-%ss"\
-                      " output for device %s.\npacmd output was: %s" % 
+                print("Unable to find volume information in the pacmd"\
+                      "  list-%ss output for device %s.\npacmd output "\
+                      "was: %s" % 
                       (vtype, name, pacmd_entries), file=sys.stderr)
                 return 1
     return retval
 
+
 def main():
     parser = ArgumentParser("Check the audio volume")
-    parser.add_argument("-n","--minvol", type=int, required=True,
+    parser.add_argument("-n", "--minvol", type=int, required=True,
                         help="""The minimum volume for a check_volume call.
                                 Volume must be greater than this number to
                                 be considered a pass.""")
-    parser.add_argument("-x","--maxvol", type=int, required=True,
+    parser.add_argument("-x", "--maxvol", type=int, required=True,
                         help="""The maximum volume for a check_volume call.
                                 Volume must be less than this number to
                                 be considered a pass.""")
