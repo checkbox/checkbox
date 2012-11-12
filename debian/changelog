@@ -34,6 +34,8 @@ checkbox (0.14.10) quantal; urgency=low
     have a command
   * Change most of the job plugin fields to use the appropriate new plugin type,
     i.e. user-verify or user-interact.
+  * scripts/audio_settings - Use pactl instead of pacmd where possible as it
+    is better maintained than pacmd (LP: #1067026)
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
