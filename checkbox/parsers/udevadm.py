@@ -222,9 +222,9 @@ class UdevadmDevice:
                 if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
                 if any(d.bus == 'usb' for d in self._stack):
-                    if CARD_READER_RE.search(self.product):
+                    if self.product is not None and CARD_READER_RE.search(self.product):
                         return "CARDREADER"
-                    if GENERIC_RE.search(self.vendor):
+                    if self.vendor is not None and GENERIC_RE.search(self.vendor):
                         return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
