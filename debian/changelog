@@ -28,6 +28,8 @@ checkbox (0.14.10) quantal; urgency=low
     with a string instead of an Exception (LP: #1066862)
   * scripts/network_check - Get the base page for cdimage.ubuntu.com instead
     of some subdirectory which may or may not change in future (LP: #1065855)
+  * scripts/internet_test - Wait some time (ten seconds) for the ARP cache to
+    be populated, as it can be slow on some systems
   * Change the plugin types verification and interaction to user-verify and
     user-interact, to clarify their meaning.
   * Added a unit test to ensure user-verify and user-interact jobs
