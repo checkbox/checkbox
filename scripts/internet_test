@@ -9,7 +9,7 @@ import socket
 import struct
 import subprocess
 import gettext
-import datetime
+import time
 
 from gettext import gettext as _
 
@@ -118,11 +118,10 @@ def get_host_to_ping(interface=None, verbose=False, default=None):
         except subprocess.CalledProcessError:
             pass
     
-    ARP_WAIT = 10
-    start_time = datetime.datetime.now()
-    current_time = datetime.datetime.now()
+    ARP_POPULATE_TRIES = 10
+    num_tries = 0
     
-    while (current_time - start_time).seconds < ARP_WAIT:
+    while num_tries < ARP_POPULATE_TRIES::
         #Get output from arp -a -n to get known IPs
         known_ips = subprocess.check_output(["arp", "-a", "-n"])
         reg = re.compile('\? \((?P<ip>[\d.]+)\) at (?P<mac>[a-f0-9\:]+) '
@@ -150,7 +149,8 @@ def get_host_to_ping(interface=None, verbose=False, default=None):
         if address_to_ping:
             return address_to_ping
 
-        current_time = datetime.datetime.now()
+        time.sleep(2)
+        num_tries += 1
 
     # Wait time expired
     return None
