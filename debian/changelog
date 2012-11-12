@@ -91,6 +91,8 @@ checkbox (0.14.10) quantal; urgency=low
     were provided on command line, in addition to the device actually being
     manipulated. (LP: #1066948)
   * checkbox/dbus/udisks2.py: Fix typo in fireware name LP: #1070859
+  * scripts/udev_resource: Use simpler interfaces
+  * checkbox/parsers/udevadm.py: Allow using UdevadmParser with a string
   
   [Jeff Lane]
   * scripts/sleep_test - Added timeing code to create start/end markers in
