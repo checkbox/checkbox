@@ -12,6 +12,7 @@ _description:
 
 plugin: shell
 name: power-management/fwts_wakealarm
+environ: CHECKBOX_DATA
 user: root
 _description: Test ACPI Wakealarm (fwts wakealarm)
 requires:
@@ -86,7 +87,7 @@ _description:
  VERIFICATION:
     Does closing your laptop lid cause your system to suspend?
 
-plugin: manual
+plugin: user-interact
 name: power-management/lid_close
 requires: device.product == 'Lid Switch'
 command:
@@ -104,7 +105,7 @@ _description:
  VERIFICATION:
      Did the screen turn off while the lid was closed?
 
-plugin: manual
+plugin: user-interact
 name: power-management/lid_open
 requires: device.product == 'Lid Switch'
 command:

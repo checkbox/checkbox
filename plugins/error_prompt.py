@@ -29,7 +29,7 @@ class ErrorPrompt(Plugin):
 
     def prompt_error(self, interface, primary_text, secondary_text=None,
                      detailed_text=None):
-        interface.show_error(*args)
+        interface.show_error(primary_text, secondary_text, detailed_text)
 
 
 factory = ErrorPrompt

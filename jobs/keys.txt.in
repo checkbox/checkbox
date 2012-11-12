@@ -14,7 +14,7 @@ name: keys/volume
 requires:
  device.category == 'KEYBOARD'
 user: root
-command: key_test -s '0xe02e,0xe0ae:Volume Up' '0xe030,0xe0b0:Volume Down'
+command: key_test -s '0xe02e,0xe0ae:Volume Down' '0xe030,0xe0b0:Volume Up'
 _description:
  PURPOSE:
      This test will test the volume keys of your keyboard
@@ -82,7 +82,7 @@ _description:
  VERIFICATION:
      Did the wireless go off on the first press and on again on the second?
 
-plugin: manual
+plugin: user-interact
 name: keys/media-control
 requires:
  device.category == 'KEYBOARD'
@@ -98,7 +98,7 @@ _description:
  VERIFICATION:
      Do the keys work as expected?
 
-plugin: manual
+plugin: user-interact
 name: keys/super
 requires:
  device.category == 'KEYBOARD'

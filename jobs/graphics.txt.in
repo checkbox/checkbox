@@ -36,14 +36,7 @@ requires: package.name == 'xorg'
 command: ! test -e /var/log/Xorg.failsafe.log
 _description: Test that the X is not running in failsafe mode.
 
-plugin: shell
-name: graphics/xorg-memory
-requires: package.name == 'xorg' and device.driver == 'i915'
-user: root
-command: xorg_memory_test xeyes
-_description: Test that X does not leak memory when running programs on systems with intel based graphics.
-
-plugin: verification
+plugin: user-verify
 name: graphics/resolution
 requires:
  device.category == 'VIDEO'
@@ -79,7 +72,7 @@ plugin: shell
 command: color_depth_info
 _description: Collect info on color depth and pixel format.
 
-plugin: manual
+plugin: user-verify
 name: graphics/display
 requires: 
  package.name == 'xorg'
@@ -98,7 +91,7 @@ name: graphics/VESA_drivers_not_in_use
 command: cat /var/log/Xorg.0.log | perl -e '$a=0;while(<>){$a++ if /Loading.*vesa_drv\.so/;$a-- if /Unloading.*vesa/&&$a}exit 1 if $a'
 _description: Check that VESA drivers are not in use
 
-plugin: manual
+plugin: user-verify
 name: graphics/cycle_resolution
 requires: package.name == 'xorg'
 depends: graphics/VESA_drivers_not_in_use
@@ -111,7 +104,7 @@ _description:
  VERIFICATION:
      Did the screen appear to be working for each mode?
 
-plugin: manual
+plugin: user-verify
 name: graphics/rotation
 depends: graphics/xorg-version
 command: rotation_test
@@ -138,7 +131,7 @@ command:
  perl -e '$a=`/usr/lib/nux/unity_support_test -p`;$a=~s/\e\[[\d;]*m//g;print $a;exit($? ? 1:0)'
 _description: Check that hardware is able to run Unity 3D
 
-plugin: manual
+plugin: user-verify
 name: graphics/glxgears
 requires: package.name == 'mesa-utils'
 command: glxgears; true

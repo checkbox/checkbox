@@ -32,7 +32,7 @@ _description:
  VERIFICATION:
      Did the device work as expected?
 
-plugin: interaction
+plugin: user-interact
 name: usb/insert
 depends: usb/detect
 command: removable_storage_watcher insert usb
@@ -48,7 +48,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: usb3/insert
 requires:
  usb.usb3 == 'supported'
@@ -65,7 +65,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: usb/remove
 depends: usb/insert
 command: removable_storage_watcher remove usb
@@ -80,7 +80,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: usb3/remove
 depends: usb3/insert
 requires:

@@ -1,6 +1,7 @@
 plugin: manual
 name: power-management/hibernate_advanced
 depends: power-management/rtc
+environ: CHECKBOX_DATA
 user: root
 command:
  if type -P fwts >/dev/null; then

@@ -88,7 +88,7 @@ _description:
  VERIFICATION:
      Was the data correctly transferred?
 
-plugin: manual
+plugin: user-verify
 name: suspend/suspend_advanced
 depends: power-management/rtc
 requires:
@@ -98,10 +98,10 @@ environ: CHECKBOX_DATA
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check
+  fwts_test -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check | tee $CHECKBOX_DATA/suspend_single_times.log
  else
   echo "Calling sleep_test"
-  sleep_test -p
+  sleep_test -p | tee $CHECKBOX_DATA/suspend_single_times.log
  fi
 _description:
  PURPOSE:
@@ -122,13 +122,19 @@ _description:
  This is the automated version of suspend/suspend_advanced.
 user: root
 environ: CHECKBOX_DATA
-command: fwts_test -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check
+command: fwts_test -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check | tee $CHECKBOX_DATA/suspend_single_times.log
 
 plugin: attachment
 name: suspend/suspend-single-log-attach
 command: [ -e $CHECKBOX_DATA/suspend_single.log ] && cat $CHECKBOX_DATA/suspend_single.log
 _description:
  Attaches the log from the single suspend/resume test to the results
+
+plugin: shell
+name: suspend/suspend-time-check
+command: [ -e $CHECKBOX_DATA/suspend_single_times.log ] && sleep_time_check $CHECKBOX_DATA/suspend_single_times.log
+_description:
+ Checks the sleep times to ensure that a machine suspends and resumes within a given threshold
 
 plugin: manual
 name: power-management/usb_wakeup_keyboard

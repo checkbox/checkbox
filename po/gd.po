@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-23 04:34+0000\n"
-"X-Generator: Launchpad (build 16179)\n"
+"X-Launchpad-Export-Date: 2012-10-31 04:34+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -852,6 +852,18 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am faigh an t-siostam lorg nuair cuir "
+"FireWire HDD a-steach\n"
+"CEUMAN:\n"
+"    1. Briog 'Dearbh' gus tòiseachadh an deuchainn. Le crìoch-ùine\n"
+"       fàilligeadh an deuchainn seo mur eil lorg air a chur a-steach taobh a-"
+"staigh 20 dìogan.\n"
+"    2. Plucaich FireWire HDD a-steach dham port FireWire.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhaidh an deuchainn seo fèin-obrachail. Na atharraich an toradh "
+"taghte\n"
+"    fèin-obrachail."
 
 #. description
 #: ../jobs/firewire.txt.in:19
@@ -859,6 +871,8 @@ msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
 msgstr ""
+"'S e seo deuchainn gu fèin-obrachail a tha dèanamh obrachaidhean "
+"leugh/sgrìobh air an FireWire HDD ceangailte."
 
 #. description
 #: ../jobs/firewire.txt.in:27
@@ -875,6 +889,19 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am faigh an t-siostam lorg nuair toirt "
+"FireWire HDD air falbh\n"
+"CEUMAN:\n"
+"    1. Briog 'Dearbh' gus tòiseachadh an deuchainn.  Le crìoch-ùine\n"
+"        fàilligeadh an deuchainn seo mur eil lorg air a thoirt air falbh "
+"taobh a-staigh 20 dìogan.\n"
+"    2. Thoir air falbh an FireWire HDD ceangailte mar-thà bho a' phort "
+"FireWire.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhaidh an deuchainn seo fèin-obrachail. Na atharraich an toradh "
+"taghte\n"
+"    fèin-obrachail."
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -908,6 +935,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo gu gabh cleachdadh an ECG (GUI) às dèidh "
+"atharrachadh an dùmhlachd-bhreacaidh\n"
+"CEUMAN:\n"
+"    1. Fosgail aplacaid na Taisbeanaidhean\n"
+"    2. Tagh dùmhlachd-bhreacaidh ùr bhon liosta teàrnach\n"
+"    3. Briog air, Cuir an gnìomh\n"
+"    4. Tagh an dùmhlachd-bhreacaidh tùsail bhon liosta teàrnach\n"
+"    5. Briog air, Cuir an gnìomh\n"
+"DEARBHACHADH:\n"
+"    Na dh'atharraich an dùmhlachd-bhreacaidh mar a bha dhùil?"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -956,6 +994,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo dùmhlachd-bhreacaidh an taisbean bunaiteach\n"
+"CEUMAN:\n"
+"    1. Tha an taisbean seo a' cleachdadh an dùmhlachd-bhreacaidh tha "
+"leantainn:\n"
+"FIOS:\n"
+"    $output\n"
+"DEARBHACHADH:\n"
+"    Bheil seo iomchaidh dhan taisbean agad?"
 
 #. description
 #: ../jobs/graphics.txt.in:66
@@ -1078,17 +1125,17 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "A' ceangal iomradh de codec stalaicte son Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "A' ceangal iomradh de dh'fhiosrachaidh CPU"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "A' ceangal lethbhreac de /var/log/dmesg ri toraidhean an deuchainn"
 
 #. description
 #: ../jobs/info.txt.in:20
@@ -1103,12 +1150,13 @@ msgstr "A' ceangal às-chur dmidecode"
 #. description
 #: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "A' ceangal às-chur lspci ro-bhriathrach."
 
 #. description
 #: ../jobs/info.txt.in:42
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
+"A' ceangal às-chur lspci ro-bhriathrach. (le ceist stòr-dàta meadhanach)."
 
 #. description
 #: ../jobs/info.txt.in:49

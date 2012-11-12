@@ -94,7 +94,7 @@ QtFront::QtFront(QApplication *parent) :
     m_titleTestTypes["__networking__"] = checkboxTr("Networking Test", 0);
     m_titleTestTypes["__wireless__"] = checkboxTr("Wireless Test", 0);
     m_titleTestTypes["__optical__"] = checkboxTr("Optical Test", 0);
-    m_titleTestTypes["__pcmcia-pcix__"] = checkboxTr("PCMCIA/PCIX Test", 0);
+    m_titleTestTypes["__expresscard__"] = checkboxTr("ExpressCard Test", 0);
     m_titleTestTypes["__power-management__"] = checkboxTr("Power Management Test", 0);
     m_titleTestTypes["__suspend__"] = checkboxTr("Suspend Test", 0);
     m_titleTestTypes["__usb__"] = checkboxTr("USB Test", 0);
