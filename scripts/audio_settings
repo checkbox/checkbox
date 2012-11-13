@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-import sys
+import os
 import re
+import sys
 
 from argparse import ArgumentParser
 from subprocess import check_output, check_call, CalledProcessError
@@ -9,14 +10,26 @@ from subprocess import check_output, check_call, CalledProcessError
 TYPES = ("source", "sink")
 DIRECTIONS = {"source": "input", "sink": "output"}
 
-active_entries_regex = re.compile("\* index.*?(?=properties)", re.DOTALL)
+default_pattern = "(?<=Default %s: ).*"
 index_regex = re.compile("(?<=index: )[0-9]*")
-muted_regex = re.compile("(?<=muted: ).*")
-volume_regex = re.compile("(?<=volume: 0: )\s*[0-9]*")
-steps_regex = re.compile("(?<=volume steps:)\s*[0-9]*")
-name_regex = re.compile("(?<=name:).*")
+muted_regex = re.compile("(?<=Mute: ).*")
+volume_regex = re.compile("(?<=Volume: 0:)\s*[0-9]*")
+name_regex = re.compile("(?<=Name:).*")
 
-entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
+entry_pattern = "Name: %s.*?(?=Properties)"
+
+
+def unlocalized_env(reset={"LANG": "C.UTF-8"}):
+    """
+    Create un-localized environment.
+
+    Produce an environment that is suitable for subprocess.Popen() and
+    associated subprocess functions. The returned environment is equal to a
+    copy the current environment, updated with the value of the reset argument.
+    """
+    env = dict(os.environ)
+    env.update(reset)
+    return env
 
 
 def set_profile_hdmi():
@@ -25,7 +38,9 @@ def set_profile_hdmi():
     """
 
     profile = "output:hdmi-stereo-extra1+input:analog-stereo"
-    output_list = check_output(["pactl", "list"], universal_newlines=True)
+    output_list = check_output(["pactl", "list"],
+                               universal_newlines=True,
+                               env=unlocalized_env())
 
     if profile not in output_list:
         profile = profile.replace("-extra1", "")
@@ -39,7 +54,9 @@ def set_profile_hdmi():
 
 def get_current_profile_setting():
     """Captures and Writes current audio profile setting"""
-    output_list = check_output(["pactl", "list"], universal_newlines=True)
+    output_list = check_output(["pactl", "list"],
+                               universal_newlines=True,
+                               env=unlocalized_env())
     active_profile = re.findall("Active\sProfile.*", output_list)[0]
 
     try:
@@ -63,16 +80,17 @@ def restore_profile_setting():
         print("Failed setting audio output to:%s: %s" % (profile, error))
 
 
-def move_sinks(index):
+def move_sinks(name):
     sink_inputs = check_output(["pacmd", "list-sink-inputs"],
-                               universal_newlines=True)
+                               universal_newlines=True,
+                               env=unlocalized_env())
     input_indexes = index_regex.findall(sink_inputs)
 
     for input_index in input_indexes:
         try:
-            check_call(["pacmd", "move-sink-input", input_index, index])
+            check_call(["pacmd", "move-sink-input", input_index, name])
         except CalledProcessError:
-            print("Failed to move input %d to sink %d" % (input_index, index))
+            print("Failed to move input %d to sink %d" % (input_index, name))
             sys.exit(1)
 
 
@@ -84,26 +102,29 @@ def store_audio_settings(file):
         print("Failed to save settings: %s" % sys.exc_info()[1])
         sys.exit(1)
 
-
     for type in TYPES:
-        pacmd_entries = check_output(["pacmd", "list-%ss" % type],
-                                     universal_newlines=True)
-        active_entry = active_entries_regex.search(pacmd_entries).group()
+        pactl_status = check_output(["pactl", "stat"],
+                                    universal_newlines=True,
+                                    env=unlocalized_env())
+        default_regex = re.compile(default_pattern % type.title())
+        default = default_regex.search(pactl_status).group()
 
-        index = index_regex.search(active_entry)
-        print("%s_index: %s" % (type, index.group().strip()),
-                                file=settings_file)
+        print("default_%s: %s" % (type, default), file=settings_file)
 
-        muted = muted_regex.search(active_entry)
+        pactl_list = check_output(["pactl", "list", type + 's'],
+                                  universal_newlines=True,
+                                  env=unlocalized_env())
+
+        entry_regex = re.compile(entry_pattern % default, re.DOTALL)
+        entry = entry_regex.search(pactl_list).group()
+
+        muted = muted_regex.search(entry)
         print("%s_muted: %s" % (type, muted.group().strip()),
                                 file=settings_file)
 
-        steps = int(steps_regex.search(active_entry).group().strip())
-        volume = int(volume_regex.search(active_entry).group().strip())
+        volume = int(volume_regex.search(entry).group().strip())
 
-        absolute_volume = int(steps / 100 * volume)
-
-        print("%s_volume: %s" % (type, str(absolute_volume)),
+        print("%s_volume: %s%%" % (type, str(volume)),
                                  file=settings_file)
 
 
@@ -111,41 +132,37 @@ def set_audio_settings(device, mute, volume):
     print(device, mute, volume)
 
     for type in TYPES:
-        pacmd_entries = check_output(["pacmd", "list-%ss" % type],
-                                     universal_newlines=True)
+        pactl_entries = check_output(["pactl", "list", type + 's'],
+                                     universal_newlines=True,
+                                     env=unlocalized_env())
 
-        entries = entries_regex.findall(pacmd_entries)
+        # Find the name of the sink/source we want to set
+        names = name_regex.findall(pactl_entries)
 
-        for entry in entries:
-            name = name_regex.search(entry).group()
-
+        for name in names:
+            name = name.strip()
             if device in name and DIRECTIONS[type] in name:
-                index = index_regex.search(entry).group().strip()
-
                 try:
-                    check_call(["pacmd", "set-default-%s" % type, index])
+                    check_call(["pacmd", "set-default-%s" % type, name])
                 except CalledProcessError:
                     print("Failed to set default %s" % type)
                     sys.exit(1)
 
                 if type == "sink":
-                    move_sinks(index)
+                    move_sinks(name)
 
                 try:
-                    check_call(["pacmd",
-                                "set-%s-mute" % type, index, str(mute)])
+                    check_call(["pactl",
+                                "set-%s-mute" % type, name, str(mute)])
                 except:
-                    print("Failed to set mute for %s" % device)
+                    print("Failed to set mute for %s" % name)
                     sys.exit(1)
 
-                steps = int(steps_regex.search(entry).group().strip())
-                new_volume = int(steps / 100 * volume)
-
                 try:
-                    check_call(["pacmd",
-                               "set-%s-volume" % type, index, str(new_volume)])
+                    check_call(["pactl", "set-%s-volume" % type,
+                               name, str(volume) + '%'])
                 except:
-                    print("Failed to set volume for %s" % device)
+                    print("Failed to set volume for %s" % name)
                     sys.exit(1)
 
 
@@ -153,28 +170,28 @@ def restore_audio_settings(file):
     try:
         settings_file = open(file).read().split()
     except IOError:
-        print("Unable to open existing settings file: %s" % 
+        print("Unable to open existing settings file: %s" %
                 sys.exc_info()[1])
         sys.exit(1)
 
     for type in TYPES:
-        index = settings_file[settings_file.index("%s_index:" % type) + 1]
-        print(index)
+        name = settings_file[settings_file.index("default_%s:" % type) + 1]
+        print(name)
 
         try:
-            check_call(["pacmd", "set-default-%s" % type, index])
+            check_call(["pacmd", "set-default-%s" % type, name])
         except CalledProcessError:
             print("Failed to set default %s" % type)
             sys.exit(1)
 
         if type == "sink":
-            move_sinks(index)
+            move_sinks(name)
 
         muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
         print(muted)
 
         try:
-            check_call(["pacmd", "set-%s-mute" % type, index, muted])
+            check_call(["pactl", "set-%s-mute" % type, name, muted])
         except:
             print("Failed to set mute for %s" % device)
             sys.exit(1)
@@ -183,7 +200,7 @@ def restore_audio_settings(file):
         print(volume)
 
         try:
-            check_call(["pacmd", "set-%s-volume" % type, index, volume])
+            check_call(["pactl", "set-%s-volume" % type, name, volume])
         except:
             print("Failed to set volume for %s" % device)
             sys.exit(1)
