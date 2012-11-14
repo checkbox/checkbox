@@ -15,35 +15,35 @@ To start hacking use virtualenv with python3
 On Ubuntu you'll need to update the version of distribute that is installed
 inside the virtualenv to install coverage.
 
-    $ (venv) easy_install -U distribute
-    $ (venv) easy_install -U coverage
+    (venv) $ easy_install -U distribute
+    (venv) $ easy_install -U coverage
 
 Then 'develop' the package, this will setup proper path imports and create stub
 executables for you. All imports will now use your directory (no need to set
 PYTHONPATH to anything)
 
-    $ (venv) python3 setup.py develop
+    (venv) $ python3 setup.py develop
 
 You will be now able to run plainbox:
 
-    $ (venv) plainbox --help
+    (venv) $ plainbox --help
 
 Testing
 =======
 
 When hacking, run tests with code coverage (peek at .coveragerc):
 
-    $ (venv) coverage run setup.py test
+    (venv) $ coverage run setup.py test
 
-You can also use the now-standard unittest discover module:
+You can also use the standard 'discover' command from python3 unittest module:
 
-    $ (venv) coverage run -m unittest discover
+    (venv) $ coverage run -m unittest discover
 
 ...then look at test report coverage in the console:
 
-    $ (venv) coverage report
+    (venv) $ coverage report
 
 ...or in your browser:
 
-    $ (venv) coverage html
-    $ (venv) xdg-open htmlcov/index.html
+    (venv) $ coverage html
+    (venv) $ xdg-open htmlcov/index.html
