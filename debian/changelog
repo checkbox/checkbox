@@ -147,6 +147,9 @@ checkbox (0.14.10) quantal; urgency=low
     (LP: #1014813)
   * scripts/alsa_info - updated script to latest version available 
     (LP: #1078837) 
+  * jobs/suspend.txt.in - fixed cycle_resolutions_after_suspend_auto so that it
+    properly depends on suspend_advanced_auto rather than suspend_advanced
+    (LP: #1071605)
 
  -- Jeff Lane <jeff@ubuntu.com>  Thu, 15 Nov 2012 10:50:03 -0500
 
