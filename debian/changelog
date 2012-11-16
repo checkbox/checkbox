@@ -1,3 +1,11 @@
+checkbox (0.15) raring; urgency=low
+
+  [Daniel Manrique]
+  * New version 0.15 for Raring Ringtail development. 
+  * added scripts/key_test to the list of translatable files (LP: #1073359)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
+
 checkbox (0.14.10) quantal; urgency=low
 
   [Jeff Marcom]
@@ -53,7 +61,6 @@ checkbox (0.14.10) quantal; urgency=low
     variables used in shell command (LP: #955053)
   * Forced utf-8 decoding on modinfo output and updated to use check_output
     instead of communicate (LP: #1055730)
-  * added scripts/key_test to the list of translatable files (LP: #1073359)
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
@@ -146,8 +153,13 @@ checkbox (0.14.10) quantal; urgency=low
     less than minvol, not when equal to either. (LP: #1077008)
   * Added root user requirement to all jobs using removable storage test 
     (LP: #1014813)
+  * scripts/alsa_info - updated script to latest version available 
+    (LP: #1078837) 
+  * jobs/mediacard.txt.in - fixed the depends for all *remove* mediacard tests
+    to more properly depend on the insert tests rather than storage.
+    (LP: #1070328)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 07 Nov 2012 17:33:46 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 15 Nov 2012 10:50:03 -0500
 
 checkbox (0.14.6) quantal; urgency=low
 
