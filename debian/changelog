@@ -147,6 +147,9 @@ checkbox (0.14.10) quantal; urgency=low
     (LP: #1014813)
   * scripts/alsa_info - updated script to latest version available 
     (LP: #1078837) 
+  * jobs/mediacard.txt.in - fixed the depends for all *remove* mediacard tests
+    to more properly depend on the insert tests rather than storage.
+    (LP: #1070328)
 
  -- Jeff Lane <jeff@ubuntu.com>  Thu, 15 Nov 2012 10:50:03 -0500
 
