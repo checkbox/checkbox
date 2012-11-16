@@ -14,7 +14,7 @@ name: keys/volume
 requires:
  device.category == 'KEYBOARD'
 user: root
-command: key_test -s '0xe02e,0xe0ae:Volume Up' '0xe030,0xe0b0:Volume Down'
+command: key_test -s '0xe02e,0xe0ae:Volume Down' '0xe030,0xe0b0:Volume Up'
 _description:
  PURPOSE:
      This test will test the volume keys of your keyboard

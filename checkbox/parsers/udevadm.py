@@ -222,9 +222,9 @@ class UdevadmDevice:
                 if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
                 if any(d.bus == 'usb' for d in self._stack):
-                    if CARD_READER_RE.search(self.product):
+                    if self.product is not None and CARD_READER_RE.search(self.product):
                         return "CARDREADER"
-                    if GENERIC_RE.search(self.vendor):
+                    if self.vendor is not None and GENERIC_RE.search(self.vendor):
                         return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
@@ -238,6 +238,12 @@ class UdevadmDevice:
 
             if id_type == "video":
                 return "VIDEO"
+
+        if "RFKILL_TYPE" in self._environment:
+            rfkill_type = self._environment["RFKILL_TYPE"]
+
+            if rfkill_type == "bluetooth":
+                return "BLUETOOTH"
 
         if "DEVTYPE" in self._environment:
             devtype = self._environment["DEVTYPE"]
@@ -409,8 +415,8 @@ class UdevadmParser:
 
     device_factory = UdevadmDevice
 
-    def __init__(self, stream, bits=None):
-        self.stream = stream
+    def __init__(self, stream_or_string, bits=None):
+        self.stream_or_string = stream_or_string
         self.bits = bits
 
     def _ignoreDevice(self, device):
@@ -449,7 +455,10 @@ class UdevadmParser:
         multi_pattern = re.compile(r"(?P<key>[^=]+)=(?P<value>.*)")
 
         stack = []
-        output = self.stream.read()
+        if isinstance(self.stream_or_string, str):
+            output = self.stream_or_string
+        else:
+            output = self.stream_or_string.read()
         for record in re.split("\n{2,}", output):
             record = record.strip()
             if not record:

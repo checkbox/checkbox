@@ -16,6 +16,7 @@ _description:
 plugin: shell
 name: mediacard/mmc-storage
 depends: mediacard/mmc-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/mmc-insert
@@ -23,7 +24,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/mmc-remove
-depends: mediacard/mmc-storage
+depends: mediacard/mmc-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -55,6 +56,7 @@ _description:
 plugin: shell
 name: mediacard/mmc-storage-after-suspend
 depends: mediacard/mmc-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/mmc-insert-after-suspend test
@@ -62,7 +64,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/mmc-remove-after-suspend
-depends: mediacard/mmc-storage-after-suspend
+depends: mediacard/mmc-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -93,6 +95,7 @@ _description:
 plugin: shell
 name: mediacard/sd-storage
 depends: mediacard/sd-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sd-insert
@@ -100,7 +103,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sd-remove
-depends: mediacard/sd-storage
+depends: mediacard/sd-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -132,6 +135,7 @@ _description:
 plugin: shell
 name: mediacard/sd-storage-after-suspend
 depends: mediacard/sd-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sd-insert-after-suspend test
@@ -139,7 +143,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sd-remove-after-suspend
-depends: mediacard/sd-storage-after-suspend
+depends: mediacard/sd-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -180,6 +184,7 @@ _description:
 plugin: shell
 name: mediacard/sdhc-storage
 depends: mediacard/sdhc-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sdhc-insert
@@ -187,7 +192,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdhc-remove
-depends: mediacard/sdhc-storage
+depends: mediacard/sdhc-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -219,6 +224,7 @@ _description:
 plugin: shell
 name: mediacard/sdhc-storage-after-suspend
 depends: mediacard/sdhc-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sdhc-insert-after-suspend test
@@ -226,7 +232,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdhc-remove-after-suspend
-depends: mediacard/sdhc-storage-after-suspend
+depends: mediacard/sdhc-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -257,6 +263,7 @@ _description:
 plugin: shell
 name: mediacard/cf-storage
 depends: mediacard/cf-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/cf-insert
@@ -296,6 +303,7 @@ _description:
 plugin: shell
 name: mediacard/cf-storage-after-suspend
 depends: mediacard/cf-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/cf-insert-after-suspend test
@@ -303,7 +311,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/cf-remove-after-suspend
-depends: mediacard/cf-storage-after-suspend
+depends: mediacard/cf-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -334,6 +342,7 @@ _description:
 plugin: shell
 name: mediacard/sdxc-storage
 depends: mediacard/sdxc-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sdxc-insert
@@ -341,7 +350,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdxc-remove
-depends: mediacard/sdxc-storage
+depends: mediacard/sdxc-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -373,6 +382,7 @@ _description:
 plugin: shell
 name: mediacard/sdxc-storage-after-suspend
 depends: mediacard/sdxc-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sdxc-insert-after-suspend test
@@ -380,7 +390,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdxc-remove-after-suspend
-depends: mediacard/sdxc-storage-after-suspend
+depends: mediacard/sdxc-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -411,6 +421,7 @@ _description:
 plugin: shell
 name: mediacard/ms-storage
 depends: mediacard/ms-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/ms-insert
@@ -418,7 +429,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/ms-remove
-depends: mediacard/ms-storage
+depends: mediacard/ms-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -450,6 +461,7 @@ _description:
 plugin: shell
 name: mediacard/ms-storage-after-suspend
 depends: mediacard/ms-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/ms-insert-after-suspend test
@@ -457,7 +469,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/ms-remove-after-suspend
-depends: mediacard/ms-storage-after-suspend
+depends: mediacard/ms-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -488,6 +500,7 @@ _description:
 plugin: shell
 name: mediacard/msp-storage
 depends: mediacard/msp-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/msp-insert
@@ -495,7 +508,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/msp-remove
-depends: mediacard/msp-storage
+depends: mediacard/msp-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -527,6 +540,7 @@ _description:
 plugin: shell
 name: mediacard/msp-storage-after-suspend
 depends: mediacard/msp-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/msp-insert-after-suspend test
@@ -534,7 +548,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/msp-remove-after-suspend
-depends: mediacard/msp-storage-after-suspend
+depends: mediacard/msp-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -565,6 +579,7 @@ _description:
 plugin: shell
 name: mediacard/xd-storage
 depends: mediacard/xd-insert
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/xd-insert
@@ -572,7 +587,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/xd-remove
-depends: mediacard/xd-storage
+depends: mediacard/xd-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -604,6 +619,7 @@ _description:
 plugin: shell
 name: mediacard/xd-storage-after-suspend
 depends: mediacard/xd-insert-after-suspend
+user: root
 command: removable_storage_test --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/xd-insert-after-suspend test
@@ -611,7 +627,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/xd-remove-after-suspend
-depends: mediacard/xd-storage-after-suspend
+depends: mediacard/xd-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:

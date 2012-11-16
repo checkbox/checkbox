@@ -17,25 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import sys
 
-from io import StringIO
-from subprocess import (
-    Popen,
-    PIPE,
-    )
+from subprocess import check_output, CalledProcessError
 
 from checkbox.parsers.udevadm import UdevadmParser
-
-
-# Command to retrieve udev information.
-COMMAND = "udevadm info --export-db"
 
 
 class UdevResult:
 
     attributes = ("path", "bus", "category", "driver", "product_id",
-        "vendor_id", "subproduct_id", "subvendor_id", "product", "vendor",)
+                  "vendor_id", "subproduct_id", "subvendor_id", "product",
+                  "vendor",)
 
     def addDevice(self, device):
         for attribute in self.attributes:
@@ -47,14 +39,18 @@ class UdevResult:
 
 
 def main():
-    output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
-    udev = UdevadmParser(StringIO(output.decode("unicode-escape")))
-
+    try:
+        output = check_output(['udevadm', 'info', '--export-db'])
+    except CalledProcessError as exc:
+        raise SystemExit(exc)
+    try:
+        output = output.decode("UTF-8")
+    except UnicodeDecodeError as exc:
+        raise SystemExit("udevadm output is not valid UTF-8")
+    udev = UdevadmParser(output)
     result = UdevResult()
     udev.run(result)
 
-    return 0
-
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

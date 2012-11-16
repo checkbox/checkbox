@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import os
 import re
@@ -9,6 +9,7 @@ import socket
 import struct
 import subprocess
 import gettext
+import time
 
 from gettext import gettext as _
 
@@ -62,7 +63,7 @@ class Route(object):
         """
         logging.debug("Reading default gateway information from route binary")
         routebin = subprocess.getstatusoutput("export LANGUAGE=C; "
-                                            "/usr/bin/env route -n")
+                                              "/usr/bin/env route -n")
 
         if routebin[0] == 0:
             h = re.compile("\n0.0.0.0\s+(?P<def_gateway>[\w.]+)\s+")
@@ -88,7 +89,6 @@ class Route(object):
 
 def get_host_to_ping(interface=None, verbose=False, default=None):
     #Get list of all IPs from all my interfaces,
-
     interface_list = subprocess.check_output(["ip", "-o", 'addr', 'show'])
 
     reg = re.compile('\d: (?P<iface>\w+) +inet (?P<address>[\d\.]+)/'
@@ -118,32 +118,42 @@ def get_host_to_ping(interface=None, verbose=False, default=None):
         except subprocess.CalledProcessError:
             pass
 
-    #Get output from arp -a -n to get known IPs
-    known_ips = subprocess.check_output(["arp", "-a", "-n"])
+    ARP_POPULATE_TRIES = 10
+    num_tries = 0
 
-    #? (10.153.108.2) at 08:00:37:9a:5f:c4 [ether] on wlan0
-    reg = re.compile('\? \((?P<ip>[\d.]+)\) at (?P<mac>[a-f0-9\:]+) '
-                     '\[ether\] on (?P<iface>[\w\d]+)')
+    while num_tries < ARP_POPULATE_TRIES:
+        #Get output from arp -a -n to get known IPs
+        known_ips = subprocess.check_output(["arp", "-a", "-n"])
+        reg = re.compile('\? \((?P<ip>[\d.]+)\) at (?P<mac>[a-f0-9\:]+) '
+                         '\[ether\] on (?P<iface>[\w\d]+)')
 
-    #Filter (if needed) IPs not on the specified interface
-    pingable_ips = [pingable[0]
-                    for pingable in reg.findall(known_ips.decode())
-                    if not interface or pingable[2] == interface]
+        #Filter (if needed) IPs not on the specified interface
+        pingable_ips = [pingable[0] for pingable in reg.findall(
+                        known_ips.decode()) if not interface
+                        or pingable[2] == interface]
 
-    # If the default given ip is among the remaining ones,
-    # ping that.
-    if default and default in pingable_ips:
+        # If the default given ip is among the remaining ones,
+        # ping that.
+        if default and default in pingable_ips:
+            if verbose:
+                print("Desired ip address %s is reachable, using it" % default)
+            return default
+
+        #If not, choose another IP.
+        address_to_ping = pingable_ips[0] if len(pingable_ips) else None
         if verbose:
-            print("Desired ip address %s is reachable, using it" % default)
-        return default
+            print("Desired ip address %s is not reachable from %s. "
+                  % (default, interface))
+            print("using %s instead." % address_to_ping)
 
-    #If not, choose another IP.
-    address_to_ping = pingable_ips[0] if len(pingable_ips) else None
-    if verbose:
-        print("Desired ip address %s is not reachable from %s. "
-              % (default, interface))
-        print("using %s instead." % address_to_ping)
-    return address_to_ping
+        if address_to_ping:
+            return address_to_ping
+
+        time.sleep(2)
+        num_tries += 1
+
+    # Wait time expired
+    return None
 
 
 def ping(host, interface, count, deadline, verbose=False):
@@ -178,22 +188,22 @@ def main(args):
 
     parser = ArgumentParser()
     parser.add_argument("host",
-        nargs='?',
-        default=route.get_default_gateway(),
-        help="Host to ping")
+                        nargs='?',
+                        default=route.get_default_gateway(),
+                        help="Host to ping")
     parser.add_argument("-c", "--count",
-        default=default_count,
-        type=int,
-        help="Number of packets to send.")
+                        default=default_count,
+                        type=int,
+                        help="Number of packets to send.")
     parser.add_argument("-d", "--deadline",
-        default=default_delay,
-        type=int,
-        help="Timeouts in seconds.")
+                        default=default_delay,
+                        type=int,
+                        help="Timeouts in seconds.")
     parser.add_argument("-v", "--verbose",
-        action='store_true',
-        help="Be verbose.")
+                        action='store_true',
+                        help="Be verbose.")
     parser.add_argument("-I", "--interface",
-        help="Interface to ping from.")
+                        help="Interface to ping from.")
     args = parser.parse_args()
 
     #If given host is not pingable, override with something pingable.

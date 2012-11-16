@@ -156,7 +156,7 @@ name: audio/check_volume
 requires:
  package.name == 'pulseaudio-utils'
  device.category == 'AUDIO'
-command: volume_test --minvol 1 --maxvol 101
+command: volume_test --minvol 1 --maxvol 100
 _description:
  This test will verify that the volume levels are at an acceptable level on
  your local system.  The test will validate that the volume is greater than
