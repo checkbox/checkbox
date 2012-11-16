@@ -1,3 +1,14 @@
+checkbox (0.15) raring; urgency=low
+
+  [ Daniel Manrique ]
+  * New version 0.15 for Raring Ringtail development. 
+
+  [ Brendan Donegan ] 
+  * Change forward-slashes to asterisks in the filename of a connection, since
+    this is what NetworkManager does internally (LP: #1073335)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
+
 checkbox (0.14.10) quantal; urgency=low
 
   [Jeff Marcom]
@@ -38,8 +49,6 @@ checkbox (0.14.10) quantal; urgency=low
     i.e. user-verify or user-interact.
   * scripts/audio_settings - Use pactl instead of pacmd where possible as it
     is better maintained than pacmd (LP: #1067026)
-  * Change forward-slashes to asterisks in the filename of a connection, since
-    this is what NetworkManager does internally (LP: #1073335)
   
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
