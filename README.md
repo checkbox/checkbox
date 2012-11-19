@@ -6,17 +6,37 @@ PlainBox is a plain replacement for CheckBox
 Hacking
 =======
 
-To start hacking use virtualenv with python3
+To start hacking use virtualenv with python3. Three steps:
+
+
+1. First install a couple of packages:
 
     $ sudo apt-get install python-virtualenv python3-dev
-    $ virtualenv -p python3 /path/to/venv
-    $ . /path/to/venv/bin/activate
 
-On Ubuntu you'll need to update the version of distribute that is installed
-inside the virtualenv to install coverage.
+2. Then set up the virtualenv. A convenience script is provided to do this for
+   you:
+
+    $ ./mk-venv.sh /path/to/venv
+
+This will create a virtualenv under /tmp/venv and show the command to activate
+it.
+
+You can also set this up manually:
+
+    $ virtualenv -p python3 /path/to/venv
+
+If you do the manual setup and you're on  Ubuntu, you'll need to update the
+version of distribute that is installed inside the virtualenv to install
+coverage. If you used the convenience script, it takes care of this part for
+you.
 
     (venv) $ easy_install -U distribute
     (venv) $ easy_install -U coverage
+
+3. Once your virtualenv is set up, you need to activate it:
+
+    $ . /path/to/venv/bin/activate
+
 
 Then 'develop' the package, this will setup proper path imports and create stub
 executables for you. All imports will now use your directory (no need to set

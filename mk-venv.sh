@@ -3,10 +3,10 @@
 #
 # This is how Zygmunt Krynicki works, feel free to use or adjust to your needs
 
-VENV_PATH=/ramdisk/venv
+VENV_PATH=${1:-/ramdisk/venv}
 
 if [ ! -d $(dirname $VENV_PATH) ]; then
-    echo "This script requires $(dirname $VENV_PATH) directory to exit"
+    echo "This script requires $(dirname $VENV_PATH) directory to exist"
     exit 1
 fi
 
