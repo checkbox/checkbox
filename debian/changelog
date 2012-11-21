@@ -3,6 +3,10 @@ checkbox (0.15) raring; urgency=low
   [ Daniel Manrique ]
   * New version 0.15 for Raring Ringtail development. 
 
+  [ Brendan Donegan ] 
+  * Change forward-slashes to asterisks in the filename of a connection, since
+    this is what NetworkManager does internally (LP: #1073335)
+
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
     suspend/wireless_after_suspend (LP: #1070333)
@@ -52,7 +56,7 @@ checkbox (0.14.10) quantal; urgency=low
     i.e. user-verify or user-interact.
   * scripts/audio_settings - Use pactl instead of pacmd where possible as it
     is better maintained than pacmd (LP: #1067026)
-
+  
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
     parameters in string, applied pep8 fixes.
