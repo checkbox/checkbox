@@ -230,7 +230,6 @@ name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
 requires:
  device.category == 'WIRELESS'
- environment.ROUTERS == 'multiple'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It

@@ -7,6 +7,13 @@ checkbox (0.15) raring; urgency=low
   * Change forward-slashes to asterisks in the filename of a connection, since
     this is what NetworkManager does internally (LP: #1073335)
 
+  [ Jeff Lane ]
+  * jobs/suspend.txt.in - removed incorrect multiple router requirement for
+    suspend/wireless_after_suspend (LP: #1070333)
+
+  [Sylvain Pineau]
+  * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 
 checkbox (0.14.10) quantal; urgency=low
