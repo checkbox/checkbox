@@ -10,6 +10,9 @@ checkbox (0.15) raring; urgency=low
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
     suspend/wireless_after_suspend (LP: #1070333)
+  * jobs/suspend.txt.in - fixed cycle_resolutions_after_suspend_auto so that it
+    properly depends on suspend_advanced_auto rather than suspend_advanced
+    (LP: #1071605)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
