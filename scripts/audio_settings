@@ -175,7 +175,16 @@ def restore_audio_settings(file):
         sys.exit(1)
 
     for type in TYPES:
-        name = settings_file[settings_file.index("default_%s:" % type) + 1]
+        #First try to get the three elements we need. If we fail to get any of them, it means
+        #the file's format is incorrect, so we just abort.
+        try:
+            name = settings_file[settings_file.index("default_%s:" % type) + 1]
+            muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
+            volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
+        except ValueError:
+            print("Unable to restore settings because settings file is invalid")
+            sys.exit(1)
+
         print(name)
 
         try:
@@ -187,7 +196,6 @@ def restore_audio_settings(file):
         if type == "sink":
             move_sinks(name)
 
-        muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
         print(muted)
 
         try:
@@ -196,7 +204,6 @@ def restore_audio_settings(file):
             print("Failed to set mute for %s" % device)
             sys.exit(1)
 
-        volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
         print(volume)
 
         try:

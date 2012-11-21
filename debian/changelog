@@ -2,6 +2,8 @@ checkbox (0.15) raring; urgency=low
 
   [ Daniel Manrique ]
   * New version 0.15 for Raring Ringtail development. 
+  * Fail gracefully with a friendly and useful error message if audio settings
+    file format is invalid. (LP: #1065703)
 
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
