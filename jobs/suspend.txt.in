@@ -550,7 +550,7 @@ _description:
 plugin: shell
 name: suspend/cycle_resolutions_after_suspend_auto
 requires: package.name == 'xorg'
-depends: suspend/suspend_advanced graphics/cycle_resolution
+depends: suspend/suspend_advanced_auto graphics/cycle_resolution
 _description:
  This test will check to make sure supported video modes work after a suspend and resume.
  This is done automatically by taking screenshots and uploading them as an attachment.
