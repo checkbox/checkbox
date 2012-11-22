@@ -2,8 +2,7 @@ plugin: shell
 name: piglit/fbo_tests
 requires:
  package.name == 'piglit'
-command: 
- piglit-run.py -t fbo /usr/share/piglit/tests/all.tests $CHECKBOX_DATA/piglit-results/fbo
+command: piglit_test fbo 
 _description:
  Runs the piglit test suite fbo test
 
@@ -11,8 +10,7 @@ plugin: shell
 name: piglit/texturing_tests
 requires:
  package.name == 'piglit'
-command: 
- piglit-run.py -t texturing /usr/share/piglit/tests/all.tests $CHECKBOX_DATA/piglit-results/texturing
+command: piglit_test texturing
 _description:
  Runs the piglit test suite texturing tests
 

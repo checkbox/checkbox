@@ -1,0 +1,72 @@
+#!/usr/bin/python3
+
+import os
+import sys
+
+from subprocess import check_output, PIPE, STDOUT
+from argparse import ArgumentParser
+
+class PiglitTests:
+    
+    def __init__(self, suite):
+        self._suite = suite
+        self._results = {}
+
+    def run(self, output=None):
+        piglit_output = ''
+        if output:
+            piglit_output = output.read()
+        else:
+            log_path = os.environ.get('CHECKBOX_DATA','.') + '/piglit-results/' + self._suite
+
+            run_command = ["piglit-run.py","-t", 
+                           self._suite,
+                           '/usr/share/piglit/tests/all.tests',
+                           log_path]
+            piglit_output = check_output(run_command,
+                                         universal_newlines=True,
+                                         stderr=STDOUT)
+        # TODO: Capture stderr instead?
+        for line in piglit_output.split('\n'):
+            if ' :: ' in line:
+                self._results[line.split(' :: ')[-1].strip()] = \
+                line.split(' :: ')[-2].strip()
+
+    def get_tests_by_status(self, status):
+        """
+        Return a list of the tests with the given status in the last piglit run
+        """
+        tests = []
+        for test in self._results:
+            if self._results[test] == status:
+                tests.append(test)
+
+        return tests
+
+def main():
+    parser = ArgumentParser("A wrapper script for the Piglit graphics test "
+                               "framework which runs the tests and parses the "
+                               "results.")
+    parser.add_argument("suite",
+                        help="The Piglit test suite to run")
+    parser.add_argument("--output", "-o",
+                        type=open,
+                        help="Name of a file which contains piglit run output.")
+    args = parser.parse_args()
+
+    piglit = PiglitTests(args.suite)
+    piglit.run(args.output)
+
+    passed_tests = piglit.get_tests_by_status('pass')
+    print("%d test%s passed:" % len(passed_tests))
+    failed_tests = piglit.get_tests_by_status('fail')
+    print("%d test%s failed:" % len(failed_tests))
+    print("\n".join(["- %s" % test for test in failed_tests]))
+    crashed_tests = piglit.get_tests_by_status('crash')
+    print("%d test%s crashed:" % len(crashed_tests))
+    print("\n".join(["- %s" % test for test in crashed_tests]))
+    skipped_tests = piglit.get_tests_by_status('skip')
+    print("%d tests were skipped" % len(skipped_tests))
+
+if __name__ == "__main__":
+    sys.exit(main())

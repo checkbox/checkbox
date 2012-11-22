@@ -10,6 +10,10 @@ checkbox (0.15) raring; urgency=low
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
 
+  [Brendan Donegan]
+  * scripts/piglit_test, jobs/piglit.txt.in - create a script which wraps and
+    parses the piglit test results and use it in the piglit jobs.
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 
 checkbox (0.14.10) quantal; urgency=low
