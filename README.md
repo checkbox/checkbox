@@ -3,6 +3,9 @@ PlainBox
 
 PlainBox is a plain replacement for CheckBox
 
+[![Build Status](https://travis-ci.org/zyga/plainbox.png)](https://travis-ci.org/zyga/plainbox)
+
+
 Hacking
 =======
 
