@@ -24,7 +24,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="plainbox",
-    version="0.1",
+    version="0.2",
     packages=find_packages(),
     author="Zygmunt Krynicki",
     test_suite='plainbox.tests.test_suite',
