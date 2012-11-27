@@ -31,7 +31,9 @@ from signal import SIGTSTP, SIGCONT, SIGTERM
 from subprocess import check_call, check_output, Popen, PIPE
 from argparse import ArgumentParser
 
+
 class AppThread(threading.Thread):
+
     def __init__(self, app_name):
         self._appname = app_name
         self.stdout = None
@@ -55,7 +57,7 @@ def open_close_process(app, timeout):
     app_thread.start()
 
     # Wait until we have a pid
-    while app_thread.pid == None:
+    while app_thread.pid is None:
         continue
     pid = app_thread.pid
 
@@ -85,7 +87,7 @@ def open_close_multi_process(app, timeout, apps_num):
 
     for thread in threads:
         # Wait until we have a pid
-        while thread.pid == None:
+        while thread.pid is None:
             continue
 
     # Wait a bit and kill the process
@@ -110,7 +112,7 @@ def open_suspend_close_process(app, timeout):
     app_thread.start()
 
     # Wait until we have a pid
-    while app_thread.pid == None:
+    while app_thread.pid is None:
         continue
     pid = app_thread.pid
 
@@ -137,21 +139,22 @@ def open_suspend_close_process(app, timeout):
 
     return status
 
+
 def move_window(app, timeout):
     status = 0
-    
+
     # Start the process in a separate thread
     app_thread = AppThread(app)
     app_thread.start()
 
-    while not app_thread.pid:
+    while app_thread.pid is None:
         continue
 
     pid = app_thread.pid
 
     time.sleep(3)
 
-    window_list = check_output(['wmctrl','-l'], universal_newlines=True)
+    window_list = check_output(['wmctrl', '-l'], universal_newlines=True)
     window_id = ''
 
     for line in window_list.split('\n'):
@@ -166,41 +169,41 @@ def move_window(app, timeout):
         geom = screen.get_monitor_geometry(screen.get_primary_monitor())
 
         # Find out the window information from xwininfo
-        window_x = ''
-        window_y = ''
-        window_width = ''
-        window_height = ''
+        win_x = ''
+        win_y = ''
+        win_width = ''
+        win_height = ''
 
-        for line in check_output(['xwininfo','-name',app],
+        for line in check_output(['xwininfo', '-name', app],
                                  universal_newlines=True).split('\n'):
             if 'Absolute upper-left X' in line:
-                window_x = line.split(': ')[-1].strip()
+                win_x = line.split(': ')[-1].strip()
             elif 'Absolute upper-left Y' in line:
-                window_y = line.split(': ')[-1].strip()
+                win_y = line.split(': ')[-1].strip()
             elif 'Width' in line:
-                window_width = line.split(': ')[-1].strip()
+                win_width = line.split(': ')[-1].strip()
             elif 'Height' in line:
-                window_height = line.split(': ')[-1].strip()
+                win_height = line.split(': ')[-1].strip()
 
-        move_line = ["0", window_x, window_y, window_width, window_height]
+        move_line = ["0", win_x, win_y, win_width, win_height]
 
         directions = {'RIGHT': geom.width,
                       'DOWN': geom.height,
-                      'LEFT': window_x,
-                      'UP': window_y,
+                      'LEFT': win_x,
+                      'UP': win_y,
                       'STOP': None}
         current = 'RIGHT'
-        
+
         while current != 'STOP':
             if current == 'RIGHT':
                 # Check if top right corner of window reached top right point
-                if int(move_line[1]) + int(window_width) != directions[current]:
+                if int(move_line[1]) + int(win_width) != directions[current]:
                     new_x = int(move_line[1]) + 1
                     move_line[1] = str(new_x)
                 else:
                     current = 'DOWN'
             elif current == 'DOWN':
-                if int(move_line[2]) + int(window_height) != directions[current]: 
+                if int(move_line[2]) + int(win_height) != directions[current]:
                     new_y = int(move_line[2]) + 1
                     move_line[2] = str(new_y)
                 else:
@@ -216,7 +219,7 @@ def move_window(app, timeout):
                     new_y = int(move_line[2]) - 1
                     move_line[2] = str(new_y)
                 else:
-                   current = 'STOP'
+                    current = 'STOP'
 
             check_call(['wmctrl', '-i', '-r', window_id,
                         '-e', ','.join(move_line)])
@@ -227,6 +230,7 @@ def move_window(app, timeout):
         status = 1
 
     return status
+
 
 def print_open_close(iterations, timeout, *args):
     status = 0
@@ -266,6 +270,7 @@ def print_open_close_multi(iterations, timeout, windows_number):
     print('')
     return status
 
+
 def print_move_window(iterations, timeout, *args):
     status = 0
     print('Moving a 3D window across the screen')
@@ -275,8 +280,9 @@ def print_move_window(iterations, timeout, *args):
         exit_status = move_window('glxgears',
                                   timeout)
 
-        print('')
-        return status
+    print('')
+    return status
+
 
 def main():
     tests = {'open-close': print_open_close,
@@ -306,35 +312,30 @@ def main():
                         default=3,
                         help='The time in seconds between each test. \
                               Default is 3')
-    parser.add_argument('-w', '--windows_number',
+    parser.add_argument('-w', '--windows-number',
                         type=int,
+                        default=4,
                         help='The number of windows to open.')
 
     args = parser.parse_args()
 
     if args.windows_number:
         if args.test not in ('open-close-multi', 'all'):
-            parser.error('-w or --windows_number can only be used with '
+            parser.error('-w or --windows-number can only be used with '
                          'the "open-close-multi" test or with the '
                          '"all" test')
-        windows_number = args.windows_number
-    else:
-        windows_number = 4
 
     status = 0
-    iterations = args.iterations
-    timeout = args.timeout
-    windows_number = args.windows_number
 
     test = tests.get(args.test)
 
     if test:
-        status = test(iterations, timeout, windows_number)
+        status = test(args.iterations, args.timeout, args.windows_number)
     else:
         if args.test == 'all':
             for test in tests:
-                exit_status = tests[test](iterations, timeout,
-                                          windows_number)
+                exit_status = tests[test](args.iterations, args.timeout,
+                                          args.windows_number)
                 if exit_status != 0:
                     status = exit_status
         else:
