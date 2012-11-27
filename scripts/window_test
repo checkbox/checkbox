@@ -28,9 +28,8 @@ import os
 import sys
 
 from signal import SIGTSTP, SIGCONT, SIGTERM
-from subprocess import Popen, PIPE
+from subprocess import check_call, check_output, Popen, PIPE
 from argparse import ArgumentParser
-
 
 class AppThread(threading.Thread):
     def __init__(self, app_name):
@@ -138,6 +137,96 @@ def open_suspend_close_process(app, timeout):
 
     return status
 
+def move_window(app, timeout):
+    status = 0
+    
+    # Start the process in a separate thread
+    app_thread = AppThread(app)
+    app_thread.start()
+
+    while not app_thread.pid:
+        continue
+
+    pid = app_thread.pid
+
+    time.sleep(3)
+
+    window_list = check_output(['wmctrl','-l'], universal_newlines=True)
+    window_id = ''
+
+    for line in window_list.split('\n'):
+        if app in line:
+            window_id = line.split()[0]
+
+    if window_id:
+        # Get the screen information from GDK
+        from gi.repository import Gdk
+
+        screen = Gdk.Screen.get_default()
+        geom = screen.get_monitor_geometry(screen.get_primary_monitor())
+
+        # Find out the window information from xwininfo
+        window_x = ''
+        window_y = ''
+        window_width = ''
+        window_height = ''
+
+        for line in check_output(['xwininfo','-name',app],
+                                 universal_newlines=True).split('\n'):
+            if 'Absolute upper-left X' in line:
+                window_x = line.split(': ')[-1].strip()
+            elif 'Absolute upper-left Y' in line:
+                window_y = line.split(': ')[-1].strip()
+            elif 'Width' in line:
+                window_width = line.split(': ')[-1].strip()
+            elif 'Height' in line:
+                window_height = line.split(': ')[-1].strip()
+
+        move_line = ["0", window_x, window_y, window_width, window_height]
+
+        directions = {'RIGHT': geom.width,
+                      'DOWN': geom.height,
+                      'LEFT': window_x,
+                      'UP': window_y,
+                      'STOP': None}
+        current = 'RIGHT'
+        
+        while current != 'STOP':
+            if current == 'RIGHT':
+                # Check if top right corner of window reached top right point
+                if int(move_line[1]) + int(window_width) != directions[current]:
+                    new_x = int(move_line[1]) + 1
+                    move_line[1] = str(new_x)
+                else:
+                    current = 'DOWN'
+            elif current == 'DOWN':
+                if int(move_line[2]) + int(window_height) != directions[current]: 
+                    new_y = int(move_line[2]) + 1
+                    move_line[2] = str(new_y)
+                else:
+                    current = 'LEFT'
+            elif current == 'LEFT':
+                if int(move_line[1]) != int(directions[current]):
+                    new_x = int(move_line[1]) - 1
+                    move_line[1] = str(new_x)
+                else:
+                    current = 'UP'
+            elif current == 'UP':
+                if int(move_line[2]) != int(directions[current]):
+                    new_y = int(move_line[2]) - 1
+                    move_line[2] = str(new_y)
+                else:
+                   current = 'STOP'
+
+            check_call(['wmctrl', '-i', '-r', window_id,
+                        '-e', ','.join(move_line)])
+
+        os.kill(pid, SIGTERM)
+    else:
+        print("Could not get window handle for %s" % app, file=sys.stderr)
+        status = 1
+
+    return status
 
 def print_open_close(iterations, timeout, *args):
     status = 0
@@ -177,11 +266,23 @@ def print_open_close_multi(iterations, timeout, windows_number):
     print('')
     return status
 
+def print_move_window(iterations, timeout, *args):
+    status = 0
+    print('Moving a 3D window across the screen')
+
+    for it in range(iterations):
+        print('Iteration %d of %d:' % (it + 1, iterations))
+        exit_status = move_window('glxgears',
+                                  timeout)
+
+        print('')
+        return status
 
 def main():
     tests = {'open-close': print_open_close,
              'suspend-resume': print_suspend_resume,
-             'open-close-multi': print_open_close_multi}
+             'open-close-multi': print_open_close_multi,
+             'move': print_move_window}
 
     usage = 'Usage: %{prog}s [OPTIONS]'
     parser = ArgumentParser(usage)

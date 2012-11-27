@@ -6,6 +6,8 @@ checkbox (0.15) raring; urgency=low
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
     this is what NetworkManager does internally (LP: #1073335)
+  * Create a test to move a 3D window around the screen to check if there is any tearing
+    or other artifacts.
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
