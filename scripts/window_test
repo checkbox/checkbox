@@ -290,8 +290,7 @@ def main():
              'open-close-multi': print_open_close_multi,
              'move': print_move_window}
 
-    usage = 'Usage: %{prog}s [OPTIONS]'
-    parser = ArgumentParser(usage)
+    parser = ArgumentParser(description='Script that performs window operation')
     parser.add_argument('-t', '--test',
                         default='all',
                         help='The name of the test to run. \
@@ -318,12 +317,6 @@ def main():
                         help='The number of windows to open.')
 
     args = parser.parse_args()
-
-    if args.windows_number:
-        if args.test not in ('open-close-multi', 'all'):
-            parser.error('-w or --windows-number can only be used with '
-                         'the "open-close-multi" test or with the '
-                         '"all" test')
 
     status = 0
 
