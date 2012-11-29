@@ -26,8 +26,11 @@ Implementation of rfc822 serializer and deserializer.
  * THIS MODULE DOES NOT HAVE STABLE PUBLIC API *
 """
 
+import logging
 
 from inspect import cleandoc
+
+logger = logging.getLogger("plainbox.rfc822")
 
 
 class Origin:
@@ -56,7 +59,7 @@ class Origin:
             self.filename, self.line_start, self.line_end)
 
 
-class RFC822Record(dict):
+class RFC822Record:
     """
     Class for tracking RFC822 records
 
@@ -67,6 +70,10 @@ class RFC822Record(dict):
     def __init__(self, data, origin):
         self._data = data
         self._origin = origin
+
+    def __repr__(self):
+        return "<{} data:{!r} origin:{!r}>".format(
+            self.__class__.__name__, self._data, self._origin)
 
     @property
     def origin(self):
@@ -117,9 +124,9 @@ def gen_rfc822_records(stream, data_cls=dict):
     are separated by one blank line. A record key may have a multi-line value
     if the line starts with whitespace character.
 
-    Generates subsequent values as instances of record_cls. If the optional
-    record_cls argument is collections.OrderedDict then the values retain their
-    original ordering.
+    Returns a list of subsequent values as instances RFC822Record class.  If
+    the optional data_cls argument is collections.OrderedDict then the values
+    retain their original ordering.
     """
     record = None
     data = None
@@ -164,6 +171,7 @@ def gen_rfc822_records(stream, data_cls=dict):
         nonlocal key
         if key is not None:
             data[key] = cleandoc('\n'.join(value_list))
+            logger.debug("Committed key/value %r=%r", key, data[key])
             key = None
 
     def _set_start_lineno_if_needed():
@@ -183,6 +191,7 @@ def gen_rfc822_records(stream, data_cls=dict):
     _new_record()
     # Iterate over subsequent lines of the stream
     for lineno, line in enumerate(stream, start=1):
+        logger.debug("Looking at line %d:%r", lineno, line)
         # Treat empty lines as record separators
         if line.strip() == "":
             # Commit the current record so that the multi-line value of the
@@ -191,6 +200,7 @@ def gen_rfc822_records(stream, data_cls=dict):
             # If data is non-empty, yield the record, this allows us to safely
             # use newlines for formatting
             if data:
+                logger.debug("yielding record: %r", record)
                 yield record
             # Reset local state so that we can build a new record
             _new_record()
@@ -244,4 +254,5 @@ def gen_rfc822_records(stream, data_cls=dict):
     _commit_key_value_if_needed()
     # Once we've seen the whole file return the last record, if any
     if data:
+        logger.debug("yielding record: %r", record)
         yield record
