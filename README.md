@@ -1,7 +1,7 @@
-PlainBox
+plainbox
 ========
 
-PlainBox is a plain replacement for CheckBox
+plainbox is a plain replacement for checkbox
 
 [![Build Status](https://travis-ci.org/zyga/plainbox.png)](https://travis-ci.org/zyga/plainbox)
 
@@ -85,3 +85,38 @@ You only need to run init once, and update each time the chcekbox submodule is
 updated to point to new commit in the checkbox tree. If you use this all of
 plainbox tests and actual code will run using the embedded copy of checkbox. If
 you don't do this you need to install checkbox globally using a system package.
+
+VirtualEnv and checkbox Jobs
+============================
+
+When using checkbox inside virtualenv some jobs will fail as they need access
+to system python libraries (most notably for dbus). checkbox jobs don't rewrite
+their scripts shebang lines so when installed from the system package it will
+fail inside a typical virtualenv. This will be addressed in the next release.
+
+To work around it, temporarily, you can install plainbox without virtualbox and
+use it as is. This will work correctly (use the package from
+ppa:checkbox-dev/ppa if possible)
+
+Known Issues
+============
+
+There are a few issues that we are currently aware of:
+
+1) Expressions are not evaluated the same way as they were in checkbox. This
+affects only a few jobs and will be corrected in the next release. Most likely
+we will adapt jobs to follow plainbox logic and leave the checkbox interpreter
+as is as plainbox is less surprising and actually fixes one important bug where
+an expression like:
+
+    package.name == "foo" and package.version == "1.0"
+
+When executed inside checkbox it would match (evaluate as true) when the
+package "foo" existed and any _other_ package with version 1.0 existed, thus
+making the test worthless. In plainbox this test behaves as expected but it is
+non the less not doing what checkbox did so it causes some problems.
+
+2) Many job types are still not supported. The only supported jobs are: shell, resource,
+local and manual
+
+3) Jobs that use the environ and user keys are not supported. Those keys are ignored
