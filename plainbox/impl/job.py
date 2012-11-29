@@ -27,6 +27,7 @@ Internal implementation of plainbox
 """
 
 import logging
+import re
 
 from plainbox.abc import IJobDefinition
 from plainbox.impl.resource import ResourceProgram
@@ -69,14 +70,23 @@ class JobDefinition(IJobDefinition):
     @property
     def depends(self):
         try:
-            return [name.strip()
-                    for name in self.__getattr__('depends').split(',')]
+            return self.__getattr__('depends')
         except AttributeError:
             return None
 
-    def __init__(self, data):
+    @property
+    def origin(self):
+        """
+        The Origin object associated with this JobDefinition
+
+        May be None
+        """
+        return self._origin
+
+    def __init__(self, data, origin=None):
         self._data = data
         self._resource_program = None
+        self._origin = origin
 
     def __str__(self):
         return self.name
@@ -109,13 +119,40 @@ class JobDefinition(IJobDefinition):
             self._resource_program = ResourceProgram(self.requires)
         return self._resource_program
 
+    def get_direct_dependencies(self):
+        """
+        Compute and return a set of direct dependencies
+
+        To combat a simple mistake where the jobs are space-delimited any
+        mixture of white-space (including newlines) and commas are allowed.
+        """
+        if self.depends:
+            return {name for name in re.split('[\s,]+', self.depends)}
+        else:
+            return set()
+
+    def get_resource_dependencies(self):
+        """
+        Compute and return a set of resource dependencies
+        """
+        program = self.get_resource_program()
+        if program:
+            return program.required_resources
+        else:
+            return set()
+
     @classmethod
     def from_rfc822_record(cls, record):
         """
         Create a JobDefinition instance from rfc822 record
+
+        The record must be a RFC822Record instance.
+
+        Only the 'name' and 'plugin' keys are required.
+        All other data is stored as is and is entirely optional.
         """
         for key in ['plugin', 'name']:
-            if key not in record:
+            if key not in record.data:
                 raise ValueError(
                     "Required record key {!r} was not found".format(key))
-        return cls(record)
+        return cls(record.data, record.origin)

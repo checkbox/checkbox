@@ -27,11 +27,44 @@ Test definitions for plainbox.impl.rfc822 module
 from io import StringIO
 from unittest import TestCase
 
+from plainbox.impl.rfc822 import Origin
+from plainbox.impl.rfc822 import RFC822Record
 from plainbox.impl.rfc822 import RFC822SyntaxError
 from plainbox.impl.rfc822 import load_rfc822_records
 
 
-class TestRFC822(TestCase):
+class OriginTests(TestCase):
+
+    def setUp(self):
+        self.origin = Origin("file.txt", 10, 12)
+
+    def test_smoke(self):
+        self.assertEqual(self.origin.filename, "file.txt")
+        self.assertEqual(self.origin.line_start, 10)
+        self.assertEqual(self.origin.line_end, 12)
+
+    def test_repr(self):
+        expected = "<Origin filename:'file.txt' line_start:10 line_end:12>"
+        observed = repr(self.origin)
+        self.assertEqual(expected, observed)
+
+    def test_str(self):
+        expected = "file.txt:10-12"
+        observed = str(self.origin)
+        self.assertEqual(expected, observed)
+
+
+class RFC822RecordTests(TestCase):
+
+    def test_smoke(self):
+        data = {'key': 'value'}
+        origin = Origin('file.txt', 1, 1)
+        record = RFC822Record(data, origin)
+        self.assertEqual(record.data, data)
+        self.assertEqual(record.origin, origin)
+
+
+class RFC822ParserTests(TestCase):
 
     def test_empty(self):
         with StringIO("") as stream:
@@ -42,7 +75,7 @@ class TestRFC822(TestCase):
         with StringIO("key:value") as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0], {'key': 'value'})
+        self.assertEqual(records[0].data, {'key': 'value'})
 
     def test_many_newlines(self):
         text = (
@@ -62,9 +95,9 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 3)
-        self.assertEqual(records[0], {'key1': 'value1'})
-        self.assertEqual(records[1], {'key2': 'value2'})
-        self.assertEqual(records[2], {'key3': 'value3'})
+        self.assertEqual(records[0].data, {'key1': 'value1'})
+        self.assertEqual(records[1].data, {'key2': 'value2'})
+        self.assertEqual(records[2].data, {'key3': 'value3'})
 
     def test_many_records(self):
         text = (
@@ -77,9 +110,9 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 3)
-        self.assertEqual(records[0], {'key1': 'value1'})
-        self.assertEqual(records[1], {'key2': 'value2'})
-        self.assertEqual(records[2], {'key3': 'value3'})
+        self.assertEqual(records[0].data, {'key1': 'value1'})
+        self.assertEqual(records[1].data, {'key2': 'value2'})
+        self.assertEqual(records[2].data, {'key3': 'value3'})
 
     def test_multiline_value(self):
         text = (
@@ -90,7 +123,7 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0], {'key': 'longer\nvalue'})
+        self.assertEqual(records[0].data, {'key': 'longer\nvalue'})
 
     def test_multiline_value_with_space(self):
         text = (
@@ -102,7 +135,7 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0], {'key': 'longer\n\nvalue'})
+        self.assertEqual(records[0].data, {'key': 'longer\n\nvalue'})
 
     def test_multiline_value_with_period(self):
         text = (
@@ -114,7 +147,7 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0], {'key': 'longer\n.\nvalue'})
+        self.assertEqual(records[0].data, {'key': 'longer\n.\nvalue'})
 
     def test_many_multiline_values(self):
         text = (
@@ -129,15 +162,15 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 2)
-        self.assertEqual(records[0], {'key1': 'initial\nlonger\nvalue 1'})
-        self.assertEqual(records[1], {'key2': 'longer\nvalue 2'})
+        self.assertEqual(records[0].data, {'key1': 'initial\nlonger\nvalue 1'})
+        self.assertEqual(records[1].data, {'key2': 'longer\nvalue 2'})
 
     def test_irrelevant_whitespace(self):
         text = "key :  value  "
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0], {'key': 'value'})
+        self.assertEqual(records[0].data, {'key': 'value'})
 
     def test_relevant_whitespace(self):
         text = (
@@ -147,7 +180,7 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             records = load_rfc822_records(stream)
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0], {'key': 'value'})
+        self.assertEqual(records[0].data, {'key': 'value'})
 
     def test_bad_multiline(self):
         text = " extra value"
@@ -178,6 +211,6 @@ class TestRFC822(TestCase):
         with StringIO(text) as stream:
             with self.assertRaises(RFC822SyntaxError) as call:
                 load_rfc822_records(stream)
-            self.assertEqual(call.exception.msg,
+            self.assertEqual(call.exception.msg, (
                 "Job has a duplicate key 'key1' with old value 'value1'"
-                " and new value 'value2'")
+                " and new value 'value2'"))

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/bin/sh
 # This file is part of Checkbox.
 #
 # Copyright 2012 Canonical Ltd.
@@ -18,21 +18,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+# Create a few interesting graphs
 
-from setuptools import setup, find_packages
-
-
-setup(
-    name="plainbox",
-    version="0.2",
-    packages=find_packages(),
-    author="Zygmunt Krynicki",
-    test_suite='plainbox.tests.test_suite',
-    author_email="zygmunt.krynicki@canonical.com",
-    license="GPLv3+",
-    description="Simple replacement for checkbox",
-    entry_points={
-        'console_scripts': [
-            'plainbox=plainbox.public:main',
-        ]
-    })
+# set -x  # it takes a moment, let's keep users busy
+mkdir -p graphs
+# Find some jobs from each main category
+# The grep / discards stuff that does not have category/name pattern
+# The rest just gets the category string
+for pattern in $(plainbox --list-jobs | grep '/' | cut -c 4- | cut -d '/' -f 1 | sort | uniq); do
+    plainbox -r $pattern'*' --dot | dot -Tsvg -o graphs/$pattern.svg
+    plainbox -r $pattern'*' --dot --dot-resources | dot -Tsvg -o graphs/$pattern-with-resources.svg
+done
+plainbox --dot | dot -Tsvg -o graphs/everything-at-once.svg
+plainbox --dot --dot-resources | dot -Tsvg -o graphs/everything-at-once-with-resources.svg

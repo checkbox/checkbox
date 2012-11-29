@@ -28,15 +28,43 @@ import ast
 from unittest import TestCase
 
 from plainbox.impl.resource import CodeNotAllowed
+from plainbox.impl.resource import ExpressionCannotEvaluateError
+from plainbox.impl.resource import ExpressionFailedError
 from plainbox.impl.resource import MultipleResourcesReferenced
 from plainbox.impl.resource import NoResourcesReferenced
 from plainbox.impl.resource import Resource
-from plainbox.impl.resource import ResourceContext
 from plainbox.impl.resource import ResourceExpression
 from plainbox.impl.resource import ResourceNodeVisitor
 from plainbox.impl.resource import ResourceProgram
 from plainbox.impl.resource import ResourceProgramError
-from plainbox.impl.resource import ResourceLookupError
+
+
+class ExpressionFailedTests(TestCase):
+
+    def test_smoke(self):
+        expression = ResourceExpression('resource.attr == "value"')
+        exc = ExpressionFailedError(expression)
+        self.assertIs(exc.expression, expression)
+        self.assertEqual(str(exc), (
+            "expression 'resource.attr == \"value\"' evaluated to a non-true"
+            " result"))
+        self.assertEqual(repr(exc), (
+            "<ExpressionFailedError expression:<ResourceExpression"
+            " text:'resource.attr == \"value\"'>>"))
+
+
+class ExpressionCannotEvaluateErrorTests(TestCase):
+
+    def test_smoke(self):
+        expression = ResourceExpression('resource.attr == "value"')
+        exc = ExpressionCannotEvaluateError(expression)
+        self.assertIs(exc.expression, expression)
+        self.assertEqual(str(exc), (
+            "expression 'resource.attr == \"value\"' needs unavailable"
+            " resource 'resource'"))
+        self.assertEqual(repr(exc), (
+            "<ExpressionCannotEvaluateError expression:<ResourceExpression"
+            " text:'resource.attr == \"value\"'>>"))
 
 
 class ResourceTests(TestCase):
@@ -103,42 +131,17 @@ class ResourceTests(TestCase):
         return object.__getattribute__(res, '_data')
 
 
-class ResourceContextTests(TestCase):
-
-    def test_smoke(self):
-        rc = ResourceContext()
-        self.assertEqual(rc.resources, {})
-
-    def test_add_resource(self):
-        rc = ResourceContext()
-        rc.add_resource('package', Resource({'name': 'fwts'}))
-        self.assertEqual(rc.resources, {
-            'package': [
-                Resource({'name': 'fwts'})
-            ]
-        })
-        rc = ResourceContext()
-        rc.add_resource('package', Resource({'name': 'checkbox'}))
-        rc.add_resource('package', Resource({'name': 'plainbox'}))
-        self.assertEqual(rc.resources, {
-            'package': [
-                Resource({'name': 'checkbox'}),
-                Resource({'name': 'plainbox'})
-            ]
-        })
-
-
 class ResourceProgramErrorTests(TestCase):
 
     def test_multiple(self):
         exc = MultipleResourcesReferenced()
-        self.assertEqual(str(exc),
-                         "expression referenced multiple resources")
+        self.assertEqual(
+            str(exc), "expression referenced multiple resources")
 
     def test_none(self):
         exc = NoResourcesReferenced()
-        self.assertEqual(str(exc),
-                         "expression did not reference any resources")
+        self.assertEqual(
+            str(exc), "expression did not reference any resources")
 
 
 class CodeNotAllowedTests(TestCase):
@@ -150,18 +153,6 @@ class CodeNotAllowedTests(TestCase):
 
     def test_inheritance(self):
         self.assertTrue(issubclass(CodeNotAllowed, ResourceProgramError))
-
-
-class ResourceLookupErrorTest(TestCase):
-
-    def test_smoke(self):
-        exc = ResourceLookupError("foo")
-        self.assertEqual(exc.resource_name, "foo")
-        self.assertEqual(str(exc), "unknown resource: 'foo'")
-        self.assertEqual(repr(exc), "ResourceLookupError('foo')")
-
-    def test_inheritance(self):
-        self.assertTrue(issubclass(ResourceLookupError, LookupError))
 
 
 class ResourceNodeVisitorTests(TestCase):
@@ -307,27 +298,45 @@ class ResourceProgramTests(TestCase):
         self.assertEqual(self.prog.required_resources,
                          set(('package', 'platform')))
 
-    def test_evaluate(self):
-        resources = {
+    def test_evaluate_failure_not_true(self):
+        resource_map = {
+            'package': [
+                Resource({'name': 'plainbox'}),
+            ],
+            'platform': [
+                Resource({'arch': 'i386'})]
+        }
+        with self.assertRaises(ExpressionFailedError) as call:
+            self.prog.evaluate_or_raise(resource_map)
+        self.assertEqual(call.exception.expression.text,
+                         "package.name == 'fwts'")
+
+    def test_evaluate_without_no_match(self):
+        resource_map = {
+            'package': [],
+            'platform': []
+        }
+        with self.assertRaises(ExpressionFailedError) as call:
+            self.prog.evaluate_or_raise(resource_map)
+        self.assertEqual(call.exception.expression.text,
+                         "package.name == 'fwts'")
+
+    def test_evaluate_failure_no_resource(self):
+        resource_map = {
+            'platform': [
+                Resource({'arch': 'i386'})]
+        }
+        with self.assertRaises(ExpressionCannotEvaluateError) as call:
+            self.prog.evaluate_or_raise(resource_map)
+        self.assertEqual(call.exception.expression.text,
+                         "package.name == 'fwts'")
+
+    def test_evaluate_success(self):
+        resource_map = {
             'package': [
                 Resource({'name': 'plainbox'}),
                 Resource({'name': 'fwts'})],
             'platform': [
                 Resource({'arch': 'i386'})]
         }
-        self.assertIn('package', resources)
-        self.assertIn('platform', resources)
-        for name in self.prog.required_resources:
-            self.assertIn(name, resources)
-        self.assertTrue(self.prog.evaluate(resources))
-
-    def test_evaluate_without_resources(self):
-        with self.assertRaises(ResourceLookupError) as call:
-            self.prog.evaluate({'package': []})
-        self.assertEqual(call.exception.resource_name, 'platform')
-        with self.assertRaises(ResourceLookupError) as call:
-            self.prog.evaluate({'platform': []})
-        self.assertEqual(call.exception.resource_name, 'package')
-
-    def test_evaluate_without_empty_resources(self):
-        self.assertFalse(self.prog.evaluate({'package': [], 'platform': []}))
+        self.assertTrue(self.prog.evaluate_or_raise(resource_map))

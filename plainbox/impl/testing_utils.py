@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # This file is part of Checkbox.
 #
 # Copyright 2012 Canonical Ltd.
@@ -18,21 +17,36 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+"""
+plainbox.impl.testing_utils
+===========================
 
-from setuptools import setup, find_packages
+Internal implementation of plainbox
+
+ * THIS MODULE DOES NOT HAVE STABLE PUBLIC API *
+"""
+
+from plainbox.impl.job import JobDefinition
+from plainbox.impl.result import JobResult
 
 
-setup(
-    name="plainbox",
-    version="0.2",
-    packages=find_packages(),
-    author="Zygmunt Krynicki",
-    test_suite='plainbox.tests.test_suite',
-    author_email="zygmunt.krynicki@canonical.com",
-    license="GPLv3+",
-    description="Simple replacement for checkbox",
-    entry_points={
-        'console_scripts': [
-            'plainbox=plainbox.public:main',
-        ]
+def make_job(name, plugin="dummy", requires=None, depends=None):
+    """
+    Make and return a dummy JobDefinition instance
+    """
+    return JobDefinition({
+        'name': name,
+        'plugin': plugin,
+        'requires': requires,
+        'depends': depends
+    })
+
+
+def make_job_result(job, outcome="dummy"):
+    """
+    Make and return a dummy JobResult instance
+    """
+    return JobResult({
+        'job': job,
+        'outcome': outcome
     })
