@@ -27,6 +27,10 @@ The are actually implemented by the plainbox.impl package. This module is here
 so that the essential API concepts are in a single spot and are easier to
 understand (by not being mixed with additional source code).
 
+.. warning::
+
+    This module is ironically UNSTABLE until the 1.0 release
+
 .. note::
 
     This module has API stability guarantees. We are not going to break or
@@ -53,7 +57,7 @@ def save(something, somewhere):
 
     The ultimate high-level serialization interface.
 
-    Something can be a list of JobDefinition or a TestResult objects.
+    Something can be a list of JobDefinition or a JobResult objects.
     Somewhere may be a file-like object or a filename.
     """
 
@@ -66,7 +70,7 @@ def load(somewhere):
     The ultimate high-level deserialization interface
 
     Somewhere may be a file-like object or a filename. The returned something
-    is a list of JobDefinition or a TestResult objects.
+    is a list of JobDefinition or a JobResult objects.
     """
     # XXX: should we handle basic collections at this level - as in, many test
     # {definitions,results} in one file. If so can we just return a list.

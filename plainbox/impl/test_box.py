@@ -19,7 +19,7 @@
 
 """
 plainbox.impl.test_box
-=======================
+======================
 
 Test definitions for plainbox.impl.box module
 """
@@ -180,8 +180,9 @@ class TestMain(TestCase):
         self.maxDiff = None
         expected = """
         usage: plainbox [-h] [-v] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                        [-u {headless,text,graphics}] [--load-extra FILE] [-r PATTERN]
-                        [--list-jobs]
+                        [-u {headless,text,graphics}] [--not-interactive]
+                        [--load-extra FILE] [-r PATTERN] [-n] [--list-jobs]
+                        [--list-expressions] [--dot] [--dot-resources]
 
         optional arguments:
           -h, --help            show this help message and exit
@@ -192,12 +193,19 @@ class TestMain(TestCase):
         user interface options:
           -u {headless,text,graphics}, --ui {headless,text,graphics}
                                 select the UI front-end (defaults to auto)
+          --not-interactive     Skip tests that require interactivity
 
         job definition options:
           --load-extra FILE     Load extra job definitions from FILE
           -r PATTERN, --run-pattern PATTERN
                                 Run jobs matching the given pattern
-          --list-jobs           List all jobs
+          -n, --dry-run         Don't actually run any jobs
+
+        special options:
+          --list-jobs           List jobs instead of running them
+          --list-expressions    List all unique resource expressions
+          --dot                 Print a graph of jobs instead of running them
+          --dot-resources       Render resource relationships (for --dot)
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
 
@@ -205,13 +213,8 @@ class TestMain(TestCase):
         with TestIO(combined=True) as io:
             main([])
         expected = """
-        ========================[ Searching for Matching Jobs ]=========================
-        Matching jobs: 
         ===============================[ Analyzing Jobs ]===============================
-        Required resource jobs: 
-        ============================[ Gathering Resources ]=============================
-        No resource jobs required
-        ==================================[ Testing ]===================================
-        No jobs selected
+        ==============================[ Running All Jobs ]==============================
+        ==================================[ Results ]===================================
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")

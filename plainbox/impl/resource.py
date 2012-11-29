@@ -29,9 +29,45 @@ Internal implementation of plainbox
 import ast
 import logging
 
-from plainbox.abc import IResourceContext
-
 logger = logging.getLogger("plainbox.resource")
+
+
+class ExpressionFailedError(Exception):
+    """
+    Exception raise when a resource expression failed to produce a true value.
+
+    This class is meant to be consumed by the UI layers to provide meaningful
+    error messages to the operator. The expression attribute can be used to
+    obtain the text of the expression that failed as well as the resource name
+    that is used by that expression. The resource name can be used to lookup
+    the (resource) job that produces such values.
+    """
+
+    def __init__(self, expression):
+        self.expression = expression
+
+    def __str__(self):
+        return "expression {!r} evaluated to a non-true result".format(
+            self.expression.text)
+
+    def __repr__(self):
+        return "<{} expression:{!r}>".format(
+            self.__class__.__name__, self.expression)
+
+
+class ExpressionCannotEvaluateError(ExpressionFailedError):
+    """
+    Exception raised when a resource could not be evaluated because it requires
+    an unavailable resource.
+
+    Unlike the base class, this exception is raised before even running the
+    expression. As in the base class the exception object is meant to have
+    enough data to provide rich and meaningful error messages to the operator.
+    """
+
+    def __str__(self):
+        return "expression {!r} needs unavailable resource {!r}".format(
+            self.expression.text, self.expression.resource_name)
 
 
 class Resource:
@@ -91,37 +127,6 @@ class Resource:
             != object.__getattribute__(other, '_data'))
 
 
-class ResourceContext(IResourceContext):
-
-    def __init__(self):
-        """
-        Initialize an empty ResourceContext object
-        """
-        self._resources = {}
-
-    def add_resource(self, name, resource):
-        """
-        Add a new resource
-
-        The name is the name of the Job that produced the data. The resource
-        object is a Resource instance created out of a RFC822 record (many such
-        records may be produced by one resource job)
-        """
-        if name not in self._resources:
-            self._resources[name] = []
-        self._resources[name].append(resource)
-
-    @property
-    def resources(self):
-        """
-        The dictionary of defined resources.
-
-        Each key is obtained from Job().name. Each value is a list of
-        Resource() objects obtained from the execution of the Job.
-        """
-        return self._resources
-
-
 class ResourceProgram:
     """
     Class for storing and executing resource programs.
@@ -134,8 +139,7 @@ class ResourceProgram:
         Analyze the requirement program and prepare it for execution
 
         The requirement program must be a string (of possibly many lines), each
-        of which must be a valid ResourceExpression. Empty lines are
-        ignored.
+        of which must be a valid ResourceExpression. Empty lines are ignored.
 
         May raise ResourceProgramError (including CodeNotAllowed) or a
         SyntaxError
@@ -160,30 +164,39 @@ class ResourceProgram:
         return set((expression.resource_name
                     for expression in self._expression_list))
 
-    def evaluate(self, resources):
+    def evaluate_or_raise(self, resource_map):
         """
-        Evaluate the program with the given resources.
+        Evaluate the program with the given map of resources.
+
+        Raises a ExpressionFailedError exception if the any of the expressions
+        that make up this program cannot be executed or executes but produces a
+        non-true value.
+
+        Returns True
 
         Resources must be a dictionary of mapping resource name to a list of
-        Resource objects, preferably as managed by ResourceContext.resources.
-
-        Returns True if all expressions returned true.
-        Raises ResourceLookupError if any of the expressions requires a
-        resource that is not present in the provided resources
+        Resource objects.
         """
         # First check if we have all required resources
-        for name in self.required_resources:
-            if name not in resources:
-                raise ResourceLookupError(name)
+        for expression in self._expression_list:
+            if expression.resource_name not in resource_map:
+                raise ExpressionCannotEvaluateError(expression)
         # Then evaluate all expressions
-        return all((
-            expression.evaluate(resources[expression.resource_name])
-            for expression in self._expression_list))
+        for expression in self._expression_list:
+            result = expression.evaluate(
+                resource_map[expression.resource_name])
+            if not result:
+                raise ExpressionFailedError(expression)
+        return True
 
 
 class ResourceProgramError(Exception):
     """
-    Base class for errors in requirement programs
+    Base class for errors in requirement programs.
+
+    This class of errors are based on static analysis, not runtime execution.
+    Typically they encode unsupported or disallowed python code being used by
+    an expression somewhere.
     """
 
 
@@ -378,25 +391,14 @@ class MultipleResourcesReferenced(ResourceProgramError):
         return "expression referenced multiple resources"
 
 
-class ResourceLookupError(LookupError):
-    """
-    Exception raised by ResourceProgram.evaluate() when unknown resource
-    name is required by one of the expressions.
-    """
-
-    def __init__(self, resource_name):
-        self.resource_name = resource_name
-
-    def __str__(self):
-        return "unknown resource: {!r}".format(self.resource_name)
-
-    def __repr__(self):
-        return "ResourceLookupError({!r})".format(self.resource_name)
-
-
 class ResourceExpression:
     """
-    Class representing a single line of an requirement expression
+    Class representing a single line of an requirement program.
+
+    Each valid expression references exactly one resource. In practical terms
+    each resource expression is a valid python expression that has no side
+    effects (calls almost no methods, does not assign anything) that can be
+    evaluated against a single variable which references a Resource object.
     """
 
     def __init__(self, text):
@@ -409,6 +411,12 @@ class ResourceExpression:
         self._text = text
         self._lambda = eval("lambda {}: {}".format(
             self._resource_name, self._text))
+
+    def __str__(self):
+        return self._text
+
+    def __repr__(self):
+        return "<ResourceExpression text:{!r}>".format(self._text)
 
     @property
     def text(self):
