@@ -8,6 +8,8 @@ checkbox (0.15) raring; urgency=low
     this is what NetworkManager does internally (LP: #1073335)
   * Create a test to move a 3D window around the screen to check if there is any tearing
     or other artifacts.
+  * jobs/info.txt.in - add an xrandr attachment job to provide information
+    about displays connected to the system (LP: #1085219)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
