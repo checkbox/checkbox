@@ -1,7 +1,9 @@
 checkbox (0.15) raring; urgency=low
 
   [ Daniel Manrique ]
-  * New version 0.15 for Raring Ringtail development. 
+  * New version 0.15 for Raring Ringtail development.
+  * Added environ key to poweroff and reboot jobs so they create logs in the
+    expected location (LP: #1085833)
 
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
