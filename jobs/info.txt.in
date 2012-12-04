@@ -186,5 +186,5 @@ _description: Provides information about network devices
 
 plugin: attachment
 name: info/xrandr
-command: xrandr
+command: xrandr -q --verbose
 _description: Provides information about displays attached to the system
