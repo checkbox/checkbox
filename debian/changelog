@@ -19,6 +19,9 @@ checkbox (0.15) raring; urgency=low
   * jobs/suspend.txt.in - fixed cycle_resolutions_after_suspend_auto so that it
     properly depends on suspend_advanced_auto rather than suspend_advanced
     (LP: #1071605)
+  * jobs/graphics.txt.in - removed perl wrappings from tests using
+    unity_support_test. They should pipe through ansi_parser like other jobs.
+    (LP: #1087777)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
