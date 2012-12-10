@@ -57,9 +57,9 @@ def main():
     if return_code != 0:
         return return_code
     else:
-        vgamems=vgamem_paser(data=proc.stdout.read())
+        vgamems=vgamem_paser(data=proc.stdout.read().decode('utf-8'))
         for vgamem in vgamems:
-            print "Device: %s, Name: %s, VGA Memory Size: %sM" % (vgamem['device'], vgamem['name'], vgamem['vgamem'])
+            print("Device: %s, Name: %s, VGA Memory Size: %sM" % (vgamem['device'], vgamem['name'], vgamem['vgamem']))
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -34,9 +34,8 @@ from subprocess import Popen, PIPE
 
 def xrandr_paser(data=None):
     b = None
-    xrandrs=list()
-    for line in data.split('\n'):
-        #print "%s ---"%line
+    xrandrs = list()
+    for line in str(data).split('\n'):
         # VGA-0 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 509mm x 286mm
         for match in re.finditer('(.+) connected (\d+x\d+)\+', line):
             a = match.group(1)
@@ -58,9 +57,10 @@ def main():
     if return_code != 0:
         return return_code
     else:
-        xrandrs=xrandr_paser(data=proc.stdout.read())
+        xrandrs=xrandr_paser(data=proc.stdout.read().decode('utf-8'))
         for xrandr in xrandrs:
-            print "Connector: %s, Resolution: %s RefreshRate: %s" % (xrandr['connector'], xrandr['resolution'], xrandr['refresh_rate'])
+            print("Connector: %s, Resolution: %s RefreshRate: %s" % (xrandr['connector'], xrandr['resolution'], xrandr['refresh_rate']))
+
 
 if __name__ == '__main__':
     sys.exit(main())
