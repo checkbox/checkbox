@@ -58,15 +58,20 @@ def main():
     piglit.run(args.output)
 
     passed_tests = piglit.get_tests_by_status('pass')
-    print("%d test%s passed:" % len(passed_tests))
+    print("%d tests passed:" % len(passed_tests))
     failed_tests = piglit.get_tests_by_status('fail')
-    print("%d test%s failed:" % len(failed_tests))
+    print("%d tests failed:" % len(failed_tests))
     print("\n".join(["- %s" % test for test in failed_tests]))
     crashed_tests = piglit.get_tests_by_status('crash')
-    print("%d test%s crashed:" % len(crashed_tests))
+    print("%d tests crashed:" % len(crashed_tests))
     print("\n".join(["- %s" % test for test in crashed_tests]))
     skipped_tests = piglit.get_tests_by_status('skip')
     print("%d tests were skipped" % len(skipped_tests))
+
+    if len(failed_tests) > 0:
+        return 1
+    else:
+        return 0
 
 if __name__ == "__main__":
     sys.exit(main())
