@@ -31,6 +31,7 @@ plugin: manual
 name: power-management/poweroff
 depends: power-management/fwts_wakealarm
 user: root
+environ: CHECKBOX_DATA
 requires:
  package.name == 'upstart'
  package.name == 'fwts'
@@ -56,6 +57,7 @@ _description:
 plugin: manual
 name: power-management/reboot
 user: root
+environ: CHECKBOX_DATA
 requires:
  package.name == 'upstart'
  package.name == 'fwts'

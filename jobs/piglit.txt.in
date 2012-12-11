@@ -1,18 +1,58 @@
 plugin: shell
-name: piglit/fbo_tests
+name: piglit/fbo
 requires:
  package.name == 'piglit'
-command: piglit_test fbo 
+command: piglit_test -t ^spec/EXT_framebuffer_object -n fbo
 _description:
- Runs the piglit test suite fbo test
+ Runs piglit tests for checking support for framebuffer object operations, depth buffer and stencil buffer
 
 plugin: shell
-name: piglit/texturing_tests
+name: piglit/gl-2.1
 requires:
  package.name == 'piglit'
-command: piglit_test texturing
+command: piglit_test -t spec/'!OpenGL 2.1'/ -n gl-2.1
 _description:
- Runs the piglit test suite texturing tests
+ Runs piglit tests for checking OpenGL 2.1 support
+
+plugin: shell
+name: piglit/vbo
+requires:
+ package.name == 'piglit'
+command: piglit_test -t spec/ARB_vertex_buffer_object/ -n vbo
+_description:
+ Runs piglit tests for checking support for vertex buffer object operations
+
+plugin: shell
+name: piglit/glsl-fragment-shader
+requires:
+ package.name == 'piglit'
+command: piglit_test -t ^shaders/glsl-arb-fragment -n glsl-fragment-shader
+_description:
+ Runs piglit tests for checking support for GLSL fragment shader operations
+
+plugin: shell
+name: piglit/glsl-vertex-shader
+requires:
+ package.name == 'piglit'
+command: piglit_test -t ^shaders/glsl-clamp-vertex-color -t ^shaders/glsl-max-vertex-attrib -t ^shaders/glsl-novertexdata -n glsl-vertex-shader
+_description:
+ Runs piglit tests for checking support for GLSL vertex shader operations
+
+plugin: shell
+name: piglit/glx-tfp
+requires:
+ package.name == 'piglit'
+command: piglit_test -t glx-tfp -n glx-tfp
+_description:
+ Runs piglit tests for checking support for texture from pixmap
+
+plugin: shell
+name: piglit/stencil_buffer
+requires:
+ package.name == 'piglit'
+command: piglit_test -t glx-visuals-stencil -t readpixels-24_8 -n stencil_buffer
+_description:
+ Runs piglit_tests for checking support for stencil buffer operations
 
 plugin: shell
 name: piglit/summarize_results
