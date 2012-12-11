@@ -17,7 +17,7 @@ class DmiResult:
 
         if form and "IMM" in form:
             try:
-                self.total_size = int(getattr(device, "size", 0))
+                self.total_size += int(getattr(device, "size", 0))
             except ValueError:
                 pass
 
