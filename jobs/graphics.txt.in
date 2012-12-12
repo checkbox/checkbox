@@ -120,15 +120,13 @@ _description:
 plugin: shell
 name: graphics/compiz_check
 requires: package.name == 'nux-tools'
-command:
- /usr/lib/nux/unity_support_test -c -p | ansi_parser
+command: set -o pipefail; /usr/lib/nux/unity_support_test -c -p | ansi_parser
 _description: Check that hardware is able to run compiz
 
 plugin: shell
 name: graphics/unity-support
 requires: package.name == 'nux-tools'
-command:
- /usr/lib/nux/unity_support_test -p | ansi_parser
+command: set -o pipefail; /usr/lib/nux/unity_support_test -p | ansi_parser
 _description: Check that hardware is able to run Unity 3D
 
 plugin: user-verify
