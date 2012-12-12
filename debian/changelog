@@ -2,6 +2,8 @@ checkbox (0.15) raring; urgency=low
 
   [ Daniel Manrique ]
   * New version 0.15 for Raring Ringtail development.
+  * Fail gracefully with a friendly and useful error message if audio settings
+    file format is invalid. (LP: #1065703)
   * Added environ key to poweroff and reboot jobs so they create logs in the
     expected location (LP: #1085833)
   * scripts/memory_compare: Fixed accumulator expression to give good results
