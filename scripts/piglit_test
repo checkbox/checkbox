@@ -3,33 +3,33 @@
 import os
 import sys
 
-from subprocess import check_output, PIPE, STDOUT
-from argparse import ArgumentParser
+from argparse import ArgumentParser, FileType
+from subprocess import check_output, STDOUT
+
 
 class PiglitTests:
-    
+
     def __init__(self, tests, name):
         self._tests = tests
         self._name = name
         self._results = {}
 
-    def run(self, output=None):
+    def run(self):
         piglit_output = ''
-        if output:
-            piglit_output = output.read()
-        else:
-            log_path = os.environ.get('CHECKBOX_DATA','.') + '/piglit-results/' + self._name
+        
+        log_path = os.path.join(os.environ.get('CHECKBOX_DATA', '.'),
+                                    'piglit-results', self._name)
 
-            run_command = ["piglit-run.py"]
-            
-            for test in self._tests:
-                run_command.extend(["-t", test])
+        run_command = ["piglit-run.py"]
 
-            run_command.extend(['/usr/share/piglit/tests/all.tests', log_path])
+        for test in self._tests:
+            run_command.extend(["-t", test])
 
-            piglit_output = check_output(run_command,
-                                         universal_newlines=True,
-                                         stderr=STDOUT)
+        run_command.extend(['/usr/share/piglit/tests/all.tests', log_path])
+
+        piglit_output = check_output(run_command,
+                                     universal_newlines=True,
+                                     stderr=STDOUT)
         # TODO: Capture stderr instead?
         for line in piglit_output.split('\n'):
             if ' :: ' in line:
@@ -47,29 +47,30 @@ class PiglitTests:
 
         return tests
 
+
 def main():
     parser = ArgumentParser("A wrapper script for the Piglit graphics test "
                                "framework which runs the tests and parses the "
                                "results.")
     parser.add_argument("--test", "-t",
+                        required=True,
                         action='append',
                         help="The expression used to get the tests to run.")
     parser.add_argument("--name", "-n",
-                        help="A friendly name for this group of tests to use in reporting.")
-    parser.add_argument("--output", "-o",
-                        type=open,
-                        help="Name of a file which contains piglit run output.")
+                        required=True,
+                        help="""A friendly name for this group of tests
+                                to use in reporting.""")
     parser.add_argument("--verbose", "-v",
                         action='store_true',
                         help='Have more verbose output')
     args = parser.parse_args()
 
     piglit = PiglitTests(args.test, args.name)
-    piglit.run(args.output)
+    piglit.run()
 
     passed_tests = piglit.get_tests_by_status('pass')
     print("%d tests passed" % len(passed_tests))
-    
+
     if args.verbose:
         print("\n".join(["- %s" % test for test in passed_tests]))
 
@@ -77,12 +78,12 @@ def main():
     if failed_tests:
         print("%d tests failed" % len(failed_tests))
         print("\n".join(["- %s" % test for test in failed_tests]))
-    
+
     crashed_tests = piglit.get_tests_by_status('crash')
     if crashed_tests:
         print("%d tests crashed" % len(crashed_tests))
         print("\n".join(["- %s" % test for test in crashed_tests]))
-    
+
     skipped_tests = piglit.get_tests_by_status('skip')
     if skipped_tests:
         print("%d tests were skipped" % len(skipped_tests))
