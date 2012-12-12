@@ -19,6 +19,8 @@ checkbox (0.15) raring; urgency=low
   * jobs/suspend.txt.in - changed suspend_advanced_auto dependency of key_after_suspend
     and led_after_suspend tests to suspend/suspend_advanced, since they are manual and
     should depend on the manual suspend test (LP: #1089227)
+  * scripts/piglit_test, jobs/piglit.txt.in - create a script which wraps and
+    parses the piglit test results and use it in the piglit jobs.
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
