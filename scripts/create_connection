@@ -145,8 +145,10 @@ def main():
 
     connection_info += ip_sections()
 
+    # NetworkManager replaces forward-slashes in SSIDs with asterisks
+    connection_file = args.ssid.replace('/', '*')
     try:
-        connection_file = open(CONNECTIONS_PATH + args.ssid, 'w')
+        connection_file = open(CONNECTIONS_PATH + connection_file, 'w')
         connection_file.write(connection_info)
         os.fchmod(connection_file.fileno(), 0o600)
         connection_file.close()

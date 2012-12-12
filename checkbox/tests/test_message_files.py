@@ -64,7 +64,7 @@ class MessageFileFormatTest(unittest.TestCase):
         shell_variables_regex = r'\$\{?([A-Z_]+)\}?'
         environ_variables_regex = r'([A-Z_]+)'
         for message in self.messages:
-            if message['plugin'] == 'shell' and 'user' in message:
+            if 'command' in message and 'user' in message:
                 shell_variables = []
                 environ_variables = []
                 for key in ['command', 'command_extended']:

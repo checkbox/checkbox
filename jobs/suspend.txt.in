@@ -230,7 +230,6 @@ name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
 requires:
  device.category == 'WIRELESS'
- environment.ROUTERS == 'multiple'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
@@ -551,7 +550,7 @@ _description:
 plugin: shell
 name: suspend/cycle_resolutions_after_suspend_auto
 requires: package.name == 'xorg'
-depends: suspend/suspend_advanced graphics/cycle_resolution
+depends: suspend/suspend_advanced_auto graphics/cycle_resolution
 _description:
  This test will check to make sure supported video modes work after a suspend and resume.
  This is done automatically by taking screenshots and uploading them as an attachment.
@@ -642,7 +641,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/power
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that the power LED operated the same after resuming from suspend
@@ -653,7 +652,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/battery-charging
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that the battery light shows charging status after resuming from suspend
@@ -665,7 +664,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/battery-charged
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that the battery LED properly displays charged status after resuming from suspend
@@ -678,6 +677,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/battery-low
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that the battery LED indicated low power after resuming from suspend
@@ -689,7 +689,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/hdd
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 command: led_hdd_test
 _description:
  PURPOSE:
@@ -702,7 +702,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/numeric-keypad
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 command: keyboard_test
 _description:
  PURPOSE:
@@ -717,7 +717,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/caps-lock
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that the Caps Lock key operates the same before and after resuming from suspend
@@ -729,7 +729,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/wlan
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      WLAN LED verification after resuming from suspend
@@ -743,7 +743,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/wlan-disabled
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that WLAN LED shuts off when disabled after resuming from suspend
@@ -757,7 +757,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/bluetooth
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate that the Bluetooth LED turns on and off when BT is enabled/disabled after resuming from suspend
@@ -773,7 +773,7 @@ plugin: manual
 name: suspend/led_after_suspend/camera
 depends:
  camera/detect
- suspend/suspend_advanced_auto
+ suspend/suspend_advanced
 command: camera_test led
 _description:
  PURPOSE:
@@ -786,7 +786,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/touchpad
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Touchpad LED verification after resuming from suspend
@@ -800,7 +800,7 @@ _description:
 
 plugin: manual
 name: suspend/led_after_suspend/wireless
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      Validate Wireless (WLAN + Bluetooth) LED operated the same after resuming from suspend
@@ -816,7 +816,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/brightness
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
@@ -828,7 +828,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/volume
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -845,7 +845,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/mute
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -861,7 +861,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/sleep
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'KEYBOARD'
 _description:
@@ -875,7 +875,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/battery-info
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires: dmi.product in ['Notebook','Laptop','Portable']
 user: root
 command: key_test -s '0xe071,0xef1:Battery Info'
@@ -892,7 +892,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/wireless
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
@@ -905,7 +905,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/media-control
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -922,7 +922,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/super
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -938,7 +938,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/video-out
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
@@ -951,7 +951,7 @@ _description:
 
 plugin: manual
 name: suspend/keys_after_suspend/touchpad
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
