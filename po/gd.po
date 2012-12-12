@@ -14,16 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-31 04:34+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-12-06 04:33+0000\n"
+"X-Generator: Launchpad (build 16341)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Dearbhadh Siostam"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Dearbh"
 
@@ -39,18 +39,18 @@ msgstr "_Chan e"
 msgid "_Skip this test"
 msgstr "_Sgiob an dearbhadh seo"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
-#: ../checkbox_urwid/urwid_interface.py:289
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Barrachd fiosrachadh:"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr "_Tagh Na H-Uile"
+msgstr "_Tagh na h-uile"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
-msgstr "_Neo-thaghte Na H-Uile"
+msgstr "_Neo-thaghte na h-uile"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -63,7 +63,7 @@ msgstr "At_h"
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
-"Dearbh do shiostam agus cuir an toraidhean a-steach dhan phròiseict Ubuntu "
+"Dearbh do shiostam agus cuir na toraidhean a-steach don phròiseict Ubuntu "
 "Friendly"
 
 #. description
@@ -72,7 +72,7 @@ msgid "Test to detect audio devices"
 msgstr "Deuchainn lorg innleachdan claisneach"
 
 #. description
-#: ../jobs/audio.txt.in:18
+#: ../jobs/audio.txt.in:16
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -88,11 +88,11 @@ msgstr ""
 "CEUMAN:\n"
 "    1. Dèan cinnteach nach eil glaodhairean taobh a-muigh no cluais-"
 "fhònaichean ceangailte\n"
-"        ma thathar dearbhadh bàrr-deasc, tha glaodhairean taobh a-muigh "
+"        ma thathar a' dearbhadh bàrr-deasc, tha glaodhairean taobh a-muigh "
 "ceadaichte\n"
 "    2. Briog am putan a chluich tòna goirid air do innleachd claisneach\n"
 "DEARBHACHADH:\n"
-"    Na chuala thu tòna?"
+"    An do chuala thu tòna?"
 
 #. description
 #: ../jobs/audio.txt.in:37
@@ -116,13 +116,13 @@ msgstr ""
 "   2. Fosgail roghainnean an t-siostam fuaim\n"
 "   3. Briog air Às-chur agus Tagh HDMI agus briog 'Dearbh Glaodhairean' gus "
 "sgrùdadh seanailean clì 's deas\n"
-"   4. Briog air am putan dearbhaidh\n"
+"   4. Briog air a' phutan dearbhaidh\n"
 "DEARBHACHADH:\n"
 "   1. Na chuala thu fuaim a thiginn a-mach bhon seanail  co-fhreagarrach?\n"
 "   2. Na chuala thu fuaim?"
 
 #. description
-#: ../jobs/audio.txt.in:58
+#: ../jobs/audio.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -138,7 +138,7 @@ msgstr ""
 "ceart\n"
 "CEUMAN:\n"
 "    1. Ceangail paidhir  cluais-fhònaichean do d'innleachd claisneach\n"
-"    2. Briog air am putan Dearbhaidh son cluich fuaim do d'innleachd "
+"    2. Briog air a' phutan Dearbhaidh son cluich fuaim do d'innleachd "
 "claisneach\n"
 "DEARBHACHADH:\n"
 "    Na chuala fuaim tron cluais-fhònaichean agus na chluich an fhuaim ais "
@@ -146,7 +146,7 @@ msgstr ""
 "annasach bho d' chluais-fhònaichean?"
 
 #. description
-#: ../jobs/audio.txt.in:75
+#: ../jobs/audio.txt.in:49
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -163,14 +163,15 @@ msgstr ""
 "mhicreofon air-bhòrd ceart\n"
 "CEUMAN:\n"
 "    1. Geàrr micreofonaichean sam bith a phlucaich thu a-steach\n"
-"    2. Briog “Dearbh”, nuair sin bruidhinn a-steach ri do mhicreofon "
+"    2. Briog “Dearbh”, nuair sin bruidhinn a-steach dha do mhicreofon "
 "meadhanail\n"
-"    3. An dèidh beagan dìogan, bithidh do chòmhradh ga cluich air ais riut.\n"
+"    3. An dèidh beagan dìogan, bithidh do chòmhradh ga chluich air ais "
+"riut.\n"
 "DEARBHACHADH:\n"
-"    4. Na chuala thu do chòmhradh ga cluich air ais?"
+"    4. An do chuala thu do chòmhradh ga chluich air ais?"
 
 #. description
-#: ../jobs/audio.txt.in:93
+#: ../jobs/audio.txt.in:66
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -194,7 +195,7 @@ msgstr ""
 "    Na chuala thu do chòmhradh ga cluich air ais?"
 
 #. description
-#: ../jobs/audio.txt.in:110
+#: ../jobs/audio.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -216,7 +217,7 @@ msgstr ""
 "    Na chuala thu do chòmhradh ga cluich air ais tron cluais-fhònaichean USB?"
 
 #. description
-#: ../jobs/audio.txt.in:121
+#: ../jobs/audio.txt.in:99
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -232,7 +233,7 @@ msgid ""
 msgstr ""
 "Cruinnich fios siostam claisneach-cheangailte. Faodaidh tu cleachdadh an "
 "dàta seo a shamhlaich an fo-siostaim claisneach a' choimpiutair seo agus "
-"dèan deuchainnean nas mhionaideach ]ann an àrainneachd fo smachd."
+"dèan deuchainnean nas mhionaideach ann an àrainneachd fo smachd."
 
 #. description
 #: ../jobs/audio.txt.in:143
@@ -242,7 +243,7 @@ msgstr ""
 "thoraidhean."
 
 #. description
-#: ../jobs/benchmarks.txt.in:18
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk"
 msgstr "Deuchainn-luathais son gach dìosg"
 
@@ -431,7 +432,7 @@ msgstr ""
 "innleachd ma tha e feumail\n"
 "    9. Bu chòir e bhith comasach dhut brabhsadh na faidhlichean\n"
 "DEARBHACHADH:\n"
-"    Na dh'obraich na ceuman"
+"    An do dh'obraich na ceuman"
 
 #. description
 #: ../jobs/bluetooth.txt.in:33
@@ -544,15 +545,15 @@ msgstr ""
 "    5. Gluais an luchag thimcheall an sgrìn\n"
 "    6. Dèan cuid obraichean briogadh singilte/dùbailte/deas\n"
 "DEARBHACHADH:\n"
-"    Na dh'obraich an luchag mar bha dùil?"
+"    An do dh'obraich an luchag mar bha dùil?"
 
 #. description
-#: ../jobs/camera.txt.in:6
+#: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
 msgstr "Feuchaidh an deuchainn fèin-obrachail seo a lorg camara."
 
 #. description
-#: ../jobs/camera.txt.in:15
+#: ../jobs/camera.txt.in:16
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -571,7 +572,7 @@ msgstr ""
 "    Am faca tu an glacadh sgrìn?"
 
 #. description
-#: ../jobs/camera.txt.in:32
+#: ../jobs/camera.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -628,7 +629,7 @@ msgstr ""
 "   Na cluich an sampall ceart?"
 
 #. description
-#: ../jobs/cpu.txt.in:9
+#: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
@@ -638,25 +639,25 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:16
 msgid "Attaches the log generated by cpu/scaling_test to the results"
-msgstr "A'ceangal an log cruthaichte le cpu/scaling_test dhan toraidhean"
+msgstr "A'ceangal an log cruthaichte le cpu/scaling_test dhan thoraidhean"
 
 #. description
-#: ../jobs/cpu.txt.in:23
+#: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
 msgstr "Deuchainn son gitter gleòc."
 
 #. description
-#: ../jobs/cpu.txt.in:31
+#: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr "Deuchainn IPMn (CPUs) far-loidhne ann an t-siostam ioma-eitean."
+msgstr "Deuchainn IPMn (CPUs) far-loidhne ann an siostam ioma-eitean."
 
 #. description
-#: ../jobs/cpu.txt.in:38
+#: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
 msgstr "Tha seo sgrùdadh topo-eòlas ipm son pongalachd"
 
 #. description
-#: ../jobs/cpu.txt.in:46
+#: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
 "Tha seo a sgrùdadh gum bi na riaghladairean tricead IPM (CPU) umhail nuair "
@@ -731,33 +732,33 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr "A lorg agus a taisbean dìosgan ceangailte dhan siostam."
+msgstr "A lorg agus a' taisbeanadh dìosgan ceangailte ris an t-siostam."
 
 #. description
-#: ../jobs/disk.txt.in:9
+#: ../jobs/disk.txt.in:23
 msgid "Check stats changes for each disk"
 msgstr "Sgrùd atharraichean stadastaigean son gach dìosg"
 
 #. description
-#: ../jobs/disk.txt.in:29
+#: ../jobs/disk.txt.in:40
 msgid "SMART test"
 msgstr "Deuchainn SMART"
 
 #. description
-#: ../jobs/disk.txt.in:47
+#: ../jobs/disk.txt.in:56
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Rùm dìosg barr-suime chleachdadh fad deuchainn a stàlachadh bunaiteach"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:71
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "A dearbhadh gnìomhaich stòr an t-siostam aig no os cionn gnìomhaich bun-"
 "loidhne"
 
 #. description
-#: ../jobs/disk.txt.in:82
+#: ../jobs/disk.txt.in:88
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -802,7 +803,7 @@ msgstr ""
 "   5. Briog air an aplaid suidseadh a' chleachdaiche.\n"
 "   6. Tagh an cunntas dearbhadh son leantainn a' ruith deuchainnean.\n"
 "DEARBHACHADH:\n"
-"   Na dh'obraich am modh-obrach dearbhaidh ceart?"
+"   An do dh'obraich am modh-obrach dearbhaidh ceart?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -834,7 +835,7 @@ msgstr ""
 "   5. Cleachd an leughadair meur-lorg son toirt an glais bho.\n"
 "   6. Bu chòir an glais thoirt bhod sgrìn.\n"
 "DEARBHACHADH:\n"
-"   Na dh'obraich am modh-obrach dearbhaidh ceart?"
+"   An do dh'obraich am modh-obrach dearbhaidh ceart?"
 
 #. description
 #: ../jobs/firewire.txt.in:4
@@ -853,8 +854,8 @@ msgid ""
 "    selected result"
 msgstr ""
 "DEÒIN:\n"
-"    Sgrùdaidh an deuchainn seo am faigh an t-siostam lorg nuair cuir "
-"FireWire HDD a-steach\n"
+"    Sgrùdaidh an deuchainn seo am faigh an siostam lorg nuair cuir FireWire "
+"HDD a-steach\n"
 "CEUMAN:\n"
 "    1. Briog 'Dearbh' gus tòiseachadh an deuchainn. Le crìoch-ùine\n"
 "       fàilligeadh an deuchainn seo mur eil lorg air a chur a-steach taobh a-"
@@ -890,8 +891,8 @@ msgid ""
 "    selected result"
 msgstr ""
 "DEÒIN:\n"
-"    Sgrùdaidh an deuchainn seo am faigh an t-siostam lorg nuair toirt "
-"FireWire HDD air falbh\n"
+"    Sgrùdaidh an deuchainn seo am faigh an siostam lorg nuair toirt FireWire "
+"HDD air falbh\n"
 "CEUMAN:\n"
 "    1. Briog 'Dearbh' gus tòiseachadh an deuchainn.  Le crìoch-ùine\n"
 "        fàilligeadh an deuchainn seo mur eil lorg air a thoirt air falbh "
@@ -909,19 +910,19 @@ msgid "Floppy test"
 msgstr "Deuchainn clàr sùbailte"
 
 #. description
-#: ../jobs/graphics.txt.in:10
+#: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
 msgstr "Deuchainn airson às-chur an tionndaidh Xorg."
 
 #. description
-#: ../jobs/benchmarks.txt.in:34
+#: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Ruith gtkperf gus a dèanamh cinnteach gun obraich ceasaichean deuchainn "
 "bunait air GTK"
 
 #. description
-#: ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -964,17 +965,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:31
+#: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
 msgstr "Dearbh gu bheil am pròiseas X a' ruith."
 
 #. description
-#: ../jobs/graphics.txt.in:37
+#: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Dearbh gu nach eil X a'ruith ann am modh inneal-sàbhalaidh."
 
 #. description
-#: ../jobs/graphics.txt.in:44
+#: ../jobs/graphics.txt.in:63
 msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
@@ -983,7 +984,7 @@ msgstr ""
 "le grafaichean bunait air intel."
 
 #. description
-#: ../jobs/graphics.txt.in:51
+#: ../jobs/graphics.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -1002,22 +1003,25 @@ msgstr ""
 "FIOS:\n"
 "    $output\n"
 "DEARBHACHADH:\n"
-"    Bheil seo iomchaidh dhan taisbean agad?"
+"    Bheil seo iomchaidh son ur taisbean?"
 
 #. description
-#: ../jobs/graphics.txt.in:66
+#: ../jobs/graphics.txt.in:85
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Dèan cinnteach gun coilean no os-cheumnaich an dùmhlachd-bhreacaidh "
+"cuartach, an dùmhlachd-bhreacaidh ìos-mheud a thathar ga mholadh (800x600). "
+"Seall an seo airson fios."
 
 #. description
-#: ../jobs/graphics.txt.in:66
+#: ../jobs/graphics.txt.in:85
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:88
+#: ../jobs/graphics.txt.in:95
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -1026,14 +1030,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo an taisbean bunaiteach\n"
+"CEUMAN:\n"
+"    1. Briog air “Dearbh” gus taisbean deuchainn bhideo.\n"
+"DEARBHACHADH:\n"
+"    Bheil thu a' faicinn bàraichean  dath agus stadaigeach?"
 
 #. description
-#: ../jobs/graphics.txt.in:99
+#: ../jobs/graphics.txt.in:106
 msgid "Check that VESA drivers are not in use"
 msgstr "Sgrùd nach eil dràibhearan VESA gan chleachdadh"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1042,19 +1052,25 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
+"DEÒIN:\n"
+"    Tha an deuchainn seo cuartachadh tro na modhan bhideo thathar air lorg\n"
+"CUMAN:\n"
+"    1. Briog air “Dearbh” gus  cuartachadh tro na modhan bhideo\n"
+"DEARBHACHADH:\n"
+"    Robh e coltach gun do dh'obraich an sgrìn ceart son gach modh?"
 
 #. description
-#: ../jobs/graphics.txt.in:132
+#: ../jobs/graphics.txt.in:126
 msgid "Check that hardware is able to run compiz"
 msgstr "Sgrùd gu bheil am bathar-chruaidh comasach a ruith compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:133
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Sgrùd gu bheil am bathar-chruaidh comasach a ruith Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:145
+#: ../jobs/graphics.txt.in:139
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1066,6 +1082,16 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"DEÒIN:\n"
+"    Tha an deuchainn seo a' dearbhadh na comasan 3D bunait na cairt bhideo "
+"agad\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” a chur an gnìomh fianais-dùbhlain OpenGL. Brùth ESC "
+"gus dùnadh aig àm sam bith.\n"
+"    2. Dearbh nach eil am beothachadh grad-bhuilleadh no slaodadh.\n"
+"DEARBHACHADH:\n"
+"    1. Na nochd am beothachadh 3d?\n"
+"    2. Robh am beothachadh saor bho maillead/grad-bhuille?"
 
 #. description
 #: ../jobs/graphics.txt.in:159
@@ -1077,6 +1103,13 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"DEÒIN:\n"
+"    Gabh glacadh-sgrìn den sgrìn cuartach (bàrr-deasc Unity air logadh a-"
+"steach)\n"
+"CEUMAN:\n"
+"    1: Gabh pioctair a' cleachdadh camara-lìn USB\n"
+"DEARBHACHADH:\n"
+"    1. Ath sgrùd ceanglachan de làimh nas anmoch"
 
 #. description
 #: ../jobs/graphics.txt.in:171 ../jobs/suspend.txt.in:404
@@ -1095,6 +1128,14 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"DEÒIN:\n"
+"    Gabh glacadh-sgrìn den sgrìn cuartach fad cluich air ais bhideo aig làn-"
+"sgrìn\n"
+"CEUMAN:\n"
+"    1. Tòisich cluich air ais bhideo làn-sgrìn\n"
+"    2. Gabh pioctair a' cleachdadh camara-lìn USB an dèidh beagan diogan\n"
+"DEARBHACHADH:\n"
+"    1. Ath sgrùd ceanglachan de làimh nas anmoch"
 
 #. description
 #: ../jobs/graphics.txt.in:195
@@ -1121,6 +1162,20 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn a dhèanamh cinnteach gu geamhraich do shiostam gu "
+"soirbheachail (ma tha taic ann)\n"
+"CEUMAN:\n"
+"    1. Briog air Dearbh\n"
+"    2. Geamhraicheadh an siostam 's bu chòir dha dùsgadh e fhèin a-staigh 5 "
+"mionaidean.\n"
+"    3. Ma na dùisg do shiostam a-staigh 5 mionaidean , brùth sibh am putan "
+"cumhachd gus dùsgadh an t-siostam de làimh\n"
+"    4. Ma dh'fhàilligeas ath-thòisich an siostam, tòisich às ùr dearbhadh an "
+"siostam agus comharraich an deuchainn seo mar fàilligeadh\n"
+"DEARBHACHADH:\n"
+"    Na geamhraich an siostam gu soirbheachail agus an do dh'obraich e ceart "
+"an dèidh dùsgadh?"
 
 #. description
 #: ../jobs/info.txt.in:5
@@ -1148,7 +1203,7 @@ msgid "Attaches dmidecode output"
 msgstr "A' ceangal às-chur dmidecode"
 
 #. description
-#: ../jobs/info.txt.in:37
+#: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
 msgstr "A' ceangal às-chur lspci ro-bhriathrach."
 
@@ -1164,75 +1219,80 @@ msgid "List USB devices"
 msgstr "Liosta innleachdan USB"
 
 #. description
-#: ../jobs/info.txt.in:58
+#: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "A' ceangal na susbaintean den caochladh faidhlichean modprobe conf."
 
 #. description
-#: ../jobs/info.txt.in:63
+#: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "A' ceangal na susbaintean den faidhle /etc/modules."
 
 #. description
-#: ../jobs/info.txt.in:68
+#: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "A' ceangal na susbaintean den caochladh faidhlichean config."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "A' ceangal iomradh de bhuadhan sysfs."
 
 #. description
-#: ../jobs/info.txt.in:83
+#: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"A' ceangal an dump den stòr-dàta udev a' sealltainn fiosrachaidh bathar-"
+"chruaidh an t-siostam."
 
 #. description
-#: ../jobs/info.txt.in:90
+#: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "A' ceangal tarball de dhàta gcov ma th' ann làthair."
 
 #. description
-#: ../jobs/info.txt.in:95
+#: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "A' ceangal liosta de mòidealan eitean a' ruith an dràsta."
 
 #. description
-#: ../jobs/info.txt.in:100
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "A' ceangal na susbaintean de /proc/acpi/sleep ma tha e ann."
 
 #. description
-#: ../jobs/info.txt.in:104
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
-msgstr ""
+msgstr "Fiosrachadh a' chairt-bhùtaidh."
 
 #. description
-#: ../jobs/info.txt.in:113
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "Fiosrachadh innleachd SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:132
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
+"A' ceangal faidhle png a' chairt-bhùtaidh airson ruith a' chairt-bhùtaidh"
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
+"A' ceangal log a' chairt-bhùtaidh airson  ruith dearbhaidh a' chairt-"
+"bhùtaidh."
 
 #. description
-#: ../jobs/info.txt.in:149
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "A' stàladh tarball a' chairt-bhùtaidh an stàlaichear ma tha e ann."
 
 #. description
-#: ../jobs/info.txt.in:154
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "A' ceangal log dì-bhugaich an stàlaichear ma tha e ann."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1245,6 +1305,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo an innleachd comharraich agad\n"
+"CEUMAN:\n"
+"    1. Gluais an cùrsair a' cleachdadh an innleachd comharraich no suath an "
+"sgrìn.\n"
+"    2. Dèan cuid obrachaidhean briogadh singilte/dùbailte/deas.\n"
+"DEARBHACHADH:\n"
+"    An do dh'obraich an innleachd comharraich mar a bha dùil?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -1257,6 +1325,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo do mheur-chlàr\n"
+"CEUMAN:\n"
+"    1. Briog air Dearbh\n"
+"    2. Air an roinn teacsa fosgailte, cleachd do mheur-chlàr a sgrìobh "
+"rudeigin\n"
+"DEARBHACHADH:\n"
+"    Bheil do mheur-chlàr ag obair ceart?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1265,6 +1341,10 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"A' dearbhadh a dh'fhaicinn gum faigh apt cothrom air ionadan-tasgaidh agus a "
+"dh'fhaighinn ùrachaidhean (chan eil a' stàladh  ùrachaidhean). Tha seo ga "
+"dhèanamh gus a dhearbhadh gum b' urrainn dhuit aisig air ais bho ùrachaidh "
+"neo-chrìochnaichte no briste."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -1276,6 +1356,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo am putan soilleireachd \n"
+"CEUMAN:\n"
+"    1. Brùth na putain soilleireachd air a' mheur-chlàr\n"
+"DEARBHACHADH:\n"
+"    Na dh'atharraich an t-soilleireachd an dèidh do bhrùthan putan?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -1287,6 +1373,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo na putain bholam\n"
+"CEUMAN:\n"
+"    1. Brùth na putain bholam air a' mheur-chlàr\n"
+"DEARBHACHADH:\n"
+"    Na dh'atharraich a' bholam an dèidh do bhrùthan putain?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -1298,6 +1390,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo am putan mùchaidh\n"
+"CEUMAN:\n"
+"    1. Brùth am putan mùchaidh air a' mheur-chlàr\n"
+"DEARBHACHADH:\n"
+"    Na mùch a' bholam an dèidh do bhrùthan putan?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -1310,6 +1408,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo am putan caidil\n"
+"CEUMAN:\n"
+"    1. Brùth am putan caidil air a' mheur-chlàr\n"
+"    2. Dùsg do shiostam le brùthadh am putan cumhachd\n"
+"DEARBHACHADH:\n"
+"    Na caidil an siostam an dèidh brùthadh am putan caidil?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -1321,6 +1426,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo am putan fiosrachaidh a' bhataraidh\n"
+"CEUMAN:\n"
+"    1. Brùth am putan fiosrachaidh a' bhataraidh air a' mheur-chlàr\n"
+"DEARBHACHADH:\n"
+"    Na nochd am fios a' sealltainn inbhe a' bhataraidh?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -1333,6 +1444,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo am putan uèirleas\n"
+"CEUMAN:\n"
+"    1. Brùth am putan uèirleas air a' mheur-chlàr\n"
+"    2. Brùth an aon phutan a-rithist\n"
+"DEARBHACHADH:\n"
+"    An deach an uèirleas dheth air a' chiad bhrùthadh 's air a-rithist air "
+"an darna?"
 
 #. description
 #: ../jobs/keys.txt.in:75
@@ -1346,6 +1465,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo na putain meadhanan do mheur-chlàr\n"
+"CEUMAN:\n"
+"    1. Briog dearbh a dh'fhosgladh uinneag air a dhearbhadh putain na "
+"meadhanan.\n"
+"    2. Ma dh'obraicheas na putain, bithidh an deuchainn comharraichte mar "
+"coileanta.\n"
+"    3. Ma 's e 's nach eil putain meadhanan aig do choimpiutair. Sgiob an "
+"deuchainn seo.\n"
+"DEARBHACHADH:\n"
+"    An do dh'obraich na putain mar a bha dùil?"
 
 #. description
 #: ../jobs/keys.txt.in:91
@@ -1358,6 +1488,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the super key work as expected?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh an deuchainn seo an t-sàr phutan de do mheur-chlàr\n"
+"CEUMAN:\n"
+"    1. Briog dearbh a dh'fhosgladh uinneag air a dhearbhadh an t-sàr "
+"phutan.\n"
+"    2. Ma dh'obraicheas am putan, coilionaidh an deuchainn agus dùnaidh an "
+"uinneag.\n"
+"DEARBHACHADH:\n"
+"    Bheil an t-sàr phutan ag obair mar a bha dùil?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1400,144 +1539,144 @@ msgid "Disk tests"
 msgstr "Deuchainnean dìosg"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Deuchainnean leughadair meur-lorg"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Deuchainnean dìosg Firewire"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Deuchainnean clàr-sùbailte"
+
+#. description
+#: ../jobs/local.txt.in:80
+msgid "Graphics tests"
+msgstr "Deuchainnean grafaigeach"
 
 #. description
 #: ../jobs/local.txt.in:87
-msgid "Graphics tests"
-msgstr ""
+msgid "Hibernation tests"
+msgstr "Deuchainnean cadal-geamhraidh"
 
 #. description
 #: ../jobs/local.txt.in:94
-msgid "Hibernation tests"
-msgstr ""
+msgid "Informational tests"
+msgstr "Deuchainnean fiosrachaidh"
 
 #. description
 #: ../jobs/local.txt.in:101
-msgid "Informational tests"
-msgstr ""
+msgid "Input Devices tests"
+msgstr "Deuchainnean innleachdan ion-chur"
 
 #. description
 #: ../jobs/local.txt.in:108
-msgid "Input Devices tests"
-msgstr ""
+msgid "Software Installation tests"
+msgstr "Deuchainnean stàlachadh bathar-bog"
 
 #. description
 #: ../jobs/local.txt.in:115
-msgid "Software Installation tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Deuchainnean putan-teth"
 
 #. description
 #: ../jobs/local.txt.in:136
 msgid "Media Card tests"
-msgstr ""
+msgstr "Deuchainnean cairt na meadhanan"
 
 #. description
 #: ../jobs/local.txt.in:143
 msgid "Memory tests"
-msgstr ""
+msgstr "Deuchainnean cuimhne"
 
 #. description
 #: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Deuchainnean measgaichte"
 
 #. description
 #: ../jobs/local.txt.in:157
 msgid "Monitor tests"
-msgstr ""
+msgstr "Deuchainnean sgrìn (monatair)"
 
 #. description
 #: ../jobs/local.txt.in:164
 msgid "Networking tests"
-msgstr ""
+msgstr "Deuchainnean lìonrachadh"
 
 #. description
 #: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "Deuchainnean dràibh lèirsinneach"
 
 #. description
 #: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Deuchainnean dearbhachadh cleoc a' phanail"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:192
 msgid "Peripheral tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Power Management tests"
-msgstr ""
+msgstr "Deuchainnean iomallach"
 
 #. description
 #: ../jobs/local.txt.in:206
-msgid "Server Services checks"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:213
-msgid "Suspend tests"
-msgstr ""
+msgid "Power Management tests"
+msgstr "Deuchainnean stiùireadh cumhachd"
 
 #. description
 #: ../jobs/local.txt.in:220
-msgid "Touchpad tests"
-msgstr ""
+msgid "Server Services checks"
+msgstr "Sgrùdaichean seirbheisean frithealaiche"
+
+#. description
+#: ../jobs/local.txt.in:227
+msgid "Suspend tests"
+msgstr "Deuchainnean -cuir air thaobh"
 
 #. description
 #: ../jobs/local.txt.in:234
-msgid "USB tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:241
-msgid "User Applications"
-msgstr ""
+msgid "Touchpad tests"
+msgstr "Deuchainnean pada-beantainn"
 
 #. description
 #: ../jobs/local.txt.in:248
-msgid "Wireless networking tests"
-msgstr ""
+msgid "USB tests"
+msgstr "Deuchainnean USB"
 
 #. description
 #: ../jobs/local.txt.in:255
+msgid "User Applications"
+msgstr "Aplacaidean a' chleachdaiche"
+
+#. description
+#: ../jobs/local.txt.in:262
+msgid "Wireless networking tests"
+msgstr "Deuchainnean lìonrachadh uèirleas"
+
+#. description
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
-msgstr ""
+msgstr "Deuchainnean spàirn"
 
 #. description
 #: ../jobs/local.txt.in:262
 msgid "Smoke tests"
-msgstr ""
+msgstr "Deuchainnean ceò"
 
 #. description
 #: ../jobs/local.txt.in:269
 msgid "Sniff Sniffers"
-msgstr ""
+msgstr "Fairich fàilidhean"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -1553,6 +1692,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman \n"
+"    faigh lorg air cuir a-steach meadhanan cairt ioma-mheadhanan (MMC)\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt ioma-mheadhanan (MMC) a-steach dhan "
+"leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:20
@@ -1560,6 +1711,9 @@ msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn  mediacard/mmc-insert. Tha e a dearbhadh leughadh agus "
+"sgrìobhadh a' chairt MMC."
 
 #. description
 #: ../jobs/mediacard.txt.in:28
@@ -1574,6 +1728,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an t-siostam a lorg ceart\n"
+"    gluasad a' chairt MMC bhon leughadair cairt an t-siostam.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt MMC bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail.Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:43
@@ -1589,6 +1752,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach meadhanan cairt ioma-mheadhanan MMC an dèidh an "
+"siostam a chur air thaobh\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt ioma-mheadhanan MMC a-steach dhan "
+"leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:59
@@ -1597,6 +1773,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the MMC card after the "
 "system has been suspended."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn mediacard/mmc-insert-after-suspend. Tha e a dearbhadh leughadh "
+"agus sgrìobhadh a' chairt MMC an dèidh an siostam a chur air thaobh."
 
 #. description
 #: ../jobs/mediacard.txt.in:67
@@ -1612,6 +1791,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart gluasad\n"
+"    a' chairt MMC bhon leughadair cairt an t-siostam an dèidh an siostam a "
+"chur air thaobh.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt MMC bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:81
@@ -1627,6 +1816,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach cairt-mheadhanan Secure Digital (SD)\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt SD  a-steach dhan leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
@@ -1634,6 +1834,9 @@ msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn mediacard/sd-insert. Tha e a dearbhadh leughadh agus sgrìobhadh "
+"a' chairt SD."
 
 #. description
 #: ../jobs/mediacard.txt.in:105
@@ -1648,6 +1851,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart\n"
+"    gluasad a' chairt SD bhon leughadair cairt na siostaman.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt SD bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:120
@@ -1663,6 +1875,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach cairt SD an dèidh an siostam a chur air thaobh\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt SD a-steach dhan leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:136
@@ -1671,6 +1894,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SD card after the "
 "system has been suspended."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a ruith "
+"an deuchainn mediacard/sd-insert-after-suspend. Tha e a dearbhadh leughadh "
+"agus sgrìobhadh a' chairt SD an dèidh cuir an siostam air thaobh."
 
 #. description
 #: ../jobs/mediacard.txt.in:144
@@ -1686,6 +1912,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart\n"
+"    gluasad a' chairt SD bhon leughadair cairt na siostaman an dèidh an "
+"siostam a chur air thaobh.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt SD bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:158
@@ -1702,6 +1938,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach cairt-mheadhanan Secure Digital High-Capacity "
+"(SDHC)\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt SDHC a-steach dhan leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:174
@@ -1709,6 +1957,9 @@ msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn mediacard/sdhc-insert. Tha e a dearbhadh leughadh agus "
+"sgrìobhadh a' chairt SDHC."
 
 #. description
 #: ../jobs/mediacard.txt.in:182
@@ -1723,6 +1974,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart\n"
+"    gluasad a' chairt SDHC bhon leughadair cairt na siostaman.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt SDHC bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:197
@@ -1739,6 +1999,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach cairt SDHC an dèidh an siostam a chur air thaobh\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt SDHC a-steach dhan leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:213
@@ -1747,6 +2018,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SDHC card after the "
 "system has been suspended."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn mediacard/sdhc-insert-after-suspend. Tha e a dearbhadh leughadh "
+"agus sgrìobhadh a' chairt sdhc an dèidh an siostam a chur air thaobh."
 
 #. description
 #: ../jobs/mediacard.txt.in:221
@@ -1762,6 +2036,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart\n"
+"    gluasad a' chairt SDHC bhon leughadair cairt na siostaman an dèidh an t-"
+"siostam a chur air thaobh.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt SDHC bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:235
@@ -1777,6 +2061,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach cairt meadhanan Compact Flash (CF)\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt CF a-steach dhan leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:251
@@ -1784,6 +2079,9 @@ msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn mediacard/cf-insert. Tha e a dearbhadh leughadh agus sgrìobhadh "
+"a' chairt CF."
 
 #. description
 #: ../jobs/mediacard.txt.in:259
@@ -1798,6 +2096,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart\n"
+"    gluasad a' chairt CF bhon leughadair cairt na siostaman.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt CF bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:274
@@ -1813,6 +2120,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an leughadair cairt meadhanan na "
+"siostaman faighinn\n"
+"    lorg air cuir a-steach cairt CF an dèidh an siostam a chur air thaobh.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus cuir cairt CF a-steach dhan leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"    2. Na dealaich o chèile an innleachd seo an dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/mediacard.txt.in:290
@@ -1821,6 +2139,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the CF card after the "
 "system has been suspended."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh an dèidh a' ruith "
+"an deuchainn mediacard/cf-insert-after-suspend. Tha e a dearbhadh leughadh "
+"agus sgrìobhadh a' chairt CF  an dèidh an siostam a chur air thaobh."
 
 #. description
 #: ../jobs/mediacard.txt.in:298
@@ -1836,6 +2157,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo am bheil an siostam a lorg ceart\n"
+"    gluasad a' chairt CF bhon leughadair cairt na siostaman an dèidh an "
+"siostam a chur air thaobh.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad a' chairt CF bhon leughadair.\n"
+"       (Nota: bithidh crìoch-ùine an deuchainn seo an dèidh 20 diogan.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhachadh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte gu fèin-obrachail."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -1843,11 +2174,13 @@ msgid ""
 "This test checks the amount of memory which is reporting in meminfo against "
 "the size of the memory modules detected by DMI."
 msgstr ""
+"Tha an deuchainn seo a' sgrùdadh na h-uimhir cuimhne thathar ag aithris ann "
+"am meminfo an aghaidh meud na mòidealan cuimhne air lorg tro DMI."
 
 #. description
 #: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Dearbh agus eacarsaich cuimhne."
 
 #. description
 #: ../jobs/miscellanea.txt.in:3
@@ -1863,9 +2196,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Nothing to verify for this test"
 msgstr ""
+"DEÒIN:\n"
+"    Glèidh fios co-cheangailte ris  an rannsachair san iomradh\n"
+"CEUMAN:\n"
+"    1. Fios rannsachair\n"
+"    2. Cuir sibh a-steach am fios tha leantainn san raon abairtean:\n"
+"       a. Ainm\n"
+"       b. Seòladh Post-d\n"
+"       c. Adhabhar ruith an deuchainn seo\n"
+"DEARBHACHADH:\n"
+"    Chan eil nì a dhearbhadh son an deuchainn seo"
 
 #. description
-#: ../jobs/miscellanea.txt.in:22
+#: ../jobs/miscellanea.txt.in:8
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1877,45 +2220,64 @@ msgid ""
 "    Did your screen change temporarily to a text console and then switch "
 "back to your current session?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an urrainn an siostam suidseadh chum "
+"tèirmineal mas fhìor agus nuair sin air ais gu X\n"
+"CEUMAN:\n"
+"    1. Briog air “Dearbh” gus suidseadh chum tèirmineal mas fhìor agus nuair "
+"sin air ais gu X\n"
+"DEARBHACHADH:\n"
+"    Na dh'atharraich an sgrìn gu sealach chum consoil teacsa agus nuair sin "
+"air ais dha do sheisein cuartach?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:36
+#: ../jobs/miscellanea.txt.in:21
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Ruith deuchainnean fèin-obrachail Firmware Test Suite (fwts)"
 
 #. description
 #: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
-msgstr ""
+msgstr "A' ceangal an toraidhean FWTS ris an innteart"
 
 #. description
-#: ../jobs/miscellanea.txt.in:53
+#: ../jobs/miscellanea.txt.in:31
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Ruithidh seo cuid deuchainnean conaltradh bunait an aghaidh am BMC, a' "
+"dearbhadh gun obraich IPMI."
 
 #. description
-#: ../jobs/miscellanea.txt.in:59
+#: ../jobs/miscellanea.txt.in:37
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Sònraich ma dh'fheumas sinn ruith deuchainnean gu àraid son "
+"coimpiutairean so-ghiùlan nach eil 's dòcha buntainn ri bàrr-deasaichean."
 
 #. description
-#: ../jobs/miscellanea.txt.in:67
+#: ../jobs/miscellanea.txt.in:45
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
 "exist/is empty)"
 msgstr ""
+"Dearbh nach eil an t-eòlaire /var/crash a' glèidheadh rud sam bith. A' "
+"liostadh faidhlichean glèidhte a-staigh  ma tha e, no mac-tallan inbhe an t-"
+"eòlaire (chan eil e ann/tha falamh)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:75
+#: ../jobs/miscellanea.txt.in:53
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
 msgstr ""
+"Dearbh gus sgrùdadh gu bheil taic  ann son raon bhiortail agus gu bheil co "
+"dhiù  am meud as lugha RAM aig an t-siostam dearbhaidh a dh'obraicheas mar "
+"nòd coimpiutaich OpenStack"
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -1929,6 +2291,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do phort VGA.  Sgiob ma 's e 's nach eil "
+"phort VGA aig do shiostam.\n"
+"CEUMAN:\n"
+"    1: Ceangail sgrìn (monatair) (ma ceangailte mar thà) ris am port VGA air "
+"do shiostam\n"
+"DEARBHACHADH:\n"
+"    Robh am bàrr-deasc foillsichte ceart air an dà sgrìn?"
 
 #. description
 #: ../jobs/monitor.txt.in:15
@@ -1942,6 +2312,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do phort DVI. Sgiob ma 's e 's nach eil phort "
+"DVI aig do shiostam.\n"
+"CEUMAN:\n"
+"    1: Ceangail sgrìn (monatair) (ma ceangailte mar thà) ris am port DVI air "
+"do shiostam\n"
+"DEARBHACHADH:\n"
+"    Robh am bàrr-deasc foillsichte ceart air an dà sgrìn?"
 
 #. description
 #: ../jobs/monitor.txt.in:26
@@ -1955,6 +2333,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do phort DisplayPort. Sgiob ma 's e 's nach "
+"eil phort DisplayPort aig do shiostam.\n"
+"CEUMAN:\n"
+"    1: Ceangail sgrìn (monatair) (ma ceangailte mar thà) ris am port "
+"DisplayPort air do shiostam\n"
+"DEARBHACHADH:\n"
+"    Robh am bàrr-deasc foillsichte ceart air an dà sgrìn?"
 
 #. description
 #: ../jobs/monitor.txt.in:37
@@ -1968,6 +2354,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do phort HDMI. Sgiob ma 's e 's nach eil "
+"phort HDMI aig do shiostam.\n"
+"CEUMAN:\n"
+"    1: Ceangail sgrìn (monatair) (ma ceangailte mar thà) ris am port HDMI "
+"air do shiostam\n"
+"DEARBHACHADH:\n"
+"    Robh am bàrr-deasc foillsichte ceart air an dà sgrìn?"
 
 #. description
 #: ../jobs/monitor.txt.in:48
@@ -1981,6 +2375,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do phort S-VIDEO. Sgiob ma 's e 's nach eil "
+"phort S-VIDEO aig do shiostam.\n"
+"CEUMAN:\n"
+"    1: Ceangail sgrìn (monatair) (ma ceangailte mar thà) ris am port S-VIDEO "
+"air do shiostam\n"
+"DEARBHACHADH:\n"
+"    Robh am bàrr-deasc foillsichte ceart air an dà sgrìn?"
 
 #. description
 #: ../jobs/monitor.txt.in:59
@@ -1994,6 +2396,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do phort RCA. Sgiob ma 's e 's nach eil phort "
+"RCA aig do shiostam.\n"
+"CEUMAN:\n"
+"    1: Ceangail sgrìn (monatair) (ma ceangailte mar thà) ris am port RCA air "
+"do shiostam\n"
+"DEARBHACHADH:\n"
+"    Robh am bàrr-deasc foillsichte ceart air an dà sgrìn?"
 
 #. description
 #: ../jobs/monitor.txt.in:70
@@ -2006,31 +2416,44 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
+"DEÒIN:\n"
+"   Sgrùdaidh an deuchainn seo na comasan aig do sgrìn cumhachd a shàbhail\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” a dh'fheuchainn na comasan aig do sgrìn cumhachd a "
+"shàbhail\n"
+"    2. Brùth putan sam bith no gluais an luchag gus tar-aiseag\n"
+"DEARBHACHADH:\n"
+"    Neach an sgrìn bàn agus air an rithist?"
 
 #. description
-#: ../jobs/networking.txt.in:8
+#: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Dearbh gus lorg uidheaman-smachd lìonradh ri làimh"
 
 #. description
-#: ../jobs/networking.txt.in:14
+#: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
 msgstr ""
+"A' dearbhadh am bheil aig an siostam ceangal eadar-lìn lìonradh a tha ag "
+"obair."
 
 #. description
-#: ../jobs/networking.txt.in:19
+#: ../jobs/networking.txt.in:16
 msgid "Network Information"
-msgstr ""
+msgstr "Fios lìonradh"
 
 #. description
-#: ../jobs/networking.txt.in:43
+#: ../jobs/networking.txt.in:40
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
 msgstr ""
+"'S e deuchainn fèin-obrachail a' cruinneachadh cuid fios air staid de "
+"d'innleachdan lìonradh cuartach tha seo. Ma 's e 's nach robh innleachdan "
+"air lorg, fàgaidh an deuchainn le mearachd."
 
 #. description
-#: ../jobs/networking.txt.in:49
+#: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2042,9 +2465,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do cheangal uèir\n"
+"CEUMAN:\n"
+"    1. Briog air an ìomhaigheag lìonradh anns a' phanail air bhàrr\n"
+"    2. Tagh lìonradh fo an roinn “Lìonradh uèir”\n"
+"    3. Briog air “Dearbh” gus dearbhadh gu bheil e ceadaichte stèidheachadh "
+"ceangal HTTP\n"
+"DEARBHACHADH:\n"
+"    Na nochd fios agus robh an ceangal stèidhichte ceart?"
 
 #. description
-#: ../jobs/networking.txt.in:62
+#: ../jobs/networking.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2060,53 +2492,79 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo gu gabh mòdam bhith rèitichte agus "
+"ceangailte.\n"
+"CEUMAN:\n"
+"    1. Ceangail an loidhne telefòn ris a' choimpiutair\n"
+"    2. Briog air an ìomhaigheag lìonradh anns a' phanail air bhàrr.\n"
+"    3. Tagh “Deasaiche ceanglaichean”\n"
+"    4. Tagh an taba “DSL”\n"
+"    5. Briog air a' phutan “Cuir ris”\n"
+"    6. Rèitich na paramadairean ceangal ceart\n"
+"    7. Briog “Dearbh” gus dearbhadh gu bheil e ceadaichte stèidheachadh "
+"ceangal HTTP\n"
+"DEARBHACHADH:\n"
+"    Na nochd fios agus robh an ceangal stèidhichte ceart?"
 
 #. description
-#: ../jobs/networking.txt.in:79
+#: ../jobs/networking.txt.in:76
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Cùis deuchainn fèin-obrachail a dhearbhadh an fhaigheadh cuid siostaman air "
+"an lìonradh le cleachdadh pacaidean  ICMP ECHO."
 
 #. description
-#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Cùis deuchainn fèin-obrachail a dhèanamh cinnteach gu bheil e ceadaichte "
+"luchdadh a-nuas faidhlichean tro HTTP."
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:91
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Dearbh a dh'fhaicinn ma dh'fhaodamaid sioncronachadh an cleoc ionadail ri "
+"frithealaiche NTP"
 
 #. description
-#: ../jobs/networking.txt.in:100
+#: ../jobs/networking.txt.in:97
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Dearbh an urrainn an stàlachadh de checkbox-server air an lìonradh a ruiginn "
+"thairis SSH."
 
 #. description
-#: ../jobs/networking.txt.in:106
+#: ../jobs/networking.txt.in:103
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"Feuch a chur an comas clò-bhualadair iomallach air an lìonradh agus clò-"
+"bhuail duilleag dearbh"
 
 #. description
-#: ../jobs/networking.txt.in:111
+#: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
+"Deuchainn fèin-obrachail a coiseachd ioma chairtean lìonradh agus dearbh "
+"gach fear ann an sreath-leanmhainn."
 
 #. description
-#: ../jobs/networking.txt.in:134
+#: ../jobs/networking.txt.in:128
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Dearbh a thomhais leud-banna lìonradh"
 
 #. description
-#: ../jobs/optical.txt.in:4
+#: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Deuchainn a lorg dràibhean lèirsinneach"
 
 #. description
 #: ../jobs/optical.txt.in:16
@@ -2126,7 +2584,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:42
+#: ../jobs/optical.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2143,7 +2601,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:90
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2160,9 +2618,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do chomasan cluich air ais MC (CD)\n"
+"CEUMAN:\n"
+"    1. Cuir MC (CD) a-steach dha do dhràibh lèirsinneach\n"
+"    2. Nuair phutadh, cuir an cluicheadair chiùil air bhog\n"
+"    3. Lorg am MC (CD) ann an taisbean a' chluicheadair chiùil\n"
+"    4. Tagh am MC (CD) anns an cluicheadair chiùil\n"
+"    5. Briog air a' phutan cluich son èisdeachd ri ceòl air am MC (CD)\n"
+"    6. Sguir a' cluich as dèidh beagan ùine\n"
+"    7. Briog deas air an ìomhaigheag MC (CD) agus tagh “Tilg a-mach an "
+"Diosg”\n"
+"    8. Bu chòir am MC (CD) a thilgeadh a-mach\n"
+"    9  Dùin an cluicheadair chiùil\n"
+"DEARBHACHADH:\n"
+"    An do dh'obraich na ceuman ceart?"
 
 #. description
-#: ../jobs/optical.txt.in:78
+#: ../jobs/optical.txt.in:69
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2179,7 +2652,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:149
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2196,9 +2669,25 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do chomasan cluich air ais fiolm DBhD. Thoir "
+"an aire gum bi iarratas stàlachadh de bhathar-bhog neo-shaor ( Còdichean, "
+"cluicheadair, m.s.a.a.) os chionn dèanamh an dearbhadh seo.\n"
+"CEUMAN:\n"
+"    1. Cuir DBhD a-steach a tha glèidheadh fiolm sam bith dha do dhràibh "
+"lèirsinneach\n"
+"    2. Fosgail an dash (briog air a' phutan Cearcall de charaidean Ubuntu "
+"air an lòinsear)\n"
+"    3. Briog “aplaid meadhanan” agus nuair sin briog air “meadhanan "
+"cluicheadair”\n"
+"    4. Cluich am fiolm a' cleachdadh cluicheadair fiolm, sguir cluich am "
+"fiolm as dèidh dearbhadh an cluich e\n"
+"    5. Tilg a-mach an DBhD\n"
+"DEARBHACHADH:\n"
+"    An do dh'obraich na ceuman ceart?"
 
 #. description
-#: ../jobs/optical.txt.in:167
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2208,6 +2697,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do chomasan cluich air ais DBhD\n"
+"CEUMAN:\n"
+"    1. Cuir DBhD a-steach a tha glèidheadh fiolm sam bith dod dhràibh "
+"lèirsinneach\n"
+"    2. Briog air “Dearbh” son cluich DBhD ann an Totem\n"
+"DEARBHACHADH:\n"
+"    Na chluich am faidhle?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -2220,9 +2717,16 @@ msgid ""
 "VERIFICATION:\n"
 "   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
+"DEÒIN:\n"
+"   Dearbhaidh an deuchainn seo gum foillsich cleoc a' bhàrr-deasc an deat "
+"agus an t-àm\n"
+"CEUMAN:\n"
+"   1. Sgrùd an cleoc san oisean deas ùrach dod bhàrr-deasc.\n"
+"DEARBHACHADH:\n"
+"   Bheil an cleoc a foillsicheadh an deat agus an t-àm air shon do raon-ama?"
 
 #. description
-#: ../jobs/panel_clock_test.txt.in:18
+#: ../jobs/panel_clock_test.txt.in:16
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock synchronizes with the system "
@@ -2238,6 +2742,22 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"DEÒIN:\n"
+"   Dearbhaidh an deuchainn seo gu bheil cleoc a' bhàrr-deasc a' "
+"sioncronachadh le cleoc an t-siostam.\n"
+"CEUMAN:\n"
+"   1. Briog air a' phutan “Dearbh” agus dearbhaich gu gluais an cleoc air "
+"adhairt 1 uair.\n"
+"   Thoir an aire: dh'fhaodadh e gabhail mionaid no sin son an cleoc "
+"ùrachadh\n"
+"   2. Briog deas air an cleoc, nuair sin briog air “Suidheachaidhean àm agus "
+"deat...”\n"
+"   3. Dèan cinnteach gu bheil an aplacaid cleoc agad stèidhte a làimh.\n"
+"   4. Atharraich an t-àm air ais 1 uair\n"
+"   5. Dùin an uinneag agus bùtaich a-rithist\n"
+"DEARBHACHADH:\n"
+"   Bheil cleoc an t-siostam agad a foillsicheadh an deat agus an t-àm ceart "
+"air shon do raon-ama?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -2254,6 +2774,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"DEÒIN:\n"
+"   Dearbhaidh an deuchainn seo gun urrainn dhut ath-bùtaich do shiostam bhon "
+"clàr-iùil a' bhàrr-deasc\n"
+"CEUMAN:\n"
+"   1. Briog air ìomhaigheag an gèar anns an oisean deas ùrach a' bhàrr-deasc "
+"agus briog air “Dùin sìos”\n"
+"   2. Briog air a' phutan “Ath-thòisich”air taobh chlì dhen co-labhairt Dùin "
+"sìos\n"
+"   3. As dèidh logadh a-steach air ais, ath-thòisich Dearbhadh an t-siostam "
+"'s bu chòir dha leantail air à seo\n"
+"DEARBHACHADH:\n"
+"   Na dh'ath-thòisich do shiostam agus na thog e suas an log a-steach ECG "
+"(GUI) gu glan?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -2266,6 +2799,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
+"DEÒIN:\n"
+"    Dearbhaidh seo gun urrainn slot PCMCIA no ExpressCard faighinn lorg air "
+"innleachdan a chur a-steach\n"
+"CEUMAN:\n"
+"    1. Plucaich innleachd PCMCIA no ExpressCard a-steach dhan choimpiutair\n"
+"DEARBHACHADH:\n"
+"    Robh an innleachd air lorg ceart?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -2283,6 +2823,20 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"DEÒIN:\n"
+"   Dearbhaidh an deuchainn seo an gabh do chlò-bhualadair lìonraidh a "
+"chleachd\n"
+"CEUMAN:\n"
+"   1. Dèan cinnteach gu bheil clò-bhualadair ri fhaighinn nad lìonradh\n"
+"   2. Briog air ìomhaigheag an gèar anns an oisean deas ùrach a' bhàrr-deasc "
+"agus briog air Clò-bhualadairean\n"
+"   3. Mur eil clò-bhualadair mar thà air a liostadh, briog air Cuir ris\n"
+"   4. Bu chòir an clò-bhualadair bhith air a lorg agus na luachan "
+"rèiteachadh iomchaidh foillsichte.\n"
+"   5. Clò-bhuail duilleag dearbhaidh\n"
+"DEARBHACHADH:\n"
+"   Am b'urrainn dhut clò-bhuaileadh duilleag dearbhaidh chum a' chlò-"
+"bhualadair lìonradh?"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -2303,6 +2857,22 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"DEÒIN:\n"
+"   Dearbhaidh an deuchainn seo gu bheil USB DLS no Bann-leathainn so-"
+"ghiùlain ag obair\n"
+"CEUMAN:\n"
+"   1. Ceangal an USB ris a' choimpiutair\n"
+"   2. Briog deas air an ìomhaigheag lìonradh anns a' phanail\n"
+"   3. Tagh 'Deasaich ceangalaichean'\n"
+"   4. Tagh an 'DSL' (son mòdam ADSL) no “Bann-leathainn so-ghiùlain” taba "
+"(son mòdam 3G)\n"
+"   5. Briog air a' phutan cuir ris 'Cuir ris'\n"
+"   6. Rèitich gu ceart paramadairean a' cheangail\n"
+"   7. Chuir fios gu OSD a bu chòir dearbhadh a bheil an ceangal stèidhichte\n"
+"   8. Tagh Dearbh, a dhearbhadh gu bheil e comasach stèidheachadh an ceangal "
+"HTTP\n"
+"DEARBHACHADH:\n"
+"   Robh an ceangal stèidhichte ceart?"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -2316,16 +2886,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo an cuairt dùin sìos/bùtadh do shiostam\n"
+"CEUMAN:\n"
+"    1. Dùin sìos d' innleachd\n"
+"    2. Bùtaich d' innleachd\n"
+"    3. Dèan a-rithist ceuman 1 agus 2 co dhiù 5 turasan\n"
+"DEARBHACHADH:\n"
+"    Na dhùin sìos 's na dh'ath-bhùtaich do shiostam ceart?"
 
 #. description
 #: ../jobs/power-management.txt.in:16
 msgid "Test ACPI Wakealarm (fwts wakealarm)"
-msgstr ""
+msgstr "Deuchainn ACPI Wakealarm (fwts wakealarm)"
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Attach log from fwts wakealarm test"
-msgstr ""
+msgstr "Ceangal log bho dheuchainn wakealarm fwts"
 
 #. description
 #: ../jobs/power-management.txt.in:39
@@ -2344,6 +2922,20 @@ msgid ""
 " If the machine successfully shuts down and boots, select Yes then select "
 "Next."
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo comas an siostam a chur dheth a' chumhachd 's "
+"ath-bhùtadh.\n"
+"CEUMAN:\n"
+" 1. Tagh “Dearbh” a thòiseachadh.\n"
+" 2. Dùinidh an innleachd sìos.\n"
+" 3. Cumhachdaich air an innleachd a-rithist.\n"
+" 4. As dèidh ath-bhùtadh, fuirich gu innis na brodaidhean dearbhaidh  dhut "
+"gu bheil an deuchainn deiseil.\n"
+" 5. Nuair 's tha an deuchainn deiseil, ath-thoisich checkbox agus tagh ruith "
+"a-rithist nuair brodaichte \n"
+"DEARBHACHADH:\n"
+" Ma dhùineas an innleachd sìos 's bùtadh gu soirbheachail, tagh Tha nuairsin "
+"tagh An Ath."
 
 #. description
 #: ../jobs/power-management.txt.in:54
@@ -2351,6 +2943,8 @@ msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
+"Ceanglaidh seo logaichean sam bith bho dearbhadh stiùireadh-"
+"chumhachd/cumhachd-dheth gu ruige na toraidhean."
 
 #. description
 #: ../jobs/power-management.txt.in:64
@@ -2367,6 +2961,18 @@ msgid ""
 "VERIFICATION:\n"
 " If the machine successfully reboots, select Yes then select Next."
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo comas an t-siostam ath-bhùtadh gu glan.\n"
+"CEUMAN:\n"
+" 1. Tagh “Dearbh” a thòiseachadh.\n"
+" 2. Ath-bhùtaidh an innleachd seo.\n"
+" 3. As dèidh ath-bhùtadh, fuirich gu innis na brodaidhean dearbhaidh dhut gu "
+"bheil an deuchainn deiseil.\n"
+" 4. Nuair 's tha an deuchainn deiseil, ath-thoisich checkbox agus tagh ruith "
+"a-rithist nuair brodaichte\n"
+"DEARBHACHADH:\n"
+" Ma ath-bhùtaicheas an innleachd gu soirbheachail, tagh Tha nuairsin tagh An "
+"Ath."
 
 #. description
 #: ../jobs/power-management.txt.in:78
@@ -2374,9 +2980,11 @@ msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
+"Ceanglaidh seo logaichean sam bith bho dearbhadh stiùireadh-chumhachd/ath-"
+"bhùtadh gu ruige na toraidhean."
 
 #. description
-#: ../jobs/power-management.txt.in:83
+#: ../jobs/power-management.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2385,9 +2993,16 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
+"DEÒIN:\n"
+"   Sgrùdaidh an deuchainn seo mothaichearan a' chinn\n"
+"CEUMAN:\n"
+"   1. Dùin ceann a' choimpiutair-glùin\n"
+"DEARBHACHADH:\n"
+"   A bheil a' dùnadh ceann a' choimpiutair-glùin adhbharachadh cuir do "
+"shiostam air thaobh?"
 
 #. description
-#: ../jobs/power-management.txt.in:100
+#: ../jobs/power-management.txt.in:32
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2397,9 +3012,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"DEÒIN:\n"
+"   Sgrùdaidh an deuchainn seo mothaichearan a' chinn\n"
+"CEUMAN:\n"
+"   1. Briog air “Dearbh”\n"
+"   2. Dùin 's fosgail ceann a' choimpiutair-glùin\n"
+"DEARBHACHADH:\n"
+"   Na tionndaidh an sgrìn dheth fad dùnadh an ceann?"
 
 #. description
-#: ../jobs/power-management.txt.in:118
+#: ../jobs/power-management.txt.in:50
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2411,48 +3033,60 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo mothaichearan a' chinn\n"
+"CEUMAN:\n"
+"    1. Briog air “Dearbh”\n"
+"    2. Dùin an ceann\n"
+"    3. Fuirich 5 dìogan leis a' cheann dùinte\n"
+"    4. Fosgail an ceann\n"
+"DEARBHACHADH:\n"
+"    Na dh'ath-thòisich an siostam nuair chaidh an ceann a dh'fhosgladh?"
 
 #. description
-#: ../jobs/power-management.txt.in:134
+#: ../jobs/power-management.txt.in:66
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "Dèan cinnteach gu bheil an RTC (Real-Time Clock) ann mar thà."
 
 #. description
-#: ../jobs/power-management.txt.in:140
+#: ../jobs/power-management.txt.in:81
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr ""
+"Sgrùd a dh'fhaicinn ma tha CONFIG_NO_HZ stèidhichte anns an eitean ('s e seo "
+"dìreach sgrùdadh ais-cheumnachaidh simplidh)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "A' dearbhadh gu bheil sshd a' ruith."
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "A' dearbhadh gu bheil am frithealaiche Clò-bhuail/CUPs a' ruith."
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "A' dearbhadh gu bheil am frithealaiche DNS a' ruith."
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "A' dearbhadh gu bheil am frithealaiche Samba a' ruith."
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
 msgstr ""
+"A' dearbhadh gu bheil an stac LAMP a' ruith (Apache, MySQL agus PHP)."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "A' dearbhadh gu bheil am frithealaiche Tomcat a' ruith 's ag obair."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -2461,6 +3095,10 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
+"DEÒIN:\n"
+"    Cruthaich obraichean tha cleachdadh a APM (CPU) an uiread sa ghabhas son "
+"dà uair a thìde. Tha an deuchainn seo meòraichte mar fo cheannsail mar nach "
+"reòth an siostam."
 
 #. description
 #: ../jobs/stress.txt.in:18
@@ -2469,11 +3107,16 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 30 cycles"
 msgstr ""
+"DEÒIN:\n"
+"   Se seo deuchainn spàirn fèin-obrachail a cho-èignicheas an siostam a' "
+"gheamhraidh/ath-thòiseachadh son 30 cuairtean"
 
 #. description
 #: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"A' ceangal an log bhon an dearbhadh 30 cuairt Geamhraich/Ath-thòisich ma tha "
+"e ann"
 
 #. description
 #: ../jobs/stress.txt.in:34
@@ -2482,11 +3125,16 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 30 cycles."
 msgstr ""
+"DEÒIN:\n"
+"   Se seo deuchainn spàirn fèin-obrachail a cho-èignicheas an siostam a Chur "
+"air thaobh/Ath-thòisich son 30 cuairtean."
 
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr ""
+"A' ceangal an log bhon an dearbhadh 30 cuairt Cuir air thaobh/Ath-thòisich "
+"ma tha e ann"
 
 #. description
 #: ../jobs/stress.txt.in:50
@@ -2495,12 +3143,17 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 250 cycles"
 msgstr ""
+"DEÒIN:\n"
+"   Se seo deuchainn spàirn fèin-obrachail a cho-èignicheas an siostam a' "
+"gheamhraidh/ath-thòiseachadh son 250 cuairtean."
 
 #. description
 #: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"A' cheangail an log bhon deuchainn  a' gheamhraidh/ath-thòiseachadh 250 "
+"cuairtean ma tha e ann"
 
 #. description
 #: ../jobs/stress.txt.in:66
@@ -2509,67 +3162,82 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 250 cycles."
 msgstr ""
+"DEÒIN:\n"
+"   Se seo deuchainn spàirn fèin-obrachail a cho-èignicheas an siostam  a "
+"Chur air thaobh/Ath-thòisich son 250 cuairtean."
 
 #. description
 #: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
+"A' cheangail an log bhon deuchainn  a chur air thaobh/ath-thòiseachadh 250 "
+"cuairtean ma tha e ann"
 
 #. description
 #: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
-msgstr ""
+msgstr "Spàirn an siostam ath-bhùtadh (100 cuairtean)"
 
 #. description
 #: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
-msgstr ""
+msgstr "Spàirn an siostam cumhachd-dheth (100 cuairtean)"
 
 #. description
 #: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr ""
+"Sgrùd logaichean airson an cuis deuchainn (100 cuairtean) ath-bhùtadh le "
+"spàirn"
 
 #. description
 #: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
+"Sgrùd logaichean airson an cuis deuchainn (100 cuairtean) cumhachd le spàirn"
 
 #. description
 #: ../jobs/suspend.txt.in:4
 msgid "Record the current network before suspending."
-msgstr ""
+msgstr "Clàraich an lìonradh cuairteach os chionn a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Clàraich an dùmhlachd-bhreacaidh os chionn a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:17
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "Clàraich suidheachaidhean measgadair os chionn a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
 msgstr ""
+"Dearbhaich gu bheil na h-uile APM (CPUs) air loidhne os chionn a chur air "
+"thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:31
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr ""
+"A' dumpadh fios cuimhne a faidhle son dèan coimeas as dèidh ruith deuchainn  "
+"a chur air thaobh."
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
+"Tha an deuchainn seo gearradh na ceangailean uile agus nuair sin a' ceangal "
+"ri eadar-aghaidh uèirleas, nuair sin tha e a' sgrùdadh an ceangal gus a "
+"dhearbhadh gu bheil e ag obair mar bha dùil."
 
 #. description
-#: ../jobs/suspend.txt.in:114
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2583,38 +3251,58 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo a chur air thaobh agus ath-thòisich\n"
+"CEUMAN:\n"
+"    1. Briog air “Dearbh” agus bithidh do shiostam a chur air thaobh airson "
+"mu thimcheall 30 – 60 dìogan\n"
+"    2. Ma nach dùisg do shiostam e fhèin as dèidh 60 dìogan, brùth sibh am "
+"putan chumhachd son tiotan gus dùsgadh an t- siostam de làimh\n"
+"    3. Ma dh'fhàilligeas do shiostam dùsgadh idir agus feumaidh ath-bhùtadh, "
+"ath-thòisich dearbhadh an t-siostam as dèidh ath-bhùtadh agus comharraich an "
+"deuchainn seo mar fàilligeadh\n"
+"DEARBHACHADH:\n"
+"    An deach do shiostam a chur air thaobh agus na ath-thòisich e ceart?"
 
 #. description
-#: ../jobs/suspend.txt.in:130
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
+"Seo an tionndadh fèin-obrachail de chur air thaobh/chur air thaobh_adhartach."
 
 #. description
-#: ../jobs/suspend.txt.in:145
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Dearbhaich an lìonradh as dèidh ath-thòiseachadh."
 
 #. description
-#: ../jobs/suspend.txt.in:151
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Dearbhaich a dh'fhaicinn gu bheil againn an t-aon dùmhlachd-bhreacaidh as "
+"dèidh ath-thòiseachadh mar roimh."
 
 #. description
-#: ../jobs/suspend.txt.in:160
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
+"Dearbhaich gu bheil suidheachaidhean am measgadair mar ceudna as dèidh a "
+"chur air thaobh mar roimh a chur air thaobh."
 
 #. description
-#: ../jobs/suspend.txt.in:177
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
+"Dearbhaich gu bheil na APM (CPUs) air loidhne as dèidh ath-thòiseachadh."
 
 #. description
-#: ../jobs/suspend.txt.in:194
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
+"Dearbhaich gu bheil a' chuimhne uile ri làimh as dèidh ath-thòiseachadh bho "
+"a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:203
@@ -2628,14 +3316,27 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo gu bheil an taisbean (sgrìn) ceart as dèidh a "
+"chur air thaobh agus ath-thòiseachadh\n"
+"CEUMAN:\n"
+"    1. Sgrùd nach eil do thaisbean (sgrìn) sealltainn an àrd sgrìoban "
+"lèirsinneach as dèidh ath-thòiseachadh.\n"
+"DEARBHACHADH:\n"
+"    A  bheil an taisbean (sgrìn) ag obair gu àbhaisteach as dèidh ath-"
+"thòiseachadh bho a chur air thaobh?"
 
 #. description
-#: ../jobs/suspend.txt.in:216
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
+"Sgrùdaidh an deuchainn seo gu bheil an eadar-aghaidh uèirleas ag obair as "
+"dèidh a chur an siostam air thaobh. Tha e a' gearradh na h-eadar-aghaidhean "
+"uile agus nuair sin a' ceangal ris an eadar-aghaidh uèirleas agus a' "
+"sgrùdadh gu bheil an ceangal ag obair mar a bha an dùil."
 
 #. description
 #: ../jobs/suspend.txt.in:228
@@ -2643,6 +3344,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"A' dearbhadh gun urrainn am bathar-chruaidh uèirleas an t-siostam ceangal ri "
+"rùtar a' cleachdadh tèarainteachd WPA agus na pròtacalan 802.11b/g as dèidh "
+"bha an siostam a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:239
@@ -2650,6 +3354,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"A' dearbhadh gun urrainn am bathar-chruaidh uèirleas an t-siostam ceangal ri "
+"rùtar as aonais tèarainteachd agus na pròtacalan 802.11b/g as dèidh bha an "
+"siostam a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:250
@@ -2657,6 +3364,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"A' dearbhadh gun urrainn am bathar-chruaidh uèirleas an t-siostam ceangal ri "
+"rùtar a' cleachdadh tèarainteachd WPA agus am pròtacal 802.11n as dèidh bha "
+"an siostam a chur air thaobh."
 
 #. description
 #: ../jobs/suspend.txt.in:261
@@ -2664,23 +3374,32 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"A' dearbhadh gun urrainn am bathar-chruaidh uèirleas an t-siostam ceangal ri "
+"rùtar as aonais tèarainteachd agus am pròtacal 802.11n as dèidh bha an "
+"siostam a chur air thaobh."
 
 #. description
-#: ../jobs/suspend.txt.in:272
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
+"Tha an deuchainn seo a' dèanamh grèim air seòladh a' bhathar-chruaidh dhen "
+"adaptar bluetooth as dèidh a chur air thaobh agus a' coimeasachadh  e ris an "
+"t-seòladh ghreimichte os cionn a chur air thaobh."
 
 #. description
-#: ../jobs/suspend.txt.in:302
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"'Se seo deuchainn tar-aiseag faidhle Bluetooth fèin-obrachail . Tha e a' cur "
+"ìomhaigh dhan innleachd bha shònrachadh le caochlaidh an àrainneachd "
+"BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:333
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2693,9 +3412,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"DEÒIN:\n"
+"    Cuireadh an deuchainn seo ìomhaigh 'JPEG_Color_Image_Ubuntu.jpg' gu "
+"ruige innleachd sònraichte\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus bithidh tu air do bhrodadh a chuir a-steach ainm "
+"an innleachd Bluetooth de innleachd a ghabhas ri tar-aiseagan faidhle "
+"(dh'fhaodadh e toirt ùine bheag as dèidh a chur a-steach an t-ainm son am "
+"faidhle a thòiseachadh a' cuir)\n"
+"    2. A gabhail ri brodaidhean sam bith tha nochdadh air gach innleachdan\n"
+"DEARBHACHADH:\n"
+"    An deach an dàta a thar-aiseag ceart?"
 
 #. description
-#: ../jobs/suspend.txt.in:347
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2704,35 +3434,55 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"DEÒIN:\n"
+"    Cuairtichidh an deuchainn seo tro na modhan taisbean (sgrìn) lorgaichte\n"
+"CEUMAN:\n"
+"    1. Briog air “Dearbh” agus cuairtichidh an taisbean (sgrìn) tro na "
+"modhan taisbean\n"
+"DEARBHACHADH:\n"
+"    Robh do thaisbean (sgrìn) a' coimhead ceart anns a' mhodh lorgaichte?"
 
 #. description
-#: ../jobs/suspend.txt.in:359
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
+"Sgrùdaidh an deuchainn seo gu cinnteach gun obraich na modhan bhideothan "
+"thaiceil as dèidh a chur air thaobh agus ath-thòisich. Tha seo ga dhèanamh "
+"gu fèin-obrachail le gabhail glacaidhean-sgrìn agus luchdachadh suas iad mar "
+"ceanglachan."
 
 #. description
-#: ../jobs/suspend.txt.in:368
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"Tha seo a' ceangal glacaidhean-sgrìn bhon deuchainn "
+"suspend/cycle_resolutions_after_suspend_auto gu ruige innteart na toraidhean."
 
 #. description
-#: ../jobs/suspend.txt.in:378
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
+"Sgrùdaidh an deuchainn seo gu cinnteach gun obraich do innleachd claisneach "
+"ceart as dèidh a chur air thaobh agus ath-thòisich. Dh'fhaodadh seo "
+"obrachadh glè mhath le glaodhairean agus microfòn air-bòrd, co dhiù, tha e "
+"ag obair nas fheàrr ma cleachdte le càball  a' ceangal seac claisneach a-"
+"mach gu ruige seac claisneach a-steach."
 
 #. description
 #: ../jobs/suspend.txt.in:384
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
+"A' ceangal an log bhon deuchainn singilte a chur air thaobh/ath-thòisich gu "
+"ruige na toraidhean"
 
 #. description
 #: ../jobs/suspend.txt.in:392
@@ -2745,6 +3495,13 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"DEÒIN:\n"
+"    Gabh glacadh-sgrìn dhen sgrìn cuairteach as dèidh a chur air thaobh (air "
+"logadh a-steach bàrr-deasc Unity)\n"
+"CEUMAN:\n"
+"    1. Gabh pioctair a' cleachdadh camara-lìn\n"
+"DEARBHACHADH:\n"
+"    1. Ath-sgrùd ceanglachan de làimh nas anmoch"
 
 #. description
 #: ../jobs/suspend.txt.in:415
@@ -2760,6 +3517,18 @@ msgid ""
 "VERIFICATION:\n"
 "    1. After a 60s workload, check kern.log for reported GPU errors"
 msgstr ""
+"DEÒIN:\n"
+"    Dèan cuid obrachaidhean dùbhlanach, chur an t-siostam air thaobh, dèan "
+"obrachaidhean\n"
+"    na bu dhùbhlanach – nuairsin sgrùd son glais suas air an APM (CPU)\n"
+"CEUMAN:\n"
+"    1. Cruthaich 2 uinneag glxgears agus glais iad gu sgiobalta\n"
+"    2. Suidse rumannan-obair/ionad-seallaidh le wmctrl\n"
+"    3. Cuir air bhog cluich air ais Flash ann am firefox\n"
+"    4. Cuir air thaobh/ath-thòisich\n"
+"DEARBHACHADH:\n"
+"    1. As dèidh uallach de 60 dìogan, sgrùd kern.log airson na mearachdan "
+"APM (CPU) aithriste"
 
 #. description
 #: ../jobs/touchpad.txt.in:3
@@ -2773,6 +3542,14 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"DEÒIN:\n"
+"    1. Dearbhachadh pada-beantainn\n"
+"CEUMAN:\n"
+"    1. Dèan cinnteach gu bheil am pada-beantainn a chur an comas\n"
+"    2. Feuch gluasad an tomhaire a' cleachdadh am pada-beantainn\n"
+"    3. Bu chòir an tomhaire gluais mar sin\n"
+"DEARBHACHADH:\n"
+"    1. An do dh'obraich am pada-beantainn mar a bha dùil?"
 
 #. description
 #: ../jobs/touchpad.txt.in:18
@@ -2789,6 +3566,19 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"DEÒIN:\n"
+"    1. Dearbhachadh pada-beantainn\n"
+"CEUMAN:\n"
+"    1. Briog air taisbeanair Cumhachd-air -> Suidheachaidhean an t-siostam -"
+"> Luchag -> Pada-beantainn\n"
+"    2. Dèan cinnteach gu bheil am bogsa-cromaige “Sgroladh còmhnard cuir an "
+"comas” le strìochag\n"
+"    3. Tagh 'Dearbh' a dh'fhosgail faidhle ann a Gedit le loidhne gu dearbh "
+"farsaing\n"
+"    4. Dearbhaich gun urrainn dhut gluais an sleamhnachan  còmhnard le "
+"gluaiseadh do chorrag taobh ri taobh sa pàirt ìseal dhen pada-beantainn\n"
+"DEARBHACHADH:\n"
+"    1. An do dh'obraich am pada-beantainn mar a bha dùil?"
 
 #. description
 #: ../jobs/touchpad.txt.in:34
@@ -2806,11 +3596,26 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
+"DEÒIN:\n"
+"    1. Dearbhachadh pada-beantainn\n"
+"CEUMAN:\n"
+"    1. Briog air taisbeanair Cumhachd-air -> Suidheachaidhean an t-siostam -"
+"> Luchag -> Pada-beantainn\n"
+"    2. Dèan cinnteach gu bheil am bogsa-rèidio “Sgroladh oir” le strìochag\n"
+"    3. Tagh 'Dearbh' a dh'fhosgail faidhle ann a Gedit le iomadach loidhne "
+"de teacsa\n"
+"    4. Dearbhaich gun urrainn dhut gluais an sleamhnachan  còmhnard le "
+"gluaiseadh do chorrag taobh ri taobh sa pàirt deas dhen pada-beantainn\n"
+"DEARBHACHADH:\n"
+"    1. An do dh'obraich am pada-beantainn mar a bha dùil?\n"
+"NOTACHAIDHEAN:\n"
+"    1. Bu chòir an roghainn sgroladh oir a chur an comas mar bunaiteach"
 
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
 msgstr ""
+"A' lorg agus a' sealltainn innleachdan USB ceangailte ris an t-siostam seo."
 
 #. description
 #: ../jobs/usb.txt.in:12
@@ -2825,6 +3630,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo gu lorg do shiostam dràibhean stòradh USB.\n"
+"CEUMAN:\n"
+"    1. Plucaich a-steach aon no barrrachd iuchraichean USB no dràibhean "
+"chruaidh.\n"
+"    2. Briog air “Dearbh”.\n"
+"FIOS:\n"
+"$output\n"
+"DEARBHACHADH:\n"
+"    Robh lorg air na dràibhean?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2837,6 +3652,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do cheangal USB.\n"
+"CEUMAN:\n"
+"    1. Plucaich meur-chlàr USB a-steach dhan choimpiutair.\n"
+"    2. Briog air “Dearbh” agus cuir a-steach cuid teacsa.\n"
+"DEARBHACHADH:\n"
+"    Bheil a' mheur-chlàr ag obair?"
 
 #. description
 #: ../jobs/usb.txt.in:41
@@ -2849,6 +3671,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do cheangal USB.\n"
+"CEUMAN:\n"
+"    1. Plucaich luchag USB a-steach dhan coimpiutair.\n"
+"    2. Dèan cuid obrachaidhean briogadh singilte/dùbailte/deas.\n"
+"DEARBHACHADH:\n"
+"    Bheil an luchag ag obair ceart?"
 
 #. description
 #: ../jobs/usb.txt.in:55
@@ -2864,6 +3693,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo gu bheil an siostam a' lorg ceart a chur a-"
+"steach den innleachd stòradh USB\n"
+"CEUMAN:\n"
+"    1. Briog air “Dearbh” agus cuir a-steach innleachd stòradh USB (dràibh-"
+"pheann/DDC-HDD).\n"
+"       (Nota: as dèidh 20 dìogan thig crìoch-ùine an deuchainn.)\n"
+"    2. Na dealaich an innleachd on phluga as dèidh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhaidh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte fèin-obrachail."
 
 #. description
 #: ../jobs/usb.txt.in:72
@@ -2878,6 +3718,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo gu bheil an siostam a lorg gluasad den\n"
+"    innleachd stòradh USB.\n"
+"CEUMAN:\n"
+"    1. Briog “Dearbh” agus gluasad an innleachd USB.\n"
+"       (Nota: as dèidh 20 dìogan thig crìoch-ùine an deuchainn.)\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhaidh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte fèin-obrachail."
 
 #. description
 #: ../jobs/usb.txt.in:88
@@ -2892,11 +3741,22 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do cheangal USB.\n"
+"CEUMAN:\n"
+"    1. Plucaich DDC (HDD) no dràibh-òrdag dhan choimpiutair.\n"
+"    2. Bu chòir ìomhaigheag nochdadh air an lòinsear.\n"
+"    3. Briog air “Dearbh” gus tòiseachadh an deuchainn.\n"
+"DEARBHACHADH:\n"
+"    Tha dearbhaidh an deuchainn seo fèin-obrachail. Na atharraich an\n"
+"    toradh taghte fèin-obrachail."
 
 #. description
 #: ../jobs/usb.txt.in:104
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
+"Tha an deuchainn seo fèin-obrachail agus a chur an gnìomh as dèidh ruith an "
+"deuchainn usb/cuir a-steach."
 
 #. description
 #: ../jobs/usb.txt.in:112
@@ -2905,6 +3765,10 @@ msgid ""
 "server has usb storage devices plugged in prior to checkbox execution. It is "
 "intended for servers and SRU automated testing."
 msgstr ""
+"Se seo tionndaidh fèin-obrachail de usb/fèin-obrachail-stòradh agus a' "
+"tuigsinn gu bheil innleachdan stòradh USB air phlucaicheadh dhan "
+"fhrithealaiche os chionn a chur an gnìomh checkbox. Tha e san amharc son "
+"frithealaichean agus dearbhadh fèin-obrachail SRU."
 
 #. description
 #: ../jobs/usb.txt.in:120
@@ -2921,6 +3785,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do cheangal USB.\n"
+"CEUMAN:\n"
+"    1. Ceangail innleachd stòradh USB ri slot a thaobh a-muigh air a' "
+"choimpiutair seo.\n"
+"    2. Bu chòir ìomhaigheag nochdadh san lòinsear.\n"
+"    3. Dearbh gun do nochd an ìomhaigheag.\n"
+"    4. Tilg a-mach an innleachd.\n"
+"    5. Dèan a-rithist leis gach slot USB a thaobh a-muigh.\n"
+"DEARBHACHADH:\n"
+"    Bheil na slotaichean h-uile ag obair leis an innleachd?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2936,6 +3811,18 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn gun urrainn manaidsear-ùrachadh faighinn lorg air "
+"ùrachaidhean.\n"
+"CEUMAN:\n"
+" 1. Briog air Dearbh a chur air bhog manaidsear-ùrachadh.\n"
+" 2. Lean na brodaidhean agus ma tha ùrachaidhean gan lorg, \n"
+" 3. Nuair a chrìochnaicheas am manaidsear-ùrachadh, dùin sibh an app le "
+"briogadh am putan Dùin san t-oisean deas.\n"
+"DEARBHACHADH:\n"
+" An do lorg am manaidsear-ùrachadh agus an do stàlaich ùrachaidhean (rach "
+"seachad ma 's e 's nach do lorg ùrachaidhean,\n"
+" ach Fàillig ma tha ùrachaidhean gan lorg ach gun stàladh)"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -2951,6 +3838,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle cruthachadh "
+"pasgan ùr.\n"
+"CEUMAN:\n"
+" 1. Briog Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Air a' bhàr-clàr-iùil, briog Faidhle -> Cruthaich pasgan.\n"
+" 3. Anns a' bhocsa ainm airson am pasgan ùr, cuir a-steach an t-ainm Pasgan "
+"dearbh agus buail Cuir A-Steach.\n"
+" 4. Dùin am brabhsair faidhle\n"
+"DEARBHACHADH:\n"
+" Bheil a-nis agad pasgan ùr ainmichte Pasgan dearbh?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -2967,6 +3865,22 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle dèan leth-"
+"bhreac pasgan.\n"
+"CEUMAN:\n"
+" 1. Briog Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog deas air a' phasgan a theirear Pasgan dearbh agus briog air leth-"
+"bhreac.\n"
+" 3. Briog deas air roinn geal sam bith anns an uinneag agus briog air Cuir "
+"ann (glaodh).\n"
+" 4. Briog deas  air a' phasgan a theirear Pasgan dearbh(leth-bhreac) agus "
+"briog air Ath-ainmich.\n"
+" 5. Cuir a-steach an t-ainm Dàta dearbh anns a' bhocsa ainm agus buail Cuir "
+"A-Steach.\n"
+" 6. Dùin am brabhsair faidhle.\n"
+"DEARBHACHADH:\n"
+" Bheil a-nis agad pasgan ùr ainmichte Dàta dearbh?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -2984,6 +3898,19 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle gluais pasgan.\n"
+"CEUMAN:\n"
+" 1. Briog air Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog agus slaod am pasgan a theirear Dàta dearbh air an ìomhaigheag a "
+"theirear Pasgan dearbh.\n"
+" 3. Leig às am putan.\n"
+" 4. Briog dùbailte airson am pasgan a theirear Pasgan dearbh a dh'fhosgail "
+"suas.\n"
+" 5. Dùin am Brabhsair faidhle.\n"
+"DEARBHACHADH:\n"
+" Robh am pasgan a theirear Dàta dearbh a ghluaiseadh gu soirbheachail a-"
+"steach dhan phasgan a theirear Pasgan dearbh?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -2999,6 +3926,18 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle cruthachadh "
+"faidhle ùr.\n"
+"CEUMAN:\n"
+" 1. Briog air Tagh Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog deas ann an spàs geal agus briog air Cruthaich sgrìobhainn -> "
+"Sgrìobhainn falamh.\n"
+" 3. Cuir a-steach an t-ainm Faidhle dearbh 1 anns a' bhocsa ainm agus buail "
+"Cuir A-Steach.\n"
+" 4. Dùin am Brabhsair faidhle.\n"
+"DEARBHACHADH:\n"
+" Bheil a-nis agad faidhle ainmichte Faidhle dearbh 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -3015,6 +3954,21 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle dèan leth-"
+"bhreac faidhle.\n"
+"CEUMAN:\n"
+" 1. Briog Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog deas air an fhaidhle a theirear Faidhle dearbh 1 agus briog air "
+"leth-bhreac.\n"
+" 3. Briog deas anns an spàs geal briog air Cuir ann (glaodh).\n"
+" 4. Briog deas  air an fhaidhle a theirear Faidhle dearbh 1(leth-bhreac) "
+"agus briog air Ath-ainmich.\n"
+" 5. Cuir a-steach an t-ainm Faidhle dearbh 2 anns a' bhocsa ainm agus buail "
+"Cuir A-Steach.\n"
+" 6. Dùin am brabhsair faidhle.\n"
+"DEARBHACHADH:\n"
+" Bheil a-nis agad faidhle ainmichte Faidhle dearbh 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -3031,6 +3985,19 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle gluais "
+"faidhle.\n"
+"CEUMAN:\n"
+" 1. Briog air Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog agus slaod am faidhle a theirear Faidhle dearbh 2 air an "
+"ìomhaigheag son  a' phasgan a theirear Dàta dearbh.\n"
+" 3. Leig às am putan.\n"
+" 4. Briog dùbailte an ìomhaigheag son Dàta dearbh a dh'fhosgail suas.\n"
+" 5. Dùin am Brabhsair faidhle.\n"
+"DEARBHACHADH:\n"
+" Robh am faidhle Dàta dearbh a ghluaiseadh gu soirbheachail a-steach dhan "
+"phasgan Dàta dearbh?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -3045,6 +4012,17 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn am brabhsair faidhle dubhadh às "
+"faidhle.\n"
+"CEUMAN:\n"
+" 1. Briog air Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog deas air an fhaidhle a theirear Faidhle dearbh 1 agus briog air "
+"Gluais dhan sgudal.\n"
+" 3. Dearbhaich gu robh Faidhle dearbh 1 a thoirt às.\n"
+" 4. Dùin am Brabhsair faidhle.\n"
+"DEARBHACHADH:\n"
+" An do dh'fhalbh Faidhle dearbh 1 a-nis."
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -3060,11 +4038,21 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn gun urrainn am brabhsair faidhle dubhadh às pasgan.\n"
+"CEUMAN:\n"
+" 1. Briog air Dearbh a dh'fhosgail am Brabhsair faidhle.\n"
+" 2. Briog deas air am pasgan a theirear Pasgan dearbh 1 agus briog air "
+"Gluais dhan sgudal.\n"
+" 3. Dearbhaich gu robh Faidhle dearbh 1 a thoirt às.\n"
+" 4. Dùin am Brabhsair faidhle. \n"
+"DEARBHACHADH:\n"
+"Robh am Pasgan dearbh dhubhadh às gu soirbheachail?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Deuchainn seòrsaichean sgrìobhainn cumanta"
 
 #. description
 #: ../jobs/user_apps.txt.in:228
@@ -3076,6 +4064,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the Ubuntu Test page load correctly?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn Firefox reandar duilleag lìn "
+"bunaiteach.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Firefox agus seall ris an duilleag lìn "
+"dearbh.\n"
+"DEARBHACHADH:\n"
+" An do luchdaich an duilleag dearbh Ubuntu ceart?"
 
 #. description
 #: ../jobs/user_apps.txt.in:241
@@ -3090,6 +4086,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn Firefox ruith aplaid java ann an "
+"duilleag lìn. Nota:\n"
+" dh'fhaodadh seo iarraidh stàladh barrachd bathar-bog gus a chrìochnachadh "
+"gu soirbheachail.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a dh'fhosgail Firefox leis an duilleag dearbh java, agus "
+"lean na stiùiridhean an sin.\n"
+"DEARBHACHADH:\n"
+" An do nochd an aplaid?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -3103,6 +4109,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn Firefox ruith aplacaidean flash. "
+"Nota: \n"
+" dh'fhaodadh seo iarraidh stàladh barrachd bathar-bog gus a chrìochnachadh "
+"gu soirbheachail.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Firefox agus seall ri sampall dearbh Flash.\n"
+"DEARBHACHADH:\n"
+" Am faca tu an teacsa?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -3115,9 +4130,18 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn Firefox ruith bhideothan Flash. "
+"Nota: \n"
+" dh'fhaodadh seo iarraidh stàladh barrachd bathar-bog gus a chrìochnachadh "
+"gu soirbheachail.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Firefox agus seall ri bhideo flash goirid.\n"
+"DEARBHACHADH:\n"
+" An do chluich a bhideo ceart?"
 
 #. description
-#: ../jobs/user_apps.txt.in:285
+#: ../jobs/user_apps.txt.in:283
 msgid ""
 "PURPOSE:\n"
 " This test will check that Firefox can play a Quicktime (.mov) video file.\n"
@@ -3128,9 +4152,19 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gun urrainn Firefox cluich faidhle bhideo "
+"Quicktime (.mov).\n"
+" Nota: dh'fhaodadh seo iarraidh stàladh barrachd bathar-bog gus a "
+"chrìochnachadh gu\n"
+" soirbheachail.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Firefox le bhideo sampall.\n"
+"DEARBHACHADH:\n"
+" Na chluich a bhideo ceart a cleachdadh am plugan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:299
+#: ../jobs/user_apps.txt.in:297
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3141,9 +4175,19 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh ann deuchainn seo  gu bheil cliant teachdaireachd Empathy ag "
+"obair.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Empathy.\n"
+" 2. Rèitich e a cheangal ris an t-seirbheis cabadaich Facebook.\n"
+" 3. Aon uair 's a chrìochnaicheas an deuchainn , fàg sibh Empathy a leantail "
+"an seo.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut ceangal ceart agus cuir/faighinn teachdaireachdan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:313
+#: ../jobs/user_apps.txt.in:311
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3154,9 +4198,19 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil cliant teachdaireachd Empathy ag "
+"obair.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Empathy.\n"
+" 2. Rèitich e a cheangal ris an t-seirbheis Google Talk (gtalk).\n"
+" 3. Aon uair crìochnaichte an deuchainn, fàg sibh Empathy a leantail an "
+"seo.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut ceangal ceart agus cuir/faighinn teachdaireachdan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:327
+#: ../jobs/user_apps.txt.in:325
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3167,9 +4221,19 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh ann deuchainn seo  gu bheil cliant teachdaireachd Empathy ag "
+"obair.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Empathy.\n"
+" 2. Rèitich e a cheangal ris an t-seirbheis Jabber.\n"
+" 3. Aon uair 's a chrìochnaicheas an deuchainn , fàg sibh Empathy a leantail "
+"an seo.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut ceangal ceart agus cuir/faighinn teachdaireachdan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:341
+#: ../jobs/user_apps.txt.in:339
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3180,9 +4244,20 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh ann deuchainn seo  gu bheil cliant teachdaireachd Empathy ag "
+"obair.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Empathy.\n"
+" 2. Rèitich e a cheangal ris an t-seirbheis AOL teachdaireachdan sa bhad "
+"(AIM).\n"
+" 3. Aon uair 's a chrìochnaicheas an deuchainn , fàg sibh Empathy a leantail "
+"an seo.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut ceangal ceart agus cuir/faighinn teachdaireachdan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:355
+#: ../jobs/user_apps.txt.in:353
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3193,9 +4268,19 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh ann deuchainn seo  gu bheil cliant teachdaireachd Empathy ag "
+"obair.\n"
+"CEUMAN:\n"
+" 1. Tagh Dearbh a chur air bhog Empathy.\n"
+" 2. Rèitich e a cheangal ris an t-seirbheis Microsoft Network (MSN).\n"
+" 3. Aon uair 's a chrìochnaicheas an deuchainn , fàg sibh Empathy a leantail "
+"an seo.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut ceangal ceart agus cuir/faighinn teachdaireachdan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:369
+#: ../jobs/user_apps.txt.in:367
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -3205,9 +4290,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil Evolution ag obair ceart.\n"
+"CEUMAN:\n"
+" 1. Briog air a' phutan “Dearbh” a chur air bhog Evolution.\n"
+" 2. Rèitich e a cheangal ri cunntas POP3.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut faighinn agus leughadh post-d ceart?"
 
 #. description
-#: ../jobs/user_apps.txt.in:382
+#: ../jobs/user_apps.txt.in:380
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -3217,9 +4309,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil Evolution ag obair ceart.\n"
+"CEUMAN:\n"
+" 1. Briog air a' phutan “Dearbh” a chur air bhog Evolution.\n"
+" 2. Rèitich e a cheangal ri cunntas IMAP.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut faighinn agus leughadh post-d ceart?"
 
 #. description
-#: ../jobs/user_apps.txt.in:395
+#: ../jobs/user_apps.txt.in:393
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -3229,9 +4328,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil Evolution ag obair ceart.\n"
+"CEUMAN:\n"
+" 1. Briog air a' phutan “Dearbh” a chur air bhog Evolution.\n"
+" 2. Rèitich e a cheangal ri cunntas SMTP.\n"
+"DEARBHACHADH:\n"
+" Robh e comasach dhut cuir post-d às aonais mearachdan?"
 
 #. description
-#: ../jobs/user_apps.txt.in:408
+#: ../jobs/user_apps.txt.in:406
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3240,9 +4346,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh  an deuchainn seo gu bheil gcalctool (Àireamhair) ag obair.\n"
+"CEUMAN:\n"
+" Briog air a' phutan “Dearbh” a dh'fhosgail an t-àireamhair.\n"
+"DEARBHACHADH:\n"
+" An deach a chur air bhog ceart?"
 
 #. description
-#: ../jobs/user_apps.txt.in:421
+#: ../jobs/user_apps.txt.in:419
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3255,9 +4367,19 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh  an deuchainn seo gu bheil gcalctool (Àireamhair) ag obair.\n"
+"CEUMAN:\n"
+" Briog air a' phutan “Dearbh” a dh'fhosgail an t-àireamhair agus dèan:\n"
+" 1. Foincseanan matamataig simplidh (+,-,/,*)\n"
+" 2. Foincseanan  matamataig neadaichte ((,))\n"
+" 3. Matamataig mìreach\n"
+" 4. Matamataig deicheach\n"
+"DEARBHACHADH:\n"
+" An do dh'obraich na foincseanan mar a bha dùil?"
 
 #. description
-#: ../jobs/user_apps.txt.in:438
+#: ../jobs/user_apps.txt.in:436
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3270,9 +4392,19 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil gcalctool (Àireamhair) ag obair.\n"
+"CEUMAN:\n"
+" Briog air a' phutan “Dearbh” a dh'fhosgail an t-àireamhair agus dèan:\n"
+"  1. Stèidhich cuimhne\n"
+"  2. Ath-stèidhich cuimhne \n"
+"  3. Glan mu dheireadh chuimhne\n"
+"  4. Glan cuimhneachan\n"
+"DEARBHACHADH:\n"
+" An do dh'obraich na foincseanan mar a bha dùil?"
 
 #. description
-#: ../jobs/user_apps.txt.in:455
+#: ../jobs/user_apps.txt.in:453
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3284,9 +4416,18 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh  an deuchainn seo gu bheil gcalctool (Àireamhair) ag obair.\n"
+"CEUMAN:\n"
+" Briog air a' phutan “Dearbh” a dh'fhosgail an t-àireamhair agus dèan:\n"
+"  1. Geàrr\n"
+"  2. Leth-bhreac\n"
+"  3. Cuir ann\n"
+"DEARBHACHADH:\n"
+" An do dh'obraich na foincseanan mar a bha dùil?"
 
 #. description
-#: ../jobs/user_apps.txt.in:470
+#: ../jobs/user_apps.txt.in:468
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -3297,9 +4438,17 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil gedit ag obair.\n"
+"CEUMAN:\n"
+" 1. Briog air a' phutan “Dearbh” a dh'fhosgail gedit.\n"
+" 2. Cuir a-steach cuid teacsa agus sàbhail an fhaidhle (dèan nota dhen t-"
+"ainm a chleachd thu), nuairsin dùin gedit.\n"
+"DEARBHACHADH:\n"
+"Na choilean seo mar a bha dùil?"
 
 #. description
-#: ../jobs/user_apps.txt.in:484
+#: ../jobs/user_apps.txt.in:482
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -3310,9 +4459,18 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil gedit ag obair.\n"
+"CEUMAN:\n"
+"1. Briog air a' phutan “Dearbh” a dh'fhosgail gedit, agus fosgail an "
+"fhaidhle a chruthaich thu mar thà a-rithist.\n"
+"2. Cuir a-steach cuid teacsa agus sàbhail an fhaidhle (dèan nota dhen t-ainm "
+"a chleachd thu), nuairsin dùin gedit.\n"
+"DEARBHACHADH:\n"
+" Na choilean seo mar a bha dùil?"
 
 #. description
-#: ../jobs/user_apps.txt.in:497
+#: ../jobs/user_apps.txt.in:495
 msgid ""
 "PURPOSE:\n"
 " This test will check that Gnome Terminal works.\n"
@@ -3324,14 +4482,25 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"DEÒIN:\n"
+" Sgrùdaidh an deuchainn seo gu bheil Tèirmineal Gnome ag obair.\n"
+"CEUMAN:\n"
+" 1. Briog air a' phutan “Dearbh” a dh'fhosgail Tèirmineal.\n"
+" 2. Clò-sgrìobh 'ls' agus brùth cuir a-steach. Bu chòir dhut faicinn liosta "
+"faidhlichean agus pasgan nad' eòlaire dhachaigh.\n"
+" 3. Dùin uinneag an tèirmineal.\n"
+"DEARBHACHADH:\n"
+" Na choilean seo mar a bha dùil?"
 
 #. description
-#: ../jobs/wireless.txt.in:20
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Deuchainn a' sganadh uèirleas. Tha e a' sganadh agus ag aithris air APs "
+"lorgaichte."
 
 #. description
-#: ../jobs/wireless.txt.in:26
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -3343,158 +4512,181 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"DEÒIN:\n"
+"    Sgrùdaidh an deuchainn seo do cheangal uèirleas.\n"
+"CEUMAN:\n"
+"    1. Briog air an ìomhaigheag Lìonradh anns a' phanal.\n"
+"    2. Tagh lìonradh fo earrainn  na 'Lìonradh uèirleas'.\n"
+"    3. Briog air “Dearbh”  a dhearbhadh gu bheil e comasach stèidheachadh "
+"ceangal HTTP.\n"
+"DEARBHACHADH:\n"
+"    An do nochd fiosrachaidh agus robh an ceangal stèidhichte ceart?"
 
 #. description
-#: ../jobs/wireless.txt.in:42
+#: ../jobs/wireless.txt.in:28
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"A' dearbhadh gun urrainn bathar-chruaidh na siostaman uèirleas ceangal ri "
+"rùtar tha cleachdadh tèarainteachd WPA agus na pròtacalan 802.11b/g."
 
 #. description
-#: ../jobs/wireless.txt.in:52
+#: ../jobs/wireless.txt.in:38
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"A' dearbhadh gun urrainn bathar-chruaidh na siostaman uèirleas ceangal ri "
+"rùtar às aonais cleachdadh tèarainteachd  agus na pròtacalan 802.11b/g."
 
 #. description
-#: ../jobs/wireless.txt.in:62
+#: ../jobs/wireless.txt.in:48
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"A' dearbhadh gun urrainn bathar-chruaidh na siostaman uèirleas ceangal ri "
+"rùtar tha cleachdadh tèarainteachd WPA agus am pròtacal 802.11n."
 
 #. description
-#: ../jobs/wireless.txt.in:72
+#: ../jobs/wireless.txt.in:58
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
+"A' dearbhadh gun urrainn bathar-chruaidh na siostaman uèirleas ceangal ri "
+"rùtar às aonais cleachdadh tèarainteachd  agus am pròtacal 802.11n."
 
 #. description
-#: ../jobs/wireless.txt.in:84
+#: ../jobs/wireless.txt.in:70
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"A' dearbhadh an coilionaidh dhen cheangal uèirleas na siostaman tron inneal "
+"iperf."
 
 #. description
-#: ../jobs/wireless.txt.in:95
+#: ../jobs/wireless.txt.in:81
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"A' dearbhadh an coilionaidh dhen cheangal uèirleas na siostaman tron inneal "
+"iperf. a' cleachdadh pacaidean UDP."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr ""
+msgstr "Cleachdadh: chechbox [Roghainnean]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr ""
+msgstr "Clò-bhuail fiosrachaidh an tionndaidh agus fàg."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Am faidhle a sgrìobhadh a chum log."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Aon de dhì-bhuga, fios, rabhadh mearachd no èiginneach."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Rèiteachaidh paramadairean tar-àithne."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Gearr-sgrìobhadh son --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Gearr-sgrìobhadh son --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Gearr-sgrìobhadh son --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Gearr-sgrìobhadh son --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Faidhle rèiteachadh a dhith mar argamaid.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Àithne gun lorg."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Comharra àithne air fhaighinn %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
+"Croch-suas air lorg air tèirmineal smachdachadh no bàs dhen phròiseas "
+"smachdachadh"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Eadar-chur bhon mheur-chlàr"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Fàg bhon mheur-chlàr"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "stiùireadh mì-laghail"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Comharra casg bho casg(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "Fàgail a-mach comharra air bhog."
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Marbh comharra"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Teisteanas cuimhne neo-dhligheach"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Pìoba briste: sgrìobh gu pìoba as aonais leughadairean"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "Comharradh tìmear  bho rabhadh(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "Comharradh crìochnachadh"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Comharradh 1 cleachdaiche-sònraichte"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Comharradh 2 cleachdaiche-sònraichte"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "Pàisde air stad no crìochnaichte"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Lean ma tha air stad"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
@@ -3506,11 +4698,11 @@ msgstr "Stad clò-sgrìobhte aig tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "ion-chur tty son pròiseas cùl-raon"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "às-chur tty son pròiseas cùl-raon"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
@@ -3518,116 +4710,117 @@ msgstr "NEO-AITHNICHTE"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Comharradh neo-aithnichte"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "Tha"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "Chan eil"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "Sgiobaig"
 
-#: ../checkbox_cli/cli_interface.py:127
+#: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr "Brùth putan sam bith son leantainn..."
 
-#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
+#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Tagh sibh (%s): "
 
-#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
-#: ../checkbox_cli/cli_interface.py:369
-msgid "Space when finished"
-msgstr ""
-
+#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
 #: ../checkbox_cli/cli_interface.py:368
-msgid "Combine with character above to expand node"
-msgstr ""
+msgid "Space when finished"
+msgstr "Spàs nuair crìochnaichte"
 
-#: ../checkbox_cli/cli_interface.py:417
+#: ../checkbox_cli/cli_interface.py:367
+msgid "Combine with character above to expand node"
+msgstr "Co-cheangail leis a' charactar os cionn gus meudachadh nòd"
+
+#: ../checkbox_cli/cli_interface.py:416
 msgid "test"
 msgstr "dearbh"
 
-#: ../checkbox_cli/cli_interface.py:441
+#: ../checkbox_cli/cli_interface.py:440
 msgid "test again"
 msgstr "dearbh a-rithist"
 
-#: ../checkbox_cli/cli_interface.py:447
+#: ../checkbox_cli/cli_interface.py:446
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
+"Clò-sgrìobh sibh an seo agus brùth sibh Ctrl-D nuair crìochnaichte:\n"
 
-#: ../checkbox_urwid/urwid_interface.py:86
+#: ../checkbox_urwid/urwid_interface.py:66
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Dearbhadh siostam Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
+#: ../checkbox_urwid/urwid_interface.py:105
 msgid "Continue"
 msgstr "Lean"
 
-#: ../checkbox_urwid/urwid_interface.py:220
-#: ../checkbox_urwid/urwid_interface.py:296
-#: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569
+#: ../checkbox_urwid/urwid_interface.py:198
+#: ../checkbox_urwid/urwid_interface.py:274
+#: ../checkbox_urwid/urwid_interface.py:425
+#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
 msgid "Previous"
 msgstr "Roimh làimh"
 
-#: ../checkbox_urwid/urwid_interface.py:221
-#: ../checkbox_urwid/urwid_interface.py:297
-#: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570
+#: ../checkbox_urwid/urwid_interface.py:199
+#: ../checkbox_urwid/urwid_interface.py:275
+#: ../checkbox_urwid/urwid_interface.py:426
+#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
 msgid "Next"
 msgstr "An ath"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Tagh Na H-Uile"
 
-#: ../checkbox_urwid/urwid_interface.py:446
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
-msgstr ""
+msgstr "Dì-thagh gu lèir"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:567
+#: ../checkbox_urwid/urwid_interface.py:545
 msgid "Expand All"
-msgstr ""
+msgstr "Meudaich gu lèir"
 
-#: ../checkbox_urwid/urwid_interface.py:568
+#: ../checkbox_urwid/urwid_interface.py:546
 msgid "Collapse All"
-msgstr ""
+msgstr "Co-theannaich gu lèir"
 
-#: ../checkbox_urwid/urwid_interface.py:1034
+#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
 msgid "Test"
 msgstr "Dearbh"
 
-#: ../checkbox_urwid/urwid_interface.py:1049
+#: ../checkbox_urwid/urwid_interface.py:1028
 msgid "Test Again"
 msgstr "Dearbh a-rithist"
 
-#: ../checkbox_gtk/gtk_interface.py:525
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Dearbh a-rithist"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:528
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Fios"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Mearachd"
 
 #: ../checkbox_gtk/gtk_interface.py:607
 msgid "Detailed information..."
-msgstr ""
+msgstr "Fiosrachaidh mionaideach"
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -3641,37 +4834,36 @@ msgid ""
 "This might take a few minutes."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:226
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:229
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:230
+#: ../plugins/apport_prompt.py:231
 msgid "Do you want to report a bug?"
 msgstr ""
 
-#: ../plugins/apport_prompt.py:247
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr ""
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Dearbhadh crìochnaichte gu soirbheachail"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
 msgstr "_Crìochnaichte"
 
-#. Resolve dependencies
-#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
+#: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "A' cruinneachadh fiosrachaidh bho do shiostam..."
 
 #: ../plugins/intro_prompt.py:28
 msgid ""
@@ -3681,6 +4873,11 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Fàilte ri A' Dearbhadh an t-siostam!\n"
+"\n"
+"Tha Checkbox a' tabhainn deuchainnean a dhearbhadh gu bheil do shiostam ag "
+"obair ceart, Aon uair a chrìochnaicheas thu a' ruith na deuchainnean, "
+"faodaidh tu faicinn iomradh gearr-chunntas air shon do shiostam."
 
 #: ../plugins/intro_prompt.py:33
 msgid ""
@@ -3690,11 +4887,16 @@ msgid ""
 "unresponsive. Please save all your work and close all other running "
 "applications before beginning the testing process."
 msgstr ""
+"\n"
+"\n"
+"Rabhadh: Dh'fhaodadh cuid deuchainnean adhbharachadh do shiostam reòthadh no "
+"fàs neo-cho-fhreagarrach. Sàbhail sibh ur obair gu lèir agus dùin na h-uile "
+"aplacaidean eile tha ruith os cionn tòiseachadh  am pròiseas dearbhadh."
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Dh'fhàillig a ghiullachd am foirm: %s"
 
 #: ../plugins/launchpad_exchange.py:151
 #, python-format
@@ -3706,16 +4908,24 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Dh'fhàillig a chonaltraidh frithealaiche. Feuchaibh\n"
+"a-rithist no luchdaich-suas an t-ainm faidhle tha leantail:\n"
+"%s\n"
+"\n"
+"air ball gu ruige stòr-dàta an t-siostam:\n"
+"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Dh'fhàillig a luchdadh-suas gu frithealaiche.\n"
+"Feuch sibh a-rithist nas anmoch."
 
 #: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
-msgstr ""
+msgstr "Cha robh fios a chur gu launchpad."
 
 #: ../plugins/launchpad_prompt.py:74
 #, python-format
@@ -3731,6 +4941,17 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Chaidh an iomradh tha leantail  a chruthachadh airson a chur a-steach dhan "
+"stòr-dàta a' bhathar-bhog Launchpad:\n"
+"\n"
+"  [[%s|Faic Iomradh]]\n"
+"\n"
+"Faodaidh tu cuir a-steach an fhiosrachaidh seo mu dheidhinn do shiostam le "
+"solarachadh do sheòladh post-d a tha thu a' cleachdadh airson soidhnicheadh "
+"a-steach do Launchpad. Ma 's e 's nach eil cunntas Launchpad agad, "
+"clàraichibh an seo:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:84
 msgid "Email"
@@ -3738,21 +4959,24 @@ msgstr "Post-d"
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
-msgstr ""
+msgstr "Feumaidh an t-seòladh post-d bhith anns am fòrmat ceart."
 
 #: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
-msgstr ""
+msgstr "A' malairt fiosrachaidh leis an fhrithealaiche..."
 
 #: ../plugins/launchpad_report.py:167
 msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Tha coltach gu bheil an iomradh cruthaichte a' glèidheadh mearachdan "
+"dearbhachd,\n"
+"mar sin 's mathaid nach giullaich Launchpad e."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
+msgstr "Tha checkbox eile a' ruith. Dùin sibh an toiseach e."
 
 #: ../plugins/recover_prompt.py:62
 msgid ""
@@ -3761,192 +4985,200 @@ msgid ""
 "continue to the next test, or\n"
 "restart from the beginning?"
 msgstr ""
+"Cha do chrìoch Checkbox gu iomlan.\n"
+"Robh thu ag iarraidh ruith an deuchainn mu dheireadh a-rithist,\n"
+"lean chun an ath deuchainn, no\n"
+"tòisich às ùr bhon toiseach ?"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
-msgstr ""
+msgstr "A' togail iomradh..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr "A' ruith %s..."
 
-#: ../plugins/suites_prompt.py:36
+#: ../qt/frontend/treemodel.cpp:13
 msgid ""
 "Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Dèanaidh dì-thaghadh deuchainn do chur a-steach son Ubuntu Friendly neo-"
+"dhligheach. Ma tha thu ag iarraidh gabhail compàirt ann an Ubuntu Friendly, "
+"tagh sibh na deuchainnean h-uile. Faodaidh tu an còmhnaidh sgiobadh "
+"deuchainnean fa leth ma 's e 's nach eil feum agad air an uidheamachadh."
 
 #: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
 msgid "Choose tests to run on your system:"
-msgstr ""
+msgstr "Tagh deuchainnean a ruithair do shiostam:"
 
-#: ../scripts/keyboard_test:22
+#: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
 msgstr "Cuir teacsa a-steach:\n"
 
-#: ../scripts/keyboard_test:43
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "Clò-sgròbh teacsa"
 
-#: ../scripts/internet_test:211
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Gun ceangal dhan eadar-lìn"
 
-#: ../scripts/internet_test:214
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Chaill an ceangal stèidhte pacaid"
 
-#: ../scripts/internet_test:217
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Ceangal eadar-lìn stèidhte gu h-iomlan"
 
-#: ../qt/frontend/qtfront.cpp:80
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Audio Test"
 msgstr "Deuchainn claisneach"
 
-#: ../qt/frontend/qtfront.cpp:81
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Bluetooth Test"
 msgstr "Deuchainn bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:82
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Camera Test"
 msgstr "Deuchainn camara"
 
-#: ../qt/frontend/qtfront.cpp:83
+#: ../qt/frontend/qtfront.cpp:88
 msgid "CPU Test"
 msgstr "Deuchainn CPU"
 
-#: ../qt/frontend/qtfront.cpp:84
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Disk Test"
 msgstr "Deuchainn dìosg"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Firewire Test"
 msgstr "Deuchainn firewire"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Graphics Test"
 msgstr "Deuchainn grafaigean"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Info Test"
 msgstr "Dearbh fios"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Input Test"
 msgstr "Dearbh ion-chur"
 
-#: ../qt/frontend/qtfront.cpp:89
-msgid "Keys Test"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:90
-msgid "Media Card Test"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:91
-msgid "Memory Test"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:92
-msgid "Miscellanea Test"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:93
-msgid "Monitor Test"
-msgstr ""
-
 #: ../qt/frontend/qtfront.cpp:94
-msgid "Networking Test"
-msgstr ""
+msgid "Keys Test"
+msgstr "Deuchainn putain"
 
 #: ../qt/frontend/qtfront.cpp:95
-msgid "Wireless Test"
-msgstr ""
+msgid "Media Card Test"
+msgstr "Deuchainn cairt meadhanan"
 
 #: ../qt/frontend/qtfront.cpp:96
-msgid "Optical Test"
-msgstr ""
+msgid "Memory Test"
+msgstr "Deuchainn cuimhne"
 
 #: ../qt/frontend/qtfront.cpp:97
+msgid "Miscellanea Test"
+msgstr "Deuchainn trealaich"
+
+#: ../qt/frontend/qtfront.cpp:98
+msgid "Monitor Test"
+msgstr "Deuchainn sgrìn (monatair)"
+
+#: ../qt/frontend/qtfront.cpp:99
+msgid "Networking Test"
+msgstr "Deuchainn lìonrachadh"
+
+#: ../qt/frontend/qtfront.cpp:100
+msgid "Wireless Test"
+msgstr "Deuchainn uèirleas"
+
+#: ../qt/frontend/qtfront.cpp:101
+msgid "Optical Test"
+msgstr "Deuchainn lèirsinneach"
+
+#: ../qt/frontend/qtfront.cpp:102
 msgid "PCMCIA/PCIX Test"
 msgstr "Dearbhadh PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:103
 msgid "Power Management Test"
 msgstr "Dearbadh stiùireadh cumhachd"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Suspend Test"
 msgstr "Cuir an dearbhadh gu taobh"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:105
 msgid "USB Test"
 msgstr "Dearbadh USB"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
 msgstr "Cha do thòisich"
 
-#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "Dèante"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
 msgstr "Gun taic"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Resolved"
 msgstr "Neo-shònraichte"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:112
 msgid "Not Tested"
 msgstr "Neo-dhearbhte"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:113
 msgid "In Progress"
 msgstr "Ann an adhartas"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
 msgstr "Bheil thu cinnteach?"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
 msgstr "Bheil thu gu deimhinn ag iarraidh sgiobaigeadh an dearbhadh seo?"
 
-#: ../qt/frontend/qtfront.cpp:161
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
 msgstr "Na faighnich dhom a-rithist"
 
-#: ../qt/frontend/ui_qtfront.h:635
+#: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
 msgstr "Foirm"
 
-#: ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
+#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
 msgstr "Taba 1"
 
-#: ../qt/frontend/ui_qtfront.h:640
+#: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 a-mach à 30 dearbhaidhean crìochnaichte (30%0"
 
-#: ../qt/frontend/ui_qtfront.h:643
+#: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
 msgstr "Co-phàirtean"
 
-#: ../qt/frontend/ui_qtfront.h:644
+#: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
 msgstr "Inbhe"
 
@@ -3958,39 +5190,39 @@ msgstr "Tagh na h-uile"
 msgid "Deselect all"
 msgstr "Dì-thaghadh na h-uile"
 
-#: ../qt/frontend/ui_qtfront.h:647
+#: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
 msgstr "Tòisich a' dearbhadh"
 
-#: ../qt/frontend/ui_qtfront.h:648
+#: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
 msgstr " Taghadh "
 
-#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
+#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
 msgstr "BileagTeacsa"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:607
+#: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:608
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
+#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
 msgstr "Taba 2"
 
-#: ../qt/frontend/ui_qtfront.h:661
+#: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
 msgstr " Ruith "
 
-#: ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:611
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4013,19 +5245,19 @@ msgstr ""
 msgid "Submission details"
 msgstr "Mion-chunntas innteart"
 
-#: ../qt/frontend/ui_qtfront.h:670
+#: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
 msgstr "Post-d:"
 
-#: ../qt/frontend/ui_qtfront.h:671
+#: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
 msgstr "Cuir a-steach na toraidhean"
 
-#: ../qt/frontend/ui_qtfront.h:672
+#: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
 msgstr "Seall ri na toraidhean"
 
-#: ../qt/frontend/ui_qtfront.h:673
+#: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
 msgstr " Toraidhean "
 

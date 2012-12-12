@@ -1,13 +1,24 @@
 checkbox (0.15) raring; urgency=low
 
   [ Daniel Manrique ]
-  * New version 0.15 for Raring Ringtail development. 
+  * New version 0.15 for Raring Ringtail development.
   * Fail gracefully with a friendly and useful error message if audio settings
     file format is invalid. (LP: #1065703)
+  * Added environ key to poweroff and reboot jobs so they create logs in the
+    expected location (LP: #1085833)
+  * scripts/memory_compare: Fixed accumulator expression to give good results
+    (LP: #1089046)
 
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
     this is what NetworkManager does internally (LP: #1073335)
+  * Create a test to move a 3D window around the screen to check if there is any tearing
+    or other artifacts.
+  * jobs/info.txt.in - add an xrandr attachment job to provide information
+    about displays connected to the system (LP: #1085219)
+  * jobs/suspend.txt.in - changed suspend_advanced_auto dependency of key_after_suspend
+    and led_after_suspend tests to suspend/suspend_advanced, since they are manual and
+    should depend on the manual suspend test (LP: #1089227)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
@@ -15,9 +26,14 @@ checkbox (0.15) raring; urgency=low
   * jobs/suspend.txt.in - fixed cycle_resolutions_after_suspend_auto so that it
     properly depends on suspend_advanced_auto rather than suspend_advanced
     (LP: #1071605)
+  * jobs/graphics.txt.in - removed perl wrappings from tests using
+    unity_support_test. They should pipe through ansi_parser like other jobs.
+    (LP: #1087777)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
+  * jobs/info.txt.in: Fixed the info/xrandr command.
+  * jobs/audio.txt.in: Added Line In/Out and Display Port tests.
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 

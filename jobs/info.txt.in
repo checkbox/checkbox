@@ -183,3 +183,8 @@ requires:
  package.name == 'pciutils'
 command: network_device_info
 _description: Provides information about network devices
+
+plugin: attachment
+name: info/xrandr
+command: xrandr -q --verbose
+_description: Provides information about displays attached to the system
