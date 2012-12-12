@@ -32,6 +32,9 @@ checkbox (0.15) raring; urgency=low
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
   * jobs/info.txt.in: Fixed the info/xrandr command.
   * jobs/audio.txt.in: Added Line In/Out and Display Port tests.
+  * checkbox/tests/test_message_files.py:
+    test_shell_jobs_with_root_have_needed_environ now checks every jobs
+    containing a command line parameter.
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 
