@@ -14,6 +14,9 @@ checkbox (0.15) raring; urgency=low
     or other artifacts.
   * jobs/info.txt.in - add an xrandr attachment job to provide information
     about displays connected to the system (LP: #1085219)
+  * jobs/suspend.txt.in - changed suspend_advanced_auto dependency of key_after_suspend
+    and led_after_suspend tests to suspend/suspend_advanced, since they are manual and
+    should depend on the manual suspend test (LP: #1089227)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
