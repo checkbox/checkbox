@@ -71,7 +71,10 @@ class NetworkingDevice():
 
         if self._driver != "Unknown":
             self._modinfo = self._modinfo_parser(props['Driver'])
-            self._driver_ver = self._find_driver_ver()
+            if self._modinfo:
+                self._driver_ver = self._find_driver_ver()
+            else:
+                self._driver_ver = "Unknown"
 
         try:
             self._firmware_missing = props['FirmwareMissing']
