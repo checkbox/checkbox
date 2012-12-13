@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 from io import StringIO
@@ -46,13 +46,14 @@ class TouchpadDriver():
 
         return version
 
+
 def get_touch_attributes():
     output, err = Popen(COMMAND, stdout=PIPE, shell=True).communicate()
     if err:
         print("Error running $s" % ' '.join(COMMAND))
         print(err)
         return None
-        
+
     udev = UdevadmParser(StringIO(output.decode("unicode-escape")))
 
     result = TouchResult()
@@ -66,7 +67,7 @@ def main():
     if attributes:
         modinfo = TouchpadDriver(attributes['driver'])
         attributes['version'] = modinfo.driver_version
-        print("%s: %s\n%s: %s\n%s: %s\n" % 
+        print("%s: %s\n%s: %s\n%s: %s\n" %
                 ('Device', attributes['product'],
                  'Driver', attributes['driver'],
                  'Driver Version', attributes['version']))

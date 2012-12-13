@@ -21,7 +21,9 @@ checkbox (0.15) raring; urgency=low
     and led_after_suspend tests to suspend/suspend_advanced, since they are manual and
     should depend on the manual suspend test (LP: #1089227)
   * scripts/piglit_test, jobs/piglit.txt.in - create a script which wraps and
-    parses the piglit test results and use it in the piglit jobs.
+    parses the piglit test results and use it in the piglit jobs
+  * scripts/touchhpad_driver_info - changed the shebang to python3, since it is
+    using modules that will only be installed for python3 (LP: #1089727)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
