@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Exit on any error
-set -o errexit
+set -o pipefail  # trace ERR through pipes
+set -o errtrace  # trace ERR through functions
+
+ERROR='Unknown Error'
 
 # Cleanup on exit
 function cleanup() {
@@ -9,38 +11,55 @@ function cleanup() {
     [ -n "$kvm_pid" ] && kill $kvm_pid
 }
 
-trap cleanup 0
+function error_handler()
+{
+    echo "$0: ${ERROR}"
+    exit 1
+}
+
+trap cleanup EXIT
+trap error_handler ERR
 
 # Build cloud image URL
+ERROR="Unable to create temporary files"
 temp_dir=$(mktemp -d)
 if [ $# -eq 0 ]; then
+    ERROR="Unable to get the latest release name from cloud-images.ubuntu.com"
     release=$(wget -q -O - http://cloud-images.ubuntu.com/query/released.latest.txt | tail -n 2 | head -1 | cut -f 1)
     cloud_dir="http://cloud-images.ubuntu.com/$release/current/"
+    ERROR="Unable to get the cloud image URL from cloud-images.ubuntu.com"
     cloud_name=$(wget -q -O - $cloud_dir | sed -n 's/.*href="\(.*i386.*img\)".*/\1/p')
     cloud_image="$cloud_dir$cloud_name"
 else
     cloud_image=$1
 fi
 
+ERROR="Unable to set the working directory"
 cd $temp_dir
 
 # Get cloud image URL
 if [ ! -e "$cloud_image" ]; then
     cloud_name="$(basename $cloud_image)"
+    ERROR="Unable to get cloud image $cloud_image"
     wget -q -O $cloud_name $cloud_image
     cloud_image="$temp_dir/$cloud_name"
 fi
 
 # Create public/private ssh keys for passwordless auth.
+ERROR="Unable to create the required ssh key"
 if [ ! -e "ssh_key" ]; then
     ssh-keygen -q -t "rsa" -f "ssh_key" -N "" -C ""
+else
+    exit 1
 fi
 
 # Create user-data and meta-data files that will be used to modify image on first boot
+ERROR="Unable to create meta-data file"
 cat <<EOF > "meta-data"
 instance-id: iid-local01
 local-hostname: cloudimg
 EOF
+ERROR="Unable to create user-data file"
 cat <<EOF > "user-data"
 #cloud-config
 password: passw0rd
@@ -52,17 +71,24 @@ EOF
 
 # create a disk to attach with some user-data and meta-data
 seed="seed.iso"
+ERROR="Unable to create $seed"
 if [ ! -e "$seed" ]; then
     genisoimage -quiet -output $seed -volid cidata -joliet -rock "user-data" "meta-data"
+else
+    exit 1
 fi
 
 # create a new qcow image to boot, backed by the original image
 boot_disk="boot-disk.img"
+ERROR="Unable to create $boot_disk"
 if [ ! -e "$boot_disk" ]; then
     qemu-img create -f qcow2 -b $cloud_image $boot_disk > /dev/null
+else
+    exit 1
 fi
 
 # Boot the image
+ERROR="Unable to boot the cloud image"
 kvm -m 256 \
     -net nic \
     -net user,net=10.0.0.0/8,host=10.0.0.1,hostfwd=tcp::2222-:22 \
@@ -72,7 +98,8 @@ kvm -m 256 \
 kvm_pid=$!
 
 # Verify that the VM is running
-set +o errexit
+ERROR="Unable to ssh into the kvm instance"
+trap "" ERR
 for i in $(seq 20); do
     sleep 6
     output=$(ssh -q \
@@ -89,4 +116,4 @@ for i in $(seq 20); do
     fi
 done
 
-exit 1
+error_handler
