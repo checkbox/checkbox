@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-06 04:32+0000\n"
-"X-Generator: Launchpad (build 16341)\n"
+"X-Launchpad-Export-Date: 2012-12-15 04:33+0000\n"
+"X-Generator: Launchpad (build 16372)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -105,6 +105,17 @@ msgid ""
 "   1. Do you hear the sound coming out on the  corresponding channel?\n"
 "   2. Did you hear a sound?"
 msgstr ""
+"SVRHA:\n"
+"   1. Provjera HDMI interfejsa\n"
+"KORACI:\n"
+"   1. Uključite vanjski HDMI uređaj sa zvukom\n"
+"   2. Otvorite sistemske postavke zvuka\n"
+"   3. Pritisnite na Izlaz i odaberite HDMI, a onda pritisnite 'Testiraj "
+"Zvučnike' da provjerite lijevi i desni kanal\n"
+"   4. Pritisnite dugme Test\n"
+"PROVJERA:\n"
+"   1. Čujete li zvuk kako dolazi sa odgovarajućih kanala?\n"
+"   2. Da li ste čuli zvuk?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -212,11 +223,14 @@ msgid ""
 "this computer's audio subsystem and perform more detailed tests under a "
 "controlled environment."
 msgstr ""
+"Prikupljanje sistemskih informacije vezanih za zvuk. Ovi podaci se mogu "
+"koristiti za simulaciju audio podsustava ovog računara i obavljanje "
+"detaljnijih ispitivanja pod kontroliranim uvjetima."
 
 #. description
 #: ../jobs/audio.txt.in:143
 msgid "Attaches the audio hardware data collection log to the results."
-msgstr ""
+msgstr "Dodaje zapisnik audio uređaja rezultatima."
 
 #. description
 #: ../jobs/disk.txt.in:9
@@ -226,142 +240,147 @@ msgstr "Mjerenje za svaki disk"
 #. description
 #: ../jobs/benchmarks.txt.in:41
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
-msgstr ""
+msgstr "Pokrenite Render-Bench XRender/Imlib2 mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:47
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
 msgstr ""
+"Pokrenite Qgears2 XRender Extension gearsfancy mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:53
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
 msgstr ""
+"Pokrenite Qgears2 XRender Extension mjerenje mogućnosti računara za "
+"skaliranje slika"
 
 #. description
 #: ../jobs/benchmarks.txt.in:59
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
-msgstr ""
+msgstr "Pokrenite Qgears2 OpenGL gearsfancy mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:65
 msgid "Run Qgears2 OpenGL image scaling benchmark"
 msgstr ""
+"Pokrenite Qgears2 OpenGL mjerenje mogućnosti računara za skaliranje slika"
 
 #. description
 #: ../jobs/benchmarks.txt.in:74
 msgid "Run GLmark2-ES2 benchmark"
-msgstr ""
+msgstr "Pokrenite GLmark2-ES2 mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:83
 msgid "Run GLmark2 benchmark"
-msgstr ""
+msgstr "Pokrenite GLmark2 mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:89
 msgid "Run Unigine Santuary benchmark"
-msgstr ""
+msgstr "Pokrenite Unigine Santuary mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr ""
+msgstr "Pokrenite Unigine Tropics mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr ""
+msgstr "Pokrenite Unigine Heaven mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Pokrenite Lightsmark mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:113
 msgid "Run Cachebench Read benchmark"
-msgstr ""
+msgstr "Pokrenite Cachebench Read mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:119
 msgid "Run Cachebench Write benchmark"
-msgstr ""
+msgstr "Pokrenite Cachebench Write mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:125
 msgid "Run Cachebench Read / Modify / Write benchmark"
 msgstr ""
+"Pokrenite Cachebench Read / Modify / Write mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:131
 msgid "Run Stream Copy benchmark"
-msgstr ""
+msgstr "Pokrenite Stream Copy mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:137
 msgid "Run Stream Scale benchmark"
-msgstr ""
+msgstr "Pokrenite Stream Scale mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:143
 msgid "Run Stream Add benchmark"
-msgstr ""
+msgstr "Pokrenite Stream Add mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:149
 msgid "Run Stream Triad benchmark"
-msgstr ""
+msgstr "Pokrenite Stream Triad mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:155
 msgid "Run Network Loopback benchmark"
-msgstr ""
+msgstr "Pokrenite Network Loopback mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:167
 msgid "Run Encode MP3 benchmark"
-msgstr ""
+msgstr "Pokrenite Encode MP3 mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:173
 msgid "Run x264 H.264/AVC encoder benchmark"
-msgstr ""
+msgstr "Pokrenite x264 H.264/AVC encoder mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:179
 msgid "Run GnuPG benchmark"
-msgstr ""
+msgstr "Pokrenite GnuPG mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:185
 msgid "Run Compress PBZIP2 benchmark"
-msgstr ""
+msgstr "Pokrenite Compress PBZIP2 mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:191
 msgid "Run Compress 7ZIP benchmark"
-msgstr ""
+msgstr "Pokrenite Compress 7ZIP mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:197
 msgid "Run N-Queens benchmark"
-msgstr ""
+msgstr "Pokrenite N-Queens mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:203
 msgid "Run Himeno benchmark"
-msgstr ""
+msgstr "Pokrenite Himeno mjerenje mogućnosti računara"
 
 #. description
 #: ../jobs/benchmarks.txt.in:209
 msgid "CPU utilization on an idle system."
-msgstr ""
+msgstr "Upotreba CPJ dok sistem miruje."
 
 #. description
 #: ../jobs/benchmarks.txt.in:215
 msgid "Disk utilization on an idle system."
-msgstr ""
+msgstr "Upotreba diska dok sistem miruje."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -612,6 +631,7 @@ msgstr ""
 #: ../jobs/cpu.txt.in:16
 msgid "Attaches the log generated by cpu/scaling_test to the results"
 msgstr ""
+"Priključuje zapisnika generisan od strane CPJ / testa_skaliranja rezultatima"
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -811,6 +831,17 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem može otkriti uključivanje FireWire "
+"HDD-a\n"
+"KORACI:\n"
+"    1. Pritisnite 'Test' za početak testa. Ovaj test će\n"
+"       se prekinuti ako uključivanje ne bude otkriveno u roku od 20 "
+"sekundi.\n"
+"    2. Uključite FireWire HDD u dostupan FireWire ulaz.\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati automatski\n"
+"    odabran rezultat"
 
 #. description
 #: ../jobs/firewire.txt.in:19
@@ -836,6 +867,16 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem može otkriti isključivanje FireWire "
+"HDD-a\n"
+"KORACI:\n"
+"    1. Pritisnite 'Test' za početak testa. Ovaj test će se prekinuti ako\n"
+"       uklanjanje ne bude otkriveno u roku od 20 sekundi.\n"
+"    2. Isključite prethodno uključeni FireWire HDD iz FireWire ulaza.\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati automatski\n"
+"    odabran rezultat"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -1044,11 +1085,18 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"SVRHA:\n"
+"    Uzimanje snimke ekrana trenutnog ekrana (prijavljeni na Zajedničku radnu "
+"površinu)\n"
+"KORACI:\n"
+"    1. Napravite sliku koristeći USB web kameru\n"
+"PROVJERA:\n"
+"    1. Pregledajte dodatke ručno kasnije"
 
 #. description
 #: ../jobs/graphics.txt.in:171 ../jobs/suspend.txt.in:404
 msgid "Attaches the screenshot captured in graphics/screenshot."
-msgstr ""
+msgstr "Dodavanje snimke ekrana napravljene u slikama/snimkama ekrana."
 
 #. description
 #: ../jobs/graphics.txt.in:182
@@ -1062,12 +1110,21 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"SVRHA:\n"
+"    Uzmite snimku ekrana trenutnog ekrana za vrijeme video reprodukcije na "
+"punom ekranu\n"
+"KORACI:\n"
+"    1. Pokrenite reprodukciju videa u punom ekranu\n"
+"    2. Napravite sliku koristeći USB web kameru nakon nekoliko sekundi\n"
+"PROVJERA:\n"
+"    1. Pregledajte dodatke ručno kasnije"
 
 #. description
 #: ../jobs/graphics.txt.in:195
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
+"Dodaje sliku ekrana memorisanu u grafika/slikeekrana_cijeliekran_video"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1134,12 +1191,12 @@ msgstr "Prilaže vrlo detaljan lspci izlaz."
 #. description
 #: ../jobs/info.txt.in:42
 msgid "Attaches very verbose lspci output (with central database Query)."
-msgstr ""
+msgstr "Dodaje jako rječit lspci izlaz (sa centralnim Upitom)."
 
 #. description
 #: ../jobs/info.txt.in:49
 msgid "List USB devices"
-msgstr ""
+msgstr "Lista USB uređaja"
 
 #. description
 #: ../jobs/info.txt.in:40
@@ -1382,6 +1439,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će testirati multimedijalne tipke na tastaturi\n"
+"KORACI:\n"
+"    1. Pritisnite test da otvorite novi prozor na kojem će se testirati "
+"multimedijalne tipke.\n"
+"    2. Ako sve tipke rade, test će biti označen kao prošao.\n"
+"    3. Ako vaš računar nema multimedijalne tipke, Preskočite ovaj test.\n"
+"PROVJERA:\n"
+"    Da li vaše tipke rade kao što je očekivano?"
 
 #. description
 #: ../jobs/keys.txt.in:91
@@ -1394,6 +1460,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the super key work as expected?"
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će testirati super tipku na vašoj tastaturi\n"
+"KORACI:\n"
+"    1. Pritisnite test da otvorite prozor na kojem će se testirati super "
+"tipka.\n"
+"    2. Ako tipka radi, test će proći i prozor će se zatvoriti.\n"
+"PROVJERA:\n"
+"    Da li super tipka radi kao što je očekivano?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1403,7 +1477,7 @@ msgstr "Audio testovi"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Benchmarks tests"
-msgstr ""
+msgstr "Testovi mjerenja mogućnosti računara"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1568,12 +1642,12 @@ msgstr "Testovi opterećenja"
 #. description
 #: ../jobs/local.txt.in:262
 msgid "Smoke tests"
-msgstr ""
+msgstr "Testovi dima"
 
 #. description
 #: ../jobs/local.txt.in:269
 msgid "Sniff Sniffers"
-msgstr ""
+msgstr "Njuškala"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -1589,6 +1663,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje Multimedia Card (MMC) kartice\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite MMC karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:20
@@ -1612,6 +1696,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje MMC kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite MMC karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:43
@@ -1627,6 +1720,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje MMC nakon što je sistem bio obustavljen\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite MMC karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:59
@@ -1653,6 +1756,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje MMC kartice iz sistemskog čitača kartica nakon što je sistem "
+"bio obustavljen.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite MMC karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:81
@@ -1668,6 +1781,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje Secure Digital (SD) multimedijalne kartice\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite SD karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
@@ -1691,6 +1814,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje SD kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite SD karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:120
@@ -1706,6 +1838,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje SD nakon što je sistem bio obustavljen\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite SD karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:136
@@ -1732,6 +1874,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje SD kartice iz sistemskog čitača kartica nakon što je sistem "
+"bio obustavljen.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite SD karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:158
@@ -1748,6 +1900,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje Secure Digital High-Capacity (SDHC) kartice\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite SDHC karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:174
@@ -1771,6 +1933,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje SDHC kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite SDHC karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:197
@@ -1787,6 +1958,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje SDHC kartice nakon što je sistem bio obustavljen\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite SDHC karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:213
@@ -1813,6 +1994,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje SDHC kartice iz sistemskog čitača kartica nakon što je sistem "
+"bio obustavljen.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite SDHC karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:235
@@ -1828,6 +2019,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje Secure Compact Flash (CF) kartice\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite CF karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:251
@@ -1851,6 +2052,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje CF kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite CF karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:274
@@ -1866,6 +2076,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    otkriti ubacivanje CF kartice nakon što je sistem bio obustavljen\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i ubacite CF karticu u čitač.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:290
@@ -1892,6 +2112,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno otkriva\n"
+"    uklanjanje CF kartice iz sistemskog čitača kartica nakon što je sistem "
+"bio obustavljen.\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite CF karticu iz čitača.\n"
+"       (Napomena: ovaj test će se prekinuti nakon 20 sekundi.)\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -1921,6 +2151,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Nothing to verify for this test"
 msgstr ""
+"SVRHA:\n"
+"    Držanje informacija vezanih za tester u izvještaju\n"
+"KORACI:\n"
+"    1. Tester Informacije\n"
+"    2. Molim unesite sljedeće informacije u polje za komentar:\n"
+"       a. Ime\n"
+"       b. Email Adresa\n"
+"       c. Razlog pokretanja ovog testa\n"
+"PROVJERA:\n"
+"    Nije potrebna za ovaj test."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1953,7 +2193,7 @@ msgstr "Pokreni Firmware Test Suite (fvts) automatizovane testove."
 #. description
 #: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
-msgstr ""
+msgstr "Dodavanje zapisnika FWTS rezultata za podnošenje"
 
 #. description
 #: ../jobs/miscellanea.txt.in:31
@@ -2445,6 +2685,13 @@ msgid ""
 "VERIFICATION:\n"
 "   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
+"SVRHA:\n"
+"   Ovaj test će potvrditi da sat na radnoj površini prikazuje tačan datum i "
+"vrijeme\n"
+"KORACI:\n"
+"   1. Provjerite sat u gornjem desnom ćošku radne površine.\n"
+"PROVJERA:\n"
+"   Da li sat prikazuje tačan datum i vrijeme za Vašu vremensku zonu?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:16
@@ -2613,12 +2860,12 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:16
 msgid "Test ACPI Wakealarm (fwts wakealarm)"
-msgstr ""
+msgstr "Test ACPI alarma (fwts alarma)"
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Attach log from fwts wakealarm test"
-msgstr ""
+msgstr "Dodati zapisnik iz fwts alarm testa"
 
 #. description
 #: ../jobs/power-management.txt.in:39
@@ -2637,6 +2884,18 @@ msgid ""
 " If the machine successfully shuts down and boots, select Yes then select "
 "Next."
 msgstr ""
+"SVRHA:\n"
+" Ovaj test će provjeriti mogućnost sistema da se isključi i uključi\n"
+"KORACI:\n"
+" 1: Odaberite \"Test\" za početak.\n"
+" 2: Računar će se isključiti.\n"
+" 3: Uključite opet računar.\n"
+" 4: Nakon ponovnog uključenja, sačekajte obavještenje da je test završen.\n"
+" 5: Nakon završetka testa, restartujte kućicu i odaberite Ponovno pokretanje "
+"kad se to zatraži\n"
+"PROVJERA:\n"
+" Ako se računar uspješno isključio i uključio, odaberite Da, pa onda "
+"pritisnite Dalje."
 
 #. description
 #: ../jobs/power-management.txt.in:54
@@ -2644,6 +2903,8 @@ msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
+"Ovo će dodati sve zapisnike iz testa upravljanje energijom/isključivanje "
+"rezultatima."
 
 #. description
 #: ../jobs/power-management.txt.in:64
@@ -2660,6 +2921,16 @@ msgid ""
 "VERIFICATION:\n"
 " If the machine successfully reboots, select Yes then select Next."
 msgstr ""
+"SVRHA:\n"
+" Ovaj test će provjeriti mogućnost sistema da se restartuje\n"
+"KORACI:\n"
+" 1: Odaberite \"Test\" za početak.\n"
+" 2: Računar će se restartovati.\n"
+" 4: Nakon restarta, sačekajte obavještenje da je test završen.\n"
+" 5: Nakon završetka testa, restartujte kućicu i odaberite Ponovno pokretanje "
+"kad se to zatraži\n"
+"PROVJERA:\n"
+" Ako se računar uspješno restartovao, odaberite Da, pa onda pritisnite Dalje."
 
 #. description
 #: ../jobs/power-management.txt.in:78
@@ -2667,6 +2938,8 @@ msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
+"Ovo će dodati sve zapisnike iz testa upravljanje energijom/restart "
+"rezultatima."
 
 #. description
 #: ../jobs/power-management.txt.in:15
@@ -2789,11 +3062,14 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 30 cycles"
 msgstr ""
+"SVRHA:\n"
+"   Ovo je automatizovani test pritiska koji će natjerati sistem na "
+"hibernaciju/nastavak 30 ciklusa"
 
 #. description
 #: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
-msgstr ""
+msgstr "Dodaje zapisnik iz 30 ciklusa Hibernacija/Nastavak testa ako postoji"
 
 #. description
 #: ../jobs/stress.txt.in:34
@@ -2802,11 +3078,14 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 30 cycles."
 msgstr ""
+"SVRHA:\n"
+"   Ovo je automatizovani test pritiska koji će natjerati sistem na "
+"obustavu/nastavak 30 ciklusa"
 
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
-msgstr ""
+msgstr "Dodaje zapisnik iz 30 ciklusa Obustava/Nastavak testa ako postoji"
 
 #. description
 #: ../jobs/stress.txt.in:50
@@ -2815,12 +3094,16 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 250 cycles"
 msgstr ""
+"SVRHA:\n"
+"   Ovo je automatizovani test pritiska koji će natjerati sistem na "
+"hibernaciju/nastavak 250 ciklusa"
 
 #. description
 #: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"Dodaje zapisnik iz 250 ciklusa Hibernacija/Nastavak testa ako postoji"
 
 #. description
 #: ../jobs/stress.txt.in:66
@@ -2829,31 +3112,36 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 250 cycles."
 msgstr ""
+"SVRHA:\n"
+"   Ovo je automatizovani test pritiska koji će natjerati sistem na "
+"obustavu/nastavak 250 ciklusa"
 
 #. description
 #: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
-msgstr ""
+msgstr "Dodaje zapisnik iz 250 ciklusa Obustava/Nastavak testa ako postoji"
 
 #. description
 #: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
-msgstr ""
+msgstr "Restartovanje sistema pod pritiskom (100 ciklusa)"
 
 #. description
 #: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
-msgstr ""
+msgstr "Isključivanje računara pod pritiskom (100 ciklusa)"
 
 #. description
 #: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr ""
+"Potražite u zapisniku arhivu testa restart pod pritiskom (100 ciklusa)"
 
 #. description
 #: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
+"Potražite u zapisniku arhivu testa isključivanje pod pritiskom (100 ciklusa)"
 
 #. description
 #: ../jobs/suspend.txt.in:4
@@ -2964,6 +3252,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li je ekran ispravan nakon obustave i "
+"nastavka sa radom\n"
+"KORACI:\n"
+"    1. Provjerite da li vaš ekran prikazuje vizualne elemente nakon nastavka "
+"sa radom\n"
+"PROVJERA:\n"
+"    Da li ekran radi normalno nakon nastavka sa radom poslije obustave?"
 
 #. description
 #: ../jobs/suspend.txt.in:174
@@ -2982,6 +3278,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Testira da li se uređaj za bežično povezivanje može povezati na ruter "
+"koristeći WPA sigurnosni i 802.11b/g protokole nakon što je sistem bio "
+"obustavljen."
 
 #. description
 #: ../jobs/suspend.txt.in:239
@@ -2989,6 +3288,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Testira da li se uređaj za bežično povezivanje može povezati na ruter bez "
+"sigurnosnog protokola i koristeći 802.11b/g protokol nakon što je sistem bio "
+"obustavljen."
 
 #. description
 #: ../jobs/suspend.txt.in:250
@@ -2996,6 +3298,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Testira da li se uređaj za bežično povezivanje može povezati na ruter "
+"koristeći WPA sigurnosni i 802.11n protokole nakon što je sistem bio "
+"obustavljen."
 
 #. description
 #: ../jobs/suspend.txt.in:261
@@ -3003,6 +3308,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Testira da li se uređaj za bežično povezivanje može povezati na ruter bez "
+"sigurnosnog protokola i koristeći 802.11n protokol nakon što je sistem bio "
+"obustavljen."
 
 #. description
 #: ../jobs/suspend.txt.in:186
@@ -3101,7 +3409,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:384
 msgid "Attaches the log from the single suspend/resume test to the results"
-msgstr ""
+msgstr "Dodaje zapisnik iz jednog obustava/nastavak testa rezultatima"
 
 #. description
 #: ../jobs/suspend.txt.in:392
@@ -3114,6 +3422,13 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"SVRHA:\n"
+"    Uzimanje snimke ekrana trenutnog ekrana nakon što je sistem bio "
+"obustavljen (prijavljeni na Zajedničku radnu površinu)\n"
+"KORACI:\n"
+"    1. Napravite sliku koristeći USB web kameru\n"
+"PROVJERA:\n"
+"    1. Pregledajte dodatke ručno kasnije"
 
 #. description
 #: ../jobs/suspend.txt.in:415
@@ -3129,6 +3444,16 @@ msgid ""
 "VERIFICATION:\n"
 "    1. After a 60s workload, check kern.log for reported GPU errors"
 msgstr ""
+"SVRHA:\n"
+"    Uraditi neke izazovne operacije, obustaviti sistem, uraditi još\n"
+"    izazovnih operacija - onda provjeriti lockup na GPU\n"
+"KORACI:\n"
+"    1. Kreirajte 2 glxgears prozora i brzo ih pomjerajte\n"
+"    2. Zamijenite radni prostor sa wmctrl\n"
+"    3. Pokrenite Flash reprodukciju u firefox-u\n"
+"    4. Obustavite/nastavite\n"
+"PROVJERA:\n"
+"    1. Nakon 60s opterećenja, provjerite kern.log za prijavljene GPU greške"
 
 #. description
 #: ../jobs/touchpad.txt.in:3
@@ -3142,6 +3467,14 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"SVRHA:\n"
+"    1. Provjera površine osjetljive na dodir\n"
+"KORACI:\n"
+"    1. Pobrinite se da je površina osjetljiva na dodir omogućena\n"
+"    2. Pokušajte pomjeriti pokazivač koristeći površinu osjetljivu na dodir\n"
+"    3. Pokazivač bi se trebao pomjerati prema tome\n"
+"PROVJERA:\n"
+"    1. Da li je površina osjetljiva na dodir radila kao što je očekivano?"
 
 #. description
 #: ../jobs/touchpad.txt.in:18
@@ -3158,6 +3491,19 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"SVRHA:\n"
+"    1. Provjera površine osjetljive na dodir\n"
+"KORACI:\n"
+"    1. Pritisnite Power Indikator -> Sistemske Postavke -> Miš -> Površina "
+"osjetljiva na dodir\n"
+"    2. Pobrinite se da je kućica \"Omogući horizontalno pomjeranje\" "
+"označena\n"
+"    3. Izaberite 'Test' da u GEdit-u otvorite datoteku sa jako širokom "
+"linijom\n"
+"    4. Provjerite možete li pomjerati horizontalni klizač pomjerajući prst s "
+"jedne na drugu stranu u donjem dijelu površine osjetljive na dodir\n"
+"PROVJERA:\n"
+"    1. Da li je površina osjetljiva na dodir radila kao što je očekivano?"
 
 #. description
 #: ../jobs/touchpad.txt.in:34
@@ -3175,6 +3521,20 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
+"SVRHA:\n"
+"    1. Provjera površine osjetljive na dodir\n"
+"KORACI:\n"
+"    1. Pritisnite Power Indikator -> Sistemske Postavke -> Miš -> Površina "
+"osjetljiva na dodir\n"
+"    2. Pobrinite se da je opcija \"Rubno pomjeranje\" označena\n"
+"    3. Izaberite 'Test' da u GEdit-u otvorite datoteku sa više linija "
+"teksta\n"
+"    4. Provjerite možete li pomjerati vertikalni klizač pomjerajući prst s "
+"jedne na drugu stranu u desnom dijelu površine osjetljive na dodir\n"
+"PROVJERA:\n"
+"    1. Da li je površina osjetljiva na dodir radila kao što je očekivano?\n"
+"NAPOMENE:\n"
+"1. Opcija Rubno Pomjeranje bi trebala biti zadana omogućena"
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -3258,6 +3618,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno detektuje uključivanje\n"
+"    USB uređaja za pohranu\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uključite USB uređaj za pohranu (pen-"
+"drive/HDD).\n"
+"       (Napomena: ovaj test će se zaustaviti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/usb.txt.in:72
@@ -3272,6 +3643,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"SVRHA:\n"
+"    Ovaj test će provjeriti da li sistem ispravno detektuje uklanjanje\n"
+"    USB uređaja za pohranu\n"
+"KORACI:\n"
+"    1. Pritisnite \"Test\" i uklonite USB uređaj.\n"
+"       (Napomena: ovaj test će se zaustaviti nakon 20 sekundi.)\n"
+"    2. Nemojte isključivati uređaj nakon testa.\n"
+"PROVJERA:\n"
+"    Provjera ovog testa je automatizovana. Nemojte mijenjati\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/usb.txt.in:88
@@ -3308,6 +3689,9 @@ msgid ""
 "server has usb storage devices plugged in prior to checkbox execution. It is "
 "intended for servers and SRU automated testing."
 msgstr ""
+"Ovo je automatizovana verzija usb/automatizovana-pohrana i  pretpostavlja da "
+"server ima usb uređaj za pohranu uključen prije izvršenja checkbox-a. "
+"Namijenjen je serverima i SRU automatizovanom testiranju."
 
 #. description
 #: ../jobs/usb.txt.in:120
@@ -4329,7 +4713,7 @@ msgstr "Greška"
 
 #: ../checkbox_gtk/gtk_interface.py:607
 msgid "Detailed information..."
-msgstr ""
+msgstr "Detaljne informacije..."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4464,7 +4848,7 @@ msgstr ""
 
 #: ../plugins/launchpad_prompt.py:84
 msgid "Email"
-msgstr ""
+msgstr "E-pošta"
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
@@ -4493,6 +4877,10 @@ msgid ""
 "continue to the next test, or\n"
 "restart from the beginning?"
 msgstr ""
+"Checkbox nije potpuno završen.\n"
+"Želite li se vratiti na posljednji test,\n"
+"nastaviti sa sljedećim testom, ili\n"
+"početi ponovo od početka?"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
@@ -4515,7 +4903,7 @@ msgstr ""
 
 #: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
 msgid "Choose tests to run on your system:"
-msgstr ""
+msgstr "Izaberite test koji ćete pokrenuti na sistemu:"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
@@ -4687,11 +5075,11 @@ msgstr "Status"
 
 #: ../qt/frontend/ui_qtfront.h:645
 msgid "Select all"
-msgstr ""
+msgstr "Izaberi sve"
 
 #: ../qt/frontend/ui_qtfront.h:646
 msgid "Deselect all"
-msgstr ""
+msgstr "Odznači sve"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
@@ -4761,7 +5149,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:668
 msgid "Submission details"
-msgstr ""
+msgstr "Detalji izvještaja"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
