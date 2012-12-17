@@ -188,3 +188,9 @@ plugin: attachment
 name: info/xrandr
 command: xrandr -q --verbose
 _description: Provides information about displays attached to the system
+
+plugin: attachment
+name: info/disk_partitions
+user: root
+command: parted -l
+_description: Attaces information about disk partitions
