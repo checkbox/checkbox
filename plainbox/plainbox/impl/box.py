@@ -39,6 +39,7 @@ from os.path import join
 
 from plainbox import __version__ as version
 from plainbox.impl.checkbox import CheckBox
+from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import JobResult
 from plainbox.impl.rfc822 import load_rfc822_records
@@ -58,12 +59,45 @@ class PlainBox:
         self._checkbox = CheckBox()
 
     def main(self, argv=None):
-        basicConfig(level="WARNING")
         # TODO: setup sane logging system that works just as well for Joe user
         # that runs checkbox from the CD as well as for checkbox developers and
         # custom debugging needs.  It would be perfect^Hdesirable not to create
         # another broken, never-rotated, uncapped logging crap that kills my
         # SSD by writing junk to ~/.cache/
+        basicConfig(level="WARNING")
+        parser = self._construct_parser()
+        ns = parser.parse_args(argv)
+        # Set the desired log level
+        if ns.log_level:
+            getLogger("").setLevel(ns.log_level)
+        # Load built-in job definitions
+        job_list = self.get_builtin_jobs()
+        # Load additional job definitions
+        job_list.extend(self._load_jobs(ns.load_extra))
+        # Now either do a special action or run the jobs
+        if ns.special == "list-jobs":
+            self._print_job_list(ns, job_list)
+        elif ns.special == "list-expr":
+            self._print_expression_list(ns, job_list)
+        elif ns.special == "dep-graph":
+            self._print_dot_graph(ns, job_list)
+        else:
+            if ns.output_format == '?':
+                self._print_output_format_list(ns)
+            else:
+                exporter_cls = get_all_exporters()[ns.output_format]
+                if ns.output_options:
+                    option_list = ns.output_options.split(',')
+                else:
+                    option_list = None
+                try:
+                    exporter = exporter_cls(option_list)
+                except ValueError as exc:
+                    raise SystemExit(str(exc))
+                else:
+                    self._run_jobs(ns, job_list, exporter)
+
+    def _construct_parser(self):
         parser = ArgumentParser(prog="plainbox")
         parser.add_argument(
             "-v", "--version", action="version",
@@ -99,6 +133,21 @@ class PlainBox:
         group.add_argument(
             '-n', '--dry-run', action='store_true',
             help="Don't actually run any jobs")
+        group = parser.add_argument_group("output options")
+        assert 'text' in get_all_exporters()
+        group.add_argument(
+            '-f', '--output-format', default='text',
+            metavar='FORMAT', choices=['?',] + list(get_all_exporters().keys()),
+            help='Save test results in the specified FORMAT')
+        group.add_argument(
+            '-p', '--output-options', default='',
+            metavar='OPTIONS',
+            help='Comma-separated list of options for the export mechanism')
+        group.add_argument(
+            '-o', '--output-file', default='-',
+            metavar='FILE', type=FileType("wt"),
+            help=('Save test results to the specified FILE'
+                  ' (or to stdout if FILE is -)'))
         group = parser.add_argument_group("special options")
         group.add_argument(
             '--list-jobs', help="List jobs instead of running them",
@@ -112,24 +161,11 @@ class PlainBox:
         group.add_argument(
             '--dot-resources', action='store_true',
             help="Render resource relationships (for --dot)")
-        ns = parser.parse_args(argv)
+        return parser
 
-        # Set the desired log level
-        if ns.log_level:
-            getLogger("").setLevel(ns.log_level)
-        # Load built-in job definitions
-        job_list = self.get_builtin_jobs()
-        # Load additional job definitions
-        job_list.extend(self._load_jobs(ns.load_extra))
-        # Now either do a special action or run the jobs
-        if ns.special == "list-jobs":
-            self._print_job_list(ns, job_list)
-        elif ns.special == "list-expr":
-            self._print_expression_list(ns, job_list)
-        elif ns.special == "dep-graph":
-            self._print_dot_graph(ns, job_list)
-        else:
-            self._run_jobs(ns, job_list)
+    def _print_output_format_list(self, ns):
+        print("Available output formats: {}".format(
+            ', '.join(get_all_exporters())))
 
     def _get_matching_job_list(self, ns, job_list):
         # Find jobs that matched patterns
@@ -195,7 +231,7 @@ class PlainBox:
                         expression.text.replace('"', "'")))
         print("}")
 
-    def _run_jobs(self, ns, job_list):
+    def _run_jobs(self, ns, job_list, exporter):
         # Compute the run list, this can give us notification about problems in
         # the selected jobs. Currently we just display each problem
         matching_job_list = self._get_matching_job_list(ns, job_list)
@@ -212,11 +248,16 @@ class PlainBox:
             runner = JobRunner(self._checkbox, session.session_dir,
                                outcome_callback=outcome_callback)
             self._run_jobs_with_session(ns, session, runner)
-        print("[ Results ]".center(80, '='))
-        for job_name in sorted(session.job_state_map):
-            job_state = session.job_state_map[job_name]
-            if job_state.result.outcome != JobResult.OUTCOME_NONE:
-                print("{}: {}".format(job_name, job_state.result.outcome))
+            self._save_results(ns, session, exporter)
+
+    def _save_results(self, ns, session, exporter):
+        if ns.output_file is sys.stdout:
+            print("[ Results ]".center(80, '='))
+        else:
+            print("Saving results to {}".format(ns.output_file.name))
+        data = exporter.get_session_data_subset(session)
+        with ns.output_file as stream:
+            exporter.dump(data, stream)
 
     def ask_for_outcome(self, prompt=None, allowed=None):
         if prompt is None:
