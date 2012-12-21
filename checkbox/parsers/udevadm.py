@@ -92,7 +92,14 @@ class UdevadmDevice:
     @property
     def category(self):
         if "IFINDEX" in self._environment:
+            if "DEVTYPE" in self._environment:
+                devtype = self._environment["DEVTYPE"]
+                if devtype == "wlan":
+                    return "WIRELESS"
             return "NETWORK"
+
+        if self.bus == "sound":
+            return "AUDIO"
 
         if self.bus == "ieee80211":
             return "WIRELESS"
@@ -383,6 +390,9 @@ class UdevadmDevice:
         if self.driver == "floppy":
             return "Platform Device"
 
+        if "ID_MODEL_FROM_DATABASE" in self._environment:
+            return self._environment["ID_MODEL_FROM_DATABASE"]
+
         return None
 
     @property
@@ -406,6 +416,17 @@ class UdevadmDevice:
         elif self._environment.get("DEVTYPE") == "disk" \
              and "ID_VENDOR_ENC" in self._environment:
             return decode_id(self._environment["ID_VENDOR_ENC"])
+
+        if "ID_VENDOR_FROM_DATABASE" in self._environment:
+            return self._environment["ID_VENDOR_FROM_DATABASE"]
+
+        return None
+
+    @property
+    def interface(self):
+        if self.category in ("NETWORK", "WIRELESS") \
+            and "INTERFACE" in self._environment:
+            return self._environment["INTERFACE"]
 
         return None
 
