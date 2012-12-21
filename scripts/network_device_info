@@ -195,7 +195,7 @@ def match_counts(nm_devices, udev_devices, devtype):
     # now check that the count (by type) matches - WiFi
     nm_type_devices = list(filter(lambda dev: dev.gettype() == devtype,
         nm_devices))
-    udevtype = 'WIRELESS' if devtype == 'Wifi' else 'NETWORK'
+    udevtype = 'WIRELESS' if devtype == 'WiFi' else 'NETWORK'
     udev_type_devices = list(filter(lambda dev: dev.category == udevtype,
         udev_devices))
     if len(nm_type_devices) != len(udev_type_devices):
