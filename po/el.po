@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-15 04:34+0000\n"
-"X-Generator: Launchpad (build 16372)\n"
+"X-Launchpad-Export-Date: 2012-12-25 04:33+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
 msgstr "_Δοκιμή"
 
@@ -29,7 +29,8 @@ msgstr "_Παράλειψη ελέγχου"
 msgid "One of debug, info, warning, error or critical."
 msgstr "Μια εκ των debug, info, warning, error ή critical."
 
-#: ../plugins/gather_prompt.py:35
+#. Resolve dependencies
+#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
 msgid "Gathering information from your system..."
 msgstr "Συλλογή πληροφοριών από το σύστημά σας..."
 
@@ -63,7 +64,7 @@ msgstr "Ανταλλαγή πληροφοριών με τον εξυπηρετη
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43
 msgid "System Testing"
 msgstr "Δοκιμή συστήματος"
 
@@ -75,8 +76,8 @@ msgstr "_Ναι"
 msgid "_No"
 msgstr "Ό_χι"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Περαιτέρω πληροφορίες:"
 
@@ -108,7 +109,7 @@ msgid "Test to detect audio devices"
 msgstr "Έλεγχος για ανίχνευση συσκευών ήχου"
 
 #. description
-#: ../jobs/audio.txt.in:16
+#: ../jobs/audio.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -158,7 +159,7 @@ msgstr ""
 "   2. Ακούσατε κάποιον ήχο;"
 
 #. description
-#: ../jobs/audio.txt.in:33
+#: ../jobs/audio.txt.in:58
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -180,7 +181,7 @@ msgstr ""
 "κλικ ή άλλους περίεργους ήχους από τα ακουστικά σας;"
 
 #. description
-#: ../jobs/audio.txt.in:49
+#: ../jobs/audio.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -205,7 +206,7 @@ msgstr ""
 "    Ακούσατε την αναπαραγωγή της ομιλίας σας;"
 
 #. description
-#: ../jobs/audio.txt.in:66
+#: ../jobs/audio.txt.in:93
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -230,7 +231,7 @@ msgstr ""
 "    Ακούσατε την αναπαραγωγή της ομιλίας σας;"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:110
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -283,7 +284,7 @@ msgstr ""
 "αποτελέσματα."
 
 #. description
-#: ../jobs/disk.txt.in:9
+#: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
 msgstr "Δοκιμές απόδοσης για κάθε δίσκο"
 
@@ -590,13 +591,13 @@ msgstr ""
 "    Λειτούργησε το ποντίκι όπως θα περιμένατε;"
 
 #. description
-#: ../jobs/camera.txt.in:7
+#: ../jobs/camera.txt.in:6
 msgid "This Automated test attempts to detect a camera."
 msgstr ""
 "Αυτός ο αυτοματοποιημένος έλεγχος έχει σαν σκοπό την ανίχνευσης κάμερας."
 
 #. description
-#: ../jobs/camera.txt.in:16
+#: ../jobs/camera.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -615,7 +616,7 @@ msgstr ""
 "    Είδατε τη λήψη βίντεο;"
 
 #. description
-#: ../jobs/camera.txt.in:33
+#: ../jobs/camera.txt.in:32
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -676,7 +677,7 @@ msgstr ""
 "   Αναπαράχθηκε σωστά το δείγμα;"
 
 #. description
-#: ../jobs/cpu.txt.in:8
+#: ../jobs/cpu.txt.in:9
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
@@ -691,22 +692,22 @@ msgstr ""
 "cpu/scaling_test στα αποτελέσματα."
 
 #. description
-#: ../jobs/cpu.txt.in:15
+#: ../jobs/cpu.txt.in:23
 msgid "Test for clock jitter."
 msgstr "Δοκιμή τρέμουλου ρολογιού (clock jitter)."
 
 #. description
-#: ../jobs/cpu.txt.in:23
+#: ../jobs/cpu.txt.in:31
 msgid "Test offlining CPUs in a multicore system."
 msgstr "Δοκιμή απενεργοποίησης επεξεργαστών σε ένα πολυπήρυνο σύστημα."
 
 #. description
-#: ../jobs/cpu.txt.in:30
+#: ../jobs/cpu.txt.in:38
 msgid "This test checks cpu topology for accuracy"
 msgstr "Αυτός ο έλεγχος ελέγχει την ακρίβεια της τοπολογίας του επεξεργαστή"
 
 #. description
-#: ../jobs/cpu.txt.in:38
+#: ../jobs/cpu.txt.in:46
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
 "Αυτή η δοκιμή ελέγχει ότι ακολουθούνται οι ρυθμίσεις των ελεγκτών συχνότητας "
@@ -795,31 +796,31 @@ msgid "Detects and displays disks attached to the system."
 msgstr "Εντοπίζει και απεικονίζει τους συνημμένους δίσκους στο σύστημα."
 
 #. description
-#: ../jobs/disk.txt.in:23
+#: ../jobs/disk.txt.in:9
 msgid "Check stats changes for each disk"
 msgstr "Έλεγχος αλλαγής κατάστασης για κάθε δίσκο"
 
 #. description
-#: ../jobs/disk.txt.in:40
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "Δοκιμή SMART"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Ο μέγιστος χώρος δίσκου που χρησιμοποιήθηκε κατά τη δοκιμή μιας "
 "προεπιλεγμένης εγκατάστασης"
 
 #. description
-#: ../jobs/disk.txt.in:71
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Επαληθεύει ότι το σύστημα αποθήκευσης αποδίδει τουλάχιστον ή περισσότερο από "
 "τη μέση απόδοση"
 
 #. description
-#: ../jobs/disk.txt.in:88
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -976,19 +977,19 @@ msgid "Floppy test"
 msgstr "Δοκιμή Floppy"
 
 #. description
-#: ../jobs/graphics.txt.in:5
+#: ../jobs/graphics.txt.in:10
 msgid "Test to output the Xorg version"
 msgstr "Δοκιμή για την έξοδο της έκδοσης Xorg"
 
 #. description
-#: ../jobs/graphics.txt.in:12
+#: ../jobs/benchmarks.txt.in:34
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Εκτελέστε το gtkperf για να είστε σίγουροι πως λειτουργούν οι δοκιμές που "
 "βασίζονται στο GTK"
 
 #. description
-#: ../jobs/graphics.txt.in:18
+#: ../jobs/graphics.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -1042,17 +1043,17 @@ msgstr ""
 "    Άλλαξε η περιστροφή της οθόνης όπως θα περιμένατε;"
 
 #. description
-#: ../jobs/graphics.txt.in:50
+#: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
 msgstr "Δοκιμή ότι η διεργασία X εκτελείται."
 
 #. description
-#: ../jobs/graphics.txt.in:56
+#: ../jobs/graphics.txt.in:37
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Δοκιμή ότι η διεργασία X εκτελείται σε ασφαλή λειτουργία."
 
 #. description
-#: ../jobs/graphics.txt.in:63
+#: ../jobs/graphics.txt.in:44
 msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
@@ -1061,7 +1062,7 @@ msgstr ""
 "εκτέλεση προγραμμάτων σε συστήματα με γραφικά Intel."
 
 #. description
-#: ../jobs/graphics.txt.in:70
+#: ../jobs/graphics.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -1082,7 +1083,7 @@ msgstr ""
 "    Είναι αυτή η ανάλυση αποδεκτή για την οθόνη σας;"
 
 #. description
-#: ../jobs/graphics.txt.in:85
+#: ../jobs/graphics.txt.in:66
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
@@ -1091,12 +1092,12 @@ msgstr ""
 "ελάχιστη ανάλυση (800x600) ή την υπερβαίνει. Δείτε εδώ για λεπτομέρειες:"
 
 #. description
-#: ../jobs/graphics.txt.in:85
+#: ../jobs/graphics.txt.in:66
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:95
+#: ../jobs/graphics.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -1114,12 +1115,12 @@ msgstr ""
 "    Βλέπετε τις γραμμές χρωμάτων και τις στατικές απεικονίσεις;"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:99
 msgid "Check that VESA drivers are not in use"
 msgstr "Έλεγχος για το ότι οι οδηγοί VESA δεν χρησιμοποιούνται"
 
 #. description
-#: ../jobs/graphics.txt.in:113
+#: ../jobs/graphics.txt.in:106
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1138,17 +1139,17 @@ msgstr ""
 "    Φάνηκε η οθόνη να λειτουργεί για κάθε τρόπο λειτουργίας;"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:132
 msgid "Check that hardware is able to run compiz"
 msgstr "Έλεγχος για το αν το υλικό είναι ικανό να τρέξει το compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:139
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Έλεγχος για το αν το υλικό είναι ικανό να τρέξει το Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:145
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1291,7 +1292,7 @@ msgid "Attaches dmidecode output"
 msgstr "Επισύναψη του αποτελέσματος της εντολής  dmidecode"
 
 #. description
-#: ../jobs/info.txt.in:31
+#: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
 msgstr "Επισύναψη πολύ αναλυτικού αποτελέσματος της εντολής lspci"
 
@@ -1308,27 +1309,27 @@ msgid "List USB devices"
 msgstr "Απαρίθμηση συσκευών USB"
 
 #. description
-#: ../jobs/info.txt.in:40
+#: ../jobs/info.txt.in:58
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "Επισύναψη του περιεχομένου των διαφόρων modprobe conf αρχείων"
 
 #. description
-#: ../jobs/info.txt.in:45
+#: ../jobs/info.txt.in:63
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "Επισύναψη του περιεχομένου του αρχείου /etc/modules."
 
 #. description
-#: ../jobs/info.txt.in:50
+#: ../jobs/info.txt.in:68
 msgid "attaches the contents of various sysctl config files."
 msgstr "Επισύναψη των περιεχομένων διαφόρων αρχείων ρυθμίσεων sysctl"
 
 #. description
-#: ../jobs/info.txt.in:54
+#: ../jobs/info.txt.in:72
 msgid "Attaches a report of sysfs attributes."
 msgstr "Επισύναψη μίας αναφοράς των χαρακτηριστικών sysfs"
 
 #. description
-#: ../jobs/info.txt.in:65
+#: ../jobs/info.txt.in:83
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
@@ -1336,54 +1337,54 @@ msgstr ""
 "πληροφορίες για το υλικό του συστήματος."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:90
 msgid "Attaches a tarball of gcov data if present."
 msgstr "Επισύναψη ενός συμπιεσμένου αρχείου με δεδομένα gconv αν υπάρχουν."
 
 #. description
-#: ../jobs/info.txt.in:77
+#: ../jobs/info.txt.in:95
 msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 "Επισύναψη μίας λίστας των εκτελούμενων τη δεδομένη στιγμή αρθρωμάτων του "
 "πυρήνα."
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:100
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Επισύναψη του περιεχόμενου του αρχείου /proc/acpi/sleep αν υπάρχει."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:104
 msgid "Bootchart information."
 msgstr "Πληροφορίες Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:113
 msgid "SATA/IDE device information."
 msgstr "Πληροφορίες συσκευών SATA/IDE"
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:132
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 "Επισύναψη του αρχείου bootchart png για εκτελέσεις του προγράμματος bootchart"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:141
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 "Επισύναψη των καταγραφών bootchart για δοκιμαστικές εκτελέσεις του "
 "προγράμματος bootchart"
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:149
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 "εγκαθιστά τον οδηγό εγκατάστασης του συμπιεσμένου αρχείου bootchart αν "
 "υπάρχει."
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:154
 msgid "Attaches the installer debug log if it exists."
 msgstr "Επισύναψη της καταγραφής αποσφαλμάτωσης του εγκαταστάτη αν υπάρχει."
 
@@ -1634,47 +1635,47 @@ msgid "Disk tests"
 msgstr "Δοκιμές δίσκου"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Δοκιμές αναγνώστη δακτυλικών αποτυπωμάτων"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Δοκιμές δίσκου Firewire"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Έλεγχοι δισκετών Floppy"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Έλεγχοι γραφικών"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Έλεγχοι αδρανοποίησης"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Πληροφοριακοί έλεγχοι"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Έλεγχοι συσκευών εισόδου"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Έλεγχοι εγκατάστασης λογισμικού"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Έλεγχοι συντομεύσεων πλήκτρων"
 
@@ -1724,42 +1725,42 @@ msgid "Peripheral tests"
 msgstr "Έλεγχοι περιφερειακών"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:199
 msgid "Power Management tests"
 msgstr "Έλεγχοι διαχείρισης ενέργειας"
 
 #. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:206
 msgid "Server Services checks"
 msgstr "Έλεγχοι υπηρεσιών εξυπηρετητή"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:213
 msgid "Suspend tests"
 msgstr "Έλεγχοι αναστολής λειτουργίας"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:220
 msgid "Touchpad tests"
 msgstr "Δοκιμές touchpad"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:234
 msgid "USB tests"
 msgstr "Έλεγχοι USB"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:241
 msgid "User Applications"
 msgstr "Εφαρμογές χρήστη"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:248
 msgid "Wireless networking tests"
 msgstr "Έλεγχοι ασύρματης δικτύωσης"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:255
 msgid "Stress tests"
 msgstr "Έλεγχοι υπερβολικού φόρτου"
 
@@ -2322,7 +2323,7 @@ msgstr ""
 "    Δεν υπάρχει κάτι για επιβεβαίωση"
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -2345,7 +2346,7 @@ msgstr ""
 "πίσω στην τρέχουσα συνεδρία σας;"
 
 #. description
-#: ../jobs/miscellanea.txt.in:21
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Εκτέλεση των αυτοματοποιημένων ελέγχων της σουίτας firmware (fwts)"
 
@@ -2355,7 +2356,7 @@ msgid "Attaches the FWTS results log to the submission"
 msgstr "Επισυνάπτει στην υποβολή το αρχείο καταγραφής των αποτελεσμάτων FWTS"
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:53
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -2365,7 +2366,7 @@ msgstr ""
 "Platform Management Interface (IPMI) λειτουργεί."
 
 #. description
-#: ../jobs/miscellanea.txt.in:37
+#: ../jobs/miscellanea.txt.in:59
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -2375,7 +2376,7 @@ msgstr ""
 "υπολογιστές."
 
 #. description
-#: ../jobs/miscellanea.txt.in:45
+#: ../jobs/miscellanea.txt.in:67
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -2386,7 +2387,7 @@ msgstr ""
 "αναφέρει την κατάσταση του καταλόγου (δεν υπάρχει/είναι κενός)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:53
+#: ../jobs/miscellanea.txt.in:75
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2543,23 +2544,23 @@ msgstr ""
 "    Έσβησε η οθόνη και μετά άναψε ξανά;"
 
 #. description
-#: ../jobs/networking.txt.in:5
+#: ../jobs/networking.txt.in:8
 msgid "Test to detect the available network controllers"
 msgstr "Δοκιμή για την ανίχνευση των διαθέσιμων ελεγκτών δικτύου"
 
 #. description
-#: ../jobs/networking.txt.in:11
+#: ../jobs/networking.txt.in:14
 msgid "Tests whether the system has a working Internet connection."
 msgstr ""
 "Δοκιμή για το αν στο σύστημα υπάρχει λειτουργική σύνδεση με το διαδίκτυο."
 
 #. description
-#: ../jobs/networking.txt.in:16
+#: ../jobs/networking.txt.in:19
 msgid "Network Information"
 msgstr "Πληροφορίες δικτύου"
 
 #. description
-#: ../jobs/networking.txt.in:40
+#: ../jobs/networking.txt.in:43
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
@@ -2569,7 +2570,7 @@ msgstr ""
 "τεστ θα τερματιστεί με ένα σφάλμα."
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/networking.txt.in:49
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2592,7 +2593,7 @@ msgstr ""
 "    Εμφανίστηκε μία ειδοποίηση και επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
-#: ../jobs/networking.txt.in:59
+#: ../jobs/networking.txt.in:62
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2624,7 +2625,7 @@ msgstr ""
 "    Εμφανίστηκε μία ειδοποίηση και επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:79
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -2633,7 +2634,7 @@ msgstr ""
 "κάποιου συστήματος στο δίκτυο χρησιμοποιώντας πακέτα ICMP ECHO."
 
 #. description
-#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -2642,14 +2643,14 @@ msgstr ""
 "αρχείων μέσω HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:91
+#: ../jobs/networking.txt.in:94
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 "Έλεγχος για τη διαπίστωση της δυνατότητας συγχρονισμού του τοπικού ρολογιού "
 "με έναν εξυπηρετητή NTP"
 
 #. description
-#: ../jobs/networking.txt.in:97
+#: ../jobs/networking.txt.in:100
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
@@ -2658,14 +2659,14 @@ msgstr ""
 "να είναι προσβάσιμη μέσω SSH."
 
 #. description
-#: ../jobs/networking.txt.in:103
+#: ../jobs/networking.txt.in:106
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 "Δοκιμή για την ενεργοποίηση ενός απομακρυσμένου εκτυπωτή στο δίκτυο και την "
 "εκτύπωση δοκιμαστικής σελίδας."
 
 #. description
-#: ../jobs/networking.txt.in:108
+#: ../jobs/networking.txt.in:111
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
@@ -2673,12 +2674,12 @@ msgstr ""
 "διαδοχική δοκιμή κάθε μιας από αυτές."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:134
 msgid "Test to measure the network bandwidth"
 msgstr "Δοκιμή για τη μέτρηση του εύρους ζώνης δικτύου (bandwidth)"
 
 #. description
-#: ../jobs/optical.txt.in:8
+#: ../jobs/optical.txt.in:4
 msgid "Test to detect the optical drives"
 msgstr "Δοκιμή για την ανίχνευση οδηγών οπτικών συσκευών"
 
@@ -2744,7 +2745,7 @@ msgstr ""
 "σε περίπτωση αποτυχίας."
 
 #. description
-#: ../jobs/optical.txt.in:46
+#: ../jobs/optical.txt.in:90
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2809,7 +2810,7 @@ msgstr ""
 "σε περίπτωση αποτυχίας."
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:149
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2844,7 +2845,7 @@ msgstr ""
 "    Λειτούργησαν όλα τα βήματα;"
 
 #. description
-#: ../jobs/optical.txt.in:100
+#: ../jobs/optical.txt.in:167
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2884,7 +2885,7 @@ msgstr ""
 "   Δείχνει το ρολόι τη σωστή ημερομηνία και ώρα για τη ζώνη ώρας σας;"
 
 #. description
-#: ../jobs/panel_clock_test.txt.in:16
+#: ../jobs/panel_clock_test.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock synchronizes with the system "
@@ -3145,7 +3146,7 @@ msgstr ""
 "διαχείρισης ενέργειας/επανεκκίνησης στα αποτελέσματα."
 
 #. description
-#: ../jobs/power-management.txt.in:15
+#: ../jobs/power-management.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3162,7 +3163,7 @@ msgstr ""
 "   Προκαλεί το κλείσιμο του καπακιού την αναστολή λειτουργίας του συστήματος;"
 
 #. description
-#: ../jobs/power-management.txt.in:32
+#: ../jobs/power-management.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3181,7 +3182,7 @@ msgstr ""
 "    Έσβησε η οθόνη όσο το καπάκι ήταν κλειστό;"
 
 #. description
-#: ../jobs/power-management.txt.in:50
+#: ../jobs/power-management.txt.in:118
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3204,12 +3205,12 @@ msgstr ""
 "    Συνέχισε το σύστημα τη λειτουργία του όταν άνοιξε το καπάκι;"
 
 #. description
-#: ../jobs/power-management.txt.in:66
+#: ../jobs/power-management.txt.in:134
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Βεβαιωθείτε ότι υπάρχει η συσκευή RTC (Real-Time Clock)."
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:140
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -3387,7 +3388,7 @@ msgstr ""
 "μετά από την εκτέλεση της δοκιμής αναστολής λειτουργίας"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3397,7 +3398,7 @@ msgstr ""
 "αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3426,24 +3427,24 @@ msgstr ""
 "    Έγινε σωστά η αναστολή λειτουργίας του συστήματος και η επαναφορά του;"
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:130
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 "Αυτή είναι η αυτοματοποιημένη έκδοση του τεστ αναστολή/προχωρημένη_αναστολή."
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:145
 msgid "Test the network after resuming."
 msgstr "Δοκιμή της σύνδεσης δικτύου μετά την επαναφορά."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Δοκιμή διατήρησης της ανάλυσης μετά την επαναφορά."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:160
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3451,14 +3452,14 @@ msgstr ""
 "λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:177
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 "Επαλήθευση για το ότι όλες οι μονάδες επεξεργασίας (CPU) βρίσκονται σε "
 "σύνδεση μετά την επαναφορά από την αναστολή λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:194
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Επαλήθευση της διαθεσιμότητας ολόκληρης της μνήμης μετά την επαναφορά από "
@@ -3486,7 +3487,7 @@ msgstr ""
 "    Δουλεύει φυσιολογικά η οθόνη μετά την επαναφορά;"
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:216
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3537,7 +3538,7 @@ msgstr ""
 "χωρίς ασφάλεια και πρωτόκολλα 802.11n μετά την αναμονή του συστήματος."
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:272
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3547,7 +3548,7 @@ msgstr ""
 "συλληφθείσα διεύθυνση."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:302
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3557,7 +3558,7 @@ msgstr ""
 "BTDEVADDR συσκευή."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:333
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3583,7 +3584,7 @@ msgstr ""
 "    Μεταφέρθηκαν σωστά τα δεδομένα;"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:347
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3602,7 +3603,7 @@ msgstr ""
 "    Φαινόταν σωστά η οθόνη σας σε όλους τους τρόπος λειτουργίας;"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:359
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3614,7 +3615,7 @@ msgstr ""
 "στιγμιότυπα της οθόνης και μεταφορτώνοντάς τα ως επισυνάψεις."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:368
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3624,7 +3625,7 @@ msgstr ""
 "αναφορά αποτελεσμάτων."
 
 #. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:378
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -4311,7 +4312,7 @@ msgstr ""
 " Έπαιξε το βίντεο σωστά;"
 
 #. description
-#: ../jobs/user_apps.txt.in:283
+#: ../jobs/user_apps.txt.in:285
 msgid ""
 "PURPOSE:\n"
 " This test will check that Firefox can play a Quicktime (.mov) video file.\n"
@@ -4334,7 +4335,7 @@ msgstr ""
 " Έγινε η αναπαραγωγή του βίντεο χρησιμοποιώντας ένα πρόσθετο;"
 
 #. description
-#: ../jobs/user_apps.txt.in:297
+#: ../jobs/user_apps.txt.in:299
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4356,7 +4357,7 @@ msgstr ""
 " Μπορέσατε να συνδεθείτε επιτυχώς και να στείλετε/λάβετε μηνύματα;"
 
 #. description
-#: ../jobs/user_apps.txt.in:311
+#: ../jobs/user_apps.txt.in:313
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4378,7 +4379,7 @@ msgstr ""
 " Μπορέσατε να συνδεθείτε κανονικά και να στείλετε/λάβετε μηνύματα;"
 
 #. description
-#: ../jobs/user_apps.txt.in:325
+#: ../jobs/user_apps.txt.in:327
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4400,7 +4401,7 @@ msgstr ""
 " Μπορέσατε να συνδεθείτε κανονικά και να στείλετε/λάβετε μηνύματα;"
 
 #. description
-#: ../jobs/user_apps.txt.in:339
+#: ../jobs/user_apps.txt.in:341
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4423,7 +4424,7 @@ msgstr ""
 " Μπορέσατε να συνδεθείτε κανονικά και να στείλετε/λάβετε μηνύματα;"
 
 #. description
-#: ../jobs/user_apps.txt.in:353
+#: ../jobs/user_apps.txt.in:355
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4445,7 +4446,7 @@ msgstr ""
 " Μπορέσατε να συνδεθείτε κανονικά και να στείλετε/λάβετε μηνύματα;"
 
 #. description
-#: ../jobs/user_apps.txt.in:367
+#: ../jobs/user_apps.txt.in:369
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4465,7 +4466,7 @@ msgstr ""
 "mail) κανονικά;"
 
 #. description
-#: ../jobs/user_apps.txt.in:380
+#: ../jobs/user_apps.txt.in:382
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4485,7 +4486,7 @@ msgstr ""
 "mail) κανονικά;"
 
 #. description
-#: ../jobs/user_apps.txt.in:393
+#: ../jobs/user_apps.txt.in:395
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4505,7 +4506,7 @@ msgstr ""
 "σφάλματα;"
 
 #. description
-#: ../jobs/user_apps.txt.in:406
+#: ../jobs/user_apps.txt.in:408
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4522,7 +4523,7 @@ msgstr ""
 " Έγινε κανονικά η εκκίνηση της εφαρμογής;"
 
 #. description
-#: ../jobs/user_apps.txt.in:419
+#: ../jobs/user_apps.txt.in:421
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4548,7 +4549,7 @@ msgstr ""
 " Πραγματοποιήθηκαν οι πράξεις όπως θα έπρεπε;"
 
 #. description
-#: ../jobs/user_apps.txt.in:436
+#: ../jobs/user_apps.txt.in:438
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4574,7 +4575,7 @@ msgstr ""
 " Πραγματοποιήθηκαν οι πράξεις όπως θα έπρεπε;"
 
 #. description
-#: ../jobs/user_apps.txt.in:453
+#: ../jobs/user_apps.txt.in:455
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4598,7 +4599,7 @@ msgstr ""
 " Πραγματοποιήθηκαν οι λειτουργίες όπως θα έπρεπε;"
 
 #. description
-#: ../jobs/user_apps.txt.in:468
+#: ../jobs/user_apps.txt.in:470
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4620,7 +4621,7 @@ msgstr ""
 " Πραγματοποιήθηκε αυτή η ενέργεια όπως θα έπρεπε;"
 
 #. description
-#: ../jobs/user_apps.txt.in:482
+#: ../jobs/user_apps.txt.in:484
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4641,7 +4642,7 @@ msgstr ""
 " Πραγματοποιήθηκε αυτή η ενέργεια όπως θα έπρεπε;"
 
 #. description
-#: ../jobs/user_apps.txt.in:495
+#: ../jobs/user_apps.txt.in:497
 msgid ""
 "PURPOSE:\n"
 " This test will check that Gnome Terminal works.\n"
@@ -4664,14 +4665,14 @@ msgstr ""
 " Πραγματοποιήθηκε αυτή η ενέργεια όπως θα έπρεπε;"
 
 #. description
-#: ../jobs/wireless.txt.in:6
+#: ../jobs/wireless.txt.in:20
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
 "Έλεγχος ασύρματης ανίχνευσης. Διενεργεί σάρωση και επιστρέφει μία αναφορά "
 "για τα ανακαλυφθέντα AP."
 
 #. description
-#: ../jobs/wireless.txt.in:12
+#: ../jobs/wireless.txt.in:26
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -4694,7 +4695,7 @@ msgstr ""
 "    Εμφανίστηκε μία ειδοποίηση και επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
-#: ../jobs/wireless.txt.in:28
+#: ../jobs/wireless.txt.in:42
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
@@ -4704,7 +4705,7 @@ msgstr ""
 "πρωτόκολλο 802.11b/g."
 
 #. description
-#: ../jobs/wireless.txt.in:38
+#: ../jobs/wireless.txt.in:52
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
@@ -4714,7 +4715,7 @@ msgstr ""
 "χρησιμοποιώντας πρωτόκολλο 802.11b/g."
 
 #. description
-#: ../jobs/wireless.txt.in:48
+#: ../jobs/wireless.txt.in:62
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
@@ -4724,7 +4725,7 @@ msgstr ""
 "πρωτόκολλο 802.11n."
 
 #. description
-#: ../jobs/wireless.txt.in:58
+#: ../jobs/wireless.txt.in:72
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
@@ -4734,7 +4735,7 @@ msgstr ""
 "χρησιμοποιώντας πρωτόκολλο 802.11n."
 
 #. description
-#: ../jobs/wireless.txt.in:70
+#: ../jobs/wireless.txt.in:84
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
@@ -4743,7 +4744,7 @@ msgstr ""
 "εργαλείου iperf."
 
 #. description
-#: ../jobs/wireless.txt.in:81
+#: ../jobs/wireless.txt.in:95
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -4884,107 +4885,107 @@ msgid "Unknown signal"
 msgstr "Άγνωστο σήμα"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "ναι"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "όχι"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "παράλειψη"
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "Πατήστε ένα πλήκτρο για να συνεχίσετε..."
 
-#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Παρακαλούμε επιλέξτε (%s): "
 
-#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
-#: ../checkbox_cli/cli_interface.py:368
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Ελεύθερος χώρος μετά την ολοκλήρωση"
 
-#: ../checkbox_cli/cli_interface.py:367
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "Συνδυασμός με τον πιο πάνω χαρακτήρα για την επέκταση του κόμβου"
 
-#: ../checkbox_cli/cli_interface.py:416
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "έλεγχος"
 
-#: ../checkbox_cli/cli_interface.py:440
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "έλεγχος ξανά"
 
-#: ../checkbox_cli/cli_interface.py:446
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Παρακαλώ πληκτρολογήστε εδώ και όταν τελειώσετε πατήστε Ctrl-D:\n"
 
-#: ../checkbox_urwid/urwid_interface.py:66
+#: ../checkbox_urwid/urwid_interface.py:86
 msgid "Checkbox System Testing"
 msgstr "Δοκιμή συστήματος Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:105
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: ../checkbox_urwid/urwid_interface.py:198
-#: ../checkbox_urwid/urwid_interface.py:274
-#: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: ../checkbox_urwid/urwid_interface.py:199
-#: ../checkbox_urwid/urwid_interface.py:275
-#: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Επόμενο"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
+#: ../checkbox_urwid/urwid_interface.py:445
 msgid "Select All"
 msgstr "Επιλογή όλων"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:446
 msgid "Deselect All"
 msgstr "Αποεπιλογή όλων"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:545
+#: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
 msgstr "Ανάπτυξη όλων"
 
-#: ../checkbox_urwid/urwid_interface.py:546
+#: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
 msgstr "Σύμπτυξη όλων"
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Δοκιμή"
 
-#: ../checkbox_urwid/urwid_interface.py:1028
+#: ../checkbox_urwid/urwid_interface.py:1049
 msgid "Test Again"
 msgstr "Επανάληψη δοκιμής"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:525
 msgid "_Test Again"
 msgstr "Έλεγχ_ος ξανά"
 
-#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:528
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -5158,7 +5159,7 @@ msgstr "Δημιουργία αναφοράς..."
 msgid "Running %s..."
 msgstr "Εκτέλεση %s..."
 
-#: ../qt/frontend/treemodel.cpp:13
+#: ../plugins/suites_prompt.py:36
 msgid ""
 "Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
@@ -5173,147 +5174,147 @@ msgstr ""
 msgid "Choose tests to run on your system:"
 msgstr "Επιλέξτε δοκιμές για να τρέξει στο σύστημά σας:"
 
-#: ../scripts/keyboard_test:21
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr "Εισάγετε κείμενο:\n"
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr "Πληκτρολογήστε κείμενο"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "Δεν υπάρχει σύνδεση με το Διαδίκτυο"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "Η σύνδεση που πραγματοποιήθηκε έχασε ένα πακέτο"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιήθηκε πλήρως"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Audio Test"
 msgstr "Δοκιμή ήχου"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Bluetooth Test"
 msgstr "Έλεγχος Bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:82
 msgid "Camera Test"
 msgstr "Δοκιμή κάμερας"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:83
 msgid "CPU Test"
 msgstr "Δοκιμή επεξεργαστή (CPU)"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Disk Test"
 msgstr "Δοκιμή δίσκου"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Firewire Test"
 msgstr "Δοκιμή Firewire"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Graphics Test"
 msgstr "Δοκιμή γραφικών"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Info Test"
 msgstr "Έλεγχος πληροφοριών"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Input Test"
 msgstr "Δοκιμή εισόδου"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Keys Test"
 msgstr "Δοκιμή πλήκτρων"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Media Card Test"
 msgstr "Έλεγχος κάρτας πολυμέσων"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Memory Test"
 msgstr "Δοκιμή μνήμης"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Miscellanea Test"
 msgstr "Διάφοροι ελέγχοι"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Monitor Test"
 msgstr "Δοκιμή οθόνης"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Networking Test"
 msgstr "Δοκιμή δικτύωσης"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Wireless Test"
 msgstr "Έλεγχος ασύρματης σύνδεσης"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Optical Test"
 msgstr "Έλεγχος οπτικού δίσκου"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:97
 msgid "PCMCIA/PCIX Test"
 msgstr "Έλεγχος PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Power Management Test"
 msgstr "Έλεγχος διαχείρησης ενέργειας"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Suspend Test"
 msgstr "Δοκιμή αναστολής"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:100
 msgid "USB Test"
 msgstr "Έλεχγος USB"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Not Started"
 msgstr "Δεν έχει ξεκινήσει"
 
-#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Supported"
 msgstr "Δεν υποστηρίζεται"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Resolved"
 msgstr "Μη επιλυμένο"
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Tested"
 msgstr "Δεν ελέγχθηκε"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:108
 msgid "In Progress"
 msgstr "Σε εξέλιξη"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Are you sure?"
 msgstr "Σίγουρα;"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Do you really want to skip this test?"
 msgstr "Θέλετε σίγουρα να παραλείψετε αυτή τη δοκιμή;"
 
-#: ../qt/frontend/qtfront.cpp:183
+#: ../qt/frontend/qtfront.cpp:161
 msgid "Don't ask me again"
 msgstr "Να μην ξαναγίνει η ερώτηση"
 
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:635
 msgid "Form"
 msgstr "Μορφή"
 
@@ -5325,19 +5326,19 @@ msgstr "Εντάξει"
 msgid "Don't show me this message in the future"
 msgstr "Να μη μου εμφανίζεται αυτό το μήνυμα στο μέλλον"
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
 msgid "Tab 1"
 msgstr "Καρτέλα 1"
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:640
 msgid "10 tests completed out of 30 (30%)"
 msgstr "Ολοκληρώθηκαν 10 δοκιμές από σύνολο 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Components"
 msgstr "Συστατικά"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Status"
 msgstr "Κατάσταση"
 
@@ -5349,15 +5350,15 @@ msgstr "Επιλογή όλων"
 msgid "Deselect all"
 msgstr "Αποεπιλογή όλων"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:647
 msgid "Start testing"
 msgstr "Έναρξη δοκιμής"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:648
 msgid " Selection "
 msgstr " Επιλογή "
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
 msgid "TextLabel"
 msgstr "Ετικέτα κειμένου"
 
@@ -5373,11 +5374,11 @@ msgstr "Όχι"
 msgid "Comment"
 msgstr "Σχόλιο"
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
 msgid "Tab 2"
 msgstr "Καρτέλα 2"
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:661
 msgid " Run "
 msgstr " Εκτέλεση "
 
@@ -5419,19 +5420,19 @@ msgstr ""
 msgid "Submission details"
 msgstr "Λεπτομέρειες υποβολής"
 
-#: ../qt/frontend/ui_qtfront.h:619
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Email:"
 msgstr "Ηλ. διεύθυνση:"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "Submit results"
 msgstr "Υποβολή αποτελεσμάτων"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:672
 msgid "View results"
 msgstr "Προβολή αποτελεσμάτων"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:673
 msgid " Results "
 msgstr " Αποτελέσματα "
 

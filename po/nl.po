@@ -21,8 +21,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-15 04:33+0000\n"
-"X-Generator: Launchpad (build 16372)\n"
+"X-Launchpad-Export-Date: 2012-12-25 04:32+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
@@ -32,15 +32,16 @@ msgstr "_Test overslaan"
 msgid "One of debug, info, warning, error or critical."
 msgstr "Één van: debug, info, warning, error of critical"
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "Druk op een toets om verder te gaan…"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:525
 msgid "_Test Again"
 msgstr "Opnieuw _testen"
 
-#: ../plugins/gather_prompt.py:35
+#. Resolve dependencies
+#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
 msgid "Gathering information from your system..."
 msgstr "Informatie over uw systeem verzamelen…"
 
@@ -58,11 +59,11 @@ msgstr "Rapport samenstellen…"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43
 msgid "System Testing"
 msgstr "Systeem testen"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
 msgstr "_Testen"
 
@@ -74,8 +75,8 @@ msgstr "_Ja"
 msgid "_No"
 msgstr "_Nee"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Extra informatie:"
 
@@ -106,7 +107,7 @@ msgid "Test to detect audio devices"
 msgstr "Test om audio-apparaten te detecteren"
 
 #. description
-#: ../jobs/audio.txt.in:16
+#: ../jobs/audio.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -156,7 +157,7 @@ msgstr ""
 "   2. Hoorde u een geluid?"
 
 #. description
-#: ../jobs/audio.txt.in:33
+#: ../jobs/audio.txt.in:58
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -178,7 +179,7 @@ msgstr ""
 "andere vreemde geluiden?"
 
 #. description
-#: ../jobs/audio.txt.in:49
+#: ../jobs/audio.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -198,7 +199,7 @@ msgstr ""
 "    Hoorde u uzelf terug?"
 
 #. description
-#: ../jobs/audio.txt.in:66
+#: ../jobs/audio.txt.in:93
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -221,7 +222,7 @@ msgstr ""
 "    Hoorde u uzelf terug?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:110
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -271,7 +272,7 @@ msgstr ""
 "resultaten."
 
 #. description
-#: ../jobs/disk.txt.in:9
+#: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
 msgstr "Prestatietest voor elke schijf"
 
@@ -570,12 +571,12 @@ msgstr ""
 "    Werkte de muis naar behoren?"
 
 #. description
-#: ../jobs/camera.txt.in:7
+#: ../jobs/camera.txt.in:6
 msgid "This Automated test attempts to detect a camera."
 msgstr "Geautomatiseerde test om een camera te detecteren."
 
 #. description
-#: ../jobs/camera.txt.in:16
+#: ../jobs/camera.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -594,7 +595,7 @@ msgstr ""
 "    Zag u het beeld verschijnen?"
 
 #. description
-#: ../jobs/camera.txt.in:33
+#: ../jobs/camera.txt.in:32
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -652,7 +653,7 @@ msgstr ""
 "   Werd het muziekbestand correct afgespeeld?"
 
 #. description
-#: ../jobs/cpu.txt.in:8
+#: ../jobs/cpu.txt.in:9
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
@@ -667,24 +668,24 @@ msgstr ""
 "resultaten"
 
 #. description
-#: ../jobs/cpu.txt.in:15
+#: ../jobs/cpu.txt.in:23
 msgid "Test for clock jitter."
 msgstr "Test voor signaalafwijkingen (clock jitter)."
 
 #. description
-#: ../jobs/cpu.txt.in:23
+#: ../jobs/cpu.txt.in:31
 msgid "Test offlining CPUs in a multicore system."
 msgstr ""
 "Deze test controleert het niet synchroon laten werken van processoren van "
 "een multi-core systeem."
 
 #. description
-#: ../jobs/cpu.txt.in:30
+#: ../jobs/cpu.txt.in:38
 msgid "This test checks cpu topology for accuracy"
 msgstr "Deze test controleert de accurate werking van de processorindeling"
 
 #. description
-#: ../jobs/cpu.txt.in:38
+#: ../jobs/cpu.txt.in:46
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
 "Deze test controleert of de processor ingestelde frequentie toewijzingen "
@@ -753,30 +754,30 @@ msgid "Detects and displays disks attached to the system."
 msgstr "Op het systeem aangesloten schijven detecteren en tonen."
 
 #. description
-#: ../jobs/disk.txt.in:23
+#: ../jobs/disk.txt.in:9
 msgid "Check stats changes for each disk"
 msgstr "Statistiekwijzigingen voor elke schijf controleren"
 
 #. description
-#: ../jobs/disk.txt.in:40
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "SMART-test"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Maximale schijfruimte die tijdens een standaard installatie-test gebruikt "
 "wordt"
 
 #. description
-#: ../jobs/disk.txt.in:71
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Controleer prestaties van systeemopslag op of boven de standaardprestaties"
 
 #. description
-#: ../jobs/disk.txt.in:88
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -924,17 +925,17 @@ msgid "Floppy test"
 msgstr "Floppytest"
 
 #. description
-#: ../jobs/graphics.txt.in:5
+#: ../jobs/graphics.txt.in:10
 msgid "Test to output the Xorg version"
 msgstr "Met deze test kunt u de Xorg-versie achterhalen"
 
 #. description
-#: ../jobs/graphics.txt.in:12
+#: ../jobs/benchmarks.txt.in:34
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr "Start gtkperf om zeker te weten dat GTK-gebaseerde testen werken"
 
 #. description
-#: ../jobs/graphics.txt.in:18
+#: ../jobs/graphics.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -989,17 +990,17 @@ msgstr ""
 "    Kon u de rotatie zoals verwacht aanpassen?"
 
 #. description
-#: ../jobs/graphics.txt.in:50
+#: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
 msgstr "Test of het X-proces actief is."
 
 #. description
-#: ../jobs/graphics.txt.in:56
+#: ../jobs/graphics.txt.in:37
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Test of X niet in veilige modus wordt uitgevoerd."
 
 #. description
-#: ../jobs/graphics.txt.in:63
+#: ../jobs/graphics.txt.in:44
 msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
@@ -1008,7 +1009,7 @@ msgstr ""
 "programma's op systemen met een grafische kaart van intel."
 
 #. description
-#: ../jobs/graphics.txt.in:70
+#: ../jobs/graphics.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -1029,7 +1030,7 @@ msgstr ""
 "    Is dit een acceptabele resolutie voor uw scherm?"
 
 #. description
-#: ../jobs/graphics.txt.in:85
+#: ../jobs/graphics.txt.in:66
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
@@ -1038,14 +1039,14 @@ msgstr ""
 "details:"
 
 #. description
-#: ../jobs/graphics.txt.in:85
+#: ../jobs/graphics.txt.in:66
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr ""
 "https://help.ubuntu.com/community/Installation/SystemRequirements "
 "(Engelstalig)"
 
 #. description
-#: ../jobs/graphics.txt.in:95
+#: ../jobs/graphics.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -1062,12 +1063,12 @@ msgstr ""
 "    Ziet u gekleurde balken en statische ruis?"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:99
 msgid "Check that VESA drivers are not in use"
 msgstr "Controleren of de VESA stuurprogramma's niet in gebruik zijn"
 
 #. description
-#: ../jobs/graphics.txt.in:113
+#: ../jobs/graphics.txt.in:106
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1084,17 +1085,17 @@ msgstr ""
 "    Werkte de monitor in elke modus?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:132
 msgid "Check that hardware is able to run compiz"
 msgstr "Controleren of de hardware in staat is Compiz te draaien"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:139
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Controleren of de hardware in staat is Unity 3D te draaien"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:145
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1225,7 +1226,7 @@ msgid "Attaches dmidecode output"
 msgstr "Voegt de dmidecode uitvoer toe"
 
 #. description
-#: ../jobs/info.txt.in:31
+#: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
 msgstr "Voegt een zeer uitgebreide uitvoer van lspci toe."
 
@@ -1241,27 +1242,27 @@ msgid "List USB devices"
 msgstr "Lijst met USB-apparaten"
 
 #. description
-#: ../jobs/info.txt.in:40
+#: ../jobs/info.txt.in:58
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "Voegt de inhoud van verschillende modprobe conf-bestanden toe."
 
 #. description
-#: ../jobs/info.txt.in:45
+#: ../jobs/info.txt.in:63
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "Voegt de inhoud van het /etc/modules bestand toe."
 
 #. description
-#: ../jobs/info.txt.in:50
+#: ../jobs/info.txt.in:68
 msgid "attaches the contents of various sysctl config files."
 msgstr "Voegt de inhoud van verschillende sysctl configuratie-bestanden toe."
 
 #. description
-#: ../jobs/info.txt.in:54
+#: ../jobs/info.txt.in:72
 msgid "Attaches a report of sysfs attributes."
 msgstr "Voegt een rapport van de sysfs-attributen toe."
 
 #. description
-#: ../jobs/info.txt.in:65
+#: ../jobs/info.txt.in:83
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
@@ -1269,47 +1270,47 @@ msgstr ""
 "systeem bevat."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:90
 msgid "Attaches a tarball of gcov data if present."
 msgstr "Voegt een tarball van gcov data toe, indien aanwezig."
 
 #. description
-#: ../jobs/info.txt.in:77
+#: ../jobs/info.txt.in:95
 msgid "Attaches a list of the currently running kernel modules."
 msgstr "Voegt een lijst van de huidige actieve kernelmodules."
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:100
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Voegt de inhoud van /proc/acpi/sleep toe, als het bestaat."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:104
 msgid "Bootchart information."
 msgstr "Bootchart-informatie."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:113
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE-informatie."
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:132
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Voegt het bootchart png-bestand toe"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:141
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Voegt het bootchart-logbestand toe."
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:149
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "Installeert de installer bootchart tarball als deze bestaat."
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:154
 msgid "Attaches the installer debug log if it exists."
 msgstr "Voegt het installer-debuglog toe, als deze bestaat."
 
@@ -1554,47 +1555,47 @@ msgid "Disk tests"
 msgstr "Schijf testen"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Vingerafdruklezer testen"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "FireWire-schijf testen"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Floppydisk testen"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Grafische testen"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Slaapstand testen"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Informatieve testen"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Invoerapparaten testen"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Software-installatie testen"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Sneltoets testen"
 
@@ -1644,42 +1645,42 @@ msgid "Peripheral tests"
 msgstr "Randapparatuur testen"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:199
 msgid "Power Management tests"
 msgstr "Energiebeheer testen"
 
 #. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:206
 msgid "Server Services checks"
 msgstr "Server services controleren"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:213
 msgid "Suspend tests"
 msgstr "Pauzestand testen"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:220
 msgid "Touchpad tests"
 msgstr "Touchpad testen"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:234
 msgid "USB tests"
 msgstr "USB testen"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:241
 msgid "User Applications"
 msgstr "Gebruikersapplicaties"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:248
 msgid "Wireless networking tests"
 msgstr "Draadloos netwerk testen"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:255
 msgid "Stress tests"
 msgstr "Stresstests"
 
@@ -1713,10 +1714,10 @@ msgstr ""
 "STAPPEN:\n"
 "    1. Klik op ‘Testen’ en steek een MMC-kaart in de lezer.\n"
 "       (Opmerking: deze test zal na 20 seconden worden afgebroken.)\n"
-"    2. Neem het apparaat niet weg na de test.\n"
+"    2. Verwijder het apparaat niet na de test.\n"
 "CONTROLE:\n"
 "    De controle van deze test is geautomatiseerd. Breng geen wijzigingen\n"
-"    aan in de automatisch geselecteerde resultaten."
+"    aan in het automatisch geselecteerde resultaat."
 
 #. description
 #: ../jobs/mediacard.txt.in:20
@@ -2101,6 +2102,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of het systeem het verwijderen van\n"
+"    een CF-kaart uit de kaartlezer correct detecteert.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Testen’ en haal de CF-kaart uit de lezer.\n"
+"       (Opmerking: deze test zal na 20 seconden worden afgebroken.)\n"
+"CONTROLE:\n"
+"    De controle van deze test is geautomatiseerd. Breng geen wijzigingen\n"
+"    aan in het automatisch geselecteerde resultaat."
 
 #. description
 #: ../jobs/mediacard.txt.in:274
@@ -2116,6 +2126,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of de mediakaartlezer het insteken van een\n"
+"    CF-kaart detecteert nadat het systeem gepauzeerd is geweest\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Testen’ en steek een FC-kaart in de lezer.\n"
+"       (Opmerking: deze test zal na 20 seconden worden afgebroken.)\n"
+"    2. Verwijder het apparaat niet na de test.\n"
+"CONTROLE:\n"
+"    De controle van deze test is geautomatiseerd. Breng geen wijzigingen\n"
+"    aan in het automatisch geselecteerde resultaat."
 
 #. description
 #: ../jobs/mediacard.txt.in:290
@@ -2142,6 +2162,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of het systeem het verwijderen van een CF-kaart "
+"uit\n"
+"     de kaartlezer nadat het systeem gepauzeerd is geweest correct "
+"detecteert.\n"
+"STAPPEN:\n"
+"    1. Klik op \"Testen\" en verwijder de CF-kaart uit de kaartlezer.\n"
+"       (Opmerking: deze test zal na 20 seconden afgebroken worden.)\n"
+"CONTROLE:\n"
+"    De controle van deze test is geautomatiseerd. Breng geen wijzigingen\n"
+"    aan in het automatisch geselecteerde resultaat."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -2171,9 +2202,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Nothing to verify for this test"
 msgstr ""
+"DOEL:\n"
+"    Test-gerelateerde informatie in het rapport bewaren\n"
+"STAPPEN:\n"
+"    1. Testinformatie\n"
+"    2. Voer de volgende informatie in het commentaarveld in:\n"
+"       a. Naam\n"
+"       b. E-mailadres\n"
+"       c. Reden waarom deze test wordt uitgevoerd\n"
+"CONTROLE:\n"
+"    Er hoeft niets gecontroleerd te worden voor deze test"
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -2196,17 +2237,17 @@ msgstr ""
 "terug in uw huidige sessie?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:21
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Voer de automatische Firmware Test Suite (fwts) uit."
 
 #. description
 #: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
-msgstr ""
+msgstr "Voegt de FWTS-resultatenlog toe aan het rapport"
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:53
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -2215,7 +2256,7 @@ msgstr ""
 "controleren of IPMI werkt."
 
 #. description
-#: ../jobs/miscellanea.txt.in:37
+#: ../jobs/miscellanea.txt.in:59
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -2224,7 +2265,7 @@ msgstr ""
 "moet uitvoeren die niet op vaste computers van toepassing zijn."
 
 #. description
-#: ../jobs/miscellanea.txt.in:45
+#: ../jobs/miscellanea.txt.in:67
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -2234,7 +2275,7 @@ msgstr ""
 "aanwezig zijn, of geeft de status als deze leeg is (bestaat niet/is leeg)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:53
+#: ../jobs/miscellanea.txt.in:75
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2390,22 +2431,22 @@ msgstr ""
 "    Werd het scherm even zwart en ging het daarna weer aan?"
 
 #. description
-#: ../jobs/networking.txt.in:5
+#: ../jobs/networking.txt.in:8
 msgid "Test to detect the available network controllers"
 msgstr "Test om de beschikbare netwerkkaart(en) te detecteren"
 
 #. description
-#: ../jobs/networking.txt.in:11
+#: ../jobs/networking.txt.in:14
 msgid "Tests whether the system has a working Internet connection."
 msgstr "Test of het systeem een werkende internetverbinding heeft."
 
 #. description
-#: ../jobs/networking.txt.in:16
+#: ../jobs/networking.txt.in:19
 msgid "Network Information"
 msgstr "Netwerkinformatie"
 
 #. description
-#: ../jobs/networking.txt.in:40
+#: ../jobs/networking.txt.in:43
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
@@ -2415,7 +2456,7 @@ msgstr ""
 "de test een fout geven."
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/networking.txt.in:49
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2439,7 +2480,7 @@ msgstr ""
 "    Zag u een notificatie en was de connectie goed opgezet?"
 
 #. description
-#: ../jobs/networking.txt.in:59
+#: ../jobs/networking.txt.in:62
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2473,7 +2514,7 @@ msgstr ""
 "gemaakt?"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:79
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -2482,7 +2523,7 @@ msgstr ""
 "systemen op het netwerk die ICMP ECHO pakketten gebruiken."
 
 #. description
-#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -2491,14 +2532,14 @@ msgstr ""
 "downloaden via HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:91
+#: ../jobs/networking.txt.in:94
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 "Test om te zien of de lokale klok met een NTP server gesynchroniseerd kan "
 "worden"
 
 #. description
-#: ../jobs/networking.txt.in:97
+#: ../jobs/networking.txt.in:100
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
@@ -2507,24 +2548,24 @@ msgstr ""
 "worden via SSH."
 
 #. description
-#: ../jobs/networking.txt.in:103
+#: ../jobs/networking.txt.in:106
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 "Probeer een netwerkprinter in te schakelen en druk een testpagina af."
 
 #. description
-#: ../jobs/networking.txt.in:108
+#: ../jobs/networking.txt.in:111
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr "Automatische test om meerdere netwerkkaarten na elkaar te testen."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:134
 msgid "Test to measure the network bandwidth"
 msgstr "Test om de netwerkbandbreedte te meten"
 
 #. description
-#: ../jobs/optical.txt.in:8
+#: ../jobs/optical.txt.in:4
 msgid "Test to detect the optical drives"
 msgstr "Test om optische stations te detecteren"
 
@@ -2577,7 +2618,7 @@ msgstr ""
 "het mislukt."
 
 #. description
-#: ../jobs/optical.txt.in:46
+#: ../jobs/optical.txt.in:90
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2642,7 +2683,7 @@ msgstr ""
 "het mislukt."
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:149
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2674,7 +2715,7 @@ msgstr ""
 "    Werkte alle stappen?"
 
 #. description
-#: ../jobs/optical.txt.in:100
+#: ../jobs/optical.txt.in:167
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2703,9 +2744,16 @@ msgid ""
 "VERIFICATION:\n"
 "   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
+"DOEL:\n"
+"   Deze test controleert of de klok op het bureaublad de juiste datum en "
+"tijd aangeeft\n"
+"STAPPEN:\n"
+"   1. Controleer de klok in de rechterbovenhoek van uw bureaublad.\n"
+"CONTROLE:\n"
+"   Geeft de klok de juiste datum en tijd aan voor uw tijdzone?"
 
 #. description
-#: ../jobs/panel_clock_test.txt.in:16
+#: ../jobs/panel_clock_test.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock synchronizes with the system "
@@ -2955,7 +3003,7 @@ msgstr ""
 "Dit zal logs van de energiebeheer/herstarttest toevoegen aan de reslultaten."
 
 #. description
-#: ../jobs/power-management.txt.in:15
+#: ../jobs/power-management.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2973,7 +3021,7 @@ msgstr ""
 "pauzestand ging?"
 
 #. description
-#: ../jobs/power-management.txt.in:32
+#: ../jobs/power-management.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2992,7 +3040,7 @@ msgstr ""
 "    Ging het beeld uit toen het scherm gesloten was?"
 
 #. description
-#: ../jobs/power-management.txt.in:50
+#: ../jobs/power-management.txt.in:118
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3015,12 +3063,12 @@ msgstr ""
 "    Hervatte het systeem toen het scherm geopend werd?"
 
 #. description
-#: ../jobs/power-management.txt.in:66
+#: ../jobs/power-management.txt.in:134
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Zorg ervoor dat de RTC (Real-Time Clock) bestaat."
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:140
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -3095,6 +3143,7 @@ msgstr ""
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr ""
+"Voegt de log toe van de 30 cycli pauze/hervatting-test als die bestaat"
 
 #. description
 #: ../jobs/stress.txt.in:50
@@ -3103,12 +3152,16 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 250 cycles"
 msgstr ""
+"DOEL:\n"
+"   Dit is een geautomatiseerde stresstest die het systeem gedurende 250 "
+"cycli in slaapstand/hervatting dwingt"
 
 #. description
 #: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"Voegt de log toe van de 250 cycli slaapstand/hervatting-test als die bestaat"
 
 #. description
 #: ../jobs/stress.txt.in:66
@@ -3117,21 +3170,25 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 250 cycles."
 msgstr ""
+"DOEL:\n"
+"   Dit is een geautomatiseerde stresstest die het systeem gedurende 250 "
+"cycli in pauzestand/hervatting dwingt"
 
 #. description
 #: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
+"Voegt de log toe van de 250 cycli pauzestand/hervatting-test als die bestaat"
 
 #. description
 #: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
-msgstr ""
+msgstr "Stress computer herstarten (100 cycli)"
 
 #. description
 #: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
-msgstr ""
+msgstr "Stress computer afsluiten (100 cycli)"
 
 #. description
 #: ../jobs/stress.txt.in:110
@@ -3177,7 +3234,7 @@ msgstr ""
 "test voor pauzestand is uitgevoerd"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3187,7 +3244,7 @@ msgstr ""
 "gecontroleerd worden om te kijken of deze correct werkt."
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3214,18 +3271,18 @@ msgstr ""
 "    Ging het systeem 30 keer achter elkaar in slaapstand?"
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:130
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 "Dit is de geautomatiseerde versie van pauzestand/geavanceerde_pauzestand."
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:145
 msgid "Test the network after resuming."
 msgstr "Test het netwerk nadat het systeem uit de pauzestand is gekomen."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -3233,7 +3290,7 @@ msgstr ""
 "pauzestand."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:160
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3241,12 +3298,12 @@ msgstr ""
 "ervoor."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:177
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Controleer of alle CUP's weer online zijn na hervatten."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:194
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Controleer of alle geheugen, na het hervatten van een pauzestand, "
@@ -3266,7 +3323,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:216
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3306,7 +3363,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:272
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3315,7 +3372,7 @@ msgstr ""
 "en vergelijkt het met het adres van voor de pauzestand."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:302
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3325,7 +3382,7 @@ msgstr ""
 "omgevingsvariabele."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:333
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3352,7 +3409,7 @@ msgstr ""
 "    Zijn de gegevens correct overgedragen?"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:347
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3369,7 +3426,7 @@ msgstr ""
 "    Zag uw beeldscherm in de gedetecteerde modus er prima uit?"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:359
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3380,7 +3437,7 @@ msgstr ""
 "maken en deze bij het raport te voegen."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:368
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3389,7 +3446,7 @@ msgstr ""
 "testen toevoegen aan het resultatenrapport."
 
 #. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:378
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3959,7 +4016,7 @@ msgstr ""
 " Werd de video correct afgespeeld?"
 
 #. description
-#: ../jobs/user_apps.txt.in:283
+#: ../jobs/user_apps.txt.in:285
 msgid ""
 "PURPOSE:\n"
 " This test will check that Firefox can play a Quicktime (.mov) video file.\n"
@@ -3980,7 +4037,7 @@ msgstr ""
 " Werd de video correct afgespeeld met behulp van een plug-in?"
 
 #. description
-#: ../jobs/user_apps.txt.in:297
+#: ../jobs/user_apps.txt.in:299
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4002,7 +4059,7 @@ msgstr ""
 " Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:311
+#: ../jobs/user_apps.txt.in:313
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4024,7 +4081,7 @@ msgstr ""
 " Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:325
+#: ../jobs/user_apps.txt.in:327
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4046,7 +4103,7 @@ msgstr ""
 " Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:339
+#: ../jobs/user_apps.txt.in:341
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4068,7 +4125,7 @@ msgstr ""
 " Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:353
+#: ../jobs/user_apps.txt.in:355
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4090,7 +4147,7 @@ msgstr ""
 " Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:367
+#: ../jobs/user_apps.txt.in:369
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4109,7 +4166,7 @@ msgstr ""
 "Kon u e-mail ontvangen en lezen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:380
+#: ../jobs/user_apps.txt.in:382
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4128,7 +4185,7 @@ msgstr ""
 "Kon u e-mail ontvangen en lezen?"
 
 #. description
-#: ../jobs/user_apps.txt.in:393
+#: ../jobs/user_apps.txt.in:395
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4147,7 +4204,7 @@ msgstr ""
 "Kon u zonder fouten e-mail verzenden?"
 
 #. description
-#: ../jobs/user_apps.txt.in:406
+#: ../jobs/user_apps.txt.in:408
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4164,7 +4221,7 @@ msgstr ""
 " Werd het gestart?"
 
 #. description
-#: ../jobs/user_apps.txt.in:419
+#: ../jobs/user_apps.txt.in:421
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4189,7 +4246,7 @@ msgstr ""
 " Werkte de functies zoals verwacht?"
 
 #. description
-#: ../jobs/user_apps.txt.in:436
+#: ../jobs/user_apps.txt.in:438
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4214,7 +4271,7 @@ msgstr ""
 " Werkte de functies zoals verwacht?"
 
 #. description
-#: ../jobs/user_apps.txt.in:453
+#: ../jobs/user_apps.txt.in:455
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4237,7 +4294,7 @@ msgstr ""
 " Werkte de functies zoals verwacht?"
 
 #. description
-#: ../jobs/user_apps.txt.in:468
+#: ../jobs/user_apps.txt.in:470
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4258,7 +4315,7 @@ msgstr ""
 " Werkte dit naar verwachting?"
 
 #. description
-#: ../jobs/user_apps.txt.in:482
+#: ../jobs/user_apps.txt.in:484
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4279,7 +4336,7 @@ msgstr ""
 " Werkte dit naar verwachting?"
 
 #. description
-#: ../jobs/user_apps.txt.in:495
+#: ../jobs/user_apps.txt.in:497
 msgid ""
 "PURPOSE:\n"
 " This test will check that Gnome Terminal works.\n"
@@ -4302,12 +4359,12 @@ msgstr ""
 " Werkte dit naar verwachting?"
 
 #. description
-#: ../jobs/wireless.txt.in:6
+#: ../jobs/wireless.txt.in:20
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr "Draadloze scanner test. Het scant en doet verslag van ontdekte APs"
 
 #. description
-#: ../jobs/wireless.txt.in:12
+#: ../jobs/wireless.txt.in:26
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -4331,7 +4388,7 @@ msgstr ""
 "gebracht?"
 
 #. description
-#: ../jobs/wireless.txt.in:28
+#: ../jobs/wireless.txt.in:42
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
@@ -4340,7 +4397,7 @@ msgstr ""
 "met een router met behulp van WPA beveiliging en de 802.11b/g protocollen."
 
 #. description
-#: ../jobs/wireless.txt.in:38
+#: ../jobs/wireless.txt.in:52
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
@@ -4349,7 +4406,7 @@ msgstr ""
 "kan maken zonder beveiliging via de 802.11b/g protocollen."
 
 #. description
-#: ../jobs/wireless.txt.in:48
+#: ../jobs/wireless.txt.in:62
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
@@ -4358,7 +4415,7 @@ msgstr ""
 "kan maken met behulp van WPA beveiliging en de 802.11n-protocollen."
 
 #. description
-#: ../jobs/wireless.txt.in:58
+#: ../jobs/wireless.txt.in:72
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
@@ -4367,7 +4424,7 @@ msgstr ""
 "kan maken zonder beveiliging via de 802.11n-protocollen."
 
 #. description
-#: ../jobs/wireless.txt.in:70
+#: ../jobs/wireless.txt.in:84
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
@@ -4375,7 +4432,7 @@ msgstr ""
 "Test de prestaties van een draadloze verbinding via het hulpprogramma iperf."
 
 #. description
-#: ../jobs/wireless.txt.in:81
+#: ../jobs/wireless.txt.in:95
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -4514,99 +4571,99 @@ msgid "Unknown signal"
 msgstr "Onbekend signaal"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "ja"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "nee"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "overslaan"
 
-#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Maak een keuze (%s): "
 
-#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
-#: ../checkbox_cli/cli_interface.py:368
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Spatie wanneer u klaar bent"
 
-#: ../checkbox_cli/cli_interface.py:367
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "Met teken erboven combineren om de node uit te vouwen"
 
-#: ../checkbox_cli/cli_interface.py:416
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "testen"
 
-#: ../checkbox_cli/cli_interface.py:440
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "opnieuw testen"
 
-#: ../checkbox_cli/cli_interface.py:446
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Typ hier en druk op CTRL+D als u klaar bent:\n"
 
-#: ../checkbox_urwid/urwid_interface.py:66
+#: ../checkbox_urwid/urwid_interface.py:86
 msgid "Checkbox System Testing"
 msgstr "Checkbox systeem testen"
 
-#: ../checkbox_urwid/urwid_interface.py:105
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
 msgid "Continue"
 msgstr "Doorgaan"
 
-#: ../checkbox_urwid/urwid_interface.py:198
-#: ../checkbox_urwid/urwid_interface.py:274
-#: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Vorige"
 
-#: ../checkbox_urwid/urwid_interface.py:199
-#: ../checkbox_urwid/urwid_interface.py:275
-#: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Volgende"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
+#: ../checkbox_urwid/urwid_interface.py:445
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:446
 msgid "Deselect All"
 msgstr "Alles deselecteren"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:545
+#: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
 msgstr "Alles uitvouwen"
 
-#: ../checkbox_urwid/urwid_interface.py:546
+#: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
 msgstr "Alles invouwen"
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Test"
 
-#: ../checkbox_urwid/urwid_interface.py:1028
+#: ../checkbox_urwid/urwid_interface.py:1049
 msgid "Test Again"
 msgstr "Test opnieuw"
 
-#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:528
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
 msgid "Error"
 msgstr "Fout"
 
@@ -4772,7 +4829,7 @@ msgstr ""
 msgid "Running %s..."
 msgstr "%s uitvoeren…"
 
-#: ../qt/frontend/treemodel.cpp:13
+#: ../plugins/suites_prompt.py:36
 msgid ""
 "Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
@@ -4787,147 +4844,147 @@ msgstr ""
 msgid "Choose tests to run on your system:"
 msgstr ""
 
-#: ../scripts/keyboard_test:21
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr "Voer tekst in:\n"
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr "Typ tekst"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "Geen internetverbinding"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "Verbinding gemaakt, pakket verloren"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Internetverbinding gemaakt"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Audio Test"
 msgstr "Geluidstest"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Bluetooth Test"
 msgstr "Bluetooth-test"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:82
 msgid "Camera Test"
 msgstr "Cameratest"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:83
 msgid "CPU Test"
 msgstr "CPU-test"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Disk Test"
 msgstr "Schijftest"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Firewire Test"
 msgstr "Firewire-test"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Graphics Test"
 msgstr "Grafische test"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Info Test"
 msgstr "Info-test"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Input Test"
 msgstr "Invoertest"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Keys Test"
 msgstr "Toetsentest"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Media Card Test"
 msgstr "Mediakaarttest"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Memory Test"
 msgstr "Geheugentest"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Miscellanea Test"
 msgstr "Gemengde test"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Monitor Test"
 msgstr "Schermtest"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Networking Test"
 msgstr "Netwerktest"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Wireless Test"
 msgstr "Draadloostest"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Optical Test"
 msgstr "Optische test"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:97
 msgid "PCMCIA/PCIX Test"
 msgstr "PCMCIA/PCIX-test"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Power Management Test"
 msgstr "Energiebeheertest"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Suspend Test"
 msgstr "Pauzestandtest"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:100
 msgid "USB Test"
 msgstr "USB-test"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Not Started"
 msgstr "Niet gestart"
 
-#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
 msgid "Done"
 msgstr "Voltooid"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Supported"
 msgstr "Niet ondersteund"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Resolved"
 msgstr "Niet opgelost"
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Tested"
 msgstr "Niet getest"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:108
 msgid "In Progress"
 msgstr "In behandeling"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Are you sure?"
 msgstr "Weet u het zeker?"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Do you really want to skip this test?"
 msgstr "Weet u zeker dat u deze test wilt overslaan?"
 
-#: ../qt/frontend/qtfront.cpp:183
+#: ../qt/frontend/qtfront.cpp:161
 msgid "Don't ask me again"
 msgstr "In het vervolg niet meer vragen"
 
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:635
 msgid "Form"
 msgstr "Formulier"
 
@@ -4939,19 +4996,19 @@ msgstr "OK"
 msgid "Don't show me this message in the future"
 msgstr "Dit bericht in het vervolg niet meer tonen"
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
 msgid "Tab 1"
 msgstr "Tabblad 1"
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:640
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 testen afgerond van de 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Components"
 msgstr "Componenten"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Status"
 msgstr "Status"
 
@@ -4963,15 +5020,15 @@ msgstr ""
 msgid "Deselect all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:647
 msgid "Start testing"
 msgstr "Testen starten"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:648
 msgid " Selection "
 msgstr " Selectie "
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
 msgid "TextLabel"
 msgstr "TextLabel"
 
@@ -4987,11 +5044,11 @@ msgstr "Nee"
 msgid "Comment"
 msgstr "Commentaar"
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
 msgid "Tab 2"
 msgstr "Tabblad 2"
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:661
 msgid " Run "
 msgstr " Uitvoeren "
 
@@ -5033,19 +5090,19 @@ msgstr ""
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:619
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Email:"
 msgstr "E-mailadres:"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "Submit results"
 msgstr "Resultaten versturen"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:672
 msgid "View results"
 msgstr "Resultaten bekijken"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:673
 msgid " Results "
 msgstr " Resultaten "
 
