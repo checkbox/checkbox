@@ -26,6 +26,8 @@ checkbox (0.15) raring; urgency=low
     using modules that will only be installed for python3 (LP: #1089727)
   * plugins/recover_prompt.py - changed the order of the buttons in the recover
     prompt to put them in the same order as mentioned in the text (LP: #1092143)
+  * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
+    before running any Bluetooth tests to avoid these failing (LP: #1084601)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
