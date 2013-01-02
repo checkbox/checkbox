@@ -50,7 +50,7 @@ class RecoverPrompt(Plugin):
     def prompt_begin(self, interface):
         if interface.direction == NEXT \
            and self.persist.get("recover", False):
-            responses = [CONTINUE_ANSWER, RERUN_ANSWER, RESTART_ANSWER]
+            responses = [RESTART_ANSWER, CONTINUE_ANSWER, RERUN_ANSWER]
             #The actual responses and default need to be translated...
             translated_responses = [_(re) for re in responses]
             translated_default = _(RESTART_ANSWER)
