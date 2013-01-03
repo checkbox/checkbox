@@ -37,6 +37,9 @@ checkbox (0.15) raring; urgency=low
     unity_support_test. They should pipe through ansi_parser like other jobs.
     (LP: #1087777)
   * jobs/info.txt.in - added job info/disk_partitions (LP: #1081833)
+  * jobs/stress.txt.in, jobs/suspend.txt.in - fixed a bug in the command for
+    the suspend jobs where checkbox was getting the exitcode for tee rather
+    than for sleep_test or fwts_test (LP: #1095713)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.

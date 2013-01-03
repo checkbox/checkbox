@@ -98,10 +98,10 @@ environ: CHECKBOX_DATA
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check | tee $CHECKBOX_DATA/suspend_single_times.log
+  set -o pipefail; fwts_test -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check | tee $CHECKBOX_DATA/suspend_single_times.log
  else
   echo "Calling sleep_test"
-  sleep_test -p | tee $CHECKBOX_DATA/suspend_single_times.log
+  set -o pipefail; sleep_test -p | tee $CHECKBOX_DATA/suspend_single_times.log
  fi
 _description:
  PURPOSE:
