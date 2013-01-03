@@ -40,6 +40,11 @@ checkbox (0.15) raring; urgency=low
   * jobs/stress.txt.in, jobs/suspend.txt.in - fixed a bug in the command for
     the suspend jobs where checkbox was getting the exitcode for tee rather
     than for sleep_test or fwts_test (LP: #1095713)
+  * jobs/stress.txt.in, jobs/hibernate.txt.in - increased device-check-delay
+    from 30 seconds to 45 seconds to avoid a race condition.
+    jobs/suspend.txt.in - added 45 second device-check-delay to the
+    suspend_advanced and suspend_avanced_auto jobs to avoid a race condition.
+    (LP: #1095668)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
