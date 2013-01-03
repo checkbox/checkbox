@@ -2,8 +2,13 @@ checkbox (0.15) raring; urgency=low
 
   [ Daniel Manrique ]
   * New version 0.15 for Raring Ringtail development.
+  * Fail gracefully with a friendly and useful error message if audio settings
+    file format is invalid. (LP: #1065703)
   * Added environ key to poweroff and reboot jobs so they create logs in the
     expected location (LP: #1085833)
+  * scripts/memory_compare: Fixed accumulator expression to give good results
+    (LP: #1089046)
+  * added scripts/key_test to the list of translatable files (LP: #1073359)
 
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
@@ -12,6 +17,15 @@ checkbox (0.15) raring; urgency=low
     or other artifacts.
   * jobs/info.txt.in - add an xrandr attachment job to provide information
     about displays connected to the system (LP: #1085219)
+  * jobs/suspend.txt.in - changed suspend_advanced_auto dependency of key_after_suspend
+    and led_after_suspend tests to suspend/suspend_advanced, since they are manual and
+    should depend on the manual suspend test (LP: #1089227)
+  * scripts/piglit_test, jobs/piglit.txt.in - create a script which wraps and
+    parses the piglit test results and use it in the piglit jobs
+  * scripts/touchhpad_driver_info - changed the shebang to python3, since it is
+    using modules that will only be installed for python3 (LP: #1089727)
+  * plugins/recover_prompt.py - changed the order of the buttons in the recover
+    prompt to put them in the same order as mentioned in the text (LP: #1092143)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
@@ -19,11 +33,22 @@ checkbox (0.15) raring; urgency=low
   * jobs/suspend.txt.in - fixed cycle_resolutions_after_suspend_auto so that it
     properly depends on suspend_advanced_auto rather than suspend_advanced
     (LP: #1071605)
+  * jobs/graphics.txt.in - removed perl wrappings from tests using
+    unity_support_test. They should pipe through ansi_parser like other jobs.
+    (LP: #1087777)
+  * jobs/info.txt.in - added job info/disk_partitions (LP: #1081833)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
   * jobs/info.txt.in: Fixed the info/xrandr command.
   * jobs/audio.txt.in: Added Line In/Out and Display Port tests.
+  * checkbox/tests/test_message_files.py:
+    test_shell_jobs_with_root_have_needed_environ now checks every jobs
+    containing a command line parameter.
+  * jobs/graphics.txt.in: Set the bash pipefail option for tests using
+    unity_support_test and piped to ansi_parser.
+  * scripts/network_device_info: Set the driver version to 'Unknown' if the
+    modinfo_parser returns nothing (LP: #1089911)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 
