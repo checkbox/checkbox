@@ -70,12 +70,20 @@ name: miscellanea/sources-list
 command:
  IFS=$','
  result=0
+ if [ -z "$SOURCES_LIST" ]; then
+   echo "SOURCES_LIST not set"
+   exit 1
+ fi
+ if [ -z "$REPOSITORIES" ]; then
+   echo "REPOSITORIES not set"
+   exit 1
+ fi
+
  for repository in $REPOSITORIES; do
-   if grep -q $repository $SOURCES_FILE
-   then
-     echo "$repository found in $SOURCES_FILE"
+   if grep -q "$repository" "$SOURCES_LIST"; then
+     echo "$repository found in $SOURCES_LIST"
    else
-     echo "$repository not found in $SOURCES_FILE"
+     echo "$repository not found in $SOURCES_LIST"
      result=1
    fi
  done

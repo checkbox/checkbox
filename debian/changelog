@@ -24,6 +24,8 @@ checkbox (0.15) raring; urgency=low
     parses the piglit test results and use it in the piglit jobs
   * scripts/touchhpad_driver_info - changed the shebang to python3, since it is
     using modules that will only be installed for python3 (LP: #1089727)
+  * jobs/miscellanea.txt.in, plugins/environment_info.py - added test to check
+    a sources file for specific repositories to make sure they are present
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
