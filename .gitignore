@@ -1,1 +1,19 @@
 __pycache__
+# The list below is riddled with junk created by running the test suite of checkbox
+# It should be really cleaned up as tests should _not_ do that but right now it's more
+# annoying than dangerous so I'll get rid of the noise first
+*.o
+active_output
+checkbox.log
+checkbox.xsl
+plugins.bpickle
+plugins.bpickle.old
+qt/frontend/Makefile
+qt/frontend/checkbox-qt-service
+qt/frontend/moc_qtfront.cpp
+qt/frontend/qrc_resources.cpp
+qt/frontend/ui_qtfront.cpp
+qt/frontend/ui_qtfront.h
+store/
+submission.xml
+subunit.log
