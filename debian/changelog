@@ -47,6 +47,9 @@ checkbox (0.15) raring; urgency=low
     jobs/suspend.txt.in - added 45 second device-check-delay to the
     suspend_advanced and suspend_avanced_auto jobs to avoid a race condition.
     (LP: #1095668)
+  * jobs/bluetooth.txt.in - added pipefail to bluetooth/detect-output 
+    jobs/suspend.txt.in - added pipefail to suspend/network_before_suspend
+    (LP: #1096948)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
