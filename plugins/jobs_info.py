@@ -119,7 +119,7 @@ class JobsInfo(Plugin):
         names_so_far = set()
         all_names = set([message['name'] for message in messages])
         messages_ordered = True
-        missing_dependencies = {}
+        missing_dependencies = defaultdict(set)
 
         for message in messages:
             name = message["name"]
@@ -130,16 +130,15 @@ class JobsInfo(Plugin):
                 #bit of time by putting this inside the previous "if"
                 #but we're not in *that* big a hurry.
                 if dependency not in all_names:
-                    if not missing_dependencies.get(name):
-                        missing_dependencies[name] = []
-                    missing_dependencies[name].append(dependency)
+                    missing_dependencies[name].add(dependency)
             names_so_far.add(name)
 
         #Now assemble the list of missing deps into a nice report
-        for message in missing_dependencies:
-            self._missing_dependencies_report += "%s required by %s\n" % \
-                    (message, ",".join(missing_dependencies[message]))
-
+        jobs_and_missing_deps = ["{} required by {}".format(job_name,
+                                 ", ".join(missing_dependencies[job_name]))
+                                 for job_name in missing_dependencies]
+        self._missing_dependencies_report = "\n".join(jobs_and_missing_deps) 
+        
         return messages_ordered
 
     def get_patterns(self, strings, filename=None):
@@ -245,24 +244,28 @@ class JobsInfo(Plugin):
                         "new whitelist"))
                 #First, we report missing dependencies, if any.
                 if self._missing_dependencies_report:
+                    primary = _("Dependencies are missing so some jobs "
+                                "will not run.")
+                    secondary = _("To fix this, close checkbox and add "
+                                  "the missing dependencies to the "
+                                  "whitelist.")
                     self._manager.reactor.fire("prompt-warning",
                             self.interface,
-                            "Dependencies are missing so some jobs "
-                            "will not run. ",
-                            "To fix this, close checkbox "
-                            "and add the missing dependencies to the "
-                            "whitelist.",
+                            primary,
+                            secondary,
                             self._missing_dependencies_report)
                 #If detailed_text is empty, it means the problem
                 #was missing dependencies, which we already reported.
                 #Otherwise, we also need to report reordered jobs here.
                 if detailed_text:
-                    self._manager.reactor.fire(
-                        "prompt-warning",
-                        self.interface,
-                        "Whitelist not topologically ordered",
-                        "Jobs will be reordered to fix broken dependencies",
-                        detailed_text)
+                    primary = _("Whitelist not topologically ordered")
+                    secondary = _("Jobs will be reordered to fix broken "
+                                  "dependencies")
+                    self._manager.reactor.fire("prompt-warning",
+                                               self.interface,
+                                               primary,
+                                               secondary,
+                                               detailed_text)
 
         self._manager.reactor.fire("report-jobs", messages)
 
