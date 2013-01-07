@@ -34,6 +34,26 @@ import pkg_resources
 logger = getLogger("plainbox.exporter")
 
 
+class classproperty:
+    """
+    Class property.
+
+    @property
+    @classmethod
+    def foo(cls):
+        ...
+    """
+    # I wish it was in the standard library or that the composition worked
+
+    def __init__(self, func):
+        self.func = func
+
+    def __get__(self, instance, owner):
+        # If we were being pedantic we could throw a TypeError if instance is
+        # None but this is not really something we care about in the code below
+        return self.func(owner)
+
+
 class SessionStateExporterBase(metaclass=ABCMeta):
     """
     Base class for "exporter" that write out the state of the session after all
@@ -73,12 +93,12 @@ class SessionStateExporterBase(metaclass=ABCMeta):
                 raise ValueError("Unsupported option: {}".format(option))
         self._option_list = option_list
 
-    @property
-    def supported_option_list(self):
+    @classproperty
+    def supported_option_list(cls):
         """
         Return the list of supported options
         """
-        return self.SUPPORTED_OPTION_LIST
+        return cls.SUPPORTED_OPTION_LIST
 
     def get_session_data_subset(self, session):
         """
@@ -101,7 +121,17 @@ class SessionStateExporterBase(metaclass=ABCMeta):
         if self.OPTION_WITH_DESIRED_JOB_LIST in self._option_list:
             data['desired_job_list'] = [job.name for job in session.desired_job_list]
         if self.OPTION_WITH_RESOURCE_MAP in self._option_list:
-            data['resource_map'] = [resource for resource in session._resource_map]
+            data['resource_map'] = {
+                # TODO: there is no method to get all data from a Resource
+                # instance and there probably should be. Or just let there be
+                # a way to promote _data to a less hidden-but-non-conflicting
+                # property.
+                resource_name: [
+                    object.__getattribute__(resource, "_data")
+                    for resource in resource_list]
+                # TODO: turn session._resource_map to a public property
+                for resource_name, resource_list in session._resource_map.items()
+            }
         for job_name, job_state in session.job_state_map.items():
             if job_state.result.outcome is None:
                 continue
@@ -120,24 +150,33 @@ class SessionStateExporterBase(metaclass=ABCMeta):
                         continue
                     data['result_map'][job_name][prop] = \
                     getattr(job_state.result.job, prop)
-
             # Add IO log if requested
             if self.OPTION_WITH_IO_LOG in self._option_list:
                 # If requested, squash the IO log so that only textual data is
                 # saved, discarding stream name and the relative timestamp.
                 if self.OPTION_SQUASH_IO_LOG in self._option_list:
-                    io_log_data = [record.data.rstrip()
-                                   for record in job_state.result.io_log]
+                    io_log_data = self._squash_io_log(
+                        job_state.result.io_log)
                 elif self.OPTION_FLATTEN_IO_LOG in self._option_list:
-                    io_log_data = ''.join(
-                    [record[-1] for record in job_state.result.io_log])
+                    io_log_data = self._flatten_io_log(
+                        job_state.result.io_log)
                 else:
-                    io_log_data = [
-                        (record.delay, record.stream_name,
-                         record.data.rstrip())
-                        for record in job_state.result.io_log]
+                    io_log_data = self._io_log(job_state.result.io_log)
                 data['result_map'][job_name]['io_log'] = io_log_data
         return data
+
+    @classmethod
+    def _squash_io_log(cls, io_log):
+        return [record.data.rstrip() for record in io_log]
+
+    @classmethod
+    def _flatten_io_log(cls, io_log):
+        return ''.join([record.data for record in io_log])
+
+    @classmethod
+    def _io_log(cls, io_log):
+        return [(record.delay, record.stream_name, record.data.rstrip())
+                for record in io_log]
 
     @abstractmethod
     def dump(self, data, stream):
