@@ -6,6 +6,8 @@ checkbox (0.15) raring; urgency=low
     file format is invalid. (LP: #1065703)
   * Added environ key to poweroff and reboot jobs so they create logs in the
     expected location (LP: #1085833)
+  * Added reporting of dependencies that are outright missing from the
+    whitelist to avoid confusion (LP: #1084986)
   * scripts/memory_compare: Fixed accumulator expression to give good results
     (LP: #1089046)
   * added scripts/key_test to the list of translatable files (LP: #1073359)
