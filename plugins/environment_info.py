@@ -37,6 +37,8 @@ class EnvironmentInfo(Plugin):
     wpa_n_psk = String(default="")
     open_n_ssid = String(default="")
     btdevaddr = String(default="")
+    sources_list = String(default="/etc/apt/sources.list")
+    repositories = String(default="")
 
     def register(self, manager):
         super(EnvironmentInfo, self).register(manager)

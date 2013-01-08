@@ -29,6 +29,8 @@ checkbox (0.15) raring; urgency=low
     prompt to put them in the same order as mentioned in the text (LP: #1092143)
   * jobs/suspend.txt.in - fix typo that was introduced into suspend_advanced job
     by a previous bug fix (LP: #1096799)
+  * jobs/miscellanea.txt.in, plugins/environment_info.py - added test to check
+    a sources file for specific repositories to make sure they are present
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
