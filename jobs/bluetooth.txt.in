@@ -4,7 +4,7 @@ name: bluetooth/detect-output
 requires:
  package.name == 'bluez'
  device.category == 'BLUETOOTH'
-command: hcitool dev | tail -n+2 | awk '{print $2}' | tee $CHECKBOX_DATA/bluetooth_address
+command: set -o pipefail; hcitool dev | tail -n+2 | awk '{print $2}' | tee $CHECKBOX_DATA/bluetooth_address
 _description:
  Automated test to store bluetooth device information in checkbox report
 

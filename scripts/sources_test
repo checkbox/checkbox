@@ -1,6 +1,5 @@
 #!/bin/bash
 
-IFS=$','
 result=0
 
 if [ -z "$SOURCES_LIST" ]; then
@@ -13,6 +12,7 @@ if [ -z "$REPOSITORIES" ]; then
     exit 1
 fi
 
+IFS=$','
 for repository in $REPOSITORIES; do
     if grep -q "$repository" "$SOURCES_LIST"; then
         echo "$repository found in $SOURCES_LIST"

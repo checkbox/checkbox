@@ -9,6 +9,7 @@ checkbox (0.15) raring; urgency=low
   * scripts/memory_compare: Fixed accumulator expression to give good results
     (LP: #1089046)
   * added scripts/key_test to the list of translatable files (LP: #1073359)
+  * Added wireless network devices to networking/info local job (LP: #1089787)
 
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
@@ -24,6 +25,10 @@ checkbox (0.15) raring; urgency=low
     parses the piglit test results and use it in the piglit jobs
   * scripts/touchhpad_driver_info - changed the shebang to python3, since it is
     using modules that will only be installed for python3 (LP: #1089727)
+  * plugins/recover_prompt.py - changed the order of the buttons in the recover
+    prompt to put them in the same order as mentioned in the text (LP: #1092143)
+  * jobs/suspend.txt.in - fix typo that was introduced into suspend_advanced job
+    by a previous bug fix (LP: #1096799)
   * jobs/miscellanea.txt.in, plugins/environment_info.py - added test to check
     a sources file for specific repositories to make sure they are present
 
@@ -37,6 +42,17 @@ checkbox (0.15) raring; urgency=low
     unity_support_test. They should pipe through ansi_parser like other jobs.
     (LP: #1087777)
   * jobs/info.txt.in - added job info/disk_partitions (LP: #1081833)
+  * jobs/stress.txt.in, jobs/suspend.txt.in - fixed a bug in the command for
+    the suspend jobs where checkbox was getting the exitcode for tee rather
+    than for sleep_test or fwts_test (LP: #1095713)
+  * jobs/stress.txt.in, jobs/hibernate.txt.in - increased device-check-delay
+    from 30 seconds to 45 seconds to avoid a race condition.
+    jobs/suspend.txt.in - added 45 second device-check-delay to the
+    suspend_advanced and suspend_avanced_auto jobs to avoid a race condition.
+    (LP: #1095668)
+  * jobs/bluetooth.txt.in - added pipefail to bluetooth/detect-output 
+    jobs/suspend.txt.in - added pipefail to suspend/network_before_suspend
+    (LP: #1096948)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
