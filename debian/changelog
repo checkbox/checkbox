@@ -65,6 +65,7 @@ checkbox (0.15) raring; urgency=low
     unity_support_test and piped to ansi_parser.
   * scripts/network_device_info: Set the driver version to 'Unknown' if the
     modinfo_parser returns nothing (LP: #1089911)
+  * scripts/kvm_test: Add verbose output on errors (LP: #1086048)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 
