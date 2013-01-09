@@ -20,14 +20,17 @@ class REThread(threading.Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={},
             verbose=None):
         '''Initialize Thread, identical to threading.Thread.__init__().'''
-
-        threading.Thread.__init__(self, group, target, name, args, kwargs,
-            verbose)
+        #Note that due to api differences in python (verbose disappeared
+        #at some point before 3.3 and got replaced by daemon), we just
+        #ignore the verbose attribute. It's not used anywhere in checkbox
+        #so this is safe for our purposes.
         self.__target = target
         self.__args = args
         self.__kwargs = kwargs
         self._retval = None
         self._exception = None
+
+        threading.Thread.__init__(self)
 
     def run(self):
         '''Run target function, identical to threading.Thread.run().'''
