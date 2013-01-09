@@ -27,8 +27,55 @@ checkbox (0.15) raring; urgency=low
     variables used in shell command (LP: #955053)
   * Forced utf-8 decoding on modinfo output and updated to use check_output
     instead of communicate (LP: #1055730)
+  * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
+  * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
+  * jobs/resource.txt.in: Added usb resource that indicates which versions of
+    the protocol are supported (currently only reports for USB 2.0 and 3.0).
+  * scripts/removable_storage_watcher, scripts/removable_storage_test: Added
+    a parameter to specify minimum speed to accept a device, and a parameter
+    to fail removable_storage_test if the transfer speed is below a threshold.
+  * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
+    device is inserted/removed/tested.
+  * scripts/audio_test: made the default mode verbose, it now sends all
+    output to stderr (but still exits a proper return value). Jobs using it
+    are updated to remove the now-unneeded -v parameter.
+  * Added tests to ensure all job files are declared in setup.cfg,
+    po/POTFILES.in and included in jobs/local.txt.in. (LP: #1052986)
+  * setup.cfg, po/POTFILES.in, jobs/local.txt.in: Fixed so the tests pass.
+    (LP: #1052986)
+  * [FEATURE] checkbox/tests/message_files.py: Added a test to validate
+    that all shell jobs have descriptions (LP: #1052992).
+  * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
+    description (LP: #1052992).
+  * [FEATURE] Added a test to verify that jobs contain only keys
+    declared in the schema (avoid stray keys).
 
   [ Brendan Donegan ]
+  * [FEATURE] Add environment_info plugin which sets environment variables
+    according to the values set in the plugin via Checkboxes INI files.
+  * [FEATURE] Added semi-automated wireless tests which require only a single
+    router to run, prompting the user to modify the routers config during 
+    the test.
+  * [FEATURE] Added semi-automated wireless after suspend tests to suspend.txt.in,
+    since they were missed in the previous merge    
+  * Attach the output of udev_resource, for debugging purposes (LP: #974271)
+  * Remove default value from windows_number argument since the logic following
+    it dictates that it's only valid for certain tests (LP: #1047621)
+  * jobs/audio.txt.in - fix description of audio/playback_hdmi (LP: #1052136)
+  * [FEATURE] plugin/environment_info.py - allow BT device address to be set
+    in the checkbox.ini file to facilitate self-testing
+  * jobs/keys.txt.in, scripts/key_test - Fix keys/battery test to have correct
+    fields and tidy up pep8 violations in key_test script (LP: #1054410)
+  * [FEATURE] jobs/power-management.txt.in, jobs/touchpad.txt.in,
+    jobs/sniff.txt.in - Fix incorrect formatting of job descriptions to
+    allow steps to be displayed by the UI (LP: #1054208)
+  * Remove networking/bandwidth job since it is not useful (LP: #1009658)
+  * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
+    to avoid invalid characters ending up in the submission.xml (LP: #1060332)
+  * scripts/network_reconnect_resume_test - map reconnect time strings to float
+    that they can be used in calculations later on (LP: #1064385)
+  * scripts/network_reconnect_resume_test - convert map of reconnect times into
+    a list in order to check if the list is empty (LP: #1064425)
   * Change forward-slashes to asterisks in the filename of a connection, since
     this is what NetworkManager does internally (LP: #1073335)
   * Create a test to move a 3D window around the screen to check if there is any tearing
@@ -151,6 +198,54 @@ checkbox (0.15) raring; urgency=low
   * jobs/mediacard.txt.in - fixed the depends for all *remove* mediacard tests
     to more properly depend on the insert tests rather than storage.
     (LP: #1070328)
+  * scripts/removable_storage_test (total overhaul):
+    * Added --iterations option, now you can run -i iterations of -c files of
+      -s size.
+    * Added RandomData class to generate test files using a much faster method.
+    * Replaced copy_file() with file_write() and file_read() to take advantage of
+      buffer flushing and fsync() opeations not available to shutils/copy2.
+    * Redid the runtime bits of main() so now for every device found, it runs I
+      iterations of C files.
+    * Redid output so now you get an avg write speed per iteration and a summary
+      at the end of all iterations for each device.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
+  * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
+    of removable_storage_test
+  * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
+  * Cleaning up duplicated modinfo code: (LP: #1043521)
+    * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
+    * scripts/audio_driver_info: modified to use modinfo parser
+    * scripts/network_device_info: modified to use modinfo parser
+    * scripts/accelerometer_test: modified to use modinfo parser
+  * Cleaning up missing touchpad driver info bits: (LP: #1052942)
+    * scripts/touchpad_driver_info: added script from automation sprint to get
+      driver info for installed/detected touchpad devices
+    * jobs/info.txt.in: added job to get driver info during info job phase.
+      Moved audio_driver_info and network_driver_info into info.txt.in because
+      they are better suited there. Moved network_device_info job into
+      info.txt.in.
+  * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
+    connections. This is necessary for adequate QA testing (LP: #1042425)
+  * setup.py: added checkbox.dbus to packages (LP: #1052601)
+  * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
+    as it was redundant (LP: #868643)
+  * [FEATURE] jobs/fingerprint.txt.in: Cleaned up the definitions to
+    match current Unity (LP: #946184)
+  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests
+    with usb/HID to combine them so the tester can choose one device rather
+    than requiring multiple devices. (LP: #1053032)
+  * [FEATURE] jobs/keys.txt.in: modified the battery info key job to
+    use the keys_test script as we do with other hotkey tests (LP: #990538)
+  * [FEATURE] jobs/bluetooth.txt.in: removed the bluetooth/keyboard job
+    and modified bluetooth/mouse to be bluetooth/HID and allow the tester
+    to choose a device to use. (LP: #1053010)
+  * jobs/piglit.txt.in: fixed the texturing job that was incorrectly using the
+    word texturize, causing the tests to not run (LP: #1060432)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
@@ -180,6 +275,35 @@ checkbox (0.15) raring; urgency=low
     to use with fswebcam (LP: #1073176)
   * checkbox/parsers/udevadm.py: Enhanced bluetooth detection by looking at the
     RFKILL_TYPE property (LP: #1075052) 
+  * jobs/virtualization.txt.in, scripts/kvm_test, jobs/miscellanea.txt.in,
+    setup.cfg: Added a new KVM test to ensure that a VM boots and works
+    properly with KVM.
+  * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
+    script docstrings from Flash to HTML5 video playback.
+  * [FEATURE] scripts/removable_storage_test, scripts/removable_storage_watcher,
+    jobs/mediacard.txt.in: Added memory cards detection (on bus other than sdio)
+    and a new automated (based on usb/storage-pre-inserted) for SD cards.
+  * scripts/camera_test, jobs/camera.txt.in: Added a 10s timeout to the camera
+    still test (LP: #990133)
+  * scripts/graphics_stress_test, scripts/rendercheck_test, jobs/stress.txt.in: 
+    Exit with proper error message if rendercheck is not installed.
+    (LP: #1048262)
+  * [FEATURE] jobs/suspend.txt.in: Add usb wakeup tests (mouse and keyboard).
+  * [FEATURE] jobs/rendercheck.txt.in, po/POTFILES.in, setup.cfg: Fixed
+    the rendercheck tests, added the suite file to setup.cfg/POTFILES.in
+    and moved the rendercheck/tarball job into an attachment (LP #1053033)
+  * scripts/memorycard_resource, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Fixed the memorycard regexp flags and 
+    add the DriveVendor Udisks property to the re.search() string (LP: #1050920)
+  * [FEATURE] jobs/mediacard.txt.in: Added SDXC, MS, MSP and XD memory card
+    tests.
+  * setup.py: Add the missing checkbox.heuristics module (LP: #1064220)
+  * scripts/pts_run: Force pts_run to exit on errors as phoronix-test-suite
+    always exits with success (LP: #1061297)
+  * [FEATURE] jobs/keys.txt.in: Added video-out and touchpad keys tests.
+  * [FEATURE] jobs/keys.txt.in, jobs/led.txt.in, jobs/suspend.txt.in: Provide
+    leds and special keys tests after suspend. Volume and Mute key tests now
+    use the key_test script. Fix steps numbering for led/wireless.
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
@@ -192,11 +316,37 @@ checkbox (0.15) raring; urgency=low
   * scripts/touchpad_scroll_resource, scripts/xinput_resource: Replaced
     the touchpad_scroll_resource by reusing the xinput_resource script.
   * plugins/error_prompt.py: Fixed call to show_error (LP: #1075605)
+  * scripts/touchpad_scroll_resource: Added support for systems without
+    a touchpad (LP #1045066)
+  * [FEATURE] scripts/xinput_resource, checkbox/parsers/xinput.py: Xinput
+    resource script to test multitouch devices.
+  * patch/0.14.2: Fixed patch to rmtree instead of rmdir scripts directory.
+  * [FEATURE] debian/checkbox.templates, debian/checkbox.config: Added support to
+    preseed properties in environment_info plugin.
+  * setup.py: Fixed required dependency on distutils-extra by providing
+    fake implementations of build_i18n and build_icons (LP #1049218)
+  * checkbox/parsers/description.py: Fixed the PURPOSE and STEPS parts
+    of the description parser to automatically fix bad descriptions.
+  * [FEATURE] tools/lint: Added script to consistently check syntax.
+  * [FEATURE] jobs/touchpad.txt.in, jobs/touchscreen.txt.in: Added singletouch
+    and multitouch for touchpads and touchscreens.
+  * Cleaning up test modules.
+  * Removed package.name == 'linux' only needed by the apport_prompt plugin.
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
     jobs. Added a _description field to each so that the test cases properly
     appear in the checkbox UI (LP: #1064189)
+  * scripts/network-reconnect-resume-time: fixed the wifi-reconnect-resume-time
+    script to also check wired connections for completeness (LP: #1042391)
+  * [FEATURE] scripts/battery_test: measures battery capacity before and after
+    an activity and determines battery life at the rate of drain.
+    jobs/power-management.txt.in: added two manual tests to ask the user to
+    unplug and then re-plug the laptop so that three new automated battery
+    drain tests can run:
+   * power-management/battery_drain_idle
+   * power-management/battery_drain_movie
+   * power-management/battery_drain_sleep
 
   [Zygmunt Krynicki]
   * scripts/removable_storage_watcher - properly detect removal of 'firewire',
@@ -206,10 +356,64 @@ checkbox (0.15) raring; urgency=low
   * checkbox/dbus/udisks2.py: Fix typo in fireware name LP: #1070859
   * scripts/udev_resource: Use simpler interfaces
   * checkbox/parsers/udevadm.py: Allow using UdevadmParser with a string
+  * Fixed simple duplicate 'the' mistakes (LP: #1040022)
+  * Fix incorrect debconf template description for 802.11n open access point
+    SSID (LP: #1049563)
+  * Add new utility, scripts/udisks2_monitor, for looking at various storage
+    changes interactively
+  * Make scripts/removable_storage_watcher {insert,remove} properly validate
+    the 'device' argument (bus type) and require at least one value
+  * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
   [Jeff Marcom]
   * jobs/keys.txt.in - Fixed job command line to have appropriate volume "Up"
     and Volume "Down" UI instructions.
+  * Fixed bug where previous test description and instructions were displayed
+    while an automated test was running (LP: #1012377)
+  * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
+    oem manufacturer info, and cleanup up job step formatting.
+  * /jobs/touchpad.txt.in: Fixed instruction steps for manual touchpad horizontal 
+     and vertical tests.
+  * scripts/audio_settings, jobs/audio.txt.in: Added automated switch to 
+    HDMI interface, modified corresponding jobs file..
+  * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
+    and instead only return the exit code for the appropriate audio test.
+  * scripts/audio_settings: Added automated switch to restore previous 
+    audio profile setting
+
+  [Alberto Milone]
+  * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
+    rendercheck test suites.
+    [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
+    script.
+    [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
+  * checkbox/contrib/gdk.py: removed legacy code and used python 3.
+  * scripts/rotation_test:
+    * Made sure to report all failures, not only the first.
+    * Made it look more pythonic.
+    * Fixed issues with python 3 and used python 3.
+  * checkbox/contrib/xrandr.py:
+    * Fixed issues with python 3 and used python 3 (LP: #1043155).
+  * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
+    window_test to open and close 3D windows in various conditions for
+    graphics testing. Added three new window_test based jobs to graphics.txt.in.
+  * [FEATURE] scripts/graphics_stress_test, jobs/stress.txt.in: Added script to
+    do some graphics stress by ensuring the graphics system continues to
+    function after several iterations of: switching VTs, suspend/resume, screen
+    rotation and running the rendercheck graphics suite.
+
+  [Chris Wayne]
+  * [FEATURE] Added oem_config_test, related jobs and data files
+  * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
+    adding in touchpad scroll detection resource job, and modified jobs
+    to require the capability to be present.
+
+  [Matt Fischer]
+  * scripts/audio_driver_info: added script to find info on loaded drivers
+    jobs/audio.txt.in: added automated job to determine audio drivers loaded
+    jobs/networking.txt.in: added a requires on networking/info for
+    module-init-tools package.
+    scripts/volume_test: cleanup and fixing a small issue
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 
