@@ -3,12 +3,12 @@
 result=0
 
 if [ -z "$SOURCES_LIST" ]; then
-    echo "sources_list not set to location of sources list file in checkbox.ini"
+    echo "See https://wiki.ubuntu.com/Testing/Automation/Checkbox/ConfiguringSourcesListTest for how to provide sources list location."
     exit 1
 fi
 
 if [ -z "$REPOSITORIES" ]; then
-    echo "repositories not set to list of expected repositories in checkbox.ini"
+    echo "See https://wiki.ubuntu.com/Testing/Automation/Checkbox/ConfiguringSourcesListTest for how to provide list of repositories to check for."
     exit 1
 fi
 
