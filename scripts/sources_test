@@ -8,7 +8,7 @@ if [ -z "$SOURCES_LIST" ]; then
 fi
 
 if [ -z "$REPOSITORIES" ]; then
-    echo "https://wiki.ubuntu.com/Testing/Automation/Checkbox/ConfiguringSourcesListTest for how to provide list of repositories to check for."
+    echo "See https://wiki.ubuntu.com/Testing/Automation/Checkbox/ConfiguringSourcesListTest for how to provide list of repositories to check for."
     exit 1
 fi
 
