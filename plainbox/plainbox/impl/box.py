@@ -84,18 +84,23 @@ class PlainBox:
         else:
             if ns.output_format == '?':
                 self._print_output_format_list(ns)
+            elif ns.output_options == '?':
+                self._print_output_option_list(ns)
             else:
-                exporter_cls = get_all_exporters()[ns.output_format]
-                if ns.output_options:
-                    option_list = ns.output_options.split(',')
-                else:
-                    option_list = None
-                try:
-                    exporter = exporter_cls(option_list)
-                except ValueError as exc:
-                    raise SystemExit(str(exc))
-                else:
-                    self._run_jobs(ns, job_list, exporter)
+                exporter = self._prepare_exporter(ns)
+                self._run_jobs(ns, job_list, exporter)
+
+    def _prepare_exporter(self, ns):
+        exporter_cls = get_all_exporters()[ns.output_format]
+        if ns.output_options:
+            option_list = ns.output_options.split(',')
+        else:
+            option_list = None
+        try:
+            exporter = exporter_cls(option_list)
+        except ValueError as exc:
+            raise SystemExit(str(exc))
+        return exporter
 
     def _construct_parser(self):
         parser = ArgumentParser(prog="plainbox")
@@ -138,11 +143,13 @@ class PlainBox:
         group.add_argument(
             '-f', '--output-format', default='text',
             metavar='FORMAT', choices=['?',] + list(get_all_exporters().keys()),
-            help='Save test results in the specified FORMAT')
+            help=('Save test results in the specified FORMAT'
+                  ' (pass ? for a list of choices)'))
         group.add_argument(
             '-p', '--output-options', default='',
             metavar='OPTIONS',
-            help='Comma-separated list of options for the export mechanism')
+            help=('Comma-separated list of options for the export mechanism'
+                  ' (pass ? for a list of choices)'))
         group.add_argument(
             '-o', '--output-file', default='-',
             metavar='FILE', type=FileType("wt"),
@@ -166,6 +173,12 @@ class PlainBox:
     def _print_output_format_list(self, ns):
         print("Available output formats: {}".format(
             ', '.join(get_all_exporters())))
+
+    def _print_output_option_list(self, ns):
+        print("Each format may support a different set of options")
+        for name, exporter_cls in get_all_exporters().items():
+            print("{}: {}".format(
+                name, ", ".join(exporter_cls.supported_option_list)))
 
     def _get_matching_job_list(self, ns, job_list):
         # Find jobs that matched patterns

@@ -1,3 +1,14 @@
+checkbox (0.15.1) raring; urgency=low
+
+  [ Daniel Manrique ]
+  * Bumped revision number to 0.15.1 and restored previous trunk changelog.
+
+  [ Brendan Donegan ]
+  * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
+    before running any Bluetooth tests to avoid these failing (LP: #1084601)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
+
 checkbox (0.15) raring; urgency=low
 
   [ Daniel Manrique ]
@@ -6,9 +17,14 @@ checkbox (0.15) raring; urgency=low
     file format is invalid. (LP: #1065703)
   * Added environ key to poweroff and reboot jobs so they create logs in the
     expected location (LP: #1085833)
+  * Added reporting of dependencies that are outright missing from the
+    whitelist to avoid confusion (LP: #1084986)
   * scripts/memory_compare: Fixed accumulator expression to give good results
     (LP: #1089046)
   * added scripts/key_test to the list of translatable files (LP: #1073359)
+  * Added wireless network devices to networking/info local job (LP: #1089787)
+  * Updated call to Thread constructor to use positional arguments
+    (LP: #1097866)
 
   [ Brendan Donegan ] 
   * Change forward-slashes to asterisks in the filename of a connection, since
@@ -26,8 +42,12 @@ checkbox (0.15) raring; urgency=low
     using modules that will only be installed for python3 (LP: #1089727)
   * plugins/recover_prompt.py - changed the order of the buttons in the recover
     prompt to put them in the same order as mentioned in the text (LP: #1092143)
-  * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
-    before running any Bluetooth tests to avoid these failing (LP: #1084601)
+  * jobs/suspend.txt.in - fix typo that was introduced into suspend_advanced job
+    by a previous bug fix (LP: #1096799)
+  * jobs/miscellanea.txt.in, plugins/environment_info.py - added test to check
+    a sources file for specific repositories to make sure they are present
+  * scripts/sources_test - show link to wiki for test configuration if not set up
+    correctly
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in - removed incorrect multiple router requirement for
@@ -39,6 +59,17 @@ checkbox (0.15) raring; urgency=low
     unity_support_test. They should pipe through ansi_parser like other jobs.
     (LP: #1087777)
   * jobs/info.txt.in - added job info/disk_partitions (LP: #1081833)
+  * jobs/stress.txt.in, jobs/suspend.txt.in - fixed a bug in the command for
+    the suspend jobs where checkbox was getting the exitcode for tee rather
+    than for sleep_test or fwts_test (LP: #1095713)
+  * jobs/stress.txt.in, jobs/hibernate.txt.in - increased device-check-delay
+    from 30 seconds to 45 seconds to avoid a race condition.
+    jobs/suspend.txt.in - added 45 second device-check-delay to the
+    suspend_advanced and suspend_avanced_auto jobs to avoid a race condition.
+    (LP: #1095668)
+  * jobs/bluetooth.txt.in - added pipefail to bluetooth/detect-output 
+    jobs/suspend.txt.in - added pipefail to suspend/network_before_suspend
+    (LP: #1096948)
 
   [Sylvain Pineau]
   * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
@@ -51,6 +82,7 @@ checkbox (0.15) raring; urgency=low
     unity_support_test and piped to ansi_parser.
   * scripts/network_device_info: Set the driver version to 'Unknown' if the
     modinfo_parser returns nothing (LP: #1089911)
+  * scripts/kvm_test: Add verbose output on errors (LP: #1086048)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
 

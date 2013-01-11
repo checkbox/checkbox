@@ -1,0 +1,25 @@
+#!/bin/bash
+
+result=0
+
+if [ -z "$SOURCES_LIST" ]; then
+    echo "See https://wiki.ubuntu.com/Testing/Automation/Checkbox/ConfiguringSourcesListTest for how to provide sources list location."
+    exit 1
+fi
+
+if [ -z "$REPOSITORIES" ]; then
+    echo "See https://wiki.ubuntu.com/Testing/Automation/Checkbox/ConfiguringSourcesListTest for how to provide list of repositories to check for."
+    exit 1
+fi
+
+IFS=$','
+for repository in $REPOSITORIES; do
+    if grep -q "$repository" "$SOURCES_LIST"; then
+        echo "$repository found in $SOURCES_LIST"
+    else
+        echo "$repository not found in $SOURCES_LIST"
+        result=1
+    fi
+done
+
+exit $result

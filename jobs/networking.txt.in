@@ -15,10 +15,10 @@ _description: Tests whether the system has a working Internet connection.
 
 plugin: local
 name: networking/info
-requires: device.category == 'NETWORK'
+requires: device.category == 'NETWORK' or device.category == 'WIRELESS'
 _description: Network Information
 command:
- cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: manual
  name: networking/info_$2
  requires: device.path == "$1"

@@ -4,8 +4,6 @@ name: bluetooth/detect-output
 requires:
  package.name == 'bluez'
  device.category == 'BLUETOOTH'
-user: root
-environ: CHECKBOX_DATA
 command:
  if rfkill list bluetooth | grep -q 'Hard blocked: yes'; then
    echo "rfkill shows BT is hard blocked"

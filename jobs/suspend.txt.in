@@ -47,16 +47,18 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill shows BT is soft blocked, removing before testing."
     rfkill unblock bluetooth
     sleep 3
   fi
-  set -o pipefail; obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+  obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
@@ -70,10 +72,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -93,10 +97,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -116,10 +122,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -140,8 +148,8 @@ _description:
      This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device
  STEPS:
      1. Make sure Bluetooth is enabled by checking the Bluetooth indicator applet
-     1. Click "Test" and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers (It may take a few moments after entering the name for the file to begin sending)
-     2. Accept any prompts that appear on both devices
+     2. Click "Test" and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers (It may take a few moments after entering the name for the file to begin sending)
+     3. Accept any prompts that appear on both devices
  VERIFICATION:
      Was the data correctly transferred?
 
@@ -520,12 +528,14 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
-    echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+    echo "rfkill shows BT is hard blocked"
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
-    echo "rfkill list shows BT is soft blocked, removing before testing"
+    echo "rfkill shows BT is soft blocked, removing before testing."
     rfkill unblock bluetooth
     sleep 3
   fi
@@ -539,18 +549,23 @@ depends: suspend/suspend_advanced_auto suspend/bluetooth_obex_before_suspend
 requires:
  package.name == 'bluez' and package.name == 'obexd-client'
  device.category == 'BLUETOOTH'
-<<<<<<< TREE
-command: rfkill unblock bluetooth; obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
-=======
 command:
   if [ -z "$BTDEVADDR" ]
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  else
-    obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
   fi
->>>>>>> MERGE-SOURCE
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  then
+    echo "rfkill shows BT is hard blocked"
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  then
+    echo "rfkill shows BT is soft blocked, removing before testing."
+    rfkill unblock bluetooth
+    sleep 3
+  fi
+  obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
@@ -565,10 +580,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -589,10 +606,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -613,10 +632,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -637,10 +658,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -661,10 +684,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
@@ -685,10 +710,12 @@ command:
   then
     echo "btdevaddr option not set to device address of Bluetooth target in checkbox.ini"
     exit 1
-  elif rfkill list bluetooth | grep -q 'Hard blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Hard blocked: yes'
   then
     echo "rfkill list shows BT is hard blocked"
-  elif rfkill list bluetooth | grep -q 'Soft blocked: yes'
+  fi
+  if rfkill list bluetooth | grep -q 'Soft blocked: yes'
   then
     echo "rfkill list shows BT is soft blocked, removing before testing"
     rfkill unblock bluetooth
