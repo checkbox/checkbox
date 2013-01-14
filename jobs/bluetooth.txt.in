@@ -4,7 +4,21 @@ name: bluetooth/detect-output
 requires:
  package.name == 'bluez'
  device.category == 'BLUETOOTH'
-command: set -o pipefail; hcitool dev | tail -n+2 | awk '{print $2}' | tee $CHECKBOX_DATA/bluetooth_address
+command:
+ if rfkill list bluetooth | grep -q 'Hard blocked: yes'; then
+   echo "rfkill shows BT is hard blocked"
+ fi
+ if rfkill list bluetooth | grep -q 'Soft blocked: yes'; then
+   echo "rfkill shows BT is soft blocked, removing before testing"
+   rfkill unblock bluetooth
+   sleep 3
+ fi
+ output=$(hcitool dev | tail -n+2 | awk '{print $2}' | tee $CHECKBOX_DATA/bluetooth_address)
+ echo "$output"
+ if [ -z "$output" ]; then
+     "BT hardware not available"
+     exit 1
+ fi
 _description:
  Automated test to store bluetooth device information in checkbox report
 

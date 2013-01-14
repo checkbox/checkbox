@@ -1,6 +1,11 @@
 checkbox (0.15.1) raring; urgency=low
 
+  [ Daniel Manrique ]
   * Bumped revision number to 0.15.1 and restored previous trunk changelog.
+
+  [ Brendan Donegan ]
+  * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
+    before running any Bluetooth tests to avoid these failing (LP: #1084601)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
 
