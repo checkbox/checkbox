@@ -6,6 +6,10 @@ checkbox (0.15.1) raring; urgency=low
   [ Jeff Lane ]
   * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
     displays on desktops. 
+  * scripts/fwts_test - output on failure is now more explanatory. script now
+    only fails on CRITICAL errors rather than HIGH and CRITICAL to eliminate
+    false positives during testing. (HIGH failures have never been found to
+    affect usability or stability) (LP: #1099554)
   
   [ Brendan Donegan ]
   * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
