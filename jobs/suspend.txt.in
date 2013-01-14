@@ -499,7 +499,7 @@ depends: suspend/suspend_advanced bluetooth/detect-output
 requires:
  package.name == 'bluez'
  device.category == 'BLUETOOTH'
- command:
+command:
  if rfkill list bluetooth | grep -q 'Hard blocked: yes'; then
    echo "rfkill shows BT is hard blocked"
  fi
@@ -511,7 +511,7 @@ requires:
  output=$(hcitool dev | tail -n+2 | awk '{print $2}')
  echo $output | diff $CHECKBOX_DATA/bluetooth_address -
  if [ -z "$output" ]; then
-     "BT hardware not available"
+     echo "BT hardware not available"
      exit 1
  fi
 _description:
