@@ -252,7 +252,7 @@ def main():
             average_times(iteration_results)
             for run in iteration_results.keys():
                 if 'FAIL' in iteration_results[run]:
-                    results['sleep'] = 'FAILED_CRITICAL'
+                    results['sleep'] = 'FAILED_HIGH'
     else:
         for test in tests:
             command = ('fwts -q --stdout-summary -r %s %s'
@@ -296,17 +296,9 @@ def main():
         for test in passed: 
             print(" - " + test)
 
-    if critical_fails:
-        print('WARNING: CRITICAL FAILURES REOPORTED! There appear to be\n'
-              'CRITICAL failures reported by fwts. Please check the log\n'
-              'file %s for more information on the reported failures.' % 
-              args.log)
+    if critical_fails or high_fails:
         return 1
     else:
-        if high_fails or medium_fails or low_fails:
-            print('WARNING: Lower Level Failuers reported. FWTS has apparently\n'
-                  'reported non-critical failures. Please check the log file\n'
-                  '%s for more information on the reported failures.' % args.log)
         return 0
 
 if __name__ == '__main__':
