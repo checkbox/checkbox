@@ -297,20 +297,36 @@ def main():
 
     if critical_fails:
         print("Critical Failures: %d" % len(critical_fails))
+        print("WARNING: The following test cases were reported as critical\n"
+              "level failures by fwts. Please review the log at\n"
+              "%s for more information." % args.log)
         for test in critical_fails: 
             print(" - " + test)
+        print('\n')
     if high_fails:
         print("High Failures: %d" % len(high_fails))
+        print("WARNING: The following test cases were reported as high\n"
+              "level failures by fwts. Please review the log at\n"
+              "%s for more information." % args.log)
         for test in high_fails: 
             print(" - " + test)
+        print('\n')
     if medium_fails:
         print("Medium Failures: %d" % len(medium_fails))
+        print("WARNING: The following test cases were reported as medium\n"
+              "level failures by fwts. Please review the log at\n"
+              "%s for more information." % args.log)
         for test in medium_fails: 
             print(" - " + test)
+        print('\n')
     if low_fails:
         print("Low Failures: %d" % len(low_fails))
+        print("WARNING: The following test cases were reported as low\n"
+              "level failures by fwts. Please review the log at\n"
+              "%s for more information." % args.log)
         for test in low_fails: 
             print(" - " + test)
+        print('\n')
     if passed:
         print("Passed: %d" % len(passed))
         for test in passed: 
@@ -328,8 +344,8 @@ def main():
     if fail_priority == fail_levels['FAILED_LOW']:
         if critical_fails or high_fails or medium_fails or low_fails:
             return 1
-    else:
-        return 0
+    
+    return 0
 
 if __name__ == '__main__':
     sys.exit(main())
