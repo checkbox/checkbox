@@ -302,7 +302,6 @@ def main():
               "%s for more information." % args.log)
         for test in critical_fails: 
             print(" - " + test)
-        print('\n')
     if high_fails:
         print("High Failures: %d" % len(high_fails))
         print("WARNING: The following test cases were reported as high\n"
@@ -310,7 +309,6 @@ def main():
               "%s for more information." % args.log)
         for test in high_fails: 
             print(" - " + test)
-        print('\n')
     if medium_fails:
         print("Medium Failures: %d" % len(medium_fails))
         print("WARNING: The following test cases were reported as medium\n"
@@ -318,7 +316,6 @@ def main():
               "%s for more information." % args.log)
         for test in medium_fails: 
             print(" - " + test)
-        print('\n')
     if low_fails:
         print("Low Failures: %d" % len(low_fails))
         print("WARNING: The following test cases were reported as low\n"
@@ -326,7 +323,6 @@ def main():
               "%s for more information." % args.log)
         for test in low_fails: 
             print(" - " + test)
-        print('\n')
     if passed:
         print("Passed: %d" % len(passed))
         for test in passed: 
