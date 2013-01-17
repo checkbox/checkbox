@@ -10,6 +10,9 @@ checkbox (0.15.1) raring; urgency=low
   [ Brendan Donegan ]
   * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
     before running any Bluetooth tests to avoid these failing (LP: #1084601)
+  * scripts/network_reconnect_resume_time - do not fail if resume time cannot
+    be calculated as this usually just means the driver does not print 
+    appropriate messages to determine this. (LP: #1065009)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
 
