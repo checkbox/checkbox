@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+
+"""
+Script to test virtualization functionality
+
+Copyright (C) 2013 Canonical Ltd.
+
+Authors
+  Jeff Marcom <jeff.marcom@canonical.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 3,
+as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+
+from argparse import ArgumentParser
+import configparser
+import os
+import logging
+import queue
+import shlex
+from subprocess import Popen, PIPE, check_call, CalledProcessError
+import signal
+import sys
+import threading
+import time
+import urllib.request
+
+
+class XENTest(object):
+    pass
+
+
+class VirtMachine(threading.Thread):
+    """
+    Start a virtual instance via passed cli parameters.
+    Note that the bootimage used will be defined within the parameters.
+    """
+
+    def __init__(self, process_cmd=None, debug_file="virt_debug"):
+        self.process_cmd = process_cmd
+        self.debug_file = debug_file
+        threading.Thread.__init__(self)
+
+    def probe(self):
+        """
+        Attempts to connect to the currently running virtual machine
+        """
+
+        connected = False
+
+        if "END SSH HOST KEY KEYS" in open(self.probe_file, 'r').read():
+            connected = True
+
+        return connected
+
+    def kill(self):
+        """
+        Kills running Virtual Machine process group
+        """
+        try:
+            os.killpg(self.process.pid, signal.SIGTERM)
+        except OSError as exception:
+            logging.warn("Failed to kill process:{}".format(self.process.pid))
+
+    def run(self):
+
+        # Default file location for log file is in checkbox output directory
+        self.probe_file = os.path.join(
+            os.getenv("HOME"), ".checkbox", self.debug_file)
+
+        # Open VM STDERR/STDOUT log file for writing
+        try:
+            file = open(self.probe_file, 'w')
+        except IOError:
+            logging.error("Failed creating file:{}".format(self.probe_file))
+            return False
+
+        # Start Virtual machine
+        self.process = Popen(self.process_cmd, stderr=file,
+            stdout=file, universal_newlines=True, shell=True)
+
+
+class KVMTest(threading.Thread):
+
+    def __init__(self, image=None, timeout=400):
+        self.image = image
+        self.timeout = timeout
+
+        threading.Thread.__init__(self)
+        self.result = queue.Queue()
+
+    @classmethod
+    def download_image(cls):
+        """
+        Downloads Cloud image for same release as host machine
+        """
+
+        # Check Ubuntu release info. Example {quantal, precise}
+        for line in open("/etc/lsb-release"):
+            if "CODENAME" in line:
+                release = line.split("=")[1].lower().strip()
+
+        # Construct URL
+        cloud_url = "http://cloud-images.ubuntu.com"
+        cloud_iso = release + "-server-cloudimg-i386-disk1.img"
+        image_url = "/".join((
+            cloud_url, release, "current", cloud_iso))
+
+        logging.debug("Downloading {}, from {}".format(cloud_iso, cloud_url))
+
+        # Attempt download
+        try:
+            resp = urllib.request.urlretrieve(image_url, cloud_iso)
+        except urllib.error.HTTPError as exception:
+            logging.error("Failed download {}: {}".format(image_url, exception))
+            return False
+
+        if not os.path.isfile(cloud_iso):
+            return False
+
+        return cloud_iso
+
+    @classmethod
+    def boot_image(cls, data_disk):
+        """
+        Attempts to boot the newly created qcow image using
+        the config data defined in config.iso. Return instance
+        of currently running virtual machine
+        """
+
+        logging.debug("Attempting boot for:{}".format(data_disk))
+
+        # Set Arbitrary IP values
+        netrange = "10.0.0.0/8"
+        image_ip = "10.0.0.1"
+        hostfwd = "tcp::2222-:22"
+
+        params = \
+        '''
+        kvm -m {0} -net nic -net user,net={1},host={2},
+        hostfwd={3} -drive file={4},if=virtio -display none -nographic
+        '''.format(
+            "256",
+            netrange,
+            image_ip,
+            hostfwd,
+            data_disk).replace("\n", "").replace("  ", "")
+
+        logging.debug("Using params:{}".format(params))
+
+        virt = VirtMachine(params)
+        virt.start()
+
+        if not virt.isAlive():
+            return False
+
+        return virt
+
+    def run(self):
+
+        if self.image == None:
+            # Download cloud image
+            self.image = self.download_image()
+
+        if os.path.isfile(self.image):
+
+            # Boot Virtual Machine
+            instance = self.boot_image(self.image)
+
+            if instance:
+                time.sleep(self.timeout)
+                # Check to be sure VM boot was successful
+                if instance.probe():
+                    print("Booted successfully", file=sys.stderr)
+                    self.result.put(0)
+                else:
+                    print("KVM instance failed to boot", file=sys.stderr)
+                instance.kill()
+        else:
+            print("Could not find: {}".format(self.image), file=sys.stderr)
+
+        self.result.put(1)
+
+
+def test_kvm(args):
+    print("Executing KVM Test", file=sys.stderr)
+
+    DEFAULT_CFG = "/etc/checkbox.d/virtualization.cfg"
+    image = ""
+    timeout = ""
+
+    config_file = DEFAULT_CFG
+    config = configparser.SafeConfigParser()
+
+    try:
+        config.readfp(open(config_file))
+        timeout = config.get("KVM", "timeout")
+        image = config.get("KVM", "image") 
+    except IOError:
+        logging.warn("No config file found")
+    except Exception as exception:
+        logging.warn(exception)
+
+    if image == "":
+        image = args.image
+    if timeout == "":
+        timeout = args.timeout
+
+    kvm_test = KVMTest(image, timeout)
+    kvm_test.start()
+
+    exit_code = kvm_test.result.get()
+    print(exit_code)
+    sys.exit(exit_code)
+
+
+def main():
+
+    parser = ArgumentParser(description="Virtualization Test")
+    subparsers = parser.add_subparsers()
+
+    # Main cli options
+    kvm_test_parser = subparsers.add_parser('kvm',
+        help=("Run kvm virtualization test"))
+
+    #xen_test_parser = subparsers.add_parser('xen',
+    #    help=("Run xen virtualization test"))
+
+    # Sub test options
+    kvm_test_parser.add_argument('-i', '--image',
+        type=str, default=None)
+    kvm_test_parser.add_argument('-t', '--timeout',
+        type=int, default=400)
+    kvm_test_parser.add_argument('--debug',
+        action="store_true")
+
+    args = parser.parse_args()
+
+    if args.debug:
+        logging.basicConfig(level=logging.DEBUG)
+
+    kvm_test_parser.set_defaults(func=test_kvm(args))
+
+if __name__ == "__main__":
+    main();
