@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-12 16:08-0400\n"
-"PO-Revision-Date: 2013-01-06 11:08+0000\n"
-"Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
+"PO-Revision-Date: 2013-01-18 15:45+0000\n"
+"Last-Translator: OKANO Takayoshi <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-01-15 04:33+0000\n"
-"X-Generator: Launchpad (build 16420)\n"
+"X-Launchpad-Export-Date: 2013-01-19 04:36+0000\n"
+"X-Generator: Launchpad (build 16430)\n"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -649,7 +649,7 @@ msgstr "このテストでは、CPUトポロジーの性能をチェックしま
 #. description
 #: ../jobs/cpu.txt.in:42
 msgid "This test checks that CPU frequency governors are obeyed when set."
-msgstr "このテストは、CPU周波数のGoverner(制御方法)が設定通りかどうかチェックします。"
+msgstr "このテストは、CPU周波数のGovernor(制御方法)が設定通りかどうかチェックします。"
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -949,7 +949,7 @@ msgstr ""
 "目的：\n"
 "    このテストは、デフォルトの画面解像度を確認します。\n"
 "ステップ：\n"
-"    1.現在のディスクプレイは、次の解像度を使用しています。\n"
+"    1.現在のディスプレイは、次の解像度を使用しています。\n"
 "情報：\n"
 "    $output\n"
 "確認：\n"
@@ -2078,6 +2078,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"目的：\n"
+"    このテストでは、DSLモデムの設定変更と接続が可能かどうかテストします。\n"
+"ステップ：\n"
+"    1.コンピュータに電話線を接続してください。\n"
+"    2.トップパネルのネットワークアイコンをクリックしてください。\n"
+"    3.''接続を編集する''を選択してください。\n"
+"    4.''DSL''タブを選択してください。\n"
+"    5.''追加''ボタンをクリックしてください。\n"
+"    6.接続のためのパラメータを適切に設定してください。\n"
+"    7.''テスト''をクリックし、HTTP接続を確立できるかどうか確認してください。\n"
+"確認：\n"
+"    通知メッセージが表示され、接続が正しく確立されましたか？"
 
 #. description
 #: ../jobs/networking.txt.in:79
@@ -2124,7 +2136,7 @@ msgstr "ネットワークの帯域幅を計測するテスト"
 #. description
 #: ../jobs/optical.txt.in:4
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "光学ドライブの検出テスト"
 
 #. description
 #: ../jobs/optical.txt.in:16
@@ -2240,6 +2252,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"目的：\n"
+"    このテストでは、DVDの再生性能をテストします。\n"
+"ステップ：\n"
+"    1.光学ドライブに、何か動画を含んだDVDを挿入してください。\n"
+"    2.\"テスト\"をクリックし、Totemを使ってDVDを再生してください。\n"
+"確認：\n"
+"    ファイルを再生できましたか?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -2252,6 +2271,12 @@ msgid ""
 "VERIFICATION:\n"
 "   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
+"目的：\n"
+"    このテストでは、デスクトップの時計が正しい日付と時間を表示しているか確認します。\n"
+"ステップ：\n"
+"    1.デスクトップの右上にある時計をチェックしてください。\n"
+"確認：\n"
+"    時計はあなたのタイムゾーンにおける正しい日付と時刻を表示していますか？"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:18
@@ -2270,6 +2295,17 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"目的：\n"
+"    このテストでは、デスクトップの時計がシステムクロックと同期しているかどうかを確認します。\n"
+"ステップ：\n"
+"    1.\"テスト\"ボタンをクリックし、時計が1時間進むことを確認します。\n"
+"    注意：時刻表示の更新には、1分かそれ以上かかることがあります。\n"
+"    2.時計を右クリックし、\"日付と時刻の設定...\"をクリックします。\n"
+"    3.時計アプリケーションの時刻設定が、\"手動\"に設定されていることを確認します。\n"
+"    4.時刻を1時間戻します。\n"
+"    5.ウィンドウを閉じ、リブートします。\n"
+"確認：\n"
+"    システムクロックは、あなたのタイムゾーンにおける正しい日付と時刻を表示していますか？"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:3
@@ -2286,6 +2322,14 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"目的：\n"
+"    このテストは、システムをデスクトップメニューからリブートできるかどうかを確認します。\n"
+"ステップ：\n"
+"    1.デスクトップの右上にある歯車のアイコンをクリックし、\"シャットダウン\"をクリックします。\n"
+"    2.シャットダウンダイアログの左側にある、\"再起動\"ボタンを押します。\n"
+"    3.再度ログインしたのち、システムテストツールを起動しなおして、現在の状態から開始することを確認します。\n"
+"確認：\n"
+"    システムが再スタートし、正常にGUIログインが起動しましたか?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
