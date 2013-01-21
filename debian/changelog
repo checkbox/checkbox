@@ -2,6 +2,7 @@ checkbox (0.15.1) raring; urgency=low
 
   [ Daniel Manrique ]
   * Bumped revision number to 0.15.1 and restored previous trunk changelog.
+  * jobs/peripheral.txt.in: fixed string with repeated "add" (LP: #1102665) 
 
   [ Jeff Lane ]
   * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
@@ -14,6 +15,7 @@ checkbox (0.15.1) raring; urgency=low
     be calculated as this usually just means the driver does not print 
     appropriate messages to determine this. (LP: #1065009)
 
+  [ Daniel Manrique ]
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
 
 checkbox (0.15) raring; urgency=low
