@@ -75,15 +75,6 @@ class KVMTest(object):
 
         return cloud_iso
 
-    def kill(self):
-        """
-        Kills running Virtual Machine process group
-        """
-        try:
-            os.killpg(self.process.pid, signal.SIGTERM)
-        except OSError as exception:
-            logging.warn("Failed to kill process:{}".format(self.process.pid))
-
     def boot_image(self, data_disk):
         """
         Attempts to boot the newly created qcow image using
@@ -152,7 +143,7 @@ class KVMTest(object):
                     status = 0
                 else:
                     print("KVM instance failed to boot", file=sys.stderr)
-                self.kill()
+                self.process.terminate()
         else:
             print("Could not find: {}".format(self.image), file=sys.stderr)
 
