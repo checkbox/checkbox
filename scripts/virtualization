@@ -28,9 +28,10 @@ import os
 import logging
 import queue
 import shlex
-from subprocess import Popen, PIPE, check_call, CalledProcessError
 import signal
+from subprocess import Popen, PIPE, check_call, CalledProcessError
 import sys
+import tempfile
 import threading
 import time
 import urllib.request
@@ -58,7 +59,7 @@ class VirtMachine(threading.Thread):
 
         connected = False
 
-        if "END SSH HOST KEY KEYS" in open(self.probe_file, 'r').read():
+        if "END SSH HOST KEY KEYS" in open(self.debug_file, 'r').read():
             connected = True
 
         return connected
@@ -73,16 +74,17 @@ class VirtMachine(threading.Thread):
             logging.warn("Failed to kill process:{}".format(self.process.pid))
 
     def run(self):
-
         # Default file location for log file is in checkbox output directory
-        self.probe_file = os.path.join(
-            os.getenv("HOME"), ".checkbox", self.debug_file)
+        checkbox_dir = os.getenv("CHECKBOX_DATA")
+
+        if checkbox_dir != None:
+            self.debug_file = os.path.join(checkbox_dir, self.debug_file)
 
         # Open VM STDERR/STDOUT log file for writing
         try:
-            file = open(self.probe_file, 'w')
+            file = open(self.debug_file, 'w')
         except IOError:
-            logging.error("Failed creating file:{}".format(self.probe_file))
+            logging.error("Failed creating file:{}".format(self.debug_file))
             return False
 
         # Start Virtual machine
@@ -90,14 +92,11 @@ class VirtMachine(threading.Thread):
             stdout=file, universal_newlines=True, shell=True)
 
 
-class KVMTest(threading.Thread):
+class KVMTest(object):
 
     def __init__(self, image=None, timeout=400):
         self.image = image
         self.timeout = timeout
-
-        threading.Thread.__init__(self)
-        self.result = queue.Queue()
 
     @classmethod
     def download_image(cls):
@@ -158,6 +157,7 @@ class KVMTest(threading.Thread):
 
         logging.debug("Using params:{}".format(params))
 
+        # Start virtual machine
         virt = VirtMachine(params)
         virt.start()
 
@@ -166,9 +166,14 @@ class KVMTest(threading.Thread):
 
         return virt
 
-    def run(self):
+    def start(self):
+        # Create temp directory:
+        temp_dir = tempfile.mkdtemp(
+            "_kvm_test", 
+            time.strftime("%b_%d_%Y_"))
+        os.chdir(temp_dir)
 
-        if self.image == None:
+        if self.image is None:
             # Download cloud image
             self.image = self.download_image()
 
@@ -182,15 +187,15 @@ class KVMTest(threading.Thread):
                 # Check to be sure VM boot was successful
                 if instance.probe():
                     print("Booted successfully", file=sys.stderr)
-                    self.result.put(0)
+                    return
                 else:
                     print("KVM instance failed to boot", file=sys.stderr)
                 instance.kill()
         else:
             print("Could not find: {}".format(self.image), file=sys.stderr)
 
-        self.result.put(1)
-
+        return 1    
+     
 
 def test_kvm(args):
     print("Executing KVM Test", file=sys.stderr)
@@ -217,11 +222,9 @@ def test_kvm(args):
         timeout = args.timeout
 
     kvm_test = KVMTest(image, timeout)
-    kvm_test.start()
+    result = kvm_test.start()
 
-    exit_code = kvm_test.result.get()
-    print(exit_code)
-    sys.exit(exit_code)
+    sys.exit(result)
 
 
 def main():
