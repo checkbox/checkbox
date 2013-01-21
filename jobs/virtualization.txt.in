@@ -19,6 +19,6 @@ requires:
  package.name == 'qemu-kvm'
  package.name == 'qemu-utils'
 depends: virtualization/kvm_ok
-command: kvm_test $CLOUD_IMAGE
+command: virtualization kvm --debug
 _description:
  Test to check that a cloud image boots and works properly with KVM

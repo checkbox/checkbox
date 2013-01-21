@@ -27,13 +27,10 @@ import configparser
 import os
 import logging
 import lsb_release
-import queue
-import shlex
 import signal
-from subprocess import Popen, PIPE, check_call, CalledProcessError
+from subprocess import Popen, PIPE
 import sys
 import tempfile
-import threading
 import time
 import urllib.request
 
@@ -42,62 +39,12 @@ class XENTest(object):
     pass
 
 
-class VirtMachine(threading.Thread):
-    """
-    Start a virtual instance via passed cli parameters.
-    Note that the bootimage used will be defined within the parameters.
-    """
-
-    def __init__(self, process_cmd=None, debug_file="virt_debug"):
-        self.process_cmd = process_cmd
-        self.debug_file = debug_file
-        threading.Thread.__init__(self)
-
-    def probe(self):
-        """
-        Attempts to connect to the currently running virtual machine
-        """
-
-        connected = False
-
-        if "END SSH HOST KEY KEYS" in open(self.debug_file, 'r').read():
-            connected = True
-
-        return connected
-
-    def kill(self):
-        """
-        Kills running Virtual Machine process group
-        """
-        try:
-            os.killpg(self.process.pid, signal.SIGTERM)
-        except OSError as exception:
-            logging.warn("Failed to kill process:{}".format(self.process.pid))
-
-    def run(self):
-        # Default file location for log file is in checkbox output directory
-        checkbox_dir = os.getenv("CHECKBOX_DATA")
-
-        if checkbox_dir != None:
-            self.debug_file = os.path.join(checkbox_dir, self.debug_file)
-
-        # Open VM STDERR/STDOUT log file for writing
-        try:
-            file = open(self.debug_file, 'w')
-        except IOError:
-            logging.error("Failed creating file:{}".format(self.debug_file))
-            return False
-
-        # Start Virtual machine
-        self.process = Popen(self.process_cmd, stderr=file,
-            stdout=file, universal_newlines=True, shell=True)
-
-
 class KVMTest(object):
 
-    def __init__(self, image=None, timeout=400):
+    def __init__(self, image=None, timeout=500, debug_file="virt_debug"):
         self.image = image
         self.timeout = timeout
+        self.debug_file = debug_file
 
     @classmethod
     def download_image(cls):
@@ -128,8 +75,16 @@ class KVMTest(object):
 
         return cloud_iso
 
-    @classmethod
-    def boot_image(cls, data_disk):
+    def kill(self):
+        """
+        Kills running Virtual Machine process group
+        """
+        try:
+            os.killpg(self.process.pid, signal.SIGTERM)
+        except OSError as exception:
+            logging.warn("Failed to kill process:{}".format(self.process.pid))
+
+    def boot_image(self, data_disk):
         """
         Attempts to boot the newly created qcow image using
         the config data defined in config.iso. Return instance
@@ -156,21 +111,28 @@ class KVMTest(object):
 
         logging.debug("Using params:{}".format(params))
 
-        # Start virtual machine
-        virt = VirtMachine(params)
-        virt.start()
+        # Default file location for log file is in checkbox output directory
+        checkbox_dir = os.getenv("CHECKBOX_DATA")
 
-        if not virt.isAlive():
+        if checkbox_dir != None:
+            self.debug_file = os.path.join(checkbox_dir, self.debug_file)
+
+        # Open VM STDERR/STDOUT log file for writing
+        try:
+            file = open(self.debug_file, 'w')
+        except IOError:
+            logging.error("Failed creating file:{}".format(self.debug_file))
             return False
 
-        return virt
+        # Start Virtual machine
+        self.process = Popen(params, stderr=file,
+            stdout=file, universal_newlines=True, shell=True)
 
     def start(self):
         # Create temp directory:
-        temp_dir = tempfile.mkdtemp(
-            "_kvm_test", 
-            time.strftime("%b_%d_%Y_"))
+        temp_dir = tempfile.mkdtemp("_kvm_test", time.strftime("%b_%d_%Y_"))
         os.chdir(temp_dir)
+        status = 1
 
         if self.image is None:
             # Download cloud image
@@ -181,19 +143,20 @@ class KVMTest(object):
             # Boot Virtual Machine
             instance = self.boot_image(self.image)
 
-            if instance:
+            if instance is not False:
                 time.sleep(self.timeout)
                 # Check to be sure VM boot was successful
-                if instance.probe():
+                if "END SSH HOST KEY KEYS" \
+                in open(self.debug_file, 'r').read():
                     print("Booted successfully", file=sys.stderr)
-                    return
+                    status = 0
                 else:
                     print("KVM instance failed to boot", file=sys.stderr)
-                instance.kill()
+                self.kill()
         else:
             print("Could not find: {}".format(self.image), file=sys.stderr)
 
-        return 1    
+        return status  
      
 
 def test_kvm(args):
@@ -242,7 +205,7 @@ def main():
     kvm_test_parser.add_argument('-i', '--image',
         type=str, default=None)
     kvm_test_parser.add_argument('-t', '--timeout',
-        type=int, default=400)
+        type=int, default=500)
     kvm_test_parser.add_argument('--debug',
         action="store_true")
 
