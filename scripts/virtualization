@@ -26,6 +26,7 @@ from argparse import ArgumentParser
 import configparser
 import os
 import logging
+import lsb_release
 import queue
 import shlex
 import signal
@@ -105,9 +106,7 @@ class KVMTest(object):
         """
 
         # Check Ubuntu release info. Example {quantal, precise}
-        for line in open("/etc/lsb-release"):
-            if "CODENAME" in line:
-                release = line.split("=")[1].lower().strip()
+        release = lsb_release.get_lsb_information()["CODENAME"]
 
         # Construct URL
         cloud_url = "http://cloud-images.ubuntu.com"
