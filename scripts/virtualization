@@ -200,13 +200,17 @@ def main():
         type=int, default=500)
     kvm_test_parser.add_argument('--debug',
         action="store_true")
+    kvm_test_parser.set_defaults(func=test_kvm)
 
     args = parser.parse_args()
 
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)
 
-    kvm_test_parser.set_defaults(test_kvm(args))
+    args.func(args)
+
+    
+    
 
 if __name__ == "__main__":
     main();
