@@ -15,7 +15,12 @@ checkbox (0.15.1) raring; urgency=low
     be calculated as this usually just means the driver does not print 
     appropriate messages to determine this. (LP: #1065009)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
+  [ Jeff Marcom ]
+  * Converted kvm virtualization test to python3. Test will use parameters
+    in config file in the event the system under test does not have internet
+    access. Updated jobs/virtualization.txt.in
+
+ -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
 
 checkbox (0.15) raring; urgency=low
 
