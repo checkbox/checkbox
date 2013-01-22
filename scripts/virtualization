@@ -120,32 +120,33 @@ class KVMTest(object):
             stdout=file, universal_newlines=True, shell=True)
 
     def start(self):
-        # Create temp directory:
-        temp_dir = tempfile.mkdtemp("_kvm_test", time.strftime("%b_%d_%Y_"))
-        os.chdir(temp_dir)
         status = 1
+        # Create temp directory:
+        with tempfile.TemporaryDirectory("_kvm_test", 
+        time.strftime("%b_%d_%Y_")) as temp_dir:
+            
+            os.chdir(temp_dir)
+            if self.image is None:
+                # Download cloud image
+                self.image = self.download_image()
 
-        if self.image is None:
-            # Download cloud image
-            self.image = self.download_image()
+            if os.path.isfile(self.image):
+ 
+                # Boot Virtual Machine
+                instance = self.boot_image(self.image)
 
-        if os.path.isfile(self.image):
-
-            # Boot Virtual Machine
-            instance = self.boot_image(self.image)
-
-            if instance is not False:
-                time.sleep(self.timeout)
-                # Check to be sure VM boot was successful
-                if "END SSH HOST KEY KEYS" \
-                in open(self.debug_file, 'r').read():
-                    print("Booted successfully", file=sys.stderr)
-                    status = 0
-                else:
-                    print("KVM instance failed to boot", file=sys.stderr)
-                self.process.terminate()
-        else:
-            print("Could not find: {}".format(self.image), file=sys.stderr)
+                if instance is not False:
+                    time.sleep(self.timeout)
+                    # Check to be sure VM boot was successful
+                    if "END SSH HOST KEY KEYS" \
+                    in open(self.debug_file, 'r').read():
+                        print("Booted successfully", file=sys.stderr)
+                        status = 0
+                    else:
+                        print("KVM instance failed to boot", file=sys.stderr)
+                    self.process.terminate()
+            else:
+                print("Could not find: {}".format(self.image), file=sys.stderr)
 
         return status  
      
@@ -205,7 +206,7 @@ def main():
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)
 
-    kvm_test_parser.set_defaults(func=test_kvm(args))
+    kvm_test_parser.set_defaults(test_kvm(args))
 
 if __name__ == "__main__":
     main();
