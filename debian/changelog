@@ -9,6 +9,8 @@ checkbox (0.15.1) raring; urgency=low
   * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
     displays on desktops. 
   * scripts/rendercheck_test - added missing import for errno (LP: #1103343)
+    jobs/rendercheck.txt.in - fixed command string to report the correct exit
+    code to checkbox
   
   [ Brendan Donegan ]
   * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
@@ -22,7 +24,7 @@ checkbox (0.15.1) raring; urgency=low
     in config file in the event the system under test does not have internet
     access. Updated jobs/virtualization.txt.in
 
- -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 09 Jan 2013 16:40:02 -0500
+ -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 23 Jan 2013 16:30:22 -0500
 
 checkbox (0.15) raring; urgency=low
 
