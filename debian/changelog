@@ -8,6 +8,7 @@ checkbox (0.15.1) raring; urgency=low
   [ Jeff Lane ]
   * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
     displays on desktops. 
+  * scripts/rendercheck_test - added missing import for errno (LP: #1103343)
   
   [ Brendan Donegan ]
   * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware

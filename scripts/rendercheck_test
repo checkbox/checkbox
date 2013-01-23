@@ -29,6 +29,7 @@ import logging
 import os
 import re
 import tempfile
+import errno
 
 
 class RenderCheck(object):
