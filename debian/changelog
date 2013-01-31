@@ -1,4 +1,4 @@
-checkbox (0.15.1) raring; urgency=low
+checkbox (0.15.2) raring; urgency=low
 
   [ Daniel Manrique ]
   * Bumped revision number to 0.15.1 and restored previous trunk changelog.
@@ -6,11 +6,26 @@ checkbox (0.15.1) raring; urgency=low
   * scripts/graphics_stress_test: added missing import (LP: #1102812)
 
   [ Jeff Lane ]
-  * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
-    displays on desktops. 
   * scripts/rendercheck_test - added missing import for errno (LP: #1103343)
     jobs/rendercheck.txt.in - fixed command string to report the correct exit
     code to checkbox
+  
+  [ Jeff Marcom ]
+  * Converted kvm virtualization test to python3. Test will use parameters
+    in config file in the event the system under test does not have internet
+    access. Updated jobs/virtualization.txt.in
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 30 Jan 2013 19:28:51 -0500
+
+checkbox (0.15.1) raring; urgency=low
+
+  * New upstream release (LP: #1110802)
+
+  * Launchpad automated translation updates.
+
+  [ Jeff Lane ]
+  * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
+    displays on desktops. 
   
   [ Brendan Donegan ]
   * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
@@ -18,11 +33,6 @@ checkbox (0.15.1) raring; urgency=low
   * scripts/network_reconnect_resume_time - do not fail if resume time cannot
     be calculated as this usually just means the driver does not print 
     appropriate messages to determine this. (LP: #1065009)
-
-  [ Jeff Marcom ]
-  * Converted kvm virtualization test to python3. Test will use parameters
-    in config file in the event the system under test does not have internet
-    access. Updated jobs/virtualization.txt.in
 
  -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 23 Jan 2013 16:30:22 -0500
 
