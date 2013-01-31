@@ -15,6 +15,20 @@ export FORCE_TIMES_TO_RUN=1
 # Run only the following resolution
 export OVERRIDE_VIDEO_MODES=800x600
 
+set +o errexit
+rv=0
 output=$(phoronix-test-suite batch-benchmark $@ 2>&1)
-echo $output | grep -q -i 'This test failed to run properly'
-echo $output | sed 's/.*Average: //'
+#The output does NOT report success. It may contain, if it fails:
+# The test did not produce a result
+# The test failed to run properly
+# Failed to Fetch
+
+if (echo "$output" | grep -q -i "Failed to fetch" ); then 
+	rv=1
+fi
+if ( echo "$output" | grep -q -i 'This test failed to run properly'); then 
+	rv=1
+fi
+echo "$output"
+exit $rv
+
