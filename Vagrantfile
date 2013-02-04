@@ -26,6 +26,10 @@ Vagrant::Config.run do |config|
   # config.vm.provision :shell, :inline => "apt-get update && apt-get dist-upgrade"
   # Install dependencies from native packages
   config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-yaml python3-lxml"
+  # Install some checkbox script dependencies:
+  # Later on those could be installed on demand to test how we behave without
+  # them but for now that's good enough. Little by little...
+  config.vm.provision :shell, :inline => "apt-get install --yes fwts"
   # Install python3-dev so that we can build native bits of other dependencies later
   config.vm.provision :shell, :inline => "apt-get install --yes python3-dev"
   # Install PIP so that we can install the rest from source
