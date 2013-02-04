@@ -40,4 +40,6 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => "pip install -U coverage"
   # Develop plainbox so that we have it in $PATH
   config.vm.provision :shell, :inline => "cd /vagrant/plainbox/ && python3 setup.py develop"
+  # Create a cool symlink so that everyone knows where to go to
+  config.vm.provision :shell, :inline => "ln -s /vagrant /home/vagrant/checkbox"
 end
