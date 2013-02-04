@@ -15,6 +15,12 @@ Vagrant::Config.run do |config|
     precise_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
   end
 
+  # Define a Ubuntu Server image (cloud) for the 13.04 release (raring)
+  config.vm.define :raring do |raring_config|
+    raring_config.vm.box = "raring-cloud-amd64"
+    raring_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-amd64-vagrant-disk1.box"
+  end
+
   # Update to have the latest packages
   # Commented out for now, we don't really need it
   # config.vm.provision :shell, :inline => "apt-get update && apt-get dist-upgrade"
