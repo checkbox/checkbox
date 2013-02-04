@@ -1,4 +1,8 @@
 __pycache__
+# Ignore logs created by test-in-vagrant.sh
+vagrant-logs/
+# Ignore vagrant state file
+.vagrant
 # The list below is riddled with junk created by running the test suite of checkbox
 # It should be really cleaned up as tests should _not_ do that but right now it's more
 # annoying than dangerous so I'll get rid of the noise first
