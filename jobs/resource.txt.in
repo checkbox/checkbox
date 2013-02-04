@@ -12,16 +12,19 @@ description: Gets installation info from casper.log and media-info
 name: dpkg
 plugin: resource
 command: dpkg_resource
+requires: package.name == "dpkg"
 description: Gets info on the version of dpkg installed
 
 name: gconf
 plugin: resource
 command: gconf_resource | filter_templates -w 'name=.*proxy.*'
+requires: package.name == "gconf2"
 description: Generates resource info from gconf settings
 
 name: lsb
 plugin: resource
 command: lsb_resource
+requires: package.name == "lsb-release"
 description: Generates release info based on /etc/lsb-release
 
 name: meminfo
@@ -42,11 +45,13 @@ description: Generates a list of installed packages
 name: device
 plugin: resource
 command: udev_resource
+requires: package.name == "udev"
 description: Creates resource info from udev 
 
 name: dmi
 plugin: resource
 user: root
+requires: package.name == "dmidecode"
 command: dmi_resource
 
 name: efi
@@ -67,6 +72,7 @@ description: Create resource info for supported sleep states
 name: optical_drive
 plugin: resource
 command: for media in CD DVD; do wodim -prcap 2>/dev/null | grep -q -i "Does write $media" && echo "$media: writable" || echo "$media: readonly"; done
+requires: package.name == "wodim"
 description: Create resource info for supported optical actions
 
 name: block_device
@@ -77,6 +83,7 @@ description: Create resource info for removable block devices
 name: display
 plugin: resource
 command: display_resource
+requires: package.name == "x11-xserver-utils"
 description: Creates display resource info from xrandr output
 
 name: usb
@@ -91,6 +98,7 @@ command:
 name: xinput
 plugin: resource
 command: xinput_resource
+requires: package.name == "xinput"
 description: Creates resource info from xinput output.
 
 name: environment
