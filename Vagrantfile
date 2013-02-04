@@ -1,5 +1,5 @@
 # -*- mode: ruby -*-
-# vi: set ft=ruby :
+# vi: set ft=ruby sw=2 ts=2 :
 
 Vagrant::Config.run do |config|
 
