@@ -21,6 +21,9 @@ Vagrant::Config.run do |config|
     raring_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-amd64-vagrant-disk1.box"
   end
 
+  # For debugging and later future GUI testing
+  # config.vm.boot_mode = :gui
+
   # Update to have the latest packages
   # Commented out for now, we don't really need it
   # config.vm.provision :shell, :inline => "apt-get update && apt-get dist-upgrade"
