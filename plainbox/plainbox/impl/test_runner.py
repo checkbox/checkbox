@@ -3,6 +3,7 @@
 # Copyright 2013 Canonical Ltd.
 # Written by:
 #   Sylvain Pineau <sylvain.pineau@canonical.com>
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,9 +25,15 @@ plainbox.impl.test_runner
 Test definitions for plainbox.impl.runner module
 """
 
+from tempfile import TemporaryDirectory
 from unittest import TestCase
+import os
 
+from plainbox.impl.runner import CommandIOLogBuilder
+from plainbox.impl.runner import FallbackCommandOutputPrinter
+from plainbox.impl.runner import CommandOutputWriter
 from plainbox.impl.runner import slugify
+from plainbox.testing_utils.io import TestIO
 
 
 class SlugifyTests(TestCase):
@@ -39,3 +46,71 @@ class SlugifyTests(TestCase):
         self.assertEqual(slugify("\z"), "_z")
         self.assertEqual(slugify("/z"), "_z")
         self.assertEqual(slugify("1k"), "1k")
+
+
+class CommandIOLogBuilderTests(TestCase):
+
+    def test_smoke(self):
+        builder = CommandIOLogBuilder()
+        # Calling on_begin() resets internal state
+        builder.on_begin(None, None)
+        self.assertEqual(builder.io_log, [])
+        # Calling on_line accumulates records
+        builder.on_line('stdout', b'text\n')
+        builder.on_line('stdout', b'different text\n')
+        builder.on_line('stderr', b'error message\n')
+        self.assertEqual(builder.io_log[0].stream_name, 'stdout')
+        self.assertEqual(builder.io_log[0].data, b'text\n')
+        self.assertEqual(builder.io_log[1].stream_name, 'stdout')
+        self.assertEqual(builder.io_log[1].data, b'different text\n')
+        self.assertEqual(builder.io_log[2].stream_name, 'stderr')
+        self.assertEqual(builder.io_log[2].data, b'error message\n')
+
+
+class FallbackCommandOutputPrinterTests(TestCase):
+
+    def test_smoke(self):
+        with TestIO(combined=False) as io:
+            obj = FallbackCommandOutputPrinter("example")
+            # Whatever gets printed by the job...
+            obj.on_line('stdout', 'line 1\n')
+            obj.on_line('stderr', 'line 1\n')
+            obj.on_line('stdout', 'line 2\n')
+            obj.on_line('stdout', 'line 3\n')
+            obj.on_line('stderr', 'line 2\n')
+        # Gets printed to stdout _only_, stderr is combined with stdout here
+        self.assertEqual(io.stdout, (
+            "(job example, <stdout:00001>) line 1\n"
+            "(job example, <stderr:00001>) line 1\n"
+            "(job example, <stdout:00002>) line 2\n"
+            "(job example, <stdout:00003>) line 3\n"
+            "(job example, <stderr:00002>) line 2\n"
+        ))
+
+
+class CommandOutputWriterTests(TestCase):
+
+    def assertFileContentsEqual(self, pathname, contents):
+        with open(pathname, 'rb') as stream:
+            self.assertEqual(stream.read(), contents)
+
+    def test_smoke(self):
+        with TemporaryDirectory() as scratch_dir:
+            stdout = os.path.join(scratch_dir,  "stdout")
+            stderr = os.path.join(scratch_dir,  "stderr")
+            writer = CommandOutputWriter(stdout, stderr)
+            # Initially nothing is created
+            self.assertFalse(os.path.exists(stdout))
+            self.assertFalse(os.path.exists(stderr))
+            # Logs are created when the command is first started
+            writer.on_begin(None, None)
+            self.assertTrue(os.path.exists(stdout))
+            self.assertTrue(os.path.exists(stderr))
+            # Each line simply gets saved
+            writer.on_line('stdout', b'text\n')
+            writer.on_line('stderr', b'error\n')
+            # (but it may not be on disk yet because of buffering)
+            # After the command is done the logs are left on disk
+            writer.on_end(None)
+            self.assertFileContentsEqual(stdout, b'text\n')
+            self.assertFileContentsEqual(stderr, b'error\n')

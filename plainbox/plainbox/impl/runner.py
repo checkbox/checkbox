@@ -31,7 +31,6 @@ import datetime
 import logging
 import os
 import string
-import json
 
 from plainbox.vendor import extcmd
 
@@ -51,14 +50,24 @@ def slugify(_string):
     return ''.join(c if c in valid_chars else '_' for c in _string)
 
 
-class _IOLogBuilder(extcmd.DelegateBase):
+class CommandIOLogBuilder(extcmd.DelegateBase):
     """
-    Delegate for extcmd that build a log of all the data that was written by a
-    process in a format expected by IJobResult.io_log. The format is a sequence
-    of tuples (delay, stream_name, data).
+    Delegate for extcmd that builds io_log entries.
+
+    IO log entries are records kept by JobResult.io_log and correspond to all
+    of the data that was written by called process. The format is a sequence of
+    tuples (delay, stream_name, data).
     """
 
-    def __init__(self):
+    def on_begin(self, args, kwargs):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called when a command is being invoked.
+        Begins tracking time (relative time entries) and creates the empty
+        io_log list.
+        """
+        logger.debug("io log starting for command: %r", args)
         self.io_log = []
         self.last_msg = datetime.datetime.utcnow()
 
@@ -78,7 +87,61 @@ class _IOLogBuilder(extcmd.DelegateBase):
         logger.debug("io log captured %r", record)
 
 
-class CommandOutputLogger(extcmd.DelegateBase):
+class CommandOutputWriter(extcmd.DelegateBase):
+    """
+    Delegate for extcmd that writes output to a file on disk.
+
+    The file itself is only opened once on_begin() gets called by extcmd. This
+    makes it safe to instantiate this without worrying about dangling
+    resources.
+    """
+
+    def __init__(self, stdout_path, stderr_path):
+        """
+        Initialize new writer.
+
+        Just records output paths.
+        """
+        self.stdout_path = stdout_path
+        self.stderr_path = stderr_path
+
+    def on_begin(self, args, kwargs):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called when a command is being invoked
+        """
+        self.stdout = open(self.stdout_path, "wb")
+        self.stderr = open(self.stderr_path, "wb")
+
+    def on_end(self, returncode):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called when a command finishes running
+        """
+        self.stdout.close()
+        self.stderr.close()
+
+    def on_line(self, stream_name, line):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called for each line of output.
+        """
+        if stream_name == 'stdout':
+            self.stdout.write(line)
+        elif stream_name == 'stderr':
+            self.stderr.write(line)
+
+
+class FallbackCommandOutputPrinter(extcmd.DelegateBase):
+    """
+    Delegate for extcmd that prints all output to stdout.
+
+    This delegate is only used as a fallback when no delegate was explicitly
+    provided to a JobRunner instance.
+    """
 
     def __init__(self, prompt):
         self._prompt = prompt
@@ -173,6 +236,9 @@ class JobRunner(IJobRunner):
         fixed LANG so that scripts behave as expected. Lastly it sets
         CHECKBOX_SHARE that is required by some scripts.
         """
+        # TODO: make this a JobDefinition.get_target_environment() method
+        # so that checkbox instance is not needed by the job runner anymore.
+        #
         # Get a proper environment
         env = dict(os.environ)
         # Use non-internationalized environment
@@ -203,16 +269,18 @@ class JobRunner(IJobRunner):
         # If there is no UI delegate specified create a simple
         # delegate that logs all output to the console
         if ui_io_delegate is None:
-            ui_io_delegate = CommandOutputLogger(job.name)
+            ui_io_delegate = FallbackCommandOutputPrinter(job.name)
+        # Create a delegate that writes all IO to disk
+        slug = slugify(job.name)
+        output_writer = CommandOutputWriter(
+            stdout_path=os.path.join(self._jobs_io_log_dir,
+                                     "{}.stdout".format(slug)),
+            stderr_path=os.path.join(self._jobs_io_log_dir,
+                                     "{}.stderr".format(slug)))
         # Create a delegate that builds a log of all IO
-        io_log_builder = _IOLogBuilder()
-        filename = slugify(job.name)
-        fout = open(os.path.join(self._jobs_io_log_dir,
-                                 "{}.out".format(filename)), "wb")
-        ferr = open(os.path.join(self._jobs_io_log_dir,
-                                 "{}.err".format(filename)), "wb")
-        # Create a subprocess.Popen() like object that uses the delegate
-        # system to observe all IO as it occurs in real time.
+        io_log_builder = CommandIOLogBuilder()
+        # Create the delegate for routing IO
+        #
         #
         # Split the stream of data into three parts (each part is expressed as
         # an element of extcmd.Chain()).
@@ -224,25 +292,29 @@ class JobRunner(IJobRunner):
         # Send the second copy of the data to the _IOLogBuilder() instance that
         # just concatenates subsequent bytes into neat time-stamped records.
         #
-        # Send the third copy to the redirector that writes everything to disk.
+        # Send the third copy to the output writer that writes everything to
+        # disk.
         logging_popen = extcmd.ExternalCommandWithDelegate(
             extcmd.Chain([
                 extcmd.Decode(ui_io_delegate),
                 io_log_builder,
-                extcmd.Redirect(stdout=fout, stderr=ferr,
-                                close_stdout_on_end=True,
-                                close_stderr_on_end=True)]))
+                output_writer]))
+        logger.debug("job[%s] extcmd delegate: %r", job.name, delegate)
+        # Create a subprocess.Popen() like object that uses the delegate
+        # system to observe all IO as it occurs in real time.
+        logging_popen = extcmd.ExternalCommandWithDelegate(delegate)
         # Start the process and wait for it to finish getting the
         # result code. This will actually call a number of callbacks
         # while the process is running. It will also spawn a few
         # threads although all callbacks will be fired from a single
         # thread (which is _not_ the main thread)
+        logger.debug("job[%s] starting command: %s", job.name, job.command)
         return_code = logging_popen.call(
             # XXX: sadly using /bin/sh results in broken output
             # XXX: maybe run it both ways and raise exceptions on differences?
             ['bash', '-c', job.command],
             env=self._get_checkbox_script_env(job))
-        logger.debug("%s command return code: %r",
+        logger.debug("job[%s] command return code: %r",
                      job.name, return_code)
         # XXX: Perhaps handle process dying from signals here
         # When the process is killed proc.returncode is not set
