@@ -5,7 +5,7 @@ mkdir -p vagrant-logs
 
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
 # XXX: this list needs to be in sync with Vagrantfile
-target_list="precise quantal raring"
+target_list="precise quantal"
 for target in $target_list; do
     # Bring up target if needed
     if ! vagrant status $target | grep -q running; then
@@ -25,7 +25,7 @@ for target in $target_list; do
         echo "PlainBox test suite [$target]: fail"
     fi
     # Run plainbox integration test suite (that tests checkbox scripts)
-    if vagrant ssh $target -c 'plainbox self-test --verbose --fail-fast' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
+    if vagrant ssh $target -c 'plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
         echo "Integration tests [$target]: pass"
     else
         echo "Integration tests [$target]: fail"
