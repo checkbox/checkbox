@@ -1,11 +1,18 @@
+checkbox (0.15.3) raring; urgency=low
+
+  * scripts/pts_run: modified to output the full log from phoronix-test-suite
+    (LP: #1102819)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 08 Feb 2013 13:37:38 -0500
+
 checkbox (0.15.2) raring; urgency=low
+
+  * New upstream release (LP: #1119529)
 
   [ Daniel Manrique ]
   * Bumped revision number to 0.15.1 and restored previous trunk changelog.
   * jobs/peripheral.txt.in: fixed string with repeated "add" (LP: #1102665) 
   * scripts/graphics_stress_test: added missing import (LP: #1102812)
-  * scripts/pts_run: modified to output the full log from phoronix-test-suite
-    (LP: #1102819)
 
   [ Jeff Lane ]
   * scripts/rendercheck_test - added missing import for errno (LP: #1103343)
