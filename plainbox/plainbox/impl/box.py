@@ -32,7 +32,6 @@ from argparse import _ as argparse_gettext
 from fnmatch import fnmatch
 from logging import basicConfig
 from logging import getLogger
-from os import listdir
 from os.path import join
 import argparse
 import sys
@@ -46,7 +45,6 @@ from plainbox.impl.result import JobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.runner import slugify
 from plainbox.impl.session import SessionState
-from plainbox.impl.utils import load
 
 
 logger = getLogger("plainbox.box")
@@ -71,11 +69,6 @@ class CheckBoxCommandMixIn:
         """
         group = parser.add_argument_group(title="job definition options")
         group.add_argument(
-            "--load-extra", action="append",
-            metavar="FILE", default=[],
-            help="Load extra job definitions from FILE",
-            type=FileType("rt"))
-        group.add_argument(
             '-r', '--run-pattern', action="append",
             metavar='PATTERN', default=[], dest='run_pattern_list',
             help="Run jobs matching the given pattern")
@@ -87,33 +80,10 @@ class CheckBoxCommandMixIn:
             help="Load whitelist containing run patterns")
 
     def get_job_list(self, ns):
-        # Load built-in job definitions
-        job_list = self.get_builtin_jobs()
-        # Load additional job definitions
-        job_list.extend(self._load_jobs(ns.load_extra))
-        return job_list
-
-    def get_builtin_jobs(self):
-        logger.debug("Loading built-in jobs...")
-        return self._load_builtin_jobs()
-
-    def _load_jobs(self, source_list):
         """
-        Load jobs from the list of sources
+        Load and return a list of JobDefinition instances
         """
-        job_list = []
-        for source in source_list:
-            job_list.extend(self.load(source))
-        return job_list
-
-    def _load_builtin_jobs(self):
-        """
-        Load jobs from built into CheckBox
-        """
-        return self._load_jobs([
-            join(self.checkbox.jobs_dir, name)
-            for name in listdir(self.checkbox.jobs_dir)
-            if name.endswith(".txt") or name.endswith(".txt.in")])
+        return self._checkbox.get_builtin_jobs()
 
     def _get_matching_job_list(self, ns, job_list):
         # Find jobs that matched patterns
@@ -127,9 +97,6 @@ class CheckBoxCommandMixIn:
                     matching_job_list.append(job)
                     break
         return matching_job_list
-
-    def load(self, something):
-        return load(something)
 
 
 class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
@@ -308,7 +275,7 @@ class RunCommand(PlainBoxCommand, CheckBoxCommandMixIn):
                 outcome_callback = self.ask_for_outcome
             else:
                 outcome_callback = None
-            runner = JobRunner(self.checkbox, session.session_dir,
+            runner = JobRunner(session.session_dir,
                                session.jobs_io_log_dir,
                                outcome_callback=outcome_callback)
             self._run_jobs_with_session(ns, session, runner)

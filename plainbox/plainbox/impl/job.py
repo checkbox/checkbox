@@ -30,6 +30,7 @@ import collections
 import hashlib
 import json
 import logging
+import os
 import re
 
 from plainbox.abc import IJobDefinition
@@ -93,10 +94,11 @@ class JobDefinition(IJobDefinition):
         """
         return self._origin
 
-    def __init__(self, data, origin=None):
+    def __init__(self, data, origin=None, checkbox=None):
         self._data = data
         self._resource_program = None
         self._origin = origin
+        self._checkbox = checkbox
 
     def __str__(self):
         return self.name
@@ -173,6 +175,55 @@ class JobDefinition(IJobDefinition):
                 raise ValueError(
                     "Required record key {!r} was not found".format(key))
         return cls(record.data, record.origin)
+
+    def modify_execution_environment(self, env, session_dir):
+        """
+        Alter execution environment as required to execute this job.
+
+        The environment is modified in place.
+
+        The session_dir argument can be passed to scripts to know where to
+        create temporary data. This data will persist during the lifetime of
+        the session.
+
+        Computes and modifies the dictionary of additional values that need to
+        be added to the base environment. Note that all changes to the
+        environment (modifications, not replacements) depend on the current
+        environment.  This may be of importance when attempting to setup the
+        test session as another user.
+
+        This environment has additional PATH, PYTHONPATH entries. It also uses
+        fixed LANG so that scripts behave as expected. Lastly it sets
+        CHECKBOX_SHARE that is required by some scripts.
+        """
+        # XXX: this obviously requires a checkbox object to know where stuff is
+        # but during the transition we may not have one available.
+        assert self._checkbox is not None
+        # Use PATH that can lookup checkbox scripts
+        if self._checkbox.extra_PYTHONPATH:
+            env['PYTHONPATH'] = os.pathsep.join(
+                [self._checkbox.extra_PYTHONPATH]
+                + env.get("PYTHONPATH", "").split(os.pathsep))
+        # Update PATH so that scripts can be found
+        env['PATH'] = os.pathsep.join(
+            [self._checkbox.extra_PATH]
+            + env.get("PATH", "").split(os.pathsep))
+        # Add CHECKBOX_SHARE that is needed by one script
+        env['CHECKBOX_SHARE'] = self._checkbox.CHECKBOX_SHARE
+        # Add CHECKBOX_DATA (temporary checkbox data)
+        env['CHECKBOX_DATA'] = session_dir
+
+    def create_child_job_from_record(self, record):
+        """
+        Create a new JobDefinition from RFC822 record.
+
+        This method should only be used to create additional jobs from local
+        jobs (plugin local). The intent is to encapsulate the sharing of the
+        embedded checkbox reference.
+        """
+        job = self.from_rfc822_record(record)
+        job._checkbox = self._checkbox
+        return job
 
     def get_checksum(self):
         """
