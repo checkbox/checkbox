@@ -69,8 +69,8 @@ class CheckBoxCommandMixIn:
         """
         group = parser.add_argument_group(title="job definition options")
         group.add_argument(
-            '-r', '--run-pattern', action="append",
-            metavar='PATTERN', default=[], dest='run_pattern_list',
+            '-i', '--include-pattern', action="append",
+            metavar='PATTERN', default=[], dest='include_pattern_list',
             help="Run jobs matching the given pattern")
         # TODO: Find a way to handle the encoding of the file
         group.add_argument(
@@ -89,10 +89,10 @@ class CheckBoxCommandMixIn:
         # Find jobs that matched patterns
         matching_job_list = []
         if ns.whitelist:
-            ns.run_pattern_list.extend([pattern.strip() for pattern in
+            ns.include_pattern_list.extend([pattern.strip() for pattern in
                                         ns.whitelist.readlines()])
         for job in job_list:
-            for pattern in ns.run_pattern_list:
+            for pattern in ns.include_pattern_list:
                 if fnmatch(job.name, pattern):
                     matching_job_list.append(job)
                     break
@@ -145,7 +145,7 @@ class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         # specified just operate on the whole set. The ns.special check
         # prevents people starting plainbox from accidentally running _all_
         # jobs without prompting.
-        if ns.special is not None and not ns.run_pattern_list:
+        if ns.special is not None and not ns.include_pattern_list:
             matching_job_list = job_list
         return matching_job_list
 
@@ -344,16 +344,20 @@ class RunCommand(PlainBoxCommand, CheckBoxCommandMixIn):
 
     def _run_single_job_with_session(self, ns, session, runner, job):
         print("[ {} ]".format(job.name).center(80, '-'))
+        if job.description is not None:
+            print(job.description)
+            print("^" * len(job.description.splitlines()[-1]))
+            print()
         job_state = session.job_state_map[job.name]
-        print("Job name: {}".format(job.name))
-        print("Plugin: {}".format(job.plugin))
-        print("Direct dependencies: {}".format(job.get_direct_dependencies()))
-        print("Resource dependencies: {}".format(
-            job.get_resource_dependencies()))
-        print("Resource program: {!r}".format(job.requires))
-        print("Command: {!r}".format(job.command))
-        print("Can start: {}".format(job_state.can_start()))
-        print("Readiness: {}".format(job_state.get_readiness_description()))
+        logger.debug("Job name: %s", job.name)
+        logger.debug("Plugin: %s", job.plugin)
+        logger.debug("Direct dependencies: %s", job.get_direct_dependencies())
+        logger.debug("Resource dependencies: %s",
+                     job.get_resource_dependencies())
+        logger.debug("Resource program: %r", job.requires)
+        logger.debug("Command: %r", job.command)
+        logger.debug("Can start: %s", job_state.can_start())
+        logger.debug("Readiness: %s", job_state.get_readiness_description())
         if job_state.can_start():
             if ns.dry_run:
                 print("Not really running anything in dry-run mode")
@@ -409,7 +413,8 @@ class PlainBox:
         # To compensate, on python3.3 and beyond, when the user just runs
         # plainbox without specifying the command, we manually, explicitly do
         # what python3.2 did: call parser.error(_('too few arguments'))
-        if sys.version_info[:2] >= (3, 3) and getattr(ns, "command", None) is None:
+        if (sys.version_info[:2] >= (3, 3)
+                and getattr(ns, "command", None) is None):
             parser.error(argparse_gettext("too few arguments"))
         else:
             return ns.command.invoked(ns)
