@@ -25,6 +25,8 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-yaml python3-lxml"
   # Install python3-mock so that we can create mock objects for testing
   config.vm.provision :shell, :inline => "apt-get install --yes python3-mock"
+  # Install policykit-1 so that we have pkexec
+  config.vm.provision :shell, :inline => "apt-get install --yes policykit-1"
   # Install some checkbox script dependencies:
   # Later on those could be installed on demand to test how we behave without
   # them but for now that's good enough. Little by little...
