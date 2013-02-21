@@ -155,12 +155,18 @@ class FallbackCommandOutputPrinter(extcmd.DelegateBase):
     def __init__(self, prompt):
         self._prompt = prompt
         self._lineno = collections.defaultdict(int)
+        self._abort = False
 
     def on_line(self, stream_name, line):
+        if self._abort:
+            return
         self._lineno[stream_name] += 1
-        print("(job {}, <{}:{:05}>) {}".format(
-            self._prompt, stream_name, self._lineno[stream_name],
-            line.rstrip()))
+        try:
+            print("(job {}, <{}:{:05}>) {}".format(
+                self._prompt, stream_name, self._lineno[stream_name],
+                line.decode('UTF-8').rstrip()))
+        except UnicodeDecodeError:
+            self._abort = True
 
 
 class JobRunner(IJobRunner):
@@ -197,6 +203,8 @@ class JobRunner(IJobRunner):
 
     def _plugin_shell(self, job):
         return self._just_run_command(job)
+
+    _plugin_attachment = _plugin_shell
 
     def _plugin_resource(self, job):
         return self._just_run_command(job)
@@ -287,7 +295,7 @@ class JobRunner(IJobRunner):
         # Send the third copy to the output writer that writes everything to
         # disk.
         delegate = extcmd.Chain([
-            extcmd.Decode(ui_io_delegate),
+            ui_io_delegate,
             io_log_builder,
             output_writer])
         logger.debug("job[%s] extcmd delegate: %r", job.name, delegate)
