@@ -18,9 +18,10 @@ Vagrant::Config.run do |config|
   # For debugging and later future GUI testing
   # config.vm.boot_mode = :gui
 
-  # Update to have the latest packages
-  # Commented out for now, we don't really need it
-  # config.vm.provision :shell, :inline => "apt-get update && apt-get dist-upgrade"
+  # Update to have the latest packages, this is needed because the image comes
+  # with an old (and no longer working) apt cache and links to many packages no
+  # longer work.
+  config.vm.provision :shell, :inline => "apt-get update && apt-get dist-upgrade --yes"
   # Install dependencies from native packages
   config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-yaml python3-lxml"
   # Install python3-mock so that we can create mock objects for testing
