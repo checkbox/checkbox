@@ -40,6 +40,10 @@ def find_tests(testpaths=()):
     unittests = []
     doctests = []
     for root, dirnames, filenames in os.walk(topdir):
+        if ".git" in dirnames:
+            dirnames.remove(".git")
+        if ".bzr" in dirnames:
+            dirnames.remove(".bzr")
         for filename in filenames:
             filepath = posixpath.join(root, filename)
             relpath = filepath[len(topdir) + 1:]
