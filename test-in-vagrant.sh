@@ -30,4 +30,6 @@ for target in $target_list; do
     else
         echo "Integration tests [$target]: fail"
     fi
+    # Suspend the target to conserve resources
+    vagrant suspend $target || ( echo "Unable ta suspend $target  [$?]" && continue )
 done
