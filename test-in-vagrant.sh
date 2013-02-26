@@ -25,7 +25,7 @@ for target in $target_list; do
         echo "PlainBox test suite [$target]: fail"
     fi
     # Run plainbox integration test suite (that tests checkbox scripts)
-    if vagrant ssh $target -c 'plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
+    if vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
         echo "Integration tests [$target]: pass"
     else
         echo "Integration tests [$target]: fail"
