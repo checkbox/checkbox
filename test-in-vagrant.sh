@@ -5,6 +5,7 @@ mkdir -p vagrant-logs
 
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
 # XXX: this list needs to be in sync with Vagrantfile
+outcome=0
 target_list="precise quantal"
 for target in $target_list; do
     # Bring up target if needed
@@ -16,6 +17,7 @@ for target in $target_list; do
         echo "CheckBox test suite [$target]: pass"
     else
         echo "CheckBox test suite [$target]: fail"
+    outcome=1
     fi
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
@@ -23,13 +25,17 @@ for target in $target_list; do
         echo "PlainBox test suite [$target]: pass"
     else
         echo "PlainBox test suite [$target]: fail"
+    outcome=1
     fi
     # Run plainbox integration test suite (that tests checkbox scripts)
     if vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
         echo "Integration tests [$target]: pass"
     else
         echo "Integration tests [$target]: fail"
+    outcome=1
     fi
     # Suspend the target to conserve resources
     vagrant suspend $target || ( echo "Unable ta suspend $target  [$?]" && continue )
 done
+# Propagate failure code outside
+exit $outcome
