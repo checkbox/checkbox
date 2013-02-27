@@ -790,7 +790,7 @@ plugin: shell
 name: suspend/screenshot_after_suspend
 depends: suspend/suspend_advanced_auto
 requires: package.name == 'fswebcam'
-command: camera_test still --device=/dev/external_webcam -f ${CHECKBOX_DATA}/screenshot_after_suspend.jpg -q 2>&1 | ansi_parser
+command: set -o pipefail; camera_test still --device=/dev/external_webcam -f ${CHECKBOX_DATA}/screenshot_after_suspend.jpg -q 2>&1 | ansi_parser
 _description:
  PURPOSE:
      Take a screengrab of the current screen after suspend (logged on Unity desktop)
