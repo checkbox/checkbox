@@ -44,6 +44,7 @@ _description:
 plugin: user-interact
 name: input/accelerometer
 user: root
+requires: module.name in ['hdaps', 'hp_accel'] 
 command: accelerometer_test -m
 _description:
  PURPOSE:
