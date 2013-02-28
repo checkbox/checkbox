@@ -170,7 +170,7 @@ _description: Move a 3D window around the screen
 plugin: shell
 name: graphics/screenshot
 requires: package.name == 'fswebcam'
-command: camera_test still --device=/dev/external_webcam -f ${CHECKBOX_DATA}/screenshot.jpg -q 2>&1 | ansi_parser
+command: set -o pipefail; camera_test still --device=/dev/external_webcam -f ${CHECKBOX_DATA}/screenshot.jpg -q 2>&1 | ansi_parser
 _description:
  PURPOSE:
      Take a screengrab of the current screen (logged on Unity desktop)
@@ -191,6 +191,7 @@ requires: package.name == 'fswebcam'
 command:
  dbus-launch gsettings set org.gnome.totem repeat true
  totem --fullscreen ${CHECKBOX_SHARE}/data/video/Ogg_Theora_Video.ogv 2>/dev/null &
+ set -o pipefail
  sleep 15 && camera_test still --device=/dev/external_webcam -f ${CHECKBOX_DATA}/screenshot_fullscreen_video.jpg -q 2>&1 | ansi_parser
  sleep 5 && totem --quit 2>/dev/null
  dbus-launch gsettings set org.gnome.totem repeat false

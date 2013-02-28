@@ -58,7 +58,7 @@ command:
  name: optical/cdrom-write_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
- command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
  description:
   PURPOSE:
       This test will check your system's $product CD writing capabilities. This test requires a blank CD-R or CD+R. If you do not have a blank disk, skip this test.
@@ -80,7 +80,7 @@ command:
  name: optical/cdrom-write-automated_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
- command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
  description:
   This is an automated version of optical/cdrom-write. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
  EOF
@@ -116,7 +116,7 @@ command:
  name: optical/dvd-write_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
- command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
  description:
   PURPOSE:
       This test will check your system's $product writing capabilities. This test requires a blank DVD-R or DVD+R. If you do not have a blank DVD disk, skip this test.
@@ -140,7 +140,7 @@ command:
  name: optical/dvd-write-automated_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
- command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
  description:
   This is an automated version of optical/dvd-write. It assumes you have already inserted a data DVD into your optical drive prior to running Checkbox.
  EOF
