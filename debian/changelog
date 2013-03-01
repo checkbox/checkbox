@@ -11,6 +11,11 @@ checkbox (0.15.4) raring; urgency=low
   [ Jeff Marcom ]
   * jobs/input.txt.in Added job requirement for accelerometer test (LP: #1135832)
 
+  [Sylvain Pineau]
+  * scripts/network_device_info, scripts/udev_resource,
+    checkbox/parsers/udevadm.py: Use udev to categorise network devices instead
+    of lspci (LP: #1091633)
+
  -- Jeff Marcom <jeff.marcom@ubuntu.com>  Mon, 18 Feb 2013 14:35:27 +0000
 
 checkbox (0.15.3) raring; urgency=low

@@ -27,7 +27,7 @@ class UdevResult:
 
     attributes = ("path", "bus", "category", "driver", "product_id",
                   "vendor_id", "subproduct_id", "subvendor_id", "product",
-                  "vendor",)
+                  "vendor", "interface",)
 
     def addDevice(self, device):
         for attribute in self.attributes:
