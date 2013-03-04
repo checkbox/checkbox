@@ -63,7 +63,7 @@ for target in $target_list; do
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
     # Suspend the target to conserve resources
-    echo "[$target] Suspending VM 'up'"
+    echo "[$target] Suspending VM"
     if ! vagrant suspend $target >vagrant-logs/$target.suspend.log 2>vagrant-logs/$target.suspend.err; then
         echo "[$target] Unable to suspend VM!"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
