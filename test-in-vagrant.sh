@@ -14,6 +14,8 @@ for target in $target_list; do
         if ! vagrant up $target >vagrant-logs/$target.startup.log 2>vagrant-logs/$target.startup.err; then
             outcome=1
             echo "[$target] Unable to 'up' VM!"
+            echo "[$target] stdout: $(pastebinit vagrant-logs/$target.startup.log)"
+            echo "[$target] stderr: $(pastebinit vagrant-logs/$target.startup.err)"
             echo "[$target] NOTE: unable to execute tests, marked as failed"
             continue
         fi
@@ -26,6 +28,8 @@ for target in $target_list; do
     else
         outcome=1
         echo "[$target] CheckBox test suite: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
     fi
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
@@ -34,6 +38,8 @@ for target in $target_list; do
     else
         outcome=1
         echo "[$target] PlainBox test suite: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
     fi
     # Run plainbox integration test suite (that tests checkbox scripts)
     if vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
@@ -41,11 +47,15 @@ for target in $target_list; do
     else
         outcome=1
         echo "[$target] Integration tests: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
     # Suspend the target to conserve resources
     echo "[$target] Suspending VM 'up'"
     if ! vagrant suspend $target >vagrant-logs/$target.suspend.log 2>vagrant-logs/$target.suspend.err; then
         echo "[$target] Unable to suspend VM!"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.suspend.err)"
         echo "[$target] You may need to manually 'vagrant destroy $target' to fix this"
     fi
 done
