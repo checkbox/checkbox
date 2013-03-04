@@ -4,6 +4,18 @@
 mkdir -p vagrant-logs
 
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
+
+# When running in tarmac, the state file .vagrant, will be removed when the
+# tree is re-pristinized. To work around that, check for present
+# VAGRANT_STATE_FILE (custom variable, not set by tarmac or respected by
+# vagrant) and symlink the .vagrant state file from there.
+if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
+    if [ ! -e "$VAGRANT_STATE_FILE" ]; then
+        touch "$VAGRANT_STATE_FILE"
+    fi
+    ln -fs "$VAGRANT_STATE_FILE" .vagrant
+fi
+
 outcome=0
 # XXX: this list needs to be in sync with Vagrantfile
 target_list="precise quantal"
