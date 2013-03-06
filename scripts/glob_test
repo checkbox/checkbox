@@ -2,11 +2,16 @@
 from Globs import benchmarks, hwd
 import argparse
 import locale
-import gettext
 import logging
 import sys
 import os
 
+#Magic to override the _ function from gettext, since
+#it's overkill for our needs here.
+def underscore(string, *args, **kwargs):
+    return(string)
+
+__builtins__._ = underscore 
 
 class Application:
 
@@ -69,12 +74,6 @@ class Application:
 share_dir = '/usr/share/globs'
 locale_dir = '/usr/share/locale'
 bench_dir = '/usr/lib/globs'
-
-locale.setlocale(locale.LC_ALL, '')
-for module in (gettext, ):
-        module.bindtextdomain('globs', locale_dir)
-        module.textdomain('globs')
-gettext.install('globs', locale_dir, unicode=1)
 
 parser = argparse.ArgumentParser("Executes gl benchmarks non-interactively")
 parser.add_argument("--width", action='store',
