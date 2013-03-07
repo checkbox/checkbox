@@ -1,14 +1,34 @@
+checkbox (0.15.5) raring; urgency=low
+
+  [ Brendan Donegan ]
+  * Incremented version number.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 07 Mar 2013 16:04:46 +0000
+
 checkbox (0.15.4) raring; urgency=low
+
+  * New upstream release (LP: #1152223)
 
   [ Brendan Donegan ]
   * Incremented version number.
   * scripts/sources_test - modified script so that it takes sources list
     location and repository list as arguments
+  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
+    variables to the sources_test script (LP: #1149288)
 
   [ Daniel Manrique ]
   * Added pipefail option to a few jobs using ansi_parser (LP: #1131598)
+  * Added sru.whitelist used to test stable release update kernels.
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 18 Feb 2013 14:35:27 +0000
+  [ Jeff Marcom ]
+  * jobs/input.txt.in Added job requirement for accelerometer test (LP: #1135832)
+
+  [Sylvain Pineau]
+  * scripts/network_device_info, scripts/udev_resource,
+    checkbox/parsers/udevadm.py: Use udev to categorise network devices instead
+    of lspci (LP: #1091633)
+
+ -- Jeff Marcom <jeff.marcom@ubuntu.com>  Mon, 18 Feb 2013 14:35:27 +0000
 
 checkbox (0.15.3) raring; urgency=low
 

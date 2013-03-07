@@ -26,6 +26,7 @@ import sys
 import dbus
 import sys
 from checkbox.parsers.modinfo import ModinfoParser
+from checkbox.parsers.udevadm import UdevadmParser
 from subprocess import check_output, CalledProcessError, STDOUT
 
 # This example lists basic information about network interfaces known to NM
@@ -50,6 +51,17 @@ states = {0: "Unknown",
           110: "Deactivating",
           120: "Failed"}
 
+attributes = ("category", "interface", "product", "vendor", "driver", "path")
+
+udev_devices = []
+nm_devices = []
+
+
+class UdevResult:
+    def addDevice(self, device):
+        if device.interface:
+            udev_devices.append(device)
+
 
 class NetworkingDevice():
     def __init__(self, devtype, props, dev_proxy, bus):
@@ -68,6 +80,7 @@ class NetworkingDevice():
             self._driver = props['Driver']
         except KeyError:
             self._driver = "Unknown"
+            self._driver_ver = "Unknown"
 
         if self._driver != "Unknown":
             self._modinfo = self._modinfo_parser(props['Driver'])
@@ -87,7 +100,7 @@ class NetworkingDevice():
             self._state = "Unknown"
 
     def __str__(self):
-        ret = "Type: %s\n" % self._devtype
+        ret = "Category: %s\n" % self._devtype
         ret += "Interface: %s\n" % self._interface
         ret += "IP: %s\n" % self._ip
         ret += "Driver: %s (ver: %s)\n" % (self._driver, self._driver_ver)
@@ -124,7 +137,7 @@ class NetworkingDevice():
         else:
             parser = ModinfoParser(stream)
             modinfo = parser.get_all()
-        
+
         return modinfo
 
     def _find_driver_ver(self):
@@ -160,7 +173,8 @@ def get_nm_devices():
     nm_devices = manager.GetDevices()
     for d in nm_devices:
         dev_proxy = bus.get_object("org.freedesktop.NetworkManager", d)
-        prop_iface = dbus.Interface(dev_proxy,"org.freedesktop.DBus.Properties")
+        prop_iface = dbus.Interface(dev_proxy,
+                                    "org.freedesktop.DBus.Properties")
         props = prop_iface.GetAll("org.freedesktop.NetworkManager.Device")
         try:
             devtype = devtypes[props['DeviceType']]
@@ -173,7 +187,7 @@ def get_nm_devices():
     return devices
 
 
-def match_counts(nm_devices, pci_devices, devtype):
+def match_counts(nm_devices, udev_devices, devtype):
     """
     Ensures that the count of devices matching devtype is the same for the
     two passed in lists, devices from Network Manager and devices from lspci.
@@ -181,41 +195,48 @@ def match_counts(nm_devices, pci_devices, devtype):
     # now check that the count (by type) matches - WiFi
     nm_type_devices = list(filter(lambda dev: dev.gettype() == devtype,
         nm_devices))
-    pci_type_devices = list(filter(lambda dev: dev['type'] == devtype,
-        pci_devices))
-    if len(nm_type_devices) != len(pci_type_devices):
-        print("ERROR: %s devices missing: lspci showed %d devices, but "
+    udevtype = 'WIRELESS' if devtype == 'WiFi' else 'NETWORK'
+    udev_type_devices = list(filter(lambda dev: dev.category == udevtype,
+        udev_devices))
+    if len(nm_type_devices) != len(udev_type_devices):
+        print("ERROR: %s devices missing: udev showed %d devices, but "
               "NetworkManager saw %d devices" % (devtype,
-              len(pci_type_devices), len(nm_type_devices)))
+              len(udev_type_devices), len(nm_type_devices)))
         return False
     else:
         return True
 
 
 def main(args):
-    pci_devices = []
-    command = "lspci"
-    for line in os.popen(command).readlines():
-        if "Ethernet controller: " in line:
-            device = {}
-            device['name'] = line.split(": ")[1].strip()
-            device['type'] = "Ethernet"
-            pci_devices.append(device)
-        elif "Network controller: " in line:
-            device = {}
-            device['name'] = line.split(": ")[1].strip()
-            device['type'] = "WiFi"
-            pci_devices.append(device)
+    try:
+        output = check_output(['udevadm', 'info', '--export-db'])
+    except CalledProcessError as err:
+        raise SystemExit(err)
+    try:
+        output = output.decode("UTF-8")
+    except UnicodeDecodeError as err:
+        raise SystemExit("udevadm output is not valid UTF-8")
+    udev = UdevadmParser(output)
+    result = UdevResult()
+    udev.run(result)
 
-    if pci_devices:
-        print("Devices found by lspci------------------------------")
-        for device in pci_devices:
-            print("%s: %s" % (device['type'], device['name']))
-    else:
-        print("ERROR: No Networking devices found.", file=sys.stderr)
-        return 1
+    if udev_devices:
+        print("[ Devices found by udev ]".center(80, '-'))
+        for device in udev_devices:
+            for attribute in attributes:
+                value = getattr(device, attribute)
+                if value is not None:
+                    if attribute == 'driver':
+                        props = {}
+                        props['Driver'] = value
+                        network_dev = NetworkingDevice(None, props, None, None)
+                        print("%s: %s (ver: %s)" % (attribute.capitalize(),
+                              value, network_dev._driver_ver))
+                    else:
+                        print("%s: %s" % (attribute.capitalize(), value))
 
-    nm_devices = []
+            print()
+
     try:
         nm_devices = get_nm_devices()
     except dbus.exceptions.DBusException as e:
@@ -226,13 +247,13 @@ def main(args):
         print("The Error Generated was:\n %s" % e, file=sys.stderr)
         return 0
 
-    print("Devices found by Network Manager-------------------------")
+    print("[ Devices found by Network Manager ]".center(80, '-'))
     for nm_dev in nm_devices:
         print(nm_dev)
 
-    if not match_counts(nm_devices, pci_devices, "WiFi"):
+    if not match_counts(nm_devices, udev_devices, "WiFi"):
         return 1
-    elif not match_counts(nm_devices, pci_devices, "Ethernet"):
+    elif not match_counts(nm_devices, udev_devices, "Ethernet"):
         return 1
     else:
         return 0
