@@ -43,6 +43,16 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
     fi
+    # Refresh plainbox installation. This is needed if .egg-info (which is
+    # essential for 'develop' to work) was removed in the meantime, for
+    # example, by tarmac.
+    if ! vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py egg_info' >vagrant-logs/$target.egginfo.log 2>vagrant-logs/$target.egginfo.err; then
+        outcome=1
+        echo "[$target] Running 'plainbox/setup.py egg_info' failed"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.egginfo.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.egginfo.err)"
+        echo "[$target] NOTE: unable to execute tests, marked as failed"
+    fi
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
     if vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then

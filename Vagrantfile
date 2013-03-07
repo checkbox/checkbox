@@ -18,6 +18,10 @@ Vagrant::Config.run do |config|
   # For debugging and later future GUI testing
   # config.vm.boot_mode = :gui
 
+  # Setup an apt cache if one is available
+  if ENV.key? "VAGRANT_APT_CACHE"
+    config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"#{ENV['VAGRANT_APT_CACHE']}\"; };' > /etc/apt/apt.conf"
+  end
   # Update to have the latest packages, this is needed because the image comes
   # with an old (and no longer working) apt cache and links to many packages no
   # longer work.
