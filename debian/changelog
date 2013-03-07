@@ -2,10 +2,6 @@ checkbox (0.15.4) raring; urgency=low
 
   [ Brendan Donegan ]
   * Incremented version number.
-  * scripts/sources_test - modified script so that it takes sources list
-    location and repository list as arguments
-  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
-    variables to the sources_test script (LP: #1149288)
 
   [ Daniel Manrique ]
   * Added pipefail option to a few jobs using ansi_parser (LP: #1131598)
