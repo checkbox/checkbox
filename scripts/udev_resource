@@ -43,10 +43,9 @@ def main():
         output = check_output(['udevadm', 'info', '--export-db'])
     except CalledProcessError as exc:
         raise SystemExit(exc)
-    try:
-        output = output.decode("UTF-8")
-    except UnicodeDecodeError as exc:
-        raise SystemExit("udevadm output is not valid UTF-8")
+    # Set the error policy to 'ignore' in order to let tests depending on this
+    # resource to properly match udev properties
+    output = output.decode("UTF-8", errors='ignore')
     udev = UdevadmParser(output)
     result = UdevResult()
     udev.run(result)

@@ -3,6 +3,10 @@ checkbox (0.15.5) raring; urgency=low
   [ Brendan Donegan ]
   * Incremented version number.
 
+  [Sylvain Pineau]
+  * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
+    breaking tests that depends on the udevadm resource (LP: #1151562)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 07 Mar 2013 16:04:46 +0000
 
 checkbox (0.15.4) raring; urgency=low
