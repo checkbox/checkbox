@@ -27,6 +27,11 @@ checkbox (0.15.4) raring; urgency=low
   * scripts/network_device_info, scripts/udev_resource,
     checkbox/parsers/udevadm.py: Use udev to categorise network devices instead
     of lspci (LP: #1091633)
+  
+  [Jeff Lane]
+  * jobs/various: Changed the jobs that use removable_storage_watcher to
+    generate ~256MB files to combat problems where the files are cached and not
+    written directly to devices during test. (LP: #1149213)
 
  -- Jeff Marcom <jeff.marcom@ubuntu.com>  Mon, 18 Feb 2013 14:35:27 +0000
 
