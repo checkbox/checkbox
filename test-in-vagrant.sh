@@ -72,14 +72,28 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
-    # Suspend the target to conserve resources
-    echo "[$target] Suspending VM"
-    if ! vagrant suspend $target >vagrant-logs/$target.suspend.log 2>vagrant-logs/$target.suspend.err; then
-        echo "[$target] Unable to suspend VM!"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.suspend.err)"
-        echo "[$target] You may need to manually 'vagrant destroy $target' to fix this"
-    fi
+    case $VAGRANT_DONE_ACTION in
+        suspend)
+            # Suspend the target to conserve resources
+            echo "[$target] Suspending VM"
+            if ! vagrant suspend $target >vagrant-logs/$target.suspend.log 2>vagrant-logs/$target.suspend.err; then
+                echo "[$target] Unable to suspend VM!"
+                echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
+                echo "[$target] stderr: $(pastebinit vagrant-logs/$target.suspend.err)"
+                echo "[$target] You may need to manually 'vagrant destroy $target' to fix this"
+            fi
+            ;;
+        destroy)
+            # Destroy the target to work around virtualbox hostsf bug
+            echo "[$target] Destroying VM"
+            if ! vagrant destroy --force $target >vagrant-logs/$target.destroy.log 2>vagrant-logs/$target.destroy.err; then
+                echo "[$target] Unable to destroy VM!"
+                echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
+                echo "[$target] stderr: $(pastebinit vagrant-logs/$target.suspend.err)"
+                echo "[$target] You may need to manually 'vagrant destroy $target' to fix this"
+            fi
+            ;;
+    esac
 done
 # Propagate failure code outside
 exit $outcome
