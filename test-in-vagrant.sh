@@ -63,6 +63,15 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
     fi
+    # Build plainbox documentation
+    if vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
+        echo "[$target] PlainBox documentation build: pass"
+    else
+        outcome=1
+        echo "[$target] PlainBox documentation build: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
+    fi
     # Run plainbox integration test suite (that tests checkbox scripts)
     if vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
         echo "[$target] Integration tests: pass"

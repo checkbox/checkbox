@@ -39,6 +39,8 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-pkg-resources python3-lxml"
   # Install python3-mock so that we can create mock objects for testing
   config.vm.provision :shell, :inline => "apt-get install --yes python3-mock"
+  # Install python3-sphinx so that we can build documentation
+  config.vm.provision :shell, :inline => "apt-get install --yes python3-sphinx"
   # Install policykit-1 so that we have pkexec
   config.vm.provision :shell, :inline => "apt-get install --yes policykit-1"
   # Install some checkbox script dependencies:
