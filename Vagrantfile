@@ -33,7 +33,7 @@ Vagrant::Config.run do |config|
   # longer work.
   config.vm.provision :shell, :inline => "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade --yes"
   # Install dependencies from native packages
-  config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-lxml"
+  config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-pkg-resources python3-lxml"
   # Install python3-mock so that we can create mock objects for testing
   config.vm.provision :shell, :inline => "apt-get install --yes python3-mock"
   # Install policykit-1 so that we have pkexec
