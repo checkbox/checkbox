@@ -7,6 +7,11 @@ checkbox (0.15.5) raring; urgency=low
   * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
     breaking tests that depends on the udevadm resource (LP: #1151562)
 
+  [ Daniel Manrique ]
+  * scripts/glob_test: Fixed swapping of repetitions and time parameters.
+    jobs/benchmarks.txt.in: Set a 26 FPS threshold for passing globs
+    benchmark.
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 07 Mar 2013 16:04:46 +0000
 
 checkbox (0.15.4) raring; urgency=low

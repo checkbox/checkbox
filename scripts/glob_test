@@ -94,7 +94,7 @@ parser.add_argument("--min-fps", action='store',
 args = parser.parse_args()
 
 app = Application(share_dir, bench_dir, args.width, args.height, 
-                  args.repetitions, args.time, args.fullscreen, args.min_fps)
+                  args.time, args.repetitions, args.fullscreen, args.min_fps)
 
 if app.run():
     print("PASS")
