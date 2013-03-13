@@ -42,14 +42,6 @@ Vagrant::Config.run do |config|
   # Later on those could be installed on demand to test how we behave without
   # them but for now that's good enough. Little by little...
   config.vm.provision :shell, :inline => "apt-get install --yes fwts"
-  # Install python3-dev so that we can build native bits of other dependencies later
-  config.vm.provision :shell, :inline => "apt-get install --yes python3-dev"
-  # Install PIP so that we can install the rest from source
-  config.vm.provision :shell, :inline => "apt-get install --yes python-pip" 
-  # Update distribute as the version from ubuntu is too old to install coverage
-  config.vm.provision :shell, :inline => "pip install -U distribute"
-  # Install coverage
-  config.vm.provision :shell, :inline => "pip install -U coverage"
   # Develop plainbox so that we have it in $PATH
   config.vm.provision :shell, :inline => "cd /vagrant/plainbox/ && python3 setup.py develop"
   # Create a cool symlink so that everyone knows where to go to
