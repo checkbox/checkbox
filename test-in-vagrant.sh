@@ -18,7 +18,7 @@ fi
 
 outcome=0
 # XXX: this list needs to be in sync with Vagrantfile
-target_list="precise quantal"
+target_list="precise quantal raring"
 for target in $target_list; do
     # Bring up target if needed
     if ! vagrant status $target | grep -q running; then
