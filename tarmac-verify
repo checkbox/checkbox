@@ -1,9 +1,14 @@
 #!/bin/sh
 # This script is invoked by tarmac - the automatic branch lader - before it
 # allows a merge request to land into trunk
-set -x -e
-./test
+
+# Destroy VMs after we're done with each image. This works around
+# a bug in virtualbox shared folder filesystem.
+export VAGRANT_DONE_ACTION=destroy
+
+# Run checkbox tests, plainbox tests, integration tests and plainbox docs
+./test-in-vagrant.sh
+
+# Run plainbox-on-checkbox-stable tests and development env tests
 cd plainbox
-./setup.py test
-# ZK: disabled as bzr crashes when invoked from tarmac
-# ./lint
+./test-in-vagrant.sh

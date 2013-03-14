@@ -17,7 +17,7 @@ if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
 fi
 
 outcome=0
-# XXX: this list needs to be in sync with Vagrantfile
+# XXX: this list needs to be in sync with plainbox/Vagrantfile
 target_list="precise quantal raring"
 for target in $target_list; do
     # Bring up target if needed
@@ -34,52 +34,24 @@ for target in $target_list; do
     fi
     # Display something before the first test output
     echo "[$target] Starting tests..."
-    # Run checkbox unit tests
-    if vagrant ssh $target -c 'cd checkbox && ./test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
-        echo "[$target] CheckBox test suite: pass"
+    # Test that mk-venv.sh works correctly
+    if vagrant ssh $target -c 'cd plainbox && ./mk-venv.sh --install-missing' >vagrant-logs/$target.mk-venv.log 2>vagrant-logs/$target.mk-venv.err; then
+        echo "[$target] PlainBox development script (mk-venv.sh): pass"
     else
         outcome=1
-        echo "[$target] CheckBox test suite: fail"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
+        echo "[$target] PlainBox development script (mk-venv.sh): fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.mk-venv.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.mk-venv.err)"
     fi
-    # Refresh plainbox installation. This is needed if .egg-info (which is
-    # essential for 'develop' to work) was removed in the meantime, for
-    # example, by tarmac.
-    if ! vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py egg_info' >vagrant-logs/$target.egginfo.log 2>vagrant-logs/$target.egginfo.err; then
-        outcome=1
-        echo "[$target] Running 'plainbox/setup.py egg_info' failed"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.egginfo.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.egginfo.err)"
-        echo "[$target] NOTE: unable to execute tests, marked as failed"
-    fi
-    # Run plainbox unit tests
-    # TODO: It would be nice to support fast failing here
-    if vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
-        echo "[$target] PlainBox test suite: pass"
+    # Test that mk-venv.sh produces working environment in which we can run
+    # $ plainbox --help
+    if vagrant ssh $target -c '. /tmp/venv/bin/activate; plainbox --help' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
+        echo "[$target] PlainBox development environment (plainbox --help): pass"
     else
         outcome=1
-        echo "[$target] PlainBox test suite: fail"
+        echo "[$target] PlainBox development environment (plainbox --help): pass"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
-    fi
-    # Build plainbox documentation
-    if vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
-        echo "[$target] PlainBox documentation build: pass"
-    else
-        outcome=1
-        echo "[$target] PlainBox documentation build: fail"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
-    fi
-    # Run plainbox integration test suite (that tests checkbox scripts)
-    if vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
-        echo "[$target] Integration tests: pass"
-    else
-        outcome=1
-        echo "[$target] Integration tests: fail"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
     case $VAGRANT_DONE_ACTION in
         suspend)
