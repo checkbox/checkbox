@@ -16,21 +16,22 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import unittest
+
 from checkbox.job import Job
+
 
 class JobTest(unittest.TestCase):
 
     def test_command_not_found(self):
-        job = Job('xwonkt','',10)
+        job = Job('xwonkt', '', 10)
         status, data, duration = job.execute()
         #data is expected to be bytes
         self.assertTrue(isinstance(data, bytes))
 
     def test_existing_command(self):
         test_string = 'checkbox'
-        job = Job('echo -n "%s"' % test_string,'',10)
+        job = Job('echo -n "%s"' % test_string, '', 10)
         status, data, duration = job.execute()
         #data is expected to be bytes
         self.assertTrue(isinstance(data, bytes))
