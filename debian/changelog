@@ -6,6 +6,8 @@ checkbox (0.15.5) raring; urgency=low
   [Sylvain Pineau]
   * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
     breaking tests that depends on the udevadm resource (LP: #1151562)
+  * scripts/udev_resource: Identify KVM devices as such to avoid reporting them
+    as just CAPTURE devices (LP: #1065064)
 
   [ Daniel Manrique ]
   * scripts/glob_test: Fixed swapping of repetitions and time parameters.

@@ -210,7 +210,12 @@ class UdevadmDevice:
                 return "KEYBOARD"
 
             if test_bit(Input.KEY_CAMERA, bitmask, self._bits):
-                return "CAPTURE"
+                # Consider a device with both camera and mouse properties as a
+                # KVM hardware device ("keyboard, video and mouse")
+                if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
+                    return "KVM"
+                else:
+                    return "CAPTURE"
 
             if test_bit(Input.BTN_TOUCH, bitmask, self._bits):
                 return "TOUCH"
