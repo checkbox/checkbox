@@ -29,10 +29,11 @@ from checkbox.lib.template_i18n import TemplateI18n
 
 from checkbox.parsers.description import DescriptionParser
 
-from checkbox.job import Job, PASS
+from checkbox.job import Job, PASS, FAIL
 from checkbox.plugin import Plugin
 
 from gettext import gettext as _
+
 
 class DescriptionResult:
 
@@ -84,7 +85,8 @@ class MessageInfo(Plugin):
 
     def message_exec(self, message):
         if "name" in message:
-            logging.info(_("Executing %(test_name)s" % {"test_name": message["name"]} ))
+            logging.info(_("Executing %(test_name)s" % {
+                "test_name": message["name"]}))
 
         if "user" not in message:
 

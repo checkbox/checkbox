@@ -32,9 +32,21 @@
 #
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301  USA
 
-from ctypes import *
+from ctypes import (
+    POINTER,
+    Structure,
+    byref,
+    c_char_p,
+    c_void_p,
+    c_int,
+    c_long,
+    c_ulong,
+    c_ushort,
+    cdll,
+)
 import os
 
 RR_ROTATE_0 = 1
@@ -90,10 +102,11 @@ Status = c_int
 xlib = cdll.LoadLibrary('libX11.so.6')
 rr = cdll.LoadLibrary('libXrandr.so.2')
 
+
 # query resources
 class _XRRModeInfo(Structure):
     _fields_ = [
-        ("id", RRMode), # XID is c_long
+        ("id", RRMode),  # XID is c_long
         ("width", c_int),
         ("height", c_int),
         ("dotClock", c_long),
@@ -109,6 +122,7 @@ class _XRRModeInfo(Structure):
         ("modeFlags", c_long),
         ]
 
+
 class _XRRScreenSize(Structure):
     _fields_ = [
         ("width", c_int),
@@ -116,6 +130,7 @@ class _XRRScreenSize(Structure):
         ("mwidth", c_int),
         ("mheight", c_int)
         ]
+
 
 class _XRRCrtcInfo(Structure):
     _fields_ = [
@@ -133,6 +148,7 @@ class _XRRCrtcInfo(Structure):
         ("possible", POINTER(RROutput)),
         ]
 
+
 class _XRRScreenResources(Structure):
     _fields_ = [
         ("timestamp", Time),
@@ -145,15 +161,18 @@ class _XRRScreenResources(Structure):
         ("modes", POINTER(_XRRModeInfo)),
         ]
 
+
 class RRError(Exception):
     """Base exception class of the module"""
     pass
+
 
 class UnsupportedRRError(RRError):
     """Raised if the required XRandR extension version is not available"""
     def __init__(self, required, current):
         self.required = required
         self.current = current
+
 
 # XRRGetOutputInfo
 class _XRROutputInfo(Structure):
@@ -175,6 +194,7 @@ class _XRROutputInfo(Structure):
         ("modes", POINTER(RRMode))
         ]
 
+
 class _XRRCrtcGamma(Structure):
     _fields_ = [
         ('size', c_int),
@@ -183,12 +203,14 @@ class _XRRCrtcGamma(Structure):
         ('blue', POINTER(c_ushort)),
         ]
 
-def _array_conv(array, type, conv = lambda x:x):
+
+def _array_conv(array, type, conv=lambda x: x):
     length = len(array)
-    res = (type*length)()
+    res = (type * length)()
     for i in range(length):
         res[i] = conv(array[i])
     return res
+
 
 class Output:
     """The output is a reference to a supported output jacket of the graphics
@@ -220,16 +242,22 @@ class Output:
         """Frees the internal reference to the output info if the output gets
            removed"""
         rr.XRRFreeOutputInfo(self._info)
+
     def get_physical_width(self):
         """Returns the display width reported by the connected output device"""
         return self._info.contents.mm_width
+
     def get_physical_height(self):
-        """Returns the display height reported by the connected output device"""
+        """
+        Returns the display height reported by the connected output device
+        """
         return self._info.contents.mm_height
+
     def get_crtc(self):
         """Returns the xid of the hardware pipe to which the output is
            attached. If the output is disabled it will return 0"""
         return self._info.contents.crtc
+
     def get_crtcs(self):
         """Returns the xids of the hardware pipes to which the output could
            be attached"""
@@ -290,7 +318,8 @@ class Output:
 
     def disable(self):
         """Disables the output"""
-        if not self.is_active(): return
+        if not self.is_active():
+            return
         self._mode = None
         self._crtc._outputs.remove(self)
         self._crtc = None
@@ -342,9 +371,11 @@ class Output:
         else:
             return self._changes != CHANGES_NONE
 
+
 class Crtc:
     """The crtc is a reference to a hardware pipe that is provided by the
        graphics device. Outputs can be attached to crtcs"""
+
     def __init__(self, info, xid, screen):
         """Initializes the hardware pipe object"""
         self._info = info
@@ -437,24 +468,34 @@ class Crtc:
             return False
         if len(self._outputs):
             for other in self._outputs:
-                if other == output: continue
-                if other._x != output._x: return False
-                if other._y != output._y: return False
-                if other._mode != output._mode: return False
-                if other._rotation != output._rotation: return False
+                if other == output:
+                    continue
+                if other._x != output._x:
+                    return False
+                if other._y != output._y:
+                    return False
+                if other._mode != output._mode:
+                    return False
+                if other._rotation != output._rotation:
+                    return False
         #FIXME: pick_crtc is still missing
         elif self._info.contents.noutput > 0:
-            if self._info.contents.x != output._x: return False
-            if self._info.contents.y != output._y: return False
-            if self._info.contents.mode_info != output._mode: return False
-            if self._info.rotation != output._rotation: return False
+            if self._info.contents.x != output._x:
+                return False
+            if self._info.contents.y != output._y:
+                return False
+            if self._info.contents.mode_info != output._mode:
+                return False
+            if self._info.rotation != output._rotation:
+                return False
         return True
 
     def supports_rotation(self, rotation):
         """Check if the given rotation is supported by the crtc"""
         rotations = self._info.contents.rotations
-        dir = rotation & (RR_ROTATE_0|RR_ROTATE_90|RR_ROTATE_180|RR_ROTATE_270)
-        reflect = rotation & (RR_REFLECT_X|RR_REFLECT_Y)
+        dir = rotation & (RR_ROTATE_0 | RR_ROTATE_90 | RR_ROTATE_180 |
+                          RR_ROTATE_270)
+        reflect = rotation & (RR_REFLECT_X | RR_REFLECT_Y)
         if (((rotations & dir) != 0) and ((rotations & reflect) == reflect)):
             return True
         return False
@@ -467,9 +508,12 @@ class Crtc:
         for i in range(self._info.contents.noutput):
             id = self._info.contents.outputs[i]
             output = self._screen.get_output_by_id(id)
-            if not output in self._outputs: return True
-            if output.has_changed(): return True
+            if not output in self._outputs:
+                return True
+            if output.has_changed():
+                return True
         return False
+
 
 class Screen:
     def __init__(self, dpy, screen=-1):
@@ -500,7 +544,7 @@ class Screen:
         self._load_config()
         (self._width, self._height,
          self._width_mm, self._height_mm) = self.get_size()
-        if XRANDR_VERSION >= (1,2):
+        if XRANDR_VERSION >= (1, 2):
             self._load_screen_size_range()
             self._load_crtcs()
             self._load_outputs()
@@ -596,7 +640,7 @@ class Screen:
 
     def get_current_rate(self):
         """Returns the currently used refresh rate"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         xccr = rr.XRRConfigCurrentRate
         xccr.restype = c_int
         return xccr(self._config)
@@ -605,7 +649,7 @@ class Screen:
         """Returns the refresh rates that are supported by the screen for
            the given resolution. See get_available_sizes for the resolution to
            which size_index points"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         rates = []
         nrates = c_int()
         rr.XRRConfigRates.restype = POINTER(c_ushort)
@@ -617,14 +661,14 @@ class Screen:
     def get_current_rotation(self):
         """Returns the currently used rotation. Can be RR_ROTATE_0,
         RR_ROTATE_90, RR_ROTATE_180 or RR_ROTATE_270"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         current = c_ushort()
-        rotations = rr.XRRConfigRotations(self._config, byref(current))
+        rr.XRRConfigRotations(self._config, byref(current))
         return current.value
 
     def get_available_rotations(self):
         """Returns a binary flag that holds the available resolutions"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         current = c_ushort()
         rotations = rr.XRRConfigRotations(self._config, byref(current))
         return rotations
@@ -632,7 +676,7 @@ class Screen:
     def get_current_size_index(self):
         """Returns the position of the currently used resolution size in the
            list of available resolutions. See get_available_sizes"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         rotation = c_ushort()
         size = rr.XRRConfigCurrentConfiguration(self._config,
                                                 byref(rotation))
@@ -641,7 +685,7 @@ class Screen:
     def get_available_sizes(self):
         """Returns the available resolution sizes of the screen. The size
            index points to the corresponding resolution of this list"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         sizes = []
         nsizes = c_int()
         xcs = rr.XRRConfigSizes
@@ -655,7 +699,7 @@ class Screen:
         """Configures the screen with the given resolution at the given size
            index, rotation and refresh rate. To get in effect call
            Screen.apply_config()"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         self.set_size_index(size_index)
         self.set_refresh_rate(rate)
         self.set_rotation(rotation)
@@ -710,7 +754,7 @@ class Screen:
 
     def print_info(self, verbose=False):
         """Prints some information about the detected screen and its outputs"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         print("Screen %s: minimum %s x %s, current %s x %s, maximum %s x %s" %\
               (self._screen,
                self._width_min, self._height_min,
@@ -728,20 +772,25 @@ class Screen:
         i = 0
         print("Sizes @ Refresh Rates:")
         for s in self.get_available_sizes():
-            print("  [%s] %s x %s @ %s" % (i, s.width, s.height,
-                                           self.get_available_rates_for_size_index(i)))
+            print("  [%s] %s x %s @ %s" % (
+                i, s.width, s.height,
+                self.get_available_rates_for_size_index(i)))
             i += 1
         print("Rotations:")
         rots = self.get_available_rotations()
-        if rots & RR_ROTATE_0: print("normal")
-        if rots & RR_ROTATE_90: print("right")
-        if rots & RR_ROTATE_180: print("inverted")
-        if rots & RR_ROTATE_270: print("left")
+        if rots & RR_ROTATE_0:
+            print("normal")
+        if rots & RR_ROTATE_90:
+            print("right")
+        if rots & RR_ROTATE_180:
+            print("inverted")
+        if rots & RR_ROTATE_270:
+            print("left")
         print("")
         print("Outputs:")
         for o in list(self.outputs.keys()):
             output = self.outputs[o]
-            print("  %s"  % o)
+            print("  %s" % o)
             if output.is_connected():
                 print("(%smm x %smm)" % (output.get_physical_width(),
                                          output.get_physical_height()))
@@ -761,40 +810,45 @@ class Screen:
                     print("")
                 print("    Rotations:")
                 rots = output.get_available_rotations()
-                if rots & RR_ROTATE_0: print("normal")
-                if rots & RR_ROTATE_90: print("right")
-                if rots & RR_ROTATE_180: print("inverted")
-                if rots & RR_ROTATE_270: print("left")
+                if rots & RR_ROTATE_0:
+                    print("normal")
+                if rots & RR_ROTATE_90:
+                    print("right")
+                if rots & RR_ROTATE_180:
+                    print("inverted")
+                if rots & RR_ROTATE_270:
+                    print("left")
                 print("")
             else:
                 print("(not connected)")
             if verbose:
                 print("    Core properties:")
-                for (f,t) in output._info.contents._fields_:
-                    print("      %s: %s" % (f,
-                                            getattr(output._info.contents, f)))
+                for (f, t) in output._info.contents._fields_:
+                    print("      %s: %s" % (
+                        f, getattr(output._info.contents, f)))
 
     def get_outputs(self):
         """Returns the outputs of the screen"""
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         return list(self.outputs.values())
 
     def get_output_names(self):
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         return list(self.outputs.keys())
 
     def set_size(self, width, height, width_mm, height_mm):
         """Apply the given pixel and physical size to the screen"""
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         # Check if we really need to apply the changes
-        if (width, height, width_mm, height_mm) == self.get_size(): return
+        if (width, height, width_mm, height_mm) == self.get_size():
+            return
         rr.XRRSetScreenSize(self._display, self._root,
                             c_int(width), c_int(height),
                             c_int(width_mm), c_int(height_mm))
 
     def apply_output_config(self):
         """Used for instantly applying RandR 1.2 changes"""
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         self._arrange_outputs()
         self._calculate_size()
         self.set_size(self._width, self._height,
@@ -802,7 +856,8 @@ class Screen:
 
         # Assign all active outputs to crtcs
         for output in list(self.outputs.values()):
-            if not output._mode or output._crtc: continue
+            if not output._mode or output._crtc:
+                continue
             for crtc in output.get_crtcs():
                 if crtc and crtc.supports_output(output):
                     crtc.add_output(output)
@@ -819,7 +874,7 @@ class Screen:
 
     def apply_config(self):
         """Used for instantly applying RandR 1.0 changes"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         status = rr.XRRSetScreenConfigAndRate(self._display,
                                               self._config,
                                               self._root,
@@ -834,7 +889,8 @@ class Screen:
         for output in self.get_outputs():
             # Skip not changed and not used outputs
             if not output.has_changed(CHANGES_RELATION) or \
-               output._mode == None: continue
+               output._mode == None:
+                continue
             relative = output._relative_to
             mode = self.get_mode_by_xid(output._mode)
             mode_relative = self.get_mode_by_xid(relative._mode)
@@ -867,11 +923,15 @@ class Screen:
         min_x = 32768
         min_y = 32768
         for output in self.get_outputs():
-            if output._mode == None: continue
-            if output._x < min_x: min_x = output._x
-            if output._y < min_y: min_y = output._y
+            if output._mode == None:
+                continue
+            if output._x < min_x:
+                min_x = output._x
+            if output._y < min_y:
+                min_y = output._y
         for output in self.get_outputs():
-            if output._mode == None: continue
+            if output._mode == None:
+                continue
             output._x -= min_x
             output._y -= min_y
             output._changes = output._changes | CHANGES_POSITION
@@ -882,14 +942,17 @@ class Screen:
         width = self._width
         height = self._height
         for output in self.get_outputs():
-            if not output._mode: continue
+            if not output._mode:
+                continue
             mode = self.get_mode_by_xid(output._mode)
             x = output._x
             y = output._y
             w = get_mode_width(mode, output._rotation)
             h = get_mode_height(mode, output._rotation)
-            if x + w > width: width = x + w
-            if y + h > height: height = y + h
+            if x + w > width:
+                width = x + w
+            if y + h > height:
+                height = y + h
         if width > self._width_max or height > self._height_max:
             raise RRError("The required size is not supported",
                           (width, height), (self._width_max, self._width_min))
@@ -903,6 +966,7 @@ class Screen:
             else:
                 self._width = width
         #FIXME: Physical size is missing
+
 
 def get_current_display():
     """Returns the currently used display"""
@@ -918,15 +982,18 @@ def get_current_display():
     dpy = open_display(display_url.encode('utf-8'))
     return dpy
 
+
 def get_current_screen():
     """Returns the currently used screen"""
     screen = Screen(get_current_display())
     return screen
 
+
 def get_screen_of_display(display, count):
     """Returns the screen of the given display"""
     dpy = xlib.XOpenDisplay(display)
     return Screen(dpy, count)
+
 
 def get_version():
     """Returns a tuple containing the major and minor version of the xrandr
@@ -939,11 +1006,13 @@ def get_version():
         return (major.value, minor.value)
     return None
 
+
 def has_extension():
     """Returns True if the xrandr extension is available"""
     if XRANDR_VERSION:
         return True
     return False
+
 
 def _to_gamma(gamma):
     g = rr.XRRAllocGamma(len(gamma[0]))
@@ -953,6 +1022,7 @@ def _to_gamma(gamma):
         g.blue[i] = gamma[2][i]
     return g
 
+
 def _from_gamma(g):
     gamma = ([], [], [])
     for i in range(g.size):
@@ -961,11 +1031,13 @@ def _from_gamma(g):
         gamma[2].append(g.blue[i])
     rr.XRRFreeGamma(g)
 
+
 def _check_required_version(version):
     """Raises an exception if the given or a later version of xrandr is not
        available"""
     if XRANDR_VERSION == None or XRANDR_VERSION < version:
         raise UnsupportedRRError(version, XRANDR_VERSION)
+
 
 def get_mode_height(mode, rotation):
     """Return the height of the given mode taking the rotation into account"""
@@ -975,6 +1047,7 @@ def get_mode_height(mode, rotation):
         return mode.width
     else:
         return 0
+
 
 def get_mode_width(mode, rotation):
     """Return the width of the given mode taking the rotation into account"""

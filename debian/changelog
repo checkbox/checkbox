@@ -1,10 +1,33 @@
+checkbox (0.15.5) raring; urgency=low
+
+  [ Brendan Donegan ]
+  * Incremented version number.
+  * data/whitelists/sru.whitelist - remove bluetooth_obex_before_suspend
+    as it is made redundant by browse/get/send (LP: #1155325)
+
+  [Sylvain Pineau]
+  * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
+    breaking tests that depends on the udevadm resource (LP: #1151562)
+  * scripts/udev_resource: Identify KVM devices as such to avoid reporting them
+    as just CAPTURE devices (LP: #1065064)
+
+  [ Daniel Manrique ]
+  * scripts/glob_test: Fixed swapping of repetitions and time parameters.
+    jobs/benchmarks.txt.in: Set a 26 FPS threshold for passing globs
+    benchmark.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 07 Mar 2013 16:04:46 +0000
+
 checkbox (0.15.4) raring; urgency=low
+
+  * New upstream release (LP: #1152223)
 
   [ Brendan Donegan ]
   * Incremented version number.
 
   [ Daniel Manrique ]
   * Added pipefail option to a few jobs using ansi_parser (LP: #1131598)
+  * Added sru.whitelist used to test stable release update kernels.
 
   [ Jeff Marcom ]
   * jobs/input.txt.in Added job requirement for accelerometer test (LP: #1135832)
@@ -13,6 +36,11 @@ checkbox (0.15.4) raring; urgency=low
   * scripts/network_device_info, scripts/udev_resource,
     checkbox/parsers/udevadm.py: Use udev to categorise network devices instead
     of lspci (LP: #1091633)
+  
+  [Jeff Lane]
+  * jobs/various: Changed the jobs that use removable_storage_watcher to
+    generate ~256MB files to combat problems where the files are cached and not
+    written directly to devices during test. (LP: #1149213)
 
  -- Jeff Marcom <jeff.marcom@ubuntu.com>  Mon, 18 Feb 2013 14:35:27 +0000
 

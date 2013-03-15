@@ -33,7 +33,8 @@ from mock import Mock
 from unittest import TestCase
 
 from plainbox import __version__ as version
-from plainbox.impl.box import main, CheckBoxCommandMixIn
+from plainbox.impl.box import main
+from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.mock_job import MockJobDefinition
 from plainbox.testing_utils.io import TestIO
 
@@ -125,13 +126,14 @@ class TestMain(TestCase):
         self.assertEqual(call.exception.args, (0,))
         self.maxDiff = None
         expected = """
-        usage: plainbox [-h] [-v] {run,special,self-test} ...
+        usage: plainbox [-h] [-v] {run,special,self-test,sru} ...
 
         positional arguments:
-          {run,special,self-test}
+          {run,special,self-test,sru}
             run                 run a test job
             special             special/internal commands
             self-test           run integration tests
+            sru                 run automated stable release update tests
 
         optional arguments:
           -h, --help            show this help message and exit
@@ -145,7 +147,7 @@ class TestMain(TestCase):
                 main([])
             self.assertEqual(call.exception.args, (2,))
         expected = """
-        usage: plainbox [-h] [-v] {run,special,self-test} ...
+        usage: plainbox [-h] [-v] {run,special,self-test,sru} ...
         plainbox: error: too few arguments
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
@@ -338,9 +340,9 @@ class TestRun(TestCase):
             self.assertEqual(call.exception.args, (0,))
         expected = """
         Each format may support a different set of options
-        json: with-io-log, squash-io-log, flatten-io-log, with-run-list, with-job-list, with-resource-map, with-job-defs, with-attachments, machine-json
-        rfc822: with-io-log, squash-io-log, flatten-io-log, with-run-list, with-job-list, with-resource-map, with-job-defs, with-attachments
-        text: with-io-log, squash-io-log, flatten-io-log, with-run-list, with-job-list, with-resource-map, with-job-defs, with-attachments
+        json: with-io-log, squash-io-log, flatten-io-log, with-run-list, with-job-list, with-resource-map, with-job-defs, with-attachments, with-comments, machine-json
+        rfc822: with-io-log, squash-io-log, flatten-io-log, with-run-list, with-job-list, with-resource-map, with-job-defs, with-attachments, with-comments
+        text: with-io-log, squash-io-log, flatten-io-log, with-run-list, with-job-list, with-resource-map, with-job-defs, with-attachments, with-comments
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
 

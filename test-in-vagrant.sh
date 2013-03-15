@@ -4,38 +4,105 @@
 mkdir -p vagrant-logs
 
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
-# XXX: this list needs to be in sync with Vagrantfile
+
+# When running in tarmac, the state file .vagrant, will be removed when the
+# tree is re-pristinized. To work around that, check for present
+# VAGRANT_STATE_FILE (custom variable, not set by tarmac or respected by
+# vagrant) and symlink the .vagrant state file from there.
+if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
+    if [ ! -e "$VAGRANT_STATE_FILE" ]; then
+        touch "$VAGRANT_STATE_FILE"
+    fi
+    ln -fs "$VAGRANT_STATE_FILE" .vagrant
+fi
+
 outcome=0
-target_list="precise quantal"
+# XXX: this list needs to be in sync with Vagrantfile
+target_list="precise quantal raring"
 for target in $target_list; do
     # Bring up target if needed
     if ! vagrant status $target | grep -q running; then
-        vagrant up $target || ( echo "Unable to bring $target up [$?]" && continue )
+        echo "[$target] Bringing VM 'up'"
+        if ! vagrant up $target >vagrant-logs/$target.startup.log 2>vagrant-logs/$target.startup.err; then
+            outcome=1
+            echo "[$target] Unable to 'up' VM!"
+            echo "[$target] stdout: $(pastebinit vagrant-logs/$target.startup.log)"
+            echo "[$target] stderr: $(pastebinit vagrant-logs/$target.startup.err)"
+            echo "[$target] NOTE: unable to execute tests, marked as failed"
+            continue
+        fi
     fi
+    # Display something before the first test output
+    echo "[$target] Starting tests..."
     # Run checkbox unit tests
     if vagrant ssh $target -c 'cd checkbox && ./test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
-        echo "CheckBox test suite [$target]: pass"
+        echo "[$target] CheckBox test suite: pass"
     else
-        echo "CheckBox test suite [$target]: fail"
-    outcome=1
+        outcome=1
+        echo "[$target] CheckBox test suite: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
+    fi
+    # Refresh plainbox installation. This is needed if .egg-info (which is
+    # essential for 'develop' to work) was removed in the meantime, for
+    # example, by tarmac.
+    if ! vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py egg_info' >vagrant-logs/$target.egginfo.log 2>vagrant-logs/$target.egginfo.err; then
+        outcome=1
+        echo "[$target] Running 'plainbox/setup.py egg_info' failed"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.egginfo.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.egginfo.err)"
+        echo "[$target] NOTE: unable to execute tests, marked as failed"
     fi
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
     if vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
-        echo "PlainBox test suite [$target]: pass"
+        echo "[$target] PlainBox test suite: pass"
     else
-        echo "PlainBox test suite [$target]: fail"
-    outcome=1
+        outcome=1
+        echo "[$target] PlainBox test suite: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
+    fi
+    # Build plainbox documentation
+    if vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
+        echo "[$target] PlainBox documentation build: pass"
+    else
+        outcome=1
+        echo "[$target] PlainBox documentation build: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
     fi
     # Run plainbox integration test suite (that tests checkbox scripts)
     if vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
-        echo "Integration tests [$target]: pass"
+        echo "[$target] Integration tests: pass"
     else
-        echo "Integration tests [$target]: fail"
-    outcome=1
+        outcome=1
+        echo "[$target] Integration tests: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
-    # Suspend the target to conserve resources
-    vagrant suspend $target || ( echo "Unable ta suspend $target  [$?]" && continue )
+    case $VAGRANT_DONE_ACTION in
+        suspend)
+            # Suspend the target to conserve resources
+            echo "[$target] Suspending VM"
+            if ! vagrant suspend $target >vagrant-logs/$target.suspend.log 2>vagrant-logs/$target.suspend.err; then
+                echo "[$target] Unable to suspend VM!"
+                echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
+                echo "[$target] stderr: $(pastebinit vagrant-logs/$target.suspend.err)"
+                echo "[$target] You may need to manually 'vagrant destroy $target' to fix this"
+            fi
+            ;;
+        destroy)
+            # Destroy the target to work around virtualbox hostsf bug
+            echo "[$target] Destroying VM"
+            if ! vagrant destroy --force $target >vagrant-logs/$target.destroy.log 2>vagrant-logs/$target.destroy.err; then
+                echo "[$target] Unable to destroy VM!"
+                echo "[$target] stdout: $(pastebinit vagrant-logs/$target.suspend.log)"
+                echo "[$target] stderr: $(pastebinit vagrant-logs/$target.suspend.err)"
+                echo "[$target] You may need to manually 'vagrant destroy $target' to fix this"
+            fi
+            ;;
+    esac
 done
 # Propagate failure code outside
 exit $outcome

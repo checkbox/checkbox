@@ -101,7 +101,7 @@ plugin: manual
 name: usb/storage-transfer
 depends: usb/insert
 user: root
-command: removable_storage_test usb
+command: removable_storage_test -s 268400000 usb
 _description:
  PURPOSE:
      This test will check your USB connection.
@@ -119,7 +119,7 @@ requires:
  usb.usb3 == 'supported'
 depends: usb3/insert
 user: root
-command: removable_storage_test -m 500000000 -p 7 usb
+command: removable_storage_test -s 268400000 -m 500000000 -p 7 usb
 _description:
  PURPOSE:
      This test will check your USB 3.0 connection.
@@ -135,7 +135,7 @@ plugin: shell
 name: usb/storage-automated
 depends: usb/insert
 user: root
-command: removable_storage_test usb
+command: removable_storage_test -s 268400000 usb
 _description:
  This test is automated and executes after the usb/insert test is run.
 
@@ -145,14 +145,14 @@ requires:
  usb.usb3 == 'supported'
 depends: usb3/insert
 user: root
-command: removable_storage_test -m 500000000 -p 7 usb
+command: removable_storage_test -s 268400000 -m 500000000 -p 7 usb
 _description:
  This test is automated and executes after the usb3/insert test is run.
 
 plugin: shell
 name: usb/storage-preinserted
 user: root
-command: removable_storage_test -l usb && removable_storage_test usb
+command: removable_storage_test -l usb && removable_storage_test -s 268400000 usb
 _description:
  This is an automated version of usb/storage-automated and assumes that the
  server has usb storage devices plugged in prior to checkbox execution. It
@@ -163,7 +163,7 @@ name: usb3/storage-preinserted
 user: root
 requires:
  usb.usb3 == 'supported'
-command: removable_storage_test -l usb && removable_storage_test -m 500000000 -p 7 usb
+command: removable_storage_test -l usb && removable_storage_test -s 268400000 -m 500000000 -p 7 usb
 _description:
  This is an automated version of usb3/storage-automated and assumes that the
  server has usb 3.0 storage devices plugged in prior to checkbox execution. It

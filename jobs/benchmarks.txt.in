@@ -83,6 +83,14 @@ command:
 _description: Run GLmark2 benchmark
 
 plugin: shell
+name: benchmarks/graphics/globs
+requires:
+ package.name == 'globs'
+ cpuinfo.platform in ("i386", "x86_64")
+command: globs_test --min-fps=26
+_description: Run globs benchmark
+
+plugin: shell
 name: benchmarks/graphics/unigine-sanctuary
 requires: package.name == 'phoronix-test-suite'
 command: pts_run unigine-sanctuary

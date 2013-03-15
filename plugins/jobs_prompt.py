@@ -27,7 +27,6 @@ from checkbox.user_interface import (
     NEXT,
     PREV,
     CONTINUE_ANSWER,
-    RESTART_ANSWER,
     RERUN_ANSWER,
 )
 
