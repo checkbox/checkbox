@@ -41,10 +41,20 @@ _description:
  VERIFICATION:
      Is your keyboard working properly?
 
+plugin: manual
+name: input/accelerometer_verify
+_description:
+ PURPOSE:
+     Manual detection of accelerometer.
+ STEPS:
+     1. Look at the specifications for your system.
+ VERIFICATION:
+     Is this system supposed to have an accelerometer?
+
 plugin: user-interact
 name: input/accelerometer
 user: root
-requires: module.name in ['hdaps', 'hp_accel'] 
+depends: input/accelerometer_verify
 command: accelerometer_test -m
 _description:
  PURPOSE:
