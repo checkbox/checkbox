@@ -2,6 +2,8 @@ checkbox (0.15.5) raring; urgency=low
 
   [ Brendan Donegan ]
   * Incremented version number.
+  * data/whitelists/sru.whitelist - remove bluetooth_obex_before_suspend
+    as it is made redundant by browse/get/send (LP: #1155325)
 
   [Sylvain Pineau]
   * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
