@@ -163,7 +163,7 @@ def test_kvm(args):
 
     try:
         config.readfp(open(config_file))
-        timeout = config.get("KVM", "timeout")
+        timeout = int(config.get("KVM", "timeout"))
         image = config.get("KVM", "image") 
     except IOError:
         logging.warn("No config file found")
