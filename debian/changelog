@@ -20,8 +20,10 @@ checkbox (0.15.5) raring; urgency=low
   * jobs/input.txt.in: Added manual check job for accelerometer hardware
   * scripts/virtualization: Fixed issue where specifying test timeout via 
     vitualization.cfg was pulled in as a string rather than integer.
+  * scripts/virtualization: Added classmethod for generating cloud 
+    config data based on ISO in use
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 15 Mar 2013 16:04:46 +0000
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Mon, 18 Mar 2013 15:04:46 +0000
 
 checkbox (0.15.4) raring; urgency=low
 
