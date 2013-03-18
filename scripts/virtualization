@@ -90,10 +90,10 @@ class KVMTest(object):
         hostfwd = "tcp::2222-:22"
 
         params = \
-        '''
-        kvm -m {0} -net nic -net user,net={1},host={2},
-        hostfwd={3} -drive file={4},if=virtio -display none -nographic
-        '''.format(
+            '''
+            kvm -m {0} -net nic -net user,net={1},host={2},
+            hostfwd={3} -drive file={4},if=virtio -display none -nographic
+            '''.format(
             "256",
             netrange,
             image_ip,
@@ -111,7 +111,7 @@ class KVMTest(object):
         # Default file location for log file is in checkbox output directory
         checkbox_dir = os.getenv("CHECKBOX_DATA")
 
-        if checkbox_dir != None:
+        if checkbox_dir is not None:
             self.debug_file = os.path.join(checkbox_dir, self.debug_file)
 
         # Open VM STDERR/STDOUT log file for writing
@@ -122,8 +122,9 @@ class KVMTest(object):
             return False
 
         # Start Virtual machine
-        self.process = Popen(params, stderr=file,
-            stdout=file, universal_newlines=True, shell=True)
+        self.process = Popen(
+            params, stderr=file, stdout=file,
+            universal_newlines=True, shell=True)
 
     @classmethod
     def create_cloud_disk(cls):
@@ -149,7 +150,6 @@ runcmd:
                 os.fchmod(data_file.fileno(), 0o777)
                 data_file.write(vars()[file.replace("-", "_")])
 
-
         # Create Data ISO hosting user & meta cloud config data
         try:
             iso_build = check_output(
@@ -163,9 +163,10 @@ runcmd:
     def start(self):
         status = 1
         # Create temp directory:
-        with tempfile.TemporaryDirectory("_kvm_test", 
-        time.strftime("%b_%d_%Y_")) as temp_dir:
-            
+
+        date = time.strftime("%b_%d_%Y_")
+        with tempfile.TemporaryDirectory("_kvm_test", date) as temp_dir:
+
             os.chdir(temp_dir)
             if self.image is None:
                 # Download cloud image
@@ -194,8 +195,8 @@ runcmd:
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)
 
-        return status  
-     
+        return status
+
 
 def test_kvm(args):
     print("Executing KVM Test", file=sys.stderr)
@@ -210,7 +211,7 @@ def test_kvm(args):
     try:
         config.readfp(open(config_file))
         timeout = int(config.get("KVM", "timeout"))
-        image = config.get("KVM", "image") 
+        image = config.get("KVM", "image")
     except IOError:
         logging.warn("No config file found")
     except Exception as exception:
@@ -233,19 +234,19 @@ def main():
     subparsers = parser.add_subparsers()
 
     # Main cli options
-    kvm_test_parser = subparsers.add_parser('kvm',
-        help=("Run kvm virtualization test"))
+    kvm_test_parser = subparsers.add_parser(
+        'kvm', help=("Run kvm virtualization test"))
 
     #xen_test_parser = subparsers.add_parser('xen',
     #    help=("Run xen virtualization test"))
 
     # Sub test options
-    kvm_test_parser.add_argument('-i', '--image',
-        type=str, default=None)
-    kvm_test_parser.add_argument('-t', '--timeout',
-        type=int, default=500)
-    kvm_test_parser.add_argument('--debug',
-        action="store_true")
+    kvm_test_parser.add_argument(
+        '-i', '--image', type=str, default=None)
+    kvm_test_parser.add_argument(
+        '-t', '--timeout', type=int, default=500)
+    kvm_test_parser.add_argument(
+        '--debug', action="store_true")
     kvm_test_parser.set_defaults(func=test_kvm)
 
     args = parser.parse_args()
@@ -255,8 +256,5 @@ def main():
 
     args.func(args)
 
-    
-    
-
 if __name__ == "__main__":
-    main();
+    main()
