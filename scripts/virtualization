@@ -28,7 +28,7 @@ import os
 import logging
 import lsb_release
 import signal
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, CalledProcessError, check_output
 import sys
 import tempfile
 import time
@@ -67,7 +67,7 @@ class KVMTest(object):
         try:
             resp = urllib.request.urlretrieve(image_url, cloud_iso)
         except urllib.error.HTTPError as exception:
-            logging.error("Failed download {}: {}".format(image_url, exception))
+            logging.exception("Failed download of image from:", image_url)
             return False
 
         if not os.path.isfile(cloud_iso):
@@ -100,6 +100,12 @@ class KVMTest(object):
             hostfwd,
             data_disk).replace("\n", "").replace("  ", "")
 
+        if os.path.isfile("seed.iso"):
+            logging.debug("Attaching Cloud config disk")
+
+            params = params.replace(
+                "if=virtio", "if=virtio -drive file=seed.iso,if=virtio")
+
         logging.debug("Using params:{}".format(params))
 
         # Default file location for log file is in checkbox output directory
@@ -119,6 +125,41 @@ class KVMTest(object):
         self.process = Popen(params, stderr=file,
             stdout=file, universal_newlines=True, shell=True)
 
+    @classmethod
+    def create_cloud_disk(cls):
+        """
+        Generate Cloud meta data and creates an iso object
+        to be mounted as virtual device to instance during boot.
+        """
+
+        user_data = """\
+#cloud-config
+
+runcmd:
+ - [ sh, -c, echo "========= CERTIFICATION TEST =========" ]
+"""
+
+        meta_data = """\
+{ echo instance-id: iid-local01; echo local-hostname, certification; }
+"""
+
+        for file in ['user-data', 'meta-data']:
+            logging.debug("Creating cloud %s", file)
+            with open(file, "wt") as data_file:
+                os.fchmod(data_file.fileno(), 0o777)
+                data_file.write(vars()[file.replace("-", "_")])
+
+
+        # Create Data ISO hosting user & meta cloud config data
+        try:
+            iso_build = check_output(
+                ['genisoimage', '-output', 'seed.iso', '-volid', 
+                'cidata', '-joliet', '-rock', 'user-data', 'meta-data'],
+                universal_newlines=True)
+        except CalledProcessError as exception:
+            logging.exception("Cloud data disk creation failed")
+
+
     def start(self):
         status = 1
         # Create temp directory:
@@ -131,7 +172,12 @@ class KVMTest(object):
                 self.image = self.download_image()
 
             if os.path.isfile(self.image):
- 
+
+                if "cloud" in self.image:
+                    # Will assume we need to supply cloud meta data
+                    # for instance boot to be successful
+                    self.create_cloud_disk()
+
                 # Boot Virtual Machine
                 instance = self.boot_image(self.image)
 
