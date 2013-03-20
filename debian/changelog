@@ -4,6 +4,8 @@ checkbox (0.15.5) raring; urgency=low
   * Incremented version number.
   * data/whitelists/sru.whitelist - remove bluetooth_obex_before_suspend
     as it is made redundant by browse/get/send (LP: #1155325)
+  * jobs/benchmarks.txt.in - fix typo in command field of 
+    benchmarks/graphics/globs job (LP: #1157615)
 
   [Sylvain Pineau]
   * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
@@ -23,7 +25,7 @@ checkbox (0.15.5) raring; urgency=low
   * scripts/virtualization: Added classmethod for generating cloud 
     config data based on ISO in use
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Mon, 18 Mar 2013 15:04:46 +0000
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 20 Mar 2013 10:08:23 +0000
 
 checkbox (0.15.4) raring; urgency=low
 
