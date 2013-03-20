@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-09 04:34+0000\n"
-"X-Generator: Launchpad (build 16523)\n"
+"X-Launchpad-Export-Date: 2013-03-20 04:35+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -86,7 +86,7 @@ msgstr "前へ(_P)"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
-msgstr "次ヘ(_X)"
+msgstr "次へ(_X)"
 
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
@@ -109,13 +109,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
-"目的：\n"
-"     このテストは内蔵スピーカーが正しく動くのかチェックをします。\n"
-"ステップ：\n"
-"    1. 外部スピーカーやヘッドフォンが接続されていないか確認をします。\n"
-"        デスクトップマシンでテストをする場合は、外部スピーカーを接続してください。\n"
-"    2. オーディオデバイスに音を流すためにテストボタンを押してください。\n"
-"確認：\n"
+"目的:\n"
+"     このテストでは、内蔵スピーカーが正しく動作するのかチェックします。\n"
+"ステップ:\n"
+"    1. 外部スピーカーやヘッドフォンが接続されていないことを確認をします。\n"
+"        デスクトップマシンでテストをする場合、外部スピーカーを接続してください。\n"
+"    2. オーディオデバイスで音を流すために\"テスト\"ボタンを押してください。\n"
+"確認:\n"
 "    音が流れましたか？"
 
 #. description
@@ -156,13 +156,13 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
-"目的：\n"
-"    このテストはヘッドフォンが正しく接続できているかチェックします。\n"
-"ステップ：\n"
-"    1. オーディオデバイスにヘッドフォンを接続してください。\n"
-"    2. オーディオデバイスから音を流すためにボタンをクリックしてください。\n"
-"確認：\n"
-"    ヘッドフォンから音が流れましたか？ そして、ひずみやカチッっとした音のようなノイズはしませんでしたか？"
+"目的:\n"
+"    このテストでは、ヘッドフォンコネクターが正しく動作するかをチェックします。\n"
+"ステップ:\n"
+"    1.オーディオデバイスにヘッドフォンを接続してください。\n"
+"    2.オーディオデバイスから音を流すために\"テスト\"をクリックしてください。\n"
+"確認:\n"
+"    ヘッドフォンから音が流れましたか?また、ひずみやカチッっとした音やその他のノイズはしませんでしたか?"
 
 #. description
 #: ../jobs/audio.txt.in:72
@@ -177,14 +177,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"目的：\n"
-"    このテストはオンボードのマイクからの録音ができているかチェックをします。\n"
-"ステップ：\n"
-"    1. 外部マイクが接続されている場合は接続を切ります。\n"
-"    2. ”テスト”をクリックして、内蔵マイクに向かって話してください。\n"
-"    3. しばらくしたらスピーチ内容が再生されます。\n"
-"確認：\n"
-"    発話内容が再生されましたか？"
+"目的:\n"
+"    このテストでは、オンボードのマイクからの録音ができているかをチェックをします。\n"
+"ステップ:\n"
+"    1.外部マイクが接続されている場合は接続を切ります。\n"
+"    2.”テスト”をクリックして、内蔵マイクに向かって話してください。\n"
+"    3.しばらくすると発言内容が再生されます。\n"
+"確認:\n"
+"    発言内容が再生されましたか?"
 
 #. description
 #: ../jobs/audio.txt.in:90
@@ -199,14 +199,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"目的：\n"
-"    このテストは外部マイクを用いた録音が正しくできるかチェックをします。\n"
-"ステップ：\n"
-"    1. マイクの接続端子にマイクを接続してください。\n"
-"    2. ”テスト”をクリックして、外部マイクに向かって発話してください。\n"
-"    3. しばらくしたらスピーチ内容が再生されます。\n"
-"確認：\n"
-"    スピーチ内容が再生されましたか？"
+"目的:\n"
+"    このテストでは、外部マイクを用いて録音が正しくできるかをチェックをします。\n"
+"ステップ:\n"
+"    1.マイクの接続端子にマイクを接続してください。\n"
+"    2.”テスト”をクリックして、外部マイクに向かって話してください。\n"
+"    3.しばらくすると発言内容が再生されます。\n"
+"確認:\n"
+"    発言内容が再生されましたか?"
 
 #. description
 #: ../jobs/audio.txt.in:107
@@ -221,13 +221,13 @@ msgid ""
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "目的:\n"
-"    このテストはUSBオーディオデバイスが正しく動作するかテストします\n"
+"    このテストでは、USBオーディオデバイスが正しく動作するかをテストします。\n"
 "ステップ:\n"
-"    1. USBオーディオデバイスをシステムに接続してください\n"
-"    2. \"テスト\"をクリックして、マイクに向かって何か話してください。\n"
-"    3. 数秒後にあなたの話したことを再生します\n"
+"    1. USBオーディオデバイスをシステムに接続してください。\n"
+"    2.”テスト”をクリックして、マイクに向かって話してください。\n"
+"    3.しばらくすると発言内容が再生されます。\n"
 "確認:\n"
-"    あなたの話したことがUSBヘッドフォンを通じて再生されましたか?"
+"    発言内容がUSBヘッドフォンから再生されましたか?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -288,27 +288,27 @@ msgstr "GLmark2-ES2ベンチマークの実行"
 #. description
 #: ../jobs/benchmarks.txt.in:83
 msgid "Run GLmark2 benchmark"
-msgstr ""
+msgstr "GLmark2ベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:89
 msgid "Run Unigine Santuary benchmark"
-msgstr ""
+msgstr "Unigine Santuaryベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr ""
+msgstr "Unigine Tropicsベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr ""
+msgstr "Unigine Heavenベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Lightsmarkベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:113
@@ -353,12 +353,12 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:167
 msgid "Run Encode MP3 benchmark"
-msgstr ""
+msgstr "MP3エンコードベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:173
 msgid "Run x264 H.264/AVC encoder benchmark"
-msgstr ""
+msgstr "x264 H.264/AVCエンコーダーベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:179
@@ -368,32 +368,32 @@ msgstr "GnuPGベンチマークの実行"
 #. description
 #: ../jobs/benchmarks.txt.in:185
 msgid "Run Compress PBZIP2 benchmark"
-msgstr ""
+msgstr "PBZIP2圧縮ベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:191
 msgid "Run Compress 7ZIP benchmark"
-msgstr ""
+msgstr "7ZIP圧縮ベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:197
 msgid "Run N-Queens benchmark"
-msgstr ""
+msgstr "N-Queensベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:203
 msgid "Run Himeno benchmark"
-msgstr ""
+msgstr "Himenoベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:209
 msgid "CPU utilization on an idle system."
-msgstr ""
+msgstr "アイドル状態のシステムでのCPU使用率"
 
 #. description
 #: ../jobs/benchmarks.txt.in:215
 msgid "Disk utilization on an idle system."
-msgstr ""
+msgstr "アイドル状態のシステムでのディスク使用状況"
 
 #. description
 #: ../jobs/bluetooth.txt.in:22
@@ -557,12 +557,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
-"目的：\n"
-"    このテストは内蔵カメラが正しく動作するかチェックをします\n"
-"ステップ：\n"
-"    １． テストをクリックしてください。 カメラからキャプチャした映像を10秒間表示します。\n"
-"確認：\n"
-"   キャプチャされた映像が見えましたか？"
+"目的:\n"
+"    このテストでは、内蔵カメラが正しく動作するかをチェックします。\n"
+"ステップ:\n"
+"    1.\"テスト\"をクリックしてください。 カメラからキャプチャした映像を10秒間表示します。\n"
+"確認:\n"
+"   キャプチャされた映像が見えましたか?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -593,13 +593,13 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"目的： \n"
-"   このテストはシステムがOgg Vorbisオーディオファイルを再生できるか検証します。\n"
-"ステップ：\n"
-"   １． テストをクリックしてください。 Ogg Vorbis（.ogg）ファイルを再生します。\n"
-"   ２． テストを続行するためにプレイヤーを終了してください。\n"
-"確認：\n"
-"   サンプルが正しく再生されましたか？"
+"目的:\n"
+"   このテストでは、システムがOgg Vorbisオーディオファイルを再生できるか確認します。\n"
+"ステップ:\n"
+"   1.\"テスト\"をクリックしてください。Ogg Vorbis（.oggファイルを再生します。\n"
+"   2.テストを続行するためにプレイヤーを終了してください。\n"
+"確認:\n"
+"   サンプルが正しく再生されましたか?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -612,24 +612,24 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"目的： \n"
-"   このテストはシステムがWAVEオーディオファイルを再生できるか検証します。\n"
-"ステップ：\n"
-"   １． テストをクリックしてください。 WAVE（.wav）ファイルを再生します。\n"
-"   ２． テストを続行するためにプレイヤーを終了してください。\n"
-"確認：\n"
-"   サンプルが正しく再生されましたか？"
+"目的:\n"
+"   このテストでは、システムがWAVEオーディオファイルを再生できるかを確認します。\n"
+"ステップ:\n"
+"   1.テストをクリックしてください。 Waveオーディオフォーマット(.wav)ファイルを再生します。\n"
+"   2.テストを続行するためにプレイヤーを終了してください。\n"
+"確認:\n"
+"   サンプルが正しく再生されましたか?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
-msgstr "ファームウェアのテストスイート（fwts cpufreq）を使用してCPUのスケーリング機能をテストします。"
+msgstr "ファームウェアのテストスイート(fwts cpufreq)を使用してCPUのスケーリング機能をテストします。"
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Attaches the log generated by cpu/scaling_test to the results"
-msgstr ""
+msgstr "cpu/scaling_testで生成されたログを結果に添付する"
 
 #. description
 #: ../jobs/cpu.txt.in:21
@@ -644,22 +644,22 @@ msgstr "マルチコアのシステムでオフラインのCPUをテストしま
 #. description
 #: ../jobs/cpu.txt.in:35
 msgid "This test checks cpu topology for accuracy"
-msgstr "このテストでは、CPUトポロジーの性能をチェックします"
+msgstr "このテストでは、CPUトポロジーの性能をチェックします。"
 
 #. description
 #: ../jobs/cpu.txt.in:42
 msgid "This test checks that CPU frequency governors are obeyed when set."
-msgstr "このテストは、CPU周波数のGovernor(制御方法)が設定通りかどうかチェックします。"
+msgstr "このテストでは、CPU周波数のGovernor(制御方法)が設定通りかどうかチェックします。"
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr "パッケージがインストールされている場合は、atdデーモンの実行をテストします。"
+msgstr "パッケージがインストールされている場合、atdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr "パッケージがインストール済みの場合にcronデーモンが実行されているかテストします。"
+msgstr "パッケージがインストール済みの場合、cronデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:17
@@ -2731,6 +2731,8 @@ msgid ""
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
+"このテストでは、無線インターフェースがシステムのサスペンド後に動作するかをチェックします。すべてのインターフェースを切断してから、無線インターフェースを接"
+"続し、接続が期待されたとおりに動作することをチェックします。"
 
 #. description
 #: ../jobs/suspend.txt.in:365
@@ -2759,6 +2761,7 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"システムのサスペンド後に、セキュリティ設定なしで802.11nプロトコルを使用するルーターにシステムの無線ハードウェアが接続できるかテストします。"
 
 #. description
 #: ../jobs/suspend.txt.in:517
