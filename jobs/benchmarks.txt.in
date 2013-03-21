@@ -87,7 +87,7 @@ name: benchmarks/graphics/globs
 requires:
  package.name == 'globs'
  cpuinfo.platform in ("i386", "x86_64")
-command: glob_test --min-fps=26
+command: glob_test --min-fps=26 --ignore-problems
 _description: Run globs benchmark
 
 plugin: shell
