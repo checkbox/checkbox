@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -141,6 +141,11 @@ class JobDefinition(IJobDefinition):
         if not isinstance(other, JobDefinition):
             return False
         return self.get_checksum() == other.get_checksum()
+
+    def __ne__(self, other):
+        if not isinstance(other, JobDefinition):
+            return True
+        return self.get_checksum() != other.get_checksum()
 
     def get_resource_program(self):
         """

@@ -618,7 +618,7 @@ class SessionState:
         # with another job with the same name.
         for new_job in new_job_list:
             try:
-                existing_job = self._job_state_map[new_job.name]
+                existing_job = self._job_state_map[new_job.name].job
             except KeyError:
                 logger.info("Storing new job %r", new_job)
                 self._job_state_map[new_job.name] = JobState(new_job)
@@ -628,10 +628,11 @@ class SessionState:
                 # reported back to the UI layer. Perhaps update_job_result()
                 # could simply return a list of problems in a similar manner
                 # how update_desired_job_list() does.
-                logging.warning(
-                    ("Local job %s produced job %r that collides with"
-                     " an existing job %r, the new job was discarded"),
-                    result.job, new_job, existing_job)
+                if new_job != existing_job:
+                    logging.warning(
+                        ("Local job %s produced job %r that collides with"
+                         " an existing job %r, the new job was discarded"),
+                        result.job, new_job, existing_job)
 
     def _gen_rfc822_records_from_io_log(self, result):
         logger.debug("processing output from a job: %r", result.job)
