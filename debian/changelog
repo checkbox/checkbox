@@ -1,11 +1,24 @@
+checkbox (0.15.6) raring; urgency=low
+
+  [ Brendan Donegan ]
+  * jobs/benchmarks.txt.in - fix typo in command field of 
+    benchmarks/graphics/globs job (LP: #1157615)
+
+  [ Jeff Marcom ]
+  * jobs/input.txt.in: Added manual check job for accelerometer hardware
+  * scripts/virtualization: Fixed issue where specifying test timeout via 
+    vitualization.cfg was pulled in as a string rather than integer.
+  * scripts/virtualization: Added classmethod for generating cloud 
+    config data based on ISO in use
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 22 Mar 2013 10:24:52 -0400
+
 checkbox (0.15.5) raring; urgency=low
 
   [ Brendan Donegan ]
   * Incremented version number.
   * data/whitelists/sru.whitelist - remove bluetooth_obex_before_suspend
     as it is made redundant by browse/get/send (LP: #1155325)
-  * jobs/benchmarks.txt.in - fix typo in command field of 
-    benchmarks/graphics/globs job (LP: #1157615)
 
   [Sylvain Pineau]
   * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
@@ -17,13 +30,6 @@ checkbox (0.15.5) raring; urgency=low
   * scripts/glob_test: Fixed swapping of repetitions and time parameters.
     jobs/benchmarks.txt.in: Set a 26 FPS threshold for passing globs
     benchmark.
-
-  [ Jeff Marcom ]
-  * jobs/input.txt.in: Added manual check job for accelerometer hardware
-  * scripts/virtualization: Fixed issue where specifying test timeout via 
-    vitualization.cfg was pulled in as a string rather than integer.
-  * scripts/virtualization: Added classmethod for generating cloud 
-    config data based on ISO in use
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 20 Mar 2013 10:08:23 +0000
 
