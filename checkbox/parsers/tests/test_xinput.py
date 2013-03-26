@@ -86,18 +86,13 @@ class XinputResult(IXinputResult):
 
 class TestXinputParser(TestCase):
 
-    def getFixture(self, name):
-        return os.path.join(os.path.dirname(__file__), "fixtures", name)
-
-    def getParser(self, name):
-        fixture = self.getFixture(name)
-        stream = open(fixture, encoding="utf-8")
-        return XinputParser(stream)
 
     def getResult(self, name):
-        parser = self.getParser(name)
+        fixture = os.path.join(os.path.dirname(__file__), "fixtures", name)
         result = XinputResult()
-        parser.run(result)
+        with open(fixture, encoding="utf-8") as stream:
+            parser = XinputParser(stream)
+            parser.run(result)
         return result
 
     def test_number_of_devices_with_spaces(self):
