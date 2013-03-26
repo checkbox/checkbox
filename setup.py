@@ -7,7 +7,7 @@ import posixpath
 import subprocess
 from glob import glob
 
-from distutils.core import setup
+from setuptools import setup
 
 from distutils.ccompiler import new_compiler
 from distutils.command.build import build
