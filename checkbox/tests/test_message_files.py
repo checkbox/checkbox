@@ -74,13 +74,14 @@ class MessageFileFormatTest(unittest.TestCase):
                 if 'environ' in message:
                     environ_variables = re.findall(environ_variables_regex, 
                                                    message['environ'])
-                self.assertEquals(set(environ_variables),
+                self.assertEqual(set(environ_variables),
                                   set(shell_variables),
                                   message['name'])
 
     def test_jobs_comply_with_schema(self):
         globals = {}
-        exec(open("plugins/jobs_info.py").read(), globals)
+        with open("plugins/jobs_info.py", "rt") as stream:
+            exec(stream.read(), globals)
         job_schema = globals["job_schema"]
         for message in self.messages:
             long_ext = "_extended"
