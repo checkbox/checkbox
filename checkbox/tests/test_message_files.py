@@ -80,7 +80,8 @@ class MessageFileFormatTest(unittest.TestCase):
 
     def test_jobs_comply_with_schema(self):
         globals = {}
-        exec(open("plugins/jobs_info.py").read(), globals)
+        with open("plugins/jobs_info.py", "rt") as stream:
+            exec(stream.read(), globals)
         job_schema = globals["job_schema"]
         for message in self.messages:
             long_ext = "_extended"
