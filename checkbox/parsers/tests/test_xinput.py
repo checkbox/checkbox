@@ -38,8 +38,8 @@ class TestDeviceRe(TestCase):
             """⎡ Virtual core pointer                      """
             """id=2    [master pointer  (3)]""")
         self.assertTrue(match)
-        self.assertEquals(match.group("name"), "Virtual core pointer")
-        self.assertEquals(match.group("id"), "2")
+        self.assertEqual(match.group("name"), "Virtual core pointer")
+        self.assertEqual(match.group("id"), "2")
 
 
 class TestAttributeRe(TestCase):
@@ -47,8 +47,8 @@ class TestAttributeRe(TestCase):
     def test_string(self):
         match = ATTRIBUTE_RE.match("""Buttons supported: 12""")
         self.assertTrue(match)
-        self.assertEquals(match.group("key"), "Buttons supported")
-        self.assertEquals(match.group("value"), "12")
+        self.assertEqual(match.group("key"), "Buttons supported")
+        self.assertEqual(match.group("value"), "12")
 
 
 class TestClassValueRe(TestCase):
@@ -56,7 +56,7 @@ class TestClassValueRe(TestCase):
     def test_string(self):
         match = CLASS_VALUE_RE.match("""12. Type: XIButtonClass""")
         self.assertTrue(match)
-        self.assertEquals(match.group("class"), "XIButtonClass")
+        self.assertEqual(match.group("class"), "XIButtonClass")
 
 
 class TestListValueRe(TestCase):
@@ -65,10 +65,10 @@ class TestListValueRe(TestCase):
         elements = LIST_VALUE_RE.split(
             """"Button Horiz Wheel Right" None None""")[1::2]
         self.assertTrue(elements)
-        self.assertEquals(len(elements), 3)
-        self.assertEquals(elements[0], '"Button Horiz Wheel Right"')
-        self.assertEquals(elements[1], "None")
-        self.assertEquals(elements[2], "None")
+        self.assertEqual(len(elements), 3)
+        self.assertEqual(elements[0], '"Button Horiz Wheel Right"')
+        self.assertEqual(elements[1], "None")
+        self.assertEqual(elements[2], "None")
 
 
 class XinputResult(IXinputResult):
@@ -98,33 +98,33 @@ class TestXinputParser(TestCase):
     def test_number_of_devices_with_spaces(self):
         """The toshiba xinput with spaces contains 12 devices."""
         result = self.getResult("xinput_toshiba.txt")
-        self.assertEquals(len(result.devices), 12)
+        self.assertEqual(len(result.devices), 12)
 
     def test_number_of_devices_without_spaces(self):
         """The quantal xinput without spaces contains 14 devices."""
         result = self.getResult("xinput_quantal.txt")
-        self.assertEquals(len(result.devices), 14)
+        self.assertEqual(len(result.devices), 14)
 
     def test_multitouch_touchpad_device(self):
         """The toshiba xinput contains a multitouch touchpad device."""
         result = self.getResult("xinput_toshiba.txt")
         devices = [device for device in result.devices.values()
             if device["name"] == "AlpsPS/2 ALPS DualPoint TouchPad"]
-        self.assertEquals(len(devices), 1)
+        self.assertEqual(len(devices), 1)
 
         classes = [cls for cls in devices[0]["classes"]
             if cls["device_class"] == "XITouchClass"]
-        self.assertEquals(len(classes), 1)
-        self.assertEquals(classes[0]["touch_mode"], "dependent")
+        self.assertEqual(len(classes), 1)
+        self.assertEqual(classes[0]["touch_mode"], "dependent")
 
     def test_multitouch_touchscreen_device(self):
         """The quantal xinput contains a multitouch touchscreen device."""
         result = self.getResult("xinput_quantal.txt")
         devices = [device for device in result.devices.values()
             if device["name"] == "Quanta OpticalTouchScreen"]
-        self.assertEquals(len(devices), 1)
+        self.assertEqual(len(devices), 1)
 
         classes = [cls for cls in devices[0]["classes"]
             if cls["device_class"] == "XITouchClass"]
-        self.assertEquals(len(classes), 1)
-        self.assertEquals(classes[0]["touch_mode"], "direct")
+        self.assertEqual(len(classes), 1)
+        self.assertEqual(classes[0]["touch_mode"], "direct")

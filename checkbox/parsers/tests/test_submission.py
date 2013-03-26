@@ -75,10 +75,10 @@ class TestSubmissionParser(TestCase):
         """Distribution information is in the lsbrelease element."""
         result = self.getResult("submission_lsbrelease.xml")
         self.assertTrue("distribution" in result)
-        self.assertEquals(result["distribution"]["release"], "12.10")
-        self.assertEquals(result["distribution"]["codename"], "quantal")
-        self.assertEquals(result["distribution"]["distributor_id"], "Ubuntu")
-        self.assertEquals(
+        self.assertEqual(result["distribution"]["release"], "12.10")
+        self.assertEqual(result["distribution"]["codename"], "quantal")
+        self.assertEqual(result["distribution"]["distributor_id"], "Ubuntu")
+        self.assertEqual(
             result["distribution"]["description"],
             "Ubuntu quantal (development branch)")
 
@@ -86,45 +86,45 @@ class TestSubmissionParser(TestCase):
         """Memory state is in an info element."""
         result = self.getResult("submission_info_memory.xml")
         self.assertTrue("memory_state" in result)
-        self.assertEquals(result["memory_state"]["total"], 2023460864)
-        self.assertEquals(result["memory_state"]["swap"], 2067787776)
+        self.assertEqual(result["memory_state"]["total"], 2023460864)
+        self.assertEqual(result["memory_state"]["swap"], 2067787776)
 
     def test_processor(self):
         """Processor information can be in a processors element."""
         result = self.getResult("submission_processors.xml")
         self.assertTrue("processor_state" in result)
-        self.assertEquals(result["processor_state"]["bogomips"], 1197)
-        self.assertEquals(result["processor_state"]["cache"], 1048576)
-        self.assertEquals(result["processor_state"]["count"], 1)
-        self.assertEquals(result["processor_state"]["make"], "GenuineIntel")
-        self.assertEquals(
+        self.assertEqual(result["processor_state"]["bogomips"], 1197)
+        self.assertEqual(result["processor_state"]["cache"], 1048576)
+        self.assertEqual(result["processor_state"]["count"], 1)
+        self.assertEqual(result["processor_state"]["make"], "GenuineIntel")
+        self.assertEqual(
             result["processor_state"]["model"],
             "Intel(R) Pentium(R) M processor 1100MHz")
-        self.assertEquals(result["processor_state"]["model_number"], "6")
-        self.assertEquals(result["processor_state"]["model_revision"], "5")
-        self.assertEquals(result["processor_state"]["model_version"], "9")
-        self.assertEquals(
+        self.assertEqual(result["processor_state"]["model_number"], "6")
+        self.assertEqual(result["processor_state"]["model_revision"], "5")
+        self.assertEqual(result["processor_state"]["model_version"], "9")
+        self.assertEqual(
             result["processor_state"]["other"],
             """fpu vme de pse tsc msr mce cx8 apic sep mtrr pge mca cmov """
             """pat clflush dts acpi mmx fxsr sse sse2 tm pbe up bts est tm2""")
-        self.assertEquals(result["processor_state"]["platform_name"], "i386")
-        self.assertEquals(result["processor_state"]["speed"], 597)
+        self.assertEqual(result["processor_state"]["platform_name"], "i386")
+        self.assertEqual(result["processor_state"]["speed"], 597)
 
     def test_processor_info(self):
         """Processor information can be in an info element."""
         result = self.getResult("submission_info_cpuinfo.xml")
         self.assertTrue("processor_state" in result)
-        self.assertEquals(result["processor_state"]["bogomips"], 4788)
-        self.assertEquals(result["processor_state"]["cache"], 3145728)
-        self.assertEquals(result["processor_state"]["count"], 1)
-        self.assertEquals(result["processor_state"]["make"], "GenuineIntel")
-        self.assertEquals(
+        self.assertEqual(result["processor_state"]["bogomips"], 4788)
+        self.assertEqual(result["processor_state"]["cache"], 3145728)
+        self.assertEqual(result["processor_state"]["count"], 1)
+        self.assertEqual(result["processor_state"]["make"], "GenuineIntel")
+        self.assertEqual(
             result["processor_state"]["model"],
             "Intel(R) Core(TM) i5 CPU       M 520  @ 2.40GHz")
-        self.assertEquals(result["processor_state"]["model_number"], "6")
-        self.assertEquals(result["processor_state"]["model_revision"], "2")
-        self.assertEquals(result["processor_state"]["model_version"], "37")
-        self.assertEquals(
+        self.assertEqual(result["processor_state"]["model_number"], "6")
+        self.assertEqual(result["processor_state"]["model_revision"], "2")
+        self.assertEqual(result["processor_state"]["model_version"], "37")
+        self.assertEqual(
             result["processor_state"]["other"],
             """fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca """
             """cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm """
@@ -133,51 +133,51 @@ class TestSubmissionParser(TestCase):
             """dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm """
             """sse4_1 sse4_2 popcnt aes lahf_lm ida arat dtherm tpr_shadow """
             """vnmi flexpriority ept vpid""")
-        self.assertEquals(result["processor_state"]["platform_name"], "x86_64")
-        self.assertEquals(result["processor_state"]["speed"], 1865)
+        self.assertEqual(result["processor_state"]["platform_name"], "x86_64")
+        self.assertEqual(result["processor_state"]["speed"], 1865)
 
     def test_attachments(self):
         """Attachments are in info elements."""
         result = self.getResult("submission_attachment.xml")
         self.assertTrue("attachments" in result)
-        self.assertEquals(len(result["attachments"]), 1)
+        self.assertEqual(len(result["attachments"]), 1)
 
     def test_device_udev(self):
         """Device states can be in the udev element."""
         result = self.getResult("submission_udev.xml")
         self.assertTrue("device_states" in result)
-        self.assertEquals(len(result["device_states"]), 82)
+        self.assertEqual(len(result["device_states"]), 82)
 
     def test_device_udevadm(self):
         """Device states can be in a udevadm info element."""
         result = self.getResult("submission_info_udevadm.xml")
         self.assertTrue("device_states" in result)
-        self.assertEquals(len(result["device_states"]), 82)
+        self.assertEqual(len(result["device_states"]), 82)
 
     def test_device_dmidecode(self):
         """Device states can be in a dmidecode info element."""
         result = self.getResult("submission_info_dmidecode.xml")
         self.assertTrue("device_states" in result)
-        self.assertEquals(len(result["device_states"]), 5)
+        self.assertEqual(len(result["device_states"]), 5)
 
     def test_package_versions(self):
         """Package versions are in the packages element."""
         result = self.getResult("submission_packages.xml")
         self.assertTrue("package_versions" in result)
-        self.assertEquals(len(result["package_versions"]), 1)
+        self.assertEqual(len(result["package_versions"]), 1)
 
         package_version = result["package_versions"][0]
-        self.assertEquals(package_version["name"], "accountsservice")
-        self.assertEquals(package_version["version"], "0.6.21-6ubuntu2")
+        self.assertEqual(package_version["name"], "accountsservice")
+        self.assertEqual(package_version["version"], "0.6.21-6ubuntu2")
 
     def test_test_results(self):
         """Test results are in the questions element."""
         result = self.getResult("submission_questions.xml")
         self.assertTrue("test_results" in result)
-        self.assertEquals(len(result["test_results"]), 1)
+        self.assertEqual(len(result["test_results"]), 1)
 
         test_result = result["test_results"][0]
-        self.assertEquals(
+        self.assertEqual(
             test_result["name"], "audio/alsa_record_playback_external")
-        self.assertEquals(test_result["output"], "")
-        self.assertEquals(test_result["status"], "pass")
+        self.assertEqual(test_result["output"], "")
+        self.assertEqual(test_result["status"], "pass")

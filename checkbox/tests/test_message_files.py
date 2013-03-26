@@ -74,7 +74,7 @@ class MessageFileFormatTest(unittest.TestCase):
                 if 'environ' in message:
                     environ_variables = re.findall(environ_variables_regex, 
                                                    message['environ'])
-                self.assertEquals(set(environ_variables),
+                self.assertEqual(set(environ_variables),
                                   set(shell_variables),
                                   message['name'])
 

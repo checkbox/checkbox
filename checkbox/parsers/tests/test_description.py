@@ -46,22 +46,22 @@ class TestPurposeRe(TestCase):
 
     def test_one_line(self):
         line = PURPOSE_RE.sub(r"", "1. foo\n")
-        self.assertEquals(line, "foo\n")
+        self.assertEqual(line, "foo\n")
 
     def test_two_lines(self):
         line = PURPOSE_RE.sub(r"", "1. foo\n2. bar\n")
-        self.assertEquals(line, "foo\nbar\n")
+        self.assertEqual(line, "foo\nbar\n")
 
 
 class TestStepsRe(TestCase):
 
     def test_one_line(self):
         line = STEPS_RE.sub(r"\1.\2", "1: foo\n")
-        self.assertEquals(line, "1. foo\n")
+        self.assertEqual(line, "1. foo\n")
 
     def test_two_lines(self):
         line = STEPS_RE.sub(r"\1.\2", "1: foo\n2: bar\n")
-        self.assertEquals(line, "1. foo\n2. bar\n")
+        self.assertEqual(line, "1. foo\n2. bar\n")
 
 
 class TestDescriptionParser(TestCase):
@@ -78,14 +78,14 @@ class TestDescriptionParser(TestCase):
 
     def assertResult(
         self, result, purpose=None, steps=None, verification=None, info=None):
-        self.assertEquals(result.purpose, purpose)
-        self.assertEquals(result.steps, steps)
-        self.assertEquals(result.verification, verification)
-        self.assertEquals(result.info, info)
+        self.assertEqual(result.purpose, purpose)
+        self.assertEqual(result.steps, steps)
+        self.assertEqual(result.verification, verification)
+        self.assertEqual(result.info, info)
 
     def test_empty(self):
         result = self.getResult("")
-        self.assertEquals(result.purpose, None)
+        self.assertEqual(result.purpose, None)
 
     def test_purpose(self):
         result = self.getResult("""
@@ -151,10 +151,10 @@ INFORMACIÓN:
 VERIFICACIÓN:
      ¿Son las pantallas y los modos de vídeo correctos?
 """)
-        self.assertNotEquals(result.purpose, None)
-        self.assertNotEquals(result.steps, None)
-        self.assertNotEquals(result.verification, None)
-        self.assertEquals(result.info, "$output\n")
+        self.assertNotEqual(result.purpose, None)
+        self.assertNotEqual(result.steps, None)
+        self.assertNotEqual(result.verification, None)
+        self.assertEqual(result.info, "$output\n")
 
     def test_ru(self):
         result = self.getResult("""
@@ -166,10 +166,10 @@ VERIFICACIÓN:
 ПРОВЕРКА:
     Был ли слышен звук в наушниках и был ли он воспроизведён в ваших наушниках без искажений, щелчков или других искажённых звуков?"
 """)
-        self.assertNotEquals(result.purpose, None)
-        self.assertNotEquals(result.steps, None)
-        self.assertNotEquals(result.verification, None)
-        self.assertEquals(result.info, None)
+        self.assertNotEqual(result.purpose, None)
+        self.assertNotEqual(result.steps, None)
+        self.assertNotEqual(result.verification, None)
+        self.assertEqual(result.info, None)
 
     def test_substitute_purpose(self):
         result = self.getResult("""

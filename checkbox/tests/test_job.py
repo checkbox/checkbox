@@ -35,4 +35,4 @@ class JobTest(unittest.TestCase):
         status, data, duration = job.execute()
         #data is expected to be bytes
         self.assertTrue(isinstance(data, bytes))
-        self.assertEquals(data, test_string.encode())
+        self.assertEqual(data, test_string.encode())
