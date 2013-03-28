@@ -1,6 +1,8 @@
 checkbox (0.15.7) raring; urgency=low
 
   * debian/control: add missing build dependency on python3-setuptools
+  * debian/control: add another missing build dependency on python-setuptools
+    (apparently needed because dh_auth_xxx) poke setup.py as python2)
 
  -- Zygmunt Krynicki <zygmunt.krynicki@canonical.com>  Wed, 27 Mar 2013 23:15:57 +0100
 
