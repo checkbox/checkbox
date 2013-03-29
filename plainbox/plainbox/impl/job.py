@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -92,6 +92,13 @@ class JobDefinition(IJobDefinition):
             return None
 
     @property
+    def environ(self):
+        try:
+            return self.__getattr__('environ')
+        except AttributeError:
+            return None
+
+    @property
     def origin(self):
         """
         The Origin object associated with this JobDefinition
@@ -135,6 +142,11 @@ class JobDefinition(IJobDefinition):
             return False
         return self.get_checksum() == other.get_checksum()
 
+    def __ne__(self, other):
+        if not isinstance(other, JobDefinition):
+            return True
+        return self.get_checksum() != other.get_checksum()
+
     def get_resource_program(self):
         """
         Return a ResourceProgram based on the 'requires' expression.
@@ -168,6 +180,15 @@ class JobDefinition(IJobDefinition):
         program = self.get_resource_program()
         if program:
             return program.required_resources
+        else:
+            return set()
+
+    def get_environ_settings(self):
+        """
+        Return a set of requested environment variables
+        """
+        if self.environ is not None:
+            return {variable for variable in re.split('[\s,]+', self.environ)}
         else:
             return set()
 

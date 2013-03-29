@@ -34,6 +34,9 @@ setup(
     tests_require=[
         'mock',
     ],
+    install_requires=[
+        'lxml >= 2.3',
+    ],
     entry_points={
         'console_scripts': [
             'plainbox=plainbox.public:main',
@@ -42,5 +45,7 @@ setup(
             'text=plainbox.impl.exporter.text:TextSessionStateExporter',
             'json=plainbox.impl.exporter.json:JSONSessionStateExporter',
             'rfc822=plainbox.impl.exporter.rfc822:RFC822SessionStateExporter',
+            'xml=plainbox.impl.exporter.xml:XMLSessionStateExporter',
         ],
-    })
+    },
+    include_package_data=True)

@@ -1,6 +1,7 @@
 #!/bin/sh
 # This script is invoked by tarmac - the automatic branch lader - before it
 # allows a merge request to land into trunk
+set -e
 
 # Destroy VMs after we're done with each image. This works around
 # a bug in virtualbox shared folder filesystem.

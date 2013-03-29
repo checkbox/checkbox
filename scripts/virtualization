@@ -28,7 +28,7 @@ import os
 import logging
 import lsb_release
 import signal
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, CalledProcessError, check_output
 import sys
 import tempfile
 import time
@@ -67,7 +67,7 @@ class KVMTest(object):
         try:
             resp = urllib.request.urlretrieve(image_url, cloud_iso)
         except urllib.error.HTTPError as exception:
-            logging.error("Failed download {}: {}".format(image_url, exception))
+            logging.exception("Failed download of image from:", image_url)
             return False
 
         if not os.path.isfile(cloud_iso):
@@ -90,22 +90,28 @@ class KVMTest(object):
         hostfwd = "tcp::2222-:22"
 
         params = \
-        '''
-        kvm -m {0} -net nic -net user,net={1},host={2},
-        hostfwd={3} -drive file={4},if=virtio -display none -nographic
-        '''.format(
+            '''
+            kvm -m {0} -net nic -net user,net={1},host={2},
+            hostfwd={3} -drive file={4},if=virtio -display none -nographic
+            '''.format(
             "256",
             netrange,
             image_ip,
             hostfwd,
             data_disk).replace("\n", "").replace("  ", "")
 
+        if os.path.isfile("seed.iso"):
+            logging.debug("Attaching Cloud config disk")
+
+            params = params.replace(
+                "if=virtio", "if=virtio -drive file=seed.iso,if=virtio")
+
         logging.debug("Using params:{}".format(params))
 
         # Default file location for log file is in checkbox output directory
         checkbox_dir = os.getenv("CHECKBOX_DATA")
 
-        if checkbox_dir != None:
+        if checkbox_dir is not None:
             self.debug_file = os.path.join(checkbox_dir, self.debug_file)
 
         # Open VM STDERR/STDOUT log file for writing
@@ -116,22 +122,63 @@ class KVMTest(object):
             return False
 
         # Start Virtual machine
-        self.process = Popen(params, stderr=file,
-            stdout=file, universal_newlines=True, shell=True)
+        self.process = Popen(
+            params, stderr=file, stdout=file,
+            universal_newlines=True, shell=True)
+
+    @classmethod
+    def create_cloud_disk(cls):
+        """
+        Generate Cloud meta data and creates an iso object
+        to be mounted as virtual device to instance during boot.
+        """
+
+        user_data = """\
+#cloud-config
+
+runcmd:
+ - [ sh, -c, echo "========= CERTIFICATION TEST =========" ]
+"""
+
+        meta_data = """\
+{ echo instance-id: iid-local01; echo local-hostname, certification; }
+"""
+
+        for file in ['user-data', 'meta-data']:
+            logging.debug("Creating cloud %s", file)
+            with open(file, "wt") as data_file:
+                os.fchmod(data_file.fileno(), 0o777)
+                data_file.write(vars()[file.replace("-", "_")])
+
+        # Create Data ISO hosting user & meta cloud config data
+        try:
+            iso_build = check_output(
+                ['genisoimage', '-output', 'seed.iso', '-volid', 
+                'cidata', '-joliet', '-rock', 'user-data', 'meta-data'],
+                universal_newlines=True)
+        except CalledProcessError as exception:
+            logging.exception("Cloud data disk creation failed")
+
 
     def start(self):
         status = 1
         # Create temp directory:
-        with tempfile.TemporaryDirectory("_kvm_test", 
-        time.strftime("%b_%d_%Y_")) as temp_dir:
-            
+
+        date = time.strftime("%b_%d_%Y_")
+        with tempfile.TemporaryDirectory("_kvm_test", date) as temp_dir:
+
             os.chdir(temp_dir)
             if self.image is None:
                 # Download cloud image
                 self.image = self.download_image()
 
             if os.path.isfile(self.image):
- 
+
+                if "cloud" in self.image:
+                    # Will assume we need to supply cloud meta data
+                    # for instance boot to be successful
+                    self.create_cloud_disk()
+
                 # Boot Virtual Machine
                 instance = self.boot_image(self.image)
 
@@ -148,8 +195,8 @@ class KVMTest(object):
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)
 
-        return status  
-     
+        return status
+
 
 def test_kvm(args):
     print("Executing KVM Test", file=sys.stderr)
@@ -163,8 +210,8 @@ def test_kvm(args):
 
     try:
         config.readfp(open(config_file))
-        timeout = config.get("KVM", "timeout")
-        image = config.get("KVM", "image") 
+        timeout = int(config.get("KVM", "timeout"))
+        image = config.get("KVM", "image")
     except IOError:
         logging.warn("No config file found")
     except Exception as exception:
@@ -187,19 +234,19 @@ def main():
     subparsers = parser.add_subparsers()
 
     # Main cli options
-    kvm_test_parser = subparsers.add_parser('kvm',
-        help=("Run kvm virtualization test"))
+    kvm_test_parser = subparsers.add_parser(
+        'kvm', help=("Run kvm virtualization test"))
 
     #xen_test_parser = subparsers.add_parser('xen',
     #    help=("Run xen virtualization test"))
 
     # Sub test options
-    kvm_test_parser.add_argument('-i', '--image',
-        type=str, default=None)
-    kvm_test_parser.add_argument('-t', '--timeout',
-        type=int, default=500)
-    kvm_test_parser.add_argument('--debug',
-        action="store_true")
+    kvm_test_parser.add_argument(
+        '-i', '--image', type=str, default=None)
+    kvm_test_parser.add_argument(
+        '-t', '--timeout', type=int, default=500)
+    kvm_test_parser.add_argument(
+        '--debug', action="store_true")
     kvm_test_parser.set_defaults(func=test_kvm)
 
     args = parser.parse_args()
@@ -209,8 +256,5 @@ def main():
 
     args.func(args)
 
-    
-    
-
 if __name__ == "__main__":
-    main();
+    main()

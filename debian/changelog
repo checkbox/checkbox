@@ -1,11 +1,26 @@
 checkbox (0.15.6) raring; urgency=low
 
-  * Bump version number for release (so that stable PPA version is greater
-    than Ubuntu version).
+  [ Brendan Donegan ]
+  * jobs/benchmarks.txt.in - fix typo in command field of 
+    benchmarks/graphics/globs job (LP: #1157615)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 22 Mar 2013 16:58:14 +0000
+  [ Jeff Marcom ]
+  * jobs/input.txt.in: Added manual check job for accelerometer hardware
+  * scripts/virtualization: Fixed issue where specifying test timeout via 
+    vitualization.cfg was pulled in as a string rather than integer.
+  * scripts/virtualization: Added classmethod for generating cloud 
+    config data based on ISO in use
+
+  [ Zygmunt Krynicki ]
+  * debian/control: add missing build dependency on python3-setuptools
+  * debian/control: add another missing build dependency on python-setuptools
+    (apparently needed because dh_auth_xxx) poke setup.py as python2)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 29 Mar 2013 10:41:06 +0000
 
 checkbox (0.15.5) raring; urgency=low
+
+  * New upstream release (LP: #1158798)
 
   [ Brendan Donegan ]
   * Incremented version number.
@@ -23,7 +38,7 @@ checkbox (0.15.5) raring; urgency=low
     jobs/benchmarks.txt.in: Set a 26 FPS threshold for passing globs
     benchmark.
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 07 Mar 2013 16:04:46 +0000
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 20 Mar 2013 10:08:23 +0000
 
 checkbox (0.15.4) raring; urgency=low
 

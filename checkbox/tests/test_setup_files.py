@@ -37,7 +37,8 @@ class SetupFiles(unittest.TestCase):
         self.assertEqual(rfc822deb_from_config, existing_files)
 
     def test_job_files_in_potfiles(self):
-        potfile_lines = [line.strip() for line in open('po/POTFILES.in','r')]
+        with open('po/POTFILES.in', 'rt') as stream:
+            potfile_lines = [line.strip() for line in stream]
         potfile_jobfiles = [file for file in potfile_lines if "rfc822deb" in file]
         potfile_jobfiles = [line.split(']')[1].strip() 
                             for line in potfile_jobfiles if ']' in line]
@@ -47,7 +48,8 @@ class SetupFiles(unittest.TestCase):
         self.assertEqual(potfile_jobfiles, existing_files)
 
     def test_job_files_in_local_txt(self):
-        local_lines = [line.strip() for line in open('jobs/local.txt.in','r')]
+        with open('jobs/local.txt.in','rt') as stream:
+            local_lines = [line.strip() for line in stream]
         local_jobfiles = [file for file in local_lines if "$CHECKBOX_SHARE/jobs" in file]
         local_jobfiles = [re.search('\$CHECKBOX_SHARE\/(?P<job_file>jobs\/(.+)\.txt)\?.*',
                           file).group('job_file')+".in" for file in local_jobfiles]

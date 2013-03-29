@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -31,7 +31,7 @@ import os
 import shutil
 import tempfile
 
-from plainbox.impl.depmgr import DependencyError
+from plainbox.impl.depmgr import DependencyError, DependencyDuplicateError
 from plainbox.impl.depmgr import DependencySolver
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.resource import ExpressionCannotEvaluateError
@@ -297,6 +297,12 @@ class SessionState:
         changes this will start out empty and will be changeable dynamically.
         It can still change due to local jobs but there is no API yes.
 
+        This list cannot have any duplicates, if that is the case a
+        DependencyDuplicateError is raised. This has to be handled externally
+        and is a sign that the job database is corrupted or has wrong data. As
+        an exception if duplicates are perfectly identical this error is
+        silently corrected.
+
     :ivar dict job_state_map: mapping that tracks the state of each job
 
         Mapping from job name to :class:`JobState`. This basically has the test
@@ -340,6 +346,38 @@ class SessionState:
     session_data_filename = 'session.json'
 
     def __init__(self, job_list):
+        # Start by making a copy of job_list as we may modify it below
+        job_list = job_list[:]
+        while True:
+            try:
+                # Construct a solver with the job list as passed by the caller.
+                # This will do a little bit of validation and might raise
+                # DepdendencyDuplicateError if there are any duplicates at this
+                # stage.
+                #
+                # There's a single case that is handled here though, if both
+                # jobs are identical this problem is silently fixed. This
+                # should not happen in normal circumstances but is non the less
+                # harmless (as long as both jobs are perfectly identical)
+                #
+                # Since this problem can happen any number of times (many
+                # duplicates) this is performed in a loop. The loop breaks when
+                # we cannot solve the problem _OR_ when no error occurs.
+                DependencySolver(job_list)
+            except DependencyDuplicateError as exc:
+                # If both jobs are identical then silently fix the problem by
+                # removing one of the jobs (here the second one we've seen but
+                # it's not relevant as they are possibly identical) and try
+                # again
+                if exc.job == exc.duplicate_job:
+                    job_list.remove(exc.duplicate_job)
+                    continue
+                else:
+                    # If the jobs differ report this back to the caller
+                    raise
+            else:
+                # If there are no problems then break the loop
+                break
         self._job_list = job_list
         self._job_state_map = {job.name: JobState(job)
                                for job in self._job_list}
@@ -519,6 +557,7 @@ class SessionState:
                                 self.session_data_filename)
 
         with tempfile.NamedTemporaryFile(mode='wt',
+                                         encoding='UTF-8',
                                          suffix='.tmp',
                                          prefix='session',
                                          dir=self._session_dir,
@@ -539,7 +578,7 @@ class SessionState:
         """
         Erase the job_state_map and desired_job_list with the saved ones
         """
-        with open(self.previous_session_file(), 'r') as f:
+        with open(self.previous_session_file(), 'rt', encoding='UTF-8') as f:
             previous_session = json.load(
                 f, object_hook=SessionStateEncoder().dict_to_object)
         self._job_state_map = previous_session._job_state_map
@@ -580,7 +619,7 @@ class SessionState:
         # with another job with the same name.
         for new_job in new_job_list:
             try:
-                existing_job = self._job_state_map[new_job.name]
+                existing_job = self._job_state_map[new_job.name].job
             except KeyError:
                 logger.info("Storing new job %r", new_job)
                 self._job_state_map[new_job.name] = JobState(new_job)
@@ -590,10 +629,11 @@ class SessionState:
                 # reported back to the UI layer. Perhaps update_job_result()
                 # could simply return a list of problems in a similar manner
                 # how update_desired_job_list() does.
-                logging.warning(
-                    ("Local job %s produced job %r that collides with"
-                     " an existing job %r, the new job was discarded"),
-                    result.job, new_job, existing_job)
+                if new_job != existing_job:
+                    logging.warning(
+                        ("Local job %s produced job %r that collides with"
+                         " an existing job %r, the new job was discarded"),
+                        result.job, new_job, existing_job)
 
     def _gen_rfc822_records_from_io_log(self, result):
         logger.debug("processing output from a job: %r", result.job)
