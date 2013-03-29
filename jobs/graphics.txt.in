@@ -26,7 +26,9 @@ _description:
 
 plugin: shell
 name: graphics/xorg-process
-requires: package.name == 'xorg' and package.name == 'procps'
+requires:
+ package.name == 'xorg'
+ package.name == 'procps'
 command: pgrep -f '/usr/bin/X' >/dev/null
 _description: Test that the X process is running.
 
