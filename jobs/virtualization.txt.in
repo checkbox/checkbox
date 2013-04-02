@@ -22,3 +22,19 @@ depends: virtualization/kvm_ok
 command: virtualization kvm --debug
 _description:
  Test to check that a cloud image boots and works properly with KVM
+
+plugin: shell
+name: virtualization/xen_ok
+requires: package.name == 'libvert-bin'
+user: root
+command: virsh -c xen:/// domstate Domain-0
+_description:
+ Test to verify that the Xen Hypervisor is running.
+
+plugin: shell
+name: virtualization/xen_check_vm
+depends: virtualization/xen_ok
+user: root
+command: xen_test
+_description:
+ Test to check that a Xen domU image can boot and run on Xen on Ubuntu

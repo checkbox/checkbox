@@ -5,6 +5,11 @@ checkbox (0.15.7) raring; urgency=low
   [ Zygmunt Krynicki ]
   * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
     programs to be compatible with plainbox
+  
+  [ Jeff Lane ]
+  * jobs/power-management.txt.in: Added manual reboot test for server testing
+    jobs/virtualization.txt.in: Added xen testing jobs
+    scripts/xen_test: added script to perform Xen testing
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 29 Mar 2013 10:46:30 +0000
 

@@ -193,3 +193,21 @@ _description:
      1. Plug laptop into AC
  VERIFICATION:
      Was the laptop plugged into AC?
+
+plugin: manual
+name: power-management/reboot-manual
+user: root
+command: shutdown -h now
+_description:
+ PURPOSE:
+     This test will check your system shutdown/booting cycle
+ STEPS:
+     1. Select 'Test' to initiate a system shutdown.
+     2. Power the system back on.
+     3. From the grub menu, boot into the Xen Hypervisor
+     4. When the system has restarted, log in and restart checkbox-certification-server
+     5. Select 'Re-Run' to return to this test
+     6. Select 'Yes' to indicate the test has passed if the machine shut down
+     successfully otherwise, Select 'No' to indicate there was a problem.
+ VERIFICATION:
+     Did the system shutdown and boot correctly?
