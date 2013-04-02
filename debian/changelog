@@ -1,3 +1,13 @@
+checkbox (0.15.7) raring; urgency=low
+
+  * Incremented version
+
+  [ Zygmunt Krynicki ]
+  * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
+    programs to be compatible with plainbox
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 29 Mar 2013 10:46:30 +0000
+
 checkbox (0.15.6) raring; urgency=low
 
   [ Brendan Donegan ]
@@ -11,9 +21,16 @@ checkbox (0.15.6) raring; urgency=low
   * scripts/virtualization: Added classmethod for generating cloud 
     config data based on ISO in use
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 22 Mar 2013 10:24:52 -0400
+  [ Zygmunt Krynicki ]
+  * debian/control: add missing build dependency on python3-setuptools
+  * debian/control: add another missing build dependency on python-setuptools
+    (apparently needed because dh_auth_xxx) poke setup.py as python2)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 29 Mar 2013 10:41:06 +0000
 
 checkbox (0.15.5) raring; urgency=low
+
+  * New upstream release (LP: #1158798)
 
   [ Brendan Donegan ]
   * Incremented version number.
