@@ -262,7 +262,7 @@ This project provides an extensible interface for system testing.
     test_suite='checkbox.tests.test_suite',
     scripts=[
         "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
-        "bin/checkbox-qt"],
+        "bin/checkbox-qt", "bin/checkbox-hw-collection"],
     packages=[
         "checkbox", "checkbox.contrib", "checkbox.dbus", "checkbox.lib",
         "checkbox.parsers", "checkbox.reports", "checkbox.heuristics",
