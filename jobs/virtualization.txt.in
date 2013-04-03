@@ -25,7 +25,7 @@ _description:
 
 plugin: shell
 name: virtualization/xen_ok
-requires: package.name == 'libvert-bin'
+requires: package.name == 'libvirt-bin'
 user: root
 command: virsh -c xen:/// domstate Domain-0
 _description:
