@@ -1,8 +1,9 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#   Daniel Manrique  <roadmr@ubuntu.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,24 +19,26 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.exporter.text` -- plain text exporter
-=========================================================
+plainbox.impl.commands.test_run
+===============================
 
-.. warning::
-
-    THIS MODULE DOES NOT HAVE STABLE PUBLIC API
+Test definitions for plainbox.impl.run module
 """
 
+from unittest import TestCase
+from io import StringIO, BytesIO
 
-from plainbox.impl.exporter import SessionStateExporterBase
+from plainbox.impl.commands.run import ByteStringStreamTranslator
 
 
-class TextSessionStateExporter(SessionStateExporterBase):
-    """
-    Human-readable session state exporter.
-    """
+class TestRun(TestCase):
 
-    def dump(self, data, stream):
-        for job_name, job_data in data['result_map'].items():
-            stream.write("{}: {}".format(
-                         job_name, job_data['outcome']).encode('utf-8'))
+    def test_byte_string_translator(self):
+        dest_stream = StringIO()
+        source_stream = BytesIO(b'This is a bytes literal')
+        encoding = 'utf-8'
+
+        translator = ByteStringStreamTranslator(dest_stream, encoding)
+        translator.write(source_stream.getvalue())
+
+        self.assertEqual('This is a bytes literal', dest_stream.getvalue())
