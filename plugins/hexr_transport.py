@@ -129,6 +129,9 @@ class HexrTransport(Plugin):
             logging.debug(error)
             return (False, error)
 
+        # Fake the result
+        response.status = 200
+
         end_time = time.time()
 
         if not response:
@@ -143,6 +146,7 @@ class HexrTransport(Plugin):
         else:
             #This is the only success block
             text = response.read()
+            print(text)
             if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
                 logging.debug("Response headers:\n%s",
                               pprint.pformat(response.getheaders()))

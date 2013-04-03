@@ -6,7 +6,7 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export CHECKBOX_DATA=${CHECKBOX_DATA:-.}
 export CHECKBOX_SHARE=${CHECKBOX_SHARE:-.}
 export CHECKBOX_FRONTEND=${CHECKBOX_FRONTEND:-$CHECKBOX_SHARE/qt/frontend}
-export CHECKBOX_OPTIONS=${CHECKBOX_OPTIONS:---whitelist-file=$CHECKBOX_SHARE/data/whitelists/default.whitelist}
+export CHECKBOX_OPTIONS=${CHECKBOX_OPTIONS:---whitelist-file=$CHECKBOX_SHARE/data/whitelists/hwsubmit.whitelist}
 export PYTHONPATH=$PYTHONPATH:$CHECKBOX_SHARE
 
 if [ $CHECKBOX_DATA != '.' ]
