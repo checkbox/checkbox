@@ -112,3 +112,12 @@ Description: QT4 interface for checkbox
  results can then be sent to Launchpad.
  .
  This package provides a QT4 interface for answering tests.
+
+Package: checkbox-hw-collection
+Architecture: any
+Depends: checkbox (>= ${source:Version}),
+         ${misc:Depends}
+Description: CLI tool for collecting HW information from a system
+ .
+ This package provides a tool for collecting hardware information from
+ a system and sending it to the HEXR hardware database.
