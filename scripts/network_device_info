@@ -132,7 +132,7 @@ class NetworkingDevice():
             return None
 
         if not stream:
-            print ("Error: modinfo returned nothing", file=sys.stderr)
+            print("Error: modinfo returned nothing", file=sys.stderr)
             return None
         else:
             parser = ModinfoParser(stream)
@@ -166,7 +166,7 @@ def get_nm_devices():
 
     # Get a proxy for the base NetworkManager object
     proxy = bus.get_object("org.freedesktop.NetworkManager",
-        "/org/freedesktop/NetworkManager")
+                           "/org/freedesktop/NetworkManager")
     manager = dbus.Interface(proxy, "org.freedesktop.NetworkManager")
 
     # Get all devices known to NM and print their properties
