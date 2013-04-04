@@ -324,6 +324,9 @@ def main():
                         action='store_true',
                         help='Choose this to add verbose output \
                               for debug purposes')
+    parser.add_argument('-b', '--blacklist',
+                        nargs='+',
+                        help='Name(s) of rendercheck test(s) to blacklist.')
     parser.add_argument('-o', '--output',
                         default='',
                         help='The path to the log which will be dumped. \
@@ -385,6 +388,9 @@ def main():
 
     rendercheck = RenderCheckWrapper(args.temp)
     tests = rendercheck.get_suites_list()
+    for test in args.blacklist:
+        if test in tests:
+            tests.remove(test)
 
     # Switch between the tty where X lives and tty10
     vt_wrap = VtWrapper()

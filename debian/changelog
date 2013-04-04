@@ -1,12 +1,16 @@
 checkbox (0.15.7) raring; urgency=low
 
-  * Incremented version
-
   [ Zygmunt Krynicki ]
   * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
     programs to be compatible with plainbox
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 29 Mar 2013 10:46:30 +0000
+  [ Brendan Donegan ]
+  * scripts/rendercheck_test, scripts/graphics_stress_test, 
+    jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
+    specific rendercheck tests and use this to exclude the 'repeat' test
+    from the set of rendercheck tests that run (LP: #1164566)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 04 Apr 2013 17:04:44 +0100
 
 checkbox (0.15.6) raring; urgency=low
 

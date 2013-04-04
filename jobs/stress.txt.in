@@ -172,7 +172,7 @@ requires:
  package.name == 'x11-apps'
 user: root
 environ: CHECKBOX_DATA
-command: graphics_stress_test -d -o $CHECKBOX_DATA/graphics-stress-results && echo "Graphics Stress Test completed successfully" || echo "Graphics Stress Test completed, but there are errors. Please see the log $CHECKBOX_DATA/graphics-stress-results for details" && false
+command: graphics_stress_test -b repeat -d -o $CHECKBOX_DATA/graphics-stress-results && echo "Graphics Stress Test completed successfully" || echo "Graphics Stress Test completed, but there are errors. Please see the log $CHECKBOX_DATA/graphics-stress-results for details" && false
 _description:
  Run the graphics stress test. This test can take a few minutes.
 
