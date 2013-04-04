@@ -193,11 +193,12 @@ def match_counts(nm_devices, udev_devices, devtype):
     two passed in lists, devices from Network Manager and devices from lspci.
     """
     # now check that the count (by type) matches - WiFi
-    nm_type_devices = list(filter(lambda dev: dev.gettype() == devtype,
-        nm_devices))
+    nm_type_devices = [dev for dev in nm_devices if dev.gettype() == devtype]
     udevtype = 'WIRELESS' if devtype == 'WiFi' else 'NETWORK'
-    udev_type_devices = list(filter(lambda dev: dev.category == udevtype,
-        udev_devices))
+    udev_type_devices = [
+        udev
+        for udev in udev_devices
+        if udev.category == udevtype]
     if len(nm_type_devices) != len(udev_type_devices):
         print("ERROR: %s devices missing: udev showed %d devices, but "
               "NetworkManager saw %d devices" % (devtype,
