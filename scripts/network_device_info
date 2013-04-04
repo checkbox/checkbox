@@ -20,14 +20,14 @@
 #
 # Copyright (C) 2012 Canonical, Ltd.
 
-import os
-import re
+from subprocess import check_output, CalledProcessError, STDOUT
 import sys
+
 import dbus
-import sys
+
 from checkbox.parsers.modinfo import ModinfoParser
 from checkbox.parsers.udevadm import UdevadmParser
-from subprocess import check_output, CalledProcessError, STDOUT
+
 
 # This example lists basic information about network interfaces known to NM
 devtypes = {1: "Ethernet",
