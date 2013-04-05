@@ -192,7 +192,10 @@ runcmd:
                 if instance is not False:
                     time.sleep(self.timeout)
                     # Reset Console window to regain control from VM Serial I/0
-                    check_call('reset')
+                    try:
+                        check_call('reset')
+                    except CalledProcessError:
+                        pass
                     # Check to be sure VM boot was successful
                     if "END SSH HOST KEY KEYS" \
                     in open(self.debug_file, 'r').read():
