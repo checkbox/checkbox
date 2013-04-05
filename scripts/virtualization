@@ -29,7 +29,13 @@ import logging
 import lsb_release
 import shlex
 import signal
-from subprocess import Popen, PIPE, CalledProcessError, check_output
+from subprocess import (
+    Popen, 
+    PIPE, 
+    CalledProcessError, 
+    check_output,
+    check_call
+)
 import sys
 import tempfile
 import time
@@ -185,6 +191,8 @@ runcmd:
 
                 if instance is not False:
                     time.sleep(self.timeout)
+                    # Reset Console window to regain control from VM Serial I/0
+                    check_call('reset')
                     # Check to be sure VM boot was successful
                     if "END SSH HOST KEY KEYS" \
                     in open(self.debug_file, 'r').read():
