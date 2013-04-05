@@ -10,7 +10,11 @@ checkbox (0.15.7) raring; urgency=low
     specific rendercheck tests and use this to exclude the 'repeat' test
     from the set of rendercheck tests that run (LP: #1164566)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 04 Apr 2013 17:04:44 +0100
+   [ Jeff Marcom ]
+   * scripts/virtualization - Fixes issue where console terminal would 
+     remain hijacked by child kvm process (LP: #1164028)
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 05 Apr 2013 17:04:44 +0100
 
 checkbox (0.15.6) raring; urgency=low
 
