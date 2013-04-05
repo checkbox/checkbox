@@ -27,6 +27,7 @@ import configparser
 import os
 import logging
 import lsb_release
+import shlex
 import signal
 from subprocess import Popen, PIPE, CalledProcessError, check_output
 import sys
@@ -123,8 +124,8 @@ class KVMTest(object):
 
         # Start Virtual machine
         self.process = Popen(
-            params, stderr=file, stdout=file,
-            universal_newlines=True, shell=True)
+            shlex.split(params), stderr=file, stdout=file,
+            universal_newlines=True, shell=False)
 
     @classmethod
     def create_cloud_disk(cls):
