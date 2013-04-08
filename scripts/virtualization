@@ -34,7 +34,7 @@ from subprocess import (
     PIPE, 
     CalledProcessError, 
     check_output,
-    check_call
+    call
 )
 import sys
 import tempfile
@@ -130,7 +130,7 @@ class KVMTest(object):
 
         # Start Virtual machine
         self.process = Popen(
-            shlex.split(params), stderr=file, stdout=file,
+            shlex.split(params), stdin=PIPE, stderr=file, stdout=file,
             universal_newlines=True, shell=False)
 
     @classmethod
@@ -193,7 +193,7 @@ runcmd:
                     time.sleep(self.timeout)
                     # Reset Console window to regain control from VM Serial I/0
                     try:
-                        check_call('reset')
+                        call('reset')
                     except CalledProcessError:
                         pass
                     # Check to be sure VM boot was successful
