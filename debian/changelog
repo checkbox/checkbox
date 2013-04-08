@@ -9,6 +9,9 @@ checkbox (0.15.7) raring; urgency=low
     jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
     specific rendercheck tests and use this to exclude the 'repeat' test
     from the set of rendercheck tests that run (LP: #1164566)
+  
+  [ Jeff Lane ]
+  * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 04 Apr 2013 17:04:44 +0100
 
