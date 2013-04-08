@@ -69,3 +69,55 @@ plugin: shell
 name: miscellanea/sources-list
 command: sources_test
 _description: Checks that a specified sources list file contains the requested repositories
+
+plugin: local
+name: miscellane/pxe_boot
+requires: device.category == 'NETWORK'
+_description: Automated job to generate the PXE verification test for each NIC.
+command:
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: manual
+ name: miscellanea/pxe_boot_$2
+ user: root
+ description:
+  PURPOSE:
+    This test will verify that you have attempted to PXE boot this machine from
+    the network device $2.  
+  STEPS:
+    1. Prior to running this test, you should have attempted to boot this system via PXE on every Network Port available.
+  VERIFICATION:
+    1. Select Yes if you attemted to PXE boot this system using the NIC $2
+    2. Select No if you did not attempt to PXE boot this system using the NIC $2
+    3. Select No if you attemptd to PXE boot via $2 and it failed for some reason.
+ EOF
+
+plugin: local
+name: miscellane/remote_shared_ipmi
+requires: device.category == 'NETWORK'
+_description: Automated job to generate the Remote Shared IPMI verification test for each NIC.
+command:
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: manual
+ name: miscellanea/remote_shared_ipmi_$2
+ description:
+  PURPOSE:
+    This test will verify that you have attempted IPMI control of this machine from the network device $2.  
+  STEPS:
+    1. Prior to running this test, you should have configured and used IPMI to power this machine off and on using every Network Port available.
+  VERIFICATION:
+    1. Select Yes if you successfully used IPMI to remotely power this system off and on using the NIC $2
+    2. Select No if you did not attempt to use IPMI to remotely power this sytem off and on via the NIC $2
+    3. Select No if you attemptd to use IPMI to remotely power off/on this system via $2 and it failed for some reason.
+ EOF
+
+ plugin: manual
+ name: miscellanea/remote_dedicated_ipmi
+ _description
+  PURPOSE:
+   Some systems do not share IPMI over all NICs but instead have a dedicated management port directly connected to the BMC.  This test verifies that you have used that port for remote IPMI connections and actions.
+  STEPS:
+   1. Prior to running the test, you should have configured and used the Dedicated Management Port to remotely power off/on this sytem.
+  VERIFICATION:
+   1. Select Yes if you successfully used IPMI to remotely power this system off and on using the dedicated management port.
+   2. Select No if you attempted to use the dedicated management port to remotely power this system off/on and it failed for some reason.
+   3. Skip this test if this system ONLY uses shared management/ethernet ports OR if this system does not have a BMC (Management Console)
