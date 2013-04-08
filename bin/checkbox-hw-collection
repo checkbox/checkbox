@@ -18,4 +18,5 @@ then
     fi
 fi
 
+echo "Gathering hardware information for your system"
 python3 $CHECKBOX_SHARE/run "$@" $CHECKBOX_SHARE/configs/$(basename $0).ini
