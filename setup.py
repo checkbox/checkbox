@@ -7,7 +7,7 @@ import posixpath
 import subprocess
 from glob import glob
 
-from distutils.core import setup
+from setuptools import setup
 
 from distutils.ccompiler import new_compiler
 from distutils.command.build import build
@@ -259,6 +259,7 @@ setup(
 This project provides an extensible interface for system testing.
 """,
     data_files=DATA_FILES,
+    test_suite='checkbox.tests.test_suite',
     scripts=[
         "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
         "bin/checkbox-qt"],

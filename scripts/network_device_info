@@ -20,14 +20,14 @@
 #
 # Copyright (C) 2012 Canonical, Ltd.
 
-import os
-import re
+from subprocess import check_output, CalledProcessError, STDOUT
 import sys
+
 import dbus
-import sys
+
 from checkbox.parsers.modinfo import ModinfoParser
 from checkbox.parsers.udevadm import UdevadmParser
-from subprocess import check_output, CalledProcessError, STDOUT
+
 
 # This example lists basic information about network interfaces known to NM
 devtypes = {1: "Ethernet",
@@ -132,7 +132,7 @@ class NetworkingDevice():
             return None
 
         if not stream:
-            print ("Error: modinfo returned nothing", file=sys.stderr)
+            print("Error: modinfo returned nothing", file=sys.stderr)
             return None
         else:
             parser = ModinfoParser(stream)
@@ -166,7 +166,7 @@ def get_nm_devices():
 
     # Get a proxy for the base NetworkManager object
     proxy = bus.get_object("org.freedesktop.NetworkManager",
-        "/org/freedesktop/NetworkManager")
+                           "/org/freedesktop/NetworkManager")
     manager = dbus.Interface(proxy, "org.freedesktop.NetworkManager")
 
     # Get all devices known to NM and print their properties
@@ -193,11 +193,12 @@ def match_counts(nm_devices, udev_devices, devtype):
     two passed in lists, devices from Network Manager and devices from lspci.
     """
     # now check that the count (by type) matches - WiFi
-    nm_type_devices = list(filter(lambda dev: dev.gettype() == devtype,
-        nm_devices))
+    nm_type_devices = [dev for dev in nm_devices if dev.gettype() == devtype]
     udevtype = 'WIRELESS' if devtype == 'WiFi' else 'NETWORK'
-    udev_type_devices = list(filter(lambda dev: dev.category == udevtype,
-        udev_devices))
+    udev_type_devices = [
+        udev
+        for udev in udev_devices
+        if udev.category == udevtype]
     if len(nm_type_devices) != len(udev_type_devices):
         print("ERROR: %s devices missing: udev showed %d devices, but "
               "NetworkManager saw %d devices" % (devtype,

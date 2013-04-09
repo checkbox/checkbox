@@ -40,7 +40,8 @@ _description:
 plugin: shell
 name: suspend/bluetooth_obex_before_suspend
 requires:
- package.name == 'bluez' and package.name == 'obexd-client'
+ package.name == 'bluez'
+ package.name == 'obexd-client'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -65,7 +66,8 @@ _description:
 plugin: shell
 name: suspend/bluetooth_obex_send_before_suspend
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -90,7 +92,8 @@ _description:
 plugin: shell
 name: suspend/bluetooth_obex_browse_before_suspend
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -115,7 +118,8 @@ _description:
 plugin: shell
 name: suspend/bluetooth_obex_get_before_suspend
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -140,7 +144,8 @@ _description:
 plugin: manual
 name: suspend/bluetooth_obex_before_suspend_manual
 requires:
- package.name == 'bluez' and package.name == 'obexd-client'
+ package.name == 'bluez'
+ package.name == 'obexd-client'
  device.category == 'BLUETOOTH'
 command: rfkill unblock bluetooth; obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
@@ -521,7 +526,8 @@ plugin: shell
 name: suspend/bluetooth_obex_after_suspend
 depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend
 requires:
- package.name == 'bluez' and package.name == 'obexd-client'
+ package.name == 'bluez'
+ package.name == 'obexd-client'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -547,7 +553,8 @@ plugin: shell
 name: suspend/bluetooth_obex_after_suspend_auto
 depends: suspend/suspend_advanced_auto suspend/bluetooth_obex_before_suspend
 requires:
- package.name == 'bluez' and package.name == 'obexd-client'
+ package.name == 'bluez'
+ package.name == 'obexd-client'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -573,7 +580,8 @@ plugin: shell
 name: suspend/bluetooth_obex_send_after_suspend
 depends: suspend/suspend_advanced
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -599,7 +607,8 @@ plugin: shell
 name: suspend/bluetooth_obex_send_after_suspend_auto
 depends: suspend/suspend_advanced_auto
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -625,7 +634,8 @@ plugin: shell
 name: suspend/bluetooth_obex_browse_after_suspend
 depends: suspend/suspend_advanced
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -651,7 +661,8 @@ plugin: shell
 name: suspend/bluetooth_obex_browse_after_suspend_auto
 depends: suspend/suspend_advanced_auto
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -677,7 +688,8 @@ plugin: shell
 name: suspend/bluetooth_obex_get_after_suspend
 depends: suspend/suspend_advanced
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -703,7 +715,8 @@ plugin: shell
 name: suspend/bluetooth_obex_get_after_suspend_auto
 depends: suspend/suspend_advanced_auto
 requires:
- package.name == 'bluez' and package.name == 'obexftp'
+ package.name == 'bluez'
+ package.name == 'obexftp'
  device.category == 'BLUETOOTH'
 command:
   if [ -z "$BTDEVADDR" ]
@@ -729,7 +742,8 @@ plugin: manual
 name: suspend/bluetooth_obex_after_suspend_manual
 depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend_manual
 requires:
- package.name == 'bluez' and package.name == 'obexd-client'
+ package.name == 'bluez'
+ package.name == 'obexd-client'
  device.category == 'BLUETOOTH'
 command: rfkill unblock bluetooth; obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:

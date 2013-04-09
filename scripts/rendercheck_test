@@ -177,6 +177,9 @@ def main():
                               Available tests: \
                               %s. \
                               Default is all' % (', '.join(all_tests)))
+    parser.add_argument('-b', '--blacklist',
+                        nargs='+',
+                        help='The name of a test which should not be run.')
     parser.add_argument('-d', '--debug',
                         action='store_true',
                         help='Choose this to add verbose output \
@@ -245,6 +248,10 @@ def main():
         tests = all_tests
     else:
         tests = args.test.split(',')
+
+    for test in args.blacklist:
+        if test in tests:
+            tests.remove(test)
 
     rendercheck = RenderCheck(args.temp)
     exit_status = rendercheck.run_test(tests, args.iterations,

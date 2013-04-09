@@ -1,6 +1,6 @@
 name: codecs_attachment
 plugin: attachment
-requires: device.driver == 'HDA Intel'
+requires: device.driver == 'snd_hda_intel'
 command: cat /proc/asound/card*/codec#*
 _description: Attaches a report of installed codecs for Intel HDA
 

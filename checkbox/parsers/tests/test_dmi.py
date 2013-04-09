@@ -45,36 +45,36 @@ class TestDmiMixin:
 
     def test_devices(self):
         result = self.getResult()
-        self.assertEquals(len(result.devices), 4)
+        self.assertEqual(len(result.devices), 4)
 
     def test_bios(self):
         result = self.getResult()
         device = result.getDevice("BIOS")
         self.assertTrue(device)
-        self.assertEquals(device.product, "BIOS PRODUCT")
-        self.assertEquals(device.vendor, "BIOS VENDOR")
-        self.assertEquals(device.serial, None)
+        self.assertEqual(device.product, "BIOS PRODUCT")
+        self.assertEqual(device.vendor, "BIOS VENDOR")
+        self.assertEqual(device.serial, None)
 
     def test_board(self):
         result = self.getResult()
         device = result.getDevice("BOARD")
         self.assertTrue(device)
-        self.assertEquals(device.product, None)
-        self.assertEquals(device.vendor, None)
-        self.assertEquals(device.serial, None)
+        self.assertEqual(device.product, None)
+        self.assertEqual(device.vendor, None)
+        self.assertEqual(device.serial, None)
 
     def test_chassis(self):
         result = self.getResult()
         device = result.getDevice("CHASSIS")
         self.assertTrue(device)
-        self.assertEquals(device.product, "Notebook")
-        self.assertEquals(device.vendor, "CHASSIS VENDOR")
-        self.assertEquals(device.serial, None)
+        self.assertEqual(device.product, "Notebook")
+        self.assertEqual(device.vendor, "CHASSIS VENDOR")
+        self.assertEqual(device.serial, None)
 
     def test_system(self):
         result = self.getResult()
         device = result.getDevice("SYSTEM")
         self.assertTrue(device)
-        self.assertEquals(device.product, "SYSTEM PRODUCT")
-        self.assertEquals(device.vendor, "SYSTEM VENDOR")
-        self.assertEquals(device.serial, "SYSTEM SERIAL")
+        self.assertEqual(device.product, "SYSTEM PRODUCT")
+        self.assertEqual(device.vendor, "SYSTEM VENDOR")
+        self.assertEqual(device.serial, "SYSTEM SERIAL")

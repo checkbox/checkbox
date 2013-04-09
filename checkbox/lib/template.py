@@ -65,8 +65,8 @@ class Template:
     def dump_filename(self, elements, filename):
         logging.info("Dumping elements to filename: %s", filename)
 
-        file = open(filename, "w")
-        return self.dump_file(elements, file, filename)
+        with open(filename, "w") as stream:
+            return self.dump_file(elements, stream, filename)
 
     def load_file(self, file, filename="<stream>"):
         elements = []
@@ -139,5 +139,5 @@ class Template:
     def load_filename(self, filename):
         logging.info("Loading elements from filename: %s", filename)
 
-        file = open(filename, "r", encoding="utf-8")
-        return self.load_file(file, filename)
+        with open(filename, "r", encoding="utf-8") as stream:
+            return self.load_file(stream, filename)
