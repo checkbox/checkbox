@@ -75,7 +75,8 @@ method=auto
 def block_until_created(connection, retries, interval):
 
     while retries > 0:
-        nmcli_con_list = check_output(['nmcli', 'con', 'list'], universal_newlines=True)
+        nmcli_con_list = check_output(['nmcli', 'con', 'list'],
+                                      universal_newlines=True)
 
         if connection in nmcli_con_list:
             print("Connection %s registered" % connection)
@@ -95,6 +96,7 @@ def block_until_created(connection, retries, interval):
             print("Failed to activate %s." % connection, file=sys.stderr)
             sys.exit(error.returncode)
 
+
 def write_connection_file(name, connection_info):
     try:
         connection_file = open(CONNECTIONS_PATH + name, 'w')
@@ -104,7 +106,8 @@ def write_connection_file(name, connection_info):
     except IOError:
         print("Can't write to " + CONNECTIONS_PATH + name
               + ". Is this command being run as root?", file=sys.stderr)
-        sys.exit(1) 
+        sys.exit(1)
+
 
 def create_wifi_connection(args):
     wifi_connection = wifi_connection_section(args.ssid, args.uuid)
@@ -119,13 +122,15 @@ def create_wifi_connection(args):
         wifi_connection += wifi_security_section(args.security, args.key)
     elif args.key:
         print("You specified an encryption key "
-              "but did not give a security type using --security.", file=sys.stderr)
+              "but did not give a security type "
+              "using --security.", file=sys.stderr)
         sys.exit(1)
 
     try:
-        check_call(['rfkill','unblock','wlan','wifi'])
+        check_call(['rfkill', 'unblock', 'wlan', 'wifi'])
     except CalledProcessError:
-        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
+        print("Could not unblock wireless "
+              "devices with rfkill.", file=sys.stderr)
         # Don't fail the script if unblock didn't work though
 
     wifi_connection += wifi_ip_sections()
@@ -133,8 +138,9 @@ def create_wifi_connection(args):
     # NetworkManager replaces forward-slashes in SSIDs with asterisks
     name = args.ssid.replace('/', '*')
     write_connection_file(name, wifi_connection)
-    
+
     return name
+
 
 def main():
     parser = ArgumentParser()
