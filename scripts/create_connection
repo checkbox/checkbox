@@ -16,7 +16,7 @@ from argparse import ArgumentParser
 CONNECTIONS_PATH = '/etc/NetworkManager/system-connections/'
 
 
-def connection_section(ssid, uuid):
+def wifi_connection_section(ssid, uuid):
 
     if not uuid:
         uuid = uuid4()
@@ -36,7 +36,7 @@ mode=infrastructure""" % (ssid)
     return connection + wireless
 
 
-def security_section(security, key):
+def wifi_security_section(security, key):
     # Add security field to 802-11-wireless section
     wireless_security = """
 security=802-11-wireless-security
@@ -60,7 +60,7 @@ wep-key=%s
     return wireless_security
 
 
-def ip_sections():
+def wifi_ip_sections():
     ip = """
 [ipv4]
 method=auto
@@ -95,18 +95,65 @@ def block_until_created(connection, retries, interval):
             print("Failed to activate %s." % connection, file=sys.stderr)
             sys.exit(error.returncode)
 
+def write_connection_file(name, connection_info):
+    try:
+        connection_file = open(CONNECTIONS_PATH + name, 'w')
+        connection_file.write(connection_info)
+        os.fchmod(connection_file.fileno(), 0o600)
+        connection_file.close()
+    except IOError:
+        print("Can't write to " + CONNECTIONS_PATH + name
+              + ". Is this command being run as root?", file=sys.stderr)
+        sys.exit(1) 
+
+def create_wifi_connection(args):
+    wifi_connection = wifi_connection_section(args.ssid, args.uuid)
+
+    if args.security:
+        # Set security options
+        if not args.key:
+            print("You need to specify a key using --key "
+                  "if using wireless security.", file=sys.stderr)
+            sys.exit(1)
+
+        wifi_connection += wifi_security_section(args.security, args.key)
+    elif args.key:
+        print("You specified an encryption key "
+              "but did not give a security type using --security.", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        check_call(['rfkill','unblock','wlan','wifi'])
+    except CalledProcessError:
+        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
+        # Don't fail the script if unblock didn't work though
+
+    wifi_connection += wifi_ip_sections()
+
+    # NetworkManager replaces forward-slashes in SSIDs with asterisks
+    name = args.ssid.replace('/', '*')
+    write_connection_file(name, wifi_connection)
+    
+    return name
+
 def main():
     parser = ArgumentParser()
+    subparsers = parser.add_subparsers(help="sub command help")
 
-    parser.add_argument('ssid',
+    wifi_parser = subparsers.add_parser('wifi', help='Wifi')
+    wifi_parser.add_argument('ssid',
                       help="The SSID to connect to.")
-    parser.add_argument('-S', '--security',
+    wifi_parser.add_argument('-S', '--security',
                       help=("The type of security to be used "
                             "by the connection. One of wpa and wep. "
                             "No security will be used "
                             "if nothing is specified."))
-    parser.add_argument('-K', '--key',
+    wifi_parser.add_argument('-K', '--key',
                       help="The encryption key required by the router.")
+    wifi_parser.set_defaults(func=create_wifi_connection)
+
+    threeg_parser = subparsers.add_parser('3g', help='3G')
+
     parser.add_argument('-U', '--uuid',
                       help="""The uuid to assign to the connection for use by
                             NetworkManager. One will be generated if not
@@ -119,45 +166,12 @@ def main():
                       help=("The time to wait between attempts to detect the "
                             "registration of the connection."),
                       default=2)
-
     args = parser.parse_args()
 
-    connection_info = connection_section(args.ssid, args.uuid)
-
-    if args.security:
-        # Set security options
-        if not args.key:
-            print("You need to specify a key using --key "
-                  "if using wireless security.", file=sys.stderr)
-            sys.exit(1)
-
-        connection_info += security_section(args.security, args.key)
-    elif args.key:
-        print("You specified an encryption key "
-              "but did not give a security type using --security.", file=sys.stderr)
-        sys.exit(1)
-
-    try:
-        check_call(['rfkill','unblock','wlan','wifi'])
-    except CalledProcessError:
-        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
-        # Don't fail the script if unblock didn't work though
-
-    connection_info += ip_sections()
-
-    # NetworkManager replaces forward-slashes in SSIDs with asterisks
-    connection_file = args.ssid.replace('/', '*')
-    try:
-        connection_file = open(CONNECTIONS_PATH + connection_file, 'w')
-        connection_file.write(connection_info)
-        os.fchmod(connection_file.fileno(), 0o600)
-        connection_file.close()
-    except IOError:
-        print("Can't write to " + CONNECTIONS_PATH + args.ssid
-              + ". Is this command being run as root?", file=sys.stderr)
-        sys.exit(1)
-
-    block_until_created(args.ssid, args.retries, args.interval)
+    # Call function to create the appropriate connection type
+    connection_name = args.func(args)
+    # Make sure we don't exit until the connection is fully created
+    block_until_created(connection_name, args.retries, args.interval)
 
 if __name__ == "__main__":
     main()
