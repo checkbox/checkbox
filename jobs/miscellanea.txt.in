@@ -71,14 +71,13 @@ command: sources_test
 _description: Checks that a specified sources list file contains the requested repositories
 
 plugin: local
-name: miscellane/pxe_boot
+name: miscellanea/pxe_boot
 requires: device.category == 'NETWORK'
 _description: Automated job to generate the PXE verification test for each NIC.
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: manual
  name: miscellanea/pxe_boot_$2
- user: root
  description:
   PURPOSE:
     This test will verify that you have attempted to PXE boot this machine from
@@ -92,7 +91,7 @@ command:
  EOF
 
 plugin: local
-name: miscellane/remote_shared_ipmi
+name: miscellanea/remote_shared_ipmi
 requires: device.category == 'NETWORK'
 _description: Automated job to generate the Remote Shared IPMI verification test for each NIC.
 command:
