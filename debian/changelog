@@ -12,10 +12,16 @@ checkbox (0.15.7) raring; urgency=low
   
   [ Jeff Lane ]
   * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)
+  * jobs/mediacard.txt.in: reduce test file size for MMC to 64MB (LP: #1167214)
 
    [ Jeff Marcom ]
    * scripts/virtualization - Fixes issue where console terminal would 
      remain hijacked by child kvm process (LP: #1164028)
+
+   [ Daniel Manrique ]
+   * checkbox/parsers/submission.py: Fixed incorrect context for memory
+     parsing, which resulted in absent memory information when parsing
+     xml files.
 
   [ Sylvain Pineau ]
   * scripts/gputest_benchmark: Added a wrapper for the Geeks3D GpuTest
