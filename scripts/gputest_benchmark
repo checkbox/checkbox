@@ -21,7 +21,6 @@
 import argparse
 import os
 import re
-import sys
 
 from subprocess import check_output, CalledProcessError
 from tempfile import TemporaryDirectory
@@ -43,46 +42,46 @@ args = parser.parse_args()
 
 # Unzip the archive in a temporary directory, GpuTest creates the log file
 # in the same place Gputest.exe is. A user-writable location is needed.
-scratch_dir = TemporaryDirectory()
-with ZipFile(args.path, 'r') as z:
-    z.extractall(path=scratch_dir.name)
-dirname = os.path.join(scratch_dir.name, 'GpuTest_Linux_x64')
-launcher = os.path.join(dirname, 'GpuTest.exe')
-logfile = os.path.join(dirname, '_geeks3d_gputest_log.txt')
-os.chmod(launcher, 0o755)
-os.unlink(logfile)
+with TemporaryDirectory() as scratch_dir:
+    with ZipFile(args.path, 'r') as z:
+        z.extractall(path=scratch_dir)
+    dirname = os.path.join(scratch_dir, 'GpuTest_Linux_x64')
+    launcher = os.path.join(dirname, 'GpuTest.exe')
+    logfile = os.path.join(dirname, '_geeks3d_gputest_log.txt')
+    os.chmod(launcher, 0o755)
+    os.unlink(logfile)
 
-timeout_params = [
-    'timeout',
-    '-k',
-    # Add 15 s for the Warm-up phase
-    '{}'.format(args.duration + 16),
-    '{}'.format(args.duration + 15),
-    launcher
-]
-cmd_params = [
-    '/test={}'.format(args.test),
-    '/width={}'.format(args.width),
-    '/height={}'.format(args.height),
-    '/benchmark_duration_ms={}'.format(args.duration * 1000)
-]
-if args.fullscreen:
-    cmd_params = cmd_params + ['/fullscreen']
+    timeout_params = [
+        'timeout',
+        '-k',
+        # Add 15 s for the Warm-up phase
+        '{}'.format(args.duration + 16),
+        '{}'.format(args.duration + 15),
+        launcher
+    ]
+    cmd_params = [
+        '/test={}'.format(args.test),
+        '/width={}'.format(args.width),
+        '/height={}'.format(args.height),
+        '/benchmark_duration_ms={}'.format(args.duration * 1000)
+    ]
+    if args.fullscreen:
+        cmd_params = cmd_params + ['/fullscreen']
 
-try:
-    check_output(timeout_params + cmd_params, cwd=dirname)
-except CalledProcessError:
-    # GpuTest.exe never returns, so the timeout exit code is always set to
-    # a non-zero value. It's expected.
-    pass
-try:
-    f = open(logfile, 'rb')
-    log = f.read().decode('utf-8', 'ignore')
-    f.close()
-    print(re.sub('^.*?>> ', '', log, flags=re.M))
-    # Try to find the score in the log file, otherwise something went wrong...
-    if not re.search('Benchmark_Score', log):
-        sys.exit(1)
-except:
-    print("Log file not found", file=sys.stderr)
-    sys.exit(1)
+    try:
+        check_output(timeout_params + cmd_params, cwd=dirname)
+    except CalledProcessError:
+        # GpuTest.exe never returns, so the timeout exit code is always set to
+        # a non-zero value. It's expected.
+        pass
+    try:
+        with open(logfile, encoding='utf-8', errors='ignore') as f:
+            log = f.read()
+            print(re.sub('^.*?>> ', '', log, flags=re.M))
+            # Try to find the score in the log file,
+            # otherwise something went wrong...
+            if not re.search('Benchmark_Score', log):
+                raise SystemExit(
+                    'Benchmark score not found, check the log for errors')
+    except EnvironmentError as error:
+        raise SystemExit(error)
