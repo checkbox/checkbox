@@ -117,7 +117,6 @@ baud=115200
 
 
 def block_until_created(connection, retries, interval):
-    import pdb; pdb.set_trace()
     while retries > 0:
         nmcli_con_list = check_output(['nmcli', 'con', 'list'],
                                       universal_newlines=True)
@@ -187,7 +186,6 @@ def create_wifi_connection(args):
 
 
 def create_mobilebb_connection(args):
-    import pdb; pdb.set_trace()
     name = args.name
     
     connection_type = 'gsm'
