@@ -18,13 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
-import argparse
-import os
-import re
-
 from subprocess import check_output, CalledProcessError
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
+import argparse
+import os
+import re
 
 parser = argparse.ArgumentParser()
 parser.add_argument('test', metavar='TEST', help='test type',
