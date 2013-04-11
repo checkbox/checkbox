@@ -201,19 +201,21 @@ def main():
     parser = ArgumentParser()
     subparsers = parser.add_subparsers(help="sub command help")
 
-    wifi_parser = subparsers.add_parser('wifi', help='Wifi')
+    wifi_parser = subparsers.add_parser('wifi', help='Create a Wifi connection.')
     wifi_parser.add_argument('ssid',
                              help="The SSID to connect to.")
     wifi_parser.add_argument('-S', '--security',
-                             help=("The type of security to be used "
-                                   "by the connection. One of wpa and wep. "
-                                   "No security will be used "
-                                   "if nothing is specified."))
+                             choices=['wpa','wep'],
+                             help=("The type of security to be used by the "
+                                   "connection. No security will be used if "
+                                   "nothing is specified."))
     wifi_parser.add_argument('-K', '--key',
                              help="The encryption key required by the router.")
     wifi_parser.set_defaults(func=create_wifi_connection)
 
-    mobilebb_parser = subparsers.add_parser('mobilebb', help='Mobile BB')
+    mobilebb_parser = subparsers.add_parser('mobilebb', 
+                                            help="Create a Mobile Broadband "
+                                                 "connection.")
     mobilebb_parser.add_argument('apn',
                                  help="The APN to connect to.")
     mobilebb_parser.add_argument('-n', '--name',
@@ -221,10 +223,10 @@ def main():
                                  help="The name of the connection.")
     mobilebb_parser.add_argument('-u', '--username',
                                  help=("The username required by the Mobile "
-                                       "Broadband connection."))
+                                       "Broadband access point."))
     mobilebb_parser.add_argument('-p', '--password',
                                  help=("The password required by the Mobile "
-                                       "Broadband connection."))
+                                       "Broadband access point."))
     mobilebb_parser.set_defaults(func=create_mobilebb_connection)
 
     parser.add_argument('-U', '--uuid',
