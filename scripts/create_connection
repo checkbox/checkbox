@@ -86,7 +86,35 @@ autoconnect=false
 
     return connection_section
 
-def mobilebb_type_section(connection_type, username, password):
+
+def mobilebb_type_section(connection_type, apn, username, password):
+    type_section = """
+[{type}]
+number=*99#
+apn={apn}
+""".format(type=connection_type, apn=apn)
+
+    if username:
+        type_section += "\nusername={username}".format(username=username)
+    if password:
+        type_section += "\npassword={password}".format(password=password)
+
+    return type_section
+
+
+def mobilebb_ip_section():
+    return """
+[ipv4]
+method=auto
+    """
+
+
+def mobilebb_serial_section():
+    return """
+[serial]
+baud=115200
+    """
+
 
 def block_until_created(connection, retries, interval):
 
