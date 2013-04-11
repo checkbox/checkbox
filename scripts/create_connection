@@ -72,6 +72,22 @@ method=auto
     return ip
 
 
+def mobilebb_connection_section(name, uuid, connection_type):
+    if not uuid:
+        uuid = uuid4()
+
+    connection_section = """
+[connection]
+id={name}
+uuid={uuid}
+type={type}
+autoconnect=false
+    """.format(name=name, uuid=uuid, type=connection_type)
+
+    return connection_section
+
+def mobilebb_type_section(connection_type, username, password):
+
 def block_until_created(connection, retries, interval):
 
     while retries > 0:
@@ -142,6 +158,10 @@ def create_wifi_connection(args):
     return name
 
 
+def create_mobilebb_connection(ars)
+    name = args.name
+    return name
+
 def main():
     parser = ArgumentParser()
     subparsers = parser.add_subparsers(help="sub command help")
@@ -158,7 +178,19 @@ def main():
                       help="The encryption key required by the router.")
     wifi_parser.set_defaults(func=create_wifi_connection)
 
-    threeg_parser = subparsers.add_parser('3g', help='3G')
+    mobilebb_parser = subparsers.add_parser('mobilebb', help='Mobile BB')
+    mobilebb_parser.add_argument('apn',
+                          help="The APN to connect to.")
+    mobilebb_parser.add_argument('-n', '--name',
+                          default='MobileBB',
+                          help="The name of the connection.")
+    mobilebb_parser.add_argument('-u', '--username',
+                          help=("The username required by the Mobile "
+                                "Broadband connection."))
+    mobilebb_parser.add_argument('-p', '--password',
+                          help=("The password required by the Mobile "
+                                "Broadband connection."))
+    mobilebb_parser.set_defaults(func=create_mobilebb_connection)
 
     parser.add_argument('-U', '--uuid',
                       help="""The uuid to assign to the connection for use by
