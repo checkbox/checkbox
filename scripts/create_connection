@@ -186,8 +186,20 @@ def create_wifi_connection(args):
     return name
 
 
-def create_mobilebb_connection(ars)
+def create_mobilebb_connection(args):
+    import pdb; pdb.set_trace()
     name = args.name
+    
+    connection_type = 'gsm'
+
+    mobilebb_connection = mobilebb_connection_section(name, args.uuid,
+                                                      connection_type)
+    mobilebb_connection += mobilebb_type_section(connection_type,
+                                                 args.username, args.password)
+    mobilebb_connection += mobilebb_ip_section()
+    mobilebb_connection += mobilebb_serial_section()
+
+    write_connection_file(name, mobilebb_connection)
     return name
 
 def main():
