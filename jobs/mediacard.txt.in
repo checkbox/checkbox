@@ -17,7 +17,7 @@ plugin: shell
 name: mediacard/mmc-storage
 depends: mediacard/mmc-insert
 user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
+command: removable_storage_test -s 67120000 --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/mmc-insert
  test is run. It tests reading and writing to the MMC card.
@@ -57,7 +57,7 @@ plugin: shell
 name: mediacard/mmc-storage-after-suspend
 depends: mediacard/mmc-insert-after-suspend
 user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
+command: removable_storage_test -s 67120000 --memorycard sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/mmc-insert-after-suspend test
  is run. It tests reading and writing to the MMC card after the system has been suspended.
