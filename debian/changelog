@@ -17,6 +17,12 @@ checkbox (0.15.7) raring; urgency=low
    * scripts/virtualization - Fixes issue where console terminal would 
      remain hijacked by child kvm process (LP: #1164028)
 
+  [ Sylvain Pineau ]
+  * scripts/gputest_benchmark: Added a wrapper for the Geeks3D GpuTest
+    benchmark.
+  * jobs/benchmarks.txt.in: Added the corresponding GpuTest jobs (Furmark,
+    Gimark and Tessmark)
+
  -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 05 Apr 2013 17:04:44 +0100
 
 checkbox (0.15.6) raring; urgency=low
