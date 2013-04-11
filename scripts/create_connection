@@ -117,7 +117,7 @@ baud=115200
 
 
 def block_until_created(connection, retries, interval):
-
+    import pdb; pdb.set_trace()
     while retries > 0:
         nmcli_con_list = check_output(['nmcli', 'con', 'list'],
                                       universal_newlines=True)
@@ -194,7 +194,7 @@ def create_mobilebb_connection(args):
 
     mobilebb_connection = mobilebb_connection_section(name, args.uuid,
                                                       connection_type)
-    mobilebb_connection += mobilebb_type_section(connection_type,
+    mobilebb_connection += mobilebb_type_section(connection_type, args.apn,
                                                  args.username, args.password)
     mobilebb_connection += mobilebb_ip_section()
     mobilebb_connection += mobilebb_serial_section()
