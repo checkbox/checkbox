@@ -37,6 +37,10 @@ class EnvironmentInfo(Plugin):
     wpa_n_psk = String(default="")
     open_n_ssid = String(default="")
     btdevaddr = String(default="")
+    apn = String(default="")
+    conn_name = String(default="")
+    username = String(default="")
+    password = String(default="")
     sources_list = String(default="/etc/apt/sources.list")
     repositories = String(default="")
 
