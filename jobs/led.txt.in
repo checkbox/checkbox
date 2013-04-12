@@ -90,10 +90,8 @@ _description:
  STEPS:
      1. Make sure WLAN connection is established
      2. WLAN LED should light
-     3. Select Test to open Firefox
-     4. WLAN LED should flash while downloading data
  VERIFICATION:
-     Did the WLAN LED light and flash as expected?
+     Did the WLAN LED light as expected?
 
 plugin: manual
 name: led/wlan-disabled
