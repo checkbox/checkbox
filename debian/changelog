@@ -4,7 +4,7 @@ checkbox (0.15.7) raring; urgency=low
   * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
     programs to be compatible with plainbox
 
-  [ Brendan Donegan ]
+  [ Brendan Donegan ]  
   * scripts/rendercheck_test, scripts/graphics_stress_test, 
     jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
     specific rendercheck tests and use this to exclude the 'repeat' test
@@ -15,6 +15,12 @@ checkbox (0.15.7) raring; urgency=low
   * jobs/mediacard.txt.in: reduce test file size for MMC to 64MB (LP: #1167214)
   * jobs/led.txt.in, jobs/suspend.txt.in: removed bits about WLAN LED flashing
     from the WLAN jobs as that no longer happens on data tx/rx (LP: #1157606)
+  * jobs/power-management.txt.in: added manual reboot and shutdown tests for
+    server and Xen testing.  Took the opportunity to correct punctuation in the
+    descriptions or other manual jobs.
+    jobs/virtualization.txt.in: added virtualization/xen_ok and
+    virtualization/xen_check_vms jobs for Xen testing
+    scripts/xen_test: added script to perform Xen testing
 
   [ Jeff Marcom ]
   * scripts/virtualization - Fixes issue where console terminal would 
