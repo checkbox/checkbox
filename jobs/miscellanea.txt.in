@@ -109,14 +109,14 @@ command:
     3. Select No if you attempted to use IPMI to remotely power off/on this system via $2 and it failed for some reason.
  EOF
 
- plugin: manual
- name: miscellanea/remote_dedicated_ipmi
- _description
-  PURPOSE:
-   Some systems do not share IPMI over all NICs but instead have a dedicated management port directly connected to the BMC.  This test verifies that you have used that port for remote IPMI connections and actions.
-  STEPS:
-   1. Prior to running the test, you should have configured and used the Dedicated Management Port to remotely power off/on this sytem.
-  VERIFICATION:
-   1. Select Yes if you successfully used IPMI to remotely power this system off and on using the dedicated management port.
-   2. Select No if you attempted to use the dedicated management port to remotely power this system off/on and it failed for some reason.
-   3. Skip this test if this system ONLY uses shared management/ethernet ports OR if this system does not have a BMC (Management Console)
+plugin: manual
+name: miscellanea/remote_dedicated_ipmi
+_description:
+ PURPOSE:
+  Some systems do not share IPMI over all NICs but instead have a dedicated management port directly connected to the BMC.  This test verifies that you have used that port for remote IPMI connections and actions.
+ STEPS:
+  1. Prior to running the test, you should have configured and used the Dedicated Management Port to remotely power off/on this sytem.
+ VERIFICATION:
+  1. Select Yes if you successfully used IPMI to remotely power this system off and on using the dedicated management port.
+  2. Select No if you attempted to use the dedicated management port to remotely power this system off/on and it failed for some reason.
+  3. Skip this test if this system ONLY uses shared management/ethernet ports OR if this system does not have a BMC (Management Console)
