@@ -1,0 +1,19 @@
+plugin: shell
+name: mobilebb/gsm_connection
+requires:
+    package.name == 'network-manager'
+    package.name == 'modem-manager'
+    mobilebb.gsm == 'supported'
+user: root
+environ: CONN_NAME APN USERNAME PASSWORD
+command: trap "nmcli con delete id $CONN_NAME" EXIT; create_connection mobilebb $APN --name=$CONN_NAME --username=$USERNAME --password=$PASSWORD && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
+
+plugin: shell
+name: mobilebb/cdma_connection
+requires:
+    package.name == 'network-manager'
+    package.name == 'modem-manager'
+    mobilebb.cdma == 'supported'
+user: root
+environ: CONN_NAME APN USERNAME PASSWORD
+command: trap "nmcli con delete id $CONN_NAME" EXIT; create_connection mobilebb $APN --name=$CONN_NAME --username=$USERNAME --password=$PASSWORD && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
