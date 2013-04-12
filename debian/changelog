@@ -1,3 +1,32 @@
+checkbox (0.15.7) raring; urgency=low
+
+  [ Zygmunt Krynicki ]
+  * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
+    programs to be compatible with plainbox
+
+  [ Brendan Donegan ]
+  * scripts/rendercheck_test, scripts/graphics_stress_test, 
+    jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
+    specific rendercheck tests and use this to exclude the 'repeat' test
+    from the set of rendercheck tests that run (LP: #1164566)
+  
+  [ Jeff Lane ]
+  * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)
+  * jobs/mediacard.txt.in: reduce test file size for MMC to 64MB (LP: #1167214)
+  * jobs/led.txt.in, jobs/suspend.txt.in: removed bits about WLAN LED flashing
+    from the WLAN jobs as that no longer happens on data tx/rx (LP: #1157606)
+
+  [ Jeff Marcom ]
+  * scripts/virtualization - Fixes issue where console terminal would 
+    remain hijacked by child kvm process (LP: #1164028)
+
+   [ Daniel Manrique ]
+   * checkbox/parsers/submission.py: Fixed incorrect context for memory
+     parsing, which resulted in absent memory information when parsing
+     xml files.
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 05 Apr 2013 17:04:44 +0100
+
 checkbox (0.15.6) raring; urgency=low
 
   [ Brendan Donegan ]
