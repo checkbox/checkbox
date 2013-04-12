@@ -83,7 +83,7 @@ autoconnect=false
     return connection_section
 
 
-def mobilebb_type_section(connection_type, apn, username, password):
+def mobilebb_type_section(connection_type, apn, username, password, pin):
     type_section = """
 [{type}]
 number=*99#
@@ -94,6 +94,8 @@ apn={apn}
         type_section += "\nusername={username}".format(username=username)
     if password:
         type_section += "\npassword={password}".format(password=password)
+    if pin:
+        type_section += "\npin={pin}".format(pin=pin)
 
     return type_section
 
@@ -227,6 +229,8 @@ def main():
     mobilebb_parser.add_argument('-p', '--password',
                                  help=("The password required by the Mobile "
                                        "Broadband access point."))
+    mobilebb_parser.add_argument('-P', '--pin',
+                                 help="The PIN of the SIM card, if set.")
     mobilebb_parser.set_defaults(func=create_mobilebb_connection)
 
     parser.add_argument('-U', '--uuid',
