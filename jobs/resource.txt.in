@@ -109,3 +109,16 @@ command:
  for e in `env | sed 's/=/:/g'`; do
      echo $e | awk -F':' '{print $1 ": " $2}'
  done
+
+name: mobilebb
+plugin: resource
+description: Create resource for mobile broadband devices
+command:
+ if mm-test | grep -q 'GSM modem'
+ then
+    echo "gsm: supported"
+ fi
+ if mm-test | grep -q 'CDMA modem'
+ then
+    echo "cdma: supported"
+ fi
