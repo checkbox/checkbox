@@ -84,12 +84,14 @@ autoconnect=false
 
 
 def mobilebb_type_section(connection_type, apn, username, password, pin):
+    number = ('*99#' if connection_type == 'gsm' else '#7777')
     type_section = """
 [{type}]
-number=*99#
-apn={apn}
-""".format(type=connection_type, apn=apn)
+number={number}
+""".format(type=connection_type, number=number)
 
+    if apn:
+        type_section += "\napn={apn}".format(apn=apn)
     if username:
         type_section += "\nusername={username}".format(username=username)
     if password:
@@ -218,11 +220,14 @@ def main():
     mobilebb_parser = subparsers.add_parser('mobilebb', 
                                             help="Create a Mobile Broadband "
                                                  "connection.")
-    mobilebb_parser.add_argument('apn',
-                                 help="The APN to connect to.")
+    mobilebb_parser.add_argument('type',
+                                 choices=['gsm','cdma'],
+                                 help="The type of connection.")
     mobilebb_parser.add_argument('-n', '--name',
                                  default='MobileBB',
                                  help="The name of the connection.")
+    mobilebb_parser.add_argument('-a', '--apn',
+                                 help="The APN to connect to.")
     mobilebb_parser.add_argument('-u', '--username',
                                  help=("The username required by the Mobile "
                                        "Broadband access point."))

@@ -5,8 +5,8 @@ requires:
     package.name == 'modem-manager'
     mobilebb.gsm == 'supported'
 user: root
-environ: CONN_NAME APN USERNAME PASSWORD
-command: trap "nmcli con delete id $CONN_NAME" EXIT; create_connection mobilebb $APN `if [ ${CONN_NAME+x} ]; then echo "--name=$CONN_NAME"; fi` `if [ ${USERNAME+x} ]; then echo "--username=$USERNAME"; fi` `if [ ${PASSWORD+x} ]; then echo "--password=$PASSWORD"; fi` && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
+environ: GSM_CONN_NAME GSM_APN GSM_USERNAME GSM_PASSWORD
+command: trap "nmcli con delete id $CONN_NAME" EXIT; create_connection mobilebb gsm $GSM_APN `if [ ${GSM_CONN_NAME+x} ]; then echo "--name=$GSM_CONN_NAME"; fi` `if [ ${GSM_USERNAME+x} ]; then echo "--username=$GSM_USERNAME"; fi` `if [ ${GSM_PASSWORD+x} ]; then echo "--password=$GSM_PASSWORD"; fi` && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
 
 plugin: shell
 name: mobilebb/cdma_connection
@@ -15,5 +15,5 @@ requires:
     package.name == 'modem-manager'
     mobilebb.cdma == 'supported'
 user: root
-environ: CONN_NAME APN USERNAME PASSWORD
-command: trap "nmcli con delete id $CONN_NAME" EXIT; create_connection mobilebb $APN `if [ ${CONN_NAME+x} ]; then echo "--name=$CONN_NAME"; fi` `if [ ${USERNAME+x} ]; then echo "--username=$USERNAME"; fi` `if [ ${PASSWORD+x} ]; then echo "--password=$PASSWORD"; fi` && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
+environ: CDMA_CONN_NAME CDMA_USERNAME CDMA_PASSWORD
+command: trap "nmcli con delete id $CDMA_CONN_NAME" EXIT; create_connection mobilebb cdma `if [ ${CDMA_CONN_NAME+x} ]; then echo "--name=$CDMA_CONN_NAME"; fi` `if [ ${CDMA_USERNAME+x} ]; then echo "--username=$CDMA_USERNAME"; fi` `if [ ${CDMA_PASSWORD+x} ]; then echo "--password=$CDMA_PASSWORD"; fi` && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
