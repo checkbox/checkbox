@@ -24,55 +24,14 @@ from zipfile import ZipFile
 import argparse
 import os
 import re
+import sys
 
-parser = argparse.ArgumentParser()
-parser.add_argument('test', metavar='TEST', help='test type',
-                    choices=['fur', 'gi', 'tess'])
-parser.add_argument('--width', help='window width', default=1024, type=int)
-parser.add_argument('--height', help='window height', default=640, type=int)
-parser.add_argument('-f', '--fullscreen', action='store_true')
-parser.add_argument('-d', '--duration', default=60, type=int,
-                    help='duration in s')
-parser.add_argument(
-    '-p', '--path', help='GpuTest archive path',
-    default='/opt/gputest-0.2.0/GpuTest_Linux_x64_20121111.zip'
-)
-args = parser.parse_args()
 
-# Unzip the archive in a temporary directory, GpuTest creates the log file
-# in the same place Gputest.exe is. A user-writable location is needed.
-with TemporaryDirectory() as scratch_dir:
-    with ZipFile(args.path, 'r') as z:
-        z.extractall(path=scratch_dir)
-    dirname = os.path.join(scratch_dir, 'GpuTest_Linux_x64')
-    launcher = os.path.join(dirname, 'GpuTest.exe')
-    logfile = os.path.join(dirname, '_geeks3d_gputest_log.txt')
-    os.chmod(launcher, 0o755)
-    os.unlink(logfile)
-
-    timeout_params = [
-        'timeout',
-        '-k',
-        # Add 15 s for the Warm-up phase
-        '{}'.format(args.duration + 16),
-        '{}'.format(args.duration + 15),
-        launcher
-    ]
-    cmd_params = [
-        '/test={}'.format(args.test),
-        '/width={}'.format(args.width),
-        '/height={}'.format(args.height),
-        '/benchmark_duration_ms={}'.format(args.duration * 1000)
-    ]
-    if args.fullscreen:
-        cmd_params = cmd_params + ['/fullscreen']
-
-    try:
-        check_output(timeout_params + cmd_params, cwd=dirname)
-    except CalledProcessError:
-        # GpuTest.exe never returns, so the timeout exit code is always set to
-        # a non-zero value. It's expected.
-        pass
+def check_log(logfile):
+    """
+    We assume that the test result is ok if the "Benchmark_Score" pattern
+    can be found in the log file
+    """
     try:
         with open(logfile, encoding='utf-8', errors='ignore') as f:
             log = f.read()
@@ -84,3 +43,63 @@ with TemporaryDirectory() as scratch_dir:
                     'Benchmark score not found, check the log for errors')
     except EnvironmentError as error:
         raise SystemExit(error)
+    return False
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('test', metavar='TEST', help='test type',
+                        choices=['fur', 'gi', 'tess'])
+    parser.add_argument('--width',
+                        help='window width', default=1024, type=int)
+    parser.add_argument('--height',
+                        help='window height', default=640, type=int)
+    parser.add_argument('-f', '--fullscreen', action='store_true')
+    parser.add_argument('-d', '--duration', default=60, type=int,
+                        help='duration in s')
+    parser.add_argument(
+        '-p', '--path', help='GpuTest archive path',
+        default='/opt/gputest-0.2.0/GpuTest_Linux_x64_20121111.zip'
+    )
+    args = parser.parse_args()
+
+    # Unzip the archive in a temporary directory, GpuTest creates the log file
+    # in the same place Gputest.exe is. A user-writable location is needed.
+    with TemporaryDirectory() as scratch_dir:
+        with ZipFile(args.path, 'r') as z:
+            z.extractall(path=scratch_dir)
+        dirname = os.path.join(scratch_dir, 'GpuTest_Linux_x64')
+        launcher = os.path.join(dirname, 'GpuTest.exe')
+        logfile = os.path.join(dirname, '_geeks3d_gputest_log.txt')
+        os.chmod(launcher, 0o755)
+        os.unlink(logfile)
+
+        timeout_params = [
+            'timeout',
+            '-k',
+            # Adds 16 s for the Warm-up phase before sending the KILL signal
+            # See TIMEOUT(1)
+            '{}'.format(args.duration + 16),
+            # Adds 15 s for the Warm-up phase before sending the TERM signal
+            '{}'.format(args.duration + 15),
+            launcher
+        ]
+        cmd_params = [
+            '/test={}'.format(args.test),
+            '/width={}'.format(args.width),
+            '/height={}'.format(args.height),
+            '/benchmark_duration_ms={}'.format(args.duration * 1000)
+        ]
+        if args.fullscreen:
+            cmd_params = cmd_params + ['/fullscreen']
+
+        try:
+            check_output(timeout_params + cmd_params, cwd=dirname)
+        except CalledProcessError:
+            # GpuTest.exe never returns, so the timeout exit code is always
+            # set to a non-zero value. It's expected.
+            pass
+        return check_log(logfile)
+
+if __name__ == '__main__':
+    sys.exit(main())
