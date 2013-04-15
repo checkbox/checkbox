@@ -84,7 +84,7 @@ autoconnect=false
 
 
 def mobilebb_type_section(connection_type, apn, username, password, pin):
-    number = ('*99#' if connection_type == 'gsm' else '#7777')
+    number = ('*99#' if connection_type == 'gsm' else '#777')
     type_section = """
 [{type}]
 number={number}
@@ -101,6 +101,12 @@ number={number}
 
     return type_section
 
+def mobilebb_ppp_section():
+    return """
+[ppp]
+lcp-echo-interval=4
+lcp-echo-failure=30
+    """
 
 def mobilebb_ip_section():
     return """
@@ -188,12 +194,14 @@ def create_wifi_connection(args):
 def create_mobilebb_connection(args):
     name = args.name
 
-    connection_type = 'gsm'
-
     mobilebb_connection = mobilebb_connection_section(name, args.uuid,
-                                                      connection_type)
-    mobilebb_connection += mobilebb_type_section(connection_type, args.apn,
+                                                      args.type)
+    mobilebb_connection += mobilebb_type_section(args.type, args.apn,
                                                  args.username, args.password)
+
+    if args.type == 'cdma':
+        mobilebb_connection += mobilebb_ppp_section()
+
     mobilebb_connection += mobilebb_ip_section()
     mobilebb_connection += mobilebb_serial_section()
 
