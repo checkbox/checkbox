@@ -20,7 +20,8 @@ import imp
 import os
 import unittest
 
-from tempfile import mkstemp
+from mock import patch
+from tempfile import NamedTemporaryFile
 
 imp.load_source('gputest_benchmark', os.path.join(os.path.dirname(__file__),
                 '..', '..', 'scripts', 'gputest_benchmark'))
@@ -29,46 +30,47 @@ from gputest_benchmark import check_log
 
 class LogParserTest(unittest.TestCase):
 
+    def setUp(self):
+        self.logfile = NamedTemporaryFile(delete=False)
+        self.devnull = open(os.devnull, 'w')
+
     def test_logfile_not_found(self):
-        file_not_found = '/a_file_with_results'
+        os.unlink(self.logfile.name)
         with self.assertRaises(SystemExit) as cm:
-            check_log(file_not_found)
+            check_log(self.logfile.name)
         self.assertEqual(
             "[Errno 2] No such file or directory: "
-            "'{}'".format(file_not_found),
+            "'{}'".format(self.logfile.name),
             str(cm.exception))
 
     def test_logfile_with_score(self):
-        fd, filename = mkstemp(text=True)
-        os.close(fd)
-        with open(filename, 'wt') as f:
+        with open(self.logfile.name, 'wt') as f:
             f.write('FurMark : init OK.\n')
             f.write('[Benchmark_Score] - module: FurMark - Score: 8 points'
                     '(800x600 windowed, duration:2000 ms).')
-        self.assertFalse(check_log(filename))
-        os.unlink(filename)
+        with patch('sys.stdout', self.devnull):
+            self.assertFalse(check_log(self.logfile.name))
+        os.unlink(self.logfile.name)
 
     def test_logfile_without_score(self):
-        fd, filename = mkstemp(text=True)
-        os.close(fd)
-        with open(filename, 'wt') as f:
+        with open(self.logfile.name, 'wt') as f:
             f.write('FurMark : init OK.\n')
             f.write('[No_Score] - module: FurMark - Score: _ points'
                     '(800x600 windowed, duration:2000 ms).')
-        with self.assertRaises(SystemExit) as cm:
-            check_log(filename)
-        self.assertEqual(
-            'Benchmark score not found, check the log for errors',
-            str(cm.exception))
-        os.unlink(filename)
+        with patch('sys.stdout', self.devnull):
+            with self.assertRaises(SystemExit) as cm:
+                check_log(self.logfile.name)
+            self.assertEqual(
+                'Benchmark score not found, check the log for errors',
+                str(cm.exception))
+        os.unlink(self.logfile.name)
 
     def test_logfile_with_encoding_error(self):
-        fd, filename = mkstemp()
-        os.close(fd)
-        with open(filename, 'wb') as f:
+        with open(self.logfile.name, 'wb') as f:
             f.write(b'\x80abc\n')
             f.write(b'FurMark : init OK.\n')
             f.write(b'[Benchmark_Score] - module: FurMark - Score: 116 points'
                     b'(800x600 windowed, duration:2000 ms).')
-        self.assertFalse(check_log(filename))
-        os.unlink(filename)
+        with patch('sys.stdout', self.devnull):
+            self.assertFalse(check_log(self.logfile.name))
+        os.unlink(self.logfile.name)
