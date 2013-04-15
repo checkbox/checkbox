@@ -9,6 +9,10 @@ checkbox (0.15.7) raring; urgency=low
     jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
     specific rendercheck tests and use this to exclude the 'repeat' test
     from the set of rendercheck tests that run (LP: #1164566)
+  * scripts/sources_test - modified script so that it takes sources list
+    location and repository list as arguments
+  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
+    variables to the sources_test script (LP: #1149288)
   
   [ Jeff Lane ]
   * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)
