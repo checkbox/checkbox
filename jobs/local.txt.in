@@ -278,12 +278,12 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/wireless.txt?(.in)
 
-name: __mobilebb__
+name: __mobilebroadband__
 plugin: local
 _description: Mobile broadband tests
 command:
   shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/mobilebb.txt?(.in)
+  cat $CHECKBOX_SHARE/jobs/mobilebroadband.txt?(.in)
 
 name: __stress__
 plugin: local

@@ -1,0 +1,19 @@
+plugin: shell
+name: mobilebroadband/gsm_connection
+requires:
+    package.name == 'network-manager'
+    package.name == 'modem-manager'
+    mobilebroadband.gsm == 'supported'
+user: root
+environ: GSM_CONN_NAME GSM_APN GSM_USERNAME GSM_PASSWORD
+command: trap "nmcli con delete id $CONN_NAME" EXIT; create_connection mobilebroadband gsm $GSM_APN `if [ ${GSM_CONN_NAME+x} ]; then echo "--name=$GSM_CONN_NAME"; fi` `if [ ${GSM_USERNAME+x} ]; then echo "--username=$GSM_USERNAME"; fi` `if [ ${GSM_PASSWORD+x} ]; then echo "--password=$GSM_PASSWORD"; fi` && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`
+
+plugin: shell
+name: mobilebroadband/cdma_connection
+requires:
+    package.name == 'network-manager'
+    package.name == 'modem-manager'
+    mobilebroadband.cdma == 'supported'
+user: root
+environ: CDMA_CONN_NAME CDMA_USERNAME CDMA_PASSWORD
+command: trap "nmcli con delete id $CDMA_CONN_NAME" EXIT; create_connection mobilebroadband cdma `if [ ${CDMA_CONN_NAME+x} ]; then echo "--name=$CDMA_CONN_NAME"; fi` `if [ ${CDMA_USERNAME+x} ]; then echo "--username=$CDMA_USERNAME"; fi` `if [ ${CDMA_PASSWORD+x} ]; then echo "--password=$CDMA_PASSWORD"; fi` && curl http://start.ubuntu.com/connectivity-check.html --interface `nmcli dev status | awk '/gsm/ {print $1}'`

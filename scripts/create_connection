@@ -68,7 +68,7 @@ method=auto
     return ip
 
 
-def mobilebb_connection_section(name, uuid, connection_type):
+def mobilebroadband_connection_section(name, uuid, connection_type):
     if not uuid:
         uuid = uuid4()
 
@@ -83,7 +83,7 @@ autoconnect=false
     return connection_section
 
 
-def mobilebb_type_section(connection_type, apn, username, password, pin):
+def mobilebroadband_type_section(connection_type, apn, username, password, pin):
     number = ('*99#' if connection_type == 'gsm' else '#777')
     type_section = """
 [{type}]
@@ -101,21 +101,21 @@ number={number}
 
     return type_section
 
-def mobilebb_ppp_section():
+def mobilebroadband_ppp_section():
     return """
 [ppp]
 lcp-echo-interval=4
 lcp-echo-failure=30
     """
 
-def mobilebb_ip_section():
+def mobilebroadband_ip_section():
     return """
 [ipv4]
 method=auto
     """
 
 
-def mobilebb_serial_section():
+def mobilebroadband_serial_section():
     return """
 [serial]
 baud=115200
@@ -191,21 +191,24 @@ def create_wifi_connection(args):
     return name
 
 
-def create_mobilebb_connection(args):
+def create_mobilebroadband_connection(args):
     name = args.name
 
-    mobilebb_connection = mobilebb_connection_section(name, args.uuid,
-                                                      args.type)
-    mobilebb_connection += mobilebb_type_section(args.type, args.apn,
-                                                 args.username, args.password)
+    mobilebroadband_connection = mobilebroadband_connection_section(name,
+                                                                    args.uuid,
+                                                                    args.type)
+    mobilebroadband_connection += mobilebroadband_type_section(args.type,
+                                                               args.apn,
+                                                               args.username,
+                                                               args.password)
 
     if args.type == 'cdma':
-        mobilebb_connection += mobilebb_ppp_section()
+        mobilebroadband_connection += mobilebroadband_ppp_section()
 
-    mobilebb_connection += mobilebb_ip_section()
-    mobilebb_connection += mobilebb_serial_section()
+    mobilebroadband_connection += mobilebroadband_ip_section()
+    mobilebroadband_connection += mobilebroadband_serial_section()
 
-    write_connection_file(name, mobilebb_connection)
+    write_connection_file(name, mobilebroadband_connection)
     return name
 
 
@@ -225,26 +228,26 @@ def main():
                              help="The encryption key required by the router.")
     wifi_parser.set_defaults(func=create_wifi_connection)
 
-    mobilebb_parser = subparsers.add_parser('mobilebb', 
+    mobilebroadband_parser = subparsers.add_parser('mobilebroadband', 
                                             help="Create a Mobile Broadband "
                                                  "connection.")
-    mobilebb_parser.add_argument('type',
+    mobilebroadband_parser.add_argument('type',
                                  choices=['gsm','cdma'],
                                  help="The type of connection.")
-    mobilebb_parser.add_argument('-n', '--name',
+    mobilebroadband_parser.add_argument('-n', '--name',
                                  default='MobileBB',
                                  help="The name of the connection.")
-    mobilebb_parser.add_argument('-a', '--apn',
+    mobilebroadband_parser.add_argument('-a', '--apn',
                                  help="The APN to connect to.")
-    mobilebb_parser.add_argument('-u', '--username',
+    mobilebroadband_parser.add_argument('-u', '--username',
                                  help=("The username required by the Mobile "
                                        "Broadband access point."))
-    mobilebb_parser.add_argument('-p', '--password',
+    mobilebroadband_parser.add_argument('-p', '--password',
                                  help=("The password required by the Mobile "
                                        "Broadband access point."))
-    mobilebb_parser.add_argument('-P', '--pin',
+    mobilebroadband_parser.add_argument('-P', '--pin',
                                  help="The PIN of the SIM card, if set.")
-    mobilebb_parser.set_defaults(func=create_mobilebb_connection)
+    mobilebroadband_parser.set_defaults(func=create_mobilebroadband_connection)
 
     parser.add_argument('-U', '--uuid',
                         help="""The uuid to assign to the connection for use by
