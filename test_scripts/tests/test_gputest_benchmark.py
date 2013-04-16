@@ -74,3 +74,9 @@ class LogParserTest(unittest.TestCase):
         with patch('sys.stdout', self.devnull):
             self.assertFalse(check_log(self.logfile.name))
         os.unlink(self.logfile.name)
+
+    def tearDown(self):
+        try:
+            os.unlink(self.logfile.name)
+        except OSError:
+            pass
