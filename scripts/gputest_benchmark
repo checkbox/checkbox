@@ -29,8 +29,13 @@ import sys
 
 def check_log(logfile):
     """
-    We assume that the test result is ok if the "Benchmark_Score" pattern
-    can be found in the log file
+    Read and check logfile in search for the pattern 'Benchmark_Score'.
+
+    Returns:
+        False if the pattern was found
+
+    Raises:
+        SystemExit if the pattern (or logfile) was not found
     """
     try:
         with open(logfile, encoding='utf-8', errors='ignore') as f:
