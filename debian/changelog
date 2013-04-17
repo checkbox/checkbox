@@ -12,6 +12,7 @@ checkbox (0.15.8) raring; urgency=low
 
   [ Sylvain Pineau ]
   * debian/control: Added python3-mock as a build dependency.
+  * debian/rules: Clean __pycache__ directory after running scripts unit tests.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 12 Apr 2013 17:48:54 +0100
 

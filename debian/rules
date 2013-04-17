@@ -20,6 +20,7 @@ ifeq (, $(findstring nocheck, $(DEB_BUILD_OPTIONS)))
 	# drop LD_PRELOAD to avoid running under fakeroot; drop TMPDIR to work
 	# around LP#972324 (set by autopkgtest)
 	env -u LD_PRELOAD -u TMPDIR CHECKBOX_PACKAGING=1 ./test
+	rm -rf scripts/__pycache__
 endif	
 
 override_dh_installdeb:
