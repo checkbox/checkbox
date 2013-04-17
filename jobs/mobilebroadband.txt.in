@@ -2,7 +2,7 @@ plugin: shell
 name: mobilebroadband/gsm_connection
 requires:
     package.name == 'network-manager'
-    package.name == 'modem-manager'
+    package.name == 'modemmanager'
     mobilebroadband.gsm == 'supported'
 user: root
 environ: GSM_CONN_NAME GSM_APN GSM_USERNAME GSM_PASSWORD
@@ -13,7 +13,7 @@ plugin: shell
 name: mobilebroadband/cdma_connection
 requires:
     package.name == 'network-manager'
-    package.name == 'modem-manager'
+    package.name == 'modemmanager'
     mobilebroadband.cdma == 'supported'
 user: root
 environ: CDMA_CONN_NAME CDMA_USERNAME CDMA_PASSWORD
