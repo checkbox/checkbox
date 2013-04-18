@@ -78,9 +78,13 @@ _description:
      This test will test the wireless key
  STEPS:
      1. Press the wireless key on the keyboard
-     2. Press the same key again
+     2. Check that the wifi LED turns off or changes color
+     3. Check that wireless is disabled
+     4. Press the same key again
+     5. Check that the wifi LED turns on or changes color
+     6. Check that wireless is enabled
  VERIFICATION:
-     Did the wireless go off on the first press and on again on the second?
+     Did the wireless turn off on the first press and on again on the second?
 
 plugin: user-interact
 name: keys/media-control

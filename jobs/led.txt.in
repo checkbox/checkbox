@@ -92,31 +92,29 @@ _description:
 
 plugin: manual
 name: led/wlan
-depends: wireless/wireless_connection
-requires: package.name == 'firefox'
-command: firefox http://www.ubuntu.com
+depends: keys/wireless
 _description:
  PURPOSE:
      WLAN LED verification
  STEPS:
-     1. Make sure WLAN connection is established
-     2. WLAN LED should light
+     1. During the keys/wireless test you should have observed the
+     wireless LED while turning wireless back on.
+     2. WLAN LED should light or change color when wireless is turned on
  VERIFICATION:
-     Did the WLAN LED light as expected?
+     Did the WLAN LED turn on or change color as expected?
 
 plugin: manual
 name: led/wlan-disabled
-depends: wireless/wireless_connection
+depends: keys/wireless
 _description:
  PURPOSE:
      Validate that WLAN LED shuts off when disabled
  STEPS:
-     1. Connect to AP
-     2. Use Physical switch to disable WLAN
-     3. Re-enable
-     4. Use Network-Manager to disable WLAN
+     1. During the keys/wireless test you should have observed the WLAN LED
+     while performing that test after turning wireless off.
+     2. WLAN LED should turn off or change color when wireless is turned off
  VERIFICATION:
-     Did the LED turn off then WLAN is disabled?
+     Did the WLAN LED turn off or change color as expected?
 
 plugin: manual
 name: led/bluetooth
