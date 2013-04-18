@@ -203,7 +203,8 @@ def create_mobilebroadband_connection(args):
     mobilebroadband_connection += mobilebroadband_type_section(args.type,
                                                                args.apn,
                                                                args.username,
-                                                               args.password)
+                                                               args.password,
+							       args.pin)
 
     if args.type == 'cdma':
         mobilebroadband_connection += mobilebroadband_ppp_section()
