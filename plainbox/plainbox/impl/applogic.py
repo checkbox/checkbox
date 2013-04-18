@@ -27,13 +27,15 @@
 """
 
 from abc import ABCMeta, abstractmethod
-
+import os
 import re
+
+from plainbox.impl import config
 
 
 class IJobQualifier(metaclass=ABCMeta):
     """
-    A opaque qualifier for a job definition.
+    An opaque qualifier for a job definition.
 
     This is an abstraction for matching jobs definitions to names, patterns and
     other means of selecting jobs.
@@ -102,3 +104,37 @@ def get_matching_job_list(job_list, qualifier):
     but works with any :class:`IJobQualifier` subclass.
     """
     return [job for job in job_list if qualifier.designates(job)]
+
+
+class PlainBoxConfig(config.Config):
+    """
+    Configuration for PlainBox itself
+    """
+
+    secure_id = config.Variable(
+        section="sru",
+        help_text="Secure ID of the system",
+        validator_list=[config.PatternValidator(
+            r"^[a-zA-Z0-9]{15}$|^[a-zA-Z0-9]{18}$"
+        )])
+
+    # TODO: Add a validator to check if URL looks fine
+    c3_url = config.Variable(
+        section="sru",
+        help_text="URL of the certification website",
+        default="https://certification.canonical.com/submissions/submit/")
+
+    fallback_file = config.Variable(
+        section="sru",
+        help_text="Location of the fallback file")
+
+    environment = config.Section(
+        help_text="Environment variables for scripts and jobs")
+
+    class Meta:
+
+        # TODO: properly depend on xdg and use real code that also handles
+        # XDG_CONFIG_HOME.
+        filename_list = [
+            '/etc/xdg/plainbox.conf',
+            os.path.expanduser('~/.config/plainbox.conf')]
