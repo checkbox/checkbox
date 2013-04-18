@@ -40,7 +40,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
-command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols.
@@ -52,7 +52,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_BG_SSID
-command: trap "nmcli con delete id $OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $OPEN_BG_SSID" EXIT; create_connection wifi $OPEN_BG_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11b/g protocols.
@@ -64,7 +64,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
-command: trap "nmcli con delete id $WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $WPA_N_SSID" EXIT; create_connection wifi $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11n protocol.
@@ -76,7 +76,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_N_SSID
-command: trap "nmcli con delete id $OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID &&  internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $OPEN_N_SSID" EXIT; create_connection wifi $OPEN_N_SSID &&  internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol.
@@ -88,7 +88,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using WPA
@@ -109,7 +109,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using
@@ -130,7 +130,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using WPA
@@ -151,7 +151,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using
@@ -172,7 +172,7 @@ requires:
  device.category == 'WIRELESS'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
-command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30
+command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30
 _description:
  Tests the performance of a systems wireless connection through the iperf tool.
 
@@ -183,7 +183,7 @@ requires:
  device.category == 'WIRELESS'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
-command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30 -u -b 100m -p 5050
+command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30 -u -b 100m -p 5050
 _description:
  Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.
 
@@ -192,7 +192,7 @@ name: wireless/wireless_connection_open_a
 requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_A_SSID
-command: trap "nmcli con delete id $OPEN_A_SSID" EXIT; create_connection $OPEN_A_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $OPEN_A_SSID" EXIT; create_connection wifi $OPEN_A_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11a protocol. This requires that you have a router pre-configured to only
@@ -203,7 +203,7 @@ name: wireless/wireless_connection_open_b
 requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_B_SSID
-command: trap "nmcli con delete id $OPEN_B_SSID" EXIT; create_connection $OPEN_B_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $OPEN_B_SSID" EXIT; create_connection wifi $OPEN_B_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11b protocol. This requires that you have a router pre-configured to only
@@ -214,7 +214,7 @@ name: wireless/wireless_connection_open_g
 requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_G_SSID
-command: trap "nmcli con delete id $OPEN_G_SSID" EXIT; create_connection $OPEN_G_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $OPEN_G_SSID" EXIT; create_connection wifi $OPEN_G_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11g protocol. This requires that you have a router pre-configured to only
