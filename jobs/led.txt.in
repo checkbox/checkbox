@@ -9,6 +9,17 @@ _description:
      Does the power LED light as expected?
 
 plugin: manual
+name: led/power-blink-suspend
+_description:
+ PURPOSE:
+     Power LED verification
+ STEPS:
+     1. The Power LED should blink while the system is suspended
+ VERIFICATION:
+     Did the Power LED blink while the system was suspended for the previous
+     suspend test?
+
+plugin: manual
 name: led/battery-charging
 _description:
  PURPOSE:
