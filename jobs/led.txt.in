@@ -171,3 +171,15 @@ _description:
  VERIFICATION:
      Did the WLAN/Bluetooth LED light as expected?
 
+plugin: manual
+name: led/mute
+depends: keys/mute
+_description:
+ PURPOSE:
+     Audio Mute LED verification. Skip this test if your system does not have
+     a special Audio Mute LED
+ STEPS:
+     1. Press the Mute key twice and observe the Audio LED to determine if it
+     either turned off and on or changed colors.
+ VERIFICATION:
+     Did the Audio LED turn on and off chance color as expected?
