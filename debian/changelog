@@ -3,6 +3,9 @@ checkbox (0.15.8) raring; urgency=low
   [ Jeff Lane] 
   * jobs/miscellanea.txt.in: Added jobs for manual verification of PXE boot and
     remote IPMI to improve server test coverage.
+  * jobs/led.txt.in: Modified Jobs: led/power, led/wlan, led/wlan-disabled. New
+    jobs: led/power-blink-suspend, led/suspend, led/mute
+    jobs/keys.txt.in: modified keys/wireless
 
   [ Brendan Donegan ]
   * scripts/sources_test - modified script so that it takes sources list
