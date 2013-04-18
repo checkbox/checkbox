@@ -100,7 +100,7 @@ account, please register here:
             self._manager.reactor.fire("launchpad-email", email)
             interface.show_progress(
                 _("Exchanging information with the server..."),
-                self._manager.reactor.fire, "launchpad-exchange")
+                self._manager.reactor.fire, "launchpad-exchange", interface)
             if not errors:
                 break
 

@@ -21,6 +21,7 @@ import os
 import pprint
 import socket
 import time
+import json
 
 from gettext import gettext as _
 from http.client import HTTPException
@@ -40,7 +41,7 @@ class HexrTransport(Plugin):
     """
 
     # URL where to send submissions.
-    transport_url = String(default="https://hexr.canonical.com/checkbox/submit/")
+    transport_url = String(default="https://hexr.staging.canonical.com/checkbox/submit/")
 
     # Timeout value for each submission.
     timeout = Int(default=360)
@@ -78,7 +79,7 @@ class HexrTransport(Plugin):
     def _on_get_filename(self, filename):
         self._submission_filename = filename
 
-    def _on_new_report_exchange(self):
+    def _on_new_report_exchange(self, interface):
         #Ensure I have needed data!
         if not self._headers and not self._submission_filename:
             logging.debug("Not ready to submit to HEXR,"
@@ -103,6 +104,7 @@ class HexrTransport(Plugin):
                                                     self._headers,
                                                     self.timeout)
             if result:
+                interface.show_text("Submission link: " + details)
                 break
             else:
                 if attempt + 1 >= self.max_tries:
@@ -129,9 +131,6 @@ class HexrTransport(Plugin):
             logging.debug(error)
             return (False, error)
 
-        # Fake the result
-        response.status = 200
-
         end_time = time.time()
 
         if not response:
@@ -145,8 +144,8 @@ class HexrTransport(Plugin):
             return (False, error)
         else:
             #This is the only success block
-            text = response.read()
-            print(text)
+            text = response.read().decode()
+            status_url = json.loads(text)['url']
             if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
                 logging.debug("Response headers:\n%s",
                               pprint.pformat(response.getheaders()))
@@ -155,7 +154,7 @@ class HexrTransport(Plugin):
             logging.info("Sent %d bytes and received %d bytes in %s.",
                          submission_size, len(text),
                          format_delta(end_time - start_time))
-            return (True, text)
+            return (True, status_url)
 
 
 factory = HexrTransport
