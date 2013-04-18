@@ -139,7 +139,7 @@ class VerifiedHTTPSConnection(http.client.HTTPSConnection):
         self.sock = ssl.wrap_socket(sock,
             self.key_file,
             self.cert_file,
-            cert_reqs=ssl.CERT_NONE,
+            cert_reqs=ssl.CERT_REQUIRED,
             ca_certs="/etc/ssl/certs/ca-certificates.crt")
 
         #if not self.verify_cert(self.sock.getpeercert()):

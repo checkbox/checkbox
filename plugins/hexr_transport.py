@@ -41,7 +41,7 @@ class HexrTransport(Plugin):
     """
 
     # URL where to send submissions.
-    transport_url = String(default="https://hexr.staging.canonical.com/checkbox/submit/")
+    transport_url = String(default="https://hexr.canonical.com/checkbox/submit/")
 
     # Timeout value for each submission.
     timeout = Int(default=360)
