@@ -20,6 +20,18 @@ _description:
      suspend test?
 
 plugin: manual
+name: led/suspend
+_description:
+ PURPOSE:
+     Suspend LED verification. If your system does not have a dedicated Suspend
+     LED, skip this test.
+ STEPS:
+     1. The Suspend LED should blink or change color while the system is
+     supended
+ VERIFICATION
+     Did the Suspend LED blink or change color while the system was suspended?
+
+plugin: manual
 name: led/battery-charging
 _description:
  PURPOSE:
