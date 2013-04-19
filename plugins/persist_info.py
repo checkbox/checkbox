@@ -40,7 +40,7 @@ class PersistInfo(Plugin):
             self._manager.reactor.call_on(rt, rh, -100)
 
         # Save persist data last
-        self._manager.reactor.call_on("stop", self.save, 1000)
+        self._manager.reactor.call_on("stop", self.save, 900)
 
         #This should fire first thing during the gathering phase.
         self._manager.reactor.call_on("gather", self.begin_gather, -900)
