@@ -10,6 +10,10 @@ checkbox (0.15.8) raring; urgency=low
   * jobs/led.txt.in: Modified Jobs: led/power, led/wlan, led/wlan-disabled. New
     jobs: led/power-blink-suspend, led/suspend, led/mute
     jobs/keys.txt.in: modified keys/wireless
+  * plugins/lock_prompt.py: added a lock release to cleanly clear lock on stop.
+    plugins/persist_prompt.py: promoted save to run before lock release.
+    checkbox/lib/fifo.py: trap OSError exception at close when the input/output
+    fifo fds disappear before fifo.close() can get to them. (LP: #115561)
 
   [ Brendan Donegan ]
   * scripts/sources_test - modified script so that it takes sources list

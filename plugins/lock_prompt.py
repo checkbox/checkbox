@@ -20,7 +20,7 @@ import os
 import fcntl
 import posixpath
 import signal
-
+import logging
 from time import time
 
 from gettext import gettext as _
@@ -40,21 +40,24 @@ class LockPrompt(Plugin):
 
     # Timeout after which to show an error prompt.
     timeout = Int(default=0)
+    logger = logging.getLogger()
 
     def register(self, manager):
         super(LockPrompt, self).register(manager)
 
         self._lock = None
+        self._fd = None
 
         self._manager.reactor.call_on(
             "prompt-begin", self.prompt_begin, -1000)
+        self._manager.reactor.call_on("stop", self.release, 1000)
 
     def prompt_begin(self, interface):
         directory = posixpath.dirname(self.filename)
         safe_make_directory(directory)
 
         # Try to lock the process
-        self._lock = GlobalLock(self.filename)
+        self._lock = GlobalLock(self.filename, logger=self.logger)
         try:
             self._lock.acquire()
         except LockAlreadyAcquired:
@@ -67,12 +70,17 @@ class LockPrompt(Plugin):
         def handler(signum, frame):
             if not posixpath.exists(self.filename):
                 self._manager.reactor.stop_all()
-
+        
         signal.signal(signal.SIGIO, handler)
-        fd = os.open(directory,  os.O_RDONLY)
+        self._fd = os.open(directory,  os.O_RDONLY)
 
-        fcntl.fcntl(fd, fcntl.F_SETSIG, 0)
-        fcntl.fcntl(fd, fcntl.F_NOTIFY, fcntl.DN_DELETE|fcntl.DN_MULTISHOT)
+        fcntl.fcntl(self._fd, fcntl.F_SETSIG, 0)
+        fcntl.fcntl(self._fd, fcntl.F_NOTIFY, fcntl.DN_DELETE|fcntl.DN_MULTISHOT)
 
+    def release(self):
+        # Properly release to the lock
+        self._lock.release(skip_delete=True)
+        os.close(self._fd)
+        os.unlink(self.filename)
 
 factory = LockPrompt
