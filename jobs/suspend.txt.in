@@ -178,10 +178,13 @@ _description:
      This test will check suspend and resume
  STEPS:
      1. Click "Test" and your system will suspend for about 30 - 60 seconds
-     2. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually
-     3. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
+     2. Observe the Power LED to see if it blinks during suspend
+     3. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually
+     4. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
  VERIFICATION:
-     Did your system suspend and resume correctly?
+     Did your system suspend and resume correctly? (NOTE: Please only consider
+     whether the system successfully suspended and resumed. Power/Suspend LED
+     verification will occur after this test is completed.)
 
 plugin: shell
 name: suspend/suspend_advanced_auto
@@ -314,7 +317,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
-command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols after the system has been suspended.
@@ -327,7 +330,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_BG_SSID
-command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection wifi $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11b/g protocols after the system has been suspended.
@@ -340,7 +343,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
-command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection wifi $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11n protocol after the system has been suspended.
@@ -353,7 +356,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_N_SSID
-command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection wifi $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
@@ -366,7 +369,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
-command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols after the system has been suspended.
@@ -379,7 +382,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_BG_SSID
-command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection wifi $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11b/g protocols after the system has been suspended.
@@ -392,7 +395,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
-command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection wifi $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11n protocol after the system has been suspended.
@@ -405,7 +408,7 @@ requires:
  environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_N_SSID
-command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection wifi $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
@@ -418,7 +421,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using WPA
@@ -440,7 +443,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using
@@ -462,7 +465,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using WPA
@@ -484,7 +487,7 @@ requires:
  environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID
-command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using
@@ -957,10 +960,8 @@ _description:
  STEPS:
      1. Make sure WLAN connection is established
      2. WLAN LED should light
-     3. Select Test to open Firefox
-     4. WLAN LED should flash while downloading data
  VERIFICATION:
-     Did the WLAN LED light and flash as expected after resuming from suspend?
+     Did the WLAN LED light as expected after resuming from suspend?
 
 plugin: manual
 name: suspend/led_after_suspend/wlan-disabled

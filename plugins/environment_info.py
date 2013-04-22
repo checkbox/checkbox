@@ -37,6 +37,13 @@ class EnvironmentInfo(Plugin):
     wpa_n_psk = String(default="")
     open_n_ssid = String(default="")
     btdevaddr = String(default="")
+    gsm_apn = String(default="")
+    gsm_conn_name = String(default="")
+    gsm_username = String(default="")
+    gsm_password = String(default="")
+    cdma_conn_name = String(default="")
+    cdma_username = String(default="")
+    cdma_password = String(default="")
     sources_list = String(default="/etc/apt/sources.list")
     repositories = String(default="")
 

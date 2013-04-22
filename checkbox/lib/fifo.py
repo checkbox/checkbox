@@ -18,6 +18,7 @@
 #
 import os
 import struct
+import logging
 
 from checkbox.contrib.bpickle import dumps, loads
 from checkbox.lib.selector import Selector, SelectorIO
@@ -36,7 +37,11 @@ class FifoBase:
         self.close()
 
     def close(self):
-        os.close(self.fileno)
+        try:
+            os.close(self.fileno)
+        except OSError as e:
+            logging.warning("Problem closing the fifo")
+            logging.warning(e)
 
     def wait_for(self, operation):
         if self._timeout is not None:

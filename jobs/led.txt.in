@@ -9,6 +9,30 @@ _description:
      Does the power LED light as expected?
 
 plugin: manual
+name: led/power-blink-suspend
+depends: suspend/suspend_advanced
+_description:
+ PURPOSE:
+     Power LED verification
+ STEPS:
+     1. The Power LED should blink while the system is suspended
+ VERIFICATION:
+     Did the Power LED blink while the system was suspended for the previous
+     suspend test?
+
+plugin: manual
+name: led/suspend
+_description:
+ PURPOSE:
+     Suspend LED verification. If your system does not have a dedicated Suspend
+     LED, skip this test.
+ STEPS:
+     1. The Suspend LED should blink or change color while the system is
+     supended
+ VERIFICATION
+     Did the Suspend LED blink or change color while the system was suspended?
+
+plugin: manual
 name: led/battery-charging
 _description:
  PURPOSE:
@@ -81,33 +105,29 @@ _description:
 
 plugin: manual
 name: led/wlan
-depends: wireless/wireless_connection
-requires: package.name == 'firefox'
-command: firefox http://www.ubuntu.com
+depends: keys/wireless
 _description:
  PURPOSE:
      WLAN LED verification
  STEPS:
-     1. Make sure WLAN connection is established
-     2. WLAN LED should light
-     3. Select Test to open Firefox
-     4. WLAN LED should flash while downloading data
+     1. During the keys/wireless test you should have observed the
+     wireless LED while turning wireless back on.
+     2. WLAN LED should light or change color when wireless is turned on
  VERIFICATION:
-     Did the WLAN LED light and flash as expected?
+     Did the WLAN LED turn on or change color as expected?
 
 plugin: manual
 name: led/wlan-disabled
-depends: wireless/wireless_connection
+depends: keys/wireless
 _description:
  PURPOSE:
      Validate that WLAN LED shuts off when disabled
  STEPS:
-     1. Connect to AP
-     2. Use Physical switch to disable WLAN
-     3. Re-enable
-     4. Use Network-Manager to disable WLAN
+     1. During the keys/wireless test you should have observed the WLAN LED
+     while performing that test after turning wireless off.
+     2. WLAN LED should turn off or change color when wireless is turned off
  VERIFICATION:
-     Did the LED turn off then WLAN is disabled?
+     Did the WLAN LED turn off or change color as expected?
 
 plugin: manual
 name: led/bluetooth
@@ -164,3 +184,15 @@ _description:
  VERIFICATION:
      Did the WLAN/Bluetooth LED light as expected?
 
+plugin: manual
+name: led/mute
+depends: keys/mute
+_description:
+ PURPOSE:
+     Audio Mute LED verification. Skip this test if your system does not have
+     a special Audio Mute LED
+ STEPS:
+     1. Press the Mute key twice and observe the Audio LED to determine if it
+     either turned off and on or changed colors.
+ VERIFICATION:
+     Did the Audio LED turn on and off change color as expected?

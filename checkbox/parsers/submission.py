@@ -99,7 +99,7 @@ class SubmissionResult:
 
         context_parsers = {
             "/proc/cpuinfo": self.parseCpuinfo,
-            "/proc/meminfo": self.parseMeminfo,
+            "meminfo": self.parseMeminfo,
             "dmidecode": DmidecodeParser,
             "udevadm": self.parseUdevadm,
             "efi": EfiParser,

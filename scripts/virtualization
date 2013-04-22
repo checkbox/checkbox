@@ -27,8 +27,15 @@ import configparser
 import os
 import logging
 import lsb_release
+import shlex
 import signal
-from subprocess import Popen, PIPE, CalledProcessError, check_output
+from subprocess import (
+    Popen, 
+    PIPE, 
+    CalledProcessError, 
+    check_output,
+    call
+)
 import sys
 import tempfile
 import time
@@ -123,8 +130,8 @@ class KVMTest(object):
 
         # Start Virtual machine
         self.process = Popen(
-            params, stderr=file, stdout=file,
-            universal_newlines=True, shell=True)
+            shlex.split(params), stdin=PIPE, stderr=file, stdout=file,
+            universal_newlines=True, shell=False)
 
     @classmethod
     def create_cloud_disk(cls):
@@ -184,6 +191,8 @@ runcmd:
 
                 if instance is not False:
                     time.sleep(self.timeout)
+                    # Reset Console window to regain control from VM Serial I/0
+                    call('reset')
                     # Check to be sure VM boot was successful
                     if "END SSH HOST KEY KEYS" \
                     in open(self.debug_file, 'r').read():

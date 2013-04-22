@@ -26,7 +26,7 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from argparse import _ as argparse_gettext
 from logging import basicConfig
 from logging import getLogger
@@ -34,11 +34,13 @@ import argparse
 import sys
 
 from plainbox import __version__ as version
+from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.checkbox import CheckBox
-from plainbox.impl.commands.selftest import SelfTestCommand
 from plainbox.impl.commands.run import RunCommand
+from plainbox.impl.commands.selftest import SelfTestCommand
 from plainbox.impl.commands.special import SpecialCommand
 from plainbox.impl.commands.sru import SRUCommand
+from plainbox.impl.commands.check_config import CheckConfigCommand
 
 
 logger = getLogger("plainbox.box")
@@ -59,7 +61,8 @@ class PlainBox:
         # another broken, never-rotated, uncapped logging crap that kills my
         # SSD by writing junk to ~/.cache/
         basicConfig(level="WARNING")
-        parser = self._construct_parser()
+        config = PlainBoxConfig.get()
+        parser = self._construct_parser(config)
         ns = parser.parse_args(argv)
         # Set the desired log level
         getLogger("").setLevel(ns.log_level)
@@ -81,8 +84,9 @@ class PlainBox:
         else:
             return ns.command.invoked(ns)
 
-    def _construct_parser(self):
-        parser = ArgumentParser(prog="plainbox")
+    def _construct_parser(self, config):
+        parser = ArgumentParser(
+            prog="plainbox", formatter_class=ArgumentDefaultsHelpFormatter)
         parser.add_argument(
             "-v", "--version", action="version",
             version="{}.{}.{}".format(*version[:3]))
@@ -95,7 +99,8 @@ class PlainBox:
         RunCommand(self._checkbox).register_parser(subparsers)
         SpecialCommand(self._checkbox).register_parser(subparsers)
         SelfTestCommand().register_parser(subparsers)
-        SRUCommand().register_parser(subparsers)
+        SRUCommand(config).register_parser(subparsers)
+        CheckConfigCommand(config).register_parser(subparsers)
         #group = parser.add_argument_group(title="user interface options")
         #group.add_argument(
         #    "-u", "--ui", action="store",
