@@ -262,6 +262,16 @@ command:
  audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
 
 plugin: shell
+name: suspend/audio_after_suspend_auto
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+depends: suspend/suspend_advanced_auto suspend/audio_before_suspend
+_description: Verify that mixer settings after suspend are the same as before suspend.
+command:
+ audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
+
+plugin: shell
 name: suspend/cpu_after_suspend
 depends: suspend/suspend_advanced suspend/cpu_before_suspend
 _description: Verify that all CPUs are online after resuming.
