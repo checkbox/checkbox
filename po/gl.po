@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-04-13 05:05+0000\n"
-"X-Generator: Launchpad (build 16564)\n"
+"X-Launchpad-Export-Date: 2013-04-23 05:11+0000\n"
+"X-Generator: Launchpad (build 16580)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -26,7 +26,7 @@ msgstr "Comprobación do sistema"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
-msgstr "_Proba"
+msgstr "_Probar"
 
 #: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
@@ -38,7 +38,7 @@ msgstr "_Non"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
-msgstr "_Saltar esta proba"
+msgstr "_Omitir esta proba"
 
 #: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:460
 #: ../checkbox_urwid/urwid_interface.py:289
@@ -47,15 +47,15 @@ msgstr "Información adicional"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr "_Seleccionar todo"
+msgstr "S_eleccionar todo"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
-msgstr "_Deseleccionar todo"
+msgstr "_Desmarcar todo"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
-msgstr "_Anterior"
+msgstr "An_terior"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
@@ -84,15 +84,15 @@ msgid ""
 "    Did you hear a tone?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verificará que os altofalantes internos funcionan "
+"    Esta proba comproba que os altofalantes internos funcionan "
 "correctamente\n"
 "PASOS:\n"
 "    1. Asegúrese de que non ten conectados nin altofalantes externos nin "
 "auriculares\n"
 "        Se está a probar nun ordenador de sobremesa, pode deixar conectados "
 "os altofalantes externos\n"
-"VERIFICACIÓN\n"
-"    Oiu un ton sonoro?"
+"COMPROBACIÓN\n"
+"    Ouviu un ton sonoro?"
 
 #. description
 #: ../jobs/audio.txt.in:37
@@ -134,13 +134,13 @@ msgid ""
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verificará que o conector de auriculares funciona "
+"    Esta proba comproba que o conector dos auriculares funciona "
 "correctamente.\n"
 "PASOS:\n"
 "    1. Conectar uns auriculares estéreo no seu equipo\n"
 "    2. Pular o botón Test para reproducir un son polo seu equipo\n"
-"VERIFICACIÓN:\n"
-"    Oiu un son sen ningunha distorsión, clicks ou outros ruídos estranos "
+"COMPROBACIÓN:\n"
+"    Ouviu un son sen ningunha distorsión, clics ou outros ruídos estraños "
 "polos seus auriculares?"
 
 #. description
@@ -156,19 +156,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"Copy text \t\n"
 "PROPÓSITO:\n"
 "\n"
-"Esta prueba comprueba que la grabación de son mediante el micrófono funciona "
+"    Esta proba comproba que a gravación de son mediante o micrófono funciona "
 "correctamente.\n"
 "\n"
 "PASOS:\n"
-"1. Desconectar calquera micrófono externo que vostede teña conectado.\n"
-"2. Pulse «Probar», logo fale no seu micrófono interno.\n"
-"3. Despois duns segundos, súa gravación se reproducirá.\n"
+"    1. Desconecte calquera micrófono externo que vostede teña conectado.\n"
+"    2. Pulse «Probar» e a seguir fale polo seu micrófono interno.\n"
+"    3. Despois duns segundos, a gravación reproducirase.\n"
 "\n"
-"VERIFICACIÓN:\n"
-"Escoitou a súa gravación?"
+"COMPROBACIÓN:\n"
+"    Escoitou a súa gravación?"
 
 #. description
 #: ../jobs/audio.txt.in:90
@@ -184,16 +183,16 @@ msgid ""
 "    Did you hear your speech played back?"
 msgstr ""
 "PROPÓSITO:\n"
-"Esta proba comprobará que o gravador de son, usando un micrófono externo, "
-"funciona correctamente.\n"
+"    Esta proba comproba que o gravador de son, usando un micrófono externo,  "
+"   funciona correctamente.\n"
 "\n"
 "PASOS:\n"
-"1. Conecte un micrófono no porto de micrófono.\n"
-"2. Pulse «Probar», logo fale no seu micrófono externo.\n"
-"3. Logo duns segundos, a súa gravación reproducirase.\n"
+"    1. Conecte un micrófono no porto do micrófono.\n"
+"    2. Prema «Probar» e a seguir fale polo seu micrófono externo.\n"
+"    3. Despois duns segundos, a gravación reproducirase.\n"
 "\n"
-"VERIFICACIÓN:\n"
-"Escoitou a súa gravación?"
+"COMPROBACIÓN:\n"
+"    Escoitou a súa gravación?"
 
 #. description
 #: ../jobs/audio.txt.in:107
@@ -208,12 +207,13 @@ msgid ""
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "PROPÓSITO:\n"
-"Esta proba verificará que un dispositivo de son USB funcione correctamente\n"
+"    Esta proba comproba que un dispositivo de son USB funcione "
+"correctamente\n"
 "PASOS:\n"
-"    1.Conecte un dispositivo de son USB no seu sistema\n"
-"    2.Pulse en «Probar», a continuación fale polo micrófono\n"
-"    3.Despois duns segundos, a súa fala será reproducida de novo.\n"
-"VERIFICACIÓN:\n"
+"    1. Conecte un dispositivo de son USB ao sistema\n"
+"    2. Prema «Probar» e a seguir fale polo micrófono\n"
+"    3. Despois duns segundos, a súa gravación será reproducida de novo.\n"
+"COMPROBACIÓN:\n"
 "    Puido escoitar a súa fala reproducida de novo a través dos auriculares "
 "USB?"
 
@@ -232,15 +232,15 @@ msgid ""
 "this computer's audio subsystem and perform more detailed tests under a "
 "controlled environment."
 msgstr ""
-"Recolle información  de sistema relacionada co audio. Estes datos pódense "
-"utilizar para para simular o sistema de audio deste computador e executar "
-"probas máis detalladas nun entorno controlado."
+"Recoller información do sistema relacionada co son. Estes datos pódense "
+"utilizar para simular o sistema de son deste computador e executar probas "
+"máis detalladas nun entorno controlado."
 
 #. description
 #: ../jobs/audio.txt.in:140
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-"Anexa o rexistro de recollida dos datos de hardware de audio aos resultados."
+"Anexa o rexistro de recollida dos datos de hardware de son aos resultados."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -295,27 +295,27 @@ msgstr "Executar a proba de rendemento Unigine Santuary"
 #. description
 #: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr "Executar banco de probas de Unigine Tropics"
+msgstr "Executar a proba de rendemento de Unigine Tropics"
 
 #. description
 #: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr "Executar banco de probas de Unigine Tropics"
+msgstr "Executar a proba de rendemento de Unigine Heaven"
 
 #. description
 #: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr "Executar banco de probas Lightsmark"
+msgstr "Executar a proba de rendemento Lightsmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:113
 msgid "Run Cachebench Read benchmark"
-msgstr "Executar banco de probas Cachebench Read"
+msgstr "Executar a proba de rendemento Cachebench Read"
 
 #. description
 #: ../jobs/benchmarks.txt.in:119
 msgid "Run Cachebench Write benchmark"
-msgstr "Executar banco de probas Cachebench Write"
+msgstr "Executar a proba de rendemento Cachebench Write"
 
 #. description
 #: ../jobs/benchmarks.txt.in:125
@@ -325,37 +325,37 @@ msgstr "Executar a proba de rendemento Cachebench Ler/Modificar/Escribir"
 #. description
 #: ../jobs/benchmarks.txt.in:131
 msgid "Run Stream Copy benchmark"
-msgstr "Executar banco de probas Stream Copy"
+msgstr "Executar a proba de rendemento Stream Copy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:137
 msgid "Run Stream Scale benchmark"
-msgstr "Executar banco de probas Stream Scale"
+msgstr "Executar a proba de rendemento Stream Scale"
 
 #. description
 #: ../jobs/benchmarks.txt.in:143
 msgid "Run Stream Add benchmark"
-msgstr "Executar banco de probas Stream"
+msgstr "Executar a proba de rendemento Stream"
 
 #. description
 #: ../jobs/benchmarks.txt.in:149
 msgid "Run Stream Triad benchmark"
-msgstr "Executar banco de probas Stream Triad"
+msgstr "Executar a proba de rendemento Stream Triad"
 
 #. description
 #: ../jobs/benchmarks.txt.in:155
 msgid "Run Network Loopback benchmark"
-msgstr "Executar a proba Network Loopback"
+msgstr "Executar a proba de rendemento Network Loopback"
 
 #. description
 #: ../jobs/benchmarks.txt.in:167
 msgid "Run Encode MP3 benchmark"
-msgstr "Executar a proba de rendemento do codificador MP3"
+msgstr "Executar a proba de rendemento do codificador de MP3"
 
 #. description
 #: ../jobs/benchmarks.txt.in:173
 msgid "Run x264 H.264/AVC encoder benchmark"
-msgstr "Executar a proba de rendemento do codificador x264 H.264/AVC"
+msgstr "Executar a proba de rendemento do codificador de x264 H.264/AVC"
 
 #. description
 #: ../jobs/benchmarks.txt.in:179
@@ -365,12 +365,12 @@ msgstr "Executar proba de rendemento de GnuPG"
 #. description
 #: ../jobs/benchmarks.txt.in:185
 msgid "Run Compress PBZIP2 benchmark"
-msgstr "Executar a proba de rendemento Compress PBZIP2"
+msgstr "Executar a proba de rendemento da compresión con PBZIP2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:191
 msgid "Run Compress 7ZIP benchmark"
-msgstr "Executar a proba de rendemento Compress 7ZIP"
+msgstr "Executar a proba de rendemento da compresión con 7ZIP"
 
 #. description
 #: ../jobs/benchmarks.txt.in:197
@@ -421,16 +421,16 @@ msgstr ""
 "PROPÓSITO:\n"
 "    Esta proba comproba que a conexión bluetooth funciona correctamente\n"
 "PASOS:\n"
-"    1. Activar bluetooth en calquera dispositivo móbil (PDA, smartphone, "
+"    1. Active bluetooth en calquera dispositivo móbil (PDA, smartphone, "
 "etc.).\n"
-"    2. Pulse na icona de bluetooth na barra de menús\n"
-"    3. Seleccione «Configurar dispositivo novo»\n"
-"    4. Busque o dispositivo na lista e seleccione\n"
+"    2. Prema a icona de bluetooth na barra de menús\n"
+"    3. Seleccione «Configurar un dispositivo novo»\n"
+"    4. Busque o dispositivo na lista e escóllao\n"
 "    5. No dispositivo, escriba o código PIN elixido automaticamente polo "
 "asistente\n"
-"    6. O dispositivo debe emparellar co equipo\n"
-"    7. Pulse na icona de bluetooth e seleccione examinar arquivos\n"
-"    8. Autorizar o equipo para buscar os ficheiros no dispositivo se é "
+"    6. O dispositivo debe emparellarse co equipo\n"
+"    7. Prema a icona de bluetooth e seleccione examinar arquivos\n"
+"    8. Autorice o equipo para buscar os ficheiros no dispositivo se é "
 "necesario\n"
 "    9. Debe ser capaz de examinar os ficheiros\n"
 "COMPROBACIÓN:\n"
@@ -478,20 +478,20 @@ msgid ""
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba comprobará que pode gravar e escoitar audio cun dispositivo "
-"de audio Bluetooth\n"
+"    Esta proba comproba que pode gravar e escoitar son cun dispositivo de "
+"son Bluetooth\n"
 "PASOS:\n"
-"    1. Activar o auricular bluetooth\n"
-"    2. Prema na icona de Bluetooth na barra de menú\n"
+"    1. Active o auricular bluetooth\n"
+"    2. Prema a icona de Bluetooth na barra de menú\n"
 "    3. Seleccione «Configurar un novo dispositivo»\n"
 "    4. Busque o dispositivo na lista e seleccióneo\n"
 "    5. No dispositivo escriba o código PIN elixido automaticamente polo "
 "asistente\n"
 "    6. O dispositivo debe emparellarse co equipo\n"
-"    7. Prema en «Probar» para gravar durante cinco segundos e reproducir no "
+"    7. Prema «Probar» para gravar durante cinco segundos e reproducir no "
 "dispositivo bluetooth\n"
 "COMPROBACIÓN:\n"
-"    Oíu o son que gravou no bluetooth"
+"    Oíu o son que gravou no bluetooth?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:65
@@ -539,7 +539,7 @@ msgstr ""
 "    Esta proba comproba que se pode utilizar un rato bluetooth\n"
 "PASOS:\n"
 "    1. Activar o rato bluetooth\n"
-"    2. Pulse na icona de bluetooth na barra de menús\n"
+"    2. Prema na icona de bluetooth na barra de menús\n"
 "    3. Seleccione «Configurar dispositivo novo»\n"
 "    4. Busque o dispositivo na lista e seleccióneo\n"
 "    5. Mova o rato pola pantalla\n"
@@ -551,7 +551,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:6
 msgid "This Automated test attempts to detect a camera."
-msgstr "Esta proba automática intenta detectar unha cámara."
+msgstr "Esta proba automática tenta detectar unha cámara."
 
 #. description
 #: ../jobs/camera.txt.in:15
@@ -565,9 +565,9 @@ msgid ""
 "    Did you see the video capture?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba comprobará que a cámara integrada funcione\n"
+"    Esta proba comproba que a cámara integrada funcione\n"
 "PASOS:\n"
-"    1.Prema en Probar para ver unha captura de vídeo da cámara de dez "
+"    1.Prema Probar para ver unha captura de vídeo da cámara de dez "
 "segundos.\n"
 "COMPROBACIÓN:\n"
 "    Puido ver a captura de vídeo?"
@@ -602,12 +602,12 @@ msgid ""
 "   Did the sample play correctly?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba comproba a capacidade do seu sistema para reproducir "
-"ficheiros de audio Ogg Vorbis.\n"
+"    Esta proba comproba a capacidade do sistema para reproducir ficheiros de "
+"son Ogg Vorbis.\n"
 "PASOS:\n"
-"    1. Prema en Probar para reproducir un ficheiro Ogg Vorbis (.ogg)\n"
+"    1. Prema Probar para reproducir un ficheiro Ogg Vorbis (.ogg)\n"
 "    2. Peche o reprodutor para continuar.\n"
-"COMPROBACIÓNS:\n"
+"COMPROBACIÓN:\n"
 "    Reproduciuse correctamente a mostra?"
 
 #. description
@@ -622,10 +622,10 @@ msgid ""
 "   Did the sample play correctly?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba comprobará a capacidade do seu sistema para reproducir "
-"ficheiros de audio Wave.\n"
+"    Esta proba comproba a capacidade do seu sistema para reproducir "
+"ficheiros de son Wave.\n"
 "PASOS:\n"
-"    1. Prema en Probar para reproducir un ficheiros de audio Wave (.wav)\n"
+"    1. Prema Probar para reproducir un ficheiros de son Wave (.wav)\n"
 "    2. Prema o reprodutor para continuar.\n"
 "COMPROBACIÓN:\n"
 "    Reproduciuse correctamente a mostra?"
@@ -635,8 +635,8 @@ msgstr ""
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
-"Probar as capacidades de ampliación da súa CPU mediante Firmware Test Suite "
-"(fwts cpufreq)."
+"Probar as capacidades de ampliación da CPU mediante o Conxunto de Probas do "
+"Firmware (fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -646,12 +646,12 @@ msgstr "Anexa o rexistro xerado por cpu/test_de_amplicacion aos resultados"
 #. description
 #: ../jobs/cpu.txt.in:21
 msgid "Test for clock jitter."
-msgstr "Proba para a fluctuación do reloxo."
+msgstr "Proba para a flutuación do reloxo."
 
 #. description
 #: ../jobs/cpu.txt.in:28
 msgid "Test offlining CPUs in a multicore system."
-msgstr "Proba a desconexión de CPU nun sistema multinúcleo."
+msgstr "Proba da desconexión de CPU nun sistema multinúcleo."
 
 #. description
 #: ../jobs/cpu.txt.in:35
@@ -663,19 +663,19 @@ msgstr "Esta proba comproba a topoloxía da cpu para precisión"
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
 "Esta proba comproba que os controladores de frecuencia de CPU son aplicados "
-"cando se están definidos."
+"cando están definidos."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
-"Proba se o daemon de atd está executándose cando o paquete está instalado."
+"Proba se o daemon de atd esta executándose cando o paquete está instalado."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
-"Proba se o daemon de cron está executándose cando o paquete está instaldo."
+"Proba se o daemon de cron está executándose cando o paquete está instalado."
 
 #. description
 #: ../jobs/daemons.txt.in:17
@@ -745,19 +745,19 @@ msgstr "Comproba os cambios de estado de cada disco"
 #. description
 #: ../jobs/disk.txt.in:27
 msgid "SMART test"
-msgstr "Proba SMART"
+msgstr "Proba de SMART"
 
 #. description
 #: ../jobs/disk.txt.in:45
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
-"Máximo espazo de disco usado durante unha proba de instalación predeterminada"
+"Máximo espazo de disco usado durante unha proba de instalación por omisión"
 
 #. description
 #: ../jobs/disk.txt.in:62
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
-"Verifica que o rendemento do almacenamento do sistema estea por enriba do "
+"Comproba que o rendemento do almacenamento do sistema estea por enriba do "
 "rendemento de referencia."
 
 #. description
@@ -766,7 +766,7 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
-"Verifica que os dispositivos de almacenamento, como Fibre Channel e RAID, "
+"Comproba que os dispositivos de almacenamento, como Fibre Channel e RAID, "
 "pódense detectar e empregar baixo estrés."
 
 #. description
@@ -855,14 +855,15 @@ msgid ""
 "    selected result"
 msgstr ""
 "FINALIDADE:\n"
-"    Esta proba comprobará se o sistema consegue detectar a inserción dun HD "
-"externo FireWire\n"
+"    Esta proba comproba se o sistema consegue detectar a inserción dun disco "
+"externo externo tipo FireWire\n"
 "PASOS:\n"
-"    1. Prema en «Probar» para iniciar a proba. Esta proba esgotará o tempo\n"
+"    1. Prema «Probar» para iniciar a proba. Esta proba acabará\n"
 "       e fallará se non detecta a inserción en 20 segundos.\n"
-"    2. Conecte un HD externo FireWire nun porto FireWire dispoñíbel.\n"
+"    2. Conecte un disco duro externo tipo FireWire nun porto FireWire "
+"dispoñíbel.\n"
 "COMPROBACIÓN:\n"
-"    A comprobación desa proba é automatizada. Non cambie o resultado\n"
+"    A comprobación desta proba é automática. Non cambie o resultado\n"
 "    seleccionado automaticamente"
 
 #. description
@@ -872,7 +873,7 @@ msgid ""
 "attached FireWire HDD"
 msgstr ""
 "Esta é unha proba automatizada que realiza operacións de lectura/escritura "
-"nun FireWire HDD conectado"
+"nun disco duro tipo FireWire conectado"
 
 #. description
 #: ../jobs/firewire.txt.in:28
@@ -890,21 +891,21 @@ msgid ""
 "    selected result"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba comprobará se o sistema consegue detectar a retirada dun\n"
-"    HD externo FireWire.\n"
+"    Esta proba comproba se o sistema consegue detectar a retirada dun\n"
+"    disco duro externo tipo FireWire.\n"
 "PASOS:\n"
-"    1. Prema en «Probar» para iniciar a proba. Esa proba esgotará o tempo e "
-"\n"
+"    1. Prema «Probar» para iniciar a proba. Esa proba acabará e \n"
 "        fallará se a retirada non se detecta en 20 segundos.\n"
-"    2. Retire o HD externo FireWire conectado no porto FireWire.\n"
+"    2. Retire o disco duro externo tipo FireWire conectado no porto "
+"FireWire.\n"
 "COMPROBACIÓN:\n"
-"    A comprobación desta proba é automatizada. Non cambie o resultado\n"
+"    A comprobación desta proba é automática. Non cambie o resultado\n"
 "    seleccionado automaticamente"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr "Proba de disquete"
+msgstr "Proba de disquetes"
 
 #. description
 #: ../jobs/graphics.txt.in:10
@@ -933,14 +934,14 @@ msgid ""
 "    Did the resolution change as expected?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba comprobará que a interface gráfica de usuario se pode "
-"utilizar despois de cambiar manualmente a resolución da pantalla\n"
+"    Esta proba comproba que a interface gráfica de usuario se pode utilizar "
+"despois de cambiar manualmente a resolución da pantalla\n"
 "PASOS:\n"
 "    1. Abra o aplicativo Pantallas\n"
 "    2. Seleccione unha nova resolución da lista despregábel\n"
-"    3. Prema en Aplicar\n"
+"    3. Prema Aplicar\n"
 "    4. Seleccione a resolución orixinal da lista despregábel\n"
-"    5. Prema en Aplicar\n"
+"    5. Prema Aplicar\n"
 "COMPROBACIÓN:\n"
 "    Funcionou o cambio de resolución como se esperaba?"
 
@@ -963,7 +964,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
-msgstr "Proba que o proceso de X está en execución."
+msgstr "Proba de que o proceso de X está en execución."
 
 #. description
 #: ../jobs/graphics.txt.in:37
@@ -1006,7 +1007,7 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
-"Asegúrese de que a resolución actual cumpre ou excede a resolución máxima "
+"Asegúrese de que a resolución actual cumpre ou excede a resolución mínima "
 "recomendada (800x600). Consulte aquí para máis información:"
 
 #. description
@@ -1025,9 +1026,9 @@ msgid ""
 "    Do you see color bars and static?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Comprobará a pantalla predeterminada\n"
+"    Esta proba Comproba a pantalla predeterminada\n"
 "PASOS:\n"
-"    1. Prema en «Probar» para amosar unha proba de vídeo.\n"
+"    1. Prema «Probar» para que se mostre unha proba de vídeo.\n"
 "COMPROBACIÓN:\n"
 "    Ve as barras de cor e a estática?"
 
@@ -1056,12 +1057,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:124
 msgid "Check that hardware is able to run compiz"
-msgstr "Comprobe que o hardware pode executar Compiz"
+msgstr "Comprobar que o hardware pode executar Compiz"
 
 #. description
 #: ../jobs/graphics.txt.in:130
 msgid "Check that hardware is able to run Unity 3D"
-msgstr "Comprobe que o hardware pode executar Unity 3D"
+msgstr "Comprobar que o hardware pode executar Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:136
@@ -1077,13 +1078,13 @@ msgid ""
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Comproba as capacidades básicas en 3 D da tarxeta de vídeo\n"
+"    Esta proba comproba as capacidades básicas en 3D da tarxeta de vídeo\n"
 "PASOS:\n"
 "    1. Prema «Probar» para executar unha versión parcial do programa OpenGL. "
 "Prema a tecla ESC en calquera momento para pechar.\n"
 "    2. Comprobe que a animación non é brusca ou lenta.\n"
 "COMPROBACIÓN:\n"
-"    1. Apareceu a animación 3D?\n"
+"    1. Apareceu a animación en 3D?\n"
 "    2. Estaba libre de lentitude/sacudidas?"
 
 #. description
@@ -1155,19 +1156,18 @@ msgid ""
 "waking up?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Comprobará que o seu sistema pode hibernar correctamenteo (se este é "
-"compatíbel)\n"
+"    Esta proba comproba que seu sistema pode hibernar correctamente (se o "
+"admite)\n"
 "PASOS:\n"
-"    1. Prema en «Probar»\n"
+"    1. Prema «Probar»\n"
 "    2. O sistema debería entrar en estado de hibernación e saír del despois "
 "de 5 minutos.\n"
-"    3. Se o seu sistema non sae do estado de hibernación despois de 5 "
-"minutos, por favor prema o botón de arranque para activar o sistema "
-"manualmente\n"
-"    4. Se o sistema non pode retomarse tras a hibernación, por favor "
-"reinicie as Probas do Sistema e marque esta proba como fallada\n"
+"    3. Se o sistema non sae do estado de hibernación despois de 5 minutos,  "
+"prema o botón de arranque para activar o sistema manualmente\n"
+"    4. Se o sistema non pode retomarse tras a hibernación, reinicie "
+"Comprobación do Sistema e marque esta proba como fallada\n"
 "COMPROBACIÓN:\n"
-"    Hibernou o sistema satisfactoriamente, e funcionou correctamente despois "
+"    Hibernou o sistema satisfactoriamente e funcionou correctamente despois "
 "de saír do devandito estado?"
 
 #. description
@@ -1204,11 +1204,13 @@ msgstr "Anexa a saída detallada de lspci"
 #: ../jobs/info.txt.in:42
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
+"Anexa unha saída moi detallada da orde lspci (cunha consulta a base de datos "
+"central)"
 
 #. description
 #: ../jobs/info.txt.in:49
 msgid "List USB devices"
-msgstr "Lista os dispositivos USB"
+msgstr "Enumera os dispositivos USB"
 
 #. description
 #: ../jobs/info.txt.in:58
@@ -1235,8 +1237,8 @@ msgstr "Anexa un informe dos atributos de sysfs."
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
-"Anexa un envorcado da base de datos udev amosando información do hardware do "
-"sistema."
+"Anexa un envorcado da base de datos de udev amosando información do hardware "
+"do sistema."
 
 #. description
 #: ../jobs/info.txt.in:95
@@ -1256,12 +1258,12 @@ msgstr "Anexa o contido de /proc/acpi/sleep se existe."
 #. description
 #: ../jobs/info.txt.in:109
 msgid "Bootchart information."
-msgstr "Información da táboa de arrinque."
+msgstr "Información sobre a táboa de arrinque."
 
 #. description
 #: ../jobs/info.txt.in:118
 msgid "SATA/IDE device information."
-msgstr "Información de dispositivos SATA/IDE."
+msgstr "Información sobre os dispositivos SATA/IDE."
 
 #. description
 #: ../jobs/info.txt.in:137
@@ -1277,7 +1279,7 @@ msgstr "Anexa o rexistro de bootchart ás execucións de proba de bootchart."
 #: ../jobs/info.txt.in:154
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
-"instala o instalador da táboa de arranque nun arquivo comprimido si existe."
+"instala o instalador da táboa de arranque nun arquivo comprimido se existe."
 
 #. description
 #: ../jobs/info.txt.in:159
@@ -1296,13 +1298,13 @@ msgid ""
 "    Did the pointing device work as expected?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verificará o dispositivo de punteiro\n"
+"    Esta proba comproba o dispositivo apuntador\n"
 "PASOS:\n"
-"    1. Mova o cursor usando o dispositivo de punteiro ou toque a pantalla.\n"
+"    1. Mova o cursor usando o dispositivo apuntador ou toque a pantalla.\n"
 "    2. Realice algunhas operacións premendo unha vez/dúas veces/botón "
 "secundario.\n"
-"VERIFICACIÓN:\n"
-"    Comportouse o dispositivo de punteiro como se agardaba?"
+"COMPROBACIÓN:\n"
+"    Comportouse o dispositivo apuntador como se agardaba?"
 
 #. description
 #: ../jobs/input.txt.in:35
@@ -1316,11 +1318,11 @@ msgid ""
 "    Is your keyboard working properly?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verificará o seu teclado\n"
+"    Esta proba comproba o teclado\n"
 "PASOS:\n"
-"    1. Prema en Probar\n"
+"    1. Prema Probar\n"
 "    2. Na área de texto aberta, utilice o teclado para escribir algo\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    O teclado funciona correctamente?"
 
 #. description
@@ -1330,9 +1332,9 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
-"Comproba que apt pode acceder aos repositorios e obter actualizacións (aínda "
-"que non as instala). Isto faise para confirmar que vostede pode recuperar "
-"calquera actualización incompleta ou interrompida."
+"Probas para ver que apt pode acceder aos repositorios e obter actualizacións "
+"(aínda que non as instala). Isto faise para confirmar que vostede pode "
+"recuperar calquera actualización incompleta ou interrompida."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -1345,11 +1347,11 @@ msgid ""
 "    Did the brightness change following to your key presses?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Este exame poñerá a proba a tecla de brillo\n"
+"    Esta proba comproba a tecla de brillo\n"
 "PASOS:\n"
 "    1. Prema os botóns de brillo do teclado\n"
-"VERIFICACIÓN:\n"
-"    Cambia o brillo segundo se preme na tecla?"
+"COMPROBACIÓN:\n"
+"    Cambia o brillo segundo se preme a tecla?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -1397,10 +1399,10 @@ msgid ""
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Isto probará a tecla de hibernar\n"
+"    Esta proba comproba a tecla de hibernar\n"
 "PASOS:\n"
 "    1. Prema a tecla de hibernar do teclado\n"
-"    2. Active o seu sistema premendo o botón de arranque\n"
+"    2. Active o sistema premendo o botón de arranque\n"
 "COMPROBACIÓN:\n"
 "    O sistema hibernou despois de premer a tecla?"
 
@@ -1473,7 +1475,7 @@ msgstr "Probas de son"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Benchmarks tests"
-msgstr ""
+msgstr "Probas de referencia"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1583,7 +1585,7 @@ msgstr "Proba de discos ópticos"
 #. description
 #: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Probas de verificación do reloxo do panel"
 
 #. description
 #: ../jobs/local.txt.in:185
@@ -1613,7 +1615,7 @@ msgstr "Probas de suspensión"
 #. description
 #: ../jobs/local.txt.in:241
 msgid "Touchpad tests"
-msgstr ""
+msgstr "Probas do Touchpad"
 
 #. description
 #: ../jobs/local.txt.in:255
@@ -1638,12 +1640,12 @@ msgstr "Probas de estrés"
 #. description
 #: ../jobs/local.txt.in:290
 msgid "Smoke tests"
-msgstr ""
+msgstr "Probas de fume"
 
 #. description
 #: ../jobs/local.txt.in:297
 msgid "Sniff Sniffers"
-msgstr ""
+msgstr "Cheirar cheiróns"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -1666,6 +1668,8 @@ msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/mmc-"
+"inserción. Comproba a lectura e escritura da tarxeta MMC."
 
 #. description
 #: ../jobs/mediacard.txt.in:29
@@ -1703,6 +1707,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the MMC card after the "
 "system has been suspended."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/mmc-insert-"
+"after-suspend. Comproba a lectura e escritura da tarxeta MMC despois de "
+"suspender o sistema."
 
 #. description
 #: ../jobs/mediacard.txt.in:69
@@ -1740,6 +1747,8 @@ msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/sd-inserción. "
+"Comproba a lectura e escritura da tarxeta SD."
 
 #. description
 #: ../jobs/mediacard.txt.in:108
@@ -1777,6 +1786,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SD card after the "
 "system has been suspended."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/sd-insert-"
+"after-suspend. Comproba a lectura e escritura da tarxeta SD despois de "
+"suspender o sistema."
 
 #. description
 #: ../jobs/mediacard.txt.in:148
@@ -1815,6 +1827,8 @@ msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr ""
+"Esta proba é automática e execútase despois de mediacard/sdhc-inserción. "
+"Comproba a lectura e escritura da tarxeta SDHC."
 
 #. description
 #: ../jobs/mediacard.txt.in:197
@@ -1853,6 +1867,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SDHC card after the "
 "system has been suspended."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/sdhc-insert-"
+"after-suspend. Comproba a lectura e escritura da tarxeta SDHC despois de "
+"suspender o sistema."
 
 #. description
 #: ../jobs/mediacard.txt.in:237
@@ -1890,6 +1907,8 @@ msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/cf-inserción. "
+"Comproba a lectura e escritura da tarxeta CF."
 
 #. description
 #: ../jobs/mediacard.txt.in:276
@@ -1927,6 +1946,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the CF card after the "
 "system has been suspended."
 msgstr ""
+"Esta proba é automática e execútase despois da proba mediacard/cf-insert-"
+"after-suspend. Comproba a lectura e escritura da tarxeta CF despois de "
+"suspender o sistema."
 
 #. description
 #: ../jobs/mediacard.txt.in:316
@@ -1949,11 +1971,13 @@ msgid ""
 "This test checks the amount of memory which is reporting in meminfo against "
 "the size of the memory modules detected by DMI."
 msgstr ""
+"Esta proba compara a cantidade de memoria descrita en meminfo coa detectada "
+"por DMI."
 
 #. description
 #: ../jobs/memory.txt.in:13
 msgid "Test and exercise memory."
-msgstr "Probare exercitar a memoria."
+msgstr "Probar e exercitar a memoria."
 
 #. description
 #: ../jobs/miscellanea.txt.in:3
@@ -1987,7 +2011,7 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:34
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Executa as probas automáticas do  Firmware Test Suite (fwts)."
 
 #. description
 #: ../jobs/miscellanea.txt.in:44
@@ -2222,7 +2246,7 @@ msgstr "Proba para medir o ancho de banda da rede"
 #. description
 #: ../jobs/optical.txt.in:4
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Proba para detectar dispositivos ópticos"
 
 #. description
 #: ../jobs/optical.txt.in:16
@@ -2842,7 +2866,7 @@ msgid ""
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
-"Esta proba comprobará que os modos de vídeo compatíbeis funcionan despois de "
+"Esta proba comproba que os modos de vídeo compatíbeis funcionan despois de "
 "entrar en suspensión e reanudar. Esta operación realízase automaticamente "
 "tomando capturas de pantalla e subíndoas como datos adxuntos."
 
@@ -2861,9 +2885,9 @@ msgid ""
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
-"Isto comprobará que o dispositivo de son funciona correctamente despois "
-"dunha suspensión e reactivación. Isto pode funcionar ben cos altofalantes e "
-"o micrófono integrados, porén, funciona mellor se se emprega cun cabo que "
+"Isto comproba que o dispositivo de son funciona correctamente despois dunha "
+"suspensión e reactivación. Isto pode funcionar ben cos altofalantes e o "
+"micrófono integrados, porén, funciona mellor se se emprega cun cabo que "
 "conecte o jack de saída de son ao jack de entrada de son."
 
 #. description
@@ -3201,7 +3225,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:207
 msgid "Common Document Types Test"
-msgstr "Comprobación dos tipos de documentos comúns"
+msgstr "Comprobación dos tipos de documento comúns"
 
 #. description
 #: ../jobs/user_apps.txt.in:228
@@ -3466,6 +3490,8 @@ msgstr ""
 #: ../jobs/wireless.txt.in:20
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Proba de escaneo sen fíos. Analiza e informa sobre os puntos de acceso "
+"descubertos."
 
 #. description
 #: ../jobs/wireless.txt.in:26
@@ -3545,19 +3571,19 @@ msgstr "A configuración sobrescribe os parámetros."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Abreviatura de --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Abreviatura de --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Abreviatura de --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Abreviatura de --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -3565,12 +3591,12 @@ msgstr "Falta un ficheiro de configuración como argumento.\n"
 
 #: ../checkbox/job.py:85
 msgid "Command not found."
-msgstr ""
+msgstr "Non se atopou a orde."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "A orde recibiu o sinal %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3686,7 +3712,7 @@ msgstr "Escolla (%s): "
 #: ../checkbox_cli/cli_interface.py:232 ../checkbox_cli/cli_interface.py:355
 #: ../checkbox_cli/cli_interface.py:386
 msgid "Space when finished"
-msgstr ""
+msgstr "Espazo ao rematar"
 
 #: ../checkbox_cli/cli_interface.py:384
 msgid "Combine with character above to expand node"
@@ -3738,11 +3764,11 @@ msgstr "Desmarcar todo"
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
-msgstr ""
+msgstr "Expandir todo"
 
 #: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
-msgstr ""
+msgstr "Contraer todo"
 
 #: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
@@ -3766,7 +3792,7 @@ msgstr "Erro"
 
 #: ../checkbox_gtk/gtk_interface.py:607
 msgid "Detailed information..."
-msgstr ""
+msgstr "Información detallada..."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -3814,7 +3840,7 @@ msgstr "_Rematar"
 #. Resolve dependencies
 #: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
 msgid "Gathering information from your system..."
-msgstr "Obtendo información do seu sistema..."
+msgstr "A obter información sobre este sistema..."
 
 #: ../plugins/intro_prompt.py:28
 msgid ""
@@ -3895,7 +3921,7 @@ msgstr ""
 
 #: ../plugins/launchpad_prompt.py:87
 msgid "Email"
-msgstr ""
+msgstr "Correo"
 
 #: ../plugins/launchpad_prompt.py:96
 msgid "Email address must be in a proper format."
@@ -3938,10 +3964,13 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Desmarcar unha proba anulará o seu envío para Ubuntu Friendly. Se planea "
+"participar en Ubuntu Friendly, seleccione todas as probas. Sempre pode "
+"omitir probas individuais se non ten o equipamento necesario."
 
 #: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
 msgid "Choose tests to run on your system:"
-msgstr ""
+msgstr "Escolla as probas para executar no sistema:"
 
 #: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
@@ -3965,91 +3994,91 @@ msgstr "Conexión a Internet totalmente establecida"
 
 #: ../qt/frontend/qtfront.cpp:80
 msgid "Audio Test"
-msgstr ""
+msgstr "Proba do son"
 
 #: ../qt/frontend/qtfront.cpp:81
 msgid "Bluetooth Test"
-msgstr ""
+msgstr "Proba do Bluetooth"
 
 #: ../qt/frontend/qtfront.cpp:82
 msgid "Camera Test"
-msgstr ""
+msgstr "Proba da cámara"
 
 #: ../qt/frontend/qtfront.cpp:83
 msgid "CPU Test"
-msgstr ""
+msgstr "Proba da CPU"
 
 #: ../qt/frontend/qtfront.cpp:84
 msgid "Disk Test"
-msgstr ""
+msgstr "Proba do disco"
 
 #: ../qt/frontend/qtfront.cpp:85
 msgid "Firewire Test"
-msgstr ""
+msgstr "Proba do Firewire"
 
 #: ../qt/frontend/qtfront.cpp:86
 msgid "Graphics Test"
-msgstr ""
+msgstr "Proba dos gráficos"
 
 #: ../qt/frontend/qtfront.cpp:87
 msgid "Info Test"
-msgstr ""
+msgstr "Proba de información"
 
 #: ../qt/frontend/qtfront.cpp:88
 msgid "Input Test"
-msgstr ""
+msgstr "Proba de entrada"
 
 #: ../qt/frontend/qtfront.cpp:89
 msgid "Keys Test"
-msgstr ""
+msgstr "Proba de teclas"
 
 #: ../qt/frontend/qtfront.cpp:90
 msgid "Media Card Test"
-msgstr ""
+msgstr "Proba de tarxetas multimedia"
 
 #: ../qt/frontend/qtfront.cpp:91
 msgid "Memory Test"
-msgstr ""
+msgstr "Proba da memoria"
 
 #: ../qt/frontend/qtfront.cpp:92
 msgid "Miscellanea Test"
-msgstr ""
+msgstr "Probas varias"
 
 #: ../qt/frontend/qtfront.cpp:93
 msgid "Monitor Test"
-msgstr ""
+msgstr "Proba do monitor"
 
 #: ../qt/frontend/qtfront.cpp:94
 msgid "Networking Test"
-msgstr ""
+msgstr "Proba da rede"
 
 #: ../qt/frontend/qtfront.cpp:95
 msgid "Wireless Test"
-msgstr ""
+msgstr "Proba rede sen fíos"
 
 #: ../qt/frontend/qtfront.cpp:96
 msgid "Optical Test"
-msgstr ""
+msgstr "Proba dispositivo óptico"
 
 #: ../qt/frontend/qtfront.cpp:102
 msgid "PCMCIA/PCIX Test"
-msgstr ""
+msgstr "Proba de PCMCIA/PCIX"
 
 #: ../qt/frontend/qtfront.cpp:98
 msgid "Power Management Test"
-msgstr ""
+msgstr "Proba de xestión de enerxía"
 
 #: ../qt/frontend/qtfront.cpp:99
 msgid "Suspend Test"
-msgstr ""
+msgstr "Proba de suspensión"
 
 #: ../qt/frontend/qtfront.cpp:100
 msgid "USB Test"
-msgstr ""
+msgstr "Proba de USB"
 
 #: ../qt/frontend/qtfront.cpp:102
 msgid "Not Started"
-msgstr ""
+msgstr "Non iniciada"
 
 #: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
 msgid "Done"
@@ -4057,35 +4086,35 @@ msgstr "Feito"
 
 #: ../qt/frontend/qtfront.cpp:105
 msgid "Not Supported"
-msgstr ""
+msgstr "Non admitido"
 
 #: ../qt/frontend/qtfront.cpp:106
 msgid "Not Resolved"
-msgstr ""
+msgstr "Sen resolver"
 
 #: ../qt/frontend/qtfront.cpp:107
 msgid "Not Tested"
-msgstr ""
+msgstr "Non probado"
 
 #: ../qt/frontend/qtfront.cpp:108
 msgid "In Progress"
-msgstr ""
+msgstr "En proceso"
 
 #: ../qt/frontend/qtfront.cpp:160
 msgid "Are you sure?"
-msgstr ""
+msgstr "Esta seguro?"
 
 #: ../qt/frontend/qtfront.cpp:160
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Confirma que quere omitir esta proba?"
 
 #: ../qt/frontend/qtfront.cpp:161
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Non preguntar de novo"
 
 #: ../qt/frontend/ui_qtfront.h:635
 msgid "Form"
-msgstr ""
+msgstr "Formulario"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
@@ -4097,39 +4126,39 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
 msgid "Tab 1"
-msgstr ""
+msgstr "Lapela 1"
 
 #: ../qt/frontend/ui_qtfront.h:640
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 probas de 30 completadas (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:643
 msgid "Components"
-msgstr ""
+msgstr "Compoñentes"
 
 #: ../qt/frontend/ui_qtfront.h:644
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: ../qt/frontend/ui_qtfront.h:645
 msgid "Select all"
-msgstr ""
+msgstr "Seleccionar todo"
 
 #: ../qt/frontend/ui_qtfront.h:646
 msgid "Deselect all"
-msgstr ""
+msgstr "Desmarcar todo"
 
 #: ../qt/frontend/ui_qtfront.h:647
 msgid "Start testing"
-msgstr ""
+msgstr "Comezar a proba"
 
 #: ../qt/frontend/ui_qtfront.h:648
 msgid " Selection "
-msgstr ""
+msgstr " Selección "
 
 #: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
 msgid "TextLabel"
-msgstr ""
+msgstr "TextoEtiqueta"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
@@ -4145,11 +4174,11 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
 msgid "Tab 2"
-msgstr ""
+msgstr "Lapela 2"
 
 #: ../qt/frontend/ui_qtfront.h:661
 msgid " Run "
-msgstr ""
+msgstr " Executar "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -4172,23 +4201,23 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:668
 msgid "Submission details"
-msgstr ""
+msgstr "Envío dos detalles"
 
 #: ../qt/frontend/ui_qtfront.h:670
 msgid "Email:"
-msgstr ""
+msgstr "Correo:"
 
 #: ../qt/frontend/ui_qtfront.h:671
 msgid "Submit results"
-msgstr ""
+msgstr "Enviar os resultados"
 
 #: ../qt/frontend/ui_qtfront.h:672
 msgid "View results"
-msgstr ""
+msgstr "Ver os resultados"
 
 #: ../qt/frontend/ui_qtfront.h:673
 msgid " Results "
-msgstr ""
+msgstr " Resultados "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Información enviada con éxito!"
