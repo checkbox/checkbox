@@ -22,12 +22,14 @@ checkbox (0.15.8) raring; urgency=low
     variables to the sources_test script (LP: #1149288)
   * Added mobile broadband tests and updated create_connection script to allow
     creation of mobile broadband connections.
+  * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
+    be utilised in checkbox-certification.
 
   [ Sylvain Pineau ]
   * debian/control: Added python3-mock as a build dependency.
   * debian/rules: Clean __pycache__ directory after running scripts unit tests.
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Thu, 18 Apr 2013 12:49:02 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 23 Apr 2013 14:53:54 +0100
 
 checkbox (0.15.7) raring; urgency=low
 

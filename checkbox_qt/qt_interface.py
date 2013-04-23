@@ -116,7 +116,6 @@ class QTInterface(UserInterface):
             self.loop.quit()
 
         # Replace links wiki style markup with html markup
-        import pdb; pdb.set_trace()
         text = '<html>{}</html>'.format(text)
         text = text.replace('\n', '<br/>')
         text = re.sub(r'\[\[([^|]*)\|([^\]]*)\]\]',

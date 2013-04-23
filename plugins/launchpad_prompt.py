@@ -86,6 +86,7 @@ address you use to sign in to Launchpad. If you do not have a Launchpad \
 account, please register here:
 
   https://launchpad.net/+login""") % url, email, label=_("Email") + ":")[0]
+                import pdb; pdb.set_trace()
 
             if interface.direction == PREV:
                 break
