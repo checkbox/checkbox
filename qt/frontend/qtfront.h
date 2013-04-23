@@ -50,7 +50,7 @@ public slots:
                              QString detailed_text);
     void stopProgressBar();
     void showTree(QString text, QVariantMap options, QVariantMap defaults, QString deselect_warning);
-    void showEntry(QString text, QString value, QString label);
+    void showEntry(QString text, QString value, QString label, bool submitToHexr=false);
     QVariantMap getTestsToRun();
     QString getSubmissionData();
     QString getTestComment();

@@ -265,7 +265,7 @@ void QtFront::stopProgressBar()
 
 }
 
-void QtFront::showEntry(QString text, QString value, QString label)
+void QtFront::showEntry(QString text, QString value, QString label, bool submitToHexr)
 {
     currentState = SUBMISSION;
     // Submission data requested, so move to the results screen and 
@@ -280,6 +280,10 @@ void QtFront::showEntry(QString text, QString value, QString label)
     ui->submissionDataLineEdit->setEnabled(true);
     ui->submissionDataLineEdit->setText(value);
     ui->buttonViewResults->setEnabled(true);
+
+    if (submitToHexr) {
+        ui->submitToHexr->setVisible(true);
+    }
 
 }
 
