@@ -342,7 +342,7 @@ class CLIInterface(UserInterface):
         dialog = CLIChoiceDialog(text)
         dialog.run()
 
-    def show_entry(self, text, value, label=None, previous=None, next=None):
+    def show_entry(self, text, value, showSubmitToHexr=False, label=None, previous=None, next=None):
         dialog = CLILineDialog(text)
 
         return dialog.run()
@@ -363,7 +363,7 @@ class CLIInterface(UserInterface):
             result = options[response]
             self._toggle_results(result, options, results)
 
-        return results
+        return (results, False)
 
     def show_radio(self, text, options=[], default=None):
         dialog = CLIChoiceDialog(text)
