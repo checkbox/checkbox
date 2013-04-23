@@ -132,7 +132,7 @@ class UserInterface:
         return
 
     def show_entry(self, text, value, label=None, submitToHexr=False, previous=None, next=None):
-        return value
+        return (value, submitToHexr)
 
     def show_check(self, text, options=[], default=[]):
         return default

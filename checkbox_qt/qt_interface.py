@@ -111,11 +111,12 @@ class QTInterface(UserInterface):
         self.qtiface.showText(text)
         self.wait_on_signals(fullTestsClicked=onFullTestsClicked)
 
-    def show_entry(self, text, value, label='', submitToHexr=False, previous=None, next=None):
+    def show_entry(self, text, value, label='', showSubmitToHexr=False, previous=None, next=None):
         def onSubmitTestsClicked():
             self.loop.quit()
 
         # Replace links wiki style markup with html markup
+        import pdb; pdb.set_trace()
         text = '<html>{}</html>'.format(text)
         text = text.replace('\n', '<br/>')
         text = re.sub(r'\[\[([^|]*)\|([^\]]*)\]\]',
@@ -127,9 +128,9 @@ class QTInterface(UserInterface):
         if value is None:
             value = ''
 
-        self.qtiface.showEntry(text, value, label, submitToHexr)
+        self.qtiface.showEntry(text, value, label, showSubmitToHexr)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
-        return self.qtiface.getSubmissionData()
+        return (self.qtiface.getSubmissionData(), self.qtiface.getSubmitToHexr())
 
     def show_check(self, text, options=[], default=[]):
         return False
