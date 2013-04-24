@@ -178,13 +178,12 @@ _description:
      This test will check suspend and resume
  STEPS:
      1. Click "Test" and your system will suspend for about 30 - 60 seconds
-     2. Observe the Power LED to see if it blinks during suspend
+     2. Observe the Power LED to see if it blinks or changes color during suspend
      3. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually
      4. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
  VERIFICATION:
-     Did your system suspend and resume correctly? (NOTE: Please only consider
-     whether the system successfully suspended and resumed. Power/Suspend LED
-     verification will occur after this test is completed.)
+     Did your system suspend and resume correctly?
+     (NOTE: Please only consider whether the system successfully suspended and resumed. Power/Suspend LED verification will occur after this test is completed.)
 
 plugin: shell
 name: suspend/suspend_advanced_auto
