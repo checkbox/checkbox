@@ -76,6 +76,7 @@ QtFront::QtFront(QApplication *parent) :
     ui->submissionDataLineEdit->setEnabled(false);
     ui->buttonViewResults->setEnabled(false);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), false);
+    ui->submitToHexr->setVisible(false);
 
     m_titleTestTypes["__audio__"] = checkboxTr("Audio Test",0);
     m_titleTestTypes["__bluetooth__"] = checkboxTr("Bluetooth Test", 0);
