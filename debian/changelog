@@ -1,6 +1,10 @@
 checkbox (0.15.8) raring; urgency=low
 
   [ Po-Hsu Lin]
+  * jobs/led.txt.in: Modified the description of led/power-blink-suspend test to
+    cover more cases.
+    jobs/suspend.txt.in: Modified the description of suspend/suspend_advanced
+    test cover more cases. (LP: #1172108)
   * jobs/monitor.txt.in: Modified the description of dim_brightness test to make 
     it consistent with the code. (LP: #1170244)
 
