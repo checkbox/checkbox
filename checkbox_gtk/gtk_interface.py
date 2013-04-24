@@ -288,7 +288,7 @@ class GTKInterface(UserInterface):
         self._set_button("button_next", next_state)
 
     @GTKHack
-    def show_entry(self, text, value, showSubmitToHexr=False, label=None, previous=None, next=None):
+    def show_entry(self, text, value, label=None, previous=None, next=None):
         #Reset window title
         self._set_main_title()
         # Set buttons
@@ -310,7 +310,7 @@ class GTKInterface(UserInterface):
 
         entered_value = self._get_text("entry")
         self._set_text("entry","")
-        return (entered_value, False)
+        return entered_value
 
     @GTKHack
     def show_check(self, text, options=[], default=[]):

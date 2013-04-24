@@ -79,9 +79,8 @@ class LaunchpadReport(Plugin):
 
     def prompt_begin(self, interface):
         if self.submission_path_prompt:
-            # Ignore whether to submit to HEXR
             new_filename = interface.show_entry(
-                self.submission_path_prompt, self.filename)[0]
+                self.submission_path_prompt, self.filename)
             if new_filename != "":
                 self.filename = new_filename
 

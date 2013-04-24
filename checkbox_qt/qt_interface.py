@@ -111,7 +111,7 @@ class QTInterface(UserInterface):
         self.qtiface.showText(text)
         self.wait_on_signals(fullTestsClicked=onFullTestsClicked)
 
-    def show_entry(self, text, value, label='', showSubmitToHexr=False, previous=None, next=None):
+    def show_entry(self, text, value, label='', previous=None, next=None):
         def onSubmitTestsClicked():
             self.loop.quit()
 
@@ -127,9 +127,9 @@ class QTInterface(UserInterface):
         if value is None:
             value = ''
 
-        self.qtiface.showEntry(text, value, label, showSubmitToHexr)
+        self.qtiface.showEntry(text, value, label)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
-        return (self.qtiface.getSubmissionData(), self.qtiface.getSubmitToHexr())
+        return self.qtiface.getSubmissionData()
 
     def show_check(self, text, options=[], default=[]):
         return False
