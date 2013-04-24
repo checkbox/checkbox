@@ -200,6 +200,7 @@ void QtFront::onStartTestsClicked() {
 void QtFront::onSubmitTestsClicked() {
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
+    ui->submitToHexr->setEnabled(false);
     m_doneTesting = true;
     emit submitTestsClicked();
 }
@@ -264,7 +265,7 @@ void QtFront::stopProgressBar()
 
 }
 
-void QtFront::showEntry(QString text, QString value, QString label)
+void QtFront::showEntry(QString text, QString value, QString label, bool showSubmitToHexr)
 {
     currentState = SUBMISSION;
     // Submission data requested, so move to the results screen and 
@@ -279,6 +280,10 @@ void QtFront::showEntry(QString text, QString value, QString label)
     ui->submissionDataLineEdit->setEnabled(true);
     ui->submissionDataLineEdit->setText(value);
     ui->buttonViewResults->setEnabled(true);
+
+    if (showSubmitToHexr) {
+        ui->submitToHexr->setVisible(true);
+    }
 
 }
 
@@ -547,6 +552,10 @@ void QtFront::showInfo(QString text,
 
 QString QtFront::getSubmissionData() {
     return ui->submissionDataLineEdit->text();
+}
+
+bool QtFront::getSubmitToHexr() {
+    return ui->submitToHexr->isChecked();
 }
 
 void QtFront::buildTestsToRun(QStandardItem *item, 
