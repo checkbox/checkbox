@@ -812,6 +812,17 @@ command: audio_test
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
 
+plugin: shell
+name: suspend/record_playback_after_suspend_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'AUDIO'
+ package.name == 'python-gst0.10'
+ package.name == 'alsa-base'
+command: audio_test
+_description:
+ This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
+
 plugin: attachment
 name: suspend/suspend-auto-single-log-attach
 command: [ -e $CHECKBOX_DATA/suspend_auto_single_log ] && cat $CHECKBOX_DATA/suspend_auto_single_log
@@ -869,8 +880,28 @@ _description:
  after a suspend/resume cycle.
 
 plugin: shell
+name: suspend/wifi_resume_time_auto
+depends: suspend/suspend_advanced_auto
+requires:
+   device.category == 'WIRELESS'
+command: network_reconnect_resume_test -t 20 -d wifi
+_description:
+ Checks the length of time it takes to reconnect an existing wifi connection
+ after a suspend/resume cycle.
+
+plugin: shell
 name: suspend/network_resume_time
 depends: suspend/suspend_advanced
+requires:
+   device.category == 'NETWORK'
+command: network_reconnect_resume_test -t 10 -d wired
+_description:
+ Checks the length of time it takes to reconnect an existing wired connection
+  after a suspend/resume cycle.
+
+plugin: shell
+name: suspend/network_resume_time_auto
+depends: suspend/suspend_advanced_auto
 requires:
    device.category == 'NETWORK'
 command: network_reconnect_resume_test -t 10 -d wired
