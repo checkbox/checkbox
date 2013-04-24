@@ -806,6 +806,17 @@ command: audio_test
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
 
+plugin: shell
+name: suspend/record_playback_after_suspend_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'AUDIO'
+ package.name == 'python-gst0.10'
+ package.name == 'alsa-base'
+command: audio_test
+_description:
+ This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
+
 plugin: attachment
 name: suspend/suspend-auto-single-log-attach
 command: [ -e $CHECKBOX_DATA/suspend_auto_single_log ] && cat $CHECKBOX_DATA/suspend_auto_single_log
