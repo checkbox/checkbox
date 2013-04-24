@@ -1,10 +1,20 @@
-checkbox (0.15.8) raring; urgency=low
+checkbox (0.16) UNRELEASED; urgency=low
+
+  [ Brendan Donegan ]
+  * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
+    be utilised in checkbox-certification.
 
   [ Po-Hsu Lin]
   * jobs/led.txt.in: Modified the description of led/power-blink-suspend test to
     cover more cases.
     jobs/suspend.txt.in: Modified the description of suspend/suspend_advanced
     test cover more cases. (LP: #1172108)
+
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 24 Apr 2013 16:33:15 +0100
+
+checkbox (0.15.8) raring; urgency=low
+
   * jobs/monitor.txt.in: Modified the description of dim_brightness test to make 
     it consistent with the code. (LP: #1170244)
 
@@ -26,8 +36,6 @@ checkbox (0.15.8) raring; urgency=low
     variables to the sources_test script (LP: #1149288)
   * Added mobile broadband tests and updated create_connection script to allow
     creation of mobile broadband connections.
-  * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
-    be utilised in checkbox-certification.
 
   [ Sylvain Pineau ]
   * debian/control: Added python3-mock as a build dependency.
