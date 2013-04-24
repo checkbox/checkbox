@@ -76,7 +76,6 @@ QtFront::QtFront(QApplication *parent) :
     ui->submissionDataLineEdit->setEnabled(false);
     ui->buttonViewResults->setEnabled(false);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), false);
-    ui->submitToHexr->setVisible(false);
 
     m_titleTestTypes["__audio__"] = checkboxTr("Audio Test",0);
     m_titleTestTypes["__bluetooth__"] = checkboxTr("Bluetooth Test", 0);
@@ -201,7 +200,6 @@ void QtFront::onStartTestsClicked() {
 void QtFront::onSubmitTestsClicked() {
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
-    ui->submitToHexr->setEnabled(false);
     m_doneTesting = true;
     emit submitTestsClicked();
 }
@@ -266,7 +264,7 @@ void QtFront::stopProgressBar()
 
 }
 
-void QtFront::showEntry(QString text, QString value, QString label, bool showSubmitToHexr)
+void QtFront::showEntry(QString text, QString value, QString label)
 {
     currentState = SUBMISSION;
     // Submission data requested, so move to the results screen and 
@@ -281,10 +279,6 @@ void QtFront::showEntry(QString text, QString value, QString label, bool showSub
     ui->submissionDataLineEdit->setEnabled(true);
     ui->submissionDataLineEdit->setText(value);
     ui->buttonViewResults->setEnabled(true);
-
-    if (showSubmitToHexr) {
-        ui->submitToHexr->setVisible(true);
-    }
 
 }
 
@@ -553,10 +547,6 @@ void QtFront::showInfo(QString text,
 
 QString QtFront::getSubmissionData() {
     return ui->submissionDataLineEdit->text();
-}
-
-bool QtFront::getSubmitToHexr() {
-    return ui->submitToHexr->isChecked();
 }
 
 void QtFront::buildTestsToRun(QStandardItem *item, 

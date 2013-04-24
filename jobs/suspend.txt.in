@@ -178,13 +178,12 @@ _description:
      This test will check suspend and resume
  STEPS:
      1. Click "Test" and your system will suspend for about 30 - 60 seconds
-     2. Observe the Power LED to see if it blinks during suspend
+     2. Observe the Power LED to see if it blinks or changes color during suspend
      3. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually
      4. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
  VERIFICATION:
-     Did your system suspend and resume correctly? (NOTE: Please only consider
-     whether the system successfully suspended and resumed. Power/Suspend LED
-     verification will occur after this test is completed.)
+     Did your system suspend and resume correctly?
+     (NOTE: Please only consider whether the system successfully suspended and resumed. Power/Suspend LED verification will occur after this test is completed.)
 
 plugin: shell
 name: suspend/suspend_advanced_auto
@@ -259,6 +258,16 @@ requires:
 depends: suspend/suspend_advanced suspend/audio_before_suspend
 _description: Verify that mixer settings after suspend are the same as before suspend.
 command: 
+ audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
+
+plugin: shell
+name: suspend/audio_after_suspend_auto
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+depends: suspend/suspend_advanced_auto suspend/audio_before_suspend
+_description: Verify that mixer settings after suspend are the same as before suspend.
+command:
  audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
 
 plugin: shell
