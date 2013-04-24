@@ -893,6 +893,16 @@ _description:
  Checks the length of time it takes to reconnect an existing wired connection
   after a suspend/resume cycle.
 
+plugin: shell
+name: suspend/network_resume_time_auto
+depends: suspend/suspend_advanced_auto
+requires:
+   device.category == 'NETWORK'
+command: network_reconnect_resume_test -t 10 -d wired
+_description:
+ Checks the length of time it takes to reconnect an existing wired connection
+  after a suspend/resume cycle.
+
 plugin: manual
 name: suspend/led_after_suspend/power
 depends: suspend/suspend_advanced
