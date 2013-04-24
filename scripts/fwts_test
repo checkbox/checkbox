@@ -125,7 +125,7 @@ def main():
                             '[Default: %(default)s]'))
     parser.add_argument('-f', '--fail-level',
                       default='high',
-                      choices=['critical', 'high', 'medium', 'low'],
+                      choices=['critical', 'high', 'medium', 'low', 'none'],
                       help=('Specify the FWTS failure level that will trigger '
                             'this script to return a failing exit code. For '
                             'example, if you chose "critical" as the '
@@ -188,15 +188,17 @@ def main():
     passed = []
     
     # Set correct fail level
-    args.fail_level = 'FAILED_%s' % args.fail_level.upper()
-    
-    # Get our failure priority and create the priority values
-    fail_levels = {'FAILED_CRITICAL':4,
-                   'FAILED_HIGH':3,
-                   'FAILED_MEDIUM':2,
-                   'FAILED_LOW':1}
-    fail_priority = fail_levels[args.fail_level]
-
+    if args.fail_level is not 'none':
+        args.fail_level = 'FAILED_%s' % args.fail_level.upper()
+        
+        # Get our failure priority and create the priority values
+        fail_levels = {'FAILED_CRITICAL':4,
+                       'FAILED_HIGH':3,
+                       'FAILED_MEDIUM':2,
+                       'FAILED_LOW':1,
+                       'FAILED_NONE':0}
+        fail_priority = fail_levels[args.fail_level]
+        
     # Enforce only using sleep opts with --sleep
     if args.sleep_time or args.resume_time and not args.sleep:
         parser.error('--sleep-time and --resume-time only apply to the '
@@ -327,19 +329,20 @@ def main():
         print("Passed: %d" % len(passed))
         for test in passed: 
             print(" - " + test)
-
-    if fail_priority == fail_levels['FAILED_CRITICAL']:
-        if critical_fails:
-            return 1
-    if fail_priority == fail_levels['FAILED_HIGH']:
-        if critical_fails or high_fails:
-            return 1
-    if fail_priority == fail_levels['FAILED_MEDIUM']:
-        if critical_fails or high_fails or medium_fails:
-            return 1
-    if fail_priority == fail_levels['FAILED_LOW']:
-        if critical_fails or high_fails or medium_fails or low_fails:
-            return 1
+    
+    if args.fail_level is not 'none':
+        if fail_priority == fail_levels['FAILED_CRITICAL']:
+            if critical_fails:
+                return 1
+        if fail_priority == fail_levels['FAILED_HIGH']:
+            if critical_fails or high_fails:
+                return 1
+        if fail_priority == fail_levels['FAILED_MEDIUM']:
+            if critical_fails or high_fails or medium_fails:
+                return 1
+        if fail_priority == fail_levels['FAILED_LOW']:
+            if critical_fails or high_fails or medium_fails or low_fails:
+                return 1
     
     return 0
 

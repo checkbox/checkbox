@@ -10,6 +10,15 @@ checkbox (0.16) UNRELEASED; urgency=low
     jobs/suspend.txt.in: Modified the description of suspend/suspend_advanced
     test cover more cases. (LP: #1172108)
 
+  [ Jeff Lane ]
+  * scripts/sleep_test_log_check: added new script to parse fwts logs for
+    errors
+    jobs/hibernate.txt.in, jobs/stress.txt.in, jobs/suspend.txt.in: added jobs
+    to use the sleep_test_log_check script after s3/s4 tests. Modified current
+    s3/s4 tests to use the new None fail level for fwts_test
+    scripts/fwts_test: no longer fails on fwts errors if "-f none" is chosen.
+    Now it should only fail by manual indication if the actual sleep action
+    fails. (LP: #1169922)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 24 Apr 2013 16:33:15 +0100
 
