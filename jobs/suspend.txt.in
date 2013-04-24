@@ -874,6 +874,16 @@ _description:
  after a suspend/resume cycle.
 
 plugin: shell
+name: suspend/wifi_resume_time_auto
+depends: suspend/suspend_advanced_auto
+requires:
+   device.category == 'WIRELESS'
+command: network_reconnect_resume_test -t 20 -d wifi
+_description:
+ Checks the length of time it takes to reconnect an existing wifi connection
+ after a suspend/resume cycle.
+
+plugin: shell
 name: suspend/network_resume_time
 depends: suspend/suspend_advanced
 requires:
