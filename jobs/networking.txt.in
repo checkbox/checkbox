@@ -15,10 +15,10 @@ _description: Tests whether the system has a working Internet connection.
 
 plugin: local
 name: networking/info
-requires: device.category == 'NETWORK' or device.category == 'WIRELESS'
+requires: device.category == 'NETWORK'
 _description: Network Information
 command:
- cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: manual
  name: networking/info_$2
  requires: device.path == "$1"
@@ -117,7 +117,7 @@ command:
   package.name == 'ethtool' and package.name == 'nmap'
   device.path == "$1"
  user: root
- command: ethtool $2 | tail -1 | grep "detected: yes" && network_bandwidth_test --interface=$2 --scan=3 --log-level=debug || ( echo "ERROR: $2 is either not configured or not connected." >&2 && exit 1 )
+ command: network test -i $2 -t ftp
  description:
   Testing for NIC $2
  EOF
