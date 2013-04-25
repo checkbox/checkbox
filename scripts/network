@@ -68,11 +68,11 @@ class FTPPerformanceTest(threading.Thread):
         Size defaults to 1GB if not supplied.
         """
 
-        logging.debug("Creating %sGb file" % self.binary_size)
+        logging.debug("Creating %sGB file" % self.binary_size)
 
         file_size = (1024 * 1024 * 1024) * self.binary_size
         with open(self.file2send, "wb") as out:
-            out.seek((self.binary_size) - 1)
+            out.seek((file_size) - 1)
             out.write('\0'.encode())
 
     def send_file(self, filename=None):
@@ -167,7 +167,9 @@ class FTPPerformanceTest(threading.Thread):
             # Calculate transfer rate and determine pass/fail status
             mbs_speed = float(filesize / 131072) / float(delay)
             percent = (mbs_speed / int(info["Speed"])) * 100
-            logging.debug("Transer speed: %3.2f%%" % (percent))
+            logging.debug("Transfer speed:")
+            logging.debug("%3.2f%% of" % percent)
+            logging.debug("theoretical max %smbs", int(info["Speed"]))
 
             if percent < 40:
                 logging.warn("Poor network performance detected")
@@ -299,7 +301,7 @@ def interface_test(args):
             test_user,
             test_pass)
 
-        if "filesize" in vars(args):
+        if args.filesize:
             ftp_benchmark.binary_size = int(args.filesize)
         return ftp_benchmark.start()
 
@@ -342,7 +344,7 @@ def main():
     test_parser.add_argument('--password', type=str)
     test_parser.add_argument(
         '--filesize', type=str,
-        help="Size (Gb) of binary file to send over network")
+        help="Size (GB) of binary file to send over network")
     test_parser.add_argument(
         '--config', type=str,
         default="/etc/checkbox.d/network.cfg",
