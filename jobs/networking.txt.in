@@ -117,7 +117,7 @@ command:
   package.name == 'ethtool' and package.name == 'nmap'
   device.path == "$1"
  user: root
- command: ./network test -i $2 -t ftp
+ command: network test -i $2 -t ftp
  description:
   Testing for NIC $2
  EOF
