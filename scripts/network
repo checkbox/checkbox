@@ -27,16 +27,16 @@ import logging
 import os
 import shlex
 import socket
-import sys
-from subprocess import check_call, CalledProcessError
 import struct
-import time
+from subprocess import check_call, CalledProcessError
+import sys
 import threading
+import time
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-class FTPPerformanceTest(threading.Thread):
+class FTPPerformanceTest(object):
     """
     Provides file transfer rate based information while
     using the FTP protocol and sending a file (DEFAULT=1GB)
@@ -60,15 +60,13 @@ class FTPPerformanceTest(threading.Thread):
 
         self.file2send = "ftp_performance_test"
 
-        threading.Thread.__init__(self)
-
     def _make_file2send(self):
         """
         Makes binary file to send over FTP.
         Size defaults to 1GB if not supplied.
         """
 
-        logging.debug("Creating %sGB file" % self.binary_size)
+        logging.debug("Creating %sGB file", self.binary_size)
 
         file_size = (1024 * 1024 * 1024) * self.binary_size
         with open(self.file2send, "wb") as out:
@@ -91,8 +89,8 @@ class FTPPerformanceTest(threading.Thread):
             logging.debug("Sending file")
             self.remote.storbinary("STOR " + filename, file, 1024)
         except Exception as send_failure:
-            logging.error("Failed to send file to %s" % self.target)
-            logging.error("Reason: %s" % send_failure)
+            logging.error("Failed to send file to %s", self.target)
+            logging.error("Reason: %s", send_failure)
             return 0, 0
 
         file.close()
@@ -113,29 +111,29 @@ class FTPPerformanceTest(threading.Thread):
         Connects to FTP target and set the current directory as /
         """
 
-        logging.debug("Connecting to %s" % self.target)
+        logging.debug("Connecting to %s", self.target)
         try:
             self.remote = FTP(self.target)
             self.remote.set_debuglevel(2)
             self.remote.set_pasv(True)
         except socket.error as connect_exception:
-            logging.error("Failed to connect to: %s" % self.target)
+            logging.error("Failed to connect to: %s", self.target)
             return False
 
         logging.debug("Logging in")
-        logging.debug("{USER:%s, PASS:%s}" % (self.username, self.password))
+        logging.debug("{USER:%s, PASS:%s}", self.username, self.password)
 
         try:
             self.remote.login(self.username, self.password)
         except ftplib.error_perm as login_exception:
-            logging.error("failed to log into target: %s" % self.target)
+            logging.error("failed to log into target: %s", self.target)
             return False
 
         default_out_dir = ""
         self.remote.cwd(default_out_dir)
         return True
 
-    def start(self):
+    def run(self):
 
         info = {
             "Interface": self.iface.interface,
@@ -162,13 +160,13 @@ class FTPPerformanceTest(threading.Thread):
 
         if connected and filesize > 0:
 
-            logging.debug("Bytes sent (%s): %.2f seconds" % (filesize, delay))
+            logging.debug("Bytes sent (%s): %.2f seconds", filesize, delay)
 
             # Calculate transfer rate and determine pass/fail status
             mbs_speed = float(filesize / 131072) / float(delay)
             percent = (mbs_speed / int(info["Speed"])) * 100
             logging.debug("Transfer speed:")
-            logging.debug("%3.2f%% of" % percent)
+            logging.debug("%3.2f%% of", percent)
             logging.debug("theoretical max %smbs", int(info["Speed"]))
 
             if percent < 40:
@@ -202,7 +200,7 @@ class Interface(socket.socket):
         try:
             nic_data = fcntl.ioctl(self.fileno(), 0x8915, freq)
         except IOError:
-            logging.error("No IP address for %s" % self.interface)
+            logging.error("No IP address for %s", self.interface)
             return 1
         return socket.inet_ntoa(nic_data[20:24])
 
@@ -213,7 +211,7 @@ class Interface(socket.socket):
         try:
             mask_data = fcntl.ioctl(self.fileno(), 0x891b, freq)
         except IOError:
-            logging.error("No netmask for %s" % self.interface)
+            logging.error("No netmask for %s", self.interface)
             return 1
         return socket.inet_ntoa(mask_data[20:24])
 
@@ -247,7 +245,7 @@ def interface_test(args):
         cmd = "ip link set dev %s up" % args.interface
         check_call(shlex.split(cmd))
     except CalledProcessError as interface_failure:
-        logging.error("Failed to use %s:%s" % (cmd, interface_failure))
+        logging.error("Failed to use %s:%s", cmd, interface_failure)
         return 1
 
     # Give interface enough time to get DHCP address
@@ -274,12 +272,12 @@ def interface_test(args):
          if iface != "lo" and iface != args.interface]
 
     for iface in extra_interfaces:
-        logging.debug("Shutting down interface:%s" % iface)
+        logging.debug("Shutting down interface:%s", iface)
         try:
             cmd = "ip link set dev %s down" % iface
             check_call(shlex.split(cmd))
         except CalledProcessError as interface_failure:
-            logging.error("Failed to use %s:%s" % (cmd, interface_failure))
+            logging.error("Failed to use %s:%s", cmd, interface_failure)
             return 1
 
     if args.test_type.lower() == "ftp":
@@ -291,7 +289,7 @@ def interface_test(args):
 
             if test_target == "canonical.com":
                 # Default values found in config file
-                logging.error("Please supply target via: %s" % config_file)
+                logging.error("Please supply target via: %s", config_file)
                 sys.exit(1)
 
         # Being FTP benchmark for specified interface
@@ -303,7 +301,7 @@ def interface_test(args):
 
         if args.filesize:
             ftp_benchmark.binary_size = int(args.filesize)
-        return ftp_benchmark.start()
+        return ftp_benchmark.run()
 
 
 def interface_info(args):
