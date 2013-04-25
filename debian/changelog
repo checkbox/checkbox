@@ -21,6 +21,8 @@ checkbox (0.16) UNRELEASED; urgency=low
     fails. (LP: #1169922)
   * scripts/bluetooth_test: test no longer generates odd Broken Pipe error when
     the dpkg bit verifies obexftp is installed (LP: #1169488)
+  * scripts/memory_compare: cleaned up the output to be more explanatory and
+    easier to visually parse (LP: #1072666)
 
   [ Daniel Manrique ]
   * scripts/alsa_record_playback: Replaced alsasrc with autoaudiosrc
