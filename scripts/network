@@ -88,7 +88,7 @@ class FTPPerformanceTest(object):
         try:
             logging.debug("Sending file")
             self.remote.storbinary("STOR " + filename, file, 1024)
-        except Exception as send_failure:
+        except ftplib.all_errors as send_failure:
             logging.error("Failed to send file to %s", self.target)
             logging.error("Reason: %s", send_failure)
             return 0, 0
@@ -155,8 +155,9 @@ class FTPPerformanceTest(object):
         # Remove created binary
         try:
             os.remove(self.file2send)
-        except (IOError, OSError):
-            pass
+        except (IOError, OSError) as file_delete_error:
+            logging.error("Could not remove previous ftp file")
+            logging.error(file_delete_error)
 
         if connected and filesize > 0:
 
