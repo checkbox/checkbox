@@ -20,6 +20,10 @@ checkbox (0.16) UNRELEASED; urgency=low
     Now it should only fail by manual indication if the actual sleep action
     fails. (LP: #1169922)
 
+  [ Daniel Manrique ]
+  * scripts/alsa_record_playback: Replaced alsasrc with autoaudiosrc
+    (LP: #1059544)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 24 Apr 2013 16:33:15 +0100
 
 checkbox (0.15.8) raring; urgency=low
