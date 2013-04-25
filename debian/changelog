@@ -19,8 +19,20 @@ checkbox (0.16) UNRELEASED; urgency=low
     scripts/fwts_test: no longer fails on fwts errors if "-f none" is chosen.
     Now it should only fail by manual indication if the actual sleep action
     fails. (LP: #1169922)
+  * scripts/bluetooth_test: test no longer generates odd Broken Pipe error when
+    the dpkg bit verifies obexftp is installed (LP: #1169488)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 24 Apr 2013 16:33:15 +0100
+  [ Daniel Manrique ]
+  * scripts/alsa_record_playback: Replaced alsasrc with autoaudiosrc
+    (LP: #1059544)
+
+  [ Jeff Marcom ]
+  * scripts/network: added new script for testing and retrieving information for
+    network interfaces.
+  * configs,examples/network.cfg: added config file 
+    for network test configuration and setup
+
+ -- Jeff Marcom <jeffmarcom@ubuntu.com>  Wed, 24 Apr 2013 13:35:39 -0400
 
 checkbox (0.15.8) raring; urgency=low
 
