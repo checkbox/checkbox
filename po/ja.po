@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-04-05 05:10+0000\n"
-"X-Generator: Launchpad (build 16550)\n"
+"X-Launchpad-Export-Date: 2013-04-23 05:12+0000\n"
+"X-Generator: Launchpad (build 16580)\n"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -244,6 +244,8 @@ msgid ""
 "this computer's audio subsystem and perform more detailed tests under a "
 "controlled environment."
 msgstr ""
+"オーディオ関連のシステム情報を収集します。このデータはこのコンピューターのオーディオサブシステムをシミュレートしたり、管理された環境下でのより詳細なテスト"
+"実行時に利用することがあります。"
 
 #. description
 #: ../jobs/audio.txt.in:140
@@ -348,7 +350,7 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:155
 msgid "Run Network Loopback benchmark"
-msgstr ""
+msgstr "ネットワークループバックベンチマークの実行"
 
 #. description
 #: ../jobs/benchmarks.txt.in:167
@@ -419,20 +421,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"目的：\n"
-"    このテストはbluetooth接続が正しくされているかチェックをします。\n"
-"ステップ：\n"
-"    １． モバイル機器（PDAやスマートフォンなど）のbluetoothを有効にしてください。\n"
-"    ２． メニューバーのbluetoothアイコンをクリックしてください。\n"
-"    ３． ’新しいデバイスの設定’を選択してください。\n"
-"    ４． リストからモバイル機器を探して、選択してください。\n"
-"    ５． モバイル機器のPINコードはウィザードによって自動的に選択されます。\n"
-"    ６． モバイル機器はコンピューターとペアリングされます。\n"
-"    ７． bluetoothアイコンを右クリックし、ファイル閲覧を選択します。\n"
-"    ８． 必要であれば、コンピューターにモバイル機器のファイルが閲覧できるように許可を与えます。\n"
-"    ９． ファイルが閲覧できるはずです。\n"
-"確認：\n"
-"    全てのステップを実行できましたか？"
+"目的:\n"
+"    このテストはBluetooth接続が正しく動作しているかチェックします。\n"
+"ステップ:\n"
+"    1.モバイル機器(PDAやスマートフォンなど)のBluetoothを有効にしてください。\n"
+"    2.メニューバーのBluetoothアイコンをクリックしてください。\n"
+"    3.\"新しいデバイスの設定\"を選択してください。\n"
+"    4.リストからモバイル機器を探して、選択してください。\n"
+"    5.モバイル機器のPINコードはウィザードによって自動的に選択されます。\n"
+"    ６.モバイル機器はコンピューターとペアリングされます。\n"
+"    7.Bluetoothアイコンを右クリックし、ファイル閲覧を選択します。\n"
+"    8.必要であれば、コンピューターにモバイル機器のファイルが閲覧できるよう許可を与えます。\n"
+"    9.ファイルが閲覧できるはずです。\n"
+"確認:\n"
+"    すべてのステップを実行できましたか?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:47
@@ -447,14 +449,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
-"目的：\n"
-"    このテストはbluetooth接続を介して情報のやり取りができるかチェックします。\n"
-"ステップ：\n"
-"    １． bluetooth接続を介したモバイル機器のファイルが閲覧できるか確認してください。\n"
-"    ２． コンピューターからモバイル機器へファイルをコピーします。\n"
-"    ３． モバイル機器からコンピューターへファイルをコピーします。\n"
-"確認：\n"
-"    両方共にコピーができましたか？"
+"目的:\n"
+"    このテストはBluetooth接続を介して情報のやり取りができるかチェックします。\n"
+"ステップ:\n"
+"    1.Bluetooth接続を介したモバイル機器のファイルが閲覧できるか確認してください。\n"
+"    2.コンピューターからモバイル機器へファイルをコピーします。\n"
+"    3.モバイル機器からコンピューターへファイルをコピーします。\n"
+"確認:\n"
+"    両方共にコピーができましたか?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:61
@@ -474,18 +476,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
-"目的：\n"
-"    このテストはbluetoothオーディオデバイスを用いて音声の再生と録音ができるかチェックします。\n"
-"ステップ：\n"
-"    １． bluetoothヘッドセットの接続を有効にします。\n"
-"    ２． メニューバーのbluetoothアイコンをクリックします。\n"
-"    ３． ’新しいデバイスの設定’を選択します。\n"
-"    ４． リストからヘッドセットを探して、選択します。\n"
-"    ５． ヘッドセットのPINコードはウィザードによって自動的に選択されます。\n"
-"    ６． ヘッドセットはコンピューターとペアリングされます。\n"
-"    ７． ”テスト”をクリックして、５秒間録音を行いその後、再生されます。\n"
-"確認：\n"
-"    bluetoothヘッドセットから録音した音声が再生されましたか？"
+"目的:\n"
+"    このテストでは、Bluetoothオーディオデバイスで音声の再生/録音ができるかチェックします。\n"
+"ステップ:\n"
+"    1.Bluetoothヘッドセットの接続を有効にします。\n"
+"    2.メニューバーのBluetoothアイコンをクリックします。\n"
+"    3.\"新しいデバイスの設定\"を選択します。\n"
+"    4.リストからヘッドセットを探して、選択します。\n"
+"    5.ヘッドセットのPINコードはウィザードによって自動的に選択されます。\n"
+"    6.ヘッドセットはコンピューターとペアリングされます。\n"
+"    7.”テスト”をクリックすると、Bluetoothデバイスで5秒間録音を行った後に再生されます。\n"
+"確認:\n"
+"    Bluetoothヘッドセットから録音した音声が再生されましたか？"
 
 #. description
 #: ../jobs/bluetooth.txt.in:65
@@ -664,7 +666,7 @@ msgstr "パッケージがインストール済みの場合、cronデーモン�
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr "パッケージがインストール済みの場合、cupsdデーモンが動作しているかテストします。"
+msgstr "パッケージがインストール済みの場合、cupsdデーモンが動作しているかをテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:23
@@ -729,14 +731,14 @@ msgstr "デフォルトのインストールテストを行う際に、ディス
 #. description
 #: ../jobs/disk.txt.in:62
 msgid "Verify system storage performs at or above baseline performance"
-msgstr "システムストレージが性能の基準値かそれ以上で動作しているか検査します"
+msgstr "システムストレージが性能の基準値かそれ以上で動作しているかを検査します"
 
 #. description
 #: ../jobs/disk.txt.in:79
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
-msgstr "ファイバーチャネルやRAIDといったストレージデバイスが検出されているかと、ストレス環境下でのパフォーマンスを確認します。"
+msgstr "ファイバーチャネルやRAIDといったストレージデバイスが検出できていて、ストレス環境下で動作するかを確認します。"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -851,13 +853,13 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
-"目的：\n"
-"    このテストは、FireWireハードディスクの取り出しを自動的に検出できるかどうか確認します。\n"
-"ステップ：\n"
-"    1.'テスト'をクリックしてテストを開始します。\n"
+"目的:\n"
+"    このテストでは、FireWireハードディスクの取り出しを自動的に検出できるかどうか確認します。\n"
+"ステップ:\n"
+"    1.\"テスト\"をクリックしてテストを開始します。\n"
 "       このテストは20秒以内に接続を検出できない場合は、タイムアウトして失敗します。\n"
 "    2.あらかじめ接続しておいたFireWireハードディスクを、FireWireポートから取り出してください。\n"
-"確認：\n"
+"確認:\n"
 "    このテストは自動化されています。テスト結果は自動的に選択されるので、変更しないでください。"
 
 #. description
@@ -890,15 +892,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
-"目的：\n"
+"目的:\n"
 "    このテストでは、画面の解像度を手動で変更したあとに、GUIが適切に使用できるかどうかを確認します。\n"
-"ステップ：\n"
-"    1.'ディスプレイ'アプリケーションを開いてください。\n"
+"ステップ:\n"
+"    1.\"ディスプレイ\"を開いてください。\n"
 "    2.ドロップダウンリストから、新しい画面解像度を選択してください。\n"
-"    3.適用ボタンを押してください。\n"
+"    3.\"適用\"を押してください。\n"
 "    4.ドロップダウンリストから、変更前の画面解像度を選択してください。\n"
-"    5.適用ボタンを押してください。\n"
-"確認：\n"
+"    5.\"適用\"を押してください。\n"
+"確認:\n"
 "    解像度は、期待通りに変更されましたか？"
 
 #. description
@@ -920,12 +922,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
-msgstr "Xが動作しているかテストします。"
+msgstr "Xが動作しているかをテストします。"
 
 #. description
 #: ../jobs/graphics.txt.in:37
 msgid "Test that the X is not running in failsafe mode."
-msgstr "Xがフェイルセーフモードで動作していないかテストします。"
+msgstr "Xがフェイルセーフモードで動作していないかをテストします。"
 
 #. description
 #: ../jobs/graphics.txt.in:63
@@ -946,13 +948,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
-"目的：\n"
-"    このテストは、デフォルトの画面解像度を確認します。\n"
-"ステップ：\n"
+"目的:\n"
+"    このテストでは、デフォルトの画面解像度を確認します。\n"
+"ステップ:\n"
 "    1.現在のディスプレイは、次の解像度を使用しています。\n"
-"情報：\n"
+"情報:\n"
 "    $output\n"
-"確認：\n"
+"確認:\n"
 "    お使いのディスプレイで、この解像度は問題ありませんか？"
 
 #. description
@@ -977,12 +979,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
-"目的：\n"
+"目的:\n"
 "    このテストでは、デフォルトのディスプレイをテストします。\n"
-"ステップ：\n"
-"    ビデオテストを表示するために、''テスト''をクリックしてください。\n"
-"確認：\n"
-"    カラーバーと砂嵐が表示されましたか？"
+"ステップ:\n"
+"    ビデオテストを表示するために、\"テスト\"をクリックしてください。\n"
+"確認:\n"
+"    カラーバーと砂嵐が表示されましたか?"
 
 #. description
 #: ../jobs/graphics.txt.in:92
@@ -999,11 +1001,11 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
-"目的：\n"
-"    このテストでは、検出されたビデオモードを順番にテストしていきます。\n"
-"ステップ：\n"
-"    1.''テスト''をクリックして、ビデオモードの切り替えを開始してください。\n"
-"確認：\n"
+"目的:\n"
+"    このテストでは、検出されたビデオモードを順番にテストします。\n"
+"ステップ:\n"
+"    1.\"テスト\"をクリックして、ビデオモードの切り替えを開始してください。\n"
+"確認:\n"
 "    それぞれのビデオモードで、画面はきちんと動作しているように見えましたか?"
 
 #. description
@@ -1030,9 +1032,9 @@ msgid ""
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
 "目的：\n"
-"    このテストは、ビデオカードの基本的な3D性能をテストします。\n"
+"    このテストでは、ビデオカードの基本的な3D機能をテストします。\n"
 "ステップ：\n"
-"    1.''テスト''をクリックし、OpenGLのデモを実行してください。ESCキーを押せば、いつでもデモを閉じることができます。\n"
+"    1.\"テスト\"をクリックし、OpenGLのデモを実行してください。ESCキーを押せば、いつでもデモを閉じることができます。\n"
 "    2.アニメーションがぎくしゃくしたり、遅すぎないか確認してください。\n"
 "確認：\n"
 "    1.3Dアニメーションは表示されましたか？\n"
@@ -1084,7 +1086,7 @@ msgstr ""
 #: ../jobs/graphics.txt.in:211
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
-msgstr "graphics/screenshot_fullscreen_videoにあるキャプチャ画像を添付してください。"
+msgstr "graphics/screenshot_fullscreen_videoにあるキャプチャ画像を添付する"
 
 #. description
 #: ../jobs/hibernate.txt.in:14
@@ -1103,6 +1105,15 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"目的:\n"
+"    このテストでは、(サポートされている場合に)システムが正しくハイバーネートできるかどうかをチェックします。\n"
+"ステップ:\n"
+"    1.\"テスト\"をクリックします\n"
+"    2.システムがハイバーネートして自動的に5秒以内に起床します。\n"
+"    3.システムが自動的に5秒以内に起床しない場合、電源ボタンを押して手動でシステムを起床させてください。\n"
+"    4.システムがハイバーネートからの復帰に失敗した場合、システムテストツールを再スタートしてこのテストに失敗とマークしてください。\n"
+"確認:\n"
+"    システムはハイバーネートに成功して、起床後、適切に動作しましたか?"
 
 #. description
 #: ../jobs/info.txt.in:5
@@ -1132,7 +1143,7 @@ msgstr "DMIデコードの出力を添付する"
 #. description
 #: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "非常に詳細なlspciの出力を添付する"
 
 #. description
 #: ../jobs/info.txt.in:42
@@ -1147,12 +1158,12 @@ msgstr "USB デバイスのリスト"
 #. description
 #: ../jobs/info.txt.in:58
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr "様々なmodprobe.confファイルの内容を添付します。"
+msgstr "様々なmodprobe.confファイルの内容を添付する"
 
 #. description
 #: ../jobs/info.txt.in:63
 msgid "Attaches the contents of the /etc/modules file."
-msgstr "/etc/modulesファイルの内容を添付します。"
+msgstr "/etc/modulesファイルの内容を添付する"
 
 #. description
 #: ../jobs/info.txt.in:68
@@ -1162,28 +1173,28 @@ msgstr "様々なsysctl configファイルの内容を添付する"
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "sysfsの属性のレポートを添付する"
 
 #. description
 #: ../jobs/info.txt.in:83
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
-msgstr "システムのハードウェア情報を示しているudevデータベースのダンプを添付します。"
+msgstr "システムのハードウェア情報を示すudevデータベースのダンプを添付する"
 
 #. description
 #: ../jobs/info.txt.in:95
 msgid "Attaches a tarball of gcov data if present."
-msgstr "gcovデータが存在する場合は、tarボールを添付します。"
+msgstr "gcovデータが存在する場合、tarボールを添付する"
 
 #. description
 #: ../jobs/info.txt.in:100
 msgid "Attaches a list of the currently running kernel modules."
-msgstr "現在利用しているカーネルモジュールのリストを添付します。"
+msgstr "現在利用しているカーネルモジュールのリストを添付する"
 
 #. description
 #: ../jobs/info.txt.in:105
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr "/proc/acpi/sleepが存在する場合は、内容を添付します。"
+msgstr "/proc/acpi/sleepが存在する場合、内容を添付する"
 
 #. description
 #: ../jobs/info.txt.in:109
@@ -1203,7 +1214,7 @@ msgstr "bootchartを実行した際のbootchartのpngファイルを添付する
 #. description
 #: ../jobs/info.txt.in:146
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr "ブートチャートのテスト実行時のブートチャートログを添付します。"
+msgstr "bootchartテスト実行時のbootchartのログを添付する"
 
 #. description
 #: ../jobs/info.txt.in:154
@@ -1213,7 +1224,7 @@ msgstr "インストーラーbootchartのtarボールが存在する場合は、
 #. description
 #: ../jobs/info.txt.in:159
 msgid "Attaches the installer debug log if it exists."
-msgstr "インストーラーのデバッグのログが存在する場合は添付します。"
+msgstr "インストーラーのデバッグのログが存在する場合、添付する"
 
 #. description
 #: ../jobs/input.txt.in:22

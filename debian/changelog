@@ -1,10 +1,80 @@
+checkbox (0.16) UNRELEASED; urgency=low
+
+  [ Brendan Donegan ]
+  * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
+    be utilised in checkbox-certification.
+  * checkbox/user_interface.py - fixed keyword argument in show_entry.
+    checkbox_cli/cli_interface.py - return tuple as expected. (LP: #1173103)
+
+  [ Po-Hsu Lin]
+  * jobs/led.txt.in: Modified the description of led/power-blink-suspend test to
+    cover more cases.
+    jobs/suspend.txt.in: Modified the description of suspend/suspend_advanced
+    test cover more cases. (LP: #1172108)
+
+  [ Jeff Lane ]
+  * scripts/sleep_test_log_check: added new script to parse fwts logs for
+    errors
+    jobs/hibernate.txt.in, jobs/stress.txt.in, jobs/suspend.txt.in: added jobs
+    to use the sleep_test_log_check script after s3/s4 tests. Modified current
+    s3/s4 tests to use the new None fail level for fwts_test
+    scripts/fwts_test: no longer fails on fwts errors if "-f none" is chosen.
+    Now it should only fail by manual indication if the actual sleep action
+    fails. (LP: #1169922)
+  * scripts/bluetooth_test: test no longer generates odd Broken Pipe error when
+    the dpkg bit verifies obexftp is installed (LP: #1169488)
+  * jobs/networking.txt.in: fixed networking/info jobs that were not being run
+    because $output was being resolved too early (LP: #1065983)
+
+  [ Daniel Manrique ]
+  * scripts/alsa_record_playback: Replaced alsasrc with autoaudiosrc
+    (LP: #1059544)
+
+  [ Jeff Marcom ]
+  * scripts/network: added new script for testing and retrieving information for
+    network interfaces.
+  * configs,examples/network.cfg: added config file 
+    for network test configuration and setup
+
+ -- Jeff Marcom <jeffmarcom@ubuntu.com>  Wed, 24 Apr 2013 13:35:39 -0400
+
+checkbox (0.15.8) raring; urgency=low
+
+  * jobs/monitor.txt.in: Modified the description of dim_brightness test to make 
+    it consistent with the code. (LP: #1170244)
+
+  [ Jeff Lane] 
+  * jobs/miscellanea.txt.in: Added jobs for manual verification of PXE boot and
+    remote IPMI to improve server test coverage.
+  * jobs/led.txt.in: Modified Jobs: led/power, led/wlan, led/wlan-disabled. New
+    jobs: led/power-blink-suspend, led/suspend, led/mute
+    jobs/keys.txt.in: modified keys/wireless
+  * plugins/lock_prompt.py: added a lock release to cleanly clear lock on stop.
+    plugins/persist_prompt.py: promoted save to run before lock release.
+    checkbox/lib/fifo.py: trap OSError exception at close when the input/output
+    fifo fds disappear before fifo.close() can get to them. (LP: #115561)
+
+  [ Brendan Donegan ]
+  * scripts/sources_test - modified script so that it takes sources list
+    location and repository list as arguments
+  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
+    variables to the sources_test script (LP: #1149288)
+  * Added mobile broadband tests and updated create_connection script to allow
+    creation of mobile broadband connections.
+
+  [ Sylvain Pineau ]
+  * debian/control: Added python3-mock as a build dependency.
+  * debian/rules: Clean __pycache__ directory after running scripts unit tests.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 23 Apr 2013 14:53:54 +0100
+
 checkbox (0.15.7) raring; urgency=low
 
   [ Zygmunt Krynicki ]
   * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
     programs to be compatible with plainbox
 
-  [ Brendan Donegan ]
+  [ Brendan Donegan ]  
   * scripts/rendercheck_test, scripts/graphics_stress_test, 
     jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
     specific rendercheck tests and use this to exclude the 'repeat' test
@@ -19,6 +89,12 @@ checkbox (0.15.7) raring; urgency=low
   * jobs/mediacard.txt.in: reduce test file size for MMC to 64MB (LP: #1167214)
   * jobs/led.txt.in, jobs/suspend.txt.in: removed bits about WLAN LED flashing
     from the WLAN jobs as that no longer happens on data tx/rx (LP: #1157606)
+  * jobs/power-management.txt.in: added manual reboot and shutdown tests for
+    server and Xen testing.  Took the opportunity to correct punctuation in the
+    descriptions or other manual jobs.
+    jobs/virtualization.txt.in: added virtualization/xen_ok and
+    virtualization/xen_check_vms jobs for Xen testing
+    scripts/xen_test: added script to perform Xen testing
 
   [ Jeff Marcom ]
   * scripts/virtualization - Fixes issue where console terminal would 
@@ -28,6 +104,12 @@ checkbox (0.15.7) raring; urgency=low
    * checkbox/parsers/submission.py: Fixed incorrect context for memory
      parsing, which resulted in absent memory information when parsing
      xml files.
+
+  [ Sylvain Pineau ]
+  * scripts/gputest_benchmark: Added a wrapper for the Geeks3D GpuTest
+    benchmark.
+  * jobs/benchmarks.txt.in: Added the corresponding GpuTest jobs (Furmark,
+    Gimark and Tessmark)
 
  -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 05 Apr 2013 17:04:44 +0100
 

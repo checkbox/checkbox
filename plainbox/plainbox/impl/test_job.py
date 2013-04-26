@@ -25,8 +25,9 @@ Test definitions for plainbox.impl.job module
 """
 
 import json
-
 from unittest import TestCase
+
+from mock import Mock
 
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.rfc822 import RFC822Record
@@ -282,3 +283,80 @@ class ParsingTests(TestCaseWithParameters):
         expected = set({'foo', 'bar', 'froz'})
         observed = job.get_direct_dependencies()
         self.assertEqual(expected, observed)
+
+
+class JobEnvTests(TestCase):
+
+    def setUp(self):
+        self.job = JobDefinition({
+            'name': 'name',
+            'environ': 'foo bar froz'
+        })
+        self.job._checkbox = Mock()
+        self.job._checkbox.extra_PYTHONPATH = None
+        self.job._checkbox.extra_PATH = "value-of-extra-path"
+        self.job._checkbox.CHECKBOX_SHARE = "checkbox-share-value"
+        self.session_dir = "session-dir-value"
+
+    def test_checkbox_env(self):
+        env = {
+            "PATH": ""
+        }
+        self.job.modify_execution_environment(env, self.session_dir)
+        self.assertEqual(env['CHECKBOX_SHARE'], 'checkbox-share-value')
+        self.assertEqual(env['CHECKBOX_DATA'], self.session_dir)
+
+    def test_without_config(self):
+        env = {
+            "PATH": "",
+            # foo is not defined in the environment
+            'bar': 'old-bar-value'
+            # froz is not defined in the environment
+        }
+        # Ask the job to modify the environment
+        self.job.modify_execution_environment(env, self.session_dir)
+        # Check how foo bar and froz look like now
+        self.assertNotIn('foo', env)
+        self.assertEqual(env['bar'], 'old-bar-value')
+        self.assertNotIn('froz', env)
+
+    def test_with_config_and_environ_variables(self):
+        env = {
+            "PATH": "",
+            # foo is not defined in the environment
+            'bar': 'old-bar-value'
+            # froz is not defined in the environment
+        }
+        # Setup a configuration object with values for foo and bar
+        from plainbox.impl.applogic import PlainBoxConfig
+        config = PlainBoxConfig()
+        config.environment = {
+            'foo': 'foo-value',
+            'bar': 'bar-value'
+        }
+        # Ask the job to modify the environment
+        self.job.modify_execution_environment(env, self.session_dir, config)
+        # foo got copied from the config
+        self.assertEqual(env['foo'], 'foo-value')
+        # bar from the old environment
+        self.assertEqual(env['bar'], 'old-bar-value')
+        # froz is still empty
+        self.assertNotIn('froz', env)
+
+    def test_with_config_and_variables_not_in_environ(self):
+        env = {
+            'bar': 'old-bar-value'
+        }
+        # Setup a configuration object with values for baz.
+        # Note that baz is *not* declared in the job's environ line.
+        from plainbox.impl.applogic import PlainBoxConfig
+        config = PlainBoxConfig()
+        config.environment = {
+            'baz': 'baz-value'
+        }
+        # Ask the job to modify the environment
+        self.job.modify_execution_environment(env, self.session_dir, config)
+        # bar from the old environment
+        self.assertEqual(env['bar'], 'old-bar-value')
+        # baz from the config environment
+        self.assertEqual(env['baz'], 'baz-value')

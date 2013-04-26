@@ -6,7 +6,7 @@ TEST_FILE=$1
 BTADDR=$2
 ACTION=$3
 
-if ! dpkg -l | grep -q obexftp; then
+if ! dpkg-query -W obexftp >/dev/null 2>&1; then
     echo "You must install obexftp to run this script"
     exit 1
 fi

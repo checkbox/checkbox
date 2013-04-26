@@ -2,11 +2,11 @@ plugin: manual
 name: power-management/shutdown-boot
 _description:
  PURPOSE:
-     This test will check your system shutdown/booting cycle
+     This test will check your system shutdown/booting cycle.
  STEPS:
-     1. Shutdown your machine
-     2. Boot your machine
-     3. Repeat steps 1 and 2 at least 5 times
+     1. Shutdown your machine.
+     2. Boot your machine.
+     3. Repeat steps 1 and 2 at least 5 times.
  VERIFICATION:
      Did the system shutdown and rebooted correctly?
 
@@ -44,9 +44,10 @@ _description:
   2. The machine will shut down.
   3. Power the machine back on.
   4. After rebooting, wait for the test prompts to inform you that the test is complete.
-  5. Once the test has completed, restart checkbox and select Re-Run when prompted
+  5. Once the test has completed, restart checkbox and select 'Re-run' when prompted.
  VERIFICATION:
-  If the machine successfully shuts down and boots, select Yes then select Next.
+  If the machine successfully shuts down and boots, select 'Yes', otherwise,
+  select 'No'. 
 
 plugin: attachment
 name: power-management/poweroff-log-attach
@@ -69,7 +70,7 @@ _description:
   1. Select "Test" to begin.
   2. The machine will reboot.
   3. After rebooting, wait for the test prompts to inform you that the test is complete.
-  4. Once the test has completed, restart checkbox and select Re-Run when prompted
+  4. Once the test has completed, restart checkbox and select Re-Run when prompted.
  VERIFICATION:
   If the machine successfully reboots, select Yes then select Next.
 
@@ -83,9 +84,9 @@ plugin: manual
 name: power-management/lid
 _description:
  PURPOSE:
-     This test will check your lid sensors
+     This test will check your lid sensors.
  STEPS:
-     1. Close your laptop lid
+     1. Close your laptop lid.
  VERIFICATION:
     Does closing your laptop lid cause your system to suspend?
 
@@ -102,8 +103,8 @@ _description:
  PURPOSE:
      This test will check your lid sensors
  STEPS:
-     1. Click "Test"
-     2. Close and open the lid
+     1. Click "Test".
+     2. Close and open the lid.
  VERIFICATION:
      Did the screen turn off while the lid was closed?
 
@@ -118,12 +119,12 @@ command:
  exit 1
 _description:
  PURPOSE:
-     This test will check your lid sensors
+     This test will check your lid sensors.
  STEPS:
-     1. Click "Test"
-     2. Close the lid
-     3. Wait 5 seconds with the lid closed
-     4. Open the lid
+     1. Click "Test".
+     2. Close the lid.
+     3. Wait 5 seconds with the lid closed.
+     4. Open the lid.
  VERIFICATION:
      Did the system resume when the lid was opened?
 
@@ -144,10 +145,9 @@ plugin: manual
 name: power-management/unplug_ac
 _description:
  PURPOSE:
-     This test will ensure that the AC is unplugged for the battery drain tests
- to run.
+     This test will ensure that the AC is unplugged for the battery drain tests to run.
  STEPS:
-     1. Unplug laptop from AC
+     1. Unplug laptop from AC.
  VERIFICATION:
      Was the laptop unplugged from AC?
 
@@ -187,9 +187,45 @@ name: power-management/plug_ac
 depends: power-management/battery_drain_idle power-management/battery_drain_movie power-management/battery_drain_sleep
 _description:
  PURPOSE:
-     This test will ensure that the AC is plugged back in after the battery
+     This test will ensure that the AC is plugged back in after the battery.
      tests
  STEPS:
-     1. Plug laptop into AC
+     1. Plug laptop into AC.
  VERIFICATION:
      Was the laptop plugged into AC?
+
+plugin: manual
+name: power-management/reboot_manual
+user:root
+command: shutdown -r now
+_description:
+ PURPOSE:
+     This test will verify that your system can successfully reboot.
+ STEPS:
+     1. Select 'Test' to initiate a system reboot.
+     2. When the grub boot menu is displayed, boot into Ubuntu (Or allow the
+     system to automatically boot on its own).
+     3. Once the system has restarted, log in and restart checkbox-certification-server.
+     4. Select 'Re-Run' to return to this test.
+     5. Select 'Yes' to indicate the test has passed if the system rebooted
+     successfully, otherwise, select 'No' to indicate there was a problem.
+ VERIFICATION:
+     Did the system reboot correctly?
+
+plugin: manual
+name: power-management/shutdown_manual
+user: root
+command: shutdown -h now
+_description:
+ PURPOSE:
+     This test will check your system shutdown/booting cycle
+ STEPS:
+     1. Select 'Test' to initiate a system shutdown.
+     2. Power the system back on.
+     3. From the grub menu, boot into the Xen Hypervisor.
+     4. When the system has restarted, log in and restart checkbox-certification-server.
+     5. Select 'Re-Run' to return to this test.
+     6. Select 'Yes' to indicate the test has passed if the machine shut down
+     successfully otherwise, Select 'No' to indicate there was a problem.
+ VERIFICATION:
+     Did the system shutdown and boot correctly?

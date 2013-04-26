@@ -977,10 +977,10 @@ class UrwidInterface(UserInterface):
         return dialog.response
 
 
-    def show_entry(self, text, value, label=None, previous=None, next=None):
+    def show_entry(self, text, value, showSubmitToHexr=False, label=None, previous=None, next=None):
         dialog = InputDialog(text).run()
         self.direction = dialog.direction
-        return dialog.response
+        return (dialog.response, False)
 
 
     def show_check(self, text, options=[], default=None):

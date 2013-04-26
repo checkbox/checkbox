@@ -173,25 +173,36 @@ class FallbackCommandOutputPrinter(extcmd.DelegateBase):
 class JobRunner(IJobRunner):
     """
     Runner for jobs - executes jobs and produces results
+
+    The runner is somewhat de-coupled from jobs and session. It still carries
+    all checkbox-specific logic about the various types of plugins.
+
+    The runner consumes jobs and configuration objects and produces job result
+    objects. The runner can operate in dry-run mode, when enabled, most jobs
+    are never started. Only jobs listed in DRY_RUN_PLUGINS are executed.
     """
 
+    # List of plugins that are still executed
+    _DRY_RUN_PLUGINS = ('local', 'resource', 'attachment')
+
     def __init__(self, session_dir, jobs_io_log_dir,
-                 command_io_delegate=None, outcome_callback=None):
+                 command_io_delegate=None, outcome_callback=None,
+                 dry_run=False):
         """
         Initialize a new job runner.
 
-        Uses the specified CheckBox instance to execute scripts. Uses the
-        specified session_dir as CHECKBOX_DATA environment variable. Uses the
-        specified IO delegate for extcmd.ExternalCommandWithDelegate to track
-        IO done by the called commands (optional, a simple console printer is
-        provided if missing).
+        Uses the specified session_dir as CHECKBOX_DATA environment variable.
+        Uses the specified IO delegate for extcmd.ExternalCommandWithDelegate
+        to track IO done by the called commands (optional, a simple console
+        printer is provided if missing).
         """
         self._session_dir = session_dir
         self._jobs_io_log_dir = jobs_io_log_dir
         self._command_io_delegate = command_io_delegate
         self._outcome_callback = outcome_callback
+        self._dry_run = dry_run
 
-    def run_job(self, job):
+    def run_job(self, job, config=None):
         """
         Run the specified job an return the result
         """
@@ -206,20 +217,33 @@ class JobRunner(IJobRunner):
                 'comment': 'This plugin is not supported'
             })
         else:
-            return runner(job)
+            if self._dry_run and job.plugin not in self._DRY_RUN_PLUGINS:
+                return self._dry_run_result(job)
+            else:
+                return runner(job, config)
 
-    def _plugin_shell(self, job):
-        return self._just_run_command(job)
+    def _dry_run_result(self, job):
+        """
+        Produce the result that is used when running in dry-run mode
+        """
+        return JobResult({
+            'job': job,
+            'outcome': JobResult.OUTCOME_SKIP,
+            'comments': "Job skipped in dry-run mode"
+        })
+
+    def _plugin_shell(self, job, config):
+        return self._just_run_command(job, config)
 
     _plugin_attachment = _plugin_shell
 
-    def _plugin_resource(self, job):
-        return self._just_run_command(job)
+    def _plugin_resource(self, job, config):
+        return self._just_run_command(job, config)
 
-    def _plugin_local(self, job):
-        return self._just_run_command(job)
+    def _plugin_local(self, job, config):
+        return self._just_run_command(job, config)
 
-    def _plugin_manual(self, job):
+    def _plugin_manual(self, job, config):
         if self._outcome_callback is None:
             return JobResult({
                 'job': job,
@@ -227,7 +251,7 @@ class JobRunner(IJobRunner):
                 'comment': "non-interactive test run"
             })
         else:
-            result = self._just_run_command(job)
+            result = self._just_run_command(job, config)
             # XXX: make outcome writable
             result._data['outcome'] = self._outcome_callback()
             return result
@@ -235,9 +259,9 @@ class JobRunner(IJobRunner):
     _plugin_user_interact = _plugin_manual
     _plugin_user_verify = _plugin_manual
 
-    def _just_run_command(self, job):
+    def _just_run_command(self, job, config):
         # Run the embedded command
-        return_code, io_log = self._run_command(job)
+        return_code, io_log = self._run_command(job, config)
         # Convert the return of the command to the outcome of the job
         if return_code == 0:
             outcome = JobResult.OUTCOME_PASS
@@ -251,7 +275,7 @@ class JobRunner(IJobRunner):
             'io_log': io_log
         })
 
-    def _get_script_env(self, job, only_changes=False):
+    def _get_script_env(self, job, config=None, only_changes=False):
         """
         Compute the environment the script will be executed in
         """
@@ -260,7 +284,7 @@ class JobRunner(IJobRunner):
         # Use non-internationalized environment
         env['LANG'] = 'C.UTF-8'
         # Allow the job to customize anything
-        job.modify_execution_environment(env, self._session_dir)
+        job.modify_execution_environment(env, self._session_dir, config)
         # If a differential environment is requested return only the subset
         # that has been altered.
         #
@@ -274,7 +298,7 @@ class JobRunner(IJobRunner):
         else:
             return env
 
-    def _run_command(self, job):
+    def _run_command(self, job, config):
         """
         Run the shell command associated with the specified job.
 
@@ -340,7 +364,7 @@ class JobRunner(IJobRunner):
             cmd = ['pkexec', '--user', job.user, 'env'] + [
                 "{key}={value}".format(key=key, value=value)
                 for key, value in self._get_script_env(
-                    job, only_changes=True
+                    job, config, only_changes=True
                 ).items()
             ] + cmd
             logging.debug("job[%s] executing %r", job.name, cmd)
@@ -348,7 +372,7 @@ class JobRunner(IJobRunner):
         else:
             logging.debug("job[%s] executing %r", job.name, cmd)
             return_code = logging_popen.call(
-                cmd, env=self._get_script_env(job))
+                cmd, env=self._get_script_env(job, config))
         logger.debug("job[%s] command return code: %r",
                      job.name, return_code)
         # XXX: Perhaps handle process dying from signals here

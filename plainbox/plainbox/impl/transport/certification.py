@@ -28,15 +28,14 @@
 """
 
 from logging import getLogger
-import json
 import re
 import requests
-import time
 
 from plainbox.impl.transport import TransportBase
-
+from plainbox.impl.config import Unset
 
 logger = getLogger("plainbox.transport.certification")
+
 
 class InvalidSecureIDError(ValueError):
     def __init__(self, value):
@@ -44,7 +43,6 @@ class InvalidSecureIDError(ValueError):
 
     def __str__(self):
         return repr(self.value)
-
 
 
 class CertificationTransport(TransportBase):
@@ -58,22 +56,36 @@ class CertificationTransport(TransportBase):
 
    """
 
-    def __init__(self, where, options):
+    def __init__(self, where, options, config=None):
         """
         Initialize the Certification Transport.
 
         The options string must contain:
         * secure_id: A 15- or 18-character alphanumeric ID for the system.
                      Valid characters are [a-zA-Z0-9]
+
+        :param config:
+             optional PlainBoxConfig object. If http_proxy and https_proxy
+             values are set in this config object, they will be used to send
+             data via the specified protocols. Note that the transport also
+             honors the http_proxy and https_proxy environment variables.
+             Proxy string format is http://[user:password@]<proxy-ip>:port
         """
         super(CertificationTransport, self).__init__(where, options)
+
+        if config is not None and config.environment is not Unset:
+            self.proxies = {proto: config.environment[proto + "_proxy"]
+                            for proto in ['http', 'https']
+                            if proto + "_proxy" in config.environment}
+        else:
+            self.proxies = None
 
         if not 'secure_id' in self.options:
             raise InvalidSecureIDError("Required option secure_id missing")
         if not re.match(r"^[a-zA-Z0-9]{15}$|^[a-zA-Z0-9]{18}$",
                         self.options['secure_id']):
             raise InvalidSecureIDError(("secure_id must be 15 or 18-character "
-                              "alphanumeric string"))
+                                        "alphanumeric string"))
 
     def send(self, data):
         """ Sends data to the specified server.
@@ -95,19 +107,19 @@ class CertificationTransport(TransportBase):
         :raises requests.exceptions.ConnectionError:
             If connection failed outright.
 
-        :raises requests.exceptions.HTTPError: if the server returned a 
-            non-success result code
+        :raises requests.exceptions.HTTPError: if the server returned
+            a non-success result code
         """
 
         logger.debug("Sending to %s, hardware id is %s",
-                      self.url, self.options['secure_id'])
+                     self.url, self.options['secure_id'])
         cert_headers = {"X_HARDWARE_ID": self.options['secure_id']}
         form_payload = {"data": data}  # Requests takes care of properly
                                        # handling a file-like object for
                                        # data here.
         try:
             r = requests.post(self.url, files=form_payload,
-                              headers=cert_headers)
+                              headers=cert_headers, proxies=self.proxies)
         except requests.exceptions.Timeout as error:
             logger.warning("Request to %s timed out: %s", self.url, error)
             raise
