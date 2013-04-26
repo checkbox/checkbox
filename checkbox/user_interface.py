@@ -131,8 +131,8 @@ class UserInterface:
     def show_text(self, text, previous=None, next=None):
         return
 
-    def show_entry(self, text, value, label=None, submitToHexr=False, previous=None, next=None):
-        return (value, submitToHexr)
+    def show_entry(self, text, value, label=None, showSubmitToHexr=False, previous=None, next=None):
+        return (value, False)
 
     def show_check(self, text, options=[], default=[]):
         return default

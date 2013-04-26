@@ -345,7 +345,7 @@ class CLIInterface(UserInterface):
     def show_entry(self, text, value, showSubmitToHexr=False, label=None, previous=None, next=None):
         dialog = CLILineDialog(text)
 
-        return dialog.run()
+        return (dialog.run(), False)
 
     def show_check(self, text, options=[], default=[]):
         dialog = CLIChoiceDialog(text)
