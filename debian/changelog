@@ -3,6 +3,8 @@ checkbox (0.16) UNRELEASED; urgency=low
   [ Brendan Donegan ]
   * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
     be utilised in checkbox-certification.
+  * checkbox/user_interface.py - fixed keyword argument in show_entry.
+    checkbox_cli/cli_interface.py - return tuple as expected. (LP: #1173103)
 
   [ Po-Hsu Lin]
   * jobs/led.txt.in: Modified the description of led/power-blink-suspend test to
