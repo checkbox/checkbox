@@ -7,6 +7,11 @@ checkbox (0.16.1) UNRELEASED; urgency=low
   * jobs/mediacard.txt.in: Modified test instructions to be less confusing
     (LP: #970857)
 
+  [ Sylvain Pineau ]
+  * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
+    with the root user, restore the workspaces switch and the HTML5 video
+    playback ; remove the extra suspend/resume (LP: #1172851)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
 checkbox (0.16) raring; urgency=low
