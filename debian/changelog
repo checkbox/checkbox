@@ -4,6 +4,8 @@ checkbox (0.16.1) UNRELEASED; urgency=low
   * scripts/cpu_offlining: Modified script to no longer offline cpu0 to resolve
     a bug on ARM. Modified output so most of it is redirected to stderr for
     fail cases, we don't need that much for success cases. (LP: #1078897) 
+  * jobs/mediacard.txt.in: Modified test instructions to be less confusing
+    (LP: #970857)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
