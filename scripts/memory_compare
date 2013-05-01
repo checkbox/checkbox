@@ -55,20 +55,23 @@ def main():
     try:
         percentage = difference / installed_memory * 100
     except ZeroDivisionError:
-        print("FAIL: Either dmi or /proc/meminfo returned a memory size of 0 kB", file=sys.stderr)
+        print("Results:")
         print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
         print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\nFAIL: Either dmi or /proc/meminfo returned a memory size of 0 kB", file=sys.stderr)
         return 1
     
     if percentage <= THRESHOLD:
-        print("PASS: Difference is %d bytes (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        print("Results:")
         print("\t/proc/meminfo reports:\t%s kB" % visible_memory)
         print("\tdmi reports:\t%s kB" % installed_memory)
+        print("\nPASS: Meminfo reports %d bytes less than DMI, a difference of %.2f%%. This is less than the %d%% variance allowed." % (difference, percentage, THRESHOLD))
         return 0
     else:
-        print("FAIL: Difference is %d bytes (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD), file=sys.stderr)
+        print("Results")
         print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
         print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\nFAIL: Meminfo reports %d bytes less than DMI, a difference of %.2f%%. Only a variance of %d%% in reported memory is allowed." % (difference, percentage, THRESHOLD), file=sys.stderr)
         return 1
 
 if __name__ == "__main__":
