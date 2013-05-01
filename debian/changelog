@@ -5,6 +5,11 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     a bug on ARM. Modified output so most of it is redirected to stderr for
     fail cases, we don't need that much for success cases. (LP: #1078897) 
 
+  [ Sylvain Pineau ]
+  * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
+    with the root user, restore the workspaces switch and the HTML5 video
+    playback ; remove the extra suspend/resume (LP: #1172851)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
 checkbox (0.16) raring; urgency=low

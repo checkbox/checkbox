@@ -851,21 +851,17 @@ _description: Attaches the screenshot captured in graphics/screenshot.
 plugin: shell
 name: suspend/gpu_lockup_after_suspend
 requires:
- package.name == 'fwts'
  package.name == 'wmctrl'
  package.name == 'mesa-utils'
 depends: suspend/suspend_advanced_auto
-user: root
 command: gpu_test
 _description:
  PURPOSE:
-     Do some challenging operations, suspend the system, do more challenging
-     operations - then check for lockup on the GPU
+     Do some challenging operations then check for lockup on the GPU
  STEPS:
      1. Create 2 glxgears windows and move them quickly
-     2. Switch workspaces/viewports with wmctrl
+     2. Switch workspaces with wmctrl
      3. Launch an HTML5 video playback in firefox
-     4. Suspend/resume
  VERIFICATION:
      After a 60s workload, check kern.log for reported GPU errors
 

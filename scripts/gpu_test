@@ -1,12 +1,36 @@
 #!/usr/bin/python3
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
+"""
+Script checking gpu lockups.
+
+Several threads are started to exercise the GPU in ways that can cause gpu
+lockups.
+Inspired by the workload directory of the xdiagnose package.
+"""
+
 import os
+import re
+import subprocess
 import sys
 import time
-import subprocess
-from threading import Thread
+from gi.repository import Gio
 from math import cos, sin
+from threading import Thread
 
 
 class GlxThread(Thread):
@@ -44,7 +68,8 @@ class RotateGlxThread(Thread):
                 coords = "%s,%s" % (x, y)
                 subprocess.call(
                     'wmctrl -i -r %s -e 0,%s,-1,-1' % (self.id, coords),
-                    shell=True)
+                    shell=True
+                )
                 time.sleep(0.002 * self.offset)
                 if self.cancel:
                     return
@@ -53,27 +78,6 @@ class RotateGlxThread(Thread):
 class ChangeWorkspace(Thread):
     """
     Start a thread performing fast workspace switches
-    """
-
-    def __init__(self, size):
-        Thread.__init__(self)
-        self.size = size
-        self.cancel = False
-
-    def run(self):
-        while(1):
-            for i in range(self.size):
-                subprocess.call('wmctrl -s %s' % i, shell=True)
-                time.sleep(0.5)
-                if self.cancel:
-                    # Switch back to workspace #1
-                    subprocess.call('wmctrl -s 0', shell=True)
-                    return
-
-
-class ChangeViewport(Thread):
-    """
-    Start a thread performing fast viewport switches
     """
 
     def __init__(self, hsize, vsize, xsize, ysize):
@@ -93,7 +97,7 @@ class ChangeViewport(Thread):
                         shell=True)
                     time.sleep(0.5)
                     if self.cancel:
-                        # Switch back to viewport #1
+                        # Switch back to workspace #1
                         subprocess.call('wmctrl -o 0,0', shell=True)
                         return
 
@@ -104,54 +108,39 @@ class Html5VideoThread(Thread):
     """
 
     def run(self):
-        html5_path = os.path.join(os.getenv('CHECKBOX_SHARE', 'data/websites/html5_video.html'))
+        html5_path = os.path.join(
+            os.getenv('CHECKBOX_SHARE'),
+            'data/websites/html5_video.html')
         subprocess.call(
-            'sudo -H -u %s xdg-open %s' % (os.getenv('SUDO_USER'), html5_path),
+            'xdg-open %s' % html5_path,
             stdout=open(os.devnull, 'w'),
             stderr=subprocess.STDOUT,
             shell=True)
 
     def terminate(self):
-        subprocess.call('wmctrl -c firefox', shell=True)
+            subprocess.call("pkill firefox", shell=True)
 
 
-def pidof(name):
-    for pid in os.listdir("/proc"):
-        if not pid.isdigit():
-            continue
-        try:
-            exe = os.readlink(os.path.join("/proc", pid, "exe"))
-        except OSError:
-            continue
-        if os.path.basename(exe) == name:
-            return int(pid)
-    return 0
-
-
-def is_unity_2d_running():
-    return pidof("unity-2d-panel") > 0
-
-
-def check_gpu():
-    f = open('/var/log/kern.log', 'r')
-    with f:
+def check_gpu(log=None):
+    if not log:
+        log = '/var/log/kern.log'
+    with open(log, 'r') as f:
         if re.findall(r'gpu\s+hung', f.read(), flags=re.I):
             print("GPU hung Detected")
-            sys.exit(1)
+            return 1
 
 
 def main():
-    if not (os.geteuid() == 0):
-        print("Must be run as root.")
+    if check_gpu():
         return 1
-
-    check_gpu()
     GlxWindows = []
     GlxRotate = []
     subprocess.call("pkill 'glxgears|firefox'", shell=True)
 
     Html5Video = Html5VideoThread()
     Html5Video.start()
+
+    source = Gio.SettingsSchemaSource.get_default()
 
     for i in range(2):
         GlxWindows.append(GlxThread())
@@ -169,28 +158,33 @@ def main():
         GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i + 1))
         GlxRotate[i].start()
 
-    if is_unity_2d_running():
-        size = int(subprocess.check_output(
-            'gconftool --get /apps/metacity/general/num_workspaces',
-            shell=True))
-        DesktopSwitch = ChangeWorkspace(size)
+    hsize = vsize = 2
+    hsize_ori = vsize_ori = None
+    if source.lookup("org.compiz.core", True):
+        settings = Gio.Settings(
+            "org.compiz.core",
+            "/org/compiz/profiles/unity/plugins/core/"
+        )
+        hsize_ori = settings.get_int("hsize")
+        vsize_ori = settings.get_int("vsize")
+        settings.set_int("hsize", hsize)
+        settings.set_int("vsize", vsize)
+        time.sleep(5)
     else:
-        (x_res, y_res) = re.search(b'DG:\s+(\d+)x(\d+)',
-            subprocess.check_output('wmctrl -d', shell=True)).groups()
         hsize = int(subprocess.check_output(
             'gconftool --get /apps/compiz-1/general/screen0/options/hsize',
             shell=True))
         vsize = int(subprocess.check_output(
             'gconftool --get /apps/compiz-1/general/screen0/options/vsize',
             shell=True))
-        DesktopSwitch = ChangeViewport(
-            hsize, vsize, int(x_res) // hsize, int(y_res) // vsize)
+    (x_res, y_res) = re.search(
+        b'DG:\s+(\d+)x(\d+)',
+        subprocess.check_output('wmctrl -d', shell=True)).groups()
+    DesktopSwitch = ChangeWorkspace(
+        hsize, vsize, int(x_res) // hsize, int(y_res) // vsize)
     DesktopSwitch.start()
 
-    time.sleep(20)
-    # Suspend/resume the SUT
-    subprocess.call('fwts -q s3 --s3-sleep-delay=30', shell=True)
-    time.sleep(20)
+    time.sleep(35)
 
     for i in range(2):
         GlxRotate[i].cancel = True
@@ -198,7 +192,16 @@ def main():
     DesktopSwitch.cancel = True
     time.sleep(10)
     Html5Video.terminate()
-    check_gpu()
+    if check_gpu():
+        return 1
+
+    if source.lookup("org.compiz.core", True):
+        settings = Gio.Settings(
+            "org.compiz.core",
+            "/org/compiz/profiles/unity/plugins/core/")
+        settings.set_int("hsize", hsize_ori)
+        settings.set_int("vsize", vsize_ori)
+        Gio.Settings.sync()
 
 if __name__ == '__main__':
     sys.exit(main())
