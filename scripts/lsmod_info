@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 from checkbox.parsers.modinfo import ModinfoParser
-from subprocess import Popen, PIPE, check_output
+from subprocess import Popen, PIPE, check_output, CalledProcessError
 
 
 def main():
@@ -19,8 +19,11 @@ def main():
             stream = check_output([cmd, module],
                                   stderr=PIPE,
                                   universal_newlines=False)
-        except OSError:
-            version = 'Unavailable'
+        except CalledProcessError as e:
+            if e.returncode != 1:
+                raise e
+            else:
+                version = 'Unavailable'
 
         stream = stream.decode('utf-8')
 
