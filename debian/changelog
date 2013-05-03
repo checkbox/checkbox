@@ -13,6 +13,8 @@ checkbox (0.16.1) UNRELEASED; urgency=low
   * jobs/camera.txt.in: removed an extraneous requres line for gir1.2
     scripts/camera_test: added code to determine what version of gst we're
     using and set video type and plugin accordingly. (LP: #1100594)
+  * scripts/network_check: added ability to specify custom target URL for
+    debugging failures (LP: #1128017)
 
   [ Sylvain Pineau ]
   * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
