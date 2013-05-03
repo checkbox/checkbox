@@ -8,6 +8,8 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     (LP: #970857)
   * scripts/cpu_topology: define the cpuinfo nested dicts on creation rather
     than define elements during parsing of /proc/cpuinfo (LP: #1111878)
+  * scripts/lsmod_info: Corrected error handling for the check_output() call to
+    trap the correct error. (LP: #1103647)
 
   [ Sylvain Pineau ]
   * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
