@@ -25,12 +25,14 @@ from setuptools import setup, find_packages
 setup(
     name="plainbox",
     version="0.2",
+    url="https://launchpad.net/checkbox/",
     packages=find_packages(),
     author="Zygmunt Krynicki",
     test_suite='plainbox.tests.test_suite',
     author_email="zygmunt.krynicki@canonical.com",
     license="GPLv3+",
     description="Simple replacement for checkbox",
+    long_description=open("README.rst", "rt", encoding="UTF-8").read(),
     tests_require=[
         'mock',
     ],

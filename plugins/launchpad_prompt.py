@@ -74,6 +74,7 @@ class LaunchpadPrompt(Plugin):
 
                 url = "file://%s" % posixpath.abspath(self.report)
 
+                # Ignore whether to submit to HEXR
                 email = interface.show_entry(_("""\
 The following report has been generated for submission to the Launchpad \
 hardware database:
@@ -84,7 +85,7 @@ You can submit this information about your system by providing the email \
 address you use to sign in to Launchpad. If you do not have a Launchpad \
 account, please register here:
 
-  https://launchpad.net/+login""") % url, email, label=_("Email") + ":")
+  https://launchpad.net/+login""") % url, email, label=_("Email") + ":")[0]
 
             if interface.direction == PREV:
                 break

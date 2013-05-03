@@ -28,17 +28,19 @@
 """
 import logging
 import os
+import tempfile
 
 from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
 
 from plainbox.impl.applogic import get_matching_job_list
+from plainbox.impl.applogic import run_job_if_possible
 from plainbox.impl.checkbox import CheckBox, WhiteList
 from plainbox.impl.commands import PlainBoxCommand
+from plainbox.impl.commands.check_config import CheckConfigInvocation
 from plainbox.impl.config import ValidationError, Unset
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.exporter.xml import XMLSessionStateExporter
-from plainbox.impl.result import JobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.session import SessionState
 from plainbox.impl.transport.certification import CertificationTransport
@@ -89,7 +91,9 @@ class _SRUInvocation:
                 self.session.session_dir,
                 self.session.jobs_io_log_dir,
                 command_io_delegate=self,
-                outcome_callback=None)  # SRU runs are never interactive
+                outcome_callback=None,  # SRU runs are never interactive
+                dry_run=self.ns.dry_run
+            )
             self._run_all_jobs()
             if self.config.fallback_file is not Unset:
                 self._save_results()
@@ -117,27 +121,40 @@ class _SRUInvocation:
         print("Submitting results to {0} for secure_id {1}".format(
               self.config.c3_url, self.config.secure_id))
         options_string = "secure_id={0}".format(self.config.secure_id)
+        # Create the transport object
         try:
             transport = CertificationTransport(
                 self.config.c3_url, options_string, self.config)
         except InvalidSecureIDError as exc:
             print(exc)
             return False
-        try:
-            with open(self.config.fallback_file, "rt",
-                      encoding="UTF-8") as stream:
+        # Prepare the data for submission
+        data = self.exporter.get_session_data_subset(self.session)
+        with tempfile.NamedTemporaryFile(mode='w+b') as stream:
+            # Dump the data to the temporary file
+            self.exporter.dump(data, stream)
+            # Flush and rewind
+            stream.flush()
+            stream.seek(0)
+            try:
+                # Send the data, reading from the temporary file
                 result = transport.send(stream)
-                print("Successfully sent, server gave me id {0}".format(
-                      result['id']))
-        except IOError as exc:
-            print("Problem reading a file: {0}".format(exc))
-        except InvalidSchema as exc:
-            print("Invalid destination URL: {0}".format(exc))
-        except ConnectionError as exc:
-            print("Unable to connect to destination URL: {0}".format(exc))
-        except HTTPError as exc:
-            print(("Server returned an error when "
-                   "receiving or processing: {0}").format(exc))
+                if 'url' in result:
+                    print("Successfully sent, submission status at {0}".format(
+                          result['url']))
+                else:
+                    print("Successfully sent, server response: {0}".format(
+                          result))
+
+            except InvalidSchema as exc:
+                print("Invalid destination URL: {0}".format(exc))
+            except ConnectionError as exc:
+                print("Unable to connect to destination URL: {0}".format(exc))
+            except HTTPError as exc:
+                print(("Server returned an error when "
+                       "receiving or processing: {0}").format(exc))
+            except IOError as exc:
+                print("Problem reading a file: {0}".format(exc))
 
     def _run_all_jobs(self):
         again = True
@@ -161,36 +178,8 @@ class _SRUInvocation:
 
     def _run_single_job(self, job):
         print("- {}:".format(job.name), end=' ')
-        job_state = self.session.job_state_map[job.name]
-        if job_state.can_start():
-            if (self.ns.dry_run and job.plugin not in (
-                    'local', 'resource', 'attachment')):
-                job_result = JobResult({
-                    'job': job,
-                    'outcome': JobResult.OUTCOME_SKIP,
-                    'comments': "Job skipped in dry-run mode"
-                })
-            else:
-                job_result = self.runner.run_job(job, self.config)
-        else:
-            # Set the outcome of jobs that cannot start to
-            # OUTCOME_NOT_SUPPORTED _except_ if any of the inhibitors point to
-            # a job with an OUTCOME_SKIP outcome, if that is the case mirror
-            # that outcome. This makes 'skip' stronger than 'not-supported'
-            outcome = JobResult.OUTCOME_NOT_SUPPORTED
-            for inhibitor in job_state.readiness_inhibitor_list:
-                if inhibitor.cause != inhibitor.FAILED_DEP:
-                    continue
-                related_job_state = self.session.job_state_map[
-                    inhibitor.related_job.name]
-                if related_job_state.result.outcome == JobResult.OUTCOME_SKIP:
-                    outcome = JobResult.OUTCOME_SKIP
-            job_result = JobResult({
-                'job': job,
-                'outcome': outcome,
-                'comments': job_state.get_readiness_description()
-            })
-        assert job_result is not None
+        job_state, job_result = run_job_if_possible(
+            self.session, self.runner, self.config, job)
         print("{0}".format(job_result.outcome))
         if job_result.comments is not None:
             print("comments: {0}".format(job_result.comments))
@@ -231,12 +220,21 @@ class SRUCommand(PlainBoxCommand):
             print("Configuration problems prevent running SRU tests")
             print(exc)
             return 1
+        # Run check-config, if requested
+        if ns.check_config:
+            retval = CheckConfigInvocation(self.config).run()
+            if retval != 0:
+                return retval
         return _SRUInvocation(ns, self.config).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser(
             "sru", help="run automated stable release update tests")
         parser.set_defaults(command=self)
+        parser.add_argument(
+            "--check-config",
+            action="store_true",
+            help="Run plainbox check-config before starting")
         group = parser.add_argument_group("sru-specific options")
         # Set defaults from based on values from the config file
         group.set_defaults(
