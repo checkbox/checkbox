@@ -10,6 +10,9 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     than define elements during parsing of /proc/cpuinfo (LP: #1111878)
   * scripts/lsmod_info: Corrected error handling for the check_output() call to
     trap the correct error. (LP: #1103647)
+  * jobs/camera.txt.in: removed an extraneous requres line for gir1.2
+    scripts/camera_test: added code to determine what version of gst we're
+    using and set video type and plugin accordingly. (LP: #1100594)
 
   [ Sylvain Pineau ]
   * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
