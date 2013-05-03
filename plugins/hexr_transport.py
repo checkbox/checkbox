@@ -21,7 +21,6 @@ import os
 import pprint
 import socket
 import time
-import json
 
 from gettext import gettext as _
 from http.client import HTTPException
@@ -33,7 +32,7 @@ from checkbox.plugin import Plugin
 from checkbox.properties import Int, String
 
 
-class HexrTransport(Plugin):
+class CertifyNewTransport(Plugin):
     """ This provides means for submitting test reports to the new, rewritten
         hardware certification website. Notice that this is very very similar
         to CertifyTransport, the main difference being that here, we submit
@@ -41,7 +40,7 @@ class HexrTransport(Plugin):
     """
 
     # URL where to send submissions.
-    transport_url = String(default="https://hexr.canonical.com/checkbox/submit/")
+    transport_url = String(default="https://certification.canonical.com/submissions/submit/")
 
     # Timeout value for each submission.
     timeout = Int(default=360)
@@ -51,9 +50,10 @@ class HexrTransport(Plugin):
 
     # Header to identify the hardware ID.
     hardware_id_header = String(default="X_HARDWARE_ID")
+    submit_to_hexr_header = String(default="X_SHARE_WITH_HEXR")
 
     def register(self, manager):
-        super(HexrTransport, self).register(manager)
+        super(CertifyNewTransport, self).register(manager)
 
         self._headers = {}
         self._submission_filename = ""
@@ -70,19 +70,27 @@ class HexrTransport(Plugin):
         #is fired.
         self._manager.reactor.call_on("report-hardware-id",
                                       self._on_report_hardware_id)
-        self._manager.reactor.call_on("launchpad-exchange",
+        self._manager.reactor.call_on("report-submit-to-hexr",
+                                      self._on_report_submit_to_hexr)
+        self._manager.reactor.call_on("new-certify-exchange",
                                       self._on_new_report_exchange)
 
     def _on_report_hardware_id(self, hardware_id):
         self._headers[self.hardware_id_header] = hardware_id
 
+    def _on_report_submit_to_hexr(self, submitToHexr):
+        if submitToHexr:
+            self._headers[self.submit_to_hexr_header] = 'True'
+        else:
+            self._headers[self.submit_to_hexr_header] = 'False'
+
     def _on_get_filename(self, filename):
         self._submission_filename = filename
 
-    def _on_new_report_exchange(self, interface):
+    def _on_new_report_exchange(self):
         #Ensure I have needed data!
         if not self._headers and not self._submission_filename:
-            logging.debug("Not ready to submit to HEXR,"
+            logging.debug("Not ready to submit to new cert website,"
                           "information missing")
             return
 
@@ -132,7 +140,7 @@ class HexrTransport(Plugin):
             return (False, error)
 
         end_time = time.time()
-
+        import pdb; pdb.set_trace()
         if not response:
             error = "Error contacting the server: %s." % transport_url
             logging.debug(error)
@@ -157,4 +165,4 @@ class HexrTransport(Plugin):
             return (True, status_url)
 
 
-factory = HexrTransport
+factory = CertifyNewTransport
