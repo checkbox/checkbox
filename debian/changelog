@@ -14,6 +14,12 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     with the root user, restore the workspaces switch and the HTML5 video
     playback ; remove the extra suspend/resume (LP: #1172851)
 
+  [ Brendan Donegan ]
+  * scripts/rendercheck_test - change nargs='+' to action='append' for blacklist
+    option so it works as expected.
+    jobs/rendercheck.txt.in - blacklist gradients test as it is known to produce
+    false positives. (LP: #1093718)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
 checkbox (0.16) raring; urgency=low
