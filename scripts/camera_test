@@ -162,11 +162,13 @@ class CameraTest:
     """
     A simple class that displays a test image via GStreamer.
     """
-    def __init__(self, args):
+    def __init__(self, args,gst_plugin,gst_video_type):
         self.args = args
         self._mainloop = GObject.MainLoop()
         self._width = 640
         self._height = 480
+        self._gst_plugin = gst_plugin
+        self._gst_video_type = gst_video_type
 
     def detect(self):
         """
@@ -209,10 +211,12 @@ class CameraTest:
         Activate camera (switch on led), but don't display any output
         """
         pipespec = ("v4l2src device=%(device)s "
-                    "! video/x-raw-yuv "
-                    "! ffmpegcolorspace "
+                    "! %(type)s "
+                    "! %(plugin)s "
                     "! testsink"
-                    % {'device': self.args.device})
+                    % {'device': self.args.device,
+                       'type': self._gst_video_type,
+                       'plugin': self._gst_plugin})
         self._pipeline = Gst.parse_launch(pipespec)
         self._pipeline.set_state(Gst.State.PLAYING)
         time.sleep(10)
@@ -223,12 +227,14 @@ class CameraTest:
         Displays the preview window
         """
         pipespec = ("v4l2src device=%(device)s "
-                    "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                    "! ffmpegcolorspace "
+                    "! %(type)s,width=%(width)d,height=%(height)d "
+                    "! %(plugin)s "
                     "! autovideosink"
                     % {'device': self.args.device,
+                       'type': self._gst_video_type,
                        'width': self._width,
-                       'height': self._height})
+                       'height': self._height,
+                       'plugin': self._gst_plugin})
         self._pipeline = Gst.parse_launch(pipespec)
         self._pipeline.set_state(Gst.State.PLAYING)
         time.sleep(10)
@@ -256,21 +262,27 @@ class CameraTest:
                   "-d", self.args.device,
                   "-r", "%dx%d"
                   % (width, height), filename]
+        use_gstreamer = False
         if pixelformat:
             command.extend(["-p", pixelformat])
 
         try:
             check_call(command, stdout=open(os.devnull, 'w'), stderr=STDOUT)
         except (CalledProcessError, OSError):
+            use_gstreamer = True
+
+        if use_gstreamer:
             pipespec = \
                     ("v4l2src device=%(device)s "
-                     "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                     "! ffmpegcolorspace "
+                     "! %(type)s,width=%(width)d,height=%(height)d "
+                     "! %(plugin)s "
                      "! jpegenc "
                      "! filesink location=%(filename)s"
                      % {'device': self.args.device,
-                         'width': width,
+                        'type': self._gst_video_type,
+                        'width': width,
                         'height': height,
+                        'plugin': self._gst_plugin,
                         'filename': filename})
             self._pipeline = Gst.parse_launch(pipespec)
             self._pipeline.set_state(Gst.State.PLAYING)
@@ -522,7 +534,13 @@ if __name__ == "__main__":
     # Import Gst only for the test cases that will need it
     if args.test in ['display', 'still', 'led', 'resolutions']:
         from gi.repository import Gst
+        if Gst.version()[0] > 0:
+            gst_plugin = 'videoconvert'
+            gst_video_type = 'video/x-raw'
+        else:
+            gst_plugin = 'ffmpegcolorspace'
+            gst_video_type = 'video/x-raw-yuv'
         Gst.init(None)
 
-    camera = CameraTest(args)
+    camera = CameraTest(args,gst_plugin,gst_video_type)
     sys.exit(getattr(camera, args.test)())
