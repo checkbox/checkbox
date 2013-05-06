@@ -32,15 +32,13 @@ from checkbox.plugin import Plugin
 from checkbox.properties import Int, String
 
 
-class CertifyNewTransport(Plugin):
-    """ This provides means for submitting test reports to the new, rewritten
-        hardware certification website. Notice that this is very very similar
-        to CertifyTransport, the main difference being that here, we submit
-        the submission.xml file itself in one go.
+class HexrTransport(Plugin):
+    """ This provides means for submitting test reports to hexr.canonical.com
+        and/or certification.canonical.com
     """
 
     # URL where to send submissions.
-    transport_url = String(default="https://certification.canonical.com/submissions/submit/")
+    transport_url = String(default="https://hexr.canonical.com/checkbox/submit/")
 
     # Timeout value for each submission.
     timeout = Int(default=360)
@@ -53,7 +51,7 @@ class CertifyNewTransport(Plugin):
     submit_to_hexr_header = String(default="X_SHARE_WITH_HEXR")
 
     def register(self, manager):
-        super(CertifyNewTransport, self).register(manager)
+        super(HexrTransport, self).register(manager)
 
         self._headers = {}
         self._submission_filename = ""
@@ -140,7 +138,6 @@ class CertifyNewTransport(Plugin):
             return (False, error)
 
         end_time = time.time()
-        import pdb; pdb.set_trace()
         if not response:
             error = "Error contacting the server: %s." % transport_url
             logging.debug(error)
@@ -165,4 +162,4 @@ class CertifyNewTransport(Plugin):
             return (True, status_url)
 
 
-factory = CertifyNewTransport
+factory = HexrTransport
