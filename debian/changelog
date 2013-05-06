@@ -20,6 +20,8 @@ checkbox (0.16.1) UNRELEASED; urgency=low
   * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
     with the root user, restore the workspaces switch and the HTML5 video
     playback ; remove the extra suspend/resume (LP: #1172851)
+  * checkbox/parsers/udevadm.py: Only filter devices without product AND vendor
+    information (LP: #1167733)
 
   [ Brendan Donegan ]
   * scripts/rendercheck_test - change nargs='+' to action='append' for blacklist
