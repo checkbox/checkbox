@@ -85,9 +85,9 @@ command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital (SD) media card
+     detect the insertion of an UNLOCKED Secure Digital (SD) media card
  STEPS:
-     1. Click "Test" and insert an SD card into the reader.
+     1. Click "Test" and insert an UNLOCKED SD card into the reader.
         If a file browser opens up, you can safely close it.
         (Note: this test will time-out after 20 seconds.)
      2. Do not remove the device after this test.
@@ -126,9 +126,10 @@ command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of an SD card after the system has been suspended
+     detect the insertion of an UNLOCKED SD card after the system
+     has been suspended
  STEPS:
-     1. Click "Test" and insert an SD card into the reader.
+     1. Click "Test" and insert an UNLOCKED SD card into the reader.
         If a file browser opens up, you can safely close it.
         (Note: this test will time-out after 20 seconds.)
      2. Do not remove the device after this test.
@@ -152,7 +153,8 @@ command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
-     the removal of an SD card from the systems card reader after the system has been suspended.
+     the removal of an SD card from the systems card reader 
+     after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SD card from the reader.
         (Note: this test will time-out after 20 seconds.)
@@ -176,9 +178,10 @@ command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital High-Capacity (SDHC) media card
+     detect the insertion of a UNLOCKED Secure Digital High-Capacity 
+     (SDHC) media card
  STEPS:
-     1. Click "Test" and insert an SDHC card into the reader.
+     1. Click "Test" and insert an UNLOCKED SDHC card into the reader.
         If a file browser opens up, you can safely close it.
         (Note: this test will time-out after 20 seconds.)
      2. Do not remove the device after this test.
@@ -217,9 +220,10 @@ command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of an SDHC media card after the system has been suspended
+     detect the insertion of an UNLOCKED SDHC media card after the 
+     system has been suspended
  STEPS:
-     1. Click "Test" and insert an SDHC card into the reader.
+     1. Click "Test" and insert an UNLOCKED SDHC card into the reader.
         If a file browser opens up, you can safely close it.
         (Note: this test will time-out after 20 seconds.)
      2. Do not remove the device after this test.
