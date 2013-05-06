@@ -9,7 +9,6 @@ plugin: user-verify
 name: camera/display
 depends: camera/detect
 requires:
- package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  device.category == 'CAPTURE'
 command: camera_test display
 _description:

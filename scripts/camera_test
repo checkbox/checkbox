@@ -162,11 +162,13 @@ class CameraTest:
     """
     A simple class that displays a test image via GStreamer.
     """
-    def __init__(self, args):
+    def __init__(self, args, gst_plugin=None, gst_video_type=None):
         self.args = args
         self._mainloop = GObject.MainLoop()
         self._width = 640
         self._height = 480
+        self._gst_plugin = gst_plugin
+        self._gst_video_type = gst_video_type
 
     def detect(self):
         """
@@ -186,19 +188,25 @@ class CameraTest:
             print("    name   : %s" % cp.card.decode('UTF-8'))
             print("    driver : %s" % cp.driver.decode('UTF-8'))
             print("    version: %s.%s.%s"
-            % (cp.version >> 16, (cp.version >> 8) & 0xff, cp.version & 0xff))
+                  % (cp.version >> 16,
+                  (cp.version >> 8) & 0xff,
+                  cp.version & 0xff))
             print("    flags  : 0x%x [" % cp.capabilities,
-            ' CAPTURE' if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE else '',
-            ' OVERLAY' if cp.capabilities & V4L2_CAP_VIDEO_OVERLAY else '',
-            ' READWRITE' if cp.capabilities & V4L2_CAP_READWRITE else '',
-            ' STREAMING' if cp.capabilities & V4L2_CAP_STREAMING else '',
-            ' ]', sep="")
+                  ' CAPTURE' if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE
+                  else '',
+                  ' OVERLAY' if cp.capabilities & V4L2_CAP_VIDEO_OVERLAY
+                  else '',
+                  ' READWRITE' if cp.capabilities & V4L2_CAP_READWRITE
+                  else '',
+                  ' STREAMING' if cp.capabilities & V4L2_CAP_STREAMING
+                  else '',
+                  ' ]', sep="")
 
             resolutions = self._get_supported_resolutions(device)
             print('    ',
-            self._supported_resolutions_to_string(resolutions).replace(
-            "\n", " "),
-            sep="")
+                  self._supported_resolutions_to_string(resolutions).replace(
+                  "\n", " "),
+                  sep="")
 
             if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE:
                 cap_status = 0
@@ -209,10 +217,12 @@ class CameraTest:
         Activate camera (switch on led), but don't display any output
         """
         pipespec = ("v4l2src device=%(device)s "
-                    "! video/x-raw-yuv "
-                    "! ffmpegcolorspace "
+                    "! %(type)s "
+                    "! %(plugin)s "
                     "! testsink"
-                    % {'device': self.args.device})
+                    % {'device': self.args.device,
+                       'type': self._gst_video_type,
+                       'plugin': self._gst_plugin})
         self._pipeline = Gst.parse_launch(pipespec)
         self._pipeline.set_state(Gst.State.PLAYING)
         time.sleep(10)
@@ -223,12 +233,14 @@ class CameraTest:
         Displays the preview window
         """
         pipespec = ("v4l2src device=%(device)s "
-                    "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                    "! ffmpegcolorspace "
+                    "! %(type)s,width=%(width)d,height=%(height)d "
+                    "! %(plugin)s "
                     "! autovideosink"
                     % {'device': self.args.device,
+                       'type': self._gst_video_type,
                        'width': self._width,
-                       'height': self._height})
+                       'height': self._height,
+                       'plugin': self._gst_plugin})
         self._pipeline = Gst.parse_launch(pipespec)
         self._pipeline.set_state(Gst.State.PLAYING)
         time.sleep(10)
@@ -240,11 +252,11 @@ class CameraTest:
         """
         if self.args.filename:
             self._still_helper(self.args.filename, self._width, self._height,
-                self.args.quiet)
+                               self.args.quiet)
         else:
             with NamedTemporaryFile(prefix='camera_test_', suffix='.jpg') as f:
                 self._still_helper(f.name, self._width, self._height,
-                    self.args.quiet)
+                                   self.args.quiet)
 
     def _still_helper(self, filename, width, height, quiet, pixelformat=None):
         """
@@ -253,25 +265,30 @@ class CameraTest:
         user (quiet = True means do not display image).
         """
         command = ["fswebcam", "-S 3", "--no-banner",
-                  "-d", self.args.device,
-                  "-r", "%dx%d"
-                  % (width, height), filename]
+                   "-d", self.args.device,
+                   "-r", "%dx%d"
+                   % (width, height), filename]
+        use_gstreamer = False
         if pixelformat:
             command.extend(["-p", pixelformat])
 
         try:
             check_call(command, stdout=open(os.devnull, 'w'), stderr=STDOUT)
         except (CalledProcessError, OSError):
-            pipespec = \
-                    ("v4l2src device=%(device)s "
-                     "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                     "! ffmpegcolorspace "
-                     "! jpegenc "
-                     "! filesink location=%(filename)s"
-                     % {'device': self.args.device,
-                         'width': width,
-                        'height': height,
-                        'filename': filename})
+            use_gstreamer = True
+
+        if use_gstreamer:
+            pipespec = ("v4l2src device=%(device)s "
+                        "! %(type)s,width=%(width)d,height=%(height)d "
+                        "! %(plugin)s "
+                        "! jpegenc "
+                        "! filesink location=%(filename)s"
+                        % {'device': self.args.device,
+                           'type': self._gst_video_type,
+                           'width': width,
+                           'height': height,
+                           'plugin': self._gst_plugin,
+                           'filename': filename})
             self._pipeline = Gst.parse_launch(pipespec)
             self._pipeline.set_state(Gst.State.PLAYING)
             time.sleep(3)
@@ -290,7 +307,7 @@ class CameraTest:
         ret = ""
         for resolution in supported_resolutions:
             ret += "Format: %s (%s)\n" % (resolution['pixelformat'],
-                resolution['description'])
+                   resolution['description'])
             ret += "Resolutions: "
             for res in resolution['resolutions']:
                 ret += "%sx%s," % (res[0], res[1])
@@ -314,13 +331,13 @@ class CameraTest:
         resolution = resolutions[0]
         if resolution:
             print("Taking multiple images using the %s format"
-                % resolution['pixelformat'])
+                  % resolution['pixelformat'])
             for res in resolution['resolutions']:
                 w = res[0]
                 h = res[1]
                 f = NamedTemporaryFile(prefix='camera_test_%s%sx%s' %
-                    (resolution['pixelformat'], w, h), suffix='.jpg',
-                     delete=False)
+                                       (resolution['pixelformat'], w, h),
+                                       suffix='.jpg', delete=False)
                 print("Taking a picture at %sx%s" % (w, h))
                 self._still_helper(f.name, w, h, True,
                                    pixelformat=resolution['pixelformat'])
@@ -329,7 +346,7 @@ class CameraTest:
                     os.remove(f.name)
                 else:
                     print("Failed to validate image %s" % f.name,
-                        file=sys.stderr)
+                          file=sys.stderr)
                     os.remove(f.name)
                     return 1
             return 0
@@ -354,9 +371,9 @@ class CameraTest:
                         pixelformat['pixelformat_int'] = fmt.pixelformat
                         pixelformat['pixelformat'] = "%s%s%s%s" % \
                             (chr(fmt.pixelformat & 0xFF),
-                            chr((fmt.pixelformat >> 8) & 0xFF),
-                            chr((fmt.pixelformat >> 16) & 0xFF),
-                            chr((fmt.pixelformat >> 24) & 0xFF))
+                             chr((fmt.pixelformat >> 8) & 0xFF),
+                             chr((fmt.pixelformat >> 16) & 0xFF),
+                             chr((fmt.pixelformat >> 24) & 0xFF))
                         pixelformat['description'] = fmt.description.decode()
                         supported_formats.append(pixelformat)
                 fmt.index = fmt.index + 1
@@ -404,16 +421,18 @@ class CameraTest:
                                       framesize) == 0:
                         if framesize.type == V4L2_FRMSIZE_TYPE_DISCRETE:
                             resolutions.append([framesize.discrete.width,
-                                framesize.discrete.height])
+                                               framesize.discrete.height])
                         # for continuous and stepwise, let's just use min and
                         # max they use the same structure and only return
                         # one result
                         elif framesize.type == V4L2_FRMSIZE_TYPE_CONTINUOUS or\
-                             framesize.type == V4L2_FRMSIZE_TYPE_STEPWISE:
+                            framesize.type == V4L2_FRMSIZE_TYPE_STEPWISE:
                             resolutions.append([framesize.stepwise.min_width,
-                                framesize.stepwise.min_height])
+                                                framesize.stepwise.min_height]
+                                               )
                             resolutions.append([framesize.stepwise.max_width,
-                                framesize.stepwise.max_height])
+                                                framesize.stepwise.max_height]
+                                               )
                             break
                         framesize.index = framesize.index + 1
                 except IOError as e:
@@ -455,11 +474,11 @@ class CameraTest:
 
             if outw != width:
                 print("Image width does not match, was %s should be %s" %
-                    (outw, width), file=sys.stderr)
+                      (outw, width), file=sys.stderr)
                 return False
             if outh != height:
                 print("Image width does not match, was %s should be %s" %
-                    (outh, height), file=sys.stderr)
+                      (outh, height), file=sys.stderr)
                 return False
 
             return True
@@ -519,10 +538,21 @@ def parse_arguments(argv):
 if __name__ == "__main__":
     args = parse_arguments(sys.argv[1:])
 
+    if not args.test:
+        args.test = 'detect'
+
     # Import Gst only for the test cases that will need it
     if args.test in ['display', 'still', 'led', 'resolutions']:
         from gi.repository import Gst
+        if Gst.version()[0] > 0:
+            gst_plugin = 'videoconvert'
+            gst_video_type = 'video/x-raw'
+        else:
+            gst_plugin = 'ffmpegcolorspace'
+            gst_video_type = 'video/x-raw-yuv'
         Gst.init(None)
+        camera = CameraTest(args, gst_plugin, gst_video_type)
+    else:
+        camera = CameraTest(args)
 
-    camera = CameraTest(args)
     sys.exit(getattr(camera, args.test)())

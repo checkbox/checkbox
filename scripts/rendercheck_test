@@ -178,7 +178,7 @@ def main():
                               %s. \
                               Default is all' % (', '.join(all_tests)))
     parser.add_argument('-b', '--blacklist',
-                        nargs='+',
+                        action='append',
                         help='The name of a test which should not be run.')
     parser.add_argument('-d', '--debug',
                         action='store_true',

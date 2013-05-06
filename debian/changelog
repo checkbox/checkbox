@@ -8,11 +8,24 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     (LP: #970857)
   * scripts/cpu_topology: define the cpuinfo nested dicts on creation rather
     than define elements during parsing of /proc/cpuinfo (LP: #1111878)
+  * scripts/lsmod_info: Corrected error handling for the check_output() call to
+    trap the correct error. (LP: #1103647)
+  * jobs/camera.txt.in: removed an extraneous requres line for gir1.2
+    scripts/camera_test: added code to determine what version of gst we're
+    using and set video type and plugin accordingly. (LP: #1100594)
+  * scripts/network_check: added ability to specify custom target URL for
+    debugging failures (LP: #1128017)
 
   [ Sylvain Pineau ]
   * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
     with the root user, restore the workspaces switch and the HTML5 video
     playback ; remove the extra suspend/resume (LP: #1172851)
+
+  [ Brendan Donegan ]
+  * scripts/rendercheck_test - change nargs='+' to action='append' for blacklist
+    option so it works as expected.
+    jobs/rendercheck.txt.in - blacklist gradients test as it is known to produce
+    false positives. (LP: #1093718)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
