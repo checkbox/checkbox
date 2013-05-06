@@ -1,7 +1,7 @@
 #
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2013 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ import os
 import pprint
 import socket
 import time
+import json
 
 from gettext import gettext as _
 from http.client import HTTPException
@@ -70,8 +71,8 @@ class HexrTransport(Plugin):
                                       self._on_report_hardware_id)
         self._manager.reactor.call_on("report-submit-to-hexr",
                                       self._on_report_submit_to_hexr)
-        self._manager.reactor.call_on("new-certify-exchange",
-                                      self._on_new_report_exchange)
+        self._manager.reactor.call_on("hexr-exchange",
+                                      self._on_hexr_exchange)
 
     def _on_report_hardware_id(self, hardware_id):
         self._headers[self.hardware_id_header] = hardware_id
@@ -85,7 +86,7 @@ class HexrTransport(Plugin):
     def _on_get_filename(self, filename):
         self._submission_filename = filename
 
-    def _on_new_report_exchange(self):
+    def _on_hexr_exchange(self, interface):
         #Ensure I have needed data!
         if not self._headers and not self._submission_filename:
             logging.debug("Not ready to submit to new cert website,"
