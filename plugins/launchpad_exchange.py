@@ -111,7 +111,7 @@ class LaunchpadExchange(Plugin):
     def launchpad_report(self, report):
         self._launchpad_report = report
 
-    def launchpad_exchange(self):
+    def launchpad_exchange(self, interface):
         # Maybe on the next exchange...
         if not self._form["field.system"] \
            or self._form["field.submission_data"]:

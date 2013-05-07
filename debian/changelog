@@ -28,6 +28,11 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     option so it works as expected.
     jobs/rendercheck.txt.in - blacklist gradients test as it is known to produce
     false positives. (LP: #1093718)
+  * plugins/hexr_transport.py - added plugin for submitting to HEXR and 
+    certification based on certify_new_transport from checkbox-certification.
+    examples/checkbox-qt.ini - blacklisted hexr_transport as we won't use it
+    examples/checkbox-cli.ini - blacklisted hexr_transport as we won't use it
+    examples/checkbox-urwid.ini - blacklisted hexr_transport as we won't use it
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
