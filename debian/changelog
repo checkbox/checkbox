@@ -29,6 +29,11 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     jobs/rendercheck.txt.in - blacklist gradients test as it is known to produce
     false positives. (LP: #1093718)
 
+  [ Alberto Milone ]
+  * scripts/graphics_stress_test, scripts/rotation_test: make sure to
+    always reset the "screen" variable. Somehow the NVIDIA driver manages
+    to make it unusable after the first time.
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
 
 checkbox (0.16) raring; urgency=low

@@ -135,15 +135,16 @@ class SuspendWrapper(object):
 class RotationWrapper(object):
 
     def __init__(self):
-        self._screen = xrandr.get_current_screen()
         self._rotations = {'normal': xrandr.RR_ROTATE_0,
                            'right': xrandr.RR_ROTATE_90,
                            'inverted': xrandr.RR_ROTATE_180,
                            'left': xrandr.RR_ROTATE_270}
 
     def _rotate_screen(self, rotation):
-        self._screen.set_rotation(rotation)
-        return self._screen.apply_config()
+        # Refresh the screen. Required by NVIDIA
+        screen = xrandr.get_current_screen()
+        screen.set_rotation(rotation)
+        return screen.apply_config()
 
     def do_rotation_cycle(self):
         '''Cycle through all possible rotations'''
