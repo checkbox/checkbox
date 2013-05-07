@@ -30,7 +30,7 @@ from string import printable
 from checkbox.lib.log import format_delta
 from checkbox.lib.transport import HTTPTransport
 from checkbox.plugin import Plugin
-from checkbox.properties import Int, String
+from checkbox.properties import Bool, Int, String
 
 
 class HexrTransport(Plugin):
@@ -50,6 +50,8 @@ class HexrTransport(Plugin):
     # Header to identify the hardware ID.
     hardware_id_header = String(default="X_HARDWARE_ID")
     submit_to_hexr_header = String(default="X_SHARE_WITH_HEXR")
+
+    show_link = Bool(default=True)
 
     def register(self, manager):
         super(HexrTransport, self).register(manager)
@@ -111,7 +113,8 @@ class HexrTransport(Plugin):
                                                     self._headers,
                                                     self.timeout)
             if result:
-                interface.show_text("Submission link: " + details)
+                if show_link:
+                    interface.show_text("Submission link: " + details)
                 break
             else:
                 if attempt + 1 >= self.max_tries:
