@@ -454,8 +454,9 @@ class UdevadmParser:
         if device.bus == "ieee80211":
             return False
 
-        # Ignore devices without product information
-        if not device.product and device.product_id is None:
+        # Ignore devices without product AND vendor information
+        if (device.product is None and device.product_id is None and
+                device.vendor is None and device.vendor_id is None):
             return True
 
         # Ignore invalid subsystem information
