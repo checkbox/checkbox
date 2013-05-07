@@ -142,9 +142,9 @@ class VerifiedHTTPSConnection(http.client.HTTPSConnection):
             cert_reqs=ssl.CERT_REQUIRED,
             ca_certs="/etc/ssl/certs/ca-certificates.crt")
 
-        #if not self.verify_cert(self.sock.getpeercert()):
-        #    raise ValueError(
-        #        "Failed to verify cert for hostname: %s" % self.host)
+        if not self.verify_cert(self.sock.getpeercert()):
+            raise ValueError(
+                "Failed to verify cert for hostname: %s" % self.host)
 
 
 class HTTPTransport:
