@@ -113,7 +113,7 @@ class HexrTransport(Plugin):
                                                     self._headers,
                                                     self.timeout)
             if result:
-                if show_link:
+                if self.show_link:
                     interface.show_text("Submission link: " + details)
                 break
             else:
