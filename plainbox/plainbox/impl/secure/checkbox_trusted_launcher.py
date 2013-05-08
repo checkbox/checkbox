@@ -34,7 +34,6 @@ import json
 import os
 import re
 import subprocess
-from argparse import _ as argparse_gettext
 from inspect import cleandoc
 
 
@@ -317,31 +316,24 @@ class Runner:
 
     def main(self, argv=None):
         parser = argparse.ArgumentParser(prog="checkbox-trusted-launcher")
-        # Argh the horrror!
-        #
-        # Since CPython revision cab204a79e09 (landed for python3.3)
-        # http://hg.python.org/cpython/diff/cab204a79e09/Lib/argparse.py
-        # the argparse module behaves differently than it did in python3.2
-        #
-        # On python3.2, if we didn't use all the Positional objects, there
-        # were too few arg strings supplied and we called parser.error().
-        #
-        # To compensate, on python3.3 and beyond, when the user just runs
-        # the trusted launcher without specifying arguments, we manually,
-        # explicitly do what python3.2 did:
-        # call parser.error(_('too few arguments'))
-        if not argv:
-            parser.error(argparse_gettext("too few arguments"))
-        parser.add_argument('HASH', metavar='HASH', help='job hash to match')
-        parser.add_argument(
-            'ENV', metavar='NAME=VALUE', nargs='*',
-            help='Set each NAME to VALUE in the string environment')
+        group = parser.add_mutually_exclusive_group(required=True)
+        group.add_argument('--hash', metavar='HASH', help='job hash to match')
+        group.add_argument(
+            '--warmup',
+            action='store_true',
+            help='Return immediately, only useful when used with pkexec(1)')
         parser.add_argument(
             '--via',
             metavar='LOCAL-JOB-HASH',
             dest='via_hash',
             help='Local job hash to use to match the generated job')
+        parser.add_argument(
+            'ENV', metavar='NAME=VALUE', nargs='*',
+            help='Set each NAME to VALUE in the string environment')
         args = parser.parse_args(argv)
+
+        if args.warmup:
+            return 0
 
         for filename in self.path_expand(self.CHECKBOXES):
             stream = open(filename, "r", encoding="utf-8")
@@ -376,7 +368,7 @@ class Runner:
 
         try:
             target_job = [j for j in lookup_list
-                          if j.get_checksum() == args.HASH][0]
+                          if j.get_checksum() == args.hash][0]
         except IndexError:
             return "Job not found"
         try:
