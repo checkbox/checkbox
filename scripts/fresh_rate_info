@@ -22,44 +22,53 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
+"""
+    The fresh_rate_info got information from xrandr
+"""
+
 import re
 import sys
-
 from subprocess import Popen, PIPE
 
-#LVDS connected 1366x768+1920+0 (normal left inverted right x axis y axis) 256mm x 144mm
-#HDMI-0 disconnected (normal left inverted right x axis y axis)
-#VGA-0 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 509mm x 286mm
 
 def xrandr_paser(data=None):
-    b = None
+
+    '''return an array(xrandrs)'''
+
+    resolution = None
     xrandrs = list()
     for line in str(data).split('\n'):
-        # VGA-0 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 509mm x 286mm
         for match in re.finditer('(.+) connected (\d+x\d+)\+', line):
-            a = match.group(1)
-            b = match.group(2)
+            connector = match.group(1)
+            resolution = match.group(2)
             break
-        if b == None:
+        if resolution == None:
             continue
-        #print "%s ---"%line
-        for match in  re.finditer('%s\s+(.+)\*'%b, line):
-            c = match.group(1)
-            xrandr = {'connector':a, 'resolution':b, 'refresh_rate':c}
+        for match in  re.finditer('{0}\s+(.+)\*'.format(resolution),
+                                  line):
+            refresh_rate = match.group(1)
+            xrandr = {'connector':connector,
+                      'resolution':resolution,
+                      'refresh_rate':refresh_rate}
             xrandrs.append(xrandr)
 
     return xrandrs
 
 def main():
+
+    '''main function'''
+
     proc = Popen('xrandr --current'.split(), stdout=PIPE, stderr=PIPE)
     return_code = proc.wait()
     if return_code != 0:
         return return_code
     else:
-        xrandrs=xrandr_paser(data=proc.stdout.read().decode('utf-8'))
+        xrandrs = xrandr_paser(data = proc.stdout.read().decode('utf-8'))
         for xrandr in xrandrs:
-            print("Connector: %s, Resolution: %s RefreshRate: %s" % (xrandr['connector'], xrandr['resolution'], xrandr['refresh_rate']))
+            output_str = "Connector({0}):\t Resolution: {1} \t RefreshRate: {2}"
+            print(output_str.format(xrandr['connector'],
+                                    xrandr['resolution'],
+                                    xrandr['refresh_rate']))
 
 
 if __name__ == '__main__':
