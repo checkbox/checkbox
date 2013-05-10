@@ -28,7 +28,8 @@
 
 import re
 import sys
-from subprocess import Popen, PIPE
+import subprocess
+from subprocess import Popen, PIPE, CalledProcessError
 
 
 def xrandr_paser(data=None):
@@ -58,17 +59,17 @@ def main():
 
     '''main function'''
 
-    proc = Popen('xrandr --current'.split(), stdout=PIPE, stderr=PIPE)
-    return_code = proc.wait()
-    if return_code != 0:
-        return return_code
-    else:
-        xrandrs = xrandr_paser(data = proc.stdout.read().decode('utf-8'))
-        for xrandr in xrandrs:
-            output_str = "Connector({0}):\t Resolution: {1} \t RefreshRate: {2}"
-            print(output_str.format(xrandr['connector'],
-                                    xrandr['resolution'],
-                                    xrandr['refresh_rate']))
+    try:
+        data = subprocess.check_output(['xrandr', '--current'], universal_newlines=True)
+    except CalledProcessError as exc:
+        return exc.returncode
+
+    xrandrs = xrandr_paser(data)
+    for xrandr in xrandrs:
+        output_str = "Connector({0}):\t Resolution: {1} \t RefreshRate: {2}"
+        print(output_str.format(xrandr['connector'],
+                                xrandr['resolution'],
+                                xrandr['refresh_rate']))
 
 
 if __name__ == '__main__':

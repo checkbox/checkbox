@@ -28,8 +28,7 @@
 
 import re
 import sys
-
-from subprocess import Popen, PIPE
+import subprocess
 
 # 00:01.0 VGA compatible controller: \
 # Advanced Micro Devices [AMD] nee ATI Wrestler [Radeon HD 6320] \
@@ -60,16 +59,16 @@ def main():
 
     '''main function'''
 
-    proc = Popen('lspci -v'.split(), stdout=PIPE, stderr=PIPE)
-    return_code = proc.wait()
-    if return_code != 0:
-        return return_code
-    else:
-        vgamems = vgamem_paser(data = proc.stdout.read().decode('utf-8'))
-        for vgamem in vgamems:
-            output_str = "Device({0})\t Name: {1}\tVGA Memory Size: {2}M"
-            print(output_str.format(vgamem['device'],
-                                    vgamem['name'],
+    try:
+        data = subprocess.check_output(['lspci', '-v'], universal_newlines=True)
+    except subprocess.CalledProcessError as exc:
+        return exc.returncode
+
+    vgamems = vgamem_paser(data)
+    for vgamem in vgamems:
+        output_str = "Device({0})\t Name: {1}\tVGA Memory Size: {2}M"
+        print(output_str.format(vgamem['device'],
+                                vgamem['name'],
                                     vgamem['vgamem_size']))
 
 if __name__ == '__main__':
