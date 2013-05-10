@@ -74,6 +74,16 @@ plugin: shell
 command: color_depth_info
 _description: Collect info on color depth and pixel format.
 
+name: graphics/fresh_rate
+plugin: shell
+command: fresh_rate_info
+_description: Collect info on fresh rate.
+
+name: graphics/graphic_memory
+plugin: shell
+command: graphic_memory_info
+_description: Collect info on graphic memory.
+
 plugin: user-verify
 name: graphics/display
 requires: 
