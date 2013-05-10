@@ -48,7 +48,7 @@ def vgamem_paser(data=None):
         if device is None:
             continue
 #Memory at e0000000 (32-bit, prefetchable) [size=256M]
-        for match in re.finditer('Memory(.+)prefetchable\) \[size=(\d+)M\]',
+        for match in re.finditer('Memory(.+) prefetchable\) \[size=(\d+)M\]',
                                  line):
             vgamem_size = match.group(2)
             vgamem = {'device': device,
