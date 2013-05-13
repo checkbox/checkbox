@@ -42,6 +42,12 @@ plugin: resource
 command: package_resource | filter_templates -w 'desired=Install' -w 'status=Installed'
 description: Generates a list of installed packages
 
+name: executable
+plugin: resource
+description: Generates a resource for all available executables
+command:
+    find -H $(echo "$PATH" | sed -e 's/:/ /g') -maxdepth 1 -type f -executable -printf "name: %f\n\n"
+
 name: device
 plugin: resource
 command: udev_resource
