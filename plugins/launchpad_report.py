@@ -133,7 +133,9 @@ class LaunchpadReport(Plugin):
 
     def report_uname(self, resources):
         uname = resources[0]
-        self._report["summary"]["kernel-release"] = uname["release"]
+        self._report["summary"]["kernel-release"] = (
+            "{release} {version}".format(release=uname["release"],
+                                         version=uname["version"]))
 
     def report_system_id(self, system_id):
         self._report["summary"]["system_id"] = system_id
