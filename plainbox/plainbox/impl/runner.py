@@ -60,6 +60,18 @@ def io_log_write(log, stream):
         separators=(',', ':'))
 
 
+def authenticate_warmup():
+    """
+    Call the checkbox trusted launcher in warmup mode.
+
+    This will use the corresponding PolicyKit action and start the
+    authentication agent (depending on the installed policy file)
+    """
+    warmup_popen = extcmd.ExternalCommand()
+    return warmup_popen.call(
+        ['pkexec', 'checkbox-trusted-launcher', '--warmup'])
+
+
 class CommandIOLogBuilder(extcmd.DelegateBase):
     """
     Delegate for extcmd that builds io_log entries.
@@ -303,7 +315,7 @@ class JobRunner(IJobRunner):
         # via pkexec(1). Since pkexec resets environment we need to somehow
         # pass the extra things we require. To do that we pass the list of
         # changed environment variables in addition to the job hash.
-        cmd = ['checkbox-trusted-launcher', job.get_checksum()] + [
+        cmd = ['checkbox-trusted-launcher', '--hash', job.get_checksum()] + [
             "{key}={value}".format(key=key, value=value)
             for key, value in self._get_script_env(
                 job, config, only_changes=True

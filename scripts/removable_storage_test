@@ -115,7 +115,13 @@ class DiskTest():
                 return True
 
     def write_file(self, data, dest):
-        with open(dest, 'wb', 0) as outfile:
+        try:
+            outfile = open(dest, 'wb', 0)
+        except OSError as exc:
+            logging.error("Unable to open %s for writing.", dest)
+            logging.error("  %s", exc)
+            return False
+        with outfile:
             try:
                 outfile.write(self.data)
             except IOError as exc:
@@ -130,7 +136,8 @@ class DiskTest():
         try:
             os.unlink(target)
         except OSError as exc:
-            logging.error("Unable to remove tempfile %s: %s", target, exc)
+            logging.error("Unable to remove tempfile %s", target)
+            logging.error("  %s", exc)
 
     def _probe_disks(self):
         """
@@ -519,23 +526,33 @@ def main():
                                 test.clean_up(file)
                             total_write_time = sum(write_times)
                             avg_write_time = total_write_time / args.count
-                            avg_write_speed = ((
-                                total_write_size / total_write_time)
-                                / 1024 / 1024)
-                            iteration_write_times.append(total_write_time)
-                            print("\t[Iteration %s] Average Speed: %0.4f"
-                                  % (iteration, avg_write_speed))
+                            try:
+                                avg_write_speed = ((
+                                    total_write_size / total_write_time)
+                                    / 1024 / 1024)
+                            except ZeroDivisionError:
+                                avg_write_speed = 0.00
+                            finally:
+                                iteration_write_times.append(total_write_time)
+                                print("\t[Iteration %s] Average Speed: %0.4f"
+                                      % (iteration, avg_write_speed))
                         for iteration in range(args.iterations):
                             iteration_write_time = sum(iteration_write_times)
                         print("\tSummary:")
-                        print("\t\tTotal Data Written: %0.4f MB"
+                        print("\t\tTotal Data Attempted: %0.4f MB"
                               % iteration_write_size)
                         print("\t\tTotal Time to write: %0.4f secs"
                               % iteration_write_time)
                         print("\t\tAverage Write Time: %0.4f secs" %
                               (iteration_write_time / args.iterations))
-                        print("\t\tAverage Write Speed: %0.4f MB/s" %
-                              (iteration_write_size / iteration_write_time))
+                        try:
+                            avg_write_speed = (iteration_write_size /
+                                              iteration_write_time)
+                        except ZeroDivisionError:
+                            avg_write_speed = 0.00
+                        finally:
+                            print("\t\tAverage Write Speed: %0.4f MB/s" %
+                                  avg_write_speed)
                 finally:
                     for key in range(args.count):
                         test.clean_up(test_files[key].tfile.name)
