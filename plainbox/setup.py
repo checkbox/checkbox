@@ -43,6 +43,8 @@ setup(
     entry_points={
         'console_scripts': [
             'plainbox=plainbox.public:main',
+            'checkbox-trusted-launcher='
+            'plainbox.impl.secure.checkbox_trusted_launcher:main',
         ],
         'plainbox.exporter': [
             'text=plainbox.impl.exporter.text:TextSessionStateExporter',
@@ -51,7 +53,8 @@ setup(
             'xml=plainbox.impl.exporter.xml:XMLSessionStateExporter',
         ],
         'plainbox.transport': [
-            'certification=plainbox.impl.transport.certification:CertificationTransport',
+            'certification='
+            'plainbox.impl.transport.certification:CertificationTransport',
         ],
     },
     include_package_data=True)

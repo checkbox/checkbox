@@ -129,7 +129,7 @@ class UserInterface:
         return
 
     def show_text(self, text, previous=None, next=None):
-        return
+        print(text)
 
     def show_entry(self, text, value, label=None, showSubmitToHexr=False, previous=None, next=None):
         return (value, False)
