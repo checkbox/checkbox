@@ -1,6 +1,12 @@
 checkbox (0.16.2) saucy; urgency=low
 
+  [ Brendan Donegan ]
   * Incremented version 
+
+  [ Alberto Milone ]
+  * scripts/graphics_stress_test, scripts/rotation_test: make sure to
+    always reset the "screen" variable. Somehow the NVIDIA driver manages
+    to make it unusable after the first time. (LP: #1172667)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:21:05 +0100
 
