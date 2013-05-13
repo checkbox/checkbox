@@ -57,19 +57,19 @@ class LaunchpadReport(Plugin):
             "context": []}
 
         for (rt, rh) in [
-             ("report-attachments", self.report_attachments),
-             ("report-client", self.report_client),
-             ("report-cpuinfo", self.report_cpuinfo),
-             ("report-datetime", self.report_datetime),
-             ("report-dpkg", self.report_dpkg),
-             ("report-lsb", self.report_lsb),
-             ("report-package", self.report_package),
-             ("report-uname", self.report_uname),
-             ("report-system_id", self.report_system_id),
-             ("report-suites", self.report_suites),
-             ("report-review", self.report_review),             
-             ("report-tests", self.report_tests)]:
-            self._manager.reactor.call_on(rt, rh)
+            ("report-attachments", self.report_attachments),
+            ("report-client", self.report_client),
+            ("report-cpuinfo", self.report_cpuinfo),
+            ("report-datetime", self.report_datetime),
+            ("report-dpkg", self.report_dpkg),
+            ("report-lsb", self.report_lsb),
+            ("report-package", self.report_package),
+            ("report-uname", self.report_uname),
+            ("report-system_id", self.report_system_id),
+            ("report-suites", self.report_suites),
+            ("report-review", self.report_review),
+            ("report-tests", self.report_tests)]:
+                self._manager.reactor.call_on(rt, rh)
 
         # Launchpad report should be generated last.
         self._manager.reactor.call_on("report", self.report, 100)
@@ -89,7 +89,8 @@ class LaunchpadReport(Plugin):
         for attachment in attachments:
             name = attachment["name"]
             if "sysfs_attachment" in name:
-                self._report["hardware"]["sysfs-attributes"] = attachment["data"]
+                self._report["hardware"]["sysfs-attributes"] = \
+                    attachment["data"]
 
             elif "dmi_attachment" in name:
                 self._report["hardware"]["dmi"] = attachment["data"]
