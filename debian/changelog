@@ -12,6 +12,11 @@ checkbox (0.16.2) saucy; urgency=low
   [ Daniel Manrique ]
   * Ensured that button strings from the "continue" dialog are translatable
     (LP: #1176695) 
+  
+  [ Jeff Lane ]
+  * checkbox/parsers/cpuinfo.py - split on first instance of ':' in cpuinfo
+    output lines to avoid splitting into more than 2 items. Also fixed a pep8
+    issue discovered while working on this. (LP: #1180496)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:21:05 +0100
 

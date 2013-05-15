@@ -46,8 +46,7 @@ class CpuinfoParser:
             for line in block.split("\n"):
                 if not line:
                     continue
-
-                key, value = line.split(":")
+                key, value = line.split(":", 1)
                 key, value = key.strip(), value.strip()
 
                 # Handle bogomips on sparc
@@ -135,7 +134,7 @@ class CpuinfoParser:
                 for pkey, ckey in conversion.items():
                     if isinstance(ckey, (list, tuple)):
                         processor[pkey] = "/".join([attributes[k]
-                            for k in ckey])
+                                                    for k in ckey])
                     elif ckey in attributes:
                         processor[pkey] = attributes[ckey]
 
