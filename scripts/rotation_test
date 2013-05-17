@@ -28,10 +28,11 @@ import sys
 from checkbox.contrib import xrandr
 
 
-def rotate_screen(screen, rotation):
+def rotate_screen(rotation):
+    # Refresh the screen. Required by NVIDIA
+    screen = xrandr.get_current_screen()
     screen.set_rotation(rotation)
     return screen.apply_config()
-
 
 def main():
     screen = xrandr.get_current_screen()
@@ -43,7 +44,7 @@ def main():
 
     for rot in rotations:
         try:
-            status = rotate_screen(screen, rotations[rot])
+            status = rotate_screen(rotations[rot])
         except(xrandr.RRError, xrandr.UnsupportedRRError) as error:
             status = 1
         else:
@@ -54,7 +55,7 @@ def main():
 
     # Try to set the screen back to normal
     try:
-        rotate_screen(screen, xrandr.RR_ROTATE_0)
+        rotate_screen(xrandr.RR_ROTATE_0)
     except(xrandr.RRError, xrandr.UnsupportedRRError) as error:
         print(error)
 

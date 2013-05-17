@@ -73,6 +73,9 @@ class SubmissionResult:
             ("test_run", "architecture",),
             self.setArchitectureState, count=1)
         register(
+            ("test_run", "kernel",),
+            self.setKernelState, count=1)
+        register(
             ("test_run", "memory",),
             self.setMemoryState, count=1)
         register(
@@ -202,6 +205,8 @@ class SubmissionResult:
             self.dispatcher.publishEvent("project", value)
         elif name == "distroseries":
             self.dispatcher.publishEvent("series", value)
+        elif name == "kernel-release":
+            self.dispatcher.publishEvent("kernel", value)
 
     def parseCpuinfo(self, cpuinfo):
         self.dispatcher.publishEvent("cpuinfo", cpuinfo)
@@ -223,6 +228,9 @@ class SubmissionResult:
 
     def setArchitectureState(self, test_run, architecture):
         test_run.setArchitectureState(architecture)
+
+    def setKernelState(self, test_run, kernel):
+        test_run.setKernelState(kernel)
 
     def setCpuinfo(self, cpuinfo, machine, cpuinfo_result):
         parser = CpuinfoParser(cpuinfo, machine)

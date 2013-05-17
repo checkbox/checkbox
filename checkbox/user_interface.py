@@ -24,6 +24,8 @@ import re
 import subprocess
 import webbrowser
 
+from gettext import gettext as _
+
 from checkbox.contrib.REThread import REThread
 from checkbox.lib.environ import (
     add_variable,
@@ -65,6 +67,9 @@ STATUS_TO_ANSWER = {
 CONTINUE_ANSWER = 'Continue'
 RERUN_ANSWER = 'Rerun'
 RESTART_ANSWER = 'Restart'
+TRANSLATED_CONTINUE_ANSWER = _('Continue')
+TRANSLATED_RERUN_ANSWER = _('Rerun')
+TRANSLATED_RESTART_ANSWER = _('Restart')
 
 
 class UserInterface:

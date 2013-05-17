@@ -28,23 +28,28 @@
 
 from logging import getLogger
 
-from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands import PlainBoxCommand
+from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
+from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
 
 
 logger = getLogger("plainbox.commands.special")
 
 
-class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
-    """
-    Implementation of ``$ plainbox special``
-    """
+class SpecialInvocation(CheckBoxInvocationMixIn):
 
-    def invoked(self, ns):
+    def __init__(self, checkbox, ns):
+        super(SpecialInvocation, self).__init__(checkbox)
+        self.ns = ns
+
+    def run(self):
+        ns = self.ns
         job_list = self.get_job_list(ns)
         # Now either do a special action or run the jobs
         if ns.special == "list-jobs":
             self._print_job_list(ns, job_list)
+        elif ns.special == "list-job-hashes":
+            self._print_job_hash_list(ns, job_list)
         elif ns.special == "list-expr":
             self._print_expression_list(ns, job_list)
         elif ns.special == "dep-graph":
@@ -52,33 +57,9 @@ class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         # Always succeed
         return 0
 
-    def register_parser(self, subparsers):
-        parser = subparsers.add_parser(
-            "special", help="special/internal commands")
-        parser.set_defaults(command=self)
-        group = parser.add_mutually_exclusive_group(required=True)
-        group.add_argument(
-            '-j', '--list-jobs',
-            help="List jobs instead of running them",
-            action="store_const", const="list-jobs", dest="special")
-        group.add_argument(
-            '-e', '--list-expressions',
-            help="List all unique resource expressions",
-            action="store_const", const="list-expr", dest="special")
-        group.add_argument(
-            '-d', '--dot',
-            help="Print a graph of jobs instead of running them",
-            action="store_const", const="dep-graph", dest="special")
-        parser.add_argument(
-            '--dot-resources',
-            help="Render resource relationships (for --dot)",
-            action='store_true')
-        # Call enhance_parser from CheckBoxCommandMixIn
-        self.enhance_parser(parser)
-
     def _get_matching_job_list(self, ns, job_list):
         matching_job_list = super(
-            SpecialCommand, self)._get_matching_job_list(ns, job_list)
+            SpecialInvocation, self)._get_matching_job_list(ns, job_list)
         # As a special exception, when ns.special is set and we're either
         # listing jobs or job dependencies then when no run pattern was
         # specified just operate on the whole set. The ns.special check
@@ -92,6 +73,11 @@ class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         matching_job_list = self._get_matching_job_list(ns, job_list)
         for job in matching_job_list:
             print("{}".format(job))
+
+    def _print_job_hash_list(self, ns, job_list):
+        matching_job_list = self._get_matching_job_list(ns, job_list)
+        for job in matching_job_list:
+            print("{} {}".format(job.get_checksum(), job))
 
     def _print_expression_list(self, ns, job_list):
         matching_job_list = self._get_matching_job_list(ns, job_list)
@@ -131,3 +117,43 @@ class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
                         job.name, expression.resource_name,
                         expression.text.replace('"', "'")))
         print("}")
+
+
+class SpecialCommand(PlainBoxCommand, CheckBoxCommandMixIn):
+    """
+    Implementation of ``$ plainbox special``
+    """
+
+    def __init__(self, checkbox):
+        self.checkbox = checkbox
+
+    def invoked(self, ns):
+        return SpecialInvocation(self.checkbox, ns).run()
+
+    def register_parser(self, subparsers):
+        parser = subparsers.add_parser(
+            "special", help="special/internal commands")
+        parser.set_defaults(command=self)
+        group = parser.add_mutually_exclusive_group(required=True)
+        group.add_argument(
+            '-j', '--list-jobs',
+            help="List jobs instead of running them",
+            action="store_const", const="list-jobs", dest="special")
+        group.add_argument(
+            '-J', '--list-job-hashes',
+            help="List jobs with hashes instead of running them",
+            action="store_const", const="list-job-hashes", dest="special")
+        group.add_argument(
+            '-e', '--list-expressions',
+            help="List all unique resource expressions",
+            action="store_const", const="list-expr", dest="special")
+        group.add_argument(
+            '-d', '--dot',
+            help="Print a graph of jobs instead of running them",
+            action="store_const", const="dep-graph", dest="special")
+        parser.add_argument(
+            '--dot-resources',
+            help="Render resource relationships (for --dot)",
+            action='store_true')
+        # Call enhance_parser from CheckBoxCommandMixIn
+        self.enhance_parser(parser)

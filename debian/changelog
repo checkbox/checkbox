@@ -1,4 +1,26 @@
-checkbox (0.16.1) UNRELEASED; urgency=low
+checkbox (0.16.2) saucy; urgency=low
+
+  [ Alberto Milone ]
+  * scripts/graphics_stress_test, scripts/rotation_test: make sure to
+    always reset the "screen" variable. Somehow the NVIDIA driver manages
+    to make it unusable after the first time. (LP: #1172667)
+
+  [ Brendan Donegan ]
+  * checkbox/parsers/submission.py - publish kernel-release information to
+    interested parties.
+
+  [ Daniel Manrique ]
+  * Ensured that button strings from the "continue" dialog are translatable
+    (LP: #1176695) 
+  
+  [ Jeff Lane ]
+  * checkbox/parsers/cpuinfo.py - split on first instance of ':' in cpuinfo
+    output lines to avoid splitting into more than 2 items. Also fixed a pep8
+    issue discovered while working on this. (LP: #1180496)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:21:05 +0100
+
+checkbox (0.16.1) saucy; urgency=low
 
   [ Jeff Lane ]
   * scripts/cpu_offlining: Modified script to no longer offline cpu0 to resolve
@@ -15,6 +37,11 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     using and set video type and plugin accordingly. (LP: #1100594)
   * scripts/network_check: added ability to specify custom target URL for
     debugging failures (LP: #1128017)
+  * scripts/removable_storage_test: Added error handling to trap OSError on
+    non-writable media and modified output to handle subsequent
+    ZeroDivisionError issues when summarizing test results.
+    jobs/media.txt.in: Modified instructions for SD/SDHC to specify using
+    UNLOCKED cards to avoid issues when testing read-only media (LP: #1153894)
 
   [ Sylvain Pineau ]
   * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
@@ -34,7 +61,7 @@ checkbox (0.16.1) UNRELEASED; urgency=low
     examples/checkbox-cli.ini - blacklisted hexr_transport as we won't use it
     examples/checkbox-urwid.ini - blacklisted hexr_transport as we won't use it
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:23:03 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:20:49 +0100
 
 checkbox (0.16) raring; urgency=low
 
