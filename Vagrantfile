@@ -49,6 +49,8 @@ Vagrant::Config.run do |config|
   # Later on those could be installed on demand to test how we behave without
   # them but for now that's good enough. Little by little...
   config.vm.provision :shell, :inline => "apt-get install --yes fwts"
+  # Develop checkbox so that we have it in $PATH
+  config.vm.provision :shell, :inline => "cd /vagrant/ && python3 setup.py develop"
   # Develop plainbox so that we have it in $PATH
   config.vm.provision :shell, :inline => "cd /vagrant/plainbox/ && python3 setup.py develop"
   # Develop checkbox-ng so that we have it in $PATH
