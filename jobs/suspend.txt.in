@@ -853,6 +853,7 @@ name: suspend/gpu_lockup_after_suspend
 requires:
  package.name == 'wmctrl'
  package.name == 'mesa-utils'
+ package.name == 'firefox'
 depends: suspend/suspend_advanced_auto
 command: gpu_test
 _description:
