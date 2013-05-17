@@ -84,6 +84,17 @@ for target in $target_list; do
     fi
     echo "Timing for plainbox documentation build"
     cat $TIMING
+    # Run checkbox-ng unit tests
+    if time -o $TIMING vagrant ssh $target -c 'cd checkbox/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
+        echo "[$target] CheckBoxNG test suite: pass"
+    else
+        outcome=1
+        echo "[$target] CheckBoxNG test suite: fail"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-ng.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-ng.err)"
+    fi
+    echo "Timing for checkbox-ng test suite"
+    cat $TIMING
     # Run plainbox integration test suite (that tests checkbox scripts)
     if time -o $TIMING vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
         echo "[$target] Integration tests: pass"
