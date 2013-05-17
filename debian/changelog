@@ -1,6 +1,9 @@
 checkbox (0.16.3) UNRELEASED; urgency=low
 
-  * Incremented version 
+  [ Sylvain Pineau ]
+  * jobs/info.txt.in, scripts/efi_resource: parse the kern.log backups too.
+  * scripts/gpu_test, jobs/suspend.txt.in: Call firefox instead of the default
+    browser.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 17 May 2013 07:58:29 +0100
 
@@ -23,10 +26,6 @@ checkbox (0.16.2) saucy; urgency=low
   * checkbox/parsers/cpuinfo.py - split on first instance of ':' in cpuinfo
     output lines to avoid splitting into more than 2 items. Also fixed a pep8
     issue discovered while working on this. (LP: #1180496)
-
-  [ Sylvain Pineau ]
-  * scripts/gpu_test, jobs/suspend.txt.in: Call firefox instead of the default
-    browser.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:21:05 +0100
 
