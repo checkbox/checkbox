@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-09 05:18+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-17 05:14+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
@@ -182,12 +182,11 @@ msgid ""
 "    Did you hear your speech played back?"
 msgstr ""
 "МЕТА:\n"
-"    Цей тест перевірить, чи звук, записаний зовнішнім мікрофоном, "
-"відтвориться правильно\n"
+"    Цей тест перевірить, чи зовнішній мікрофон правильно записав звук\n"
 "ПОРЯДОК ДІЙ:\n"
-"    1. Під'єднайте мікрофон до порту\n"
+"    1. Під'єднайте мікрофон\n"
 "    2. Натисніть \"Тест\", скажіть щось у мікрофон\n"
-"    3. Після кількох секунд те, що ви сказали буде відтворено\n"
+"    3. Після кількох секунд буде відтврорено те, що Ви сказали\n"
 "ПЕРЕВІРКА:\n"
 "    Ви чули те, що ви сказали?"
 
@@ -204,11 +203,11 @@ msgid ""
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "МЕТА:\n"
-"    Цей тест перевірить, чи USB аудіо пристрій працює коректно\n"
+"    Цей тест перевірить правильність роботи USB аудіо пристрою\n"
 "ПОРЯДОК ДІЙ:\n"
 "    1. Під'єднайте USB аудіо пристрій до вашої системи\n"
 "    2. Натисніть \"Тест\", скажіть щось у мікрофон\n"
-"    3. Після кількох секунд те, що ви сказали буде відтворено\n"
+"    3. Після кількох секунд буде видтворено те, що Ви сказали\n"
 "ПЕРЕВІРКА:\n"
 "    Ви чули те, що ви сказали у USB навушниках?"
 
@@ -238,12 +237,12 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
-msgstr "Тест для кожного диску"
+msgstr "Тест кожного тесту"
 
 #. description
 #: ../jobs/benchmarks.txt.in:41
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
-msgstr "Виконати тест XRender/Imlib2"
+msgstr "Виконання тесту Render-Bench XRender/Imlib2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:47
@@ -258,47 +257,47 @@ msgstr "Виконати тест Qgears2 XRender Extension (масштабув�
 #. description
 #: ../jobs/benchmarks.txt.in:59
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
-msgstr ""
+msgstr "Виконання тесту Qgears2 OpenGL gearsfancy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:65
 msgid "Run Qgears2 OpenGL image scaling benchmark"
-msgstr "Виконати тест Qgears2 OpenGL (масштабування зображення)"
+msgstr "Виконання тесту маштабування зображення Qgears2 OpenGL"
 
 #. description
 #: ../jobs/benchmarks.txt.in:74
 msgid "Run GLmark2-ES2 benchmark"
-msgstr "Виконати тест GLmark2-ES2"
+msgstr "Виконання тесту GLmark2-ES2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:83
 msgid "Run GLmark2 benchmark"
-msgstr "Виконати тест GLmark2"
+msgstr "Виконання тесту GLmark2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:89
 msgid "Run Unigine Santuary benchmark"
-msgstr "Виконати тест Unigine Santuary"
+msgstr "Виконання тесту Unigine Santuary"
 
 #. description
 #: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr "Виконати тест UnigineTropics"
+msgstr "Виконання тесту Unigine Tropics"
 
 #. description
 #: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr "Виконати тест Unigine Heaven"
+msgstr "Виконання тесту Unigine Heaven"
 
 #. description
 #: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr "Виконати тест Lightsmark"
+msgstr "Виконання тесту Lightsmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:113
 msgid "Run Cachebench Read benchmark"
-msgstr "Виконати тест Cachebench Read"
+msgstr "Виконання тесту Cachebench Read"
 
 #. description
 #: ../jobs/benchmarks.txt.in:119
@@ -846,8 +845,7 @@ msgstr "Тест для виведення версії Xorg"
 #: ../jobs/benchmarks.txt.in:34
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
-"Виконання gtkperf для перевірити тестів, базованих на GTK, на корректне "
-"виконання"
+"Виконання gtkperf для перевірки коректного виконання тестів, базованих на GTK"
 
 #. description
 #: ../jobs/graphics.txt.in:15
