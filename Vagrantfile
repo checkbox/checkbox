@@ -51,6 +51,8 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => "apt-get install --yes fwts"
   # Develop plainbox so that we have it in $PATH
   config.vm.provision :shell, :inline => "cd /vagrant/plainbox/ && python3 setup.py develop"
+  # Develop checkbox-ng so that we have it in $PATH
+  config.vm.provision :shell, :inline => "cd /vagrant/checkbox-ng/ && python3 setup.py develop"
   # Create a cool symlink so that everyone knows where to go to
   config.vm.provision :shell, :inline => "ln --no-dereference --force --symbolic /vagrant /home/vagrant/checkbox"
 end
