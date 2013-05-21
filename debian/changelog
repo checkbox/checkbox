@@ -5,6 +5,10 @@ checkbox (0.16.3) UNRELEASED; urgency=low
   * scripts/gpu_test, jobs/suspend.txt.in: Call firefox instead of the default
     browser.
 
+  [ Daniel Manrique ]
+  * Expanded optical_drive resource command so it correctly handles systems
+    with no optical drive (LP: #1182489)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 17 May 2013 07:58:29 +0100
 
 checkbox (0.16.2) saucy; urgency=low
