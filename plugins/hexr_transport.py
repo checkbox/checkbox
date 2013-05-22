@@ -51,7 +51,7 @@ class HexrTransport(Plugin):
     hardware_id_header = String(default="X_HARDWARE_ID")
     submit_to_hexr_header = String(default="X_SHARE_WITH_HEXR")
 
-    show_link = Bool(default=True)
+    html_link = Bool(default=True)
 
     def register(self, manager):
         super(HexrTransport, self).register(manager)
@@ -113,9 +113,9 @@ class HexrTransport(Plugin):
                                                     self._headers,
                                                     self.timeout)
             if result:
-                if self.show_link:
-                    interface.show_text("Submission link: " + details)
-                link = "<a href='%s'>%s</a>" % (details, details)
+                link = details
+                if self.html_link:
+                    link = "<a href='%s'>%s</a>" % (details, details)
                 self._manager.reactor.fire("report-final-text", "Submission link: " + link)
                 break
             else:
