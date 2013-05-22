@@ -115,7 +115,8 @@ class HexrTransport(Plugin):
             if result:
                 if self.show_link:
                     interface.show_text("Submission link: " + details)
-                self._manager.reactor.fire("report-final-text", "Submission link: " + details)
+                link = "<a href='%s'>%s</a>" % (details, details)
+                self._manager.reactor.fire("report-final-text", "Submission link: " + link)
                 break
             else:
                 if attempt + 1 >= self.max_tries:

@@ -19,6 +19,7 @@
 from gettext import gettext as _
 
 from checkbox.plugin import Plugin
+from checkbox.properties import String
 
 final_text = String(default=_("Successfully finished testing!"))
 
@@ -35,7 +36,7 @@ class FinalPrompt(Plugin):
         self.final_text = text
 
     def prompt_finish(self, interface):
-        interface.show_text(final_text, next=_("_Finish"))
+        interface.show_text(self.final_text, next=_("_Finish"))
 
 
 factory = FinalPrompt
