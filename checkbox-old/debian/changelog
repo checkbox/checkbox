@@ -26,6 +26,8 @@ checkbox (0.16.3) saucy; urgency=low
   * jobs/info.txt.in, scripts/efi_resource: parse the kern.log backups too.
   * scripts/gpu_test, jobs/suspend.txt.in: Call firefox instead of the default
     browser.
+  * scripts/package_resource: updated version supporting both precise and newer
+    releases (LP: #1184197)
 
   [ Daniel Manrique ]
   * Expanded optical_drive resource command so it correctly handles systems

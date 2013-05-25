@@ -2,7 +2,9 @@
 #
 # This file is part of Checkbox.
 #
-# Copyright 2009 Canonical Ltd.
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,114 +18,74 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
-import os
-import sys
 
-from io import StringIO
-from optparse import OptionParser
-from subprocess import Popen, PIPE
-
+import platform
+from subprocess import check_output
 
 # Command to retrieve packages.
-COMMAND = "COLUMNS=200 dpkg -l"
+COMMAND = [
+    'dpkg-query', '-W',
+    '-f=${db:Status-Abbrev}\t${Package}\t${Version}\t${binary:Summary}\n']
 
+# Package selection states
+desired_to_value = {
+    'u': 'Unknown',
+    'i': 'Install',
+    'r': 'Remove',
+    'p': 'Purge',
+    'h': 'Hold'}
 
-def get_packages(file):
-    desired_to_value = {
-        "u": "Unknown",
-        "i": "Install",
-        "r": "Remove",
-        "p": "Purge",
-        "h": "Hold"}
+# Package states
+status_to_value = {
+    'n': 'Not Installed',
+    'i': 'Installed',
+    'c': 'Config-files',
+    'u': 'Unpacked',
+    'f': 'Half-configured',
+    'h': 'Half-inst',
+    'w': 'Triggers-awaited',
+    't': 'Triggers-pending'}
 
-    status_to_value = {
-        "n": "Not Installed",
-        "i": "Installed",
-        "c": "Cfg-files",
-        "u": "Unpacked",
-        "u": "Failed-cfg",
-        "h": "Half-inst"}
+# Package flags
+error_to_value = {
+    'r': 'Reinst-required'}
 
-    error_to_value = {
-        "":  None,
-        "h": "Hold",
-        "r": "Reinst-required",
-        "x": "both-problems"}
+# Only dpkg >= 1.16.2 supports virtual output binary:Summary
+# and db:Status-Abbrev fields.
+COMPATIBILITY_MODE = False
+if float(platform.dist()[1]) < 12.10:
+    COMMAND = "COLUMNS=400 dpkg -l"
+    COMPATIBILITY_MODE = True
 
-    columns = ["desired", "status", "error", "name", "version", "description"]
-    mandatory_columns = columns[:]
-    mandatory_columns.remove("error")  # this is optional
-    aliases = {
-        "linux-image-" + os.uname()[2]: "linux"}
+query_results = check_output(
+    COMMAND, shell=COMPATIBILITY_MODE).decode('UTF-8').splitlines()
 
-    # Skip header lines
-    while True:
-        line = file.readline()
-        if line.startswith("+++"):
-            break
-
+if COMPATIBILITY_MODE:
+    line = query_results[4]
     # Get length from separator
-    lengths = [0, 1, 2]
-    lengths.extend([len(i) + 1 for i in line.split("-")])
-    for i in range(4, len(lengths)):
+    lengths = [len(i) + 1 for i in line.split("-")]
+    for i in range(1, len(lengths)):
         lengths[i] += lengths[i - 1]
+    query_results = query_results[5:]
 
-    # Get remaining lines
-    for line in file.readlines():
-        package = {}
-        for i, column in enumerate(columns):
-            value = line[lengths[i]:lengths[i + 1]].strip()
-
-            # Convert value
-            if column == "desired":
-                value = desired_to_value.get(value)
-            elif column == "status":
-                value = status_to_value.get(value)
-            elif column == "error":
-                value = error_to_value.get(value)
-
-            # Set value
-            if value:
-                package[column] = value
-
-        #Skip records not containing all mandatory columns
-        if not set(mandatory_columns).issubset(list(package.keys())):
-            continue
-
-        name = package["name"]
-        if name in aliases:
-            yield dict(package)
-            package["name"] = aliases[name]
-
-        if name not in aliases.values():
-            yield package
-
-
-def main(args):
-    usage = "Usage: %prog [FILE...]"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-i", "--input",
-        action="store_true",
-        help="Read packages from stdin")
-    (options, args) = parser.parse_args(args)
-
-    if options.input:
-        file = sys.stdin
+for line in query_results:
+    if COMPATIBILITY_MODE:
+        name, version, description = [
+            line[lengths[i]:lengths[i + 1]].strip() for i in range(3)]
+        info = line[:3]
     else:
-        output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
-        file = StringIO(output.decode("utf-8"))
+        info, name, version, description = line.split('\t')
 
-    packages = get_packages(file)
-    for package in packages:
-        for key, value in package.items():
-            print("%s: %s" % (key, value))
+    # Skip records not containing all mandatory columns
+    if not (info and name and version and description):
+        continue
+    desired, status, error = list(info)
 
-        # Empty line
-        print()
-
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    print('name:', name)
+    print('version:', version)
+    print('description:', description)
+    print('desired:', desired_to_value.get(desired))
+    print('status:', status_to_value.get(status))
+    if error != ' ':
+        print('error:', error_to_value.get(error))
+    print()
