@@ -18,12 +18,17 @@ if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
     ln -fs "$VAGRANT_STATE_FILE" .vagrant
 fi
 
+if [ "$1" = "" ]; then
+    # XXX: this list needs to be in sync with Vagrantfile
+    target_list="precise quantal raring"
+else
+    target_list="$1"
+fi
+
 PASS="$(printf "\33[32;1mPASS\33[39;0m")"
 FAIL="$(printf "\33[31;1mFAIL\33[39;0m")"
 
 outcome=0
-# XXX: this list needs to be in sync with Vagrantfile
-target_list="precise quantal raring"
 for target in $target_list; do
     # Bring up target if needed
     if ! vagrant status $target | grep -q running; then
