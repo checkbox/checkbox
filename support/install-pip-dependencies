@@ -1,0 +1,57 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Helper script to install all of the python dependencies
+# =======================================================
+
+set -e
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Ensure that we have the external-tarballs repository
+if [ ! -d "$CHECKBOX_TOP/support/external-tarballs" ]; then
+    echo "E: you need to have $CHECKBOX_TOP/support/external-tarballs to run this script"
+    echo "I: git clone git://github.com/checkbox/external-tarballs $CHECKBOX_TOP/support/external-tarballs"
+    exit 101 
+fi
+
+# Set a http_proxy to the local discard port to prevent setuptools from
+# downloading anything.
+export http_proxy=http://127.0.0.1:9
+
+# Custom pip executable. Needed because the pip we want is called differently
+# in different situations. Inside a virtualenv it is always 'pip' but outside
+# it may be pip-3.2 or pip-3.3, depending on python version.
+CHECKBOX_PIP=${CHECKBOX_PIP:-pip}
+echo "I: using $CHECKBOX_PIP to install python packages"
+
+# Construct a list of required python packages.
+python_pkg_list="$(find "$CHECKBOX_TOP" -path '*/requirements/pip-*.txt' -exec cat "{}" \; | grep -v '^#' | sort | uniq)"
+
+# Install them
+echo "I: installing following pip packages:" $python_pkg_list
+$CHECKBOX_PIP install --quiet --no-index \
+    "--find-links=file://$CHECKBOX_TOP/support/external-tarballs/index.html" \
+    $python_pkg_list

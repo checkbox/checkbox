@@ -1,0 +1,56 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Helper script to install pip for python3
+# ========================================
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Ensure that we have the external-tarballs repository
+if [ ! -d "$CHECKBOX_TOP/support/external-tarballs" ]; then
+    echo "E: you need to have $CHECKBOX_TOP/support/external-tarballs to run this script"
+    echo "I: git clone git://github.com/checkbox/external-tarballs $CHECKBOX_TOP/support/external-tarballs"
+    exit 101 
+fi
+
+# Ensure that we have python3
+if [ $(which python3) = "" ]; then
+    echo "E: you need to have python3 installed first"
+    exit 102
+fi
+
+# Create a directory for the build process
+build_dir=$(mktemp -d)
+trap "rm -rf \"$build_dir\"" EXIT
+
+# Unpack pip source
+tar zxf $CHECKBOX_TOP/support/external-tarballs/pypi/pip-1.3.1.tar.gz -C "$build_dir"
+
+# Set a http_proxy to the local discard port to prevent setuptools from
+# downloading anything.
+export http_proxy=http://127.0.0.1:9
+
+# Install it
+echo "I: installing pip from source"
+cd "$build_dir/pip-1.3.1/" && python3 setup.py install --quiet --quiet

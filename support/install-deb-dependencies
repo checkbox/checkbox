@@ -1,0 +1,44 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Helper script to install all of the Debian dependencies
+# =======================================================
+
+set -e
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Ensure that we run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "E: this script has to run as root"
+    exit 101
+fi
+
+# Construct a list of required Debian packages.
+debian_pkg_list="$(find "$CHECKBOX_TOP" -path '*/requirements/deb-*.txt' -exec cat "{}" \;  | grep -v '^#' | sort | uniq)"
+
+# Install them
+echo "I: installing following Debian packages:" $debian_pkg_list
+apt-get install --quiet --quiet --yes $debian_pkg_list

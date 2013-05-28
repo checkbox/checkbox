@@ -1,0 +1,64 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Test script for 'install-dependencies'
+# ======================================
+#
+# Creates a new random empty virtualenv with python3 and runs
+# install-dependencies. Verifies the output of pip freeze at the end.
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+else
+    # Export CHECKBOX_TOP for install-pip-dependencies
+    export CHECKBOX_TOP
+fi
+
+# Create a directory for virtualenv and ensure it gets removed later
+venv_path=$(mktemp -d)
+trap "rm -rf \"$venv_path\"" EXIT
+
+# Create a virtualenv
+echo "I: creating temporary virtualenv"
+if ! virtualenv --quiet -p python3 "$venv_path"; then
+    echo "E: cannot create virtualenv"
+    exit 1
+fi
+
+# Activate the virtualenv
+. "$venv_path/bin/activate"
+
+# Install all the packages
+echo "I: installing dependencies"
+$CHECKBOX_TOP/support/install-pip-dependencies
+
+# Check installation outcome
+echo "I: checking installed packages"
+pip freeze > $venv_path/actual-pip-freeze.txt
+if ! diff -u $CHECKBOX_TOP/support/expected-pip-freeze.txt $venv_path/actual-pip-freeze.txt ; then
+    echo "E: actually installed packages don't match expectations"
+    exit 2
+fi
+
+# Done
+echo "I: testing complete, all good"
+exit 0
