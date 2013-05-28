@@ -11,9 +11,3 @@ export VAGRANT_DONE_ACTION=destroy
 time -o timing.dat ./test-in-vagrant.sh
 echo "Complete checkbox, plainbox, integration and docs time:"
 cat timing.dat
-
-# Run plainbox-on-checkbox-stable tests and development env tests
-cd plainbox
-time -o timing.dat ./test-in-vagrant.sh
-echo "plainbox-on-checkbox-stable and development env tests:"
-cat timing.dat
