@@ -49,7 +49,7 @@ for target in $target_list; do
     # Display something before the first test output
     echo "[$target] Starting tests..."
     # Run checkbox unit tests
-    if time -o $TIMING vagrant ssh $target -c 'cd checkbox && ./test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
+    if time -o $TIMING vagrant ssh $target -c 'cd checkbox && python3 setup.py test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
         echo "[$target] CheckBox test suite: $PASS"
     else
         outcome=1
