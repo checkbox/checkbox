@@ -1,0 +1,45 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Helper script to develop all the local projects 
+# ===============================================
+
+set -e
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Set a http_proxy to the local discard port to prevent setuptools from
+# downloading anything.
+export http_proxy=http://127.0.0.1:9
+
+# Develop each of the projects. This part is not automated as the order
+# here encodes 
+echo "I: running 'develop' on checkbox"
+( cd $CHECKBOX_TOP/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
+
+echo "I: running 'develop' on plainbox"
+( cd $CHECKBOX_TOP/plainbox/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
+
+echo "I: running 'develop' on checkbox-ng"
+( cd $CHECKBOX_TOP/checkbox-ng/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )

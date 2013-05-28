@@ -33,28 +33,6 @@ Vagrant::Config.run do |config|
     config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"#{ENV['VAGRANT_APT_CACHE']}\"; };' > /etc/apt/apt.conf"
   end
 
-  # Update to have the latest packages, this is needed because the image comes
-  # with an old (and no longer working) apt cache and links to many packages no
-  # longer work.
-  config.vm.provision :shell, :inline => "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade --yes"
-  # Install dependencies from native packages
-  config.vm.provision :shell, :inline => "apt-get install --yes python3-setuptools python3-pkg-resources python3-lxml"
-  # Install python3-mock so that we can create mock objects for testing
-  config.vm.provision :shell, :inline => "apt-get install --yes python3-mock"
-  # Install python3-sphinx so that we can build documentation
-  config.vm.provision :shell, :inline => "apt-get install --yes python3-sphinx"
-  # Install policykit-1 so that we have pkexec
-  config.vm.provision :shell, :inline => "apt-get install --yes policykit-1"
-  # Install some checkbox script dependencies:
-  # Later on those could be installed on demand to test how we behave without
-  # them but for now that's good enough. Little by little...
-  config.vm.provision :shell, :inline => "apt-get install --yes fwts"
-  # Develop checkbox so that we have it in $PATH
-  config.vm.provision :shell, :inline => "cd /vagrant/ && python3 setup.py develop"
-  # Develop plainbox so that we have it in $PATH
-  config.vm.provision :shell, :inline => "cd /vagrant/plainbox/ && python3 setup.py develop"
-  # Develop checkbox-ng so that we have it in $PATH
-  config.vm.provision :shell, :inline => "cd /vagrant/checkbox-ng/ && python3 setup.py develop"
-  # Create a cool symlink so that everyone knows where to go to
-  config.vm.provision :shell, :inline => "ln --no-dereference --force --symbolic /vagrant /home/vagrant/checkbox"
+  # Provision everything using a standalone shell script
+  config.vm.provision :shell, :path => "support/provision-vagrant"
 end

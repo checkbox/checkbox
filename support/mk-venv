@@ -1,0 +1,111 @@
+#!/bin/sh
+# Create a virtualenv for working with plainbox.
+#
+# This ensures that 'plainbox' command exists and is in PATH and that the
+# plainbox module is correctly located can be imported.
+#
+# This is how Zygmunt Krynicki works, feel free to use or adjust to your needs
+
+CHECKBOX_VENV_PATH=
+# Parse arguments:
+while [ -n "$1" ]; do
+    case "$1" in
+        --help|-h)
+            echo "Usage: mk-venv.sh [LOCATION]"
+            echo ""
+            echo "Create a virtualenv for working with checkbox in LOCATION"
+            exit 0
+            ;;
+        *)
+            if [ -z "$CHECKBOX_VENV_PATH" ]; then
+                CHECKBOX_VENV_PATH="$1"
+                shift
+            else
+                echo "Error: too many arguments: '$1'"
+                exit 1
+            fi
+            ;;
+    esac
+done
+
+# Apply defaults to arguments without values
+if [ -z "$CHECKBOX_VENV_PATH" ]; then
+    # Use sensible defaults for vagrant
+    if [ "$LOGNAME" = "vagrant" ]; then
+        CHECKBOX_VENV_PATH=/tmp/venv
+    else
+        CHECKBOX_VENV_PATH=/ramdisk/venv
+    fi
+fi
+
+# Do a sanity check on lsb_release that is missing on Fedora the last time I
+# had a look at it.
+if [ "x$(which lsb_release)" = "x" ]; then
+    echo "This script requires the 'lsb_release' command"
+    exit 1
+fi
+
+# The code below is a mixture of Debian/Ubuntu packages and pypi packages.
+# It is designed to work on Ubuntu 12.04 or later.
+# There are _some_ differences between how each release is handled.
+#
+# Non Ubuntu systems are not tested as they don't have the required checkbox
+# package. Debian might be supported once we have JobBox and stuff like Fedora
+# would need a whole new approach but patches are welcome [CLA required] 
+if [ "$(lsb_release --short --id)" != "Ubuntu" ] && [ $(lsb_release --short --id --upstream) != "Ubuntu" ]; then
+    echo "Only Ubuntu is supported by this script."
+    echo "If you are interested in using it with your distribution"
+    echo "then please join us in #ubuntu-quality on freenode"
+    echo
+    echo "Alternatively you can use vagrant to develop plainbox"
+    echo "on any operating system, even Windows ;-)" 
+    echo
+    echo "See: http://www.vagrantup.com/ for details"
+    exit 1
+fi
+# From now on we can assume a Debian-like system
+
+# Find the top of checkbox tree
+if [ "$CHECKBOX_TOP" = "" ]; then
+    CHECKBOX_TOP="$(git rev-parse --show-toplevel)"
+fi
+if [ "$CHECKBOX_TOP" = "" ]; then
+    CHECKBOX_TOP="$(bzr root)"
+fi
+
+# Export it for all the sub-scripts
+export CHECKBOX_TOP
+
+# Ensure that all Debian dependencies are installed
+# Pass CHECKBOX_TOP separately across sudo
+sudo CHECKBOX_TOP="$CHECKBOX_TOP" $CHECKBOX_TOP/support/install-deb-dependencies
+
+# Check if we can create a virtualenv
+if [ ! -d $(dirname $CHECKBOX_VENV_PATH) ]; then
+    echo "E: This script requires $(dirname $CHECKBOX_VENV_PATH) directory to exist"
+    echo "E: You can use different directory by passing it as argument"
+    echo "E: For a quick temporary location just pass /tmp/venv"
+    exit 1
+fi
+
+# Check if there's one already there
+if [ -d $CHECKBOX_VENV_PATH ]; then
+    echo "E: $CHECKBOX_VENV_PATH seems to already exist"
+    exit 1
+fi
+
+# Create a virtualenv with python3
+echo "I: creating virtualbox in $CHECKBOX_VENV_PATH"
+virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VENV_PATH
+
+# Activate the virtualenv 
+. $CHECKBOX_VENV_PATH/bin/activate
+
+# Install all the python dependencies
+$CHECKBOX_TOP/support/install-pip-dependencies
+
+# Develop all the local projects
+$CHECKBOX_TOP/support/develop-projects
+
+echo "To activate your virtualenv run:"
+echo "$ . $CHECKBOX_VENV_PATH/bin/activate"

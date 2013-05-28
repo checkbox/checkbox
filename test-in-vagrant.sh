@@ -3,6 +3,7 @@
 
 mkdir -p vagrant-logs
 TIMING=vagrant-logs/timing.dat
+VAGRANT_DONE_ACTION=${VAGRANT_DONE_ACTION:-destroy}
 
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
 
@@ -17,9 +18,17 @@ if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
     ln -fs "$VAGRANT_STATE_FILE" .vagrant
 fi
 
+if [ "$1" = "" ]; then
+    # XXX: this list needs to be in sync with Vagrantfile
+    target_list="precise quantal raring"
+else
+    target_list="$1"
+fi
+
+PASS="$(printf "\33[32;1mPASS\33[39;0m")"
+FAIL="$(printf "\33[31;1mFAIL\33[39;0m")"
+
 outcome=0
-# XXX: this list needs to be in sync with Vagrantfile
-target_list="precise quantal raring"
 for target in $target_list; do
     # Bring up target if needed
     if ! vagrant status $target | grep -q running; then
@@ -31,24 +40,24 @@ for target in $target_list; do
             echo "[$target] stdout: $(pastebinit vagrant-logs/$target.startup.log)"
             echo "[$target] stderr: $(pastebinit vagrant-logs/$target.startup.err)"
             echo "[$target] NOTE: unable to execute tests, marked as failed"
+            echo "[$target] Destroying failed VM to reclaim resources"
+            vagrant destroy -f $target;
             continue
         fi
-        echo "Timing for $step"
-        cat $TIMING
+        cat $TIMING | sed -e "s/^/[$target] (timing) /"
     fi
     # Display something before the first test output
     echo "[$target] Starting tests..."
     # Run checkbox unit tests
-    if time -o $TIMING vagrant ssh $target -c 'cd checkbox && ./test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
-        echo "[$target] CheckBox test suite: pass"
+    if time -o $TIMING vagrant ssh $target -c 'cd checkbox && python3 setup.py test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
+        echo "[$target] CheckBox test suite: $PASS"
     else
         outcome=1
-        echo "[$target] CheckBox test suite: fail"
+        echo "[$target] CheckBox test suite: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
     fi
-    echo "Timing for Checkbox test suite"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Refresh plainbox installation. This is needed if .egg-info (which is
     # essential for 'develop' to work) was removed in the meantime, for
     # example, by tarmac.
@@ -59,53 +68,48 @@ for target in $target_list; do
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.egginfo.err)"
         echo "[$target] NOTE: unable to execute tests, marked as failed"
     fi
-    echo "Timing for refreshing plainbox installation"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
-        echo "[$target] PlainBox test suite: pass"
+        echo "[$target] PlainBox test suite: $PASS"
     else
         outcome=1
-        echo "[$target] PlainBox test suite: fail"
+        echo "[$target] PlainBox test suite: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
     fi
-    echo "Timing for plainbox test suite"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Build plainbox documentation
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
-        echo "[$target] PlainBox documentation build: pass"
+        echo "[$target] PlainBox documentation build: $PASS"
     else
         outcome=1
-        echo "[$target] PlainBox documentation build: fail"
+        echo "[$target] PlainBox documentation build: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
     fi
-    echo "Timing for plainbox documentation build"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run checkbox-ng unit tests
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
-        echo "[$target] CheckBoxNG test suite: pass"
+        echo "[$target] CheckBoxNG test suite: $PASS"
     else
         outcome=1
-        echo "[$target] CheckBoxNG test suite: fail"
+        echo "[$target] CheckBoxNG test suite: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-ng.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-ng.err)"
     fi
-    echo "Timing for checkbox-ng test suite"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run plainbox integration test suite (that tests checkbox scripts)
     if time -o $TIMING vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
-        echo "[$target] Integration tests: pass"
+        echo "[$target] Integration tests: $PASS"
     else
         outcome=1
-        echo "[$target] Integration tests: fail"
+        echo "[$target] Integration tests: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
-    echo "Timing for integration tests"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     case $VAGRANT_DONE_ACTION in
         suspend)
             # Suspend the target to conserve resources
