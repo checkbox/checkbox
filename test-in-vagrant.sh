@@ -32,6 +32,8 @@ for target in $target_list; do
             echo "[$target] stdout: $(pastebinit vagrant-logs/$target.startup.log)"
             echo "[$target] stderr: $(pastebinit vagrant-logs/$target.startup.err)"
             echo "[$target] NOTE: unable to execute tests, marked as failed"
+            echo "[$target] Destroying failed VM to reclaim resources"
+            vagrant destroy -f $target;
             continue
         fi
         echo "Timing for $step"
