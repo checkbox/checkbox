@@ -36,8 +36,7 @@ for target in $target_list; do
             vagrant destroy -f $target;
             continue
         fi
-        echo "Timing for $step"
-        cat $TIMING
+        cat $TIMING | sed -e "s/^/[$target] (timing) /"
     fi
     # Display something before the first test output
     echo "[$target] Starting tests..."
@@ -50,8 +49,7 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
     fi
-    echo "Timing for Checkbox test suite"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Refresh plainbox installation. This is needed if .egg-info (which is
     # essential for 'develop' to work) was removed in the meantime, for
     # example, by tarmac.
@@ -62,8 +60,7 @@ for target in $target_list; do
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.egginfo.err)"
         echo "[$target] NOTE: unable to execute tests, marked as failed"
     fi
-    echo "Timing for refreshing plainbox installation"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
@@ -74,8 +71,7 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
     fi
-    echo "Timing for plainbox test suite"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Build plainbox documentation
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
         echo "[$target] PlainBox documentation build: pass"
@@ -85,8 +81,7 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
     fi
-    echo "Timing for plainbox documentation build"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run checkbox-ng unit tests
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
         echo "[$target] CheckBoxNG test suite: pass"
@@ -96,8 +91,7 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-ng.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-ng.err)"
     fi
-    echo "Timing for checkbox-ng test suite"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run plainbox integration test suite (that tests checkbox scripts)
     if time -o $TIMING vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
         echo "[$target] Integration tests: pass"
@@ -107,8 +101,7 @@ for target in $target_list; do
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
-    echo "Timing for integration tests"
-    cat $TIMING
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
     case $VAGRANT_DONE_ACTION in
         suspend)
             # Suspend the target to conserve resources
