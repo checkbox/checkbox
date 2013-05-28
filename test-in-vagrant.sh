@@ -18,6 +18,9 @@ if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
     ln -fs "$VAGRANT_STATE_FILE" .vagrant
 fi
 
+PASS="$(printf "\33[32;1mPASS\33[39;0m")"
+FAIL="$(printf "\33[31;1mFAIL\33[39;0m")"
+
 outcome=0
 # XXX: this list needs to be in sync with Vagrantfile
 target_list="precise quantal raring"
@@ -42,10 +45,10 @@ for target in $target_list; do
     echo "[$target] Starting tests..."
     # Run checkbox unit tests
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox && ./test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
-        echo "[$target] CheckBox test suite: pass"
+        echo "[$target] CheckBox test suite: $PASS"
     else
         outcome=1
-        echo "[$target] CheckBox test suite: fail"
+        echo "[$target] CheckBox test suite: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
     fi
@@ -64,40 +67,40 @@ for target in $target_list; do
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
-        echo "[$target] PlainBox test suite: pass"
+        echo "[$target] PlainBox test suite: $PASS"
     else
         outcome=1
-        echo "[$target] PlainBox test suite: fail"
+        echo "[$target] PlainBox test suite: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Build plainbox documentation
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
-        echo "[$target] PlainBox documentation build: pass"
+        echo "[$target] PlainBox documentation build: $PASS"
     else
         outcome=1
-        echo "[$target] PlainBox documentation build: fail"
+        echo "[$target] PlainBox documentation build: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run checkbox-ng unit tests
     if time -o $TIMING vagrant ssh $target -c 'cd checkbox/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
-        echo "[$target] CheckBoxNG test suite: pass"
+        echo "[$target] CheckBoxNG test suite: $PASS"
     else
         outcome=1
-        echo "[$target] CheckBoxNG test suite: fail"
+        echo "[$target] CheckBoxNG test suite: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-ng.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-ng.err)"
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run plainbox integration test suite (that tests checkbox scripts)
     if time -o $TIMING vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
-        echo "[$target] Integration tests: pass"
+        echo "[$target] Integration tests: $PASS"
     else
         outcome=1
-        echo "[$target] Integration tests: fail"
+        echo "[$target] Integration tests: $FAIL"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
         echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
     fi
