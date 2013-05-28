@@ -3,6 +3,7 @@
 
 mkdir -p vagrant-logs
 TIMING=vagrant-logs/timing.dat
+VAGRANT_DONE_ACTION=${VAGRANT_DONE_ACTION:-destroy}
 
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
 
