@@ -1,26 +1,54 @@
+# Ignore all python3 bytecode data
 __pycache__
+# Ignore setuptools artifacts
+build
+dist
+*.egg-info
+# Ignore coverage artifacts
+.coverage
+htmlcov
 # Ignore logs created by test-in-vagrant.sh
-vagrant-logs/
+vagrant-logs
 # Ignore vagrant state file
 .vagrant
+# Ignore the two binary executables that checkbox scripts/ can build
+checkbox-old/scripts/clocktest
+checkbox-old/scripts/threaded_memtest
 # The list below is riddled with junk created by running the test suite of checkbox
 # It should be really cleaned up as tests should _not_ do that but right now it's more
 # annoying than dangerous so I'll get rid of the noise first
 *.o
-active_output
-checkbox.log
-checkbox.xsl
-plugins.bpickle
-plugins.bpickle.old
-qt/frontend/Makefile
-qt/frontend/checkbox-qt-service
-qt/frontend/moc_qtfront.cpp
-qt/frontend/qrc_resources.cpp
-qt/frontend/ui_qtfront.cpp
-qt/frontend/ui_qtfront.h
-store/
-submission.xml
-subunit.log
-build
-dist
-*.egg-info
+checkbox-old/active_output
+checkbox-old/checkbox.log
+checkbox-old/checkbox.xsl
+checkbox-old/plugins.bpickle
+checkbox-old/plugins.bpickle.old
+checkbox-old/qt/frontend/Makefile
+checkbox-old/qt/frontend/checkbox-qt-service
+checkbox-old/qt/frontend/moc_qtfront.cpp
+checkbox-old/qt/frontend/qrc_resources.cpp
+checkbox-old/qt/frontend/ui_qtfront.cpp
+checkbox-old/qt/frontend/ui_qtfront.h
+checkbox-old/store/
+checkbox-old/submission.xml
+checkbox-old/subunit.log
+# Ignore junk created by dpkg-buildpackage
+checkbox-old/debian/*-cli.postrm
+checkbox-old/debian/*-gtk.postrm
+checkbox-old/debian/*-qt.postrm
+checkbox-old/debian/*-urwid.postrm
+checkbox-old/debian/*.debhelper
+checkbox-old/debian/*.log
+checkbox-old/debian/*.substvars
+checkbox-old/debian/checkbox
+checkbox-old/debian/checkbox-cli
+checkbox-old/debian/checkbox-gtk
+checkbox-old/debian/checkbox-qt
+checkbox-old/debian/checkbox-urwid
+checkbox-old/debian/files
+checkbox-old/debian/stamp-patched
+checkbox-old/debian/tmp
+# Ignore glade (editor?) temporary / support files
+checkbox-old/gtk/checkbox-gtk.glade.bak
+checkbox-old/gtk/checkbox-gtk.gladep
+checkbox-old/gtk/checkbox-gtk.gladep.bak
