@@ -67,7 +67,7 @@ fi
 
 # Find the top of checkbox tree
 if [ "$CHECKBOX_TOP" = "" ]; then
-    CHECKBOX_TOP="$(git rev-parse --show-toplevel)"
+    CHECKBOX_TOP="$(git rev-parse --show-toplevel 2>/dev/null)"
 fi
 if [ "$CHECKBOX_TOP" = "" ]; then
     CHECKBOX_TOP="$(bzr root)"
@@ -78,7 +78,7 @@ export CHECKBOX_TOP
 
 # Ensure that all Debian dependencies are installed
 # Pass CHECKBOX_TOP separately across sudo
-sudo CHECKBOX_TOP="$CHECKBOX_TOP" $CHECKBOX_TOP/support/install-deb-dependencies
+CHECKBOX_TOP="$CHECKBOX_TOP" $CHECKBOX_TOP/support/install-deb-dependencies
 
 # Check if we can create a virtualenv
 if [ ! -d $(dirname $CHECKBOX_VENV_PATH) ]; then
@@ -100,6 +100,9 @@ virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VE
 
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate
+
+# Make sure that external-tarballs is ready
+$CHECKBOX_TOP/support/get-external-tarballs
 
 # Install all the python dependencies
 $CHECKBOX_TOP/support/install-pip-dependencies

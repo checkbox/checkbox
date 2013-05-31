@@ -30,15 +30,14 @@ if [ "$CHECKBOX_TOP" = "" ]; then
     exit 100
 fi
 
-# Ensure that we run as root
-if [ "$(id -u)" -ne 0 ]; then
-    echo "E: this script has to run as root"
-    exit 101
-fi
-
 # Construct a list of required Debian packages.
 debian_pkg_list="$(find "$CHECKBOX_TOP" -path '*/requirements/deb-*.txt' -exec cat "{}" \;  | grep -v '^#' | sort | uniq)"
 
-# Install them
-echo "I: installing following Debian packages:" $debian_pkg_list
-apt-get install --quiet --quiet --yes $debian_pkg_list
+# Check each one and install if required
+echo "I: checking if the following Debian packages are installed:" $debian_pkg_list
+for debian_pkg in $debian_pkg_list; do
+    if [ "$(dpkg-query -s $debian_pkg 2>/dev/null | grep '^Status:')" != "Status: install ok installed" ]; then
+        echo "I: package $debian_pkg is missing, installing"
+        sudo apt-get install --quiet --quiet --yes $debian_pkg
+    fi
+done
