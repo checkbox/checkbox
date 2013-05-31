@@ -104,7 +104,7 @@ class ChangeWorkspace(Thread):
 
 class Html5VideoThread(Thread):
     """
-    Start a thread performing playback of an HTML5 video in the default browser
+    Start a thread performing playback of an HTML5 video in firefox
     """
 
     def run(self):
@@ -112,7 +112,7 @@ class Html5VideoThread(Thread):
             os.getenv('CHECKBOX_SHARE'),
             'data/websites/html5_video.html')
         subprocess.call(
-            'xdg-open %s' % html5_path,
+            'firefox %s' % html5_path,
             stdout=open(os.devnull, 'w'),
             stderr=subprocess.STDOUT,
             shell=True)

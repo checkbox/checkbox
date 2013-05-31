@@ -28,7 +28,7 @@ _description: Attaches dmidecode output
 name: efi_attachment
 plugin: attachment
 user: root
-command: [ -d /sys/firmware/efi ] && grep -o --color=never 'EFI v.*' /var/log/kern.log || true
+command: [ -d /sys/firmware/efi ] && grep -m 1 -o --color=never 'EFI v.*' /var/log/kern.log* || true
 _description: Attaches the firmware version
 
 name: lspci_attachment

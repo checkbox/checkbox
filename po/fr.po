@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-17 05:12+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-05-25 04:39+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -203,7 +203,7 @@ msgstr ""
 "joué sans aucune distorsion, clics ou bruits étranges ?"
 
 #. description
-#: ../jobs/audio.txt.in:72
+#: ../jobs/audio.txt.in:73
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -227,7 +227,7 @@ msgstr ""
 "    Avez-vous entendu votre enregistrement ?"
 
 #. description
-#: ../jobs/audio.txt.in:90
+#: ../jobs/audio.txt.in:92
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -251,7 +251,7 @@ msgstr ""
 "    Avez-vous entendu votre enregistrement ?"
 
 #. description
-#: ../jobs/audio.txt.in:107
+#: ../jobs/audio.txt.in:110
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -283,7 +283,7 @@ msgstr ""
 "directement, par exemple via un câble gainé."
 
 #. description
-#: ../jobs/audio.txt.in:131
+#: ../jobs/audio.txt.in:134
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -294,7 +294,7 @@ msgstr ""
 "tests plus détaillés dans un environnement contrôlé."
 
 #. description
-#: ../jobs/audio.txt.in:140
+#: ../jobs/audio.txt.in:143
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
 "Joint aux résultats les informations sur le matériel audio issues des "
@@ -659,7 +659,7 @@ msgstr ""
 "BUT :\n"
 "   Ce test va vérifier les capacités de votre système à jouer les fichiers "
 "audio au format Ogg Vorbis.\n"
-"ÉTAPES :\n"
+"ÉTAPES :\n"
 "   1. Cliquez sur le bouton « Tester » pour jouer un fichier Ogg Vorbis "
 "(.ogg)\n"
 "   2. Veuillez fermer le lecteur pour continuer.\n"
@@ -950,17 +950,16 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
-"BUT :\n"
+"BUT :\n"
 "    Ce test va vérifier que le système peut détecter le retrait d'un disque "
 "dur FireWire.\n"
-"ÉTAPES :\n"
-"    1.  Cliquez sur « Tester » pour commencer le test. Ce test "
-"s’interrompra\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » pour commencer le test. Ce test s’interrompra\n"
 "        et échouera si le retrait n'a pas été détectée dans un délai de 20 "
 "secondes.\n"
 "    2. Retirez le disque dur FireWire branché précédemment du port "
 "FireWire.\n"
-"VÉRIFICATION :\n"
+"VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le résultat\n"
 "    sélectionné automatiquement."
 
@@ -995,16 +994,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
-"BUT\n"
+"BUT :\n"
 "    Ce test va vérifier que l'interface graphique est utilisable après la "
 "modification manuelle de la résolution.\n"
-"ÉTAPES\n"
+"ÉTAPES :\n"
 "    1. Ouvrez l'application Dispositif d'affichage.\n"
 "    2. Sélectionnez une nouvelle résolution dans la liste déroulante.\n"
 "    3. Cliquez sur « Appliquer ».\n"
 "    4. Sélectionnez la résolution d'origine dans la liste déroulante.\n"
 "    5. Cliquez sur « Appliquer ».\n"
-"VÉRIFICATION\n"
+"VÉRIFICATION :\n"
 "    Est-ce que la résolution a changé comme prévu ?"
 
 #. description
@@ -1231,10 +1230,10 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
-"BUT :\n"
+"BUT :\n"
 "    Ce test va vérifier que votre système peut hiberner avec succès (si "
 "supporté)\n"
-"ÉTAPES :\n"
+"ÉTAPES :\n"
 "    1. Cliquez sur « Tester »\n"
 "    2. Le système va hiberner et devrait se réveiller lui-même dans les 5 "
 "minutes\n"
@@ -1243,7 +1242,7 @@ msgstr ""
 "    4. Si le système ne parvient pas à sortir de l'hibernation, merci de "
 "redémarrer l'application de test du système et de marquer ce test comme "
 "Échec\n"
-"VÉRIFICATION :\n"
+"VÉRIFICATION :\n"
 "    Est-ce que le système a hiberné avec succès et a-t-il fonctionné "
 "correctement après son réveil ?"
 

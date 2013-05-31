@@ -1,0 +1,55 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Helper script to download external tarballs
+# ===========================================
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Ensure that we have git 
+if [ "$(which git)" = "" ]; then
+    echo "E: you need to have git installed first"
+    exit 101
+fi
+
+# Ensure that we have the external-tarballs repository
+if [ ! -d "$CHECKBOX_TOP/support/external-tarballs" ]; then
+    echo "I: cloning external-tarballs repository..."
+    # Clone the external-tarballs repo
+    git clone git://github.com/checkbox/external-tarballs \
+        $CHECKBOX_TOP/support/external-tarballs
+fi
+
+cd $CHECKBOX_TOP/support/external-tarballs
+
+# Fetch so that we may have the needed revision
+if ! git fetch origin --quiet; then
+    echo "W: cannot perform fetch, external-tarballs may be out of date"
+fi
+
+# Ensure that we are on the correct revision
+if ! git checkout $(cat $CHECKBOX_TOP/support/external-tarballs-revision.txt); then
+    echo "E: cannot switch to required commit!"
+    exit 1
+fi

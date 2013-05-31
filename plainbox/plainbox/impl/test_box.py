@@ -122,15 +122,15 @@ class TestMain(TestCase):
         self.assertEqual(call.exception.args, (0,))
         self.maxDiff = None
         expected = """
-        usage: plainbox [-h] [-v] {run,special,self-test,sru,check-config} ...
+        usage: plainbox [-h] [-v] {run,self-test,sru,check-config,dev} ...
 
         positional arguments:
-          {run,special,self-test,sru,check-config}
+          {run,self-test,sru,check-config,dev}
             run                 run a test job
-            special             special/internal commands
             self-test           run integration tests
             sru                 run automated stable release update tests
             check-config        check and display plainbox configuration
+            dev                 development commands
 
         optional arguments:
           -h, --help            show this help message and exit
@@ -144,7 +144,7 @@ class TestMain(TestCase):
                 main([])
             self.assertEqual(call.exception.args, (2,))
         expected = """
-        usage: plainbox [-h] [-v] {run,special,self-test,sru,check-config} ...
+        usage: plainbox [-h] [-v] {run,self-test,sru,check-config,dev} ...
         plainbox: error: too few arguments
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
@@ -155,12 +155,12 @@ class TestSpecial(TestCase):
     def test_help(self):
         with TestIO(combined=True) as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special', '--help'])
+                main(['dev', 'special', '--help'])
             self.assertEqual(call.exception.args, (0,))
         self.maxDiff = None
         expected = """
-        usage: plainbox special [-h] (-j | -J | -e | -d) [--dot-resources]
-                                [-i PATTERN] [-x PATTERN] [-w WHITELIST]
+        usage: plainbox dev special [-h] (-j | -J | -e | -d) [--dot-resources]
+                                    [-i PATTERN] [-x PATTERN] [-w WHITELIST]
 
         optional arguments:
           -h, --help            show this help message and exit
@@ -187,19 +187,19 @@ class TestSpecial(TestCase):
     def test_run_without_args(self):
         with TestIO(combined=True) as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special'])
+                main(['dev', 'special'])
             self.assertEqual(call.exception.args, (2,))
         expected = """
-        usage: plainbox special [-h] (-j | -J | -e | -d) [--dot-resources]
-                                [-i PATTERN] [-x PATTERN] [-w WHITELIST]
-        plainbox special: error: one of the arguments -j/--list-jobs -J/--list-job-hashes -e/--list-expressions -d/--dot is required
+        usage: plainbox dev special [-h] (-j | -J | -e | -d) [--dot-resources]
+                                    [-i PATTERN] [-x PATTERN] [-w WHITELIST]
+        plainbox dev special: error: one of the arguments -j/--list-jobs -J/--list-job-hashes -e/--list-expressions -d/--dot is required
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
 
     def test_run_list_jobs(self):
         with TestIO() as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special', '--list-jobs'])
+                main(['dev', 'special', '--list-jobs'])
             self.assertEqual(call.exception.args, (0,))
         # This is pretty shoddy, ideally we'd load a special job and test for
         # that but it's something that keeps the test more valid than
@@ -211,7 +211,7 @@ class TestSpecial(TestCase):
     def test_run_list_jobs_with_filtering(self):
         with TestIO() as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special', '--include-pattern=usb3.+', '--list-jobs'])
+                main(['dev', 'special', '--include-pattern=usb3.+', '--list-jobs'])
             self.assertEqual(call.exception.args, (0,))
         # Test that usb3 insertion test was listed but the usb (2.0) test was not
         self.assertIn("usb3/insert", io.stdout.splitlines())
@@ -220,7 +220,7 @@ class TestSpecial(TestCase):
     def test_run_list_expressions(self):
         with TestIO() as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special', '--list-expressions'])
+                main(['dev', 'special', '--list-expressions'])
             self.assertEqual(call.exception.args, (0,))
         # See comment in test_run_list_jobs
         self.assertIn("package.name == 'samba'", io.stdout.splitlines())
@@ -228,7 +228,7 @@ class TestSpecial(TestCase):
     def test_run_dot(self):
         with TestIO() as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special', '--dot'])
+                main(['dev', 'special', '--dot'])
             self.assertEqual(call.exception.args, (0,))
         # See comment in test_run_list_jobs
         self.assertIn('\t"usb/insert" [color=orange];', io.stdout.splitlines())
@@ -238,7 +238,7 @@ class TestSpecial(TestCase):
     def test_run_dot_with_resources(self):
         with TestIO() as io:
             with self.assertRaises(SystemExit) as call:
-                main(['special', '--dot', '--dot-resources'])
+                main(['dev', 'special', '--dot', '--dot-resources'])
             self.assertEqual(call.exception.args, (0,))
         # See comment in test_run_list_jobs
         self.assertIn(

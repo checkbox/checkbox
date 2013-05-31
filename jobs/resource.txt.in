@@ -77,7 +77,14 @@ description: Create resource info for supported sleep states
 
 name: optical_drive
 plugin: resource
-command: for media in CD DVD; do wodim -prcap 2>/dev/null | grep -q -i "Does write $media" && echo "$media: writable" || echo "$media: readonly"; done
+command:
+ for media in CD DVD; do
+     if wodim -prcap 2>/dev/null | grep -q -i "Does write $media"; then
+             echo "$media: writable"
+     elif wodim -prcap 2>/dev/null | grep -q -i "Does not write $media"; then
+             echo "$media: readonly"
+     fi
+ done
 requires: package.name == "wodim"
 description: Create resource info for supported optical actions
 
