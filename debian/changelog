@@ -1,6 +1,9 @@
 checkbox (0.16.4) saucy; urgency=low
 
-  * Incremented version 
+    [ Jeff Lane ]
+    * scripts/virtualization: script no longer fails when trying to cast an
+      empty timeout setting in config file to int(). Added additional error
+      handling. (LP: #1186259)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 
