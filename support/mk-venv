@@ -67,7 +67,7 @@ fi
 
 # Find the top of checkbox tree
 if [ "$CHECKBOX_TOP" = "" ]; then
-    CHECKBOX_TOP="$(git rev-parse --show-toplevel)"
+    CHECKBOX_TOP="$(git rev-parse --show-toplevel 2>/dev/null)"
 fi
 if [ "$CHECKBOX_TOP" = "" ]; then
     CHECKBOX_TOP="$(bzr root)"
