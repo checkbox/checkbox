@@ -101,6 +101,9 @@ virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VE
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate
 
+# Make sure that external-tarballs is ready
+$CHECKBOX_TOP/support/get-external-tarballs
+
 # Install all the python dependencies
 $CHECKBOX_TOP/support/install-pip-dependencies
 
