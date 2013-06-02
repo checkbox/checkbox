@@ -14,15 +14,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 04:40+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-02 04:35+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Adakah anda dengan apa-apa bunyi?"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:600
 msgid "System Testing"
 msgstr "Pengujian Sistem"
 
@@ -42,7 +42,7 @@ msgstr "_Tidak"
 msgid "_Skip this test"
 msgstr "_Langkau ujian ini"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:460
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
 #: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Maklumat lanjut:"
@@ -73,7 +73,7 @@ msgid "Test to detect audio devices"
 msgstr "Uji untuk kesan peranti audio"
 
 #. description
-#: ../jobs/audio.txt.in:18
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -94,7 +94,7 @@ msgstr ""
 "    Anda dapat mendengar nada?"
 
 #. description
-#: ../jobs/audio.txt.in:37
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "   1. HDMI interface verification\n"
@@ -142,7 +142,7 @@ msgstr ""
 "tanpa sebarang herotan, klik atau bunyi ganjil dari fon kepala anda?"
 
 #. description
-#: ../jobs/audio.txt.in:73
+#: ../jobs/audio.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -165,7 +165,7 @@ msgstr ""
 "    Adakah anda dengar pertuturan anda dimainkan balik?"
 
 #. description
-#: ../jobs/audio.txt.in:92
+#: ../jobs/audio.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -188,7 +188,7 @@ msgstr ""
 "    Anda dapat mendengar pertuturan anda dimainkan balik?"
 
 #. description
-#: ../jobs/audio.txt.in:110
+#: ../jobs/audio.txt.in:104
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -211,7 +211,7 @@ msgstr ""
 "USB?"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:121
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -222,7 +222,7 @@ msgstr ""
 "tampalan kabel."
 
 #. description
-#: ../jobs/audio.txt.in:134
+#: ../jobs/audio.txt.in:129
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -233,7 +233,7 @@ msgstr ""
 "dibawah persekitaran terkawal."
 
 #. description
-#: ../jobs/audio.txt.in:143
+#: ../jobs/audio.txt.in:138
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr "Lampirkan log koleksi data perkakasan audio ke dalam keputusan."
 
@@ -243,147 +243,147 @@ msgid "Benchmark for each disk"
 msgstr "Tanda aras untuk setiap cakera"
 
 #. description
-#: ../jobs/benchmarks.txt.in:41
+#: ../jobs/benchmarks.txt.in:33
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
 msgstr "Jalankan tanda aras Render-Bench XRender/Imlib2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:47
+#: ../jobs/benchmarks.txt.in:39
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
 msgstr "Jalankan tanda aras Qgears2 XRender Extension gearsfancy"
 
 #. description
-#: ../jobs/benchmarks.txt.in:53
+#: ../jobs/benchmarks.txt.in:45
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
 msgstr "Jalankan tanda aras penskalaan imej Qgears2 XRender Extension"
 
 #. description
-#: ../jobs/benchmarks.txt.in:59
+#: ../jobs/benchmarks.txt.in:51
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
 msgstr "Jalankan tanda aras Qgears2 OpenGL gearsfancy"
 
 #. description
-#: ../jobs/benchmarks.txt.in:65
+#: ../jobs/benchmarks.txt.in:57
 msgid "Run Qgears2 OpenGL image scaling benchmark"
 msgstr "Jalankan tanda aras penskalaan imej Qgears2 OpenGL"
 
 #. description
-#: ../jobs/benchmarks.txt.in:74
+#: ../jobs/benchmarks.txt.in:66
 msgid "Run GLmark2-ES2 benchmark"
 msgstr "Jalankan tanda aras GLmark2-ES2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:83
+#: ../jobs/benchmarks.txt.in:75
 msgid "Run GLmark2 benchmark"
 msgstr "Jalankan tanda aras GLmark2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:89
+#: ../jobs/benchmarks.txt.in:81
 msgid "Run Unigine Santuary benchmark"
 msgstr "Jalankan tanda aras Unigine Santuary"
 
 #. description
-#: ../jobs/benchmarks.txt.in:95
+#: ../jobs/benchmarks.txt.in:87
 msgid "Run Unigine Tropics benchmark"
 msgstr "Jalankan tanda aras Unigine Tropics"
 
 #. description
-#: ../jobs/benchmarks.txt.in:101
+#: ../jobs/benchmarks.txt.in:93
 msgid "Run Unigine Heaven benchmark"
 msgstr "Jalankan tanda aras Unigine Heaven"
 
 #. description
-#: ../jobs/benchmarks.txt.in:107
+#: ../jobs/benchmarks.txt.in:99
 msgid "Run Lightsmark benchmark"
 msgstr "Jalankan tanda aras Lightsmark"
 
 #. description
-#: ../jobs/benchmarks.txt.in:113
+#: ../jobs/benchmarks.txt.in:105
 msgid "Run Cachebench Read benchmark"
 msgstr "Jalankan tanda aras baca Cachebench"
 
 #. description
-#: ../jobs/benchmarks.txt.in:119
+#: ../jobs/benchmarks.txt.in:111
 msgid "Run Cachebench Write benchmark"
 msgstr "Jalankan tanda aras tulis Cachebench"
 
 #. description
-#: ../jobs/benchmarks.txt.in:125
+#: ../jobs/benchmarks.txt.in:117
 msgid "Run Cachebench Read / Modify / Write benchmark"
 msgstr "Jalankan tanda aras Baca / Ubahsuai / Tulis Cachebench"
 
 #. description
-#: ../jobs/benchmarks.txt.in:131
+#: ../jobs/benchmarks.txt.in:123
 msgid "Run Stream Copy benchmark"
 msgstr "Jalankan tanda aras Salin Stream"
 
 #. description
-#: ../jobs/benchmarks.txt.in:137
+#: ../jobs/benchmarks.txt.in:129
 msgid "Run Stream Scale benchmark"
 msgstr "Jalankan tanda aras Skala Stream"
 
 #. description
-#: ../jobs/benchmarks.txt.in:143
+#: ../jobs/benchmarks.txt.in:135
 msgid "Run Stream Add benchmark"
 msgstr "Jalankan tanda aras Tambah Stream"
 
 #. description
-#: ../jobs/benchmarks.txt.in:149
+#: ../jobs/benchmarks.txt.in:141
 msgid "Run Stream Triad benchmark"
 msgstr "Jalankan tanda aras Triad Stream"
 
 #. description
-#: ../jobs/benchmarks.txt.in:155
+#: ../jobs/benchmarks.txt.in:147
 msgid "Run Network Loopback benchmark"
 msgstr "Jalankan tanda aras Gelung Balik Rangkaian"
 
 #. description
-#: ../jobs/benchmarks.txt.in:167
+#: ../jobs/benchmarks.txt.in:153
 msgid "Run Encode MP3 benchmark"
 msgstr "Jalankan tanda aras Mengekod MP3"
 
 #. description
-#: ../jobs/benchmarks.txt.in:173
+#: ../jobs/benchmarks.txt.in:159
 msgid "Run x264 H.264/AVC encoder benchmark"
 msgstr "Jalankan tanda aras pengekod x264 H.264/AVC"
 
 #. description
-#: ../jobs/benchmarks.txt.in:179
+#: ../jobs/benchmarks.txt.in:165
 msgid "Run GnuPG benchmark"
 msgstr "Jalankan tanda aras GnuPG"
 
 #. description
-#: ../jobs/benchmarks.txt.in:185
+#: ../jobs/benchmarks.txt.in:171
 msgid "Run Compress PBZIP2 benchmark"
 msgstr "Jalankan tanda aras Mampat PBZIP2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:191
+#: ../jobs/benchmarks.txt.in:177
 msgid "Run Compress 7ZIP benchmark"
 msgstr "Jalankan tanda aras Mampat 7Zip"
 
 #. description
-#: ../jobs/benchmarks.txt.in:197
+#: ../jobs/benchmarks.txt.in:183
 msgid "Run N-Queens benchmark"
 msgstr "Jalankan tanda aras N-Queens"
 
 #. description
-#: ../jobs/benchmarks.txt.in:203
+#: ../jobs/benchmarks.txt.in:189
 msgid "Run Himeno benchmark"
 msgstr "Jalankan tanda aras Himeno"
 
 #. description
-#: ../jobs/benchmarks.txt.in:209
+#: ../jobs/benchmarks.txt.in:195
 msgid "CPU utilization on an idle system."
 msgstr "Penggunaan CPU bila sistem melahu."
 
 #. description
-#: ../jobs/benchmarks.txt.in:215
+#: ../jobs/benchmarks.txt.in:201
 msgid "Disk utilization on an idle system."
 msgstr "Penggunaan cakera bila sistem melahu."
 
 #. description
-#: ../jobs/bluetooth.txt.in:22
+#: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
@@ -391,7 +391,7 @@ msgstr ""
 "checkbox"
 
 #. description
-#: ../jobs/bluetooth.txt.in:28
+#: ../jobs/bluetooth.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that bluetooth connection works correctly\n"
@@ -427,7 +427,7 @@ msgstr ""
 "    Adakah semua langkah berjalan dengan baik?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:47
+#: ../jobs/bluetooth.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can transfer information through a "
@@ -450,7 +450,7 @@ msgstr ""
 "    Adakah semua fail disalin dengan baik?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:61
+#: ../jobs/bluetooth.txt.in:47
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can record and hear audio using a "
@@ -539,12 +539,12 @@ msgstr ""
 "    Adakah tetikus berfungsi seperti yang diharapkan?"
 
 #. description
-#: ../jobs/camera.txt.in:6
+#: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
 msgstr "Ujian automatik ini cuba mengesan kamera."
 
 #. description
-#: ../jobs/camera.txt.in:15
+#: ../jobs/camera.txt.in:16
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -630,7 +630,7 @@ msgstr ""
 "cpufreq)."
 
 #. description
-#: ../jobs/cpu.txt.in:15
+#: ../jobs/cpu.txt.in:14
 msgid "Attaches the log generated by cpu/scaling_test to the results"
 msgstr "Lampirkan log yang dijana oleh cpu/scaling_test ke dalam keputusan"
 
@@ -640,17 +640,17 @@ msgid "Test for clock jitter."
 msgstr "Uji ketaran jam"
 
 #. description
-#: ../jobs/cpu.txt.in:28
+#: ../jobs/cpu.txt.in:29
 msgid "Test offlining CPUs in a multicore system."
 msgstr "Uji CPU diluar talian dalam sistem teras-berbilang."
 
 #. description
-#: ../jobs/cpu.txt.in:35
+#: ../jobs/cpu.txt.in:36
 msgid "This test checks cpu topology for accuracy"
 msgstr "Ujian ini memeriksa topologi cpu untuk ketepatan"
 
 #. description
-#: ../jobs/cpu.txt.in:42
+#: ../jobs/cpu.txt.in:44
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr "Ujian ini memeriksa pemerintah frekuensi CPU patuh bila ditetapkan."
 
@@ -700,12 +700,12 @@ msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr "Uji jika daemon syslogd dijalankan bila pakej dipasang."
 
 #. description
-#: ../jobs/daemons.txt.in:60
+#: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr "Uji jika daemon udevd dijalankan bila pakej dipasang."
 
 #. description
-#: ../jobs/daemons.txt.in:66
+#: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr "Uji jika daemon winbindd dijalankan bila pakej dipasang."
 
@@ -720,22 +720,22 @@ msgid "Check stats changes for each disk"
 msgstr "Semak perubahan stat untuk setiap cakera"
 
 #. description
-#: ../jobs/disk.txt.in:27
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "Ujian SMART"
 
 #. description
-#: ../jobs/disk.txt.in:45
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr "Ruang cakera maksimum digunakan semasa ujian pemasangan lalai"
 
 #. description
-#: ../jobs/disk.txt.in:62
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr "Sahkan storan sistem dilakukan pada atau diatas prestasi garis dasar"
 
 #. description
-#: ../jobs/disk.txt.in:79
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -815,7 +815,7 @@ msgstr ""
 "   Adakah prosedur pengesahihan berfungsi dengan baik?"
 
 #. description
-#: ../jobs/firewire.txt.in:4
+#: ../jobs/firewire.txt.in:6
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the insertion of a FireWire "
@@ -844,7 +844,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/firewire.txt.in:20
+#: ../jobs/firewire.txt.in:23
 msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
@@ -853,7 +853,7 @@ msgstr ""
 "FireWire yang disambungkan"
 
 #. description
-#: ../jobs/firewire.txt.in:28
+#: ../jobs/firewire.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the removal of a FireWire "
@@ -886,18 +886,18 @@ msgid "Floppy test"
 msgstr "Uji cakera liut"
 
 #. description
-#: ../jobs/graphics.txt.in:10
+#: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
 msgstr "Uji untuk outputkan versi Xorg"
 
 #. description
-#: ../jobs/benchmarks.txt.in:34
+#: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Jalankan gtkperf untuk pastikan ujian berasaskan GTK berfungsi dengan baik"
 
 #. description
-#: ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -951,12 +951,12 @@ msgstr ""
 "    Adakah putaran paparan berubah seperti yang dijangkakan?"
 
 #. description
-#: ../jobs/graphics.txt.in:31
+#: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
 msgstr "Uji yang mana proses X sedang dijalankan."
 
 #. description
-#: ../jobs/graphics.txt.in:37
+#: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Uji yang mana X tidak dijalankan dalam mod gagal-selamat."
 
@@ -970,7 +970,7 @@ msgstr ""
 "menggunakan grafik berasaskan intel."
 
 #. description
-#: ../jobs/graphics.txt.in:44
+#: ../jobs/graphics.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -991,7 +991,7 @@ msgstr ""
 "    Adakah ini boleh diterima untuk paparan anda?"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:85
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
@@ -1000,12 +1000,12 @@ msgstr ""
 "disarankan (800x600). Rujuk perinciannya disini:"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:85
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:81
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -1022,12 +1022,12 @@ msgstr ""
 "    Anda dapat melihat palang dan statik warna?"
 
 #. description
-#: ../jobs/graphics.txt.in:92
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "Semak sama ada pemacu VESA tidak digunakan"
 
 #. description
-#: ../jobs/graphics.txt.in:99
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1044,17 +1044,17 @@ msgstr ""
 "    Adakah skrin yang muncul berfungsi bagi setiap mod?"
 
 #. description
-#: ../jobs/graphics.txt.in:124
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "Semak sama ada perkakasan berupaya menjalani compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:130
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Semak sama ada perkakasan berupaya menjalani Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:136
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1077,7 +1077,7 @@ msgstr ""
 "    2. Adakah animasi bebas dari tersangkut-sangkut atau perlahan?"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:155
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -1094,12 +1094,12 @@ msgstr ""
 "    1. Kaji semula lampiran secara manual kemudian"
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:806
+#: ../jobs/graphics.txt.in:167 ../jobs/suspend.txt.in:335
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr "Lampirkan cekupan skrin yang ditangkap dalam graphics/screenshot."
 
 #. description
-#: ../jobs/graphics.txt.in:182
+#: ../jobs/graphics.txt.in:178
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -1120,7 +1120,7 @@ msgstr ""
 "    1. Kaji semula lampiran secara manual kemudian"
 
 #. description
-#: ../jobs/graphics.txt.in:211
+#: ../jobs/graphics.txt.in:191
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1128,7 +1128,7 @@ msgstr ""
 "graphics/screenshot_fullscreen_video."
 
 #. description
-#: ../jobs/hibernate.txt.in:14
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "PURPOSE:\n"
 "    This test will check to make sure your system can successfully hibernate "
@@ -1185,43 +1185,43 @@ msgid "Attaches dmidecode output"
 msgstr "Lampir output dmidecode"
 
 #. description
-#: ../jobs/info.txt.in:37
+#: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
 msgstr "Lampir output lspci yang sangat berjela."
 
 #. description
-#: ../jobs/info.txt.in:42
+#: ../jobs/info.txt.in:36
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
 "Lampirkan output lspci yang berjela (dengan Pertanyaan pangkalan data pusat)"
 
 #. description
-#: ../jobs/info.txt.in:49
+#: ../jobs/info.txt.in:43
 msgid "List USB devices"
 msgstr "Senaraikan peranti USB"
 
 #. description
-#: ../jobs/info.txt.in:58
+#: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "Lampir kandungan fail modprobe conf yang pelbagai."
 
 #. description
-#: ../jobs/info.txt.in:63
+#: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "Lampir kandungan fail /etc/modules"
 
 #. description
-#: ../jobs/info.txt.in:68
+#: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
 msgstr "Lampir kandungan fail confog sysctl yang pelbagai."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
 msgstr "Lampir laporan atribut sysfs."
 
 #. description
-#: ../jobs/info.txt.in:83
+#: ../jobs/info.txt.in:77
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
@@ -1229,52 +1229,52 @@ msgstr ""
 "sistem."
 
 #. description
-#: ../jobs/info.txt.in:95
+#: ../jobs/info.txt.in:84
 msgid "Attaches a tarball of gcov data if present."
 msgstr "Lampir tarball bagi data gcov jika hadir."
 
 #. description
-#: ../jobs/info.txt.in:100
+#: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
 msgstr "Lampir senarai modul kernel yang kini dijalankan."
 
 #. description
-#: ../jobs/info.txt.in:105
+#: ../jobs/info.txt.in:94
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Lampir kandungan bagi /proc/acpi/sleep jika ia wujud."
 
 #. description
-#: ../jobs/info.txt.in:109
+#: ../jobs/info.txt.in:98
 msgid "Bootchart information."
 msgstr "Maklumat Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:118
+#: ../jobs/info.txt.in:107
 msgid "SATA/IDE device information."
 msgstr "Maklumat peranti SATA/IDE"
 
 #. description
-#: ../jobs/info.txt.in:137
+#: ../jobs/info.txt.in:126
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Lampir fail png bootchart untuk perjalanan bootchart"
 
 #. description
-#: ../jobs/info.txt.in:146
+#: ../jobs/info.txt.in:135
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Lampir log bootchart untuk perjalanan ujian bootchart"
 
 #. description
-#: ../jobs/info.txt.in:154
+#: ../jobs/info.txt.in:143
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "pasang tarball pemasang bootchart jika ia wujud."
 
 #. description
-#: ../jobs/info.txt.in:159
+#: ../jobs/info.txt.in:148
 msgid "Attaches the installer debug log if it exists."
 msgstr "Lampir log pemasang nyahpepijat jika ia wujud."
 
 #. description
-#: ../jobs/input.txt.in:22
+#: ../jobs/input.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "    This test will test your pointing device\n"
@@ -1293,7 +1293,7 @@ msgstr ""
 "    Adakah peranti penuding berfungsi seperti yang dijangkakan?"
 
 #. description
-#: ../jobs/input.txt.in:35
+#: ../jobs/input.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will test your keyboard\n"
@@ -1375,7 +1375,7 @@ msgstr ""
 "    Adakah volum bisu bila anda menekan kekunci?"
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:37
 msgid ""
 "PURPOSE:\n"
 "    This test will test the sleep key\n"
@@ -1411,7 +1411,7 @@ msgstr ""
 "    Adakah pemberitahuan muncul memaparkan status bateri?"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:60
 msgid ""
 "PURPOSE:\n"
 "    This test will test the wireless key\n"
@@ -1430,7 +1430,7 @@ msgstr ""
 "    Adakah tanpa wayar dimatikan kali pertama dan dihidupkan kalik kedua?"
 
 #. description
-#: ../jobs/keys.txt.in:91
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
@@ -1451,7 +1451,7 @@ msgstr ""
 "    1. Adakah kekunci berfungsi seperti yang diharapkan?"
 
 #. description
-#: ../jobs/keys.txt.in:107
+#: ../jobs/keys.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will test the super key of your keyboard\n"
@@ -1513,147 +1513,147 @@ msgid "Disk tests"
 msgstr "Ujian cakera"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Ujian pembaca cap jari"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Ujian cakera FireWire"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Ujian cakera liut"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Ujian grafik"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Uji hibernasi"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Ujian maklumat"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Ujian Peranti Input"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Ujian Pemasangan perisian"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Ujian kekunci panas"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Ujian Kad Media"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Ujian ingatan"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Ujian pelbagai"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Ujian monitor"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Ujian rangkaian"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Ujian Pemacu Optik"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Ujian Pengesahan Jam Panel"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Ujian Kad PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Ujian peranti persisian"
 
 #. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Ujian Pengurusan kuasa"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Semakan Perkhidmatan Pelayan"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Uji tangguh"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Ujian pad sesentuh"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "Ujian USB"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Aplikasi Pengguna"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Uji rangkaian tanpa wayar"
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Ujian Tekanan"
 
 #. description
-#: ../jobs/local.txt.in:290
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr "Ujian asap"
 
 #. description
-#: ../jobs/local.txt.in:297
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr "Pengesan"
 
 #. description
-#: ../jobs/mediacard.txt.in:4
+#: ../jobs/mediacard.txt.in:6
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1679,7 +1679,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:21
+#: ../jobs/mediacard.txt.in:24
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
@@ -1688,7 +1688,7 @@ msgstr ""
 "dijalankan. Ia menguji pembacaan dan penulisan ke kad MMC."
 
 #. description
-#: ../jobs/mediacard.txt.in:29
+#: ../jobs/mediacard.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1713,7 +1713,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:44
+#: ../jobs/mediacard.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1739,7 +1739,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:61
+#: ../jobs/mediacard.txt.in:69
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert-after-"
 "suspend test is run. It tests reading and writing to the MMC card after the "
@@ -1750,7 +1750,7 @@ msgstr ""
 "selepas sistem ditangguh."
 
 #. description
-#: ../jobs/mediacard.txt.in:69
+#: ../jobs/mediacard.txt.in:79
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1777,7 +1777,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:83
+#: ../jobs/mediacard.txt.in:95
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1803,7 +1803,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:100
+#: ../jobs/mediacard.txt.in:113
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
@@ -1812,7 +1812,7 @@ msgstr ""
 "dijalankan. Ia menguji pembacaan dan penulisan ke kad SD."
 
 #. description
-#: ../jobs/mediacard.txt.in:108
+#: ../jobs/mediacard.txt.in:123
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1837,7 +1837,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:123
+#: ../jobs/mediacard.txt.in:140
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1863,7 +1863,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:140
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert-after-"
 "suspend test is run. It tests reading and writing to the SD card after the "
@@ -1874,7 +1874,7 @@ msgstr ""
 "selepas sistem ditangguh."
 
 #. description
-#: ../jobs/mediacard.txt.in:148
+#: ../jobs/mediacard.txt.in:168
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1901,7 +1901,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:172
+#: ../jobs/mediacard.txt.in:184
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1928,7 +1928,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:189
+#: ../jobs/mediacard.txt.in:202
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
@@ -1937,7 +1937,7 @@ msgstr ""
 "dijalankan. Ia menguji pembacaan dan penulisan ke kad SDHC."
 
 #. description
-#: ../jobs/mediacard.txt.in:197
+#: ../jobs/mediacard.txt.in:212
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1962,7 +1962,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:212
+#: ../jobs/mediacard.txt.in:229
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1989,7 +1989,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:229
+#: ../jobs/mediacard.txt.in:247
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert-after-"
 "suspend test is run. It tests reading and writing to the SDHC card after the "
@@ -2000,7 +2000,7 @@ msgstr ""
 "selepas sistem ditangguh."
 
 #. description
-#: ../jobs/mediacard.txt.in:237
+#: ../jobs/mediacard.txt.in:257
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2026,7 +2026,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:251
+#: ../jobs/mediacard.txt.in:273
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -2052,7 +2052,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:268
+#: ../jobs/mediacard.txt.in:291
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
@@ -2061,7 +2061,7 @@ msgstr ""
 "dijalankan. Ia menguji pembacaan dan penulisan ke kad CF."
 
 #. description
-#: ../jobs/mediacard.txt.in:276
+#: ../jobs/mediacard.txt.in:301
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -2085,7 +2085,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:291
+#: ../jobs/mediacard.txt.in:318
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -2111,7 +2111,7 @@ msgstr ""
 "    yang dipilih secara automatik"
 
 #. description
-#: ../jobs/mediacard.txt.in:308
+#: ../jobs/mediacard.txt.in:336
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert-after-"
 "suspend test is run. It tests reading and writing to the CF card after the "
@@ -2122,7 +2122,7 @@ msgstr ""
 "selepas sistem ditangguh."
 
 #. description
-#: ../jobs/mediacard.txt.in:316
+#: ../jobs/mediacard.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2157,7 +2157,7 @@ msgstr ""
 "terhadap saiz bagi modul ingatan yang dikesan oleh DMI."
 
 #. description
-#: ../jobs/memory.txt.in:13
+#: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
 msgstr "Uji dan latih ingatan"
 
@@ -2187,7 +2187,7 @@ msgstr ""
 "    Tiada apa perlu disahkan untuk ujian ini"
 
 #. description
-#: ../jobs/miscellanea.txt.in:21
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -2210,17 +2210,17 @@ msgstr ""
 "ke sesi semasa anda?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:34
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Jalankan ujian terautomatik Suit Ujin Perisian Tegar (fwts)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
 msgstr "Lampirkan log keputusan FWTS untuk penyerahan"
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:53
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -2229,7 +2229,7 @@ msgstr ""
 "berfungsi."
 
 #. description
-#: ../jobs/miscellanea.txt.in:57
+#: ../jobs/miscellanea.txt.in:59
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -2238,7 +2238,7 @@ msgstr ""
 "yang tidak mungkin tidak berkaitan dengan desktop."
 
 #. description
-#: ../jobs/miscellanea.txt.in:65
+#: ../jobs/miscellanea.txt.in:67
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -2249,7 +2249,7 @@ msgstr ""
 "wujud/kosong)"
 
 #. description
-#: ../jobs/virtualization.txt.in:6
+#: ../jobs/miscellanea.txt.in:75
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2403,22 +2403,22 @@ msgstr ""
 "    Adakah monitor menjadi gelap dan dihidupkan semula?"
 
 #. description
-#: ../jobs/networking.txt.in:8
+#: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
 msgstr "Ujian untuk mengesan kawalan rangkaian tersedia"
 
 #. description
-#: ../jobs/networking.txt.in:14
+#: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
 msgstr "Uji sama ada sistem mempunyai sambungan Internet yang berfungsi."
 
 #. description
-#: ../jobs/networking.txt.in:19
+#: ../jobs/networking.txt.in:16
 msgid "Network Information"
 msgstr "Maklumat Rangkaian"
 
 #. description
-#: ../jobs/networking.txt.in:43
+#: ../jobs/networking.txt.in:40
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
@@ -2428,7 +2428,7 @@ msgstr ""
 "ujian akan ditamatkan dengan ralat."
 
 #. description
-#: ../jobs/networking.txt.in:49
+#: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2451,7 +2451,7 @@ msgstr ""
 "    Adakah pemberitahuan dipaparkan dan sambungan ditubuhkan dengan baik?"
 
 #. description
-#: ../jobs/networking.txt.in:62
+#: ../jobs/networking.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2482,7 +2482,7 @@ msgstr ""
 "    Adakah pemberitahuan dipaparkan dan sambungan ditubuhkan dengan baik?"
 
 #. description
-#: ../jobs/networking.txt.in:79
+#: ../jobs/networking.txt.in:76
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -2491,32 +2491,32 @@ msgstr ""
 "rangkaian menggunakan paket ECHO ICMP."
 
 #. description
-#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr "Kes ujian berautomatik untuk pastikan fail dimuat turun melalui HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:91
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 "Uji untuk lihat jika kita boleh segerakkan jam setempat dengan pelayan NTP"
 
 #. description
-#: ../jobs/networking.txt.in:100
+#: ../jobs/networking.txt.in:97
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr "Sahkan pemasangan pelayan-checkbox pada rangkaian melalui SSH"
 
 #. description
-#: ../jobs/networking.txt.in:106
+#: ../jobs/networking.txt.in:103
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr "Cuba benarkan pencetak jauh pada rangkaian dan cetak halaman uji."
 
 #. description
-#: ../jobs/networking.txt.in:111
+#: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
@@ -2524,12 +2524,12 @@ msgstr ""
 "dalam jujukan."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "Uji untuk mengukur jalur lebar rangkaian"
 
 #. description
-#: ../jobs/optical.txt.in:4
+#: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
 msgstr "Uji untuk mengesan pemacu optik"
 
@@ -2563,7 +2563,7 @@ msgstr ""
 "jika gagal."
 
 #. description
-#: ../jobs/optical.txt.in:33
+#: ../jobs/optical.txt.in:42
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2592,7 +2592,7 @@ msgstr ""
 "    Ujian ini sepatutnya pilih \"Ya\" jika lulus, \"Tidak\" jika gagal."
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:55
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2625,7 +2625,7 @@ msgstr ""
 "    Adakah semua langkah mengikut yang diarahkan?"
 
 #. description
-#: ../jobs/optical.txt.in:69
+#: ../jobs/optical.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2654,7 +2654,7 @@ msgstr ""
 "    Ujian ini sepatutnya pilih \"Ya\" jika lulus, \"Tidak\" jika gagal."
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2687,7 +2687,7 @@ msgstr ""
 "    Adakah semua langkah berfungsi dengan baik?"
 
 #. description
-#: ../jobs/optical.txt.in:154
+#: ../jobs/optical.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2757,7 +2757,7 @@ msgstr ""
 "waktu anda?"
 
 #. description
-#: ../jobs/panel_reboot.txt.in:3
+#: ../jobs/panel_reboot.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that you can reboot your system from the desktop "
@@ -2887,7 +2887,7 @@ msgstr ""
 "    Adakah sistem dimatikan dan dibut semula dengan baik?"
 
 #. description
-#: ../jobs/power-management.txt.in:17
+#: ../jobs/power-management.txt.in:16
 msgid "Test ACPI Wakealarm (fwts wakealarm)"
 msgstr "Ujia Penggera Bangun ACPI (fwts wakealarm)"
 
@@ -2964,7 +2964,7 @@ msgstr ""
 " Jika komputer berjaya dibut semula, pilih Ya kemudian pilih Berikutnya."
 
 #. description
-#: ../jobs/power-management.txt.in:79
+#: ../jobs/power-management.txt.in:78
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
@@ -2973,7 +2973,7 @@ msgstr ""
 "keputusan."
 
 #. description
-#: ../jobs/power-management.txt.in:84
+#: ../jobs/power-management.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2990,7 +2990,7 @@ msgstr ""
 "   Adakah penutupan penutup komputer riba anda menyebabkan sistem ditangguh?"
 
 #. description
-#: ../jobs/power-management.txt.in:101
+#: ../jobs/power-management.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3009,7 +3009,7 @@ msgstr ""
 "    Adakah skrin dimatikan semasa penutup ditutup?"
 
 #. description
-#: ../jobs/power-management.txt.in:119
+#: ../jobs/power-management.txt.in:118
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3037,7 +3037,7 @@ msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Pastikan peranti RTC (Jam Masa-Nyata) wujud."
 
 #. description
-#: ../jobs/power-management.txt.in:139
+#: ../jobs/power-management.txt.in:140
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -3076,7 +3076,7 @@ msgid "Verifies that Tomcat server is running and working."
 msgstr "Sahkan pelayan Tomcat berjalan dan berfungsi."
 
 #. description
-#: ../jobs/stress.txt.in:7
+#: ../jobs/stress.txt.in:8
 msgid ""
 "PURPOSE:\n"
 "    Create jobs that use the CPU as much as possible for two hours. The test "
@@ -3087,7 +3087,7 @@ msgstr ""
 "akan dianggap lulus jika sistem tidak menjadi kaku."
 
 #. description
-#: ../jobs/stress.txt.in:24
+#: ../jobs/stress.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3098,12 +3098,12 @@ msgstr ""
 "hibernasi/sambung selama 30 kitaran"
 
 #. description
-#: ../jobs/stress.txt.in:31
+#: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 msgstr "Lampirkan log dari ujian 30 kitaran Hibernasi/Sambung jika ia wujud"
 
 #. description
-#: ../jobs/stress.txt.in:47
+#: ../jobs/stress.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3114,12 +3114,12 @@ msgstr ""
 "tangguh/sambung selama 30 kitaran."
 
 #. description
-#: ../jobs/stress.txt.in:54
+#: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr "Lampirkan log dari ujian 30 kitaran Tangguh/Sambung jika ia wujud"
 
 #. description
-#: ../jobs/stress.txt.in:76
+#: ../jobs/stress.txt.in:50
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3130,13 +3130,13 @@ msgstr ""
 "hibernasi/sambung selama 250 kitaran"
 
 #. description
-#: ../jobs/stress.txt.in:83
+#: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr "Lampirkan log dari ujian 250 kitaran Hibernasi/Sambung jika ia wujud"
 
 #. description
-#: ../jobs/stress.txt.in:99
+#: ../jobs/stress.txt.in:66
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3147,27 +3147,27 @@ msgstr ""
 "tangguh/sambung selama 250 kitaran"
 
 #. description
-#: ../jobs/stress.txt.in:106
+#: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr "Lampirkan log dari ujian 250 kitaran Tangguh/Sambung jika ia wujud"
 
 #. description
-#: ../jobs/stress.txt.in:122
+#: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
 msgstr "Stress sistem but semula (100 kitaran)"
 
 #. description
-#: ../jobs/stress.txt.in:137
+#: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
 msgstr "Stress sistem matikan (100 kitaran)"
 
 #. description
-#: ../jobs/stress.txt.in:149
+#: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr "Semak log untuk kes ujian stress but semula (100 kitaran)"
 
 #. description
-#: ../jobs/stress.txt.in:161
+#: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr "Semak log untuk kes ujian stress matikan (100 kitaran)"
 
@@ -3187,12 +3187,12 @@ msgid "Record mixer settings before suspending."
 msgstr "Rakam tetapan pengadun sebelum menangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:22
+#: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
 msgstr "Sahkan sama ada semua CPU aktif sebelum ditangguh"
 
 #. description
-#: ../jobs/suspend.txt.in:27
+#: ../jobs/suspend.txt.in:31
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr ""
@@ -3200,7 +3200,7 @@ msgstr ""
 "dijalankan"
 
 #. description
-#: ../jobs/suspend.txt.in:36
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3210,7 +3210,7 @@ msgstr ""
 "seperti dijangka."
 
 #. description
-#: ../jobs/suspend.txt.in:171
+#: ../jobs/suspend.txt.in:77
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3237,17 +3237,17 @@ msgstr ""
 "    Adakah sistem anda ditangguh dan disambung semula dengan baik?"
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:93
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Ini merupakan versi automatik bagi suspend/suspend_advanced."
 
 #. description
-#: ../jobs/suspend.txt.in:237
+#: ../jobs/suspend.txt.in:108
 msgid "Test the network after resuming."
 msgstr "Uji rangkaian selepas disambung semula."
 
 #. description
-#: ../jobs/suspend.txt.in:243
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -3255,7 +3255,7 @@ msgstr ""
 "seperti sebelum ini."
 
 #. description
-#: ../jobs/suspend.txt.in:252
+#: ../jobs/suspend.txt.in:123
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3263,17 +3263,17 @@ msgstr ""
 "tangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:265
+#: ../jobs/suspend.txt.in:139
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Sahkan semua CPU adalah aktif selepas disambung semula."
 
 #. description
-#: ../jobs/suspend.txt.in:278
+#: ../jobs/suspend.txt.in:156
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Sahkan semua ingatan tersedia selepas disambung semula dari tangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:165
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -3295,7 +3295,7 @@ msgstr ""
 "tangguh?"
 
 #. description
-#: ../jobs/suspend.txt.in:299
+#: ../jobs/suspend.txt.in:178
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3307,7 +3307,7 @@ msgstr ""
 "diharapkan."
 
 #. description
-#: ../jobs/suspend.txt.in:365
+#: ../jobs/suspend.txt.in:190
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -3316,7 +3316,7 @@ msgstr ""
 "menggunakan keselamatan WPA dan protokol 802.11b/g selepas sistem ditangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:378
+#: ../jobs/suspend.txt.in:201
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -3325,7 +3325,7 @@ msgstr ""
 "keselamatan WPA dan protokol 802.11b/g selepas sistem ditangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:391
+#: ../jobs/suspend.txt.in:212
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
@@ -3334,7 +3334,7 @@ msgstr ""
 "menggunakan keselamatan WPA dan protokol 802.11n selepas sistem ditangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:404
+#: ../jobs/suspend.txt.in:223
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
@@ -3343,7 +3343,7 @@ msgstr ""
 "keselamatan WPA dan protokol 802.11n selepas sistem ditangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:517
+#: ../jobs/suspend.txt.in:234
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3352,7 +3352,7 @@ msgstr ""
 "ditangguh dan bandingkannya ke alamat yang ditangkap sebelum ditangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:621
+#: ../jobs/suspend.txt.in:254
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3362,7 +3362,7 @@ msgstr ""
 "BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:735
+#: ../jobs/suspend.txt.in:264
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3388,7 +3388,7 @@ msgstr ""
 "    Adakah data dipindahkan dengan sempurna?"
 
 #. description
-#: ../jobs/suspend.txt.in:749
+#: ../jobs/suspend.txt.in:278
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3405,7 +3405,7 @@ msgstr ""
 "    Adakah paparan anda kelihatan baik dalam mod tersebut?"
 
 #. description
-#: ../jobs/suspend.txt.in:761
+#: ../jobs/suspend.txt.in:290
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3416,7 +3416,7 @@ msgstr ""
 "mengambil cekupan skrin dan memuat naiknya sebagai lampiran."
 
 #. description
-#: ../jobs/suspend.txt.in:770
+#: ../jobs/suspend.txt.in:299
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3425,7 +3425,7 @@ msgstr ""
 "suspend/cycle_resolutions_after_suspend_auto ke penyerahan keputusan."
 
 #. description
-#: ../jobs/suspend.txt.in:780
+#: ../jobs/suspend.txt.in:309
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3438,12 +3438,12 @@ msgstr ""
 "gunakan kabel yang dihubungkan pada jek audio-keluar ke jek audio-masuk."
 
 #. description
-#: ../jobs/suspend.txt.in:786
+#: ../jobs/suspend.txt.in:315
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr "Lampirkan log dari ujian tangguh/sambung tunggal kedalam keputusan"
 
 #. description
-#: ../jobs/suspend.txt.in:392
+#: ../jobs/suspend.txt.in:323
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -3462,7 +3462,7 @@ msgstr ""
 "    1. Kaji semula lampiran secara manual kemudian"
 
 #. description
-#: ../jobs/suspend.txt.in:415
+#: ../jobs/suspend.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations, suspend the system, do more challenging\n"
@@ -3565,12 +3565,12 @@ msgstr ""
 "    1. Pilihan Penatalan Pinggir sepatutnya dibenarkan secara lalai"
 
 #. description
-#: ../jobs/usb.txt.in:4
+#: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
 msgstr "Kesan dan papar peranti USB yang bersambung dengan sistem ini."
 
 #. description
-#: ../jobs/usb.txt.in:10
+#: ../jobs/usb.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that your system detects USB storage devices.\n"
@@ -3594,7 +3594,7 @@ msgstr ""
 "    Dapatkan peranti dikesan?"
 
 #. description
-#: ../jobs/usb.txt.in:28
+#: ../jobs/usb.txt.in:30
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3613,7 +3613,7 @@ msgstr ""
 "    Adakah papan kekunci berfungsi dengan baik?"
 
 #. description
-#: ../jobs/usb.txt.in:41
+#: ../jobs/usb.txt.in:43
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3632,7 +3632,7 @@ msgstr ""
 "    Adakah tetikus berfungsi dengan baik?"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the insertion of\n"
@@ -3658,7 +3658,7 @@ msgstr ""
 "    secara automatik."
 
 #. description
-#: ../jobs/usb.txt.in:72
+#: ../jobs/usb.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal of\n"
@@ -3683,7 +3683,7 @@ msgstr ""
 "    secara automatik."
 
 #. description
-#: ../jobs/usb.txt.in:105
+#: ../jobs/usb.txt.in:96
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3706,13 +3706,13 @@ msgstr ""
 "    secara automatik."
 
 #. description
-#: ../jobs/usb.txt.in:139
+#: ../jobs/usb.txt.in:114
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
 "Ujian in secara automatik dan dilakukan selepas ujian usb/insert dijalankan."
 
 #. description
-#: ../jobs/usb.txt.in:156
+#: ../jobs/usb.txt.in:124
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the "
 "server has usb storage devices plugged in prior to checkbox execution. It is "
@@ -3723,7 +3723,7 @@ msgstr ""
 "ditujukan untuk pengujian berautomatik pelayan dan SRU."
 
 #. description
-#: ../jobs/usb.txt.in:174
+#: ../jobs/usb.txt.in:132
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -4067,7 +4067,7 @@ msgstr ""
 " Anda dapat melihat teks?"
 
 #. description
-#: ../jobs/user_apps.txt.in:285
+#: ../jobs/user_apps.txt.in:283
 msgid ""
 "PURPOSE:\n"
 " This test will check that Firefox can play a Quicktime (.mov) video file.\n"
@@ -4089,7 +4089,7 @@ msgstr ""
 " Adakah video dimainkan menggunakan pemalam?"
 
 #. description
-#: ../jobs/user_apps.txt.in:299
+#: ../jobs/user_apps.txt.in:297
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4112,7 +4112,7 @@ msgstr ""
 " Anda boleh menyambung dan hantar/terima mesej dengan betul?"
 
 #. description
-#: ../jobs/user_apps.txt.in:313
+#: ../jobs/user_apps.txt.in:311
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4135,7 +4135,7 @@ msgstr ""
 " Anda boleh menyambung dan hantar/terima mesej dengan betul?"
 
 #. description
-#: ../jobs/user_apps.txt.in:327
+#: ../jobs/user_apps.txt.in:325
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4158,7 +4158,7 @@ msgstr ""
 " Anda boleh menyambung dan hantar/terima mesej dengan betul?"
 
 #. description
-#: ../jobs/user_apps.txt.in:341
+#: ../jobs/user_apps.txt.in:339
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4181,7 +4181,7 @@ msgstr ""
 " Anda boleh menyambung dan hantar/terima mesej dengan betul?"
 
 #. description
-#: ../jobs/user_apps.txt.in:355
+#: ../jobs/user_apps.txt.in:353
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4204,7 +4204,7 @@ msgstr ""
 " Anda boleh menyambung dan hantar/terima mesej dengan betul?"
 
 #. description
-#: ../jobs/user_apps.txt.in:369
+#: ../jobs/user_apps.txt.in:367
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4223,7 +4223,7 @@ msgstr ""
 " Adakah anda berupaya menerima dan membaca e-mel dengan baik?"
 
 #. description
-#: ../jobs/user_apps.txt.in:382
+#: ../jobs/user_apps.txt.in:380
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4242,7 +4242,7 @@ msgstr ""
 " Adakah anda berupaya menerima dan membaca e-mel dengan baik?"
 
 #. description
-#: ../jobs/user_apps.txt.in:395
+#: ../jobs/user_apps.txt.in:393
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4261,7 +4261,7 @@ msgstr ""
 " Adakah anda berupaya menghantar e-mel tanpa ralat?"
 
 #. description
-#: ../jobs/user_apps.txt.in:408
+#: ../jobs/user_apps.txt.in:406
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4278,7 +4278,7 @@ msgstr ""
 " Adakah ia dilancar dengan baik?"
 
 #. description
-#: ../jobs/user_apps.txt.in:421
+#: ../jobs/user_apps.txt.in:419
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4303,7 +4303,7 @@ msgstr ""
 " Adakah fungsi dilakukan seperti dijangka?"
 
 #. description
-#: ../jobs/user_apps.txt.in:438
+#: ../jobs/user_apps.txt.in:436
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4328,7 +4328,7 @@ msgstr ""
 " Adakah fungsi dilakukan seperti dijangka?"
 
 #. description
-#: ../jobs/user_apps.txt.in:455
+#: ../jobs/user_apps.txt.in:453
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4351,7 +4351,7 @@ msgstr ""
 " Adakah fungsi dilakukan seperti dijangka?"
 
 #. description
-#: ../jobs/user_apps.txt.in:470
+#: ../jobs/user_apps.txt.in:468
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4372,7 +4372,7 @@ msgstr ""
 " Adakah tindakan ini dilakukan seperti dijangka?"
 
 #. description
-#: ../jobs/user_apps.txt.in:484
+#: ../jobs/user_apps.txt.in:482
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4393,7 +4393,7 @@ msgstr ""
 " Adakah tindakan ini dilakukan seperti dijangka?"
 
 #. description
-#: ../jobs/user_apps.txt.in:497
+#: ../jobs/user_apps.txt.in:495
 msgid ""
 "PURPOSE:\n"
 " This test will check that Gnome Terminal works.\n"
@@ -4416,13 +4416,13 @@ msgstr ""
 " Adakah tindakan ini dilakukan seperti yang dijangka?"
 
 #. description
-#: ../jobs/wireless.txt.in:20
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
 "Ujian pengimbasan tanpa wayar. Ia mengimbas dan laporkan AP yang ditemui."
 
 #. description
-#: ../jobs/wireless.txt.in:26
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -4445,7 +4445,7 @@ msgstr ""
 "    Adakah pemberitahuan dipaparkan dan sambungan ditubuhkan dengan betul?"
 
 #. description
-#: ../jobs/wireless.txt.in:44
+#: ../jobs/wireless.txt.in:28
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
@@ -4454,7 +4454,7 @@ msgstr ""
 "menggunakan keselamatan WPA dan protokol 802.11b/g."
 
 #. description
-#: ../jobs/wireless.txt.in:56
+#: ../jobs/wireless.txt.in:38
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
@@ -4463,7 +4463,7 @@ msgstr ""
 "tanpa keselamata dan protokol 802.11b/g."
 
 #. description
-#: ../jobs/wireless.txt.in:68
+#: ../jobs/wireless.txt.in:48
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
@@ -4472,7 +4472,7 @@ msgstr ""
 "menggunakan keselamat WPA dan protokol 802.11n."
 
 #. description
-#: ../jobs/wireless.txt.in:80
+#: ../jobs/wireless.txt.in:58
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
@@ -4481,14 +4481,14 @@ msgstr ""
 "tanpa keselamatan dan protokol 802.11n."
 
 #. description
-#: ../jobs/wireless.txt.in:176
+#: ../jobs/wireless.txt.in:70
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr "Uji prestasi sambungan tanpa wayar sistem melalui alat iperf."
 
 #. description
-#: ../jobs/wireless.txt.in:187
+#: ../jobs/wireless.txt.in:81
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -4536,7 +4536,7 @@ msgstr "Terengkas untuk --config=.*/jobs_info/whitelist_file."
 msgid "Missing configuration file as argument.\n"
 msgstr "Fail konfigurasi hilang sebagai argumen.\n"
 
-#: ../checkbox/job.py:85
+#: ../checkbox/job.py:84
 msgid "Command not found."
 msgstr "Perintah tidak ditemui"
 
@@ -4632,17 +4632,17 @@ msgid "Unknown signal"
 msgstr "Isyarat tidak diketahui"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "ya"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "tidak"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "langkau"
 
@@ -4650,29 +4650,29 @@ msgstr "langkau"
 msgid "Press any key to continue..."
 msgstr "Tekan mana-mana kekunci untuk teruskan..."
 
-#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Sila pilih (%s): "
 
-#: ../checkbox_cli/cli_interface.py:232 ../checkbox_cli/cli_interface.py:355
-#: ../checkbox_cli/cli_interface.py:386
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Ruang bila selesai"
 
-#: ../checkbox_cli/cli_interface.py:384
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "Gabung dengan aksara diatas untuk kebangkan nod"
 
-#: ../checkbox_cli/cli_interface.py:432
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "uji"
 
-#: ../checkbox_cli/cli_interface.py:456
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "uji lagi"
 
-#: ../checkbox_cli/cli_interface.py:462
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Sila taip disini dan tekan Ctrl-D apabila selesai:\n"
 
@@ -4680,21 +4680,21 @@ msgstr "Sila taip disini dan tekan Ctrl-D apabila selesai:\n"
 msgid "Checkbox System Testing"
 msgstr "Pengujian Sistem Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "Teruskan"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:622
 msgid "Previous"
 msgstr "Terdahulu"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:621
 msgid "Next"
 msgstr "Berikutnya"
 
@@ -4716,7 +4716,7 @@ msgstr "Kembang Semua"
 msgid "Collapse All"
 msgstr "Kuncup Semua"
 
-#: ../checkbox_urwid/urwid_interface.py:1034
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:616
 msgid "Test"
 msgstr "Uji"
 
@@ -4728,11 +4728,11 @@ msgstr "Uji Lagi"
 msgid "_Test Again"
 msgstr "_Uji Lagi"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:541
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
 msgid "Info"
 msgstr "Maklumat"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:244
 msgid "Error"
 msgstr "Ralat"
 
@@ -4783,8 +4783,7 @@ msgstr "Berjaya menyelesaikan ujian!"
 msgid "_Finish"
 msgstr "_Selesai"
 
-#. Resolve dependencies
-#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
+#: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "Mengumpul maklumat dari sistem anda..."
 
@@ -4816,12 +4815,12 @@ msgstr ""
 "memberi respon. Simpan semua kerja anda dan tutup lain-lain aplikasi yang "
 "berjalan sebelum memulakan  menguji proses."
 
-#: ../plugins/launchpad_exchange.py:135
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Gagal memproses dari: %s"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -4838,7 +4837,7 @@ msgstr ""
 "secara terus ke pengkalan data sistem:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:159
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -4846,11 +4845,11 @@ msgstr ""
 "Gagal memuat naik ke pelayan,\n"
 "sila cuba sekali lagi."
 
-#: ../plugins/launchpad_exchange.py:171
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Maklumat tidak diposkan ke Launchpad."
 
-#: ../plugins/launchpad_prompt.py:77
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -4875,15 +4874,15 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
-#: ../plugins/launchpad_prompt.py:87
+#: ../plugins/launchpad_prompt.py:84
 msgid "Email"
 msgstr "E-Mel"
 
-#: ../plugins/launchpad_prompt.py:96
+#: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "Alamat emel mestilah didalam format yang betul."
 
-#: ../plugins/launchpad_prompt.py:102
+#: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
 msgstr "Menukar maklumat dengan pelayan..."
 
@@ -4930,7 +4929,7 @@ msgstr ""
 "cadang hendak menyerta Ubuntu Friendly, sila pilih semua ujian. Anda boleh "
 "langkau ujian individu jika anda tidak memerlukan peralatan tersebut."
 
-#: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:606
 msgid "Choose tests to run on your system:"
 msgstr "Pilih ujian untuk dijalankan pada sistem anda:"
 
@@ -4942,207 +4941,207 @@ msgstr "Masukkan teks:\n"
 msgid "Type Text"
 msgstr "Taip Teks"
 
-#: ../scripts/internet_test:221
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "Tiada sambungan Internet"
 
-#: ../scripts/internet_test:224
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "Sambungan kehilangan paket"
 
-#: ../scripts/internet_test:227
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Sambungan Internet telah mantap sepenuhnya"
 
-#: ../qt/frontend/qtfront.cpp:80
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Audio Test"
 msgstr "Ujian Audio"
 
-#: ../qt/frontend/qtfront.cpp:81
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Bluetooth Test"
 msgstr "Ujian Bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:82
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Camera Test"
 msgstr "Ujian Kamera"
 
-#: ../qt/frontend/qtfront.cpp:83
+#: ../qt/frontend/qtfront.cpp:94
 msgid "CPU Test"
 msgstr "Ujian CPU"
 
-#: ../qt/frontend/qtfront.cpp:84
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Disk Test"
 msgstr "Ujian Cakera"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Firewire Test"
 msgstr "Ujian Firewire"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Graphics Test"
 msgstr "Ujian Grafik"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Info Test"
 msgstr "Ujian Maklumat"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Input Test"
 msgstr "Ujian Input"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:100
 msgid "Keys Test"
 msgstr "Ujian Kekunci"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Media Card Test"
 msgstr "Ujian Kad Media"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Memory Test"
 msgstr "Ujian Ingatan"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:103
 msgid "Miscellanea Test"
 msgstr "Ujian Pelbagai"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Monitor Test"
 msgstr "Ujian Monitor"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Networking Test"
 msgstr "Ujian Rangkaian"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Wireless Test"
 msgstr "Ujian Tanpa Wayar"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Optical Test"
 msgstr "Ujian Optik"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:108
 msgid "PCMCIA/PCIX Test"
 msgstr "Ujian PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:109
 msgid "Power Management Test"
 msgstr "Ujian Pengurusan Kuasa"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Suspend Test"
 msgstr "Ujian Tangguh"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:111
 msgid "USB Test"
 msgstr "Ujian USB"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:113
 msgid "Not Started"
 msgstr "Tidak Dimulakan"
 
-#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
 msgid "Done"
 msgstr "Selesai"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:116
 msgid "Not Supported"
 msgstr "Tidak Disokong"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:117
 msgid "Not Resolved"
 msgstr "Tidak Dileraikan"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:118
 msgid "Not Tested"
 msgstr "Tidak Diuji"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:119
 msgid "In Progress"
 msgstr "Dalam Proses"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Are you sure?"
 msgstr "Anda pasti?"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Do you really want to skip this test?"
 msgstr "Anda pasti ingin melangkau ujian ini?"
 
-#: ../qt/frontend/qtfront.cpp:161
+#: ../qt/frontend/qtfront.cpp:184
 msgid "Don't ask me again"
 msgstr "Jangan tanya lagi"
 
-#: ../qt/frontend/ui_qtfront.h:635
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Form"
 msgstr "Bentuk"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:601
 msgid "OK"
 msgstr "OK"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:602
 msgid "Don't show me this message in the future"
 msgstr "Jangan papar lagi mesej ini dilain masa"
 
-#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
+#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:619
 msgid "Tab 1"
 msgstr "Tab 1"
 
-#: ../qt/frontend/ui_qtfront.h:640
+#: ../qt/frontend/ui_qtfront.h:604
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 ujian selesai daripada 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:643
+#: ../qt/frontend/ui_qtfront.h:607
 msgid "Components"
 msgstr "Komponen"
 
-#: ../qt/frontend/ui_qtfront.h:644
+#: ../qt/frontend/ui_qtfront.h:608
 msgid "Status"
 msgstr "Status"
 
-#: ../qt/frontend/ui_qtfront.h:645
+#: ../qt/frontend/ui_qtfront.h:609
 msgid "Select all"
 msgstr "Pilih semua"
 
-#: ../qt/frontend/ui_qtfront.h:646
+#: ../qt/frontend/ui_qtfront.h:610
 msgid "Deselect all"
 msgstr "Jangan pilih semua"
 
-#: ../qt/frontend/ui_qtfront.h:647
+#: ../qt/frontend/ui_qtfront.h:611
 msgid "Start testing"
 msgstr "Mula menguji"
 
-#: ../qt/frontend/ui_qtfront.h:648
+#: ../qt/frontend/ui_qtfront.h:612
 msgid " Selection "
 msgstr " Pemilihan "
 
-#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
+#: ../qt/frontend/ui_qtfront.h:613 ../qt/frontend/ui_qtfront.h:614
 msgid "TextLabel"
 msgstr "Label Teks"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:615
 msgid "Yes"
 msgstr "Ya"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:617
 msgid "No"
 msgstr "Tidak"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:618
 msgid "Comment"
 msgstr "Ulasan"
 
-#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
+#: ../qt/frontend/ui_qtfront.h:620 ../qt/frontend/ui_qtfront.h:636
 msgid "Tab 2"
 msgstr "Tab 2"
 
-#: ../qt/frontend/ui_qtfront.h:661
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Run "
 msgstr " Jalan "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:624
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -5176,23 +5175,23 @@ msgstr ""
 "color:#000000;\">dan klik butang Serah Keputusan untuk serahkan keputusan "
 "ujian ini ke Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:668
+#: ../qt/frontend/ui_qtfront.h:630
 msgid "Submission details"
 msgstr "Perincian penyerahan"
 
-#: ../qt/frontend/ui_qtfront.h:670
+#: ../qt/frontend/ui_qtfront.h:632
 msgid "Email:"
 msgstr "E-mel:"
 
-#: ../qt/frontend/ui_qtfront.h:671
+#: ../qt/frontend/ui_qtfront.h:633
 msgid "Submit results"
 msgstr "Serah keputusan"
 
-#: ../qt/frontend/ui_qtfront.h:672
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "View results"
 msgstr "Lihat keputusan"
 
-#: ../qt/frontend/ui_qtfront.h:673
+#: ../qt/frontend/ui_qtfront.h:635
 msgid " Results "
 msgstr " Keputusan "
 

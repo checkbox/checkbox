@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 04:42+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-02 04:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -33,7 +33,7 @@ msgstr "下一个(_X)"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:600
 msgid "System Testing"
 msgstr "系统测试"
 
@@ -53,7 +53,7 @@ msgstr "否(_N)"
 msgid "_Skip this test"
 msgstr "跳过这个测试(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:460
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
 #: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "更多信息："
@@ -76,7 +76,7 @@ msgid "Test to detect audio devices"
 msgstr "检测音频设备的测试"
 
 #. description
-#: ../jobs/audio.txt.in:18
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -97,7 +97,7 @@ msgstr ""
 "    您听到声音了吗？"
 
 #. description
-#: ../jobs/audio.txt.in:37
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "   1. HDMI interface verification\n"
@@ -133,7 +133,7 @@ msgstr ""
 "    您是否通过耳机听到了声音，从耳机播放的声音是否没有失真、咔嗒声或其他奇怪噪声？"
 
 #. description
-#: ../jobs/audio.txt.in:73
+#: ../jobs/audio.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -155,7 +155,7 @@ msgstr ""
 "    是否听到回放了您说的话？"
 
 #. description
-#: ../jobs/audio.txt.in:92
+#: ../jobs/audio.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -177,7 +177,7 @@ msgstr ""
 "    是否听到回放了您说的话？"
 
 #. description
-#: ../jobs/audio.txt.in:110
+#: ../jobs/audio.txt.in:104
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -198,7 +198,7 @@ msgstr ""
 "    通过 USB 耳机是否听到了回放您说的话？"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:121
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -206,7 +206,7 @@ msgid ""
 msgstr "从默认输出设备播放声音并在默认输入设备上监听。当输入和输出设备都直接连接到电脑时结果最为准确。"
 
 #. description
-#: ../jobs/audio.txt.in:134
+#: ../jobs/audio.txt.in:129
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -214,7 +214,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:143
+#: ../jobs/audio.txt.in:138
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
 
@@ -224,153 +224,153 @@ msgid "Benchmark for each disk"
 msgstr "每个磁盘的基准测试"
 
 #. description
-#: ../jobs/benchmarks.txt.in:41
+#: ../jobs/benchmarks.txt.in:33
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:47
+#: ../jobs/benchmarks.txt.in:39
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:53
+#: ../jobs/benchmarks.txt.in:45
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:59
+#: ../jobs/benchmarks.txt.in:51
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:65
+#: ../jobs/benchmarks.txt.in:57
 msgid "Run Qgears2 OpenGL image scaling benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:74
+#: ../jobs/benchmarks.txt.in:66
 msgid "Run GLmark2-ES2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:83
+#: ../jobs/benchmarks.txt.in:75
 msgid "Run GLmark2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:89
+#: ../jobs/benchmarks.txt.in:81
 msgid "Run Unigine Santuary benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:95
+#: ../jobs/benchmarks.txt.in:87
 msgid "Run Unigine Tropics benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:101
+#: ../jobs/benchmarks.txt.in:93
 msgid "Run Unigine Heaven benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:107
+#: ../jobs/benchmarks.txt.in:99
 msgid "Run Lightsmark benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:113
+#: ../jobs/benchmarks.txt.in:105
 msgid "Run Cachebench Read benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:119
+#: ../jobs/benchmarks.txt.in:111
 msgid "Run Cachebench Write benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:125
+#: ../jobs/benchmarks.txt.in:117
 msgid "Run Cachebench Read / Modify / Write benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:131
+#: ../jobs/benchmarks.txt.in:123
 msgid "Run Stream Copy benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:137
+#: ../jobs/benchmarks.txt.in:129
 msgid "Run Stream Scale benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:143
+#: ../jobs/benchmarks.txt.in:135
 msgid "Run Stream Add benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:149
+#: ../jobs/benchmarks.txt.in:141
 msgid "Run Stream Triad benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:155
+#: ../jobs/benchmarks.txt.in:147
 msgid "Run Network Loopback benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:167
+#: ../jobs/benchmarks.txt.in:153
 msgid "Run Encode MP3 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:173
+#: ../jobs/benchmarks.txt.in:159
 msgid "Run x264 H.264/AVC encoder benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:179
+#: ../jobs/benchmarks.txt.in:165
 msgid "Run GnuPG benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:185
+#: ../jobs/benchmarks.txt.in:171
 msgid "Run Compress PBZIP2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:191
+#: ../jobs/benchmarks.txt.in:177
 msgid "Run Compress 7ZIP benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:197
+#: ../jobs/benchmarks.txt.in:183
 msgid "Run N-Queens benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:203
+#: ../jobs/benchmarks.txt.in:189
 msgid "Run Himeno benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:209
+#: ../jobs/benchmarks.txt.in:195
 msgid "CPU utilization on an idle system."
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:215
+#: ../jobs/benchmarks.txt.in:201
 msgid "Disk utilization on an idle system."
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:22
+#: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr "将蓝牙设备信息保存在 checkbox 报告中的自动测试"
 
 #. description
-#: ../jobs/bluetooth.txt.in:28
+#: ../jobs/bluetooth.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that bluetooth connection works correctly\n"
@@ -403,7 +403,7 @@ msgstr ""
 "    所有这些步骤是否均能够执行？"
 
 #. description
-#: ../jobs/bluetooth.txt.in:47
+#: ../jobs/bluetooth.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can transfer information through a "
@@ -425,7 +425,7 @@ msgstr ""
 "    所有文件是否均正确复制？"
 
 #. description
-#: ../jobs/bluetooth.txt.in:61
+#: ../jobs/bluetooth.txt.in:47
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can record and hear audio using a "
@@ -510,12 +510,12 @@ msgstr ""
 "    鼠标是否正常工作？"
 
 #. description
-#: ../jobs/camera.txt.in:6
+#: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
 msgstr "此自动测试尝试检测摄像头。"
 
 #. description
-#: ../jobs/camera.txt.in:15
+#: ../jobs/camera.txt.in:16
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -595,7 +595,7 @@ msgid ""
 msgstr "使用 固件测试用例(Firmware Test Suite, fwts cpufreq) 测试 CPU 的扩展能力。"
 
 #. description
-#: ../jobs/cpu.txt.in:15
+#: ../jobs/cpu.txt.in:14
 msgid "Attaches the log generated by cpu/scaling_test to the results"
 msgstr ""
 
@@ -605,17 +605,17 @@ msgid "Test for clock jitter."
 msgstr "测试是否出现时钟抖动。"
 
 #. description
-#: ../jobs/cpu.txt.in:28
+#: ../jobs/cpu.txt.in:29
 msgid "Test offlining CPUs in a multicore system."
 msgstr "测试在多核系统上屏蔽 CPU。"
 
 #. description
-#: ../jobs/cpu.txt.in:35
+#: ../jobs/cpu.txt.in:36
 msgid "This test checks cpu topology for accuracy"
 msgstr "本测试将检测 CPU 的拓扑结构精度。"
 
 #. description
-#: ../jobs/cpu.txt.in:42
+#: ../jobs/cpu.txt.in:44
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr "此测试检查在设置了 CPU 频率管理器时，其是否得到遵守。"
 
@@ -665,12 +665,12 @@ msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr "测试在安装软件包后，syslogd 守护程序是否运行。"
 
 #. description
-#: ../jobs/daemons.txt.in:60
+#: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr "测试在安装软件包后，udevd 守护程序是否运行。"
 
 #. description
-#: ../jobs/daemons.txt.in:66
+#: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr "测试在安装软件包后，winbindd 守护程序是否运行。"
 
@@ -685,22 +685,22 @@ msgid "Check stats changes for each disk"
 msgstr "检查每个磁盘的状态变化"
 
 #. description
-#: ../jobs/disk.txt.in:27
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "SMART 测试"
 
 #. description
-#: ../jobs/disk.txt.in:45
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr "默认安装测试过程中使用的最大磁盘空间"
 
 #. description
-#: ../jobs/disk.txt.in:62
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr "验证系统存储的表现是否达到或高于基线性能"
 
 #. description
-#: ../jobs/disk.txt.in:79
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -771,7 +771,7 @@ msgstr ""
 "   该身份验证过程是否正确工作？"
 
 #. description
-#: ../jobs/firewire.txt.in:4
+#: ../jobs/firewire.txt.in:6
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the insertion of a FireWire "
@@ -788,14 +788,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/firewire.txt.in:20
+#: ../jobs/firewire.txt.in:23
 msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
 msgstr "这是一个在已连接的 FireWire HDD 上执行读/写操作的自动测试"
 
 #. description
-#: ../jobs/firewire.txt.in:28
+#: ../jobs/firewire.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the removal of a FireWire "
@@ -816,17 +816,17 @@ msgid "Floppy test"
 msgstr "软盘测试"
 
 #. description
-#: ../jobs/graphics.txt.in:10
+#: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
 msgstr "输出 Xorg 版本的测试"
 
 #. description
-#: ../jobs/benchmarks.txt.in:34
+#: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr "运行 gtkperf 以确保基于 GTK 的测试用例正常工作"
 
 #. description
-#: ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -879,12 +879,12 @@ msgstr ""
 "    显示画面旋转是否正常改变？"
 
 #. description
-#: ../jobs/graphics.txt.in:31
+#: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
 msgstr "测试 X 进程是否正在运行。"
 
 #. description
-#: ../jobs/graphics.txt.in:37
+#: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
 msgstr "测试 X 是否没有在故障安全(failsafe)模式下运行。"
 
@@ -896,7 +896,7 @@ msgid ""
 msgstr "测试当在配有英特尔显卡的系统上运行程序时，X 是否没有出现内存泄漏。"
 
 #. description
-#: ../jobs/graphics.txt.in:44
+#: ../jobs/graphics.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -917,19 +917,19 @@ msgstr ""
 "    对于您的显示器，这是否可接受？"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:85
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr "确保当前分辨率达到或超过建议的最小分辨率(00x600)。有关详细信息，请参见这里："
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:85
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:81
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -946,12 +946,12 @@ msgstr ""
 "    是否看到色条和雪花？"
 
 #. description
-#: ../jobs/graphics.txt.in:92
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "检查是否未使用 VESA 驱动程序"
 
 #. description
-#: ../jobs/graphics.txt.in:99
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -968,17 +968,17 @@ msgstr ""
 "    屏幕是否在每个模式下都正常工作？"
 
 #. description
-#: ../jobs/graphics.txt.in:124
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "检查硬件是否能够运行 compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:130
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "检查硬件是否能够运行 Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:136
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1000,7 +1000,7 @@ msgstr ""
 "    2. 此动画是否没有出现缓慢/不流畅现象？"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:155
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -1011,12 +1011,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:806
+#: ../jobs/graphics.txt.in:167 ../jobs/suspend.txt.in:335
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:182
+#: ../jobs/graphics.txt.in:178
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -1029,13 +1029,13 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:211
+#: ../jobs/graphics.txt.in:191
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
 
 #. description
-#: ../jobs/hibernate.txt.in:14
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "PURPOSE:\n"
 "    This test will check to make sure your system can successfully hibernate "
@@ -1087,93 +1087,93 @@ msgid "Attaches dmidecode output"
 msgstr "附加 dmidecode 输出"
 
 #. description
-#: ../jobs/info.txt.in:37
+#: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
 msgstr "附加极为冗长的 lspci 输出。"
 
 #. description
-#: ../jobs/info.txt.in:42
+#: ../jobs/info.txt.in:36
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:49
+#: ../jobs/info.txt.in:43
 msgid "List USB devices"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:58
+#: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "附加各个 modprobe 配置文件的内容。"
 
 #. description
-#: ../jobs/info.txt.in:63
+#: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "附加 /etc/modules 文件的内容。"
 
 #. description
-#: ../jobs/info.txt.in:68
+#: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
 msgstr "附加各个 sysctl 配置文件的内容。"
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
 msgstr "附加 sysfs 属性的报告。"
 
 #. description
-#: ../jobs/info.txt.in:83
+#: ../jobs/info.txt.in:77
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr "附加表示系统硬件信息的 udev 数据库的转储。"
 
 #. description
-#: ../jobs/info.txt.in:95
+#: ../jobs/info.txt.in:84
 msgid "Attaches a tarball of gcov data if present."
 msgstr "附加 gcov 数据(如果存在)的归档。"
 
 #. description
-#: ../jobs/info.txt.in:100
+#: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
 msgstr "附加当前正在运行的内核模块的列表。"
 
 #. description
-#: ../jobs/info.txt.in:105
+#: ../jobs/info.txt.in:94
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "附加 /proc/acpi/sleep 的内容(如果存在)。"
 
 #. description
-#: ../jobs/info.txt.in:109
+#: ../jobs/info.txt.in:98
 msgid "Bootchart information."
 msgstr "Bootchart 信息。"
 
 #. description
-#: ../jobs/info.txt.in:118
+#: ../jobs/info.txt.in:107
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE 设备信息。"
 
 #. description
-#: ../jobs/info.txt.in:137
+#: ../jobs/info.txt.in:126
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "附加针对 bootchart 运行情况的 bootchart png 文件"
 
 #. description
-#: ../jobs/info.txt.in:146
+#: ../jobs/info.txt.in:135
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "附加针对 bootchart 测试运行情况的 bootchart log。"
 
 #. description
-#: ../jobs/info.txt.in:154
+#: ../jobs/info.txt.in:143
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "安装启动流程检测程序。"
 
 #. description
-#: ../jobs/info.txt.in:159
+#: ../jobs/info.txt.in:148
 msgid "Attaches the installer debug log if it exists."
 msgstr "附加安装程序调试日志(如果存在)。"
 
 #. description
-#: ../jobs/input.txt.in:22
+#: ../jobs/input.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "    This test will test your pointing device\n"
@@ -1192,7 +1192,7 @@ msgstr ""
 "    该指点设备是否正常工作？"
 
 #. description
-#: ../jobs/input.txt.in:35
+#: ../jobs/input.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will test your keyboard\n"
@@ -1270,7 +1270,7 @@ msgstr ""
 "    在您按下该键后是否静音？"
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:37
 msgid ""
 "PURPOSE:\n"
 "    This test will test the sleep key\n"
@@ -1306,7 +1306,7 @@ msgstr ""
 "    是否显示了电池状态通知？"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:60
 msgid ""
 "PURPOSE:\n"
 "    This test will test the wireless key\n"
@@ -1325,7 +1325,7 @@ msgstr ""
 "    第一次按时无线是否关闭，第二次按时是否又打开？"
 
 #. description
-#: ../jobs/keys.txt.in:91
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
@@ -1338,7 +1338,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:107
+#: ../jobs/keys.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will test the super key of your keyboard\n"
@@ -1390,147 +1390,147 @@ msgid "Disk tests"
 msgstr "磁盘测试"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "指纹阅读器测试"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "火线(Firewire)磁盘测试"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "软盘测试"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "显卡测试"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "休眠测试"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "信息性测试"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "输入设备测试"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "软件安装测试"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "热键测试"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "媒体卡测试"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "内存测试"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "杂项测试"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "显示器测试"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "联网测试"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "光驱测试"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "面板时钟验证测试"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX 卡测试"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "外围设备测试"
 
 #. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "电源管理测试"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "服务器服务检查"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "挂起测试"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "触控板测试"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "USB 测试"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "用户应用程序"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "无线联网测试"
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "压力测试"
 
 #. description
-#: ../jobs/local.txt.in:290
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:297
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:4
+#: ../jobs/mediacard.txt.in:6
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1545,14 +1545,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:21
+#: ../jobs/mediacard.txt.in:24
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
 msgstr "此测试自动进行，并且在 mediacard/mmc-insert 测试运行后执行。其测试对 MMC 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:29
+#: ../jobs/mediacard.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1566,7 +1566,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:44
+#: ../jobs/mediacard.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1581,7 +1581,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:61
+#: ../jobs/mediacard.txt.in:69
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert-after-"
 "suspend test is run. It tests reading and writing to the MMC card after the "
@@ -1590,7 +1590,7 @@ msgstr ""
 "此测试自动进行，并且在 mediacard/mmc-insert-after-suspend 测试运行后执行。其测试在系统已挂起后对 MMC 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:69
+#: ../jobs/mediacard.txt.in:79
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1605,7 +1605,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:83
+#: ../jobs/mediacard.txt.in:95
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1620,14 +1620,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:100
+#: ../jobs/mediacard.txt.in:113
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
 msgstr "此测试自动进行，并且在 mediacard/sd-insert 测试运行后执行。其测试对 SD 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:108
+#: ../jobs/mediacard.txt.in:123
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1641,7 +1641,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:123
+#: ../jobs/mediacard.txt.in:140
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1656,7 +1656,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:140
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert-after-"
 "suspend test is run. It tests reading and writing to the SD card after the "
@@ -1665,7 +1665,7 @@ msgstr ""
 "此测试自动进行，并且在 mediacard/sd-insert-after-suspend 测试运行后执行。其测试在系统已挂起后对 SD 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:148
+#: ../jobs/mediacard.txt.in:168
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1680,7 +1680,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:172
+#: ../jobs/mediacard.txt.in:184
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1696,14 +1696,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:189
+#: ../jobs/mediacard.txt.in:202
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr "此测试自动进行，并且在 mediacard/sdhc-insert 测试运行后执行。其测试对 SDHC 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:197
+#: ../jobs/mediacard.txt.in:212
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1717,7 +1717,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:212
+#: ../jobs/mediacard.txt.in:229
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1733,7 +1733,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:229
+#: ../jobs/mediacard.txt.in:247
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert-after-"
 "suspend test is run. It tests reading and writing to the SDHC card after the "
@@ -1743,7 +1743,7 @@ msgstr ""
 "卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:237
+#: ../jobs/mediacard.txt.in:257
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1758,7 +1758,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:251
+#: ../jobs/mediacard.txt.in:273
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1773,14 +1773,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:268
+#: ../jobs/mediacard.txt.in:291
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr "此测试自动进行，并且在 mediacard/cf-insert 测试运行后执行。其测试对 CF 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:276
+#: ../jobs/mediacard.txt.in:301
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1794,7 +1794,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:291
+#: ../jobs/mediacard.txt.in:318
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1809,7 +1809,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:308
+#: ../jobs/mediacard.txt.in:336
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert-after-"
 "suspend test is run. It tests reading and writing to the CF card after the "
@@ -1818,7 +1818,7 @@ msgstr ""
 "此测试自动进行，并且在 mediacard/cf-insert-after-suspend 测试运行后执行。其测试在系统已挂起后对 CF 卡的读写。"
 
 #. description
-#: ../jobs/mediacard.txt.in:316
+#: ../jobs/mediacard.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1840,7 +1840,7 @@ msgid ""
 msgstr "此测试检查对比由 DMI 检测的内存模块的大小和 meminfo 中报告的内存容量。"
 
 #. description
-#: ../jobs/memory.txt.in:13
+#: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
 msgstr "测试和使用内存。"
 
@@ -1860,7 +1860,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:21
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1880,31 +1880,31 @@ msgstr ""
 "    您的屏幕是否临时变为文本控制台，然后又切回到您当前的会话？"
 
 #. description
-#: ../jobs/miscellanea.txt.in:34
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "运行固件测试用例(Firmware Test Suite, fwts)自动测试。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:53
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr "本测试将检测 BMC 的联通性，以确认 IPMI 是否能够正常运行。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:57
+#: ../jobs/miscellanea.txt.in:59
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr "   确定是否需要运行特定于便携式计算机的测试，这些测试不能用于台式机。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:65
+#: ../jobs/miscellanea.txt.in:67
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1912,7 +1912,7 @@ msgid ""
 msgstr "测试 /var/crash 目录是否没有包含任何内容。列出其中包含的文件(如果有)，或者回显该目录的状态(不存在或为空)"
 
 #. description
-#: ../jobs/virtualization.txt.in:6
+#: ../jobs/miscellanea.txt.in:75
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2052,29 +2052,29 @@ msgstr ""
 "    您的显示器是否变为空白，然后再次打开？"
 
 #. description
-#: ../jobs/networking.txt.in:8
+#: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
 msgstr "检测可用网络控制器的测试"
 
 #. description
-#: ../jobs/networking.txt.in:14
+#: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
 msgstr "测试该系统是否具有正在工作的互联网连接。"
 
 #. description
-#: ../jobs/networking.txt.in:19
+#: ../jobs/networking.txt.in:16
 msgid "Network Information"
 msgstr "网络信息"
 
 #. description
-#: ../jobs/networking.txt.in:43
+#: ../jobs/networking.txt.in:40
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
 msgstr "这是一个收集有关您网络设备当前状态的一些信息的自动测试。如果未发现设备，此测试将退出并报错。"
 
 #. description
-#: ../jobs/networking.txt.in:49
+#: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2096,7 +2096,7 @@ msgstr ""
 "    是否显示通知以及是否正确建立了该连接？"
 
 #. description
-#: ../jobs/networking.txt.in:62
+#: ../jobs/networking.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2126,49 +2126,49 @@ msgstr ""
 "    是否显示通知以及是否正确建立了该连接？"
 
 #. description
-#: ../jobs/networking.txt.in:79
+#: ../jobs/networking.txt.in:76
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr "使用 ICMP ECHO 数据包验证某个系统在网络上的可用性的自动测试用例。"
 
 #. description
-#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr "确保可通过 HTTP 下载文件的自动测试用例"
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:91
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr "测试能否将本地时钟与 NTP 服务器同步"
 
 #. description
-#: ../jobs/networking.txt.in:100
+#: ../jobs/networking.txt.in:97
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr "验证是否可以通过 SSH 达到在网络上安装的 checkbox-server。"
 
 #. description
-#: ../jobs/networking.txt.in:106
+#: ../jobs/networking.txt.in:103
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr "尝试在网络上启用远程打印机，并打印测试页。"
 
 #. description
-#: ../jobs/networking.txt.in:111
+#: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr "自动使用多个网卡以及按顺序测试每个网卡。"
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "测量网络带宽的测试"
 
 #. description
-#: ../jobs/optical.txt.in:4
+#: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
 msgstr "检测光驱的测试"
 
@@ -2190,7 +2190,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:33
+#: ../jobs/optical.txt.in:42
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2216,7 +2216,7 @@ msgstr ""
 "    如果测试成功，程序将自动选择“是”，反之则为测试失败。"
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:55
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2249,7 +2249,7 @@ msgstr ""
 "    所以步骤都可以工作吗？"
 
 #. description
-#: ../jobs/optical.txt.in:69
+#: ../jobs/optical.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2274,7 +2274,7 @@ msgstr ""
 "    如果测试成功，程序将自动选择“是”，反之则为失败。"
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2303,7 +2303,7 @@ msgstr ""
 "    所有这些步骤是否均能够执行？"
 
 #. description
-#: ../jobs/optical.txt.in:154
+#: ../jobs/optical.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2362,7 +2362,7 @@ msgstr ""
 "    现在桌面时钟是否显示的时间是否正确？"
 
 #. description
-#: ../jobs/panel_reboot.txt.in:3
+#: ../jobs/panel_reboot.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that you can reboot your system from the desktop "
@@ -2485,7 +2485,7 @@ msgstr ""
 "    该系统是否正确关闭和重新启动？"
 
 #. description
-#: ../jobs/power-management.txt.in:17
+#: ../jobs/power-management.txt.in:16
 msgid "Test ACPI Wakealarm (fwts wakealarm)"
 msgstr ""
 
@@ -2536,14 +2536,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:79
+#: ../jobs/power-management.txt.in:78
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:84
+#: ../jobs/power-management.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2560,7 +2560,7 @@ msgstr ""
 "   关闭您的笔记本电脑盖是否导致您的系统挂起？"
 
 #. description
-#: ../jobs/power-management.txt.in:101
+#: ../jobs/power-management.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2579,7 +2579,7 @@ msgstr ""
 "    在关闭此盖时屏幕是否关闭？"
 
 #. description
-#: ../jobs/power-management.txt.in:119
+#: ../jobs/power-management.txt.in:118
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2607,7 +2607,7 @@ msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "确认实时时钟(RTC)设备存在"
 
 #. description
-#: ../jobs/power-management.txt.in:139
+#: ../jobs/power-management.txt.in:140
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2644,7 +2644,7 @@ msgid "Verifies that Tomcat server is running and working."
 msgstr "验证 Tomcat 服务器是否正在运行和工作。"
 
 #. description
-#: ../jobs/stress.txt.in:7
+#: ../jobs/stress.txt.in:8
 msgid ""
 "PURPOSE:\n"
 "    Create jobs that use the CPU as much as possible for two hours. The test "
@@ -2654,7 +2654,7 @@ msgstr ""
 "    创建尽可能使用 CPU 的作业，运行两个小时。如果该系统没有失去响应，则认为此测试已通过。"
 
 #. description
-#: ../jobs/stress.txt.in:24
+#: ../jobs/stress.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -2662,12 +2662,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:31
+#: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:47
+#: ../jobs/stress.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -2675,12 +2675,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:54
+#: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:76
+#: ../jobs/stress.txt.in:50
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -2688,13 +2688,13 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:83
+#: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:99
+#: ../jobs/stress.txt.in:66
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -2702,27 +2702,27 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:106
+#: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:122
+#: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:137
+#: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:149
+#: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr ""
 
 #. description
-#: ../jobs/stress.txt.in:161
+#: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 
@@ -2742,25 +2742,25 @@ msgid "Record mixer settings before suspending."
 msgstr "挂起前记录混音器设置。"
 
 #. description
-#: ../jobs/suspend.txt.in:22
+#: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
 msgstr "确认电脑休眠之前所有 CPU 都处于运行状态。"
 
 #. description
-#: ../jobs/suspend.txt.in:27
+#: ../jobs/suspend.txt.in:31
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr "将内存信息转储到一个文件中，以便运行了挂起测试后进行比较"
 
 #. description
-#: ../jobs/suspend.txt.in:36
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr "此测试将断开所有连接，然后连接到无线接口。然后，此测试将检查该连接，以确认其正常工作。"
 
 #. description
-#: ../jobs/suspend.txt.in:171
+#: ../jobs/suspend.txt.in:77
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2784,39 +2784,39 @@ msgstr ""
 "    您的系统是否正确挂起和恢复？"
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:93
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "这是 suspend/suspend_advanced 的自动化版本。"
 
 #. description
-#: ../jobs/suspend.txt.in:237
+#: ../jobs/suspend.txt.in:108
 msgid "Test the network after resuming."
 msgstr "恢复后测试网络。"
 
 #. description
-#: ../jobs/suspend.txt.in:243
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "测试恢复后分辨率是否与之前相同。"
 
 #. description
-#: ../jobs/suspend.txt.in:252
+#: ../jobs/suspend.txt.in:123
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr "验证在挂起之后混合器设置是否与挂起之前相同。"
 
 #. description
-#: ../jobs/suspend.txt.in:265
+#: ../jobs/suspend.txt.in:139
 msgid "Verify that all CPUs are online after resuming."
 msgstr "确认恢复之后所有 CPU 都处于运行状态。"
 
 #. description
-#: ../jobs/suspend.txt.in:278
+#: ../jobs/suspend.txt.in:156
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "验证在从挂起状态中恢复后所有内存是否均可用。"
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:165
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2829,7 +2829,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:299
+#: ../jobs/suspend.txt.in:178
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2837,49 +2837,49 @@ msgid ""
 msgstr "此测试将检查在该系统挂起后无线接口是否正常工作。此测试将断开所有接口的连接，然后连接到无线接口，并且检查此连接是否正常工作。"
 
 #. description
-#: ../jobs/suspend.txt.in:365
+#: ../jobs/suspend.txt.in:190
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:378
+#: ../jobs/suspend.txt.in:201
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:391
+#: ../jobs/suspend.txt.in:212
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:404
+#: ../jobs/suspend.txt.in:223
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:517
+#: ../jobs/suspend.txt.in:234
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr "本测试将获取休眠之后的蓝牙适配器地址，并于休眠之前进行对比。"
 
 #. description
-#: ../jobs/suspend.txt.in:621
+#: ../jobs/suspend.txt.in:254
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr "这是一个自动蓝牙文件传输测试。此测试将向 BTDEVADDR 环境变量指定的设备发送一个图像。"
 
 #. description
-#: ../jobs/suspend.txt.in:735
+#: ../jobs/suspend.txt.in:264
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2901,7 +2901,7 @@ msgstr ""
 "    是否正确发送了这些数据？"
 
 #. description
-#: ../jobs/suspend.txt.in:749
+#: ../jobs/suspend.txt.in:278
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2918,7 +2918,7 @@ msgstr ""
 "    您的显示器在检测到的模式下是否正常显示？"
 
 #. description
-#: ../jobs/suspend.txt.in:761
+#: ../jobs/suspend.txt.in:290
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2926,7 +2926,7 @@ msgid ""
 msgstr "此测试将检查并确保在挂起和恢复后支持的显示模式正常工作。这是通过捕获屏幕截图并将它们作为附件进行上传来自动进行的。"
 
 #. description
-#: ../jobs/suspend.txt.in:770
+#: ../jobs/suspend.txt.in:299
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -2934,7 +2934,7 @@ msgstr ""
 "这会将 suspend/cycle_resolutions_after_suspend_auto 测试中捕获的屏幕截图附加到提交的结果中。"
 
 #. description
-#: ../jobs/suspend.txt.in:780
+#: ../jobs/suspend.txt.in:309
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2943,12 +2943,12 @@ msgid ""
 msgstr "这将检查并确保在挂起和恢复后您的音频设备正常工作。此测试可以使用扬声器和内置麦克风，但最好使用将音频输出插孔与音频输入插孔相连的电缆。"
 
 #. description
-#: ../jobs/suspend.txt.in:786
+#: ../jobs/suspend.txt.in:315
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:392
+#: ../jobs/suspend.txt.in:323
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -2960,7 +2960,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:415
+#: ../jobs/suspend.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations, suspend the system, do more challenging\n"
@@ -3021,12 +3021,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:4
+#: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
 msgstr "检测并显示连接到该系统的 USB 设备。"
 
 #. description
-#: ../jobs/usb.txt.in:10
+#: ../jobs/usb.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that your system detects USB storage devices.\n"
@@ -3049,7 +3049,7 @@ msgstr ""
 "    是否检测到了这些驱动器？"
 
 #. description
-#: ../jobs/usb.txt.in:28
+#: ../jobs/usb.txt.in:30
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3068,7 +3068,7 @@ msgstr ""
 "    该键盘是否正常工作？"
 
 #. description
-#: ../jobs/usb.txt.in:41
+#: ../jobs/usb.txt.in:43
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3087,7 +3087,7 @@ msgstr ""
 "    该鼠标是否正常工作？"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the insertion of\n"
@@ -3102,7 +3102,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:72
+#: ../jobs/usb.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal of\n"
@@ -3116,7 +3116,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:105
+#: ../jobs/usb.txt.in:96
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3138,12 +3138,12 @@ msgstr ""
 "    此测试的验证自动进行。不要更改自动选择的结果。"
 
 #. description
-#: ../jobs/usb.txt.in:139
+#: ../jobs/usb.txt.in:114
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr "此测试自动进行，并且在 usb/insert 测试运行后执行。"
 
 #. description
-#: ../jobs/usb.txt.in:156
+#: ../jobs/usb.txt.in:124
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the "
 "server has usb storage devices plugged in prior to checkbox execution. It is "
@@ -3151,7 +3151,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:174
+#: ../jobs/usb.txt.in:132
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3485,7 +3485,7 @@ msgstr ""
 " 该视频是否正确播放？"
 
 #. description
-#: ../jobs/user_apps.txt.in:285
+#: ../jobs/user_apps.txt.in:283
 msgid ""
 "PURPOSE:\n"
 " This test will check that Firefox can play a Quicktime (.mov) video file.\n"
@@ -3506,7 +3506,7 @@ msgstr ""
 " 是否使用了插件播放该视频？"
 
 #. description
-#: ../jobs/user_apps.txt.in:299
+#: ../jobs/user_apps.txt.in:297
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3527,7 +3527,7 @@ msgstr ""
 " 您是否能够正确连接并收/发消息？"
 
 #. description
-#: ../jobs/user_apps.txt.in:313
+#: ../jobs/user_apps.txt.in:311
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3548,7 +3548,7 @@ msgstr ""
 " 您是否能够正确连接并收/发消息？"
 
 #. description
-#: ../jobs/user_apps.txt.in:327
+#: ../jobs/user_apps.txt.in:325
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3569,7 +3569,7 @@ msgstr ""
 " 您是否能够正确连接并收/发消息？"
 
 #. description
-#: ../jobs/user_apps.txt.in:341
+#: ../jobs/user_apps.txt.in:339
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3590,7 +3590,7 @@ msgstr ""
 " 您是否能够正确连接并收/发消息？"
 
 #. description
-#: ../jobs/user_apps.txt.in:355
+#: ../jobs/user_apps.txt.in:353
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -3611,7 +3611,7 @@ msgstr ""
 " 您是否能够正确连接并收/发消息？"
 
 #. description
-#: ../jobs/user_apps.txt.in:369
+#: ../jobs/user_apps.txt.in:367
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -3630,7 +3630,7 @@ msgstr ""
 " 您是否能够正确接收并阅读电子邮件？"
 
 #. description
-#: ../jobs/user_apps.txt.in:382
+#: ../jobs/user_apps.txt.in:380
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -3649,7 +3649,7 @@ msgstr ""
 " 您是否能够正确接收并阅读电子邮件？"
 
 #. description
-#: ../jobs/user_apps.txt.in:395
+#: ../jobs/user_apps.txt.in:393
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -3668,7 +3668,7 @@ msgstr ""
 " 您是否能够无错误地发送电子邮件？"
 
 #. description
-#: ../jobs/user_apps.txt.in:408
+#: ../jobs/user_apps.txt.in:406
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3685,7 +3685,7 @@ msgstr ""
 " 该计算器是否正确启动？"
 
 #. description
-#: ../jobs/user_apps.txt.in:421
+#: ../jobs/user_apps.txt.in:419
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3710,7 +3710,7 @@ msgstr ""
 " 这些功能是否正常执行？"
 
 #. description
-#: ../jobs/user_apps.txt.in:438
+#: ../jobs/user_apps.txt.in:436
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3735,7 +3735,7 @@ msgstr ""
 " 这些是否正常执行？"
 
 #. description
-#: ../jobs/user_apps.txt.in:455
+#: ../jobs/user_apps.txt.in:453
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -3758,7 +3758,7 @@ msgstr ""
 " 这些功能是否正常执行？"
 
 #. description
-#: ../jobs/user_apps.txt.in:470
+#: ../jobs/user_apps.txt.in:468
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -3778,7 +3778,7 @@ msgstr ""
 " 是否正常执行？"
 
 #. description
-#: ../jobs/user_apps.txt.in:484
+#: ../jobs/user_apps.txt.in:482
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -3798,7 +3798,7 @@ msgstr ""
 " 是否正常执行？"
 
 #. description
-#: ../jobs/user_apps.txt.in:497
+#: ../jobs/user_apps.txt.in:495
 msgid ""
 "PURPOSE:\n"
 " This test will check that Gnome Terminal works.\n"
@@ -3820,12 +3820,12 @@ msgstr ""
 " 这是否正常执行？"
 
 #. description
-#: ../jobs/wireless.txt.in:20
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr "无线网络扫描测试。将自动扫描和报告可用的无线网络。"
 
 #. description
-#: ../jobs/wireless.txt.in:26
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -3847,42 +3847,42 @@ msgstr ""
 "    是否显示通知以及是否正确建立了该连接？"
 
 #. description
-#: ../jobs/wireless.txt.in:44
+#: ../jobs/wireless.txt.in:28
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr "测试系统无线硬件是否能够连接到使用 WPA 安全和 802.11b/g 协议的路由器。"
 
 #. description
-#: ../jobs/wireless.txt.in:56
+#: ../jobs/wireless.txt.in:38
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr "测试系统无线硬件是否能够连接到不使用安全和 802.11b/g 协议的路由器。"
 
 #. description
-#: ../jobs/wireless.txt.in:68
+#: ../jobs/wireless.txt.in:48
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr "测试系统无线硬件是否能够连接到使用 WPA 安全和 802.11n 协议的路由器。"
 
 #. description
-#: ../jobs/wireless.txt.in:80
+#: ../jobs/wireless.txt.in:58
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr "测试系统无线硬件是否能够连接到不使用安全和 802.11n 协议的路由器。"
 
 #. description
-#: ../jobs/wireless.txt.in:176
+#: ../jobs/wireless.txt.in:70
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr "通过 iperf 工具测试系统无线连接的性能。"
 
 #. description
-#: ../jobs/wireless.txt.in:187
+#: ../jobs/wireless.txt.in:81
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -3928,7 +3928,7 @@ msgstr "--config=.*/jobs_info/whitelist_file 的简写。"
 msgid "Missing configuration file as argument.\n"
 msgstr "丢失配置文件作为参数。\n"
 
-#: ../checkbox/job.py:85
+#: ../checkbox/job.py:84
 msgid "Command not found."
 msgstr "未找到命令。"
 
@@ -4023,17 +4023,17 @@ msgid "Unknown signal"
 msgstr "未知信号"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "是"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "否"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "跳过"
 
@@ -4041,29 +4041,29 @@ msgstr "跳过"
 msgid "Press any key to continue..."
 msgstr "按下任何一个键继续…"
 
-#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "请选择 (%s)： "
 
-#: ../checkbox_cli/cli_interface.py:232 ../checkbox_cli/cli_interface.py:355
-#: ../checkbox_cli/cli_interface.py:386
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "完成后的空间大小"
 
-#: ../checkbox_cli/cli_interface.py:384
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "使用以上字符连接来展开节点"
 
-#: ../checkbox_cli/cli_interface.py:432
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "测试"
 
-#: ../checkbox_cli/cli_interface.py:456
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "再次测试"
 
-#: ../checkbox_cli/cli_interface.py:462
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "请在这里输入并在结束时按下 Ctrl-D ：\n"
 
@@ -4071,21 +4071,21 @@ msgstr "请在这里输入并在结束时按下 Ctrl-D ：\n"
 msgid "Checkbox System Testing"
 msgstr "Checkbox 系统测试"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "继续"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:622
 msgid "Previous"
 msgstr "上一个"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:621
 msgid "Next"
 msgstr "下一个"
 
@@ -4107,7 +4107,7 @@ msgstr "全部展开"
 msgid "Collapse All"
 msgstr "全部折叠"
 
-#: ../checkbox_urwid/urwid_interface.py:1034
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:616
 msgid "Test"
 msgstr "测试"
 
@@ -4119,11 +4119,11 @@ msgstr "重新测试"
 msgid "_Test Again"
 msgstr "再次测试(_T)"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:541
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
 msgid "Info"
 msgstr "信息"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:244
 msgid "Error"
 msgstr "错误"
 
@@ -4174,8 +4174,7 @@ msgstr "成功完成测试！"
 msgid "_Finish"
 msgstr "完成(_F)"
 
-#. Resolve dependencies
-#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
+#: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "正在从您的系统上收集信息..."
 
@@ -4203,12 +4202,12 @@ msgstr ""
 "\n"
 "警告：一些测试可能导致您的系统失去响应或响应缓慢。开始此测试过程前，请保存您的所有工作，并关闭其他所有正在运行的应用程序。"
 
-#: ../plugins/launchpad_exchange.py:135
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "处理表单失败：%s"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -4225,7 +4224,7 @@ msgstr ""
 "直接到系统数据库：\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:159
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -4233,11 +4232,11 @@ msgstr ""
 "上载到服务器失败，\n"
 "请一会儿重新尝试。"
 
-#: ../plugins/launchpad_exchange.py:171
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "不会发布到 Launchpad 上的信息。"
 
-#: ../plugins/launchpad_prompt.py:77
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -4259,15 +4258,15 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
-#: ../plugins/launchpad_prompt.py:87
+#: ../plugins/launchpad_prompt.py:84
 msgid "Email"
 msgstr ""
 
-#: ../plugins/launchpad_prompt.py:96
+#: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "电子邮件地址必须有正确的格式。"
 
-#: ../plugins/launchpad_prompt.py:102
+#: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
 msgstr "和服务器交换信息..."
 
@@ -4309,7 +4308,7 @@ msgstr ""
 "如果您取消测试项目，您的结果将不会提交到 Ubuntu Freindly 项目。如果您准备参加 Ubuntu Friendly "
 "项目，请选择所有测试项目。如果在测试中缺乏相应设备，可以到时跳过对应测试项目。"
 
-#: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:606
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -4321,207 +4320,207 @@ msgstr "输入文本：\n"
 msgid "Type Text"
 msgstr "键入文本"
 
-#: ../scripts/internet_test:221
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "没有互联网连接"
 
-#: ../scripts/internet_test:224
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "连接建立但有丢包"
 
-#: ../scripts/internet_test:227
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "互联网连接完整建立"
 
-#: ../qt/frontend/qtfront.cpp:80
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Audio Test"
 msgstr "音频测试"
 
-#: ../qt/frontend/qtfront.cpp:81
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Bluetooth Test"
 msgstr "蓝牙测试"
 
-#: ../qt/frontend/qtfront.cpp:82
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Camera Test"
 msgstr "摄像头测试"
 
-#: ../qt/frontend/qtfront.cpp:83
+#: ../qt/frontend/qtfront.cpp:94
 msgid "CPU Test"
 msgstr "CPU 测试"
 
-#: ../qt/frontend/qtfront.cpp:84
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Disk Test"
 msgstr "硬盘测试"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Firewire Test"
 msgstr "火线接口测试"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Graphics Test"
 msgstr "显卡测试"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Info Test"
 msgstr "信息测试"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Input Test"
 msgstr "输入测试"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:100
 msgid "Keys Test"
 msgstr "按键测试"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Media Card Test"
 msgstr "媒体卡测试"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Memory Test"
 msgstr "内存测试"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:103
 msgid "Miscellanea Test"
 msgstr "其它测试"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Monitor Test"
 msgstr "显示器测试"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Networking Test"
 msgstr "网络测试"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Wireless Test"
 msgstr "无线测试"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Optical Test"
 msgstr "光驱测试"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:108
 msgid "PCMCIA/PCIX Test"
 msgstr "PCMCIA/PCIX 扩展卡测试"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:109
 msgid "Power Management Test"
 msgstr "电量管理测试"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Suspend Test"
 msgstr "休眠测试"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:111
 msgid "USB Test"
 msgstr "USB 接口测试"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:113
 msgid "Not Started"
 msgstr "未能开始"
 
-#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
 msgid "Done"
 msgstr "完成"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:116
 msgid "Not Supported"
 msgstr "不支持"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:117
 msgid "Not Resolved"
 msgstr "未能解决"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:118
 msgid "Not Tested"
 msgstr "尚未测试"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:119
 msgid "In Progress"
 msgstr "测试中"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Are you sure?"
 msgstr "您确定吗？"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Do you really want to skip this test?"
 msgstr "确定要跳过这个测试吗？"
 
-#: ../qt/frontend/qtfront.cpp:161
+#: ../qt/frontend/qtfront.cpp:184
 msgid "Don't ask me again"
 msgstr "不要再次询问"
 
-#: ../qt/frontend/ui_qtfront.h:635
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Form"
 msgstr "来自"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:601
 msgid "OK"
 msgstr "成功"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:602
 msgid "Don't show me this message in the future"
 msgstr "不要再次显示这一信息"
 
-#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
+#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:619
 msgid "Tab 1"
 msgstr "标签一"
 
-#: ../qt/frontend/ui_qtfront.h:640
+#: ../qt/frontend/ui_qtfront.h:604
 msgid "10 tests completed out of 30 (30%)"
 msgstr "您已完成30项测试中的10项"
 
-#: ../qt/frontend/ui_qtfront.h:643
+#: ../qt/frontend/ui_qtfront.h:607
 msgid "Components"
 msgstr "组件"
 
-#: ../qt/frontend/ui_qtfront.h:644
+#: ../qt/frontend/ui_qtfront.h:608
 msgid "Status"
 msgstr "状态"
 
-#: ../qt/frontend/ui_qtfront.h:645
+#: ../qt/frontend/ui_qtfront.h:609
 msgid "Select all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:646
+#: ../qt/frontend/ui_qtfront.h:610
 msgid "Deselect all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:647
+#: ../qt/frontend/ui_qtfront.h:611
 msgid "Start testing"
 msgstr "开始测试"
 
-#: ../qt/frontend/ui_qtfront.h:648
+#: ../qt/frontend/ui_qtfront.h:612
 msgid " Selection "
 msgstr " 选择 "
 
-#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
+#: ../qt/frontend/ui_qtfront.h:613 ../qt/frontend/ui_qtfront.h:614
 msgid "TextLabel"
 msgstr "文本标签"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:615
 msgid "Yes"
 msgstr "是"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:617
 msgid "No"
 msgstr "否"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:618
 msgid "Comment"
 msgstr "注释"
 
-#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
+#: ../qt/frontend/ui_qtfront.h:620 ../qt/frontend/ui_qtfront.h:636
 msgid "Tab 2"
 msgstr "标签二"
 
-#: ../qt/frontend/ui_qtfront.h:661
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Run "
 msgstr " 运行 "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:624
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4554,23 +4553,23 @@ msgstr ""
 "color:#000000;\">然后点击提交按钮向 Ubuntu Friendly "
 "项目提交您的测试结果。</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:668
+#: ../qt/frontend/ui_qtfront.h:630
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:670
+#: ../qt/frontend/ui_qtfront.h:632
 msgid "Email:"
 msgstr "电子邮件地址："
 
-#: ../qt/frontend/ui_qtfront.h:671
+#: ../qt/frontend/ui_qtfront.h:633
 msgid "Submit results"
 msgstr "提交结果"
 
-#: ../qt/frontend/ui_qtfront.h:672
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "View results"
 msgstr "查看结果"
 
-#: ../qt/frontend/ui_qtfront.h:673
+#: ../qt/frontend/ui_qtfront.h:635
 msgid " Results "
 msgstr " 结果 "
 

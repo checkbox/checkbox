@@ -14,12 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 04:40+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-02 04:35+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:600
 msgid "System Testing"
 msgstr "Rendszerteszt"
 
@@ -39,7 +39,7 @@ msgstr "_Nem"
 msgid "_Skip this test"
 msgstr "Ezen te_szt kihagyása"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:460
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
 #: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Bővebb információ:"
@@ -71,7 +71,7 @@ msgid "Test to detect audio devices"
 msgstr "Teszt a hangeszközök felismerésére"
 
 #. description
-#: ../jobs/audio.txt.in:18
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -93,7 +93,7 @@ msgstr ""
 "    Hallotta a hangjelzést?"
 
 #. description
-#: ../jobs/audio.txt.in:37
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "   1. HDMI interface verification\n"
@@ -142,7 +142,7 @@ msgstr ""
 "vagy egyéb szokatlan zajok nélkül?"
 
 #. description
-#: ../jobs/audio.txt.in:73
+#: ../jobs/audio.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -165,7 +165,7 @@ msgstr ""
 "    Hallotta a visszajátszott beszédét?"
 
 #. description
-#: ../jobs/audio.txt.in:92
+#: ../jobs/audio.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -188,7 +188,7 @@ msgstr ""
 "    Hallotta a visszajátszott beszédét?"
 
 #. description
-#: ../jobs/audio.txt.in:110
+#: ../jobs/audio.txt.in:104
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -209,7 +209,7 @@ msgstr ""
 "    Hallotta az USB-s hangeszközön visszajátszott beszédét?"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:121
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -220,7 +220,7 @@ msgstr ""
 "közvetlenül össze van kötve, pl. egy patch kábellel."
 
 #. description
-#: ../jobs/audio.txt.in:134
+#: ../jobs/audio.txt.in:129
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -231,7 +231,7 @@ msgstr ""
 "körülmények közötti részletesebb tesztelésére lehet használni."
 
 #. description
-#: ../jobs/audio.txt.in:143
+#: ../jobs/audio.txt.in:138
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr "A hangeszköz adatgyűjtési naplójának csatolása az eredményekhez."
 
@@ -241,148 +241,148 @@ msgid "Benchmark for each disk"
 msgstr "Teljesítményteszt minden lemezen"
 
 #. description
-#: ../jobs/benchmarks.txt.in:41
+#: ../jobs/benchmarks.txt.in:33
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
 msgstr "A Render-Bench XRender/Imlib2 teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:47
+#: ../jobs/benchmarks.txt.in:39
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
 msgstr "A Qgears2 XRender Extension gearsfancy teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:53
+#: ../jobs/benchmarks.txt.in:45
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
 msgstr "A Qgears2 XRender Extension képméretező teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:59
+#: ../jobs/benchmarks.txt.in:51
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
 msgstr "A Qgears2 OpenGL gearsfancy teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:65
+#: ../jobs/benchmarks.txt.in:57
 msgid "Run Qgears2 OpenGL image scaling benchmark"
 msgstr "A Qgears2 OpenGL képméretező teljesítménytesztjének futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:74
+#: ../jobs/benchmarks.txt.in:66
 msgid "Run GLmark2-ES2 benchmark"
 msgstr "A GLmark2-ES2 teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:83
+#: ../jobs/benchmarks.txt.in:75
 msgid "Run GLmark2 benchmark"
 msgstr "A GLmark2 teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:89
+#: ../jobs/benchmarks.txt.in:81
 msgid "Run Unigine Santuary benchmark"
 msgstr "A Unigine Sanctuary teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:95
+#: ../jobs/benchmarks.txt.in:87
 msgid "Run Unigine Tropics benchmark"
 msgstr "A Unigine Tropics teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:101
+#: ../jobs/benchmarks.txt.in:93
 msgid "Run Unigine Heaven benchmark"
 msgstr "A Unigine Heaven teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:107
+#: ../jobs/benchmarks.txt.in:99
 msgid "Run Lightsmark benchmark"
 msgstr "A Lightsmark teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:113
+#: ../jobs/benchmarks.txt.in:105
 msgid "Run Cachebench Read benchmark"
 msgstr "A Cachebench olvasási teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:119
+#: ../jobs/benchmarks.txt.in:111
 msgid "Run Cachebench Write benchmark"
 msgstr "A Cachebench írási teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:125
+#: ../jobs/benchmarks.txt.in:117
 msgid "Run Cachebench Read / Modify / Write benchmark"
 msgstr ""
 "A Cachebench olvasási / változtatási / írási teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:131
+#: ../jobs/benchmarks.txt.in:123
 msgid "Run Stream Copy benchmark"
 msgstr "A Stream Copy teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:137
+#: ../jobs/benchmarks.txt.in:129
 msgid "Run Stream Scale benchmark"
 msgstr "A Stream Scale teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:143
+#: ../jobs/benchmarks.txt.in:135
 msgid "Run Stream Add benchmark"
 msgstr "A Stream Add teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:149
+#: ../jobs/benchmarks.txt.in:141
 msgid "Run Stream Triad benchmark"
 msgstr "A Stream Triad teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:155
+#: ../jobs/benchmarks.txt.in:147
 msgid "Run Network Loopback benchmark"
 msgstr "A hálózati visszacsatoló teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:167
+#: ../jobs/benchmarks.txt.in:153
 msgid "Run Encode MP3 benchmark"
 msgstr "MP3 kódolási teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:173
+#: ../jobs/benchmarks.txt.in:159
 msgid "Run x264 H.264/AVC encoder benchmark"
 msgstr "X264 H.264/AVC kódolási teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:179
+#: ../jobs/benchmarks.txt.in:165
 msgid "Run GnuPG benchmark"
 msgstr "GnuPG teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:185
+#: ../jobs/benchmarks.txt.in:171
 msgid "Run Compress PBZIP2 benchmark"
 msgstr "PBZIP2 tömörítési teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:191
+#: ../jobs/benchmarks.txt.in:177
 msgid "Run Compress 7ZIP benchmark"
 msgstr "7ZIP tömörítési teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:197
+#: ../jobs/benchmarks.txt.in:183
 msgid "Run N-Queens benchmark"
 msgstr "N-Queens teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:203
+#: ../jobs/benchmarks.txt.in:189
 msgid "Run Himeno benchmark"
 msgstr "Himeno teljesítményteszt futtatása"
 
 #. description
-#: ../jobs/benchmarks.txt.in:209
+#: ../jobs/benchmarks.txt.in:195
 msgid "CPU utilization on an idle system."
 msgstr "Processzorhasználat üresjáratban."
 
 #. description
-#: ../jobs/benchmarks.txt.in:215
+#: ../jobs/benchmarks.txt.in:201
 msgid "Disk utilization on an idle system."
 msgstr "Lemezhasználat üresjáratban."
 
 #. description
-#: ../jobs/bluetooth.txt.in:22
+#: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
@@ -390,7 +390,7 @@ msgstr ""
 "rendszerteszt jelentéséhez"
 
 #. description
-#: ../jobs/bluetooth.txt.in:28
+#: ../jobs/bluetooth.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that bluetooth connection works correctly\n"
@@ -428,7 +428,7 @@ msgstr ""
 "    Az összes lépés sikerült?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:47
+#: ../jobs/bluetooth.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can transfer information through a "
@@ -451,7 +451,7 @@ msgstr ""
 "    Az összes fájlt sikerült átmásolni?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:61
+#: ../jobs/bluetooth.txt.in:47
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can record and hear audio using a "
@@ -539,12 +539,12 @@ msgstr ""
 "    Megfelelően működött az egér?"
 
 #. description
-#: ../jobs/camera.txt.in:6
+#: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
 msgstr "Ez az automatikus teszt megpróbálja felismerni a kamerát."
 
 #. description
-#: ../jobs/camera.txt.in:15
+#: ../jobs/camera.txt.in:16
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -632,7 +632,7 @@ msgstr ""
 "segítségével."
 
 #. description
-#: ../jobs/cpu.txt.in:15
+#: ../jobs/cpu.txt.in:14
 msgid "Attaches the log generated by cpu/scaling_test to the results"
 msgstr "A cpu/scaling_test ellenőrzés naplójának csatolása az eredményekhez"
 
@@ -642,17 +642,17 @@ msgid "Test for clock jitter."
 msgstr "Óracsúszás tesztelése"
 
 #. description
-#: ../jobs/cpu.txt.in:28
+#: ../jobs/cpu.txt.in:29
 msgid "Test offlining CPUs in a multicore system."
 msgstr "CPU-k kikapcsolásának tesztelése többmagos rendszereken."
 
 #. description
-#: ../jobs/cpu.txt.in:35
+#: ../jobs/cpu.txt.in:36
 msgid "This test checks cpu topology for accuracy"
 msgstr "Ez a teszt ellenőrzi a CPU topológia pontosságát"
 
 #. description
-#: ../jobs/cpu.txt.in:42
+#: ../jobs/cpu.txt.in:44
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
 "Ez a teszt ellenőrzi, hogy beállítás után a CPU frekvenciaszabályozók "
@@ -704,12 +704,12 @@ msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr "Teszteli, hogy a syslogd démon fut-e csomag telepítése után."
 
 #. description
-#: ../jobs/daemons.txt.in:60
+#: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr "Teszteli, hogy az udevd démon fut-e csomag telepítése után."
 
 #. description
-#: ../jobs/daemons.txt.in:66
+#: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr "Teszteli, hogy a winbindd démon fut-e csomag telepítése után."
 
@@ -724,24 +724,24 @@ msgid "Check stats changes for each disk"
 msgstr "Statisztikai változások ellenőrzése minden lemezen"
 
 #. description
-#: ../jobs/disk.txt.in:27
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "SMART tesztek"
 
 #. description
-#: ../jobs/disk.txt.in:45
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr "Az alapértelmezett telepítéskor használt legnagyobb lemezhely teszt"
 
 #. description
-#: ../jobs/disk.txt.in:62
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Ellenőrzi, hogy a rendszer háttértára az átlagos teljesítményen vagy afölött "
 "teljesít-e"
 
 #. description
-#: ../jobs/disk.txt.in:79
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -821,7 +821,7 @@ msgstr ""
 "   Megfelelően működött az azonosítási eljárás?"
 
 #. description
-#: ../jobs/firewire.txt.in:4
+#: ../jobs/firewire.txt.in:6
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the insertion of a FireWire "
@@ -849,7 +849,7 @@ msgstr ""
 "automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/firewire.txt.in:20
+#: ../jobs/firewire.txt.in:23
 msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
@@ -858,7 +858,7 @@ msgstr ""
 "csatlakoztatott FireWire merevlemezen"
 
 #. description
-#: ../jobs/firewire.txt.in:28
+#: ../jobs/firewire.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the removal of a FireWire "
@@ -891,18 +891,18 @@ msgid "Floppy test"
 msgstr "Floppy teszt"
 
 #. description
-#: ../jobs/graphics.txt.in:10
+#: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
 msgstr "Teszt a Xorg verzió megjelenítéséhez"
 
 #. description
-#: ../jobs/benchmarks.txt.in:34
+#: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Gtkperf futtatása a GTK alapú tesztek működésének megbizonyosodásához"
 
 #. description
-#: ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -956,12 +956,12 @@ msgstr ""
 "    Megfelelően működött a kijelző elforgatása?"
 
 #. description
-#: ../jobs/graphics.txt.in:31
+#: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
 msgstr "Az X folyamat futásának tesztelése."
 
 #. description
-#: ../jobs/graphics.txt.in:37
+#: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Annak ellenőrzése, hogy az X nem csökkentett módban fut-e."
 
@@ -975,7 +975,7 @@ msgstr ""
 "rendszereken futó programok esetében."
 
 #. description
-#: ../jobs/graphics.txt.in:44
+#: ../jobs/graphics.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -996,7 +996,7 @@ msgstr ""
 "    Megfelelő ez a felbontás a kijelzőhöz?"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:85
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
@@ -1005,12 +1005,12 @@ msgstr ""
 "javasolt minimális felbontást (800x600). Lásd itt:"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:85
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:81
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -1027,12 +1027,12 @@ msgstr ""
 "    Látja a színes sávokat és a zajt?"
 
 #. description
-#: ../jobs/graphics.txt.in:92
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "Ellenőrzés, hogy a VESA meghajtók nincsenek használatban"
 
 #. description
-#: ../jobs/graphics.txt.in:99
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1049,17 +1049,17 @@ msgstr ""
 "    Megfelelően működött a képernyő minden egyes módban?"
 
 #. description
-#: ../jobs/graphics.txt.in:124
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "Ellenőrzi, hogy a hardver képes-e futtatni a compizt"
 
 #. description
-#: ../jobs/graphics.txt.in:130
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Ellenőrzi, hogy a hardver képes-e futtatni a Unity 3D-t"
 
 #. description
-#: ../jobs/graphics.txt.in:136
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1082,7 +1082,7 @@ msgstr ""
 "    2. Az animáció megfelelő sebességgel és folytonosan futott?"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:155
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -1099,12 +1099,12 @@ msgstr ""
 "    1. A csatolmányt később kézzel ellenőrizze"
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:806
+#: ../jobs/graphics.txt.in:167 ../jobs/suspend.txt.in:335
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr "A graphics/screenshot útvonalon lévő képernyőmentés csatolása."
 
 #. description
-#: ../jobs/graphics.txt.in:182
+#: ../jobs/graphics.txt.in:178
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -1125,7 +1125,7 @@ msgstr ""
 "    1. A csatolmányt később kézzel ellenőrizze"
 
 #. description
-#: ../jobs/graphics.txt.in:211
+#: ../jobs/graphics.txt.in:191
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1133,7 +1133,7 @@ msgstr ""
 "csatolása."
 
 #. description
-#: ../jobs/hibernate.txt.in:14
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "PURPOSE:\n"
 "    This test will check to make sure your system can successfully hibernate "
@@ -1189,95 +1189,95 @@ msgid "Attaches dmidecode output"
 msgstr "A dmidecode kimenetének csatolása"
 
 #. description
-#: ../jobs/info.txt.in:37
+#: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
 msgstr "Részletes lspci kimenet csatolása."
 
 #. description
-#: ../jobs/info.txt.in:42
+#: ../jobs/info.txt.in:36
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
 "Részletes lspci kimenet csatolása (központi adatbázis-lekérdezéssel)."
 
 #. description
-#: ../jobs/info.txt.in:49
+#: ../jobs/info.txt.in:43
 msgid "List USB devices"
 msgstr "USB eszközök felsorolása"
 
 #. description
-#: ../jobs/info.txt.in:58
+#: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "A különböző modprobe beállítófájlok csatolása."
 
 #. description
-#: ../jobs/info.txt.in:63
+#: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "Az /etc/modules fájl tartalmának csatolása."
 
 #. description
-#: ../jobs/info.txt.in:68
+#: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
 msgstr "A különböző sysctl beállítófájlok csatolása."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
 msgstr "A sysfs attribútumok jelentésének csatolása."
 
 #. description
-#: ../jobs/info.txt.in:83
+#: ../jobs/info.txt.in:77
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
 "Az udev adatbázis rendszer-információkat tartalmazó részletének csatolása."
 
 #. description
-#: ../jobs/info.txt.in:95
+#: ../jobs/info.txt.in:84
 msgid "Attaches a tarball of gcov data if present."
 msgstr "A jelenlévő tömörített gcov adatok csatolása."
 
 #. description
-#: ../jobs/info.txt.in:100
+#: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
 msgstr "A jelenleg futó kernelmodulok listájának csatolása."
 
 #. description
-#: ../jobs/info.txt.in:105
+#: ../jobs/info.txt.in:94
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "A /proc/acpi/sleep tartalmának csatolása, ha létezik."
 
 #. description
-#: ../jobs/info.txt.in:109
+#: ../jobs/info.txt.in:98
 msgid "Bootchart information."
 msgstr "Bootchart információk."
 
 #. description
-#: ../jobs/info.txt.in:118
+#: ../jobs/info.txt.in:107
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE eszközadatok."
 
 #. description
-#: ../jobs/info.txt.in:137
+#: ../jobs/info.txt.in:126
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "A bootchart futtatások png fájljainak csatolása"
 
 #. description
-#: ../jobs/info.txt.in:146
+#: ../jobs/info.txt.in:135
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "A bootchart próbafuttatások naplófájljainak csatolása."
 
 #. description
-#: ../jobs/info.txt.in:154
+#: ../jobs/info.txt.in:143
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "A bootchart telepítő tarball telepítése, ha létezik."
 
 #. description
-#: ../jobs/info.txt.in:159
+#: ../jobs/info.txt.in:148
 msgid "Attaches the installer debug log if it exists."
 msgstr "A telepítő hibajelentő naplójának csatolása, ha létezik."
 
 #. description
-#: ../jobs/input.txt.in:22
+#: ../jobs/input.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "    This test will test your pointing device\n"
@@ -1297,7 +1297,7 @@ msgstr ""
 "    Megfelelően működött a mutatóeszköz?"
 
 #. description
-#: ../jobs/input.txt.in:35
+#: ../jobs/input.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will test your keyboard\n"
@@ -1379,7 +1379,7 @@ msgstr ""
 "    Megfelelően elnémult a hang a billentyű lenyomására?"
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:37
 msgid ""
 "PURPOSE:\n"
 "    This test will test the sleep key\n"
@@ -1415,7 +1415,7 @@ msgstr ""
 "    Megjelent a tájékoztatás az akkumulátor állapotáról?"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:60
 msgid ""
 "PURPOSE:\n"
 "    This test will test the wireless key\n"
@@ -1435,7 +1435,7 @@ msgstr ""
 "és bekapcsolt a másodikra?"
 
 #. description
-#: ../jobs/keys.txt.in:91
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
@@ -1458,7 +1458,7 @@ msgstr ""
 "    A billentyűk megfelelően működtek?"
 
 #. description
-#: ../jobs/keys.txt.in:107
+#: ../jobs/keys.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will test the super key of your keyboard\n"
@@ -1518,147 +1518,147 @@ msgid "Disk tests"
 msgstr "Lemeztesztek"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Ujjlenyomatolvasó-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Firewire lemeztesztek"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Floppylemez tesztek"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Grafikus tesztek"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Hibernációs tesztek"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Információs tesztek"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Bemeneti eszköz tesztek"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Alkalmazás telepítés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Gyorsbillentyű tesztek"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Médiakártya tesztek"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Memória-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Egyéb tesztek"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Monitortesztek"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Hálózati tesztek"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Optikaimeghajtó-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Panel óra ellenőrző tesztek"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX kártya tesztek"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Perifériatesztek"
 
 #. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Energiagazdálkodás tesztek"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Kiszolgáló szolgáltatások tesztjei"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Felfüggesztés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Érintőtábla tesztjei"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "USB-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Felhasználói alkalmazások"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Vezeték nélküli hálózat tesztek"
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Terhelés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:290
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr "Záró tesztek"
 
 #. description
-#: ../jobs/local.txt.in:297
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr "Szimatolók szimatolása"
 
 #. description
-#: ../jobs/mediacard.txt.in:4
+#: ../jobs/mediacard.txt.in:6
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1684,7 +1684,7 @@ msgstr ""
 "    kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:21
+#: ../jobs/mediacard.txt.in:24
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
@@ -1693,7 +1693,7 @@ msgstr ""
 "Az MMC kártya írását és olvasását ellenőrzi."
 
 #. description
-#: ../jobs/mediacard.txt.in:29
+#: ../jobs/mediacard.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1717,7 +1717,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:44
+#: ../jobs/mediacard.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1743,7 +1743,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:61
+#: ../jobs/mediacard.txt.in:69
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert-after-"
 "suspend test is run. It tests reading and writing to the MMC card after the "
@@ -1754,7 +1754,7 @@ msgstr ""
 "a rendszer fel lett függesztve."
 
 #. description
-#: ../jobs/mediacard.txt.in:69
+#: ../jobs/mediacard.txt.in:79
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1780,7 +1780,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:83
+#: ../jobs/mediacard.txt.in:95
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1806,7 +1806,7 @@ msgstr ""
 "    kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:100
+#: ../jobs/mediacard.txt.in:113
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
@@ -1815,7 +1815,7 @@ msgstr ""
 "Az SD kártya írását és olvasását ellenőrzi."
 
 #. description
-#: ../jobs/mediacard.txt.in:108
+#: ../jobs/mediacard.txt.in:123
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1839,7 +1839,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:123
+#: ../jobs/mediacard.txt.in:140
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1865,7 +1865,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:140
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert-after-"
 "suspend test is run. It tests reading and writing to the SD card after the "
@@ -1876,7 +1876,7 @@ msgstr ""
 "rendszer fel lett függesztve."
 
 #. description
-#: ../jobs/mediacard.txt.in:148
+#: ../jobs/mediacard.txt.in:168
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1902,7 +1902,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:172
+#: ../jobs/mediacard.txt.in:184
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1929,7 +1929,7 @@ msgstr ""
 "    kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:189
+#: ../jobs/mediacard.txt.in:202
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
@@ -1938,7 +1938,7 @@ msgstr ""
 "végre. Az SDHC kártya írását és olvasását ellenőrzi."
 
 #. description
-#: ../jobs/mediacard.txt.in:197
+#: ../jobs/mediacard.txt.in:212
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1962,7 +1962,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:212
+#: ../jobs/mediacard.txt.in:229
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1989,7 +1989,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:229
+#: ../jobs/mediacard.txt.in:247
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert-after-"
 "suspend test is run. It tests reading and writing to the SDHC card after the "
@@ -2000,7 +2000,7 @@ msgstr ""
 "rendszer fel lett függesztve."
 
 #. description
-#: ../jobs/mediacard.txt.in:237
+#: ../jobs/mediacard.txt.in:257
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2026,7 +2026,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:251
+#: ../jobs/mediacard.txt.in:273
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -2052,7 +2052,7 @@ msgstr ""
 "    kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:268
+#: ../jobs/mediacard.txt.in:291
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
@@ -2061,7 +2061,7 @@ msgstr ""
 "A CF kártya írását és olvasását ellenőrzi."
 
 #. description
-#: ../jobs/mediacard.txt.in:276
+#: ../jobs/mediacard.txt.in:301
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -2085,7 +2085,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:291
+#: ../jobs/mediacard.txt.in:318
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -2111,7 +2111,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/mediacard.txt.in:308
+#: ../jobs/mediacard.txt.in:336
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert-after-"
 "suspend test is run. It tests reading and writing to the CF card after the "
@@ -2122,7 +2122,7 @@ msgstr ""
 "fel lett függesztve."
 
 #. description
-#: ../jobs/mediacard.txt.in:316
+#: ../jobs/mediacard.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2157,7 +2157,7 @@ msgstr ""
 "által felismert memóriamodulok méretével."
 
 #. description
-#: ../jobs/memory.txt.in:13
+#: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
 msgstr "Memória tesztelés"
 
@@ -2187,7 +2187,7 @@ msgstr ""
 "    Nincs mit ellenőrizni ebben a tesztben"
 
 #. description
-#: ../jobs/miscellanea.txt.in:21
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -2210,19 +2210,19 @@ msgstr ""
 "visszatért a jelenlegi munkamenetre?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:34
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Firmware ellenőrzőcsomag (fwts) automatizált tesztjeinek indítása"
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 "A firmware tesztelőcsomag (FWTS) eredménynaplójának csatolása a beküldendő "
 "jelentéshez"
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:53
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -2231,7 +2231,7 @@ msgstr ""
 "ellenőrzéséhez."
 
 #. description
-#: ../jobs/miscellanea.txt.in:57
+#: ../jobs/miscellanea.txt.in:59
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -2240,7 +2240,7 @@ msgstr ""
 "tesztek szükségességének meghatározása."
 
 #. description
-#: ../jobs/miscellanea.txt.in:65
+#: ../jobs/miscellanea.txt.in:67
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -2250,7 +2250,7 @@ msgstr ""
 "vagy az állapotának kiírása (ha nem létezik vagy üres)"
 
 #. description
-#: ../jobs/virtualization.txt.in:6
+#: ../jobs/miscellanea.txt.in:75
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2404,22 +2404,22 @@ msgstr ""
 "    Megfelelően kapcsolt ki, majd újra be a kijelző?"
 
 #. description
-#: ../jobs/networking.txt.in:8
+#: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
 msgstr "Az elérhető hálózati vezérlők felismerésének ellenőrzése"
 
 #. description
-#: ../jobs/networking.txt.in:14
+#: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
 msgstr "Ellenőrzi, hogy a rendszernek van-e működő internetkapcsolata."
 
 #. description
-#: ../jobs/networking.txt.in:19
+#: ../jobs/networking.txt.in:16
 msgid "Network Information"
 msgstr "Hálózati információk"
 
 #. description
-#: ../jobs/networking.txt.in:43
+#: ../jobs/networking.txt.in:40
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
@@ -2428,7 +2428,7 @@ msgstr ""
 "információt. Ha a teszt nem talál eszközt, akkor hibával ki fog lépni."
 
 #. description
-#: ../jobs/networking.txt.in:49
+#: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2451,7 +2451,7 @@ msgstr ""
 "    Megjelent egy értesítés, és a kapcsolat megfelelően létrejött?"
 
 #. description
-#: ../jobs/networking.txt.in:62
+#: ../jobs/networking.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2483,7 +2483,7 @@ msgstr ""
 "    Megjelent az értesítő, és a kapcsolat megfelelően létrejött?"
 
 #. description
-#: ../jobs/networking.txt.in:79
+#: ../jobs/networking.txt.in:76
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -2492,7 +2492,7 @@ msgstr ""
 "csomagok küldésével a hálózaton."
 
 #. description
-#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -2501,13 +2501,13 @@ msgstr ""
 "protokollon keresztül"
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:91
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 "Teszt a helyi idő szinkronizálásnak megkísérlésére egy NTP kiszolgálóval"
 
 #. description
-#: ../jobs/networking.txt.in:100
+#: ../jobs/networking.txt.in:97
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
@@ -2516,23 +2516,23 @@ msgstr ""
 "keresztül."
 
 #. description
-#: ../jobs/networking.txt.in:106
+#: ../jobs/networking.txt.in:103
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr "Tesztoldal nyomtatása egy hálózaton megosztott nyomtatóval."
 
 #. description
-#: ../jobs/networking.txt.in:111
+#: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr "Automatizált teszt több hálózati kártya egymás utáni ellenőrzésére."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "Teszt a hálózat sávszélességének méréséhez"
 
 #. description
-#: ../jobs/optical.txt.in:4
+#: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
 msgstr "Teszt az optikai meghajtók felismerésére"
 
@@ -2566,7 +2566,7 @@ msgstr ""
 "esetén a „Nem” gombot."
 
 #. description
-#: ../jobs/optical.txt.in:33
+#: ../jobs/optical.txt.in:42
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2597,7 +2597,7 @@ msgstr ""
 "esetén a „Nem” gombot."
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:55
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2631,7 +2631,7 @@ msgstr ""
 "    Az összes lépés működött?"
 
 #. description
-#: ../jobs/optical.txt.in:69
+#: ../jobs/optical.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2662,7 +2662,7 @@ msgstr ""
 "esetén a „Nem” gombot."
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2695,7 +2695,7 @@ msgstr ""
 "    Megfelelően működött minden lépés?"
 
 #. description
-#: ../jobs/optical.txt.in:154
+#: ../jobs/optical.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2767,7 +2767,7 @@ msgstr ""
 "   A rendszeróra az időzónának megfelelő dátumot és időt mutatja?"
 
 #. description
-#: ../jobs/panel_reboot.txt.in:3
+#: ../jobs/panel_reboot.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that you can reboot your system from the desktop "
@@ -2899,7 +2899,7 @@ msgstr ""
 "    Megfelelően állt le és indult el a rendszer?"
 
 #. description
-#: ../jobs/power-management.txt.in:17
+#: ../jobs/power-management.txt.in:16
 msgid "Test ACPI Wakealarm (fwts wakealarm)"
 msgstr "Az ACPI ébresztőóra (fwts wakealarm) ellenőrzése"
 
@@ -2975,7 +2975,7 @@ msgstr ""
 "válassza a „Következő” gombot."
 
 #. description
-#: ../jobs/power-management.txt.in:79
+#: ../jobs/power-management.txt.in:78
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
@@ -2984,7 +2984,7 @@ msgstr ""
 "eredményekhez."
 
 #. description
-#: ../jobs/power-management.txt.in:84
+#: ../jobs/power-management.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3001,7 +3001,7 @@ msgstr ""
 "    A laptop fedél lecsukása felfüggeszti a rendszert?"
 
 #. description
-#: ../jobs/power-management.txt.in:101
+#: ../jobs/power-management.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3020,7 +3020,7 @@ msgstr ""
 "    Kikapcsolt a képernyő, amíg a fedél le volt csukva?"
 
 #. description
-#: ../jobs/power-management.txt.in:119
+#: ../jobs/power-management.txt.in:118
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -3048,7 +3048,7 @@ msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Győződjön meg róla, hogy az RTC (Real-Time Clock) eszköz létezik."
 
 #. description
-#: ../jobs/power-management.txt.in:139
+#: ../jobs/power-management.txt.in:140
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -3088,7 +3088,7 @@ msgid "Verifies that Tomcat server is running and working."
 msgstr "A Tomcat kiszolgáló futásának és működésének megerősítése"
 
 #. description
-#: ../jobs/stress.txt.in:7
+#: ../jobs/stress.txt.in:8
 msgid ""
 "PURPOSE:\n"
 "    Create jobs that use the CPU as much as possible for two hours. The test "
@@ -3100,7 +3100,7 @@ msgstr ""
 "számítógép nem fagy le."
 
 #. description
-#: ../jobs/stress.txt.in:24
+#: ../jobs/stress.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3111,13 +3111,13 @@ msgstr ""
 "keresztül hibernálja és visszaállítja"
 
 #. description
-#: ../jobs/stress.txt.in:31
+#: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 msgstr ""
 "A 30 ciklusos hibernálás/visszaállítás teszt naplójának csatolása, ha létezik"
 
 #. description
-#: ../jobs/stress.txt.in:47
+#: ../jobs/stress.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3128,14 +3128,14 @@ msgstr ""
 "keresztül felfüggeszti/visszaállítja."
 
 #. description
-#: ../jobs/stress.txt.in:54
+#: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr ""
 "A 30 ciklusos felfüggesztés/visszaállítás teszt naplójának csatolása, ha "
 "létezik"
 
 #. description
-#: ../jobs/stress.txt.in:76
+#: ../jobs/stress.txt.in:50
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3146,7 +3146,7 @@ msgstr ""
 "keresztül hibernálja/visszaállítja."
 
 #. description
-#: ../jobs/stress.txt.in:83
+#: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
@@ -3154,7 +3154,7 @@ msgstr ""
 "létezik"
 
 #. description
-#: ../jobs/stress.txt.in:99
+#: ../jobs/stress.txt.in:66
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3165,29 +3165,29 @@ msgstr ""
 "keresztül felfüggeszti/visszaállítja."
 
 #. description
-#: ../jobs/stress.txt.in:106
+#: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
 "A 250 ciklusos felfüggesztés/visszaállítás teszt naplójának csatolása, ha "
 "létezik"
 
 #. description
-#: ../jobs/stress.txt.in:122
+#: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
 msgstr "A rendszer újraindítási terhelésvizsgálata (100 ciklus)"
 
 #. description
-#: ../jobs/stress.txt.in:137
+#: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
 msgstr "A rendszer leállítási terhelésvizsgálata (100 ciklus)"
 
 #. description
-#: ../jobs/stress.txt.in:149
+#: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr "A 100 ciklusos újraindítási terhelésvizsgálat naplóinak ellenőrzése"
 
 #. description
-#: ../jobs/stress.txt.in:161
+#: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr "A 100 ciklusos leállítási terhelésvizsgálat naplóinak ellenőrzése"
 
@@ -3207,19 +3207,19 @@ msgid "Record mixer settings before suspending."
 msgstr "A keverő beállításainak eltárolása a felfüggesztés előtt"
 
 #. description
-#: ../jobs/suspend.txt.in:22
+#: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
 msgstr "Az összes processzor működésének megerősítése felfüggesztés előtt"
 
 #. description
-#: ../jobs/suspend.txt.in:27
+#: ../jobs/suspend.txt.in:31
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr ""
 "Memória fájlba írása összehasonlításhoz a felfüggesztési teszt futása után"
 
 #. description
-#: ../jobs/suspend.txt.in:36
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3228,7 +3228,7 @@ msgstr ""
 "csatolón. Ezután ellenőrzi a kapcsolat megfelelő működését."
 
 #. description
-#: ../jobs/suspend.txt.in:171
+#: ../jobs/suspend.txt.in:77
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3256,17 +3256,17 @@ msgstr ""
 "    A teszt sikeresen függesztette fel és állította helyre a rendszert?"
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:93
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Ez a suspend/suspend_advanced teszt automatizált változata"
 
 #. description
-#: ../jobs/suspend.txt.in:237
+#: ../jobs/suspend.txt.in:108
 msgid "Test the network after resuming."
 msgstr "Hálózati kapcsolat tesztelése a visszatérés után."
 
 #. description
-#: ../jobs/suspend.txt.in:243
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -3274,7 +3274,7 @@ msgstr ""
 "visszatérési teszt előttivel."
 
 #. description
-#: ../jobs/suspend.txt.in:252
+#: ../jobs/suspend.txt.in:123
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3282,17 +3282,17 @@ msgstr ""
 "felfüggesztés előtti beállításokkal."
 
 #. description
-#: ../jobs/suspend.txt.in:265
+#: ../jobs/suspend.txt.in:139
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Az összes processzor működésének megerősítése felfüggesztés után."
 
 #. description
-#: ../jobs/suspend.txt.in:278
+#: ../jobs/suspend.txt.in:156
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Az összes memória elérhetőségének megerősítése felfüggesztés után."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:165
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -3313,7 +3313,7 @@ msgstr ""
 "    Megfelelően működik a kijelző felfüggesztés és helyreállítás után?"
 
 #. description
-#: ../jobs/suspend.txt.in:299
+#: ../jobs/suspend.txt.in:178
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3323,7 +3323,7 @@ msgstr ""
 "Minden csatolót leválaszt,"
 
 #. description
-#: ../jobs/suspend.txt.in:365
+#: ../jobs/suspend.txt.in:190
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -3332,7 +3332,7 @@ msgstr ""
 "routerhez való csatlakozásának tesztelése a rendszer felfüggesztése után."
 
 #. description
-#: ../jobs/suspend.txt.in:378
+#: ../jobs/suspend.txt.in:201
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -3341,7 +3341,7 @@ msgstr ""
 "routerhez való csatlakozásának tesztelése a rendszer felfüggesztése után."
 
 #. description
-#: ../jobs/suspend.txt.in:391
+#: ../jobs/suspend.txt.in:212
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
@@ -3350,7 +3350,7 @@ msgstr ""
 "routerhez való csatlakozásának tesztelése a rendszer felfüggesztése után."
 
 #. description
-#: ../jobs/suspend.txt.in:404
+#: ../jobs/suspend.txt.in:223
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
@@ -3359,7 +3359,7 @@ msgstr ""
 "routerhez való csatlakozásának tesztelése a rendszer felfüggesztése után."
 
 #. description
-#: ../jobs/suspend.txt.in:517
+#: ../jobs/suspend.txt.in:234
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3368,7 +3368,7 @@ msgstr ""
 "felfüggesztés utánival."
 
 #. description
-#: ../jobs/suspend.txt.in:621
+#: ../jobs/suspend.txt.in:254
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3377,7 +3377,7 @@ msgstr ""
 "környezeti változó által meghatározott eszközre."
 
 #. description
-#: ../jobs/suspend.txt.in:735
+#: ../jobs/suspend.txt.in:264
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3402,7 +3402,7 @@ msgstr ""
 "    Sikeres volt a fájlátvitel?"
 
 #. description
-#: ../jobs/suspend.txt.in:749
+#: ../jobs/suspend.txt.in:278
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3419,7 +3419,7 @@ msgstr ""
 "    Megfelelő volt a kijelző megjelenítése a felismert módokban?"
 
 #. description
-#: ../jobs/suspend.txt.in:761
+#: ../jobs/suspend.txt.in:290
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3430,7 +3430,7 @@ msgstr ""
 "mellékletként való feltöltésével."
 
 #. description
-#: ../jobs/suspend.txt.in:770
+#: ../jobs/suspend.txt.in:299
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3439,7 +3439,7 @@ msgstr ""
 "teszt eredményéről."
 
 #. description
-#: ../jobs/suspend.txt.in:780
+#: ../jobs/suspend.txt.in:309
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3452,14 +3452,14 @@ msgstr ""
 "egy jack kábellel."
 
 #. description
-#: ../jobs/suspend.txt.in:786
+#: ../jobs/suspend.txt.in:315
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 "Az egyciklusos felfüggesztés/visszaállítás teszt naplójának csatolása az "
 "eredményekhez"
 
 #. description
-#: ../jobs/suspend.txt.in:392
+#: ../jobs/suspend.txt.in:323
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -3477,7 +3477,7 @@ msgstr ""
 "    1. A mellékletet később saját kezűleg ellenőrizze"
 
 #. description
-#: ../jobs/suspend.txt.in:415
+#: ../jobs/suspend.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations, suspend the system, do more challenging\n"
@@ -3586,13 +3586,13 @@ msgstr ""
 "    1. A „Görgetés a szélen” beállítás az alapértelmezett"
 
 #. description
-#: ../jobs/usb.txt.in:4
+#: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
 msgstr ""
 "Felismeri és megjeleníti a számítógéphez csatlakoztatott USB eszközöket."
 
 #. description
-#: ../jobs/usb.txt.in:10
+#: ../jobs/usb.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that your system detects USB storage devices.\n"
@@ -3616,7 +3616,7 @@ msgstr ""
 "    Fel lettek ismerve az eszközök?"
 
 #. description
-#: ../jobs/usb.txt.in:28
+#: ../jobs/usb.txt.in:30
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3635,7 +3635,7 @@ msgstr ""
 "    Megfelelően működik a billentyűzet?"
 
 #. description
-#: ../jobs/usb.txt.in:41
+#: ../jobs/usb.txt.in:43
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3654,7 +3654,7 @@ msgstr ""
 "    Megfelelően működik az egér?"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the insertion of\n"
@@ -3680,7 +3680,7 @@ msgstr ""
 "    kijelölt eredményt."
 
 #. description
-#: ../jobs/usb.txt.in:72
+#: ../jobs/usb.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal of\n"
@@ -3703,7 +3703,7 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/usb.txt.in:105
+#: ../jobs/usb.txt.in:96
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3727,12 +3727,12 @@ msgstr ""
 "    automatikusan kijelölt eredményt."
 
 #. description
-#: ../jobs/usb.txt.in:139
+#: ../jobs/usb.txt.in:114
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr "Ez a teszt automatizált, és az usb/insert teszt után hajtódik végre."
 
 #. description
-#: ../jobs/usb.txt.in:156
+#: ../jobs/usb.txt.in:124
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the "
 "server has usb storage devices plugged in prior to checkbox execution. It is "
@@ -3744,7 +3744,7 @@ msgstr ""
 "automatizált ellenőrzésekhez készült teszt."
 
 #. description
-#: ../jobs/usb.txt.in:174
+#: ../jobs/usb.txt.in:132
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -4105,7 +4105,7 @@ msgstr ""
 " Megfelelő volt a videólejátszás?"
 
 #. description
-#: ../jobs/user_apps.txt.in:285
+#: ../jobs/user_apps.txt.in:283
 msgid ""
 "PURPOSE:\n"
 " This test will check that Firefox can play a Quicktime (.mov) video file.\n"
@@ -4128,7 +4128,7 @@ msgstr ""
 " Megfelelő volt a videólejátszás a kiegészítő segítségével?"
 
 #. description
-#: ../jobs/user_apps.txt.in:299
+#: ../jobs/user_apps.txt.in:297
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4150,7 +4150,7 @@ msgstr ""
 " Sikeresen tudott csatlakozni és üzeneteket írni/fogadni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:313
+#: ../jobs/user_apps.txt.in:311
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4172,7 +4172,7 @@ msgstr ""
 " Sikeresen tudott csatlakozni és üzeneteket írni/fogadni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:327
+#: ../jobs/user_apps.txt.in:325
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4194,7 +4194,7 @@ msgstr ""
 " Sikeresen tudott csatlakozni és üzeneteket írni/fogadni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:341
+#: ../jobs/user_apps.txt.in:339
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4217,7 +4217,7 @@ msgstr ""
 " Sikeresen tudott csatlakozni és üzeneteket írni/fogadni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:355
+#: ../jobs/user_apps.txt.in:353
 msgid ""
 "PURPOSE:\n"
 " This test will check that Empathy messaging client works.\n"
@@ -4239,7 +4239,7 @@ msgstr ""
 " Sikeresen tudott csatlakozni és üzeneteket írni/fogadni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:369
+#: ../jobs/user_apps.txt.in:367
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4258,7 +4258,7 @@ msgstr ""
 " Sikeresen tudott e-mailt fogadni és olvasni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:382
+#: ../jobs/user_apps.txt.in:380
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4277,7 +4277,7 @@ msgstr ""
 " Sikeresen tudott e-mailt fogadni és olvasni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:395
+#: ../jobs/user_apps.txt.in:393
 msgid ""
 "PURPOSE:\n"
 " This test will check that Evolution works.\n"
@@ -4296,7 +4296,7 @@ msgstr ""
 " Sikeresen tudott e-mailt küldeni?"
 
 #. description
-#: ../jobs/user_apps.txt.in:408
+#: ../jobs/user_apps.txt.in:406
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4313,7 +4313,7 @@ msgstr ""
 " Sikeresen elindult?"
 
 #. description
-#: ../jobs/user_apps.txt.in:421
+#: ../jobs/user_apps.txt.in:419
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4339,7 +4339,7 @@ msgstr ""
 " Megfelelően hajtódtak végre a műveletek?"
 
 #. description
-#: ../jobs/user_apps.txt.in:438
+#: ../jobs/user_apps.txt.in:436
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4365,7 +4365,7 @@ msgstr ""
 " Megfelelően hajtódtak végre a műveletek?"
 
 #. description
-#: ../jobs/user_apps.txt.in:455
+#: ../jobs/user_apps.txt.in:453
 msgid ""
 "PURPOSE:\n"
 " This test checks that gcalctool (Calculator) works.\n"
@@ -4389,7 +4389,7 @@ msgstr ""
 " Megfelelően hajtódtak végre a műveletek?"
 
 #. description
-#: ../jobs/user_apps.txt.in:470
+#: ../jobs/user_apps.txt.in:468
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4410,7 +4410,7 @@ msgstr ""
 " Megfelelően működött a művelet?"
 
 #. description
-#: ../jobs/user_apps.txt.in:484
+#: ../jobs/user_apps.txt.in:482
 msgid ""
 "PURPOSE:\n"
 " This test checks that gedit works.\n"
@@ -4432,7 +4432,7 @@ msgstr ""
 " Megfelelően működött a művelet?"
 
 #. description
-#: ../jobs/user_apps.txt.in:497
+#: ../jobs/user_apps.txt.in:495
 msgid ""
 "PURPOSE:\n"
 " This test will check that Gnome Terminal works.\n"
@@ -4455,14 +4455,14 @@ msgstr ""
 " Megfelelően működött a művelet?"
 
 #. description
-#: ../jobs/wireless.txt.in:20
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
 "Vezeték nélküli hálózatok felderítésének tesztje. Felderíti, és jelenti az "
 "észlelt kapcsolódási pontokat."
 
 #. description
-#: ../jobs/wireless.txt.in:26
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -4485,7 +4485,7 @@ msgstr ""
 "    Megjelent egy értesítő, és sikerült kapcsolatot létesíteni?"
 
 #. description
-#: ../jobs/wireless.txt.in:44
+#: ../jobs/wireless.txt.in:28
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
@@ -4494,7 +4494,7 @@ msgstr ""
 "routerhez való csatlakozásának tesztelése."
 
 #. description
-#: ../jobs/wireless.txt.in:56
+#: ../jobs/wireless.txt.in:38
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
@@ -4503,7 +4503,7 @@ msgstr ""
 "használó routerhez való csatlakozásának tesztelése."
 
 #. description
-#: ../jobs/wireless.txt.in:68
+#: ../jobs/wireless.txt.in:48
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
@@ -4512,7 +4512,7 @@ msgstr ""
 "routerhez való csatlakozásának tesztelése."
 
 #. description
-#: ../jobs/wireless.txt.in:80
+#: ../jobs/wireless.txt.in:58
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
@@ -4521,7 +4521,7 @@ msgstr ""
 "használó routerhez való csatlakozásának tesztelése."
 
 #. description
-#: ../jobs/wireless.txt.in:176
+#: ../jobs/wireless.txt.in:70
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
@@ -4530,7 +4530,7 @@ msgstr ""
 "tesztelése."
 
 #. description
-#: ../jobs/wireless.txt.in:187
+#: ../jobs/wireless.txt.in:81
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -4578,7 +4578,7 @@ msgstr "A „--config=.*/jobs_info/whitelist_file” paraméter rövidítése."
 msgid "Missing configuration file as argument.\n"
 msgstr "Hiányzik a konfigurációs fájl neve az argumentumból.\n"
 
-#: ../checkbox/job.py:85
+#: ../checkbox/job.py:84
 msgid "Command not found."
 msgstr "A parancs nem található."
 
@@ -4674,17 +4674,17 @@ msgid "Unknown signal"
 msgstr "Ismeretlen szignál"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "igen"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "nem"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "kihagyás"
 
@@ -4692,29 +4692,29 @@ msgstr "kihagyás"
 msgid "Press any key to continue..."
 msgstr "A folytatáshoz nyomjon le egy billentyűt…"
 
-#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Válasszon (%s): "
 
-#: ../checkbox_cli/cli_interface.py:232 ../checkbox_cli/cli_interface.py:355
-#: ../checkbox_cli/cli_interface.py:386
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Nyomja le a Szóköz billentyűt, ha végzett"
 
-#: ../checkbox_cli/cli_interface.py:384
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "A fenti karakterrel kombinálva bővíthető a csomópont"
 
-#: ../checkbox_cli/cli_interface.py:432
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "teszt"
 
-#: ../checkbox_cli/cli_interface.py:456
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "Újratesztelés"
 
-#: ../checkbox_cli/cli_interface.py:462
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Írja be ide, majd nyomja meg a Ctrl-D kombinációt, ha elkészült.\n"
 
@@ -4722,21 +4722,21 @@ msgstr "Írja be ide, majd nyomja meg a Ctrl-D kombinációt, ha elkészült.\n"
 msgid "Checkbox System Testing"
 msgstr "Checkbox rendszerteszt"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "Folytatás"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:622
 msgid "Previous"
 msgstr "Előző"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:621
 msgid "Next"
 msgstr "Következő"
 
@@ -4758,7 +4758,7 @@ msgstr "Összes kinyitása"
 msgid "Collapse All"
 msgstr "Összes összecsukása"
 
-#: ../checkbox_urwid/urwid_interface.py:1034
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:616
 msgid "Test"
 msgstr "Tesztelés"
 
@@ -4770,11 +4770,11 @@ msgstr "Teszt megismétlése"
 msgid "_Test Again"
 msgstr "_Teszt megismétlése"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:541
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
 msgid "Info"
 msgstr "Információk"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:244
 msgid "Error"
 msgstr "Hiba"
 
@@ -4825,8 +4825,7 @@ msgstr "A teszt sikeresen befejeződött."
 msgid "_Finish"
 msgstr "Be_fejezés"
 
-#. Resolve dependencies
-#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
+#: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "Információk összegyűjtése a rendszerről…"
 
@@ -4857,12 +4856,12 @@ msgstr ""
 "képtelenné válhat. Mentse minden munkáját, és zárja be az összes futó "
 "alkalmazást a tesztelési folyamat megkezdése előtt."
 
-#: ../plugins/launchpad_exchange.py:135
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Az űrlap feldolgozása a következő hibával meghiúsult: %s"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -4879,7 +4878,7 @@ msgstr ""
 "a hardveradatbázisba a következő weboldalon:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:159
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -4887,11 +4886,11 @@ msgstr ""
 "A feltöltés a kiszolgálóra meghiúsult,\n"
 "később próbálja meg újra."
 
-#: ../plugins/launchpad_exchange.py:171
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Az információk nem kerültek elküldésre a Launchpad oldalára."
 
-#: ../plugins/launchpad_prompt.py:77
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -4916,15 +4915,15 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
-#: ../plugins/launchpad_prompt.py:87
+#: ../plugins/launchpad_prompt.py:84
 msgid "Email"
 msgstr "E-mail"
 
-#: ../plugins/launchpad_prompt.py:96
+#: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "Az e-mail címet megfelelő formában kell megadni."
 
-#: ../plugins/launchpad_prompt.py:102
+#: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
 msgstr "Információcsere a kiszolgálóval…"
 
@@ -4972,7 +4971,7 @@ msgstr ""
 "akkor jelölje ki az összes tesztet. Az egyes teszteket bármikor kihagyhatja, "
 "ha nem rendelkezik a szükséges eszközökkel."
 
-#: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:606
 msgid "Choose tests to run on your system:"
 msgstr "Válassza ki a rendszeren futtatandó teszteket:"
 
@@ -4984,207 +4983,207 @@ msgstr "Szövegbevitel:\n"
 msgid "Type Text"
 msgstr "Gépeljen valamit"
 
-#: ../scripts/internet_test:221
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "Nincs internetkapcsolat"
 
-#: ../scripts/internet_test:224
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "A kapcsolat során csomagvesztés történt"
 
-#: ../scripts/internet_test:227
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Az internetkapcsolat működik"
 
-#: ../qt/frontend/qtfront.cpp:80
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Audio Test"
 msgstr "Hangteszt"
 
-#: ../qt/frontend/qtfront.cpp:81
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Bluetooth Test"
 msgstr "Bluetooth teszt"
 
-#: ../qt/frontend/qtfront.cpp:82
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Camera Test"
 msgstr "Fényképezőgépteszt"
 
-#: ../qt/frontend/qtfront.cpp:83
+#: ../qt/frontend/qtfront.cpp:94
 msgid "CPU Test"
 msgstr "Processzorteszt"
 
-#: ../qt/frontend/qtfront.cpp:84
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Disk Test"
 msgstr "Lemezteszt"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Firewire Test"
 msgstr "Firewire teszt"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Graphics Test"
 msgstr "Grafikusteszt"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Info Test"
 msgstr "Információs teszt"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Input Test"
 msgstr "Bemeneti teszt"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:100
 msgid "Keys Test"
 msgstr "Billentyűk teszt"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Media Card Test"
 msgstr "Médiakártyateszt"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Memory Test"
 msgstr "Memóriateszt"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:103
 msgid "Miscellanea Test"
 msgstr "Egyéb teszt"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Monitor Test"
 msgstr "Kijelzőteszt"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Networking Test"
 msgstr "Hálózati teszt"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Wireless Test"
 msgstr "Vezeték nélküli eszköz teszt"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Optical Test"
 msgstr "Optikai teszt"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:108
 msgid "PCMCIA/PCIX Test"
 msgstr "PCMCIA/PCIX teszt"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:109
 msgid "Power Management Test"
 msgstr "Energiagazdálkodás teszt"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Suspend Test"
 msgstr "Felfüggesztés teszt"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:111
 msgid "USB Test"
 msgstr "USB teszt"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:113
 msgid "Not Started"
 msgstr "Nem indult még el"
 
-#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
 msgid "Done"
 msgstr "Kész"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:116
 msgid "Not Supported"
 msgstr "Nem támogatott"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:117
 msgid "Not Resolved"
 msgstr "Nem megoldott"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:118
 msgid "Not Tested"
 msgstr "Nem tesztelt"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:119
 msgid "In Progress"
 msgstr "Folyamatban"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Are you sure?"
 msgstr "Biztos benne?"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Do you really want to skip this test?"
 msgstr "Biztosan ki szeretné hagyni ezt a tesztet?"
 
-#: ../qt/frontend/qtfront.cpp:161
+#: ../qt/frontend/qtfront.cpp:184
 msgid "Don't ask me again"
 msgstr "Ne kérdezzen többször"
 
-#: ../qt/frontend/ui_qtfront.h:635
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Form"
 msgstr "Űrlap"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:601
 msgid "OK"
 msgstr "OK"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:602
 msgid "Don't show me this message in the future"
 msgstr "A jövőben ne mutassa ezt az üzenetet"
 
-#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
+#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:619
 msgid "Tab 1"
 msgstr "1. lap"
 
-#: ../qt/frontend/ui_qtfront.h:640
+#: ../qt/frontend/ui_qtfront.h:604
 msgid "10 tests completed out of 30 (30%)"
 msgstr "Tíz teszt fejeződött be a harmincból (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:643
+#: ../qt/frontend/ui_qtfront.h:607
 msgid "Components"
 msgstr "Összetevők"
 
-#: ../qt/frontend/ui_qtfront.h:644
+#: ../qt/frontend/ui_qtfront.h:608
 msgid "Status"
 msgstr "Állapot"
 
-#: ../qt/frontend/ui_qtfront.h:645
+#: ../qt/frontend/ui_qtfront.h:609
 msgid "Select all"
 msgstr "Összes"
 
-#: ../qt/frontend/ui_qtfront.h:646
+#: ../qt/frontend/ui_qtfront.h:610
 msgid "Deselect all"
 msgstr "Semelyik"
 
-#: ../qt/frontend/ui_qtfront.h:647
+#: ../qt/frontend/ui_qtfront.h:611
 msgid "Start testing"
 msgstr "Tesztelés elkezdése"
 
-#: ../qt/frontend/ui_qtfront.h:648
+#: ../qt/frontend/ui_qtfront.h:612
 msgid " Selection "
 msgstr " Kijelölés "
 
-#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
+#: ../qt/frontend/ui_qtfront.h:613 ../qt/frontend/ui_qtfront.h:614
 msgid "TextLabel"
 msgstr "TextLabel"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:615
 msgid "Yes"
 msgstr "Igen"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:617
 msgid "No"
 msgstr "Nem"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:618
 msgid "Comment"
 msgstr "Megjegyzés"
 
-#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
+#: ../qt/frontend/ui_qtfront.h:620 ../qt/frontend/ui_qtfront.h:636
 msgid "Tab 2"
 msgstr "2. lap"
 
-#: ../qt/frontend/ui_qtfront.h:661
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Run "
 msgstr " Futtatás "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:624
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -5219,23 +5218,23 @@ msgstr ""
 "teszteredmények beküldéséhez az Ubuntu Friendly "
 "projektnek.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:668
+#: ../qt/frontend/ui_qtfront.h:630
 msgid "Submission details"
 msgstr "Beküldés részletei"
 
-#: ../qt/frontend/ui_qtfront.h:670
+#: ../qt/frontend/ui_qtfront.h:632
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ../qt/frontend/ui_qtfront.h:671
+#: ../qt/frontend/ui_qtfront.h:633
 msgid "Submit results"
 msgstr "Eredmények beküldése"
 
-#: ../qt/frontend/ui_qtfront.h:672
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "View results"
 msgstr "Eredmények megjelenítése"
 
-#: ../qt/frontend/ui_qtfront.h:673
+#: ../qt/frontend/ui_qtfront.h:635
 msgid " Results "
 msgstr " Eredmények "
 
