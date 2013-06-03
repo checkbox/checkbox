@@ -1,0 +1,149 @@
+Card #0
+	Name: alsa_card.usb-046d_HD_Pro_Webcam_C920_73BD39DF-02-C920
+	Driver: module-alsa-card.c
+	Owner Module: 4
+	Properties:
+		alsa.card = "1"
+		alsa.card_name = "HD Pro Webcam C920"
+		alsa.long_card_name = "HD Pro Webcam C920 at usb-0000:00:14.0-1, high speed"
+		alsa.driver_name = "snd_usb_audio"
+		device.bus_path = "pci-0000:00:14.0-usb-0:1:1.2"
+		sysfs.path = "/devices/pci0000:00/0000:00:14.0/usb3/3-1/3-1:1.2/sound/card1"
+		udev.id = "usb-046d_HD_Pro_Webcam_C920_73BD39DF-02-C920"
+		device.bus = "usb"
+		device.vendor.id = "046d"
+		device.vendor.name = "Logitech, Inc."
+		device.product.id = "082d"
+		device.product.name = "HD Pro Webcam C920"
+		device.serial = "046d_HD_Pro_Webcam_C920_73BD39DF"
+		device.form_factor = "webcam"
+		device.string = "1"
+		device.description = "HD Pro Webcam C920"
+		module-udev-detect.discovered = "1"
+		device.icon_name = "camera-web-usb"
+	Profiles:
+		input:analog-stereo: Analog Stereo Input (sinks: 0, sources: 1, priority. 60)
+		input:iec958-stereo: Digital Stereo (IEC958) Input (sinks: 0, sources: 1, priority. 55)
+		off: Off (sinks: 0, sources: 0, priority. 0)
+	Active Profile: input:iec958-stereo
+	Ports:
+		analog-input-microphone: Microphone (priority: 8700, latency offset: 0 usec)
+			Properties:
+				device.icon_name = "audio-input-microphone"
+			Part of profile(s): input:analog-stereo
+		iec958-stereo-input: Digital Input (S/PDIF) (priority: 0, latency offset: 0 usec)
+			Part of profile(s): input:iec958-stereo
+
+Card #1
+	Name: alsa_card.usb-Logitech_Logitech_USB_Headset-00-Headset
+	Driver: module-alsa-card.c
+	Owner Module: 5
+	Properties:
+		alsa.card = "2"
+		alsa.card_name = "Logitech USB Headset"
+		alsa.long_card_name = "Logitech Logitech USB Headset at usb-0000:00:1a.0-1.2.3, full speed"
+		alsa.driver_name = "snd_usb_audio"
+		device.bus_path = "pci-0000:00:1a.0-usb-0:1.2.3:1.0"
+		sysfs.path = "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.2/1-1.2.3/1-1.2.3:1.0/sound/card2"
+		udev.id = "usb-Logitech_Logitech_USB_Headset-00-Headset"
+		device.bus = "usb"
+		device.vendor.id = "046d"
+		device.vendor.name = "Logitech, Inc."
+		device.product.id = "0a0b"
+		device.product.name = "ClearChat Pro USB"
+		device.serial = "Logitech_Logitech_USB_Headset"
+		device.form_factor = "headset"
+		device.string = "2"
+		device.description = "ClearChat Pro USB"
+		module-udev-detect.discovered = "1"
+		device.icon_name = "audio-headset-usb"
+		device.intended_roles = "phone"
+	Profiles:
+		input:analog-mono: Analog Mono Input (sinks: 0, sources: 1, priority. 1)
+		output:analog-mono: Analog Mono Output (sinks: 1, sources: 0, priority. 100)
+		output:analog-mono+input:analog-mono: Analog Mono Duplex (sinks: 1, sources: 1, priority. 101)
+		output:analog-stereo: Analog Stereo Output (sinks: 1, sources: 0, priority. 6000)
+		output:analog-stereo+input:analog-mono: Analog Stereo Output + Analog Mono Input (sinks: 1, sources: 1, priority. 6001)
+		off: Off (sinks: 0, sources: 0, priority. 0)
+	Active Profile: output:analog-stereo+input:analog-mono
+	Ports:
+		analog-input-microphone: Microphone (priority: 8700, latency offset: 0 usec)
+			Properties:
+				device.icon_name = "audio-input-microphone"
+			Part of profile(s): input:analog-mono, output:analog-mono+input:analog-mono, output:analog-stereo+input:analog-mono
+		analog-output-headphones: Headphones (priority: 9000, latency offset: 0 usec)
+			Properties:
+				device.icon_name = "audio-headphones"
+			Part of profile(s): output:analog-mono, output:analog-mono+input:analog-mono, output:analog-stereo, output:analog-stereo+input:analog-mono
+
+Card #2
+	Name: alsa_card.pci-0000_00_1b.0
+	Driver: module-alsa-card.c
+	Owner Module: 6
+	Properties:
+		alsa.card = "0"
+		alsa.card_name = "HDA Intel PCH"
+		alsa.long_card_name = "HDA Intel PCH at 0xd2530000 irq 47"
+		alsa.driver_name = "snd_hda_intel"
+		device.bus_path = "pci-0000:00:1b.0"
+		sysfs.path = "/devices/pci0000:00/0000:00:1b.0/sound/card0"
+		device.bus = "pci"
+		device.vendor.id = "8086"
+		device.vendor.name = "Intel Corporation"
+		device.product.name = "7 Series/C210 Series Chipset Family High Definition Audio Controller"
+		device.form_factor = "internal"
+		device.string = "0"
+		device.description = "Built-in Audio"
+		module-udev-detect.discovered = "1"
+		device.icon_name = "audio-card-pci"
+	Profiles:
+		input:analog-stereo: Analog Stereo Input (sinks: 0, sources: 1, priority. 60)
+		output:analog-stereo: Analog Stereo Output (sinks: 1, sources: 0, priority. 6000)
+		output:analog-stereo+input:analog-stereo: Analog Stereo Duplex (sinks: 1, sources: 1, priority. 6060)
+		output:hdmi-stereo: Digital Stereo (HDMI) Output (sinks: 1, sources: 0, priority. 5400)
+		output:hdmi-stereo+input:analog-stereo: Digital Stereo (HDMI) Output + Analog Stereo Input (sinks: 1, sources: 1, priority. 5460)
+		output:hdmi-surround: Digital Surround 5.1 (HDMI) Output (sinks: 1, sources: 0, priority. 300)
+		output:hdmi-surround+input:analog-stereo: Digital Surround 5.1 (HDMI) Output + Analog Stereo Input (sinks: 1, sources: 1, priority. 360)
+		output:hdmi-stereo-extra1: Digital Stereo (HDMI) Output (sinks: 1, sources: 0, priority. 5200)
+		output:hdmi-stereo-extra1+input:analog-stereo: Digital Stereo (HDMI) Output + Analog Stereo Input (sinks: 1, sources: 1, priority. 5260)
+		output:hdmi-surround-extra1: Digital Surround 5.1 (HDMI) Output (sinks: 1, sources: 0, priority. 100)
+		output:hdmi-surround-extra1+input:analog-stereo: Digital Surround 5.1 (HDMI) Output + Analog Stereo Input (sinks: 1, sources: 1, priority. 160)
+		output:hdmi-stereo-extra2: Digital Stereo (HDMI) Output (sinks: 1, sources: 0, priority. 5200)
+		output:hdmi-stereo-extra2+input:analog-stereo: Digital Stereo (HDMI) Output + Analog Stereo Input (sinks: 1, sources: 1, priority. 5260)
+		output:hdmi-surround-extra2: Digital Surround 5.1 (HDMI) Output (sinks: 1, sources: 0, priority. 100)
+		output:hdmi-surround-extra2+input:analog-stereo: Digital Surround 5.1 (HDMI) Output + Analog Stereo Input (sinks: 1, sources: 1, priority. 160)
+		off: Off (sinks: 0, sources: 0, priority. 0)
+	Active Profile: output:hdmi-stereo+input:analog-stereo
+	Ports:
+		analog-input-microphone-internal: Internal Microphone (priority: 8900, latency offset: 0 usec)
+			Properties:
+				device.icon_name = "audio-input-microphone"
+			Part of profile(s): input:analog-stereo, output:analog-stereo+input:analog-stereo, output:hdmi-stereo+input:analog-stereo, output:hdmi-surround+input:analog-stereo, output:hdmi-stereo-extra1+input:analog-stereo, output:hdmi-surround-extra1+input:analog-stereo, output:hdmi-stereo-extra2+input:analog-stereo, output:hdmi-surround-extra2+input:analog-stereo
+		analog-input-microphone-dock: Dock Microphone (priority: 7800, latency offset: 0 usec, not available)
+			Properties:
+				device.icon_name = "audio-input-microphone"
+			Part of profile(s): input:analog-stereo, output:analog-stereo+input:analog-stereo, output:hdmi-stereo+input:analog-stereo, output:hdmi-surround+input:analog-stereo, output:hdmi-stereo-extra1+input:analog-stereo, output:hdmi-surround-extra1+input:analog-stereo, output:hdmi-stereo-extra2+input:analog-stereo, output:hdmi-surround-extra2+input:analog-stereo
+		analog-input-microphone: Microphone (priority: 8700, latency offset: 0 usec, not available)
+			Properties:
+				device.icon_name = "audio-input-microphone"
+			Part of profile(s): input:analog-stereo, output:analog-stereo+input:analog-stereo, output:hdmi-stereo+input:analog-stereo, output:hdmi-surround+input:analog-stereo, output:hdmi-stereo-extra1+input:analog-stereo, output:hdmi-surround-extra1+input:analog-stereo, output:hdmi-stereo-extra2+input:analog-stereo, output:hdmi-surround-extra2+input:analog-stereo
+		analog-output-speaker: Speakers (priority: 10000, latency offset: 0 usec)
+			Properties:
+				device.icon_name = "audio-speakers"
+			Part of profile(s): output:analog-stereo, output:analog-stereo+input:analog-stereo
+		analog-output-headphones: Headphones (priority: 9000, latency offset: 0 usec, not available)
+			Properties:
+				device.icon_name = "audio-headphones"
+			Part of profile(s): output:analog-stereo, output:analog-stereo+input:analog-stereo
+		hdmi-output-0: HDMI / DisplayPort (priority: 5900, latency offset: 0 usec, available)
+			Properties:
+				device.icon_name = "video-display"
+			Part of profile(s): output:hdmi-stereo, output:hdmi-stereo+input:analog-stereo, output:hdmi-surround, output:hdmi-surround+input:analog-stereo
+		hdmi-output-1: HDMI / DisplayPort 2 (priority: 5800, latency offset: 0 usec, not available)
+			Properties:
+				device.icon_name = "video-display"
+			Part of profile(s): output:hdmi-stereo-extra1, output:hdmi-stereo-extra1+input:analog-stereo, output:hdmi-surround-extra1, output:hdmi-surround-extra1+input:analog-stereo
+		hdmi-output-2: HDMI / DisplayPort 3 (priority: 5700, latency offset: 0 usec, not available)
+			Properties:
+				device.icon_name = "video-display"
+			Part of profile(s): output:hdmi-stereo-extra2, output:hdmi-stereo-extra2+input:analog-stereo, output:hdmi-surround-extra2, output:hdmi-surround-extra2+input:analog-stereo
