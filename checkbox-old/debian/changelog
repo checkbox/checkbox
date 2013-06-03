@@ -1,9 +1,14 @@
 checkbox (0.16.4) saucy; urgency=low
 
-    [ Jeff Lane ]
-    * scripts/virtualization: script no longer fails when trying to cast an
-      empty timeout setting in config file to int(). Added additional error
-      handling. (LP: #1186259)
+  [ Jeff Lane ]
+  * scripts/virtualization: script no longer fails when trying to cast an
+    empty timeout setting in config file to int(). Added additional error
+    handling. (LP: #1186259)
+
+  [ Brendan Donegan ]
+  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
+    child nodes are actually unselected rather than partially selected as
+    before. (LP: #1180342)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 
