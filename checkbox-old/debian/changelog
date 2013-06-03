@@ -11,6 +11,9 @@ checkbox (0.16.4) saucy; urgency=low
   * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
     child nodes are actually unselected rather than partially selected as
     before. (LP: #1180342)
+  * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
+    appropriate radio button in showTest if the test already has a result set
+    rather than just defaulting to skip always (LP: #1181952)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 

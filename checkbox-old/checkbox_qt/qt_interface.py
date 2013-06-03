@@ -235,7 +235,7 @@ class QTInterface(UserInterface):
 
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info, test["data"],
-            test["suite"], test["name"], enableTestButton)
+            test["status"], test["suite"], test["name"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
             nextTestClicked=onNextTestClicked,
