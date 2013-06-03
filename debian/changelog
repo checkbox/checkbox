@@ -11,7 +11,11 @@ checkbox (0.16.3) UNRELEASED; urgency=low
   * Added missing plugin files to po/POTFILES.in so their strings are
     translatable (LP: #1183271)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 17 May 2013 07:58:29 +0100
+  [ Brendan Donegan ]
+  * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
+    the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
+
+-- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 17 May 2013 07:58:29 +0100
 
 checkbox (0.16.2) saucy; urgency=low
 
