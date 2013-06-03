@@ -47,16 +47,22 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
             while (tmpItem->parent()) {
                 QStandardItemModel::setData(item->index(), value, role);
                 // we are a child, and we have to update parent's status
+                // so find out how many of us are selected and how many are
+                // partially selected
                 int selected = 0;
+                int partSelected = 0;
                 for(int i=0; i< tmpItem->parent()->rowCount(); i++) {
                     QStandardItem *childItem = tmpItem->parent()->child(i);
                     if (childItem->checkState() == Qt::Checked) {
                         selected++;
                     }
+                    if (childItem->checkState() == Qt::PartiallyChecked) {
+                        partSelected++;
+                    }
                 }
                 if (selected == tmpItem->parent()->rowCount()) {
                     tmpItem->parent()->setCheckState(Qt::Checked);
-                } else if (selected == 0) {
+                } else if (selected == 0 && partSelected == 0) {
                     tmpItem->parent()->setCheckState(Qt::Unchecked);
                 } else {
                     tmpItem->parent()->setCheckState(Qt::PartiallyChecked);
