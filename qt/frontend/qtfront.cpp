@@ -292,7 +292,8 @@ void QtFront::showTest(QString purpose,
                        QString steps, 
                        QString verification, 
                        QString info, 
-                       QString comment, 
+                       QString comment,
+                       QString testStatus,
                        QString testType, 
                        QString testName, 
                        bool enableTestButton) {
@@ -307,6 +308,13 @@ void QtFront::showTest(QString purpose,
     ui->commentsTextEdit->setPlainText(comment);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
+
+    if (testStatus == STATUS_PASS) {
+        ui->yesTestRadioButton->setChecked(true);
+    }
+    if (testStatus == STATUS_FAIL) {
+        ui->noTestRadioButton->setChecked(true);
+    }
 
     ui->testTypeLabel->setVisible(true);
     ui->purposeLabel->setVisible(true);
