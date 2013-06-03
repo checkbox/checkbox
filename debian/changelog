@@ -1,4 +1,4 @@
-checkbox (0.16.3) UNRELEASED; urgency=low
+checkbox (0.16.3) saucy; urgency=low
 
   [ Sylvain Pineau ]
   * jobs/info.txt.in, scripts/efi_resource: parse the kern.log backups too.
@@ -15,7 +15,7 @@ checkbox (0.16.3) UNRELEASED; urgency=low
   * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
     the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
 
--- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 17 May 2013 07:58:29 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 03 Jun 2013 16:03:53 +0100
 
 checkbox (0.16.2) saucy; urgency=low
   * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
