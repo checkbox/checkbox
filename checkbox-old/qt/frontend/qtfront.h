@@ -55,7 +55,7 @@ public slots:
     QString getSubmissionData();
     bool getSubmitToHexr();
     QString getTestComment();
-    void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton);
+    void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testStatus, QString testType, QString testName, bool enableTestButton);
     void showTestControls(bool enableTestControls);
     void setTestResult(bool status);
     QString getTestResult();
