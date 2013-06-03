@@ -19,7 +19,7 @@ command:
   fwts_test -l $CHECKBOX_DATA/hibernate_30_cycles -f none -s s4 --s4-device-check --s4-device-check-delay=45 --s4-sleep-delay=120 --s4-multiple=30
  else
   echo "Calling sleep_test"
-  sleep_test -s disk -i 30 -w 120
+  set -o pipefail; sleep_test -s disk -i 30 -w 120 | tee $CHECKBOX_DATA/hibernate_30_cycles_times.log
  fi
 _description:
  PURPOSE:
@@ -48,7 +48,7 @@ command:
   set -o pipefail; fwts_test -l $CHECKBOX_DATA/suspend_30_cycles -f none -s s3 --s3-device-check --s3-device-check-delay=45 --s3-sleep-delay=30 --s3-multiple=30 | tee $CHECKBOX_DATA/suspend_30_cycles_times.log
  else
   echo "Calling sleep_test"
-  set -o pipefail; sleep_test -p s mem -i 30 | tee $CHECKBOX_DATA/suspend_30_cycles_times.log
+  set -o pipefail; sleep_test -p -s mem -i 30 | tee $CHECKBOX_DATA/suspend_30_cycles_times.log
  fi
 _description:
  PURPOSE:
@@ -83,7 +83,7 @@ command:
   fwts_test -l $CHECKBOX_DATA/hibernate_250_cycles -s s4 --s4-device-check --s4-device-check-delay=45 --s4-sleep-delay=120 --s4-multiple=250
  else
   echo "Calling sleep_test"
-  sleep_test -s disk -i 250 -w 120
+  set -o pipefail; sleep_test -s disk -i 250 -w 120 | tee $CHECKBOX_DATA/hibernate_250_cycles_times.log
  fi
 _description:
  PURPOSE:
@@ -106,7 +106,7 @@ command:
   set -o pipefail; fwts_test -l $CHECKBOX_DATA/suspend_250_cycles -s s3 --s3-device-check --s3-device-check-delay=45 --s3-sleep-delay=30 --s3-multiple=250 | tee $CHECKBOX_DATA/suspend_250_cycles_times.log
  else
   echo "Calling sleep_test"
-  set -o pipefail; sleep_test -p s mem -i 250 | tee $CHECKBOX_DATA/suspend_250_cycles_times.log
+  set -o pipefail; sleep_test -p -s mem -i 250 | tee $CHECKBOX_DATA/suspend_250_cycles_times.log
  fi
 _description:
  PURPOSE:
