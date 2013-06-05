@@ -452,6 +452,12 @@ class Record(Node):
         ).setResultsName("record-attributes")
     ).setResultsName("record")
 
+    def as_json(self):
+        return {
+            'name': self.name,
+            'attribute_list': self.attribute_list,
+        }
+
     def __repr__(self):
         # Custom __repr__ that skips attribute_map
         return "{}({})".format(
