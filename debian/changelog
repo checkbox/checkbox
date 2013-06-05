@@ -24,9 +24,6 @@ checkbox (0.16.3) saucy; urgency=low
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 03 Jun 2013 16:03:53 +0100
 
 checkbox (0.16.2) saucy; urgency=low
-  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
-    child nodes are actually unselected rather than partially selected as
-    before. (LP: #1180342)
 
   [ Alberto Milone ]
   * scripts/graphics_stress_test, scripts/rotation_test: make sure to
