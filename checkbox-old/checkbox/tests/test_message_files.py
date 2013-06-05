@@ -108,7 +108,7 @@ class MessageFileFormatTest(unittest.TestCase):
             if message['plugin'] in ('user-verify', 'user-interact'):
                 self.assertTrue("command" in message)
 
-    def test_verify_manual_jobs_have_required_fields(self):
+    def test_verify_manual_jobs_have_parsable_description(self):
         for message in self.messages:
             if message['plugin'] in ('user-verify', 'user-interact', 'manual'):
                 for key in ['description', 'description_extended']:
@@ -117,6 +117,7 @@ class MessageFileFormatTest(unittest.TestCase):
                         parser = DescriptionParser(descstream)
                         result = DescriptionResult()
                         parser.run(result)
-                        msg = "Missing verification in {}"
-                        self.assertTrue("verification" in result.fields,
+                        msg = "Description for manual job {} has wrong format"
+                        self.assertTrue(result.fields,
                                         msg.format(message['name']))
+
