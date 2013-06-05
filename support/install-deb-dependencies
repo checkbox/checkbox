@@ -38,6 +38,10 @@ echo "I: checking if the following Debian packages are installed:" $debian_pkg_l
 for debian_pkg in $debian_pkg_list; do
     if [ "$(dpkg-query -s $debian_pkg 2>/dev/null | grep '^Status:')" != "Status: install ok installed" ]; then
         echo "I: package $debian_pkg is missing, installing"
-        sudo apt-get install --quiet --quiet --yes $debian_pkg
+        if [ $(id -u) != 0 ]; then
+            sudo apt-get install --quiet --quiet --yes $debian_pkg
+        else
+            apt-get install --quiet --quiet --yes $debian_pkg
+        fi
     fi
 done
