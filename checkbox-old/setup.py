@@ -260,6 +260,11 @@ This project provides an extensible interface for system testing.
 """,
     data_files=DATA_FILES,
     test_suite='checkbox.tests.test_suite',
+    entry_points={
+        'plainbox.parsers': [
+            "pactl-list=checkbox.parsers.pactl:parse_pactl_output",
+        ],
+    },
     scripts=[
         "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
         "bin/checkbox-qt", "bin/checkbox-hw-collection"],
