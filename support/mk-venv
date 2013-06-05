@@ -77,8 +77,7 @@ fi
 export CHECKBOX_TOP
 
 # Ensure that all Debian dependencies are installed
-# Pass CHECKBOX_TOP separately across sudo
-CHECKBOX_TOP="$CHECKBOX_TOP" $CHECKBOX_TOP/support/install-deb-dependencies
+$CHECKBOX_TOP/support/install-deb-dependencies
 
 # Check if we can create a virtualenv
 if [ ! -d $(dirname $CHECKBOX_VENV_PATH) ]; then
