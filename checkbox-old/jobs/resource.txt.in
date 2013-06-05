@@ -39,8 +39,8 @@ description: Generates resources info on running kernel modules
 
 name: package
 plugin: resource
-command: package_resource | filter_templates -w 'desired=Install' -w 'status=Installed'
-description: Generates a list of installed packages
+command: dpkg-query -W -f='name: ${Package}\nversion: ${Version}\n\n'
+description: Generates a list of packages
 
 name: executable
 plugin: resource
