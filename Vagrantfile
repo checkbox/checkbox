@@ -5,6 +5,7 @@ Vagrant::Config.run do |config|
 
   config.ssh.timeout = 60
 
+
   # Define a Ubuntu Server image (cloud) for the 12.04 release (precise)
   config.vm.define :precise do |precise_config|
     precise_config.vm.box = "precise-cloud-i386"
@@ -27,6 +28,8 @@ Vagrant::Config.run do |config|
   config.vm.define :saucy do |saucy_config|
     saucy_config.vm.box = "saucy-cloud-i386"
     saucy_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-i386-vagrant-disk1.box"
+    saucy_config.vm.network :hostonly, "192.168.56.10"
+    saucy_config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
   end
 
   # For debugging and later future GUI testing
