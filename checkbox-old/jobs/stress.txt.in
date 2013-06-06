@@ -10,7 +10,9 @@ _description:
 
 plugin: shell
 name: power-management/hibernate_30_cycles
-depends: power-management/rtc
+depends: 
+ power-management/rtc
+ power-management/hibernate_advanced
 environ: CHECKBOX_DATA
 user: root
 command:
@@ -39,7 +41,9 @@ _description:
 
 plugin: shell
 name: power-management/suspend_30_cycles
-depends: power-management/rtc
+depends: 
+ power-management/rtc
+ suspend/suspend_advanced
 environ: CHECKBOX_DATA
 user: root
 command: 
