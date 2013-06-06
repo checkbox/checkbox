@@ -4,6 +4,9 @@ checkbox (0.16.4) saucy; urgency=low
   * scripts/virtualization: script no longer fails when trying to cast an
     empty timeout setting in config file to int(). Added additional error
     handling. (LP: #1186259)
+  * jobs/stress.txt.in: added dependencies on single cycle tests to the 30
+    cycle S3 and S4 test to avoid unnecessary rebooting by tester on expected
+    failures. (LP: #1188284)
 
   [ Brendan Donegan ]
   * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
