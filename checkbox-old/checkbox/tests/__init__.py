@@ -18,8 +18,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`checkbox.tests` -- auxiliary test loaders for checkbox
-============================================================
+:mod:`checkbox.tests` -- auxiliary test loaders for checkbox and scripts
+========================================================================
 """
 
 from inspect import getabsfile

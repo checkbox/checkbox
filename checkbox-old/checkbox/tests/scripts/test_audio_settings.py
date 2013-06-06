@@ -21,7 +21,7 @@ import os
 import unittest
 
 imp.load_source('audio_settings', os.path.join(os.path.dirname(__file__),
-                '..', '..', 'scripts', 'audio_settings'))
+                '..', '..', '..', 'scripts', 'audio_settings'))
 from audio_settings import _guess_hdmi_profile
 from checkbox.parsers.tests.test_pactl import PactlDataMixIn
 

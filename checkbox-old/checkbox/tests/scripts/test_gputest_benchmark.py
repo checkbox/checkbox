@@ -24,7 +24,7 @@ from mock import patch
 from tempfile import NamedTemporaryFile
 
 imp.load_source('gputest_benchmark', os.path.join(os.path.dirname(__file__),
-                '..', '..', 'scripts', 'gputest_benchmark'))
+                '..', '..', '..', 'scripts', 'gputest_benchmark'))
 from gputest_benchmark import check_log
 
 
