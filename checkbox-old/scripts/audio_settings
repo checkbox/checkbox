@@ -7,6 +7,8 @@ import sys
 from argparse import ArgumentParser
 from subprocess import check_output, check_call, CalledProcessError
 
+from checkbox.parsers.pactl import parse_pactl_output
+
 TYPES = ("source", "sink")
 DIRECTIONS = {"source": "input", "sink": "output"}
 
@@ -32,22 +34,79 @@ def unlocalized_env(reset={"LANG": "C.UTF-8"}):
     return env
 
 
+def _guess_hdmi_profile(pactl_list):
+    """
+    Use the pactl parser to get the stereo profile of the available HDMI port
+
+    :returns: (card, profile)
+    """
+    hdmi_ports = {}
+    available_port = {}
+    port_status_location = 'Sink'
+
+    # First parse all cards for HDMI / DisplayPort ports
+    for record in parse_pactl_output(pactl_list).record_list:
+        if not 'Card' in record.name:
+            continue
+        card = re.sub('.*#', '', record.name)  # save the card id
+        ports = [
+            p for p in record.attribute_map['Ports'].value
+            if 'HDMI / DisplayPort' in p.label]
+        if not ports:
+            continue
+        if [p for p in ports if hasattr(p, 'availability')]:
+            port_status_location = 'Card'
+        hdmi_ports[card] = ports
+
+    if not hdmi_ports:
+        return (None, None)
+
+    # Check the ports availability in the list of pulseaudio sinks
+    # if the status is not already available in the cards section.
+    def check_available_port():
+        match_found = False
+        for record in parse_pactl_output(pactl_list).record_list:
+            if not port_status_location in record.name:
+                continue
+            for sink_port in record.attribute_map['Ports'].value:
+                for card, ports in hdmi_ports.items():
+                    for card_port in ports:
+                        if sink_port.label == card_port.label:
+                            match_found = True
+                            if sink_port.availability != 'not available':
+                                return {card: card_port}
+        if not match_found and hdmi_ports:
+            card, ports = hdmi_ports.popitem()
+            return {card: ports.pop()}
+
+    available_port = check_available_port()
+
+    if available_port:
+        card, port = available_port.popitem()
+        # Keep the shortest string in the profile_list including 'stereo'
+        # it will avoid testing 'surround' profiles
+        profile = min([p for p in port.profile_list if 'stereo' in p], key=len)
+        return (card, profile)
+    else:
+        return (None, None)
+
+
 def set_profile_hdmi():
     """Sets desired device as active profile. This is typically
-    used as a fallback for setting HDMI as the output device.
+    used as a fallback for setting HDMI / DisplayPort as the output device.
     """
-
-    profile = "output:hdmi-stereo-extra1+input:analog-stereo"
-    output_list = check_output(["pactl", "list"],
+    pactl_list = check_output(['pactl', 'list'],
                                universal_newlines=True,
                                env=unlocalized_env())
 
-    if profile not in output_list:
-        profile = profile.replace("-extra1", "")
+    card, profile = _guess_hdmi_profile(pactl_list)
+    if not profile:
+         print('No available port found')
+         return 1
 
     # Try and set device as default audio output
     try:
-        check_call(["pactl", "set-card-profile", "0", profile])
+        check_call(["pactl", "set-card-profile", card, profile])
     except CalledProcessError as error:
         print("Failed setting audio output to:%s: %s" % (profile, error))
 
@@ -172,7 +231,7 @@ def restore_audio_settings(file):
     except IOError:
         print("Unable to open existing settings file: %s" %
                 sys.exc_info()[1])
-        sys.exit(1)
+        return 1
 
     for type in TYPES:
         #First try to get the three elements we need. If we fail to get any of them, it means
@@ -183,15 +242,15 @@ def restore_audio_settings(file):
             volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
         except ValueError:
             print("Unable to restore settings because settings file is invalid")
-            sys.exit(1)
+            return 1
 
         print(name)
 
         try:
             check_call(["pacmd", "set-default-%s" % type, name])
         except CalledProcessError:
-            print("Failed to set default %s" % type)
-            sys.exit(1)
+            print("Failed to set default %s" % name)
+            return 1
 
         if type == "sink":
             move_sinks(name)
@@ -201,16 +260,16 @@ def restore_audio_settings(file):
         try:
             check_call(["pactl", "set-%s-mute" % type, name, muted])
         except:
-            print("Failed to set mute for %s" % device)
-            sys.exit(1)
+            print("Failed to set mute for %s" % name)
+            return 1
 
         print(volume)
 
         try:
             check_call(["pactl", "set-%s-volume" % type, name, volume])
         except:
-            print("Failed to set volume for %s" % device)
-            sys.exit(1)
+            print("Failed to set volume for %s" % name)
+            return 1
 
 
 def main():
@@ -252,8 +311,8 @@ def main():
             set_profile_hdmi()
         set_audio_settings(args.device, args.mute, args.volume)
     elif args.action == "restore":
-        restore_audio_settings(args.file)
-        restore_profile_setting()
+        if restore_profile_setting() or restore_audio_settings(args.file):
+            return 1
     else:
         print(args.action + "is not a valid action")
         return 1
