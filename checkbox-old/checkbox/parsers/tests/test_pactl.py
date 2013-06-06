@@ -482,11 +482,11 @@ class DocumentTests(ParsingTestCase, PactlDataMixIn):
         )[0]
         self.assertEqual(len(document.record_list), 1)
 
-    def test_pactl_list_cards_spineau(self):
+    def test_pactl_list_cards_xps1340(self):
         document = self.assertParses(
-            pactl.Document.Syntax, self.get_text("cards-desktop-precise-spineau")
+            pactl.Document.Syntax, self.get_text("desktop-precise-xps1340")
         )[0]
-        self.assertEqual(len(document.record_list), 1)
+        self.assertEqual(len(document.record_list), 34)
 
     def test_pactl_list(self):
         document = self.assertParses(
@@ -515,10 +515,4 @@ class DocumentTests(ParsingTestCase, PactlDataMixIn):
         self.assertEqual(document.record_list[40].name, "Sample #0")
         self.assertEqual(document.record_list[41].name, "Sample #1")
         self.assertEqual(document.record_list[42].name, "Card #0")
-        self.assertEqual(len(document.record_list), 43)
-
-    def _test_pactl_list_spineau(self):
-        document = self.assertParses(
-            pactl.Document.Syntax, self.get_text("desktop-raring-spineau")
-        )[0]
         self.assertEqual(len(document.record_list), 43)
