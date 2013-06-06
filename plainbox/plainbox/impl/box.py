@@ -53,9 +53,6 @@ class PlainBox:
     High-level plainbox object
     """
 
-    def __init__(self):
-        self._checkbox = CheckBox()
-
     def main(self, argv=None):
         # TODO: setup sane logging system that works just as well for Joe user
         # that runs checkbox from the CD as well as for checkbox developers and
@@ -64,8 +61,23 @@ class PlainBox:
         # SSD by writing junk to ~/.cache/
         basicConfig(level="WARNING")
         config = PlainBoxConfig.get()
-        parser = self._construct_parser(config)
-        ns = parser.parse_args(argv)
+        # Since we need a CheckBox instance to create the main argument parser
+        # and we need to be able to specify where Checkbox is, we parse that
+        # option alone before parsing everything else
+        checkbox_mode_args = ('-c', '--checkbox')
+        checkbox_mode_kwargs = {'action': 'store',
+                                'choices': list(CheckBox._DIRECTORY_MAP.keys()) + ['auto'],
+                                'default': 'auto',
+                                'help': "where to find the installation "
+                                        "of Checkbox."}
+        checkbox_mode_parser = self._construct_mode_parser(checkbox_mode_args,
+                                                           checkbox_mode_kwargs)
+        (mode_ns, rest) = checkbox_mode_parser.parse_known_args(argv)
+        checkbox_mode = None if mode_ns.checkbox == 'auto' else mode_ns.checkbox
+        self._checkbox = CheckBox(mode=checkbox_mode)
+        parser = self._construct_parser(config, checkbox_mode_args,
+                                        checkbox_mode_kwargs)
+        ns = parser.parse_args(rest)
         # Set the desired log level
         getLogger("").setLevel(ns.log_level)
         # Argh the horrror!
@@ -86,7 +98,14 @@ class PlainBox:
         else:
             return ns.command.invoked(ns)
 
-    def _construct_parser(self, config):
+    def _construct_mode_parser(self, checkbox_mode_args, checkbox_mode_kwargs):
+        parser = ArgumentParser(add_help=False)
+        parser.add_argument(*checkbox_mode_args, **checkbox_mode_kwargs)
+
+        return parser
+
+    def _construct_parser(self, config, checkbox_mode_args,
+                          checkbox_mode_kwargs):
         parser = ArgumentParser(
             prog="plainbox", formatter_class=ArgumentDefaultsHelpFormatter)
         parser.add_argument(
@@ -97,6 +116,7 @@ class PlainBox:
             choices=('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'),
             default='WARNING',
             help=argparse.SUPPRESS)
+        parser.add_argument(*checkbox_mode_args, **checkbox_mode_kwargs)
         subparsers = parser.add_subparsers()
         RunCommand(self._checkbox).register_parser(subparsers)
         SelfTestCommand().register_parser(subparsers)
