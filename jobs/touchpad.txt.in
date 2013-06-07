@@ -13,7 +13,6 @@ _description:
 plugin: user-interact
 name: touchpad/horizontal
 requires:
-  xinput.touch_mode == 'dependent'
   'Button Horiz Wheel Left' in xinput.button_labels and 'Button Horiz Wheel Right' in xinput.button_labels
 command: touchpad_test right left
 _description:
@@ -28,7 +27,6 @@ _description:
 plugin: user-interact
 name: touchpad/vertical
 requires:
-  xinput.touch_mode == 'dependent'
   'Button Wheel Up' in xinput.button_labels and 'Button Wheel Down' in xinput.button_labels
 command: touchpad_test up down
 _description:

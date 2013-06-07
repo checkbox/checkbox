@@ -20,6 +20,9 @@ checkbox (0.16.3) saucy; urgency=low
   * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
     appropriate radio button in showTest if the test already has a result set
     rather than just defaulting to skip always (LP: #1181952)
+  * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
+    touchpad/horizontal and touchpad/vertical so that those tests will
+    at least run on those systems where they are supposed to (LP: #1184882)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 03 Jun 2013 16:03:53 +0100
 
