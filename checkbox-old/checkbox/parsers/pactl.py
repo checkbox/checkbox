@@ -270,14 +270,23 @@ class PortWithProfile(Node):
         p.Word(p.alphanums + "-;").setResultsName('port-name')
         + p.Suppress(':')
         # This part was very tricky to write. The label is basically arbitrary
-        # localized Unicode text.  We want to grab all of it in one go but
-        # without consuming the upcoming '(' character or the space that comes
-        # immediately before.
+        # localized Unicode text. We want to grab all of it in one go but
+        # without consuming the upcoming and latest '(' character or the space
+        # that comes immediately before.
         #
         # The syntax here combines a sequence of words, as defined by anything
         # other than a space and '(', delimited by a single whitespace.
-        + p.delimitedList(
-            p.Regex('[^ (\n]+'), ' ', combine=True).setResultsName('port-label')
+        + p.Combine(
+            p.OneOrMore(
+                ~p.FollowedBy(
+                    p.Regex('\(.+?\)')
+                    + p.LineEnd()
+                )
+                + p.Regex('[^ \n]+')
+                + p.White().suppress()
+            ),
+            ' '
+        ).setResultsName('port-label')
         + p.Suppress('(')
         + p.Keyword('priority').suppress()
         + p.Optional(
