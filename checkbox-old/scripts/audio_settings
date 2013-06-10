@@ -54,7 +54,7 @@ def _guess_hdmi_profile(pactl_list):
             if 'HDMI / DisplayPort' in p.label]
         if not ports:
             continue
-        if [p for p in ports if hasattr(p, 'availability')]:
+        if [p for p in ports if p.availability]:
             port_status_location = 'Card'
         hdmi_ports[card] = ports
 
