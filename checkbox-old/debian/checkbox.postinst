@@ -3,4 +3,7 @@
 . /usr/share/debconf/confmodule
 . /usr/share/checkbox/install/postinst
 
+cp /usr/share/checkbox/examples/network.cfg /etc/checkbox.d/
+cp /usr/share/checkbox/examples/virtualization.cfg /etc/checkbox.d/
+
 #DEBHELPER#
