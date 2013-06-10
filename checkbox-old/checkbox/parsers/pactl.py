@@ -229,6 +229,21 @@ class Port(Node):
     ).setResultsName("port")
 
 
+# =================
+# Shared Attributes
+# =================
+
+PropertyAttributeValue = (
+    p.Group(
+        p.OneOrMore(
+            p.LineStart().suppress()
+            + p.Optional(p.White('\t')).suppress()
+            + p.Optional(Property.Syntax)
+            + p.LineEnd().suppress()
+        )
+    ).setResultsName("attribute-value"))
+
+
 class PortWithProfile(Node):
     """
     Variant of :class:`Port` that is used by "card" records inside
@@ -241,6 +256,9 @@ class PortWithProfile(Node):
         'name': 'port-name',
         'label': 'port-label',
         'priority': 'port-priority',
+        'latency_offset': 'port-latency-offset',
+        'availability': 'port-availability',
+        'properties': lambda t: t['port-properties'].asList(),
         'profile_list': lambda t: t['port-profile-list'].asList(),
     }
 
@@ -258,11 +276,40 @@ class PortWithProfile(Node):
             p.Regex('[^ (\n]+'), ' ', combine=True).setResultsName('port-label')
         + p.Suppress('(')
         + p.Keyword('priority').suppress()
+        + p.Optional(
+            p.Suppress(':')
+        )
         + p.Word(p.nums).setParseAction(
             lambda t: int(t[0])
         ).setResultsName('port-priority')
+        + p.Optional(
+            p.MatchFirst([
+                p.Suppress(',') + p.Keyword('latency offset:').suppress()
+                + p.Word(p.nums).setParseAction(lambda t: int(t[0]))
+                + p.Literal("usec").suppress(),
+                p.Empty().setParseAction(lambda t: '')
+            ]).setResultsName('port-latency-offset')
+        )
+        + p.Optional(
+            p.MatchFirst([
+                p.Suppress(',') + p.Literal('not available'),
+                p.Suppress(',') + p.Literal('available'),
+                p.Empty().setParseAction(lambda t: '')
+            ]).setResultsName('port-availability')
+        )
         + p.Suppress(')')
         + p.LineEnd().suppress()
+        + p.Optional(
+            p.MatchFirst([
+                p.LineStart().suppress()
+                + p.NotAny(p.White(' '))
+                + p.White('\t').suppress()
+                + p.Keyword('Properties:').suppress()
+                + p.LineEnd().suppress()
+                + PropertyAttributeValue,
+                p.Empty().setParseAction(lambda t: [])
+            ]).setResultsName('port-properties')
+        )
         + p.White('\t', max=3).suppress()
         + p.Literal("Part of profile(s)").suppress()
         + p.Suppress(":")
@@ -344,17 +391,6 @@ class GenericSimpleAttribute(Node):
 # =====================
 # Collection Attributes
 # =====================
-
-
-PropertyAttributeValue = (
-    p.Group(
-        p.OneOrMore(
-            p.LineStart().suppress()
-            + p.Optional(p.White('\t')).suppress()
-            + p.Optional(Property.Syntax)
-            + p.LineEnd().suppress()
-        )
-    ).setResultsName("attribute-value"))
 
 PortsAttributeValue = (
     p.Group(
