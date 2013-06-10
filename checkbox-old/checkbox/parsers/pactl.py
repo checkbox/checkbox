@@ -181,7 +181,11 @@ class Profile(Node):
         ).setResultsName('profile-source-count')
         + p.Suppress(',')
         + p.Keyword('priority').suppress()
-        + p.Suppress('.')
+        + p.MatchFirst([
+            p.Suppress('.'),
+            # http://cgit.freedesktop.org/pulseaudio/pulseaudio/commit/src/utils/pactl.c?id=83c3cf0a65fb05900f81bd2dbb38e6956eb23935
+            p.Suppress(':'),
+        ])
         + p.Word(p.nums).setParseAction(
             lambda t: int(t[0])
         ).setResultsName('profile-priority')
