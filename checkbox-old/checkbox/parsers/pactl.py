@@ -217,7 +217,8 @@ class Port(Node):
         # anything other than a space and '(', delimited by a single
         # whitespace.
         + p.delimitedList(
-            p.Regex('[^ (\n]+'), ' ', combine=True).setResultsName('port-label')
+            p.Regex('[^ (\n]+'), ' ', combine=True
+        ).setResultsName('port-label')
         + p.Suppress('(')
         + p.Keyword('priority').suppress()
         + p.Suppress(':')
@@ -467,6 +468,7 @@ class GenericListAttribute(Node):
         + p.LineEnd().suppress()
         + GenericListAttributeValue
     ).setResultsName("attribute")
+
 
 class Record(Node):
     """
