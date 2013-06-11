@@ -189,7 +189,7 @@ class SuspendTest():
                                                  loglist[idx])[1].strip()
                     logging.debug('Resume started at %s' % resume_start_time)
                     idx += 1
-                if 'PM: Finishing wakeup' in loglist[idx]:
+                if 'Restarting tasks' in loglist[idx]:
                     resume_end_time = re.split('[\[\]]',
                                                loglist[idx])[1].strip()
                     logging.debug('Resume ended at %s' % resume_end_time)
