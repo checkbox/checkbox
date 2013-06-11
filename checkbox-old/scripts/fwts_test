@@ -63,7 +63,7 @@ def get_sleep_times(start_marker, end_marker, sleep_time, resume_time):
             sleep_end_time = re.split('[\[\]]', loglist[idx - 1])[1].strip()
             resume_start_time = re.split('[\[\]]', loglist[idx])[1].strip()
             idx += 1
-        if 'PM: Finishing wakeup.' in loglist[idx]:
+        if 'Restarting tasks' in loglist[idx]:
             resume_end_time = re.split('[\[\]]', loglist[idx])[1].strip()
         if end_marker in loglist[idx]:
             run = 'PASS'

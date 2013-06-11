@@ -7,6 +7,9 @@ checkbox (0.16.4) saucy; urgency=low
   * jobs/stress.txt.in: added dependencies on single cycle tests to the 30
     cycle S3 and S4 test to avoid unnecessary rebooting by tester on expected
     failures. (LP: #1188284)
+  * scripts/fwts_test, scripts/sleep_test: Tests now use a more reliabe marker
+    to determine when the system completed resume. sleep_test output cleaned up
+    to match fwts_test output and not break sleep_time_check (LP: #1188221)
 
   [ Brendan Donegan ]
   * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
