@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # This file is part of Checkbox.
 #
 # Copyright 2013 Canonical Ltd.
@@ -105,6 +104,3 @@ def main():
             # set to a non-zero value. It's expected.
             pass
         return check_log(logfile)
-
-if __name__ == '__main__':
-    sys.exit(main())
