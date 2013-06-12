@@ -122,9 +122,8 @@ def set_profile_hdmi():
     """Sets desired device as active profile. This is typically
     used as a fallback for setting HDMI / DisplayPort as the output device.
     """
-    pactl_list = check_output(['pactl', 'list'],
-                               universal_newlines=True,
-                               env=unlocalized_env())
+    pactl_list = check_output(
+        ['pactl', 'list'], universal_newlines=True, env=unlocalized_env())
 
     card, profile = _guess_hdmi_profile(pactl_list)
     if not profile:
@@ -211,12 +210,12 @@ def store_audio_settings(file):
 
         muted = muted_regex.search(entry)
         print("%s_muted: %s" % (type, muted.group().strip()),
-                                file=settings_file)
+              file=settings_file)
 
         volume = int(volume_regex.search(entry).group().strip())
 
         print("%s_volume: %s%%" % (type, str(volume)),
-                                 file=settings_file)
+              file=settings_file)
 
 
 def set_audio_settings(device, mute, volume):
@@ -268,12 +267,15 @@ def restore_audio_settings(file):
         return 1
 
     for type in TYPES:
-        #First try to get the three elements we need. If we fail to get any of them, it means
-        #the file's format is incorrect, so we just abort.
+        # First try to get the three elements we need.
+        # If we fail to get any of them, it means the file's format
+        # is incorrect, so we just abort.
         try:
-            name = settings_file[settings_file.index("default_%s:" % type) + 1]
+            name = settings_file[
+                settings_file.index("default_%s:" % type) + 1]
             muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
-            volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
+            volume = settings_file[
+                settings_file.index("%s_volume:" % type) + 1]
         except ValueError:
             logging.error("Unable to restore settings because settings "
                           "file is invalid")
