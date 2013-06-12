@@ -23,6 +23,8 @@ checkbox (0.16.4) saucy; urgency=low
   * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
     touchpad/horizontal and touchpad/vertical so that those tests will
     at least run on those systems where they are supposed to (LP: #1184882)
+  * debian/rules - Add checkbox-hw-collection so that it's treated in the same
+    way as other checkbox derived packages like checkbox-qt (LP: #1188601)
 
   [ Daniel Manrique ]
   * jobs/stress.txt.in: fixed a few inconsistent invocations of sleep_test.
@@ -31,7 +33,7 @@ checkbox (0.16.4) saucy; urgency=low
   * jobs/resource.txt.in: updated version of the package resource job command
     supporting both precise and newer releases (LP: #1184197)
   * scripts/audio_settings: Use the new pactl parser to guess the right profile
-    to select for HDMI / DisplayPort tests.
+    to select for HDMI / DisplayPort tests. 
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 
