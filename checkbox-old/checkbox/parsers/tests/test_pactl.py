@@ -255,6 +255,14 @@ class ProfileTests(ParsingTestCase):
         self.assertEqual(profile.priority, 5500)
         self.assertNotEqual(profile.priority, "")
 
+    def test_colon_after_priority(self):
+        # This checks that : can be parsed correctly after priority
+        profile = self.assertParses(
+            pactl.Profile.Syntax,
+            'output:hdmi-stereo-extra1: Wyjście Digital Stereo (HDMI) (sinks: 1, sources: 0, priority: 5800)'
+        )['profile']
+        self.assertEqual(profile.priority, 5800)
+
 
 class AttributeTests(ParsingTestCase):
 
@@ -388,6 +396,41 @@ class AttributeTests(ParsingTestCase):
         self.assertEqual(attr.value[0].priority, 10000)
         self.assertEqual(attr.value[0].profile_list, [
             'output:analog-stereo', 'output:analog-stereo+input:analog-stereo'])
+
+    def test_with_ports_properties(self):
+        attr = self.assertParses(
+            pactl.GenericListAttribute.Syntax, (
+                'Ports:\n'
+                '\tanalog-input-microphone-internal: Internal Microphone (priority: 98903, latency offset: 982 usec)\n'
+                '\t\tProperties:\n'
+                '\t\t\tdevice.icon_name = "audio-input-microphone"\n'
+                '\t\t\tdevice.display_name = "Microphone"\n'
+                '\t\tPart of profile(s): input:analog-stereo\n'
+            )
+        )['attribute']
+        self.assertEqual(attr.name, 'Ports')
+        self.assertEqual(attr.value[0].latency_offset, 982)
+        self.assertEqual(attr.value[0].properties[0].name, 'device.icon_name')
+        self.assertEqual(attr.value[0].properties[0].value, 'audio-input-microphone')
+        self.assertEqual(attr.value[0].properties[1].name, 'device.display_name')
+        self.assertEqual(attr.value[0].properties[1].value, 'Microphone')
+
+    def test_SPDIF_in_port_label(self):
+        # This checks that '(S/PDIF)' does not confuse the parser to parse
+        # '(' before port properties
+        attr = self.assertParses(
+            pactl.GenericListAttribute.Syntax, (
+                'Ports:\n'
+                '\tiec958-stereo-input: Digital Input (S/PDIF) (priority: 0, latency offset: 0 usec)\n'
+                '\t\tPart of profile(s): input:iec958-stereo\n'
+            )
+        )['attribute']
+        self.assertEqual(attr.name, 'Ports')
+        self.assertEqual(attr.value[0].name, 'iec958-stereo-input')
+        self.assertEqual(attr.value[0].label, 'Digital Input (S/PDIF)')
+        self.assertEqual(attr.value[0].priority, 0)
+        self.assertEqual(attr.value[0].latency_offset, 0)
+        self.assertEqual(attr.value[0].profile_list, ['input:iec958-stereo'])
 
     def test_profiles(self):
         attr = self.assertParses(
