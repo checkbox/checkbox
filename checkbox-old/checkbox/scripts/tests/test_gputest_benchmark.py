@@ -16,16 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import imp
 import os
 import unittest
 
 from mock import patch
 from tempfile import NamedTemporaryFile
 
-imp.load_source('gputest_benchmark', os.path.join(os.path.dirname(__file__),
-                '..', '..', '..', 'scripts', 'gputest_benchmark'))
-from gputest_benchmark import check_log
+from checkbox.scripts.gputest_benchmark import check_log
 
 
 class LogParserTest(unittest.TestCase):
