@@ -174,7 +174,9 @@ def move_sinks(name):
 
     for input_index in input_indexes:
         try:
-            check_call(["pacmd", "move-sink-input", input_index, name])
+            with open(os.devnull, 'wb') as DEVNULL:
+                check_call(["pacmd", "move-sink-input", input_index, name],
+                           stdout=DEVNULL)
         except CalledProcessError:
             logging.error("Failed to move input %d to sink %d" %
                           (input_index, name))
@@ -230,8 +232,9 @@ def set_audio_settings(device, mute, volume):
                 try:
                     logging.info("[ Fallback sink ]".center(80, '='))
                     logging.info("Name: {}".format(name))
-                    check_call(["pacmd", "set-default-%s" % type, name],
-                               stdout=open(os.devnull, 'wb'))
+                    with open(os.devnull, 'wb') as DEVNULL:
+                        check_call(["pacmd", "set-default-%s" % type, name],
+                                   stdout=DEVNULL)
                 except CalledProcessError:
                     logging.error("Failed to set default %s" % type)
                     sys.exit(1)
@@ -277,7 +280,9 @@ def restore_audio_settings(file):
         logging.info(name)
 
         try:
-            check_call(["pacmd", "set-default-%s" % type, name])
+            with open(os.devnull, 'wb') as DEVNULL:
+                check_call(["pacmd", "set-default-%s" % type, name],
+                           stdout=DEVNULL)
         except CalledProcessError:
             logging.error("Failed to set default %s" % name)
             return 1
