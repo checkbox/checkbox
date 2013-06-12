@@ -109,5 +109,12 @@ $CHECKBOX_TOP/support/install-pip-dependencies
 # Develop all the local projects
 $CHECKBOX_TOP/support/develop-projects
 
+# Enable tab-completion.
+# NOTE: This might be totally useless but hey,
+# if someone has sourced this script it will work.
+. $CHECKBOX_TOP/support/enable-tab-completion
+
 echo "To activate your virtualenv run:"
 echo "$ . $CHECKBOX_VENV_PATH/bin/activate"
+echo "To enable tab completion run:"
+echo "$ . $CHECKBOX_TOP/support/enable-tab-completion"
