@@ -98,6 +98,8 @@ def _guess_hdmi_profile(pactl_list):
                             match_found = True
                             if sink_port.availability != 'not available':
                                 return {card: card_port}
+        # If the availability cannot be determined then we keep the first
+        # candidate
         if not match_found and hdmi_ports:
             card, ports = hdmi_ports.popitem()
             return {card: ports.pop()}
