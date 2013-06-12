@@ -16,13 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import imp
 import os
 import unittest
 
-imp.load_source('audio_settings', os.path.join(os.path.dirname(__file__),
-                '..', '..', '..', 'scripts', 'audio_settings'))
-from audio_settings import _guess_hdmi_profile
+from checkbox.scripts.audio_settings import _guess_hdmi_profile
 from checkbox.parsers.tests.test_pactl import PactlDataMixIn
 
 
