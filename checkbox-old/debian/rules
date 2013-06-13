@@ -28,6 +28,7 @@ override_dh_installdeb:
 	cp debian/checkbox.postrm debian/checkbox-urwid.postrm
 	cp debian/checkbox.postrm debian/checkbox-gtk.postrm
 	cp debian/checkbox.postrm debian/checkbox-qt.postrm
+	cp debian/checkbox.postrm debian/checkbox-hw-collection.postrm
 	dh_installdeb
 
 override_dh_installdocs:
@@ -35,11 +36,12 @@ override_dh_installdocs:
 	dh_installdocs -pcheckbox-cli ./README 
 	dh_installdocs -pcheckbox-urwid ./README 
 	dh_installdocs -pcheckbox-gtk ./README 
-	dh_installdocs -pcheckbox-qt ./README 
+	dh_installdocs -pcheckbox-qt ./README
+	dh_installdocs -pcheckbox-hw-collection ./README
 	dh_installdocs
 
 override_dh_clean:
 	-find . -name \*.mo -exec rm {} \;
-	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm debian/checkbox-qt.postrm
+	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm debian/checkbox-qt.postrm debian/checkbox-hw-collection.postrm
 	debconf-updatepo
 	dh_clean

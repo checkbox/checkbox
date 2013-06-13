@@ -25,6 +25,8 @@ checkbox (0.16.4) saucy; urgency=low
     at least run on those systems where they are supposed to (LP: #1184882)
   * checkbox_qt/qt_interface.py - Order the list of items to be displayed
     alphabetically, so the order is consistent (LP: #1177647)
+  * debian/rules - Add checkbox-hw-collection so that it's treated in the same
+    way as other checkbox derived packages like checkbox-qt (LP: #1188601)
 
   [ Daniel Manrique ]
   * jobs/stress.txt.in: fixed a few inconsistent invocations of sleep_test.
