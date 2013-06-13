@@ -147,7 +147,7 @@ class QTInterface(UserInterface):
 
         def buildBranch(options, default, baseIndex="1"):
             internalIndex = 1
-            for test, state in options.items():
+            for test, state in sorted(options.items()):
                 active = test in default
                 if isinstance(state, dict):
                     indexedOptions[

@@ -1,9 +1,9 @@
-#!/usr/bin/python3
+#!/bin/sh
 # This file is part of Checkbox.
 #
 # Copyright 2013 Canonical Ltd.
 # Written by:
-#   Sylvain Pineau <sylvain.pineau@canonical.com>
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,10 +18,22 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
+# Helper script to enable tab completion 
+# ======================================
 
-from checkbox.scripts.gputest_benchmark import main
-
-
-if __name__ == '__main__':
-    sys.exit(main())
+# XXX: $0 differs depending on shell version, sometime it is /bin/bash,
+# sometimes just bash sometimes bash with '-' in front.
+case $(basename "$0") in
+    sh)
+        echo "W: /bin/sh is not supported"
+        ;;
+    bash)
+        eval "$(register-python-argcomplete plainbox)"
+        ;;
+    mk-venv)
+        ;;
+    *)
+        echo "E: this script is meant to be sourced, not executed"
+        echo "I: \$0 was $0"
+        ;;
+esac
