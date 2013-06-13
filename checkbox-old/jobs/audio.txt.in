@@ -33,15 +33,33 @@ requires:
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'pulseaudio-utils'
 command:
- audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=hdmi --volume=50; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
+ audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=hdmi --volume=50 --verbose; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
-    HDMI interface verification
+     HDMI audio interface verification
  STEPS:
-    1. Plug an external HDMI device with sound (Use second port if you have more than one hdmi interface)
-    2. Click the Test button
+     1. Plug an external HDMI device with sound (Use only one HDMI/DisplayPort interface at a time for this test)
+     2. Click the Test button
  VERIFICATION:
-    Did you hear the sound from the HDMI device?
+     Did you hear the sound from the HDMI device?
+
+plugin: manual
+name: audio/playback_displayport
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+ package.name == 'pulseaudio-utils'
+command:
+ audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=hdmi --volume=50 --verbose; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
+_description:
+ PURPOSE:
+     DisplayPort audio interface verification
+ STEPS:
+     1. Plug an external DisplayPort device with sound (Use only one HDMI/DisplayPort interface at a time for this test)
+     2. Click the Test button
+ VERIFICATION:
+     Did you hear the sound from the DisplayPort device?
 
 plugin: manual
 name: audio/playback_headphones
@@ -167,24 +185,6 @@ _description:
  and sinks (outputs) recognized by PulseAudio.  It will also validate that the
  active source and sink are not muted.  You should not manually adjust the 
  volume or mute before running this test.
-
-plugin: manual
-name: audio/playback_displayport
-requires:
- device.category == 'AUDIO'
- package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
-command:
- gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'
-_description:
- PURPOSE:
-     Display Port audio interface verification
- STEPS:
-     1. Plug an external Display Port device with sound
-     2. Open system sound preferences
-     3. Click on Output and Select Display Port
-     4. Run sound test
- VERIFICATION:
-     Did you hear a sound?
 
 plugin: manual
 name: audio/external-lineout
