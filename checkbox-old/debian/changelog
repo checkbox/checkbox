@@ -34,6 +34,7 @@ checkbox (0.16.4) saucy; urgency=low
     supporting both precise and newer releases (LP: #1184197)
   * scripts/audio_settings: Use the new pactl parser to guess the right profile
     to select for HDMI / DisplayPort tests.
+  * setup.py: Use setuptools find_packages(), more future proof.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 
