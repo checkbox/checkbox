@@ -20,7 +20,7 @@ fi
 
 if [ "$1" = "" ]; then
     # XXX: this list needs to be in sync with Vagrantfile
-    target_list="precise quantal raring saucy"
+    target_list="precise quantal raring"
 else
     target_list="$1"
 fi
