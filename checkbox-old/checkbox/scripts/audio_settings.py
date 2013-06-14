@@ -186,7 +186,6 @@ def move_sinks(name):
 
 def store_audio_settings(file):
     logging.info("[ Saving audio settings ]".center(80, '='))
-
     try:
         settings_file = open(file, 'w')
     except IOError:
@@ -247,7 +246,7 @@ def set_audio_settings(device, mute, volume):
 
                 try:
                     check_call(["pactl",
-                                "set-%s-mute" % type, name, str(mute)])
+                                "set-%s-mute" % type, name, str(int(mute))])
                 except:
                     logging.error("Failed to set mute for %s" % name)
                     sys.exit(1)
@@ -285,7 +284,6 @@ def restore_audio_settings(file):
                           "file is invalid")
             return 1
 
-
         try:
             with open(os.devnull, 'wb') as DEVNULL:
                 check_call(["pacmd", "set-default-%s" % type, name],
@@ -297,13 +295,11 @@ def restore_audio_settings(file):
         if type == "sink":
             move_sinks(name)
 
-
         try:
             check_call(["pactl", "set-%s-mute" % type, name, muted])
         except:
             logging.error("Failed to restore mute for %s" % name)
             return 1
-
 
         try:
             check_call(["pactl", "set-%s-volume" % type, name, volume])
