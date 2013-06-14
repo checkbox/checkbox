@@ -18,8 +18,20 @@
 #
 import os
 import unittest
+from io import StringIO
+
 from checkbox.lib.path import path_expand_recursive
 from checkbox.lib.template_i18n import TemplateI18n
+from checkbox.parsers.description import DescriptionParser
+
+
+class DescriptionResult(object):
+    def __init__(self):
+        self.fields = {}
+
+    def setDescription(self, purpose, steps, verification, info):
+        for name in ['purpose', 'steps', 'verification', 'info']:
+            self.fields[name] = locals()[name]
 
 
 class MessageFileFormatTest(unittest.TestCase):
@@ -72,11 +84,11 @@ class MessageFileFormatTest(unittest.TestCase):
                         shell_variables += re.findall(shell_variables_regex,
                                                       message[key])
                 if 'environ' in message:
-                    environ_variables = re.findall(environ_variables_regex, 
+                    environ_variables = re.findall(environ_variables_regex,
                                                    message['environ'])
                 self.assertEqual(set(environ_variables),
-                                  set(shell_variables),
-                                  message['name'])
+                                 set(shell_variables),
+                                 message['name'])
 
     def test_jobs_comply_with_schema(self):
         globals = {}
@@ -95,3 +107,17 @@ class MessageFileFormatTest(unittest.TestCase):
         for message in self.messages:
             if message['plugin'] in ('user-verify', 'user-interact'):
                 self.assertTrue("command" in message)
+
+    def test_verify_manual_jobs_have_parsable_description(self):
+        for message in self.messages:
+            if message['plugin'] in ('user-verify', 'user-interact', 'manual'):
+                for key in ['description', 'description_extended']:
+                    if key in message and message[key]:
+                        descstream = StringIO(message[key])
+                        parser = DescriptionParser(descstream)
+                        result = DescriptionResult()
+                        parser.run(result)
+                        msg = "Description for manual job {} has wrong format"
+                        self.assertTrue(result.fields,
+                                        msg.format(message['name']))
+
