@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser
+import logging
 import re
 import os
 import sys
@@ -21,11 +22,12 @@ def check_state(device):
         sink = re.findall(".*name:\s<(.*%s.*)>" % device, sink_info)[0].lstrip()
         status = data[data.index("\t" + device_name) + 3]
     except (IndexError, ValueError):
-        print("Failed to find status for device: %s" % device, file=sys.stderr)
+        logging.error("Failed to find status for device: %s" % device)
         return False
 
     os.environ['PULSE_SINK'] = sink
-    print("Device: %s %s" % (device_name.strip(), status.strip()))
+    logging.info("[ Pulse sink ]".center(80, '='))
+    logging.info("Device: %s %s" % (device_name.strip(), status.strip()))
     return status 
 
 
@@ -40,6 +42,9 @@ def main():
         type=str,
         help="Device to check for status")
     args = parser.parse_args()
+
+    logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO,
+        stream=sys.stdout)
 
     exit_code = 0
     if args.device:

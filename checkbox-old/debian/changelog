@@ -45,6 +45,10 @@ checkbox (0.16.4) saucy; urgency=low
   * scripts/audio_settings: Use the new pactl parser to guess the right profile
     to select for HDMI / DisplayPort tests.
   * setup.py: Use setuptools find_packages(), more future proof.
+  * checkbox/scripts/audio_settings.py: Save active profiles for all alsa cards
+    (LP: #169425)
+  * scripts/gst_pipeline_test: Use the logging module and the same config as
+    audio_settings.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 
