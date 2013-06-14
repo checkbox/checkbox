@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import configparser
 import logging
 import os
 import re
@@ -138,33 +139,45 @@ def set_profile_hdmi():
                       (profile, error))
 
 
-def get_current_profile_setting():
-    """Captures and Writes current audio profile setting"""
-    output_list = check_output(["pactl", "list"],
-                               universal_newlines=True,
-                               env=unlocalized_env())
-    active_profile = re.findall("Active\sProfile.*", output_list)[0]
+def get_current_profiles_settings():
+    """Captures and Writes current audio profiles settings"""
+    pactl_list = check_output(
+        ['pactl', 'list'], universal_newlines=True, env=unlocalized_env())
+
+    config = configparser.ConfigParser()
+
+    for match in re.finditer(
+        "(?P<card_id>Card #\d+)\n\tName:\s+(?P<card_name>.*?)\n.*?"
+        "Active\sProfile:\s+(?P<profile>.*?)\n", pactl_list, re.M | re.S
+    ):
+        config[match.group('card_id')] = {
+            'name': match.group('card_name'),
+            'profile': match.group('profile')
+        }
 
     try:
-        open("active_output", 'w').write(active_profile)
+        with open('active_profiles', 'w') as active_profiles:
+            config.write(active_profiles)
     except IOError:
-        logging.error("Failed to save active output information: %s" %
+        logging.error("Failed to save active profiles information: %s" %
                       sys.exc_info()[1])
 
 
-def restore_profile_setting():
+def restore_profiles_settings():
+    config = configparser.ConfigParser()
     try:
-        setting_info = open("active_output").read()
-        profile = setting_info.split("Active Profile:")[-1]
-    except (IOError, IndexError):
-        logging.error("Failed to retrieve previous profile information")
-        return
+        config.read('active_profiles')
+    except IOError:
+        logging.error("Failed to retrieve previous profiles information")
 
-    try:
-        check_call(["pactl", "set-card-profile", "0", profile.strip()])
-    except CalledProcessError as error:
-        logging.error("Failed setting audio output to:%s: %s" %
-                      (profile, error))
+    for card in config.sections():
+        try:
+            check_call(["pactl", "set-card-profile", config[card]['name'],
+                       config[card]['profile']])
+        except CalledProcessError as error:
+            logging.error("Failed setting card <%s> profile to <%s>: %s" %
+                          (config[card]['name'],
+                           config[card]['profile'], error))
 
 
 def move_sinks(name):
@@ -340,7 +353,7 @@ def main():
             return 1
 
         store_audio_settings(args.file)
-        get_current_profile_setting()
+        get_current_profiles_settings()
     elif args.action == "set":
         if not args.device:
             logging.error("No device specified to change settings of!")
@@ -353,7 +366,7 @@ def main():
             set_profile_hdmi()
         set_audio_settings(args.device, args.mute, args.volume)
     elif args.action == "restore":
-        if restore_profile_setting() or restore_audio_settings(args.file):
+        if restore_profiles_settings() or restore_audio_settings(args.file):
             return 1
     else:
         logging.error(args.action + "is not a valid action")
