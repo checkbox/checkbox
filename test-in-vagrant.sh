@@ -49,7 +49,7 @@ for target in $target_list; do
     # Display something before the first test output
     echo "[$target] Starting tests..."
     # Run checkbox unit tests
-    if time -o $TIMING vagrant ssh $target -c 'cd checkbox && python3 setup.py test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
+    if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-old && python3 setup.py test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
         echo "[$target] CheckBox test suite: $PASS"
     else
         outcome=1
@@ -61,7 +61,7 @@ for target in $target_list; do
     # Refresh plainbox installation. This is needed if .egg-info (which is
     # essential for 'develop' to work) was removed in the meantime, for
     # example, by tarmac.
-    if ! time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py egg_info' >vagrant-logs/$target.egginfo.log 2>vagrant-logs/$target.egginfo.err; then
+    if ! time -o $TIMING vagrant ssh $target -c 'cd src/plainbox && python3 setup.py egg_info' >vagrant-logs/$target.egginfo.log 2>vagrant-logs/$target.egginfo.err; then
         outcome=1
         echo "[$target] Running 'plainbox/setup.py egg_info' failed"
         echo "[$target] stdout: $(pastebinit vagrant-logs/$target.egginfo.log)"
@@ -71,7 +71,7 @@ for target in $target_list; do
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run plainbox unit tests
     # TODO: It would be nice to support fast failing here
-    if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
+    if time -o $TIMING vagrant ssh $target -c 'cd src/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
         echo "[$target] PlainBox test suite: $PASS"
     else
         outcome=1
@@ -81,7 +81,7 @@ for target in $target_list; do
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Build plainbox documentation
-    if time -o $TIMING vagrant ssh $target -c 'cd checkbox/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
+    if time -o $TIMING vagrant ssh $target -c 'cd src/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
         echo "[$target] PlainBox documentation build: $PASS"
     else
         outcome=1
@@ -91,7 +91,7 @@ for target in $target_list; do
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
     # Run checkbox-ng unit tests
-    if time -o $TIMING vagrant ssh $target -c 'cd checkbox/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
+    if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
         echo "[$target] CheckBoxNG test suite: $PASS"
     else
         outcome=1

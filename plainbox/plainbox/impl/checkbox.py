@@ -125,13 +125,14 @@ def _get_checkbox_dir():
     Return the root directory of the checkbox source checkout
 
     Historically plainbox used a git submodule with checkbox tree (converted to
-    git). This ended with the merge of plainbox into the checkbox tree. Now
-    it's the other way around and the checkbox tree can be located two
-    directories "up" from the plainbox module.
+    git). This ended with the merge of plainbox into the checkbox tree.
+    
+    Now it's the other way around and the checkbox tree can be located two
+    directories "up" from the plainbox module, in a checkbox-old directory.
     """
     return os.path.normpath(
         os.path.join(
-            get_plainbox_dir(), "..", ".."))
+            get_plainbox_dir(), "..", "..", "checkbox-old"))
 
 
 class CheckBox:
@@ -161,14 +162,8 @@ class CheckBox:
             os.path.join(source_dir, "scripts"),
             os.path.join(source_dir, "jobs"),
             os.path.join(source_dir, "data"))),
-        # Layout for Ubuntu 12.10 and 13.04
-        ("deb2", CheckBoxDirs(
-            "/usr/share/checkbox/",
-            "/usr/lib/checkbox/bin",
-            "/usr/share/checkbox/jobs",
-            "/usr/share/checkbox/data")),
-        # Layout for Ubuntu 12.04
-        ("deb1", CheckBoxDirs(
+        # Layout for installed version
+        ("deb", CheckBoxDirs(
             "/usr/share/checkbox/",
             "/usr/share/checkbox/scripts",
             "/usr/share/checkbox/jobs",

@@ -29,9 +29,12 @@
 from logging import getLogger
 
 from plainbox.impl.commands import PlainBoxCommand
+from plainbox.impl.commands.analyze import AnalyzeCommand
+from plainbox.impl.commands.crash import CrashCommand
+from plainbox.impl.commands.logtest import LogTestCommand
+from plainbox.impl.commands.parse import ParseCommand
 from plainbox.impl.commands.script import ScriptCommand
 from plainbox.impl.commands.special import SpecialCommand
-from plainbox.impl.commands.analyze import AnalyzeCommand
 
 
 logger = getLogger("plainbox.commands.dev")
@@ -56,3 +59,6 @@ class DevCommand(PlainBoxCommand):
         ScriptCommand(self.checkbox, self.config).register_parser(subdev)
         SpecialCommand(self.checkbox).register_parser(subdev)
         AnalyzeCommand(self.checkbox).register_parser(subdev)
+        ParseCommand().register_parser(subdev)
+        CrashCommand().register_parser(subdev)
+        LogTestCommand().register_parser(subdev)

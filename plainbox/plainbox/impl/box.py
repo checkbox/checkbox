@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -26,48 +26,211 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from argparse import _ as argparse_gettext
-from logging import basicConfig
-from logging import getLogger
 import argparse
+import errno
+import logging
+import pdb
 import sys
 
 from plainbox import __version__ as version
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.checkbox import CheckBox
+from plainbox.impl.commands.check_config import CheckConfigCommand
+from plainbox.impl.commands.dev import DevCommand
 from plainbox.impl.commands.run import RunCommand
 from plainbox.impl.commands.selftest import SelfTestCommand
-from plainbox.impl.commands.special import SpecialCommand
 from plainbox.impl.commands.sru import SRUCommand
-from plainbox.impl.commands.check_config import CheckConfigCommand
-from plainbox.impl.commands.script import ScriptCommand
-from plainbox.impl.commands.dev import DevCommand
+from plainbox.impl.logging import setup_logging, adjust_logging
 
 
-logger = getLogger("plainbox.box")
+logger = logging.getLogger("plainbox.box")
 
 
 class PlainBox:
     """
-    High-level plainbox object
+    Command line interface to PlainBox
     """
 
     def __init__(self):
-        self._checkbox = CheckBox()
+        """
+        Initialize all the variables, real stuff happens in main()
+        """
+        self._early_parser = None  # set in _early_init()
+        self._config = None  # set in _late_init()
+        self._checkbox = None  # set in _late_init()
+        self._parser = None  # set in _late_init()
 
     def main(self, argv=None):
-        # TODO: setup sane logging system that works just as well for Joe user
-        # that runs checkbox from the CD as well as for checkbox developers and
-        # custom debugging needs.  It would be perfect^Hdesirable not to create
-        # another broken, never-rotated, uncapped logging crap that kills my
-        # SSD by writing junk to ~/.cache/
-        basicConfig(level="WARNING")
-        config = PlainBoxConfig.get()
-        parser = self._construct_parser(config)
-        ns = parser.parse_args(argv)
-        # Set the desired log level
-        getLogger("").setLevel(ns.log_level)
+        """
+        Run as if invoked from command line directly
+        """
+        self.early_init()
+        early_ns = self._early_parser.parse_args(argv)
+        self.late_init(early_ns)
+        logger.debug("parsed early namespace: %s", early_ns)
+        # parse the full command line arguments, this is also where we
+        # do argcomplete-dictated exit if bash shell completion is requested
+        ns = self._parser.parse_args(argv)
+        logger.debug("parsed full namespace: %s", ns)
+        self.final_init(ns)
+        return self.dispatch_and_catch_exceptions(ns)
+
+    @classmethod
+    def get_config_cls(cls):
+        """
+        Get the Config class that is used by this implementation.
+
+        This can be overriden by subclasses to use a different config class
+        that is suitable for the particular application.
+        """
+        return PlainBoxConfig
+
+    @classmethod
+    def get_exec_name(cls):
+        """
+        Get the name of this executable
+        """
+        return "plainbox"
+
+    @classmethod
+    def get_exec_version(cls):
+        """
+        Get the version reported by this executable
+        """
+        return "{}.{}.{}".format(*version[:3])
+
+    def add_subcommands(self, subparsers):
+        """
+        Add top-level subcommands to the argument parser.
+
+        This can be overriden by subclasses to use a different set of
+        top-level subcommands.
+        """
+        # TODO: switch to plainbox plugins
+        RunCommand(self._checkbox).register_parser(subparsers)
+        SelfTestCommand().register_parser(subparsers)
+        SRUCommand(self._checkbox, self._config).register_parser(subparsers)
+        CheckConfigCommand(self._config).register_parser(subparsers)
+        DevCommand(self._checkbox, self._config).register_parser(subparsers)
+
+    def early_init(self):
+        """
+        Do very early initialization. This is where we initalize stuff even
+        without seeing a shred of command line data or anything else.
+        """
+        self._early_parser = self.construct_early_parser()
+
+    def late_init(self, early_ns):
+        """
+        Initialize with early command line arguments being already parsed
+        """
+        adjust_logging(level=early_ns.log_level, trace_list=early_ns.trace)
+        # Load plainbox configuration
+        self._config = self.get_config_cls().get()
+        # Load and initialize checkbox provider
+        # TODO: rename to provider, switch to plugins
+        self._checkbox = CheckBox(
+            mode=None if early_ns.checkbox == 'auto' else early_ns.checkbox)
+        # Construct the full command line argument parser
+        self._parser = self.construct_parser()
+
+    def final_init(self, ns):
+        """
+        Do some final initialization just before the command gets
+        dispatched. This is empty here but maybe useful for subclasses.
+        """
+
+    def construct_early_parser(self):
+        """
+        Create a parser that captures some of the early data we need to
+        be able to have a real parser and initialize the rest.
+        """
+        parser = argparse.ArgumentParser(add_help=False)
+        # Fake --help and --version
+        parser.add_argument("-h", "--help", action="store_const", const=None)
+        parser.add_argument("--version", action="store_const", const=None)
+        self.add_early_parser_arguments(parser)
+        # A catch-all net for everything else
+        parser.add_argument("rest", nargs="...")
+        return parser
+
+    def construct_parser(self):
+        parser = argparse.ArgumentParser(
+            prog=self.get_exec_name(),
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        parser.add_argument(
+            "--version", action="version", version=self.get_exec_version())
+        # Add all the things really parsed by the early parser so that it
+        # shows up in --help and bash tab completion.
+        self.add_early_parser_arguments(parser)
+        subparsers = parser.add_subparsers()
+        self.add_subcommands(subparsers)
+        # Enable argcomplete if it is available.
+        try:
+            import argcomplete
+        except ImportError:
+            pass
+        else:
+            argcomplete.autocomplete(parser)
+        return parser
+
+    def add_early_parser_arguments(self, parser):
+        # Since we need a CheckBox instance to create the main argument parser
+        # and we need to be able to specify where Checkbox is, we parse that
+        # option alone before parsing everything else
+        # TODO: rename this to -p | --provider
+        parser.add_argument(
+            '-c', '--checkbox',
+            action='store',
+            # TODO: have some public API for this, pretty please
+            choices=list(CheckBox._DIRECTORY_MAP.keys()) + ['auto'],
+            default='auto',
+            help="where to find the installation of CheckBox.")
+        group = parser.add_argument_group(
+            title="logging and debugging")
+        # Add the --log-level argument
+        group.add_argument(
+            "-l", "--log-level",
+            action="store",
+            choices=('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'),
+            default=None,
+            help=argparse.SUPPRESS)
+        # Add the --verbose argument
+        group.add_argument(
+            "-v", "--verbose",
+            dest="log_level",
+            action="store_const",
+            const="INFO",
+            help="be more verbose (same as --log-level=INFO)")
+        # Add the --debug flag
+        group.add_argument(
+            "-D", "--debug",
+            dest="log_level",
+            action="store_const",
+            const="DEBUG",
+            help="enable DEBUG messages on the root logger")
+        # Add the --trace flag
+        group.add_argument(
+            "-T", "--trace",
+            metavar="LOGGER",
+            action="append",
+            default=[],
+            help=("enable DEBUG messages on the specified logger "
+                  "(can be used multiple times)"))
+        # Add the --pdb flag
+        group.add_argument(
+            "-P", "--pdb",
+            action="store_true",
+            default=False,
+            help="jump into pdb (python debugger) when a command crashes")
+        # Add the --debug-interrupt flag
+        group.add_argument(
+            "-I", "--debug-interrupt",
+            action="store_true",
+            default=False,
+            help="crash on SIGINT/KeyboardInterrupt, useful with --pdb")
+
+    def dispatch_command(self, ns):
         # Argh the horrror!
         #
         # Since CPython revision cab204a79e09 (landed for python3.3)
@@ -82,48 +245,58 @@ class PlainBox:
         # what python3.2 did: call parser.error(_('too few arguments'))
         if (sys.version_info[:2] >= (3, 3)
                 and getattr(ns, "command", None) is None):
-            parser.error(argparse_gettext("too few arguments"))
+            self._parser.error(argparse._("too few arguments"))
         else:
             return ns.command.invoked(ns)
 
-    def _construct_parser(self, config):
-        parser = ArgumentParser(
-            prog="plainbox", formatter_class=ArgumentDefaultsHelpFormatter)
-        parser.add_argument(
-            "-v", "--version", action="version",
-            version="{}.{}.{}".format(*version[:3]))
-        parser.add_argument(
-            "-l", "--log-level", action="store",
-            choices=('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'),
-            default='WARNING',
-            help=argparse.SUPPRESS)
-        subparsers = parser.add_subparsers()
-        RunCommand(self._checkbox).register_parser(subparsers)
-        SelfTestCommand().register_parser(subparsers)
-        SRUCommand(self._checkbox, config).register_parser(subparsers)
-        CheckConfigCommand(config).register_parser(subparsers)
-        DevCommand(self._checkbox, config).register_parser(subparsers)
+    def dispatch_and_catch_exceptions(self, ns):
         try:
-            import argcomplete
-        except ImportError:
-            pass
-        else:
-            argcomplete.autocomplete(parser)
-        #group = parser.add_argument_group(title="user interface options")
-        #group.add_argument(
-        #    "-u", "--ui", action="store",
-        #    default=None, choices=('headless', 'text', 'graphics'),
-        #    help="select the UI front-end (defaults to auto)")
-        return parser
+            return self.dispatch_command(ns)
+        except SystemExit:
+            # Don't let SystemExit be caught in the logic below, we really
+            # just want to exit when that gets thrown.
+            logger.debug("caught SystemExit, exiting")
+            # We may want to raise SystemExit as it can carry a status code
+            # along and we cannot just consume that.
+            raise
+        except BaseException as exc:
+            logger.debug("caught %r, deciding on what to do next", exc)
+            # For all other exceptions (and I mean all), do a few checks
+            # and perform actions depending on the command line arguments
+            # By default we want to re-raise the exception
+            action = 'raise'
+            # We want to ignore IOErrors that are really EPIPE
+            if isinstance(exc, IOError):
+                if exc.errno == errno.EPIPE:
+                    action = 'ignore'
+            # We want to ignore KeyboardInterrupt unless --debug-interrupt
+            # was passed on command line
+            elif isinstance(exc, KeyboardInterrupt):
+                if ns.debug_interrupt:
+                    action = 'debug'
+                else:
+                    action = 'ignore'
+            else:
+                # For all other execptions, debug if requested
+                if ns.pdb:
+                    action = 'debug'
+            logger.debug("action for exception %r is %s", exc, action)
+            if action == 'ignore':
+                return 0
+            elif action == 'raise':
+                logging.getLogger("plainbox.crashes").fatal(
+                    "Executable %r invoked with %r has crashed",
+                    self.get_exec_name(), ns, exc_info=1)
+                raise
+            elif action == 'debug':
+                logger.error("caught runaway exception: %r", exc)
+                logger.error("starting debugger...")
+                pdb.post_mortem()
+                return 1
 
 
 def main(argv=None):
-    # Instantiate a global plainbox instance
-    # XXX: Allow one to control the checkbox= argument via
-    # environment or config.
-    box = PlainBox()
-    retval = box.main(argv)
-    raise SystemExit(retval)
+    raise SystemExit(PlainBox().main(argv))
 
 
 def get_builtin_jobs():
@@ -136,3 +309,10 @@ def save(something, somewhere):
 
 def run(*args, **kwargs):
     raise NotImplementedError("run() not implemented")
+
+
+# Setup logging before anything else starts working.
+# If we do it in main() or some other place then unit tests will see
+# "leaked" log files which are really closed when the runtime shuts
+# down but not when the tests are finishing
+setup_logging()

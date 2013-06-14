@@ -1,0 +1,5573 @@
+# Khmer translation for checkbox
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the checkbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: checkbox\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-07-12 16:08-0400\n"
+"PO-Revision-Date: 2011-07-19 15:52+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Khmer <km@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-06-11 05:11+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
+
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:43
+msgid "System Testing"
+msgstr "ការ​សាកល្បង​ប្រព័ន្ធ"
+
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
+msgid "_Test"
+msgstr "សាកល្បង"
+
+#: ../gtk/checkbox-gtk.ui.h:3
+msgid "_Yes"
+msgstr "បាទ/ចាស"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_No"
+msgstr "ទេ"
+
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_Skip this test"
+msgstr "រំលង​ការ​សាកល្បង​នេះ"
+
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:460
+#: ../checkbox_urwid/urwid_interface.py:289
+msgid "Further information:"
+msgstr "ព័ត៌មាន​បន្ថែម ៖"
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr "ជ្រើស​ទាំងអស់"
+
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Deselect All"
+msgstr "ដោះជ្រើស​ទាំងអស់"
+
+#: ../gtk/checkbox-gtk.ui.h:9
+msgid "_Previous"
+msgstr "មុន"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "Ne_xt"
+msgstr "បន្ទាប់"
+
+#: ../qt/checkbox-qt.desktop.in.h:2
+msgid "Test your system and submit results to the Ubuntu Friendly project"
+msgstr ""
+"សាកល្បង​ប្រព័ន្ធ​របស់​អ្នក "
+"ហើយ​ដាក់​ស្នើ​លទ្ធផល​ទៅកាន់​គម្រោង​ដែល​ងាយស្រួល​ប្រើ​របស់​អ៊ូប៊ុនទូ"
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Test to detect audio devices"
+msgstr "សាកល្បង​ដើម្បី​រក​ឧបករណ៍​អូឌីយ៉ូ"
+
+#. description
+#: ../jobs/audio.txt.in:18
+msgid ""
+"PURPOSE:\n"
+"    This test will check that internal speakers work correctly\n"
+"STEPS:\n"
+"    1. Make sure that no external speakers or headphones are connected\n"
+"       If testing a desktop, external speakers are allowed\n"
+"    2. Click the Test button to play a brief tone on your audio device\n"
+"VERIFICATION:\n"
+"    Did you hear a tone?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"​តើ​ធុង​បាស​ខាងក្នុង​​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. សូម​ប្រាកដ​ថា គ្មាន​ធុងបាស​ខាងក្រៅ ឬ​កាស​ត្រូវ​បាន​តភ្ជាប់\n"
+"       ប្រសិនបើ​សាកល្បង​ផ្ទៃតុ ធុងបាស​ខាងក្រៅ​នឹង​ត្រូវ​បាន​អនុញ្ញាត\n"
+"    ២. ចុច​ប៊ូតុង​សាកល្បង "
+"ដើម្បី​ចាក់​សំឡេង​មួយ​ភ្លែត​នៅ​លើ​ឧបករណ៍​អូឌីយ៉ូ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​ឮ​សំឡេង​ទេ ?"
+
+#. description
+#: ../jobs/audio.txt.in:35
+msgid ""
+"PURPOSE:\n"
+"   1. HDMI interface verification\n"
+"STEPS:\n"
+"   1. Plug an external HDMI device with sound\n"
+"   2. Open system sound preferences\n"
+"   3. Click on Output and Select HDMI and click 'Test Speakers' to check "
+"left and right channels\n"
+"   4. Click the Test button\n"
+"VERIFICATION:\n"
+"   1. Do you hear the sound coming out on the  corresponding channel?\n"
+"   2. Did you hear a sound?"
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:55
+msgid ""
+"PURPOSE:\n"
+"    This test will check that headphones connector works correctly\n"
+"STEPS:\n"
+"    1. Connect a pair of headphones to your audio device\n"
+"    2. Click the Test button to play a sound to your audio device\n"
+"VERIFICATION:\n"
+"    Did you hear a sound through the headphones and did the sound play "
+"without any distortion, clicks or other strange noises from your headphones?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ឧបករណ៍​តភ្ជាប់​កាស​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​កាស​មួយ​គូ​ទៅ​កាន់​ឧបករណ៍​អូឌីយ៉ូ​របស់​អ្នក\n"
+"    ២. ចុច​ប៊ូតុង​សាកល្បង ដើម្បី​ចាក់​សំឡេង​ទៅកាន់​ឧបករណ៍​អូឌីយ៉ូ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​ឮ​សំឡេង​តាម​កាស និង​ថា​តើ​សំឡេង​បន្លឺ​ឡើង​បាន​យ៉ាង​ល្អ "
+"ដោយ​គ្មាន​សំឡេង​​រំខាន "
+"ឬ​សំឡេង​ចម្លែក​ផ្សេងទៀត​ចេញ​មក​ពី​កាស​របស់​អ្នក​ដែរ​​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/audio.txt.in:73
+msgid ""
+"PURPOSE:\n"
+"    This test will check that recording sound using the onboard microphone "
+"works correctly\n"
+"STEPS:\n"
+"    1. Disconnect any external microphones that you have plugged in\n"
+"    2. Click \"Test\", then speak into your internal microphone\n"
+"    3. After a few seconds, your speech will be played back to you.\n"
+"VERIFICATION:\n"
+"    Did you hear your speech played back?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ការ​ថត​សំឡេង​ដោយ​ប្រើ​មីក្រូហ្វូន​ដែល​ភ្ជាប់​មក​ស្រាប់​ដំណើរការ​ត្រឹមត្រូវ"
+"​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. ផ្ដាច់​មីក្រូហ្វូន​ខាងក្រៅ​ណាមួយ​ដែល​អ្នក​បាន​ដោត\n"
+"    ២. ចុច \"សាកល្បង\" បន្ទាប់មក "
+"និយាយ​ទៅ​កាន់​មីក្រូហ្វូន​ខាងក្នុង​របស់​អ្នក\n"
+"    ៣ ពីរបី​នាទី​ក្រោយ​មក "
+"សំឡេង​របស់​អ្នក​នឹង​ត្រូវ​បាន​បន្លឺ​មក​កាន់​អ្នក​វិញ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    "
+"តើ​អ្នក​បាន​​ឮ​សំឡេង​របស់​អ្នក​ដែល​​បន្លឺ​ត្រឡប់​មក​រក​អ្នក​​វិញ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/audio.txt.in:92
+msgid ""
+"PURPOSE:\n"
+"    This test will check that recording sound using an external microphone "
+"works correctly\n"
+"STEPS:\n"
+"    1. Connect a microphone to your microphone port\n"
+"    2. Click \"Test\", then speak into the external microphone\n"
+"    3. After a few seconds, your speech will be played back to you\n"
+"VERIFICATION:\n"
+"    Did you hear your speech played back?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ការ​ថត​សំឡេង​ដោយ​ប្រើ​មីក្រូហ្វូន​ខាងក្រៅ​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​មីក្រូហ្វូន​ទៅ​កាន់​ច្រក​មីក្រូហ្វូន​របស់​អ្នក\n"
+"    ២. ចុច \"សាកល្បង\" បន្ទាប់មក និយាយ​ទៅកាន់​មីក្រូហ្វូន​ខាងក្រៅ​\n"
+"    ៣. ពីរ​បី​នាទី​ក្រោយមក សំឡេង​របស់​អ្នក​នឹង​បន្លឺ​ត្រឡប់​មកវិញ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​បាន​ឭ​សំឡេង​បន្លឺ​ត្រឡប់​មក​រក​អ្នក​វិញ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/audio.txt.in:110
+msgid ""
+"PURPOSE:\n"
+"    This test will check that a USB audio device works correctly\n"
+"STEPS:\n"
+"    1. Connect a USB audio device to your system\n"
+"    2. Click \"Test\", then speak into the microphone\n"
+"    3. After a few seconds, your speech will be played back to you\n"
+"VERIFICATION:\n"
+"    Did you hear your speech played back through the USB headphones?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ឧបករណ៍​អូឌីយ៉ូ​យូអេសប៊ី​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬទេ\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ឧបករណ៍​យូអេសប៊ី​ទៅកាន់​ប្រព័ន្ធ​របស់​អ្នក\n"
+"    2. ចុច \"សាកល្បង\" បន្ទាប់មក​និយាយ​ទៅកាន់​មីក្រូហ្វូន\n"
+"    3. បន្តិច​ក្រោយមក សំឡេង​របស់​អ្នក​នឹង​បន្លឺ​ត្រឡប់​មក​វិញ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​បាន​ឮ​សំឡេងរបស់​អ្នក​តាម​កាស​ស្ដាប់​ត្រចៀក​យូអេសប៊ី​ដែរ ឬទេ ?"
+
+#. description
+#: ../jobs/audio.txt.in:121
+msgid ""
+"Play back a sound on the default output and listen for it on the  default "
+"input.  This makes the most sense when the output and input  are directly "
+"connected, as with a patch cable."
+msgstr ""
+"ចាក់​សំឡេង​របស់​អ្នក​តាម​ច្រក​ចេញ​លំនាំដើម "
+"និង​ស្ដាប់​វា​តាម​ច្រក​ចូល​លំនាំដើម ។ "
+"វា​គឺ​ពីរោះ​បំផុត​នៅ​ពេល​ដែល​ការ​ច្រក​ចេញ "
+"និង​ច្រក​ចូល​ត្រូវ​បាន​តភ្ជាប់​ដោយ​ផ្ទាល់​ដោយ​ប្រើ​ខ្សែ​បំណះ ។"
+
+#. description
+#: ../jobs/audio.txt.in:134
+msgid ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:143
+msgid "Attaches the audio hardware data collection log to the results."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "សញ្ញា​សម្គាល់​សម្រាប់​ថាស​នីមួយៗ"
+
+#. description
+#: ../jobs/benchmarks.txt.in:41
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:47
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:53
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:59
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:65
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:74
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:83
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:97
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:103
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:109
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:115
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:121
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:127
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:133
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:139
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:145
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:151
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:157
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:163
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:175
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:181
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:187
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:193
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:199
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:205
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:211
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:217
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:223
+msgid "Disk utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:22
+msgid ""
+"Automated test to store bluetooth device information in checkbox report"
+msgstr ""
+"ការសាកល្បង​ស្វ័យប្រវត្តិ "
+"ដើម្បី​រក្សាទុក​ព័ត៌មាន​អំពី​ឧបករណ៍​ប៊្លូធូស​នៅ​ក្នុង​របាយការណ៍​ប្រអប់​ធីក ។"
+
+#. description
+#: ../jobs/bluetooth.txt.in:28
+msgid ""
+"PURPOSE:\n"
+"    This test will check that bluetooth connection works correctly\n"
+"STEPS:\n"
+"    1. Enable bluetooth on any mobile device (PDA, smartphone, etc.)\n"
+"    2. Click on the bluetooth icon in the menu bar\n"
+"    3. Select 'Setup new device'\n"
+"    4. Look for the device in the list and select it\n"
+"    5. In the device write the PIN code automatically chosen by the wizard\n"
+"    6. The device should pair with the computer\n"
+"    7. Right-click on the bluetooth icon and select browse files\n"
+"    8. Authorize the computer to browse the files in the device if needed\n"
+"    9. You should be able to browse the files\n"
+"VERIFICATION:\n"
+"    Did all the steps work?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ការ​តភ្ជាប់​ប៊្លូធូស​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. បើក​ប៊្លូធូស​នៅ​លើ​ឧបករណ៍​​​ចល័ត​ណាមួយ (PDA, smartphone ជាដើម ។)\n"
+"   ២. ចុច​លើ​រូបតំណាង​ប៊្លូធូស​នៅ​ក្នុង​របារ​ម៉ឺនុយ\n"
+"    ៣. ជ្រើស 'រៀបចំ​ឧបករណ៍​ថ្មី'\n"
+"    ៤. រកមើល​ឧបករណ៍​នៅ​ក្នុង​បញ្ជី ហើយ​ជ្រើស​វា\n"
+"    ៥. នៅ​ក្នុង​ឧបករណ៍ សរសេរ​កូដ PIN "
+"ដែល​ត្រូវ​​បាន​ជ្រើសរើស​ស្វ័យប្រវត្តិ​ដោយ​អ្នក​ជំនួយការ\n"
+"    ៦. ឧបករណ៍​គួរតែ​ផ្គូ​ជាមួយ​កុំព្យូទ័រ\n"
+"    ៧. ចុច​កណ្ដុរ​ស្ដាំ​លើ​រូបតំណាង​ប៊្លូធូស និង​ជ្រើស រកមើល​ឯកសារ\n"
+"    ៨. អនុញ្ញាត​ឲ្យ​កុំព្យូទ័រ​រកមើល​ឯកសារ​នៅ​ក្នុង​ឧបករណ៍ ប្រសិនបើ​ចាំបាច់\n"
+"    ៩. អ្នក​អាច​នឹង​ត្រូវ​រកមើល​ឯកសារ​ផង​ដែរ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ជំហាន​ទាំងអស់​ដំណើរការ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/bluetooth.txt.in:47
+msgid ""
+"PURPOSE:\n"
+"    This test will check that you can transfer information through a "
+"bluetooth connection\n"
+"STEPS:\n"
+"    1. Make sure that you're able to browse the files in your mobile device\n"
+"    2. Copy a file from the computer to the mobile device\n"
+"    3. Copy a file from the mobile device to the computer\n"
+"VERIFICATION:\n"
+"    Were all files copied correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​អ្នក​អាច​ផ្ទេរ​ព័ត៌មាន​តាម​ប៊្លូធូស​បាន​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. ប្រាកដ​ថា អ្នក​អាច​រកមើល​ឯកសារ​នៅ​ក្នុង​ឧបករណ៍​ចល័ត​របស់​អ្នក\n"
+"    ២. ចម្លង​ឯកសារ​ពី​កុំព្យូទ័រ​ទៅ​ឧបករណ៍​ចល័ត\n"
+"    ៣. ចម្លង​ឯកសារ​ពី​ឧបករណ៍​ចល័ត​ទៅ​កុំព្យូទ័រ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ឯកសារ​ទាំងអស់​ត្រូវ​បាន​ចម្លង​យ៉ាង​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/bluetooth.txt.in:61
+msgid ""
+"PURPOSE:\n"
+"    This test will check that you can record and hear audio using a "
+"bluetooth audio device\n"
+"STEPS:\n"
+"    1. Enable the bluetooth headset\n"
+"    2. Click on the bluetooth icon in the menu bar\n"
+"    3. Select 'Setup new device'\n"
+"    4. Look for the device in the list and select it\n"
+"    5. In the device write the PIN code automatically chosen by the wizard\n"
+"    6. The device should pair with the computer\n"
+"    7. Click \"Test\" to record for five seconds and reproduce in the "
+"bluetooth device\n"
+"VERIFICATION:\n"
+"    Did you hear the sound you recorded in the bluetooth"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យ​មើល​ថា តើ​អ្នក​អាច​ថតចម្លង "
+"និង​ស្ដាប់​អូឌីយ៉ូ​ដោយ​ប្រើ​ឧបករណ៍​អូឌីយ៉ូ​ប៊្លូធូស​បាន​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. បើក​កាស​ប៊្លូធូស\n"
+"    ២. ចុច​លើ​រូបតំណាង​ប៊្លូធូស​នៅ​ក្នុង​របារ​ម៉ឺនុយ\n"
+"    ៣. ជ្រើស 'រៀបចំ​ឧបករណ៍​ថ្មី'\n"
+"    ៤. រកមើល​ឧបករណ៍​នៅ​ក្នុង​បញ្ជី ហើយ​ជ្រើស​វា\n"
+"    ៥. នៅ​ក្នុង​ឧបករណ៍ សរសេរ​កូដ PIN "
+"ដែល​ត្រូវ​បាន​ជ្រើសរើស​ស្វ័យប្រវត្តិ​ដោយ​អ្នកជំនួយការ\n"
+"    ៦. ឧបករណ៍​គួរតែ​ផ្គូ​ជាមួយ​កុំព្យូទ័រ\n"
+"    ៧. ចុច \"សាកល្បង\" ដើម្បី​ថតចម្លង​រយៈ​ពេល​ប្រាំ​នាទី "
+"និង​ថតចម្លង​ឡើងវិញ​នៅ​ក្នុង​ឧបករណ៍​ប៊្លូធូស\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​ឮ​សំឡេង​ដែល​អ្នក​បាន​ថត​ចម្លង​នៅ​ក្នុង​ប៊្លូធូស​ដែរ​ឬ​ទេ"
+
+#. description
+#: ../jobs/bluetooth.txt.in:65
+msgid ""
+"PURPOSE:\n"
+"    This test will check that you can use a bluetooth keyboard\n"
+"STEPS:\n"
+"    1. Enable the bluetooth keyboard\n"
+"    2. Click on the bluetooth icon in the menu bar\n"
+"    3. Select 'Setup new device'\n"
+"    4. Look for the device in the list and select it\n"
+"    5. Click \"Test\"\n"
+"    6. Enter some text\n"
+"VERIFICATION:\n"
+"    Were you able to enter some text with the bluetooth keyboard?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​អ្នក​អាច​ប្រើ​ក្ដារ​ចុច​ប៊្លូធូស​បាន​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. បើក​ក្ដារចុច​ប៊្លូធូស\n"
+"    ២. ចុច​លើ​រូបតំណាង​ប៊្លូធូស​នៅ​ក្នុង​របារ​ម៉ឺនុយ\n"
+"    ៣. ជ្រើស 'រៀបចំ​ឧបករណ៍​ថ្មី'\n"
+"    ៤. រកមើល​ឧបករណ៍​នៅ​ក្នុង​បញ្ជី ហើយ​ជ្រើស​វា\n"
+"    ៥. ចុច \"សាកល្បង\"\n"
+"    ៦. បញ្ចូល​អត្ថបទ​មួយ​ចំនួន\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    "
+"តើ​អ្នក​អាច​បញ្ចូល​អត្ថបទ​មួយ​ចំនួន​ដោយ​ប្រើ​ក្ដារ​ចុច​ប៊្លូធូស​បាន​ដែរ​ឬ​ទេ "
+"?"
+
+#. description
+#: ../jobs/bluetooth.txt.in:81
+msgid ""
+"PURPOSE:\n"
+"    This test will check that you can use a bluetooth mouse\n"
+"STEPS:\n"
+"    1. Enable the bluetooth mouse\n"
+"    2. Click on the bluetooth icon in the menu bar\n"
+"    3. Select 'Setup new device'\n"
+"    4. Look for the device in the list and select it\n"
+"    5. Move the mouse around the screen\n"
+"    6. Perform some single/double/right click operations\n"
+"VERIFICATION:\n"
+"    Did the mouse work as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​អ្នក​អាច​ប្រើ​កណ្ដុរ​ប៊្លូធូស​បាន​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. បើក​កណ្ដុរ​ប៊្លូធូស\n"
+"    ២. ចុច​លើ​​រូបតំណាង​ប៊្លូធូស​នៅ​ក្នុង​របារ​ម៉ឺនុយ\n"
+"    ៣. ជ្រើស 'រៀបចំ​ឧបករណ៍​ថ្មី'\n"
+"    ៤. រកមើល​ឧបករណ៍​នៅ​ក្នុង​បញ្ជី ហើយ​ជ្រើស​វា\n"
+"    ៥. ផ្លាស់ទី​កណ្ដុរ​នៅ​លើ​អេក្រង់\n"
+"    ៦. អនុវត្ត​ប្រតិបត្តិការ​ចុច​ម្ដង/ទ្វេដង/កណ្ដុរ​ស្ដាំ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​កណ្ដុរ​ដំណើរការ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/camera.txt.in:6
+msgid "This Automated test attempts to detect a camera."
+msgstr "ការ​សាកល្បង​ស្វ័យប្រវត្តិ​នេះ​ប៉ុនប៉ង​ស្វែងរក​ម៉ាស៊ីន​ថត ។"
+
+#. description
+#: ../jobs/camera.txt.in:14
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the built-in camera works\n"
+"STEPS:\n"
+"    1. Click on Test to display a video capture from the camera for ten "
+"seconds.\n"
+"VERIFICATION:\n"
+"    Did you see the video capture?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ពី​ដំណើរការ​របស់​ម៉ាស៊ីន​ថត​ដែល​ជាប់​មក​ជាមួយ​"
+"ស្រាប់\n"
+"ជំហាន ៖\n"
+"    ១. "
+"ចុច​សាកល្បង​ដើម្បី​បង្ហាញ​ការ​ចាប់​យក​វីដេអូ​ពី​ម៉ាស៊ីន​ថត​សម្រាប់​រយៈពេល​ដប់"
+"​វិនាទី ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​បាន​ឃើញ​​វីដេអូ​ដែល​បាន​កាត់​ដែរ ឬទេ ?"
+
+#. description
+#: ../jobs/camera.txt.in:33
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the built-in camera works\n"
+"STEPS:\n"
+"    1. Click on Test to display a still image from the camera\n"
+"VERIFICATION:\n"
+"    Did you see the image?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ម៉ាស៊ីន​ដែល​ភ្ជាប់​មក​ស្រាប់​ដំណើរការ​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច សាកល្បង ដើម្បី​បង្ហាញ​រូបភាព​នឹង​ថ្កល់​ពី​ម៉ាស៊ីន​ថត\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​មើល​ឃើញ​រូបភាព​ទេ ?"
+
+#. description
+#: ../jobs/codecs.txt.in:7
+msgid ""
+"PURPOSE:\n"
+"   This test will verify your system's ability to play Ogg Vorbis audio "
+"files.\n"
+"STEPS:\n"
+"   1. Click Test to play an Ogg Vorbis file (.ogg)\n"
+"   2. Please close the player to proceed.\n"
+"VERIFICATION:\n"
+"   Did the sample play correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​សមត្ថភាព​របស់​ប្រព័ន្ធ "
+"ដើម្បី​ចាក់​ឯកសារ​អូឌីយ៉ូ Ogg Vorbis ។\n"
+"ជំហាន ៖\n"
+"   ១. ចុច​ សាកល្បង ដើម្បី​ចាក់​ឯកសារ Ogg Vorbis (.ogg)\n"
+"   ២. សូម​បិទ​កម្មវិធី​ចាក់ ដើម្បី​បន្ត ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​គំរូ​នេះ​ចាក់​យ៉ាង​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/codecs.txt.in:22
+msgid ""
+"PURPOSE:\n"
+"   This test will verify your system's ability to play Wave Audio files.\n"
+"STEPS:\n"
+"   1. Select Test to play a Wave Audio format file (.wav)\n"
+"   2. Please close the player to proceed.\n"
+"VERIFICATION:\n"
+"   Did the sample play correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​សមត្ថភាព​របស់​ប្រព័ន្ធ "
+"ដើម្បី​ចាក់​ឯកសារ​អូឌីយ៉ូ Wave Audio ។\n"
+"ជំហាន ៖\n"
+"   ១. ជ្រើស​ សាកល្បង ដើម្បី​ចាក់​ឯកសារ​ទ្រង់ទ្រាយ​ Wave Audio (.wav)\n"
+"   ២. សូម​បិទ​កម្មវិធី​ចាក់ ដើម្បី​បន្ត ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​គំរូ​ចាក់​យ៉ាង​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/cpu.txt.in:8
+msgid ""
+"Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
+msgstr ""
+"សាកល្បង​សមត្ថភាព​ធ្វើ​មាត្រដ្ឋាន​ស៊ីភីយូ​ដោយ​ប្រើ​ឈុត​សាកល្បង​កម្មវិធី​បង្កប់"
+" (fwts cpufreq) ។"
+
+#. description
+#: ../jobs/cpu.txt.in:15
+msgid "Attaches the log generated by cpu/scaling_test to the results"
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:21
+msgid "Test for clock jitter."
+msgstr "សាកល្បង​បម្រែបម្រួល​របស់​នាឡិកា ។"
+
+#. description
+#: ../jobs/cpu.txt.in:28
+msgid "Test offlining CPUs in a multicore system."
+msgstr ""
+"ការ​សាកល្បង​ស៊ីភីយូ​ក្រៅ​បណ្ដាញ​នៅ​ក្នុង​ប្រព័ន្ធ​ដែល​មាន​ស្នូល​ច្រើន ។"
+
+#. description
+#: ../jobs/cpu.txt.in:35
+msgid "This test checks cpu topology for accuracy"
+msgstr "ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ក្បួន​ត​ស៊ីភីយូ"
+
+#. description
+#: ../jobs/cpu.txt.in:42
+msgid "This test checks that CPU frequency governors are obeyed when set."
+msgstr ""
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​អ្នកគ្រប់គ្រង​ប្រេកង់​ស៊ីភីយូ​ត្រូវ​បាន​អនុវត្ត​តាម "
+"នៅ​ពេល​ដែល​បាន​កំណត់​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:5
+msgid "Test if the atd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន atd កំពុង​ដំណើរការ​ "
+"នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:11
+msgid "Test if the cron daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន cron កំពុង​ដំណើរការ "
+"នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:17
+msgid "Test if the cupsd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន cupsd កំពុង​ដំណើរការ "
+"នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:23
+msgid "Test if the getty daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន getty កំពុង​ដំណើរការ "
+"នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:29
+msgid "Test if the init daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន init កំពុង​ដំណើរការ "
+"នៅ​ពេល​ដែល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:35
+msgid "Test if the klogd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន klogd កំពុង​ដំណើរការ "
+"នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:41
+msgid "Test if the nmbd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន nmbd កំពុង​ដំណើរការ "
+"នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:47
+msgid "Test if the smbd daemon is running when the package is installed."
+msgstr ""
+"ថា​តើ​ដេមិន smbd កំពុង​ដំណើរការ នៅ​ពេល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:53
+msgid "Test if the syslogd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន syslogd កំពុង​ដំណើរការ "
+"នៅ​ពេល​ដែល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:60
+msgid "Test if the udevd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន udevd កំពុង​ដំណើរការ "
+"នៅ​ពេល​ដែល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/daemons.txt.in:66
+msgid "Test if the winbindd daemon is running when the package is installed."
+msgstr ""
+"សាកល្បង​ថា​តើ​ដេមិន winbindd កំពុង​ដំណើរការ "
+"នៅ​ពេល​ដែល​កញ្ចប់​ត្រូវ​បាន​ដំឡើង​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/disk.txt.in:4
+msgid "Detects and displays disks attached to the system."
+msgstr "រក និង​បង្ហាញ​ថាស​ដែល​ភ្ជាប់​ទៅ​ប្រព័ន្ធ ។"
+
+#. description
+#: ../jobs/disk.txt.in:9
+msgid "Check stats changes for each disk"
+msgstr "ពិនិត្យមើល​សភាព​ផ្លាស់ប្ដូរ​សម្រាប់​ថាស​នីមួយៗ"
+
+#. description
+#: ../jobs/disk.txt.in:27
+msgid "SMART test"
+msgstr "ការ​សាកល្បង SMART"
+
+#. description
+#: ../jobs/disk.txt.in:45
+msgid "Maximum disk space used during a default installation test"
+msgstr ""
+"ទំហំ​ថាស​អតិបរមា​ដែល​ត្រូវ​ប្រើ​ក្នុង​អំឡុង​ពេល​សាកល្បង​ដំឡើង​តាម​លំនាំដើម"
+
+#. description
+#: ../jobs/disk.txt.in:62
+msgid "Verify system storage performs at or above baseline performance"
+msgstr ""
+"ផ្ទៀងផ្ទាត់​ឧបករណ៍​ផ្ទុក​ប្រព័ន្ធ​ដែល​អនុវត្ត​នៅ​ត្រង់ ឬ​ខាងលើ​បន្ទាត់​គោល"
+
+#. description
+#: ../jobs/disk.txt.in:79
+msgid ""
+"Verify that storage devices, such as Fibre Channel and RAID can be detected "
+"and perform under stress."
+msgstr ""
+"ផ្ទៀងផ្ទាត់​ថា​ឧបករណ៍​ផ្ទុក ដូចជា Fibre Channel និង RAID "
+"អាច​ត្រូវ​បាន​រក​ឃើញ និង​ប្រតិបត្តិ​ក្រោម​ស្ថានភាព​លំបាក ។"
+
+#. description
+#: ../jobs/fingerprint.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that a fingerprint reader will work properly for "
+"logging into your system.\n"
+"PREREQUISITES:\n"
+"   This test case assumes that there's a testing account from which test "
+"cases are run and a personal account that the tester uses to verify the "
+"fingerprint reader\n"
+"STEPS:\n"
+"   1. Click on the user switcher applet.\n"
+"   2. Select your user name.\n"
+"   3. A window should appear that provides the ability to login either "
+"typing your password or using fingerprint authentication.\n"
+"   4. Use the fingerprint reader to login.\n"
+"   5. Click on the user switcher applet.\n"
+"   6. Select the testing account to continue running tests.\n"
+"VERIFICATION:\n"
+"   Did the authentication procedure work correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា "
+"កម្មវិធី​អាន​ស្នាម​ម្រាមដៃ​នឹង​ដំណើរការ​ត្រឹមត្រូវ​សម្រាប់​ការ​ចូល​ទៅ​ក្នុង​ប"
+"្រព័ន្ធ​របស់​អ្នក ។\n"
+"តម្រូវការ​ជាមុន ៖\n"
+"   ករណី​សាកល្បង​នេះ​សន្មត​ថា "
+"មាន​គណនី​សាកល្បង​មក​ពី​ករណី​សាកល្បង​ដែល​ត្រូវ​បាន​ដំណើរការ​ "
+"និង​គណនី​ផ្ទាល់ខ្លួន​ដែល​កម្មវិធី​សាកល្បង​ប្រើ​ "
+"ដើម្បី​ផ្ទៀងផ្ទាត់​កម្មវិធី​អាន​ស្នាម​ម្រាម​ដៃ\n"
+"ជំហាន ៖\n"
+"   ១. ចុច​លើ​អាប់ភ្លេត​កម្មវិធី​ប្ដូរ​អ្នកប្រើ ។\n"
+"   ២. ជ្រើស​ឈ្មោះ​អ្នកប្រើ​របស់​អ្នក ។\n"
+"   ៣. បង្អួច​គួរតែ​បង្ហាញ​ថា​ "
+"នឹង​ផ្ដល់​សមត្ថភាព​ក្នុង​ការ​ចូល​ដោយ​ប្រើ​ពាក្យសម្ងាត់​របស់​អ្នក "
+"ឬ​ប្រើការ​ផ្ទៀងផ្ទាត់​ស្នាម​ម្រាមដៃ ។\n"
+"   ៤. ប្រើ​កម្មវិធី​អាន​ស្នាម​ម្រាមដៃ ដើម្បី​ចូល ។\n"
+"   ៥. ចុច​លើ​អាប់ភ្លេត​កម្មវិធី​ប្ដូរ​អ្នកប្រើ ។\n"
+"   ៦. ជ្រើស​គណនី​សាកល្បង ដើម្បី​បន្ត​ដំណើរការ​សាកល្បង ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​បែបបទ​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​ដំណើរការ​យ៉ាង​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/fingerprint.txt.in:20
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that a fingerprint reader can be used to unlock a "
+"locked system.\n"
+"STEPS:\n"
+"   1. Click on the user switcher applet.\n"
+"   2. Select 'Lock screen'.\n"
+"   3. Press any key or move the mouse.\n"
+"   4. A window should appear that provides the ability to unlock either "
+"typing your password or using fingerprint authentication.\n"
+"   5. Use the fingerprint reader to unlock.\n"
+"   6. Your screen should be unlocked.\n"
+"VERIFICATION:\n"
+"   Did the authentication procedure work correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា "
+"កម្មវិធី​អាន​ស្នាម​ម្រាមដៃ​អាច​ត្រូវ​បាន​ប្រើ "
+"ដើម្បី​ដោះ​សោ​ប្រព័ន្ធ​ដែល​ជាប់​សោ​ដែរ​ឬ​ទេ ។\n"
+"ជំហាន ៖\n"
+"   ១. ចុច​លើ​អាប់ភ្លេត​កម្មវិធី​ប្ដូរ​អ្នកប្រើ ។\n"
+"   ២. ជ្រើស 'ចាក់សោ​អេក្រង់' ។\n"
+"   ៣. ចុច​គ្រាប់ចុច​ណាមួយ ឬ​ផ្លាស់ទី​កណ្ដុរ ។\n"
+"   ៤. បង្អួច​គួរតែ​បង្ហាញ​ថា "
+"នឹង​ផ្ដល់​សមត្ថភាព​ក្នុង​ការ​ដោះ​សោ​ដោយ​ការ​ប្រើ​ពាក្យសម្ងាត់ "
+"ឬ​ដោយ​ការ​ប្រើ​ការ​ផ្ទៀងផ្ទាត់​ស្នាម​ម្រាមដៃ ។\n"
+"   ៥. ប្រើ​កម្មវិធី​អាន​ស្នាម​ម្រាមដៃ ដើម្បី​ដោះសោ ។\n"
+"   ៦. អេក្រង់​របស់​អ្នក​គួរតែ​ត្រូវ​បាន​ចាក់សោ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​បែបបទ​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​ដំណើរការ​យ៉ាង​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/firewire.txt.in:4
+msgid ""
+"PURPOSE:\n"
+"    This test will check the system can detect the insertion of a FireWire "
+"HDD\n"
+"STEPS:\n"
+"    1. Click 'Test' to begin the test. This test will\n"
+"       timeout and fail if the insertion has not been detected within 20 "
+"seconds.\n"
+"    2. Plug a FireWire HDD into an available FireWire port.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
+msgstr ""
+
+#. description
+#: ../jobs/firewire.txt.in:20
+msgid ""
+"This is an automated test which performs read/write operations on an "
+"attached FireWire HDD"
+msgstr "សាកល្បង"
+
+#. description
+#: ../jobs/firewire.txt.in:28
+msgid ""
+"PURPOSE:\n"
+"    This test will check the system can detect the removal of a FireWire "
+"HDD\n"
+"STEPS:\n"
+"    1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"       the removal has not been detected within 20 seconds.\n"
+"    2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
+msgstr ""
+
+#. description
+#: ../jobs/floppy.txt.in:4
+msgid "Floppy test"
+msgstr "ការ​សាកល្បង​ថាស​ទន់"
+
+#. description
+#: ../jobs/graphics.txt.in:10
+msgid "Test to output the Xorg version"
+msgstr "សាកល្បង ដើម្បី​បង្ហាញ​កំណែ Xorg"
+
+#. description
+#: ../jobs/benchmarks.txt.in:34
+msgid "Run gtkperf to make sure that GTK based test cases work"
+msgstr ""
+"ដំណើរការ gtkperf ដើម្បី​ប្រាកដ​ថា ករណី​សាកល្បង​ដែល​មាន​មូលដ្ឋាន​លើ GTK "
+"ដំណើរការ"
+
+#. description
+#: ../jobs/graphics.txt.in:15
+msgid ""
+"PURPOSE:\n"
+"    This test will verify that the GUI is usable after manually changing "
+"resolution\n"
+"STEPS:\n"
+"    1. Open the Displays application\n"
+"    2. Select a new resolution from the dropdown list\n"
+"    3. Click on Apply\n"
+"    4. Select the original resolution from the dropdown list\n"
+"    5. Click on Apply\n"
+"VERIFICATION:\n"
+"    Did the resolution change as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា "
+"ចំណុច​ប្រទាក់​អ្នកប្រើ​ក្រាហ្វិក​អាច​ប្រើ​បាន "
+"បន្ទាប់ពី​បាន​ផ្លាស់ប្ដូរ​គុណភាព​បង្ហាញ​ដោយដៃ\n"
+"ជំហាន ៖\n"
+"    ១. បើក​ការ​បង្ហាញ​កម្មវិធី\n"
+"    ២. ជ្រើស​គុណភាព​បង្ហាញ​ពី​បញ្ជី​ធ្លាក់​ចុះ\n"
+"    ៣. ចុច​លើ​អនុវត្ត\n"
+"    ៤. ជ្រើស​គុណភាព​បង្ហាញ​ដើម​ពី​បញ្ជី​ធ្លាក់​ចុះ\n"
+"    ៥. ចុច​លើ​អនុវត្ត\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​គុណភាព​បង្ហាញ​ផ្លាស់ប្ដូរ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/graphics.txt.in:33
+msgid ""
+"PURPOSE:\n"
+"    This test will test display rotation\n"
+"STEPS:\n"
+"    1. Open the Displays application\n"
+"    2. Select a new rotation value from the dropdown list\n"
+"    3. Click on Apply\n"
+"    4. Click on Restore Previous Configuration\n"
+"    5. Click on Apply\n"
+"    6. Repeat 2-5 for different rotation values\n"
+"VERIFICATION:\n"
+"    Did the display rotation change as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​ការ​បង្ហាញ​ការ​បង្វិល\n"
+"ជំហាន ៖\n"
+"    ១. បើក​ការ​បង្ហាញ​កម្មវិធី\n"
+"    ២. ជ្រើស​​តម្លៃ​បង្វិល​ថ្មី​ពី​បញ្ជី​ធ្លាក់​ចុះ\n"
+"    ៣. ចុច​លើ​អនុវត្ត\n"
+"    ៤. ចុច​លើ​ស្ដារ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ពីមុន\n"
+"    ៥. ចុច​លើ​អនុវត្ត\n"
+"    ៦. បង្ហាញ ២-៥ ម្ដង​ទៀត សម្រាប់​តម្លៃ​បង្វិល​ផ្សេងទៀត\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ការ​បង្ហាញ​ការ​បង្វិល​ផ្លាស់ប្ដូរ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/graphics.txt.in:33
+msgid "Test that the X process is running."
+msgstr "សាកល្បង​ថា​ដំណើរការ X កំពុង​ដំណើរការ​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/graphics.txt.in:39
+msgid "Test that the X is not running in failsafe mode."
+msgstr ""
+"សាកល្បង​ថា​ដំណើរការ X "
+"មិន​កំពុង​ដំណើរការ​នៅ​ក្នុង​របៀប​បរាជ័យ​ដោយ​សុវត្ថិភាព​ទេ ។"
+
+#. description
+#: ../jobs/graphics.txt.in:63
+msgid ""
+"Test that X does not leak memory when running programs on systems with intel "
+"based graphics."
+msgstr ""
+"សាកល្បង​ថា​ដំណើរការ X មិន​បង្ហួរ​អង្គ​ចងចាំ "
+"នៅ​ពេល​ដំណើរការ​កម្មវិធី​នៅ​លើ​ប្រព័ន្ធ​ដោយប្រើ​ក្រាហ្វិក​ដែល​មាន​មូលដ្ឋាន​លើ"
+" intel ទេ ។"
+
+#. description
+#: ../jobs/graphics.txt.in:46
+msgid ""
+"PURPOSE:\n"
+"    This test will verify the default display resolution\n"
+"STEPS:\n"
+"    1. This display is using the following resolution:\n"
+"INFO:\n"
+"    $output\n"
+"VERIFICATION:\n"
+"    Is this acceptable for your display?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​គុណភាព​បង្ហាញ​លំនាំដើម\n"
+"ជំហាន ៖\n"
+"    ១. ការ​បង្ហាញ​នេះ​ប្រើ​គុណភាព​បង្ហាញ​ដូច​ខាងក្រោម ៖\n"
+"ព័ត៌មាន ៖\n"
+"    $output\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​វា​អាច​ទទួលយក​បាន​ដែរ​ឬ​ទេ​សម្រាប់​ការ​បង្ហាញ​របស់​អ្នក ?"
+
+#. description
+#: ../jobs/graphics.txt.in:61
+msgid ""
+"Ensure the current resolution meets or exceeds the recommended minimum "
+"resolution (800x600). See here for details:"
+msgstr ""
+"ប្រាកដ​ថា គុណភាព​បង្ហាញ​បច្ចុប្បន្ន​​ត្រូវ​នឹង "
+"ឬ​លើស​គុណភាព​បង្ហាញ​អប្បបរមា​ដូច​ដែល​បាន​ផ្ដល់​អនុសាសន៍ (800x600) ។ "
+"ចំពោះ​សេចក្ដី​លម្អិត សូម​មើល​នៅទីនេះ ៖"
+
+#. description
+#: ../jobs/graphics.txt.in:61
+msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
+
+#. description
+#: ../jobs/graphics.txt.in:93
+msgid ""
+"PURPOSE:\n"
+"    This test will test the default display\n"
+"STEPS:\n"
+"    1. Click \"Test\" to display a video test.\n"
+"VERIFICATION:\n"
+"    Do you see color bars and static?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​ការ​បង្ហាញ​លំនាំដើម\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" ដើម្បី​បង្ហាញ​ការ​សាកល្បង​​វីដេអូ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អ្នក​មើល​ឃើញ​របារ និង​ស្ថិតិ​ពណ៌​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/graphics.txt.in:104
+msgid "Check that VESA drivers are not in use"
+msgstr "ពិនិត្យមើល​ថា​កម្មវិធី​បញ្ជា VESA មិន​ត្រូវ​បាន​កំពុង​ប្រើ"
+
+#. description
+#: ../jobs/graphics.txt.in:111
+msgid ""
+"PURPOSE:\n"
+"    This test cycles through the detected video modes\n"
+"STEPS:\n"
+"    1. Click \"Test\" to start cycling through the video modes\n"
+"VERIFICATION:\n"
+"    Did the screen appear to be working for each mode?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​វិល​ជុំ​តាម​រយៈ​របៀប​វីដេអូ​ដែល​បាន​រក​ឃើញ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ការ​វិល​ជុំ​តាម​រយៈ​របៀប​វីដេអូ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អេក្រង់​នឹង​ដំណើរការ​សម្រាប់​របៀប​នីមួយ​ៗ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/graphics.txt.in:136
+msgid "Check that hardware is able to run compiz"
+msgstr "ពិនិត្យមើល​ថា​ផ្នែក​រឹង​អាច​ដំណើរការ compiz បាន"
+
+#. description
+#: ../jobs/graphics.txt.in:142
+msgid "Check that hardware is able to run Unity 3D"
+msgstr "ពិនិត្យមើល​ថា​ផ្នែក​រឹង​អាច​ដំណើរការ Unity 3D បាន"
+
+#. description
+#: ../jobs/graphics.txt.in:148
+msgid ""
+"PURPOSE:\n"
+"    This test tests the basic 3D capabilities of your video card\n"
+"STEPS:\n"
+"    1. Click \"Test\" to execute an OpenGL demo. Press ESC at any time to "
+"close.\n"
+"    2. Verify that the animation is not jerky or slow.\n"
+"VERIFICATION:\n"
+"    1. Did the 3d animation appear?\n"
+"    2. Was the animation free from slowness/jerkiness?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​សាកល្បង​សមត្ថភាព​ត្រីមាត្រ​មូលដ្ឋាន​របស់​កាត​វីដេអូ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" ដើម្បី​ប្រតិបត្តិការ​បង្ហាញ OpenGL សាកល្បង ។ "
+"ចុច​គ្រាប់ចុច​​គេច (ESC) ដើម្បី​បិទ​នៅ​ពេល​ណាមួយ ។\n"
+"    ២. ផ្ទៀងផ្ទាត់​ថា​ចលនា​មិន​ញាក់ ឬ​យឺត ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    ១. តើ​ចលនា​ត្រីមាត្រ​បង្ហាញ​ឡើង​ដែរ​ឬ​ទេ ?\n"
+"    ២. តើ​ចលនា​លឿន/មិន​ញាក់​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/graphics.txt.in:155
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen (logged on Unity desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:198 ../jobs/suspend.txt.in:849
+msgid "Attaches the screenshot captured in graphics/screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:178
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen during fullscreen video "
+"playback\n"
+"STEPS:\n"
+"    1. Start a fullscreen video playback\n"
+"    2. Take picture using USB webcam after a few seconds\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:223
+msgid ""
+"Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
+msgstr ""
+
+#. description
+#: ../jobs/hibernate.txt.in:14
+msgid ""
+"PURPOSE:\n"
+"    This test will check to make sure your system can successfully hibernate "
+"(if supported)\n"
+"STEPS:\n"
+"    1. Click on Test\n"
+"    2. The system will hibernate and should wake itself within 5 minutes\n"
+"    3. If your system does not wake itself after 5 minutes, please press the "
+"power button to wake the system manually\n"
+"    4. If the system fails to resume from hibernate, please restart System "
+"Testing and mark this test as Failed\n"
+"VERIFICATION:\n"
+"    Did the system successfully hibernate and did it work properly after "
+"waking up?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល "
+"ដើម្បី​ឲ្យ​ប្រាកដ​ថា​ប្រព័ន្ធ​របស់​អ្នក​អាច​សម្ងំ​ដោយ​ជោគជ័យ "
+"(ប្រសិនបើ​គាំទ្រ)\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​សាកល្បង\n"
+"    ២. ប្រព័ន្ធ​នឹង​សម្ងំ ហើយ​នឹង​ភ្ញាក់​ដោយ​ខ្លួនឯង​ក្នុង​រយៈ​ពេល ៥ នាទី ។\n"
+"    ៣. ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​ភ្ញាក់​ដោយ​ខ្លួនឯង​ បន្ទាប់ពី ៥ "
+"នាទី​បាន​កន្លង​ទៅ សូម​ចុច​ប៊ូតុង​ថាមពល "
+"ដើម្បី​ដាស់​ឲ្យ​ប្រព័ន្ធ​ភ្ញាក់​ដោយដៃ\n"
+"    ៤. ប្រសិនបើ​ប្រព័ន្ធ​បរាជ័យ​ក្នុង​ការ​បន្ត​ពី​សម្ងំ "
+"សូម​ចាប់ផ្ដើម​ការ​សាកល្បង​ប្រព័ន្ធ​ឡើងវិញ "
+"រួច​សម្គាល់​ការ​សាកល្បង​នេះ​ថា​បាន​បរាជ័យ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ប្រព័ន្ធ​សម្ងំ​ដោយ​ជោគជ័យ និង​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ "
+"បន្ទាប់ពី​បាន​ភ្ញាក់ ?"
+
+#. description
+#: ../jobs/info.txt.in:5
+msgid "Attaches a report of installed codecs for Intel HDA"
+msgstr "ភ្ជាប់​របាយការណ៍​កូដិកដែល​បាន​ដំឡើង​សម្រាប់ Intel HDA"
+
+#. description
+#: ../jobs/info.txt.in:10
+msgid "Attaches a report of CPU information"
+msgstr "ភ្ជាប់​របាយការណ៍​ព័ត៌មាន​ស៊ីភីយូ"
+
+#. description
+#: ../jobs/info.txt.in:15
+msgid "Attaches a copy of /var/log/dmesg to the test results"
+msgstr "ភ្ជាប់​ច្បាប់​ចម្លង /var/log/dmesg ជាមួយ​លទ្ធផល​សាកល្បង"
+
+#. description
+#: ../jobs/info.txt.in:20
+msgid "Attaches info on DMI"
+msgstr "ភ្ជាប់​ព័ត៌មាន​នៅ​លើ DMI"
+
+#. description
+#: ../jobs/info.txt.in:26
+msgid "Attaches dmidecode output"
+msgstr "ភ្ជាប់​ទិន្នន័យ dmidecode"
+
+#. description
+#: ../jobs/info.txt.in:37
+msgid "Attaches very verbose lspci output."
+msgstr "ភ្ជាប់​ទិន្នន័យ lspci ដែល​មាន​ការ​បរិយាយ ។"
+
+#. description
+#: ../jobs/info.txt.in:42
+msgid "Attaches very verbose lspci output (with central database Query)."
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:49
+msgid "List USB devices"
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:58
+msgid "Attaches the contents of the various modprobe conf files."
+msgstr "ភ្ជាប់​មាតិកា​ឯកសារ modprobe conf ផ្សេងៗ ។"
+
+#. description
+#: ../jobs/info.txt.in:63
+msgid "Attaches the contents of the /etc/modules file."
+msgstr "ភ្ជាប់​មាតិកា​ឯកសារ /etc/modules ។"
+
+#. description
+#: ../jobs/info.txt.in:68
+msgid "attaches the contents of various sysctl config files."
+msgstr "ភ្ជាប់​មាតិកា​ឯកសារ sysctl config ផ្សេង​ៗ ។"
+
+#. description
+#: ../jobs/info.txt.in:72
+msgid "Attaches a report of sysfs attributes."
+msgstr "ភ្ជាប់​របាយការណ៍​គុណ​លក្ខណៈ sysfs ។"
+
+#. description
+#: ../jobs/info.txt.in:83
+msgid ""
+"Attaches a dump of the udev database showing system hardware information."
+msgstr ""
+"ភ្ជាប់​បណ្ដុំ​នៃ​មូលដ្ឋាន​ទិន្នន័យ udev "
+"ដែល​បង្ហាញ​ព័ត៌មាន​ផ្នែក​រឹង​របស់​ប្រព័ន្ធ ។"
+
+#. description
+#: ../jobs/info.txt.in:95
+msgid "Attaches a tarball of gcov data if present."
+msgstr "ភ្ជាប់​ឯកសារ tarball នៃ​ទិន្នន័យ gcov ប្រសិនបើ​មាន ។"
+
+#. description
+#: ../jobs/info.txt.in:100
+msgid "Attaches a list of the currently running kernel modules."
+msgstr "ភ្ជាប់​បញ្ជី​ម៉ូឌុល​ខឺណែល​ដែល​កំពុង​តែ​ដំណើរការ​បច្ចុប្បន្ន ។"
+
+#. description
+#: ../jobs/info.txt.in:105
+msgid "Attaches the contents of /proc/acpi/sleep if it exists."
+msgstr "ភ្ជាប់​មាតិកា /proc/acpi/sleep ប្រសិនបើ​វាមាន ។"
+
+#. description
+#: ../jobs/info.txt.in:109
+msgid "Bootchart information."
+msgstr "ព័ត៌មាន Bootchart ។"
+
+#. description
+#: ../jobs/info.txt.in:118
+msgid "SATA/IDE device information."
+msgstr "ព័ត៌មាន​ឧបករណ៍ SATA/IDE ។"
+
+#. description
+#: ../jobs/info.txt.in:137
+msgid "Attaches the bootchart png file for bootchart runs"
+msgstr "ភ្ជាប់​ឯកសារ bootchart png សម្រាប់​ការ​ដំណើរការ bootchart"
+
+#. description
+#: ../jobs/info.txt.in:146
+msgid "Attaches the bootchart log for bootchart test runs."
+msgstr "ភ្ជាប់​កំណត់ហេតុ bootchart សម្រាប់​ការ​ដំណើរការ​​សាកល្បង bootchart ។"
+
+#. description
+#: ../jobs/info.txt.in:154
+msgid "installs the installer bootchart tarball if it exists."
+msgstr "ដំឡើង​ឯកសារ tarball bootchart របស់​កម្មវិធី​ដំឡើង ប្រសិនបើ​វា​មាន ។"
+
+#. description
+#: ../jobs/info.txt.in:159
+msgid "Attaches the installer debug log if it exists."
+msgstr "ភ្ជាប់​កំណត់ហេតុ​បំបាត់​កំហុស​កម្មវិធី​ដំឡើង ប្រសិនបើ​វា​មាន ។"
+
+#. description
+#: ../jobs/input.txt.in:22
+msgid ""
+"PURPOSE:\n"
+"    This test will test your pointing device\n"
+"STEPS:\n"
+"    1. Move the cursor using the pointing device or touch the screen.\n"
+"    2. Perform some single/double/right click operations.\n"
+"VERIFICATION:\n"
+"    Did the pointing device work as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​ឧបករណ៍​ចង្អុល​របស់​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. ផ្លាស់ទី​ទស្សន៍ទ្រនិច​ដោយ​ប្រើ​ឧបករណ៍​ចង្អុល ឬ​ប៉ះ​លើ​អេក្រង់ ។\n"
+"    ២. អនុវត្ត​ប្រតិបត្តិការ​ចុច​ម្ដង/ទ្វេ​ដង/កណ្ដុរ​ស្ដាំ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ឧបករណ៍​ចង្អុល​ដំណើរការ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/input.txt.in:35
+msgid ""
+"PURPOSE:\n"
+"    This test will test your keyboard\n"
+"STEPS:\n"
+"    1. Click on Test\n"
+"    2. On the open text area, use your keyboard to type something\n"
+"VERIFICATION:\n"
+"    Is your keyboard working properly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​ប្រើ​ក្ដារ​ចុច​របស់​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​សាកល្បង\n"
+"    ២. នៅ​ពេល​ផ្ទៃ​អត្ថបទ ប្រើ​ក្ដារ​ចុច​របស់​អ្នក ដើម្បី​វាយ​អ្វី​មួយ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ក្ដារចុច​របស់​អ្នក​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/install.txt.in:6
+msgid ""
+"Tests to see that apt can access repositories and get updates (does not "
+"install updates). This is done to confirm that you could recover from an "
+"incomplete or broken update."
+msgstr ""
+"សាកល្បង ដើម្បី​មើល​ថា apt អាច​ចូល​ដំណើរការ​ឃ្លាំង និង​យក​បច្ចុប្បន្នភាព​បាន "
+"(មិន​ដំឡើង​បច្ចុប្បន្នភាព​) ។ វា​ត្រូវ​បាន​ធ្វើ​ ដើម្បី​បញ្ជាក់​ថា "
+"អ្នក​អាច​សង្គ្រោះ​ពី​បច្ចុប្បន្នភាព​មិន​ពេញលេញ ឬ​បច្ចុប្បន្នភាព​ខូច ។"
+
+#. description
+#: ../jobs/keys.txt.in:4
+msgid ""
+"PURPOSE:\n"
+"    This test will test the brightness key\n"
+"STEPS:\n"
+"    1. Press the brightness buttons on the keyboard\n"
+"VERIFICATION:\n"
+"    Did the brightness change following to your key presses?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​គ្រាប់ចុច​ពន្លឺ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​ប៊ូតុង​ពន្លឺ នៅ​លើ​ក្ដារចុច\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    "
+"តើ​ការ​ផ្លាស់ប្ដូរ​ពន្លឺ​អនុវត្ត​តាម​ការ​ចុច​គ្រាប់ចុច​របស់​អ្នក​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/keys.txt.in:14
+msgid ""
+"PURPOSE:\n"
+"    This test will test the volume keys\n"
+"STEPS:\n"
+"    1. Press the volume buttons on the keyboard\n"
+"VERIFICATION:\n"
+"    Did the volume change following to your key presses?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​គ្រាប់ចុច​កម្រិត​សំឡេង\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​ប៊ូតុង​កម្រិត​សំឡេង​នៅ​លើ​ក្ដារចុច​​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    "
+"តើ​ការ​ផ្លាស់ប្ដូរ​កម្រិត​សំឡេង​អនុវត្ត​តាម​ការ​ចុច​គ្រាប់ចុច​របស់​អ្នក​ដែរ​ឬ"
+"​ទេ ?"
+
+#. description
+#: ../jobs/keys.txt.in:25
+msgid ""
+"PURPOSE:\n"
+"    This test will test the mute key\n"
+"STEPS:\n"
+"    1. Press the mute button on the keyboard\n"
+"VERIFICATION:\n"
+"    Did the volume mute following your key presses?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​គ្រាប់ចុច​ស្ងាត់\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​ប៊ូតុង​ស្ងាត់​នៅ​លើ​ក្ដារចុច\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​កម្រិត​ស្ងាត់​អនុវត្ត​តាម​ការ​ចុច​គ្រាប់ចុច​របស់​អ្នក​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid ""
+"PURPOSE:\n"
+"    This test will test the sleep key\n"
+"STEPS:\n"
+"    1. Press the sleep key on the keyboard\n"
+"    2. Wake your system up by pressing the power button\n"
+"VERIFICATION:\n"
+"    Did the system go to sleep after pressing the sleep key?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​គ្រាប់ចុច​ដេក\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​គ្រាប់ចុច​ដេក​នៅ​លើ​ក្ដារចុច\n"
+"    ២. ដាស់​ឲ្យ​ប្រព័ន្ធ​របស់​អ្នក​ក្រោក ដោយ​ចុច​ប៊ូតុង​ថាមពល\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ប្រព័ន្ធ​ដេក​ដែរ​ឬ​ទេ បន្ទាប់​ពី​អ្នក​បាន​ចុច​គ្រាប់ចុច​ដេក​ ?"
+
+#. description
+#: ../jobs/keys.txt.in:49
+msgid ""
+"PURPOSE:\n"
+"    This test will test the battery information key\n"
+"STEPS:\n"
+"    1. Press the battery information key on the keyboard\n"
+"VERIFICATION:\n"
+"    Did a notification appear showing the battery status?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​គ្រាប់ចុច​ព័ត៌មាន​ថាមពល\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​គ្រាប់ចុច​ព័ត៌មាន​ថាមពល​នៅ​លើ​ក្ដារ​ចុច\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ការ​ជូនដំណឹង​នឹង​បង្ហាញ​ស្ថានភាព​ថាមពល​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/keys.txt.in:60
+msgid ""
+"PURPOSE:\n"
+"    This test will test the wireless key\n"
+"STEPS:\n"
+"    1. Press the wireless key on the keyboard\n"
+"    2. Press the same key again\n"
+"VERIFICATION:\n"
+"    Did the wireless go off on the first press and on again on the second?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​សាកល្បង​គ្រាប់​ចុច​ឥត​ខ្សែ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​គ្រាប់ចុច​ឥត​ខ្សែ​នៅ​លើ​ក្ដារចុច\n"
+"    ២. ចុច​គ្រាប់ចុច​នេះ​ម្ដងទៀត\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​គ្រាប់ចុច​ឥត​ខ្សែ​បើក នៅ​ពេល​ចុច​លើក​ទី​មួយ និង​បិទ​ "
+"នៅ​ពេល​បាន​ចុច​លើក​ទី​ពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/keys.txt.in:97
+msgid ""
+"PURPOSE:\n"
+"    This test will test the media keys of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the media keys.\n"
+"    2. If all the keys work, the test will be marked as passed.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
+"VERIFICATION:\n"
+"    Do the keys work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:113
+msgid ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:3
+msgid "Audio tests"
+msgstr "ការ​សាកល្បង​អូឌីយ៉ូ"
+
+#. description
+#: ../jobs/local.txt.in:10
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:17
+msgid "Bluetooth tests"
+msgstr "ការសាកល្បង​ប៊្លូធូស"
+
+#. description
+#: ../jobs/local.txt.in:24
+msgid "Camera tests"
+msgstr "ការ​សាកល្បង​ម៉ាស៊ីនថត"
+
+#. description
+#: ../jobs/local.txt.in:31
+msgid "Codec tests"
+msgstr "ការ​សាកល្បង​កូដិក"
+
+#. description
+#: ../jobs/local.txt.in:38
+msgid "CPU tests"
+msgstr "ការ​សាកល្បង​ស៊ីភីយូ"
+
+#. description
+#: ../jobs/local.txt.in:45
+msgid "System Daemon tests"
+msgstr "ការ​សាកល្បង​ដេមិន​ប្រព័ន្ធ"
+
+#. description
+#: ../jobs/local.txt.in:52
+msgid "Disk tests"
+msgstr "ការ​សាកល្បង​ថាស"
+
+#. description
+#: ../jobs/local.txt.in:66
+msgid "Fingerprint reader tests"
+msgstr "ការ​សាកល្បង​កម្មវិធី​អាន​ស្នាម​ម្រាមដៃ"
+
+#. description
+#: ../jobs/local.txt.in:73
+msgid "Firewire disk tests"
+msgstr "ការ​សាកល្បង​ថាស Firewire"
+
+#. description
+#: ../jobs/local.txt.in:80
+msgid "Floppy disk tests"
+msgstr "ការ​សាកល្បង​ថាសទន់"
+
+#. description
+#: ../jobs/local.txt.in:87
+msgid "Graphics tests"
+msgstr "ការសាកល្បង​ក្រាហ្វិក"
+
+#. description
+#: ../jobs/local.txt.in:94
+msgid "Hibernation tests"
+msgstr "ការ​សាកល្បង​សម្ងំ"
+
+#. description
+#: ../jobs/local.txt.in:101
+msgid "Informational tests"
+msgstr "ការ​សាកល្បង​ព័ត៌មាន"
+
+#. description
+#: ../jobs/local.txt.in:108
+msgid "Input Devices tests"
+msgstr "ការ​សាកល្បង​ឧបករណ៍​បញ្ចូល"
+
+#. description
+#: ../jobs/local.txt.in:115
+msgid "Software Installation tests"
+msgstr "ការ​សាកល្បង​ការ​ដំឡើង​កម្មវិធី"
+
+#. description
+#: ../jobs/local.txt.in:122
+msgid "Hotkey tests"
+msgstr "ការ​សាកល្បង​គ្រាប់ចុច​ចង"
+
+#. description
+#: ../jobs/local.txt.in:136
+msgid "Media Card tests"
+msgstr "ការ​សាកល្បង​កាត​មេឌៀ"
+
+#. description
+#: ../jobs/local.txt.in:143
+msgid "Memory tests"
+msgstr "ការ​សាកល្បង​អង្គ​ចងចាំ"
+
+#. description
+#: ../jobs/local.txt.in:157
+msgid "Miscellaneous tests"
+msgstr "ការ​សាកល្បង​ផ្សេងៗ"
+
+#. description
+#: ../jobs/local.txt.in:164
+msgid "Monitor tests"
+msgstr "ការ​សាកល្បង​ម៉ូនីទ័រ"
+
+#. description
+#: ../jobs/local.txt.in:171
+msgid "Networking tests"
+msgstr "ការ​សាកល្បង​បណ្ដាញ"
+
+#. description
+#: ../jobs/local.txt.in:178
+msgid "Optical Drive tests"
+msgstr "ការ​សាកល្បង​ដ្រាយ​អុបទិក"
+
+#. description
+#: ../jobs/local.txt.in:185
+msgid "Panel Clock Verification tests"
+msgstr "ការ​សាកល្បង​ការ​ផ្ទៀងផ្ទាត់បន្ទះនាឡិកា"
+
+#. description
+#: ../jobs/local.txt.in:171
+msgid "PCMCIA/PCIX Card tests"
+msgstr "ការ​សាកល្បង​កាត PCMCIA/PCIX"
+
+#. description
+#: ../jobs/local.txt.in:206
+msgid "Peripheral tests"
+msgstr "ការ​សាកល្បង​គ្រឿង​កុំព្យូទ័រ"
+
+#. description
+#: ../jobs/local.txt.in:220
+msgid "Power Management tests"
+msgstr "ការ​សាកល្បង​ការ​គ្រប់គ្រង​ថាមពល"
+
+#. description
+#: ../jobs/local.txt.in:227
+msgid "Server Services checks"
+msgstr "ការ​ពិនិត្យមើល​សេវា​ម៉ាស៊ីន​បម្រើ"
+
+#. description
+#: ../jobs/local.txt.in:234
+msgid "Suspend tests"
+msgstr "ការ​សាកល្បង​ការ​ផ្អាក"
+
+#. description
+#: ../jobs/local.txt.in:241
+msgid "Touchpad tests"
+msgstr "សាកល្បង​ការ​ប៉ះ"
+
+#. description
+#: ../jobs/local.txt.in:255
+msgid "USB tests"
+msgstr "ការ​សាកល្បង USB"
+
+#. description
+#: ../jobs/local.txt.in:262
+msgid "User Applications"
+msgstr "កម្មវិធី​អ្នកប្រើ"
+
+#. description
+#: ../jobs/local.txt.in:276
+msgid "Wireless networking tests"
+msgstr "ការ​សាកល្បង​តភ្ជាប់​បណ្ដាញ​ឥត​ខ្សែ"
+
+#. description
+#: ../jobs/local.txt.in:290
+msgid "Stress tests"
+msgstr "ការ​សាកល្បង​ចំណុច​សំខាន់"
+
+#. description
+#: ../jobs/local.txt.in:297
+msgid "Smoke tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:304
+msgid "Sniff Sniffers"
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:6
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Multimedia Card (MMC) media\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:22
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert test is "
+"run. It tests reading and writing to the MMC card."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:30
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of the MMC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:51
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an MMC card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:63
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert-after-"
+"suspend test is run. It tests reading and writing to the MMC card after the "
+"system has been suspended."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:71
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an MMC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:95
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital (SD) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:103
+msgid ""
+"This test is automated and executes after the mediacard/sd-insert test is "
+"run. It tests reading and writing to the SD card."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:111
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:140
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SD card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:145
+msgid ""
+"This test is automated and executes after the mediacard/sd-insert-after-"
+"suspend test is run. It tests reading and writing to the SD card after the "
+"system has been suspended."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:168
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader after the system "
+"has been suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:184
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+"card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:197
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert test is "
+"run. It tests reading and writing to the SDHC card."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:205
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SDHC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:229
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SDHC media card after the system has been "
+"suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:239
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert-after-"
+"suspend test is run. It tests reading and writing to the SDHC card after the "
+"system has been suspended."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:247
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an SDHC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:273
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Compact Flash (CF) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:279
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert test is "
+"run. It tests reading and writing to the CF card."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:287
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of a CF card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:318
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a CF card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:320
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert-after-"
+"suspend test is run. It tests reading and writing to the CF card after the "
+"system has been suspended."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/mediacard.txt.in:328
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of a CF card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/memory.txt.in:5
+msgid ""
+"This test checks the amount of memory which is reporting in meminfo against "
+"the size of the memory modules detected by DMI."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/memory.txt.in:13
+msgid "Test and exercise memory."
+msgstr "សាកល្បង និង​ប្រើ​អង្គចងចាំ ។"
+
+#. description
+#: ../jobs/miscellanea.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:21
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system can switch to a virtual terminal "
+"and back to X\n"
+"STEPS:\n"
+"    1. Click \"Test\" to switch to another virtual terminal and then back to "
+"X\n"
+"VERIFICATION:\n"
+"    Did your screen change temporarily to a text console and then switch "
+"back to your current session?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+"តើ​ប្រព័ន្ធ​អាច​ប្ដូរ​ទៅជា​ស្ថានីយ​និម្មិត​ និង​ត្រឡប់​ទៅកាន់ X "
+"​បាន​ដែរ​ឬ​ទេ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" ដើម្បី​ប្ដូរ​ទៅ​ស្ថានីយ​និម្មិត​មួយ​ផ្សេងទៀត "
+"បន្ទាប់មក​ត្រឡប់​ទៅកាន់ X\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អេក្រង់​របស់​អ្នក​ផ្លាស់ប្ដូរ​ជា​បណ្ដោះអាសន្ន​ទៅជា​កុងសូល​អត្ថបទ "
+"បន្ទាប់មក​ប្ដូរ​ទៅជា​សម័យ​បច្ចុប្បន្ន​វិញ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/miscellanea.txt.in:34
+msgid "Run Firmware Test Suite (fwts) automated tests."
+msgstr "ដំណើរការ​ការ​សាកល្បង​ស្វ័យប្រវត្តិ​នៃ Firmware Test Suite (fwts) ។"
+
+#. description
+#: ../jobs/miscellanea.txt.in:44
+msgid "Attaches the FWTS results log to the submission"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:51
+msgid ""
+"This will run some basic connectivity tests against a BMC, verifying that "
+"IPMI works."
+msgstr ""
+"វា​នឹង​ដំណើរការ​ការ​សាកល្បង​តភ្ជាប់​មូលដ្ឋាន​ទល់នឹង​ BMC ដោយ​ផ្ទៀងផ្ទាត់​ថា "
+"IPMI ដំណើរការ ។"
+
+#. description
+#: ../jobs/miscellanea.txt.in:57
+msgid ""
+"   Determine if we need to run tests specific to portable computers that may "
+"not apply to desktops."
+msgstr ""
+"   "
+"កំណត់​ថា​តើ​យើង​ចាំបាច់​ត្រូវ​ដំណើរការ​សាកល្បង​ជាក់លាក់​ទៅកាន់​កុំព្យូទ័រ​ចល័"
+"ត​ដែល​អាច​មិន​អនុវត្ត​ទៅកាន់​កុំព្យូទ័រ​លើ​តុ​ដែរ ឬទេ ។"
+
+#. description
+#: ../jobs/miscellanea.txt.in:65
+msgid ""
+"Test that the /var/crash directory doesn't contain anything. Lists the files "
+"contained within if it does, or echoes the status of the directory (doesn't "
+"exist/is empty)"
+msgstr "សាកល្បង"
+
+#. description
+#: ../jobs/virtualization.txt.in:6
+msgid ""
+"Test to check that virtualization is supported and the test system has at "
+"least a minimal amount of RAM to function as an OpenStack Compute Node"
+msgstr "សាកល្បង សាកល្បង"
+
+#. description
+#: ../jobs/monitor.txt.in:4
+msgid ""
+"PURPOSE:\n"
+"    This test will check your VGA port. Skip if your system does not have a "
+"VGA port.\n"
+"STEPS:\n"
+"    1. Connect a display (if not already connected) to the VGA port on your "
+"system\n"
+"VERIFICATION:\n"
+"    Was the desktop displayed correctly on both screens?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ច្រក VGA របស់​អ្នក ។ រំលង "
+"ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​មាន​ច្រក VGA ។\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ការ​បង្ហាញ (ប្រសិនបើ​មិន​ទាន់​បាន​តភ្ជាប់) ទៅកាន់​ច្រក VGA "
+"នៅ​លើ​ប្រព័ន្ធ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ផ្ទៃតុ​ត្រូវ​បាន​បង្ហាញ​ត្រឹមត្រូវ​នៅ​លើ​អេក្រង់​ទាំងពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/monitor.txt.in:15
+msgid ""
+"PURPOSE:\n"
+"    This test will check your DVI port. Skip if your system does not have a "
+"DVI port\n"
+"STEPS:\n"
+"    1. Connect a display (if not already connected) to the DVI port on your "
+"system\n"
+"VERIFICATION:\n"
+"    Was the desktop displayed correctly on both screens?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ច្រក DVI របស់​អ្នក ។ រំលង "
+"ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​មាន​ច្រក DVI\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ការ​បង្ហាញ (ប្រសិនបើ​មិន​ទាន់​បាន​តភ្ជាប់) ទៅកាន់​ច្រក DVI "
+"នៅ​លើ​ប្រព័ន្ធ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ផ្ទៃតុ​ត្រូវ​បាន​បង្ហាញ​ត្រឹមត្រូវ​នៅ​លើ​អេក្រង់​ទាំងពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/monitor.txt.in:26
+msgid ""
+"PURPOSE:\n"
+"    This test will check your DisplayPort port. Skip if your system does not "
+"have a DisplayPort port\n"
+"STEPS:\n"
+"    1. Connect a display (if not already connected) to the DisplayPort port "
+"on your system\n"
+"VERIFICATION:\n"
+"    Was the desktop displayed correctly on both screens?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ច្រក DisplayPort របស់​អ្នក ។ រំលង "
+"ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​មាន​ច្រក DisplayPort\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ការ​បង្ហាញ (ប្រសិនបើ​មិន​ទាន់​បាន​តភ្ជាប់) ទៅកាន់​ច្រក "
+"DisplayPort នៅ​លើ​ប្រព័ន្ធ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ផ្ទៃតុ​បង្ហាញ​ត្រឹមត្រូវ​នៅ​លើ​អេក្រង់​ទាំងពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/monitor.txt.in:37
+msgid ""
+"PURPOSE:\n"
+"    This test will check your HDMI port. Skip if your system does not have a "
+"HDMI port\n"
+"STEPS:\n"
+"    1. Connect a display (if not already connected) to the HDMI port on your "
+"system\n"
+"VERIFICATION:\n"
+"    Was the desktop displayed correctly on both screens?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ច្រក HDMI របស់​អ្នក ។ រំលង "
+"ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​មាន​ច្រក HDMI \n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ការ​បង្ហាញ (ប្រសិនបើ​មិន​ទាន់បាន​តភ្ជាប់) ទៅកាន់​ច្រក HDMI "
+"នៅ​លើ​ប្រព័ន្ធ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ផ្ទៃតុ​ត្រូវ​បាន​បង្ហាញ​ត្រឹមត្រូវ​នៅ​លើ​អេក្រង់​ទាំងពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/monitor.txt.in:48
+msgid ""
+"PURPOSE:\n"
+"    This test will check your S-VIDEO port. Skip if your system does not "
+"have a S-VIDEO port\n"
+"STEPS:\n"
+"    1. Connect a display (if not already connected) to the S-VIDEO port on "
+"your system\n"
+"VERIFICATION:\n"
+"    Was the desktop displayed correctly on both screens?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ច្រក S-VIDEO របស់​អ្នក ។ រំលង "
+"ប្រសិនបើ​ប្រព័ន្ធ​របស់​​អ្នក​មិន​មាន​ច្រក S-VIDEO\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ការ​បង្ហាញ (ប្រសិនបើ​មិន​ទាន់​បាន​​តភ្ជាប់) ទៅកាន់​ច្រក S-"
+"VIDEO នៅ​លើ​ប្រព័ន្ធ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ផ្ទៃតុ​ត្រូវ​បាន​បង្ហាញ​ត្រឹមត្រូវ​នៅ​លើ​អេក្រង់​ទាំងពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/monitor.txt.in:59
+msgid ""
+"PURPOSE:\n"
+"    This test will check your RCA port. Skip if your system does not have a "
+"RCA port\n"
+"STEPS:\n"
+"    1. Connect a display (if not already connected) to the RCA port on your "
+"system\n"
+"VERIFICATION:\n"
+"    Was the desktop displayed correctly on both screens?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ច្រក RCA របស់​អ្នក ។ រំលង "
+"ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​មាន​ច្រក RCA\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ការ​បង្ហាញ (ប្រសិនបើ​មិន​ទាន់​បាន​តភ្ជាប់) ទៅកាន់​ច្រក RCA "
+"នៅ​លើ​ប្រព័ន្ធ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ផ្ទៃតុ​ត្រូវ​បាន​បង្ហាញ​ត្រឹមត្រូវ​នៅ​លើ​អេក្រង់​ទាំងពីរ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/monitor.txt.in:70
+msgid ""
+"PURPOSE:\n"
+"    This test will check your monitor power saving capabilities\n"
+"STEPS:\n"
+"    1. Click \"Test\" to try the power saving capabilities of your monitor\n"
+"    2. Press any key or move the mouse to recover\n"
+"VERIFICATION:\n"
+"    Did the the monitor go blank and turn on again?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​សមត្ថភាព​ក្នុង​ការ​សន្សំ​ថាមពល​ម៉ូនីទ័រ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" ដើម្បី​សាកល្បង​សមត្ថភាព​សន្សំ​ថាមពល​ម៉ូនីទ័រ\n"
+"    ២. ចុច​គ្រាប់ចុច​ណាមួយ ឬ​ផ្លាស់ទី​កណ្ដុរ​ដើម្បី​សង្គ្រោះ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ម៉ូនីទ័រ​មាន​លក្ខណៈ​ទទេ និង​បើក​ឡើងវិញ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/networking.txt.in:8
+msgid "Test to detect the available network controllers"
+msgstr "សាកល្បង ដើម្បី​រក​មើល​ឧបករណ៍​គ្រប់គ្រង​បណ្ដាញ​ដែល​អាច​ប្រើបាន"
+
+#. description
+#: ../jobs/networking.txt.in:14
+msgid "Tests whether the system has a working Internet connection."
+msgstr ""
+"សាកល្បង​ថា​តើ​ប្រព័ន្ធ​មាន​ការ​តភ្ជាប់​អ៊ីនធឺណិត​ដែល​ដំណើរការ​ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/networking.txt.in:19
+msgid "Network Information"
+msgstr "ព័ត៌មាន​បណ្ដាញ"
+
+#. description
+#: ../jobs/networking.txt.in:43
+msgid ""
+"This is an automated test to gather some info on the current state of your "
+"network devices. If no devices are found, the test will exit with an error."
+msgstr "សាកល្បង ទេ សាកល្បង."
+
+#. description
+#: ../jobs/networking.txt.in:49
+msgid ""
+"PURPOSE:\n"
+"    This test will check your wired connection\n"
+"STEPS:\n"
+"    1. Click on the Network icon in the top panel\n"
+"    2. Select a network below the \"Wired network\" section\n"
+"    3. Click \"Test\" to verify that it's possible to establish a HTTP "
+"connection\n"
+"VERIFICATION:\n"
+"    Did a notification show and was the connection correctly established?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​​តភ្ជាប់​បណ្ដាញ​មាន​ខ្សែ​របស់​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​លើ​ រូបតំណាង​បណ្ដាញ នៅ​ក្នុង​ផ្ទាំង​​ខាងលើ\n"
+"    ២. ជ្រើស​បណ្ដាញ​ខាងក្រោម​ជម្រើស \"បណ្ដាញ​មាន​ខ្សែ\" \n"
+"    ៣. ចុច \"សាកល្បង\" ដើម្បី​ផ្ទៀងផ្ទាត់​ថា វា​អាច​ធ្វើ​ការ​តភ្ជាប់ HTTP "
+"បាន\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ការ​ជូនដំណឹង​បង្ហាញ​ និង​ត្រូវ​បាន​តភ្ជាប់​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/networking.txt.in:62
+msgid ""
+"PURPOSE:\n"
+"    This test will check that a DSL modem can be configured and connected.\n"
+"STEPS:\n"
+"    1. Connect the telephone line to the computer\n"
+"    2. Click on the Network icon on the top panel.\n"
+"    3. Select \"Edit Connections\"\n"
+"    4. Select the \"DSL\" tab\n"
+"    5. Click on \"Add\" button\n"
+"    6. Configure the connection parameters properly\n"
+"    7. Click \"Test\" to verify that it's possible to establish an HTTP "
+"connection\n"
+"VERIFICATION:\n"
+"    Did a notification show and was the connection correctly established?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ម៉ូដឹម DSL "
+"អាច​ត្រូវ​បាន​កំណត់​រចនាសម្ព័ន្ធ និង​តភ្ជាប់​ដែរ​ឬ​ទេ ។\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ខ្សែ​ទូរស័ព្ទ​ទៅ​កាន់​កុំព្យូទ័រ\n"
+"    ២. ចុច​លើ ​រូបតំណាង​បណ្ដាញ នៅ​ក្នុង​ផ្ទាំងខាងលើ ។\n"
+"    ៣. ជ្រើស \"កែសម្រួល​ការ​តភ្ជាប់\"\n"
+"    ៤. ជ្រើស​ផ្ទាំង \"DSL\" \n"
+"    ៥. ចុច​ប៊ូតុង \"បន្ថែម\" \n"
+"    ៦. កំណត់​រចនាសម្ព័ន្ធ​ប៉ារ៉ាម៉ែត្រ​តភ្ជាប់​ឲ្យ​បាន​ត្រឹមត្រូវ\n"
+"    ៧. ចុច \"សាកល្បង\" ដើម្បី​ផ្ទៀងផ្ទាត់​ថា វា​អាច​ធ្វើ​ការ​តភ្ជាប់ HTTP "
+"បាន\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ការ​ជូនដំណឹង​បង្ហាញ និង​ត្រូវ​បាន​តភ្ជាប់​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/networking.txt.in:79
+msgid ""
+"Automated test case to verify availability of some system on the network "
+"using ICMP ECHO packets."
+msgstr ""
+"ករណី​សាកល្បង​ស្វ័យប្រវត្តិ​ត្រូវតែ​ផ្ទៀងផ្ទាត់​ភាព​ដែល​​អាច​ប្រើ​បាន​នៃ​ប្រព័"
+"ន្ធ​មួយ​ចំនួន​នៅ​លើ​បណ្ដាញ​ដែល​ប្រើ​កញ្ចប់ ICMP ECHO ។"
+
+#. description
+#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
+msgid ""
+"Automated test case to make sure that it's possible to download files "
+"through HTTP"
+msgstr ""
+"ករណី​សាកល្បង​ស្វ័យប្រវត្តិ​ត្រូវតែ​ប្រាកដ​ថា វា​អាច​ទាញ​យក​ឯកសារ​តាមរយៈ HTTP "
+"បាន"
+
+#. description
+#: ../jobs/networking.txt.in:94
+msgid "Test to see if we can sync local clock to an NTP server"
+msgstr ""
+"សាកល្បង ដើម្បី​មើល​ថា "
+"តើ​យើង​អាច​ធ្វើ​សមកាលកម្ម​នាឡិកា​មូលដ្ឋាន​ទៅ​នឹង​ម៉ាស៊ីន​បម្រើ NTP "
+"បាន​ដែរ​ឬ​ទេ"
+
+#. description
+#: ../jobs/networking.txt.in:100
+msgid ""
+"Verify that an installation of checkbox-server on the network can be reached "
+"over SSH."
+msgstr ""
+"ផ្ទៀងផ្ទាត់​ថា ការ​ដំឡើង​ម៉ាស៊ីន​បម្រើ​ប្រអប់​ធីក​នៅ​លើ​បណ្ដាញ​អាច​ទៅដល់ SSH "
+"ដែរ​ឬ​ទេ ។"
+
+#. description
+#: ../jobs/networking.txt.in:106
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+"សាកល្បង​បើក​ម៉ាស៊ីន​បោះពុម្ព​ពី​ចម្ងាយ​នៅ​លើ​បណ្ដាញ "
+"​និង​បោះពុម្ព​ទំព័រ​សាកល្បង ។"
+
+#. description
+#: ../jobs/networking.txt.in:111
+msgid ""
+"Automated test to walk multiple network cards and test each one in sequence."
+msgstr ""
+"ការ​សាកល្បង​ស្វ័យប្រវត្តិ​ធ្វើឲ្យ​កាត​បណ្ដាញ​ជាច្រើន​ដំណើរការ "
+"និង​សាកល្បង​កាត​នីមួយ​ៗ​តាម​លំដាប់ ។"
+
+#. description
+#: ../jobs/networking.txt.in:131
+msgid "Test to measure the network bandwidth"
+msgstr "សាកល្បង ដើម្បី​វាស់​កម្រិត​រលក​បណ្ដាញ"
+
+#. description
+#: ../jobs/optical.txt.in:4
+msgid "Test to detect the optical drives"
+msgstr "សាកល្បង ដើម្បី​រកមើល​ដ្រាយ​អុបទិក"
+
+#. description
+#: ../jobs/optical.txt.in:16
+msgid ""
+"PURPOSE:\n"
+"    This test will check your optical devices ability to read CD media\n"
+"STEPS:\n"
+"    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+"and Audio Disks may not work. Self-created data disks have the greatest "
+"chance of working.\n"
+"    2. If a file browser window opens, you can safely close or ignore that "
+"window.\n"
+"    3. Click \"Test\" to begin the test.\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:42
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system's CD writing capabilities. This test "
+"requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank CD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+"PURPOSE:\n"
+"    This test will check your system's CD writing capabilities. This test "
+"requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank CD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+
+#. description
+#: ../jobs/optical.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will check your CD audio playback capabilities\n"
+"STEPS:\n"
+"    1. Insert an audio CD in your optical drive\n"
+"    2. When prompted, launch the Music Player\n"
+"    3. Locate the CD in the display of the Music Player\n"
+"    4. Select the CD in the Music Player\n"
+"    5. Click the Play button to listen to the music on the CD\n"
+"    6. Stop playing after some time\n"
+"    7. Right click on the CD icon and select \"Eject Disc\"\n"
+"    8. The CD should be ejected\n"
+"    9. Close the Music Player\n"
+"VERIFICATION:\n"
+"    Did all the steps work?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ភាព​ឆបគ្នា​នៃ​កម្មវិធី​ចាក់​អូឌីយ៉ូ​ស៊ីឌី​របស់"
+"​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. បញ្ចូល​ស៊ីឌី​អូឌីយ៉ូ​ទៅ​ក្នុង​ដ្រាយ​អុបទិក​របស់​អ្នក\n"
+"    ២. ពេល​បាន​ជូនដំណឹង​ហើយ ចាប់ផ្ដើម​កម្មវិធី​ចាក់​តន្ត្រី​របស់​អ្នក\n"
+"    ៣. ដាក់​ស៊ីឌី​នៅ​ក្នុង​ការ​បង្ហាញ​នៃ​កម្មវិធី​ចាក់​តន្ត្រី\n"
+"    ៤. ជ្រើស​ស៊ីឌី​នៅ​ក្នុង​កម្មវិធី​ចាក់​តន្ត្រី\n"
+"    ៥. ចុច​ប៊ូតុង​ចាក់​ដើម្បី​ស្ដាប់​តន្ត្រី​នៅ​លើ​ស៊ីឌី\n"
+"    ៦. បន្តិច​ក្រោយមក​បញ្ឈប់​ការ​ចាក់\n"
+"    ៧. ចុច​កណ្ដុរស្ដាំ​លើ​រូបតំណាង​ស៊ីឌី រួច​ជ្រើស \"ច្រាស​ថាស​ចេញ\"\n"
+"    ៨. ស៊ីឌី​គួរតែ​ត្រូវ​បាន​ច្រាន​ចេញ\n"
+"    ៩. បិទ​កម្មវិធី​ចាក់​តន្ត្រី\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​វា​ដំណើរការ​គ្រប់​ជំហាន​ទាំងអស់​ដែរ ឬទេ ?"
+
+#. description
+#: ../jobs/optical.txt.in:78
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system's DVD writing capabilities. This test "
+"requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank DVD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+"PURPOSE:\n"
+"    This test will check your system's DVD writing capabilities. This test "
+"requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank DVD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+
+#. description
+#: ../jobs/optical.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will check your DVD movie playback capabilities. Note that "
+"installation of non-free software (codecs, player, etc) may be required "
+"prior to performing this test.\n"
+"STEPS:\n"
+"    1. Insert a DVD that contains any movie in your optical drive\n"
+"    2. Open the Dash (click on the Ubuntu Circle of Friends button on the "
+"Launcher)\n"
+"    3. Click \"Media Apps\" and then click on \"Movie Player\"\n"
+"    4. Play the movie using Movie Player, stop the movie after verifying "
+"that it plays\n"
+"    6. Eject the DVD\n"
+"VERIFICATION:\n"
+"    Did all the steps work?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​សមត្ថភាព​ចាក់​ភាពយន្ត​ក្នុង​ឌីវីឌី​ជា​ថ្មី ។ "
+"ចំណាំ​ថា​ការ​ដំឡើង​កម្មវិធី​គិត​ថ្លៃ (កូដិក កម្មវិធី​ចាក់ ជាដើម) "
+"អាច​នឹង​ត្រូវ​បាន​ទាមទារ​ មុន​ពេល​អនុវត្ត​ការ​សាកល្បង​នេះ ។\n"
+"ជំហាន ៖\n"
+"    ១. បញ្ចូល​ឌីវីឌី​ដែល​មាន​ភាពយន្ត​ទៅ​ក្នុង​ដ្រាយ​អុបទិក​​របស់​អ្នក\n"
+"    ២. បើក​សញ្ញា​ដាច់​ៗ (ចុច​ប៊ូតុង Ubuntu Circle of Friends "
+"នៅ​លើ​កម្មវិធី​បើក​ដំណើរការ)\n"
+"   ៣. ចុច \"កម្មវិធី​មេឌៀ\" បន្ទាប់មក​ចុច \"កម្មវិធី​ចាក់​ភាពយន្ត\"\n"
+"    ៤. ចាក់​ភាពយន្ត​ដោយ​ប្រើ​កម្មវិធី​ចាក់​ភាពយន្ត បញ្ឈប់​ការ​ចាក់​ភាពយន្ត "
+"បន្ទាប់ពី​បាន​ផ្ទៀងផ្ទាត់​ថា​វា​ចាក់\n"
+"    ៦. ច្រាន​ឌីវីឌី​ចេញ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ជំហាន​ទាំងអស់​ដំណើរការ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/optical.txt.in:154
+msgid ""
+"PURPOSE:\n"
+"    This test will check your DVD  playback capabilities\n"
+"STEPS:\n"
+"    1. Insert a DVD that contains any movie in your optical drive\n"
+"    2. Click \"Test\" to play the DVD in Totem\n"
+"VERIFICATION:\n"
+"    Did the file play?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​សមត្ថភាព​ចាក់​ឌីវីឌី​សារ​ថ្មី\n"
+"ជំហាន ៖\n"
+"    ១. បញ្ចូល​ឌីវីឌី​ដែល​មាន​ភាពយន្ត​ណាមួយ​ទៅ​ក្នុង​ដ្រាយ​អុបទិក​របស់​អ្នក\n"
+"    ២. ចុច \"សាកល្បង\" ដើម្បី​ចាក់​ឌីវីឌី​នៅ​ក្នុង Totem\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​វា​ចាក់​ឯកសារ​ដែរ​ឬ​ទេ ?"
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:4
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that the desktop clock displays the correct date "
+"and time\n"
+"STEPS:\n"
+"   1. Check the clock in the upper right corner of your desktop.\n"
+"VERIFICATION:\n"
+"   Is the clock displaying the correct date and time for your timezone?"
+msgstr ""
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:18
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that the desktop clock synchronizes with the system "
+"clock.\n"
+"STEPS:\n"
+"   1. Click the \"Test\" button and verify the clock moves ahead by 1 hour.\n"
+"   Note: It may take a minute or so for the clock to refresh\n"
+"   2. Right click on the clock, then click on \"Time & Date Settings...\"\n"
+"   3. Ensure that your clock application is set to manual.\n"
+"   4. Change the time 1 hour back\n"
+"   5. Close the window and reboot\n"
+"VERIFICATION:\n"
+"   Is your system clock displaying the correct date and time for your "
+"timezone?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   "
+"ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ការ​ធ្វើ​សមកាលកម្ម​នាឡិកា​ផ្ទៃតុ​របស់​អ្នក​ជា"
+"មួយ​នាឡិកា​ប្រព័ន្ធ ។\n"
+"ជំហាន ៖\n"
+"   ១. ចុច​ប៊ូតុង \"សាកល្បង\" រួច​ផ្ទៀងផ្ទាត់​ដោយ​ឲ្យ​នាឡិកា​ដើរ​បាន​មួយ​ម៉ោង "
+"។\n"
+"   ចំណាំ ៖ វា​អាច​ត្រូវការ​ពេលវេលា​ខ្លះ​សម្រាប់​នាឡិកា​ដើម្បីឲ្យ​ស្រស់\n"
+"   ២. ចុច​កណ្ដុរស្ដាំ​លើ​នាឡិកា បន្ទាប់មក​ចុច​លើ \"ការ​កំណត់​ពេលវេលា "
+"និង​កាលបរិច្ឆេទ...\"\n"
+"   ៣. ត្រូវ​ប្រាកដ​ថា​កម្មវិធី​នាឡិកា​របស់​អ្នក​ត្រូវ​បាន​កំណត់​ដោយ​ដៃ ។\n"
+"   ៤. ប្ដូរ​ពេលវេលា​ថយក្រោយ​មួយ​ម៉ោង\n"
+"   ៥. បិទ​បង្អួច រួច​ចាប់ផ្ដើម​កុំព្យូទ័រ​ឡើងវិញ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​នាឡិកា​ប្រព័ន្ធ​របស់​បង្ហាញ​កាលបរិច្ឆេទ និង​ពេលវេលា​ត្រឹមត្រូវ​ដែរ "
+"ឬទេ​សម្រាប់​តំបន់​ពេលវេលា​របស់​អ្នក ?"
+
+#. description
+#: ../jobs/panel_reboot.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that you can reboot your system from the desktop "
+"menu\n"
+"STEPS:\n"
+"   1. Click the Gear icon in the upper right corner of the desktop and click "
+"on \"Shut Down\"\n"
+"   2. Click the \"Restart\" button on the left side of the Shut Down dialog\n"
+"   3. After logging back in, restart System Testing and it should resume "
+"here\n"
+"VERIFICATION:\n"
+"   Did your system restart and bring up the GUI login cleanly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា "
+"តើ​អ្នក​ចាប់ផ្ដើម​ប្រព័ន្ធ​របស់​អ្នក​ឡើងវិញ​ពី​ម៉ឺនុយ​ផ្ទៃតុ​របស់​អ្នក​ដែរ "
+"ឬទេ\n"
+"ជំហាន ៖\n"
+"   ១. ចុច​រូបតំណាង​ស្ពឺ​នៅ​ជ្រុង​ខាងស្ដាំ​ផ្នែក​ខាងលើ​នៃ​ផ្ទៃតុ រួច​ចុច "
+"\"បិទ\"\n"
+"   ២. ចុច​ប៊ូតុង \"ចាប់ផ្ដើម​ឡើងវិញ\" នៅ​ផ្នែក​ខាងឆ្វេង​នៃ​ប្រអប់​បិទ\n"
+"   ៣. បន្ទាប់ពី​ចូល​មកវិញ​ហើយ ចាប់ផ្ដើម​ការ​សាកល្បង​ប្រព័ន្ធ​ឡើងវិញ "
+"ហើយ​វា​គួរតែ​ធ្វើ​បន្ត​នៅ​ទីនេះ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​ប្រព័ន្ធ​របស់​អ្នក​បាន​ចាប់ផ្ដើម​ឡើងវិញ និង​មាន​ការ​ចូល GUI ស្អាត​ដែរ "
+"ឬទេ ?"
+
+#. description
+#: ../jobs/pcmcia-pcix.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    This will verify that a PCMCIA or ExpressCard slot can detect inserted "
+"devices\n"
+"STEPS:\n"
+"    1. Plug a PCMCIA or ExpressCard device into the computer\n"
+"VERIFICATION:\n"
+"    Was the device correctly detected?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    វា​នឹង​ផ្ទៀងផ្ទាត់​ថា​រន្ធ PCMCIA ឬ ExpressCard "
+"អាច​រក​ឃើញ​ឧបករណ៍​ដែល​បាន​បញ្ចូល​ដែរ ឬទេ\n"
+"ជំហាន ៖\n"
+"    ១. ដោត​ឧបករណ៍ PCMCIA ឬ ExpressCard ទៅ​ក្នុង​កុំព្យូទ័រ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ឧបករណ៍​ត្រូវ​បាន​រក​ឃើញ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/peripheral.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that a network printer is usable\n"
+"STEPS:\n"
+"   1. Make sure that a printer is available in your network\n"
+"   2. Click on the Gear icon in the upper right corner and then click on "
+"Printers\n"
+"   3. If the printer isn't already listed, click on Add\n"
+"   4. The printer should be detected and proper configuration values  should "
+"be displayed\n"
+"   5. Print a test page\n"
+"VERIFICATION:\n"
+"   Were you able to print a test page to the network printer?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា "
+"តើ​ម៉ាស៊ីន​បោះពុម្ព​បណ្ដាញ​អាច​ប្រើ​បាន​ដែរ​ឬទេ\n"
+"ជំហាន ៖\n"
+"   ១. សូម​ប្រាកដ​ថា​ម៉ាស៊ីន​បោះពុម្ព​មាន​នៅ​លើ​បណ្ដាញ​របស់​អ្នក\n"
+"   ២. ចុច​លើ​រូបតំណាង​ស្ពឺ​ដែល​នៅ​ជ្រុង​ខាងលើ​ផ្នែក​ខាងស្ដាំ "
+"បន្ទាប់មក​ចុច​លើ​ម៉ាស៊ីន​បោះពុម្ព\n"
+"   ៣. ប្រសិនបើ​ម៉ាស៊ីន​បោះពុម្ព​មិន​មាន​នៅ​ក្នុង​បញ្ជី​ទេ សូម​ចុច​បន្ថែម\n"
+"   ៤. ម៉ាស៊ីន​បោះពុម្ព​គួរតែ​ត្រូវ​បាន​រក​ឃើញ "
+"និង​តម្លៃ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ដែល​ត្រឹមត្រូវ​គួរតែ​ត្រូវ​បាន​បង្ហាញ\n"
+"   ៥. បោះពុម្ព​ទំព័រ​សាកល្បង\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​អាច​បោះពុម្ព​ទំព័រ​សាកល្បង​នៅ​លើ​ម៉ាស៊ីន​បោះពុម្ព​បណ្ដាញ​បាន​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/peripheral.txt.in:18
+msgid ""
+"PURPOSE:\n"
+"   This test will verify that a USB DLS or Mobile Broadband modem works\n"
+"STEPS:\n"
+"   1. Connect the USB cable to the computer\n"
+"   2. Right click on the Network icon in the panel\n"
+"   3. Select 'Edit Connections'\n"
+"   4. Select the 'DSL' (for ADSL modem) or 'Mobile Broadband' (for 3G modem) "
+"tab\n"
+"   5. Click on add 'Add' button\n"
+"   6. Configure the connection parameters properly\n"
+"   7. Notify OSD should confirm that the connection has been established\n"
+"   8. Select Test to verify that it's possible to establish an HTTP "
+"connection\n"
+"VERIFICATION:\n"
+"   Was the connection correctly established?"
+msgstr ""
+"គោលបំណង ៖\n"
+"   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា តើ​ម៉ូដឹម USB DLS ឬ Mobile Broadband "
+"ដំណើរការ​ដែរ​ឬទេ\n"
+"ជំហាន ៖\n"
+"   ១. តភ្ជាប់​ខ្សែ USB ទៅកាន់​កុំព្យូទ័រ\n"
+"   ២. ចុច​លើ​រូបតំណាង​បណ្ដាញ​នៅ​ក្នុង​ស្លាបព្រិល\n"
+"   ៣. ជ្រើស 'កែសម្រួល​ការ​តភ្ជាប់'\n"
+"   ៤. ជ្រើស​ផ្ទាំង 'DSL' (សម្រាប់​ម៉ូដឹម ADSL) ឬ 'Mobile Broadband' "
+"(សម្រាប់​ម៉ូដឹម 3G)\n"
+"   ៥. ចុច​ប៊ូតុង 'បន្ថែម'\n"
+"   ៦. កំណត់​រចនាសម្ព័ន្ធ​ប៉ារ៉ាម៉ែត្រ​ការ​តភ្ជាប់​ដែល​ត្រឹមត្រូវ\n"
+"   ៧. ការ​ជូនដំណឹង OSD គួរតែ​បាន​អះអាង​ថា​ការ​តភ្ជាប់​ត្រូវ​បាន​បង្កើត\n"
+"   ៨. ជ្រើស​សាកល្បង​ដើម្បី​ផ្ទៀងផ្ទាត់​ថា​វា​អាច​បង្កើត​ការ​តភ្ជាប់ HTTP "
+"បាន​ហើយ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   តើ​ការ​តភ្ជាប់​ត្រូវ​បាន​បង្កើត​ឡើង​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/power-management.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system shutdown/booting cycle\n"
+"STEPS:\n"
+"    1. Shutdown your machine\n"
+"    2. Boot your machine\n"
+"    3. Repeat steps 1 and 2 at least 5 times\n"
+"VERIFICATION:\n"
+"    Did the system shutdown and rebooted correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ខួប​នៃ​ការ​ចាប់ផ្ដើម​ឡើងវិញ/បិទ​ប្រព័ន្ធ​របស់​"
+"អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. បិទ​ម៉ាស៊ីន​របស់​អ្នក\n"
+"    ២. ចាប់ផ្ដើម​ម៉ាស៊ីន​របស់​អ្នក​ឡើងវិញ\n"
+"    ៣. ធ្វើ​ជំហាន​ទី ២ និង​ទី ២ ឡើងវិញ​ឲ្យ​បាន ៥ ដង\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ប្រព័ន្ធ​បាន​បិទ និង​ចាប់ផ្ដើម​ឡើងវិញ​យ៉ាង​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/power-management.txt.in:17
+msgid "Test ACPI Wakealarm (fwts wakealarm)"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:25
+msgid "Attach log from fwts wakealarm test"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:39
+msgid ""
+"PURPOSE:\n"
+" This test will check the system's ability to power-off and boot.\n"
+"STEPS:\n"
+" 1: Select \"Test\" to begin.\n"
+" 2: The machine will shut down.\n"
+" 3: Power the machine back on.\n"
+" 4: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 5: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
+"VERIFICATION:\n"
+" If the machine successfully shuts down and boots, select Yes then select "
+"Next."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid ""
+"This will attach any logs from the power-management/poweroff test to the "
+"results."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:64
+msgid ""
+"PURPOSE:\n"
+" This test will check the system's ability to reboot cleanly.\n"
+"STEPS:\n"
+" 1: Select \"Test\" to begin.\n"
+" 2: The machine will reboot.\n"
+" 3: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 4: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
+"VERIFICATION:\n"
+" If the machine successfully reboots, select Yes then select Next."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:80
+msgid ""
+"This will attach any logs from the power-management/reboot test to the "
+"results."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:83
+msgid ""
+"PURPOSE:\n"
+"    This test will check your lid sensors\n"
+"STEPS:\n"
+"    1. Close your laptop lid\n"
+"VERIFICATION:\n"
+"   Does closing your laptop lid cause your system to suspend?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    វា​នឹង​ពិនិត្យមើល​ឧបករណ៍​ចាប់​សញ្ញា​គម្រប​របស់​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. បិទ​គម្រប​កុំព្យូទ័រ​យួរដៃ​របស់​អ្នក\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"   "
+"តើ​ការ​បិទ​គម្រប​កុំព្យូទ័រ​យួរដៃ​របស់​អ្នក​បណ្ដាលឲ្យ​ប្រព័ន្ធ​ផ្អាក​ដែរ​ឬទេ "
+"?"
+
+#. description
+#: ../jobs/power-management.txt.in:100
+msgid ""
+"PURPOSE:\n"
+"    This test will check your lid sensors\n"
+"STEPS:\n"
+"    1. Click \"Test\"\n"
+"    2. Close and open the lid\n"
+"VERIFICATION:\n"
+"    Did the screen turn off while the lid was closed?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ឧបករណ៍​ចាប់​សញ្ញា​គម្រប​របស់​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\"\n"
+"    ២. បិទ និង​បើក​គម្រប\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​អេក្រង់​រលត់​ដែរ​ឬទេ ពេល​ដែល​គម្រប​ត្រូវ​បាន​បិទ ។"
+
+#. description
+#: ../jobs/power-management.txt.in:118
+msgid ""
+"PURPOSE:\n"
+"    This test will check your lid sensors\n"
+"STEPS:\n"
+"    1. Click \"Test\"\n"
+"    2. Close the lid\n"
+"    3. Wait 5 seconds with the lid closed\n"
+"    4. Open the lid\n"
+"VERIFICATION:\n"
+"    Did the system resume when the lid was opened?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ឧបករណ៍​ចាប់​សញ្ញា​គម្រប​របស់​អ្នក\n"
+"ជំហាន ៖\n"
+"    ១.  ចុច \"សាកល្បង\"\n"
+"    ២. បិទ​គម្រប\n"
+"    ៣. រង់ចាំ ៥ វិនាទី\n"
+"    ៤. បើក​គម្រប\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ប្រព័ន្ធ​ធ្វើ​បន្ត​ដែរ​ឬទេ នៅ​ពេល​ដែល​គម្រប​ត្រូវ​បាន​បើក ?"
+
+#. description
+#: ../jobs/power-management.txt.in:135
+msgid "Make sure that the RTC (Real-Time Clock) device exists."
+msgstr "សូម​ប្រាកដ​ថា​មាន​ឧបករណ៍ RTC (Real-Time Clock) ។"
+
+#. description
+#: ../jobs/power-management.txt.in:140
+msgid ""
+"Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
+"regression check)"
+msgstr ""
+"ពិនិត្យមើល​ថា​តើ CONFIG_NO_HZ ត្រូវ​បាន​កំណត់​នៅ​ក្នុង​ខឺណែល​ដែរ​ឬទេ "
+"(នេះ​គ្រាន់តែ​ជា​ការ​ពិនិត្យមើល​ការ​ដើរ​ថយក្រោយ​ធម្មតា​ប៉ុណ្ណោះ)"
+
+#. description
+#: ../jobs/server-services.txt.in:5
+msgid "Verifies that sshd is running."
+msgstr "ផ្ទៀងផ្ទាត់​ថា sshd កំពុង​ដំណើរការ ។"
+
+#. description
+#: ../jobs/server-services.txt.in:11
+msgid "Verifies that Print/CUPs server is running."
+msgstr "ផ្ទៀងផ្ទាត់​ថា​ម៉ាស៊ីន​បម្រើ Print/CUPs កំពុង​ដំណើរការ ។"
+
+#. description
+#: ../jobs/server-services.txt.in:18
+msgid "Verifies that DNS server is running and working."
+msgstr "ផ្ទៀងផ្ទាត់​ថា​ម៉ាស៊ីន​បម្រើ DNS កំពុង​ដំណើរការ ។"
+
+#. description
+#: ../jobs/server-services.txt.in:25
+msgid "Verifies that Samba server is running."
+msgstr "ផ្ទៀងផ្ទាត់​ថា​ម៉ាស៊ីន​បម្រើ Samba កំពុង​ដំណើរការ ។"
+
+#. description
+#: ../jobs/server-services.txt.in:32
+msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
+msgstr "ផ្ទៀងផ្ទាត់​ថា​ជង់ LAMP កំពុង​ដំណើរការ (Apache, MySQL និង PHP) ។"
+
+#. description
+#: ../jobs/server-services.txt.in:39
+msgid "Verifies that Tomcat server is running and working."
+msgstr "ផ្ទៀងផ្ទាត់​ថា​ម៉ាស៊ីន​បម្រើ Tomcat កំពុង​ដំណើរការ ។"
+
+#. description
+#: ../jobs/stress.txt.in:7
+msgid ""
+"PURPOSE:\n"
+"    Create jobs that use the CPU as much as possible for two hours. The test "
+"is considered passed if the system does not freeze."
+msgstr ""
+"គោលបំណង ៖\n"
+"    "
+"បង្កើត​ការ​ការងារ​ដែល​ប្រើ​ស៊ីភីយូ​ច្រើន​បំផុត​តាម​ដែល​អាច​ធ្វើ​បាន​សម្រាប់​ព"
+"ីរ​ម៉ោង ។ ការ​សាកល្បង​ត្រូវ​បាន​គិត​ថា​ជោគជ័យ​ប្រសិនបើ​ប្រព័ន្ធ​មិន​កក​ទេ ។"
+
+#. description
+#: ../jobs/stress.txt.in:24
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 30 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:37
+msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:53
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 30 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:66
+msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:88
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 250 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:95
+msgid ""
+"Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:111
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 250 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:118
+msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:134
+msgid "Stress reboot system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:149
+msgid "Stress poweroff system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:161
+msgid "Check logs for the stress reboot (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:173
+msgid "Check logs for the stress poweroff (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:4
+msgid "Record the current network before suspending."
+msgstr "កត់ត្រា​បណ្ដាញ​បច្ចុប្បន្ន​មុន​ពេល​ផ្អាក ។"
+
+#. description
+#: ../jobs/suspend.txt.in:9
+msgid "Record the current resolution before suspending."
+msgstr "កត់ត្រា​គុណភាព​បង្ហាញ​បច្ចុប្បន្ន​មុន​ពេល​ផ្អាក ។"
+
+#. description
+#: ../jobs/suspend.txt.in:17
+msgid "Record mixer settings before suspending."
+msgstr "កត់ត្រា​ការ​កំណត់​ឧបករណ៍​លាយ​បច្ចុប្បន្ន​មុន​ពេល​ផ្អាក ។"
+
+#. description
+#: ../jobs/suspend.txt.in:22
+msgid "Verify that all the CPUs are online before suspending"
+msgstr "ផ្ទៀងផ្ទាត់​ថា CPUs គឺ​នៅ​លើ​បណ្ដាញ​មុន​ពេល​ផ្អាក"
+
+#. description
+#: ../jobs/suspend.txt.in:27
+msgid ""
+"Dumps memory info to a file for comparison after suspend test has been run"
+msgstr "សាកល្បង"
+
+#. description
+#: ../jobs/suspend.txt.in:36
+msgid ""
+"This test disconnects all connections and then connects to the wireless "
+"interface. It then checks the connection to confirm it's working as expected."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:77
+msgid ""
+"PURPOSE:\n"
+"    This test will check suspend and resume\n"
+"STEPS:\n"
+"    1. Click \"Test\" and your system will suspend for about 30 - 60 "
+"seconds\n"
+"    2. If your system does not wake itself up after 60 seconds, please press "
+"the power button momentarily to wake the system manually\n"
+"    3. If your system fails to wake at all and must be rebooted, restart "
+"System Testing after reboot and mark this test as Failed\n"
+"VERIFICATION:\n"
+"    Did your system suspend and resume correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​ផ្អាក និង​ការ​សម្ងំ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" "
+"បន្ទាប់មក​ប្រព័ន្ធ​របស់​អ្នក​នឹង​ផ្អាក​ក្នុង​រយៈពេល​ពី ៣០-៦០ វិនាទី\n"
+"    ២. ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​ភ្ញាក់​ដោយ​​ខ្លួនឯង​ក្នុង​រយៈពេល ៦០ "
+"វិនាទី​ទេ សូម​ចុច​ប៊ូតុង​ថាមពល​ជាប់​មួយស្របក់ ដើម្បី​ដាស់​ប្រព័ន្ធ​ដោយ​ដៃ\n"
+"    ៣. ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​បាន​បរាជ័យ​ក្នុង​ការ​ភ្ញាក់ "
+"ហើយ​ត្រូវ​បាន​ចាប់ផ្ដើម​ឡើងវិញ​ម្ដង​ហើយ​ម្ដងទៀត "
+"សូម​អ្នក​ចាប់ផ្ដើម​ការ​សាកល្បង​ប្រព័ន្ធ​ឡើងវិញ "
+"និង​សម្គាល់​ថា​ការ​សាកល្បង​នេះ​បាន​បរាជ័យ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ប្រព័ន្ធ​បាន​ផ្អាក និង​ធ្វើ​បន្ត​ដោយ​ជោគជ័យ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/suspend.txt.in:193
+msgid "This is the automated version of suspend/suspend_advanced."
+msgstr "នេះ​ជា​កំណែ​ស្វ័យប្រវត្តិ​នៃ​ការ​ផ្អាក/ការ​ផ្អាក​កម្រិតខ្ពស់ ។"
+
+#. description
+#: ../jobs/suspend.txt.in:250
+msgid "Test the network after resuming."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:256
+msgid ""
+"Test to see that we have the same resolution after resuming as before."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:275
+msgid ""
+"Verify that mixer settings after suspend are the same as before suspend."
+msgstr ""
+"ផ្ទៀងផ្ទាត់​ថា​ការ​កំណត់​ឧបករណ៍​លាយ​បន្ទាប់ពី​ផ្អាក​គឺ​ដូចគ្នា​នៅ​មុន​ពេល​ផ្អ"
+"ាក ។"
+
+#. description
+#: ../jobs/suspend.txt.in:288
+msgid "Verify that all CPUs are online after resuming."
+msgstr "ផ្ទៀងផ្ទាត់​ថា​ CPUs ទាំងអស់​គឺ​នៅ​លើ​បណ្ដាញ​បន្ទាប់ពី​ផ្អាក ។"
+
+#. description
+#: ../jobs/suspend.txt.in:301
+msgid "Verify that all memory is available after resuming from suspend."
+msgstr ""
+"ផ្ទៀងផ្ទាត់​ថា​អង្គ​ចងចាំ​ទាំងអស់​គឺ​នៅ​មាន​បន្ទាប់ពី​ធ្វើ​បន្ត​ពី​ការផ្អាក ។"
+
+#. description
+#: ../jobs/suspend.txt.in:308
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the display is correct after suspend and "
+"resume\n"
+"STEPS:\n"
+"    1. Check that your display does not show up visual artifacts after "
+"resuming.\n"
+"VERIFICATION:\n"
+"    Does the display work normally after resuming from suspend?"
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:322
+msgid ""
+"This test checks that the wireless interface is working after suspending the "
+"system. It disconnects all interfaces and then connects to the wireless "
+"interface and checks that the connection is working as expected."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:388
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:401
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:414
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:427
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:540
+msgid ""
+"This test grabs the hardware address of the bluetooth adapter after suspend "
+"and compares it to the address grabbed before suspend."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:648
+msgid ""
+"This is an automated Bluetooth file transfer test. It sends an image to the "
+"device specified by the BTDEVADDR environment variable."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:767
+msgid ""
+"PURPOSE:\n"
+"    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
+"specified device\n"
+"STEPS:\n"
+"    1. Click \"Test\" and you will be prompted to enter the Bluetooth device "
+"name of a device that can accept file transfers (It may take a few moments "
+"after entering the name for the file to begin sending)\n"
+"    2. Accept any prompts that appear on both devices\n"
+"VERIFICATION:\n"
+"    Was the data correctly transferred?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ផ្ញើ​រូបភាព 'JPEG_Color_Image_Ubuntu.jpg' "
+"ទៅកាន់​ឧបករណ៍​ដែល​បាន​បញ្ជាក់\n"
+"ជំហាន ៖\n"
+"    ១. ចុច \"សាកល្បង\" "
+"បន្ទាប់មក​អ្នក​នឹង​តម្រូវឲ្យ​បញ្ចូល​ឈ្មោះ​ឧបករណ៍​ប្ល៊ូធូស​ដើម្បី​ព្រម​ទទួល​កា"
+"រ​ផ្ទេរ​ឯកសារ "
+"(វា​អាច​ប្រើ​ពេលវេលា​បន្តិចបន្តួច​បន្ទាប់ពី​បញ្ចូល​ឈ្មោះ​សម្រាប់​ឯកសារ​ដើម្បី"
+"​ចាប់ផ្ដើម​ការ​ផ្ញើ)\n"
+"    ២. ព្រម​ទទួល​ការ​ទាមទារ​ទាំងអស់​ដែល​បាន​លេចឡើង​នៅ​លើ​ឧបករណ៍​ទាំង​ពីរ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ទិន្នន័យ​ត្រូវ​បាន​ផ្ទេរ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/suspend.txt.in:781
+msgid ""
+"PURPOSE:\n"
+"    This test will cycle through the detected display modes\n"
+"STEPS:\n"
+"    1. Click \"Test\" and the display will cycle trough the display modes\n"
+"VERIFICATION:\n"
+"    Did your display look fine in the detected mode?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​បង្វិល​តាម​​របៀប​បង្ហាញ​ដែល​បាន​រក​ឃើញ\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​ \"សាកល្បង\" ការ​បង្ហាញ​នឹង​បង្វិល​តាម​របៀប​ការ​បង្ហាញ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ការ​បង្ហាញ​របស់​អ្នក​ល្អ​ដែរ​ឬទេ​នៅ​ក្នុង​របៀប​ដែល​បាន​រក​ឃើញ ?"
+
+#. description
+#: ../jobs/suspend.txt.in:793
+msgid ""
+"This test will check to make sure supported video modes work after a suspend "
+"and resume. This is done automatically by taking screenshots and uploading "
+"them as an attachment."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:802
+msgid ""
+"This attaches screenshots from the "
+"suspend/cycle_resolutions_after_suspend_auto test to the results submission."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/suspend.txt.in:823
+msgid ""
+"This will check to make sure that your audio device works properly after a "
+"suspend and resume.  This may work fine with speakers and onboard "
+"microphone, however, it works best if used with a cable connecting the audio-"
+"out jack to the audio-in jack."
+msgstr ""
+"វា​នឹង​ពិនិត្យមើល​ដើម្បីឲ្យ​ប្រាកដ​ថា "
+"តើ​ឧបករណ៍​អូឌីយ៉ូ​របស់​អ្នក​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬទេ​បន្ទាប់ពី​បាន​ផ្អាក "
+"និង​ធ្វើ​បន្ត ។ វា​អាច​ដំណើរការ​យ៉ាង​ល្អ​ជាមួយ​ធុងបាស "
+"និង​មីក្រូហ្វូន​ដែល​ជាប់​មក​ស្រាប់ ហើយ​វា​ដំណើរការ​រឹតតែ​ល្អ​ថែមទៀត "
+"ប្រសិនបើ​បាន​ប្រើ​ជាមួយ​ការ​តភ្ជាប់​ខ្សែ audio-out jack ទៅ audio-in jack ។"
+
+#. description
+#: ../jobs/suspend.txt.in:829
+msgid "Attaches the log from the single suspend/resume test to the results"
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:323
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen after suspend (logged on Unity "
+"desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:346
+msgid ""
+"PURPOSE:\n"
+"    Do some challenging operations, suspend the system, do more challenging\n"
+"    operations - then check for lockup on the GPU\n"
+"STEPS:\n"
+"    1. Create 2 glxgears windows and move them quickly\n"
+"    2. Switch workspaces/viewports with wmctrl\n"
+"    3. Launch a Flash playback in firefox\n"
+"    4. Suspend/resume\n"
+"VERIFICATION:\n"
+"    1. After a 60s workload, check kern.log for reported GPU errors"
+msgstr ""
+
+#. description
+#: ../jobs/touchpad.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Make sure that touchpad is enabled\n"
+"    2. Try to move pointer using touchpad\n"
+"    3. Pointer should move accordingly\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/touchpad.txt.in:18
+msgid ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Click on Power Indicator -> System Settings -> Mouse -> Touchpad\n"
+"    2. Make sure that the \"Enable horizontal scrolling\" checkbox is "
+"checked\n"
+"    3. Select 'Test' to open in GEdit a file with a really wide line\n"
+"    4. Verify that you can move the the horizontal slider by moving your "
+"finger side by side in the lower part of the touchpad\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/touchpad.txt.in:34
+msgid ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Click on Power Indicator -> System Settings -> Mouse -> Touchpad\n"
+"    2. Make sure that the \"Edge scrolling\" radiobox is checked\n"
+"    3. Select 'Test' to open in GEdit a file with a multiple lines of text\n"
+"    4. Verify that you can move the the vertical slider by moving your "
+"finger side by side in the right part of the touchpad\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?\n"
+"NOTES:\n"
+"    1. Edge Scrolling option should be enabled by default"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:4
+msgid "Detects and shows USB devices attached to this system."
+msgstr "រក​ឃើញ និង​បង្ហាញ​ឧបករណ៍ USB ដែល​បាន​ភ្ជាប់​ទៅកាន់​ប្រព័ន្ធ​នេះ ។"
+
+#. description
+#: ../jobs/usb.txt.in:10
+msgid ""
+"PURPOSE:\n"
+"    This test will check that your system detects USB storage devices.\n"
+"STEPS:\n"
+"    1. Plug in one or more USB keys or hard drives.\n"
+"    2. Click on \"Test\".\n"
+"INFO:\n"
+"    $output\n"
+"VERIFICATION:\n"
+"    Were the drives detected?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​ប្រព័ន្ធ​របស់​អ្នក​រក​ឃើញ​ឧបករណ៍​ផ្ទុក "
+"USB ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+"    ១. ដោត​ឧបករណ៍ USB ឬ​ថាស​រឹង​មួយ ឬ​ច្រើន​បន្ថែម​ទៀត ។\n"
+"    ២. ចុច \"សាកល្បង\"\n"
+"ព័ត៌មាន ៖\n"
+"    $output\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ដ្រាយ​ទាំងអស់​​ត្រូវ​បាន​រក​ឃើញ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/usb.txt.in:30
+msgid ""
+"PURPOSE:\n"
+"    This test will check your USB connection.\n"
+"STEPS:\n"
+"    1. Plug a USB keyboard into the computer.\n"
+"    2. Click on \"Test\" and enter some text.\n"
+"VERIFICATION:\n"
+"    Does the keyboard work?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​តភ្ជាប់ USB របស់​អ្នក ។\n"
+"ជំហាន ៖\n"
+"    ១. ដោត​ក្ដារចុច USB ទៅកាន់​កុំព្យ័ទ័រ ។\n"
+"    ២. ចុច \"សាកល្បង\" រួច​បញ្ចូល​អត្ថបទ​ខ្លះៗ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ក្ដារចុច​របស់​អ្នក​ដំណើរការ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/usb.txt.in:43
+msgid ""
+"PURPOSE:\n"
+"    This test will check your USB connection.\n"
+"STEPS:\n"
+"    1. Plug a USB mouse into the computer.\n"
+"    2. Perform some single/double/right click operations.\n"
+"VERIFICATION:\n"
+"    Does the mouse work correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​តភ្ជាប់ USB របស់​អ្នក ។\n"
+"ជំហាន ៖\n"
+"    ១. ដោត​កណ្ដុរ USB ទៅកាន់​កុំព្យូទ័រ​របស់​អ្នក ។\n"
+"    ២. អនុវត្ត​ដោយ​ចុច​ទោល/ទ្វេ/ខាងស្ដាំ​ម្ដង ឬ​ពីរ​ដង ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​កណ្ដុរ​របស់​អ្នក​ដំណើរការ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/usb.txt.in:39
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the insertion of\n"
+"    a USB storage device\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:72
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal of\n"
+"    a USB storage device\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the USB device.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:105
+msgid ""
+"PURPOSE:\n"
+"    This test will check your USB connection.\n"
+"STEPS:\n"
+"    1. Plug a USB HDD or thumbdrive into the computer.\n"
+"    2. An icon should appear on the Launcher.\n"
+"    3. Click \"Test\" to begin the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​តភ្ជាប់ USB របស់​អ្នក ។\n"
+"ជំហាន ៖\n"
+"    ១. ដោត USB HDD ឬ ឧបករណ៍​ផ្ទុក​ចល័ត​ផ្សេងទៀត​ទៅកាន់​កុំព្យូទ័រ​របស់​អ្នក "
+"។\n"
+"    ២. រូបតំណាង​គួរតែ​លេចឡើង​នៅ​លើ​កម្មវិធី​ចាប់ផ្ដើម ។\n"
+"    ៣. ចុច \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    "
+"ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+"។ កុំ​ប្ដូរ​លទ្ធផល\n"
+"    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#. description
+#: ../jobs/usb.txt.in:139
+msgid "This test is automated and executes after the usb/insert test is run."
+msgstr "សាកល្បង សាកល្បង."
+
+#. description
+#: ../jobs/usb.txt.in:156
+msgid ""
+"This is an automated version of usb/storage-automated and assumes that the "
+"server has usb storage devices plugged in prior to checkbox execution. It is "
+"intended for servers and SRU automated testing."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:174
+msgid ""
+"PURPOSE:\n"
+"    This test will check your USB connection.\n"
+"STEPS:\n"
+"    1. Connect a USB storage device to an external USB slot on this "
+"computer.\n"
+"    2. An icon should appear on the Launcher.\n"
+"    3. Confirm that the icon appears.\n"
+"    4. Eject the device.\n"
+"    5. Repeat with each external USB slot.\n"
+"VERIFICATION:\n"
+"    Do all USB slots work with the device?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​តភ្ជាប់ USB របស់​អ្នក ។\n"
+"ជំហាន ៖\n"
+"    ១. តភ្ជាប់​ឧបករណ៍​ផ្ទុក USB ទៅកាន់​រន្ធ USB ខាងក្រៅ​នៅ​លើ​កុំព្យូទ័រ​នេះ "
+"។\n"
+"    ២. រូបតំណាង​គួរតែ​លេចឡើង​នៅ​ក្នុង​កម្មវិធី​ចាប់ផ្ដើម ។\n"
+"    ៣. អះអាង​ថា​រូបតំណាង​លេចឡើង ។\n"
+"    ៤. ដក​ឧបករណ៍​ចេញ ។\n"
+"    ៥. ធ្វើ​ដូចគ្នា​ទៅ​លើ​រន្ធ USB ខាងក្រៅ​ផ្សេងទៀត ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​រន្ធ USB ទាំងអស់​ដំណើរការ​ជាមួយ​ឧបករណ៍​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:6
+msgid ""
+"PURPOSE:\n"
+" This test will check that the update manager can find updates.\n"
+"STEPS:\n"
+" 1. Click Test to launch update-manager.\n"
+" 2. Follow the prompts and if updates are found, install them.\n"
+" 3. When Update Manager has finished, please close the app by clicking the "
+"Close button in the lower right corner.\n"
+"VERIFICATION:\n"
+" Did Update manager find and install updates (Pass if no updates are found,\n"
+" but Fail if updates are found but not installed)"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​គ្រប់គ្រង​បច្ចុប្បន្នភាព​អាច​រក"
+"​ឃើញ​បច្ចុប្បន្នភាព​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម​កម្មវិធី​គ្រប់គ្រង​បច្ចុប្បន្នភាព ។\n"
+" ២. ធ្វើតាម​ការ​ទាមទារ ហើយ​ប្រសិនបើ​រក​ឃើញ​ការ​ធ្វើ​បច្ចុប្បន្នភាព "
+"សូម​ដំឡើង​វា ។\n"
+" ៣. នៅ​ពេល​កម្មវិធី​កម្មវិធី​គ្រប់គ្រង​បច្ចុប្បន្នភាព​បញ្ចប់ "
+"សូម​បិទ​កម្មវិធី​ដោយ​ចុច​ប៊ូតុង​បិទ​នៅ​ជ្រុង​ស្ដាំ​ខាងក្រោម ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​កម្មវិធី​គ្រប់គ្រង​បច្ចុប្បន្នភាព​រក​ឃើញ "
+"និង​ដំឡើង​បច្ចុប្បន្នភាព​ដែរ​ឬទេ (ជោគជ័យ​ប្រសិនបើ​រក​មិន​ឃើញ​បច្ចុប្បន្នភាព\n"
+" ហើយ​បរាជ័យ​ប្រសិនបើ​រក​ឃើញ​បច្ចុប្បន្នភាព ប៉ុន្តែ​មិន​បាន​ដំឡើង)"
+
+#. description
+#: ../jobs/user_apps.txt.in:22
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can create a new folder.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. On the menu bar, click File -> Create Folder.\n"
+" 3. In the name box for the new folder, enter the name Test Folder and hit "
+"Enter.\n"
+" 4. Close the File browser.\n"
+"VERIFICATION:\n"
+" Do you now have a new folder called Test Folder?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​​បង្កើត​ថត​ថ្មី"
+"​បាន​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" ២. នៅ​លើ​របារ​ម៉ឺនុយ ចុច ឯកសារ -> បង្កើត​ថត ។\n"
+" ៣. នៅ​ក្នុង​ប្រអប់​ឈ្មោះ​សម្រាប់​ថត​ថ្មី បញ្ចូល​ឈ្មោះ​ថា Test Folder "
+"រួច​ចុច​បញ្ចូល (Enter) ។\n"
+" ៤. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​មាន​ថត​ថ្មី​ដែល​មាន​ឈ្មោះ​ថា Test Folder ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:37
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can copy a folder\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. Right click on the folder called Test Folder and click on Copy.\n"
+" 3. Right Click on any white area in the window and click on Paste.\n"
+" 4. Right click on the folder called Test Folder(copy) and click Rename.\n"
+" 5. Enter the name Test Data in the name box and hit Enter.\n"
+" 6. Close the File browser.\n"
+"VERIFICATION:\n"
+" Do you now have a folder called Test Data?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​ចម្លង​ថត​បាន​ដែ"
+"រ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" ២. ចុច​កណ្ដុរស្ដាំ​លើ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Folder រួច​ចុច ចម្លង ។\n"
+" ៣. ចុច​កណ្ដុរស្ដាំ​លើ​ផ្ទៃ​ពណ៌ស រួច​ចុច បិទភ្ជាប់ ។\n"
+" ៤. ចុច​កណ្ដុរស្ដាំ​លើ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Folder(ចម្លង) រួច​ចុច "
+"ប្ដូរ​ឈ្មោះ ។\n"
+" ៥. បញ្ចូល​ឈ្មោះ​ថា Test Data នៅ​ក្នុង​ប្រអប់​ឈ្មោះ រួច​ចុច​បញ្ចូល (Enter) "
+"។\n"
+" ៦. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​មាន​ឃើញ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Data ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:54
+msgid ""
+"PURPOSE:\n"
+" This test will verify that the file browser can move a folder.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. Click and drag the folder called Test Data onto the icon called Test "
+"Folder.\n"
+" 3. Release the button.\n"
+" 4. Double click the folder called Test Folder to open it up.\n"
+" 5. Close the File Browser.\n"
+"VERIFICATION:\n"
+" Was the folder called Test Data successfully moved into the folder called "
+"Test Folder?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​ផ្លាស់ទី​ថត​បាន"
+"​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" 2. ចុច រួច​អូស​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Data "
+"ទម្លាក់​លើ​រូបតំណាង​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Folder ។\n"
+" ៣. លែង​ប៊ូតុង​កណ្ដុរ ។\n"
+" ៤. ចុច​ទ្វេ​ដង​លើ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Folder ដើម្បី​បើក​វា​ឡើង ។\n"
+" ៥. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​ថត Test Data បាន​ផ្លាស់ទី​ទៅ​ក្នុង​ថត Test Folder ដោយ​ជោគជ័យ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:70
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can create a new file.\n"
+"STEPS:\n"
+" 1. Click Select Test to open the File Browser.\n"
+" 2. Right click in the white space and click Create Document -> Empty "
+"Document.\n"
+" 3. Enter the name Test File 1 in the name box and hit Enter.\n"
+" 4. Close the File browser.\n"
+"VERIFICATION:\n"
+" Do you now have a file called Test File 1?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​​បង្កើត​ឯកសារ​ថ"
+"្មី​បាន​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" ២. ចុច​កណ្ដុរស្ដាំ​លើ​ផ្ទៃ​ពណ៌ស រួច​ចុច បង្កើត​ឯកសារ -> ឯកសារ​ទទេ ។\n"
+" ៣. បញ្ចូល​ឈ្មោះ​ថា Test File 1 នៅ​ក្នុង​ប្រអប់​ឈ្មោះ រួច​ចុច​បញ្ចូល (Enter) "
+"។\n"
+" ៤. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​មាន​ឃើញ​ឯកសារ​ថ្មី​ដែល​មាន​ឈ្មោះ​ថា Test File 1 ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:85
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can copy a file.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. Right click on the file called Test File 1 and click Copy.\n"
+" 3. Right click in the white space and click Paste.\n"
+" 4. Right click on the file called Test File 1(copy) and click Rename.\n"
+" 5. Enter the name Test File 2 in the name box and hit Enter.\n"
+" 6. Close the File Browser.\n"
+"VERIFICATION:\n"
+" Do you now have a file called Test File 2?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​ចម្លង​ឯកសារ​បាន"
+"​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" ២. ចុច​កណ្ដុរស្ដាំ​លើ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test File 1 រួច​ចុច ចម្លង ។\n"
+" ៣. ចុច​កណ្ដុរស្ដាំ​លើ​ផ្ទៃ​ពណ៌ស រួច​ចុច បិទភ្ជាប់ ។\n"
+" ៤. ចុច​កណ្ដុរស្ដាំ​លើ​ឯកសារ​ដែល​មាន​ឈ្មោះ​ថា Test File 1(ចម្លង) រួច​ចុច "
+"ប្ដូរ​ឈ្មោះ ។\n"
+" ៥. បញ្ចូល​ឈ្មោះ​ថា Test File 2 នៅ​ក្នុង​ប្រអប់​ឈ្មោះ រួច​ចុច​បញ្ចូល (Enter) "
+"។\n"
+" ៦. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​មាន​ឃើញ​ឯកសារ​ដែល​មាន​ឈ្មោះ​ថា Test File 2 ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:102
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can move a file.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. Click and drag the file called Test File 2 onto the icon for the folder "
+"called Test Data.\n"
+" 3. Release the button.\n"
+" 4. Double click the icon for Test Data to open that folder up.\n"
+" 5. Close the File Browser.\n"
+"VERIFICATION:\n"
+" Was the file Test File 2 successfully moved into the Test Data folder?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​ផ្លាស់ទី​ឯកសារ​"
+"បាន​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" 2. ចុច រួច​អូស​ឯកសារ​ដែល​មាន​ឈ្មោះ​ថា Test File 2 "
+"ទម្លាក់​លើ​រូបតំណាង​របស់​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Data ។\n"
+" ៣. លែង​ប៊ូតុង​កណ្ដុរ ។\n"
+" ៤. ចុច​ទ្វេ​ដង​លើ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Data ដើម្បី​បើក​វា​ឡើង ។\n"
+" ៥. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​ឯកសារ​ឈ្មោះ Test File 2 បាន​ផ្លាស់ទី​ទៅ​ក្នុង​ថត Test Data "
+"ដោយ​ជោគជ័យ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:118
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can delete a file.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. Right click on the file called Test File 1 and click on Move To Trash.\n"
+" 3. Verify that Test File 1 has been removed.\n"
+" 4. Close the File Browser.\n"
+"VERIFICATION:\n"
+"  Is Test File 1 now gone?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​លុប​ឯកសារ​បាន​ដ"
+"ែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" 2. ចុច​កណ្ដុរស្ដាំ​លើ​ឯកសារ​ដែល​មាន​ឈ្មោះ​ថា Test File 1 រួច​ចុច "
+"ផ្លាស់ទី​ទៅ​ធុងសំរាម ។\n"
+" ៣. ផ្ទៀងផ្ទាត់​ថា​តើ​ឯកសារ Test File 1 "
+"ត្រូវ​បាន​ផ្លាស់ទី​ទៅ​ធុងសំរាម​ដែរ​ឬទេ ។\n"
+" ៤. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"  តើ​ឥឡូវនេះ​ឯកសារ Test File 1 បាន​បាត់​ហើយ​ឬនៅ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:133
+msgid ""
+"PURPOSE:\n"
+" This test will check that the file browser can delete a folder.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. Right click on the folder called Test Folder and click on Move To "
+"Trash.\n"
+" 3. Verify that the folder was deleted.\n"
+" 4. Close the file browser.\n"
+"VERIFICATION:\n"
+" Has Test Folder been successfully deleted?"
+msgstr ""
+"គោលបំណង ៖\n"
+" "
+"ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​រុករក​ឯកសារ​អាច​លុប​ថត​បាន​ដែរ​"
+"ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​បើក​កម្មវិធី​រុករក​ឯកសារ ។\n"
+" 2. ចុច​កណ្ដុរស្ដាំ​លើ​ថត​ដែល​មាន​ឈ្មោះ​ថា Test Folder រួច​ចុច "
+"ផ្លាស់ទី​ទៅ​ធុងសំរាម ។\n"
+" ៣. ផ្ទៀងផ្ទាត់​ថា​តើ​ថត Test Folder ត្រូវ​បាន​លុប​ដែរ​ឬទេ ។\n"
+" ៤. បិទ​កម្មវិធី​រុករក​ឯកសារ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"  តើ​ថត Test Folder ត្រូវ​បាន​លុប​ដោយ​ជោគជ័យ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:207
+msgid "Common Document Types Test"
+msgstr "សាកល្បង"
+
+#. description
+#: ../jobs/user_apps.txt.in:228
+msgid ""
+"PURPOSE:\n"
+" This test will check that Firefox can render a basic web page.\n"
+"STEPS:\n"
+" 1. Select Test to launch Firefox and view the test web page.\n"
+"VERIFICATION:\n"
+" Did the Ubuntu Test page load correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Firefox "
+"អាច​បង្ហាញ​ទំព័រ​បណ្ដាញ​មូលដ្ឋាន​បាន​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Firefox និង​មើល​ការ​សាកល្បង​ទំព័រ​បណ្ដាញ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​ការ​ផ្ទុក​ទំព័រ​សាកល្បង​របស់​អ៊ូប៊ុនទូ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:241
+msgid ""
+"PURPOSE:\n"
+" This test will check that Firefox can run a java applet in a web page. "
+"Note:\n"
+" this may require installing additional software to complete successfully.\n"
+"STEPS:\n"
+" 1. Select Test to open Firefox with the Java test page, and follow the "
+"instructions there.\n"
+"VERIFICATION:\n"
+" Did the applet display?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Firefox អាច​ដំណើរការ​អាប់ភ្លេត java "
+"នៅ​ក្នុង​ទំព័រ​បណ្ដាញ​បាន​ដែរ​ឬទេ ។ ចំណាំ ៖\n"
+" វា​អាច​ទាមទារ​ឲ្យ​ដំឡើង​កម្មវិធី​បន្ថែម​ដើម្បី​បញ្ចប់​ដោយ​ជោគជ័យ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Firefox ជាមួយ​ទំព័រ​សាកល្បង Java "
+"រួច​ធ្វើតាម​ការ​ណែនាំ​ដែល​មាន ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អាប់ភ្លេត​បង្ហាញ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:255
+msgid ""
+"PURPOSE:\n"
+" This test will check that Firefox can run flash applications. Note: this "
+"may\n"
+" require installing additional software to successfully complete.\n"
+"STEPS:\n"
+" 1. Select Test to launch Firefox and view a sample Flash test.\n"
+"VERIFICATION:\n"
+" Did you see the text?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Firefox អាច​ដំណើរការ​កម្មវិធី Flash "
+"បាន​ដែរ​ឬទេ ។ ចំណាំ ៖\n"
+" វា​អាច​ទាមទារ​ឲ្យ​ដំឡើង​កម្មវិធី​បន្ថែម​ដើម្បី​បញ្ចប់​ដោយ​ជោគជ័យ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Firefox និង​មើល​ការ​សាកល្បង Flash គំរូ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​មាន​ឃើញ​អត្ថបទ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:269
+msgid ""
+"PURPOSE:\n"
+" This test will check that Firefox can play a Flash video. Note: this may\n"
+" require installing additional software to successfully complete.\n"
+"STEPS:\n"
+" 1. Select Test to launch Firefox and view a short flash video.\n"
+"VERIFICATION:\n"
+" Did the video play correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Firefox អាច​ចាក់​វីដេអូ Flash "
+"បាន​ដែរ​ឬទេ ។ ចំណាំ ៖\n"
+" វា​អាច​ទាមទារ​ឲ្យ​ដំឡើង​កម្មវិធី​បន្ថែម​ដើម្បី​បញ្ចប់​ដោយ​ជោគជ័យ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Firefox និង​មើល​វីដេអូ Flash ខ្លី​មួយ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​វីដេអូ​បាន​ចាក់​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:285
+msgid ""
+"PURPOSE:\n"
+" This test will check that Firefox can play a Quicktime (.mov) video file.\n"
+" Note: this may require installing additional software to successfully\n"
+" complete.\n"
+"STEPS:\n"
+" 1. Select Test to launch Firefox with a sample video.\n"
+"VERIFICATION:\n"
+" Did the video play using a plugin?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Firefox អាច​ចាក់​ឯកសារ​វីដេអូ "
+"Quicktime (.mov) បាន​ដែរ​ឬទេ ។ ចំណាំ ៖\n"
+" វា​អាច​ទាមទារ​ឲ្យ​ដំឡើង​កម្មវិធី​បន្ថែម​ដើម្បី​បញ្ចប់\n"
+" ដោយ​ជោគជ័យ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Firefox ជាមួយ​វីដេអូ​គំរូ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​វីដេអូ​បាន​ចាក់​ដោយ​ប្រើ​កម្មវិធី​ជំនួយ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:299
+msgid ""
+"PURPOSE:\n"
+" This test will check that Empathy messaging client works.\n"
+"STEPS:\n"
+" 1. Select Test to launch Empathy.\n"
+" 2. Configure it to connect to the Facebook Chat service.\n"
+" 3. Once you have completed the test, please quit Empathy to continue here.\n"
+"VERIFICATION:\n"
+" Were you able to connect correctly and send/receive messages?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​ផ្ញើ​សារ Empathy "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Empathy ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​វា​ដើម្បី​តភ្ជាប់​ទៅកាន់​សេវាកម្ម Facebook Chat ។\n"
+" ៣. ពេល​ដែល​អ្នក​បាន​បញ្ចប់​ការ​សាកល្បង​ទាំងស្រុង​ហើយ សូម​បិទ Empathy "
+"ដើម្បី​​បន្ត​នៅ​ទីនេះ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​តភ្ជាប់ និង​ផ្ញើ/ទទួល​សារ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:313
+msgid ""
+"PURPOSE:\n"
+" This test will check that Empathy messaging client works.\n"
+"STEPS:\n"
+" 1. Select Test to launch Empathy.\n"
+" 2. Configure it to connect to the Google Talk (gtalk) service.\n"
+" 3. Once you have completed the test, please quit Empathy to continue here.\n"
+"VERIFICATION:\n"
+" Were you able to connect correctly and send/receive messages?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​ផ្ញើ​សារ Empathy "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Empathy ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​វា​ដើម្បី​តភ្ជាប់​ទៅកាន់​សេវាកម្ម Google Talk (gtalk) "
+"។\n"
+" ៣. ពេល​ដែល​អ្នក​បាន​បញ្ចប់​ការ​សាកល្បង​ទាំងស្រុង​ហើយ សូម​បិទ Empathy "
+"ដើម្បី​​បន្ត​នៅ​ទីនេះ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​តភ្ជាប់ និង​ផ្ញើ/ទទួល​សារ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:327
+msgid ""
+"PURPOSE:\n"
+" This test will check that Empathy messaging client works.\n"
+"STEPS:\n"
+" 1. Select Test to launch Empathy.\n"
+" 2. Configure it to connect to the Jabber service.\n"
+" 3. Once you have completed the test, please quit Empathy to continue here.\n"
+"VERIFICATION:\n"
+" Were you able to connect correctly and send/receive messages?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​ផ្ញើ​សារ Empathy "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Empathy ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​វា​ដើម្បី​តភ្ជាប់​ទៅកាន់​សេវាកម្ម Jabber ។\n"
+" ៣. ពេល​ដែល​អ្នក​បាន​បញ្ចប់​ការ​សាកល្បង​ទាំងស្រុង​ហើយ សូម​បិទ Empathy "
+"ដើម្បី​​បន្ត​នៅ​ទីនេះ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​តភ្ជាប់ និង​ផ្ញើ/ទទួល​សារ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:341
+msgid ""
+"PURPOSE:\n"
+" This test will check that Empathy messaging client works.\n"
+"STEPS:\n"
+" 1. Select Test to launch Empathy.\n"
+" 2. Configure it to connect to the AOL Instant Messaging (AIM) service.\n"
+" 3. Once you have completed the test, please quit Empathy to continue here.\n"
+"VERIFICATION:\n"
+" Were you able to connect correctly and send/receive messages?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​ផ្ញើ​សារ Empathy "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Empathy ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​វា​ដើម្បី​តភ្ជាប់​ទៅកាន់​សេវាកម្ម AOL Instant "
+"Messaging (AIM) ។\n"
+" ៣. ពេល​ដែល​អ្នក​បាន​បញ្ចប់​ការ​សាកល្បង​ទាំងស្រុង​ហើយ សូម​បិទ Empathy "
+"ដើម្បី​​បន្ត​នៅ​ទីនេះ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​តភ្ជាប់ និង​ផ្ញើ/ទទួល​សារ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:355
+msgid ""
+"PURPOSE:\n"
+" This test will check that Empathy messaging client works.\n"
+"STEPS:\n"
+" 1. Select Test to launch Empathy.\n"
+" 2. Configure it to connect to the Microsoft Network (MSN) service.\n"
+" 3. Once you have completed the test, please quit Empathy to continue here.\n"
+"VERIFICATION:\n"
+" Were you able to connect correctly and send/receive messages?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​កម្មវិធី​ផ្ញើ​សារ Empathy "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​សាកល្បង​ដើម្បី​ចាប់ផ្ដើម Empathy ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​វា​ដើម្បី​តភ្ជាប់​ទៅកាន់​សេវាកម្ម Microsoft Network "
+"(MSN) ។\n"
+" ៣. ពេល​ដែល​អ្នក​បាន​បញ្ចប់​ការ​សាកល្បង​ទាំងស្រុង​ហើយ សូម​បិទ Empathy "
+"ដើម្បី​​បន្ត​នៅ​ទីនេះ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​តភ្ជាប់ និង​ផ្ញើ/ទទួល​សារ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:369
+msgid ""
+"PURPOSE:\n"
+" This test will check that Evolution works.\n"
+"STEPS:\n"
+" 1. Click the \"Test\" button to launch Evolution.\n"
+" 2. Configure it to connect to a POP3 account.\n"
+"VERIFICATION:\n"
+" Were you able to receive and read e-mail correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Evolution ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម Evolution ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​ដើម្បី​តភ្ជាប់​ទៅកាន់​គណនី POP3 ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​ទទួល និង​អាន​អ៊ីមែល​បាន​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:382
+msgid ""
+"PURPOSE:\n"
+" This test will check that Evolution works.\n"
+"STEPS:\n"
+" 1. Click the \"Test\" button to launch Evolution.\n"
+" 2. Configure it to connect to a IMAP account.\n"
+"VERIFICATION:\n"
+" Were you able to receive and read e-mail correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Evolution ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម Evolution ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​ដើម្បី​តភ្ជាប់​ទៅកាន់​គណនី IMAP ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​ទទួល និង​អាន​អ៊ីមែល​បាន​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:395
+msgid ""
+"PURPOSE:\n"
+" This test will check that Evolution works.\n"
+"STEPS:\n"
+" 1. Click the \"Test\" button to launch Evolution.\n"
+" 2. Configure it to connect to a SMTP account.\n"
+"VERIFICATION:\n"
+" Were you able to send e-mail without errors?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ Evolution ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម Evolution ។\n"
+" ២. កំណត់​រចនាសម្ព័ន្ធ​ដើម្បី​តភ្ជាប់​ទៅកាន់​គណនី SMTP ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​អ្នក​អាច​ទទួល និង​អាន​អ៊ីមែល​បាន​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:408
+msgid ""
+"PURPOSE:\n"
+" This test checks that gcalctool (Calculator) works.\n"
+"STEPS:\n"
+" Click the \"Test\" button to open the calculator.\n"
+"VERIFICATION:\n"
+" Did it launch correctly?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ gcalctool (ម៉ាស៊ីនគិតលេខ) "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ម៉ាស៊ីន​គិតលេខ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​វា​បាន​ចាប់ផ្ដើម​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:421
+msgid ""
+"PURPOSE:\n"
+" This test checks that gcalctool (Calculator) works.\n"
+"STEPS:\n"
+" Click the \"Test\" button to open the calculator and perform:\n"
+" 1. Simple math functions (+,-,/,*)\n"
+" 2. Nested math functions ((,))\n"
+" 3. Fractional math\n"
+" 4. Decimal math\n"
+"VERIFICATION:\n"
+" Did the functions perform as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ gcalctool (ម៉ាស៊ីនគិតលេខ) "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ម៉ាស៊ីន​គិតលេខ រួច​អនុវត្ត ៖\n"
+" ១. ការ​គណនា​សាមញ្ញ (+,-,/,*)\n"
+" ២. ការ​គណនា​ស្មុគស្មាញ ((,))\n"
+" ៣. ការ​គណនា​ប្រភាគ\n"
+" ៤. ការ​គណនា​ទសភាគ\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​ការ​គណនា​ទាំងអស់​ប្រព្រឹត្ត​ទៅ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:438
+msgid ""
+"PURPOSE:\n"
+" This test checks that gcalctool (Calculator) works.\n"
+"STEPS:\n"
+" Click the \"Test\" button to open the calculator and perform:\n"
+"  1. Memory set\n"
+"  2. Memory reset\n"
+"  3. Memory last clear\n"
+"  4. Memory clear\n"
+"VERIFICATION:\n"
+" Did the functions perform as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ gcalctool (ម៉ាស៊ីនគិតលេខ) "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ម៉ាស៊ីន​គិតលេខ រួច​អនុវត្ត ៖\n"
+" ១. ការ​កំណត់​អង្គ​ចងចាំ\n"
+" ២. ការ​កំណត់​អង្គ​ចងចាំ​ឡើងវិញ\n"
+" ៣. ការ​សម្អាត​អង្គ​ចងចាំ​ចុងក្រោយ\n"
+" ៤. ការ​សម្អាត​អង្គ​ចង\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​មុខងារ​ទាំងអស់​ប្រព្រឹត្ត​ទៅ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:455
+msgid ""
+"PURPOSE:\n"
+" This test checks that gcalctool (Calculator) works.\n"
+"STEPS:\n"
+" Click the \"Test\" button to open the calculator and perform:\n"
+"  1. Cut\n"
+"  2. Copy\n"
+"  3. Paste\n"
+"VERIFICATION:\n"
+" Did the functions perform as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ gcalctool (ម៉ាស៊ីនគិតលេខ) "
+"ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ម៉ាស៊ីន​គិតលេខ រួច​អនុវត្ត ៖\n"
+" ១. កាត់\n"
+" ២. ចម្លង\n"
+" ៣. បិទភ្ជាប់\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​មុខងារ​ទាំងអស់​ប្រព្រឹត្ត​ទៅ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:470
+msgid ""
+"PURPOSE:\n"
+" This test checks that gedit works.\n"
+"STEPS:\n"
+" 1. Click the \"Test\" button to open gedit.\n"
+" 2. Enter some text and save the file (make a note of the file name you "
+"use), then close gedit.\n"
+"VERIFICATION:\n"
+" Did this perform as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ gedit ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​បើក gedit ។\n"
+" ២. បញ្ចូល​អត្ថបទ​ខ្លះៗ រួច​រក្សាទុក​ឯកសារ "
+"(កត់ចំណាំ​ឈ្មោះ​ឯកសារ​ដែល​អ្នក​ប្រើ) បន្ទាប់មក​បិទ gedit ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​វា​ប្រព្រឹត្ត​ទៅ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:484
+msgid ""
+"PURPOSE:\n"
+" This test checks that gedit works.\n"
+"STEPS:\n"
+" 1. Click the \"Test\" button to open gedit, and re-open the file you "
+"created previously.\n"
+" 2. Edit then save the file, then close gedit.\n"
+"VERIFICATION:\n"
+" Did this perform as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ gedit ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​បើក gedit "
+"រួច​បើក​ឯកសារ​ដែល​អ្នក​បង្កើត​ពេល​មុន ។\n"
+" ២. កែសម្រួល​វា រួច​រក្សាទុក​ឯកសារ  បន្ទាប់មក​បិទ gedit ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​វា​ប្រព្រឹត្ត​ទៅ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/user_apps.txt.in:497
+msgid ""
+"PURPOSE:\n"
+" This test will check that Gnome Terminal works.\n"
+"STEPS:\n"
+" 1. Click the \"Test\" button to open Terminal.\n"
+" 2. Type 'ls' and press enter. You should see a list of files and folder in "
+"your home directory.\n"
+" 3. Close the terminal window.\n"
+"VERIFICATION:\n"
+" Did this perform as expected?"
+msgstr ""
+"គោលបំណង ៖\n"
+" ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​ស្ថានីយ Gnome ដំណើរការ​ដែរ​ឬទេ ។\n"
+"ជំហាន ៖\n"
+" ១. ចុច​ប៊ូតុង \"សាកល្បង\" ដើម្បី​បើក​ស្ថានីយ ។\n"
+" ២. វាយ​ពាក្យ 'ls' រួច​ចុច​បញ្ចូល (Enter) ។ អ្នក​គួរតែ​ឃើញ​បញ្ជី​ឯកសារ "
+"និង​ថត​នៅ​ក្នុង​ថត​ផ្ទះ​របស់​អ្នក ។\n"
+" ៣. បិទ​បង្អួច​ស្ថានីយ ។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+" តើ​វា​ប្រព្រឹត្ត​ទៅ​ដូច​ការ​រំពឹង​ទុក​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/wireless.txt.in:20
+msgid "Wireless scanning test. It scans and reports on discovered APs."
+msgstr "សាកល្បង."
+
+#. description
+#: ../jobs/wireless.txt.in:26
+msgid ""
+"PURPOSE:\n"
+"    This test will check your wireless connection.\n"
+"STEPS:\n"
+"    1. Click on the Network icon in the panel.\n"
+"    2. Select a network below the 'Wireless networks' section.\n"
+"    3. Click \"Test\" to verify that it's possible to establish an HTTP "
+"connection.\n"
+"VERIFICATION:\n"
+"    Did a notification show and was the connection correctly established?"
+msgstr ""
+"គោលបំណង ៖\n"
+"    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ការ​តភ្ជាប់​ឥត​ខ្សែ​របស់​អ្នក ។\n"
+"ជំហាន ៖\n"
+"    ១. ចុច​រូបតំណាង​បណ្ដាញ​នៅ​ក្នុង​បន្ទះ ។\n"
+"    ២. ជ្រើស​បណ្ដាញ​ដែល​នៅ​ខាងក្រោម​ជម្រើស 'បណ្ដាញ​ឥត​ខ្សែ' ។\n"
+"    ៣. ចុច \"សាកល្បង\" ដើម្បី​ផ្ទៀងផ្ទាត់​ថា​វា​អាច​បង្កើត​ការ​តភ្ជាប់ HTTP "
+"។\n"
+"ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+"    តើ​ការ​ជូនដំណឹង​បាន​បង្ហាញ​ដែរ​ឬទេ "
+"ហើយ​ការ​តភ្ជាប់​ត្រូវ​បាន​បង្កើត​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ ?"
+
+#. description
+#: ../jobs/wireless.txt.in:44
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols."
+msgstr ""
+"សាកល្បង​ថា​​តើ​ប្រព័ន្ធ​ផ្នែក​រឹង​ឥត​ខ្សែ​អាច​តភ្ជាប់​ទៅកាន់​រ៉ោតទ័រ​ដោយ​ប្រើ"
+"​សុវត្ថិភាព WPA និង​ពិធីការ 802.11b/g បាន​ដែរ​ឬទេ ។"
+
+#. description
+#: ../jobs/wireless.txt.in:56
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols."
+msgstr "ទេ."
+
+#. description
+#: ../jobs/wireless.txt.in:68
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol."
+msgstr ""
+"សាកល្បង​ថា​​តើ​ប្រព័ន្ធ​ផ្នែក​រឹង​ឥត​ខ្សែ​អាច​តភ្ជាប់​ទៅកាន់​រ៉ោតទ័រ​ដោយ​ប្រើ"
+"​សុវត្ថិភាព WPA និង​ពិធីការ 802.11n បាន​ដែរ​ឬទេ ។"
+
+#. description
+#: ../jobs/wireless.txt.in:80
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11n protocol."
+msgstr "ទេ."
+
+#. description
+#: ../jobs/wireless.txt.in:176
+msgid ""
+"Tests the performance of a systems wireless connection through the iperf "
+"tool."
+msgstr "សាកល្បង​អនុវត្ត​ប្រព័ន្ធ​ការ​តភ្ជាប់​ឥត​ខ្សែ​តាម​ឧបករណ៍ iperf ។"
+
+#. description
+#: ../jobs/wireless.txt.in:187
+msgid ""
+"Tests the performance of a systems wireless connection through the iperf "
+"tool, using UDP packets."
+msgstr ""
+"សាកល្បង​អនុវត្ត​ប្រព័ន្ធ​ការ​តភ្ជាប់​ឥត​ខ្សែ​តាម​ឧបករណ៍ iperf "
+"ដោយ​ប្រើ​កញ្ចប់ UDP ។"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "ការ​ប្រើប្រាស់ ៖ checkbox [ជម្រើស]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "បោះពុម្ព​ព័ត៌មាន​កំណែ រួច​ចេញ ។"
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "ឯកសារ​ដែល​ត្រូវ​សរសេរ​​កំណត់ហេតុ​ទៅ ។"
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr ""
+"មួយ​ក្នុង​ចំណោម​ការ​បំបាត់​កំហុស ព័ត៌មាន ការ​ព្រមាន កំហុស ឬ​ការ​សម្រេច ។"
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "ការ​កំណត់​រចនាសម្ព័ន្ធ​ប៉ារ៉ាម៉ែត្រ​បដិសេធ ។"
+
+#: ../checkbox/application.py:84
+msgid "Shorthand for --config=.*/jobs_info/blacklist."
+msgstr "Shorthand for --config=.*/jobs_info/blacklist."
+
+#: ../checkbox/application.py:86
+msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
+msgstr "Shorthand for --config=.*/jobs_info/blacklist_file."
+
+#: ../checkbox/application.py:88
+msgid "Shorthand for --config=.*/jobs_info/whitelist."
+msgstr "Shorthand for --config=.*/jobs_info/whitelist."
+
+#: ../checkbox/application.py:90
+msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
+msgstr "Shorthand for --config=.*/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "បាត់​ឯកសារ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ជា​អាគុយម៉ង ។\n"
+
+#: ../checkbox/job.py:85
+msgid "Command not found."
+msgstr "រក​មិន​ឃើញ​ពាក្យ​បញ្ជា ។"
+
+#: ../checkbox/job.py:92
+#, python-format
+msgid "Command received signal %s: %s"
+msgstr "ពាក្យ​បញ្ជា​សញ្ញា​ទទួល %s ៖ %s"
+
+#: ../checkbox/lib/signal.py:23
+msgid ""
+"Hangup detected on controlling terminal or death of controlling process"
+msgstr ""
+"Hangup បាន​រក​ឃើញ​នៅ​លើ​ស្ថានីយ​ត្រួតពិនិត្យ "
+"ឬ​នៅ​ពេល​បញ្ចប់​នៃ​ដំណើរការ​ត្រួតពិនិត្យ"
+
+#: ../checkbox/lib/signal.py:24
+msgid "Interrupt from keyboard"
+msgstr "ផ្អាក​ដោយ​ប្រើ​ក្ដារចុច"
+
+#: ../checkbox/lib/signal.py:25
+msgid "Quit from keyboard"
+msgstr "បោះបង់​ដោយ​ប្រើ​ក្ដារចុច"
+
+#: ../checkbox/lib/signal.py:26
+msgid "Illegal Instruction"
+msgstr "សេចក្ដីណែនាំ​ខុស​ច្បាប់"
+
+#: ../checkbox/lib/signal.py:27
+msgid "Abort signal from abort(3)"
+msgstr "បោះបង់​សញ្ញា​ពី abort(3)"
+
+#: ../checkbox/lib/signal.py:28
+msgid "Floating point exception"
+msgstr "ករណី​លើកលែង​ពិត"
+
+#: ../checkbox/lib/signal.py:29
+msgid "Kill signal"
+msgstr "បំបាត់​សញ្ញា"
+
+#: ../checkbox/lib/signal.py:30
+msgid "Invalid memory reference"
+msgstr "សេចក្ដី​យោង​អង្គ​ចងចាំ​មិន​ត្រឹមត្រូវ"
+
+#: ../checkbox/lib/signal.py:31
+msgid "Broken pipe: write to pipe with no readers"
+msgstr "ទេ"
+
+#: ../checkbox/lib/signal.py:32
+msgid "Timer signal from alarm(2)"
+msgstr "សញ្ញា​ឧបករណ៍​កំណត់​ពេលវេលា​ពី alarm(2)"
+
+#: ../checkbox/lib/signal.py:33
+msgid "Termination signal"
+msgstr "សញ្ញា​ស្ថានីយ"
+
+#: ../checkbox/lib/signal.py:34
+msgid "User-defined signal 1"
+msgstr "សញ្ញា​កំណត់​ដោយ​អ្នកប្រើ ១"
+
+#: ../checkbox/lib/signal.py:35
+msgid "User-defined signal 2"
+msgstr "សញ្ញា​កំណត់​ដោយ​អ្នកប្រើ ២"
+
+#: ../checkbox/lib/signal.py:36
+msgid "Child stopped or terminated"
+msgstr "កូន​បាន​ឈប់ ឬ​បញ្ចប់"
+
+#: ../checkbox/lib/signal.py:37
+msgid "Continue if stopped"
+msgstr "បន្ត"
+
+#: ../checkbox/lib/signal.py:38
+msgid "Stop process"
+msgstr "បញ្ឈប់​ដំណើរការ"
+
+#: ../checkbox/lib/signal.py:39
+msgid "Stop typed at tty"
+msgstr "ឈប់​វាយ​នៅ tty"
+
+#: ../checkbox/lib/signal.py:40
+msgid "tty input for background process"
+msgstr "ព័ត៌មាន​បញ្ចូល tty សម្រាប់​ដំណើរការ​ផ្ទៃ​ខាងក្រោយ"
+
+#: ../checkbox/lib/signal.py:41
+msgid "tty output for background process"
+msgstr "លទ្ធផល tty សម្រាប់​ដំណើរការ​ផ្ទៃ​ខាងក្រោយ"
+
+#: ../checkbox/lib/signal.py:77
+msgid "UNKNOWN"
+msgstr "មិន​ស្គាល់"
+
+#: ../checkbox/lib/signal.py:89
+msgid "Unknown signal"
+msgstr "មិន​ស្គាល់​សញ្ញា"
+
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:939
+msgid "yes"
+msgstr "បាទ/ចាស"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:940
+msgid "no"
+msgstr "ទេ"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:941
+msgid "skip"
+msgstr "រំលង"
+
+#: ../checkbox_cli/cli_interface.py:127
+msgid "Press any key to continue..."
+msgstr "ចុច​គ្រាប់ចុច​ណាមួយ​ដើម្បី​បន្ត..."
+
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
+#, python-format
+msgid "Please choose (%s): "
+msgstr "សូម​ជ្រើស (%s) ។ "
+
+#: ../checkbox_cli/cli_interface.py:232 ../checkbox_cli/cli_interface.py:355
+#: ../checkbox_cli/cli_interface.py:386
+msgid "Space when finished"
+msgstr "ដកឃ្លា​ពេល​បញ្ចប់"
+
+#: ../checkbox_cli/cli_interface.py:384
+msgid "Combine with character above to expand node"
+msgstr "ផ្សំ​ជាមួយ​តួអក្សរ​ខាងលើ​ដើម្បី​ពង្រីក​ថ្នាំង"
+
+#: ../checkbox_cli/cli_interface.py:432
+msgid "test"
+msgstr "សាកល្បង"
+
+#: ../checkbox_cli/cli_interface.py:456
+msgid "test again"
+msgstr "សាកល្បង"
+
+#: ../checkbox_cli/cli_interface.py:462
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "សូម​វាយ​នៅ​ទីនេះ រួច​ចុច Ctrl-D ពេល​បញ្ចប់ ៖\n"
+
+#: ../checkbox_urwid/urwid_interface.py:86
+msgid "Checkbox System Testing"
+msgstr "ការ​សាកល្បង​ប្រព័ន្ធ Checkbox"
+
+#: ../checkbox_urwid/urwid_interface.py:127 ../checkbox/user_interface.py:70
+#: ../qt/frontend/ui_qtfront.h:644
+msgid "Continue"
+msgstr "បន្ត"
+
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569
+msgid "Previous"
+msgstr "មុន"
+
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570
+msgid "Next"
+msgstr "បន្ទាប់"
+
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:445
+msgid "Select All"
+msgstr "ជ្រើស​ទាំងអស់"
+
+#: ../checkbox_urwid/urwid_interface.py:446
+msgid "Deselect All"
+msgstr "ដោះ​ជ្រើស​ទាំងអស់"
+
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:567
+msgid "Expand All"
+msgstr "ពង្រីក​ទាំងអស់"
+
+#: ../checkbox_urwid/urwid_interface.py:568
+msgid "Collapse All"
+msgstr "វេញ​ទាំងអស់"
+
+#: ../checkbox_urwid/urwid_interface.py:1034
+msgid "Test"
+msgstr "សាកល្បង"
+
+#: ../checkbox_urwid/urwid_interface.py:1049
+msgid "Test Again"
+msgstr "សាកល្បង"
+
+#: ../checkbox_gtk/gtk_interface.py:525
+msgid "_Test Again"
+msgstr "សាកល្បង"
+
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
+msgid "Info"
+msgstr "ព័ត៌មាន"
+
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:227
+msgid "Error"
+msgstr "កំហុស"
+
+#: ../checkbox_gtk/gtk_interface.py:607
+msgid "Detailed information..."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:83
+msgid ""
+"Collecting information about this test.\n"
+"This might take a few minutes."
+msgstr "សាកល្បង."
+
+#: ../plugins/apport_prompt.py:118
+msgid ""
+"Collected information is being sent for bug tracking.\n"
+"This might take a few minutes."
+msgstr ""
+"ព័ត៌មាន​ដែល​បាន​ប្រមូល​កំពុង​ត្រូវ​បាន​ផ្ញើ​សម្រាប់​ការ​តាមដាន​បំបាត់​កំហុស "
+"។\n"
+"វា​អាច​ប្រើ​ពេល​ពីរ​បី​នាទី ។"
+
+#: ../plugins/apport_prompt.py:227
+#, python-format
+msgid "Test %(name)s failed."
+msgstr "បាន​បរាជ័យ​ក្នុង​ការ​សាកល្បង %(name)s ។"
+
+#: ../plugins/apport_prompt.py:230
+#, python-format
+msgid "Test %s failed."
+msgstr "បាន​បរាជ័យ​ក្នុង​ការ​សាកល្បង %s ។"
+
+#: ../plugins/apport_prompt.py:231
+msgid "Do you want to report a bug?"
+msgstr "តើ​អ្នក​ចង់​រាយការណ៍​កំហុស​ដែរ​ឬទេ ?"
+
+#: ../plugins/apport_prompt.py:248
+#, python-format
+msgid "Is a package upgrade in process? Error: %s"
+msgstr "តើ​ការ​ធ្វើឲ្យ​កញ្ចប់​ប្រសើរ​ឡើង​កំពុង​ដំណើរការ​ដែរ​ឬទេ ? កំហុស ៖ %s"
+
+#: ../plugins/final_prompt.py:33
+msgid "Successfully finished testing!"
+msgstr "បាន​បញ្ចប់​ការ​សាកល្បង​ដោយ​ជោគជ័យ !"
+
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "បញ្ចប់"
+
+#. Resolve dependencies
+#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
+msgid "Gathering information from your system..."
+msgstr "កំពុង​ប្រមូល​ព័ត៌មាន​ពី​ប្រព័ន្ធ​របស់​អ្នក..."
+
+#: ../plugins/intro_prompt.py:28
+msgid ""
+"Welcome to System Testing!\n"
+"\n"
+"Checkbox provides tests to confirm that your system is working properly. "
+"Once you are finished running the tests, you can view a summary report for "
+"your system."
+msgstr ""
+"សូម​ស្វាគមន៍​មកកាន់​ការ​សាកល្បង​ប្រព័ន្ធ !\n"
+"\n"
+"Checkbox "
+"ផ្ដល់​ការ​សាកល្បង​ដើម្បី​អះអាង​ថា​ប្រព័ន្ធ​របស់​អ្នក​កំពុង​ដំណើរការ​ត្រឹមត្រូ"
+"វ​ដែរ​ឬទេ ។ ពេល​ដែល​អ្នក​បាន​បញ្ចប់​ដំណើរការ​សាកល្បង "
+"អ្នក​អាច​មើល​របាយការណ៍​សង្ខេប​នៃ​ប្រព័ន្ធ​របស់​អ្នក​បាន ។"
+
+#: ../plugins/intro_prompt.py:33
+msgid ""
+"\n"
+"\n"
+"Warning: Some tests could cause your system to freeze or become "
+"unresponsive. Please save all your work and close all other running "
+"applications before beginning the testing process."
+msgstr ""
+"\n"
+"\n"
+"ការ​ព្រមាន ៖ ការ​សាកល្បង​ខ្លះ​អាច​បណ្ដាលឲ្យ​ប្រព័ន្ធ​របស់​អ្នក​ដំណើរការ​យឺត "
+"ឬ​គាំង ។ សូម​រក្សាទុក​ការងារ​ទាំងអស់​របស់​អ្នក "
+"រួច​បិទ​កម្មវិធី​ដែល​កំពុង​ដំណើរការ មុន​ពេល​ចាប់ផ្ដើម​ការ​សាកល្បង ។"
+
+#: ../plugins/launchpad_exchange.py:135
+#, python-format
+msgid "Failed to process form: %s"
+msgstr "បាន​បរាជ័យ​ការ​ដំណើរការ​ពី ៖ %s"
+
+#: ../plugins/launchpad_exchange.py:150
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"បាន​បរាជ័យ​ក្នុង​ការ​ទាក់ទង​ទៅកាន់​ម៉ាស៊ីន​បម្រើ ។ សូម​ព្យាយាម​ម្ដងទៀត\n"
+"ឬ​ផ្ទុក​ឡើង​នូវ​ឈ្មោះ​ឯកសារ​ដូច​ខាងក្រោម ៖\n"
+"%s\n"
+"\n"
+"ដោយ​ផ្ទាល់​ទៅកាន់​មូលដ្ឋាន​ទិន្នន័យ ៖\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:159
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"បាន​បរាជ័យ​ក្នុង​ការ​ផ្ទុក​ឡើង​ទៅកាន់​ម៉ាស៊ីន​បម្រើ\n"
+"សូម​ព្យាយាម​ម្ដងទៀត​នៅ​ពេល​ក្រោយ ។"
+
+#: ../plugins/launchpad_exchange.py:171
+msgid "Information not posted to Launchpad."
+msgstr "ព័ត៌មាន​មិន​បាន​ប្រកាស​ទៅកាន់ Launchpad ទេ ។"
+
+#. Ignore whether to submit to HEXR
+#: ../plugins/launchpad_prompt.py:78
+#, python-format
+msgid ""
+"The following report has been generated for submission to the Launchpad "
+"hardware database:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"You can submit this information about your system by providing the email "
+"address you use to sign in to Launchpad. If you do not have a Launchpad "
+"account, please register here:\n"
+"\n"
+"  https://launchpad.net/+login"
+msgstr ""
+"របាយការណ៍​ខាងក្រោម​ត្រូវ​បាន​បង្កើត​ឡើង​សម្រាប់​ការ​ដាក់​ស្នើ​ទៅកាន់​មូលដ្ឋាន"
+"​ទិន្នន័យ​ផ្នែក​រឹង​របស់ Launchpad ៖\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"អ្នក​អាច​ដាក់​ស្នើ​ព័ត៌មាន​អំពី​ប្រព័ន្ធ​របស់​អ្នក​តាមរយៈ​ការ​ផ្ដល់​អាសយដ្ឋាន"
+"​អ៊ីមែល​ដែល​អ្នកប្រើ​ដើម្បី​ចូល Launchpad ។ ប្រសិនបើ​អ្នក​គ្មាន​គណនី "
+"Launchpad ទេ សូម​ចុះឈ្មោះ​នៅ​ទីនេះ ៖\n"
+"\n"
+"  https://launchpad.net/+login"
+
+#: ../plugins/launchpad_prompt.py:88
+msgid "Email"
+msgstr ""
+
+#: ../plugins/launchpad_prompt.py:97
+msgid "Email address must be in a proper format."
+msgstr "អាសយដ្ឋាន​អ៊ីមែល​ត្រូវតែ​ជា​ទម្រង់​ត្រឹមត្រូវ ។"
+
+#: ../plugins/launchpad_prompt.py:103
+msgid "Exchanging information with the server..."
+msgstr "កំពុង​ផ្លាស់ប្ដូរ​ព័ត៌មាន​ជាមួយ​ម៉ាស៊ីន​បម្រើ..."
+
+#: ../plugins/launchpad_report.py:171
+msgid ""
+"The generated report seems to have validation errors,\n"
+"so it might not be processed by Launchpad."
+msgstr ""
+"របាយការណ៍​ដែល​បាន​បង្កើត​ហាក់​មាន​កំហុស\n"
+"ដូច្នេះ​វា​អាច​ត្រូវ​បាន​មិន​ដំណើរការ​ដោយ Launchpad​ទេ ។"
+
+#: ../plugins/lock_prompt.py:66
+msgid "There is another checkbox running. Please close it first."
+msgstr "មាន Checkbox ផ្សេងទៀត​កំពុង​ដំណើរការ ។ សូម​បិទ​វា​សិន !"
+
+#: ../plugins/recover_prompt.py:62
+msgid ""
+"Checkbox did not finish completely.\n"
+"Do you want to rerun the last test,\n"
+"continue to the next test, or\n"
+"restart from the beginning?"
+msgstr ""
+
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "កំពុង​បង្កើត​របាយការណ៍..."
+
+#: ../plugins/shell_test.py:52
+#, python-format
+msgid "Running %s..."
+msgstr "កំពុង​ដំណើរការ %s..."
+
+#: ../plugins/suites_prompt.py:36
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr "សាកល្បង."
+
+#: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:648
+msgid "Choose tests to run on your system:"
+msgstr ""
+
+#: ../scripts/keyboard_test:22
+msgid "Enter text:\n"
+msgstr "បញ្ចូល​អត្ថបទ ៖\n"
+
+#: ../scripts/keyboard_test:43
+msgid "Type Text"
+msgstr "វាយ​អត្ថបទ"
+
+#: ../scripts/internet_test:221
+msgid "No Internet connection"
+msgstr "គ្មាន​ការ​តភ្ជាប់​អ៊ីនធឺណិត"
+
+#: ../scripts/internet_test:224
+msgid "Connection established lost a packet"
+msgstr "ការ​តភ្ជាប់​ដែល​បាន​បង្កើត​បាន​បាត់​កញ្ចប់​ព័ត៌មាន"
+
+#: ../scripts/internet_test:227
+msgid "Internet connection fully established"
+msgstr "បាន​បង្កើត​ការ​តភ្ជាប់​អ៊ីនធឺណិត​ដោយ​ពេញលេញ"
+
+#: ../qt/frontend/qtfront.cpp:81
+msgid "Audio Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:82
+msgid "Bluetooth Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:83
+msgid "Camera Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:84
+msgid "CPU Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:85
+msgid "Disk Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:86
+msgid "Firewire Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:87
+msgid "Graphics Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:88
+msgid "Info Test"
+msgstr "ព័ត៌មាន សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:89
+msgid "Input Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:90
+msgid "Keys Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:91
+msgid "Media Card Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:92
+msgid "Memory Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:93
+msgid "Miscellanea Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:94
+msgid "Monitor Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:95
+msgid "Networking Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:96
+msgid "Wireless Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:97
+msgid "Optical Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "PCMCIA/PCIX Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:99
+msgid "Power Management Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:100
+msgid "Suspend Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:101
+msgid "USB Test"
+msgstr "សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:103
+msgid "Not Started"
+msgstr "មិន​បាន​ចាប់ផ្ដើម"
+
+#: ../qt/frontend/qtfront.cpp:104 ../qt/frontend/qtfront.cpp:105
+msgid "Done"
+msgstr "ធ្វើ​រួច"
+
+#: ../qt/frontend/qtfront.cpp:106
+msgid "Not Supported"
+msgstr "មិន​គាំទ្រ"
+
+#: ../qt/frontend/qtfront.cpp:107
+msgid "Not Resolved"
+msgstr "មិន​បាន​ដោះស្រាយ​ឡើងវិញ"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "Not Tested"
+msgstr "មិន​បាន​សាកល្បង"
+
+#: ../qt/frontend/qtfront.cpp:109
+msgid "In Progress"
+msgstr "កំពុង​ដំណើរការ"
+
+#: ../qt/frontend/qtfront.cpp:161
+msgid "Are you sure?"
+msgstr "តើ​អ្នក​ប្រាកដ​ទេ ?"
+
+#: ../qt/frontend/qtfront.cpp:161
+msgid "Do you really want to skip this test?"
+msgstr "សាកល្បង?"
+
+#: ../qt/frontend/qtfront.cpp:162
+msgid "Don't ask me again"
+msgstr "កុំ​សួរ​ខ្ញុំ​ម្ដងទៀត"
+
+#: ../qt/frontend/ui_qtfront.h:641
+msgid "Form"
+msgstr "សំណុំ​បែបបទ"
+
+#: ../qt/frontend/ui_qtfront.h:601
+msgid "OK"
+msgstr "យល់ព្រម"
+
+#: ../qt/frontend/ui_qtfront.h:602
+msgid "Don't show me this message in the future"
+msgstr "កុំ​បង្ហាញ​សារ​នេះ​នៅ​ពេល​ក្រោយ"
+
+#: ../qt/frontend/ui_qtfront.h:645 ../qt/frontend/ui_qtfront.h:663
+msgid "Tab 1"
+msgstr "ផ្ទាំង ១"
+
+#: ../qt/frontend/ui_qtfront.h:646
+msgid "10 tests completed out of 30 (30%)"
+msgstr "បាន​បញ្ចប់​ការ​សាកល្បង​ចំនួន ១០ នៃ ៣០ (៣០%)"
+
+#: ../qt/frontend/ui_qtfront.h:649
+msgid "Components"
+msgstr "សមាសភាគ"
+
+#: ../qt/frontend/ui_qtfront.h:650
+msgid "Status"
+msgstr "ស្ថានភាព"
+
+#: ../qt/frontend/ui_qtfront.h:651
+msgid "Select all"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:652
+msgid "Deselect all"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:653
+msgid "Start testing"
+msgstr "ចាប់ផ្ដើម​ការ​សាកល្បង"
+
+#: ../qt/frontend/ui_qtfront.h:654
+msgid " Selection "
+msgstr " ជម្រើស "
+
+#: ../qt/frontend/ui_qtfront.h:655 ../qt/frontend/ui_qtfront.h:656
+msgid "TextLabel"
+msgstr "TextLabel"
+
+#: ../qt/frontend/ui_qtfront.h:615
+msgid "Yes"
+msgstr "បាទ/ចាស"
+
+#: ../qt/frontend/ui_qtfront.h:617
+msgid "No"
+msgstr "ទេ"
+
+#: ../qt/frontend/ui_qtfront.h:618
+msgid "Comment"
+msgstr "មតិយោបល់"
+
+#: ../qt/frontend/ui_qtfront.h:664 ../qt/frontend/ui_qtfront.h:681
+msgid "Tab 2"
+msgstr "ផ្ទាំង ២"
+
+#: ../qt/frontend/ui_qtfront.h:667
+msgid " Run "
+msgstr " ដំណើរការ "
+
+#: ../qt/frontend/ui_qtfront.h:624
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#000000;\">Please enter the e-mail address associated with your "
+"Launchpad account (if applicable)</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#000000;\">and click the Submit Results button to submit these test "
+"results to Ubuntu Friendly.</span></p></body></html>"
+msgstr ""
+"http://www.w3.org/TR/REC-html40/strict.dtd\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#000000;\"></span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#000000;\"> សាកល្បង</span></p></body></html>"
+
+#: ../qt/frontend/ui_qtfront.h:674
+msgid "Submission details"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:676
+msgid "Email:"
+msgstr "អ៊ីមែល ៖"
+
+#: ../qt/frontend/ui_qtfront.h:677
+msgid "Submit results"
+msgstr "ដាក់​ស្នើ​លទ្ធផល"
+
+#: ../qt/frontend/ui_qtfront.h:678
+msgid "View results"
+msgstr "មើល​លទ្ធផល"
+
+#: ../qt/frontend/ui_qtfront.h:680
+msgid " Results "
+msgstr " លទ្ធផល "
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "   ការ​សាកល្បង​នេះ​ប៉ុនប៉ង​ដំឡើង និង​ដំណើរការ​ឈុត​ សាកល្បង​ស្វ័យប្រវត្តិ ។  "
+#~ "ការ​សាកល្បង​ទាំងនេះ​អាច​មាន​លក្ខណៈ​ជា​ការ​បំផ្លាញ "
+#~ "ដូច្នេះ​ការ​សាកល្បង​មួយ​នេះ​​ត្រូវ​បាន​កត់​ចូល​បញ្ជី​ខ្មៅ​តាម​លំនាំដើម ។"
+
+#~ msgid "Captures a screenshot."
+#~ msgstr "ថត​រូប​អេក្រង់ ។"
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "ភ្ជាប់​រូប​អេក្រង់​ដែល​បាន​ថត​នៅ​ក្នុង​ព័ត៌មាន/រូបថត​អេក្រង់ ។"
+
+#~ msgid "Gather log from the Firmware Test Suite run."
+#~ msgstr "ប្រមូល​កំណត់ហេតុ​ពី​​ឈុត​សាកល្បង​កម្មវិធី​បង្កប់​ដែល​ដំណើរការ ។"
+
+#~ msgid "Autotest Suite tests"
+#~ msgstr "ការ​សាកល្បង​ឈុត​អូឌីយ៉ូ"
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "ការ​សាកល្បង​គម្រោង​សាកល្បង​លីនុច"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "ការ​សាកល្បង​ផ្ទៃតុ​ស្វ័យប្រវត្តិ​របស់ Mago"
+
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "ការ​សាកល្បង​ឈុត​សាកល្បង Phoronix"
+
+#~ msgid "QA Regression tests"
+#~ msgstr "ការ​សាកល្បង​ការ​ថយក្រោយ QA"
+
+#~ msgid "Unity tests"
+#~ msgstr "ការ​សាកល្បង Unity"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "ការ​សាកល្បង​នេះ​ដំឡើង និង​ដំណើរការ​ការ​សាកល្បង​ syscalls "
+#~ "របស់​គម្រោង​សាកល្បង​លីនុច ។ វា​អាច​បង្ក​ឲ្យ​មាន​ហានិភ័យ "
+#~ "ដូច្នេះ​វា​ត្រូវ​បាន​កត់ចូលទៅក្នុង​បញ្ជី​ខ្មៅ​តាម​លំនាំដើម ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "   ការ​សាកល្បង​នេះ​ដំឡើង និង​ដំណើរការ​ឈុត​សាកល្បង​ផ្ទៃតុ​ស្វ័យប្រវត្តិ​របស់ "
+#~ "Mago ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will verify that the desktop clock displays the correct date "
+#~ "and time\n"
+#~ "VERIFICATION:\n"
+#~ "   Is the clock in the upper right corner of your desktop displaying the "
+#~ "correct date and time for your timezone?"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "   ការ​សាកល្បង​នេះ​នឹង​ផ្ទៀងផ្ទាត់​ថា នាឡិកា​លើ​ផ្ទៃតុ​បង្ហាញ​កាលបរិច្ឆេទ "
+#~ "និង​ពេលវេលា​ត្រឹមត្រូវ\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "   តើ​នាឡិកា​នៅ​ជ្រុង​ស្ដាំ​ផ្នែក​ខាងលើ​ផ្ទៃតុ​បង្ហាញ​កាលបរិច្ឆេទ "
+#~ "និង​ពេលវេលា​នៃ​តំបន់​ម៉ោង​របស់​អ្នក​បាន​ត្រឹមត្រូវ​ដែរ​ឬ​ទេ ?"
+
+#~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
+#~ msgstr "សាកល្បង "
+
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr "ទេ."
+
+#~ msgid ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
+#~ msgstr "សាកល្បង សាកល្បង."
+
+#~ msgid "Select the suites to test"
+#~ msgstr "សាកល្បង"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check the system can detect the insertion of a FireWire "
+#~ "HDD\n"
+#~ "STEPS:\n"
+#~ "    1. Click 'Test' to begin the test. This test will\n"
+#~ "       timeout and fail if the insertion has not been detected within 10 "
+#~ "seconds.\n"
+#~ "    2. Plug a FireWire HDD into an available FireWire port.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "    selected result"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​អាច​រក​ឃើញ​ការ​បញ្ចូល​របស់ "
+#~ "FireWire HDD ដែរ ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច 'សាកល្បង' ដើម្បី​ចាប់ផ្ដើម​ការ​សាកល្បង ។ ការ​សាកល្បង​នេះ​នឹង\n"
+#~ "       អស់​ពេល​ហើយ​បរាជ័យ "
+#~ "ប្រសិនបើ​ការ​បញ្ចូល​មិន​ត្រូវ​បាន​រក​ឃើញ​ក្នុង​រយៈពេល ១០ វិនាទី ។\n"
+#~ "    ២. ដោត FireWire HDD ទៅ​ក្នុង​ច្រក FireWire ដែល​មាន ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​នឹង​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ផ្លាស់ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ស្វ័យប្រវត្តិ"
+
+#~ msgid ""
+#~ " PURPOSE:\n"
+#~ "   This test will check the system can detect the removal of a FireWire HDD\n"
+#~ " STEPS:\n"
+#~ "   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+#~ "      the removal has not been detected within 10 seconds.\n"
+#~ "   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+#~ " VERIFICATION:\n"
+#~ "   The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "   selected result"
+#~ msgstr ""
+#~ " គោលបំណង ៖\n"
+#~ "   ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​អាច​រក​ឃើញ FireWire HDD "
+#~ "ដែល​អាច​យកចេញ​បាន​ដែរ ឬទេ\n"
+#~ " ជំហាន ៖\n"
+#~ "   ១. ចុច 'សាកល្បង' ដើម្បី​ចាប់ផ្ដើម​ការ​សាកល្បង ។ "
+#~ "ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​ហើយ​បរាជ័យ ប្រសិនបើ\n"
+#~ "      ការ​យកចេញ​មិន​ត្រូវ​បាន​រក​ឃើញ​ក្នុង​រយៈពេល ១០ វិនាទី ។\n"
+#~ "   ២. យក FireWire HDD ដែល​បាន​ភ្ជាប់​ពីមុន​ចេញពី​ច្រក FireWire ។\n"
+#~ " ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "   "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ផ្លាស់ប្ដូរ​លទ្ធផល\n"
+#~ "   ដែល​បាន​ជ្រើស​ស្វ័យប្រវត្តិ"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will test the media keys of your keyboard\n"
+#~ "STEPS:\n"
+#~ "    1. Click test to open a window on which to test the media control keys.\n"
+#~ "    2. If all the keys work, the test will be marked as passed.\n"
+#~ "    3. If your computer has no media control keys, Skip this test.\n"
+#~ "VERIFICATION:\n"
+#~ "    Do the keys work as expected?"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ធ្វើតេស្ត​គ្រាប់ចុច​មេឌៀ​នៃ​ក្ដារចុច​របស់​អ្នក\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច​សាកល្បង​ដើម្បី​បើក​បង្អួច​សាកល្បង​គ្រាប់ចុច​គ្រប់គ្រង​មេឌៀ ។\n"
+#~ "    ២. ប្រសិនបើ​គ្រាប់ចុច​ទាំងអស់​ដំណើរការ ការ​សាកល្បង​នឹង​សម្គាល់​បានជោគជ័យ "
+#~ "។\n"
+#~ "    ៣. ប្រសិនបើ​កុំព្យូទ័រ​របស់​អ្នក​គ្មាន​គ្រាប់ចុច​គ្រប់គ្រង​មេឌៀ​ទេ "
+#~ "រំលង​ការ​សាកល្បង​នេះ ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    តើ​គ្រាប់ចុច​ដំណើរការ​ដូច​បាន​រំពឹង​ទុក​ដែរ ឬទេ ?"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Multimedia Card (MMC) media\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an MMC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​មេឌៀ Multimedia Card (MMC) ដែរ ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត MMC ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​នឹង​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of the MMC card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the MMC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត MMC ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ ឬទេ ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត MMC ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of an MMC card after the system has been suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an MMC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​កម្មវិធី​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត MMC បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក​ដែរ ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត MMC ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​នឹង​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal\n"
+#~ "    of an MMC card from the systems card reader after the system has been "
+#~ "suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the MMC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត MMC ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ត្រឹមត្រូវ​ដែរ "
+#~ "ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត MMC ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Secure Digital (SD) media card\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SD card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត​មេឌៀ Secure Digital (SD) ដែរ ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត SD ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of an SD card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SD card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត SD ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ ឬទេ ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត SD ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of an SD card after the system has been suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SD card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត SD ដែរ ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត SD ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of an SD card from the systems card reader after the system "
+#~ "has been suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SD card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត SD ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ "
+#~ "ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត SD ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+#~ "card\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត​មេឌៀ Secure Digital High-Capacity (SDHC) ដែរ ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត SDHC ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of an SDHC card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត SDHC ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ ឬទេ ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត SDHC ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of an SDHC media card after the system has been "
+#~ "suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត​មេឌៀ SDHC ដែរ "
+#~ "ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត SDHC ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal\n"
+#~ "    of an SDHC card from the systems card reader after the system has been "
+#~ "suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត SDHC ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ "
+#~ "ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត SDHC ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Compact Flash (CF) media card\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert a CF card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត​មេឌៀ Compact Flash (CF) ដែរ ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត CF ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of a CF card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the CF card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត CF ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ ឬទេ ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត CF ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a CF card after the system has been suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert a CF card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ឧបករណ៍​អាន​កាត​មេឌៀ​ប្រព័ន្ធ​អាច\n"
+#~ "    រក​ឃើញ​ការ​បញ្ចូល​កាត CF ដែរ ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​កាត CF ទៅ​ក្នុង​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​ការ​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal\n"
+#~ "    of a CF card from the systems card reader after the system has been "
+#~ "suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the CF card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ\n"
+#~ "    ការ​យក​កាត CF ចេញពី​ឧបករណ៍​អាន​កាត​ប្រព័ន្ធ​ដោយ​ត្រឹមត្រូវ​ដែរ "
+#~ "ឬទេ​បន្ទាប់ពី​ប្រព័ន្ធ​ត្រូវ​បាន​ផ្អាក ។\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​កាត CF ចេញពី​ឧបករណ៍​អាន ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will download and install the Phoronix Test Suite and run some "
+#~ "selected benchmarking tests."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "   ការ​សាកល្បង​នេះ​នឹង​ទាញ​យក រួច​ដំឡើង Phoronix Test Suite "
+#~ "ហើយ​ដំណើរការ​សាកល្បង​ការ​ចំណាំ​មួយ​ចំនួន​ដែល​បាន​ជ្រើស ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "   វា​ត្រូវតែ​ដំឡើង និង​ដំណើរការ​ការ​សាកល្បង​ថយក្រោយ QA អ៊ូប៊ុនទូ "
+#~ "(ដែល​បំផ្លិចបំផ្លាញ)"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will enter and resume from hibernate for 30 iterations\n"
+#~ "STEPS:\n"
+#~ "    1. Ensure your system has no power-on or HDD passwords set, and that "
+#~ "grub is set to boot Ubuntu by default if you have a multi-boot set-up\n"
+#~ "    2. Click \"Test\" to start the test (very lengthy)\n"
+#~ "    3. If your system does not wake itself after 2 minutes, you will need to "
+#~ "press the power button\n"
+#~ "    4. If the system fails to resume from hibernation and must be rebooted, "
+#~ "please restart System Testing and mark this test as Failed\n"
+#~ "VERIFICATION:\n"
+#~ "    Did the system successfully hibernate and wake 30 times?"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​បញ្ចូល "
+#~ "រួច​ធ្វើ​បន្ត​ពី​ពេល​សម្ងំ​សម្រាប់​ការ​អះអាង​ជាថ្មី​ចំនួន ៣០ ដង\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. សូម​ប្រាកដ​ថា​ប្រព័ន្ធ​របស់​អ្នក​​មិន​បាន​បើក​ទេ "
+#~ "ឬ​ពាក្យសម្ងាត់​ថាស​រឹង​ក៏​មិន​បាន​កំណត់​ដែរ និង grub "
+#~ "ត្រូវ​បាន​កំណត់​ឲ្យ​ចាប់ផ្ដើម​អ៊ូប៊ុនទូ​តាម​លំនាំដើម "
+#~ "ប្រសិនបើ​អ្នក​បាន​ដំឡើង​ការ​ចាប់ផ្ដើម​ឡើងវិញ​ច្រើន\n"
+#~ "    ២. ចុច \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ការ​សាកល្បង (យ៉ាង​យូរ)\n"
+#~ "    ៣. ប្រសិនបើ​ប្រព័ន្ធ​របស់​អ្នក​មិន​ភ្ញាក់​ដោយ​​ខ្លួនឯង​ក្នុង​រយៈពេល ២ "
+#~ "នាទី​ទេ អ្នក​ចាំបាច់​ត្រូវតែ​ចុច​ប៊ូតុង​ថាមពល\n"
+#~ "    ៤. ប្រសិនបើ​ប្រព័ន្ធ​បាន​បរាជ័យ​ក្នុង​ការ​ធ្វើ​បន្ត​ពី​ការ​សម្ងំ "
+#~ "ហើយ​ត្រូវ​បាន​ចាប់ផ្ដើម​ឡើងវិញ​ម្ដង​ហើយ​ម្ដងទៀត "
+#~ "សូម​អ្នក​ចាប់ផ្ដើម​ការ​សាកល្បង​ប្រព័ន្ធ​ឡើងវិញ "
+#~ "និង​សម្គាល់​ថា​ការ​សាកល្បង​នេះ​បាន​បរាជ័យ\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    តើ​ប្រព័ន្ធ​បាន​សម្ងំ និង​ភ្ញាក់​ដោយ​ជោគជ័យ​ក្នុង​ចំនួន ៣០ ដង​ដែរ​ឬទេ ?"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will enter and resume from suspend for 30 iterations\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" to start the test (very lengthy)\n"
+#~ "    2. If the system fails to resume from suspend and must be rebooted, "
+#~ "please restart System Testing and mark this test as Failed\n"
+#~ "VERIFICATION:\n"
+#~ "    Did the system successfully suspend and resume 30 times?"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​បញ្ចូល "
+#~ "រួច​ធ្វើ​បន្តពី​ពេល​សម្ងំ​សម្រាប់​ការ​អះអាង​ជាថ្មី​ចំនួន ៣០ ដង\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" ដើម្បី​ចាប់ផ្ដើម​ការ​សាកល្បង (យ៉ាង​យូរ)\n"
+#~ "    2. ប្រសិនបើ​ប្រព័ន្ធ​បាន​បរាជ័យ​ក្នុង​ការ​ធ្វើ​បន្ត​ពី​ការ​ផ្អាក "
+#~ "ហើយ​ត្រូវ​បាន​ចាប់ផ្ដើម​ឡើងវិញ​ម្ដងហើយម្ដងទៀត "
+#~ "សូម​អ្នក​ចាប់ផ្ដើម​ការ​សាកល្បង​ប្រព័ន្ធ​ឡើងវិញ "
+#~ "និង​សម្គាល់​ថា​ការ​សាកល្បង​នេះ​បាន​បរាជ័យ\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    តើ​ប្រព័ន្ធ​បាន​ផ្អាក និង​ភ្ញាក់​ដោយ​ជោគជ័យ​ក្នុង​ចំនួន ៣០ ដង​ដែរ​ឬទេ ?"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the display is correct after suspend and "
+#~ "resume\n"
+#~ "VERIFICATION:\n"
+#~ "    Does the display work normally after resuming from suspend?"
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា "
+#~ "តើ​ការ​បង្ហាញ​ត្រឹមត្រូវ​ដែរ​ឬទេ​បន្ទាប់ពី​ការ​ផ្អាក និង​ធ្វើ​បន្ត\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    តើ​ការ​បង្ហាញ​ដំណើរការ​ធម្មតា​ដែរ​ឬទេ​បន្ទាប់ពី​ធ្វើ​បន្ត​ពី​ការ​ផ្អាក ?"
+
+#~ msgid ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+#~ msgstr ""
+#~ "Xlib ត្រូវ​បាន​ទាមទារ​សម្រាប់​ការ​សាកល្បង unity ។ វា​នឹង​ពិនិត្យ​រកមើល Xlib "
+#~ "រួច​ដំឡើង​វា​ប្រសិនបើ​មាន ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the insertion of\n"
+#~ "    a USB storage device\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា​តើ​ប្រព័ន្ធ​រក​ឃើញ​ការ​បញ្ចូល\n"
+#~ "    ឧបករណ៍​ផ្ទុក USB ត្រឹមត្រូវ​ដែរ​ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​បញ្ចូល​ឧបករណ៍​ផ្ទុក USB (pen-drive/HDD) ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal of\n"
+#~ "    a USB storage device\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the USB device.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "គោលបំណង ៖\n"
+#~ "    ការ​សាកល្បង​នេះ​នឹង​ពិនិត្យមើល​ថា តើ​ប្រព័ន្ធ​រក​ឃើញ​ការ​ដក\n"
+#~ "    ឧបករណ៍​ផ្ទុក USB ចេញ​ដោយ​ត្រឹមត្រូវ​ដែរ​ឬទេ\n"
+#~ "ជំហាន ៖\n"
+#~ "    ១. ចុច \"សាកល្បង\" រួច​យក​ឧបករណ៍ USB ចេញ ។\n"
+#~ "       (ចំណាំ ៖ ការ​សាកល្បង​នេះ​នឹង​អស់​ពេល​បន្ទាប់ពី ១០ វិនាទី)\n"
+#~ "    ២. កុំ​ដក​ឧបករណ៍​ចេញ​បន្ទាប់ពី​សាកល្បង ។\n"
+#~ "ការ​ផ្ទៀងផ្ទាត់ ៖\n"
+#~ "    "
+#~ "ការ​ផ្ទៀងផ្ទាត់​សម្រាប់​ការ​សាកល្បង​នេះ​គឺ​ត្រូវ​បាន​ធ្វើ​ដោយ​ស្វ័យប្រវត្តិ "
+#~ "។ កុំ​ប្ដូរ​លទ្ធផល\n"
+#~ "    ដែល​បាន​ជ្រើស​ដោយ​ស្វ័យប្រវត្តិ ។"
+
+#~ msgid ""
+#~ "This is an automated version of usb/storage-automated and assumes that the  "
+#~ "server has usb storage devices plugged in prior to checkbox execution. It  "
+#~ "is intended for servers and SRU automated testing."
+#~ msgstr ""
+#~ "នេះ​ជា​កំណែ​ស្វ័យប្រវត្តិ​របស់ usb/storage-automated "
+#~ "ហើយ​សន្មត​ថា​ម៉ាស៊ីន​បម្រើ​មាន​ឧបករណ៍​ផ្ទុក usb "
+#~ "ដែល​បាន​ដោត​ជាមុន​ទៅកាន់​ការ​ប្រតិបត្តិ Checkbox ។ "
+#~ "វា​ត្រូវ​បាន​បម្រុងទុក​សម្រាប់​ម៉ាស៊ីន​បម្រើ "
+#~ "និង​ការ​សាកល្បង​ស្វ័យប្រវត្តិ​របស់ SRU ។"
+
+#~ msgid "Recover"
+#~ msgstr "យក​បាន​វិញ"
+
+#~ msgid "Restart"
+#~ msgstr "ចាប់ផ្ដើម​ឡើងវិញ"
+
+#~ msgid ""
+#~ "Checkbox did not finish completely.\n"
+#~ "Do you want to recover from the previous run?"
+#~ msgstr ""
+#~ "Checkbox មិន​បាន​បញ្ចប់​ដោយ​ត្រឹមត្រូវ​ទេ ។\n"
+#~ "តើ​អ្នក​ចង់​យក​មកវិញ​ពី​ដំណើរការ​ពីមុន​ដែរ​ឬទេ ?"
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr "បញ្ជី​ការ​សាកល្បង​ដែល​ត្រូវ​ដំណើរការ​ផ្អែកលើ​ប្រព័ន្ធ​របស់​អ្នក ៖"
+
+#~ msgid "Personal details"
+#~ msgstr "ព័ត៌មាន​លម្អិត​ផ្ទាល់ខ្លួន"

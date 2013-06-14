@@ -67,7 +67,7 @@ fi
 
 # Find the top of checkbox tree
 if [ "$CHECKBOX_TOP" = "" ]; then
-    CHECKBOX_TOP="$(git rev-parse --show-toplevel)"
+    CHECKBOX_TOP="$(git rev-parse --show-toplevel 2>/dev/null)"
 fi
 if [ "$CHECKBOX_TOP" = "" ]; then
     CHECKBOX_TOP="$(bzr root)"
@@ -77,8 +77,7 @@ fi
 export CHECKBOX_TOP
 
 # Ensure that all Debian dependencies are installed
-# Pass CHECKBOX_TOP separately across sudo
-sudo CHECKBOX_TOP="$CHECKBOX_TOP" $CHECKBOX_TOP/support/install-deb-dependencies
+$CHECKBOX_TOP/support/install-deb-dependencies
 
 # Check if we can create a virtualenv
 if [ ! -d $(dirname $CHECKBOX_VENV_PATH) ]; then
@@ -101,11 +100,21 @@ virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VE
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate
 
+# Make sure that external-tarballs is ready
+$CHECKBOX_TOP/support/get-external-tarballs
+
 # Install all the python dependencies
 $CHECKBOX_TOP/support/install-pip-dependencies
 
 # Develop all the local projects
 $CHECKBOX_TOP/support/develop-projects
 
+# Enable tab-completion.
+# NOTE: This might be totally useless but hey,
+# if someone has sourced this script it will work.
+. $CHECKBOX_TOP/support/enable-tab-completion
+
 echo "To activate your virtualenv run:"
 echo "$ . $CHECKBOX_VENV_PATH/bin/activate"
+echo "To enable tab completion run:"
+echo "$ . $CHECKBOX_TOP/support/enable-tab-completion"

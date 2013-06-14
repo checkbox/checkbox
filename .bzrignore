@@ -1,42 +1,54 @@
+# Ignore all python3 bytecode data
 __pycache__
+# Ignore setuptools artifacts
 build
-checkbox.log
-checkbox.xsl
-debian/*-cli.postrm
-debian/*-gtk.postrm
-debian/*-qt.postrm
-debian/*-urwid.postrm
-debian/*.debhelper
-debian/*.log
-debian/*.substvars
-debian/checkbox
-debian/checkbox-cli
-debian/checkbox-gtk
-debian/checkbox-qt
-debian/checkbox-urwid
-debian/files
-debian/stamp-patched
-debian/tmp
-gtk/checkbox-gtk.glade.bak
-gtk/checkbox-gtk.gladep
-gtk/checkbox-gtk.gladep.bak
-lock
-plugins.bpickle
-plugins.bpickle.old
-python-build-stamp-2.5
-qt/frontend/Makefile
-qt/frontend/checkbox-qt-service
-qt/frontend/moc_qtfront.cpp
-qt/frontend/qrc_resources.cpp
-qt/frontend/ui_qtfront.h
-scripts/clocktest
-scripts/threaded_memtest
-store
-submission
-submission.xml
-submission.xml
-subunit.log
-system
-vagrant-logs/
+dist
+*.egg-info
+# Ignore coverage artifacts
+.coverage
+htmlcov
+# Ignore logs created by test-in-vagrant.sh
+vagrant-logs
+# Ignore vagrant state file
 .vagrant
-plainbox/plainbox.egg-info
+# Ignore the two binary executables that checkbox scripts/ can build
+checkbox-old/scripts/clocktest
+checkbox-old/scripts/threaded_memtest
+# The list below is riddled with junk created by running the test suite of checkbox
+# It should be really cleaned up as tests should _not_ do that but right now it's more
+# annoying than dangerous so I'll get rid of the noise first
+*.o
+checkbox-old/active_output
+checkbox-old/checkbox.log
+checkbox-old/checkbox.xsl
+checkbox-old/plugins.bpickle
+checkbox-old/plugins.bpickle.old
+checkbox-old/qt/frontend/Makefile
+checkbox-old/qt/frontend/checkbox-qt-service
+checkbox-old/qt/frontend/moc_qtfront.cpp
+checkbox-old/qt/frontend/qrc_resources.cpp
+checkbox-old/qt/frontend/ui_qtfront.cpp
+checkbox-old/qt/frontend/ui_qtfront.h
+checkbox-old/store/
+checkbox-old/submission.xml
+checkbox-old/subunit.log
+# Ignore junk created by dpkg-buildpackage
+checkbox-old/debian/*-cli.postrm
+checkbox-old/debian/*-gtk.postrm
+checkbox-old/debian/*-qt.postrm
+checkbox-old/debian/*-urwid.postrm
+checkbox-old/debian/*.debhelper
+checkbox-old/debian/*.log
+checkbox-old/debian/*.substvars
+checkbox-old/debian/checkbox
+checkbox-old/debian/checkbox-cli
+checkbox-old/debian/checkbox-gtk
+checkbox-old/debian/checkbox-qt
+checkbox-old/debian/checkbox-urwid
+checkbox-old/debian/files
+checkbox-old/debian/stamp-patched
+checkbox-old/debian/tmp
+# Ignore glade (editor?) temporary / support files
+checkbox-old/gtk/checkbox-gtk.glade.bak
+checkbox-old/gtk/checkbox-gtk.gladep
+checkbox-old/gtk/checkbox-gtk.gladep.bak
