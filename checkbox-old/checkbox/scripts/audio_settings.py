@@ -217,6 +217,7 @@ def store_audio_settings(file):
 
         print("%s_volume: %s%%" % (type, str(volume)),
               file=settings_file)
+    settings_file.close()
 
 
 def set_audio_settings(device, mute, volume):
@@ -262,7 +263,8 @@ def set_audio_settings(device, mute, volume):
 def restore_audio_settings(file):
     logging.info("[ Restoring audio settings ]".center(80, '='))
     try:
-        settings_file = open(file).read().split()
+        with open(file) as f:
+            settings_file = f.read().split()
     except IOError:
         logging.error("Unable to open existing settings file: %s" %
                       sys.exc_info()[1])
