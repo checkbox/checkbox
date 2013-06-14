@@ -185,6 +185,7 @@ def move_sinks(name):
 
 
 def store_audio_settings(file):
+    logging.info("[ Saving audio settings ]".center(80, '='))
 
     try:
         settings_file = open(file, 'w')
@@ -259,6 +260,7 @@ def set_audio_settings(device, mute, volume):
 
 
 def restore_audio_settings(file):
+    logging.info("[ Restoring audio settings ]".center(80, '='))
     try:
         settings_file = open(file).read().split()
     except IOError:
@@ -281,33 +283,30 @@ def restore_audio_settings(file):
                           "file is invalid")
             return 1
 
-        logging.info(name)
 
         try:
             with open(os.devnull, 'wb') as DEVNULL:
                 check_call(["pacmd", "set-default-%s" % type, name],
                            stdout=DEVNULL)
         except CalledProcessError:
-            logging.error("Failed to set default %s" % name)
+            logging.error("Failed to restore default %s" % name)
             return 1
 
         if type == "sink":
             move_sinks(name)
 
-        logging.info(muted)
 
         try:
             check_call(["pactl", "set-%s-mute" % type, name, muted])
         except:
-            logging.error("Failed to set mute for %s" % name)
+            logging.error("Failed to restore mute for %s" % name)
             return 1
 
-        logging.info(volume)
 
         try:
             check_call(["pactl", "set-%s-volume" % type, name, volume])
         except:
-            logging.error("Failed to set volume for %s" % name)
+            logging.error("Failed to restore volume for %s" % name)
             return 1
 
 
@@ -335,7 +334,8 @@ def main():
     args = parser.parse_args()
 
     if args.verbose:
-        logging.basicConfig(level=logging.INFO)
+        logging.basicConfig(format='%(levelname)s:%(message)s',
+                            level=logging.INFO, stream=sys.stdout)
     if args.action == "store":
         if not args.file:
             logging.error("No file specified to store audio settings!")
