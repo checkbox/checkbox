@@ -1,6 +1,8 @@
 checkbox (0.16.5) raring; urgency=low
 
-  * Incremented version (REMOVE ME)
+  [ Brendan Donegan ]
+  * jobs/info.txt.in - pipe udevadm_attachment output through iconv to avoid invalid
+    characters (LP: #1192093)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
 
