@@ -356,7 +356,7 @@ def main():
             if critical_fails or high_fails or medium_fails or low_fails:
                 return 1
         if fail_priority == fail_levels['FAILED_ABORTED']:
-            if aborted:
+            if aborted or critical_fails or high_fails:
                 return 1
     
     return 0
