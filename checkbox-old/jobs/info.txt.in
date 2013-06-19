@@ -22,7 +22,7 @@ _description: Attaches info on DMI
 name: dmidecode_attachment
 plugin: attachment
 user: root
-command: dmidecode | iconv -t 'utf-8' -c
+command: dmidecode | iconv -t 'utf-8' -c | ansi_parser
 _description: Attaches dmidecode output
 
 name: efi_attachment
@@ -33,19 +33,19 @@ _description: Attaches the firmware version
 
 name: lspci_attachment
 plugin: attachment
-command: lspci -vvnn | iconv -t 'utf-8' -c
+command: lspci -vvnn | iconv -t 'utf-8' -c | ansi_parser
 _description: Attaches very verbose lspci output.
 
 name: lspci_network_attachment
 plugin: attachment
-command: lspci -vvnnQ | iconv -t 'utf-8' -c
+command: lspci -vvnnQ | iconv -t 'utf-8' -c | ansi_parser
 _description: Attaches very verbose lspci output (with central database Query).
 
 name: lsusb_attachment
 plugin: attachment
 requires: package.name == 'usbutils'
 user: root
-command: lsusb -vv | iconv -t 'utf-8' -c
+command: lsusb -vv | iconv -t 'utf-8' -c | ansi_parser
 _description: List USB devices
 
 name: meminfo_attachment
@@ -79,7 +79,7 @@ command:
 
 name: udev_attachment
 plugin: attachment
-command: udevadm info --export-db | iconv -c
+command: udevadm info --export-db | iconv -c | ansi_parser
 _description: Attaches a dump of the udev database showing system hardware information.
 
 name: udev_resource_attachment
