@@ -1,6 +1,9 @@
 checkbox (0.16.5) raring; urgency=low
 
-  * Incremented version (REMOVE ME)
+  [ Jeff Lane ]
+  * scripts/fwts_test: script now fails on aborted tests if desired. 
+    jobs/power-management.txt.in: jobs that depend on fwts_wakealarm to pass or
+    fail now fail on aborted test result. (LP: #1192684)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
 

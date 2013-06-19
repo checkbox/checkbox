@@ -125,7 +125,8 @@ def main():
                             '[Default: %(default)s]'))
     parser.add_argument('-f', '--fail-level',
                       default='high',
-                      choices=['critical', 'high', 'medium', 'low', 'none'],
+                      choices=['critical', 'high', 'medium', 
+                               'low', 'none', 'aborted'],
                       help=('Specify the FWTS failure level that will trigger '
                             'this script to return a failing exit code. For '
                             'example, if you chose "critical" as the '
@@ -186,7 +187,8 @@ def main():
     medium_fails = []
     low_fails = []
     passed = []
-    
+    aborted = []
+
     # Set correct fail level
     if args.fail_level is not 'none':
         args.fail_level = 'FAILED_%s' % args.fail_level.upper()
@@ -196,7 +198,8 @@ def main():
                        'FAILED_HIGH':3,
                        'FAILED_MEDIUM':2,
                        'FAILED_LOW':1,
-                       'FAILED_NONE':0}
+                       'FAILED_NONE':0,
+                       'FAILED_ABORTED':-1}
         fail_priority = fail_levels[args.fail_level]
         
     # Enforce only using sleep opts with --sleep
@@ -294,6 +297,8 @@ def main():
             low_fails.append(test)
         elif results[test] == 'PASSED':
             passed.append(test)
+        elif results[test] == 'ABORTED':
+            aborted.append(test)
         else:
             continue
 
@@ -329,6 +334,13 @@ def main():
         print("Passed: %d" % len(passed))
         for test in passed: 
             print(" - " + test)
+    if aborted:
+        print("Aborted Tests: %d" % len(aborted))
+        print("WARNING: The following test cases were aborted by fwts\n"
+              "Please review the log at %s for more information."
+              % args.log)
+        for test in aborted: 
+            print(" - " + test)
     
     if args.fail_level is not 'none':
         if fail_priority == fail_levels['FAILED_CRITICAL']:
@@ -342,6 +354,9 @@ def main():
                 return 1
         if fail_priority == fail_levels['FAILED_LOW']:
             if critical_fails or high_fails or medium_fails or low_fails:
+                return 1
+        if fail_priority == fail_levels['FAILED_ABORTED']:
+            if aborted:
                 return 1
     
     return 0
