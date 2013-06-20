@@ -195,7 +195,7 @@ class Interface(socket.socket):
         try:
             return open(os.path.join(self.dev_path, type)).read().strip()
         except OSError:
-            print(type + ":", 'Attribute not found')
+            print("{}: Attribute not found".format(type))
 
     @property
     def ipaddress(self):
