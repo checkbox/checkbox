@@ -192,7 +192,10 @@ class Interface(socket.socket):
         self.dev_path = os.path.join("/sys/class/net", self.interface)
 
     def _read_data(self, type):
-        return open(os.path.join(self.dev_path, type)).read().strip()
+        try:
+            return open(os.path.join(self.dev_path, type)).read().strip()
+        except OSError:
+            print(type + ":", 'Attribute not found')
 
     @property
     def ipaddress(self):
