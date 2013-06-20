@@ -1,6 +1,9 @@
 checkbox (0.16.5) raring; urgency=low
 
-  * Incremented version (REMOVE ME)
+  [ Brendan Donegan ]
+  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
+    through new xml_sanitizer script which removes characters which are
+    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
 
