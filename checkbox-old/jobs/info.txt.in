@@ -79,7 +79,7 @@ command:
 
 name: udev_attachment
 plugin: attachment
-command: udevadm info --export-db | xml_sanitize
+command: cat /home/brendand/src/checkbox/bug1192093/checkbox-old/udevadminfo | xml_sanitize
 _description: Attaches a dump of the udev database showing system hardware information.
 
 name: udev_resource_attachment
