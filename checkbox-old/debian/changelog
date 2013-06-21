@@ -16,6 +16,9 @@ checkbox (0.16.4) saucy; urgency=low
     alphabetically, so the order is consistent (LP: #1177647)
   * debian/rules - Add checkbox-hw-collection so that it's treated in the same
     way as other checkbox derived packages like checkbox-qt (LP: #1188601)
+  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
+    through new xml_sanitizer script which removes characters which are
+    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
 
   [ Daniel Manrique ]
   * jobs/stress.txt.in: fixed a few inconsistent invocations of sleep_test.
