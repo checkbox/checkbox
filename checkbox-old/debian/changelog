@@ -11,6 +11,12 @@ checkbox (0.16.5) saucy; urgency=low
     on created temporary directory. Fixed issue where test log was being
     deleted along with temporary directory(LP: #1192979)
 
+  [ Daniel Manrique ]
+  * scripts/audio_test: Improved peak detection algorithm and made the
+    audio_test slighly more sensitive (LP: #1070776). Rewrote script to
+    use/require Python 3 and gstreamer 1.0. Updated job requirements and
+    checkbox dependencies accordingly. 
+
  -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
 
 checkbox (0.16.4) saucy; urgency=low
