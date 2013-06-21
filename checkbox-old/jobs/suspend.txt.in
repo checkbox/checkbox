@@ -805,9 +805,13 @@ plugin: shell
 name: suspend/record_playback_after_suspend
 depends: suspend/suspend_advanced
 requires:
- device.category == 'AUDIO'
- package.name == 'python-gst0.10'
+ package.name == 'python3-gi'
+ package.name == 'gir1.2-gstreamer-1.0'
+ package.name == 'libgstreamer1.0-0'
+ package.name == 'gstreamer1.0-plugins-good'
+ package.name == 'gstreamer1.0-pulseaudio'
  package.name == 'alsa-base'
+ device.category == 'AUDIO'
 command: audio_test
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
@@ -816,9 +820,13 @@ plugin: shell
 name: suspend/record_playback_after_suspend_auto
 depends: suspend/suspend_advanced_auto
 requires:
- device.category == 'AUDIO'
- package.name == 'python-gst0.10'
+ package.name == 'python3-gi'
+ package.name == 'gir1.2-gstreamer-1.0'
+ package.name == 'libgstreamer1.0-0'
+ package.name == 'gstreamer1.0-plugins-good'
+ package.name == 'gstreamer1.0-pulseaudio'
  package.name == 'alsa-base'
+ device.category == 'AUDIO'
 command: audio_test
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
