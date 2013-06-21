@@ -58,7 +58,7 @@ class WhiteList(CompositeQualifier):
     and appended (respectively) to the actual pattern specified in the file.
     """
 
-    def __init__(self, pattern_list):
+    def __init__(self, pattern_list, name=None):
         """
         Initialize a whitelist object with the specified list of patterns.
 
@@ -67,6 +67,14 @@ class WhiteList(CompositeQualifier):
         inclusive = [RegExpJobQualifier(pattern) for pattern in pattern_list]
         exclusive = ()
         super(WhiteList, self).__init__(inclusive, exclusive)
+        self._name = name
+
+    @property
+    def name(self):
+        """
+        name of this WhiteList (might be None)
+        """
+        return self._name
 
     @classmethod
     def from_file(cls, pathname):
@@ -77,7 +85,8 @@ class WhiteList(CompositeQualifier):
         :returns: a fresh WhiteList object
         """
         pattern_list = cls._load_patterns(pathname)
-        return cls(pattern_list)
+        name = os.path.splitext(os.path.basename(pathname))[0]
+        return cls(pattern_list, name=name)
 
     @classmethod
     def _load_patterns(self, pathname):
@@ -126,7 +135,8 @@ def _get_checkbox_dir():
 
     Historically plainbox used a git submodule with checkbox tree (converted to
     git). This ended with the merge of plainbox into the checkbox tree.
-    
+
+
     Now it's the other way around and the checkbox tree can be located two
     directories "up" from the plainbox module, in a checkbox-old directory.
     """
@@ -281,7 +291,8 @@ class CheckBox:
         for name in os.listdir(self.whitelists_dir):
             if name.endswith(".whitelist"):
                 whitelist_list.append(
-                    WhiteList.from_file(os.path.join(self.jobs_dir, name)))
+                    WhiteList.from_file(os.path.join(
+                        self.whitelists_dir, name)))
         return whitelist_list
 
     def get_builtin_jobs(self):
@@ -318,3 +329,10 @@ class CheckBox:
             raise TypeError(
                 "Unsupported type of 'somewhere': {!r}".format(
                     type(somewhere)))
+
+    @property
+    def name(self):
+        """
+        name of this provider (always checkbox)
+        """
+        return "checkbox"
