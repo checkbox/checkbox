@@ -1,11 +1,17 @@
-checkbox (0.16.5) raring; urgency=low
+checkbox (0.16.5) saucy; urgency=low
 
   [ Brendan Donegan ]
   * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
     through new xml_sanitizer script which removes characters which are
     invalid in XML, so that it doesn't cause trouble (LP: #1192093)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
+  [ Jeff Marcom ]
+  * scripts/virtualization: fixed issue introduced in last patch that
+    caused the kvm test to not run at all. Changed file permission lvl
+    on created temporary directory. Fixed issue where test log was being
+    deleted along with temporary directory(LP: #1192979)
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
 
 checkbox (0.16.4) saucy; urgency=low
 
