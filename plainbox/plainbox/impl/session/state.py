@@ -18,12 +18,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.session` -- session state handling
-======================================================
-
-.. warning::
-
-    THIS MODULE DOES NOT HAVE STABLE PUBLIC API
+:mod:`plainbox.impl.session.state` -- session state handling
+============================================================
 """
 import json
 import logging
@@ -43,119 +39,105 @@ from plainbox.impl.rfc822 import gen_rfc822_records
 from plainbox.impl.session.jobs import (
     JobState, JobReadinessInhibitor, UndesiredJobReadinessInhibitor)
 
-logger = logging.getLogger("plainbox.session")
+logger = logging.getLogger("plainbox.session.state")
 
 
-class SessionState:
+class SessionMetadata:
     """
-    Class representing all state needed during a single program session.
+    Class representing non-critical state of the session.
 
-    This is the central glue/entry-point for applications. It connects user
-    intents to the rest of the system / plumbing and keeps all of the state in
-    one place.
+    The data held here allows applications to reason about sessions in general
+    but is not relevant to the runner or the core in general
+    """
 
-    The set of utility methods and properties allow applications to easily
-    handle the lower levels of dependencies, resources and ready states.
+    # Flag indicating that the testing session is not complete and additional
+    # testing is expected. Applications are encouraged to add this flag
+    # immediately after creating a new session. Applications are also
+    # encouraged to remove this flag after the expected test plan is complete
+    FLAG_INCOMPLETE = "incomplete"
 
-    SessionState has the following instance variables, all of which are
-    currently exposed as properties.
+    # Flag indicating that results of this testing session have been submitted
+    # to some central results repository. Applications are encouraged to
+    # set this flag after successfully sending the result somewhere.
+    FLAG_SUBMITTED = "submitted"
 
-    :ivar list job_list: A list of all known jobs
+    def __init__(self):
+        self._title = None
+        self._flags = set()
+        self._running_job_name = None
 
-        Not all the jobs from this list are going to be executed (or selected
-        for execution) by the user.
+    def as_json(self):
+        """
+        JSON serializable version of the meta-data
+        """
+        return {
+            "title": self._title,
+            "flags": list(sorted(self._flags)),
+            "running_job_name": self._running_job_name
+        }
 
-        It may change at runtime because of local jobs. Note that in upcoming
-        changes this will start out empty and will be changeable dynamically.
-        It can still change due to local jobs but there is no API yes.
+    @property
+    def title(self):
+        """
+        the session title.
 
-        This list cannot have any duplicates, if that is the case a
-        DependencyDuplicateError is raised. This has to be handled externally
-        and is a sign that the job database is corrupted or has wrong data. As
-        an exception if duplicates are perfectly identical this error is
-        silently corrected.
+        Title is just an arbitrary string that can be used to distinguish
+        between multiple sessions.
 
-    :ivar dict job_state_map: mapping that tracks the state of each job
+        The value can be changed at any time.
+        """
+        return self._title
 
-        Mapping from job name to :class:`JobState`. This basically has the test
-        result and the inhibitor of each job. It also serves as a
-        :attr:`plainbox.impl.job.JobDefinition.name`-> job lookup helper.
+    @title.setter
+    def title(self, title):
+        self._title = title
 
-        Directly exposed with the intent to fuel part of the UI. This is a way
-        to get at the readiness state, result and readiness inhibitors, if any.
+    @property
+    def flags(self):
+        """
+        a set of flags that are associated with this session.
 
-        XXX: this can loose data job_list has jobs with the same name. It would
-        be better to use job id as the keys here. A separate map could be used
-        for the name->job lookup. This will be fixed when session controller
-        branch lands in trunk as then jobs are dynamically added to the system
-        one at a time and proper error conditions can be detected and reported.
+        This set is persisted by persistent_save() and can be used to keep
+        track of how the application wants to interpret this session state.
 
-    :ivar list desired_job_list: subset of jobs selected for execution
+        Intended usage is to keep track of "testing finished" and
+        "results submitted" flags. Some flags are added as constants to this
+        class.
+        """
+        return self._flags
 
-        This is used to compute :attr:`run_list`. It can only be changed by
-        calling :meth:`update_desired_job_list()` which returns meaningful
-        values so this is not a settable property.
+    @flags.setter
+    def flags(self, flags):
+        self._flags = flags
 
-    :ivar list run_list: sorted list of jobs to execute
+    @property
+    def running_job_name(self):
+        """
+        name of the running job
 
-        This is basically a superset of desired_job_list and a subset of
-        job_list that is topologically sorted to allowing all desired jobs to
-        run. This property is updated whenever desired_job_list is changed.
+        This property should be updated to keep track of the name of the
+        job that is being executed. When either plainbox or the machine it
+        was running on crashes during the execution of a job this value
+        should be preserved and can help the GUI to resume and provide an
+        error message.
 
-    :ivar dict resource_map: all known resources
+        The property MUST be set before starting the job itself.
+        """
+        return self._running_job_name
 
-        A mapping from resource name to a list of
-        :class:`plainbox.impl.resource.Resource` objects. This encapsulates all
-        "knowledge" about the system plainbox is running on.
+    @running_job_name.setter
+    def running_job_name(self, running_job_name):
+        self._running_job_name = running_job_name
 
-        It is needed to compute job readiness (as it stores resource data
-        needed by resource programs). It is also available to exporters.
 
-        This is computed internally from the output of checkbox resource jobs,
-        it can only be changed by calling :meth:`update_job_result()`
+class _LegacySessionState:
+    """
+    Legacy features of SessionState that are being deprecated and replaced
     """
 
     session_data_filename = 'session.json'
 
-    def __init__(self, job_list):
-        # Start by making a copy of job_list as we may modify it below
-        job_list = job_list[:]
-        while True:
-            try:
-                # Construct a solver with the job list as passed by the caller.
-                # This will do a little bit of validation and might raise
-                # DepdendencyDuplicateError if there are any duplicates at this
-                # stage.
-                #
-                # There's a single case that is handled here though, if both
-                # jobs are identical this problem is silently fixed. This
-                # should not happen in normal circumstances but is non the less
-                # harmless (as long as both jobs are perfectly identical)
-                #
-                # Since this problem can happen any number of times (many
-                # duplicates) this is performed in a loop. The loop breaks when
-                # we cannot solve the problem _OR_ when no error occurs.
-                DependencySolver(job_list)
-            except DependencyDuplicateError as exc:
-                # If both jobs are identical then silently fix the problem by
-                # removing one of the jobs (here the second one we've seen but
-                # it's not relevant as they are possibly identical) and try
-                # again
-                if exc.job == exc.duplicate_job:
-                    job_list.remove(exc.duplicate_job)
-                    continue
-                else:
-                    # If the jobs differ report this back to the caller
-                    raise
-            else:
-                # If there are no problems then break the loop
-                break
-        self._job_list = job_list
-        self._job_state_map = {job.name: JobState(job)
-                               for job in self._job_list}
-        self._desired_job_list = []
-        self._run_list = []
-        self._resource_map = {}
+    def __init__(self):
         # Temporary directory used as 'scratch space' for running jobs. Removed
         # entirely when session is terminated. Internally this is exposed as
         # $CHECKBOX_DATA to script environment.
@@ -164,21 +146,23 @@ class SessionState:
         # Directory used to store jobs IO logs.
         self._jobs_io_log_dir = None
 
-    def _get_persistance_subset(self):
-        state = {}
-        state['_job_state_map'] = self._job_state_map
-        state['_desired_job_list'] = self._desired_job_list
-        return state
+    @property
+    def session_dir(self):
+        """
+        pathname of a temporary directory for this session
 
-    @classmethod
-    def from_json_record(cls, record):
+        This is not None only between calls to open() / close().
         """
-        Create a SessionState instance from JSON record
+        return self._session_dir
+
+    @property
+    def jobs_io_log_dir(self):
         """
-        obj = cls([])
-        obj._job_state_map = record['_job_state_map']
-        obj._desired_job_list = record['_desired_job_list']
-        return obj
+        pathname of the jobs IO logs directory
+
+        This is not None only between calls to open() / close().
+        """
+        return self._jobs_io_log_dir
 
     def open(self):
         """
@@ -220,6 +204,216 @@ class SessionState:
         """
         self._session_dir = None
         self._jobs_io_log_dir = None
+
+    def previous_session_file(self):
+        """
+        Check the filesystem for previous session data
+        Returns the full pathname to the session file if it exists
+        """
+        session_filename = os.path.join(self._session_dir,
+                                        self.session_data_filename)
+        if os.path.exists(session_filename):
+            return session_filename
+        else:
+            return None
+
+    def persistent_save(self):
+        """
+        Save to disk the minimum needed to resume plainbox where it stopped
+        """
+        # Ensure an atomic update of the session file:
+        #   - create a new temp file (on the same file system!)
+        #   - write data to the temp file
+        #   - fsync() the temp file
+        #   - rename the temp file to the appropriate name
+        #   - fsync() the containing directory
+        # Calling fsync() does not necessarily ensure that the entry in the
+        # directory containing the file has also reached disk.
+        # For that an explicit fsync() on a file descriptor for the directory
+        # is also needed.
+        filename = os.path.join(self._session_dir,
+                                self.session_data_filename)
+
+        with tempfile.NamedTemporaryFile(mode='wt',
+                                         encoding='UTF-8',
+                                         suffix='.tmp',
+                                         prefix='session',
+                                         dir=self._session_dir,
+                                         delete=False) as tmpstream:
+            # Save the session state to disk
+            json.dump(self, tmpstream, cls=SessionStateEncoder,
+                      ensure_ascii=False, indent=None, separators=(',', ':'))
+
+            tmpstream.flush()
+            os.fsync(tmpstream.fileno())
+
+        session_dir_fd = os.open(self._session_dir, os.O_DIRECTORY)
+        os.rename(tmpstream.name, filename)
+        os.fsync(session_dir_fd)
+        os.close(session_dir_fd)
+
+    def resume(self):
+        """
+        Erase the job_state_map and desired_job_list with the saved ones
+        """
+        with open(self.previous_session_file(), 'rt', encoding='UTF-8') as f:
+            previous_session = json.load(
+                f, object_hook=SessionStateEncoder().dict_to_object)
+        self._job_state_map = previous_session._job_state_map
+        desired_job_list = []
+        for job in previous_session._desired_job_list:
+            if job in self._job_list:
+                desired_job_list.extend(
+                    [j for j in self._job_list if j == job])
+            elif (previous_session._job_state_map[job.name].result.outcome !=
+                    JobResult.OUTCOME_NONE):
+                # Keep jobs results from the previous session without a
+                # definition in the current job_list only if they have
+                # a valid result
+                desired_job_list.append(job)
+        self.update_desired_job_list(desired_job_list)
+        # FIXME: Restore io_logs from files
+
+    def _get_persistance_subset(self):
+        state = {}
+        state['_job_state_map'] = self._job_state_map
+        state['_desired_job_list'] = self._desired_job_list
+        return state
+
+    @classmethod
+    def from_json_record(cls, record):
+        """
+        Create a SessionState instance from JSON record
+        """
+        obj = cls([])
+        obj._job_state_map = record['_job_state_map']
+        obj._desired_job_list = record['_desired_job_list']
+        return obj
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
+
+
+class SessionState(_LegacySessionState):
+    """
+    Class representing all state needed during a single program session.
+
+    This is the central glue/entry-point for applications. It connects user
+    intents to the rest of the system / plumbing and keeps all of the state in
+    one place.
+
+    The set of utility methods and properties allow applications to easily
+    handle the lower levels of dependencies, resources and ready states.
+
+    :class:`SessionState` has the following instance variables, all of which
+    are currently exposed as properties.
+
+    :ivar list job_list: A list of all known jobs
+
+        Not all the jobs from this list are going to be executed (or selected
+        for execution) by the user.
+
+        It may change at runtime because of local jobs. Note that in upcoming
+        changes this will start out empty and will be changeable dynamically.
+        It can still change due to local jobs but there is no API yes.
+
+        This list cannot have any duplicates, if that is the case a
+        :class:`DependencyDuplicateError` is raised. This has to be handled
+        externally and is a sign that the job database is corrupted or has
+        wrong data. As an exception if duplicates are perfectly identical this
+        error is silently corrected.
+
+    :ivar dict job_state_map: mapping that tracks the state of each job
+
+        Mapping from job name to :class:`JobState`. This basically has the test
+        result and the inhibitor of each job. It also serves as a
+        :attr:`plainbox.impl.job.JobDefinition.name`-> job lookup helper.
+
+        Directly exposed with the intent to fuel part of the UI. This is a way
+        to get at the readiness state, result and readiness inhibitors, if any.
+
+        XXX: this can loose data job_list has jobs with the same name. It would
+        be better to use job id as the keys here. A separate map could be used
+        for the name->job lookup. This will be fixed when session controller
+        branch lands in trunk as then jobs are dynamically added to the system
+        one at a time and proper error conditions can be detected and reported.
+
+    :ivar list desired_job_list: subset of jobs selected for execution
+
+        This is used to compute :attr:`run_list`. It can only be changed by
+        calling :meth:`update_desired_job_list()` which returns meaningful
+        values so this is not a settable property.
+
+    :ivar list run_list: sorted list of jobs to execute
+
+        This is basically a superset of desired_job_list and a subset of
+        job_list that is topologically sorted to allowing all desired jobs to
+        run. This property is updated whenever desired_job_list is changed.
+
+    :ivar dict resource_map: all known resources
+
+        A mapping from resource name to a list of
+        :class:`plainbox.impl.resource.Resource` objects. This encapsulates all
+        "knowledge" about the system plainbox is running on.
+
+        It is needed to compute job readiness (as it stores resource data
+        needed by resource programs). It is also available to exporters.
+
+        This is computed internally from the output of checkbox resource jobs,
+        it can only be changed by calling :meth:`update_job_result()`
+
+    :ivar dict metadata: instance of :class:`SessionMetadata`
+    """
+
+    def __init__(self, job_list):
+        """
+        Initialize a new SessionState with a given list of jobs.
+
+        The jobs are all of the jobs that the session knows about.
+        """
+        # Start by making a copy of job_list as we may modify it below
+        job_list = job_list[:]
+        while True:
+            try:
+                # Construct a solver with the job list as passed by the caller.
+                # This will do a little bit of validation and might raise
+                # DepdendencyDuplicateError if there are any duplicates at this
+                # stage.
+                #
+                # There's a single case that is handled here though, if both
+                # jobs are identical this problem is silently fixed. This
+                # should not happen in normal circumstances but is non the less
+                # harmless (as long as both jobs are perfectly identical)
+                #
+                # Since this problem can happen any number of times (many
+                # duplicates) this is performed in a loop. The loop breaks when
+                # we cannot solve the problem _OR_ when no error occurs.
+                DependencySolver(job_list)
+            except DependencyDuplicateError as exc:
+                # If both jobs are identical then silently fix the problem by
+                # removing one of the jobs (here the second one we've seen but
+                # it's not relevant as they are possibly identical) and try
+                # again
+                if exc.job == exc.duplicate_job:
+                    job_list.remove(exc.duplicate_job)
+                    continue
+                else:
+                    # If the jobs differ report this back to the caller
+                    raise
+            else:
+                # If there are no problems then break the loop
+                break
+        self._job_list = job_list
+        self._job_state_map = {job.name: JobState(job)
+                               for job in self._job_list}
+        self._desired_job_list = []
+        self._run_list = []
+        self._resource_map = {}
+        self._metadata = SessionMetadata()
+        super(SessionState, self).__init__()
 
     def update_desired_job_list(self, desired_job_list):
         """
@@ -300,18 +494,6 @@ class SessionState:
         # Update all job readiness state
         self._recompute_job_readiness()
 
-    def previous_session_file(self):
-        """
-        Check the filesystem for previous session data
-        Returns the full pathname to the session file if it exists
-        """
-        session_filename = os.path.join(self._session_dir,
-                                        self.session_data_filename)
-        if os.path.exists(session_filename):
-            return session_filename
-        else:
-            return None
-
     def add_job(self, new_job):
         """
         Add a new job to the session
@@ -357,63 +539,6 @@ class SessionState:
         Resources silently overwrite any old resources with the same name.
         """
         self._resource_map[resource_name] = resource_list
-
-    def persistent_save(self):
-        """
-        Save to disk the minimum needed to resume plainbox where it stopped
-        """
-        # Ensure an atomic update of the session file:
-        #   - create a new temp file (on the same file system!)
-        #   - write data to the temp file
-        #   - fsync() the temp file
-        #   - rename the temp file to the appropriate name
-        #   - fsync() the containing directory
-        # Calling fsync() does not necessarily ensure that the entry in the
-        # directory containing the file has also reached disk.
-        # For that an explicit fsync() on a file descriptor for the directory
-        # is also needed.
-        filename = os.path.join(self._session_dir,
-                                self.session_data_filename)
-
-        with tempfile.NamedTemporaryFile(mode='wt',
-                                         encoding='UTF-8',
-                                         suffix='.tmp',
-                                         prefix='session',
-                                         dir=self._session_dir,
-                                         delete=False) as tmpstream:
-            # Save the session state to disk
-            json.dump(self, tmpstream, cls=SessionStateEncoder,
-                      ensure_ascii=False, indent=None, separators=(',', ':'))
-
-            tmpstream.flush()
-            os.fsync(tmpstream.fileno())
-
-        session_dir_fd = os.open(self._session_dir, os.O_DIRECTORY)
-        os.rename(tmpstream.name, filename)
-        os.fsync(session_dir_fd)
-        os.close(session_dir_fd)
-
-    def resume(self):
-        """
-        Erase the job_state_map and desired_job_list with the saved ones
-        """
-        with open(self.previous_session_file(), 'rt', encoding='UTF-8') as f:
-            previous_session = json.load(
-                f, object_hook=SessionStateEncoder().dict_to_object)
-        self._job_state_map = previous_session._job_state_map
-        desired_job_list = []
-        for job in previous_session._desired_job_list:
-            if job in self._job_list:
-                desired_job_list.extend(
-                    [j for j in self._job_list if j == job])
-            elif (previous_session._job_state_map[job.name].result.outcome !=
-                    JobResult.OUTCOME_NONE):
-                # Keep jobs results from the previous session without a
-                # definition in the current job_list only if they have
-                # a valid result
-                desired_job_list.append(job)
-        self.update_desired_job_list(desired_job_list)
-        # FIXME: Restore io_logs from files
 
     def _process_resource_result(self, result):
         new_resource_list = []
@@ -515,22 +640,11 @@ class SessionState:
         return self._job_state_map
 
     @property
-    def session_dir(self):
+    def metadata(self):
         """
-        pathname of a temporary directory for this session
-
-        This is not None only between calls to open() / close().
+        metadata object associated with this session state.
         """
-        return self._session_dir
-
-    @property
-    def jobs_io_log_dir(self):
-        """
-        pathname of the jobs IO logs directory
-
-        This is not None only between calls to open() / close().
-        """
-        return self._jobs_io_log_dir
+        return self._metadata
 
     def _recompute_job_readiness(self):
         """
@@ -610,12 +724,6 @@ class SessionState:
                         cause=JobReadinessInhibitor.FAILED_DEP,
                         related_job=dep_job_state.job)
                     job_state.readiness_inhibitor_list.append(inhibitor)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *args):
-        self.close()
 
 
 class SessionStateEncoder(json.JSONEncoder):
