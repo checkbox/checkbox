@@ -26,6 +26,7 @@ Section: python
 Architecture: any
 Depends: debconf,
          python3-lxml,
+         policykit-1,
          udev,
          gir1.2-gudev-1.0,
          udisks2 | udisks,
@@ -94,7 +95,6 @@ Section: gnome
 Architecture: all
 Depends: checkbox (>= ${source:Version}),
          gir1.2-gtk-3.0,
-         gksu,
          python3-gi,
          python3-gi-cairo,
          ${misc:Depends}
