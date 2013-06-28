@@ -47,30 +47,49 @@ class JobDefinition(BaseJob, IJobDefinition):
     definition
     """
 
+    def get_record_value(self, name, default=None):
+        """
+        Obtain the value of the specified record attribute
+        """
+        try:
+            return self._data["_{}".format(name)]
+        except KeyError:
+            return super(JobDefinition, self).get_record_value(name, default)
+
     @property
     def name(self):
-        return self.__getattr__('name')
+        return self.get_record_value('name')
 
     @property
     def requires(self):
-        try:
-            return self.__getattr__('requires')
-        except AttributeError:
-            return None
+        return self.get_record_value('requires')
 
     @property
     def description(self):
-        try:
-            return self.__getattr__('description')
-        except AttributeError:
-            return None
+        return self.get_record_value('description')
 
     @property
     def depends(self):
+        return self.get_record_value('depends')
+
+    @property
+    def estimated_duration(self):
+        """
+        estimated duration of this job in seconds.
+
+        The value may be None, which indicates that the duration is basically
+        unknown. Fractional numbers are allowed and indicate fractions of a
+        second.
+        """
+        value = self.get_record_value('estimated_duration')
+        if value is None:
+            return
         try:
-            return self.__getattr__('depends')
-        except AttributeError:
-            return None
+            return float(value)
+        except ValueError:
+            logger.warning((
+                "Incorrect value of 'estimated_duration' in job"
+                "%s read from %s"), self.name, self.origin)
 
     @property
     def via(self):
@@ -102,16 +121,6 @@ class JobDefinition(BaseJob, IJobDefinition):
     def __repr__(self):
         return "<JobDefinition name:{!r} plugin:{!r}>".format(
             self.name, self.plugin)
-
-    def __getattr__(self, attr):
-        if attr in self._data:
-            return self._data[attr]
-        gettext_attr = "_{}".format(attr)
-        if gettext_attr in self._data:
-            value = self._data[gettext_attr]
-            # TODO: feed through gettext
-            return value
-        raise AttributeError(attr)
 
     def _get_persistance_subset(self):
         state = {}
