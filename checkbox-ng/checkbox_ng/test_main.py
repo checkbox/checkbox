@@ -49,8 +49,8 @@ class TestMain(TestCase):
         self.assertEqual(call.exception.args, (0,))
         self.maxDiff = None
         expected = """
-        usage: checkbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-T LOGGER]
-                        [-P] [-I]
+        usage: checkbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-C]
+                        [-T LOGGER] [-P] [-I]
                         {sru,check-config,script,dev} ...
 
         positional arguments:
@@ -64,22 +64,18 @@ class TestMain(TestCase):
           -h, --help            show this help message and exit
           --version             show program's version number and exit
           -c {src,deb,auto}, --checkbox {src,deb,auto}
-                                where to find the installation of CheckBox. (default:
-                                auto)
+                                where to find the installation of CheckBox.
 
         logging and debugging:
-          -v, --verbose         be more verbose (same as --log-level=INFO) (default:
-                                None)
-          -D, --debug           enable DEBUG messages on the root logger (default:
-                                None)
+          -v, --verbose         be more verbose (same as --log-level=INFO)
+          -D, --debug           enable DEBUG messages on the root logger
+          -C, --debug-console   display DEBUG messages in the console
           -T LOGGER, --trace LOGGER
                                 enable DEBUG messages on the specified logger (can be
-                                used multiple times) (default: [])
+                                used multiple times)
           -P, --pdb             jump into pdb (python debugger) when a command crashes
-                                (default: False)
           -I, --debug-interrupt
                                 crash on SIGINT/KeyboardInterrupt, useful with --pdb
-                                (default: False)
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
 
@@ -89,8 +85,8 @@ class TestMain(TestCase):
                 main([])
             self.assertEqual(call.exception.args, (2,))
         expected = """
-        usage: checkbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-T LOGGER]
-                        [-P] [-I]
+        usage: checkbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-C]
+                        [-T LOGGER] [-P] [-I]
                         {sru,check-config,script,dev} ...
         checkbox: error: too few arguments
         """

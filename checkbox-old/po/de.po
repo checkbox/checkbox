@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-11 05:10+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-28 05:12+0000\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -25,7 +25,7 @@ msgstr "_Testen"
 msgid "Press any key to continue..."
 msgstr "Beliebige Taste drücken, um fortzufahren …"
 
-#: ../plugins/final_prompt.py:34
+#: ../plugins/final_prompt.py:39
 msgid "_Finish"
 msgstr "_Fertig"
 
@@ -109,8 +109,8 @@ msgstr "_Weiter"
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
-"Überprüfen Sie Ihr Sytem und übermitteln Sie die Ergebnisse an das Ubuntu "
-"Friendly-Projekt"
+"Überprüfen Sie Ihr System und übermitteln Sie die Ergebnisse an das Ubuntu-"
+"Friendly-Projekt."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -2836,7 +2836,7 @@ msgstr ""
 "andernfalls »Nein«."
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:93
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2937,7 +2937,7 @@ msgstr ""
 "    Konnten alle Schritte erfolgreich ausgeführt werden?"
 
 #. description
-#: ../jobs/optical.txt.in:154
+#: ../jobs/optical.txt.in:156
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -3982,15 +3982,13 @@ msgstr ""
 "Speichermediums erkennt.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und schließen Sie ein USB-Speichermedium "
-"(USB-Stick\n"
-"       oder USB-Festplatte) an. (Hinweis: Der Test führt zu einer "
-"Zeitüberschreitung,\n"
-"       wenn kein Anschluss innerhalb von 20 Sekunden festgestellt wird.)\n"
+"(USB-Stick oder USB-Festplatte) an. (Hinweis: Der Test führt zu einer "
+"Zeitüberschreitung, wenn kein Anschluss innerhalb von 20 Sekunden "
+"festgestellt wird.)\n"
 "    2. Entfernen Sie nicht das USB-Speichermedium nach dem Test.\n"
 "ÜBERPRÜFUNG:\n"
 "    Die Überprüfung dieses Test erfolgt automatisch. Ändern Sie nicht das "
-"automatisch\n"
-"    ermittelte Ergebnis."
+"automatisch ermittelte Ergebnis."
 
 #. description
 #: ../jobs/usb.txt.in:72
@@ -5129,7 +5127,7 @@ msgstr "Erneut Testen"
 msgid "_Test Again"
 msgstr "Erneut _testen"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:555
 msgid "Info"
 msgstr "Info"
 
@@ -5176,7 +5174,7 @@ msgstr "Möchten Sie einen Programmfehler melden?"
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Werden zur Zeit Pakete aktualisiert? Fehlermeldung: %s"
 
-#: ../plugins/final_prompt.py:33
+#: ../plugins/final_prompt.py:24
 msgid "Successfully finished testing!"
 msgstr "Test erfolgreich abgeschlossen"
 

@@ -51,7 +51,7 @@ class KVMTest(object):
     def __init__(self, image=None, timeout=500, debug_file="virt_debug"):
         self.image = image
         self.timeout = timeout
-        self.debug_file = debug_file
+        self.debug_file = os.path.join(os.getcwd(), debug_file)
 
     @classmethod
     def download_image(cls):
@@ -175,6 +175,7 @@ runcmd:
         date = time.strftime("%b_%d_%Y_")
         with tempfile.TemporaryDirectory("_kvm_test", date) as temp_dir:
 
+            os.chmod(temp_dir, 0o744)
             os.chdir(temp_dir)
             if self.image is None:
                 logging.debug('No image specified, downloading one now.')
@@ -276,10 +277,8 @@ def main():
             logging.basicConfig(level=logging.DEBUG)
     except AttributeError:
         pass #avoids exception when trying to run without specifying 'kvm'
-    try:
-        args.func(args)
-    except AttributeError:
-        parser.error('Must specify a test type')
+
+    args.func(args)
 
 if __name__ == "__main__":
     main()

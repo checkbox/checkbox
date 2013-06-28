@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-11 05:10+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-28 05:12+0000\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -43,7 +43,7 @@ msgstr "_Saltar esta proba"
 #: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:460
 #: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
-msgstr "Información adicional"
+msgstr "Información adicional:"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
@@ -91,6 +91,7 @@ msgstr ""
 "auriculares\n"
 "        Se está a probar nun ordenador de sobremesa, pode deixar conectados "
 "os altofalantes externos\n"
+"    2. Prema no botón «Probar» para reproducir un son no dispositivo.\n"
 "COMPROBACIÓN\n"
 "    Ouviu un ton sonoro?"
 
@@ -157,15 +158,12 @@ msgid ""
 "    Did you hear your speech played back?"
 msgstr ""
 "PROPÓSITO:\n"
-"\n"
-"    Esta proba verifica que a gravación de son mediante o micrófono funciona "
-"correctamente.\n"
-"\n"
+"    Esta proba verifica que a gravación de son mediante o micrófono "
+"integrado funciona correctamente.\n"
 "PASOS:\n"
 "    1. Desconecte calquera micrófono externo que vostede teña conectado.\n"
 "    2. Pulse «Probar» e a seguir fale polo seu micrófono interno.\n"
 "    3. Despois duns segundos, a gravación reproducirase.\n"
-"\n"
 "COMPROBACIÓN:\n"
 "    Escoitou a súa gravación?"
 
@@ -183,14 +181,12 @@ msgid ""
 "    Did you hear your speech played back?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verifica que o gravador de son, usando un micrófono externo,  "
-"   funciona correctamente.\n"
-"\n"
+"    Esta proba verifica que o gravador de son, usando un micrófono externo, "
+"funciona correctamente.\n"
 "PASOS:\n"
 "    1. Conecte un micrófono no porto do micrófono.\n"
 "    2. Prema «Probar» e a seguir fale polo seu micrófono externo.\n"
 "    3. Despois duns segundos, a gravación reproducirase.\n"
-"\n"
 "COMPROBACIÓN:\n"
 "    Escoitou a súa gravación?"
 
@@ -654,7 +650,7 @@ msgstr "Proba para a flutuación do reloxo."
 #. description
 #: ../jobs/cpu.txt.in:28
 msgid "Test offlining CPUs in a multicore system."
-msgstr "Proba da desconexión de CPU nun sistema multinúcleo."
+msgstr "Proba da desconexión da CPU nun sistema multinúcleo."
 
 #. description
 #: ../jobs/cpu.txt.in:35
@@ -665,7 +661,7 @@ msgstr "Esta proba verifica a topoloxía da cpu para precisión"
 #: ../jobs/cpu.txt.in:42
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
-"Esta proba verifica que os controladores de frecuencia de CPU son aplicados "
+"Esta proba verifica que os controladores de frecuencia da CPU son aplicados "
 "cando están definidos."
 
 #. description
@@ -838,7 +834,7 @@ msgstr ""
 "pegadas dactilares ou ben mediante a introdución do seu contrasinal.\n"
 "    5. Utilice o lector de pegadas dixitais para desbloquear a pantalla.\n"
 "    6. A súa pantalla debería estar desbloqueada agora.\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    Funcionou correctamente o proceso de autenticación?"
 
 #. description
@@ -859,7 +855,7 @@ msgid ""
 msgstr ""
 "FINALIDADE:\n"
 "    Esta proba verifica se o sistema consegue detectar a inserción dun disco "
-"externo externo tipo FireWire\n"
+"externo tipo FireWire\n"
 "PASOS:\n"
 "    1. Prema «Probar» para iniciar a proba. Esta proba acabará\n"
 "       e fallará se non detecta a inserción en 20 segundos.\n"
@@ -894,11 +890,11 @@ msgid ""
 "    selected result"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verifica se o sistema consegue detectar a retirada dun\n"
-"    disco duro externo tipo FireWire.\n"
+"    Esta proba verifica se o sistema consegue detectar a retirada dun disco "
+"duro externo tipo FireWire.\n"
 "PASOS:\n"
 "    1. Prema «Probar» para iniciar a proba. Esa proba acabará e \n"
-"        fallará se a retirada non se detecta en 20 segundos.\n"
+"       fallará se a retirada non se detecta en 20 segundos.\n"
 "    2. Retire o disco duro externo tipo FireWire conectado no porto "
 "FireWire.\n"
 "COMPROBACIÓN:\n"
@@ -1177,9 +1173,9 @@ msgstr ""
 "    2. O sistema debería entrar en estado de hibernación e saír del despois "
 "de 5 minutos.\n"
 "    3. Se o sistema non sae do estado de hibernación despois de 5 minutos,  "
-"prema o botón de arranque para activar o sistema manualmente\n"
-"    4. Se o sistema non pode retomarse tras a hibernación, reinicie "
-"Comprobación do Sistema e marque esta proba como fallada\n"
+"prema o botón de acendido para activar o sistema manualmente\n"
+"    4. Se o sistema non pode continuar tras a hibernación, reinicie "
+"«Comprobación do Sistema» e marque esta proba como fallada\n"
 "COMPROBACIÓN:\n"
 "    Hibernou o sistema satisfactoriamente e funcionou correctamente despois "
 "de saír do devandito estado?"
@@ -1212,14 +1208,14 @@ msgstr "Anexa a saída dmidecode"
 #. description
 #: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
-msgstr "Anexa a saída detallada de lspci"
+msgstr "Anexa a saída detallada de lspci."
 
 #. description
 #: ../jobs/info.txt.in:42
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
 "Anexa unha saída moi detallada da orde lspci (cunha consulta a base de datos "
-"central)"
+"Query central)."
 
 #. description
 #: ../jobs/info.txt.in:49
@@ -1381,7 +1377,7 @@ msgstr ""
 "    Este exame poñerá a proba as teclas de volume\n"
 "PASOS:\n"
 "    1. Prema os botóns de volume do teclado\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    O volume cambia segundo se preme na tecla?"
 
 #. description
@@ -1398,7 +1394,7 @@ msgstr ""
 "    Esta proba verificará a tecla de silencio\n"
 "PASOS:\n"
 "    1. Prema a tecla de silencio no teclado\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    Silenciouse o volume ao premer na tecla?"
 
 #. description
@@ -1416,7 +1412,7 @@ msgstr ""
 "    Esta proba verifica a tecla de hibernar\n"
 "PASOS:\n"
 "    1. Prema a tecla de hibernar do teclado\n"
-"    2. Active o sistema premendo o botón de arranque\n"
+"    2. Active o sistema premendo o botón de acendido\n"
 "COMPROBACIÓN:\n"
 "    O sistema hibernou despois de premer a tecla?"
 
@@ -1434,7 +1430,7 @@ msgstr ""
 "    Esta proba verificará a tecla de información da batería\n"
 "PASOS:\n"
 "    1. Prema a tecla de información da batería no teclado\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    Apareceu unha notificación mostrando o estado da batería?"
 
 #. description
@@ -1475,7 +1471,7 @@ msgstr ""
 "multimedia.\n"
 "    2. Se todas as teclas funcionan, a proba marcarase com pasada.\n"
 "    3. Se o computador non ten teclas multimedia ignore esta proba.\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    Funcionan correctamente as teclas?"
 
 #. description
@@ -1494,7 +1490,7 @@ msgstr ""
 "PASOS:\n"
 "    1. Prema «Probar» para abrir unha xanela na que  probar a tecla Super.\n"
 "    2. Se a tecla funciona, pasará a proba e pecharase a xanela.\n"
-"VERIFICACIÓN:\n"
+"COMPROBACIÓN:\n"
 "    Funciona correctamente a tecla?"
 
 #. description
@@ -1525,7 +1521,7 @@ msgstr "Probas de códecs"
 #. description
 #: ../jobs/local.txt.in:38
 msgid "CPU tests"
-msgstr "Probas de CPU"
+msgstr "Probas da CPU"
 
 #. description
 #: ../jobs/local.txt.in:45
@@ -1691,6 +1687,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o lector de tarxetas multimedia do sistema pode\n"
+"    detectar a inserción dunha tarxeta multimedia (MMC)\n"
+"PASOS:\n"
+"    1. Prema «Probar» e insira unha tarxeta MMC no lector.\n"
+"       (Aviso: esta proba ten un tempo límite de 20 segundos.)\n"
+"    2. Non desconecte o dispositivo despois da proba\n"
+"COMPROBACIÓN:\n"
+"    A verificación desta proba é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:22
@@ -1738,6 +1744,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o lector de tarxetas multimedia do sistema "
+"pode.\n"
+"    detectar a inserción dunha tarxeta MMC despois de suspender o sistema\n"
+"PASOS:\n"
+"    1. Prema «Probar» e insira unha tarxeta MMC no lector.\n"
+"       (Aviso: esta proba ten un tempo límite de 20 segundos.)\n"
+"    2. Non desconecte o dispositivo despois da proba\n"
+"COMPROBACIÓN:\n"
+"    A verificación desta proba é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:63
@@ -1764,6 +1781,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta MMC do lector de tarxetas do sistema tras unha "
+"suspensión.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta MMC do lector.\n"
+"       (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1779,6 +1806,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o lector de tarxetas multimedia do sistema "
+"pode.\n"
+"    detectar a inserción dunha tarxeta multimedia Secure Digital (SD)\n"
+"PASOS:\n"
+"    1. Prema «Probar» e insira unha tarxeta SD no lector.\n"
+"       (Aviso: esta proba ten un tempo límite de 20 segundos.)\n"
+"    2. Non desconecte o dispositivo despois da proba\n"
+"COMPROBACIÓN:\n"
+"    A verificación desta proba é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:103
@@ -1802,6 +1840,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta SD do lector de tarxetas do sistema.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta SD do lector.\n"
+"         (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:140
@@ -1817,6 +1864,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o lector de tarxetas multimedia do sistema "
+"pode.\n"
+"    detectar a inserción dunha tarxeta SD despois de suspender o sistema\n"
+"PASOS:\n"
+"    1. Prema «Probar» e insira unha tarxeta SD no lector.\n"
+"       (Aviso: esta proba ten un tempo límite de 20 segundos.)\n"
+"    2. Non desconecte o dispositivo despois da proba\n"
+"COMPROBACIÓN:\n"
+"    A verificación desta proba é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:145
@@ -1843,6 +1901,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta SD do lector de tarxetas do sistema tras unha "
+"suspensión.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta SD do lector.\n"
+"       (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:184
@@ -1863,7 +1931,7 @@ msgstr ""
 "    Esta proba verifica que o lector de tarxetas multimedia do sistema "
 "pode.\n"
 "    detectar a inserción dunha tarxeta multimedia Secure Digital High "
-"Capacity (SDHC))\n"
+"Capacity (SDHC)\n"
 "PASOS:\n"
 "    1. Prema «Probar» e insira unha tarxeta SDHC no lector.\n"
 "       (Aviso: esta proba ten un tempo límite de 20 segundos.)\n"
@@ -1894,6 +1962,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta SDHC do lector de tarxetas do sistema.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta SDHC do lector.\n"
+"       (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:229
@@ -1911,10 +1988,9 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verifica que o lector de tarxetas multimedia do sistema "
-"pode.\n"
-"    detectar a inserción dunha tarxeta multimedia  SDHC despois de suspender "
-"o sistema)\n"
+"    Esta proba verifica que o lector de tarxetas multimedia do sistema pode "
+"detectar a inserción dunha tarxeta multimedia  SDHC despois de suspender o "
+"sistema\n"
 "PASOS:\n"
 "    1. Prema «Probar» e insira unha tarxeta SDHC no lector.\n"
 "       (Aviso: esta proba ten un tempo límite de 20 segundos.)\n"
@@ -1948,6 +2024,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta SDHC do lector de tarxetas do sistema tras unha "
+"suspensión.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta SDHC do lector.\n"
+"       (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:273
@@ -1997,6 +2083,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta CF do lector de tarxetas do sistema.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta CF do lector.\n"
+"         (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/mediacard.txt.in:318
@@ -2049,6 +2144,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o sistema detecta correctamente\n"
+"    a retirada da tarxeta CF do lector de tarxetas do sistema tras unha "
+"suspensión.\n"
+"PASOS:\n"
+"    1. Prema «Probar» e retire a tarxeta CF do lector.\n"
+"       (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
+"COMPROBACIÓN:\n"
+"    A comprobación é automática. Non cambie o\n"
+"    resultado seleccionado automaticamente."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -2078,6 +2183,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Nothing to verify for this test"
 msgstr ""
+"PROPÓSITO:\n"
+"    Anexar información do probador ao informe\n"
+"PASOS:\n"
+"    1. Información do probador\n"
+"    2. Introduza a seguinte información no campo dos comentarios\n"
+"       a. Nome\n"
+"       b. Enderezo de correo electrónico\n"
+"       c. Razón para executar esta proba\n"
+"COMPROBACIÓN:\n"
+"    Non hai comprobación para esta proba"
 
 #. description
 #: ../jobs/miscellanea.txt.in:21
@@ -2381,7 +2496,7 @@ msgid ""
 "over SSH."
 msgstr ""
 "Verifica que se pode alcanzar unha instalación de checkbox-server na rede "
-"mediante SSH"
+"mediante SSH."
 
 #. description
 #: ../jobs/networking.txt.in:106
@@ -2441,7 +2556,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:93
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2496,7 +2611,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:154
+#: ../jobs/optical.txt.in:156
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2721,15 +2836,11 @@ msgid ""
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verificará que o sistema detecta correctamente a retirada "
-"dun\n"
-"    dispositivo de almacenaxe USB\n"
+"    Esta proba verificará os sensores da tampa\n"
 "PASOS:\n"
-"    1. Prema «Probar» e retire o dispositivo USB.\n"
-"        (Aviso: esta proba ten un límite de tempo de 20 segundos.\n"
+"    1. Peche a tampa do portátil \n"
 "COMPROBACIÓN:\n"
-"    A verificación da proba é automática. Non cambie o\n"
-"    resultado seleccionado automaticamente."
+"    Suspendeuse os sistema ao pechar a tampa?"
 
 #. description
 #: ../jobs/power-management.txt.in:100
@@ -2742,6 +2853,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica os sensores da tampa\n"
+"PASOS:\n"
+"    1. Prema «Probar»\n"
+"    2. Baixe e suba a tampa\n"
+"COMPROBACIÓN:\n"
+"    Apagouse a pantalla mentres a tampa estivo baixada?"
 
 #. description
 #: ../jobs/power-management.txt.in:118
@@ -2881,7 +2999,7 @@ msgstr ""
 #: ../jobs/stress.txt.in:118
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
-"Anexe o rexistro da proba de 250 ciclos de Suspensión/Continuar se existen."
+"Anexa o rexistro da proba de 250 ciclos de Suspensión/Continuar se existe."
 
 #. description
 #: ../jobs/stress.txt.in:134
@@ -2897,7 +3015,7 @@ msgstr "Proba de resistencia de apagado do sistema (100 ciclos)"
 #: ../jobs/stress.txt.in:161
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr ""
-"Comprobar os rexistros da proba de resistencia do reinicio (100 ciclos)"
+"Comprobar os rexistros da proba de resistencia de reinicio (100 ciclos)"
 
 #. description
 #: ../jobs/stress.txt.in:173
@@ -3134,6 +3252,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba  verificará os modos de visualización detectados\n"
+"PASOS:\n"
+"    1. Prema «Probar» e a visualización cambiará entre os modos detectados\n"
+"COMPROBACIÓN\n"
+"    Visualízanse correctamente os modos detectados?"
 
 #. description
 #: ../jobs/suspend.txt.in:793
@@ -3320,7 +3444,7 @@ msgstr ""
 "PASOS:\n"
 "    1. Prema «Probar» e insira un dispositivo de almacenaxe USB "
 "(pendrive/HDD)\n"
-"         (Aviso: esta proba ten un límite de tempo de 20 segundos.\n"
+"         (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
 "    2. Non desconecte o dispositivo despois da proba.\n"
 "COMPROBACIÓN:\n"
 "    A verificación da proba é automática. Non cambie o\n"
@@ -3345,7 +3469,7 @@ msgstr ""
 "    dispositivo de almacenaxe USB\n"
 "PASOS:\n"
 "    1. Prema «Probar» e retire o dispositivo USB.\n"
-"        (Aviso: esta proba ten un límite de tempo de 20 segundos.\n"
+"        (Aviso: esta proba ten un límite de tempo de 20 segundos.)\n"
 "COMPROBACIÓN:\n"
 "    A verificación da proba é automática. Non cambie o\n"
 "    resultado seleccionado automaticamente."
@@ -3462,6 +3586,20 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que o explorador de ficheiros pode copiar un "
+"cartafol\n"
+"PASOS:\n"
+"    1. Prema  «Probar» para abrir o explorador de ficheiros. \n"
+"    2. Faga clic no botón dereito sobre o cartafol chamado «Cartafol de "
+"proba» e prema «Copiar». \n"
+"    3. Faga clic no botón dereito sobre un espazo baleiro e prema «Pegar».\n"
+"    4. Faga clic no botón dereito sobre o cartafol chamado  «Cartafol de "
+"proba (copia)» e prema  «Renomear».\n"
+"    5. Introduza o nome «Datos de proba» na caixa do nome e prema  «Intro».\n"
+"    6. Peche o explorador de ficheiros.\n"
+"COMPROBACIÓN:\n"
+"    Ten agora un cartafol chamado «Datos de proba»?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -3555,6 +3693,17 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o explorador de ficheiros pode eliminar un "
+"ficheiro.\n"
+"PASOS:\n"
+"    1. Prema «Probar» para iniciar o explorador de ficheiros.\n"
+"    2. Faga clic dereito no ficheiro chamado «Ficheiro de proba 1» e prema "
+"en «Enviar ao lixo».\n"
+"    3. Comprobe que se eliminou «Ficheiro de proba 1».\n"
+"    4. Peche o explorador de ficheiros.\n"
+"COMPROBACIÓN:\n"
+"   Eliminouse correctamente o ficheiro de proba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -3577,7 +3726,8 @@ msgstr ""
 "    1. Prema «Probar» para iniciar o explorador de ficheiros.\n"
 "    2. Faga clic dereito no cartafol chamado Cartafol de proba e prema en "
 "Enviar ao lixo.\n"
-"    3. Comprobe que se eliminou o cartafol.\n"
+"    3. Comprobe que se eliminou o cartafol\n"
+"    4. Peche o explorador de ficheiros.\n"
 "COMPROBACIÓN:\n"
 "   Eliminouse correctamente o cartafol de proba?"
 
@@ -3631,12 +3781,12 @@ msgid ""
 " Did you see the text?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verificará que Firefox pode executar aplicativs flash. Aviso: "
-"isto pode\n"
+"    Esta proba verificará que Firefox pode executar aplicativos flash. "
+"Aviso: isto pode\n"
 "    requirir a instalación de software adicional para que se complete "
 "correctamente.\n"
 "PASOS:\n"
-"    1. Seleccione Probar para iniciar Firefox e ver unha proba Flash de "
+"    1. Seleccione «Probar»para iniciar Firefox e ver unha proba Flash de "
 "exemplo.\n"
 "COMPROBACIÓN:\n"
 "    Viches o texto?"
@@ -3652,6 +3802,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que Firefox pode reproducir vídeo Flash. Aviso: "
+"isto pode\n"
+"    requirir a instalación de software adicional para que se complete "
+"correctamente.\n"
+"PASOS:\n"
+"    1. Seleccione «Probar»para iniciar Firefox e ver un vídeo curto Flash de "
+"exemplo.\n"
+"COMPROBACIÓN:\n"
+"    Reproduciuse o vídeo correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:285
@@ -3665,6 +3825,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que Firefox pode reproducir un ficheiro de vídeo "
+"Quicktime (.mov). \n"
+"    Aviso: isto pode requirir a instalación de software adicional para que "
+"se complete correctamente.\n"
+"PASOS:\n"
+"    1. Seleccione «Probar» para iniciar Firefox e ver un vídeo de mostra.\n"
+"COMPROBACIÓN:\n"
+"    Reproduciuse o vídeo por medio dun engadido?"
 
 #. description
 #: ../jobs/user_apps.txt.in:299
@@ -3699,6 +3868,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica o funcionamento do cliente de mensaxería Empathy.\n"
+"PASOS:\n"
+"    1. Seleccione «Probar» para iniciar Empathy.\n"
+"    2. Configúreo para conectarse ao servizo Google Talk (gtalk).\n"
+"    3. Unha vez completada a proba, saia de Empathy para continuar.\n"
+"COMPROBACIÓN:\n"
+"   Conectouse correctamente e foi quen de enviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:327
@@ -3712,6 +3889,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica o funcionamento do cliente de mensaxería Empathy.\n"
+"PASOS:\n"
+"    1. Seleccione «Probar» para iniciar Empathy.\n"
+"    2. Configúreo para conectarse ao servizo Jabber.\n"
+"    3. Unha vez completada a proba, saia de Empathy para continuar.\n"
+"COMPROBACIÓN:\n"
+"   Conectouse correctamente e foi quen de enviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:341
@@ -3725,6 +3910,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica o funcionamento do cliente de mensaxería Empathy.\n"
+"PASOS:\n"
+"    1. Seleccione «Probar» para iniciar Empathy.\n"
+"    2. Configúreo para conectarse ao servizo de mensaxería instantánea de "
+"AOL (AIM).\n"
+"    3. Unha vez completada a proba, saia de Empathy para continuar.\n"
+"COMPROBACIÓN:\n"
+"   Conectouse correctamente e foi quen de enviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:355
@@ -3738,6 +3932,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica o funcionamento do cliente de mensaxería Empathy.\n"
+"PASOS:\n"
+"    1. Seleccione a proba para iniciar Empathy.\n"
+"    2. Configúreo para conectarse ao servizo Microsoft Network (MSN).\n"
+"    3. Unha vez completada a proba, saia de Empathy para continuar.\n"
+"COMPROBACIÓN:\n"
+"   Conectouse correctamente e foi quen de enviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:369
@@ -3750,6 +3952,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o Evolution funciona.\n"
+"PASOS:\n"
+"    1. Prema o botón «Probar» para iniciar o Evolution\n"
+"    2. Configúreo para conectarse a unha conta POP3\n"
+"COMPROBACIÓN:\n"
+"    Foi quen de recibir e ler un correo electrónico correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:382
@@ -3762,6 +3971,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o Evolution funciona.\n"
+"PASOS:\n"
+"    1. Prema o botón «Probar» para iniciar o Evolution\n"
+"    2. Configúreo para conectarse a unha conta IMAP\n"
+"COMPROBACIÓN:\n"
+"    Foi quen de recibir e ler un correo electrónico correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:395
@@ -3774,6 +3990,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o Evolution funciona.\n"
+"PASOS:\n"
+"    1. Prema o botón «Probar» para iniciar o Evolution\n"
+"    2. Configúreo para conectarse a unha conta SMTP\n"
+"COMPROBACIÓN:\n"
+"    Foi quen de enviar un correo electrónico sen erros?"
 
 #. description
 #: ../jobs/user_apps.txt.in:408
@@ -3785,6 +4008,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que a gcalctool (calculadora) funciona.\n"
+"PASOS:\n"
+"    1. Prema o botón «Probar» para abrir a calculadora.\n"
+"COMPROBACIÓN\n"
+"    Iniciouse correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:421
@@ -3800,6 +4029,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"PROPÓSITO:\n"
+" Esta proba verifica que a gcalctool (Calculadora) funciona.\n"
+"PASOS:\n"
+" Pulse o botón «Probar» para abrir a calculadora e execute:\n"
+"  1. Operacións matemáticas simples (+,-,/,*) \n"
+"  2. Operacións matemáticas aniñadas ((,)) \n"
+"  3. Matemáticas fraccionais\n"
+"  4. Matemáticas decimais\n"
+"VERIFICACIÓN:\n"
+" Executáronse as funcións correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:438
@@ -3815,6 +4054,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"PROPÓSITO:\n"
+" Esta proba verifica que a gcalctool (Calculadora) funciona.\n"
+"PASOS:\n"
+" Pulse o botón «Probar» para abrir a calculadora e realice:\n"
+"  1. Activar a memoria\n"
+"  2. Reiniciar a memoria\n"
+"  3. Limpeza da última gravación na memoria\n"
+"  4. Limpeza da memoria\n"
+"VERIFICACIÓN:\n"
+" Executáronse as funcións correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:455
@@ -3829,6 +4078,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"PROPÓSITO:\n"
+" Esta proba verifica que a gcalctool (Calculadora) funciona.\n"
+"PASOS:\n"
+" Pulse o botón «Probar» para abrir a calculadora e realice:\n"
+"  1. Cortar\n"
+"  2. Copiar\n"
+"  3. Pegar\n"
+"VERIFICACIÓN:\n"
+" Executáronse as funcións correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:470
@@ -3842,6 +4100,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o Gedit funciona\n"
+"PASOS:\n"
+"    1. Prema o botón «Probar» para abrir o editor de texto.\n"
+"    2. Modifique o ficheiro e gárdeo (anote o nome do ficheiro), despois "
+"peche o Gedit\n"
+"COMPROBACIÓN:\n"
+"    Funcionou correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:484
@@ -3877,6 +4143,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que a terminal de GNOME funciona.\n"
+"PASOS:\n"
+"    1. Prema «Probar» para abrir unha terminal\n"
+"    2. Prema «ls» e despois prema intro. Debería ver a lista de ficheiros e "
+"cartafoles do directorio persoal.\n"
+"    3. Peche a xanela do terminal.\n"
+"COMPROBACIÓN:\n"
+"    Obtívose o resultado agardado?"
 
 #. description
 #: ../jobs/wireless.txt.in:20
@@ -3898,6 +4173,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará a conexión sen fíos\n"
+"PASOS:\n"
+"    1. Prema na icona de Rede do panel superior\n"
+"    2. Seleccione unha rede na sección «Rede sen fíos». \n"
+"    3. Prema «Probar» para verificar que é posíbel estabelecer unha conexión "
+"HTTP\n"
+"COMPROBACIÓN:\n"
+"    Mostrouse unha notificación e estabeleceuse correctamente a conexión?"
 
 #. description
 #: ../jobs/wireless.txt.in:44
@@ -4031,7 +4315,7 @@ msgstr "Excepción de coma flotante"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "Sinal kill (matar)"
+msgstr "Sinal kill"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
@@ -4063,7 +4347,7 @@ msgstr "O fillo detívose ou rematou"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "Continuar se se deten"
+msgstr "Continuar se se detén"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
@@ -4187,7 +4471,7 @@ msgstr "Probar de novo"
 msgid "_Test Again"
 msgstr "_Probar de novo"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:555
 msgid "Info"
 msgstr "Información"
 
@@ -4234,11 +4518,11 @@ msgstr "Desexa informar dun erro?"
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Está en proceso unha actualización de paquetes? Erro: %s"
 
-#: ../plugins/final_prompt.py:33
+#: ../plugins/final_prompt.py:24
 msgid "Successfully finished testing!"
 msgstr "Comprobación rematada correctamente."
 
-#: ../plugins/final_prompt.py:34
+#: ../plugins/final_prompt.py:39
 msgid "_Finish"
 msgstr "_Rematar"
 

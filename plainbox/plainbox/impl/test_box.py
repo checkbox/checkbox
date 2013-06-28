@@ -40,6 +40,7 @@ class MiscTests(TestCase):
     def setUp(self):
         self.job_foo = MockJobDefinition(name='foo')
         self.job_bar = MockJobDefinition(name='bar')
+        self.job_baz = MockJobDefinition(name='baz')
         self.obj = CheckBoxInvocationMixIn(Mock(name="checkbox"))
 
     def test_matching_job_list(self):
@@ -77,13 +78,28 @@ class MiscTests(TestCase):
         # that are read and interpreted as usual
         whitelist = Mock()
         whitelist.readlines.return_value = ['foo']
+        whitelists = [whitelist]
         ns = Mock()
-        ns.whitelist = whitelist
+        ns.whitelist = whitelists
         ns.include_pattern_list = []
         ns.exclude_pattern_list = []
         observed = self.obj._get_matching_job_list(ns, [
             self.job_foo, self.job_bar])
         self.assertEqual(observed, [self.job_foo])
+
+    def test_matching_job_list_multiple_whitelists(self):
+        whitelist_a = Mock()
+        whitelist_a.readlines.return_value = ['foo']
+        whitelist_b = Mock()
+        whitelist_b.readlines.return_value = ['baz']
+        whitelists = [whitelist_a, whitelist_b]
+        ns = Mock()
+        ns.whitelist = whitelists
+        ns.include_pattern_list = []
+        ns.exclude_pattern_list = []
+        observed = self.obj._get_matching_job_list(ns, [
+            self.job_foo, self.job_bar, self.job_baz])
+        self.assertEqual(observed, [self.job_foo, self.job_baz])
 
     def test_no_prefix_matching_including(self):
         # Include patterns should only match whole job name
@@ -122,8 +138,8 @@ class TestMain(TestCase):
         self.assertEqual(call.exception.args, (0,))
         self.maxDiff = None
         expected = """
-        usage: plainbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-T LOGGER]
-                        [-P] [-I]
+        usage: plainbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-C]
+                        [-T LOGGER] [-P] [-I]
                         {run,self-test,sru,check-config,dev} ...
 
         positional arguments:
@@ -138,22 +154,18 @@ class TestMain(TestCase):
           -h, --help            show this help message and exit
           --version             show program's version number and exit
           -c {src,deb,auto}, --checkbox {src,deb,auto}
-                                where to find the installation of CheckBox. (default:
-                                auto)
+                                where to find the installation of CheckBox.
 
         logging and debugging:
-          -v, --verbose         be more verbose (same as --log-level=INFO) (default:
-                                None)
-          -D, --debug           enable DEBUG messages on the root logger (default:
-                                None)
+          -v, --verbose         be more verbose (same as --log-level=INFO)
+          -D, --debug           enable DEBUG messages on the root logger
+          -C, --debug-console   display DEBUG messages in the console
           -T LOGGER, --trace LOGGER
                                 enable DEBUG messages on the specified logger (can be
-                                used multiple times) (default: [])
+                                used multiple times)
           -P, --pdb             jump into pdb (python debugger) when a command crashes
-                                (default: False)
           -I, --debug-interrupt
                                 crash on SIGINT/KeyboardInterrupt, useful with --pdb
-                                (default: False)
 
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")
@@ -164,8 +176,8 @@ class TestMain(TestCase):
                 main([])
             self.assertEqual(call.exception.args, (2,))
         expected = """
-        usage: plainbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-T LOGGER]
-                        [-P] [-I]
+        usage: plainbox [-h] [--version] [-c {src,deb,auto}] [-v] [-D] [-C]
+                        [-T LOGGER] [-P] [-I]
                         {run,self-test,sru,check-config,dev} ...
         plainbox: error: too few arguments
         """

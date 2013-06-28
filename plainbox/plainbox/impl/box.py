@@ -124,7 +124,9 @@ class PlainBox:
         """
         Initialize with early command line arguments being already parsed
         """
-        adjust_logging(level=early_ns.log_level, trace_list=early_ns.trace)
+        adjust_logging(
+            level=early_ns.log_level, trace_list=early_ns.trace,
+            debug_console=early_ns.debug_console)
         # Load plainbox configuration
         self._config = self.get_config_cls().get()
         # Load and initialize checkbox provider
@@ -155,9 +157,7 @@ class PlainBox:
         return parser
 
     def construct_parser(self):
-        parser = argparse.ArgumentParser(
-            prog=self.get_exec_name(),
-            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        parser = argparse.ArgumentParser(prog=self.get_exec_name())
         parser.add_argument(
             "--version", action="version", version=self.get_exec_version())
         # Add all the things really parsed by the early parser so that it
@@ -209,6 +209,11 @@ class PlainBox:
             action="store_const",
             const="DEBUG",
             help="enable DEBUG messages on the root logger")
+        # Add the --debug flag
+        group.add_argument(
+            "-C", "--debug-console",
+            action="store_true",
+            help="display DEBUG messages in the console")
         # Add the --trace flag
         group.add_argument(
             "-T", "--trace",
@@ -296,7 +301,15 @@ class PlainBox:
 
 
 def main(argv=None):
-    raise SystemExit(PlainBox().main(argv))
+    # Another try/catch block for catching KeyboardInterrupt
+    # This one is really only meant for the early init abort
+    # (when someone runs main but bails out before we really
+    # get to the point when we do something useful and setup
+    # all the exception handlers).
+    try:
+        raise SystemExit(PlainBox().main(argv))
+    except KeyboardInterrupt:
+        pass
 
 
 def get_builtin_jobs():

@@ -33,7 +33,7 @@ requires:
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'pulseaudio-utils'
 command:
- audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=hdmi --volume=50 --verbose; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
+ audio_settings store --verbose --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --verbose --device=hdmi --volume=50; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --verbose --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      HDMI audio interface verification
@@ -51,7 +51,7 @@ requires:
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'pulseaudio-utils'
 command:
- audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=hdmi --volume=50 --verbose; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
+ audio_settings store --verbose --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --verbose --device=hdmi --volume=50; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --verbose --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      DisplayPort audio interface verification
@@ -138,7 +138,11 @@ _description:
 plugin: shell
 name: audio/alsa_record_playback_automated
 requires:
- package.name == 'python-gst0.10'
+ package.name == 'python3-gi'
+ package.name == 'gir1.2-gstreamer-1.0'
+ package.name == 'libgstreamer1.0-0'
+ package.name == 'gstreamer1.0-plugins-good'
+ package.name == 'gstreamer1.0-pulseaudio'
  package.name == 'alsa-base'
  device.category == 'AUDIO'
 command: audio_test

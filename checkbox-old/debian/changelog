@@ -1,3 +1,24 @@
+checkbox (0.16.5) saucy; urgency=low
+
+  [ Brendan Donegan ]
+  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
+    through new xml_sanitizer script which removes characters which are
+    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
+
+  [ Jeff Marcom ]
+  * scripts/virtualization: fixed issue introduced in last patch that
+    caused the kvm test to not run at all. Changed file permission lvl
+    on created temporary directory. Fixed issue where test log was being
+    deleted along with temporary directory(LP: #1192979)
+
+  [ Daniel Manrique ]
+  * scripts/audio_test: Improved peak detection algorithm and made the
+    audio_test slighly more sensitive (LP: #1070776). Rewrote script to
+    use/require Python 3 and gstreamer 1.0. Updated job requirements and
+    checkbox dependencies accordingly. 
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
+
 checkbox (0.16.4) saucy; urgency=low
 
   [ Jeff Lane ]
@@ -31,6 +52,10 @@ checkbox (0.16.4) saucy; urgency=low
   * scripts/audio_settings: Use the new pactl parser to guess the right profile
     to select for HDMI / DisplayPort tests.
   * setup.py: Use setuptools find_packages(), more future proof.
+  * checkbox/scripts/audio_settings.py: Save active profiles for all alsa cards
+    (LP: #169425)
+  * scripts/gst_pipeline_test: Use the logging module and the same config as
+    audio_settings.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
 
