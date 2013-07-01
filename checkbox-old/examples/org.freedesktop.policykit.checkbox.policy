@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+
+  <!--
+    Policy definitions for Checkbox system runner backend.
+    (C) 2013 Canonical Ltd.
+    Authors: Sylvain Pineau <sylvain.pineau@canonical.com>
+             Daniel Manrique <daniel.manrique@canonical.com>
+  -->
+
+  <vendor>Checkbox</vendor>
+  <vendor_url>https://launchpad.net/checkbox</vendor_url>
+  <icon_name>checkbox</icon_name>
+
+  <action id="org.freedesktop.policykit.pkexec.run-checkbox-backend">
+      <description>Checkbox privileged command runner</description>
+      <message>SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted with test results.</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/share/checkbox/backend</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">TRUE</annotate>
+  </action>
+
+</policyconfig>
+

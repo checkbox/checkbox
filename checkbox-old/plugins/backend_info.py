@@ -94,20 +94,16 @@ class BackendInfo(Plugin):
                           "Your password will never be stored and will never "
                           "be submitted with test results.")
         password_prompt = _("PASSWORD: ")
+
         if uid == 0:
             prefix = []
-        elif os.getenv("DISPLAY") and \
-                call(["which", "kdesudo"],
-                    stdout=PIPE, stderr=PIPE) == 0 and \
-                call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
+        #We will try to use pkexec, should be installed by default on desktop
+        #installs and is likely to be there for servers too.
+        elif call(["which", "pkexec"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["kdesudo", "--comment", password_text, "-d", "--"]
-        elif os.getenv("DISPLAY") and \
-                call(["which", "gksu"],
-                    stdout=PIPE, stderr=PIPE) == 0 and \
-                call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
-                    stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["gksu", "--message", password_text, "--"]
+            prefix = ["pkexec"]
+        #We fall back to good old sudo if pkexec is not present. Sudo
+        #*should* be present in any Ubuntu installation.
         else:
             prefix = ["sudo", "-p", password_text + " " + password_prompt]
 
