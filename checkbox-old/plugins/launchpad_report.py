@@ -98,7 +98,8 @@ class LaunchpadReport(Plugin):
             elif "udev_attachment" in name:
                 self._report["hardware"]["udev"] = attachment["data"]
 
-            elif all(c in printable for c in attachment["data"]):
+            elif (all(c in printable for c in attachment["data"]) and
+                  attachment['status'] != 'unsupported'):
                 self._report["context"].append({
                     "command": attachment["command"],
                     "data": attachment["data"]})

@@ -1,6 +1,8 @@
 checkbox (0.16.6) UNRELEASED; urgency=low
 
-  * Incremented changelog
+  [ Brendan Donegan ]
+  * plugins/launchpad_report.py - Don't include attachments which have a status
+    of 'unsupported' (LP: #1196531)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
