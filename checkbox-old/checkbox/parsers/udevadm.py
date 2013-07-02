@@ -249,9 +249,9 @@ class UdevadmDevice:
             if id_type == "disk":
                 return "DISK"
 
-            if id_type == "video":
-                return "VIDEO"
-
+            if not any(d.bus == 'usb' for d in self._stack):
+                if id_type == "video":
+                    return "VIDEO"
 
         if "DEVTYPE" in self._environment:
             devtype = self._environment["DEVTYPE"]
