@@ -375,6 +375,11 @@ class UdevadmDevice:
         match = INPUT_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             vendor_id = int(match.group("vendor_id"), 16)
+            # Vendor id <= 9 are not valid numbers, force 9 to make sure
+            # that it will not match an existing (unrelated) vendor in usb.ids
+            # nor pci.ids
+            if vendor_id and vendor_id < 9:
+                vendor_id = 9
             return vendor_id
 
         return None
