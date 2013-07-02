@@ -98,6 +98,9 @@ class UdevadmDevice:
         if bus == "pnp":
             return None
 
+        if bus == 'input' and any(d.bus == 'usb' for d in self._stack):
+            bus = 'usb'
+
         return bus
 
     @property
