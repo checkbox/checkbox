@@ -376,11 +376,6 @@ class UdevadmDevice:
 
     @property
     def product(self):
-        for element in ("NAME",
-                        "POWER_SUPPLY_MODEL_NAME"):
-            if element in self._environment:
-                return self._environment[element].strip('"')
-
         # disk
         if self._environment.get("DEVTYPE") == "scsi_device":
             for device in reversed(self._stack):
@@ -404,6 +399,10 @@ class UdevadmDevice:
                     match = PLATFORM_RE.match(device._environment.get("MODALIAS", ""))
                     if match:
                         return match.group("module_name")
+        for element in ("NAME", "POWER_SUPPLY_MODEL_NAME"):
+            if element in self._environment:
+                return self._environment[element].strip('"')
+
         return None
 
     @property
