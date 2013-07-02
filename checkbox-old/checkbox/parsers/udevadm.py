@@ -392,6 +392,22 @@ class UdevadmDevice:
         if "ID_MODEL_FROM_DATABASE" in self._environment:
             return self._environment["ID_MODEL_FROM_DATABASE"]
 
+        # bluetooth (if USB base class is vendor specific)
+        if self.bus == 'bluetooth':
+            vendor_specific = False
+            # Check parent device modalias
+            if self._stack:
+                parent = self._stack[-1]
+                if "MODALIAS" in parent._environment:
+                    match = USB_RE.match(parent._environment.get("MODALIAS", ""))
+                    if match:
+                        if int(match.group("class"), 16) == 0xFF:
+                            vendor_specific = True
+            if vendor_specific:
+                for device in reversed(self._stack):
+                    if "ID_MODEL_ENC" in device._environment:
+                        return decode_id(device._environment["ID_MODEL_ENC"])
+
         # wireless (SoC)
         if "IFINDEX" in self._environment:
             for device in reversed(self._stack):
@@ -429,6 +445,22 @@ class UdevadmDevice:
 
         if "ID_VENDOR_FROM_DATABASE" in self._environment:
             return self._environment["ID_VENDOR_FROM_DATABASE"]
+
+        # bluetooth (if USB base class is vendor specific)
+        if self.bus == 'bluetooth':
+            vendor_specific = False
+            # Check parent device modalias
+            if self._stack:
+                parent = self._stack[-1]
+                if "MODALIAS" in parent._environment:
+                    match = USB_RE.match(parent._environment.get("MODALIAS", ""))
+                    if match:
+                        if int(match.group("class"), 16) == 0xFF:
+                            vendor_specific = True
+            if vendor_specific:
+                for device in reversed(self._stack):
+                    if "ID_VENDOR_ENC" in device._environment:
+                        return decode_id(device._environment["ID_VENDOR_ENC"])
 
         return None
 
