@@ -119,8 +119,6 @@ class UdevadmDevice:
             if class_id == Pci.BASE_CLASS_DISPLAY:
                 if subclass_id == Pci.CLASS_DISPLAY_VGA:
                     return "VIDEO"
-                else:
-                    return "OTHER"
 
             if class_id == Pci.BASE_CLASS_SERIAL \
                and subclass_id == Pci.CLASS_SERIAL_USB:
