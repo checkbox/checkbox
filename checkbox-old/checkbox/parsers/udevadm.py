@@ -231,6 +231,10 @@ class UdevadmDevice:
             if self.driver.startswith("mmc"):
                 return "CARDREADER"
 
+            # See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=702145
+            if self.driver.startswith("rtsx"):
+                return "CARDREADER"
+
             if self.driver == "sd" and self.product:
                 if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
