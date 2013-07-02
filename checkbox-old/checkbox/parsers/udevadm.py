@@ -435,6 +435,13 @@ class UdevadmDevice:
 
         return None
 
+    def as_json(self):
+        attributes = ("path", "bus", "category", "driver", "product_id",
+                      "vendor_id", "subproduct_id", "subvendor_id", "product",
+                      "vendor", "interface",)
+
+        return { a: getattr(self, a) for a in attributes if getattr(self, a) }
+
 
 class UdevadmParser:
     """Parser for the udevadm command."""
@@ -536,3 +543,24 @@ def decode_id(id):
     encoded_id = id.encode("utf-8")
     decoded_id = encoded_id.decode("unicode-escape")
     return decoded_id.strip()
+
+
+class UdevResult:
+    def __init__(self):
+        self.devices = {"device_list": []}
+
+    def addDevice(self, device):
+        self.devices["device_list"].append(device)
+
+
+def parse_udevadm_output(output):
+    """
+    Parse output of `LANG=C udevadm info --export-db`
+
+    :returns: :class:`UdevadmParser` object that corresponds to the
+    parsed input
+    """
+    udev = UdevadmParser(output)
+    result = UdevResult()
+    udev.run(result)
+    return result.devices
