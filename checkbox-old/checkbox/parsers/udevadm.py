@@ -63,6 +63,13 @@ PLATFORM_RE = re.compile(
     r"^platform:"
     r"(?P<module_name>.*)"
     )
+INPUT_RE = re.compile(
+    r"^input:"
+    r"b(?P<bus_type>[%(hex)s]{4})"
+    r"v(?P<vendor_id>[%(hex)s]{4})"
+    r"p(?P<product_id>[%(hex)s]{4})"
+    r"e(?P<version>[%(hex)s]{4})"
+    % {"hex": string.hexdigits})
 CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
 GENERIC_RE = re.compile(r"Generic", re.I)
 FLASH_RE = re.compile(r"Flash", re.I)
@@ -342,6 +349,11 @@ class UdevadmDevice:
             if product_id > 0x0100:
                 return product_id
 
+        # input
+        match = INPUT_RE.match(self._environment.get("MODALIAS", ""))
+        if match:
+            return int(match.group("product_id"), 16)
+
         return None
 
     @property
@@ -355,6 +367,12 @@ class UdevadmDevice:
         match = USB_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             return int(match.group("vendor_id"), 16)
+
+        # input
+        match = INPUT_RE.match(self._environment.get("MODALIAS", ""))
+        if match:
+            vendor_id = int(match.group("vendor_id"), 16)
+            return vendor_id
 
         return None
 
