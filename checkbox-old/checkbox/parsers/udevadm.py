@@ -73,6 +73,7 @@ INPUT_RE = re.compile(
 CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
 GENERIC_RE = re.compile(r"Generic", re.I)
 FLASH_RE = re.compile(r"Flash", re.I)
+FLASH_DISK_RE = re.compile(r"Mass|Storage|Disk", re.I)
 
 
 class UdevadmDevice:
@@ -247,13 +248,13 @@ class UdevadmDevice:
             if self.driver.startswith("rtsx"):
                 return "CARDREADER"
 
-            if self.driver == "sd" and self.product:
+            if self._environment.get("DEVTYPE") not in ("disk", "partition") and self.driver == "sd" and self.product:
                 if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
                 if any(d.bus == 'usb' for d in self._stack):
                     if self.product is not None and CARD_READER_RE.search(self.product):
                         return "CARDREADER"
-                    if self.vendor is not None and GENERIC_RE.search(self.vendor):
+                    if self.vendor is not None and GENERIC_RE.search(self.vendor) and not FLASH_DISK_RE.search(self.product):
                         return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
