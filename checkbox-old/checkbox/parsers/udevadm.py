@@ -102,6 +102,8 @@ class UdevadmDevice:
                     return "WIRELESS"
             return "NETWORK"
 
+        if self.bus == "bluetooth":
+            return "BLUETOOTH"
 
         if "PCI_CLASS" in self._environment:
             pci_class_string = self._environment["PCI_CLASS"]
