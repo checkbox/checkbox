@@ -59,6 +59,10 @@ SCSI_RE = re.compile(
     r"^scsi:"
     r"t-0x(?P<type>[%(hex)s]{2})"
     % {"hex": string.hexdigits})
+PLATFORM_RE = re.compile(
+    r"^platform:"
+    r"(?P<module_name>.*)"
+    )
 CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
 GENERIC_RE = re.compile(r"Generic", re.I)
 FLASH_RE = re.compile(r"Flash", re.I)
@@ -395,6 +399,13 @@ class UdevadmDevice:
         if "ID_MODEL_FROM_DATABASE" in self._environment:
             return self._environment["ID_MODEL_FROM_DATABASE"]
 
+        # wireless (SoC)
+        if "IFINDEX" in self._environment:
+            for device in reversed(self._stack):
+                if "ID_MODEL_ENC" in device._environment:
+                    match = PLATFORM_RE.match(device._environment.get("MODALIAS", ""))
+                    if match:
+                        return match.group("module_name")
         return None
 
     @property
