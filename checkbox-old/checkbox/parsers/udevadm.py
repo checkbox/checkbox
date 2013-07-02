@@ -192,15 +192,21 @@ class UdevadmDevice:
                 else:
                     return "WIRELESS"
 
+        if 'ID_INPUT_KEYBOARD' in self._environment:
+            return "KEYBOARD"
+
+        if 'ID_INPUT_TOUCHPAD' in self._environment:
+            return "TOUCHPAD"
+
+        if 'ID_INPUT_TOUCHSCREEN' in self._environment:
+            return "TOUCHSCREEN"
+
+        if "ID_INPUT_ACCELEROMETER" in self._environment:
+            return "ACCELEROMETER"
+
         if "KEY" in self._environment:
             key = self._environment["KEY"].strip("=")
             bitmask = get_bitmask(key)
-
-            for i in range(Input.KEY_Q, Input.KEY_P + 1):
-                if not test_bit(i, bitmask, self._bits):
-                    break
-            else:
-                return "KEYBOARD"
 
             if test_bit(Input.KEY_CAMERA, bitmask, self._bits):
                 # Consider a device with both camera and mouse properties as a
@@ -210,11 +216,8 @@ class UdevadmDevice:
                 else:
                     return "CAPTURE"
 
-            if test_bit(Input.BTN_TOUCH, bitmask, self._bits):
-                return "TOUCH"
-
-            if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
-                return "MOUSE"
+        if 'ID_INPUT_MOUSE' in self._environment:
+            return "MOUSE"
 
         if self.driver:
             if self.driver.startswith("sdhci"):
