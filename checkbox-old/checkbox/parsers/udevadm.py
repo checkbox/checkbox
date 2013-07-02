@@ -444,6 +444,11 @@ class UdevadmDevice:
                     match = PLATFORM_RE.match(device._environment.get("MODALIAS", ""))
                     if match:
                         return match.group("module_name")
+
+        if "IFINDEX" in self._environment and "INTERFACE" in self._environment:
+            if "ID_MODEL_ENC" in self._environment:
+                return decode_id(self._environment["ID_MODEL_ENC"])
+
         for element in ("NAME", "POWER_SUPPLY_MODEL_NAME"):
             if element in self._environment:
                 return self._environment[element].strip('"')
@@ -490,6 +495,10 @@ class UdevadmDevice:
                 for device in reversed(self._stack):
                     if "ID_VENDOR_ENC" in device._environment:
                         return decode_id(device._environment["ID_VENDOR_ENC"])
+
+        if "IFINDEX" in self._environment and "INTERFACE" in self._environment:
+            if "ID_VENDOR_ENC" in self._environment:
+                return decode_id(self._environment["ID_VENDOR_ENC"])
 
         return None
 
