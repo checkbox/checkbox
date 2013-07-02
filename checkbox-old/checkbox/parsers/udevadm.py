@@ -252,11 +252,6 @@ class UdevadmDevice:
             if id_type == "video":
                 return "VIDEO"
 
-        if "RFKILL_TYPE" in self._environment:
-            rfkill_type = self._environment["RFKILL_TYPE"]
-
-            if rfkill_type == "bluetooth":
-                return "BLUETOOTH"
 
         if "DEVTYPE" in self._environment:
             devtype = self._environment["DEVTYPE"]
@@ -378,7 +373,6 @@ class UdevadmDevice:
     @property
     def product(self):
         for element in ("NAME",
-                        "RFKILL_NAME",
                         "POWER_SUPPLY_MODEL_NAME"):
             if element in self._environment:
                 return self._environment[element].strip('"')
