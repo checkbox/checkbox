@@ -32,7 +32,7 @@ class LshwJsonResult:
             self.total_size += int(hardware['size'])
 
 def get_installed_memory_size():
-    dmi = DmidecodeParser(os.popen('dmidecobe'))
+    dmi = DmidecodeParser(os.popen('dmidecode'))
     result = DmiResult()
     dmi.run(result)
 
