@@ -3,6 +3,9 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   [ Brendan Donegan ]
   * plugins/launchpad_report.py - Don't include attachments which have a status
     of 'unsupported' (LP: #1196531)
+  * checkbox/parsers/lshwjson.py, scripts/memory_compare - Create a parser for lshw
+    and use this in the memory_compare script as a fallback in case memory info
+    cannot be retrieved from dmidecode (LP: #1184661)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
