@@ -11,13 +11,13 @@ Build-Depends: debhelper (>= 9.2),
                python,
                python-distutils-extra,
                python-setuptools,
-               python3-setuptools,
                python3-all,
                python3-distutils-extra,
                python3-gi,
                python3-lxml,
                python3-mock,
                python3-pkg-resources,
+               python3-setuptools,
                qt4-qmake
 Vcs-Bzr: https://code.launchpad.net/~checkbox-dev/checkbox/trunk
 
@@ -25,10 +25,10 @@ Package: checkbox
 Section: python
 Architecture: any
 Depends: debconf,
-         python3-lxml,
-         policykit-1,
-         udev,
          gir1.2-gudev-1.0,
+         policykit-1,
+         python3-lxml,
+         udev,
          udisks2 | udisks,
          ${misc:Depends},
          ${python3:Depends},
@@ -120,8 +120,7 @@ Description: QT4 interface for checkbox
 
 Package: checkbox-hw-collection
 Architecture: any
-Depends: checkbox (>= ${source:Version}),
-         ${misc:Depends}
+Depends: checkbox (>= ${source:Version}), ${misc:Depends}
 Description: CLI tool for collecting HW information from a system
  .
  This package provides a tool for collecting hardware information from
