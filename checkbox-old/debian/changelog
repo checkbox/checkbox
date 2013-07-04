@@ -3,6 +3,9 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   [ Brendan Donegan ]
   * plugins/launchpad_report.py - Don't include attachments which have a status
     of 'unsupported' (LP: #1196531)
+  * jobs/info.txt.in - Add lshw_attachment job with dependency on the lshw
+    package, and also give dmidecode_attachment a dependency on dmidecode,
+    this way we get the right attachments (LP: #1182512)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
