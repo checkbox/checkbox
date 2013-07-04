@@ -3,6 +3,9 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   [ Brendan Donegan ]
   * plugins/launchpad_report.py - Don't include attachments which have a status
     of 'unsupported' (LP: #1196531)
+  * checkbox/parsers/lshwjson.py, scripts/memory_compare - Create a parser for
+    lshw and use this in the memory_compare script instead of dmidecode
+    (LP: #1184661)
   * plugins/subunit_report.py - Prevent crash when job output contains 
     non-ASCII characters (LP: #1196838)
 
