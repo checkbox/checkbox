@@ -27,6 +27,7 @@ import os
 import shutil
 import tempfile
 
+from plainbox.abc import IJobResult
 from plainbox.impl.depmgr import DependencyError, DependencyDuplicateError
 from plainbox.impl.depmgr import DependencySolver
 from plainbox.impl.job import JobDefinition
@@ -266,7 +267,7 @@ class _LegacySessionState:
                 desired_job_list.extend(
                     [j for j in self._job_list if j == job])
             elif (previous_session._job_state_map[job.name].result.outcome !=
-                    JobResult.OUTCOME_NONE):
+                    IJobResult.OUTCOME_NONE):
                 # Keep jobs results from the previous session without a
                 # definition in the current job_list only if they have
                 # a valid result
@@ -458,7 +459,7 @@ class SessionState(_LegacySessionState):
         # Return all dependency problems to the caller
         return problems
 
-    def update_job_result(self, job, job_result):
+    def update_job_result(self, job, result):
         """
         Notice the specified test result and update readiness state.
 
@@ -482,15 +483,14 @@ class SessionState(_LegacySessionState):
         local jobs don't replace anything. They cannot replace an existing job
         with the same name.
         """
-        assert job_result.job is job
-        assert job_result.job in self._job_list
+        assert job in self._job_list
         # Store the result in job_state_map
-        self._job_state_map[job.name].result = job_result
+        self._job_state_map[job.name].result = result
         # Treat some jobs specially and interpret their output
         if job.plugin == "resource":
-            self._process_resource_result(job_result)
+            self._process_resource_result(job, result)
         elif job.plugin == "local":
-            self._process_local_result(job_result)
+            self._process_local_result(job, result)
         # Update all job readiness state
         self._recompute_job_readiness()
 
@@ -540,24 +540,23 @@ class SessionState(_LegacySessionState):
         """
         self._resource_map[resource_name] = resource_list
 
-    def _process_resource_result(self, result):
+    def _process_resource_result(self, job, result):
         new_resource_list = []
-        for record in self._gen_rfc822_records_from_io_log(result):
+        for record in self._gen_rfc822_records_from_io_log(job, result):
             # XXX: Consider forwarding the origin object here.  I guess we
             # should have from_frc822_record as with JobDefinition
             resource = Resource(record.data)
-            logger.info("Storing resource record %r: %s",
-                        result.job.name, resource)
+            logger.info("Storing resource record %r: %s", job.name, resource)
             new_resource_list.append(resource)
         # Replace any old resources with the new resource list
-        self._resource_map[result.job.name] = new_resource_list
+        self._resource_map[job.name] = new_resource_list
 
-    def _process_local_result(self, result):
+    def _process_local_result(self, job, result):
         # First parse all records and create a list of new jobs (confusing
         # name, not a new list of jobs)
         new_job_list = []
-        for record in self._gen_rfc822_records_from_io_log(result):
-            new_job = result.job.create_child_job_from_record(record)
+        for record in self._gen_rfc822_records_from_io_log(job, result):
+            new_job = job.create_child_job_from_record(record)
             new_job_list.append(new_job)
         # Then for each new job, add it to the job_list, unless it collides
         # with another job with the same name.
@@ -577,13 +576,13 @@ class SessionState(_LegacySessionState):
                     logging.warning(
                         ("Local job %s produced job %r that collides with"
                          " an existing job %r, the new job was discarded"),
-                        result.job, new_job, existing_job)
+                        job, new_job, existing_job)
                 else:
                     if not existing_job.via:
                         existing_job._via = new_job.via
 
-    def _gen_rfc822_records_from_io_log(self, result):
-        logger.debug("processing output from a job: %r", result.job)
+    def _gen_rfc822_records_from_io_log(self, job, result):
+        logger.debug("processing output from a job: %r", job)
         # Select all stdout lines from the io log
         line_gen = (record[2].decode('UTF-8', errors='replace')
                     for record in result.io_log
@@ -597,7 +596,7 @@ class SessionState(_LegacySessionState):
             # preceding records. This is worth testing
             logger.warning(
                 "local script %s returned invalid RFC822 data: %s",
-                result.job, exc)
+                job, exc)
 
     @property
     def job_list(self):
@@ -709,7 +708,7 @@ class SessionState(_LegacySessionState):
                 dep_job_state = self._job_state_map[dep_name]
                 # If the dependency did not have a chance to run yet add the
                 # PENDING_DEP inhibitor.
-                if dep_job_state.result.outcome == JobResult.OUTCOME_NONE:
+                if dep_job_state.result.outcome == IJobResult.OUTCOME_NONE:
                     inhibitor = JobReadinessInhibitor(
                         cause=JobReadinessInhibitor.PENDING_DEP,
                         related_job=dep_job_state.job)
@@ -719,7 +718,7 @@ class SessionState(_LegacySessionState):
                 # could be discarded but this would loose context and would
                 # prevent the operator from actually understanding why a job
                 # cannot run.
-                elif dep_job_state.result.outcome != JobResult.OUTCOME_PASS:
+                elif dep_job_state.result.outcome != IJobResult.OUTCOME_PASS:
                     inhibitor = JobReadinessInhibitor(
                         cause=JobReadinessInhibitor.FAILED_DEP,
                         related_job=dep_job_state.job)

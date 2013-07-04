@@ -28,6 +28,8 @@
 
 import collections
 import datetime
+import gzip
+import io
 import json
 import logging
 import os
@@ -35,8 +37,12 @@ import string
 
 from plainbox.vendor import extcmd
 
-from plainbox.abc import IJobRunner
-from plainbox.impl.result import JobResult, IOLogRecord, IoLogEncoder
+from plainbox.abc import IJobRunner, IJobResult
+from plainbox.impl.result import IOLogRecord
+from plainbox.impl.result import IOLogRecordWriter
+from plainbox.impl.result import IoLogEncoder
+from plainbox.impl.result import JobResult
+from plainbox.impl.signal import Signal
 
 logger = logging.getLogger("plainbox.runner")
 
@@ -72,13 +78,9 @@ def authenticate_warmup():
         ['pkexec', 'checkbox-trusted-launcher', '--warmup'])
 
 
-class CommandIOLogBuilder(extcmd.DelegateBase):
+class IOLogRecordGenerator(extcmd.DelegateBase):
     """
-    Delegate for extcmd that builds io_log entries.
-
-    IO log entries are records kept by JobResult.io_log and correspond to all
-    of the data that was written by called process. The format is a sequence of
-    tuples (delay, stream_name, data).
+    Delegate for extcmd that generates io_log entries.
     """
 
     def on_begin(self, args, kwargs):
@@ -86,16 +88,14 @@ class CommandIOLogBuilder(extcmd.DelegateBase):
         Internal method of extcmd.DelegateBase
 
         Called when a command is being invoked.
-        Begins tracking time (relative time entries) and creates the empty
-        io_log list.
+
+        Begins tracking time (relative time entries)
         """
-        logger.debug("io log starting for command: %r", args)
-        self.io_log = []
         self.last_msg = datetime.datetime.utcnow()
 
     def on_line(self, stream_name, line):
         """
-        Internal method of IOLogBuilder
+        Internal method of extcmd.DelegateBase
 
         Appends each line to the io_log. Maintains a timestamp of the last
         message so that approximate delay between each piece of output can be
@@ -105,8 +105,16 @@ class CommandIOLogBuilder(extcmd.DelegateBase):
         delay = now - self.last_msg
         self.last_msg = now
         record = IOLogRecord(delay.total_seconds(), stream_name, line)
-        self.io_log.append(record)
-        logger.debug("io log captured %r", record)
+        self.on_new_record(record)
+
+    @Signal.define
+    def on_new_record(self, record):
+        """
+        Internal signal method of :class:`IOLogRecordGenerator`
+
+        Called when a new record is generated and needs to be processed.
+        """
+        logger.debug("io log generated %r", record)
 
 
 class CommandOutputWriter(extcmd.DelegateBase):
@@ -224,8 +232,7 @@ class JobRunner(IJobRunner):
             runner = getattr(self, func_name)
         except AttributeError:
             return JobResult({
-                'job': job,
-                'outcome': JobResult.OUTCOME_NOT_IMPLEMENTED,
+                'outcome': IJobResult.OUTCOME_NOT_IMPLEMENTED,
                 'comment': 'This plugin is not supported'
             })
         else:
@@ -239,8 +246,7 @@ class JobRunner(IJobRunner):
         Produce the result that is used when running in dry-run mode
         """
         return JobResult({
-            'job': job,
-            'outcome': JobResult.OUTCOME_SKIP,
+            'outcome': IJobResult.OUTCOME_SKIP,
             'comments': "Job skipped in dry-run mode"
         })
 
@@ -258,8 +264,7 @@ class JobRunner(IJobRunner):
     def _plugin_manual(self, job, config):
         if self._outcome_callback is None:
             return JobResult({
-                'job': job,
-                'outcome': JobResult.OUTCOME_SKIP,
+                'outcome': IJobResult.OUTCOME_SKIP,
                 'comment': "non-interactive test run"
             })
         else:
@@ -276,12 +281,11 @@ class JobRunner(IJobRunner):
         return_code, io_log = self._run_command(job, config)
         # Convert the return of the command to the outcome of the job
         if return_code == 0:
-            outcome = JobResult.OUTCOME_PASS
+            outcome = IJobResult.OUTCOME_PASS
         else:
-            outcome = JobResult.OUTCOME_FAIL
+            outcome = IJobResult.OUTCOME_FAIL
         # Create a result object and return it
         return JobResult({
-            'job': job,
             'outcome': outcome,
             'return_code': return_code,
             'io_log': io_log
@@ -343,6 +347,47 @@ class JobRunner(IJobRunner):
         cmd += ['bash', '-c', job.command]
         return cmd
 
+    def _prepare_io_handling(self, job, config):
+        ui_io_delegate = self._command_io_delegate
+        # If there is no UI delegate specified create a simple
+        # delegate that logs all output to the console
+        if ui_io_delegate is None:
+            ui_io_delegate = FallbackCommandOutputPrinter(job.name)
+        # Compute a shared base filename for all logging activity associated
+        # with this job (aka: the slug)
+        slug = slugify(job.name)
+        # Create a delegate that writes all IO to disk
+        output_writer = CommandOutputWriter(
+            stdout_path=os.path.join(
+                self._jobs_io_log_dir, "{}.stdout".format(slug)),
+            stderr_path=os.path.join(
+                self._jobs_io_log_dir, "{}.stderr".format(slug)))
+        # Create a delegate for converting regular IO to IOLogRecords.
+        # It takes no arguments as all the interesting stuff is added as a
+        # signal listener.
+        io_log_gen = IOLogRecordGenerator()
+        # Create the delegate for routing IO
+        #
+        # Split the stream of data into three parts (each part is expressed as
+        # an element of extcmd.Chain()).
+        #
+        # Send the first copy of the data through bytes->text decoder and
+        # then to the UI delegate. This cold be something provided by the
+        # higher level caller or the default FallbackCommandOutputPrinter.
+        #
+        # Send the second copy of the data to the IOLogRecordGenerator instance
+        # that converts raw bytes into neat IOLogRecord objects. This generator
+        # has a on_new_record signal that can be used to do stuff when a new
+        # record is generated.
+        #
+        # Send the third copy to the output writer that writes everything to
+        # disk.
+        delegate = extcmd.Chain([ui_io_delegate, io_log_gen, output_writer])
+        logger.debug("job[%s] extcmd delegate: %r", job.name, delegate)
+        # Attach listeners to io_log_gen (the IOLogRecordGenerator instance)
+        # One listener appends each record to an array
+        return delegate, io_log_gen
+
     def _run_command(self, job, config):
         """
         Run the shell command associated with the specified job.
@@ -352,78 +397,72 @@ class JobRunner(IJobRunner):
         # Bail early if there is nothing do do
         if job.command is None:
             return None, ()
-        ui_io_delegate = self._command_io_delegate
-        # If there is no UI delegate specified create a simple
-        # delegate that logs all output to the console
-        if ui_io_delegate is None:
-            ui_io_delegate = FallbackCommandOutputPrinter(job.name)
-        # Create a delegate that writes all IO to disk
-        slug = slugify(job.name)
-        output_writer = CommandOutputWriter(
-            stdout_path=os.path.join(self._jobs_io_log_dir,
-                                     "{}.stdout".format(slug)),
-            stderr_path=os.path.join(self._jobs_io_log_dir,
-                                     "{}.stderr".format(slug)))
-        # Create a delegate that builds a log of all IO
-        io_log_builder = CommandIOLogBuilder()
-        # Create the delegate for routing IO
-        #
-        #
-        # Split the stream of data into three parts (each part is expressed as
-        # an element of extcmd.Chain()).
-        #
-        # Send the first copy of the data through bytes->text decoder and
-        # then to the UI delegate. This cold be something provided by the
-        # higher level caller or the default CommandOutputLogger.
-        #
-        # Send the second copy of the data to the _IOLogBuilder() instance that
-        # just concatenates subsequent bytes into neat time-stamped records.
-        #
-        # Send the third copy to the output writer that writes everything to
-        # disk.
-        delegate = extcmd.Chain([
-            ui_io_delegate,
-            io_log_builder,
-            output_writer])
-        logger.debug("job[%s] extcmd delegate: %r", job.name, delegate)
-        # Create a subprocess.Popen() like object that uses the delegate
-        # system to observe all IO as it occurs in real time.
-        logging_popen = extcmd.ExternalCommandWithDelegate(delegate)
-        # Start the process and wait for it to finish getting the
-        # result code. This will actually call a number of callbacks
-        # while the process is running. It will also spawn a few
-        # threads although all callbacks will be fired from a single
-        # thread (which is _not_ the main thread)
-        logger.debug("job[%s] starting command: %s", job.name, job.command)
         # Create an equivalent of the CHECKBOX_DATA directory used by
         # some jobs to store logs and other files that may later be used
         # by other jobs.
-        self._checkbox_data_dir = os.path.join(self._session_dir, "CHECKBOX_DATA")
+        self._checkbox_data_dir = os.path.join(
+            self._session_dir, "CHECKBOX_DATA")
         if not os.path.isdir(self._checkbox_data_dir):
             os.makedirs(self._checkbox_data_dir)
+        # Get an extcmd delegate for observing all the IO the way we need
+        delegate, io_log_gen = self._prepare_io_handling(job, config)
+        # Create a subprocess.Popen() like object that uses the delegate
+        # system to observe all IO as it occurs in real time.
+        extcmd_popen = extcmd.ExternalCommandWithDelegate(delegate)
+        # XXX: DEPRECATED:
+        # Build a list of all IOLogRecord entries. This can be
+        # removed when DiskJobResult is introduced
+        io_log_list = []
+        io_log_gen.on_new_record.connect(io_log_list.append)
+        # Stream all IOLogRecord entries to disk
+        record_path = os.path.join(
+            self._jobs_io_log_dir, "{}.record.gz".format(
+                slugify(job.name)))
+        with gzip.open(record_path, mode='wb') as gzip_stream, \
+                io.TextIOWrapper(
+                    gzip_stream, encoding='UTF-8') as record_stream:
+            writer = IOLogRecordWriter(record_stream)
+            io_log_gen.on_new_record.connect(writer.write_record)
+            # Start the process and wait for it to finish getting the
+            # result code. This will actually call a number of callbacks
+            # while the process is running. It will also spawn a few
+            # threads although all callbacks will be fired from a single
+            # thread (which is _not_ the main thread)
+            logger.debug("job[%s] starting command: %s", job.name, job.command)
+            # Run the job command using extcmd
+            return_code = self._run_extcmd(job, config, extcmd_popen)
+            logger.debug(
+                "job[%s] command return code: %r", job.name, return_code)
+        # XXX: DEPRECATED:
+        # Save all the IOLogRecords in the legacy JSON-all-in-one format to
+        # disk. This can be removed when DiskJobResult is introduced
+        fjson = os.path.join(
+            self._jobs_io_log_dir, "{}.json".format(
+                slugify(job.name)))
+        with open(fjson, "wt") as stream:
+            io_log_write(io_log_list, stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        # record_stream.close()
+        return return_code, fjson
+
+    def _run_extcmd(self, job, config, extcmd_popen):
+        # If we need to switch user use pkexec for that
+        # otherwise just run the command directly.
         if job.user is not None:
+            # Use regular pkexec in src mode (when the provider is in the
+            # source tree), or basically when working from trunk. Use the
+            # trusted launcher otherwise (to get all the pkexec policy applied)
             if job._checkbox._mode == 'src':
                 cmd = self._get_command_src(job, config)
             else:
                 cmd = self._get_command_trusted(job, config)
             cmd = ['pkexec', '--user', job.user] + cmd
-            logger.debug("job[%s] executing %r", job.name, cmd)
-            return_code = logging_popen.call(cmd)
+            env = None
         else:
             # XXX: sadly using /bin/sh results in broken output
             # XXX: maybe run it both ways and raise exceptions on differences?
             cmd = ['bash', '-c', job.command]
-            logger.debug("job[%s] executing %r", job.name, cmd)
-            return_code = logging_popen.call(
-                cmd, env=self._get_script_env(job, config))
-        logger.debug("job[%s] command return code: %r",
-                     job.name, return_code)
-        # XXX: Perhaps handle process dying from signals here
-        # When the process is killed proc.returncode is not set
-        # and another (cannot remember now) attribute is set
-        fjson = os.path.join(self._jobs_io_log_dir, "{}.json".format(slug))
-        with open(fjson, "wt") as stream:
-            io_log_write(io_log_builder.io_log, stream)
-            stream.flush()
-            os.fsync(stream.fileno())
-        return return_code, fjson
+            env = self._get_script_env(job, config)
+        logger.debug("job[%s] executing %r with env %r", job.name, cmd, env)
+        return extcmd_popen.call(cmd, env=env)

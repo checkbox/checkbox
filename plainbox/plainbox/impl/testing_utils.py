@@ -26,13 +26,23 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
-import inspect
+from mock import Mock
 from tempfile import NamedTemporaryFile
+import inspect
 
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import JobResult
 from plainbox.impl.rfc822 import Origin
 from plainbox.impl.runner import io_log_write
+
+
+def MockJobDefinition(name, *args, **kwargs):
+    """
+    Mock for JobDefinition class
+    """
+    job = Mock(*args, spec_set=JobDefinition, **kwargs)
+    job.name = name
+    return job
 
 
 def make_io_log(io_log, io_log_dir):
@@ -77,11 +87,10 @@ def make_job(name, plugin="dummy", requires=None, depends=None, **kwargs):
     return JobDefinition(settings, origin)
 
 
-def make_job_result(job, outcome="dummy"):
+def make_job_result(outcome="dummy"):
     """
     Make and return a dummy JobResult instance
     """
     return JobResult({
-        'job': job,
         'outcome': outcome
     })

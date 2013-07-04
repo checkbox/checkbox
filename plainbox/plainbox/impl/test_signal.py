@@ -18,19 +18,29 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.mock_job` -- mock jobs
-==========================================
+plainbox.impl.test_signal
+=========================
+
+Test definitions for plainbox.impl.signal module
 """
 
-from mock import Mock
+from unittest import TestCase
 
-from plainbox.impl.job import JobDefinition
+from plainbox.impl.signal import Signal
 
 
-def MockJobDefinition(name, *args, **kwargs):
-    """
-    Mock for JobDefinition class
-    """
-    job = Mock(*args, spec_set=JobDefinition, **kwargs)
-    job.name = name
-    return job
+class SignalTests(TestCase):
+
+    def test_smoke(self):
+
+        class C:
+
+            @Signal.define
+            def on_foo(self):
+                self.first_responder_called = True
+
+        c = C()
+        c.on_foo.connect(lambda: setattr(self, 'signal_called', True))
+        c.on_foo()
+        self.assertEqual(c.first_responder_called, True)
+        self.assertEqual(self.signal_called, True)

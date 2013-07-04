@@ -23,11 +23,16 @@ plainbox.impl.test_result
 
 Test definitions for plainbox.impl.result module
 """
+import io
 import json
 
 from tempfile import TemporaryDirectory
 from unittest import TestCase
 
+from plainbox.abc import IJobResult
+from plainbox.impl.result import IOLogRecord
+from plainbox.impl.result import IOLogRecordWriter
+from plainbox.impl.result import IOLogRecordReader
 from plainbox.impl.result import JobResult
 from plainbox.impl.testing_utils import make_io_log, make_job
 from plainbox.impl.session import SessionStateEncoder
@@ -35,16 +40,10 @@ from plainbox.impl.session import SessionStateEncoder
 
 class JobResultTests(TestCase):
 
-    def setUp(self):
-        self.job = make_job("A")
-
     def test_smoke(self):
-        result = JobResult({'job': self.job})
-        self.assertEqual(str(result), "A: None")
-        self.assertEqual(repr(result), (
-            "<JobResult job:<JobDefinition name:'A' plugin:'dummy'>"
-            " outcome:None>"))
-        self.assertIs(result.job, self.job)
+        result = JobResult({})
+        self.assertEqual(str(result), "None")
+        self.assertEqual(repr(result), "<JobResult outcome:None>")
         self.assertIsNone(result.outcome)
         self.assertIsNone(result.comments)
         self.assertEqual(result.io_log, ())
@@ -53,18 +52,15 @@ class JobResultTests(TestCase):
     def test_everything(self):
         with TemporaryDirectory() as scratch_dir:
             result = JobResult({
-                'job': self.job,
                 'outcome': JobResult.OUTCOME_PASS,
                 'comments': "it said blah",
                 'io_log': make_io_log(((0, 'stdout', b'blah\n'),),
                                       scratch_dir),
                 'return_code': 0
             })
-            self.assertEqual(str(result), "A: pass")
+            self.assertEqual(str(result), "pass")
             self.assertEqual(repr(result), (
-                "<JobResult job:<JobDefinition name:'A' plugin:'dummy'>"
-                " outcome:'pass'>"))
-            self.assertIs(result.job, self.job)
+                "<JobResult outcome:'pass'>"))
             self.assertEqual(result.outcome, JobResult.OUTCOME_PASS)
             self.assertEqual(result.comments, "it said blah")
             self.assertEqual(result.io_log, ((0, 'stdout', b'blah\n'),))
@@ -72,14 +68,12 @@ class JobResultTests(TestCase):
 
     def test_encode(self):
         result = JobResult({
-            'job': self.job,
-            'outcome': JobResult.OUTCOME_PASS,
+            'outcome': IJobResult.OUTCOME_PASS,
             'comments': "it said blah",
             'io_log': ((0, 'stdout', 'blah\n'),),
             'return_code': 0
         })
         result_enc = result._get_persistance_subset()
-        self.assertEqual(result_enc['data']['job'], result.job)
         self.assertEqual(result_enc['data']['outcome'], result.outcome)
         self.assertEqual(result_enc['data']['comments'], result.comments)
         self.assertEqual(result_enc['data']['return_code'], result.return_code)
@@ -91,22 +85,46 @@ class JobResultTests(TestCase):
                 "_class_id": "JOB_RESULT",
                 "data": {
                     "comments": null,
-                    "job": {
-                        "_class_id": "JOB_DEFINITION",
-                        "data": {
-                            "name": "__audio__",
-                            "plugin": "local"
-                        }
-                    },
                     "outcome": "pass",
                     "return_code": 0
                 }
             }"""
         result_dec = json.loads(
             raw_json, object_hook=SessionStateEncoder().dict_to_object)
-        self.assertIsInstance(result_dec, JobResult)
-        self.assertEqual(result_dec.job.name, "__audio__")
-        self.assertEqual(result_dec.outcome, JobResult.OUTCOME_PASS)
+        self.assertIsInstance(result_dec, IJobResult)
+        self.assertEqual(result_dec.outcome, IJobResult.OUTCOME_PASS)
         self.assertIsNone(result_dec.comments)
         self.assertEqual(result_dec.io_log, ())
         self.assertEqual(result_dec.return_code, 0)
+
+
+class IOLogRecordWriterTests(TestCase):
+
+    _RECORD = IOLogRecord(0.123, 'stdout', b'some\ndata')
+    _TEXT = '[0.123,"stdout","c29tZQpkYXRh"]\n'
+
+    def test_smoke_write(self):
+        stream = io.StringIO()
+        writer = IOLogRecordWriter(stream)
+        writer.write_record(self._RECORD)
+        self.assertEqual(stream.getvalue(), self._TEXT)
+        writer.close()
+        with self.assertRaises(ValueError):
+            stream.getvalue()
+
+    def test_smoke_read(self):
+        stream = io.StringIO(self._TEXT)
+        reader = IOLogRecordReader(stream)
+        record1 = reader.read_record()
+        self.assertEqual(record1, self._RECORD)
+        record2 = reader.read_record()
+        self.assertEqual(record2, None)
+        reader.close()
+        with self.assertRaises(ValueError):
+            stream.getvalue()
+
+    def test_iter_read(self):
+        stream = io.StringIO(self._TEXT)
+        reader = IOLogRecordReader(stream)
+        record_list = list(reader)
+        self.assertEqual(record_list, [self._RECORD])

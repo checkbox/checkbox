@@ -28,6 +28,7 @@ import json
 
 from unittest import TestCase
 
+from plainbox.abc import IJobResult
 from plainbox.impl.result import JobResult
 from plainbox.impl.session import JobReadinessInhibitor
 from plainbox.impl.session import JobState
@@ -136,8 +137,7 @@ class JobStateTests(TestCase):
 
     def test_smoke(self):
         self.assertIsNotNone(self.job_state.result)
-        self.assertIs(self.job_state.result.job, self.job)
-        self.assertIs(self.job_state.result.outcome, JobResult.OUTCOME_NONE)
+        self.assertIs(self.job_state.result.outcome, IJobResult.OUTCOME_NONE)
         self.assertEqual(self.job_state.readiness_inhibitor_list, [
             UndesiredJobReadinessInhibitor])
 
@@ -149,7 +149,7 @@ class JobStateTests(TestCase):
             self.job_state.job = None
 
     def test_setting_result(self):
-        result = make_job_result(self.job)
+        result = make_job_result()
         self.job_state.result = result
         self.assertIs(self.job_state.result, result)
 
@@ -178,8 +178,7 @@ class JobStateTests(TestCase):
     def test_encode_resource_job(self):
         self.job_R = make_job("R", plugin="resource")
         result_R = JobResult({
-            'job': self.job_R,
-            'outcome': JobResult.OUTCOME_PASS,
+            'outcome': IJobResult.OUTCOME_PASS,
             'io_log': ((0, 'stdout', "attr: value\n"),)
         })
         jobstate = JobState(self.job_R)
@@ -189,14 +188,14 @@ class JobStateTests(TestCase):
         with self.assertRaises(KeyError):
             jobstate_enc['_readiness_inhibitor_list']
         # Resource have to be re evealutated on startup, outcome of the job
-        # must be reset to JobResult.OUTCOME_NONE
-        self.assertEqual(jobstate_enc['_result'].outcome,
-                         JobResult.OUTCOME_NONE)
+        # must be reset to IJobResult.OUTCOME_NONE
+        self.assertEqual(
+            jobstate_enc['_result'].outcome,
+            IJobResult.OUTCOME_NONE)
 
     def test_encode_normal_job(self):
         result = JobResult({
-            'job': self.job,
-            'outcome': JobResult.OUTCOME_PASS,
+            'outcome': IJobResult.OUTCOME_PASS,
         })
         self.job_state.result = result
         jobstate_enc = self.job_state._get_persistance_subset()
@@ -205,7 +204,7 @@ class JobStateTests(TestCase):
             jobstate_enc['_readiness_inhibitor_list']
         # Normal jobs should keep their outcome value
         self.assertEqual(jobstate_enc['_result'].outcome,
-                         JobResult.OUTCOME_PASS)
+                         IJobResult.OUTCOME_PASS)
 
     def test_decode(self):
         raw_json = """{
@@ -221,13 +220,6 @@ class JobStateTests(TestCase):
                 "_class_id": "JOB_RESULT",
                 "data": {
                     "comments": null,
-                    "job": {
-                        "_class_id": "JOB_DEFINITION",
-                        "data": {
-                            "name": "X",
-                            "plugin": "dummy"
-                        }
-                    },
                     "outcome": "pass",
                     "return_code": null
                 }
@@ -237,6 +229,4 @@ class JobStateTests(TestCase):
             raw_json, object_hook=SessionStateEncoder().dict_to_object)
         self.assertIsInstance(job_dec, JobState)
         self.assertEqual(
-            repr(job_dec._result), (
-                "<JobResult job:<JobDefinition name:'X'"
-                " plugin:'dummy'> outcome:'pass'>"))
+            repr(job_dec._result), "<JobResult outcome:'pass'>")

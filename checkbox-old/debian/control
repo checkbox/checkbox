@@ -11,34 +11,34 @@ Build-Depends: debhelper (>= 9.2),
                python,
                python-distutils-extra,
                python-setuptools,
+               python3-setuptools,
                python3-all,
                python3-distutils-extra,
                python3-gi,
                python3-lxml,
                python3-mock,
                python3-pkg-resources,
-               python3-setuptools,
                qt4-qmake
-Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
+Vcs-Bzr: https://code.launchpad.net/~checkbox-dev/checkbox/trunk
 
 Package: checkbox
 Section: python
 Architecture: any
 Depends: debconf,
-         gir1.2-gudev-1.0,
          python3-lxml,
+         policykit-1,
          udev,
+         gir1.2-gudev-1.0,
          udisks2 | udisks,
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
-Recommends: alsa-base,
-            dpkg (>= 1.13),
-            gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0,
-            gir1.2-gstreamer-1.0,
-            gstreamer0.10-gconf | gstreamer1.0-plugins-good,
-            gstreamer1.0-pulseaudio,
-            libgstreamer1.0-0,
+Recommends: dpkg (>= 1.13),
+            gir1.2-gst-plugins-base-1.0 | gir1.2-gst-plugins-base-0.10,
+            gir1.2-gstreamer-1.0 | gir1.2-gstreamer-0.10,
+            gstreamer1.0-plugins-good | gstreamer0.10-gconf,
+            gstreamer1.0-pulseaudio | gstreamer0.10-pulseaudio,
+            libgstreamer1.0-0 | libgstreamer0.10-0,
             lsb-release,
             perl,
             pm-utils,
@@ -95,7 +95,6 @@ Section: gnome
 Architecture: all
 Depends: checkbox (>= ${source:Version}),
          gir1.2-gtk-3.0,
-         gksu,
          python3-gi,
          python3-gi-cairo,
          ${misc:Depends}
@@ -121,7 +120,8 @@ Description: QT4 interface for checkbox
 
 Package: checkbox-hw-collection
 Architecture: any
-Depends: checkbox (>= ${source:Version}), ${misc:Depends}
+Depends: checkbox (>= ${source:Version}),
+         ${misc:Depends}
 Description: CLI tool for collecting HW information from a system
  .
  This package provides a tool for collecting hardware information from

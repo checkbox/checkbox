@@ -29,6 +29,7 @@ that prevent the job from being runnable in a particular session.
 
 import logging
 
+from plainbox.abc import IJobResult
 from plainbox.impl.result import JobResult
 
 logger = logging.getLogger("plainbox.session.jobs")
@@ -175,8 +176,7 @@ class JobState:
         self._job = job
         self._readiness_inhibitor_list = [UndesiredJobReadinessInhibitor]
         self._result = JobResult({
-            'job': job,
-            'outcome': JobResult.OUTCOME_NONE
+            'outcome': IJobResult.OUTCOME_NONE
         })
 
     def __repr__(self):
@@ -213,8 +213,6 @@ class JobState:
             return self._result
 
         def fset(self, value):
-            if value.job.get_checksum() != self.job.get_checksum():
-                raise ValueError("result job does not match")
             self._result = value
 
         return (fget, fset, None, doc)
@@ -246,8 +244,7 @@ class JobState:
         state['_job'] = self._job
         if self._job.plugin == 'resource':
             state['_result'] = JobResult({
-                'job': self._job,
-                'outcome': JobResult.OUTCOME_NONE
+                'outcome': IJobResult.OUTCOME_NONE
             })
         else:
             state['_result'] = self._result
