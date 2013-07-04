@@ -9,6 +9,13 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   * plugins/subunit_report.py - Prevent crash when job output contains 
     non-ASCII characters (LP: #1196838)
 
+  [ Alberto Milone ]
+  * checkbox-old/scripts/color_depth_info:
+    - Be more strict in the regex so as to make sure that we catch the
+      correct string.
+    - Open the log using the 'rb' flag. This prevents python from throwing
+      a UnicodeDecodeError.
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
 checkbox (0.16.5) saucy; urgency=low
