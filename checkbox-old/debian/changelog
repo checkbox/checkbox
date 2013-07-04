@@ -6,6 +6,8 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   * checkbox/parsers/lshwjson.py, scripts/memory_compare - Create a parser for
     lshw and use this in the memory_compare script instead of dmidecode
     (LP: #1184661)
+  * plugins/subunit_report.py - Prevent crash when job output contains 
+    non-ASCII characters (LP: #1196838)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
