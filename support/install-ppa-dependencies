@@ -48,8 +48,14 @@ retval=1 # no PPAs added
 # Check each one and install if required
 echo "I: checking if the following PPA repositories are enabled:" $repo_list
 for ppa_repo_name in $repo_list; do
-   # Construct the nominal name of the repository
-   ppa_repo_filename=/etc/apt/sources.list.d/$(echo $ppa_repo_name | sed -e 's!/!-!')-$(lsb_release --codename --short).list
+   # Construct the nominal name of the repository. If this is a derivative of
+   # Ubuntu then use the equivalent Ubuntu release name.
+   if lsb_release --help | grep --quiet -- --upstream; then
+       ppa_repo_filename=/etc/apt/sources.list.d/$(echo $ppa_repo_name | sed -e 's!/!-!')-$(lsb_release --upstream --codename --short).list
+   else
+       ppa_repo_filename=/etc/apt/sources.list.d/$(echo $ppa_repo_name | sed -e 's!/!-!')-$(lsb_release --codename --short).list
+   fi
+   echo "I: looking for $ppa_repo_filename"
    # Is the repo already added?
    if [ ! -f $ppa_repo_filename ]; then 
        echo "I: enabling PPA ppa:$ppa_repo_name"
