@@ -116,6 +116,7 @@ for target in $target_list; do
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
 
+    # Decide what to do with the VM
     case $VAGRANT_DONE_ACTION in
         suspend)
             # Suspend the target to conserve resources
