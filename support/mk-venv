@@ -76,6 +76,12 @@ fi
 # Export it for all the sub-scripts
 export CHECKBOX_TOP
 
+# Add any necessary PPA repositories and run apt-get update if required
+if $CHECKBOX_TOP/support/install-ppa-dependencies; then
+    # we need to update our dependencies
+    sudo apt-get update
+fi
+
 # Ensure that all Debian dependencies are installed
 $CHECKBOX_TOP/support/install-deb-dependencies
 
