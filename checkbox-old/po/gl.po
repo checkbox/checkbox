@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-28 05:12+0000\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Launchpad-Export-Date: 2013-07-06 05:12+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -87,13 +87,13 @@ msgstr ""
 "    Esta proba verifica que os altofalantes internos funcionan "
 "correctamente\n"
 "PASOS:\n"
-"    1. Asegúrese de que non ten conectados nin altofalantes externos nin "
-"auriculares\n"
-"        Se está a probar nun ordenador de sobremesa, pode deixar conectados "
-"os altofalantes externos\n"
+"    1. Asegúrese de que non ten conectados altofalantes externos nin "
+"auriculares.\n"
+"        Se está facendo a proba nun computador de sobremesa, pode deixar "
+"conectados os altofalantes externos\n"
 "    2. Prema no botón «Probar» para reproducir un son no dispositivo.\n"
 "COMPROBACIÓN\n"
-"    Ouviu un ton sonoro?"
+"    Ouviu un son?"
 
 #. description
 #: ../jobs/audio.txt.in:35
@@ -138,8 +138,8 @@ msgstr ""
 "    Esta proba verifica que o conector dos auriculares funciona "
 "correctamente.\n"
 "PASOS:\n"
-"    1. Conectar uns auriculares estéreo no seu equipo\n"
-"    2. Pular o botón Test para reproducir un son polo seu equipo\n"
+"    1. Conecte uns auriculares estéreo no seu equipo\n"
+"    2. Pulse o botón «Probar» para reproducir un son no seu equipo\n"
 "COMPROBACIÓN:\n"
 "    Ouviu un son sen ningunha distorsión, clics ou outros ruídos estraños "
 "polos seus auriculares?"
@@ -1294,7 +1294,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:159
 msgid "Attaches the installer debug log if it exists."
-msgstr "Anexa o rexistro de depuración do instalador se existe."
+msgstr "Anexa o rexistro de depuración do instalador, se existe."
 
 #. description
 #: ../jobs/input.txt.in:22
@@ -1631,7 +1631,7 @@ msgstr "Probas de xestión de enerxía"
 #. description
 #: ../jobs/local.txt.in:227
 msgid "Server Services checks"
-msgstr "Comprobar os servizos do servidor"
+msgstr "Comprobación dos servizos do servidor"
 
 #. description
 #: ../jobs/local.txt.in:234
@@ -1641,7 +1641,7 @@ msgstr "Probas de suspensión"
 #. description
 #: ../jobs/local.txt.in:241
 msgid "Touchpad tests"
-msgstr "Probas do Touchpad"
+msgstr "Probas da área táctil"
 
 #. description
 #: ../jobs/local.txt.in:255
@@ -1661,7 +1661,7 @@ msgstr "Probas de redes sen fíos"
 #. description
 #: ../jobs/local.txt.in:290
 msgid "Stress tests"
-msgstr "Probas de estrés"
+msgstr "Probas de resistencia"
 
 #. description
 #: ../jobs/local.txt.in:297
@@ -2253,7 +2253,7 @@ msgid ""
 "exist/is empty)"
 msgstr ""
 "Comprobar que o cartafol /var/crash non contén nada. Enumera os ficheiros "
-"contidos dentro del se existen ou mostra o estado do cartafol (non "
+"contidos dentro del, se existen ou mostra o estado do cartafol (non "
 "existe/está baleiro)"
 
 #. description
@@ -2464,6 +2464,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o modem DSL pode configurarse e conectarse.\n"
+"PASOS:\n"
+"    1. Conecte a liña telefónica ao computador\n"
+"    2. Prema na icona de Rede no panel superior.\n"
+"    3. Seleccione «Editar as conexións»\n"
+"    4. Seleccione a lapela DSL\n"
+"    5. Prema no botón «Engadir»\n"
+"    6. Configure os parámetros de conexión apropiadamente\n"
+"    7. Prema «Probar» para verificar que é posíbel estabelecer unha conexión "
+"HTTP\n"
+"COMPROBACIÓN:\n"
+"    Mostrouse unha notificación e estabeleceuse correctamente a conexión?"
 
 #. description
 #: ../jobs/networking.txt.in:79
@@ -2573,6 +2586,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica as capacidades de reprodución do CD de son.\n"
+"PASOS:\n"
+"    1. Insira un CD de son no dispositivo óptico\n"
+"    2. Cando se lle pregunte inicie o reprodutor de música.\n"
+"    3. Localice o CD na pantalla do reprodutor de música\n"
+"    4. Seleccione o CD no reprodutor de música\n"
+"    5. Prema no botón de reproducir para escoitar a música no CD\n"
+"    6. Deteña a reprodución despois dunha miga\n"
+"    7. Faga clic dereito na icona do CD e seleccione «Expulsar disco»\n"
+"    8. O CD debería ser expulsado\n"
+"    9. Peche o reprodutor de música\n"
+"COMPROBACIÓN:\n"
+"    Funcionaron todos os pasos?"
 
 #. description
 #: ../jobs/optical.txt.in:78
@@ -2665,6 +2692,20 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o reloxo do escritorio se sincroniza co reloxo "
+"do sistema.\n"
+"PASOS:\n"
+"    1. Prema no botón «Probar» e verifique que o reloxo adianta unha hora.\n"
+"    Aviso: pode que leve arredor dun minuto a actualización do reloxo.\n"
+"    2. Faga clic dereito sobre o reloxo, despois prema en «Preferencias de "
+"data e hora...»\n"
+"    3. Asegúrese de que o aplicativo do reloxo ten marcada a opción manual\n"
+"    4. Atrase o reloxo unha hora.\n"
+"    5. Peche a xanela e reinicie\n"
+"COMPROBACIÓN:\n"
+"    Mostra o reloxo do sistema a data e a hora correctas para o seu fuso "
+"horario?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:3
@@ -2721,6 +2762,18 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que a impresora de rede funciona\n"
+"PASOS:\n"
+"    1. Asegúrese que hai unha impresora dispoñíbel na súa rede\n"
+"    2. Prema na icona coa engranaxe no recanto superior dereito e despois "
+"prema en «Impresoras».\n"
+"    3. Se a impresora non está na lista, prema en «Engadir»\n"
+"    4. A impresora debería detectarse e mostrar os valores de configuración "
+"axeitados\n"
+"    5. Imprima unha páxina de proba\n"
+"COMPROBACIÓN:\n"
+"    Foi quen de imprimir unha páxina de proba na impresora de rede?"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -2874,6 +2927,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica os sensores da tampa\n"
+"PASOS:\n"
+"    1. Prema «Probar»\n"
+"    2. Baixe a tampa\n"
+"    3. Agarde 5 segundos coa tampa pechada\n"
+"    4. Abra a tampa\n"
+"COMPROBACIÓN:\n"
+"    Continuou o sistema tras abrir a tampa?"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -3555,6 +3617,18 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o xestor de actualizacións pode buscar "
+"actualizacións\n"
+"PASOS:\n"
+"    1. Prema «Probar» para abrir o xestor de actualizacións.\n"
+"    2. Siga as indicacións e se se encontran actualizacións, instáleas.\n"
+"    3. Cando o xestor de actualizacións remate, peche o aplicativo no botón "
+"«Pechar» do recanto inferior dereito.\n"
+"COMPROBACIÓN:\n"
+"    Encontrou e instalou actualizacións o xestor? (pasarase a proba se non "
+"hai actualizacións,\n"
+"    pero fallará se hai actualizacións pero non se instalan)"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -3570,6 +3644,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o explorador de ficheiros pode crear un novo "
+"cartafol\n"
+"PASOS:\n"
+"    1. Prema «Probar» para abrir o explorador de ficheiros.\n"
+"    2. Na barra do menú, prema Ficheiro -> Crear novo cartafol.\n"
+"    3. Na caixa do nome do novo cartafol, introduza o nome «Cartafol de "
+"proba» e prema Intro.\n"
+"    4. Peche o explorador de ficheiros.\n"
+"COMPROBACIÓN:\n"
+"Ten agora un novo cartafol chamado «Cartafol de proba»?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -3617,6 +3702,19 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o explorador de ficheiros pode mover un "
+"cartafol\n"
+"PASOS:\n"
+"    1. Prema «Probar» para abrir o explorador de ficheiros.\n"
+"    2. Prema e arrastre o cartafol chamado «Datos de proba» dentro da icona "
+"chamada «Cartafol de proba».\n"
+"    3. Solte o botón.\n"
+"    4. Faga dobre clic no cartafol chamado «Cartafol de proba» para abrilo.\n"
+"    5. Peche o explorador de ficheiros.\n"
+"COMPROBACIÓN:\n"
+"    Moveuse correctamente o cartafol chamado «Datos de proba» dentro do "
+"cartafol chamado «Cartafol de proba»?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -3632,6 +3730,18 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que o explorador de ficheiros pode crear un novo "
+"ficheiro\n"
+"PASOS:\n"
+"    1. Prema «Seleccionar proba» para abrir o explorador de ficheiros.\n"
+"    2. Faga clic dereito nun espazo baleiro e prema «Crear novo documento» -"
+"> Documento baleiro\n"
+"    3. Introduza o nome «Ficheiro de proba 1» na caixa do nome e prema "
+"Intro.\n"
+"    4. Peche o explorador de ficheiros.\n"
+"COMPROBACIÓN:\n"
+"    Ten agora un ficheiro chamado «Ficheiro de proba 1»?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -3679,6 +3789,20 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que o explorador de ficheiros pode mover un "
+"ficheiro\n"
+"PASOS:\n"
+"    1. Prema «Probar» para abrir o explorador de ficheiros.\n"
+"    2. Prema e arrastre o cartafol chamado «Ficheiro de proba 2» dentro da "
+"icona do cartafol chamado «Datos de proba».\n"
+"    3. Solte o botón.\n"
+"    4. Faga dobre clic no na icona de «Datos de proba» para abrir o "
+"cartafol.\n"
+"    5. Peche o explorador de ficheiros.\n"
+"COMPROBACIÓN:\n"
+"    Moveuse correctamente o ficheiro chamado «Ficheiro de proba 2» dentro do "
+"cartafol chamado «Datos de proba»?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -3767,6 +3891,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verifica que o Firefox pode executar un miniaplicativo Java "
+"nunha páxina web\n"
+"    Aviso: pode ser necesaria a instalación de software adicional para "
+"completar o proceso.\n"
+"PASOS:\n"
+"    1. Seleccione «Probar» para abrir o Firefox na páxina de proba de Java e "
+"siga as instrucións.\n"
+" COMPROBACIÓN:\n"
+"    Mostrouse o miniaplicativo?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -4243,7 +4377,7 @@ msgstr "Uso: checkbox [OPCIÓNS]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "Imprime información da versión e sae."
+msgstr "Imprimir información da versión e saír."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
@@ -4275,7 +4409,7 @@ msgstr "Abreviatura de --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr "Falta un ficheiro de configuración como argumento.\n"
+msgstr "Falta ficheiro de configuración como argumento.\n"
 
 #: ../checkbox/job.py:85
 msgid "Command not found."
@@ -4290,8 +4424,8 @@ msgstr "A orde recibiu o sinal %s: %s"
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
-"Detectouse un colgue durante o control do terminal ou a moerte do proceso "
-"controlador"
+"Detectouse a conxelación do terminal de control ou a morte do proceso "
+"controlador."
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
@@ -4303,7 +4437,7 @@ msgstr "Saír desde o teclado"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "Instrucción incorrecta"
+msgstr "Instrución non aceptábel"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
@@ -4529,7 +4663,7 @@ msgstr "_Rematar"
 #. Resolve dependencies
 #: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
 msgid "Gathering information from your system..."
-msgstr "A obter información sobre este sistema..."
+msgstr "Obtendo información do sistema..."
 
 #: ../plugins/intro_prompt.py:28
 msgid ""
@@ -4555,7 +4689,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Aviso:Algunhas probas poden provocar que o seu sistema quede conxelado ou "
+"Aviso: Algunhas probas poden provocar que o seu sistema quede conxelado ou "
 "que non responda. Garde todos os seus traballos e peche calquera outro "
 "aplicativo que estea en execución antes de iniciar o proceso de probas."
 
@@ -4657,7 +4791,7 @@ msgstr ""
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
-msgstr "Construindo o informe..."
+msgstr "Elaborando o informe..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
@@ -4764,7 +4898,7 @@ msgstr "Proba rede sen fíos"
 
 #: ../qt/frontend/qtfront.cpp:97
 msgid "Optical Test"
-msgstr "Proba dispositivo óptico"
+msgstr "Proba óptica"
 
 #: ../qt/frontend/qtfront.cpp:108
 msgid "PCMCIA/PCIX Test"
@@ -4852,7 +4986,7 @@ msgstr "Seleccionar todo"
 
 #: ../qt/frontend/ui_qtfront.h:652
 msgid "Deselect all"
-msgstr "Desmarcar todo"
+msgstr "Deseleccionar todo"
 
 #: ../qt/frontend/ui_qtfront.h:653
 msgid "Start testing"
@@ -6861,5 +6995,60 @@ msgstr " Resultados "
 #~ "O notificador OSD deberá confirmar que la conexión foi estabelecida. 4. "
 #~ "Prema en Probar, para verificar se é posíbel estabelecer unha conexión HTTP"
 
+#~ msgid "QA Regression tests"
+#~ msgstr "Probas de regresión QA"
+
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Probas de Phoronix Test Suite"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Esta proba instala e executa a proba syscalls do proxecto Linux Test. Pode "
+#~ "ser destrutiva, polo que está proba está na lista negra de xeito "
+#~ "predeterminado."
+
 #~ msgid "Test and report system information"
 #~ msgstr "Probe e envia información do sistema"
+
+#~ msgid "Restart"
+#~ msgstr "Reiniciar"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check the system can detect the insertion of a FireWire "
+#~ "HDD\n"
+#~ "STEPS:\n"
+#~ "    1. Click 'Test' to begin the test. This test will\n"
+#~ "       timeout and fail if the insertion has not been detected within 10 "
+#~ "seconds.\n"
+#~ "    2. Plug a FireWire HDD into an available FireWire port.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "    selected result"
+#~ msgstr ""
+#~ "PROPÓSITO:\n"
+#~ "    Esta proba verificará se o sistema é capaz de detectar a inserción dun "
+#~ "dispositivo de disco FireWire\n"
+#~ "PASOS:\n"
+#~ "         1. Prema en «Probar» para iniciar a proba. Considerarase\n"
+#~ "         suspendida se non se detecta a inserción nun lapso de 10 segundos.\n"
+#~ "         2. Conecte un dispositivo de disco FireWire nun porto FireWire "
+#~ "dispoñíbel.\n"
+#~ "COMPROBACIÓN:\n"
+#~ "    A verificación desta proba é automática. Non cambie o resultado "
+#~ "seleccionado automaticamente."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "PROPÓSITO:\n"
+#~ "   Esta proba intentará instalar e executar a Autotest Suite. Estas probas "
+#~ "poden ser destrutivas, polo que están na lista negra de xeito predeterminado."
+
+#~ msgid "Gather log from the Firmware Test Suite run."
+#~ msgstr "Reunir un rexistro da execución da suite para a proba de Firmware,"
