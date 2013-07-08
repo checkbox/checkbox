@@ -140,52 +140,39 @@ class UdevadmDevice:
                     return "WIRELESS"
                 else:
                     return "NETWORK"
-
             if class_id == Pci.BASE_CLASS_DISPLAY:
                 if subclass_id == Pci.CLASS_DISPLAY_VGA:
                     return "VIDEO"
-
             if class_id == Pci.BASE_CLASS_SERIAL \
                and subclass_id == Pci.CLASS_SERIAL_USB:
                 return "USB"
-
             if class_id == Pci.BASE_CLASS_STORAGE:
                 if subclass_id == Pci.CLASS_STORAGE_SCSI:
                     return "SCSI"
-
                 if subclass_id == Pci.CLASS_STORAGE_IDE:
                     return "IDE"
-
                 if subclass_id == Pci.CLASS_STORAGE_FLOPPY:
                     return "FLOPPY"
-
                 if subclass_id == Pci.CLASS_STORAGE_RAID:
                     return "RAID"
-
             if class_id == Pci.BASE_CLASS_COMMUNICATION \
                and subclass_id == Pci.CLASS_COMMUNICATION_MODEM:
                 return "MODEM"
-
             if class_id == Pci.BASE_CLASS_INPUT \
                and subclass_id == Pci.CLASS_INPUT_SCANNER:
                 return "SCANNER"
-
             if class_id == Pci.BASE_CLASS_MULTIMEDIA:
                 if subclass_id == Pci.CLASS_MULTIMEDIA_VIDEO:
                     return "CAPTURE"
-
                 if subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO \
                    or subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO_DEVICE:
                     return "AUDIO"
-
             if class_id == Pci.BASE_CLASS_SERIAL \
                and subclass_id == Pci.CLASS_SERIAL_FIREWIRE:
                 return "FIREWIRE"
-
             if class_id == Pci.BASE_CLASS_WIRELESS \
                and subclass_id == Pci.CLASS_WIRELESS_BLUETOOTH:
                 return "BLUETOOTH"
-
             if class_id == Pci.BASE_CLASS_BRIDGE \
                and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA
                     or subclass_id == Pci.CLASS_BRIDGE_CARDBUS):
@@ -194,22 +181,17 @@ class UdevadmDevice:
         if "TYPE" in self._environment and "INTERFACE" in self._environment:
             interface_class, interface_subclass, interface_protocol = (
                 int(i) for i in self._environment["INTERFACE"].split("/"))
-
             if interface_class == Usb.BASE_CLASS_AUDIO:
                 return "AUDIO"
-
             if interface_class == Usb.BASE_CLASS_PRINTER:
                 return "PRINTER"
-
             if interface_class == Usb.BASE_CLASS_STORAGE:
                 if interface_subclass == Usb.CLASS_STORAGE_FLOPPY:
                     return "FLOPPY"
-
                 if interface_subclass == Usb.CLASS_STORAGE_SCSI:
                     return "USB"
             if interface_class == Usb.BASE_CLASS_VIDEO:
                 return "CAPTURE"
-
             if interface_class == Usb.BASE_CLASS_WIRELESS:
                 if interface_protocol == Usb.PROTOCOL_BLUETOOTH:
                     return "BLUETOOTH"
@@ -218,16 +200,12 @@ class UdevadmDevice:
 
         if 'ID_INPUT_KEYBOARD' in self._environment:
             return "KEYBOARD"
-
         if 'ID_INPUT_TOUCHPAD' in self._environment:
             return "TOUCHPAD"
-
         if 'ID_INPUT_TOUCHSCREEN' in self._environment:
             return "TOUCHSCREEN"
-
         if "ID_INPUT_ACCELEROMETER" in self._environment:
             return "ACCELEROMETER"
-
         if "KEY" in self._environment:
             key = self._environment["KEY"].strip("=")
             bitmask = get_bitmask(key)
@@ -245,23 +223,19 @@ class UdevadmDevice:
                           test_bit(Input.KEY_PLAY, bitmask, self._bits) or
                           test_bit(Input.KEY_WLAN, bitmask, self._bits)):
                     return "CAPTURE"
-
         if 'ID_INPUT_MOUSE' in self._environment:
             return "MOUSE"
 
         if self.driver:
             if self.driver.startswith("sdhci"):
                 return "CARDREADER"
-
             if self.driver.startswith("mmc"):
                 return "CARDREADER"
             if self.driver == "rts_pstor":
                 return "CARDREADER"
-
             # See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=702145
             if self.driver.startswith("rtsx"):
                 return "CARDREADER"
-
             if ((self._environment.get("DEVTYPE") not in ("disk", "partition")
                     or 'ID_DRIVE_FLASH_SD' in self._environment)
                     and self.driver == "sd" and self.product):
@@ -278,16 +252,13 @@ class UdevadmDevice:
 
         if "ID_TYPE" in self._environment:
             id_type = self._environment["ID_TYPE"]
-
             if id_type == "cd":
                 return "CDROM"
-
             if (
                 id_type == "disk"
                 and not any(d.category == "CARDREADER" for d in self._stack)
             ):
                 return "DISK"
-
             if not any(d.bus == 'usb' for d in self._stack):
                 if id_type == "video":
                     return "VIDEO"
@@ -297,31 +268,26 @@ class UdevadmDevice:
             if devtype == "disk":
                 if "ID_CDROM" in self._environment:
                     return "CDROM"
-
                 if "ID_DRIVE_FLOPPY" in self._environment:
                     return "FLOPPY"
-
             if devtype == "scsi_device":
                 match = SCSI_RE.match(self._environment.get("MODALIAS", ""))
                 type = int(match.group("type"), 16) if match else -1
 
                 # Check FLASH drives, see /lib/udev/rules.d/80-udisks.rules
-                if type in (0, 7, 14) \
-                   and not any(d.driver == "rts_pstor" for d in self._stack):
+                if (
+                    type in (0, 7, 14)
+                    and not any(d.driver == "rts_pstor" for d in self._stack)
+                ):
                     return "DISK"
-
                 if type == 1:
                     return "TAPE"
-
                 if type == 2:
                     return "PRINTER"
-
                 if type in (4, 5):
                     return "CDROM"
-
                 if type == 6:
                     return "SCANNER"
-
                 if type == 12:
                     return "RAID"
 
@@ -338,13 +304,11 @@ class UdevadmDevice:
     def driver(self):
         if "DRIVER" in self._environment:
             return self._environment["DRIVER"]
-
         # Check parent device for driver
         if self._stack:
             parent = self._stack[-1]
             if "DRIVER" in parent._environment:
                 return parent._environment["DRIVER"]
-
         return None
 
     @property
@@ -355,7 +319,6 @@ class UdevadmDevice:
             "IFINDEX" in self._environment
         ):
             devpath = re.sub(r"/[^/]+/[^/]+$", "", devpath)
-
         return devpath
 
     @property
@@ -364,12 +327,10 @@ class UdevadmDevice:
         match = PCI_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             return int(match.group("product_id"), 16)
-
         # usb
         match = USB_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             return int(match.group("product_id"), 16)
-
         # pnp
         match = PNP_RE.match(self._environment.get("MODALIAS", ""))
         if match:
@@ -377,12 +338,10 @@ class UdevadmDevice:
             # Ignore interrupt controllers
             if product_id > 0x0100:
                 return product_id
-
         # input
         match = INPUT_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             return int(match.group("product_id"), 16)
-
         return None
 
     @property
@@ -391,12 +350,10 @@ class UdevadmDevice:
         match = PCI_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             return int(match.group("vendor_id"), 16)
-
         # usb
         match = USB_RE.match(self._environment.get("MODALIAS", ""))
         if match:
             return int(match.group("vendor_id"), 16)
-
         # input
         match = INPUT_RE.match(self._environment.get("MODALIAS", ""))
         if match:
@@ -407,7 +364,6 @@ class UdevadmDevice:
             if vendor_id and vendor_id < 9:
                 vendor_id = 9
             return vendor_id
-
         return None
 
     @property
@@ -416,7 +372,6 @@ class UdevadmDevice:
             pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
             subvendor_id, subproduct_id = pci_subsys_id.split(":")
             return int(subproduct_id, 16)
-
         return None
 
     @property
@@ -425,7 +380,6 @@ class UdevadmDevice:
             pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
             subvendor_id, subproduct_id = pci_subsys_id.split(":")
             return int(subvendor_id, 16)
-
         return None
 
     @property
@@ -472,7 +426,7 @@ class UdevadmDevice:
                     return match.group("module_name")
                 # Network (Open Firmware)
                 match = OPENFIRMWARE_RE.match(
-                        device._environment.get("MODALIAS", ""))
+                    device._environment.get("MODALIAS", ""))
                 if match:
                     return match.group("name")
 
@@ -539,7 +493,6 @@ class UdevadmDevice:
         if (self.category in ("NETWORK", "WIRELESS") and
                 "INTERFACE" in self._environment):
             return self._environment["INTERFACE"]
-
         return None
 
     def as_json(self):
