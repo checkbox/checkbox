@@ -1,7 +1,7 @@
 #
 # This file is part of Checkbox.
 #
-# Copyright 2011 Canonical Ltd.
+# Copyright 2011-2013 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
