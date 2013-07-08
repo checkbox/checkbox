@@ -19,6 +19,8 @@
 import re
 import string
 
+from collections import OrderedDict
+
 from checkbox.lib.bit import get_bitmask, test_bit
 from checkbox.lib.input import Input
 from checkbox.lib.pci import Pci
@@ -52,6 +54,8 @@ USB_RE = re.compile(
     r"isc(?P<interface_subclass>[%(hex)s]{2})"
     r"ip(?P<interface_protocol>[%(hex)s]{2})"
     % {"hex": string.hexdigits})
+USB_SYSFS_CONFIG_RE = re.compile(
+    r":\d+\.\d+$")
 SCSI_RE = re.compile(
     r"^scsi:"
     r"t-0x(?P<type>[%(hex)s]{2})"
@@ -66,6 +70,8 @@ INPUT_RE = re.compile(
     r"p(?P<product_id>[%(hex)s]{4})"
     r"e(?P<version>[%(hex)s]{4})"
     % {"hex": string.hexdigits})
+INPUT_SYSFS_ID = re.compile(
+    r"/input/input\d+$")
 OPENFIRMWARE_RE = re.compile(
     r"^of:"
     r"N(?P<name>.*?)"
@@ -562,6 +568,7 @@ class UdevadmParser:
     def __init__(self, stream_or_string, bits=None):
         self.stream_or_string = stream_or_string
         self.bits = bits
+        self.devices = OrderedDict()
 
     def _ignoreDevice(self, device):
         # Ignore devices without bus information
@@ -643,9 +650,61 @@ class UdevadmParser:
 
             device = self.device_factory(environment, self.bits, list(stack))
             if not self._ignoreDevice(device):
-                result.addDevice(device)
-
+                if device.path in self.devices:
+                    if self.devices[device.path].category == 'CARDREADER':
+                        [
+                            setattr(self.devices[device.path],
+                                    key, getattr(device, key))
+                            for key in (
+                                "product", "vendor", "product_id", "vendor_id")
+                            if getattr(device, key) is not None
+                        ]
+                    elif device.category != "OTHER":
+                        self.devices[device.path] = device
+                elif device.category == 'BLUETOOTH':
+                    usb_interface_path = USB_SYSFS_CONFIG_RE.sub(
+                        '', device.path)
+                    if not [
+                        d for d in self.devices.values()
+                        if d.category == 'BLUETOOTH' and
+                        usb_interface_path in d.path
+                    ]:
+                        self.devices[device.path] = device
+                elif device.category == 'CAPTURE':
+                    input_id = INPUT_SYSFS_ID.sub('', device.path)
+                    if [
+                        d for d in self.devices.values()
+                        if d.category == 'CAPTURE' and input_id in d.path
+                    ]:
+                        self.devices[input_id].product = device.product
+                    else:
+                        usb_interface_path = USB_SYSFS_CONFIG_RE.sub(
+                            '', device.path)
+                        if not [
+                            d for d in self.devices.values()
+                            if d.category == 'CAPTURE' and
+                            usb_interface_path in d.path
+                        ]:
+                            self.devices[device.path] = device
+                else:
+                    self.devices[device.path] = device
             stack.append(device)
+
+        for device in self.devices.values():
+            if device.category in ("NETWORK", "WIRELESS", "OTHER"):
+                dev_interface = [
+                    d for d in self.devices.values()
+                    if d.category in ("NETWORK", "WIRELESS") and
+                    device.path != d.path and device.path in d.path
+                ]
+                if dev_interface:
+                    dev_interface = dev_interface.pop()
+                    dev_interface.bus = device.bus
+                    dev_interface.product_id = device.product_id
+                    dev_interface.vendor_id = device.vendor_id
+                    self.devices.pop(device.path, None)
+
+        [result.addDevice(device) for device in self.devices.values()]
 
 
 def decode_id(id):
