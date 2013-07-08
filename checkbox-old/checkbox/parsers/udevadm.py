@@ -350,7 +350,10 @@ class UdevadmDevice:
     @property
     def path(self):
         devpath = self._environment.get("DEVPATH")
-        if self._environment.get("DEVTYPE") == "disk" and self._stack:
+        if (
+            (self._environment.get("DEVTYPE") == "disk" and self._stack) or
+            "IFINDEX" in self._environment
+        ):
             devpath = re.sub(r"/[^/]+/[^/]+$", "", devpath)
 
         return devpath
