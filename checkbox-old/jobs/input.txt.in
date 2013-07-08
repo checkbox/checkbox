@@ -1,10 +1,10 @@
 plugin: local
 name: input/pointing
 requires:
- device.category == 'MOUSE' or device.category == 'TOUCH'
+ device.category == 'MOUSE' or device.category == 'TOUCHPAD' or device.category == 'TOUCHSCREEN'
 _description: Pointing device tests.
 command:
- cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=MOUSE" -w "category=TOUCH"'
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=MOUSE" -w "category=TOUCHPAD" -w "category=TOUCHSCREEN"'
  plugin: manual
  name: input/pointing_`basename $path`
  requires: device.path == "$path"
@@ -59,7 +59,7 @@ command: accelerometer_test -m
 _description:
  PURPOSE:
      This test will test your accelerometer to see if it is detected
-     and operational as a joystiq device. 
+     and operational as a joystick device. 
  STEPS:
      1. Click on Test
      2. Tilt your hardware in the directions onscreen until the axis threshold is met. 

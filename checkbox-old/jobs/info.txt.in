@@ -160,7 +160,7 @@ _description: Attaches the installer debug log if it exists.
 
 plugin: attachment
 name: info/touchpad_driver
-requires: device.category == 'TOUCH'
+requires: device.category == 'TOUCHPAD'
 command: touchpad_driver_info
 _description:
  Returns the name, driver name and driver version of any touchpad discovered on
