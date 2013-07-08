@@ -586,7 +586,7 @@ class UdevadmParser:
             output = self.stream_or_string
         else:
             output = self.stream_or_string.read()
-        output = output.replace('\r', '') # Just in case...
+        output = output.replace('\r', '')  # Just in case...
         for record in re.split("\n{2,}", output):
             record = record.strip()
             if not record:
