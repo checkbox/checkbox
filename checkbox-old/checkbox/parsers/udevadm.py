@@ -19,10 +19,7 @@
 import re
 import string
 
-from checkbox.lib.bit import (
-    get_bitmask,
-    test_bit,
-    )
+from checkbox.lib.bit import get_bitmask, test_bit
 from checkbox.lib.input import Input
 from checkbox.lib.pci import Pci
 from checkbox.lib.usb import Usb
@@ -61,8 +58,7 @@ SCSI_RE = re.compile(
     % {"hex": string.hexdigits})
 PLATFORM_RE = re.compile(
     r"^platform:"
-    r"(?P<module_name>.*)"
-    )
+    r"(?P<module_name>.*)")
 INPUT_RE = re.compile(
     r"^input:"
     r"b(?P<bus_type>[%(hex)s]{4})"
@@ -231,7 +227,9 @@ class UdevadmDevice:
                 if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
                     return "KVM"
                 # Avoid identifying media/hot keys as pure capture devices
-                elif not (test_bit(Input.KEY_PLAYPAUSE, bitmask, self._bits) or test_bit(Input.KEY_PLAY, bitmask, self._bits) or test_bit(Input.KEY_WLAN, bitmask, self._bits)):
+                elif not (test_bit(Input.KEY_PLAYPAUSE, bitmask, self._bits) or
+                          test_bit(Input.KEY_PLAY, bitmask, self._bits) or
+                          test_bit(Input.KEY_WLAN, bitmask, self._bits)):
                     return "CAPTURE"
 
         if 'ID_INPUT_MOUSE' in self._environment:
@@ -248,13 +246,17 @@ class UdevadmDevice:
             if self.driver.startswith("rtsx"):
                 return "CARDREADER"
 
-            if self._environment.get("DEVTYPE") not in ("disk", "partition") and self.driver == "sd" and self.product:
+            if (self._environment.get("DEVTYPE") not in ("disk", "partition")
+                    and self.driver == "sd" and self.product):
                 if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
                 if any(d.bus == 'usb' for d in self._stack):
-                    if self.product is not None and CARD_READER_RE.search(self.product):
+                    if (self.product is not None and
+                            CARD_READER_RE.search(self.product)):
                         return "CARDREADER"
-                    if self.vendor is not None and GENERIC_RE.search(self.vendor) and not FLASH_DISK_RE.search(self.product):
+                    if (self.vendor is not None and
+                            GENERIC_RE.search(self.vendor) and
+                            not FLASH_DISK_RE.search(self.product)):
                         return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
@@ -410,8 +412,8 @@ class UdevadmDevice:
             for device in reversed(self._stack):
                 if device._environment.get("ID_BUS") == "usb":
                     return decode_id(device._environment["ID_MODEL_ENC"])
-        elif self._environment.get("DEVTYPE") == "disk" \
-             and "ID_MODEL_ENC" in self._environment:
+        elif (self._environment.get("DEVTYPE") == "disk" and
+                "ID_MODEL_ENC" in self._environment):
             return decode_id(self._environment["ID_MODEL_ENC"])
 
         # floppy
@@ -428,7 +430,8 @@ class UdevadmDevice:
             if self._stack:
                 parent = self._stack[-1]
                 if "MODALIAS" in parent._environment:
-                    match = USB_RE.match(parent._environment.get("MODALIAS", ""))
+                    match = USB_RE.match(
+                        parent._environment.get("MODALIAS", ""))
                     if match:
                         if int(match.group("class"), 16) == 0xFF:
                             vendor_specific = True
@@ -441,7 +444,8 @@ class UdevadmDevice:
         if "IFINDEX" in self._environment:
             for device in reversed(self._stack):
                 if "ID_MODEL_ENC" in device._environment:
-                    match = PLATFORM_RE.match(device._environment.get("MODALIAS", ""))
+                    match = PLATFORM_RE.match(
+                        device._environment.get("MODALIAS", ""))
                     if match:
                         return match.group("module_name")
 
@@ -473,8 +477,8 @@ class UdevadmDevice:
             for device in reversed(self._stack):
                 if device._environment.get("ID_BUS") == "usb":
                     return decode_id(device._environment["ID_VENDOR_ENC"])
-        elif self._environment.get("DEVTYPE") == "disk" \
-             and "ID_VENDOR_ENC" in self._environment:
+        elif (self._environment.get("DEVTYPE") == "disk" and
+                "ID_VENDOR_ENC" in self._environment):
             return decode_id(self._environment["ID_VENDOR_ENC"])
 
         if "ID_VENDOR_FROM_DATABASE" in self._environment:
@@ -487,7 +491,8 @@ class UdevadmDevice:
             if self._stack:
                 parent = self._stack[-1]
                 if "MODALIAS" in parent._environment:
-                    match = USB_RE.match(parent._environment.get("MODALIAS", ""))
+                    match = USB_RE.match(
+                        parent._environment.get("MODALIAS", ""))
                     if match:
                         if int(match.group("class"), 16) == 0xFF:
                             vendor_specific = True
@@ -504,8 +509,8 @@ class UdevadmDevice:
 
     @property
     def interface(self):
-        if self.category in ("NETWORK", "WIRELESS") \
-            and "INTERFACE" in self._environment:
+        if (self.category in ("NETWORK", "WIRELESS") and
+                "INTERFACE" in self._environment):
             return self._environment["INTERFACE"]
 
         return None
@@ -515,7 +520,7 @@ class UdevadmDevice:
                       "vendor_id", "subproduct_id", "subvendor_id", "product",
                       "vendor", "interface",)
 
-        return { a: getattr(self, a) for a in attributes if getattr(self, a) }
+        return {a: getattr(self, a) for a in attributes if getattr(self, a)}
 
 
 class UdevadmParser:
@@ -538,10 +543,11 @@ class UdevadmParser:
             return True
 
         # Ignore invalid subsystem information
-        if ((device.subproduct_id is None
-             and device.subvendor_id is not None)
+        if (
+            (device.subproduct_id is None
+                and device.subvendor_id is not None)
             or (device.subproduct_id is not None
-             and device.subvendor_id is None)):
+                and device.subvendor_id is None)):
             return True
 
         # Ignore ACPI devices
