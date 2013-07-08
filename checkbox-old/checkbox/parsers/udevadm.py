@@ -236,20 +236,20 @@ class UdevadmDevice:
         if "KEY" in self._environment:
             key = self._environment["KEY"].strip("=")
             bitmask = get_bitmask(key)
-
             if test_bit(Input.KEY_CAMERA, bitmask, self._bits):
-                # Consider a device with both camera and mouse properties as a
-                # KVM hardware device ("keyboard, video and mouse")
-                if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
-                    return "KVM"
                 # Avoid detecting the power button as a capture device
-                elif self.vendor_id == 0:
+                if self.vendor_id == 0:
                     return "OTHER"
                 # Avoid identifying media/hot keys as pure capture devices
-                elif not (test_bit(Input.KEY_PLAYPAUSE, bitmask, self._bits) or
-                          test_bit(Input.KEY_PLAY, bitmask, self._bits) or
-                          test_bit(Input.KEY_WLAN, bitmask, self._bits)):
-                    return "CAPTURE"
+                if not (test_bit(Input.KEY_PLAYPAUSE, bitmask, self._bits) or
+                        test_bit(Input.KEY_PLAY, bitmask, self._bits) or
+                        test_bit(Input.KEY_WLAN, bitmask, self._bits)):
+                    # Consider a device with both camera and mouse properties
+                    # as a KVM hardware device ("keyboard, video and mouse")
+                    if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
+                        return "KVM"
+                    else:
+                        return "CAPTURE"
         if 'ID_INPUT_MOUSE' in self._environment:
             return "MOUSE"
 

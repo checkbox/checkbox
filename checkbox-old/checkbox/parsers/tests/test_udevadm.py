@@ -325,10 +325,10 @@ E: UDEV_LOG=3
     def test_HP_PRO2110(self):
         devices = self.parse("HP_PRO2110")
         self.assertEqual(len(devices), 54)
-        # Check that the Avocent IBM 73P5832 is a KVM device instead of CAPTURE
+        # Check that the Avocent IBM 73P5832 is not a CAPTURE device
         # See https://bugs.launchpad.net/checkbox/+bug/1065064
         self.assertEqual(devices[32].product, "Avocent IBM 73P5832")
-        self.assertEqual(devices[32].category, "KVM")
+        self.assertNotEqual(devices[32].category, "CAPTURE")
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 1)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
@@ -336,7 +336,7 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "CARDREADER"), 4)
         self.assertEqual(self.count(devices, "CDROM"), 1)
         self.assertEqual(self.count(devices, "FIREWIRE"), 0)
-        self.assertEqual(self.count(devices, "MOUSE"), 0)
+        self.assertEqual(self.count(devices, "MOUSE"), 1)
         self.assertEqual(self.count(devices, "ACCELEROMETER"), 0)
         self.assertEqual(self.count(devices, "TOUCHSCREEN"), 0)
         self.assertEqual(self.count(devices, "CAPTURE"), 0)
