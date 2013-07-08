@@ -67,6 +67,29 @@ E: SUBSYSTEM=usb
         device = result.getDevice("CAPTURE")
         self.assertTrue(device)
 
+    def test_openfirmware_network(self):
+        result = self.getResult("""
+P: /devices/soc.0/ffe64000.ethernet
+E: DEVPATH=/devices/soc.0/ffe64000.ethernet
+E: DRIVER=XXXXX
+E: MODALIAS=of:NethernetTXXXXXCXXXXX,XXXXX
+E: OF_COMPATIBLE_0=XXXXX,XXXXX
+E: OF_COMPATIBLE_N=1
+E: OF_NAME=ethernet
+E: OF_TYPE=XXXXX
+E: SUBSYSTEM=platform
+E: UDEV_LOG=3
+
+P: /devices/soc.0/ffe64000.ethernet/net/eth1
+E: DEVPATH=/devices/soc.0/ffe64000.ethernet/net/eth1
+E: IFINDEX=3
+E: INTERFACE=eth1
+E: SUBSYSTEM=net
+E: UDEV_LOG=3
+""")
+        device = result.getDevice("NETWORK")
+        self.assertTrue(device)
+
 
 class TestDecodeId(TestCase):
 
