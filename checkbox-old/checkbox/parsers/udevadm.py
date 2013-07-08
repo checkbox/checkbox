@@ -110,7 +110,8 @@ class UdevadmDevice:
         if "IFINDEX" in self._environment:
             if "DEVTYPE" in self._environment:
                 devtype = self._environment["DEVTYPE"]
-                if devtype == "wlan":
+                if devtype in ("wlan", "wimax"):
+                    return "WIRELESS"
             # Ralink wireless
             if "INTERFACE" in self._environment:
                 if (
