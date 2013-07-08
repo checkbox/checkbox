@@ -570,6 +570,7 @@ class UdevadmParser:
             output = self.stream_or_string
         else:
             output = self.stream_or_string.read()
+        output = output.replace('\r', '') # Just in case...
         for record in re.split("\n{2,}", output):
             record = record.strip()
             if not record:
@@ -579,7 +580,7 @@ class UdevadmParser:
             path = None
             element = None
             environment = {}
-            for line in record.split("\n"):
+            for line in record.splitlines():
                 line_match = line_pattern.match(line)
                 if not line_match:
                     if environment:
