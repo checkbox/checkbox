@@ -329,7 +329,7 @@ class UdevadmDevice:
             if self._environment["DRIVER"] == "floppy":
                 return "FLOPPY"
 
-        if self.product:
+        if self.product or self.product_id:
             return "OTHER"
 
         return None
