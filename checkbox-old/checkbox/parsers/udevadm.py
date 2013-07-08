@@ -111,6 +111,12 @@ class UdevadmDevice:
             if "DEVTYPE" in self._environment:
                 devtype = self._environment["DEVTYPE"]
                 if devtype == "wlan":
+            # Ralink wireless
+            if "INTERFACE" in self._environment:
+                if (
+                    self.driver.startswith('rt') and
+                    self._environment["INTERFACE"].startswith('ra')
+                ):
                     return "WIRELESS"
             return "NETWORK"
 
