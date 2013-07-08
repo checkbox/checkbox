@@ -255,12 +255,15 @@ class UdevadmDevice:
 
             if self.driver.startswith("mmc"):
                 return "CARDREADER"
+            if self.driver == "rts_pstor":
+                return "CARDREADER"
 
             # See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=702145
             if self.driver.startswith("rtsx"):
                 return "CARDREADER"
 
-            if (self._environment.get("DEVTYPE") not in ("disk", "partition")
+            if ((self._environment.get("DEVTYPE") not in ("disk", "partition")
+                    or 'ID_DRIVE_FLASH_SD' in self._environment)
                     and self.driver == "sd" and self.product):
                 if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
@@ -279,7 +282,10 @@ class UdevadmDevice:
             if id_type == "cd":
                 return "CDROM"
 
-            if id_type == "disk":
+            if (
+                id_type == "disk"
+                and not any(d.category == "CARDREADER" for d in self._stack)
+            ):
                 return "DISK"
 
             if not any(d.bus == 'usb' for d in self._stack):
