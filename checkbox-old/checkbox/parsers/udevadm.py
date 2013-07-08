@@ -78,15 +78,32 @@ FLASH_DISK_RE = re.compile(r"Mass|Storage|Disk", re.I)
 
 
 class UdevadmDevice:
-    __slots__ = ("_environment", "_bits", "_stack",)
+    __slots__ = (
+        "_environment",
+        "_bits",
+        "_stack",
+        "_bus",
+        "_interface",
+        "_product",
+        "_product_id",
+        "_vendor",
+        "_vendor_id",)
 
     def __init__(self, environment, bits=None, stack=[]):
         self._environment = environment
         self._bits = bits
         self._stack = stack
+        self._bus = None
+        self._interface = None
+        self._product = None
+        self._product_id = None
+        self._vendor = None
+        self._vendor_id = None
 
     @property
     def bus(self):
+        if self._bus is not None:
+            return self._bus
         # Change the bus from 'acpi' to 'pnp' for some devices
         if PNP_RE.match(self._environment.get("MODALIAS", "")) \
            and self.path.endswith(":00"):
@@ -104,6 +121,10 @@ class UdevadmDevice:
             bus = 'usb'
 
         return bus
+
+    @bus.setter
+    def bus(self, value):
+        self._bus = value
 
     @property
     def category(self):
@@ -323,6 +344,8 @@ class UdevadmDevice:
 
     @property
     def product_id(self):
+        if self._product_id is not None:
+            return self._product_id
         # pci
         match = PCI_RE.match(self._environment.get("MODALIAS", ""))
         if match:
@@ -344,8 +367,14 @@ class UdevadmDevice:
             return int(match.group("product_id"), 16)
         return None
 
+    @product_id.setter
+    def product_id(self, value):
+        self._product_id = value
+
     @property
     def vendor_id(self):
+        if self._vendor_id is not None:
+            return self._vendor_id
         # pci
         match = PCI_RE.match(self._environment.get("MODALIAS", ""))
         if match:
@@ -366,6 +395,10 @@ class UdevadmDevice:
             return vendor_id
         return None
 
+    @vendor_id.setter
+    def vendor_id(self, value):
+        self._vendor_id = value
+
     @property
     def subproduct_id(self):
         if "PCI_SUBSYS_ID" in self._environment:
@@ -384,6 +417,8 @@ class UdevadmDevice:
 
     @property
     def product(self):
+        if self._product is not None:
+            return self._product
         # disk
         if self._environment.get("DEVTYPE") == "scsi_device":
             for device in reversed(self._stack):
@@ -440,8 +475,14 @@ class UdevadmDevice:
 
         return None
 
+    @product.setter
+    def product(self, value):
+        self._product = value
+
     @property
     def vendor(self):
+        if self._vendor is not None:
+            return self._vendor
         if "RFKILL_NAME" in self._environment:
             return None
 
@@ -488,12 +529,22 @@ class UdevadmDevice:
 
         return None
 
+    @vendor.setter
+    def vendor(self, value):
+        self._vendor = value
+
     @property
     def interface(self):
+        if self._interface is not None:
+            return self._interface
         if (self.category in ("NETWORK", "WIRELESS") and
                 "INTERFACE" in self._environment):
             return self._environment["INTERFACE"]
         return None
+
+    @interface.setter
+    def interface(self, value):
+        self._interface = value
 
     def as_json(self):
         attributes = ("path", "bus", "category", "driver", "product_id",
