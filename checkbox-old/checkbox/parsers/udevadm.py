@@ -55,7 +55,7 @@ USB_RE = re.compile(
     r"ip(?P<interface_protocol>[%(hex)s]{2})"
     % {"hex": string.hexdigits})
 USB_SYSFS_CONFIG_RE = re.compile(
-    r":\d+\.\d+$")
+    r"usb.*?:\d+\.\d+$")
 SCSI_RE = re.compile(
     r"^scsi:"
     r"t-0x(?P<type>[%(hex)s]{2})"
@@ -721,14 +721,14 @@ class UdevResult:
         self.devices["device_list"].append(device)
 
 
-def parse_udevadm_output(output):
+def parse_udevadm_output(output, bits=None):
     """
     Parse output of `LANG=C udevadm info --export-db`
 
     :returns: :class:`UdevadmParser` object that corresponds to the
     parsed input
     """
-    udev = UdevadmParser(output)
+    udev = UdevadmParser(output, bits)
     result = UdevResult()
     udev.run(result)
     return result.devices

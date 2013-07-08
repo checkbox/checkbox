@@ -70,10 +70,10 @@ class TestUdevadmParser(TestCase, UdevadmDataMixIn):
         #attributes = ("path", "driver", "bus", "product_id", "vendor_id",
         #    "product", "vendor", "interface",)
         #
-        #devices = parse_udevadm_output(self.get_text(name))["device_list"]
+        #devices = parse_udevadm_output(self.get_text(name), 64)["device_list"]
         #for i,j in enumerate(devices):
             #print(i, j.category, [getattr(j, a) for a in attributes])
-        return parse_udevadm_output(self.get_text(name))["device_list"]
+        return parse_udevadm_output(self.get_text(name), 64)["device_list"]
 
     def count(self, devices, category):
         return len([d for d in devices if d.category == category])
