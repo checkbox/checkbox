@@ -466,11 +466,10 @@ class UdevadmDevice:
         if "IFINDEX" in self._environment:
             for device in reversed(self._stack):
                 # wireless (SoC)
-                if "ID_MODEL_ENC" in device._environment:
-                    match = PLATFORM_RE.match(
-                        device._environment.get("MODALIAS", ""))
-                    if match:
-                        return match.group("module_name")
+                match = PLATFORM_RE.match(
+                    device._environment.get("MODALIAS", ""))
+                if match:
+                    return match.group("module_name")
                 # Network (Open Firmware)
                 match = OPENFIRMWARE_RE.match(
                         device._environment.get("MODALIAS", ""))
