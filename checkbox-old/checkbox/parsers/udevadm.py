@@ -66,6 +66,11 @@ INPUT_RE = re.compile(
     r"p(?P<product_id>[%(hex)s]{4})"
     r"e(?P<version>[%(hex)s]{4})"
     % {"hex": string.hexdigits})
+OPENFIRMWARE_RE = re.compile(
+    r"^of:"
+    r"N(?P<name>.*?)"
+    r"T(?P<type>.*?)"
+    r"C(?P<compatible>.*?)")
 CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
 GENERIC_RE = re.compile(r"Generic", re.I)
 FLASH_RE = re.compile(r"Flash", re.I)
@@ -440,14 +445,19 @@ class UdevadmDevice:
                     if "ID_MODEL_ENC" in device._environment:
                         return decode_id(device._environment["ID_MODEL_ENC"])
 
-        # wireless (SoC)
         if "IFINDEX" in self._environment:
             for device in reversed(self._stack):
+                # wireless (SoC)
                 if "ID_MODEL_ENC" in device._environment:
                     match = PLATFORM_RE.match(
                         device._environment.get("MODALIAS", ""))
                     if match:
                         return match.group("module_name")
+                # Network (Open Firmware)
+                match = OPENFIRMWARE_RE.match(
+                        device._environment.get("MODALIAS", ""))
+                if match:
+                    return match.group("name")
 
         if "IFINDEX" in self._environment and "INTERFACE" in self._environment:
             if "ID_MODEL_ENC" in self._environment:
