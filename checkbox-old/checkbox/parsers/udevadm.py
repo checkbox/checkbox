@@ -206,8 +206,7 @@ class UdevadmDevice:
                     return "FLOPPY"
 
                 if interface_subclass == Usb.CLASS_STORAGE_SCSI:
-                    return "SCSI"
-
+                    return "USB"
             if interface_class == Usb.BASE_CLASS_VIDEO:
                 return "CAPTURE"
 
