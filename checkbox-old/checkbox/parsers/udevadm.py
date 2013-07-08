@@ -237,6 +237,9 @@ class UdevadmDevice:
                 # KVM hardware device ("keyboard, video and mouse")
                 if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
                     return "KVM"
+                # Avoid detecting the power button as a capture device
+                elif self.vendor_id == 0:
+                    return "OTHER"
                 # Avoid identifying media/hot keys as pure capture devices
                 elif not (test_bit(Input.KEY_PLAYPAUSE, bitmask, self._bits) or
                           test_bit(Input.KEY_PLAY, bitmask, self._bits) or
