@@ -195,6 +195,7 @@ _description:
 user: root
 environ: CHECKBOX_DATA
 command: set -o pipefail; fwts_test -f none -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check --s3-device-check-delay=45 | tee $CHECKBOX_DATA/suspend_single_times.log
+estimated_duration: 90.000
 
 plugin: shell
 name: suspend/suspend-single-log-check
@@ -880,6 +881,7 @@ depends: suspend/suspend_advanced
 requires:
    device.category == 'WIRELESS'
 command: network_reconnect_resume_test -t 20 -d wifi
+estimated_duration: 0.530
 _description:
  Checks the length of time it takes to reconnect an existing wifi connection
  after a suspend/resume cycle.

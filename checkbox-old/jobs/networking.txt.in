@@ -11,6 +11,7 @@ plugin: shell
 name: networking/internet
 depends: networking/detect
 command: internet_test
+estimated_duration: 2.000
 _description: Tests whether the system has a working Internet connection.
 
 plugin: local
