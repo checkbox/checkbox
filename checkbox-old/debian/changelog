@@ -19,6 +19,14 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     - Open the log using the 'rb' flag. This prevents python from throwing
       a UnicodeDecodeError.
 
+  [ Daniel Manrique ]
+  * checkbox-old/scripts/gst_pipeline_test: Better debugging output, and
+    script exits gracefully when the pipeline is unparsable or has a missing
+    element.
+  * checkbox-old/jobs/graphics.txt.in: Use videoconvert instead of
+    ffmpegcolorspace, with a fallback if videoconvert is not found
+    (LP: #1199259)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
 checkbox (0.16.5) saucy; urgency=low
