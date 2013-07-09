@@ -28,7 +28,7 @@ MEMINFO_FILENAME = "/proc/meminfo"
 class MeminfoResult:
 
     def setMemory(self, memory):
-        for key, value in memory.items():
+        for key, value in sorted(memory.items()):
             print("%s: %s" % (key, value))
 
 
