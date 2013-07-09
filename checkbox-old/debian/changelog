@@ -24,6 +24,14 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     jobs/power-management.txt.in: jobs that depend on fwts_wakealarm to pass or
     fail now fail on aborted test result. (LP: #1192684)
 
+  [ Daniel Manrique ]
+  * checkbox-old/scripts/gst_pipeline_test: Better debugging output, and
+    script exits gracefully when the pipeline is unparsable or has a missing
+    element.
+  * checkbox-old/jobs/graphics.txt.in: Use videoconvert instead of
+    ffmpegcolorspace, with a fallback if videoconvert is not found
+    (LP: #1199259)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
 checkbox (0.16.5) saucy; urgency=low
