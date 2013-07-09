@@ -52,9 +52,9 @@ def get_color_depth(log_dir='/var/log/'):
         pixmap_format = 0
         return (depth, pixmap_format)
 
-    with open(current_log) as stream:
-        for match in re.finditer('Depth (.+) pixmap format is (.+) bpp',
-                                 stream.read()):
+    with open(current_log, 'rb') as stream:
+        for match in re.finditer('Depth (\d+) pixmap format is (\d+) bpp',
+                                 str(stream.read())):
             depth = int(match.group(1))
             pixmap_format = int(match.group(2))
 

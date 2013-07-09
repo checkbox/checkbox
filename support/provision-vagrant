@@ -27,9 +27,12 @@ export CHECKBOX_TOP=/vagrant
 # Make sure that dpkg never stops to have a chat with the user
 export DEBIAN_FRONTEND=noninteractive
 
+# Add any necessary PPA repositories
+$CHECKBOX_TOP/support/install-ppa-dependencies
+
 # Update to have the latest packages, this is needed because the image comes
 # with an old (and no longer working) apt cache and links to many packages no
-# longer work.
+# longer work. This is also needed if the step above actually added any PPAs.
 apt-get update
 
 # Update all packages to latest version
