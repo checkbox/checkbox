@@ -31,6 +31,7 @@ name: benchmarks/graphics/gtkperf
 depends: graphics/xorg-version
 requires: package.name == 'gtkperf'
 command: python3 -c 'import re,sys,subprocess; (s, o) = subprocess.getstatusoutput("gtkperf -a"); [sys.exit(1) for i in [s] if s]; m = re.search("Total time:\s+(.*)\n", o); [print(i.group(1)+" Seconds") for i in [m] if m]'
+estimated_duration: 30.000
 _description:
  Run gtkperf to make sure that GTK based test cases work
 
@@ -38,30 +39,35 @@ plugin: shell
 name: benchmarks/graphics/render-bench
 requires: package.name == 'render-bench'
 command: /usr/bin/time -f "%e Seconds" render_bench 2>&1 >/dev/null
+estimated_duration: 52.000
 _description: Run Render-Bench XRender/Imlib2 benchmark
 
 plugin: shell
 name: benchmarks/graphics/qgears2-Xrender-gearsfancy
 requires: package.name == 'phoronix-test-suite'
 command: PRESET_OPTIONS="qgears2.render-backend=1; qgears2.test-mode=0" pts_run qgears2
+estimated_duration: 180.000
 _description: Run Qgears2 XRender Extension gearsfancy benchmark
 
 plugin: shell
 name: benchmarks/graphics/qgears2-Xrender-compo
 requires: package.name == 'phoronix-test-suite'
 command: PRESET_OPTIONS="qgears2.render-backend=1; qgears2.test-mode=2" pts_run qgears2
+estimated_duration: 31.500
 _description: Run Qgears2 XRender Extension image scaling benchmark
 
 plugin: shell
 name: benchmarks/graphics/qgears2-gl-gearsfancy
 requires: package.name == 'phoronix-test-suite'
 command: PRESET_OPTIONS="qgears2.render-backend=2; qgears2.test-mode=0" pts_run qgears2
+estimated_duration: 52.000
 _description: Run Qgears2 OpenGL gearsfancy benchmark
 
 plugin: shell
 name: benchmarks/graphics/qgears2-gl-compo
 requires: package.name == 'phoronix-test-suite'
 command: PRESET_OPTIONS="qgears2.render-backend=2; qgears2.test-mode=2" pts_run qgears2
+estimated_duration: 23.000
 _description: Run Qgears2 OpenGL image scaling benchmark
 
 plugin: shell
@@ -80,6 +86,7 @@ requires:
  cpuinfo.platform in ("i386", "x86_64")
 command:
  glmark2 2>&1 | sed -e :a -e '$!N;s/\n/ /;ta' | sed -E 's/.*(Score:\s+[0-9]+).*/\1/'
+estimated_duration: 306.000
 _description: Run GLmark2 benchmark
 
 plugin: shell
@@ -88,6 +95,7 @@ requires:
  package.name == 'globs'
  cpuinfo.platform in ("i386", "x86_64")
 command: glob_test --min-fps=26 --ignore-problems
+estimated_duration: 53.500
 _description: Run globs benchmark
 
 plugin: shell
@@ -228,6 +236,7 @@ requires:
  package.name == 'gputest'
  cpuinfo.platform == 'x86_64'
 command: gputest_benchmark fur --width 1920 --height 1080 -f
+estimated_duration: 75.000
 _description:
  Run a stress test based on FurMark (OpenGL 2.1 or 3.2)
  Fullscreen 1920x1080 no antialiasing
@@ -238,6 +247,7 @@ requires:
  package.name == 'gputest'
  cpuinfo.platform == 'x86_64'
 command: gputest_benchmark fur
+estimated_duration: 75.000
 _description:
  Run a stress test based on FurMark (OpenGL 2.1 or 3.2)
  Windowed 1024x640 no antialiasing
@@ -248,6 +258,7 @@ requires:
  package.name == 'gputest'
  cpuinfo.platform == 'x86_64'
 command: gputest_benchmark gi --width 1920 --height 1080 -f
+estimated_duration: 75.00
 _description:
  Run GiMark, a geometry instancing test (OpenGL 3.3)
  Fullscreen 1920x1080 no antialiasing
@@ -258,6 +269,7 @@ requires:
  package.name == 'gputest'
  cpuinfo.platform == 'x86_64'
 command: gputest_benchmark gi
+estimated_duration: 75.500
 _description:
  Run GiMark, a geometry instancing test (OpenGL 3.3)
  Windowed 1024x640 no antialiasing
@@ -268,6 +280,7 @@ requires:
  package.name == 'gputest'
  cpuinfo.platform == 'x86_64'
 command: gputest_benchmark tess --width 1920 --height 1080 -f
+estimated_duration: 75.000
 _description:
  Run a tessellation test based on TessMark (OpenGL 4.0)
  Fullscreen 1920x1080 no antialiasing
