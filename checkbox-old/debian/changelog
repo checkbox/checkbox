@@ -8,6 +8,9 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     (LP: #1184661)
   * plugins/subunit_report.py - Prevent crash when job output contains 
     non-ASCII characters (LP: #1196838)
+  * jobs/info.txt.in - Add lshw_attachment job with dependency on the lshw
+    package, and also give dmidecode_attachment a dependency on dmidecode,
+    this way we get the right attachments (LP: #1199245)
 
   [ Alberto Milone ]
   * checkbox-old/scripts/color_depth_info:
