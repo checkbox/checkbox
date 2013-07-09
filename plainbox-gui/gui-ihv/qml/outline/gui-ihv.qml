@@ -29,13 +29,15 @@ SuiteSelection {
     id: mainview
     height: units.gu(90)
 
+
     // Below is test code, shows how to put up a warning dialog
     // TODO == move this to WarningDialog.qml
     Component {
         id: warning_dialog
         WarningDialog{
-            text: i18n.tr("The hoopla met the poopla and we all could no longer do as we want.  Would you like me to try again?")
-            showOK: false
+            text: i18n.tr("What you are about to do will take a long time.  Are you sure you want to continue?")
+            showOK: true
+            showContinue: false
             showCheckbox: true
 
             onCont: {
@@ -61,6 +63,7 @@ SuiteSelection {
 
 
     Row {
+        visible: false
         spacing: 2
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom

@@ -103,6 +103,7 @@ Dialog {
     title: i18n.tr("Warning!")
     text: i18n.tr("Change me to a real warning.")
 
+
     Item {
         id: checkboxitem
         width: childrenRect.width
@@ -116,9 +117,9 @@ Dialog {
             id: checkbox_label
             text: i18n.tr("Do not show this warning again.")
             fontSize: "small"
+            color: "white"
             anchors.left: checkbox.right
             anchors.leftMargin: 8
-
             anchors.verticalCenter: checkbox.verticalCenter
         }
 
@@ -126,7 +127,7 @@ Dialog {
 
     Button {
         id: okButton
-        text: i18n.tr("ok")
+        text: i18n.tr("OK")
         color: UbuntuColors.orange
         onClicked: {
             ok();
@@ -135,7 +136,7 @@ Dialog {
     }
     Button {
         id: continueButton
-        text: i18n.tr("continue")
+        text: i18n.tr("Continue")
         color: UbuntuColors.orange
         onClicked: {
             cont()
@@ -144,7 +145,7 @@ Dialog {
     }
     Button {
         id: cancelButton
-        text: i18n.tr("cancel")
+        text: i18n.tr("Cancel")
         color: UbuntuColors.warmGrey
         onClicked: {
             cancel()

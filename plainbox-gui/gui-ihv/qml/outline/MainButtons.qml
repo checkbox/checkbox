@@ -36,7 +36,7 @@ Row {
     Button {
          id:selectionButton
          text: i18n.tr("selection")
-         width: 140
+         width:  units.gu(16)
          onClicked: {
              buttons.state = "SELECTION";
              buttons.actionChanged(buttons.state);
@@ -45,7 +45,7 @@ Row {
     Button {
          id: runButton
          text: i18n.tr("run")
-         width: 140
+         width:  units.gu(16)
          onClicked:{
              buttons.state = "RUN";
              buttons.actionChanged(buttons.state);
@@ -55,7 +55,7 @@ Row {
     Button {
         id: resultsButton
         text: i18n.tr("results")
-        width: 140
+        width: units.gu(16)
         onClicked:{
             buttons.state = "RESULTS"
             buttons.actionChanged(buttons.state);

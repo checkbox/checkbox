@@ -26,42 +26,59 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import "."
 
 Rectangle {
-    color: "#f7f7f7"
-    height: groupedList.height
-
-
+    color: "white"
+    height: parent.height
 
     SuiteListModel{
         id: suiteModel
     }
 
-    ListView {
-        id: groupedList
-        model: suiteModel
+    Flickable {
+        id: listflick
+        anchors.fill: parent
+        height: parent.height
         width: parent.width
-        height: contentHeight
-        interactive: false
+        clip: true
+        contentHeight: groupedList.height
+        boundsBehavior : Flickable.StopAtBounds
 
-        delegate: ListItem.Standard {
-             control: CheckBox {
-                      anchors.verticalCenter: parent.verticalCenter
-                      checked: true
-                  }
-             text: i18n.tr("       " + name)
+
+        ListView {
+            id: groupedList
+            model: testSuiteModel
+            width: parent.width
+            height: units.gu(8) * groupedList.count + units.gu(10)
+            interactive: false
+
+
+            delegate:  ListItem.Standard {
+                text: i18n.tr("       " + testname)
+                control: CheckBox {
+                    anchors.verticalCenter: parent.verticalCenter
+                    checked: true
+                }
+
+            }
+
+            section.property: "group"
+            section.criteria: ViewSection.FullString
+            section.delegate: ListItem.Standard {
+                text: i18n.tr(section)
+                control: CheckBox {
+                    anchors.verticalCenter: parent.verticalCenter
+                    checked: true
+                }
+
+            }
+
         }
-
-        section.property: "type"
-        section.criteria: ViewSection.FullString
-        section.delegate: ListItem.Standard {
-            text: i18n.tr(section)
-            control: CheckBox {
-                      anchors.verticalCenter: parent.verticalCenter
-                      checked: true
-                  }
-
-        }
-
     }
+
+    Scrollbar {
+        flickableItem: listflick
+        align: Qt.AlignTrailing
+    }
+
 }
 
 

@@ -27,12 +27,6 @@ import Ubuntu.Components 0.1
 Row {
     id: bottombuttons
 
-    //property alias selectButton: bottombuttons.selectButton
-    //property alias deselectButton: bottombuttons.deselectButton
-    //property alias startTesting: bottombuttons.startTesting
-
-
-
     signal selectAll
     signal deselectAll
     signal startTesting
@@ -45,7 +39,7 @@ Row {
          id:selectButton
          text: i18n.tr("Select All")
          color: UbuntuColors.warmGrey
-         width: 140
+         width: units.gu(16)
          onClicked: {
              bottombuttons.selectAll();
          }
@@ -54,7 +48,7 @@ Row {
          id: deselectButton
          text: i18n.tr("Deselect All")
          color: UbuntuColors.warmGrey
-         width: 140
+         width: units.gu(16)
          onClicked:{
              bottombuttons.deselectAll();
          }
@@ -64,7 +58,7 @@ Row {
         id: startTesting
         text: i18n.tr("Start Testing")
         color: UbuntuColors.lightAubergine
-        width: 140
+        width: units.gu(16)
         onClicked:{
             bottombuttons.startTesting();
         }

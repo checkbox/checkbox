@@ -23,11 +23,35 @@
 #include <QPluginLoader>
 #include <QQmlExtensionPlugin>
 #include <QDir>
+#include <QtQml>
 #include "qtquick2applicationviewer.h"
+#include "testsuiteitem.h"
+
+
+// Load up test suites here (it can be moved to another file)
+void LoadTestSuiteList(QtQuick2ApplicationViewer *viewer){
+    QList<QObject*> list;
+    list.append(new TestSuiteItem("One", "Test1"));
+    list.append(new TestSuiteItem("One", "Test2"));
+    list.append(new TestSuiteItem("Two", "Test1"));
+    list.append(new TestSuiteItem("Two", "Test1"));
+    list.append(new TestSuiteItem("Two", "Test2"));
+    list.append(new TestSuiteItem("Two", "Test3"));
+    list.append(new TestSuiteItem("Two", "Test4"));
+    list.append(new TestSuiteItem("Three", "Test1"));
+
+
+    viewer->rootContext()->setContextProperty("testSuiteModel",  QVariant::fromValue(list));
+}
+
+
+
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    qmlRegisterType<TestSuiteItem>("Ubuntu.IhvTest", 0, 1, "TestSuiteItem");
 
     QDir pluginsDir;
     pluginsDir.setPath("../plugins");
@@ -39,6 +63,8 @@ int main(int argc, char *argv[])
         plugin->registerTypes("GuiEngine");
 
     QtQuick2ApplicationViewer viewer;
+    LoadTestSuiteList(&viewer);
+
     viewer.setMainQmlFile(QStringLiteral("qml/outline/gui-ihv.qml"));
     viewer.showExpanded();
 

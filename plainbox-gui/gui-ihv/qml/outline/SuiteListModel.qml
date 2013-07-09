@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of plainbox-gui
  *
  * Copyright 2013 Canonical Ltd.
@@ -21,13 +21,25 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.IhvTest 0.1
 
 
 ListModel {
-    id: suiteModel
+    id: testSuiteModel
+
     ListElement { name: "Orange"; type: "Fruit"}
     ListElement { name: "Apple"; type: "Fruit" }
     ListElement { name: "Tomato"; type: "Fruit" }
-    ListElement { name: "Carrot"; type: "Vegetable" }
+    ListElement { name: "Banana"; type: "Fruit"}
+    ListElement { name: "Cherry"; type: "Fruit" }
+    ListElement { name: "Apricot"; type: "Fruit" }
     ListElement { name: "Potato"; type: "Vegetable" }
+    ListElement { name: "Carrot"; type: "Vegetable" }
+    ListElement { name: "Celery"; type: "Vegetable" }
+    ListElement { name: "Cucumber"; type: "Vegetable" }
+    ListElement { name: "Pepper"; type: "Vegetable" }
+    ListElement { name: "Onion"; type: "Vegetable" }
+
+
+
 }

@@ -34,11 +34,8 @@ MainView {
     width: units.gu(80)
     height: units.gu(90)
 
-
-
     Page {
         title: "IHV Driver Testing"
-
         Progress {
             id: progress
             title: i18n.tr("Testing...")
@@ -46,7 +43,13 @@ MainView {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
-
+       // Rectangle {
+        //    id: rectangle
+        //    anchors.centerIn: parent
+        //    width: parent.width
+        //    height: parent.height
+            //color: UbuntuColors.coolGrey
+       // }
 
         MainButtons {
             id: actionbuttons
@@ -75,7 +78,6 @@ MainView {
                     progress.visible = false
                     break;
                 default:
-               BottomButtons
                     console.log("default")
                     progress.visible = true
                     actionsbuttons.state = "SELECTION"
@@ -88,7 +90,7 @@ MainView {
 
         SuiteListView {
             id: suitelist
-            color: "#f7f7f7"
+            height: units.gu(43)
             width: parent.width - units.gu(10)
 
             anchors.horizontalCenter: parent.horizontalCenter
