@@ -18,6 +18,11 @@ checkbox (0.16.6) UNRELEASED; urgency=low
       correct string.
     - Open the log using the 'rb' flag. This prevents python from throwing
       a UnicodeDecodeError.
+  
+  [ Jeff Lane ]
+  * scripts/fwts_test: script now fails on aborted tests if desired. 
+    jobs/power-management.txt.in: jobs that depend on fwts_wakealarm to pass or
+    fail now fail on aborted test result. (LP: #1192684)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
