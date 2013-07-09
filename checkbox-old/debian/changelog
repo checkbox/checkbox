@@ -16,6 +16,10 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     - Open the log using the 'rb' flag. This prevents python from throwing
       a UnicodeDecodeError.
 
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
+    deterministic output. Meant to be used with after_suspend jobs.
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
 checkbox (0.16.5) saucy; urgency=low
