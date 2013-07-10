@@ -1,45 +1,53 @@
 name: cpuinfo
 plugin: resource
 command: cpuinfo_resource
+estimated_duration: 0.080
 description: Gets CPU resource info from /proc/cpuinfo
 
 name: cdimage
 plugin: resource
 user: root
 command: cdimage_resource
+estimated_duration: 0.500
 description: Gets installation info from casper.log and media-info
 
 name: dpkg
 plugin: resource
 command: dpkg_resource
+estimated_duration: 0.500
 requires: package.name == "dpkg"
 description: Gets info on the version of dpkg installed
 
 name: gconf
 plugin: resource
 command: gconf_resource | filter_templates -w 'name=.*proxy.*'
+estimated_duration: 0.600
 requires: package.name == "gconf2"
 description: Generates resource info from gconf settings
 
 name: lsb
 plugin: resource
 command: lsb_resource
+estimated_duration: 1.000
 requires: package.name == "lsb-release"
 description: Generates release info based on /etc/lsb-release
 
 name: meminfo
 plugin: resource
 command: meminfo_resource
+estimated_duration: 0.120
 description: Generates resource info based on /proc/meminfo
 
 name: module
 plugin: resource
 command: module_resource
+estimated_duration: 0.400
 description: Generates resources info on running kernel modules
 
 name: package
 plugin: resource
 command: dpkg-query -W -f='name: ${Package}\nversion: ${Version}\n\n'
+estimated_duration: 4.000
 description: Generates a list of packages
 
 name: executable
@@ -51,6 +59,7 @@ command:
 name: device
 plugin: resource
 command: udev_resource
+estimated_duration: 0.360
 requires: package.name == "udev"
 description: Creates resource info from udev 
 
@@ -59,21 +68,25 @@ plugin: resource
 user: root
 requires: package.name == "dmidecode"
 command: dmi_resource
+estimated_duration: 0.500
 
 name: efi
 plugin: resource
 user: root
 command: efi_resource
+estimated_duration: 0.300
 
 name: uname
 plugin: resource
 command: uname_resource
+estimated_duration: 0.040
 description: Creates resource info from uname output
 
 name: sleep
 plugin: resource
 command: for state in `cat /sys/power/state`; do echo "$state: supported"; done
 description: Create resource info for supported sleep states
+estimated_duration: 0.100
 
 name: optical_drive
 plugin: resource
@@ -85,12 +98,14 @@ command:
              echo "$media: readonly"
      fi
  done
+estimated_duration: 36.000
 requires: package.name == "wodim"
 description: Create resource info for supported optical actions
 
 name: block_device
 plugin: resource
 command: block_device_resource
+estimated_duration: 0.060
 description: Create resource info for removable block devices 
 
 name: display
@@ -107,6 +122,7 @@ command:
      echo -n "usb$version: "
      lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
  done
+estimated_duration: 0.150
 
 name: xinput
 plugin: resource
