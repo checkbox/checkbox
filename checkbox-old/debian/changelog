@@ -36,6 +36,10 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
     deterministic output. Meant to be used with after_suspend jobs.
 
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/gpu_test: Open kern.log in byte mode to avoid the
+    UnicodeDecodeError management.
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
 checkbox (0.16.5) saucy; urgency=low
