@@ -42,6 +42,7 @@ name: efi_attachment
 plugin: attachment
 user: root
 command: [ -d /sys/firmware/efi ] && grep -m 1 -o --color=never 'EFI v.*' /var/log/kern.log* || true
+estimated_duration: 0.5
 _description: Attaches the firmware version
 
 name: lspci_attachment
@@ -120,12 +121,13 @@ _description: Attaches a tarball of gcov data if present.
 name: lsmod_attachment
 plugin: attachment
 command: lsmod_info
-estimated_duration: 0.489
+estimated_duration: 0.5
 _description: Attaches a list of the currently running kernel modules.
 
 plugin: attachment
 name: acpi_sleep_attachment
 command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep
+estimated_duration: 0.5
 _description: Attaches the contents of /proc/acpi/sleep if it exists.
 
 plugin: local
@@ -180,6 +182,7 @@ _description: installs the installer bootchart tarball if it exists.
 plugin: attachment
 name: installer_debug.gz
 command: [ -e /var/log/installer/debug ] && gzip -9 -c /var/log/installer/debug
+estimated_duration: 0.1
 _description: Attaches the installer debug log if it exists.
 
 plugin: attachment
