@@ -13,6 +13,16 @@ gui-ihv/		Contains the QML/Qt "skin" which is used to drive IHV use
 
 External Documentation Links
 ============================
+To test gui-ihv:  
+	Software Needed:
+		QT Creator (2.7.0 or greater)  
+		Ubuntu.Components 0.1 - This is part of the Ubunutu distribution 
+			and gets updated
+
+1. Open QT Creator
+2. File->Open Project->plainbox-gui.pro
+3. Build->Run
+4. Interact with the UI
 
 TBD
 
