@@ -31,6 +31,8 @@ checkbox (0.16.6) UNRELEASED; urgency=low
   * checkbox-old/jobs/graphics.txt.in: Use videoconvert instead of
     ffmpegcolorspace, with a fallback if videoconvert is not found
     (LP: #1199259)
+  * checkbox-old/jobs/input.txt.in: Add more details in pointing test names
+    so they are easier to identify (LP: #1192541)
 
   [ Sylvain Pineau ]
   * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
