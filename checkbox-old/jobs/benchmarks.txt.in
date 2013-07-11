@@ -168,6 +168,7 @@ plugin: shell
 name: benchmarks/network/network-loopback
 requires: package.name == 'phoronix-test-suite'
 command: pts_run network-loopback
+estimated_duration: 85.0
 _description: Run Network Loopback benchmark
 
 plugin: shell

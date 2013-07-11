@@ -33,6 +33,7 @@ name: suspend/wireless_before_suspend
 depends: wireless/wireless_connection
 requires: device.category == 'WIRELESS'
 command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+estimated_duration: 20.0
 _description:
  This test disconnects all connections and then connects to the wireless
  interface. It then checks the connection to confirm it's working as expected.
@@ -173,6 +174,7 @@ command:
   echo "Calling sleep_test"
   set -o pipefail; sleep_test -p | tee $CHECKBOX_DATA/suspend_single_times.log
  fi
+estimated_duration: 90.0
 _description:
  PURPOSE:
      This test will check suspend and resume
@@ -320,6 +322,7 @@ depends: suspend/suspend_advanced suspend/wireless_before_suspend
 requires:
  device.category == 'WIRELESS'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+estimated_duration: 20.0
 _description:
  This test checks that the wireless interface is working after suspending the system. It
  disconnects all interfaces and then connects to the wireless interface and checks that the

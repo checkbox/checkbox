@@ -460,6 +460,41 @@ class SessionState(_LegacySessionState):
         # Return all dependency problems to the caller
         return problems
 
+    def get_estimated_duration(self, manual_overhead=30.0):
+        """
+        Provide the estimated duration of the jobs that have been selected
+        to run in this session (maintained by calling update_desired_job_list).
+
+        Manual jobs have an arbitrary figure added to their runtime to allow
+        for execution of the test steps and verification of the result.
+
+        :returns: (estimate_automated, estimate_manual)
+        
+        where estimate_automated is the value for automated jobs only and
+        estimate_manual is the value for manual jobs only. These can be 
+        easily combined. Either value can be None if the  value could not be 
+        calculated due to any job lacking the required estimated_duration field.
+        """
+        estimate_automated = 0.0
+        estimate_manual = 0.0
+        for job in self._run_list:
+            if job.automated and estimate_automated is not None:
+                if job.estimated_duration is not None:
+                    estimate_automated += job.estimated_duration
+                elif job.plugin != 'local':
+                    estimate_automated = None
+            elif not job.automated and estimate_manual is not None:
+                # We add 30 seconds to the run time for manual jobs to
+            	# account for extra time taken in reading the description
+            	# and performing any necessary steps
+                estimate_manual += manual_overhead
+                if job.estimated_duration is not None:
+                     estimate_manual += job.estimated_duration
+                elif job.command:
+                    estimate_manual = None
+
+        return (estimate_automated, estimate_manual)
+
     def update_job_result(self, job, result):
         """
         Notice the specified test result and update readiness state.

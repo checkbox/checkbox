@@ -5,6 +5,7 @@ requires:
  package.name == 'module-init-tools'
  package.name == 'pciutils'
 command: network_device_info
+estimated_duration: 1.2
 _description: Test to detect the available network controllers
 
 plugin: shell 
@@ -41,6 +42,7 @@ requires:
  package.name == 'network-manager'
  device.category == 'NETWORK'
 command: udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
+estimated_duration: 1.1
 _description:
  This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
 

@@ -132,6 +132,7 @@ plugin: shell
 name: power-management/rtc
 command:
  test -e /dev/rtc || ( echo "ERROR: Real Time Clock not found" >&2 && exit 1 )
+estimated_duration: 0.02
 _description:
  Make sure that the RTC (Real-Time Clock) device exists.
 
