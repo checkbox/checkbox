@@ -19,19 +19,64 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <qdebug.h>
 #include "testsuiteitem.h"
 
 TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, QObject * parent  ) :
-        QObject( parent ),
-        m_group(groupName),
-        m_testName(testName)
+    ListItem( parent ),
+    m_group(groupName),
+    m_testName(testName),
+    m_check(true)
 {
 }
+
+QHash<int, QByteArray> TestSuiteItem::roleNames() const
+{
+  //qDebug() << "!!! TestSuiteItem RoleNames";
+  QHash<int, QByteArray> names;
+  names[GroupRole] = "group";
+  names[TestNameRole] = "testname";
+  names[CheckRole] = "check";
+  return names;
+}
+
+QVariant TestSuiteItem::data(int role) const
+{
+  switch(role) {
+  case GroupRole:
+    return group();
+  case TestNameRole:
+    return testname();
+  case CheckRole:
+      return check();
+  default:
+    return QVariant();
+  }
+}
+
+void TestSuiteItem::setData(const QVariant & value, int role){
+    switch(role) {
+    case GroupRole:
+        setGroup(value.toString());
+        break;
+    case TestNameRole:
+        setTestname(value.toString());
+        break;
+    case CheckRole:
+        setCheck(value.toBool());
+        break;
+    }
+
+}
+
+
+
 
 void TestSuiteItem::setGroup(const QString &groupName){
     if ( groupName != m_group ) {
         m_group = groupName;
         emit groupChanged();
+        emit dataChanged();
     }
 }
 
@@ -39,6 +84,17 @@ void TestSuiteItem::setTestname(const QString &testName){
     if ( testName != m_testName ) {
         m_testName = testName;
         emit testnameChanged();
-    }  }
+        emit dataChanged();
+    }
+}
+
+void TestSuiteItem::setCheck(bool check){
+    if (check != m_check){
+        m_check = check;
+        emit checkChanged();
+        emit dataChanged();
+        //qDebug() << "Check changed to" << check;
+    }
+}
 
 
