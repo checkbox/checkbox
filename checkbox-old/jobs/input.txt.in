@@ -6,7 +6,7 @@ _description: Pointing device tests.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=MOUSE" -w "category=TOUCHPAD" -w "category=TOUCHSCREEN"'
  plugin: manual
- name: input/pointing_`basename $path`
+ name: input/pointing_`echo "${product}_${category}" | sed 's/ /_/g;s/[^_a-zA-Z0-9-]//g'`_`basename $path`
  requires: device.path == "$path"
  description:
   PURPOSE:
