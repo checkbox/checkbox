@@ -1,10 +1,9 @@
 checkbox (0.16.5) saucy; urgency=low
 
   [ Po-Hsu Lin]
-  * scripts/network_device_info: script is now able to detect 3G Modem 
-    with USB interface, corrected the number of devices from udev and 
-    Network Manager to achieve the consistency with the list of devices
-    (LP: #1194071)
+  * scripts/network_device_info: script is now able to detect Modem devices,
+    modified the error message for missing devices, provide more information
+    to users. (LP: #1194170)
 
   [ Brendan Donegan ]
   * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
