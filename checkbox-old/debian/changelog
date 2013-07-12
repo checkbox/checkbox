@@ -44,6 +44,11 @@ checkbox (0.16.6) UNRELEASED; urgency=low
 
 checkbox (0.16.5) saucy; urgency=low
 
+  [ Po-Hsu Lin]
+  * scripts/network_device_info: script is now able to detect Modem devices,
+    modified the error message for missing devices, provide more information
+    to users. (LP: #1194170)
+
   [ Brendan Donegan ]
   * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
     through new xml_sanitizer script which removes characters which are
