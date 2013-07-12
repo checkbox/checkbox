@@ -41,6 +41,8 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     UnicodeDecodeError management.
   * checkbox-old/scripts/memory_compare: set a variable diff. threshold.
   * checkbox-old/jobs/suspend.txt.in: Set the wifi reconnect timeout to 90s.
+  * checkbox-old/scripts/bluetooth_test: Full rewrite in python to log all
+    obexftp errors.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
 
