@@ -1,10 +1,49 @@
-checkbox (0.16.5) saucy; urgency=low
+checkbox (0.16.6) UNRELEASED; urgency=low
 
   [ Po-Hsu Lin]
-  * scripts/network_device_info: script is now able to detect 3G Modem 
-    with USB interface, corrected the number of devices from udev and 
-    Network Manager to achieve the consistency with the list of devices
-    (LP: #1194071)
+  * scripts/network_device_info: script is now able to detect Modem devices,
+    modified the error message for missing devices, provide more information 
+    to users. (LP: #1194170)
+
+  [ Brendan Donegan ]
+  * plugins/launchpad_report.py - Don't include attachments which have a status
+    of 'unsupported' (LP: #1196531)
+  * checkbox/parsers/lshwjson.py, scripts/memory_compare - Create a parser for
+    lshw and use this in the memory_compare script instead of dmidecode
+    (LP: #1184661)
+  * plugins/subunit_report.py - Prevent crash when job output contains 
+    non-ASCII characters (LP: #1196838)
+  * jobs/info.txt.in - Add lshw_attachment job with dependency on the lshw
+    package, and also give dmidecode_attachment a dependency on dmidecode,
+    this way we get the right attachments (LP: #1199245)
+
+  [ Alberto Milone ]
+  * checkbox-old/scripts/color_depth_info:
+    - Be more strict in the regex so as to make sure that we catch the
+      correct string.
+    - Open the log using the 'rb' flag. This prevents python from throwing
+      a UnicodeDecodeError.
+  
+  [ Jeff Lane ]
+  * scripts/fwts_test: script now fails on aborted tests if desired. 
+    jobs/power-management.txt.in: jobs that depend on fwts_wakealarm to pass or
+    fail now fail on aborted test result. (LP: #1192684)
+
+  [ Daniel Manrique ]
+  * checkbox-old/scripts/gst_pipeline_test: Better debugging output, and
+    script exits gracefully when the pipeline is unparsable or has a missing
+    element.
+  * checkbox-old/jobs/graphics.txt.in: Use videoconvert instead of
+    ffmpegcolorspace, with a fallback if videoconvert is not found
+    (LP: #1199259)
+
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
+    deterministic output. Meant to be used with after_suspend jobs.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
+
+checkbox (0.16.5) saucy; urgency=low
 
   [ Brendan Donegan ]
   * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
@@ -23,7 +62,7 @@ checkbox (0.16.5) saucy; urgency=low
     use/require Python 3 and gstreamer 1.0. Updated job requirements and
     checkbox dependencies accordingly. 
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 14 Jun 2013 16:04:39 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:37 +0100
 
 checkbox (0.16.4) saucy; urgency=low
 
