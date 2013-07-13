@@ -7,6 +7,7 @@ import os
 import sys
 import time
 from gi.repository import Gst
+from gi.repository import GLib
 from subprocess import check_output
 
 
@@ -52,7 +53,17 @@ def main():
             exit_code = 1
 
     Gst.init(None)
-    element = Gst.parse_launch(args.PIPELINE)
+    try:
+        print("Attempting to initialize Gstreamer pipeline: {}".format(
+              args.PIPELINE))
+        element = Gst.parse_launch(args.PIPELINE)
+    except GLib.GError as error:
+        print("Specified pipeline couldn't be processed.")
+        print("Error when processing pipeline: {}".format(error))
+        #Exit harmlessly
+        return(2)
+
+    print("Pipeline initialized, now starting playback.")
     element.set_state(Gst.State.PLAYING)
 
     if args.timeout:

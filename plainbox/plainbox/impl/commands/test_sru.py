@@ -41,7 +41,8 @@ class TestSru(TestCase):
         self.maxDiff = None
         expected = """
         usage: plainbox sru [-h] [--check-config] --secure-id SECURE-ID
-                            [--fallback FILE] [--destination URL] [-n]
+                            [--fallback FILE] [--destination URL] [--staging] [-n]
+                            [-i PATTERN] [-x PATTERN] [-w WHITELIST]
 
         optional arguments:
           -h, --help            show this help message and exit
@@ -55,9 +56,21 @@ class TestSru(TestCase):
                                 (unset)
           --destination URL     POST the test report XML to this URL (https://certific
                                 ation.canonical.com/submissions/submit/)
+          --staging             Override --destination to use the staging
+                                certification website
 
         execution options:
           -n, --dry-run         Skip all usual jobs. Only local, resource and
                                 attachment jobs are started
+
+        job definition options:
+          -i PATTERN, --include-pattern PATTERN
+                                Run jobs matching the given regular expression.
+                                Matches from the start to the end of the line.
+          -x PATTERN, --exclude-pattern PATTERN
+                                Do not run jobs matching the given regular expression.
+                                Matches from the start to the end of the line.
+          -w WHITELIST, --whitelist WHITELIST
+                                Load whitelist containing run patterns
         """
         self.assertEqual(io.combined, cleandoc(expected) + "\n")

@@ -11,6 +11,7 @@ command:
   echo "Calling sleep_test"
   sleep_test -s disk -w 120
  fi
+estimated_duration: 300.00
 _description:
  PURPOSE:
      This test will check to make sure your system can successfully hibernate (if supported)
@@ -31,4 +32,5 @@ _description:
 plugin: attachment
 name: power-management/hibernate-single-log-attach
 command: [ -e $CHECKBOX_DATA/hibernate-single.log ] && cat $CHECKBOX_DATA/hibernate-single.log
+estimated_duration: 0.5
 description: attaches log from single hibernate/resume test to results

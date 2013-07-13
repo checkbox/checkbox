@@ -1,0 +1,67 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#   Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Helper script to add PPA repositories
+# =====================================
+# Looks for requirements/repo-*.txt files
+# Uses them to add/enable PPAs
+#
+# The format of those files is somehow confusingly the name of the PPA itself,
+# without the "ppa:" prefix. So, for instance, to add the checkbox-dev PPA one
+# would use 'checkbox-dev/ppa' instead of 'ppa:checkbox-dev/ppa'
+
+set -e
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Construct a list of required PPA repositories
+repo_list="$(find "$CHECKBOX_TOP" -path '*/requirements/repo-*.txt' -exec cat "{}" \;  | grep -v '^#' | sort | uniq)"
+
+# Abort if we don't have anything to do
+test -z "$repo_list" && exit 1
+
+retval=1 # no PPAs added 
+
+# Check each one and install if required
+echo "I: checking if the following PPA repositories are enabled:" $repo_list
+for ppa_repo_name in $repo_list; do
+   # Construct the nominal name of the repository. If this is a derivative of
+   # Ubuntu then use the equivalent Ubuntu release name.
+   if lsb_release --help | grep --quiet -- --upstream; then
+       ppa_repo_filename=/etc/apt/sources.list.d/$(echo $ppa_repo_name | sed -e 's!/!-!')-$(lsb_release --upstream --codename --short).list
+   else
+       ppa_repo_filename=/etc/apt/sources.list.d/$(echo $ppa_repo_name | sed -e 's!/!-!')-$(lsb_release --codename --short).list
+   fi
+   echo "I: looking for $ppa_repo_filename"
+   # Is the repo already added?
+   if [ ! -f $ppa_repo_filename ]; then 
+       echo "I: enabling PPA ppa:$ppa_repo_name"
+       sudo add-apt-repository -y ppa:$ppa_repo_name  
+       retval=0 # we added a PPA
+   fi
+done
+
+exit $retval

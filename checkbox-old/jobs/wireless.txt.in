@@ -17,11 +17,13 @@ command:
  fi
  echo "No wireless networks discovered."
  exit 1
+estimated_duration: 0.645
 _description: Wireless scanning test. It scans and reports on discovered APs.
 
 plugin: manual
 name: wireless/wireless_connection
 command: network_check
+estimated_duration: 2.0
 requires: device.category == 'WIRELESS'
 _description:
  PURPOSE:

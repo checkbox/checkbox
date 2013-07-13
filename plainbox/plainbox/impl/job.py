@@ -47,30 +47,58 @@ class JobDefinition(BaseJob, IJobDefinition):
     definition
     """
 
+    def get_record_value(self, name, default=None):
+        """
+        Obtain the value of the specified record attribute
+        """
+        try:
+            return self._data["_{}".format(name)]
+        except KeyError:
+            return super(JobDefinition, self).get_record_value(name, default)
+
     @property
     def name(self):
-        return self.__getattr__('name')
+        return self.get_record_value('name')
 
     @property
     def requires(self):
-        try:
-            return self.__getattr__('requires')
-        except AttributeError:
-            return None
+        return self.get_record_value('requires')
 
     @property
     def description(self):
-        try:
-            return self.__getattr__('description')
-        except AttributeError:
-            return None
+        return self.get_record_value('description')
 
     @property
     def depends(self):
+        return self.get_record_value('depends')
+
+    @property
+    def estimated_duration(self):
+        """
+        estimated duration of this job in seconds.
+
+        The value may be None, which indicates that the duration is basically
+        unknown. Fractional numbers are allowed and indicate fractions of a
+        second.
+        """
+        value = self.get_record_value('estimated_duration')
+        if value is None:
+            return
         try:
-            return self.__getattr__('depends')
-        except AttributeError:
-            return None
+            return float(value)
+        except ValueError:
+            logger.warning((
+                "Incorrect value of 'estimated_duration' in job"
+                "%s read from %s"), self.name, self.origin)
+
+    @property
+    def automated(self):
+        """
+        Whether the job is fully automated and runs without any
+        intervention from the user
+        """
+        return self.plugin in ['shell', 'resource',
+                               'attachment', 'local']
 
     @property
     def via(self):
@@ -89,11 +117,11 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         return self._origin
 
-    def __init__(self, data, origin=None, checkbox=None, via=None):
+    def __init__(self, data, origin=None, provider=None, via=None):
         super(JobDefinition, self).__init__(data)
         self._resource_program = None
         self._origin = origin
-        self._checkbox = checkbox
+        self._provider = provider
         self._via = via
 
     def __str__(self):
@@ -102,16 +130,6 @@ class JobDefinition(BaseJob, IJobDefinition):
     def __repr__(self):
         return "<JobDefinition name:{!r} plugin:{!r}>".format(
             self.name, self.plugin)
-
-    def __getattr__(self, attr):
-        if attr in self._data:
-            return self._data[attr]
-        gettext_attr = "_{}".format(attr)
-        if gettext_attr in self._data:
-            value = self._data[gettext_attr]
-            # TODO: feed through gettext
-            return value
-        raise AttributeError(attr)
 
     def _get_persistance_subset(self):
         state = {}
@@ -212,18 +230,18 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         # XXX: this obviously requires a checkbox object to know where stuff is
         # but during the transition we may not have one available.
-        assert self._checkbox is not None
+        assert self._provider is not None
         # Use PATH that can lookup checkbox scripts
-        if self._checkbox.extra_PYTHONPATH:
+        if self._provider.extra_PYTHONPATH:
             env['PYTHONPATH'] = os.pathsep.join(
-                [self._checkbox.extra_PYTHONPATH]
+                [self._provider.extra_PYTHONPATH]
                 + env.get("PYTHONPATH", "").split(os.pathsep))
         # Update PATH so that scripts can be found
         env['PATH'] = os.pathsep.join(
-            [self._checkbox.extra_PATH]
+            [self._provider.extra_PATH]
             + env.get("PATH", "").split(os.pathsep))
         # Add CHECKBOX_SHARE that is needed by one script
-        env['CHECKBOX_SHARE'] = self._checkbox.CHECKBOX_SHARE
+        env['CHECKBOX_SHARE'] = self._provider.CHECKBOX_SHARE
         # Add CHECKBOX_DATA (temporary checkbox data)
         env['CHECKBOX_DATA'] = checkbox_data_dir
         # Inject additional variables that are requested in the config
@@ -248,7 +266,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         2) to set the ``via`` attribute (to aid the trusted launcher)
         """
         job = self.from_rfc822_record(record)
-        job._checkbox = self._checkbox
+        job._provider = self._provider
         job._via = self.get_checksum()
         return job
 

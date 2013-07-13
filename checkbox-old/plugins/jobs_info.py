@@ -58,7 +58,7 @@ job_schema = Map({
     "environ": List(String(), required=False),
     "requires": List(String(), separator=r"\n", required=False),
     "resources": List(String(), required=False),
-    "estimated_duration": Int(required=False),
+    "estimated_duration": Float(required=False),
     "timeout": Int(required=False),
     "user": String(required=False),
     "data": String(required=False)})

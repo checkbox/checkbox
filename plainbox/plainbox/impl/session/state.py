@@ -27,13 +27,15 @@ import os
 import shutil
 import tempfile
 
+from plainbox.abc import IJobResult
 from plainbox.impl.depmgr import DependencyError, DependencyDuplicateError
 from plainbox.impl.depmgr import DependencySolver
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.resource import ExpressionCannotEvaluateError
 from plainbox.impl.resource import ExpressionFailedError
 from plainbox.impl.resource import Resource
-from plainbox.impl.result import JobResult
+from plainbox.impl.result import DiskJobResult
+from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.rfc822 import RFC822SyntaxError
 from plainbox.impl.rfc822 import gen_rfc822_records
 from plainbox.impl.session.jobs import (
@@ -266,7 +268,7 @@ class _LegacySessionState:
                 desired_job_list.extend(
                     [j for j in self._job_list if j == job])
             elif (previous_session._job_state_map[job.name].result.outcome !=
-                    JobResult.OUTCOME_NONE):
+                    IJobResult.OUTCOME_NONE):
                 # Keep jobs results from the previous session without a
                 # definition in the current job_list only if they have
                 # a valid result
@@ -458,7 +460,42 @@ class SessionState(_LegacySessionState):
         # Return all dependency problems to the caller
         return problems
 
-    def update_job_result(self, job, job_result):
+    def get_estimated_duration(self, manual_overhead=30.0):
+        """
+        Provide the estimated duration of the jobs that have been selected
+        to run in this session (maintained by calling update_desired_job_list).
+
+        Manual jobs have an arbitrary figure added to their runtime to allow
+        for execution of the test steps and verification of the result.
+
+        :returns: (estimate_automated, estimate_manual)
+        
+        where estimate_automated is the value for automated jobs only and
+        estimate_manual is the value for manual jobs only. These can be 
+        easily combined. Either value can be None if the  value could not be 
+        calculated due to any job lacking the required estimated_duration field.
+        """
+        estimate_automated = 0.0
+        estimate_manual = 0.0
+        for job in self._run_list:
+            if job.automated and estimate_automated is not None:
+                if job.estimated_duration is not None:
+                    estimate_automated += job.estimated_duration
+                elif job.plugin != 'local':
+                    estimate_automated = None
+            elif not job.automated and estimate_manual is not None:
+                # We add 30 seconds to the run time for manual jobs to
+            	# account for extra time taken in reading the description
+            	# and performing any necessary steps
+                estimate_manual += manual_overhead
+                if job.estimated_duration is not None:
+                     estimate_manual += job.estimated_duration
+                elif job.command:
+                    estimate_manual = None
+
+        return (estimate_automated, estimate_manual)
+
+    def update_job_result(self, job, result):
         """
         Notice the specified test result and update readiness state.
 
@@ -482,15 +519,14 @@ class SessionState(_LegacySessionState):
         local jobs don't replace anything. They cannot replace an existing job
         with the same name.
         """
-        assert job_result.job is job
-        assert job_result.job in self._job_list
+        assert job in self._job_list
         # Store the result in job_state_map
-        self._job_state_map[job.name].result = job_result
+        self._job_state_map[job.name].result = result
         # Treat some jobs specially and interpret their output
         if job.plugin == "resource":
-            self._process_resource_result(job_result)
+            self._process_resource_result(job, result)
         elif job.plugin == "local":
-            self._process_local_result(job_result)
+            self._process_local_result(job, result)
         # Update all job readiness state
         self._recompute_job_readiness()
 
@@ -540,24 +576,23 @@ class SessionState(_LegacySessionState):
         """
         self._resource_map[resource_name] = resource_list
 
-    def _process_resource_result(self, result):
+    def _process_resource_result(self, job, result):
         new_resource_list = []
-        for record in self._gen_rfc822_records_from_io_log(result):
+        for record in self._gen_rfc822_records_from_io_log(job, result):
             # XXX: Consider forwarding the origin object here.  I guess we
             # should have from_frc822_record as with JobDefinition
             resource = Resource(record.data)
-            logger.info("Storing resource record %r: %s",
-                        result.job.name, resource)
+            logger.info("Storing resource record %r: %s", job.name, resource)
             new_resource_list.append(resource)
         # Replace any old resources with the new resource list
-        self._resource_map[result.job.name] = new_resource_list
+        self._resource_map[job.name] = new_resource_list
 
-    def _process_local_result(self, result):
+    def _process_local_result(self, job, result):
         # First parse all records and create a list of new jobs (confusing
         # name, not a new list of jobs)
         new_job_list = []
-        for record in self._gen_rfc822_records_from_io_log(result):
-            new_job = result.job.create_child_job_from_record(record)
+        for record in self._gen_rfc822_records_from_io_log(job, result):
+            new_job = job.create_child_job_from_record(record)
             new_job_list.append(new_job)
         # Then for each new job, add it to the job_list, unless it collides
         # with another job with the same name.
@@ -577,13 +612,13 @@ class SessionState(_LegacySessionState):
                     logging.warning(
                         ("Local job %s produced job %r that collides with"
                          " an existing job %r, the new job was discarded"),
-                        result.job, new_job, existing_job)
+                        job, new_job, existing_job)
                 else:
                     if not existing_job.via:
                         existing_job._via = new_job.via
 
-    def _gen_rfc822_records_from_io_log(self, result):
-        logger.debug("processing output from a job: %r", result.job)
+    def _gen_rfc822_records_from_io_log(self, job, result):
+        logger.debug("processing output from a job: %r", job)
         # Select all stdout lines from the io log
         line_gen = (record[2].decode('UTF-8', errors='replace')
                     for record in result.io_log
@@ -597,7 +632,7 @@ class SessionState(_LegacySessionState):
             # preceding records. This is worth testing
             logger.warning(
                 "local script %s returned invalid RFC822 data: %s",
-                result.job, exc)
+                job, exc)
 
     @property
     def job_list(self):
@@ -709,7 +744,7 @@ class SessionState(_LegacySessionState):
                 dep_job_state = self._job_state_map[dep_name]
                 # If the dependency did not have a chance to run yet add the
                 # PENDING_DEP inhibitor.
-                if dep_job_state.result.outcome == JobResult.OUTCOME_NONE:
+                if dep_job_state.result.outcome == IJobResult.OUTCOME_NONE:
                     inhibitor = JobReadinessInhibitor(
                         cause=JobReadinessInhibitor.PENDING_DEP,
                         related_job=dep_job_state.job)
@@ -719,7 +754,7 @@ class SessionState(_LegacySessionState):
                 # could be discarded but this would loose context and would
                 # prevent the operator from actually understanding why a job
                 # cannot run.
-                elif dep_job_state.result.outcome != JobResult.OUTCOME_PASS:
+                elif dep_job_state.result.outcome != IJobResult.OUTCOME_PASS:
                     inhibitor = JobReadinessInhibitor(
                         cause=JobReadinessInhibitor.FAILED_DEP,
                         related_job=dep_job_state.job)
@@ -728,37 +763,35 @@ class SessionState(_LegacySessionState):
 
 class SessionStateEncoder(json.JSONEncoder):
 
-    _class_indentifiers = {
+    _CLS_MAP = {
+        DiskJobResult: 'JOB_RESULT(d)',
         JobDefinition: 'JOB_DEFINITION',
-        JobResult: 'JOB_RESULT',
         JobState: 'JOB_STATE',
+        MemoryJobResult: 'JOB_RESULT(m)',
         SessionState: 'SESSION_STATE',
     }
+
+    _CLS_RMAP = {value: key for key, value in _CLS_MAP.items()}
 
     def default(self, obj):
         """
         JSON Serialize helper to encode SessionState attributes
         Convert objects to a dictionary of their representation
         """
-        if (isinstance(obj, (JobDefinition, JobResult, JobState,
-                             SessionState))):
-            d = {'_class_id': self._class_indentifiers[obj.__class__]}
+        if isinstance(obj, tuple(self._CLS_MAP.keys())):
+            d = {'_class_id': self._CLS_MAP[obj.__class__]}
             d.update(obj._get_persistance_subset())
             return d
         else:
             return json.JSONEncoder.default(self, obj)
 
-    def dict_to_object(self, d):
+    def dict_to_object(self, data):
         """
         JSON Decoder helper
         Convert dictionary to python objects
         """
-        if '_class_id' in d:
-            for c, id in self._class_indentifiers.items():
-                if id == d['_class_id']:
-                    cls = c
-                    inst = cls.from_json_record(d)
-                    break
+        if '_class_id' in data:
+            cls = self._CLS_RMAP[data['_class_id']]
+            return cls.from_json_record(data)
         else:
-            inst = d
-        return inst
+            return data

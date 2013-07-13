@@ -48,7 +48,7 @@ class SubunitReport(Plugin):
 
     def gather(self):
         logging.debug("Opening filename: %s", self.filename)
-        self.file = open(self.filename, "w")
+        self.file = open(self.filename, "w", errors="ignore")
 
     def prompt_test(self, interface, test):
         file = self.file

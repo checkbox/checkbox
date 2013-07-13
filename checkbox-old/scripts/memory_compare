@@ -3,29 +3,26 @@
 import os
 import sys
 
-from checkbox.parsers.dmidecode import DmidecodeParser
+from checkbox.parsers.lshwjson import LshwJsonParser
 from checkbox.parsers.meminfo import MeminfoParser
+from subprocess import check_output, PIPE
 
-THRESHOLD = 10
+THRESHOLD = 25
 
-class DmiResult:
+class LshwJsonResult:
 
     total_size = 0
 
-    def addDmiDevice(self, device):
-        form = getattr(device, "form", None)
-
-        if form and "IMM" in form:
-            try:
-                self.total_size += int(getattr(device, "size", 0))
-            except ValueError:
-                pass
+    def addHardware(self, hardware):
+        if hardware['id'] == 'memory':
+            self.total_size += int(hardware['size'])
 
 def get_installed_memory_size():
-    dmi = DmidecodeParser(os.popen('dmidecode'))
-    result = DmiResult()
-
-    dmi.run(result)
+    lshw = LshwJsonParser(check_output(['lshw','-json'],
+                          universal_newlines=True,
+                          stderr=PIPE))
+    result = LshwJsonResult()
+    lshw.run(result)
 
     return result.total_size
 
@@ -43,6 +40,15 @@ def get_visible_memory_size():
 
     return result.memtotal
 
+def get_threshold(installed_memory):
+    GB = 1024**3
+    if installed_memory <= 2 * GB:
+        return 25
+    elif installed_memory <= 6 * GB:
+        return 20
+    else:
+        return 10
+
 def main():
     if os.geteuid() != 0:
         print("This script must be run as root.", file=sys.stderr)
@@ -50,6 +56,7 @@ def main():
 
     installed_memory = get_installed_memory_size()
     visible_memory = get_visible_memory_size()
+    threshold = get_threshold(installed_memory)
 
     difference = installed_memory - visible_memory
     try:
@@ -57,21 +64,21 @@ def main():
     except ZeroDivisionError:
         print("Results:")
         print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
-        print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
-        print("\nFAIL: Either dmi or /proc/meminfo returned a memory size of 0 kB", file=sys.stderr)
+        print("\tlshw reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\nFAIL: Either lshw or /proc/meminfo returned a memory size of 0 kB", file=sys.stderr)
         return 1
     
-    if percentage <= THRESHOLD:
+    if percentage <= threshold:
         print("Results:")
         print("\t/proc/meminfo reports:\t%s kB" % visible_memory)
-        print("\tdmi reports:\t%s kB" % installed_memory)
-        print("\nPASS: Meminfo reports %d bytes less than DMI, a difference of %.2f%%. This is less than the %d%% variance allowed." % (difference, percentage, THRESHOLD))
+        print("\tlshw reports:\t%s kB" % installed_memory)
+        print("\nPASS: Meminfo reports %d bytes less than lshw, a difference of %.2f%%. This is less than the %d%% variance allowed." % (difference, percentage, threshold))
         return 0
     else:
         print("Results")
         print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
-        print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
-        print("\nFAIL: Meminfo reports %d bytes less than DMI, a difference of %.2f%%. Only a variance of %d%% in reported memory is allowed." % (difference, percentage, THRESHOLD), file=sys.stderr)
+        print("\tlshw reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\nFAIL: Meminfo reports %d bytes less than lshw, a difference of %.2f%%. Only a variance of %d%% in reported memory is allowed." % (difference, percentage, threshold), file=sys.stderr)
         return 1
 
 if __name__ == "__main__":

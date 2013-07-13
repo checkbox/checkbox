@@ -29,18 +29,18 @@ import os
 import tempfile
 import shutil
 
-from tempfile import TemporaryDirectory
 from unittest import TestCase
 
+from plainbox.abc import IJobResult
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyMissingError
 from plainbox.impl.resource import Resource
-from plainbox.impl.result import JobResult
+from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.session import JobReadinessInhibitor
 from plainbox.impl.session import SessionState
 from plainbox.impl.session import UndesiredJobReadinessInhibitor
 from plainbox.impl.session.state import SessionMetadata
-from plainbox.impl.testing_utils import make_io_log, make_job
+from plainbox.impl.testing_utils import make_job
 
 
 class SessionStateSmokeTests(TestCase):
@@ -197,6 +197,54 @@ class SessionStateAPITests(TestCase):
         self.assertEqual(len(session.job_list), 1)
         self.assertIsNot(clashing_job, session.job_list[0])
 
+    def test_get_estimated_duration_auto(self):
+        # Define jobs with an estimated duration
+        one_second = make_job("one_second", plugin="shell",
+                              command="foobar",
+                              estimated_duration=1.0)
+        half_second = make_job("half_second", plugin="shell",
+                               command="barfoo",
+                               estimated_duration=0.5)
+        session = SessionState([one_second, half_second])
+        session.update_desired_job_list([one_second, half_second])
+        self.assertEquals(session.get_estimated_duration(),
+                          (1.5, 0.0))
+
+    def test_get_estimated_duration_manual(self):
+        two_seconds = make_job("two_seconds", plugin="manual",
+                               command="farboo",
+                               estimated_duration=2.0)
+        shell_job = make_job("shell_job", plugin="shell",
+                             command="boofar",
+                             estimated_duration=0.6)
+        session = SessionState([two_seconds, shell_job])
+        session.update_desired_job_list([two_seconds, shell_job])
+        self.assertEquals(session.get_estimated_duration(),
+                          (0.6, 32.0))
+       
+    def test_get_estimated_duration_automated_unknown(self):
+        three_seconds = make_job("three_seconds", plugin="shell",
+                                 command="frob",
+                                 estimated_duration=3.0)
+        no_estimated_duration = make_job("no_estimated_duration",
+                                         plugin="shell",
+                                         command="borf")
+        session = SessionState([three_seconds, no_estimated_duration])
+        session.update_desired_job_list([three_seconds, no_estimated_duration])
+        self.assertEquals(session.get_estimated_duration(),
+                          (None, 0.0))
+
+    def test_get_estimated_duration_manual_unknown(self):
+        four_seconds = make_job("four_seconds", plugin="shell",
+                                command="fibble",
+                                estimated_duration=4.0)
+        no_estimated_duration = make_job("no_estimated_duration",
+                                         plugin="user-verify",
+                                         command="bibble")
+        session = SessionState([four_seconds, no_estimated_duration])
+        session.update_desired_job_list([four_seconds, no_estimated_duration])
+        self.assertEquals(session.get_estimated_duration(),
+                          (4.0, None))
 
 class SessionStateSpecialTests(TestCase):
 
@@ -251,9 +299,9 @@ class SessionStateReactionToJobResultTests(TestCase):
         self.job_R = make_job("R", plugin="resource")
         self.job_X = make_job("X", depends='Y')
         self.job_Y = make_job("Y")
-        self.job_list = [self.job_A, self.job_R, self.job_X, self.job_Y]
+        self.job_L = make_job("L", plugin="local")
+        self.job_list = [self.job_A, self.job_R, self.job_X, self.job_Y, self.job_L]
         self.session = SessionState(self.job_list)
-        self.scratch_dir = TemporaryDirectory()
 
     def job_state(self, name):
         # A helper function to avoid overly long expressions
@@ -317,10 +365,8 @@ class SessionStateReactionToJobResultTests(TestCase):
         # This function checks what happens when a JobResult for job R (which
         # is a resource job via the resource plugin) is presented to the
         # session.
-        result_R = JobResult({
-            'job': self.job_R,
-            'io_log': make_io_log(((0, 'stdout', b"attr: value\n"),),
-                                  self.scratch_dir)
+        result_R = MemoryJobResult({
+            'io_log': [(0, 'stdout', b"attr: value\n")],
         })
         self.session.update_job_result(self.job_R, result_R)
         # The most obvious thing that can happen, is that the result is simply
@@ -348,7 +394,7 @@ class SessionStateReactionToJobResultTests(TestCase):
     def test_normal_job_result_updates(self):
         # This function checks what happens when a JobResult for job A is
         # presented to the session.
-        result_A = JobResult({'job': self.job_A})
+        result_A = MemoryJobResult({})
         self.session.update_job_result(self.job_A, result_A)
         # As before the result should be stored as-is
         self.assertIs(self.job_state('A').result, result_A)
@@ -366,15 +412,14 @@ class SessionStateReactionToJobResultTests(TestCase):
         # resource jobs.  A JobResult with broken output is constructed below.
         # The output will describe one proper record, one broken record and
         # another proper record in that order.
-        result_R = JobResult({
-            'job': self.job_R,
-            'io_log': make_io_log((
+        result_R = MemoryJobResult({
+            'io_log': [
                 (0, 'stdout', b"attr: value-1\n"),
                 (1, 'stdout', b"\n"),
                 (1, 'stdout', b"I-sound-like-a-broken-record\n"),
                 (1, 'stdout', b"\n"),
-                (1, 'stdout', b"attr: value-2\n")),
-                self.scratch_dir)
+                (1, 'stdout', b"attr: value-2\n")
+            ],
         })
         # Since we cannot control the output of scripts and people indeed make
         # mistakes a warning is issued but no exception is raised to the
@@ -420,10 +465,7 @@ class SessionStateReactionToJobResultTests(TestCase):
         self.assertEqual(self.job_inhibitor('X', 0).related_job, self.job_Y)
         self.assertFalse(self.job_state('X').can_start())
         # When a failed Y result is presented X should switch to FAILED_DEP
-        result_Y = JobResult({
-            'job': self.job_Y,
-            'outcome': JobResult.OUTCOME_FAIL
-        })
+        result_Y = MemoryJobResult({'outcome': IJobResult.OUTCOME_FAIL})
         self.session.update_job_result(self.job_Y, result_Y)
         # Now job X should have a FAILED_DEP inhibitor instead of the
         # PENDING_DEP it had before. Everything else should stay as-is.
@@ -437,10 +479,7 @@ class SessionStateReactionToJobResultTests(TestCase):
         # A variant of the test case above, simply Y passes this time, making X
         # runnable
         self.session.update_desired_job_list([self.job_X])
-        result_Y = JobResult({
-            'job': self.job_Y,
-            'outcome': JobResult.OUTCOME_PASS
-        })
+        result_Y = MemoryJobResult({'outcome': IJobResult.OUTCOME_PASS})
         self.session.update_job_result(self.job_Y, result_Y)
         # Now X is runnable
         self.assertEqual(self.job_state('X').readiness_inhibitor_list, [])
@@ -449,10 +488,8 @@ class SessionStateReactionToJobResultTests(TestCase):
     def test_desired_job_X_cannot_run_with_no_resource_R(self):
         # A variant of the two test cases above, using A-R jobs
         self.session.update_desired_job_list([self.job_A])
-        result_R = JobResult({
-            'job': self.job_R,
-            'io_log': make_io_log(((0, 'stdout', b'attr: wrong value\n'),),
-                                  self.scratch_dir)
+        result_R = MemoryJobResult({
+            'io_log': [(0, 'stdout', b'attr: wrong value\n')],
         })
         self.session.update_job_result(self.job_R, result_R)
         # Now A is inhibited by FAILED_RESOURCE
@@ -467,20 +504,16 @@ class SessionStateReactionToJobResultTests(TestCase):
     def test_resource_job_result_overwrites_old_resources(self):
         # This function checks what happens when a JobResult for job R is
         # presented to a session that has some resources from that job already.
-        result_R_old = JobResult({
-            'job': self.job_R,
-            'io_log': make_io_log(((0, 'stdout', b"attr: old value\n"),),
-                                  self.scratch_dir)
+        result_R_old = MemoryJobResult({
+            'io_log': [(0, 'stdout', b"attr: old value\n")]
         })
         self.session.update_job_result(self.job_R, result_R_old)
         # So here the old result is stored into a new 'R' resource
         expected_before = {'R': [Resource({'attr': 'old value'})]}
         self.assertEqual(self.session._resource_map, expected_before)
         # Now we present the second result for the same job
-        result_R_new = JobResult({
-            'job': self.job_R,
-            'io_log': make_io_log(((0, 'stdout', b"attr: new value\n"),),
-                                  self.scratch_dir)
+        result_R_new = MemoryJobResult({
+            'io_log': [(0, 'stdout', b"attr: new value\n")]
         })
         self.session.update_job_result(self.job_R, result_R_new)
         # What should happen here is that the R resource is entirely replaced
@@ -489,10 +522,23 @@ class SessionStateReactionToJobResultTests(TestCase):
         expected_after = {'R': [Resource({'attr': 'new value'})]}
         self.assertEqual(self.session._resource_map, expected_after)
 
-    # TODO: add tests for local jobs
-
-    def tearDown(self):
-        self.scratch_dir.cleanup()
+    def test_local_job_creates_jobs(self):
+        # Create a result for the local job L
+        result_L = MemoryJobResult({
+            'io_log': [
+                (0, 'stdout', b'name: foo\n'),
+                (1, 'stdout', b'plugin: manual\n'),
+            ],
+        })
+        # Show this result to the session
+        self.session.update_job_result(self.job_L, result_L)
+        # A job should be generated
+        self.assertTrue("foo" in self.session.job_state_map)
+        job_foo = self.session.job_state_map['foo'].job
+        self.assertTrue(job_foo.name, "foo")
+        self.assertTrue(job_foo.plugin, "manual")
+        # It should be linked to the job L via the via attribute
+        self.assertTrue(job_foo.via, self.job_L.get_checksum())
 
 
 class SessionStateLocalStorageTests(TestCase):
@@ -513,9 +559,8 @@ class SessionStateLocalStorageTests(TestCase):
         self.job_A = make_job("A")
         self.job_list = [self.job_A]
         self.session = SessionState(self.job_list)
-        result_A = JobResult({
-            'job': self.job_A,
-            'outcome': JobResult.OUTCOME_PASS,
+        result_A = MemoryJobResult({
+            'outcome': IJobResult.OUTCOME_PASS,
             'comments': 'All good',
             'return_code': 0,
             'io_log': ((0, 'stdout', "Success !\n"),)
@@ -534,15 +579,6 @@ class SessionStateLocalStorageTests(TestCase):
                     },
                     "_result": {
                         "data": {
-                            "job": {
-                                "data": {
-                                    "name": "A",
-                                    "plugin": "dummy",
-                                    "requires": null,
-                                    "depends": null
-                                },
-                                "_class_id": "JOB_DEFINITION"
-                            },
                             "outcome": "pass",
                             "return_code": 0,
                             "comments": "All good",
@@ -554,7 +590,7 @@ class SessionStateLocalStorageTests(TestCase):
                                 ]
                             ]
                         },
-                        "_class_id": "JOB_RESULT"
+                        "_class_id": "JOB_RESULT(m)"
                     },
                     "_class_id": "JOB_STATE"
                 }
@@ -602,19 +638,10 @@ class SessionStateLocalStorageTests(TestCase):
         self.job_list = [self.job_A, self.job_R, self.job_X, self.job_Y]
         # Create a new session (session_dir is empty)
         self.session = SessionState(self.job_list)
-        result_R = JobResult({
-            'job': self.job_R,
-            'io_log': make_io_log(((0, 'stdout', b"attr: value\n"),),
-                                  self._sandbox)
-        })
-        result_A = JobResult({
-            'job': self.job_A,
-            'outcome': JobResult.OUTCOME_PASS
-        })
-        result_X = JobResult({
-            'job': self.job_X,
-            'outcome': JobResult.OUTCOME_PASS
-        })
+        result_R = MemoryJobResult({
+            'io_log': [(0, 'stdout', b"attr: value\n")]})
+        result_A = MemoryJobResult({'outcome': IJobResult.OUTCOME_PASS})
+        result_X = MemoryJobResult({'outcome': IJobResult.OUTCOME_PASS})
         # Job Y can't start as it requires job A
         self.assertFalse(self.job_state('Y').can_start())
         self.session.update_desired_job_list([self.job_X, self.job_Y])
