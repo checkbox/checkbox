@@ -1,6 +1,11 @@
 checkbox (0.16.7) UNRELEASED; urgency=low
 
-  * Incremented changelog
+  [ Jeff Lane ]
+  * jobs/suspend.txt.in, jobs/usb.txt.in, jobs/mediacard.txt.in: moved jobs to
+    suspend.txt.in for USB and Mediacard after suspend, renamed jobs
+    appropriately and adjusted the descriptions.
+    data/sru.whitelist: added usb and usb3 after suspend jobs for SRU i
+    (LP: #1201420)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:43:11 +0100
 
