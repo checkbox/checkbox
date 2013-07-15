@@ -40,8 +40,8 @@ HEADERS += \
 
 OTHER_FILES += \
     qml/outline/DummyListModel.qml \
-    qml/outline/TestListView.qml \
     qml/outline/TestSelectionButtons.qml \
     qml/outline/TestSelectionView.qml \
-    qml/outline/OldMainButtons.qml
+    qml/outline/OldMainButtons.qml \
+    qml/outline/TestSelectionListView.qml
 

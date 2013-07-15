@@ -27,18 +27,16 @@ import "."
 
 
 
+Rectangle {
+    color: "white"
+    height: parent.height
 
 
-    Rectangle {
-        color: "white"
-        height: parent.height
+    function selectAll(sel) {
+        groupedList.selectAll(sel);
+    }
 
-
-        function selectAll(sel) {
-            groupedList.selectAll(sel);
-        }
-
-        Flickable {
+    Flickable {
         id: listflick
         anchors.fill: parent
         height: parent.height
@@ -46,7 +44,6 @@ import "."
         clip: true
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
-
 
 
         ListView {
@@ -57,27 +54,6 @@ import "."
             model: testSuiteModel
 
 
-
- /*           delegate:  ListItem.Standard {
-                id: listitem
-
-                progression: true
-                property string groupname: group
-                property alias checked: itemcheckbox.checked
-                text: i18n.tr("       " + testname)
-                control: CheckBox {
-                    id: itemcheckbox
-                    anchors.verticalCenter: parent.verticalCenter
-                    checked: check
-                    onClicked: {
-                        testSuiteModel.setProperty(index, "check", checked);
-                        if (checked == false)
-                            groupedList.turnGroupOff(group)
-                    }
-                }
-
-
-            }*/
             delegate: Item{
                 width: parent.width
                 height: units.gu(7)
@@ -91,67 +67,90 @@ import "."
                     height: parent.height
                     anchors.right: parent.right
 
-                    onClicked: console.log("Show Details")
-                }
-
-                Label {
-                    id: filler
-                    text: "            "
-                }
-
-                CheckBox {
-                    id: itemcheckbox
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: filler.right
-                    anchors.leftMargin: units.gu(2)
-                    checked: check
                     onClicked: {
-                        testSuiteModel.setProperty(index, "check", checked);
-                        //if (checked == false)
-                        //    groupedList.turnGroupOff(group)
+                        testdetails.testItem = testSuiteModel.get(index);
                     }
                 }
 
+                Item {
+                    anchors.fill: parent
 
-                Text {
-                    text: testname
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: itemcheckbox.right
-                    anchors.leftMargin: units.gu(1)
-                }
-
-
-                Image {
-                    id: progressIcon
-                    source: "ListItemProgressionArrow.png"
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        right: parent.right
+                    Item {
+                        id: filler
+                        width: units.gu(4)
                     }
 
-                    opacity: enabled ? 1.0 : 0.5
+                    CheckBox {
+                        id: itemcheckbox
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: filler.right
+                        anchors.leftMargin: units.gu(2)
+                        checked: check
+                        onClicked: {
+                            testSuiteModel.setProperty(index, "check", checked);
+                            // only do this if we have a tri-state checkbox
+                            //if (checked == false)
+                            //    groupedList.turnGroupOff(group)
+                        }
+                    }
+
+
+                    Text {
+                        id: nameLabel
+                        text: testname
+                        width: units.gu(40)
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: itemcheckbox.right
+                        anchors.leftMargin: units.gu(1)
+
+                    }
+
+                    Item {
+                        id: typefiller
+                        width: units.gu(2)
+                        anchors.left: nameLabel.right
+                    }
+
+                    Text {
+                        id: typelabel
+                        text: "Automated" //type
+                        width: units.gu(30)
+                        anchors.left: typefiller.right
+                        anchors.verticalCenter: parent.verticalCenter
+
+                    }
+
+                    Item {
+                        id: descfiller
+                        width: units.gu(6)
+                        anchors.left: typelabel.right
+
+
+                    }
+
+                    Text {
+                        id: descLabel
+                        text: "" //description
+                        width: units.gu(8)
+                        anchors.left: descfiller.right
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+
+                    Image {
+                        id: progressIcon
+                        source: "ListItemProgressionArrow.png"
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            right: parent.right
+                        }
+
+                        opacity: enabled ? 1.0 : 0.5
+                    }
                 }
                 ListItem.ThinDivider {}
             }
-/*
-            section.property: "group"
-            section.criteria: ViewSection.FullString
-            section.delegate: ListItem.Standard {
-                id: groupitem
-                progression: false
-                text: i18n.tr(section)
-                property alias groupname: groupitem.text
-                property alias checked: groupcheckbox.checked
-                control: CheckBox {
-                    id: groupcheckbox
-                    anchors.verticalCenter: parent.verticalCenter
-                    checked: true
-                    onClicked: {
-                        groupedList.selectGroup(section, checked)
-                    }
-                }
-            }WELCOME
-*/
+
             section.property: "group"
             section.criteria: ViewSection.FullString
             section.delegate: Item {
@@ -172,7 +171,7 @@ import "."
                         itemdelegate.open = !itemdelegate.open
                         groupedList.openShutSubgroup(section, itemdelegate.open)
                         console.log("Open/Shut items below")
-                        }
+                    }
                 }
 
                 Label {
@@ -202,6 +201,8 @@ import "."
                 ListItem.ThinDivider {}
             }
 
+
+            // functions to do something across the whole list
             function selectAll(sel){
                 currentIndex = -1
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
@@ -241,17 +242,17 @@ import "."
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
-                    console.log(i,": ", curItem, "=", curItem.groupname);
-                    console.log(i,": ", sel, "=", sel, " height = ", curItem.height);
+                    //console.log(i,": ", curItem, "=", curItem.groupname);
+                    //console.log(i,": ", sel, "=", sel, " height = ", curItem.height);
 
-                    if (curItem.groupname === groupName && curItem.labelname != groupName){
-
+                    if (curItem.groupname === groupName && curItem.labelname !== groupName){
                         curItem.height = sel? units.gu(7):units.gu(0);
                         curItem.visible = sel;
                     }
                 }
             }
-}
+
+        }
 
 
     }

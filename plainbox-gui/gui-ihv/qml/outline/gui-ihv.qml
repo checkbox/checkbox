@@ -47,7 +47,7 @@ MainView {
         }
     }
 
-    // Fill in states for all the views.
+    // Fill in states for all the pages.
     // The pages/views will set the state to the next one when it is dones
     // like this: onClicked: {mainView.state = "TESTSELECTION"}
     states: [

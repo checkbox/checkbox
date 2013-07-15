@@ -28,11 +28,8 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import "."
 
 
-
-
-
 Page {
-    title: "Choose tests to run on your system:"
+    title: i18n.tr("Choose tests to run on your system:")
 
     Label {
         id: testselectionlabel
@@ -40,9 +37,6 @@ Page {
         anchors.left: parent.left
         anchors.leftMargin: units.gu(2)
         anchors.topMargin: units.gu(4)
-
-
-        //text: i18n.tr("Choose tests to run on your system:")
     }
 
     Item {
@@ -73,9 +67,7 @@ Page {
         }
     }
 
-
-
-    TestListView {
+    TestSelectionListView {
         id: testsuitelist
         height: units.gu(56)
         width: parent.width - units.gu(4)
@@ -108,6 +100,7 @@ Page {
         }
 
         onStartTesting: {
+            // CHANGE THIS TO NEXT PAGE TO BRING UP
             mainView.state = "DEMOWARNINGS"
             console.log("Start Testing")
         }
