@@ -25,84 +25,47 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import "."
 
-SuiteSelection {
-    id: mainview
-    height: units.gu(90)
+
+MainView {
+    id: mainView
+    width: units.gu(120)
+    height: units.gu(110)
 
 
-    // Below is test code, shows how to put up a warning dialog
-    // TODO == move this to WarningDialog.qml
-    Component {
-        id: warning_dialog
-        WarningDialog{
-            text: i18n.tr("What you are about to do will take a long time.  Are you sure you want to continue?")
-            showOK: true
-            showContinue: false
-            showCheckbox: true
+    PageStack {
+        id: pageStack
+        state: "WELCOME"
+        property string pageName: "DemoWarnings.qml"
 
-            onCont: {
-                checkIfChecked();
-                console.log("continue clicked");
-            }
+        Component.onCompleted: {
+            push(Qt.resolvedUrl(pageName))
+        }
 
-            onCancel: {
-                checkIfChecked();
-                console.log("cancel clicked");
-            }
-
-            function checkIfChecked(){
-                if (isChecked)
-                    console.log("do not warn again!");
-                else
-                    console.log("warn again");
-            }
-
+        onPageNameChanged: {
+            pop();
+            push(Qt.resolvedUrl(pageName))
         }
     }
 
-
-
-    Row {
-        visible: false
-        spacing: 2
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: units.gu(2)
-        Button {
-            id: warning_button
-            color: "yellow"
-            text: "warning..."
-            width: 100
-            onClicked:{
-                PopupUtils.open(warning_dialog, warning_button);
-            }
+    // Fill in states for all the pages.
+    // The pages/views will set the state to the next one when it is dones
+    // like this: onClicked: {mainView.state = "TESTSELECTION"}
+    states: [
+        State {
+            name: "WELCOME"
+            PropertyChanges { target: pageStack; pageName: "WelcomeView.qml"}
+        },
+        State {
+            name: "DEMOWARNINGS"
+            PropertyChanges { target: pageStack; pageName: "DemoWarnings.qml"}
+        },
+        State {
+            name: "TESTSELECTION"
+            PropertyChanges { target: pageStack; pageName: "TestSelectionView.qml"}
         }
 
-
-        Button {
-            color: "pink"
-            text: "failed..."
-            width: 100
-            onClicked:{
-                var warningDlg = Qt.createComponent("WarningDialog.qml");
-                if (warningDlg.status == Component.Ready) {
-                    var warningObj = warningDlg.createObject(parent, {"title": "Failed!",
-                                                                 "text": "Oh man!",
-                                                                 "showOK": true,
-                                                                 "showContinue": false,
-                                                                 "showCancel": false,
-                                                                 "showCheckbox" :true
-                                                             });
-                    warningObj.show();
-
-                    // need call this when object is closed (not sure how yet)
-                    if (warningObj.isChecked)
-                        console.log("do not warn again!");
-                    else
-                        console.log("warn AGAIN!")
-                }
-            }
-        }
-    }
+    ]
 }
+
+
 

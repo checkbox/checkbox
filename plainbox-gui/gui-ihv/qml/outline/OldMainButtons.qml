@@ -31,8 +31,7 @@ Row {
     signal actionChanged(string actionState)
 
     width: parent.width - units.gu(20)
-    spacing: (parent.width - (140*3))/5  // width - buttons / 5 spaces
-
+    spacing: (parent.width - (units.gu(16)*3))/4
     Button {
          id:selectionButton
          text: i18n.tr("selection")

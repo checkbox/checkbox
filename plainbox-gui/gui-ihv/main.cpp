@@ -25,23 +25,24 @@
 #include <QDir>
 #include <QtQml>
 #include "qtquick2applicationviewer.h"
+#include "listmodel.h"
 #include "testsuiteitem.h"
 
 
 // Load up test suites here (it can be moved to another file)
-void LoadTestSuiteList(QtQuick2ApplicationViewer *viewer){
-    QList<QObject*> list;
-    list.append(new TestSuiteItem("One", "Test1"));
-    list.append(new TestSuiteItem("One", "Test2"));
-    list.append(new TestSuiteItem("Two", "Test1"));
-    list.append(new TestSuiteItem("Two", "Test1"));
-    list.append(new TestSuiteItem("Two", "Test2"));
-    list.append(new TestSuiteItem("Two", "Test3"));
-    list.append(new TestSuiteItem("Two", "Test4"));
-    list.append(new TestSuiteItem("Three", "Test1"));
+ListModel* CreateTestSuiteModel(){
+    //QList<QObject*> list;
+    ListModel *model = new ListModel(new TestSuiteItem, qApp);
+    model->appendRow(new TestSuiteItem("Informational tests", "SATA/IDE devive information.", model));
+    model->appendRow(new TestSuiteItem("Hibernation tests", "power-management/hibernate_advanced", model));
+    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_scanning", model));
+    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_connection", model));
+    model->appendRow(new TestSuiteItem("LED tests", "led/wireless", model));
+    model->appendRow(new TestSuiteItem("Benchmarks tests", "benchmarks/network/network-loopback", model));
+    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/led_after_suspend/wireless", model));
+    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/wireless_after_suspenspeded", model));
 
-
-    viewer->rootContext()->setContextProperty("testSuiteModel",  QVariant::fromValue(list));
+    return model;
 }
 
 
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
         plugin->registerTypes("GuiEngine");
 
     QtQuick2ApplicationViewer viewer;
-    LoadTestSuiteList(&viewer);
+    viewer.rootContext()->setContextProperty("testSuiteModel", CreateTestSuiteModel());
 
     viewer.setMainQmlFile(QStringLiteral("qml/outline/gui-ihv.qml"));
     viewer.showExpanded();

@@ -24,66 +24,6 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
-/*!
-    \qmltype WarningDialog
-    \inherits Dialog
-    \inqmlmodule
-    \ingroup
-    \brief The Dialog This Dialog shows a Warning Dialog.
-    Turn on/off before showing:
-                ok, showOK
-                cancel, showCancel
-                continue, showContinue
-                'do not show warning' checkbox, showCheckbox
-    Signals: onOK, onCancel, onCont (continue)
-    Property: isChecked returns if the user checked 'do not show warning'
-
-    Example:
-    \qml
-        import Ubuntu.Components 0.1
-        import Ubuntu.Components.Popups 0.1
-        import "."
-
-        Item {
-            Component {
-                id: warning_dialog
-
-                WarningDialog{
-                    text: i18n.tr("The hoopla met the poopla and we all could no longer do as we want.  Would you like me to try again?")
-                    showOK: false
-                    showCheckbox: true
-
-                    onCont: {
-                        checkIfChecked();
-                       console.log("continue clicked");
-                    }
-
-                    onCancel: {
-                      checkIfChecked();
-                     console.log("cancel clicked");
-                    }
-
-                    function checkIfChecked(){
-                        if (isChecked)
-                            console.log("do not warn again!");
-                        else
-                            console.log("warn again");
-                    }
-
-                }
-              }
-            Button {
-                id: warning_button
-                color: "yellow"
-                text: "warning..."
-                width: 100
-                onClicked:{
-                    PopupUtils.open(warning_dialog, warning_button);
-                }
-            }
-    }
-    \endqml
-*/
 
 Dialog {
     id: dialog

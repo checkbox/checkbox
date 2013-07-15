@@ -33,13 +33,13 @@ Row {
 
 
     width: parent.width - units.gu(20)
-    spacing: (parent.width - (140*3))/5  // width - buttons / 5 spaces
+    spacing: (parent.width - (units.gu(18)*3))/3
 
     Button {
          id:selectButton
          text: i18n.tr("Select All")
          color: UbuntuColors.warmGrey
-         width: units.gu(16)
+         width: units.gu(18)
          onClicked: {
              bottombuttons.selectAll();
          }
@@ -48,7 +48,7 @@ Row {
          id: deselectButton
          text: i18n.tr("Deselect All")
          color: UbuntuColors.warmGrey
-         width: units.gu(16)
+         width: units.gu(18)
          onClicked:{
              bottombuttons.deselectAll();
          }
@@ -58,7 +58,7 @@ Row {
         id: startTesting
         text: i18n.tr("Start Testing")
         color: UbuntuColors.lightAubergine
-        width: units.gu(16)
+        width: units.gu(18)
         onClicked:{
             bottombuttons.startTesting();
         }

@@ -27,12 +27,21 @@ DEPLOYMENTFOLDERS = folder_01
 QML_IMPORT_PATH =
 
 SOURCES += main.cpp \
-    testsuiteitem.cpp
+    testsuiteitem.cpp \
+    listmodel.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    testsuiteitem.h
+    testsuiteitem.h \
+    listmodel.h
+
+OTHER_FILES += \
+    qml/outline/DummyListModel.qml \
+    qml/outline/TestSelectionButtons.qml \
+    qml/outline/TestSelectionView.qml \
+    qml/outline/OldMainButtons.qml \
+    qml/outline/TestSelectionListView.qml
 
