@@ -40,7 +40,7 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text: "Test details"
+            text: i18n.tr("Test details")
         }
 
         // Left side of the details
