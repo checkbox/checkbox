@@ -32,16 +32,15 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 
         signal selectSuite(string suite, bool sel)
 
-        Label {
+        Item {
             id: suitefiller
-            text: " "
+            width: units.gu(1)
         }
 
         CheckBox {
             id: suitecheckbox
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitefiller.right
-            anchors.leftMargin: units.gu(1)
             checked: true
             onClicked: {
                 itemdelegate.selectSuite(section, checked);
