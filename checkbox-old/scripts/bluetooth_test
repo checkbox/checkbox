@@ -84,7 +84,7 @@ class ObexFTPTest:
             output = check_output(command, stderr=STDOUT,
                                   universal_newlines=True, cwd=cwd)
             return self._error_helper(expected_pattern, output=output)
-        except FileNotFoundError as e:
+        except OSError as e:
             logging.error(e)
             logging.error("Binary not found, "
                           "maybe obexftp is not installed")
