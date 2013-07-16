@@ -56,6 +56,10 @@ MainView {
             PropertyChanges { target: pageStack; pageName: "WelcomeView.qml"}
         },
         State {
+            name: "SUITESELECTION"
+            PropertyChanges { target: pageStack; pageName: "SuiteSelection.qml"}
+        },
+        State {
             name: "DEMOWARNINGS"
             PropertyChanges { target: pageStack; pageName: "DemoWarnings.qml"}
         },

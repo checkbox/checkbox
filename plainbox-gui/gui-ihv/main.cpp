@@ -33,14 +33,14 @@
 ListModel* CreateTestSuiteModel(){
     //QList<QObject*> list;
     ListModel *model = new ListModel(new TestSuiteItem, qApp);
-    model->appendRow(new TestSuiteItem("Informational tests", "SATA/IDE devive information.", model));
-    model->appendRow(new TestSuiteItem("Hibernation tests", "power-management/hibernate_advanced", model));
-    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_scanning", model));
-    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_connection", model));
-    model->appendRow(new TestSuiteItem("LED tests", "led/wireless", model));
-    model->appendRow(new TestSuiteItem("Benchmarks tests", "benchmarks/network/network-loopback", model));
-    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/led_after_suspend/wireless", model));
-    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/wireless_after_suspenspeded", model));
+    model->appendRow(new TestSuiteItem("Informational tests", "SATA/IDE devive information.", 60, "Automatic", model));
+    model->appendRow(new TestSuiteItem("Hibernation tests", "power-management/hibernate_advanced", 22, "Manual", model));
+    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_scanning", 360, "Automatic", model));
+    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_connection", 600, "Automatic", model));
+    model->appendRow(new TestSuiteItem("LED tests", "led/wireless", 200, "Manual",model));
+    model->appendRow(new TestSuiteItem("Benchmarks tests", "benchmarks/network/network-loopback", 100, "Manual",model));
+    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/led_after_suspend/wireless", 1, "Manual",model));
+    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/wireless_after_suspenspeded", 2,  "Manual",model));
 
     return model;
 }

@@ -28,8 +28,10 @@ import "."
 
 
 Rectangle {
+    id: suitetestlist
     color: "white"
     height: parent.height
+    width: parent.width
 
 
     function selectAll(sel) {
@@ -40,180 +42,69 @@ Rectangle {
         id: listflick
         anchors.fill: parent
         height: parent.height
-        width: parent.width
+
         clip: true
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
+
+        Component {
+            id: highlight
+            Rectangle {
+                width: groupedList.width
+                height: units.gu(7)
+                color: "lightsteelblue";
+                radius: 5
+            }
+        }
+
 
 
         ListView {
             id: groupedList
             width: parent.width
-            height: units.gu(12) * groupedList.count
+            height: units.gu(12) * groupedList.count + units.gu(1)
             interactive: false
             model: testSuiteModel
 
-
-            delegate: Item{
-                width: parent.width
-                height: units.gu(7)
-                property string groupname: group
-                property alias checked: itemcheckbox.checked
-                property string labelname: testname
-
-
-                MouseArea {
-                    width: parent.width - itemcheckbox.width
-                    height: parent.height
-                    anchors.right: parent.right
-
-                    onClicked: {
-                        testdetails.testItem = testSuiteModel.get(index);
-                    }
-                }
-
-                Item {
-                    anchors.fill: parent
-
-                    Item {
-                        id: filler
-                        width: units.gu(4)
-                    }
-
-                    CheckBox {
-                        id: itemcheckbox
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: filler.right
-                        anchors.leftMargin: units.gu(2)
-                        checked: check
-                        onClicked: {
-                            testSuiteModel.setProperty(index, "check", checked);
-                            // only do this if we have a tri-state checkbox
-                            //if (checked == false)
-                            //    groupedList.turnGroupOff(group)
-                        }
-                    }
-
-
-                    Text {
-                        id: nameLabel
-                        text: testname
-                        width: units.gu(40)
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: itemcheckbox.right
-                        anchors.leftMargin: units.gu(1)
-
-                    }
-
-                    Item {
-                        id: typefiller
-                        width: units.gu(2)
-                        anchors.left: nameLabel.right
-                    }
-
-                    Text {
-                        id: typelabel
-                        text: "Automated" //type
-                        width: units.gu(30)
-                        anchors.left: typefiller.right
-                        anchors.verticalCenter: parent.verticalCenter
-
-                    }
-
-                    Item {
-                        id: descfiller
-                        width: units.gu(6)
-                        anchors.left: typelabel.right
-
-
-                    }
-
-                    Text {
-                        id: descLabel
-                        text: "" //description
-                        width: units.gu(8)
-                        anchors.left: descfiller.right
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-
-                    Image {
-                        id: progressIcon
-                        source: "ListItemProgressionArrow.png"
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            right: parent.right
-                        }
-
-                        opacity: enabled ? 1.0 : 0.5
-                    }
-                }
-                ListItem.ThinDivider {}
-            }
+            delegate: TestSelectionTestDelegate {}
 
             section.property: "group"
             section.criteria: ViewSection.FullString
-            section.delegate: Item {
-                id: itemdelegate
-                width: parent.width
-                height: units.gu(7)
-                property string groupname: section
-                property alias checked: groupcheckbox.checked
-                property string labelname: section
-                property bool open: true
+            section.delegate: TestSelectionSuiteDelegate{}
 
-                MouseArea {
-                    width: parent.width - groupcheckbox.width
-                    height: parent.height
-                    anchors.right: parent.right
+            highlight: highlight
+            highlightFollowsCurrentItem: true
 
-                    onClicked: {
-                        itemdelegate.open = !itemdelegate.open
-                        groupedList.openShutSubgroup(section, itemdelegate.open)
-                        console.log("Open/Shut items below")
-                    }
-                }
-
-                Label {
-                    id: groupfiller
-                    text: " "
-                }
-
-                CheckBox {
-                    id: groupcheckbox
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: groupfiller.right
-                    anchors.leftMargin: units.gu(1)
-                    checked: true
-                    onClicked: {
-                        groupedList.selectGroup(section, checked)
-                    }
-                }
-
-
-                Text {
-                    id: grouptext
-                    text: section
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: groupcheckbox.right
-                    anchors.leftMargin: units.gu(1)
-                }
-                ListItem.ThinDivider {}
-            }
-
+            Component.onCompleted:testdetails.testItem = testSuiteModel.get(0);
 
             // functions to do something across the whole list
+
+            // select/deselect all items in the list
             function selectAll(sel){
+                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                    testSuiteModel.setProperty(i, "check", sel);
+
+                // this is to select the group items and to make sure data is updated
+                var oldCurrent = currentIndex
                 currentIndex = -1
-                for (var i = 0; i < groupedList.contentItem.children.length; i++)
-                {
+                for (var i = 0; i < groupedList.contentItem.children.length; i++){
                     var curItem = groupedList.contentItem.children[i];
-                    //console.log(i,": ", curItem, "=", curItem.text);
-                    curItem.checked = sel;
+                        curItem.checked = sel;
                 }
+                currentIndex = oldCurrent
             }
 
+
+            // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
+                for (var i = testSuiteModel.count - 1; i >=0; i--){
+                    var item = testSuiteModel.get(i);
+                    if (item.group === groupName)
+                        testSuiteModel.setProperty(i, "check", sel);
+                }
+
+                // this is to select the group items and to make sure data is updated
+                var oldCurrent = currentIndex
                 currentIndex = -1
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
@@ -223,21 +114,93 @@ Rectangle {
                     if (curItem.groupname === groupName)
                         curItem.checked = sel;
                 }
+                currentIndex = oldCurrent
             }
 
-            function turnGroupOff(groupName){
+            // determines if one or more subitems are checked
+            // if at least one subitem is checked, the group is checked
+            function setGroupCheck(groupName){
+                var oldCurrent = currentIndex
                 currentIndex = -1
-                for (var i = 0; i < groupedList.contentItem.children.length; i++)
+                var setCheck = false
+                var i = groupedList.contentItem.children.length - 1
+
+                for (;i >= 0 && setCheck === false; i--)
                 {
                     var curItem = groupedList.contentItem.children[i];
-                    //console.log(i,": ", curItem, "=", curItem.text);
 
-                    if (curItem.labelname === groupName)
-                        curItem.checked = false;
+                    // determine if subitem is checked
+                    if (curItem.groupname === groupName && curItem.labelname !== groupName)
+                        if (curItem.checked === true)
+                            setCheck = true;
+
                 }
+                if (setCheck === true)
+                {
+                    for (i = groupedList.contentItem.children.length - 1; i >= 0; i--)
+                    {
+                        curItem = groupedList.contentItem.children[i];
+                        if (curItem.labelname === groupName)
+                           curItem.checked = true
+                    }
+                }
+                else
+                {
+                    for (i = groupedList.contentItem.children.length - 1; i >= 0; i--)
+                    {
+                        curItem = groupedList.contentItem.children[i];
+                        if (curItem.labelname === groupName)
+                           curItem.checked = false
+                    }
+                }
+                currentIndex = oldCurrent;
             }
 
+            // If any subitems are selected, group should be selected.
+            function isGroupSelected(section){
+                var isSel = false;
+                for (var i = testSuiteModel.count - 1; i >=0 && isSel === false; i--)
+                {
+                    var curItem = testSuiteModel.get(i);
+                    //console.log("Section: ", section, " ", i,": ", curItem, "=", curItem.group, " check:", curItem.check);
+
+                    if (curItem.group === section && curItem.check === "true"){
+                        isSel = true;
+                    }
+                }
+                return isSel;
+            }
+
+            // Add up all the selected tests in a group
+            function getEstimatedTime(section){
+                var estTimeStr = "";
+                var estTimeInt=0;
+
+                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                {
+                    var curItem = testSuiteModel.get(i);
+
+                    //console.log("curItem.group:", curItem.group, "check", curItem.check)
+                    if (curItem.group === section && curItem.check === "true")
+                        estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
+
+                }
+                if (estTimeInt == 0)
+                    estTimeStr = "";
+                else if (estTimeInt/60 < 1)
+                    estTimeStr = i18n.tr("< 1 minute");
+                else {
+                    var durMinutes = Math.round(estTimeInt/60);
+                    estTimeStr = durMinutes.toString() + i18n.tr(" minute");
+                    if (durMinutes > 1)
+                        estTimeStr += 's';
+                }
+                return  estTimeStr;
+            }
+
+            //  Open/Close gruops
             function openShutSubgroup(groupName, sel){
+                var oldCurrent = currentIndex;
                 currentIndex = -1
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
@@ -250,6 +213,7 @@ Rectangle {
                         curItem.visible = sel;
                     }
                 }
+                currentIndex = oldCurrent;
             }
 
         }

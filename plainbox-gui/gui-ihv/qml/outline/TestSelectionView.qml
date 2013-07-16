@@ -47,23 +47,42 @@ Page {
         anchors.top: testselectionlabel.bottom
         anchors.margins: units.gu(2)
 
-        Text  {
-            id: complabel
+        Item {
+            id: compfiller
+            width: units.gu(6)
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(6)
-            text: i18n.tr("Components")
         }
         Text  {
-            id: typelabel
+            id: complabel
+            anchors.left: compfiller.right
+            width: units.gu(12)
+            text: i18n.tr("Components")
+        }
+        Item {
+            id: typefiller
+            width: units.gu(28)
             anchors.left: complabel.right
-            anchors.leftMargin: units.gu(40)
+        }
+
+        Text  {
+            id: typelabel
+            anchors.left: typefiller.right
+            anchors.leftMargin: units.gu(10)
             text: i18n.tr("Type")
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Item {
+            id: descfiller
+            width: units.gu(24)
+            anchors.left: typelabel.right
         }
         Text  {
             id: descriptionlabel
-            anchors.left: typelabel.right
-            anchors.leftMargin: units.gu(30)
+            anchors.left: descfiller.right
+            width: units.gu(10)
             text: i18n.tr("Description")
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 

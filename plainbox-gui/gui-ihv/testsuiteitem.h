@@ -29,23 +29,30 @@ class TestSuiteItem : public ListItem
     Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged)
     Q_PROPERTY(QString testname READ testname WRITE setTestname NOTIFY testnameChanged)
     Q_PROPERTY(bool check READ check WRITE setCheck NOTIFY checkChanged)
+    Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
+    Q_PROPERTY(QString type READ type)
+
+
 
 signals:
     void groupChanged();
     void testnameChanged();
     void checkChanged();
+    void durationChanged();
 
 public:
       enum Roles {
         GroupRole = Qt::UserRole+1,
         TestNameRole,
-        CheckRole
+        CheckRole,
+        DurationRole,
+        TypeRole
       };
 
 
 public:
     TestSuiteItem(QObject * parent = 0 ) : ListItem(parent), m_check(true){}
-    TestSuiteItem(const QString &groupName, const QString &testname, QObject * parent = 0 );
+    TestSuiteItem(const QString &groupName, const QString &testname, int durationInSeconds, const QString &type, QObject * parent = 0 );
 
     QVariant data(int role) const;
     void setData(const QVariant & value, int role);
@@ -62,12 +69,18 @@ public:
     inline bool check() const { return m_check; }
     void setCheck(bool check);
 
+    inline int duration() const { return m_duration; }
+    void setDuration(int duration);
+
+    inline QString type() const {return m_type; }
+
 
 private:
     QString m_group;
     QString m_testName;
     bool m_check;
-
+    int m_duration;
+    QString m_type;
 };
 
 

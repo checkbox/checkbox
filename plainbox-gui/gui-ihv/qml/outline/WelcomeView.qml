@@ -28,7 +28,7 @@ import Ubuntu.Components 0.1
 
 
 Page {
-    title: "Welcome!"
+    title: i18n.tr("Welcome!")
 
 
 
@@ -39,6 +39,6 @@ Page {
          anchors.margins: units.gu(2)
          text: i18n.tr("Move on to Test Selection")
          color: UbuntuColors.lightAubergine
-         onClicked: {mainView.state = "TESTSELECTION"}
+         onClicked: {mainView.state = "SUITESELECTION"}
     }
 }
