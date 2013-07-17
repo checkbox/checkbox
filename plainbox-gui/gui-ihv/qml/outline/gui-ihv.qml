@@ -29,7 +29,7 @@ import "."
 MainView {
     id: mainView
     width: units.gu(120)
-    height: units.gu(110)
+    height: units.gu(100)
 
 
     PageStack {
@@ -66,6 +66,10 @@ MainView {
         State {
             name: "TESTSELECTION"
             PropertyChanges { target: pageStack; pageName: "TestSelectionView.qml"}
+        },
+        State {
+            name: "RUNMANAGER"
+            PropertyChanges {target: pageStack; pageName: "RunManagerView.qml"}
         }
 
     ]

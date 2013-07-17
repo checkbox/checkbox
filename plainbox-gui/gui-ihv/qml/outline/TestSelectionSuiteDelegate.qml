@@ -27,10 +27,13 @@ import "./artwork"
 
 Component {
     id: groupDelegate
+
+
     Item {
         id: itemdelegate
         width: parent.width
         height: units.gu(7)
+
         property string groupname: section
         property alias checked: groupcheckbox.checked
         property string labelname: section

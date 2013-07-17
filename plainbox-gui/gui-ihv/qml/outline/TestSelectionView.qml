@@ -31,10 +31,9 @@ import "."
 Page {
     title: i18n.tr("Choose tests to run on your system:")
 
-    Label { // puts a space at the top
+    Item { // puts a space at the top
         id: filler
-        width: parent.width
-        height: units.gu(4)
+        height: units.gu(0)
         anchors {
             left: parent.left
             top: parent.top
@@ -119,8 +118,6 @@ Page {
         id: testbuttons
         anchors{
              horizontalCenter: parent.horizontalCenter
-             //top: testdetails.bottom
-             //topMargin: units.gu(2)
              bottom: parent.bottom
              bottomMargin: units.gu(2)
         }
@@ -135,7 +132,7 @@ Page {
 
         onStartTesting: {
             // CHANGE THIS TO NEXT PAGE TO BRING UP
-            mainView.state = "DEMOWARNINGS"
+            mainView.state = "RUNMANAGER"
             console.log("Start Testing")
         }
     }

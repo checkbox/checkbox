@@ -31,9 +31,7 @@ Row {
     signal deselectAll
     signal startTesting
 
-
-    width: parent.width - units.gu(20)
-    spacing: (parent.width - (units.gu(18)*3))/3
+    spacing: units.gu(12)
 
     Button {
          id:selectButton

@@ -22,20 +22,52 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import "."
+
+
+
 
 
 Page {
-    title: i18n.tr("Welcome!")
+    title: i18n.tr("Run Manager")
 
-
-
-    Button {
-         anchors.left: parent.left
-         anchors.right: parent.right
-         anchors.bottom: parent.bottom
-         anchors.margins: units.gu(2)
-         text: i18n.tr("OK")
-         color: UbuntuColors.lightAubergine
-         onClicked: {mainView.state = "SUITESELECTION"}
+    Item {
+        id: filler
+        height: units.gu(0)
     }
+
+
+
+    RunManagerListView {
+        id: testsuitelist
+
+        width: parent.width - units.gu(4)
+
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: filler.bottom
+            bottom: runbuttons.top
+            margins: units.gu(2)
+        }
+    }
+
+
+    RunManagerButtons {
+        id: runbuttons
+
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            margins: units.gu(2)
+        }
+
+        onCancel:{
+            console.log("On Cancel")
+        }
+
+        onPauseTest: {
+            console.log("Pause")
+        }
+    }
+
 }

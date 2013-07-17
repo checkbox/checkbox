@@ -19,23 +19,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 
-Page {
-    title: i18n.tr("Welcome!")
 
+Row {
+    id: bottombuttons
+    spacing: units.gu(12)
+
+    signal cancel
+    signal pauseTest
 
 
     Button {
-         anchors.left: parent.left
-         anchors.right: parent.right
-         anchors.bottom: parent.bottom
-         anchors.margins: units.gu(2)
-         text: i18n.tr("OK")
-         color: UbuntuColors.lightAubergine
-         onClicked: {mainView.state = "SUITESELECTION"}
+         id:cancelButton
+         text: i18n.tr("Cancel")
+         color: UbuntuColors.warmGrey
+         width: units.gu(18)
+         onClicked: {
+             bottombuttons.cancel();
+         }
     }
+
+    Button {
+        id: pauseButton
+        text: i18n.tr("Pause")
+        color: UbuntuColors.lightAubergine
+        width: units.gu(18)
+        onClicked:{
+            bottombuttons.pauseTest();
+        }
+    }
+
+
 }
