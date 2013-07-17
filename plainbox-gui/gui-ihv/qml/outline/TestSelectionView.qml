@@ -31,6 +31,7 @@ import "."
 Page {
     title: i18n.tr("Choose tests to run on your system:")
 
+
     Item { // puts a space at the top
         id: filler
         height: units.gu(0)
@@ -92,9 +93,9 @@ Page {
 
     TestSelectionListView {
         id: testsuitelist
-        height: parent.height - filler.height - testlistheaders.height - testbuttons.height - units.gu(12)
+        height: parent.height - filler.height - testlistheaders.height - summary.height - testbuttons.height - units.gu(12)
 
-        width: parent.width - units.gu(4)
+        width: testlistheaders.width
 
         anchors{
             horizontalCenter: parent.horizontalCenter
@@ -102,14 +103,17 @@ Page {
         }
     }
 
+
+
     TestSelectionDetails {
         id: testdetails
         height: units.gu(4)
-        width: parent.width - units.gu(4)
+        width: testlistheaders.width
+
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: testsuitelist.bottom
-            topMargin: units.gu(2)
+            topMargin: units.gu(1)
         }
     }
 
@@ -119,7 +123,7 @@ Page {
         anchors{
              horizontalCenter: parent.horizontalCenter
              bottom: parent.bottom
-             bottomMargin: units.gu(2)
+             bottomMargin: units.gu(4)
         }
 
         onSelectAll:{
@@ -134,6 +138,15 @@ Page {
             // CHANGE THIS TO NEXT PAGE TO BRING UP
             mainView.state = "RUNMANAGER"
             console.log("Start Testing")
+        }
+    }
+
+    TestSelectionSummary{
+        id: summary
+        width: parent.width
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
         }
     }
 }
