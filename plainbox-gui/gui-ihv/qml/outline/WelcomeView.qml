@@ -37,7 +37,7 @@ Page {
          anchors.right: parent.right
          anchors.bottom: parent.bottom
          anchors.margins: units.gu(2)
-         text: i18n.tr("Move on to Test Selection")
+         text: i18n.tr("OK")
          color: UbuntuColors.lightAubergine
          onClicked: {mainView.state = "SUITESELECTION"}
     }

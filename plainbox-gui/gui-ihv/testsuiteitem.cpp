@@ -22,6 +22,7 @@
 #include <qdebug.h>
 #include "testsuiteitem.h"
 
+
 TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, int duration, const QString &type, QObject * parent  ) :
     ListItem( parent ),
     m_group(groupName),

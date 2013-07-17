@@ -46,5 +46,6 @@ OTHER_FILES += \
     qml/outline/TestSelectionListView.qml \
     qml/outline/TestSelectionSuiteDelegate.qml \
     qml/outline/TestSelectionTestDelegate.qml \
-    qml/outline/SuiteSelectionDelegate.qml
+    qml/outline/SuiteSelectionDelegate.qml \
+    qml/outline/SuiteSelectionView.qml
 

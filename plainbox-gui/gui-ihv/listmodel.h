@@ -69,7 +69,7 @@ protected:
 private slots:
   void handleItemChange();
 
-private:
+protected:
   ListItem* m_prototype;
   QList<ListItem*> m_list;
   int count;

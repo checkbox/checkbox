@@ -23,6 +23,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import "."
 
 
 
@@ -39,23 +40,31 @@ Page {
         id: suitelist
         width: parent.width - units.gu(4)
         color: "white"
-        height: parent.height - filler.height - okbutton.height - units.gu(10)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: filler.bottom
+        height: parent.height - filler.height - okbutton.height - units.gu(6)
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: filler.bottom
+        }
 
         ListView {
             id: testselection
             height: parent.height
             width: parent.width
-            contentHeight: testSuiteModel.count
+            anchors.fill: parent
+            contentHeight: units.gu(12) * testSuiteModel.count
             interactive: true
             clip: true
+            boundsBehavior : Flickable.StopAtBounds
             model: testSuiteModel
+
             delegate: Item {}
-            section.property: "group"
-            section.criteria: ViewSection.FullString
-            section.delegate: SuiteSelectionDelegate{
-                onSelectSuite: {
+
+            section {
+                property: "group"
+                criteria: ViewSection.FullString
+                delegate: SuiteSelectionDelegate{
+
+                    onSelectSuite: {
                     // In the model, select all tests in the suite
                     for (var i = testSuiteModel.count - 1; i >= 0; i--){
                         var item = testSuiteModel.get(i);
@@ -64,15 +73,23 @@ Page {
                      }
                 }
             }
+            }
+        }
+        Scrollbar {
+            flickableItem: testselection
+            align: Qt.AlignTrailing
         }
     }
 
 
     Button {
         id: okbutton
-        anchors.horizontalCenter:parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.margins: units.gu(2)
+        width: units.gu(20)
+        anchors {
+            horizontalCenter:parent.horizontalCenter
+            bottom: parent.bottom
+            margins: units.gu(2)
+        }
         text: i18n.tr("OK")
         color: UbuntuColors.lightAubergine
         onClicked: {mainView.state = "TESTSELECTION"}

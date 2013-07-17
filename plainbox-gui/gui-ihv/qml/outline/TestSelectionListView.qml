@@ -68,9 +68,11 @@ Rectangle {
 
             delegate: TestSelectionTestDelegate {}
 
-            section.property: "group"
-            section.criteria: ViewSection.FullString
-            section.delegate: TestSelectionSuiteDelegate{}
+            section {
+                property: "group"
+                criteria: ViewSection.FullString
+                delegate: TestSelectionSuiteDelegate{}
+            }
 
             highlight: highlight
             highlightFollowsCurrentItem: true
@@ -211,6 +213,7 @@ Rectangle {
                     if (curItem.groupname === groupName && curItem.labelname !== groupName){
                         curItem.height = sel? units.gu(7):units.gu(0);
                         curItem.visible = sel;
+                        groupedList.height += sel?units.gu(7):-units.gu(7)
                     }
                 }
                 currentIndex = oldCurrent;

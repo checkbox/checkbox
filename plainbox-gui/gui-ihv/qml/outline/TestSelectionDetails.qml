@@ -26,6 +26,7 @@ Item {
     id: testseldetails
     property var testItem;
     property bool showDetails;
+    property int openHeight: units.gu(18)
 
 
     onTestItemChanged: {
@@ -36,15 +37,17 @@ Item {
     onShowDetailsChanged:{
         if (showDetails){
             progressIcon.source = "DownArrow.png";
-            detailsFlick.height = testseldetails.height;
+            detailsFlick.height = openHeight
+            testsuitelist.height -= openHeight
         }
         else{
             progressIcon.source = "RightArrow.png";
             detailsFlick.height = 0
+            testsuitelist.height += openHeight
         }
     }
 
-    // Open Details
+    // Open/Shut label + icon
     Item {
         id: detailsItem
         height: parent.height
@@ -88,7 +91,7 @@ Item {
         anchors.leftMargin: units.gu(2)
         width: parent.width - detailsItem.width - units.gu(2)
         height: 0  // initialize to closed
-        contentHeight: rightRect.height
+        contentHeight: detailsblock.height
         clip: true
         boundsBehavior : Flickable.StopAtBounds
 
@@ -97,111 +100,152 @@ Item {
             anchors.right: parent.right
             anchors.top: parent.top
 
-            height: testseldetails.height + units.gu(10)
+            height: detailsblock.height
             width: parent.width
-            border.color: "black"
-            border.width: 1
-
-            Label {
-                id: nameLabel
-                text: i18n.tr("     name:  ")
-                anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.margins: units.gu(2)
+            border{
+                color: "black"
+                width: 1
             }
 
-            Rectangle {
-                id: nameRect
-                height: units.gu(4)
-                border.color: UbuntuColors.warmGrey
-                border.width: 1
-                anchors.left: nameLabel.right
-                anchors.right: rightRect.right
-                anchors.top: parent.top
-                anchors.margins: units.gu(1)
-            }
-            Text {
-                id: nameText
-                anchors.fill: nameRect
-                anchors.margins: units.gu(1)
-                text:""
-            }
+            Item{
+                id: detailsblock
+                anchors.fill: parent
+                height: units.gu(24)
 
-            Label {
-                id: dependsLabel
-                text: i18n.tr("depends: ")
-                anchors.left: parent.left
-                anchors.top: nameRect.bottom
-                anchors.margins: units.gu(2)
-            }
+                Label {
+                    id: nameLabel
+                    text: i18n.tr("     name:  ")
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        margins: units.gu(2)
+                    }
+                }
 
-            Rectangle {
-                id: dependsRect
-                height: units.gu(4)
-                border.color: UbuntuColors.warmGrey
-                border.width: 1
-                anchors.left: dependsLabel.right
-                anchors.right: rightRect.right
-                anchors.top: nameRect.bottom
-                anchors.margins: units.gu(1)
-            }
-            Text {
-                id: dependsText
-                anchors.fill: dependsRect
-                anchors.margins: units.gu(1)
-                anchors.top: nameRect.bottom
-                text:""
-            }
-            Label {
-                id: requiresLabel
-                text: i18n.tr(" requires: ")
-                anchors.left: parent.left
-                anchors.top: dependsRect.bottom
-                anchors.margins: units.gu(2)
-            }
+                Rectangle {
+                    id: nameRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors {
+                        left: nameLabel.right
+                        right: parent.right
+                        top: parent.top
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: nameText
 
-            Rectangle {
-                id: requiresRect
-                height: units.gu(4)
-                border.color: UbuntuColors.warmGrey
-                border.width: 1
-                anchors.left: requiresLabel.right
-                anchors.right: rightRect.right
-                anchors.top: dependsRect.bottom
-                anchors.margins: units.gu(1)
-            }
-            Text {
-                id: requiresText
-                anchors.fill: requiresRect
-                anchors.margins: units.gu(1)
-                anchors.top: dependsRect.bottom
-                text:""
-            }
+                    anchors{
+                        fill: nameRect
+                        margins: units.gu(1)
+                    }
+                    text:""
+                }
 
-            Label {
-                id: otherLabel
-                text: i18n.tr("     other: ")
-                anchors.left: parent.left
-                anchors.top: requiresRect.bottom
-                anchors.margins: units.gu(2)
-            }
+                Label {
+                    id: dependsLabel
+                    text: i18n.tr("depends: ")
+                    anchors{
+                        left: parent.left
+                        top: nameRect.bottom
+                        margins: units.gu(2)
+                    }
+                }
 
-            Rectangle {
-                id: otherRect
-                height: units.gu(4)
-                border.color: UbuntuColors.warmGrey
-                border.width: 1
-                anchors.left: requiresLabel.right
-                anchors.right: parent.right
-                anchors.top: requiresRect.bottom
-                anchors.margins: units.gu(1)
-            }
-            Text {
-                id: otherText
-                anchors.fill: requiresRect
-                anchors.margins: units.gu(1)
-                anchors.top: requiresRect.bottom
-                text:""
+                Rectangle {
+                    id: dependsRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors{
+                        left: dependsLabel.right
+                        right: parent.right
+                        top: nameRect.bottom
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: dependsText
+                    anchors{
+                        fill: dependsRect
+                        margins: units.gu(1)
+                        top: nameRect.bottom
+                    }
+                    text:""
+                }
+                Label {
+                    id: requiresLabel
+                    text: i18n.tr(" requires: ")
+                    anchors{
+                        left: parent.left
+                        top: dependsRect.bottom
+                        margins: units.gu(2)
+                    }
+                }
+
+                Rectangle {
+                    id: requiresRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors {
+                        left: requiresLabel.right
+                        right: parent.right
+                        top: dependsRect.bottom
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: requiresText
+                    anchors{
+                        fill: requiresRect
+                        margins: units.gu(1)
+                        top: dependsRect.bottom
+                    }
+                    text:""
+                }
+
+                Label {
+                    id: otherLabel
+                    text: i18n.tr("     other: ")
+                    anchors{
+                        left: parent.left
+                        top: requiresRect.bottom
+                        margins: units.gu(2)
+                    }
+                }
+
+                Rectangle {
+                    id: otherRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors{
+                        left: requiresLabel.right
+                        right: parent.right
+                        top: requiresRect.bottom
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: otherText
+                    anchors{
+                        fill: requiresRect
+                        margins: units.gu(1)
+                        top: requiresRect.bottom
+                    }
+                    text:""
+                }
             }
 
         }

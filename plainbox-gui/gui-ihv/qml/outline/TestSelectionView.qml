@@ -31,21 +31,26 @@ import "."
 Page {
     title: i18n.tr("Choose tests to run on your system:")
 
-    Label {
-        id: testselectionlabel
+    Label { // puts a space at the top
+        id: filler
         width: parent.width
-        anchors.left: parent.left
-        anchors.leftMargin: units.gu(2)
-        anchors.topMargin: units.gu(4)
+        height: units.gu(4)
+        anchors {
+            left: parent.left
+            top: parent.top
+        }
     }
 
     Item {
         id: testlistheaders
         width: parent.width - units.gu(4)
         height: units.gu(3)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testselectionlabel.bottom
-        anchors.margins: units.gu(2)
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            top: filler.bottom
+            margins: units.gu(2)
+        }
 
         Item {
             id: compfiller
@@ -54,9 +59,9 @@ Page {
         }
         Text  {
             id: complabel
-            anchors.left: compfiller.right
             width: units.gu(12)
             text: i18n.tr("Components")
+            anchors.left: compfiller.right
         }
         Item {
             id: typefiller
@@ -66,9 +71,9 @@ Page {
 
         Text  {
             id: typelabel
+            text: i18n.tr("Type")
             anchors.left: typefiller.right
             anchors.leftMargin: units.gu(10)
-            text: i18n.tr("Type")
             horizontalAlignment: Text.AlignHCenter
         }
 
@@ -79,36 +84,46 @@ Page {
         }
         Text  {
             id: descriptionlabel
-            anchors.left: descfiller.right
             width: units.gu(10)
             text: i18n.tr("Description")
             horizontalAlignment: Text.AlignHCenter
+            anchors.left: descfiller.right
         }
     }
 
     TestSelectionListView {
         id: testsuitelist
-        height: units.gu(56)
+        height: parent.height - filler.height - testlistheaders.height - testbuttons.height - units.gu(12)
+
         width: parent.width - units.gu(4)
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testlistheaders.bottom
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: testlistheaders.bottom
+        }
     }
 
     TestSelectionDetails {
         id: testdetails
-        height: units.gu(20)
+        height: units.gu(4)
         width: parent.width - units.gu(4)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testsuitelist.bottom
-        anchors.topMargin: units.gu(2)
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: testsuitelist.bottom
+            topMargin: units.gu(2)
+        }
     }
 
 
     TestSelectionButtons {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testdetails.bottom
-        anchors.topMargin: units.gu(5)
+        id: testbuttons
+        anchors{
+             horizontalCenter: parent.horizontalCenter
+             //top: testdetails.bottom
+             //topMargin: units.gu(2)
+             bottom: parent.bottom
+             bottomMargin: units.gu(2)
+        }
 
         onSelectAll:{
             testsuitelist.selectAll(true);
