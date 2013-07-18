@@ -65,7 +65,7 @@ Item {
 
         Image {
             id: progressIcon
-            source: "RightArrow.png"
+            source: "artwork/RightArrow.png"
             anchors {
                 left: detailsLabel.right
                 top: parent.top
