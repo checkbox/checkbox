@@ -23,7 +23,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import "./artwork"
+import "."
 
 Component {
     id: groupDelegate
@@ -98,7 +98,7 @@ Component {
 
         Image {
             id: progressIcon
-            source: "DownArrow.png"
+            source: "artwork/DownArrow.png"
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right

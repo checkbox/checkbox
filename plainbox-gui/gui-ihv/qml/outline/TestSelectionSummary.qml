@@ -50,7 +50,7 @@ Rectangle {
 
     Text {
         id: totalTestsText
-        text: i18n.tr("Tests [" + summary.totalTests + "]")
+        text: i18n.tr("Tests: [" + summary.totalTests + "]")
         color:"darkslateblue"
         anchors{
             verticalCenter: parent.verticalCenter
@@ -61,7 +61,7 @@ Rectangle {
 
     Text {
         id: manualTestsText
-        text: i18n.tr("Manual [" + summary.totalManualTests + "]")
+        text: i18n.tr("Manual tests: [" + summary.totalManualTests + "]")
         color: "darkslateblue"
         anchors{
             verticalCenter: parent.verticalCenter

@@ -21,7 +21,6 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "./artwork"
 
 Item {
     id: testseldetails
@@ -37,12 +36,12 @@ Item {
 
     onShowDetailsChanged:{
         if (showDetails){
-            progressIcon.source = "DownArrow.png";
+            progressIcon.source = "artwork/DownArrow.png";
             detailsFlick.height = openHeight
             testsuitelist.height -= openHeight
         }
         else{
-            progressIcon.source = "RightArrow.png";
+            progressIcon.source = "artwork/RightArrow.png";
             detailsFlick.height = 0
             testsuitelist.height += openHeight
         }
