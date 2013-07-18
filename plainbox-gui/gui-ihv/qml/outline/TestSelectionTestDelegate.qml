@@ -44,7 +44,7 @@ Component {
 
             onClicked: {
                 testdetails.testItem = testSuiteModel.get(index);
-                groupedList.currentIndex = index;
+                groupedList.currentIndex = index;  // sets selection
             }
         }
 

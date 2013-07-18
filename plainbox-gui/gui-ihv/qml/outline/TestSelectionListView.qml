@@ -77,7 +77,7 @@ Rectangle {
             highlight: highlight
             highlightFollowsCurrentItem: true
 
-            Component.onCompleted:testdetails.testItem = testSuiteModel.get(currentItem);
+            Component.onCompleted: testdetails.testItem = testSuiteModel.get(currentItem);
 
             // functions to do something across the whole list
 

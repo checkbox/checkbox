@@ -74,10 +74,7 @@ Rectangle {
             highlightFollowsCurrentItem: true
 
 
-            // functions to do something across the whole list
-            function getEstimatedTime(section){
-                return "";
-            }
+
 
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
@@ -164,7 +161,13 @@ Rectangle {
                 currentIndex = oldCurrent;
             }
 
+            // functions to do something across the whole list
+            function getEstimatedTime(section){
+                return "";
+            }
         }
+
+
 
 
     }

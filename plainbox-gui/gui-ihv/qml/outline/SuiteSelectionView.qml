@@ -65,14 +65,15 @@ Page {
                 delegate: SuiteSelectionDelegate{
 
                     onSelectSuite: {
-                    // In the model, select all tests in the suite
-                    for (var i = testSuiteModel.count - 1; i >= 0; i--){
-                        var item = testSuiteModel.get(i);
-                        if (item.group === suite)
-                            testSuiteModel.setProperty(i, "check", sel);
-                     }
+                        // This is using the prototype list,
+                        // In the model, select all tests in the suite
+                        for (var i = testSuiteModel.count - 1; i >= 0; i--){
+                            var item = testSuiteModel.get(i);
+                            if (item.group === suite)
+                                testSuiteModel.setProperty(i, "check", sel);
+                        }
+                    }
                 }
-            }
             }
         }
         Scrollbar {
@@ -92,7 +93,10 @@ Page {
         }
         text: i18n.tr("OK")
         color: UbuntuColors.lightAubergine
-        onClicked: {mainView.state = "TESTSELECTION"}
+        onClicked: {
+            // NOTE: When the user is done, this is where to load up the TestSelection list
+            mainView.state = "TESTSELECTION"
+        }
     }
 
 }

@@ -40,7 +40,7 @@ Component {
         property bool open: true
 
         onOpenChanged: {
-            open?progressIcon.source = "DownArrow.png":progressIcon.source = "RightArrow.png"
+            open?progressIcon.source = "artwork/DownArrow.png":progressIcon.source = "artwork/RightArrow.png"
         }
 
         MouseArea {

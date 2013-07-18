@@ -25,13 +25,13 @@ import Ubuntu.Components 0.1
 
 Rectangle {
     id: summary
-    height: units.gu(3)
-    color: "lightsteelblue"
 
     property string totalTimeStr: "26 minutes"
     property int totalTests: 6
     property int totalManualTests: 2
 
+    height: units.gu(3)
+    color: "lightsteelblue"
     border {
         color: UbuntuColors.warmGrey
         width: 1
