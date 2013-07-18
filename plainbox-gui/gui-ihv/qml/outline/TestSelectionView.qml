@@ -31,65 +31,100 @@ import "."
 Page {
     title: i18n.tr("Choose tests to run on your system:")
 
-    Label {
-        id: testselectionlabel
-        width: parent.width
-        anchors.left: parent.left
-        anchors.leftMargin: units.gu(2)
-        anchors.topMargin: units.gu(4)
+
+    Item { // puts a space at the top
+        id: filler
+        height: units.gu(0)
+        anchors {
+            left: parent.left
+            top: parent.top
+        }
     }
 
     Item {
         id: testlistheaders
         width: parent.width - units.gu(4)
         height: units.gu(3)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testselectionlabel.bottom
-        anchors.margins: units.gu(2)
 
-        Text  {
-            id: complabel
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            top: filler.bottom
+            margins: units.gu(2)
+        }
+
+        Item {
+            id: compfiller
+            width: units.gu(6)
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(6)
-            text: i18n.tr("Components")
         }
         Text  {
-            id: typelabel
+            id: complabel
+            width: units.gu(12)
+            text: i18n.tr("Components")
+            anchors.left: compfiller.right
+        }
+        Item {
+            id: typefiller
+            width: units.gu(28)
             anchors.left: complabel.right
-            anchors.leftMargin: units.gu(40)
+        }
+
+        Text  {
+            id: typelabel
             text: i18n.tr("Type")
+            anchors.left: typefiller.right
+            anchors.leftMargin: units.gu(10)
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Item {
+            id: descfiller
+            width: units.gu(24)
+            anchors.left: typelabel.right
         }
         Text  {
             id: descriptionlabel
-            anchors.left: typelabel.right
-            anchors.leftMargin: units.gu(30)
+            width: units.gu(10)
             text: i18n.tr("Description")
+            horizontalAlignment: Text.AlignHCenter
+            anchors.left: descfiller.right
         }
     }
 
     TestSelectionListView {
         id: testsuitelist
-        height: units.gu(56)
-        width: parent.width - units.gu(4)
+        height: parent.height - filler.height - testlistheaders.height - summary.height - testbuttons.height - units.gu(12)
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testlistheaders.bottom
+        width: testlistheaders.width
+
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: testlistheaders.bottom
+        }
     }
+
+
 
     TestSelectionDetails {
         id: testdetails
-        height: units.gu(20)
-        width: parent.width - units.gu(4)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testsuitelist.bottom
-        anchors.topMargin: units.gu(2)
+        height: units.gu(4)
+        width: testlistheaders.width
+
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: testsuitelist.bottom
+            topMargin: units.gu(1)
+        }
     }
 
 
     TestSelectionButtons {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: testdetails.bottom
-        anchors.topMargin: units.gu(5)
+        id: testbuttons
+        anchors{
+             horizontalCenter: parent.horizontalCenter
+             bottom: parent.bottom
+             bottomMargin: units.gu(4)
+        }
 
         onSelectAll:{
             testsuitelist.selectAll(true);
@@ -101,8 +136,17 @@ Page {
 
         onStartTesting: {
             // CHANGE THIS TO NEXT PAGE TO BRING UP
-            mainView.state = "DEMOWARNINGS"
+            mainView.state = "RUNMANAGER"
             console.log("Start Testing")
+        }
+    }
+
+    TestSelectionSummary{
+        id: summary
+        width: parent.width
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
         }
     }
 }

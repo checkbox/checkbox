@@ -22,11 +22,14 @@
 #include <qdebug.h>
 #include "testsuiteitem.h"
 
-TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, QObject * parent  ) :
+
+TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, int duration, const QString &type, QObject * parent  ) :
     ListItem( parent ),
     m_group(groupName),
     m_testName(testName),
-    m_check(true)
+    m_check(true),
+    m_duration(duration),
+    m_type(type)
 {
 }
 
@@ -37,6 +40,8 @@ QHash<int, QByteArray> TestSuiteItem::roleNames() const
   names[GroupRole] = "group";
   names[TestNameRole] = "testname";
   names[CheckRole] = "check";
+  names[DurationRole] = "duration";
+  names[TypeRole] = "type";
   return names;
 }
 
@@ -49,6 +54,10 @@ QVariant TestSuiteItem::data(int role) const
     return testname();
   case CheckRole:
       return check();
+  case DurationRole:
+      return duration();
+  case TypeRole:
+      return type();
   default:
     return QVariant();
   }
@@ -64,6 +73,9 @@ void TestSuiteItem::setData(const QVariant & value, int role){
         break;
     case CheckRole:
         setCheck(value.toBool());
+        break;
+    case DurationRole:
+        setDuration(value.toInt());
         break;
     }
 
@@ -93,8 +105,15 @@ void TestSuiteItem::setCheck(bool check){
         m_check = check;
         emit checkChanged();
         emit dataChanged();
-        //qDebug() << "Check changed to" << check;
+        //qDebug() << m_testName << "check changed to" << check;
     }
 }
 
+void TestSuiteItem::setDuration(int duration){
+    if (duration != m_duration){
+        m_duration = duration;
+        emit durationChanged();
+        emit dataChanged();
+    }
+}
 

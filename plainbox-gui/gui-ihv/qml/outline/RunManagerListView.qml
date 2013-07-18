@@ -28,15 +28,11 @@ import "."
 
 
 Rectangle {
-    id: suitetestlist
+    id: runmanagerrect
     color: "white"
     height: parent.height
     width: parent.width
 
-
-    function selectAll(sel) {
-        groupedList.selectAll(sel);
-    }
 
     Flickable {
         id: listflick
@@ -66,7 +62,7 @@ Rectangle {
             interactive: false
             model: testSuiteModel
 
-            delegate: TestSelectionTestDelegate {}
+            delegate: RunManagerTestDelegate {}
 
             section {
                 property: "group"
@@ -77,24 +73,7 @@ Rectangle {
             highlight: highlight
             highlightFollowsCurrentItem: true
 
-            Component.onCompleted: testdetails.testItem = testSuiteModel.get(currentItem);
 
-            // functions to do something across the whole list
-
-            // select/deselect all items in the list
-            function selectAll(sel){
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
-                    testSuiteModel.setProperty(i, "check", sel);
-
-                // this is to select the group items and to make sure data is updated
-                var oldCurrent = currentIndex
-                currentIndex = -1
-                for (var j = 0; j < groupedList.contentItem.children.length; j++){
-                    var curItem = groupedList.contentItem.children[j];
-                    curItem.checked = sel;
-                }
-                currentIndex = oldCurrent
-            }
 
 
             // when a group item is checked/unchecked the subitems are checked/unchecked
@@ -143,7 +122,6 @@ Rectangle {
                     curItem = groupedList.contentItem.children[i];
                     if (curItem.labelname === groupName)
                         curItem.checked = setCheck
-
                 }
 
                 currentIndex = oldCurrent;
@@ -162,33 +140,6 @@ Rectangle {
                     }
                 }
                 return isSel;
-            }
-
-            // Add up all the selected tests in a group
-            function getEstimatedTime(section){
-                var estTimeStr = "";
-                var estTimeInt=0;
-
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
-                {
-                    var curItem = testSuiteModel.get(i);
-
-                    //console.log("curItem.group:", curItem.group, "check", curItem.check)
-                    if (curItem.group === section && curItem.check === "true")
-                        estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
-
-                }
-                if (estTimeInt == 0)
-                    estTimeStr = "";
-                else if (estTimeInt/60 < 1)
-                    estTimeStr = i18n.tr("< 1 minute");
-                else {
-                    var durMinutes = Math.round(estTimeInt/60);
-                    estTimeStr = durMinutes.toString() + i18n.tr(" minute");
-                    if (durMinutes > 1)
-                        estTimeStr += 's';
-                }
-                return  estTimeStr;
             }
 
             //  Open/Close gruops
@@ -210,7 +161,13 @@ Rectangle {
                 currentIndex = oldCurrent;
             }
 
+            // functions to do something across the whole list
+            function getEstimatedTime(section){
+                return "";
+            }
         }
+
+
 
 
     }

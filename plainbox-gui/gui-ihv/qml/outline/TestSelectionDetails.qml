@@ -25,6 +25,8 @@ import Ubuntu.Components 0.1
 Item {
     id: testseldetails
     property var testItem;
+    property bool showDetails;
+    property int openHeight: units.gu(18)
 
 
     onTestItemChanged: {
@@ -32,102 +34,226 @@ Item {
         nameText.text = testItem.testname;
     }
 
-    Rectangle {
-        anchors.fill: parent
-        color: Theme.palette.normal.overlay
-        border.color: "black"
-        border.width: 1
-
-        Text {
-            anchors.centerIn: parent
-            text: i18n.tr("Test details")
+    onShowDetailsChanged:{
+        if (showDetails){
+            progressIcon.source = "artwork/DownArrow.png";
+            detailsFlick.height = openHeight
+            testsuitelist.height -= openHeight
         }
+        else{
+            progressIcon.source = "artwork/RightArrow.png";
+            detailsFlick.height = 0
+            testsuitelist.height += openHeight
+        }
+    }
 
-        // Left side of the details
-        Rectangle {
-            id: leftRect
-            height: parent.height
-            width: parent.width - rightRect.width
+    // Open/Shut label + icon
+    Item {
+        id: detailsItem
+        height: parent.height
+        width: detailsLabel.width + progressIcon.width + units.gu(2)
+
+        Label {
+            id: detailsLabel
+            text: i18n.tr("Test Details")
             anchors {
                 left: parent.left
                 top: parent.top
-                bottom: parent.bottom
-            }
-            color: Theme.palette.normal.overlay
-
-            Column {
-                anchors.horizontalCenter: leftRect.horizontalCenter
-
-                spacing: units.gu(1)
-
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: i18n.tr("Test Details: ")
-                }
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: i18n.tr("Test Run Time")
-                }
-                Text {
-                    id: testTimeRunText
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "green"
-                    text: i18n.tr("< 1 min")
-                }
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: i18n.tr("Suite Time Run")
-                }
-                Text {
-                    id: suiteTimeRunText
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "green"
-                    text: i18n.tr("90 minutes")
-                }
+                margins: units.gu(1)
             }
         }
 
+        Image {
+            id: progressIcon
+            source: "artwork/RightArrow.png"
+            anchors {
+                left: detailsLabel.right
+                top: parent.top
+                margins: units.gu(1)
+            }
+
+            opacity: enabled ? 1.0 : 0.5
+
+        }
+        MouseArea {
+            anchors.fill: detailsItem
+            onClicked: {showDetails = !showDetails}
+        }
+    }
 
 
-        // Right side of the details
+
+    // Right side of the details
+    Flickable {
+        id: detailsFlick
+        anchors.left: detailsItem.right
+        anchors.top: parent.top
+        anchors.leftMargin: units.gu(2)
+        width: parent.width - detailsItem.width - units.gu(2)
+        height: 0  // initialize to closed
+        contentHeight: detailsblock.height
+        clip: true
+        boundsBehavior : Flickable.StopAtBounds
 
         Rectangle {
             id: rightRect
             anchors.right: parent.right
             anchors.top: parent.top
 
-            height: parent.height
-            width: parent.width - units.gu(20)
-            color: Theme.palette.normal.overlay
-            border.color: "black"
-            border.width: 1
-
-            Label {
-                id: nameLabel
-                text: i18n.tr("name: ")
-                anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.margins: units.gu(2)
+            height: detailsblock.height
+            width: parent.width
+            border{
+                color: "black"
+                width: 1
             }
 
-            Rectangle {
-                id: nameRect
-                height: units.gu(4)
-                border.color: UbuntuColors.warmGrey
-                border.width: 1
-                anchors.left: nameLabel.right
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.margins: units.gu(1)
+            Item{
+                id: detailsblock
+                anchors.fill: parent
+                height: units.gu(24)
+
+                Label {
+                    id: nameLabel
+                    text: i18n.tr("     name:  ")
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        margins: units.gu(2)
+                    }
+                }
+
+                Rectangle {
+                    id: nameRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors {
+                        left: nameLabel.right
+                        right: parent.right
+                        top: parent.top
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: nameText
+
+                    anchors{
+                        fill: nameRect
+                        margins: units.gu(1)
+                    }
+                    text:""
+                }
+
+                Label {
+                    id: dependsLabel
+                    text: i18n.tr("depends: ")
+                    anchors{
+                        left: parent.left
+                        top: nameRect.bottom
+                        margins: units.gu(2)
+                    }
+                }
+
+                Rectangle {
+                    id: dependsRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors{
+                        left: dependsLabel.right
+                        right: parent.right
+                        top: nameRect.bottom
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: dependsText
+                    anchors{
+                        fill: dependsRect
+                        margins: units.gu(1)
+                        top: nameRect.bottom
+                    }
+                    text:""
+                }
+                Label {
+                    id: requiresLabel
+                    text: i18n.tr(" requires: ")
+                    anchors{
+                        left: parent.left
+                        top: dependsRect.bottom
+                        margins: units.gu(2)
+                    }
+                }
+
+                Rectangle {
+                    id: requiresRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors {
+                        left: requiresLabel.right
+                        right: parent.right
+                        top: dependsRect.bottom
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: requiresText
+                    anchors{
+                        fill: requiresRect
+                        margins: units.gu(1)
+                        top: dependsRect.bottom
+                    }
+                    text:""
+                }
+
+                Label {
+                    id: otherLabel
+                    text: i18n.tr("     other: ")
+                    anchors{
+                        left: parent.left
+                        top: requiresRect.bottom
+                        margins: units.gu(2)
+                    }
+                }
+
+                Rectangle {
+                    id: otherRect
+                    height: units.gu(4)
+                    border{
+                        color: UbuntuColors.warmGrey
+                        width: 1
+                    }
+                    anchors{
+                        left: requiresLabel.right
+                        right: parent.right
+                        top: requiresRect.bottom
+                        margins: units.gu(1)
+                    }
+                }
+                Text {
+                    id: otherText
+                    anchors{
+                        fill: requiresRect
+                        margins: units.gu(1)
+                        top: requiresRect.bottom
+                    }
+                    text:""
+                }
             }
-            Text {
-                id: nameText
-                anchors.fill: nameRect
-                anchors.margins: units.gu(1)
-                text:""
-            }
+
         }
 
+    }
+    Scrollbar {
+        flickableItem: detailsFlick
+        align: Qt.AlignTrailing
     }
 }
 

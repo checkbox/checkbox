@@ -20,7 +20,7 @@
  */
 
 import QtQuick 2.0
-import GuiEngine 1.0
+//import GuiEngine 1.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import "."
@@ -29,13 +29,13 @@ import "."
 MainView {
     id: mainView
     width: units.gu(120)
-    height: units.gu(110)
+    height: units.gu(100)
 
 
     PageStack {
         id: pageStack
         state: "WELCOME"
-        property string pageName: "DemoWarnings.qml"
+        property string pageName: "DemoWarnings.qml"  // initial state
 
         Component.onCompleted: {
             push(Qt.resolvedUrl(pageName))
@@ -48,12 +48,16 @@ MainView {
     }
 
     // Fill in states for all the pages.
-    // The pages/views will set the state to the next one when it is dones
+    // The pages/views will set the state to the next one when it is done
     // like this: onClicked: {mainView.state = "TESTSELECTION"}
     states: [
         State {
             name: "WELCOME"
             PropertyChanges { target: pageStack; pageName: "WelcomeView.qml"}
+        },
+        State {
+            name: "SUITESELECTION"
+            PropertyChanges { target: pageStack; pageName: "SuiteSelectionView.qml"}
         },
         State {
             name: "DEMOWARNINGS"
@@ -62,6 +66,10 @@ MainView {
         State {
             name: "TESTSELECTION"
             PropertyChanges { target: pageStack; pageName: "TestSelectionView.qml"}
+        },
+        State {
+            name: "RUNMANAGER"
+            PropertyChanges {target: pageStack; pageName: "RunManagerView.qml"}
         }
 
     ]
