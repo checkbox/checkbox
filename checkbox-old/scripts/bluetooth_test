@@ -7,6 +7,7 @@ import logging
 import os
 import re
 import sys
+import time
 
 OBEX_RESPONSE_CODE = {
     0x10: "Continue",
@@ -90,6 +91,10 @@ class ObexFTPTest:
                           "maybe obexftp is not installed")
         except CalledProcessError as e:
             return self._error_helper(expected_pattern, exception=e)
+        finally:
+            # Let the Bluetooth stack enough time to close the connection
+            # before doing another test
+            time.sleep(5)
 
     def send(self):
         logging.info("[ Send test ]".center(80, '='))
