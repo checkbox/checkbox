@@ -33,6 +33,7 @@ name: suspend/wireless_before_suspend
 depends: wireless/wireless_connection
 requires: device.category == 'WIRELESS'
 command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+estimated_duration: 20.0
 _description:
  This test disconnects all connections and then connects to the wireless
  interface. It then checks the connection to confirm it's working as expected.
@@ -173,6 +174,7 @@ command:
   echo "Calling sleep_test"
   set -o pipefail; sleep_test -p | tee $CHECKBOX_DATA/suspend_single_times.log
  fi
+estimated_duration: 90.0
 _description:
  PURPOSE:
      This test will check suspend and resume
@@ -195,6 +197,7 @@ _description:
 user: root
 environ: CHECKBOX_DATA
 command: set -o pipefail; fwts_test -f none -l $CHECKBOX_DATA/suspend_single -s s3 --s3-sleep-delay=30 --s3-device-check --s3-device-check-delay=45 | tee $CHECKBOX_DATA/suspend_single_times.log
+estimated_duration: 90.000
 
 plugin: shell
 name: suspend/suspend-single-log-check
@@ -319,6 +322,7 @@ depends: suspend/suspend_advanced suspend/wireless_before_suspend
 requires:
  device.category == 'WIRELESS'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+estimated_duration: 20.0
 _description:
  This test checks that the wireless interface is working after suspending the system. It
  disconnects all interfaces and then connects to the wireless interface and checks that the
@@ -879,7 +883,8 @@ name: suspend/wifi_resume_time
 depends: suspend/suspend_advanced
 requires:
    device.category == 'WIRELESS'
-command: network_reconnect_resume_test -t 20 -d wifi
+command: network_reconnect_resume_test -t 90 -d wifi
+estimated_duration: 0.530
 _description:
  Checks the length of time it takes to reconnect an existing wifi connection
  after a suspend/resume cycle.
@@ -889,7 +894,7 @@ name: suspend/wifi_resume_time_auto
 depends: suspend/suspend_advanced_auto
 requires:
    device.category == 'WIRELESS'
-command: network_reconnect_resume_test -t 20 -d wifi
+command: network_reconnect_resume_test -t 90 -d wifi
 _description:
  Checks the length of time it takes to reconnect an existing wifi connection
  after a suspend/resume cycle.
@@ -1235,3 +1240,241 @@ _description:
      3. Tap the touchpad toggle hotkey again
  VERIFICATION:
      Verify the touchpad has been disabled and re-enabled.
+
+plugin: user-interact
+name: suspend/usb_insert_after_suspend
+depends: 
+ suspend/suspend_advanced
+command: removable_storage_watcher insert usb
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the insertion of
+     a USB storage device after suspend and resume.
+ STEPS:
+     1. Click "Test" and insert a USB storage device (pen-drive/HDD).
+        (Note: this test will time-out after 20 seconds.)
+     2. Do not unplug the device after the test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: user-interact
+name: suspend/usb3_insert_after_suspend
+requires:
+ usb.usb3 == 'supported'
+depends:
+ suspend/suspend_advanced
+command: removable_storage_watcher -m 500000000 insert usb
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the insertion of
+     a USB 3.0 storage device after suspend and resume.
+ STEPS:
+     1. Click "Test" and insert a USB 3.0 storage device (pen-drive/HDD) in 
+        a USB 3.0 port. (Note: this test will time-out after 20 seconds.)
+     2. Do not unplug the device after the test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: user-interact
+name: suspend/usb_remove_after_suspend
+depends:
+ suspend/usb_insert_after_suspend 
+command: removable_storage_watcher remove usb
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the removal of
+     a USB storage device after suspend.
+ STEPS:
+     1. Click "Test" and remove the USB device.
+        (Note: this test will time-out after 20 seconds.)
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: user-interact
+name: suspend/usb3_remove_after_suspend
+depends: 
+ suspend/usb3_insert_after_suspend
+requires:
+ usb.usb3 == 'supported'
+command: removable_storage_watcher -m 500000000 remove usb
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the removal of
+     a USB 3.0 storage device after suspend
+ STEPS:
+     1. Click "Test" and remove the USB 3.0 device.
+        (Note: this test will time-out after 20 seconds.)
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: suspend/usb_storage_automated_after_suspend
+depends: suspend/usb_insert_after_suspend
+user: root
+command: removable_storage_test -s 268400000 usb
+_description:
+ This test is automated and executes after the suspend/usb_insert_after_suspend
+ test is run.
+
+plugin: shell
+name: suspend/usb3_storage_automated_after_suspend
+requires:
+ usb.usb3 == 'supported'
+depends: suspend/usb3_insert_after_suspend
+user: root
+command: removable_storage_test -s 268400000 -m 500000000 -p 7 usb
+_description:
+ This test is automated and executes after the suspend/usb3_insert_after_suspend
+ test is run.
+
+plugin: shell
+name: suspend/usb_storage_preinserted_after_suspend
+user: root
+depends: suspend/suspend_advanced_auto
+command: removable_storage_test -l usb && removable_storage_test -s 268400000 usb
+_description:
+ This is an automated version of usb/storage-automated and assumes that the
+ server has usb storage devices plugged in prior to checkbox execution. It
+ is intended for servers and SRU automated testing.
+
+plugin: shell
+name: suspend/usb3_storage_preinserted_after_suspend
+user: root
+requires:
+ usb.usb3 == 'supported'
+depends: suspend/suspend_advanced_auto
+command: removable_storage_test -l usb && removable_storage_test -s 268400000 -m 500000000 -p 7 usb
+_description:
+ This is an automated version of usb3/storage-automated and assumes that the
+ server has usb 3.0 storage devices plugged in prior to checkbox execution. It
+ is intended for servers and SRU automated testing.
+
+plugin: user-interact
+name: suspend/mmc-insert-after-suspend
+depends: suspend/suspend_advanced
+command: removable_storage_watcher --memorycard insert sdio usb scsi
+_description:
+ PURPOSE:
+     This test will check that the systems media card reader can
+     detect the insertion of an MMC card after the system has been suspended
+ STEPS:
+     1. Click "Test" and insert an MMC card into the reader.
+        If a file browser opens up, you can safely close it.
+        (Note: this test will time-out after 20 seconds.)
+     2. Do not remove the device after this test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: suspend/mmc-storage-after-suspend
+depends: suspend/mmc-insert-after-suspend
+user: root
+command: removable_storage_test -s 67120000 --memorycard sdio usb scsi
+_description:
+ This test is automated and executes after the mediacard/mmc-insert-after-suspend test
+ is run. It tests reading and writing to the MMC card after the system has been suspended.
+
+plugin: user-interact
+name: suspend/mmc-remove-after-suspend
+depends: suspend/mmc-insert-after-suspend
+command: removable_storage_watcher --memorycard remove sdio usb scsi
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the removal
+     of an MMC card from the systems card reader after the system has been suspended.
+ STEPS:
+     1. Click "Test" and remove the MMC card from the reader.
+        (Note: this test will time-out after 20 seconds.)
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: user-interact
+name: suspend/sd-insert-after-suspend
+depends: suspend/suspend_advanced
+command: removable_storage_watcher --memorycard insert sdio usb scsi
+_description:
+ PURPOSE:
+     This test will check that the systems media card reader can
+     detect the insertion of an UNLOCKED SD card after the system
+     has been suspended
+ STEPS:
+     1. Click "Test" and insert an UNLOCKED SD card into the reader.
+        If a file browser opens up, you can safely close it.
+        (Note: this test will time-out after 20 seconds.)
+     2. Do not remove the device after this test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: suspend/sd-storage-after-suspend
+depends: suspend/sd-insert-after-suspend
+user: root
+command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
+_description:
+ This test is automated and executes after the mediacard/sd-insert-after-suspend test
+ is run. It tests reading and writing to the SD card after the system has been suspended.
+
+plugin: user-interact
+name: suspend/sd-remove-after-suspend
+depends: suspend/sd-insert-after-suspend
+command: removable_storage_watcher --memorycard remove sdio usb scsi
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects 
+     the removal of an SD card from the systems card reader 
+     after the system has been suspended.
+ STEPS:
+     1. Click "Test" and remove the SD card from the reader.
+        (Note: this test will time-out after 20 seconds.)
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: user-interact
+name: suspend/sdhc-insert-after-suspend
+depends: suspend/suspend_advanced
+command: removable_storage_watcher --memorycard insert sdio usb scsi
+_description:
+ PURPOSE:
+     This test will check that the systems media card reader can
+     detect the insertion of an UNLOCKED SDHC media card after the 
+     system has been suspended
+ STEPS:
+     1. Click "Test" and insert an UNLOCKED SDHC card into the reader.
+        If a file browser opens up, you can safely close it.
+        (Note: this test will time-out after 20 seconds.)
+     2. Do not remove the device after this test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: suspend/sdhc-storage-after-suspend
+depends: suspend/sdhc-insert-after-suspend
+user: root
+command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
+_description:
+ This test is automated and executes after the mediacard/sdhc-insert-after-suspend test
+ is run. It tests reading and writing to the SDHC card after the system has been suspended.
+
+plugin: user-interact
+name: suspend/sdhc-remove-after-suspend
+depends: suspend/sdhc-insert-after-suspend
+command: removable_storage_watcher --memorycard remove sdio usb scsi
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the removal
+     of an SDHC card from the systems card reader after the system has been suspended.
+ STEPS:
+     1. Click "Test" and remove the SDHC card from the reader.
+        (Note: this test will time-out after 20 seconds.)
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.

@@ -107,12 +107,16 @@ class TestRun(TestCase):
             self.assertEqual(call.exception.args, (0,))
         expected1 = """
         ===============================[ Analyzing Jobs ]===============================
+        Estimated duration cannot be determined for automated jobs.
+        Estimated duration cannot be determined for manual jobs.
         ==============================[ Running All Jobs ]==============================
         ==================================[ Results ]===================================
         """
         expected2 = """
         ===============================[ Authentication ]===============================
         ===============================[ Analyzing Jobs ]===============================
+        Estimated duration cannot be determined for automated jobs.
+        Estimated duration cannot be determined for manual jobs.
         ==============================[ Running All Jobs ]==============================
         ==================================[ Results ]===================================
         """

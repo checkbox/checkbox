@@ -181,8 +181,8 @@ def get_nm_devices():
         except KeyError:
             devtype = "Unknown"
 
-        # only return WiFi and LAN devices
-        if devtype == "WiFi" or devtype == "Ethernet":
+        # only return WiFi, Ethernet and Modem devices
+        if devtype in ("WiFi", "Ethernet", "Modem"):
             devices.append(NetworkingDevice(devtype, props, dev_proxy, bus))
     return devices
 
@@ -192,17 +192,17 @@ def match_counts(nm_devices, udev_devices, devtype):
     Ensures that the count of devices matching devtype is the same for the
     two passed in lists, devices from Network Manager and devices from lspci.
     """
-    # now check that the count (by type) matches - WiFi
-    nm_type_devices = [dev for dev in nm_devices if dev.gettype() == devtype]
+    # now check that the count (by type) matches
+    nm_type_devices = [dev for dev in nm_devices if dev.gettype() in devtype]
     udevtype = 'WIRELESS' if devtype == 'WiFi' else 'NETWORK'
     udev_type_devices = [
         udev
         for udev in udev_devices
         if udev.category == udevtype]
     if len(nm_type_devices) != len(udev_type_devices):
-        print("ERROR: %s devices missing: udev showed %d devices, but "
-              "NetworkManager saw %d devices" % (devtype,
-              len(udev_type_devices), len(nm_type_devices)))
+        print("ERROR: devices missing - udev showed %d %s devices, but "
+              "NetworkManager saw %d devices in %s" % (len(udev_type_devices), 
+              udevtype, len(nm_type_devices), devtype), file=sys.stderr)
         return False
     else:
         return True
@@ -254,7 +254,7 @@ def main(args):
 
     if not match_counts(nm_devices, udev_devices, "WiFi"):
         return 1
-    elif not match_counts(nm_devices, udev_devices, "Ethernet"):
+    elif not match_counts(nm_devices, udev_devices, ("Ethernet","Modem")):
         return 1
     else:
         return 0

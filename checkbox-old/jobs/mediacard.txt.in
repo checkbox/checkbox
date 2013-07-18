@@ -39,47 +39,6 @@ _description:
      automatically selected result.
 
 plugin: user-interact
-name: mediacard/mmc-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of an MMC card after the system has been suspended
- STEPS:
-     1. Click "Test" and insert an MMC card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/mmc-storage-after-suspend
-depends: mediacard/mmc-insert-after-suspend
-user: root
-command: removable_storage_test -s 67120000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/mmc-insert-after-suspend test
- is run. It tests reading and writing to the MMC card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/mmc-remove-after-suspend
-depends: mediacard/mmc-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of an MMC card from the systems card reader after the system has been suspended.
- STEPS:
-     1. Click "Test" and remove the MMC card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
 name: mediacard/sd-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -112,49 +71,6 @@ _description:
  PURPOSE:
      This test will check that the system correctly detects 
      the removal of an SD card from the systems card reader.
- STEPS:
-     1. Click "Test" and remove the SD card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
-name: mediacard/sd-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of an UNLOCKED SD card after the system
-     has been suspended
- STEPS:
-     1. Click "Test" and insert an UNLOCKED SD card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/sd-storage-after-suspend
-depends: mediacard/sd-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/sd-insert-after-suspend test
- is run. It tests reading and writing to the SD card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/sd-remove-after-suspend
-depends: mediacard/sd-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects 
-     the removal of an SD card from the systems card reader 
-     after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SD card from the reader.
         (Note: this test will time-out after 20 seconds.)
@@ -206,48 +122,6 @@ _description:
  PURPOSE:
      This test will check that the system correctly detects 
      the removal of an SDHC card from the systems card reader.
- STEPS:
-     1. Click "Test" and remove the SDHC card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
-name: mediacard/sdhc-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of an UNLOCKED SDHC media card after the 
-     system has been suspended
- STEPS:
-     1. Click "Test" and insert an UNLOCKED SDHC card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/sdhc-storage-after-suspend
-depends: mediacard/sdhc-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/sdhc-insert-after-suspend test
- is run. It tests reading and writing to the SDHC card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/sdhc-remove-after-suspend
-depends: mediacard/sdhc-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of an SDHC card from the systems card reader after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SDHC card from the reader.
         (Note: this test will time-out after 20 seconds.)

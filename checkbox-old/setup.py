@@ -263,6 +263,7 @@ This project provides an extensible interface for system testing.
     entry_points={
         'plainbox.parsers': [
             "pactl-list=checkbox.parsers.pactl:parse_pactl_output",
+            "udevadm=checkbox.parsers.udevadm:parse_udevadm_output",
         ],
     },
     scripts=[

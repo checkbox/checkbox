@@ -36,6 +36,7 @@ import sys
 from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
 
 from plainbox.abc import IJobResult
+from plainbox.impl.checkbox import CheckBoxDebProvider
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
@@ -55,8 +56,8 @@ logger = getLogger("plainbox.commands.run")
 
 class RunInvocation(CheckBoxInvocationMixIn):
 
-    def __init__(self, checkbox, ns):
-        super(RunInvocation, self).__init__(checkbox)
+    def __init__(self, provider, ns):
+        super(RunInvocation, self).__init__(provider)
         self.ns = ns
 
     def run(self):
@@ -123,13 +124,6 @@ class RunInvocation(CheckBoxInvocationMixIn):
         return False if answer in ('n', 'N') else True
 
     def _run_jobs(self, ns, job_list, exporter, transport=None):
-        # Ask the password before anything else in order to run jobs requiring
-        # privileges
-        if self.checkbox._mode == 'deb':
-            print("[ Authentication ]".center(80, '='))
-            return_code = authenticate_warmup()
-            if return_code:
-                raise SystemExit(return_code)
         # Compute the run list, this can give us notification about problems in
         # the selected jobs. Currently we just display each problem
         matching_job_list = self._get_matching_job_list(ns, job_list)
@@ -154,6 +148,13 @@ class RunInvocation(CheckBoxInvocationMixIn):
                 else:
                     session.clean()
             self._update_desired_job_list(session, matching_job_list)
+            # Ask the password before anything else in order to run jobs
+            # requiring privileges
+            if self._auth_warmup_needed(session):
+                print("[ Authentication ]".center(80, '='))
+                return_code = authenticate_warmup()
+                if return_code:
+                    raise SystemExit(return_code)
             if (sys.stdin.isatty() and sys.stdout.isatty() and not
                     ns.not_interactive):
                 outcome_callback = self.ask_for_outcome
@@ -190,6 +191,18 @@ class RunInvocation(CheckBoxInvocationMixIn):
         # FIXME: sensible return value
         return 0
 
+    def _auth_warmup_needed(self, session):
+        # Don't use authentication warm-up in modes other than 'deb' as it
+        # makes no sense to do so.
+        if not isinstance(self.provider, CheckBoxDebProvider):
+            return False
+        # Don't use authentication warm-up if none of the jobs on the run list
+        # requires it.
+        if all(job.user is None for job in session.run_list):
+            return False
+        # Otherwise, do pre-authentication
+        return True
+
     def _save_results(self, output_file, input_stream):
         if output_file is sys.stdout:
             print("[ Results ]".center(80, '='))
@@ -225,6 +238,18 @@ class RunInvocation(CheckBoxInvocationMixIn):
             for problem in problem_list:
                 print(" * {}".format(problem))
             print("Problematic jobs will not be considered")
+        (estimated_duration_auto,
+         estimated_duration_manual) = session.get_estimated_duration()
+        if estimated_duration_auto:
+            print("Estimated duration is {:.2f} for automated jobs.".format(
+                  estimated_duration_auto))
+        else:
+            print("Estimated duration cannot be determined for automated jobs.")
+        if estimated_duration_manual:
+            print("Estimated duration is {:.2f} for manual jobs.".format(
+                  estimated_duration_manual))
+        else:
+            print("Estimated duration cannot be determined for manual jobs.")
 
     def _run_jobs_with_session(self, ns, session, runner):
         # TODO: run all resource jobs concurrently with multiprocessing
@@ -287,11 +312,11 @@ class RunInvocation(CheckBoxInvocationMixIn):
 
 class RunCommand(PlainBoxCommand, CheckBoxCommandMixIn):
 
-    def __init__(self, checkbox):
-        self.checkbox = checkbox
+    def __init__(self, provider):
+        self.provider = provider
 
     def invoked(self, ns):
-        return RunInvocation(self.checkbox, ns).run()
+        return RunInvocation(self.provider, ns).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser("run", help="run a test job")

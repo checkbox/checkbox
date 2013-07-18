@@ -17,7 +17,7 @@ user: root
 _description: Test ACPI Wakealarm (fwts wakealarm)
 requires:
  package.name == 'fwts'
-command: fwts_test -w -l $CHECKBOX_DATA/fwts-wakealarm.log
+command: fwts_test -f aborted -w -l $CHECKBOX_DATA/fwts-wakealarm.log
 
 plugin: attachment
 name: power-management/fwts_wakealarm-log-attach
@@ -132,6 +132,7 @@ plugin: shell
 name: power-management/rtc
 command:
  test -e /dev/rtc || ( echo "ERROR: Real Time Clock not found" >&2 && exit 1 )
+estimated_duration: 0.02
 _description:
  Make sure that the RTC (Real-Time Clock) device exists.
 
