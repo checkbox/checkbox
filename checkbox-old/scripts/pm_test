@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-import sys
-import os
-import shutil
-import re
 import logging
 import logging.handlers
-import subprocess
+import os
 import pwd
+import re
+import shutil
+import subprocess
+import sys
 
-from datetime import datetime, timedelta
-from time import time, localtime
-from calendar import timegm
 from argparse import ArgumentParser, SUPPRESS
+from calendar import timegm
+from datetime import datetime, timedelta
 from gi.repository import Gtk, GObject
+from time import time, localtime
+
 
 def main():
     """
@@ -107,7 +108,7 @@ class PowerManagementOperation(object):
             if pm_time < min_pm_time:
                 raise TestFailed('{0} time less than expected: {1} < {2}'
                                  .format(self.args.pm_operation.capitalize(),
-                                      pm_time, min_pm_time))
+                                         pm_time, min_pm_time))
             if pm_time > max_pm_time:
                 raise TestFailed('{0} time greater than expected: {1} > {2}'
                                  .format(self.args.pm_operation.capitalize(),
@@ -168,7 +169,7 @@ class PowerManagementOperation(object):
 
         wait_time = timedelta(seconds=(self.args.pm_delay
                                        + (self.args.hardware_delay)
-                                          * self.args.total))
+                                       * self.args.total))
         average = (end - start - wait_time) / self.args.total - sleep_time
         time_message = ('Total elapsed time: {total}\n'
                         'Average recovery time: {average}'
@@ -450,7 +451,8 @@ class CountdownDialog(Gtk.Dialog):
                       .format(lspci=Command('lspci | grep VGA').run().stdout))
         logging.debug('Touchpad and Keyboard:\n'
                       '{xinput}'
-                      .format(xinput=Command('xinput list --name-only').run().stdout))
+                      .format(xinput=Command(
+                          'xinput list --name-only').run().stdout))
         logging.debug('Pulse Audio Sink:\n'
                       '{pactl_sink}'
                       .format(pactl_sink=(Command('pactl list | grep Sink')
@@ -466,6 +468,7 @@ class CountdownDialog(Gtk.Dialog):
             # Don't abort the test loop,
             # errors can be retrieved by pm_log_check
             logging.error('Problem found in logs by fwts')
+
 
 class MessageDialog(object):
     """
