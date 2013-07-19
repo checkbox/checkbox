@@ -6,6 +6,7 @@ import re
 import logging
 import logging.handlers
 import subprocess
+import pwd
 
 from datetime import datetime, timedelta
 from time import time, localtime
@@ -25,12 +26,20 @@ def main():
                          'permissions to run correctly\n')
         sys.exit(1)
 
+    #Obtain name of the invoking user.
+    uid = os.getenv('SUDO_UID') or os.getenv('PKEXEC_UID')
+    if not uid:
+        sys.stderr.write('Unable to determine invoking user\n')
+        sys.exit(1)
+    username = pwd.getpwuid(int(uid)).pw_name
+
     LoggingConfiguration.set(args.log_level, args.log_filename, args.append)
+    logging.debug('Invoking username: %s', username)
     logging.debug('Arguments: {0!r}'.format(args))
     logging.debug('Extra Arguments: {0!r}'.format(extra_args))
 
     try:
-        operation = PowerManagementOperation(args, extra_args)
+        operation = PowerManagementOperation(args, extra_args, user=username)
         operation.setup()
         operation.run()
     except (TestCancelled, TestFailed) as exception:
@@ -52,9 +61,10 @@ def main():
 class PowerManagementOperation(object):
     SLEEP_TIME = 5
 
-    def __init__(self, args, extra_args):
+    def __init__(self, args, extra_args, user=None):
         self.args = args
         self.extra_args = extra_args
+        self.user = user
 
     def setup(self):
         """
@@ -62,12 +72,12 @@ class PowerManagementOperation(object):
         """
         # Enable autologin and sudo on first cycle
         if self.args.total == self.args.repetitions:
-            AutoLoginConfigurator().enable()
-            SudoersConfigurator().enable()
+            AutoLoginConfigurator(user=self.user).enable()
+            SudoersConfigurator(user=self.user).enable()
 
         # Schedule this script to be automatically executed
         # on startup to continue testing
-        autostart_file = AutoStartFile(self.args)
+        autostart_file = AutoStartFile(self.args, user=self.user)
         autostart_file.write()
 
     def run(self):
@@ -179,7 +189,7 @@ class PowerManagementOperation(object):
         Restore configuration
         """
         # Don't execute this script again on next reboot
-        autostart_file = AutoStartFile(self.args)
+        autostart_file = AutoStartFile(self.args, user=self.user)
         autostart_file.remove()
 
         # Restore previous configuration
@@ -490,6 +500,9 @@ autologin-user={username}
 autologin-user-timeout=0
 """
 
+    def __init__(self, user=None):
+        self.user = user
+
     def enable(self):
         """
         Make sure user will autologin in next reboot
@@ -503,7 +516,7 @@ autologin-user-timeout=0
                     break
 
         with open(self.CONFIG_FILENAME, 'w') as f:
-            f.write(self.TEMPLATE.format(username=os.getenv('SUDO_USER')))
+            f.write(self.TEMPLATE.format(username=self.user))
 
     def disable(self):
         """
@@ -544,6 +557,9 @@ class SudoersConfigurator(object):
     MARK = '# Automatically added by pm.py'
     SUDOERS = '/etc/sudoers'
 
+    def __init__(self, user=None):
+        self.user = user
+
     def enable(self):
         """
         Make sure that user will be allowed to execute reboot test as root
@@ -552,7 +568,7 @@ class SudoersConfigurator(object):
         command = ("sed -i -e '$a{mark}\\n"
                    "{user} ALL=NOPASSWD: /usr/bin/python' "
                    "{filename}".format(mark=self.MARK,
-                                       user=os.getenv('SUDO_USER'),
+                                       user=self.user,
                                        script=os.path.realpath(__file__),
                                        filename=self.SUDOERS))
 
@@ -584,12 +600,13 @@ X-GNOME-Autostart-enabled=true
 Hidden=false
 """
 
-    def __init__(self, args):
+    def __init__(self, args, user=None):
         self.args = args
+        self.user = user
 
         # Generate desktop filename
         # based on environment variables
-        username = os.getenv('SUDO_USER')
+        username = self.user
         default_config_directory = os.path.expanduser('~{0}/.config'
                                                       .format(username))
         config_directory = os.getenv('XDG_CONFIG_HOME',
