@@ -31,12 +31,10 @@ FFT_INTERVAL = 100000000  # In nanoseconds, so this is every 1/10th second
 #Sampling frequency. The effective maximum frequency we can analyze is
 #half of this (see Nyquist's theorem)
 SAMPLING_FREQUENCY = 44100
-#The default test frequency should be in the middle of the frequency band
-#that delimits the first and second thirds of the frequency range.
-#That gives a not-so-ear-piercing tone and should ensure there's no
-#spillout to neighboring frequency bands.
-DEFAULT_TEST_FREQUENCY = (SAMPLING_FREQUENCY / (2 * BINS)) * int(BINS / 3) - \
-                         (SAMPLING_FREQUENCY / (2 * BINS)) / 2
+#The default test frequency is in the middle of the band that contains 5000Hz
+#This frequency was determined experimentally to be high enough but more
+#reliable than others we tried.
+DEFAULT_TEST_FREQUENCY = 5035
 #only sample a signal when peak level is in this range (in dB attenuation,
 #0 means no attenuation (and horrible clipping).
 REC_LEVEL_RANGE = (-2.0, -12.0)
@@ -234,7 +232,7 @@ class FileDumper(object):
 
 class SpectrumAnalyzer(object):
     def __init__(self, points, sampling_frequency=44100,
-                 wanted_samples=20):
+                 wanted_samples=50):
         self.spectrum = [0] * points
         self.number_of_samples = 0
         self.wanted_samples = wanted_samples

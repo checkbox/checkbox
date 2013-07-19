@@ -33,6 +33,8 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     (LP: #1199259)
   * checkbox-old/jobs/input.txt.in: Add more details in pointing test names
     so they are easier to identify (LP: #1192541)
+  * scripts/audio_test: Changed the test frequency to 5040 Hz and increased
+    the sampling time to 5 seconds, to improve reliability (LP: #1070776)
 
   [ Sylvain Pineau ]
   * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
