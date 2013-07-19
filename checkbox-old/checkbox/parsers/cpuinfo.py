@@ -89,7 +89,7 @@ class CpuinfoParser:
                 "model_revision": "stepping",
                 "cache": "cache size",
                 "other": "flags",
-                "speed": "cpu mhz"},
+                "speed": "cpu MHz"},
             ("alpha", "alphaev6",): {
                 "count": "cpus detected",
                 "type": "cpu",
@@ -126,7 +126,10 @@ class CpuinfoParser:
                 "model_version": "type",
                 "speed": "bogomips"}}
 
-        processor["count"] = attributes.get("count", 1)
+        for key in processor:
+            if attributes.get(key):
+                processor[key] = attributes.get(key)
+
         for platform, conversion in platform_to_conversion.items():
             if machine in platform:
                 for pkey, ckey in conversion.items():
