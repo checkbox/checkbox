@@ -32,83 +32,175 @@ Component {
         id: testitem
         width: parent.width
         height: units.gu(7)
+
         property string groupname: group
-        property alias checked: itemcheckbox.checked
         property string labelname: testname
 
 
         MouseArea {
-            width: parent.width - itemcheckbox.width
+            width: parent.width;
             height: parent.height
-            anchors.right: parent.right
+            anchors.fill: parent
 
             onClicked: {
-                testdetails.testItem = testSuiteModel.get(index);
                 groupedList.currentIndex = index;
             }
         }
 
         Item {
+            id: testitemview
             anchors.fill: parent
 
             Item {
                 id: filler
-                width: itemcheckbox.width
+                width: units.gu(6)
             }
 
-            CheckBox {
-                id: itemcheckbox
+            Text {
+                id: namelabel
+                text: testname
+                width: units.gu(42)
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: filler.right
-                anchors.leftMargin: units.gu(2)
-                checked: check
-                onClicked: {
-                    testSuiteModel.setProperty(index, "check", checked);
-                    groupedList.setGroupCheck(group)
+            }
+
+            Item {
+                id: statusFiller
+                width: units.gu(12)
+                anchors.left: namelabel.right
+            }
+
+            Image {
+                id: statusicon
+                property int testStatus: runstatus// TODO this should be coming from the testitem status
+
+                width: units.gu(3)
+                height: units.gu(3)
+                anchors.left: namelabel.right
+                anchors.verticalCenter: parent.verticalCenter
+                source: ""
+
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked:{
+
+                        if (statusicon.testStatus < 6)
+                            statusicon.testStatus++
+                        else
+                            statusicon.testStatus = 0
+                    }
+                }
+
+                onTestStatusChanged: {
+                    // TODO these number are made up, change to what comes out of plainbox
+                    switch (testStatus){
+                    case 0:
+                        // not executed
+                        source = ""
+                        break;
+                    case 1:
+                        source = "./artwork/skipped.svg"
+                        break;
+                    case 2:                 // pass
+                        source = "./artwork/passed.svg"
+                        break;
+                    case 3:                 // fail
+                        source = "./artwork/failed.svg"
+                        break;
+                    case 4:                 // error
+                        source = "./artwork/error.svg"
+                        break;
+                    case 5:                 // user info required
+                        source = "./artwork/userreq.svg"
+                        break;
+                    default:
+                        source = ""
+                        break;
+                    }
+
+                }
+
+            }
+
+            Item {
+                id: eltimefiller
+                width: units.gu(10)
+                anchors.left: statusicon.right
+            }
+
+            Text {
+                id: eltimelabel
+                text: {!elapsedtime ? "" : utils.formatElapsedTime(elapsedtime)}
+                width: units.gu(10)
+                anchors.left: eltimefiller.right
+                anchors.verticalCenter: parent.verticalCenter
+                horizontalAlignment: Text.AlignRight
+
+           }
+
+            Item {
+                id: actionsfiller
+                width: units.gu(12)
+                anchors.left: eltimelabel.right
+            }
+
+            Image {
+                id: actionicon
+                property bool actionStatus: !runstatus?false:true // TODO this should be coming if the test has run or not
+                                                  // currently assumes 0 = not run yet, 1 == completed
+
+                width: units.gu(3)
+                height: units.gu(3)
+                anchors.left: actionsfiller.right
+                anchors.verticalCenter: parent.verticalCenter
+                source: ""
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked:{}
+                 }
+
+                onActionStatusChanged:{
+                    if (actionStatus)               // completed
+                        source = "./artwork/rerun.svg"
+                    else                            // not run yet
+                        source = ""
                 }
             }
 
-
-            Text {
-                id: nameLabel
-                text: testname
-                width: units.gu(40)
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: itemcheckbox.right
-                anchors.leftMargin: units.gu(1)
-            }
-
             Item {
-                id: typefiller
-                width: units.gu(2)
-                anchors.left: nameLabel.right
+                id: detailsfiller
+                width: units.gu(13)
+                anchors.left: actionicon.right
             }
 
-            Text {
-                id: typelabel
-                text: ""//type
-                width: units.gu(10)
-                anchors.left: typefiller.right
+            Image {
+                id: detailsicon
+                property bool detailsStatus: {!runstatus?false:true} // TODO this should be coming if the test has run or not
+                                                  // currently assumes 0 = not run yet, 1 == completed
+
+                width: units.gu(3)
+                height: units.gu(3)
+                anchors.left: detailsfiller.right
                 anchors.verticalCenter: parent.verticalCenter
-                horizontalAlignment: Text.AlignHCenter
+                source: ""
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked:{}
+                }
+
+                onDetailsStatusChanged:{
+                    if (detailsStatus)               // completed
+                        source = "./artwork/details.svg"
+                    else                            // not run yet
+                        source = ""
+                }
 
             }
 
-            Item {
-                id: descfiller
-                width: units.gu(20)
-                anchors.left: typelabel.right
-            }
-
-            Text {
-                id: descLabel
-                text: ""
-                width: units.gu(10)
-                anchors.left: descfiller.right
-                anchors.verticalCenter: parent.verticalCenter
-                horizontalAlignment: Text.AlignHCenter
-
-            }
 
 
         }

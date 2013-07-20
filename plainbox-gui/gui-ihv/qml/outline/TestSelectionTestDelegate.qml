@@ -53,7 +53,7 @@ Component {
 
             Item {
                 id: filler
-                width: itemcheckbox.width
+                width: itemcheckbox.width + units.gu(2)
             }
 
             CheckBox {
@@ -64,7 +64,8 @@ Component {
                 checked: check
                 onClicked: {
                     testSuiteModel.setProperty(index, "check", checked);
-                    groupedList.setGroupCheck(group)
+                    groupedList.setGroupCheck(group);
+                    groupedList.updateListSummary(testSuiteModel.get(index), checked);
                 }
             }
 
@@ -72,7 +73,7 @@ Component {
             Text {
                 id: nameLabel
                 text: testname
-                width: units.gu(40)
+                width: units.gu(20)
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: itemcheckbox.right
                 anchors.leftMargin: units.gu(1)
@@ -80,7 +81,7 @@ Component {
 
             Item {
                 id: typefiller
-                width: units.gu(2)
+                width: units.gu(12)
                 anchors.left: nameLabel.right
             }
 
@@ -95,16 +96,16 @@ Component {
             }
 
             Item {
-                id: descfiller
-                width: units.gu(20)
+                id: esttimefiller
+                width: units.gu(11)
                 anchors.left: typelabel.right
             }
 
             Text {
-                id: descLabel
+                id: esttimelabel
                 text: convertToText(duration)
                 width: units.gu(10)
-                anchors.left: descfiller.right
+                anchors.left: esttimefiller.right
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignHCenter
 
@@ -119,7 +120,23 @@ Component {
                             timeStr += 's';
                     }
                     return timeStr;
-                }
+                }           }
+
+            Item {
+                id: descfiller
+                width: units.gu(14)
+                anchors.left: esttimelabel.right
+            }
+
+            Text {
+                id: descLabel
+                text: "blah ..." // TODO put descrition property here
+                width: units.gu(10)
+                anchors.left: descfiller.right
+                anchors.verticalCenter: parent.verticalCenter
+                horizontalAlignment: Text.AlignHCenter
+
+
             }
 
 

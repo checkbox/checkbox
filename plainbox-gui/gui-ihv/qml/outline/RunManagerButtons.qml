@@ -28,28 +28,52 @@ Row {
     id: bottombuttons
     spacing: units.gu(12)
 
-    signal cancel
+    property alias pauseButtonEnabled: pauseButton.enabled
+    property alias resultsButtonEnabled: resultsButton.enabled
+
+
+    signal exit
     signal pauseTest
+    signal resumeTest
+    signal results
 
 
     Button {
          id:cancelButton
-         text: i18n.tr("Cancel")
+         text: i18n.tr("Exit")
          color: UbuntuColors.warmGrey
          width: units.gu(18)
          onClicked: {
-             bottombuttons.cancel();
+             bottombuttons.exit();
          }
     }
 
     Button {
         id: pauseButton
-        text: i18n.tr("Pause")
+        property bool showPause: true  // either Pause or Resume
+        enabled: true
+        text: showPause ? i18n.tr("Pause") : i18n.tr("Resume")
         color: UbuntuColors.lightAubergine
         width: units.gu(18)
+
         onClicked:{
-            bottombuttons.pauseTest();
+            showPause?pauseTest():resumeTest()
+            showPause = !showPause
+
         }
+
+    }
+
+    Button {
+        id: resultsButton
+        enabled: false
+        text: i18n.tr("Results")
+        color: UbuntuColors.orange
+        width: units.gu(18)
+        onClicked: {
+            bottombuttons.results()
+        }
+
     }
 
 

@@ -29,14 +29,16 @@ Component {
     id: groupDelegate
 
 
+
+
     Item {
         id: itemdelegate
         width: parent.width
         height: units.gu(7)
 
         property string groupname: section
-        property alias checked: groupcheckbox.checked
         property string labelname: section
+        property alias summaryText: testsummarytext.text
         property bool open: true
 
         onOpenChanged: {
@@ -44,9 +46,9 @@ Component {
         }
 
         MouseArea {
-            width: parent.width// - groupcheckbox.width
+            width: parent.width
             height: parent.height
-            anchors.right: parent.right
+            anchors.fill: parent
 
             onClicked: {
                 itemdelegate.open = !itemdelegate.open
@@ -68,18 +70,9 @@ Component {
             anchors {
                 verticalCenter: parent.verticalCenter
                 left: groupfiller.left
+
             }
-
-            opacity: enabled ? 1.0 : 0.5
-        }
-
-        CheckBox {
-            id: groupcheckbox
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: progressIcon.right
-            anchors.leftMargin: units.gu(1)
-            checked: groupedList.isGroupSelected(section)
-            onClicked: groupedList.selectGroup(section, checked)
+           opacity: enabled ? 1.0 : 0.5
         }
 
 
@@ -87,22 +80,26 @@ Component {
             id: grouptext
             text: section
             width: units.gu(20)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: groupcheckbox.right
-            anchors.leftMargin: units.gu(1)
+            anchors{
+                verticalCenter: parent.verticalCenter
+                left: progressIcon.right
+                leftMargin: units.gu(1)
+            }
+            font.bold: true
+            color: UbuntuColors.coolGrey
         }
 
         Item {
-            id: estfiller
+            id: testsummaryfiller
             width: units.gu(38)
             anchors.left: grouptext.right
         }
 
         Text {
-            id: estimatedTimeText
-            text: groupedList.getEstimatedTime(section)
+            id: testsummarytext
+            text: ""
             width: units.gu(10)
-            anchors.left:  estfiller.right
+            anchors.left:  testsummaryfiller.right
             anchors.verticalCenter: parent.verticalCenter
             horizontalAlignment: Text.AlignHCenter
             color: "green"
@@ -112,6 +109,9 @@ Component {
 
 
         ListItem.ThinDivider {}
-    }
+
+
+
+}
 }
 

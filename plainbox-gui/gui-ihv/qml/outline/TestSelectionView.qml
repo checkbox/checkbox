@@ -65,7 +65,7 @@ Page {
         }
         Item {
             id: typefiller
-            width: units.gu(28)
+            width: units.gu(20)
             anchors.left: complabel.right
         }
 
@@ -78,9 +78,23 @@ Page {
         }
 
         Item {
-            id: descfiller
-            width: units.gu(24)
+            id: esttimefiller
+            width: units.gu(4)
             anchors.left: typelabel.right
+        }
+
+        Text  {
+            id: esttimelabel
+            text: i18n.tr("Estimated Time")
+            anchors.left: esttimefiller.right
+            anchors.leftMargin: units.gu(10)
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Item {
+            id: descfiller
+            width: units.gu(12)
+            anchors.left: esttimelabel.right
         }
         Text  {
             id: descriptionlabel

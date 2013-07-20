@@ -77,7 +77,10 @@ Rectangle {
             highlight: highlight
             highlightFollowsCurrentItem: true
 
-            Component.onCompleted: testdetails.testItem = testSuiteModel.get(currentItem);
+            Component.onCompleted: {
+                testdetails.testItem = testSuiteModel.get(currentItem);
+                setListSummary();
+            }
 
             // functions to do something across the whole list
 
@@ -94,6 +97,9 @@ Rectangle {
                     curItem.checked = sel;
                 }
                 currentIndex = oldCurrent
+
+                // reset the summary
+                setListSummary()
             }
 
 
@@ -111,7 +117,7 @@ Rectangle {
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
-                    //console.log(i,": ", curItem, "=", curItem.groupname);
+                    //console.log(i,": ", curItem, "=", estTimeIntcurItem.groupname);
 
                     if (curItem.groupname === groupName)
                         curItem.checked = sel;
@@ -210,6 +216,56 @@ Rectangle {
                 currentIndex = oldCurrent;
             }
 
+            function updateListSummary(testItem, sel){
+                if (sel){
+                    summary.totalTests += 1;
+                    summary.totalTimeEst = parseInt(summary.totalTimeEst ) + parseInt(testItem.duration);
+                    if (testItem.type === "Manual")
+                        summary.totalManualTests += 1;
+                }
+                else {
+                    summary.totalTests -= 1;
+                    summary.totalTimeEst = parseInt(summary.totalTimeEst ) - testItem.duration;
+                    if (testItem.type === "Manual")
+                        summary.totalManualTests -= 1
+                 }
+            }
+
+            function setListSummary() {
+                setTestCounts();
+                setTotalEstTime();
+            }
+
+            function setTestCounts(){
+                // TODO count how many manuals testSuiteModel
+                var testCnt = 0;
+                var manualCnt = 0;
+
+                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                {
+                    var curItem = testSuiteModel.get(i);
+                    if ( curItem.check === "true"){
+                        testCnt++;
+                        if (curItem.type === "Manual")
+                            manualCnt++
+                    }
+                }
+                summary.totalTests = testCnt;
+                summary.totalManualTests = manualCnt;
+            }
+
+            function setTotalEstTime(){
+                // TODO - move this function into the model
+                var estTimeInt=0;
+
+                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                {
+                    var curItem = testSuiteModel.get(i);
+                    if ( curItem.check === "true")
+                        estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
+                }
+                summary.totalTimeEst =  estTimeInt;
+            }
         }
 
 

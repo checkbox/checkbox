@@ -25,12 +25,12 @@ import Ubuntu.Components 0.1
 
 Item {
     property alias title: progresslabel.text
-    property alias indeterminate: progressbar.indeterminate
     property alias value: progressbar.value
+    property alias maxValue: progressbar.maximumValue
 
     Label {
         id: progresslabel
-        text: i18n.tr("System Testing");
+        text: ""
         anchors.left: parent.left
     }
 
@@ -42,7 +42,7 @@ Item {
         indeterminate: false
         minimumValue: 0
         maximumValue: 100
-        value: 50
+        value: 0
         anchors.left: parent.left
     }
 }

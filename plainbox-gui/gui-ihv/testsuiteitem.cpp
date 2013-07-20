@@ -29,7 +29,9 @@ TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, 
     m_testName(testName),
     m_check(true),
     m_duration(duration),
-    m_type(type)
+    m_type(type),
+    m_runstatus(0),
+    m_elapsedtime(0)
 {
 }
 
@@ -42,6 +44,8 @@ QHash<int, QByteArray> TestSuiteItem::roleNames() const
   names[CheckRole] = "check";
   names[DurationRole] = "duration";
   names[TypeRole] = "type";
+  names[RunstatusRole] = "runstatus";
+  names[ElapsedtimeRole] = "elapsedtime";
   return names;
 }
 
@@ -58,6 +62,10 @@ QVariant TestSuiteItem::data(int role) const
       return duration();
   case TypeRole:
       return type();
+  case RunstatusRole:
+      return runstatus();
+  case ElapsedtimeRole:
+      return elapsedtime();
   default:
     return QVariant();
   }
@@ -77,6 +85,11 @@ void TestSuiteItem::setData(const QVariant & value, int role){
     case DurationRole:
         setDuration(value.toInt());
         break;
+    case RunstatusRole:
+        setRunstatus(value.toInt());
+        break;
+    case ElapsedtimeRole:
+        setElapsedtime(value.toInt());
     }
 
 }
@@ -113,6 +126,24 @@ void TestSuiteItem::setDuration(int duration){
     if (duration != m_duration){
         m_duration = duration;
         emit durationChanged();
+        emit dataChanged();
+    }
+}
+
+void TestSuiteItem::setRunstatus(int runstatus){
+    if (runstatus != m_runstatus){
+        m_runstatus = runstatus;
+        emit runstatusChanged();
+        emit dataChanged();
+        //qDebug()<<"status changed";
+    }
+}
+
+
+void TestSuiteItem::setElapsedtime(int elapsedtime){
+    if (elapsedtime != m_elapsedtime){
+        m_elapsedtime = elapsedtime;
+        emit elapsedtimeChanged();
         emit dataChanged();
     }
 }

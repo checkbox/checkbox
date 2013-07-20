@@ -29,6 +29,10 @@ import "."
 
 Rectangle {
     id: runmanagerrect
+
+    property alias itemindex: groupedList.currentIndex
+    property alias item: groupedList.currentItem
+
     color: "white"
     height: parent.height
     width: parent.width
@@ -43,6 +47,7 @@ Rectangle {
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
 
+
         Component {
             id: highlight
             Rectangle {
@@ -54,93 +59,29 @@ Rectangle {
         }
 
 
-
         ListView {
             id: groupedList
-            width: parent.width
-            height: units.gu(12) * groupedList.count + units.gu(1)
+
             interactive: false
+            width: parent.width
+
+            height: units.gu(12) * testSuiteModel.count + units.gu(2)
+
+            //boundsBehavior : Flickable.StopAtBounds
             model: testSuiteModel
+            highlight: highlight
+            highlightFollowsCurrentItem: true
+
 
             delegate: RunManagerTestDelegate {}
 
             section {
                 property: "group"
                 criteria: ViewSection.FullString
-                delegate: TestSelectionSuiteDelegate{}
+                delegate: RunManagerSuiteDelegate{}
             }
 
-            highlight: highlight
-            highlightFollowsCurrentItem: true
 
-
-
-
-            // when a group item is checked/unchecked the subitems are checked/unchecked
-            function selectGroup(groupName, sel){
-                for (var i = testSuiteModel.count - 1; i >=0; i--){
-                    var item = testSuiteModel.get(i);
-                    if (item.group === groupName)
-                        testSuiteModel.setProperty(i, "check", sel);
-                }
-
-                // this is to select the group items and to make sure data is updated
-                var oldCurrent = currentIndex
-                currentIndex = -1
-                for (var i = 0; i < groupedList.contentItem.children.length; i++)
-                {
-                    var curItem = groupedList.contentItem.children[i];
-                    //console.log(i,": ", curItem, "=", curItem.groupname);
-
-                    if (curItem.groupname === groupName)
-                        curItem.checked = sel;
-                }
-                currentIndex = oldCurrent
-            }
-
-            // determines if one or more subitems are checked
-            // if at least one subitem is checked, the group is checked
-            function setGroupCheck(groupName){
-                var oldCurrent = currentIndex
-                currentIndex = -1
-                var setCheck = false
-                var i = groupedList.contentItem.children.length - 1
-
-                for (;i >= 0 && setCheck === false; i--)
-                {
-                    var curItem = groupedList.contentItem.children[i];
-
-                    // determine if subitem is checked
-                    if (curItem.groupname === groupName && curItem.labelname !== groupName)
-                        if (curItem.checked === true)
-                            setCheck = true;
-
-                }
-
-                for (i = groupedList.contentItem.children.length - 1; i >= 0; i--)
-                {
-                    curItem = groupedList.contentItem.children[i];
-                    if (curItem.labelname === groupName)
-                        curItem.checked = setCheck
-                }
-
-                currentIndex = oldCurrent;
-            }
-
-            // If any subitems are selected, group should be selected.
-            function isGroupSelected(section){
-                var isSel = false;
-                for (var i = testSuiteModel.count - 1; i >=0 && isSel === false; i--)
-                {
-                    var curItem = testSuiteModel.get(i);
-                    //console.log("Section: ", section, " ", i,": ", curItem, "=", curItem.group, " check:", curItem.check);
-
-                    if (curItem.group === section && curItem.check === "true"){
-                        isSel = true;
-                    }
-                }
-                return isSel;
-            }
 
             //  Open/Close gruops
             function openShutSubgroup(groupName, sel){
@@ -160,23 +101,14 @@ Rectangle {
                 }
                 currentIndex = oldCurrent;
             }
-
-            // functions to do something across the whole list
-            function getEstimatedTime(section){
-                return "";
-            }
         }
 
 
-
-
     }
-
     Scrollbar {
         flickableItem: listflick
         align: Qt.AlignTrailing
-    }
-}
+    }}
 
 
 
