@@ -25,6 +25,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 
+
 Dialog {
     id: dialog
 
@@ -44,6 +45,9 @@ Dialog {
         text: i18n.tr("View Results")
         color: UbuntuColors.lightAubergine
         onClicked: {
+            onClicked:{
+                 gedit.launch("./qml/outline/artwork/test.txt")
+            }
         }
     }
     Button {

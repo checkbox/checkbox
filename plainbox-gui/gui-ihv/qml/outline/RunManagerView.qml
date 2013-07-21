@@ -32,10 +32,16 @@ import "."
 Page {
     title: i18n.tr("Run Manager")
 
-    // set up a timer to test screen
+    // TODO - this timer keeps track of time passing
+    // When using plainbox, get tests and advance using it
+    // currently itemindex is advanced at each timer interval
+    // and the runstatus is updated... which is FAKE.
+
+    // FYI: testsuitelist.itemindex is the index of the current item in the ListElement
+    // and item is the current item in the view.
     Timer {
         id: timer
-        property int testIndex: 0
+        property int testIndex: 0                       // which test we are running from the list
         property int totalTests: testSuiteModel.count
         property var startTime: new Date()
         property var testStartTime: new Date()
@@ -49,19 +55,28 @@ Page {
         onTriggered: {
             if (testIndex == totalTests ){
                 // All tests are done
+
+                // update ui
                 runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - timer.startTime)) + ")";
-                progress.enabled = false
+                progress.enabled = false;
                 running = false;
-                //progress.visible = false;
+
+                // set flags in list (for group details)
+                testsuitelist.curSectionInTest = "";
+                testsuitelist.testsComplete = true;
             }
             else {
-                testSuiteModel.setProperty(testIndex, "runstatus", 2);
-                testsuitelist.itemindex = testIndex
-                var stopTime = new Date()
+                testSuiteModel.setProperty(testIndex, "runstatus", 2);  // this will come from Plainbox
+                // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
+                testSuiteModel.setProperty(testIndex, "groupstatus", 2);
+
+                testsuitelist.itemindex = testIndex;    // tell list which item to select
+                var stopTime = new Date();
                 testSuiteModel.setProperty(testIndex, "elapsedtime", stopTime - timer.testStartTime);
-                testStartTime = stopTime
+
+                testStartTime = stopTime;
                 progress.value = testIndex + 1;
                 progress.title = "Running  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")";
             }
@@ -157,13 +172,7 @@ Page {
 
     RunManagerListView {
         id: testsuitelist
-
-
-        //property alias itemindex: itemindex
-        //property alias item1: currentItem
-
         width: parent.width - units.gu(4)
-
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: runmanagerlistheaders.bottom
@@ -202,14 +211,15 @@ Page {
         }
 
         onPauseTest: {
-            // Pause the timer for now
+            // TODO call into plainbox to pause
             timer.running = false;
             timer.repeat = false;
             progress.title = "Paused"
             console.log("Pause...")
         }
         onResumeTest: {
-            // Resume the timer for now
+            // TODO call into plainbox to resume
+            timer.testStartTime = new Date()
             timer.running = true;
             timer.repeat = true;
             console.log("Resume...")

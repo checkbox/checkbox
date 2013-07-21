@@ -32,6 +32,10 @@ Rectangle {
 
     property alias itemindex: groupedList.currentIndex
     property alias item: groupedList.currentItem
+    property alias currentSection: groupedList.currentSection
+    property alias curSectionInTest: groupedList.curSectionInTest
+    property alias curTest: groupedList.curTest
+    property bool testsComplete: false     // this indicates all testings is complete
 
     color: "white"
     height: parent.height
@@ -80,6 +84,25 @@ Rectangle {
                 delegate: RunManagerSuiteDelegate{}
             }
 
+            property string curSectionInTest: currentSection // init this to the first section
+            property int curTest: 0 // counts up each test in the section
+
+            onCurrentIndexChanged: {
+                if (!testsComplete){
+                if (currentIndex != -1){
+                    var item = testSuiteModel.get(currentIndex);
+                    if (item.group === groupedList.curSectionInTest){
+                        groupedList.curTest++;
+                    }
+                    else {
+                        groupedList.curSectionInTest = item.group
+                        groupedList.curTest = 1
+                    }
+                }
+                }
+            }
+
+
 
 
             //  Open/Close gruops
@@ -89,8 +112,6 @@ Rectangle {
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
-                    //console.log(i,": ", curItem, "=", curItem.groupname);
-                    //console.log(i,": ", sel, "=", sel, " height = ", curItem.height);
 
                     if (curItem.groupname === groupName && curItem.labelname !== groupName){
                         curItem.height = sel? units.gu(7):units.gu(0);
@@ -99,6 +120,37 @@ Rectangle {
                     }
                 }
                 currentIndex = oldCurrent;
+            }
+
+            // TODO --- move to C++ function
+            // counts the total test in the group
+            function getTotalTests(groupName){
+                var testcnt = 0
+                for (var i = testSuiteModel.count - 1; i >= 0; i--){
+                    var item = testSuiteModel.get(i);
+                    if (item.group === groupName)
+                        testcnt++;
+                }
+                return testcnt;
+            }
+
+            function isInTest(section){
+                var item = testSuiteModel.get(currentIndex);
+                if (item.groupName === currentSection)
+                    return true;
+                return false;
+            }
+
+            function groupStatus(section){
+                var grpstatus = 0
+                for (var i = testSuiteModel.count - 1; i >= 0; i--){
+                    var item = testSuiteModel.get(i);
+                    if (item.group === section){
+                        grpstatus = item.groupstatus;
+                        i = -1;
+                    }
+                }
+                return grpstatus
             }
         }
 

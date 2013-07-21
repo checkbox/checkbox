@@ -33,6 +33,7 @@ class TestSuiteItem : public ListItem
     Q_PROPERTY(QString type READ type)
     Q_PROPERTY(int runStatus READ runstatus WRITE setRunstatus NOTIFY runstatusChanged)
     Q_PROPERTY(int elapsedtime READ elapsedtime WRITE setElapsedtime NOTIFY elapsedtimeChanged)
+    Q_PROPERTY(int groupstatus READ groupstatus WRITE setGroupstatus NOTIFY groupstatusChanged)
 
 
 
@@ -43,6 +44,7 @@ signals:
     void durationChanged();
     void runstatusChanged();
     void elapsedtimeChanged();
+    void groupstatusChanged();
 
 public:
       enum Roles {
@@ -52,12 +54,13 @@ public:
         DurationRole,
         TypeRole,
         RunstatusRole,
-        ElapsedtimeRole
+        ElapsedtimeRole,
+        GroupstatusRole
       };
 
 
 public:
-    TestSuiteItem(QObject * parent = 0 ) : ListItem(parent), m_check(true), m_runstatus(0), m_elapsedtime(0){}
+    TestSuiteItem(QObject * parent = 0 ) : ListItem(parent), m_check(true), m_runstatus(0), m_elapsedtime(0), m_groupstatus(0){}
     TestSuiteItem(const QString &groupName, const QString &testname, int durationInSeconds, const QString &type, QObject * parent = 0 );
 
     QVariant data(int role) const;
@@ -86,6 +89,9 @@ public:
     inline int elapsedtime() const { return m_elapsedtime; }
     void setElapsedtime(int elapsedtime);
 
+    inline int groupstatus() const {return m_groupstatus; }
+    void setGroupstatus(int groupstatus);
+
 
 
 private:
@@ -96,6 +102,7 @@ private:
     QString m_type;
     int m_runstatus;
     int m_elapsedtime;
+    int m_groupstatus;
 };
 
 

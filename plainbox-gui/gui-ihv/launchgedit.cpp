@@ -12,6 +12,6 @@ void LaunchGEdit::launch(const QString& filename)
     QString program = "gedit";
     QStringList arguments;
     arguments << filename;
-    m_process->setWorkingDirectory("~/");
+    //m_process->setWorkingDirectory("~/");
     m_process->start(program, arguments);
 }

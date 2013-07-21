@@ -87,6 +87,7 @@ Component {
                     anchors.fill: parent
 
                     onClicked:{
+                        groupedList.currentIndex = index
                         if (statusicon.testStatus === 5)
                             PopupUtils.open(manual_dialog, runbuttons);
 
@@ -165,6 +166,7 @@ Component {
                 MouseArea {
                     anchors.fill: parent
                     onClicked:{
+                        groupedList.currentIndex = index
                         if (rerunicon.rerunStatus == 1)
                            rerunicon.rerunStatus = 2;
                         else if (rerunicon.rerunStatus == 2)
@@ -181,6 +183,7 @@ Component {
                         statusicon.source = ""
                         detailsicon.source = ""
                         timelabel.text = ""
+                        testSuiteModel.setProperty(index, "groupstatus", 0);   // reset this as if it hasn't been run yet
 
                     }
                     else
@@ -207,7 +210,10 @@ Component {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked:{gedit.launch("/home/julia/test.txt")
+
+                    onClicked:{
+                        groupedList.currentIndex = index;
+                        gedit.launch("./qml/outline/artwork/test.txt");
                     }
                 }
 
@@ -219,9 +225,6 @@ Component {
                 }
 
             }
-
-
-
         }
         ListItem.ThinDivider {}
     }
