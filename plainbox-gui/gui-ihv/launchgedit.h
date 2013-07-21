@@ -19,23 +19,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef LAUNCHGEDIT_H
+#define LAUNCHGEDIT_H
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+#include <QObject>
+#include <QProcess>
+#include <qdebug.h>
 
+class LaunchGEdit : public QObject
+{
+    Q_OBJECT
+public:
+    explicit LaunchGEdit(QObject *parent = 0);
+    Q_INVOKABLE void launch(const QString& filename);
 
-Page {
-    title: i18n.tr("Welcome!")
+private:
+    QProcess *m_process;
+};
 
-
-
-    Button {
-         anchors.left: parent.left
-         anchors.right: parent.right
-         anchors.bottom: parent.bottom
-         anchors.margins: units.gu(2)
-         text: i18n.tr("Begin Testing")
-         color: UbuntuColors.lightAubergine
-         onClicked: {mainView.state = "SUITESELECTION"}
-    }
-}
+#endif // LAUNCHGEDIT_H

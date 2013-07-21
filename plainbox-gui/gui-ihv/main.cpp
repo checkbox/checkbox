@@ -25,6 +25,7 @@
 #include <QDir>
 #include <QtQml>
 #include "qtquick2applicationviewer.h"
+#include "launchgedit.h"
 #include "listmodel.h"
 #include "testsuiteitem.h"
 
@@ -48,6 +49,7 @@ ListModel* CreateTestSuiteModel(){
 
 
 
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -65,6 +67,9 @@ int main(int argc, char *argv[])
 
     QtQuick2ApplicationViewer viewer;
     viewer.rootContext()->setContextProperty("testSuiteModel", CreateTestSuiteModel());
+
+    LaunchGEdit glauncher;
+    viewer.rootContext()->setContextProperty("gedit", &glauncher);
 
     viewer.setMainQmlFile(QStringLiteral("qml/outline/gui-ihv.qml"));
     viewer.showExpanded();

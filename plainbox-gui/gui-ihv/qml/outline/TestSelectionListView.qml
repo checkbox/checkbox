@@ -89,7 +89,7 @@ Rectangle {
                 for (var i = testSuiteModel.count - 1; i >=0; i--)
                     testSuiteModel.setProperty(i, "check", sel);
 
-                // this is to select the group items and to make sure data is updated
+                // make sure the UI is updated
                 var oldCurrent = currentIndex
                 currentIndex = -1
                 for (var j = 0; j < groupedList.contentItem.children.length; j++){
@@ -105,20 +105,19 @@ Rectangle {
 
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
+                // select in the model
                 for (var i = testSuiteModel.count - 1; i >=0; i--){
                     var item = testSuiteModel.get(i);
                     if (item.group === groupName)
                         testSuiteModel.setProperty(i, "check", sel);
                 }
 
-                // this is to select the group items and to make sure data is updated
+                // make sure data is updated on the UI
                 var oldCurrent = currentIndex
                 currentIndex = -1
-                for (var i = 0; i < groupedList.contentItem.children.length; i++)
+                for (i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
-                    //console.log(i,": ", curItem, "=", estTimeIntcurItem.groupname);
-
                     if (curItem.groupname === groupName)
                         curItem.checked = sel;
                 }
@@ -147,27 +146,13 @@ Rectangle {
                 for (i = groupedList.contentItem.children.length - 1; i >= 0; i--)
                 {
                     curItem = groupedList.contentItem.children[i];
-                    if (curItem.labelname === groupName)
+                    if (curItem.labelname === groupName){
                         curItem.checked = setCheck
-
-                }
-
-                currentIndex = oldCurrent;
-            }
-
-            // If any subitems are selected, group should be selected.
-            function isGroupSelected(section){
-                var isSel = false;
-                for (var i = testSuiteModel.count - 1; i >=0 && isSel === false; i--)
-                {
-                    var curItem = testSuiteModel.get(i);
-                    //console.log("Section: ", section, " ", i,": ", curItem, "=", curItem.group, " check:", curItem.check);
-
-                    if (curItem.group === section && curItem.check === "true"){
-                        isSel = true;
+                        i = -1;
                     }
+
                 }
-                return isSel;
+                currentIndex = oldCurrent;
             }
 
             // Add up all the selected tests in a group

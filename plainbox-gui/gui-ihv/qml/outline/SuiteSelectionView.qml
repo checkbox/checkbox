@@ -69,7 +69,7 @@ Page {
 
     Button {
         id: okbutton
-        width: units.gu(20)
+        width: parent.width - units.gu(4)
         anchors {
             horizontalCenter:parent.horizontalCenter
             bottom: parent.bottom

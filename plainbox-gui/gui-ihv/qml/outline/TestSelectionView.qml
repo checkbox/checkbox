@@ -107,8 +107,8 @@ Page {
 
     TestSelectionListView {
         id: testsuitelist
-        height: parent.height - filler.height - testlistheaders.height - summary.height - testbuttons.height - units.gu(12)
-
+        height: parent.height - filler.height - testlistheaders.height - testdetails.height - testbuttons.height - summary.height - units.gu(8)
+        //height: units.gu(60)
         width: testlistheaders.width
 
         anchors{
@@ -118,16 +118,15 @@ Page {
     }
 
 
-
     TestSelectionDetails {
         id: testdetails
-        height: units.gu(4)
+        height: openHeight
         width: testlistheaders.width
 
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: testsuitelist.bottom
-            topMargin: units.gu(1)
+            topMargin: units.gu(2)
         }
     }
 
@@ -136,8 +135,8 @@ Page {
         id: testbuttons
         anchors{
              horizontalCenter: parent.horizontalCenter
-             bottom: parent.bottom
-             bottomMargin: units.gu(4)
+             bottom: summary.top
+             bottomMargin: units.gu(2)
         }
 
         onSelectAll:{
@@ -149,7 +148,6 @@ Page {
         }
 
         onStartTesting: {
-            // CHANGE THIS TO NEXT PAGE TO BRING UP
             mainView.state = "RUNMANAGER"
             console.log("Start Testing")
         }
@@ -157,6 +155,7 @@ Page {
 
     TestSelectionSummary{
         id: summary
+        height: units.gu(2)
         width: parent.width
         anchors {
             horizontalCenter: parent.horizontalCenter

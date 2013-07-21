@@ -28,9 +28,6 @@ import "."
 Component {
     id: groupDelegate
 
-
-
-
     Item {
         id: itemdelegate
         width: parent.width

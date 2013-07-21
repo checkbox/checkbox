@@ -40,7 +40,7 @@ Component {
         property bool open: true
 
         onOpenChanged: {
-            open?progressIcon.source = "artwork/DownArrow.png":progressIcon.source = "artwork/RightArrow.png"
+            open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
         }
 
         MouseArea {
@@ -61,7 +61,7 @@ Component {
         }
 
         Image {
-            id: progressIcon
+            id: openshutIcon
             source: "artwork/DownArrow.png"
             width: units.gu(2)
             height: units.gu(2)
@@ -76,9 +76,9 @@ Component {
         CheckBox {
             id: groupcheckbox
             anchors.verticalCenter: parent.verticalCenter
-            anchors.left: progressIcon.right
+            anchors.left: openshutIcon.right
             anchors.leftMargin: units.gu(1)
-            checked: groupedList.isGroupSelected(section)
+            checked: true
             onClicked: groupedList.selectGroup(section, checked)
         }
 

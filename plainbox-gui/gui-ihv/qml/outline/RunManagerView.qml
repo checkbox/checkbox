@@ -22,6 +22,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
 import "."
 
 
@@ -68,7 +69,7 @@ Page {
         }
     }
 
-   Item {
+    Item {
         id: filler
         height: units.gu(0)
         anchors.top: parent.top
@@ -214,40 +215,56 @@ Page {
             console.log("Resume...")
         }
         onResults: {
+            PopupUtils.open(submission_dialog, runbuttons);
             console.log("Results...")
         }
 
-Item {
-    id: utils
-    function formatElapsedTime(elap){
-        // strip the miliseconds
-        elap = parseInt(elap / 1000);
+        Component {
+            id: submission_dialog
+            SubmissionDialog{
+            }
+        }
 
-        // get seconds (Original had 'round' which incorrectly counts 0:28, 0:29, 1:30 ... 1:59, 1:0)
-        var seconds = parseInt(Math.round(elap % 60));
-
-        // remove seconds from the date
-        elap = parseInt(Math.floor(elap / 60));
-
-        // get minutes
-        var minutes = parseInt(Math.round(elap % 60));
-
-        // remove minutes from the date
-        elap = parseInt(Math.floor(elap / 60));
+        Component {
+            id: manual_dialog
+            ManualInteractionDialog{
+            }
+        }
 
 
-        // get hours
-        var hours = parseInt(Math.round(elap % 24));
 
-        var timeStr = ""
 
-        if (hours)
-            timeStr = hours + ":";
-        timeStr = timeStr +  ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+        Item {
+            id: utils
+            function formatElapsedTime(elap){
+                // strip the miliseconds
+                elap = parseInt(elap / 1000);
 
-        return timeStr;
+                // get seconds (Original had 'round' which incorrectly counts 0:28, 0:29, 1:30 ... 1:59, 1:0)
+                var seconds = parseInt(Math.round(elap % 60));
+
+                // remove seconds from the date
+                elap = parseInt(Math.floor(elap / 60));
+
+                // get minutes
+                var minutes = parseInt(Math.round(elap % 60));
+
+                // remove minutes from the date
+                elap = parseInt(Math.floor(elap / 60));
+
+
+                // get hours
+                var hours = parseInt(Math.round(elap % 24));
+
+                var timeStr = ""
+
+                if (hours)
+                    timeStr = hours + ":";
+                timeStr = timeStr +  ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+
+                return timeStr;
+            }
+        }
+
     }
-}
-
-}
 }

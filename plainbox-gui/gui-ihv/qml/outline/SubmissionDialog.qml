@@ -22,20 +22,44 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
 
 
-Page {
-    title: i18n.tr("Welcome!")
+Dialog {
+    id: dialog
 
+    title: i18n.tr("Report")
+    text: i18n.tr("The following report has be generated for submission to the Launchpad hardware database.")
 
 
     Button {
-         anchors.left: parent.left
-         anchors.right: parent.right
-         anchors.bottom: parent.bottom
-         anchors.margins: units.gu(2)
-         text: i18n.tr("Begin Testing")
-         color: UbuntuColors.lightAubergine
-         onClicked: {mainView.state = "SUITESELECTION"}
+        id: savebutton
+        text: i18n.tr("Save Results")
+        color: UbuntuColors.orange
+        onClicked: {
+        }
+    }
+    Button {
+        id: viewbutton
+        text: i18n.tr("View Results")
+        color: UbuntuColors.lightAubergine
+        onClicked: {
+        }
+    }
+    Button {
+        id: donebutton
+        text: i18n.tr("Done")
+        color: UbuntuColors.warmGrey
+        onClicked: {
+            PopupUtils.close(dialog)
+        }
     }
 }
+
+
+
+
+
+
+
+

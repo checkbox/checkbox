@@ -23,6 +23,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
 import "./artwork"
 
 Component {
@@ -81,15 +82,19 @@ Component {
                 source: ""
 
 
+
                 MouseArea {
                     anchors.fill: parent
 
                     onClicked:{
+                        if (statusicon.testStatus === 5)
+                            PopupUtils.open(manual_dialog, runbuttons);
 
                         if (statusicon.testStatus < 6)
                             statusicon.testStatus++
                         else
                             statusicon.testStatus = 0
+
                     }
                 }
 
@@ -125,16 +130,16 @@ Component {
             }
 
             Item {
-                id: eltimefiller
+                id: timefiller
                 width: units.gu(10)
                 anchors.left: statusicon.right
             }
 
             Text {
-                id: eltimelabel
+                id: timelabel
                 text: {!elapsedtime ? "" : utils.formatElapsedTime(elapsedtime)}
                 width: units.gu(10)
-                anchors.left: eltimefiller.right
+                anchors.left: timefiller.right
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignRight
 
@@ -143,13 +148,13 @@ Component {
             Item {
                 id: actionsfiller
                 width: units.gu(12)
-                anchors.left: eltimelabel.right
+                anchors.left: timelabel.right
             }
 
             Image {
-                id: actionicon
-                property bool actionStatus: !runstatus?false:true // TODO this should be coming if the test has run or not
-                                                  // currently assumes 0 = not run yet, 1 == completed
+                id: rerunicon
+                property int rerunStatus: !runstatus?0:1 // TODO this should be coming if the test has run or not
+                                                  // currently assumes 0 = not run yet, 1 == completed 2 == queued for rerun
 
                 width: units.gu(3)
                 height: units.gu(3)
@@ -159,13 +164,26 @@ Component {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked:{}
+                    onClicked:{
+                        if (rerunicon.rerunStatus == 1)
+                           rerunicon.rerunStatus = 2;
+                        else if (rerunicon.rerunStatus == 2)
+                            rerunicon.rerunStatus = 1;
+                    }
                  }
 
-                onActionStatusChanged:{
-                    if (actionStatus)               // completed
+                onRerunStatusChanged:{
+                    if (rerunStatus == 1)                      // completed
                         source = "./artwork/rerun.svg"
-                    else                            // not run yet
+                    else if (rerunStatus == 2){                 // queued for rerun
+                        source = "./artwork/rerunq.svg"
+                        // reset other icons to blank
+                        statusicon.source = ""
+                        detailsicon.source = ""
+                        timelabel.text = ""
+
+                    }
+                    else
                         source = ""
                 }
             }
@@ -173,7 +191,7 @@ Component {
             Item {
                 id: detailsfiller
                 width: units.gu(13)
-                anchors.left: actionicon.right
+                anchors.left: rerunicon.right
             }
 
             Image {
@@ -189,7 +207,8 @@ Component {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked:{}
+                    onClicked:{gedit.launch("/home/julia/test.txt")
+                    }
                 }
 
                 onDetailsStatusChanged:{

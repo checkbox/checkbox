@@ -47,7 +47,6 @@ Rectangle {
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
 
-
         Component {
             id: highlight
             Rectangle {
