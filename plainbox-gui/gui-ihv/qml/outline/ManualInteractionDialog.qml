@@ -34,15 +34,19 @@ Dialog {
 
     TextArea{
         id: instructions
-        text: "This is where we put our instructions\n
-               2- This is
-        3 -This is where we put our instructions\n
-        4- This is where we put our instructions\n
-        5 -where we put our instructions\n"
+        text: "This is where we put our instructions\n2- This is 1\n3 -This is where we put our instructions\n4- This is where we put our instructions\n5 -where we put our instructions\n"
         Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
         color: "green"
+        height: units.gu(24)
     }
 
+    Button {
+        text: i18n.tr("Test")
+        color: UbuntuColors.orange
+        onClicked: {
+            console.log("Test")
+        }
+    }
 
     Row {
         spacing: units.gu(8)
@@ -51,8 +55,12 @@ Dialog {
             text: i18n.tr("Yes")
             checked: true
             onClicked: {
-                nocheck.checked = !checked
-                skipcheck.checked = !checked
+                if (checked){
+                    nocheck.checked = !checked
+                    skipcheck.checked = !checked
+                }
+                else
+                    checked = true;
             }
             Label{
                 anchors.left: yescheck.right
@@ -67,8 +75,12 @@ Dialog {
             text: i18n.tr("No")
             checked: false
             onClicked: {
-                yescheck.checked = !checked
-                skipcheck.checked = !checked
+                if (checked){
+                    yescheck.checked = !checked
+                    skipcheck.checked = !checked
+                }
+                else
+                    checked = true;
             }
             Label{
                 anchors.left: nocheck.right
@@ -83,8 +95,12 @@ Dialog {
             text: i18n.tr("Skip")
             checked: false
             onClicked: {
-                nocheck.checked = !checked
-                yescheck.checked = !checked
+                if (checked){
+                    nocheck.checked = !checked
+                    yescheck.checked = !checked
+                }
+                else
+                    checked = true;
             }
             Label{
                 anchors.left: skipcheck.right
@@ -95,39 +111,51 @@ Dialog {
         }
     }
 
-    Button {
-        text: i18n.tr("Test")
-        onClicked: {
-            console.log("Test")
-        }
-    }
+
     Column {
         Label{
             text: i18n.tr("Comments")
         }
 
-    TextArea {
-id: comments
-    }
-    }
-
-
-    Button {
-        text: i18n.tr("Previous")
-        color: UbuntuColors.warmGrey
-        onClicked: {
-            console.log("Previous")
-            PopupUtils.close(dialog)
+        TextArea {
+            id: comments
+            text: ""
         }
     }
 
 
+
+
     Button {
-        text: i18n.tr("Next")
+        id: continuebutton
+        text: i18n.tr("Continue")
         color: UbuntuColors.warmGrey
         onClicked: {
-            console.log("Next")
-            PopupUtils.close(dialog)
+            console.log("Continue")
+            if (skipcheck.checked && comments.text === "")
+            {
+                PopupUtils.open(warning_dialog, continuebutton);
+            }
+
+            else
+                PopupUtils.close(dialog)
+        }
+    }
+
+
+
+    Component {
+        id: warning_dialog
+        WarningDialog{
+            text: i18n.tr("When skipping, please enter a comment.");
+            showOK: true
+            showCancel: false
+            showContinue: false
+            showCheckbox: false
+
+            onOk: {
+                console.log("ok clicked");
+            }
         }
     }
 }

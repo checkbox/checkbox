@@ -92,13 +92,17 @@ Component {
                         groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index
 
-                        if (statusicon.testStatus === 5)
+                        // TODO, hook up each status to an action,
+                        // changing the teststaus is for DEMO only!
+                        if (statusicon.testStatus === 5){
                             PopupUtils.open(manual_dialog, runbuttons);
+                            statusicon.testStatus++
+                        }
 
                         if (statusicon.testStatus < 6)
                             statusicon.testStatus++
                         else
-                            statusicon.testStatus = 0
+                            statusicon.testStatus = 1
                         groupedList.userChangingIndex = false;
                     }
                 }
