@@ -48,9 +48,11 @@ Component {
             anchors.fill: parent
 
             onClicked: {
+                groupedList.userChangingIndex = true;
                 itemdelegate.open = !itemdelegate.open
                 groupedList.openShutSubgroup(section, itemdelegate.open)
                 //console.log("Open/Shut items below")
+                groupedList.userChangingIndex = false;
             }
         }
 
@@ -97,7 +99,7 @@ Component {
 
             property int totalTests: groupedList.getTotalTests(section)
             property int testCnt: groupedList.curTest
-            property bool inTest: section === groupedList.curSectionInTest
+            property bool inTest: (section === groupedList.curSectionTested)
 
 
             text: {inTest && !groupedList.testsComplete ? testCnt + " of " + totalTests: ""}

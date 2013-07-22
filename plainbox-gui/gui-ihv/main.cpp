@@ -34,14 +34,40 @@
 ListModel* CreateTestSuiteModel(){
     //QList<QObject*> list;
     ListModel *model = new ListModel(new TestSuiteItem, qApp);
-    model->appendRow(new TestSuiteItem("Informational tests", "SATA/IDE devive information.", 60, "Automatic", model));
-    model->appendRow(new TestSuiteItem("Hibernation tests", "power-management/hibernate_advanced", 22, "Manual", model));
-    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_scanning", 360, "Automatic", model));
-    model->appendRow(new TestSuiteItem("Wireless networking tests", "wireless/wireless_connection", 600, "Automatic", model));
-    model->appendRow(new TestSuiteItem("LED tests", "led/wireless", 200, "Manual",model));
-    model->appendRow(new TestSuiteItem("Benchmarks tests", "benchmarks/network/network-loopback", 100, "Manual",model));
-    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/led_after_suspend/wireless", 1, "Manual",model));
-    model->appendRow(new TestSuiteItem("Suspend tests", "suspend/wireless_after_suspenspeded", 2,  "Manual",model));
+    for (int i = 0; i < 20; i++){
+        QString s;
+        QTextStream(&s) << i << " SATA/IDE devive information.";
+        model->appendRow(new TestSuiteItem("Informational tests", s, 60, "Automatic", model));
+    }
+    for (int i = 0; i < 5; i++){
+        QString s;
+        QTextStream(&s) << i << "  power-management/hibernate_advanced";
+        model->appendRow(new TestSuiteItem("Hibernation tests", s, 60, "Automatic", model));
+    }
+
+    for (int i = 0; i < 3; i++){
+        QString s;
+        QTextStream(&s) << i << "  wireless/wireless_scanning";
+        model->appendRow(new TestSuiteItem("Wireless networking tests", s, 360, "Automatic", model));
+    }
+
+    for (int i = 0; i < 3; i++){
+        QString s;
+        QTextStream(&s) << i << "  led/wireless";
+        model->appendRow(new TestSuiteItem("LED tests", s, 360, "Automatic", model));
+    }
+
+    for (int i = 0; i < 5; i++){
+        QString s;
+        QTextStream(&s) << i << "  benchmarks/network/network-loopback";
+        model->appendRow(new TestSuiteItem("Benchmarks tests", s, 360, "Automatic", model));
+    }
+
+    for (int i = 0; i < 3; i++){
+        QString s;
+        QTextStream(&s) << i << "  suspend/led_after_suspend/wireless";
+        model->appendRow(new TestSuiteItem("Suspend tests", s, 1, "Manual",model));
+     }
 
     return model;
 }

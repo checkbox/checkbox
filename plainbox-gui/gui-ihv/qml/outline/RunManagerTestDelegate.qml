@@ -44,7 +44,9 @@ Component {
             anchors.fill: parent
 
             onClicked: {
+                groupedList.userChangingIndex = true;
                 groupedList.currentIndex = index;
+                groupedList.userChangingIndex = false;
             }
         }
 
@@ -87,7 +89,9 @@ Component {
                     anchors.fill: parent
 
                     onClicked:{
+                        groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index
+
                         if (statusicon.testStatus === 5)
                             PopupUtils.open(manual_dialog, runbuttons);
 
@@ -95,7 +99,7 @@ Component {
                             statusicon.testStatus++
                         else
                             statusicon.testStatus = 0
-
+                        groupedList.userChangingIndex = false;
                     }
                 }
 
@@ -166,11 +170,15 @@ Component {
                 MouseArea {
                     anchors.fill: parent
                     onClicked:{
+                        groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index
+
                         if (rerunicon.rerunStatus == 1)
                            rerunicon.rerunStatus = 2;
                         else if (rerunicon.rerunStatus == 2)
                             rerunicon.rerunStatus = 1;
+
+                        groupedList.userChangingIndex = false;
                     }
                  }
 
@@ -183,8 +191,7 @@ Component {
                         statusicon.source = ""
                         detailsicon.source = ""
                         timelabel.text = ""
-                        testSuiteModel.setProperty(index, "groupstatus", 0);   // reset this as if it hasn't been run yet
-
+                        testSuiteModel.setProperty(index, "groupstatus", 0);   // group
                     }
                     else
                         source = ""
@@ -212,8 +219,10 @@ Component {
                     anchors.fill: parent
 
                     onClicked:{
+                        groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index;
                         gedit.launch("./qml/outline/artwork/test.txt");
+                        groupedList.userChangingIndex = false;
                     }
                 }
 

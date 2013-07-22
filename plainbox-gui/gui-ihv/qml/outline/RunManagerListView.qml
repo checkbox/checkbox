@@ -30,26 +30,24 @@ import "."
 Rectangle {
     id: runmanagerrect
 
-    property alias itemindex: groupedList.currentIndex
-    property alias item: groupedList.currentItem
-    property alias currentSection: groupedList.currentSection
-    property alias curSectionInTest: groupedList.curSectionInTest
-    property alias curTest: groupedList.curTest
-    property bool testsComplete: false     // this indicates all testings is complete
+    property alias itemindex: groupedList.currentIndex              // use this to change the current selection
+    property alias curSectionTested: groupedList.curSectionTested   // used by suite delegate to display 1 of 4 when tests are executed
+    property alias curTest: groupedList.curTest                     // used by suite delegate to display first number of 1 of 4
 
     color: "white"
     height: parent.height
     width: parent.width
 
 
+
     Flickable {
         id: listflick
         anchors.fill: parent
         height: parent.height
-
-        clip: true
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
+        clip: true
+        interactive: true
 
         Component {
             id: highlight
@@ -60,21 +58,22 @@ Rectangle {
                 radius: 5
             }
         }
-
-
         ListView {
             id: groupedList
 
+            property int sectionCount: 0                // contain the number of sections for calculating height
+            property int closedCount: 0                 // contains number of closed items for calculating height
+            property bool userChangingIndex: false      //  indicates if user is changing index so 1 of 4 heading doesn't get messed up
+            property string curSectionTested: currentSection // which section is currently under test
+            property int curTest: 0                     // test index of test in relation to section
+
             interactive: false
             width: parent.width
+            height:units.gu(7) * (groupedList.count + groupedList.sectionCount - groupedList.closedCount)
 
-            height: units.gu(12) * testSuiteModel.count + units.gu(2)
-
-            //boundsBehavior : Flickable.StopAtBounds
             model: testSuiteModel
             highlight: highlight
             highlightFollowsCurrentItem: true
-
 
             delegate: RunManagerTestDelegate {}
 
@@ -84,21 +83,26 @@ Rectangle {
                 delegate: RunManagerSuiteDelegate{}
             }
 
-            property string curSectionInTest: currentSection // init this to the first section
-            property int curTest: 0 // counts up each test in the section
+
+            Component.onCompleted:{
+                sectionCount = getSectionCount()
+            }
 
             onCurrentIndexChanged: {
-                if (!testsComplete){
-                if (currentIndex != -1){
-                    var item = testSuiteModel.get(currentIndex);
-                    if (item.group === groupedList.curSectionInTest){
-                        groupedList.curTest++;
+                // This code is used for counting up tests in the section for 1 of 5 header
+                // when incrementing through test.  If index is being changed
+                // by the user, don't mess up the group summary
+                if (!userChangingIndex){
+                    if (currentIndex != -1){
+                        var item = testSuiteModel.get(currentIndex);
+                        if (item.group === groupedList.curSectionTested){
+                            groupedList.curTest++;
+                        }
+                        else {
+                            groupedList.curSectionTested = item.group
+                            groupedList.curTest = 1
+                        }
                     }
-                    else {
-                        groupedList.curSectionInTest = item.group
-                        groupedList.curTest = 1
-                    }
-                }
                 }
             }
 
@@ -116,13 +120,15 @@ Rectangle {
                     if (curItem.groupname === groupName && curItem.labelname !== groupName){
                         curItem.height = sel? units.gu(7):units.gu(0);
                         curItem.visible = sel;
-                        groupedList.height += sel?units.gu(7):-units.gu(7)
+                        if (sel)
+                            closedCount--;
+                        else
+                            closedCount++;
                     }
                 }
                 currentIndex = oldCurrent;
             }
 
-            // TODO --- move to C++ function
             // counts the total test in the group
             function getTotalTests(groupName){
                 var testcnt = 0
@@ -132,13 +138,6 @@ Rectangle {
                         testcnt++;
                 }
                 return testcnt;
-            }
-
-            function isInTest(section){
-                var item = testSuiteModel.get(currentIndex);
-                if (item.groupName === currentSection)
-                    return true;
-                return false;
             }
 
             function groupStatus(section){
@@ -152,14 +151,33 @@ Rectangle {
                 }
                 return grpstatus
             }
+
+
+            function getSectionCount(){
+                // if this is the first time called, count the number of sections
+                var secCnt = sectionCount
+                if (secCnt === 0){
+                    var curItem = testSuiteModel.get(0);
+                    var curSec = curItem.group;
+                    secCnt = 1;
+                    for (var i = 1; i < testSuiteModel.count; i++){
+                        curItem = testSuiteModel.get(i);
+                        if (curItem.group !== curSec){
+                            curSec = curItem.group
+                            secCnt++;
+                        }
+                    }
+                }
+                return secCnt;
+            }
+
         }
-
-
     }
     Scrollbar {
         flickableItem: listflick
         align: Qt.AlignTrailing
-    }}
+    }
+}
 
 
 

@@ -37,7 +37,9 @@ Page {
     // currently itemindex is advanced at each timer interval
     // and the runstatus is updated... which is FAKE.
 
-    // FYI: testsuitelist.itemindex is the index of the current item in the ListElement
+    // Need to do:
+    // set testsuitelist.itemindex to the index of the current item in the ModelSectionCounter
+    // testsuitelist.curSectionTested = "" when done completed
     // and item is the current item in the view.
     Timer {
         id: timer
@@ -47,7 +49,8 @@ Page {
         property var testStartTime: new Date()
 
 
-        interval: 1100;
+
+        interval:1000;
         running: true;
         repeat: true
 
@@ -64,21 +67,23 @@ Page {
                 running = false;
 
                 // set flags in list (for group details)
-                testsuitelist.curSectionInTest = "";
-                testsuitelist.testsComplete = true;
+                testsuitelist.curSectionTested = "";  // set this as there is no more tested
             }
             else {
+                // TODO - this is hardcoding the properties.... PB shuold be doing this
                 testSuiteModel.setProperty(testIndex, "runstatus", 2);  // this will come from Plainbox
                 // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
                 testSuiteModel.setProperty(testIndex, "groupstatus", 2);
 
                 testsuitelist.itemindex = testIndex;    // tell list which item to select
+
+                // set elapsed time
                 var stopTime = new Date();
                 testSuiteModel.setProperty(testIndex, "elapsedtime", stopTime - timer.testStartTime);
 
                 testStartTime = stopTime;
                 progress.value = testIndex + 1;
-                progress.title = "Running  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")";
+                progress.title = "Running   "+ (testIndex+1) + " of "+ testSuiteModel.count + "  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")";
             }
             testIndex++;
         }
@@ -214,7 +219,7 @@ Page {
             // TODO call into plainbox to pause
             timer.running = false;
             timer.repeat = false;
-            progress.title = "Paused"
+            progress.title = progress.title.replace("Running", "Paused ")
             console.log("Pause...")
         }
         onResumeTest: {

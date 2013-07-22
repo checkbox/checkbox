@@ -47,6 +47,7 @@ Rectangle {
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
 
+
         Component {
             id: highlight
             Rectangle {
@@ -55,6 +56,7 @@ Rectangle {
                 color: "lightsteelblue";
                 radius: 5
             }
+
         }
 
 
@@ -62,9 +64,12 @@ Rectangle {
         ListView {
             id: groupedList
             width: parent.width
-            height: units.gu(12) * groupedList.count + units.gu(1)
+            height: units.gu(7) * (groupedList.count + groupedList.sectionCount - groupedList.closedCount)
             interactive: false
             model: testSuiteModel
+
+            property int sectionCount: 0// this will contain the number of sections
+            property int closedCount: 0 // this contains nuber of closed items
 
             delegate: TestSelectionTestDelegate {}
 
@@ -79,6 +84,7 @@ Rectangle {
 
             Component.onCompleted: {
                 testdetails.testItem = testSuiteModel.get(currentItem);
+                sectionCount = getSectionCount()
                 setListSummary();
             }
 
@@ -91,7 +97,7 @@ Rectangle {
 
                 // make sure the UI is updated
                 var oldCurrent = currentIndex
-                currentIndex = -1
+                currentIndex = -1--
                 for (var j = 0; j < groupedList.contentItem.children.length; j++){
                     var curItem = groupedList.contentItem.children[j];
                     curItem.checked = sel;
@@ -106,8 +112,8 @@ Rectangle {
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
                 // select in the model
-                for (var i = testSuiteModel.count - 1; i >=0; i--){
-                    var item = testSuiteModel.get(i);
+                for (var i = testSuiteModel.count -                                 1; i >=0; i--){
+                   var item = testSuiteModel.get(i);
                     if (item.group === groupName)
                         testSuiteModel.setProperty(i, "check", sel);
                 }
@@ -115,13 +121,14 @@ Rectangle {
                 // make sure data is updated on the UI
                 var oldCurrent = currentIndex
                 currentIndex = -1
-                for (i = 0; i < groupedList.contentItem.children.length; i++)
+                for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
                     if (curItem.groupname === groupName)
                         curItem.checked = sel;
                 }
                 currentIndex = oldCurrent
+                setListSummary()
             }
 
             // determines if one or more subitems are checked
@@ -153,20 +160,27 @@ Rectangle {
 
                 }
                 currentIndex = oldCurrent;
+
             }
 
             // Add up all the selected tests in a group
             function getEstimatedTime(section){
+                var start = new Date();
                 var estTimeStr = "";
                 var estTimeInt=0;
+                var foundGroup = false;  // list is ordered in groups, after whole group found return
 
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                for (var i = 0; i <testSuiteModel.count; i++)
                 {
                     var curItem = testSuiteModel.get(i);
 
                     //console.log("curItem.group:", curItem.group, "check", curItem.check)
-                    if (curItem.group === section && curItem.check === "true")
+                    if (curItem.group === section && curItem.check === "true"){
+                        foundGroup = true;
                         estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
+                    }
+                    if (foundGroup && curItem.group != section)
+                        i = testSuiteModel.count;
 
                 }
                 if (estTimeInt == 0)
@@ -179,11 +193,14 @@ Rectangle {
                     if (durMinutes > 1)
                         estTimeStr += 's';
                 }
+                var end = new Date();
+                console.log("Time for estimated groups:", section, end.getMilliseconds() - start.getMilliseconds());
                 return  estTimeStr;
             }
 
             //  Open/Close gruops
             function openShutSubgroup(groupName, sel){
+
                 var oldCurrent = currentIndex;
                 currentIndex = -1
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
@@ -195,7 +212,9 @@ Rectangle {
                     if (curItem.groupname === groupName && curItem.labelname !== groupName){
                         curItem.height = sel? units.gu(7):units.gu(0);
                         curItem.visible = sel;
-                        groupedList.height += sel?units.gu(7):-units.gu(7)
+                        if (sel)
+                            closedCount--;
+                        else closedCount++;
                     }
                 }
                 currentIndex = oldCurrent;
@@ -216,15 +235,14 @@ Rectangle {
                  }
             }
 
-            function setListSummary() {
-                setTestCounts();
-                setTotalEstTime();
-            }
 
-            function setTestCounts(){
+            function setListSummary(){
+                var start = new Date();
                 // TODO count how many manuals testSuiteModel
                 var testCnt = 0;
                 var manualCnt = 0;
+
+                var estTimeInt=0;
 
                 for (var i = testSuiteModel.count - 1; i >=0; i--)
                 {
@@ -232,25 +250,40 @@ Rectangle {
                     if ( curItem.check === "true"){
                         testCnt++;
                         if (curItem.type === "Manual")
-                            manualCnt++
+                            manualCnt++;
+                        estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
                     }
                 }
                 summary.totalTests = testCnt;
                 summary.totalManualTests = manualCnt;
-            }
-
-            function setTotalEstTime(){
-                // TODO - move this function into the model
-                var estTimeInt=0;
-
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
-                {
-                    var curItem = testSuiteModel.get(i);
-                    if ( curItem.check === "true")
-                        estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
-                }
                 summary.totalTimeEst =  estTimeInt;
+                var end = new Date();
+                console.log("Time for summary:", end.getMilliseconds() - start.getMilliseconds());
+
             }
+
+            function getSectionCount(){
+               var start = new Date();
+                // if this is the first time called, find all sections
+                var secCnt = sectionCount
+                if (secCnt === 0){
+                    var curItem = testSuiteModel.get(0);
+                    var curSec = curItem.group;
+                    secCnt = 1;
+                    for (var i = 1; i < testSuiteModel.count; i++){
+                        curItem = testSuiteModel.get(i);
+                        if (curItem.group !== curSec){
+                            curSec = curItem.group
+                            secCnt++;
+                        }
+                      }
+                }
+                var end = new Date();
+                console.log("Time for Section Count:", end.getMilliseconds() - start.getMilliseconds());
+
+                return secCnt;
+            }
+
         }
 
 
