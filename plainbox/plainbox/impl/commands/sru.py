@@ -33,11 +33,13 @@ import tempfile
 
 from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
 
+from plainbox.impl.applogic import WhiteList
 from plainbox.impl.applogic import get_matching_job_list
 from plainbox.impl.applogic import run_job_if_possible
-from plainbox.impl.checkbox import WhiteList
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.check_config import CheckConfigInvocation
+from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
+from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
 from plainbox.impl.config import ValidationError, Unset
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.exporter import ByteStringStreamTranslator
@@ -51,20 +53,26 @@ from plainbox.impl.transport.certification import InvalidSecureIDError
 logger = logging.getLogger("plainbox.commands.sru")
 
 
-class _SRUInvocation:
+class _SRUInvocation(CheckBoxInvocationMixIn):
     """
     Helper class instantiated to perform a particular invocation of the sru
     command. Unlike the SRU command itself, this class is instantiated each
     time.
     """
 
-    def __init__(self, checkbox, config, ns):
-        self.checkbox = checkbox
+    def __init__(self, provider, config, ns):
+        self.provider = provider
         self.config = config
         self.ns = ns
-        self.whitelist = WhiteList.from_file(os.path.join(
-            self.checkbox.whitelists_dir, "sru.whitelist"))
-        self.job_list = self.checkbox.get_builtin_jobs()
+        if self.ns.whitelist:
+            self.whitelist = WhiteList.from_file(self.ns.whitelist[0].name)
+        elif self.config.whitelist is not Unset:
+            self.whitelist = WhiteList.from_file(self.config.whitelist)
+        else:
+            self.whitelist = WhiteList.from_file(os.path.join(
+                self.provider.whitelists_dir, "sru.whitelist"))
+
+        self.job_list = self.provider.get_builtin_jobs()
         # XXX: maybe allow specifying system_id from command line?
         self.exporter = XMLSessionStateExporter(system_id=None)
         self.session = None
@@ -193,7 +201,7 @@ class _SRUInvocation:
         self.session.update_job_result(job, job_result)
 
 
-class SRUCommand(PlainBoxCommand):
+class SRUCommand(PlainBoxCommand, CheckBoxCommandMixIn):
     """
     Command for running Stable Release Update (SRU) tests.
 
@@ -207,8 +215,8 @@ class SRUCommand(PlainBoxCommand):
     plainbox core on realistic workloads.
     """
 
-    def __init__(self, checkbox, config):
-        self.checkbox = checkbox
+    def __init__(self, provider, config):
+        self.provider = provider
         self.config = config
 
     def invoked(self, ns):
@@ -229,7 +237,7 @@ class SRUCommand(PlainBoxCommand):
             retval = CheckConfigInvocation(self.config).run()
             if retval != 0:
                 return retval
-        return _SRUInvocation(self.checkbox, self.config, ns).run()
+        return _SRUInvocation(self.provider, self.config, ns).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser(
@@ -265,6 +273,12 @@ class SRUCommand(PlainBoxCommand):
             action='store',
             help=("POST the test report XML to this URL"
                   " (%(default)s)"))
+        group.add_argument(
+            '--staging',
+            dest='c3_url',
+            action='store_const',
+            const='https://certification.staging.canonical.com/',
+            help='Override --destination to use the staging certification website')
         group = parser.add_argument_group(title="execution options")
         group.add_argument(
             '-n', '--dry-run',
@@ -272,3 +286,6 @@ class SRUCommand(PlainBoxCommand):
             default=False,
             help=("Skip all usual jobs."
                   " Only local, resource and attachment jobs are started"))
+        # Call enhance_parser from CheckBoxCommandMixIn
+        self.enhance_parser(parser)
+

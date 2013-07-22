@@ -1,4 +1,15 @@
-checkbox (0.16.6) UNRELEASED; urgency=low
+checkbox (0.16.7) UNRELEASED; urgency=low
+
+  [ Jeff Lane ]
+  * jobs/suspend.txt.in, jobs/usb.txt.in, jobs/mediacard.txt.in: moved jobs to
+    suspend.txt.in for USB and Mediacard after suspend, renamed jobs
+    appropriately and adjusted the descriptions.
+    data/sru.whitelist: added usb and usb3 after suspend jobs for SRU i
+    (LP: #1201420)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:43:11 +0100
+
+checkbox (0.16.6) raring; urgency=low
 
   [ Brendan Donegan ]
   * plugins/launchpad_report.py - Don't include attachments which have a status
@@ -8,6 +19,9 @@ checkbox (0.16.6) UNRELEASED; urgency=low
     (LP: #1184661)
   * plugins/subunit_report.py - Prevent crash when job output contains 
     non-ASCII characters (LP: #1196838)
+  * jobs/info.txt.in - Add lshw_attachment job with dependency on the lshw
+    package, and also give dmidecode_attachment a dependency on dmidecode,
+    this way we get the right attachments (LP: #1199245)
 
   [ Alberto Milone ]
   * checkbox-old/scripts/color_depth_info:
@@ -15,10 +29,40 @@ checkbox (0.16.6) UNRELEASED; urgency=low
       correct string.
     - Open the log using the 'rb' flag. This prevents python from throwing
       a UnicodeDecodeError.
+  
+  [ Jeff Lane ]
+  * scripts/fwts_test: script now fails on aborted tests if desired. 
+    jobs/power-management.txt.in: jobs that depend on fwts_wakealarm to pass or
+    fail now fail on aborted test result. (LP: #1192684)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:58 +0100
+  [ Daniel Manrique ]
+  * checkbox-old/scripts/gst_pipeline_test: Better debugging output, and
+    script exits gracefully when the pipeline is unparsable or has a missing
+    element.
+  * checkbox-old/jobs/graphics.txt.in: Use videoconvert instead of
+    ffmpegcolorspace, with a fallback if videoconvert is not found
+    (LP: #1199259)
+  * checkbox-old/jobs/input.txt.in: Add more details in pointing test names
+    so they are easier to identify (LP: #1192541)
+
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
+    deterministic output. Meant to be used with after_suspend jobs.
+  * checkbox-old/scripts/gpu_test: Open kern.log in byte mode to avoid the
+    UnicodeDecodeError management.
+  * checkbox-old/scripts/memory_compare: set a variable diff. threshold.
+  * checkbox-old/jobs/suspend.txt.in: Set the wifi reconnect timeout to 90s.
+  * checkbox-old/scripts/bluetooth_test: Full rewrite in python to log all
+    obexftp errors.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:42:48 +0100
 
 checkbox (0.16.5) saucy; urgency=low
+
+  [ Po-Hsu Lin]
+  * scripts/network_device_info: script is now able to detect Modem devices,
+    modified the error message for missing devices, provide more information
+    to users. (LP: #1194170)
 
   [ Brendan Donegan ]
   * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm

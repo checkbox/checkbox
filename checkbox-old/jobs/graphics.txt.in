@@ -1,12 +1,14 @@
 plugin: shell
 name: graphics/driver_version
 command: graphics_driver
+estimated_duration: 0.500
 _description: Parses Xorg.0.Log and discovers the running X driver and version
 
 plugin: shell
 name: graphics/xorg-version
 requires: package.name == "x11-utils"
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
+estimated_duration: 0.018
 _description: Test to output the Xorg version
 
 plugin: manual
@@ -30,12 +32,14 @@ requires:
  package.name == 'xorg'
  package.name == 'procps'
 command: pgrep -f '/usr/bin/X' >/dev/null
+estimated_duration: 0.100
 _description: Test that the X process is running.
 
 plugin: shell
 name: graphics/xorg-failsafe
 requires: package.name == 'xorg'
 command: ! test -e /var/log/Xorg.failsafe.log
+estimated_duration: 0.030
 _description: Test that the X is not running in failsafe mode.
 
 plugin: user-verify
@@ -43,6 +47,7 @@ name: graphics/resolution
 requires:
  device.category == 'VIDEO'
 command: resolution_test
+estimated_duration: 0.750
 _description:
  PURPOSE:
      This test will verify the default display resolution
@@ -58,6 +63,7 @@ name: graphics/minimum_resolution
 requires:
  device.category == 'VIDEO'
 command: resolution_test --horizontal 800 --vertical 600
+estimated_duration: 0.331
 _description:
  Ensure the current resolution meets or exceeds the recommended minimum
  resolution (800x600). See here for details:
@@ -67,11 +73,13 @@ _description:
 name: graphics/modes
 plugin: shell
 command: graphics_modes_info
+estimated_duration: 0.250
 _description: Collect info on graphics modes (screen resolution and refresh rate)
 
 name: graphics/color_depth
 plugin: shell
 command: color_depth_info
+estimated_duration: 0.150
 _description: Collect info on color depth and pixel format.
 
 name: graphics/fresh_rate
@@ -89,7 +97,7 @@ name: graphics/display
 requires: 
  package.name == 'xorg'
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
-command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! autovideosink'
+command: gst_pipeline_test -t 2 'videotestsrc ! videoconvert ! autovideosink' || gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! autovideosink' 
 _description:
  PURPOSE:
      This test will test the default display
@@ -101,6 +109,7 @@ _description:
 plugin: shell
 name: graphics/VESA_drivers_not_in_use
 command: cat /var/log/Xorg.0.log | perl -e '$a=0;while(<>){$a++ if /Loading.*vesa_drv\.so/;$a-- if /Unloading.*vesa/&&$a}exit 1 if $a'
+estimated_duration: 0.011
 _description: Check that VESA drivers are not in use
 
 plugin: user-verify
@@ -108,6 +117,7 @@ name: graphics/cycle_resolution
 requires: package.name == 'xorg'
 depends: graphics/VESA_drivers_not_in_use
 command: xrandr_cycle --screenshot-dir $CHECKBOX_DATA
+estimated_duration: 250.000
 _description:
  PURPOSE:
      This test cycles through the detected video modes
@@ -120,6 +130,7 @@ plugin: user-verify
 name: graphics/rotation
 depends: graphics/xorg-version
 command: rotation_test
+estimated_duration: 20.000
 _description:
  PURPOSE:
      This test will test display rotation
@@ -133,12 +144,14 @@ plugin: shell
 name: graphics/compiz_check
 requires: package.name == 'nux-tools'
 command: set -o pipefail; /usr/lib/nux/unity_support_test -c -p | ansi_parser
+estimated_duration: 0.130
 _description: Check that hardware is able to run compiz
 
 plugin: shell
 name: graphics/unity-support
 requires: package.name == 'nux-tools'
 command: set -o pipefail; /usr/lib/nux/unity_support_test -p | ansi_parser
+estimated_duration: 0.131
 _description: Check that hardware is able to run Unity 3D
 
 plugin: user-verify
@@ -159,24 +172,28 @@ plugin: shell
 name: graphics/3d_window_open_close
 requires: package.name == 'mesa-utils'
 command: window_test -t open-close -i 10
+estimated_duration: 60.525
 _description: Open and close a 3D window multiple times
 
 plugin: shell
 name: graphics/3d_window_suspend_resume
 requires: package.name == 'mesa-utils'
 command: window_test -t suspend-resume -i 10
+estimated_duration: 121.00
 _description: Open, suspend resume and close a 3D window multiple times
 
 plugin: shell
 name: graphics/multi_3d_windows_open_close
 requires: package.name == 'mesa-utils'
 command: window_test -t open-close-multi -i 10 -w 4
+estimated_duration: 60.000
 _description: Open and close 4 3D windows multiple times
 
 plugin: shell
 name: graphics/3d_window_move
 requires: package.name == 'mesa-utils'
 command: window_test -t move
+estimated_duration: 50.000
 _description: Move a 3D window around the screen
 
 plugin: shell

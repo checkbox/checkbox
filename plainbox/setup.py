@@ -56,5 +56,11 @@ setup(
             'certification='
             'plainbox.impl.transport.certification:CertificationTransport',
         ],
+        'plainbox.provider.v1': [
+            'checkbox-auto=plainbox.impl.checkbox:CheckBoxAutoProvider',
+            'checkbox-src=plainbox.impl.checkbox:CheckBoxSrcProvider',
+            'checkbox-deb=plainbox.impl.checkbox:CheckBoxDebProvider',
+            'stubbox=plainbox.stubbox:StubBoxProvider',
+        ],
     },
     include_package_data=True)

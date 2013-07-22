@@ -33,6 +33,7 @@ import json
 import logging
 
 from plainbox.abc import IJobResult
+from plainbox.impl.signal import Signal
 
 logger = logging.getLogger("plainbox.result")
 
@@ -86,11 +87,30 @@ class _JobResultBase(IJobResult):
         return self._data.get('outcome', self.OUTCOME_NONE)
 
     @property
+    def execution_duration(self):
+        """
+        The amount of time in seconds it took to run this
+        jobs command.
+        """
+        return self._data.get('execution_duration', None)
+
+    @property
     def comments(self):
         """
         comments of the test operator
         """
         return self._data.get('comments')
+
+    @comments.setter
+    def comments(self, new):
+        old = self.comments
+        if old != new:
+            self.data['comments'] = new
+            self.on_comments_changed(old, new)
+
+    @Signal.define
+    def on_comments_changed(self, old, new):
+        pass
 
     @property
     def return_code(self):
