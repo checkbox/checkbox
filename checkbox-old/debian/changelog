@@ -6,11 +6,15 @@ checkbox (0.16.7) UNRELEASED; urgency=low
     appropriately and adjusted the descriptions.
     data/sru.whitelist: added usb and usb3 after suspend jobs for SRU i
     (LP: #1201420)
-
+ 
   [ Daniel Manrique ]
   * scripts/audio_test: Changed the test frequency to 5040 Hz and increased
     the sampling time to 5 seconds, to improve reliability (LP: #1070776)
   * scripts/pm_test: Added support for invoking through pkexec (LP: #1201769)
+  
+  [ Brendan Donegan ]
+  * checkbox/parsers/cpuinfo.py - update parser logic to understand cpuinfo
+    files produced by ARM processors (LP: #1197397)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:43:11 +0100
 
