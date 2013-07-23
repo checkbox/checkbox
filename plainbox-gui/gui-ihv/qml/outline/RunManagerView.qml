@@ -87,7 +87,11 @@ Page {
 
                 testStartTime = stopTime;
                 progress.value = testIndex + 1;
-                progress.title = "Running   "+ (testIndex+1) + " of "+ testSuiteModel.count + "  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")";
+                var testname =  testSuiteModel.get(testIndex).testname;
+                progress.title = "Running " + (testIndex + 1)
+                        + " of "+ testSuiteModel.count
+                        + "  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")"
+                        + "   " + testname;
             }
             testIndex++;
         }
@@ -216,8 +220,10 @@ Page {
         }
 
         onExit:{
-            if (!runmanagerview.testingComplete)
+            if (!runmanagerview.testingComplete){
                 PopupUtils.open(incomplete_warning_dialog, runbuttons);
+                pause()
+            }
             else if (!reportIsSaved)
                 PopupUtils.open(submission_warning_dialog, runbuttons);
             else
@@ -225,21 +231,29 @@ Page {
         }
 
         onPauseTest: {
-            // TODO call into plainbox to pause
-            timer.running = false;
-            timer.repeat = false;
-            progress.title = progress.title.replace("Running", "Paused ")
-            console.log("Pause...")
+            pause();
         }
         onResumeTest: {
+            resume();
+        }
+        onResults: {
+            PopupUtils.open(submission_dialog, runbuttons);
+        }
+
+        function resume(){
             // TODO call into plainbox to resume
             timer.testStartTime = new Date()
             timer.running = true;
             timer.repeat = true;
             console.log("Resume...")
         }
-        onResults: {
-            PopupUtils.open(submission_dialog, runbuttons);
+
+        function pause(){
+            // TODO call into plainbox to pause
+            timer.running = false;
+            timer.repeat = false;
+            progress.title = progress.title.replace("Running", "Paused ")
+            console.log("Pause...")
         }
 
         Component {
@@ -282,7 +296,8 @@ Page {
                 }
 
                 onCancel: {
-                    // do not quit
+                    // resume
+                    runbuttons.resume()
                 }
             }
         }

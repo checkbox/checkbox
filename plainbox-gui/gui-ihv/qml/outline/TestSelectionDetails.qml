@@ -38,14 +38,10 @@ Item {
         if (showDetails){
             progressIcon.source = "artwork/DownArrow.png";
             detailsFlick.height = openHeight
-            //mainView.height += openHeight
-            //testsuitelist.height -= openHeight
         }
         else{
             progressIcon.source = "artwork/RightArrow.png";
             detailsFlick.height = 0
-            //testsuitelist.height += openHeight
-            //mainView.height -= openHeight
         }
     }
 

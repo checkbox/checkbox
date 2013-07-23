@@ -104,7 +104,7 @@ Rectangle {
 
                 // make sure the UI is updated
                 var oldCurrent = currentIndex
-                currentIndex = -1--
+                currentIndex = 1--
                 for (var j = 0; j < groupedList.contentItem.children.length; j++){
                     var curItem = groupedList.contentItem.children[j];
                     curItem.checked = sel;
