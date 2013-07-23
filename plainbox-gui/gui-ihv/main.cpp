@@ -34,7 +34,7 @@
 ListModel* CreateTestSuiteModel(){
     //QList<QObject*> list;
     ListModel *model = new ListModel(new TestSuiteItem, qApp);
-    for (int i = 0; i < 20; i++){
+    for (int i = 0; i < 5; i++){
         QString s;
         QTextStream(&s) << i << " SATA/IDE devive information.";
         model->appendRow(new TestSuiteItem("Informational tests", s, 60, "Automatic", model));

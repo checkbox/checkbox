@@ -23,6 +23,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
 import "."
 
 
@@ -70,6 +71,7 @@ Rectangle {
 
             property int sectionCount: 0// this will contain the number of sections
             property int closedCount: 0 // this contains nuber of closed items
+            property bool displayWarnings: true
 
             delegate: TestSelectionTestDelegate {}
 
@@ -86,6 +88,11 @@ Rectangle {
                 testdetails.testItem = testSuiteModel.get(currentItem);
                 sectionCount = getSectionCount()
                 setListSummary();
+            }
+
+            function showWarning(caller_button){
+                if (displayWarnings === true)
+                    PopupUtils.open(warning_dialog, caller_button);
             }
 
             // functions to do something across the whole list
@@ -280,18 +287,31 @@ Rectangle {
                 }
                 var end = new Date();
                 console.log("Time for Section Count:", end.getMilliseconds() - start.getMilliseconds());
-
                 return secCnt;
             }
-
         }
-
-
     }
 
     Scrollbar {
         flickableItem: listflick
         align: Qt.AlignTrailing
+    }
+
+    Component {
+        id: warning_dialog
+        WarningDialog{
+            text: i18n.tr("Deselecting tests may reduce your ability to detect potential problems with the device driver.");
+            showOK: true
+            showCancel: false
+            showContinue: false
+            showCheckbox: true
+
+            onOk: {
+                if (isChecked)
+                    groupedList.displayWarnings = false;
+                console.log("ok clicked");
+            }
+        }
     }
 }
 

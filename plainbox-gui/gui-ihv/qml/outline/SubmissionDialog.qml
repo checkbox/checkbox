@@ -38,6 +38,7 @@ Dialog {
         text: i18n.tr("Save Results")
         color: UbuntuColors.orange
         onClicked: {
+            runmanagerview.reportIsSaved = true;
         }
     }
     Button {
@@ -55,9 +56,28 @@ Dialog {
         text: i18n.tr("Done")
         color: UbuntuColors.warmGrey
         onClicked: {
-            PopupUtils.close(dialog)
+            if (!runmanagerview.reportIsSaved)
+                PopupUtils.open(submission_warning_dialog, donebutton);
+            else
+                PopupUtils.close(dialog)
         }
     }
+
+    Component {
+        id: submission_warning_dialog
+        WarningDialog{
+            text: i18n.tr("You are about to exit this test run without saving your results report.  Do you want to save the report?");
+
+            showContinue: false
+            showCheckbox: false
+
+            //onOk:// do nothing and return to submission dialog
+
+            onCancel: PopupUtils.close(dialog)
+        }
+    }
+
+
 }
 
 

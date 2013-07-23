@@ -79,7 +79,11 @@ Component {
             anchors.left: openshutIcon.right
             anchors.leftMargin: units.gu(1)
             checked: true
-            onClicked: groupedList.selectGroup(section, checked)
+            onClicked: {
+                groupedList.selectGroup(section, checked)
+                if (!checked)
+                    groupedList.showWarning(groupcheckbox);
+            }
         }
 
 

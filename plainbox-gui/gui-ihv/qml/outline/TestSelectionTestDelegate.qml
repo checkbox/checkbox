@@ -66,6 +66,8 @@ Component {
                     testSuiteModel.setProperty(index, "check", checked);
                     groupedList.setGroupCheck(group);
                     groupedList.updateListSummary(testSuiteModel.get(index), checked);
+                    if (!checked)
+                        groupedList.showWarning(itemcheckbox);
                 }
             }
 

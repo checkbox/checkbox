@@ -30,7 +30,11 @@ import "."
 
 
 Page {
+    id: runmanagerview
     title: i18n.tr("Run Manager")
+
+    property bool reportIsSaved: false;
+    property bool testingComplete: false
 
     // TODO - this timer keeps track of time passing
     // When using plainbox, get tests and advance using it
@@ -58,7 +62,7 @@ Page {
         onTriggered: {
             if (testIndex == totalTests ){
                 // All tests are done
-
+                runmanagerview.testingComplete = true;
                 // update ui
                 runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
@@ -212,7 +216,12 @@ Page {
         }
 
         onExit:{
-            Qt.quit()
+            if (!runmanagerview.testingComplete)
+                PopupUtils.open(incomplete_warning_dialog, runbuttons);
+            else if (!reportIsSaved)
+                PopupUtils.open(submission_warning_dialog, runbuttons);
+            else
+                Qt.quit()
         }
 
         onPauseTest: {
@@ -231,7 +240,6 @@ Page {
         }
         onResults: {
             PopupUtils.open(submission_dialog, runbuttons);
-            console.log("Results...")
         }
 
         Component {
@@ -246,40 +254,71 @@ Page {
             }
         }
 
+        Component {
+            id: submission_warning_dialog
+            WarningDialog{
+                text: i18n.tr("You are about to exit this test run without saving your results report.  Do you want to save the report?");
 
+                showContinue: false
+                showCheckbox: false
 
+                onOk:PopupUtils.open(submission_dialog, runbuttons);
 
-        Item {
-            id: utils
-            function formatElapsedTime(elap){
-                // strip the miliseconds
-                elap = parseInt(elap / 1000);
-
-                // get seconds (Original had 'round' which incorrectly counts 0:28, 0:29, 1:30 ... 1:59, 1:0)
-                var seconds = parseInt(Math.round(elap % 60));
-
-                // remove seconds from the date
-                elap = parseInt(Math.floor(elap / 60));
-
-                // get minutes
-                var minutes = parseInt(Math.round(elap % 60));
-
-                // remove minutes from the date
-                elap = parseInt(Math.floor(elap / 60));
-
-
-                // get hours
-                var hours = parseInt(Math.round(elap % 24));
-
-                var timeStr = ""
-
-                if (hours)
-                    timeStr = hours + ":";
-                timeStr = timeStr +  ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
-
-                return timeStr;
+                onCancel: Qt.quit();
             }
         }
 
+        Component {
+            id: incomplete_warning_dialog
+            WarningDialog{
+                text: i18n.tr("You are about to cancel an active test run.  Your system might be left in an unstable state.  Are you sure you want to continue?");
+                showOK: true
+                showCancel: true
+                showContinue: false
+                showCheckbox: false
+
+                onOk: {
+                    Qt.quit();
+                }
+
+                onCancel: {
+                    // do not quit
+                }
+            }
+        }
+
+
+
+    Item {
+        id: utils
+        function formatElapsedTime(elap){
+            // strip the miliseconds
+            elap = parseInt(elap / 1000);
+
+            // get seconds (Original had 'round' which incorrectly counts 0:28, 0:29, 1:30 ... 1:59, 1:0)
+            var seconds = parseInt(Math.round(elap % 60));
+
+            // remove seconds from the date
+            elap = parseInt(Math.floor(elap / 60));
+
+            // get minutes
+            var minutes = parseInt(Math.round(elap % 60));
+
+            // remove minutes from the date
+            elap = parseInt(Math.floor(elap / 60));
+
+
+            // get hours
+            var hours = parseInt(Math.round(elap % 24));
+
+            var timeStr = ""
+
+            if (hours)
+                timeStr = hours + ":";
+            timeStr = timeStr +  ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+
+            return timeStr;
+        }
+    }
     }
 }
