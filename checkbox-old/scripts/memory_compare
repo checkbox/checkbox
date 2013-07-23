@@ -14,8 +14,8 @@ class LshwJsonResult:
     total_size = 0
 
     def addHardware(self, hardware):
-        if hardware['id'] == 'memory':
-            self.total_size += int(hardware['size'])
+        if hardware['id'] == 'memory' or 'bank' in hardware['id']:
+            self.total_size += int(hardware.get('size', 0))
 
 def get_installed_memory_size():
     lshw = LshwJsonParser(check_output(['lshw','-json'],
