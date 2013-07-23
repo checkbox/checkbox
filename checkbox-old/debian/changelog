@@ -15,6 +15,8 @@ checkbox (0.16.7) UNRELEASED; urgency=low
   [ Brendan Donegan ]
   * checkbox/parsers/cpuinfo.py - update parser logic to understand cpuinfo
     files produced by ARM processors (LP: #1197397)
+  * scripts/memory_compare - take in to account 'bank' hardware which appears
+    on systems with multiple memory modules installed (LP: #1204013)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:43:11 +0100
 
