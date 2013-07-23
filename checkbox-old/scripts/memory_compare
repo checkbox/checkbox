@@ -11,11 +11,14 @@ THRESHOLD = 25
 
 class LshwJsonResult:
 
-    total_size = 0
+    memory_reported = 0
+    banks_reported = 0
 
     def addHardware(self, hardware):
-        if hardware['id'] == 'memory' or 'bank' in hardware['id']:
-            self.total_size += int(hardware.get('size', 0))
+        if hardware['id'] == 'memory':
+            self.memory_reported += int(hardware.get('size', 0))
+        elif 'bank' in hardware['id']:
+            self.banks_reported += int(hardware.get('size', 0))
 
 def get_installed_memory_size():
     lshw = LshwJsonParser(check_output(['lshw','-json'],
@@ -24,7 +27,10 @@ def get_installed_memory_size():
     result = LshwJsonResult()
     lshw.run(result)
 
-    return result.total_size
+    if result.memory_reported:
+        return result.memory_reported
+    else:
+        return result.banks_reported
 
 class MeminfoResult:
 
