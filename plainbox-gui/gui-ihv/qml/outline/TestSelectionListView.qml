@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,14 +58,12 @@ Rectangle {
             }
         }
 
-
-
         ListView {
             id: groupedList
             width: parent.width
             height: units.gu(12) * groupedList.count + units.gu(1)
             interactive: false
-            model: testSuiteModel
+            model: testListModel
 
             delegate: TestSelectionTestDelegate {}
 
@@ -77,14 +76,14 @@ Rectangle {
             highlight: highlight
             highlightFollowsCurrentItem: true
 
-            Component.onCompleted: testdetails.testItem = testSuiteModel.get(currentItem);
+            Component.onCompleted: testdetails.testItem = testListModel.get(currentItem);
 
             // functions to do something across the whole list
 
             // select/deselect all items in the list
             function selectAll(sel){
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
-                    testSuiteModel.setProperty(i, "check", sel);
+                for (var i = testListModel.count - 1; i >=0; i--)
+                    testListModel.setProperty(i, "check", sel);
 
                 // this is to select the group items and to make sure data is updated
                 var oldCurrent = currentIndex
@@ -99,10 +98,10 @@ Rectangle {
 
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
-                for (var i = testSuiteModel.count - 1; i >=0; i--){
-                    var item = testSuiteModel.get(i);
+                for (var i = testListModel.count - 1; i >=0; i--){
+                    var item = testListModel.get(i);
                     if (item.group === groupName)
-                        testSuiteModel.setProperty(i, "check", sel);
+                        testListModel.setProperty(i, "check", sel);
                 }
 
                 // this is to select the group items and to make sure data is updated
@@ -152,9 +151,9 @@ Rectangle {
             // If any subitems are selected, group should be selected.
             function isGroupSelected(section){
                 var isSel = false;
-                for (var i = testSuiteModel.count - 1; i >=0 && isSel === false; i--)
+                for (var i = testListModel.count - 1; i >=0 && isSel === false; i--)
                 {
-                    var curItem = testSuiteModel.get(i);
+                    var curItem = testListModel.get(i);
                     //console.log("Section: ", section, " ", i,": ", curItem, "=", curItem.group, " check:", curItem.check);
 
                     if (curItem.group === section && curItem.check === "true"){
@@ -169,9 +168,9 @@ Rectangle {
                 var estTimeStr = "";
                 var estTimeInt=0;
 
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                for (var i = testListModel.count - 1; i >=0; i--)
                 {
-                    var curItem = testSuiteModel.get(i);
+                    var curItem = testListModel.get(i);
 
                     //console.log("curItem.group:", curItem.group, "check", curItem.check)
                     if (curItem.group === section && curItem.check === "true")

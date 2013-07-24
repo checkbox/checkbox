@@ -20,79 +20,55 @@
  */
 
 #include <qdebug.h>
-#include "testsuiteitem.h"
+#include "whitelistitem.h"
 
 
-TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, int duration, const QString &type, QObject * parent  ) :
+WhiteListItem::WhiteListItem(const QString &testName, \
+                             const QString &opath, \
+                             QObject * parent  ) :
     ListItem( parent ),
-    m_group(groupName),
     m_testName(testName),
     m_check(true),
-    m_duration(duration),
-    m_type(type)
+    m_path(opath)
 {
 }
 
-QHash<int, QByteArray> TestSuiteItem::roleNames() const
+QHash<int, QByteArray> WhiteListItem::roleNames() const
 {
-  //qDebug() << "!!! TestSuiteItem RoleNames";
   QHash<int, QByteArray> names;
-  names[GroupRole] = "group";
   names[TestNameRole] = "testname";
   names[CheckRole] = "check";
-  names[DurationRole] = "duration";
-  names[TypeRole] = "type";
   return names;
 }
 
-QVariant TestSuiteItem::data(int role) const
+QVariant WhiteListItem::data(int role) const
 {
   switch(role) {
-  case GroupRole:
-    return group();
   case TestNameRole:
     return testname();
   case CheckRole:
       return check();
-  case DurationRole:
-      return duration();
-  case TypeRole:
-      return type();
+  case ObjectPathRole:
+      return objectpath();
   default:
     return QVariant();
   }
 }
 
-void TestSuiteItem::setData(const QVariant & value, int role){
+void WhiteListItem::setData(const QVariant & value, int role){
     switch(role) {
-    case GroupRole:
-        setGroup(value.toString());
-        break;
     case TestNameRole:
         setTestname(value.toString());
         break;
     case CheckRole:
         setCheck(value.toBool());
         break;
-    case DurationRole:
-        setDuration(value.toInt());
-        break;
-    }
-
-}
-
-
-
-
-void TestSuiteItem::setGroup(const QString &groupName){
-    if ( groupName != m_group ) {
-        m_group = groupName;
-        emit groupChanged();
-        emit dataChanged();
+    case ObjectPathRole:
+        setObjectpath(value.toString());
     }
 }
 
-void TestSuiteItem::setTestname(const QString &testName){
+void WhiteListItem::setTestname(const QString &testName){
     if ( testName != m_testName ) {
         m_testName = testName;
         emit testnameChanged();
@@ -100,20 +76,32 @@ void TestSuiteItem::setTestname(const QString &testName){
     }
 }
 
-void TestSuiteItem::setCheck(bool check){
+void WhiteListItem::setCheck(bool check){
     if (check != m_check){
         m_check = check;
         emit checkChanged();
         emit dataChanged();
-        //qDebug() << m_testName << "check changed to" << check;
+        qDebug() << m_testName << " " << m_path << "check changed to" << check;
+
+        const QString engname("");
+
+        GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
+        if(myengine == NULL) {
+            qDebug("Cant find guiengine object");
+            return;
+        }
+
+        // Set everything here
+        QDBusObjectPath opath(m_path);
+
+        myengine->SetWhiteList(opath, m_check);
     }
 }
 
-void TestSuiteItem::setDuration(int duration){
-    if (duration != m_duration){
-        m_duration = duration;
-        emit durationChanged();
+void WhiteListItem::setObjectpath(const QString &opath){
+    if (m_path.compare(opath) != 0 ) {
+        m_path = opath;
+        emit objectpathChanged();
         emit dataChanged();
     }
 }
-

@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,26 +52,26 @@ Page {
             height: parent.height
             width: parent.width
             anchors.fill: parent
-            contentHeight: units.gu(12) * testSuiteModel.count
+            contentHeight: units.gu(12) * whiteListModel.count
             interactive: true
             clip: true
             boundsBehavior : Flickable.StopAtBounds
-            model: testSuiteModel
+            model: whiteListModel
 
             delegate: Item {}
 
             section {
-                property: "group"
+                property: "testname"
                 criteria: ViewSection.FullString
                 delegate: SuiteSelectionDelegate{
 
                     onSelectSuite: {
                         // This is using the prototype list,
                         // In the model, select all tests in the suite
-                        for (var i = testSuiteModel.count - 1; i >= 0; i--){
-                            var item = testSuiteModel.get(i);
-                            if (item.group === suite)
-                                testSuiteModel.setProperty(i, "check", sel);
+                        for (var i = whiteListModel.count - 1; i >= 0; i--){
+                            var item = whiteListModel.get(i);
+                            if (item.testname === suite)
+                                whiteListModel.setProperty(i, "check", sel);
                         }
                     }
                 }
@@ -94,6 +95,8 @@ Page {
         text: i18n.tr("OK")
         color: UbuntuColors.lightAubergine
         onClicked: {
+            // Dump the whitelist as finally selected by the user
+            guiEngine.dump_whitelist_selection();
             // NOTE: When the user is done, this is where to load up the TestSelection list
             mainView.state = "TESTSELECTION"
         }

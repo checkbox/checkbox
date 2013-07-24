@@ -23,11 +23,16 @@ folder_01.source = qml/outline
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
+QT += dbus
+
+LIBS += -L../plugins/ -lgui-engine
+
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
 SOURCES += main.cpp \
-    testsuiteitem.cpp \
+    whitelistitem.cpp \
+    testitem.cpp \
     listmodel.cpp
 
 # Please do not modify the following two lines. Required for deployment.
@@ -35,7 +40,8 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    testsuiteitem.h \
+    whitelistitem.h \
+    testitem.h \
     listmodel.h
 
 OTHER_FILES += \

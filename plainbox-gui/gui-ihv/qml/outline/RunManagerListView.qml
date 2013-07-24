@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ Rectangle {
             width: parent.width
             height: units.gu(12) * groupedList.count + units.gu(1)
             interactive: false
-            model: testSuiteModel
+            model: testListModel
 
             delegate: RunManagerTestDelegate {}
 
@@ -78,8 +79,8 @@ Rectangle {
 
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
-                for (var i = testSuiteModel.count - 1; i >=0; i--){
-                    var item = testSuiteModel.get(i);
+                for (var i = testListModel.count - 1; i >=0; i--){
+                    var item = testListModel.get(i);
                     if (item.group === groupName)
                         testSuiteModel.setProperty(i, "check", sel);
                 }
@@ -130,9 +131,9 @@ Rectangle {
             // If any subitems are selected, group should be selected.
             function isGroupSelected(section){
                 var isSel = false;
-                for (var i = testSuiteModel.count - 1; i >=0 && isSel === false; i--)
+                for (var i = testListModel.count - 1; i >=0 && isSel === false; i--)
                 {
-                    var curItem = testSuiteModel.get(i);
+                    var curItem = testListModel.get(i);
                     //console.log("Section: ", section, " ", i,": ", curItem, "=", curItem.group, " check:", curItem.check);
 
                     if (curItem.group === section && curItem.check === "true"){

@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,38 +22,30 @@
 
 #include <QObject>
 #include "listmodel.h"
+#include "../gui-engine/gui-engine.h"
 
-
-class TestSuiteItem : public ListItem
+class WhiteListItem : public ListItem
 {
     Q_OBJECT
-    Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged)
     Q_PROPERTY(QString testname READ testname WRITE setTestname NOTIFY testnameChanged)
     Q_PROPERTY(bool check READ check WRITE setCheck NOTIFY checkChanged)
-    Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
-    Q_PROPERTY(QString type READ type)
-
-
+    Q_PROPERTY(QString objectpath READ objectpath WRITE setObjectpath NOTIFY objectpathChanged)
 
 signals:
-    void groupChanged();
     void testnameChanged();
     void checkChanged();
-    void durationChanged();
+    void objectpathChanged();
 
 public:
       enum Roles {
-        GroupRole = Qt::UserRole+1,
-        TestNameRole,
+        TestNameRole = Qt::UserRole+1,
         CheckRole,
-        DurationRole,
-        TypeRole
+        ObjectPathRole
       };
 
-
 public:
-    TestSuiteItem(QObject * parent = 0 ) : ListItem(parent), m_check(true){}
-    TestSuiteItem(const QString &groupName, const QString &testname, int durationInSeconds, const QString &type, QObject * parent = 0 );
+    WhiteListItem(QObject * parent = 0 ) : ListItem(parent), m_check(true){}
+    WhiteListItem(const QString &testname, const QString &opath, QObject * parent = 0 );
 
     QVariant data(int role) const;
     void setData(const QVariant & value, int role);
@@ -60,29 +53,19 @@ public:
     QHash<int, QByteArray> roleNames() const;
     inline QString id() const { return m_testName; }
 
-    inline QString group() const { return m_group; }
-    void setGroup(const QString &groupName);
-
     inline QString testname() const { return m_testName; }
     void setTestname(const QString &testName);
 
     inline bool check() const { return m_check; }
     void setCheck(bool check);
 
-    inline int duration() const { return m_duration; }
-    void setDuration(int duration);
-
-    inline QString type() const {return m_type; }
-
+    inline QString objectpath() const { return m_path; }
+    void setObjectpath(const QString &opath);
 
 private:
-    QString m_group;
     QString m_testName;
     bool m_check;
-    int m_duration;
-    QString m_type;
+
+    // Uniquely and persistently identifies this whitelist
+    QString m_path;
 };
-
-
-
-
