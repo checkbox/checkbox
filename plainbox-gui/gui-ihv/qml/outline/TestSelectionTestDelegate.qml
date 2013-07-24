@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ Component {
             anchors.right: parent.right
 
             onClicked: {
-                testdetails.testItem = testSuiteModel.get(index);
+                testdetails.testItem = testListModel.get(index);
                 groupedList.currentIndex = index;  // sets selection
             }
         }
@@ -63,9 +64,9 @@ Component {
                 anchors.leftMargin: units.gu(2)
                 checked: check
                 onClicked: {
-                    testSuiteModel.setProperty(index, "check", checked);
+                    testListModel.setProperty(index, "check", checked);
                     groupedList.setGroupCheck(group);
-                    groupedList.updateListSummary(testSuiteModel.get(index), checked);
+                    groupedList.updateListSummary(testListModel.get(index), checked);
                     if (!checked)
                         groupedList.showWarning(itemcheckbox);
                 }
@@ -133,7 +134,7 @@ Component {
 
             Text {
                 id: descLabel
-                text: "blahsdfgkjl abdefghijklmnopqrstuvwxyz asdf the flkjsdf t lwjerlkjaf boo\n\n" // TODO put descrition property here
+                text: description
                 width: units.gu(14)
                 elide: Text.ElideRight
                 maximumLineCount: 1

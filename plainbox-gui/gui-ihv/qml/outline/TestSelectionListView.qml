@@ -67,7 +67,7 @@ Rectangle {
             width: parent.width
             height: units.gu(7) * (groupedList.count + groupedList.sectionCount - groupedList.closedCount)
             interactive: false
-            model: testSuiteModel
+            model: testListModel
 
             property int sectionCount: 0// this will contain the number of sections
             property int closedCount: 0 // this contains nuber of closed items
@@ -85,7 +85,7 @@ Rectangle {
             highlightFollowsCurrentItem: true
 
             Component.onCompleted: {
-                testdetails.testItem = testSuiteModel.get(currentItem);
+                testdetails.testItem = testListModel.get(currentItem);
                 sectionCount = getSectionCount()
                 setListSummary();
             }
@@ -99,8 +99,8 @@ Rectangle {
 
             // select/deselect all items in the list
             function selectAll(sel){
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
-                    testSuiteModel.setProperty(i, "check", sel);
+                for (var i = testListModel.count - 1; i >=0; i--)
+                    testListModel.setProperty(i, "check", sel);
 
                 // make sure the UI is updated
                 var oldCurrent = currentIndex
@@ -119,16 +119,16 @@ Rectangle {
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
                 // select in the model
-                for (var i = testSuiteModel.count - 1; i >=0; i--){
-                   var item = testSuiteModel.get(i);
+                for (var i = testListModel.count -                                 1; i >=0; i--){
+                   var item = testListModel.get(i);
                     if (item.group === groupName)
-                        testSuiteModel.setProperty(i, "check", sel);
+                        testListModel.setProperty(i, "check", sel);
                 }
 
                 // make sure data is updated on the UI
                 var oldCurrent = currentIndex
                 currentIndex = -1
-                for (i = 0; i < groupedList.contentItem.children.length; i++)
+                for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
                     if (curItem.groupname === groupName)
@@ -177,9 +177,9 @@ Rectangle {
                 var estTimeInt=0;
                 var foundGroup = false;  // list is ordered in groups, after whole group found return
 
-                for (var i = 0; i <testSuiteModel.count; i++)
+                for (var i = 0; i <testListModel.count; i++)
                 {
-                    var curItem = testSuiteModel.get(i);
+                    var curItem = testListModel.get(i);
 
                     //console.log("curItem.group:", curItem.group, "check", curItem.check)
                     if (curItem.group === section && curItem.check === "true"){
@@ -187,7 +187,7 @@ Rectangle {
                         estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
                     }
                     if (foundGroup && curItem.group != section)
-                        i = testSuiteModel.count;
+                        i = testListModel.count;
 
                 }
                 if (estTimeInt == 0)
@@ -245,15 +245,15 @@ Rectangle {
 
             function setListSummary(){
                 var start = new Date();
-                // TODO count how many manuals testSuiteModel
+                // TODO count how many manuals testListModel
                 var testCnt = 0;
                 var manualCnt = 0;
 
                 var estTimeInt=0;
 
-                for (var i = testSuiteModel.count - 1; i >=0; i--)
+                for (var i = testListModel.count - 1; i >=0; i--)
                 {
-                    var curItem = testSuiteModel.get(i);
+                    var curItem = testListModel.get(i);
                     if ( curItem.check === "true"){
                         testCnt++;
                         if (curItem.type === "Manual")
@@ -274,11 +274,11 @@ Rectangle {
                 // if this is the first time called, find all sections
                 var secCnt = sectionCount
                 if (secCnt === 0){
-                    var curItem = testSuiteModel.get(0);
+                    var curItem = testListModel.get(0);
                     var curSec = curItem.group;
                     secCnt = 1;
-                    for (var i = 1; i < testSuiteModel.count; i++){
-                        curItem = testSuiteModel.get(i);
+                    for (var i = 1; i < testListModel.count; i++){
+                        curItem = testListModel.get(i);
                         if (curItem.group !== curSec){
                             curSec = curItem.group
                             secCnt++;
