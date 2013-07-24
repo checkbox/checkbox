@@ -39,21 +39,20 @@ class CpuinfoParser:
             if not block:
                 continue
 
-            count += 1
-            if count > 1:
-                continue
-
             for line in block.split("\n"):
                 if not line:
                     continue
                 key, value = line.split(":", 1)
                 key, value = key.strip(), value.strip()
+                
+                if key == 'processor':
+                    count += 1
 
                 # Handle bogomips on sparc
                 if key.endswith("Bogo"):
                     key = "bogomips"
 
-                attributes[key.lower()] = value
+                attributes[key] = value
 
         if attributes:
             attributes["count"] = count
@@ -90,7 +89,7 @@ class CpuinfoParser:
                 "model_revision": "stepping",
                 "cache": "cache size",
                 "other": "flags",
-                "speed": "cpu mhz"},
+                "speed": "cpu MHz"},
             ("alpha", "alphaev6",): {
                 "count": "cpus detected",
                 "type": "cpu",
@@ -101,12 +100,13 @@ class CpuinfoParser:
                 "other": "platform string",
                 "speed": "cycle frequency [Hz]"},
             ("armv7l",): {
-                "type": "hardware",
-                "model": "processor",
-                "model_number": "cpu variant",
-                "model_version": "cpu architecture",
-                "model_revision": "cpu revision",
-                "other": "features"},
+                "type": "Hardware",
+                "model": "Processor",
+                "model_number": "CPU variant",
+                "model_version": "CPU architecture",
+                "model_revision": "CPU revision",
+                "other": "Features",
+                "bogomips": "BogoMIPS"},
             ("ia64",): {
                 "type": "vendor",
                 "model": "family",
@@ -126,9 +126,10 @@ class CpuinfoParser:
                 "model_version": "type",
                 "speed": "bogomips"}}
 
-        processor["count"] = attributes.get("count", 1)
-        bogompips_string = attributes.get("bogomips", "0.0")
-        processor["bogomips"] = int(round(float(bogompips_string)))
+        for key in processor:
+            if attributes.get(key):
+                processor[key] = attributes.get(key)
+
         for platform, conversion in platform_to_conversion.items():
             if machine in platform:
                 for pkey, ckey in conversion.items():
@@ -156,15 +157,15 @@ class CpuinfoParser:
             elif machine[:5] == "sparc":
                 speed = processor["speed"]
                 processor["speed"] = int(round(float(speed))) / 2
-            else:
-                if machine[:3] == "ppc":
-                    # String is appended with "mhz"
-                    speed = processor["speed"][:-3]
-                else:
-                    speed = processor["speed"]
-                processor["speed"] = int(round(float(speed)) - 1)
+            elif machine[:3] == "ppc":
+                # String is appended with "mhz"
+                speed = processor["speed"][:-3]
         except ValueError:
             processor["speed"] = -1
+
+        # Make sure speed and bogomips are integers    
+        processor["speed"] = int(round(float(processor["speed"])) - 1)
+        processor["bogomips"] = int(round(float(processor["bogomips"])))
 
         # Adjust count
         try:
