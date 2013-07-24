@@ -104,7 +104,7 @@ Rectangle {
 
                 // make sure the UI is updated
                 var oldCurrent = currentIndex
-                currentIndex = 1--
+                currentIndex = -1
                 for (var j = 0; j < groupedList.contentItem.children.length; j++){
                     var curItem = groupedList.contentItem.children[j];
                     curItem.checked = sel;
@@ -119,7 +119,7 @@ Rectangle {
             // when a group item is checked/unchecked the subitems are checked/unchecked
             function selectGroup(groupName, sel){
                 // select in the model
-                for (var i = testSuiteModel.count -                                 1; i >=0; i--){
+                for (var i = testSuiteModel.count - 1; i >=0; i--){
                    var item = testSuiteModel.get(i);
                     if (item.group === groupName)
                         testSuiteModel.setProperty(i, "check", sel);
@@ -128,7 +128,7 @@ Rectangle {
                 // make sure data is updated on the UI
                 var oldCurrent = currentIndex
                 currentIndex = -1
-                for (var i = 0; i < groupedList.contentItem.children.length; i++)
+                for (i = 0; i < groupedList.contentItem.children.length; i++)
                 {
                     var curItem = groupedList.contentItem.children[i];
                     if (curItem.groupname === groupName)

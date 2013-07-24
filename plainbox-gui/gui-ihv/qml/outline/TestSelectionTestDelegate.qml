@@ -75,7 +75,8 @@ Component {
             Text {
                 id: nameLabel
                 text: testname
-                width: units.gu(20)
+                width: units.gu(28)
+                elide: Text.ElideRight
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: itemcheckbox.right
                 anchors.leftMargin: units.gu(1)
@@ -83,7 +84,7 @@ Component {
 
             Item {
                 id: typefiller
-                width: units.gu(12)
+                width: units.gu(4)
                 anchors.left: nameLabel.right
             }
 
@@ -126,19 +127,19 @@ Component {
 
             Item {
                 id: descfiller
-                width: units.gu(14)
+                width: units.gu(12)
                 anchors.left: esttimelabel.right
             }
 
             Text {
                 id: descLabel
-                text: "blah ..." // TODO put descrition property here
-                width: units.gu(10)
+                text: "blahsdfgkjl abdefghijklmnopqrstuvwxyz asdf the flkjsdf t lwjerlkjaf boo\n\n" // TODO put descrition property here
+                width: units.gu(14)
+                elide: Text.ElideRight
+                maximumLineCount: 1
                 anchors.left: descfiller.right
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignHCenter
-
-
             }
 
 

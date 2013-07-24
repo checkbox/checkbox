@@ -19,22 +19,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LAUNCHGEDIT_H
-#define LAUNCHGEDIT_H
+#ifndef COMMANDTOOL_H
+#define COMMANDTOOL_H
 
 #include <QObject>
 #include <QProcess>
 #include <qdebug.h>
 
-class LaunchGEdit : public QObject
+class CommandTool : public QObject
 {
     Q_OBJECT
 public:
-    explicit LaunchGEdit(QObject *parent = 0);
-    Q_INVOKABLE void launch(const QString& filename);
+    explicit CommandTool(QObject *parent = 0);
+    Q_INVOKABLE void exec(const QString& cmd, const QString &args);
 
 private:
     QProcess *m_process;
 };
 
-#endif // LAUNCHGEDIT_H
+#endif // COMMAND_H

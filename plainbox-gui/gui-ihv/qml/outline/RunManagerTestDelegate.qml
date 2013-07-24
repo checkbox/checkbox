@@ -89,22 +89,37 @@ Component {
                     anchors.fill: parent
 
                     onClicked:{
+                        // set user so the iterating tests continue
+                        // change currentindex to cause selection to move
                         groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index
 
-                        // TODO, hook up each status to an action,
-                        // changing the teststaus is for DEMO only!
-                        if (statusicon.testStatus === 5){
-                            PopupUtils.open(manual_dialog, runbuttons);
-                            statusicon.testStatus++
+                        switch (statusicon.testStatus){
+
+                        case 2:                         // passed
+                            PopupUtils.open(log_viewer, statusicon);
+                            break;
+                        case 3:                         // failed
+                        case 4:                         // error
+                            PopupUtils.open(log_viewer_with_trouble, statusicon);
+                            break;
+                        case 5:                         // user interaction req.
+                            PopupUtils.open(manual_dialog, statusicon);
+                            break;
+                        case 1:
+                        default://skipped
+                            break;
                         }
 
-                        if (statusicon.testStatus < 6)
-                            statusicon.testStatus++
-                        else
-                            statusicon.testStatus = 1
-                        groupedList.userChangingIndex = false;
-                    }
+                        // TODO remove this --- this is just to try out the different icons behaviour
+                        // THIS should NOT really happen!!!!
+                        //if (statusicon.testStatus < 6)
+                        //    statusicon.testStatus++
+                        //else
+                        //    statusicon.testStatus = 1
+                        // TODO remove items above to the TODO!!!
+
+                        groupedList.userChangingIndex = false;                    }
                 }
 
                 onTestStatusChanged: {
@@ -179,26 +194,24 @@ Component {
 
                         if (rerunicon.rerunStatus == 1)
                            rerunicon.rerunStatus = 2;
-                        else if (rerunicon.rerunStatus == 2)
-                            rerunicon.rerunStatus = 1;
 
                         groupedList.userChangingIndex = false;
                     }
                  }
 
                 onRerunStatusChanged:{
+                    if (rerunStatus == 0)                       // not run
+                        source = ""
                     if (rerunStatus == 1)                      // completed
                         source = "./artwork/rerun.svg"
                     else if (rerunStatus == 2){                 // queued for rerun
                         source = "./artwork/rerunq.svg"
                         // reset other icons to blank
-                        statusicon.source = ""
-                        detailsicon.source = ""
+                        statusicon.testStatus = 0
+                        detailsicon.detailsStatus = false
                         timelabel.text = ""
                         testSuiteModel.setProperty(index, "groupstatus", 0);   // group
                     }
-                    else
-                        source = ""
                 }
             }
 
@@ -225,8 +238,12 @@ Component {
                     onClicked:{
                         groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index;
-                        //gedit.launch("./qml/outline/artwork/test.txt");
-                        PopupUtils.open(log_viewer, detailsicon);
+                        //cmdTool.exec("gedit", logfileName)
+
+                        // TODO change this back to the log_viewer, this opens the manual_dialog for testing only!
+                        //PopupUtils.open(log_viewer, detailsicon);
+                        if (detailsicon.detailsStatus == true)
+                            PopupUtils.open(manual_dialog, detailsicon);
                         groupedList.userChangingIndex = false;
                     }
                 }
@@ -241,10 +258,18 @@ Component {
             }
         }
         ListItem.ThinDivider {}
+
         Component {
-            id: skip_warning_dialog
+            id: log_viewer
             LogViewer{
-                id: log_viewer
+                showTroubleShootingLink: false
+            }
+        }
+
+        Component {
+            id: log_viewer_with_trouble
+            LogViewer{
+                showTroubleShootingLink: true
             }
         }
     }

@@ -29,8 +29,8 @@ QML_IMPORT_PATH =
 SOURCES += main.cpp \
     testsuiteitem.cpp \
     listmodel.cpp \
-    launchgedit.cpp \
-    savefiledlg.cpp
+    savefiledlg.cpp \
+    commandtool.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
@@ -39,8 +39,8 @@ qtcAddDeployment()
 HEADERS += \
     testsuiteitem.h \
     listmodel.h \
-    launchgedit.h \
-    savefiledlg.h
+    savefiledlg.h \
+    commandtool.h
 
 OTHER_FILES += \
     qml/outline/DummyListModel.qml \

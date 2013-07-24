@@ -285,7 +285,7 @@ Page {
         Component {
             id: incomplete_warning_dialog
             WarningDialog{
-                text: i18n.tr("You are about to cancel an active test run.  Your system might be left in an unstable state.  Are you sure you want to continue?");
+                text: i18n.tr("You are about to cancel an active test run.  Your system might be left in an unstable state.  Are you sure you want to exit?");
                 showOK: true
                 showCancel: true
                 showContinue: false
