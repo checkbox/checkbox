@@ -134,7 +134,7 @@ Dialog {
             console.log("Continue")
             if (skipcheck.checked && comments.text === "")
             {
-                PopupUtils.open(warning_dialog, continuebutton);
+                PopupUtils.open(skip_warning_dialog, continuebutton);
             }
 
             else
@@ -145,10 +145,10 @@ Dialog {
 
 
     Component {
-        id: warning_dialog
+        id: skip_warning_dialog
         WarningDialog{
             text: i18n.tr("Skipping a test requires a reason to be entered in the Comments field.  Please update that field and click 'Continue' again.");
-            showOK: true
+
             showCancel: false
             showContinue: false
             showCheckbox: false

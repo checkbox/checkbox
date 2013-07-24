@@ -225,7 +225,8 @@ Component {
                     onClicked:{
                         groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index;
-                        gedit.launch("./qml/outline/artwork/test.txt");
+                        //gedit.launch("./qml/outline/artwork/test.txt");
+                        PopupUtils.open(log_viewer, detailsicon);
                         groupedList.userChangingIndex = false;
                     }
                 }
@@ -240,5 +241,13 @@ Component {
             }
         }
         ListItem.ThinDivider {}
+        Component {
+            id: skip_warning_dialog
+            LogViewer{
+                id: log_viewer
+            }
+        }
     }
+
+
 }

@@ -222,12 +222,12 @@ Page {
         onExit:{
             if (!runmanagerview.testingComplete){
                 PopupUtils.open(incomplete_warning_dialog, runbuttons);
-                pause()
+                pause();
             }
             else if (!reportIsSaved)
                 PopupUtils.open(submission_warning_dialog, runbuttons);
             else
-                Qt.quit()
+                Qt.quit();
         }
 
         onPauseTest: {
