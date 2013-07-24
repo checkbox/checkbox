@@ -17,21 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# gui-engine.pro
+# test-gui-engine.pro
 #
-# Hand-made pro file to create the gui-engine plugin for plainbox-gui
+# Hand-made pro file to create the test executable for gui-engine plugin
 
-TEMPLATE = lib
-CONFIG += qt plugin
-QT +=qml dbus xml
+QT  += testlib dbus qml xml
 
-TARGET = gui-engine
+HEADERS += test-gui-engine.h ../gui-engine/gui-engine.h
 
-HEADERS = gui-engine.h
-
-SOURCES = gui-engine.cpp
-
-DESTDIR = ../plugins
-
+SOURCES += test-gui-engine.cpp  ../gui-engine/gui-engine.cpp
 
 
