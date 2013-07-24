@@ -57,25 +57,9 @@ Page {
             boundsBehavior : Flickable.StopAtBounds
             model: testSuiteModel
 
-            delegate: Item {}
-
-            section {
-                property: "group"
-                criteria: ViewSection.FullString
-                delegate: SuiteSelectionDelegate{
-
-                    onSelectSuite: {
-                        // This is using the prototype list,
-                        // In the model, select all tests in the suite
-                        for (var i = testSuiteModel.count - 1; i >= 0; i--){
-                            var item = testSuiteModel.get(i);
-                            if (item.group === suite)
-                                testSuiteModel.setProperty(i, "check", sel);
-                        }
-                    }
-                }
-            }
+            delegate: SuiteSelectionDelegate{}
         }
+
         Scrollbar {
             flickableItem: testselection
             align: Qt.AlignTrailing
@@ -85,7 +69,7 @@ Page {
 
     Button {
         id: okbutton
-        width: units.gu(20)
+        width: parent.width - units.gu(4)
         anchors {
             horizontalCenter:parent.horizontalCenter
             bottom: parent.bottom

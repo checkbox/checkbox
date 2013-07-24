@@ -19,30 +19,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "savefiledlg.h"
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+SaveFileDlg::SaveFileDlg(QObject *parent) :
+    QObject(parent)
+{
 
-Item {
-    property alias title: progresslabel.text
-    property alias value: progressbar.value
-    property alias maxValue: progressbar.maximumValue
+}
 
-    Label {
-        id: progresslabel
-        text: ""
-        anchors.left: parent.left
-    }
-
-    ProgressBar {
-        id: progressbar
-        width: parent.width
-        anchors.top: progresslabel.bottom
-        anchors.topMargin: units.gu(1)
-        indeterminate: false
-        minimumValue: 0
-        maximumValue: 100
-        value: 0
-        anchors.left: parent.left
-    }
+void SaveFileDlg::save(){
+    // TODO save the file
+    //QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+     //                                               "/home",
+     //                                               QFileDialog::ShowDirsOnly
+     //                                               | QFileDialog::DontResolveSymlinks);
+    //emit saveDir();
 }

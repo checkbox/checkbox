@@ -35,7 +35,7 @@ MainView {
     PageStack {
         id: pageStack
         state: "WELCOME"
-        property string pageName: "DemoWarnings.qml"  // initial state
+        property string pageName: "WelcomeView.qml"  // initial state
 
         Component.onCompleted: {
             push(Qt.resolvedUrl(pageName))

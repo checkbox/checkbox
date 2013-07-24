@@ -40,11 +40,11 @@ Component {
         property bool open: true
 
         onOpenChanged: {
-            open?progressIcon.source = "artwork/DownArrow.png":progressIcon.source = "artwork/RightArrow.png"
+            open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
         }
 
         MouseArea {
-            width: parent.width - groupcheckbox.width
+            width: parent.width// - groupcheckbox.width
             height: parent.height
             anchors.right: parent.right
 
@@ -57,16 +57,33 @@ Component {
 
         Item {
             id: groupfiller
-            width: units.gu(1)
+            width: units.gu(2)
+        }
+
+        Image {
+            id: openshutIcon
+            source: "artwork/DownArrow.png"
+            width: units.gu(2)
+            height: units.gu(2)
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: groupfiller.left
+            }
+
+            opacity: enabled ? 1.0 : 0.5
         }
 
         CheckBox {
             id: groupcheckbox
             anchors.verticalCenter: parent.verticalCenter
-            anchors.left: groupfiller.right
+            anchors.left: openshutIcon.right
             anchors.leftMargin: units.gu(1)
-            checked: groupedList.isGroupSelected(section)
-            onClicked: groupedList.selectGroup(section, checked)
+            checked: true
+            onClicked: {
+                groupedList.selectGroup(section, checked)
+                if (!checked)
+                    groupedList.showWarning(groupcheckbox);
+            }
         }
 
 
@@ -81,14 +98,14 @@ Component {
 
         Item {
             id: estfiller
-            width: units.gu(55)
+            width: units.gu(38)
             anchors.left: grouptext.right
         }
 
         Text {
             id: estimatedTimeText
             text: groupedList.getEstimatedTime(section)
-            width: units.gu(12)
+            width: units.gu(10)
             anchors.left:  estfiller.right
             anchors.verticalCenter: parent.verticalCenter
             horizontalAlignment: Text.AlignHCenter
@@ -96,17 +113,7 @@ Component {
             font.bold : true
         }
 
-        Image {
-            id: progressIcon
-            source: "artwork/DownArrow.png"
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-                rightMargin: units.gu(1)
-            }
 
-            opacity: enabled ? 1.0 : 0.5
-        }
 
         ListItem.ThinDivider {}
     }

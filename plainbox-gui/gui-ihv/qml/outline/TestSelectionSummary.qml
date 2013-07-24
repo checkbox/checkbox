@@ -26,7 +26,7 @@ import Ubuntu.Components 0.1
 Rectangle {
     id: summary
 
-    property string totalTimeStr: "26 minutes"
+    property int totalTimeEst: 0
     property int totalTests: 6
     property int totalManualTests: 2
 
@@ -39,12 +39,26 @@ Rectangle {
 
     Text {
         id: estimatedTimeText
-        text: i18n.tr("Total time: [~" + summary.totalTimeStr + "]")
+        text: i18n.tr("Total time: [~" + formatTotalTime(summary.totalTimeStr) + "]")
         color: "darkslateblue"
         anchors{
             verticalCenter: parent.verticalCenter
             left: parent.left
             leftMargin: units.gu(1)
+        }
+        function formatTotalTime(){
+            var estTimeStr = ""
+            if (totalTimeEst == 0)
+                estTimeStr = i18n.tr("0");
+            else if (totalTimeEst/60 < 1)
+                estTimeStr = i18n.tr("< 1 minute");
+            else {
+                var durMinutes = Math.round(totalTimeEst/60);
+                estTimeStr = durMinutes.toString() + i18n.tr(" minute");
+                if (durMinutes > 1)
+                    estTimeStr += 's';
+            }
+            return  estTimeStr;
         }
     }
 
