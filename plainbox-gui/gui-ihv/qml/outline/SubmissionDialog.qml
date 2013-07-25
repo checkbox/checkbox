@@ -23,8 +23,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
-
-
+import "."
 
 Dialog {
     id: dialog
@@ -38,16 +37,19 @@ Dialog {
         text: i18n.tr("Save Results")
         color: UbuntuColors.orange
         onClicked: {
+            // open the directory dialog
+            PopupUtils.open(save_as_dialog, savebutton)
             runmanagerview.reportIsSaved = true;
         }
     }
     Button {
-        id: viewbutton
+        id: view_button
         text: i18n.tr("View Results")
         color: UbuntuColors.lightAubergine
         onClicked: {
             onClicked:{
-                 gedit.launch("./qml/outline/artwork/test.txt")
+                PopupUtils.open(log_viewer_results, view_button);
+                //cmdTool.exec("gedit", "qml/outline/artwork/test.txt"); // TODO PUT FILENAME HERE
             }
         }
     }
@@ -74,6 +76,21 @@ Dialog {
             //onOk:// do nothing and return to submission dialog
 
             onCancel: PopupUtils.close(dialog)
+        }
+    }
+
+    Component {
+        id: log_viewer_results
+        LogViewer{
+            showTroubleShootingLink: false
+            logHeight: units.gu(20)         // TODO - There is something wrong with the 'Dialog' that button become inactive when log view is too big
+
+        }
+    }
+
+    Component {
+        id: save_as_dialog
+        FileDialog{
         }
     }
 
