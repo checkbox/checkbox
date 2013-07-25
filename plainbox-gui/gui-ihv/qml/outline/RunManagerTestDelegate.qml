@@ -210,7 +210,7 @@ Component {
                         statusicon.testStatus = 0
                         detailsicon.detailsStatus = false
                         timelabel.text = ""
-                        testSuiteModel.setProperty(index, "groupstatus", 0);   // group
+                        testListModel.setProperty(index, "groupstatus", 0);   // group
                     }
                 }
             }

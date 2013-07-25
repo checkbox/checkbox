@@ -48,7 +48,7 @@ Page {
     Timer {
         id: timer
         property int testIndex: 0                       // which test we are running from the list
-        property int totalTests: testSuiteModel.count
+        property int totalTests: testListModel.count
         property var startTime: new Date()
         property var testStartTime: new Date()
 
@@ -75,21 +75,21 @@ Page {
             }
             else {
                 // TODO - this is hardcoding the properties.... PB shuold be doing this
-                testSuiteModel.setProperty(testIndex, "runstatus", 2);  // this will come from Plainbox
+                testListModel.setProperty(testIndex, "runstatus", 2);  // this will come from Plainbox
                 // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
-                testSuiteModel.setProperty(testIndex, "groupstatus", 2);
+                testListModel.setProperty(testIndex, "groupstatus", 2);
 
                 testsuitelist.itemindex = testIndex;    // tell list which item to select
 
                 // set elapsed time
                 var stopTime = new Date();
-                testSuiteModel.setProperty(testIndex, "elapsedtime", stopTime - timer.testStartTime);
+                testListModel.setProperty(testIndex, "elapsedtime", stopTime - timer.testStartTime);
 
                 testStartTime = stopTime;
                 progress.value = testIndex + 1;
-                var testname =  testSuiteModel.get(testIndex).testname;
+                var testname =  testListModel.get(testIndex).testname;
                 progress.title = "Running " + (testIndex + 1)
-                        + " of "+ testSuiteModel.count
+                        + " of "+ testListModel.count
                         + "  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")"
                         + "   " + testname;
             }
@@ -205,7 +205,7 @@ Page {
             horizontalCenter: parent.horizontalCenter
         }
         title: i18n.tr("Running")
-        maxValue: testSuiteModel.count //TODO put the number of tests here
+        maxValue: testListModel.count //TODO put the number of tests here
         value: 0
 
     }

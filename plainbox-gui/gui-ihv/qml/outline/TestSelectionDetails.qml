@@ -32,6 +32,8 @@ Item {
     onTestItemChanged: {
         // fill in details here
         nameText.text = testItem.testname;
+        dependsText.text = testItem.depends;
+        requiresText.text = testItem.requires;
     }
 
     onShowDetailsChanged:{

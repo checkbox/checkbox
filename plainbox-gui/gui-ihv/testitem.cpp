@@ -21,21 +21,6 @@
  */
 
 #include <qdebug.h>
-<<<<<<< TREE
-#include "testsuiteitem.h"
-
-
-TestSuiteItem::TestSuiteItem(const QString &groupName, const QString &testName, int duration, const QString &type, QObject * parent  ) :
-    ListItem( parent ),
-    m_group(groupName),
-    m_testName(testName),
-    m_check(true),
-    m_duration(duration),
-    m_type(type),
-    m_runstatus(0),
-    m_elapsedtime(0),
-    m_groupstatus(0)
-=======
 #include "testitem.h"
 
 
@@ -66,8 +51,10 @@ TestItem::TestItem(const double &duration, \
               m_user(user), \
               m_group(group), \
               m_check(check), \
-              m_path(path)
->>>>>>> MERGE-SOURCE
+              m_path(path),
+          m_runstatus(0),
+          m_elapsedtime(0),
+              m_groupstatus(0)
 {
 }
 
@@ -90,16 +77,12 @@ QHash<int, QByteArray> TestItem::roleNames() const
 
   names[GroupRole] = "group";
   names[CheckRole] = "check";
-<<<<<<< TREE
-  names[DurationRole] = "duration";
-  names[TypeRole] = "type";
+  names[ObjectPathRole] = "path";
+
   names[RunstatusRole] = "runstatus";
   names[ElapsedtimeRole] = "elapsedtime";
   names[GroupstatusRole] = "groupstatus";
-=======
-  names[ObjectPathRole] = "path";
 
->>>>>>> MERGE-SOURCE
   return names;
 }
 
@@ -134,21 +117,14 @@ QVariant TestItem::data(int role) const
       return group();
   case CheckRole:
       return check();
-<<<<<<< TREE
-  case DurationRole:
-      return duration();
-  case TypeRole:
-      return type();
+  case ObjectPathRole:
+      return objectpath();
   case RunstatusRole:
       return runstatus();
   case ElapsedtimeRole:
       return elapsedtime();
   case GroupstatusRole:
       return groupstatus();
-=======
-  case ObjectPathRole:
-      return objectpath();
->>>>>>> MERGE-SOURCE
   default:
     return QVariant();
   }
@@ -212,10 +188,11 @@ void TestItem::setData(const QVariant & value, int role){
     case CheckRole:
         setCheck(value.toBool());
         break;
-<<<<<<< TREE
-    case DurationRole:
-        setDuration(value.toInt());
-        break;
+
+    case ObjectPathRole:
+        setObjectpath(value.toString());
+    break;
+
     case RunstatusRole:
         setRunstatus(value.toInt());
         break;
@@ -225,11 +202,6 @@ void TestItem::setData(const QVariant & value, int role){
     case GroupstatusRole:
         setGroupstatus(value.toInt());
         break;
-=======
-
-    case ObjectPathRole:
-        setObjectpath(value.toString());
->>>>>>> MERGE-SOURCE
     }
 
 }
@@ -282,34 +254,6 @@ void TestItem::setDuration(int duration){
     }
 }
 
-<<<<<<< TREE
-void TestSuiteItem::setRunstatus(int runstatus){
-    if (runstatus != m_runstatus){
-        m_runstatus = runstatus;
-        emit runstatusChanged();
-        emit dataChanged();
-        //qDebug()<<"status changed";
-    }
-}
-
-
-void TestSuiteItem::setElapsedtime(int elapsedtime){
-    if (elapsedtime != m_elapsedtime){
-        m_elapsedtime = elapsedtime;
-        emit elapsedtimeChanged();
-        emit dataChanged();
-    }
-}
-
-void TestSuiteItem::setGroupstatus(int groupstatus){
-    if (groupstatus != m_groupstatus){
-        m_groupstatus = groupstatus;
-        emit groupstatusChanged();
-        emit dataChanged();
-    }
-}
-
-=======
 void TestItem::setObjectpath(const QString &opath){
     if (m_path.compare(opath) != 0 ) {
         m_path = opath;
@@ -373,4 +317,28 @@ void TestItem::setVia(const QString &via){
         emit dataChanged();
     }
 }
->>>>>>> MERGE-SOURCE
+
+void TestItem::setElapsedtime(int elapsedtime){
+    if (elapsedtime != m_elapsedtime){
+        m_elapsedtime = elapsedtime;
+        emit elapsedtimeChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setRunstatus(int runstatus){
+    if (runstatus != m_runstatus){
+        m_runstatus = runstatus;
+        emit runstatusChanged();
+        emit dataChanged();
+        //qDebug()<<"status changed";
+    }
+}
+
+void TestItem::setGroupstatus(int groupstatus){
+    if (groupstatus != m_groupstatus){
+        m_groupstatus = groupstatus;
+        emit groupstatusChanged();
+        emit dataChanged();
+    }
+}
