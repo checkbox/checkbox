@@ -54,7 +54,7 @@ Page {
 
 
 
-        interval:1000;
+        interval:1;
         running: true;
         repeat: true
 

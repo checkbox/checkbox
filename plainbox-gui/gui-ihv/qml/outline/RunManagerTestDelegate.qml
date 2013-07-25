@@ -63,6 +63,7 @@ Component {
                 id: namelabel
                 text: testname
                 width: units.gu(42)
+                elide: Text.ElideRight
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: filler.right
             }
