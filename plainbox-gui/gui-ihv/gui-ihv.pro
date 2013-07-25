@@ -23,11 +23,16 @@ folder_01.source = qml/outline
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
+QT += dbus
+
+LIBS += -L../plugins/ -lgui-engine
+
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
 SOURCES += main.cpp \
-    testsuiteitem.cpp \
+    whitelistitem.cpp \
+    testitem.cpp \
     listmodel.cpp \
     savefiledlg.cpp \
     commandtool.cpp
@@ -36,8 +41,8 @@ SOURCES += main.cpp \
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
-HEADERS += \
-    testsuiteitem.h \
+HEADERS += whitelistitem.h \
+    testitem.h \
     listmodel.h \
     savefiledlg.h \
     commandtool.h
@@ -46,12 +51,11 @@ OTHER_FILES += \
     qml/outline/DummyListModel.qml \
     qml/outline/TestSelectionButtons.qml \
     qml/outline/TestSelectionView.qml \
+    qml/outline/OldMainButtons.qml \
     qml/outline/TestSelectionListView.qml \
     qml/outline/TestSelectionSuiteDelegate.qml \
     qml/outline/TestSelectionTestDelegate.qml \
     qml/outline/SuiteSelectionDelegate.qml \
     qml/outline/SuiteSelectionView.qml \
-    qml/outline/RunManagerView.qml \
-    qml/outline/RunManagerSuiteDelegate.qml \
-    qml/outline/SubmissionDialog.qml
+    qml/outline/RunManagerView.qml
 
