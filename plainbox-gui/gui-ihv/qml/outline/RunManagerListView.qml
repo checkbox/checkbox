@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +72,7 @@ Rectangle {
             width: parent.width
             height:units.gu(7) * (groupedList.count + groupedList.sectionCount - groupedList.closedCount)
 
-            model: testSuiteModel
+            model: testListModel
             highlight: highlight
             highlightFollowsCurrentItem: true
 
@@ -94,7 +95,7 @@ Rectangle {
                 // by the user, don't mess up the group summary
                 if (!userChangingIndex){
                     if (currentIndex != -1){
-                        var item = testSuiteModel.get(currentIndex);
+                        var item = testListModel.get(currentIndex);
                         if (item.group === groupedList.curSectionTested){
                             groupedList.curTest++;
                         }
@@ -132,8 +133,8 @@ Rectangle {
             // counts the total test in the group
             function getTotalTests(groupName){
                 var testcnt = 0
-                for (var i = testSuiteModel.count - 1; i >= 0; i--){
-                    var item = testSuiteModel.get(i);
+                for (var i = testListModel.count - 1; i >= 0; i--){
+                    var item = testListModel.get(i);
                     if (item.group === groupName)
                         testcnt++;
                 }
@@ -142,8 +143,8 @@ Rectangle {
 
             function groupStatus(section){
                 var grpstatus = 0
-                for (var i = testSuiteModel.count - 1; i >= 0; i--){
-                    var item = testSuiteModel.get(i);
+                for (var i = testListModel.count - 1; i >= 0; i--){
+                    var item = testListModel.get(i);
                     if (item.group === section){
                         grpstatus = item.groupstatus;
                         i = -1;
@@ -157,11 +158,11 @@ Rectangle {
                 // if this is the first time called, count the number of sections
                 var secCnt = sectionCount
                 if (secCnt === 0){
-                    var curItem = testSuiteModel.get(0);
+                    var curItem = testListModel.get(0);
                     var curSec = curItem.group;
                     secCnt = 1;
-                    for (var i = 1; i < testSuiteModel.count; i++){
-                        curItem = testSuiteModel.get(i);
+                    for (var i = 1; i < testListModel.count; i++){
+                        curItem = testListModel.get(i);
                         if (curItem.group !== curSec){
                             curSec = curItem.group
                             secCnt++;
