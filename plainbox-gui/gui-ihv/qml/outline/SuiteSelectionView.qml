@@ -58,25 +58,9 @@ Page {
             boundsBehavior : Flickable.StopAtBounds
             model: whiteListModel
 
-            delegate: Item {}
-
-            section {
-                property: "testname"
-                criteria: ViewSection.FullString
-                delegate: SuiteSelectionDelegate{
-
-                    onSelectSuite: {
-                        // This is using the prototype list,
-                        // In the model, select all tests in the suite
-                        for (var i = whiteListModel.count - 1; i >= 0; i--){
-                            var item = whiteListModel.get(i);
-                            if (item.testname === suite)
-                                whiteListModel.setProperty(i, "check", sel);
-                        }
-                    }
-                }
-            }
+            delegate: SuiteSelectionDelegate{}
         }
+
         Scrollbar {
             flickableItem: testselection
             align: Qt.AlignTrailing
@@ -86,7 +70,7 @@ Page {
 
     Button {
         id: okbutton
-        width: units.gu(20)
+        width: parent.width - units.gu(4)
         anchors {
             horizontalCenter:parent.horizontalCenter
             bottom: parent.bottom

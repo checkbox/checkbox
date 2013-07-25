@@ -31,7 +31,6 @@ import "./artwork"
         width: parent.width
         height: units.gu(7)
 
-        signal selectSuite(string suite, bool sel)
 
         Item {
             id: suitefiller
@@ -43,15 +42,12 @@ import "./artwork"
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitefiller.right
             checked: true
-            onClicked: {
-                itemdelegate.selectSuite(section, checked);
-            }
         }
 
 
         Text {
             id: suitetext
-            text: section
+            text: testname
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitecheckbox.right
             anchors.leftMargin: units.gu(1)

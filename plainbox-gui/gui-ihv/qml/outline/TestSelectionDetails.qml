@@ -26,24 +26,24 @@ Item {
     id: testseldetails
     property var testItem;
     property bool showDetails;
-    property int openHeight: units.gu(18)
+    property int openHeight: units.gu(15)
 
 
     onTestItemChanged: {
         // fill in details here
         nameText.text = testItem.testname;
+        dependsText.text = testItem.depends;
+        requiresText.text = testItem.requires;
     }
 
     onShowDetailsChanged:{
         if (showDetails){
             progressIcon.source = "artwork/DownArrow.png";
             detailsFlick.height = openHeight
-            testsuitelist.height -= openHeight
         }
         else{
             progressIcon.source = "artwork/RightArrow.png";
             detailsFlick.height = 0
-            testsuitelist.height += openHeight
         }
     }
 
@@ -71,10 +71,8 @@ Item {
                 top: parent.top
                 margins: units.gu(1)
             }
-
-            opacity: enabled ? 1.0 : 0.5
-
         }
+
         MouseArea {
             anchors.fill: detailsItem
             onClicked: {showDetails = !showDetails}
@@ -88,7 +86,7 @@ Item {
         id: detailsFlick
         anchors.left: detailsItem.right
         anchors.top: parent.top
-        anchors.leftMargin: units.gu(2)
+        anchors.leftMargin: units.gu(1)
         width: parent.width - detailsItem.width - units.gu(2)
         height: 0  // initialize to closed
         contentHeight: detailsblock.height

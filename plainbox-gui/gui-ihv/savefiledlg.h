@@ -20,29 +20,26 @@
  */
 
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+#ifndef SAVEFILEDLG_H
+#define SAVEFILEDLG_H
 
-Item {
-    property alias title: progresslabel.text
-    property alias value: progressbar.value
-    property alias maxValue: progressbar.maximumValue
+#include <QObject>
+#include <QQmlComponent>
+#include <qdebug.h>
 
-    Label {
-        id: progresslabel
-        text: ""
-        anchors.left: parent.left
-    }
+class SaveFileDlg : public QObject
+{
+    Q_OBJECT
+public:
+    explicit SaveFileDlg(QObject *parent = 0);
+    Q_INVOKABLE void save();//const QString& filename);
 
-    ProgressBar {
-        id: progressbar
-        width: parent.width
-        anchors.top: progresslabel.bottom
-        anchors.topMargin: units.gu(1)
-        indeterminate: false
-        minimumValue: 0
-        maximumValue: 100
-        value: 0
-        anchors.left: parent.left
-    }
-}
+signals:
+    void saveDir();
+
+private:
+   //QFileDialog m_fileDialog;
+};
+
+
+#endif // SAVEFILEDLG_H

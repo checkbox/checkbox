@@ -51,7 +51,10 @@ TestItem::TestItem(const double &duration, \
               m_user(user), \
               m_group(group), \
               m_check(check), \
-              m_path(path)
+              m_path(path),
+          m_runstatus(0),
+          m_elapsedtime(0),
+              m_groupstatus(0)
 {
 }
 
@@ -75,6 +78,10 @@ QHash<int, QByteArray> TestItem::roleNames() const
   names[GroupRole] = "group";
   names[CheckRole] = "check";
   names[ObjectPathRole] = "path";
+
+  names[RunstatusRole] = "runstatus";
+  names[ElapsedtimeRole] = "elapsedtime";
+  names[GroupstatusRole] = "groupstatus";
 
   return names;
 }
@@ -112,6 +119,12 @@ QVariant TestItem::data(int role) const
       return check();
   case ObjectPathRole:
       return objectpath();
+  case RunstatusRole:
+      return runstatus();
+  case ElapsedtimeRole:
+      return elapsedtime();
+  case GroupstatusRole:
+      return groupstatus();
   default:
     return QVariant();
   }
@@ -178,6 +191,17 @@ void TestItem::setData(const QVariant & value, int role){
 
     case ObjectPathRole:
         setObjectpath(value.toString());
+    break;
+
+    case RunstatusRole:
+        setRunstatus(value.toInt());
+        break;
+    case ElapsedtimeRole:
+        setElapsedtime(value.toInt());
+        break;
+    case GroupstatusRole:
+        setGroupstatus(value.toInt());
+        break;
     }
 
 }
@@ -290,6 +314,31 @@ void TestItem::setVia(const QString &via){
     if (via.compare(via) != 0 ) {
         m_via = via;
         emit viaChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setElapsedtime(int elapsedtime){
+    if (elapsedtime != m_elapsedtime){
+        m_elapsedtime = elapsedtime;
+        emit elapsedtimeChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setRunstatus(int runstatus){
+    if (runstatus != m_runstatus){
+        m_runstatus = runstatus;
+        emit runstatusChanged();
+        emit dataChanged();
+        //qDebug()<<"status changed";
+    }
+}
+
+void TestItem::setGroupstatus(int groupstatus){
+    if (groupstatus != m_groupstatus){
+        m_groupstatus = groupstatus;
+        emit groupstatusChanged();
         emit dataChanged();
     }
 }

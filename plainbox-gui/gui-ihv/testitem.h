@@ -5,7 +5,6 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
- * - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +21,11 @@
 
 #include <QObject>
 #include "listmodel.h"
-#include "../gui-engine/gui-engine.h"
 
 
 class TestItem : public ListItem
 {
     Q_OBJECT
-
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
     Q_PROPERTY(double duration READ duration WRITE setDuration NOTIFY durationChanged)
     Q_PROPERTY(QString checksum READ checksum WRITE setChecksum NOTIFY checksumChanged)
@@ -47,7 +44,14 @@ class TestItem : public ListItem
     // Internally required stuff
     Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged)
     Q_PROPERTY(bool check READ check WRITE setCheck NOTIFY checkChanged)
+    Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
+    Q_PROPERTY(QString type READ type)
+    Q_PROPERTY(int runStatus READ runstatus WRITE setRunstatus NOTIFY runstatusChanged)
+    Q_PROPERTY(int elapsedtime READ elapsedtime WRITE setElapsedtime NOTIFY elapsedtimeChanged)
+    Q_PROPERTY(int groupstatus READ groupstatus WRITE setGroupstatus NOTIFY groupstatusChanged)
     Q_PROPERTY(QString objectpath READ objectpath WRITE setObjectpath NOTIFY objectpathChanged)
+
+
 
 signals:
     void durationChanged();
@@ -66,6 +70,9 @@ signals:
     void groupChanged();
     void checkChanged();
     void objectpathChanged();
+    void runstatusChanged();
+    void elapsedtimeChanged();
+    void groupstatusChanged();
 
 public:
     enum Roles {
@@ -87,11 +94,16 @@ public:
         // Internally required
         GroupRole,
         CheckRole,
-        ObjectPathRole
+        ObjectPathRole,
+
+        RunstatusRole,
+        ElapsedtimeRole,
+        GroupstatusRole
     };
 
+
 public:
-    TestItem(QObject * parent = 0 ) : ListItem(parent), m_check(true){}
+    TestItem(QObject * parent = 0 ) : ListItem(parent), m_check(true), m_runstatus(0), m_elapsedtime(0), m_groupstatus(0){}
     TestItem(const double &duration, \
              const QString &checksum, \
              const QString &depends, \
@@ -171,6 +183,15 @@ public:
     inline QString objectpath() const { return m_path; }
     void setObjectpath(const QString &opath);
 
+    inline int runstatus() const { return m_runstatus; }
+    void setRunstatus(int runstatus);
+
+    inline int elapsedtime() const { return m_elapsedtime; }
+    void setElapsedtime(int elapsedtime);
+
+    inline int groupstatus() const {return m_groupstatus; }
+    void setGroupstatus(int groupstatus);
+
 private:
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
 
@@ -194,6 +215,10 @@ private:
     bool m_check;   // Selected to be run?
 
     QString m_path; // ObjectPath for this job
+
+    int m_runstatus;
+    int m_elapsedtime;
+    int m_groupstatus;
 };
 
 

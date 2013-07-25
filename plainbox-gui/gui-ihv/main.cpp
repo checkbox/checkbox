@@ -25,8 +25,7 @@
 #include <QDir>
 #include <QtQml>
 #include "qtquick2applicationviewer.h"
-
-
+#include "commandtool.h"
 #include "listmodel.h"
 #include "whitelistitem.h"
 #include "testitem.h"
@@ -230,6 +229,9 @@ int main(int argc, char *argv[])
 
     // List of Tests
     viewer.rootContext()->setContextProperty("testListModel", testlistmodel);
+
+    CommandTool cmdTool;
+    viewer.rootContext()->setContextProperty("cmdTool", &cmdTool);
 
     // GuiEngine
     viewer.rootContext()->setContextProperty("guiEngine", &guiengine);
