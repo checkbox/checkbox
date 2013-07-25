@@ -28,7 +28,9 @@ QML_IMPORT_PATH =
 
 SOURCES += main.cpp \
     testsuiteitem.cpp \
-    listmodel.cpp
+    listmodel.cpp \
+    savefiledlg.cpp \
+    commandtool.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
@@ -36,17 +38,20 @@ qtcAddDeployment()
 
 HEADERS += \
     testsuiteitem.h \
-    listmodel.h
+    listmodel.h \
+    savefiledlg.h \
+    commandtool.h
 
 OTHER_FILES += \
     qml/outline/DummyListModel.qml \
     qml/outline/TestSelectionButtons.qml \
     qml/outline/TestSelectionView.qml \
-    qml/outline/OldMainButtons.qml \
     qml/outline/TestSelectionListView.qml \
     qml/outline/TestSelectionSuiteDelegate.qml \
     qml/outline/TestSelectionTestDelegate.qml \
     qml/outline/SuiteSelectionDelegate.qml \
     qml/outline/SuiteSelectionView.qml \
-    qml/outline/RunManagerView.qml
+    qml/outline/RunManagerView.qml \
+    qml/outline/RunManagerSuiteDelegate.qml \
+    qml/outline/SubmissionDialog.qml
 

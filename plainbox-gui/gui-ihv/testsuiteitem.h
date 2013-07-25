@@ -31,6 +31,9 @@ class TestSuiteItem : public ListItem
     Q_PROPERTY(bool check READ check WRITE setCheck NOTIFY checkChanged)
     Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
     Q_PROPERTY(QString type READ type)
+    Q_PROPERTY(int runStatus READ runstatus WRITE setRunstatus NOTIFY runstatusChanged)
+    Q_PROPERTY(int elapsedtime READ elapsedtime WRITE setElapsedtime NOTIFY elapsedtimeChanged)
+    Q_PROPERTY(int groupstatus READ groupstatus WRITE setGroupstatus NOTIFY groupstatusChanged)
 
 
 
@@ -39,6 +42,9 @@ signals:
     void testnameChanged();
     void checkChanged();
     void durationChanged();
+    void runstatusChanged();
+    void elapsedtimeChanged();
+    void groupstatusChanged();
 
 public:
       enum Roles {
@@ -46,12 +52,15 @@ public:
         TestNameRole,
         CheckRole,
         DurationRole,
-        TypeRole
+        TypeRole,
+        RunstatusRole,
+        ElapsedtimeRole,
+        GroupstatusRole
       };
 
 
 public:
-    TestSuiteItem(QObject * parent = 0 ) : ListItem(parent), m_check(true){}
+    TestSuiteItem(QObject * parent = 0 ) : ListItem(parent), m_check(true), m_runstatus(0), m_elapsedtime(0), m_groupstatus(0){}
     TestSuiteItem(const QString &groupName, const QString &testname, int durationInSeconds, const QString &type, QObject * parent = 0 );
 
     QVariant data(int role) const;
@@ -74,6 +83,16 @@ public:
 
     inline QString type() const {return m_type; }
 
+    inline int runstatus() const { return m_runstatus; }
+    void setRunstatus(int runstatus);
+
+    inline int elapsedtime() const { return m_elapsedtime; }
+    void setElapsedtime(int elapsedtime);
+
+    inline int groupstatus() const {return m_groupstatus; }
+    void setGroupstatus(int groupstatus);
+
+
 
 private:
     QString m_group;
@@ -81,6 +100,9 @@ private:
     bool m_check;
     int m_duration;
     QString m_type;
+    int m_runstatus;
+    int m_elapsedtime;
+    int m_groupstatus;
 };
 
 
