@@ -32,6 +32,7 @@ Item {
     onTestItemChanged: {
         // fill in details here
         nameText.text = testItem.testname;
+        descriptionText.text = testItem.description;
         dependsText.text = testItem.depends;
         requiresText.text = testItem.requires;
     }
@@ -107,147 +108,41 @@ Item {
 
             Item{
                 id: detailsblock
-                anchors.fill: parent
-                height: units.gu(24)
 
-                Label {
-                    id: nameLabel
-                    text: i18n.tr("     name:  ")
-                    anchors {
-                        left: parent.left
-                        top: parent.top
-                        margins: units.gu(2)
-                    }
-                }
+                height: nameText.height + descriptionText.height + dependsText.height + requiresText.height + otherText.height + units.gu(4)
+                width: parent.width
 
-                Rectangle {
-                    id: nameRect
-                    height: units.gu(4)
-                    border{
-                        color: UbuntuColors.warmGrey
-                        width: 1
-                    }
-                    anchors {
-                        left: nameLabel.right
-                        right: parent.right
-                        top: parent.top
-                        margins: units.gu(1)
-                    }
-                }
-                Text {
+                TestSelectionDetailsItems{
                     id: nameText
-
-                    anchors{
-                        fill: nameRect
-                        margins: units.gu(1)
-                    }
-                    text:""
+                    labelName: i18n.tr("name:")
+                    anchors.top: parent.top
                 }
 
-                Label {
-                    id: dependsLabel
-                    text: i18n.tr("depends: ")
-                    anchors{
-                        left: parent.left
-                        top: nameRect.bottom
-                        margins: units.gu(2)
-                    }
+                TestSelectionDetailsItems{
+                    id: descriptionText
+                    labelName: i18n.tr("description:")
+                    anchors.top: nameText.bottom
                 }
 
-                Rectangle {
-                    id: dependsRect
-                    height: units.gu(4)
-                    border{
-                        color: UbuntuColors.warmGrey
-                        width: 1
-                    }
-                    anchors{
-                        left: dependsLabel.right
-                        right: parent.right
-                        top: nameRect.bottom
-                        margins: units.gu(1)
-                    }
-                }
-                Text {
+                TestSelectionDetailsItems{
                     id: dependsText
-                    anchors{
-                        fill: dependsRect
-                        margins: units.gu(1)
-                        top: nameRect.bottom
-                    }
-                    text:""
-                }
-                Label {
-                    id: requiresLabel
-                    text: i18n.tr(" requires: ")
-                    anchors{
-                        left: parent.left
-                        top: dependsRect.bottom
-                        margins: units.gu(2)
-                    }
+                    labelName: i18n.tr("depends:")
+                    anchors.top: descriptionText.bottom
                 }
 
-                Rectangle {
-                    id: requiresRect
-                    height: units.gu(4)
-                    border{
-                        color: UbuntuColors.warmGrey
-                        width: 1
-                    }
-                    anchors {
-                        left: requiresLabel.right
-                        right: parent.right
-                        top: dependsRect.bottom
-                        margins: units.gu(1)
-                    }
-                }
-                Text {
+                TestSelectionDetailsItems{
                     id: requiresText
-                    anchors{
-                        fill: requiresRect
-                        margins: units.gu(1)
-                        top: dependsRect.bottom
-                    }
-                    text:""
+                    labelName: i18n.tr("requires:")
+                    anchors.top: dependsText.bottom
                 }
 
-                Label {
-                    id: otherLabel
-                    text: i18n.tr("     other: ")
-                    anchors{
-                        left: parent.left
-                        top: requiresRect.bottom
-                        margins: units.gu(2)
-                    }
-                }
-
-                Rectangle {
-                    id: otherRect
-                    height: units.gu(4)
-                    border{
-                        color: UbuntuColors.warmGrey
-                        width: 1
-                    }
-                    anchors{
-                        left: requiresLabel.right
-                        right: parent.right
-                        top: requiresRect.bottom
-                        margins: units.gu(1)
-                    }
-                }
-                Text {
+                TestSelectionDetailsItems{
                     id: otherText
-                    anchors{
-                        fill: requiresRect
-                        margins: units.gu(1)
-                        top: requiresRect.bottom
-                    }
-                    text:""
+                    labelName: i18n.tr("other:")
+                    anchors.top: requiresText.bottom
                 }
             }
-
         }
-
     }
     Scrollbar {
         flickableItem: detailsFlick
