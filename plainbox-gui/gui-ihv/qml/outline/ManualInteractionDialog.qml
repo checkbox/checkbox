@@ -28,13 +28,15 @@ import Ubuntu.Components.Popups 0.1
 Dialog {
     id: dialog
 
+    property var testItem;
+
     title: i18n.tr("Manual Test")
-    text: i18n.tr("Name of the Test.")
+    text: testItem.testname//i18n.tr("Name of the Test.")
 
 
     TextArea{
         id: instructions
-        text: "This is where we put our instructions\n2- This is 1\n3 -This is where we put our instructions\n4- This is where we put our instructions\n5 -where we put our instructions\n"
+        text: testItem.description//"This is where we put our instructions\n2- This is 1\n3 -This is where we put our instructions\n4- This is where we put our instructions\n5 -where we put our instructions\n"
         Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
         color: "green"
         height: units.gu(24)

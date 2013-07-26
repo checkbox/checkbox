@@ -54,7 +54,7 @@ Page {
 
 
 
-        interval:1000;
+        interval:1;
         running: true;
         repeat: true
 
@@ -265,6 +265,7 @@ Page {
         Component {
             id: manual_dialog
             ManualInteractionDialog{
+                testItem: testListModel.get(timer.testIndex);
             }
         }
 
