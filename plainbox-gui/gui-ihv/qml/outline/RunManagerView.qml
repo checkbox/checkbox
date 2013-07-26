@@ -265,6 +265,7 @@ Page {
         Component {
             id: manual_dialog
             ManualInteractionDialog{
+                testItem: testListModel.get(timer.testIndex);
             }
         }
 
