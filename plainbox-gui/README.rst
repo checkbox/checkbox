@@ -28,7 +28,7 @@ To test gui-ihv:
         - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
         - sudo apt-add-repository ppa:canonical-qt5-edgers/qt5-proper
         - sudo apt-get update
-        - sudo apt-get install qt5-creator
+        - sudo apt-get install qtcreator
         - sudo apt-get install ubuntu-sdk
         - sudo apt-get dist-upgrade
 
@@ -38,6 +38,12 @@ Once the required tools and dependencies are installed:
 2. File->Open Project->plainbox-gui.pro
 3. Build->Run
 4. Interact with the UI
+
+There seems to be a visual glitch when starting the UI (step 3). You may notice
+that a "ghost" window opens, this looks like qt creator but it's a "mirror" or
+bitmap of that window. This is the actual application window. To make it react,
+simply try to move it around, or close it and restart it (the ghost window,
+not qt creator itself). This bug has been reported and is being looked at.
 
 TBD
 
