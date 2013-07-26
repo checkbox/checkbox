@@ -13,6 +13,8 @@ checkbox (0.16.7) UNRELEASED; urgency=low
   * scripts/pm_test: Added support for invoking through pkexec (LP: #1201769)
   * jobs/audio.txt.in: Added balance jobs (both internal speakers and
     headphones)
+  * jobs/stress.txt.in: Added --log-dir to poweroff and reboot stress tests so
+    log files get written in the expected location (LP: #1205194)
 
   [ Brendan Donegan ]
   * checkbox/parsers/cpuinfo.py - update parser logic to understand cpuinfo
