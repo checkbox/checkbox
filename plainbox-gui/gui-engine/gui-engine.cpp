@@ -166,7 +166,7 @@ QVariantMap PBTreeNode::GetObjectProperties(const QDBusObjectPath &object_path, 
     // GetAll properties
     QDBusMessage reply = iface.call("GetAll",interface);
     if (reply.type() != QDBusMessage::ReplyMessage) {
-        qDebug("Could not get the properties");
+        // not worth complaining if they dont have properties, just return the empty
         return properties;
     }
 
@@ -687,106 +687,51 @@ void GuiEngine::dump_whitelist_selection(void)
  * to generate the correct "via" information for the _real_ jobs
  * which the user may want to run. This gives us our hierarchy to
  * show in the test selection screen.
+ *
+ * For clarity of understanding, the flow/style follows dbus-mini-client.py
  */
 void GuiEngine::RunLocalJobs(void)
 {
     qDebug("GuiEngine::RunLocalJobs");
 
-    QList<QDBusObjectPath> local_jobs = GetLocalJobs();
+    /* Whitelist is selected elsewhere in GetWhiteListPathsAndNames()
+    * so by this point its contained in the member variable "whitelist"
+    */
 
-    qDebug() << "We have " << local_jobs.count() << " local jobs";
+    // mini-runner gets these via GetManagedObjects. but it appears to be
+    // the same list as exposed by actually trawling DBus itself.
+    QList<QDBusObjectPath> job_list = GetAllJobs();
 
-    // Now, we can call CreateSession() - this will do for the rest of the run
-    QList<QDBusObjectPath> provider_jobs = GetAllJobs();
+    qDebug() << "We have " << job_list.count() << " provider jobs";
 
-    qDebug() << "We have " << provider_jobs.count() << " provider jobs";
-
-    /* We keep two lists of Jobs:
-     *
-     * desired_local_job_list
-     * valid_run_list   // member variable
-     *
-     * These are derived by filtering local_jobs and provider_jobs
-     * against the WhiteList.Designates() to see if they are really
-     * needed.
-     *
-     * We run the local jobs immediately to generate the correct "via"
-     * hierarchy information for the real jobs.
-     *
-     * The valid_run_list is the list of all provider jobs that are designated
-     * to be run by one or more whitelists. We run these later as they
-     * constitute the "real" tests wanted by the user.
-     *
-     * TODO: Do we stil show the user the "local" jobs? Clearly they dont get
-     * run a second time of course.
-     */
-
-    QList<QDBusObjectPath> desired_local_job_list;
-
-    // Iterate through each whitelist, and check if it Designates each job
-    QMap<QDBusObjectPath, bool>::iterator iter_white = whitelist.begin();
-    while(iter_white != whitelist.end()) {
-
-        // Try it if we have selected this whitelist
-        if (iter_white.value()) {
-            QDBusObjectPath white = iter_white.key();
-
-            // local_jobs
-            for(int i=0; i < local_jobs.count(); i++) {
-
-                QDBusObjectPath job = local_jobs.at(i);
-
-                // Does the whitelist designate this job?
-                bool ok = WhiteListDesignates(white,job);
-
-                // If ANY whitelist wants this job, we say yes
-                if (ok) {
-                    if (!desired_local_job_list.contains(job)) {
-                        desired_local_job_list.append(job);
-                    }
-                }
-            }
-
-            // provider_jobs
-            for(int i=0; i < provider_jobs.count(); i++) {
-
-                QDBusObjectPath job = provider_jobs.at(i);
-
-                // Does the whitelist designate this job?
-                bool ok = WhiteListDesignates(white,job);
-
-                // If ANY whitelist wants this job, we say yes
-                if (ok) {
-                    if (!valid_run_list.contains(job)) {
-                        valid_run_list.append(job);
-                    }
-                }
-            }
-        }
-
-        // Next whitelist
-        iter_white++;
-    }
-
-    qDebug() << "We have " \
-             << desired_local_job_list.count() << \
-                " designated local jobs";
-
-    // Create our Session with all the provider jobs
-    m_session = CreateSession(provider_jobs);
+    // Create a session
+    m_session = CreateSession(job_list);
 
     qDebug() << "Newly created Session is" << m_session.path();
 
-    QStringList results_of_job_list = \
-            UpdateDesiredJobList(m_session, desired_local_job_list);
+    // to get only the *jobs* that are designated by the whitelist.
+    QList<QDBusObjectPath> desired_job_list = GenerateDesiredJobList(job_list);
 
+    // Now I update the desired job list.
+    QStringList errors = UpdateDesiredJobList(m_session, desired_job_list);
+    if (errors.count() != 0) {
+        qDebug("UpdateDesiredJobList generated errors:");
+
+        for (int i=0; i<errors.count(); i++) {
+            qDebug() << errors.at(i);
+        }
+    }
+
+    // Now, the run_list contains the list of jobs I actually need to run \o/
     QList<QDBusObjectPath> run_list = SessionStateRunList(m_session);
 
-    qDebug() << "We have " << run_list.count() << "Local jobs to run";
+    // Now the actual run, job by job.
+    // Note that we want to ONLY run the local jobs
+    QList<QDBusObjectPath> local_job_list = GetLocalJobs();
+    QList<QDBusObjectPath> local_run_list = FilteredJobs(run_list, local_job_list);
 
-    // Now, run all the jobs in order
-    for(int i =0; i< run_list.count(); i++) {
-        RunJob(m_session,run_list.at(i));
+    for (int i=0; i< local_run_list.count(); i++) {
+        RunJob(m_session,local_run_list.at(i));
     }
 
     if (pb_objects) {
@@ -799,6 +744,9 @@ void GuiEngine::RunLocalJobs(void)
     if (!pb_objects) {
         qDebug("Failed to get Plainbox Objects");
     }
+
+    // Now, store the list of valid runnable jobs for the GUI
+    valid_run_list = run_list;
 
     qDebug("GuiEngine::RunLocalJobs - Done");
 }
@@ -1338,4 +1286,69 @@ void GuiEngine::LogDumpTree(void)
     }
 
     qDebug("GuiEngine::LogDumpTree - Done");
+}
+
+QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> job_list)
+{
+    QList<QDBusObjectPath> desired_job_list;
+
+    // Iterate through each whitelist, and check if it Designates each job
+    QMap<QDBusObjectPath, bool>::iterator iter = whitelist.begin();
+    while(iter != whitelist.end()) {
+
+        // Try it if we have selected this whitelist
+        if (iter.value()) {
+            QDBusObjectPath white = iter.key();
+
+            // local_jobs
+            for(int i=0; i < job_list.count(); i++) {
+
+                QDBusObjectPath job = job_list.at(i);
+
+                // Does the whitelist designate this job?
+                bool ok = WhiteListDesignates(white,job);
+
+                // If ANY whitelist wants this job, we say yes
+                if (ok) {
+                    if (!desired_job_list.contains(job)) {
+                        desired_job_list.append(job);
+                    }
+                }
+            }
+        }
+
+        // Next whitelist
+        iter++;
+    }
+
+    return desired_job_list;
+}
+
+QList<QDBusObjectPath> GuiEngine::FilteredJobs( \
+        const QList<QDBusObjectPath> list1, \
+        const QList<QDBusObjectPath> list2)
+{
+    QList<QDBusObjectPath> intersection;
+
+    QList<QDBusObjectPath>::const_iterator iter1 = list1.begin();
+
+    while (iter1 != list1.end()) {
+        QList<QDBusObjectPath>::const_iterator iter2 = list2.begin();
+
+        while(iter2 != list2.end()) {
+            QDBusObjectPath obj1 = *iter1;
+            QDBusObjectPath obj2 = *iter2;
+
+            if (obj1 == obj2)
+            {
+                intersection.append(obj1);
+            }
+
+            iter2++;
+        }
+
+        iter1++;
+    }
+
+    return intersection;
 }

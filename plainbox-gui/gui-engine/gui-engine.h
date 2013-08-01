@@ -219,6 +219,15 @@ public slots:
         // temporary function to run the "local" jobs generators
         void RunLocalJobs(void);
 
+        // Helper function when generating the desired local and real jobs
+        QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
+
+        // Helper. Returns the intersection of list1 and list2
+        // Useful for matching local jobs against the whitelist designates
+        QList<QDBusObjectPath> FilteredJobs( \
+                const QList<QDBusObjectPath> list1, \
+                const QList<QDBusObjectPath> list2);
+
         // temporary function for debug purposes
         void LogDumpTree(void);
 
@@ -265,6 +274,10 @@ public:
 
         // Returns a tree of all the jobs
         JobTreeNode* GetJobTreeNodes();
+
+        const QList<QDBusObjectPath>& GetValidRunList(void) {
+            return valid_run_list;
+        }
 
 private:
         EngineState enginestate;

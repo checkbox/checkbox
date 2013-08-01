@@ -28,7 +28,7 @@
 ListModel* TestItemModel::CreateTestListModel(ListModel* model)
 {
     // Create a model
-    qDebug("CreateTestListModel()");
+    qDebug("TestItemModel::CreateTestListModel()");
 
     // We can create OR update the model
     if (model==NULL) {
@@ -87,6 +87,24 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         }
 
         PBTreeNode* node = jnode->m_node;
+        // is this a valid item for the user?
+        QList<QDBusObjectPath> list;
+
+        list.append(node->object_path);
+
+        // check against our filtered list
+        QList<QDBusObjectPath> short_valid_list = \
+                myengine->FilteredJobs(list,\
+                                       myengine->GetValidRunList());
+
+        if (myengine->GetValidRunList().count() != 0) {
+            // we have _some_ valid tests :)
+            if (short_valid_list.isEmpty()) {
+                // we dont show this one
+                iter++;
+                continue;
+            }
+        }
 
         double duration;
         QString checksum;
@@ -247,7 +265,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         iter++;
     }
 
-    qDebug("CreateTestListModel() - done");
+    qDebug("TestItemModel::CreateTestListModel() - done");
 
     return model;
 }
