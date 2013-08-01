@@ -937,17 +937,24 @@ void GuiEngine::RunJob(const QDBusObjectPath session, \
         return;
     }
 
-   QDBusMessage reply = iface.call("RunJob", \
-               QVariant::fromValue<QDBusObjectPath>(session), \
-               QVariant::fromValue<QDBusObjectPath>(opath));
+    QDBusPendingCall async_reply = iface.asyncCall("RunJob", \
+                QVariant::fromValue<QDBusObjectPath>(session), \
+                QVariant::fromValue<QDBusObjectPath>(opath));
 
-   if (reply.type() != QDBusMessage::ReplyMessage) {
+    QDBusPendingCallWatcher watcher(async_reply,this);
 
-       decodeDBusMessageType(reply);
+    watcher.waitForFinished();
 
-       qDebug("Could not run this job");
-   }
+    QDBusPendingReply<QString,QByteArray> reply = async_reply;
+    if (reply.isError()) {
 
+        // For the moment, we wont get the "say" signature, just "o"
+        QDBusError qde = reply.error();
+
+        if (qde.name().compare("org.freedesktop.DBus.Error.InvalidSignature") !=0) {
+            qDebug() << qde.name() << " " << qde.message();
+        }
+    }
 }
 
 // temporary - Print the DBus argument type
