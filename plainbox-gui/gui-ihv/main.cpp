@@ -29,6 +29,7 @@
 #include "listmodel.h"
 #include "whitelistitem.h"
 #include "testitem.h"
+#include "testitemmodel.h"
 
 #include "../gui-engine/gui-engine.h"
 
@@ -72,117 +73,13 @@ ListModel* CreateWhiteListModel()
 }
 
 // Load up test suites here (it can be moved to another file)
-ListModel* CreateTestListModel()
+ListModel* CreateTestListModel(ListModel* model=NULL )
 {
     qDebug("CreateTestListModel()");
 
-    ListModel *model = new ListModel(new TestItem, qApp);
+    TestItemModel factory;
 
-    // We should interrogate the whitelist here
-    const QString engname("");
-
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        // NB: Model will be empty at this point
-        return model;
-    }
-
-    // Get all of the jobs here
-    QList<PBTreeNode*> jobnodes = myengine->GetJobNodes();
-
-    for (int i = 0; i< jobnodes.count(); i++) {
-        PBObjectInterface* iface = NULL;
-
-        double duration;
-        QString checksum;
-        QString depends;
-        QString testname;
-        QString requires;
-        QString description;
-        QString command;
-        QString environ;
-        QString type = "Manual"; // translation required
-        QString user;
-        QString group;
-        bool check;
-        QString path;
-
-        for(int j=0; j < jobnodes.at(i)->interfaces.count(); j++) {
-            iface = jobnodes.at(i)->interfaces.at(j);
-
-            if (iface == NULL) {
-                qDebug("Null interface");
-            } else {
-                if(iface->interface.compare(PlainboxJobDefinition1) == 0) {
-                    QVariant variant;
-
-                    variant = *iface->properties.find("estimated_duration");
-                    if (variant.isValid() && variant.canConvert(QMetaType::Double)) {
-                        duration = variant.toDouble();
-                    }
-
-                    variant = *iface->properties.find("checksum");
-                    if (variant.isValid() && variant.canConvert(QMetaType::QString)) {
-                        checksum = variant.toString();
-                    }
-
-                    variant = *iface->properties.find("depends");
-                    if (variant.isValid() && variant.canConvert(QMetaType::QString)) {
-                        depends = variant.toString();
-                    }
-                    variant = *iface->properties.find("description");
-                    if (variant.isValid() && variant.canConvert(QMetaType::QString)) {
-                        description = variant.toString();
-                    }
-
-                    variant = *iface->properties.find("name");
-                    if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                        testname = variant.toString();
-                    }
-
-                    variant = *iface->properties.find("requires");
-                    if (variant.isValid() && variant.canConvert(QMetaType::QString)) {
-                        requires = variant.toString();
-                    }
-                }
-
-                if(iface->interface.compare(CheckBoxJobDefinition1) == 0) {
-                    QVariant variant;
-                    variant = *iface->properties.find("plugin");
-
-                    if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                        // show plugin type
-                        QString plugin = "shell";
-
-                        if (plugin.compare(variant.toString())) {
-                            type = "Automatic"; // translation required
-                        }
-                    }
-                }
-            }
-        }
-
-        model->appendRow(new TestItem(duration, \
-                                      checksum, \
-                                      depends, \
-                                      testname, \
-                                      requires, \
-                                      description, \
-                                      command, \
-                                      environ, \
-                                      type, \
-                                      user, \
-                                      group, \
-                                      check, \
-                                      path, \
-                                      model));
-    }
-
-    qDebug("CreateTestListModel() - done");
-
-    return model;
+    return factory.CreateTestListModel();
 }
 
 int main(int argc, char *argv[])
@@ -235,6 +132,11 @@ int main(int argc, char *argv[])
 
     // GuiEngine
     viewer.rootContext()->setContextProperty("guiEngine", &guiengine);
+
+    // create a factory object to give us our test model
+    TestItemModel testitemFactory;
+
+    viewer.rootContext()->setContextProperty("testitemFactory",&testitemFactory);
 
     // Now, load the main page
     viewer.setMainQmlFile(QStringLiteral("qml/outline/gui-ihv.qml"));

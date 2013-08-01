@@ -19,33 +19,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "test-gui-engine.h"
+#ifndef TESTITEMMODEL_H
+#define TESTITEMMODEL_H
 
-void TestGuiEngine::TestInitialise()
+#include <QObject>
+#include "testitem.h"
+#include "../gui-engine/gui-engine.h"
+
+// Factory class to create or update a TestItem Model
+class TestItemModel : public QObject
 {
-    QVERIFY(Initialise());
-}
+    Q_OBJECT
 
-void TestGuiEngine::TestGetWhiteListPathsAndNames()
-{
-    QMap<QDBusObjectPath,QString> whitenames;
+public:
+    TestItemModel() {};
+    ~TestItemModel() {};
 
-    whitenames = GetWhiteListPathsAndNames();
+public slots:
+    ListModel* CreateTestListModel(ListModel* model=NULL);
+    void foobar(void) {};
+};
 
-    QVERIFY(whitenames.count() != 0);
-}
-
-void TestGuiEngine::TestGetJobsNames()
-{
-    RunLocalJobs();
-
-    LogDumpTree();
-}
-
-void TestGuiEngine::TestShutdown()
-{
-    QVERIFY(Shutdown());
-}
-
-QTEST_MAIN(TestGuiEngine)
-
+#endif // TESTITEMMODEL_H

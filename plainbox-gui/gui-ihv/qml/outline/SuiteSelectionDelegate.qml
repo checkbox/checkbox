@@ -42,6 +42,14 @@ import "./artwork"
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitefiller.right
             checked: true
+            onClicked: {
+                // Update the list of selected whitelists
+                for (var i = whiteListModel.count - 1; i >= 0; i--){
+                    var item = whiteListModel.get(i);
+                    if (item.testname === testname)
+                        whiteListModel.setProperty(i, "check", checked);
+                }
+            }
         }
 
 
