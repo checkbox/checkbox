@@ -41,6 +41,7 @@ TestItem::TestItem(const double &duration, \
                    const QList<QString> &parent_names, \
                    const QList<QString> &parent_ids, \
                    const int &depth, \
+                   const bool &branch, \
                    QObject * parent  ) :
     ListItem(parent), \
               m_duration(duration), \
@@ -60,6 +61,7 @@ TestItem::TestItem(const double &duration, \
               m_parent_names(parent_names), \
               m_parent_ids(parent_ids), \
               m_depth(depth), \
+              m_branch(branch), \
           m_runstatus(0),
           m_elapsedtime(0),
               m_groupstatus(0)
@@ -94,6 +96,7 @@ QHash<int, QByteArray> TestItem::roleNames() const
   names[ParentNameRole] = "parentname";
   names[ParentIdRole] = "parentid";
   names[DepthRole] = "depth";
+  names[BranchRole] = "branch";
 
   return names;
 }
@@ -148,6 +151,9 @@ QVariant TestItem::data(int role) const
 
   case DepthRole:
       return depth();
+
+  case BranchRole:
+      return branch();
 
   default:
     return QVariant();
@@ -242,6 +248,9 @@ void TestItem::setData(const QVariant & value, int role){
         setDepth(value.toInt());
         break;
 
+    case BranchRole:
+        setBranch(value.toBool());
+        break;
     }
 
 }
@@ -403,6 +412,14 @@ void TestItem::setDepth(int depth){
     if (depth != m_depth){
         m_depth = depth;
         emit depthChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setBranch(bool branch){
+    if (branch != m_branch){
+        m_branch = branch;
+        emit branchChanged();
         emit dataChanged();
     }
 }

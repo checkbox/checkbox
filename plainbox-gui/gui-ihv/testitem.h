@@ -57,6 +57,7 @@ class TestItem : public ListItem
     Q_PROPERTY(QList<QString> parentidlist READ parentidlist WRITE setParentidlist NOTIFY parentidlistChanged)
 
     Q_PROPERTY(int depth READ depth WRITE setDepth NOTIFY depthChanged)
+    Q_PROPERTY(int branch READ branch WRITE setBranch NOTIFY branchChanged)
 
 
 signals:
@@ -84,6 +85,7 @@ signals:
     void parentidlistChanged();
 
     void depthChanged();
+    void branchChanged();
 
 
 public:
@@ -114,7 +116,8 @@ public:
 
         ParentNameRole,
         ParentIdRole,
-        DepthRole
+        DepthRole,
+        BranchRole,
     };
 
 
@@ -137,6 +140,7 @@ public:
              const QList<QString> &parent_names, \
              const QList<QString> &parent_ids, \
              const int &depth, \
+             const bool &branch, \
              QObject * parent = 0 );
 
     QVariant data(int role) const;
@@ -221,6 +225,9 @@ public:
     inline int depth() const {return m_depth; }
     void setDepth(int depth);
 
+    inline int branch() const {return m_branch; }
+    void setBranch(bool branch);
+
 private:
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
 
@@ -249,7 +256,9 @@ private:
     QList<QString> m_parent_names;  // the names of each parent
     QList<QString> m_parent_ids;    // the ids of each parent
 
-    int m_depth;    // useful for display indentation
+    int m_depth;        // useful for display indentation
+
+    bool m_branch;      // indicates if this is a leaf or a branch node
 
     int m_runstatus;
     int m_elapsedtime;

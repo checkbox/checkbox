@@ -215,6 +215,12 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
             }
         }
 
+        // Does this node have children?
+        bool branch = true;
+        if (jnode->m_children.isEmpty()) {
+            branch = false;
+        }
+
         // Is this to be shown to the user?
         if (human) {
             model->appendRow(new TestItem(duration, \
@@ -234,6 +240,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                                           parent_names, \
                                           parent_ids, \
                                           depth, \
+                                          branch, \
                                           model));
         }
 
