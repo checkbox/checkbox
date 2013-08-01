@@ -34,9 +34,14 @@ TestItem::TestItem(const double &duration, \
                    const QString &environ, \
                    const QString &type, \
                    const QString &user, \
+                   const QString &via, \
                    const QString &group, \
                    const bool &check, \
                    const QString &path, \
+                   const QList<QString> &parent_names, \
+                   const QList<QString> &parent_ids, \
+                   const int &depth, \
+                   const bool &branch, \
                    QObject * parent  ) :
     ListItem(parent), \
               m_duration(duration), \
@@ -49,9 +54,14 @@ TestItem::TestItem(const double &duration, \
               m_environ(environ), \
               m_type(type), \
               m_user(user), \
+              m_via(via), \
               m_group(group), \
               m_check(check), \
-              m_path(path),
+              m_path(path), \
+              m_parent_names(parent_names), \
+              m_parent_ids(parent_ids), \
+              m_depth(depth), \
+              m_branch(branch), \
           m_runstatus(0),
           m_elapsedtime(0),
               m_groupstatus(0)
@@ -82,6 +92,11 @@ QHash<int, QByteArray> TestItem::roleNames() const
   names[RunstatusRole] = "runstatus";
   names[ElapsedtimeRole] = "elapsedtime";
   names[GroupstatusRole] = "groupstatus";
+
+  names[ParentNameRole] = "parentname";
+  names[ParentIdRole] = "parentid";
+  names[DepthRole] = "depth";
+  names[BranchRole] = "branch";
 
   return names;
 }
@@ -125,9 +140,27 @@ QVariant TestItem::data(int role) const
       return elapsedtime();
   case GroupstatusRole:
       return groupstatus();
+
+  case ParentNameRole:
+//      return parentnamelist();
+      break;
+
+  case ParentIdRole:
+//       return parentidlist();
+    break;
+
+  case DepthRole:
+      return depth();
+
+  case BranchRole:
+      return branch();
+
   default:
     return QVariant();
   }
+
+  // Prevents non-void return warning from the compiler
+  return QVariant();
 }
 
 void TestItem::setData(const QVariant & value, int role){
@@ -201,6 +234,22 @@ void TestItem::setData(const QVariant & value, int role){
         break;
     case GroupstatusRole:
         setGroupstatus(value.toInt());
+        break;
+
+    case ParentNameRole:
+        //setGroupstatus(value.toStringList()));
+        break;
+
+    case ParentIdRole:
+        //setGroupstatus(value.toStringList());
+        break;
+
+    case DepthRole:
+        setDepth(value.toInt());
+        break;
+
+    case BranchRole:
+        setBranch(value.toBool());
         break;
     }
 
@@ -339,6 +388,38 @@ void TestItem::setGroupstatus(int groupstatus){
     if (groupstatus != m_groupstatus){
         m_groupstatus = groupstatus;
         emit groupstatusChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setParentnamelist(const QList<QString> &parent_names){
+    if (parent_names != m_parent_names){
+        m_parent_names = parent_names;
+        emit parentnamelistChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setParentidlist(const QList<QString> &parent_ids){
+    if (parent_ids != m_parent_ids){
+        m_parent_ids = parent_ids;
+        emit parentnamelistChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setDepth(int depth){
+    if (depth != m_depth){
+        m_depth = depth;
+        emit depthChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setBranch(bool branch){
+    if (branch != m_branch){
+        m_branch = branch;
+        emit branchChanged();
         emit dataChanged();
     }
 }

@@ -104,7 +104,7 @@ Component {
 
         Text {
             id: estimatedTimeText
-            text: groupedList.getEstimatedTime(section)
+            text: "Unknown" // ajh - to do - this is very slow AND inconsistent groupedList.getEstimatedTime(section)
             width: units.gu(10)
             anchors.left:  estfiller.right
             anchors.verticalCenter: parent.verticalCenter

@@ -28,5 +28,7 @@
      Q_OBJECT
  private slots:
      void TestInitialise();
+     void TestGetWhiteListPathsAndNames(void);
+     void TestGetJobsNames();
      void TestShutdown();
  };

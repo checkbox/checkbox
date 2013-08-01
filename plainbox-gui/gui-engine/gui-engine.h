@@ -65,6 +65,14 @@ Q_DECLARE_METATYPE(om_smalldict);
 Q_DECLARE_METATYPE(om_innerdict);
 Q_DECLARE_METATYPE(om_outerdict);
 
+/* We need a new metatype for passing to plainbox CreateSession()
+ *
+ * Basically, an array of DBus Object Paths
+ */
+typedef QList<QDBusObjectPath> opath_array_t;
+
+Q_DECLARE_METATYPE(opath_array_t);
+
 /* Dbus specification standard interface names - they dont appear to be defined
  * by Qt DBus system.
  */
@@ -79,6 +87,16 @@ static const QString PBBusName("com.canonical.certification.PlainBox");
 static const QString PBObjectPathName("/plainbox/service1");
 static const QString PBInterfaceName("com.canonical.certification.PlainBox.Service1");
 
+// Whitelist interfaces
+static const QString PBWhiteListInterface("com.canonical.certification.PlainBox.WhiteList1");
+
+// Session Interfaces
+static const QString PBSessionStateInterface("com.canonical.certification.PlainBox.Session1");
+
+// Well-known Plainbox/Checkbox Job Interfaces
+static const QString PlainboxJobDefinition1("com.canonical.certification.PlainBox.JobDefinition1");
+static const QString CheckBoxJobDefinition1("com.canonical.certification.CheckBox.JobDefinition1");
+
 /* Represents a DBus Object Interface. We only need the properties as the
  * methods are only of a few fixed types we already know.
  */
@@ -91,7 +109,7 @@ public:
 
     };
 
-    ~PBObjectInterface();
+    ~PBObjectInterface() { /* nothing to do */};
 
 public:
     QString interface;
@@ -99,11 +117,8 @@ public:
     QVariantMap properties;
 };
 
-// Well-known Plainbox/Checkbox interfaces
-static const QString PlainboxJobDefinition1("com.canonical.certification.PlainBox.JobDefinition1");
-static const QString CheckBoxJobDefinition1("com.canonical.certification.CheckBox.JobDefinition1");
-
-/* This enables us to build a tree of Plainbox objects. We do this
+/* This enables us to build a tree of Plainbox objects. This is the tree
+ * as seen by introspecting the object hierarchy over DBus. We do this
  * by recursively introspecting the tree over DBus
  */
 class PBTreeNode
@@ -116,10 +131,20 @@ public:
     PBTreeNode* AddNode(PBTreeNode* parentNode, \
                         const QDBusObjectPath &object_path);
 
-private:
+    // Should be a utility function?
     QVariantMap GetObjectProperties(const QDBusObjectPath &object_path, \
                                     const QString interface);
+
+    // Should be a utility function?
     const QString GetIntrospectXml(const QDBusObjectPath &object_path);
+
+    // Returns the Node identified by via
+    static PBTreeNode* FindJobNode(const QString via, QList<PBTreeNode*> jobnodes);
+
+    // Convenience functions, returns the relevant property
+    const QString via(void);
+    const QString id(void);
+    const QString name(void);
 
 public:
     PBTreeNode *parent;
@@ -128,9 +153,33 @@ public:
     om_outerdict managed_objects;
     QList<PBTreeNode*> children;
     QDomDocument* introspection;
-    QString xmlstring;
+    QString xmlstring;  // the raw xml of introspection
 
     QList<PBObjectInterface*> interfaces;
+};
+
+// We need a tree to represent the derived hierarchy of job dependencies
+class JobTreeNode
+{
+public:
+    JobTreeNode();
+    ~JobTreeNode();
+
+    JobTreeNode* AddNode(JobTreeNode* jtnode, QList<PBTreeNode*> chain);
+
+    void Flatten(JobTreeNode* jnode, QList<JobTreeNode*> &list);
+
+public:
+    JobTreeNode* parent;
+    QString m_via;
+    PBTreeNode* m_node;
+    QList<JobTreeNode*> m_children;
+
+    // convenience for the displaymodel- how deep is this node
+    int m_depth;
+    QString m_name; // human readable name
+    QString m_id;   // the id string from /plainbox/job/id
+
 };
 
 /* This class embodies the wrapper which can call Plainbox APIs over D-Bus
@@ -166,6 +215,13 @@ public slots:
 
         // temporary
         void dump_whitelist_selection(void);
+
+        // temporary function to run the "local" jobs generators
+        void RunLocalJobs(void);
+
+        // temporary function for debug purposes
+        void LogDumpTree(void);
+
 signals:
         // Instruct the GUI to update itself
         void UpdateGuiObjects(void);
@@ -183,6 +239,33 @@ public:
 
         void SetWhiteList(const QDBusObjectPath opath, const bool check);
 
+        bool WhiteListDesignates(const QDBusObjectPath white_opath, \
+                                 const QDBusObjectPath job_opath);
+
+        QDBusObjectPath CreateSession(QList<QDBusObjectPath> job_list);
+
+        QList<QDBusObjectPath> GetLocalJobs(void);
+
+        QList<QDBusObjectPath> GetAllJobs(void);
+
+
+        // SessionState methods
+        // GetEstimatedDuration - todo if needed
+
+        QStringList UpdateDesiredJobList(const QDBusObjectPath session, \
+                                         QList<QDBusObjectPath> desired_job_list);
+
+        // SessionState Properties
+        QList<QDBusObjectPath> SessionStateRunList(const QDBusObjectPath session);
+
+        // UpdateJobResult - todo
+
+        // Service Methods
+        void RunJob(const QDBusObjectPath session, const QDBusObjectPath opath);
+
+        // Returns a tree of all the jobs
+        JobTreeNode* GetJobTreeNodes();
+
 private:
         EngineState enginestate;
 
@@ -199,6 +282,18 @@ private:
 
         // A user-selected list of tests. We store the object path
         QMap<QDBusObjectPath, bool> tests;
+
+        // All the jobs which are valid to be chosen by the user
+        QList<QDBusObjectPath> valid_run_list;
+
+        // All the jobs ultimately selected by the user
+        QList<QDBusObjectPath> final_run_list;
+
+        // We only care about one session
+        QDBusObjectPath m_session;
+
+        // Job Tree as defined by the "via" properties
+        JobTreeNode* job_tree;
 };
 
  #endif

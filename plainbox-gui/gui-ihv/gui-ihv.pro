@@ -35,7 +35,8 @@ SOURCES += main.cpp \
     whitelistitem.cpp \
     testitem.cpp \
     listmodel.cpp \
-    commandtool.cpp
+    commandtool.cpp \
+    testitemmodel.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
@@ -44,7 +45,8 @@ qtcAddDeployment()
 HEADERS += whitelistitem.h \
     testitem.h \
     listmodel.h \
-    commandtool.h
+    commandtool.h \
+    testitemmodel.h
 
 OTHER_FILES += \
     qml/outline/DummyListModel.qml \

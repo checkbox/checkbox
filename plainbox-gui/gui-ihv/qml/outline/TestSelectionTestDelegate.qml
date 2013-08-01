@@ -26,6 +26,12 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import "./artwork"
 
+/* In order to simulate a tree with ListView, we end up having to embed some knowledge
+  in the display component and the underlying model. Qt 5.1 was meant to have a QML TreeView
+  but it doesnt seem to have transpired :(
+
+ */
+
 Component {
     id: testDelegate
 
@@ -36,9 +42,28 @@ Component {
         property string groupname: group
         property alias checked: itemcheckbox.checked
         property string labelname: testname
+    property bool open: true
+    property bool is_branch: branch
+    property int my_depth: depth
 
+        onOpenChanged: {
+            open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
+        }
 
         MouseArea {
+            id: openshutbutton
+            width: parent.width
+            height: parent.height
+            anchors.right: parent.right
+
+            onClicked: {
+                testitem.open = !testitem.open
+                groupedList.openShutSubgroup(testitem, testitem.open)
+            }
+        }
+
+        MouseArea {
+            id: checkbutton
             width: parent.width - itemcheckbox.width
             height: parent.height
             anchors.right: parent.right
@@ -54,18 +79,36 @@ Component {
 
             Item {
                 id: filler
-                width: itemcheckbox.width + units.gu(2)
+
+                // this is our indentation level. we get this out of the model
+                width: (depth * itemcheckbox.width) + units.gu(2)
+            }
+
+            Image {
+                id: openshutIcon
+                source: "artwork/DownArrow.png"
+                width: units.gu(2)
+                height: units.gu(2)
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: filler.right
+                }
+
+                opacity: enabled ? 1.0 : 0.5
+
+        visible: is_branch
+        enabled: is_branch
             }
 
             CheckBox {
                 id: itemcheckbox
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: filler.right
+                anchors.left: openshutIcon.right
                 anchors.leftMargin: units.gu(2)
                 checked: check
                 onClicked: {
                     testListModel.setProperty(index, "check", checked);
-                    groupedList.setGroupCheck(group);
+                    groupedList.setGroupCheck(testitem);
                     groupedList.updateListSummary(testListModel.get(index), checked);
                     if (!checked)
                         groupedList.showWarning(itemcheckbox);
@@ -76,7 +119,7 @@ Component {
             Text {
                 id: nameLabel
                 text: testname
-                width: units.gu(28)
+                width: units.gu(28) - (depth * itemcheckbox.width)
                 elide: Text.ElideRight
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: itemcheckbox.right
