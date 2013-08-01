@@ -71,10 +71,10 @@ Page {
                 <p>To begin, simply click the Continue button below and follow the onscreen instructions.</p>
                 <p></p>"
 
-                // links below are to test if the urls are working properly.
-                //<a href=\"mailto:me@here.there\">me@here.there</a>
-                //<p></p>
-                //<a href=\"http://www.canonical.com\">Canonical</a>"
+            // links below are to test if the urls are working properly.
+            //<a href=\"mailto:me@here.there\">me@here.there</a>
+            //<p></p>
+            //<a href=\"http://www.canonical.com\">Canonical</a>"
 
 
 
@@ -102,17 +102,17 @@ Page {
 
 
 
-Button {
-    id: continueButton
-    anchors{
-        left: parent.left
-        right: parent.right
-        bottom: parent.bottom
-        margins: units.gu(2)
+    Button {
+        id: continueButton
+        anchors{
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            margins: units.gu(2)
+        }
+        // TODO load text from plainbox
+        text: i18n.tr("Continue")
+        color: UbuntuColors.lightAubergine
+        onClicked: {mainView.state = "SUITESELECTION"}
     }
-    // TODO load text from plainbox
-    text: i18n.tr("Continue")
-    color: UbuntuColors.lightAubergine
-    onClicked: {mainView.state = "SUITESELECTION"}
-}
 }

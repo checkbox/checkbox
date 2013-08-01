@@ -31,6 +31,8 @@ MainView {
     width: units.gu(120)
     height: units.gu(100)
 
+    // TODO - For Resume dialog, when plainbox starts up, check if this is a 'Resume'
+    // if it is, set pageName = "ResumeView", state = "RESUME"
 
     PageStack {
         id: pageStack
@@ -47,7 +49,6 @@ MainView {
         }
     }
 
-    // Fill in states for all the pages.
     // The pages/views will set the state to the next one when it is done
     // like this: onClicked: {mainView.state = "TESTSELECTION"}
     states: [
@@ -70,8 +71,11 @@ MainView {
         State {
             name: "RUNMANAGER"
             PropertyChanges {target: pageStack; pageName: "RunManagerView.qml"}
+        },
+        State {
+            name: "RESUME"
+            PropertyChanges {target: pageStack; pageName: "ResumeView.qml"}
         }
-
     ]
 }
 

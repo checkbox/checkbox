@@ -63,6 +63,7 @@ Component {
                 id: namelabel
                 text: testname
                 width: units.gu(42)
+                elide: Text.ElideRight
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: filler.right
             }
@@ -263,6 +264,8 @@ Component {
             id: log_viewer
             LogViewer{
                 showTroubleShootingLink: false
+                text:testname
+                logText: description
             }
         }
 
@@ -270,6 +273,14 @@ Component {
             id: log_viewer_with_trouble
             LogViewer{
                 showTroubleShootingLink: true
+                text:testname
+                logText: description
+            }
+        }
+        Component {
+            id: manual_dialog
+            ManualInteractionDialog{
+                testItem: testListModel.get(index);
             }
         }
     }

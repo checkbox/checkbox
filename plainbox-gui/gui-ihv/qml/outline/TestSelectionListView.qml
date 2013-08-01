@@ -79,6 +79,7 @@ Rectangle {
             highlightFollowsCurrentItem: true
 
             Component.onCompleted: {
+                selectAll(true)
                 testdetails.testItem = testListModel.get(currentItem);
                 sectionCount = getSectionCount()
                 setListSummary();

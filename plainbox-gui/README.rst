@@ -32,6 +32,17 @@ To test gui-ihv:
         - sudo apt-get install ubuntu-sdk
         - sudo apt-get dist-upgrade
 
+*NEW*. Since the UI is now getting live data through dbus, a plainbox service is required:
+
+- Open a new terminal
+- Change to the branch's top directory and run:
+  $ mk-venv /tmp/plainbox-venv
+- Activate the venv:
+  $ . /tmp/plainbox-venv/bin/activate #Note the dot is significant
+- Run plainbox in service mode:
+  $ plainbox service
+
+
 Once the required tools and dependencies are installed:
 
 1. Open QT Creator

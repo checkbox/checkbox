@@ -33,6 +33,7 @@ Dialog {
 
     property alias logText: logtext.text
     property alias showTroubleShootingLink: troubleButton.visible
+    property alias logHeight: flick.height
 
     Button {
         id: troubleButton
@@ -44,60 +45,56 @@ Dialog {
         }
     }
 
-    Rectangle{
-        height: units.gu(60)
-        color: Theme.palette.normal.base
 
-        Flickable {
-            id: flick
+    Flickable {
+        id: flick
 
-            width: logtext.width;
-            height: parent.height;
-            contentWidth: logtext.paintedWidth
-            contentHeight: logtext.paintedHeight
-            clip: true
+        width: logtext.width;
+        height: units.gu(50)
+        contentWidth: logtext.paintedWidth
+        contentHeight: logtext.paintedHeight
+        clip: true
 
-            function ensureVisible(r)
-            {
-                if (contentX >= r.x)
-                    contentX = r.x;
-                else if (contentX+width <= r.x+r.width)
-                    contentX = r.x+r.width-width;
-                if (contentY >= r.y)
-                    contentY = r.y;
-                else if (contentY+height <= r.y+r.height)
-                    contentY = r.y+r.height-height;
-            }
+        function ensureVisible(r)
+        {
+            if (contentX >= r.x)
+                contentX = r.x;
+            else if (contentX+width <= r.x+r.width)
+                contentX = r.x+r.width-width;
+            if (contentY >= r.y)
+                contentY = r.y;
+            else if (contentY+height <= r.y+r.height)
+                contentY = r.y+r.height-height;
+        }
 
-            TextEdit{
-                id: logtext
-                text: "Load this up with text\nhere's a url: <a href=\"http://www.ubuntu.com\">Visit Ubuntu</a>
+        TextEdit{
+            id: logtext
+            text: "Load this up with text\nhere's a url: <a href=\"http://www.ubuntu.com\">Visit Ubuntu</a>
                 even more even more \n even more even more \n even more even more \n
                 even more even more \n even more even more \n even more even more \n"
 
-                height: units.gu(60)
-                width: units.gu(30)
-                cursorVisible : true
-                readOnly: true
-                selectByMouse : true
-                textFormat: TextEdit.RichText
-                wrapMode: TextEdit.Wrap
-                focus: true
-                color: Theme.palette.normal.foregroundText
-                selectedTextColor: Theme.palette.selected.foregroundText
-                selectionColor: Theme.palette.selected.foreground
-                font.pixelSize: FontUtils.sizeToPixels("medium")
+            //height: units.gu(60)
+            width: units.gu(30)
+            cursorVisible : true
+            readOnly: true
+            selectByMouse : true
+            textFormat: TextEdit.RichText
+            wrapMode: TextEdit.Wrap
+            focus: true
+            color: Theme.palette.normal.foregroundText
+            selectedTextColor: Theme.palette.selected.foregroundText
+            selectionColor: Theme.palette.selected.foreground
+            font.pixelSize: FontUtils.sizeToPixels("medium")
 
-                onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+            onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
 
-                onLinkActivated: {
-                    cmdTool.exec("xdg-open", link)
-                }
-
+            onLinkActivated: {
+                cmdTool.exec("xdg-open", link)
             }
-        }
 
+        }
     }
+
 
     Button {
         id: copyButton
@@ -113,9 +110,7 @@ Dialog {
         id: doneButton
         text: i18n.tr("Done")
         color: UbuntuColors.warmGrey
-        onClicked: {
-            PopupUtils.close(dialog)
-        }
+        onClicked: PopupUtils.close(dialog)
     }
 
 }
