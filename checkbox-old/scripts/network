@@ -175,6 +175,9 @@ class FTPPerformanceTest(object):
                 return 30
 
             logging.debug("Passed benchmark")
+        else:
+            print("Failed sending file via ftp")
+            return 1
 
 
 class Interface(socket.socket):
