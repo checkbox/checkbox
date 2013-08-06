@@ -87,6 +87,12 @@ def main():
         session_object_path
     )
 
+    if session_object.PreviousSessionFile():
+        if ask_for_resume():
+            session_object.Resume()
+        else:
+            session_object.Clean()
+
     #to get only the *jobs* that are designated by the whitelist.
     desired_job_list = [
         object for object in provider_objects if whitelist.Designates(
@@ -122,6 +128,11 @@ def main():
     print("[ Running All Local Jobs ]".center(80, '='))
     run_local_jobs()
 
+    #PersistentSave can be called at any point to checkpoint session state.
+    #In here, we're just calling it at the end, as an example.
+    print("[ Saving the session ]".center(80, '='))
+    session_object.PersistentSave()
+
 
 def ask_for_outcome(prompt=None, allowed=None):
     if prompt is None:
@@ -156,6 +167,14 @@ def ask_for_test(prompt=None, allowed=None):
         print("Allowed answers are: {}".format(", ".join(allowed)))
         answer = input(prompt)
     return answer
+
+def ask_for_resume():
+    prompt = "Do you want to resume the previous session [Y/n]? "
+    allowed = ('', 'y', 'Y', 'n', 'N')
+    answer = None
+    while answer not in allowed:
+        answer = input(prompt)
+    return False if answer in ('n', 'N') else True
 
 
 # Asynchronous calls need reply handlers
