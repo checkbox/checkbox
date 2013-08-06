@@ -45,7 +45,7 @@ Dialog {
         selectionColor: "black"
         selectedTextColor: "white"
         height: units.gu(24)
-        cursorDelegate: {} // Ensure no cursor is drawn
+        cursorVisible: false
     }
 
     Button {
