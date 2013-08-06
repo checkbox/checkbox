@@ -94,6 +94,11 @@ Rectangle {
 
             // select/deselect all items in the list
             function selectAll(sel){
+                // show the warning if sel is false
+                if(!sel) {
+                    showWarning(groupedList);
+                }
+
                 for (var i = testListModel.count - 1; i >=0; i--)
                     testListModel.setProperty(i, "check", sel);
 

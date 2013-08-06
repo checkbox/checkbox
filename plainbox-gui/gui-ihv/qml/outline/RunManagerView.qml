@@ -272,14 +272,13 @@ Page {
         Component {
             id: submission_warning_dialog
             WarningDialog{
-                text: i18n.tr("You are about to exit this test run without saving your results report.  Do you want to save the report?");
+                text: i18n.tr("You are about to exit this test run without saving your results report. \n\nAre you sure? \n\n(Press Continue to Quit)");
 
-                showContinue: false
+                showOK: false
+                showContinue: true
                 showCheckbox: false
 
-                onOk:PopupUtils.open(submission_dialog, runbuttons);
-
-                onCancel: Qt.quit();
+                onCont: {Qt.quit();}
             }
         }
 
