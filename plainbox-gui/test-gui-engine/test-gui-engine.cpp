@@ -37,8 +37,15 @@ void TestGuiEngine::TestGetWhiteListPathsAndNames()
 
 void TestGuiEngine::TestGetJobsNames()
 {
+    // we should connect a reciever to the LocalJobsCompleted() signal
+    connect(this, SIGNAL(localJobsCompleted(void)), this, SLOT(AcknowledgeJobsDone()));
+
     RunLocalJobs();
 
+    // Now, spin the loop to process Job completion signals from Plainbo
+    while(!m_local_jobs_done) {
+        QTest::qWait(1);   // spin for 1ms in the event loop
+    }
     LogDumpTree();
 }
 
