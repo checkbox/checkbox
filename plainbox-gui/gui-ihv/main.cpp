@@ -79,7 +79,7 @@ ListModel* CreateTestListModel(ListModel* model=NULL )
 
     TestItemModel factory;
 
-    return factory.CreateTestListModel();
+    return factory.CreateTestListModel(model);
 }
 
 int main(int argc, char *argv[])

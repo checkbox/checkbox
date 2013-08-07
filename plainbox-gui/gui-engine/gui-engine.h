@@ -219,12 +219,27 @@ public slots:
         // temporary function to run the "local" jobs generators
         void RunLocalJobs(void);
 
+        // Signal receiver from JobResultAvailable
+        void JobResultAvailable(QDBusMessage msg);
+
+        // Helper function when generating the desired local and real jobs
+        QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
+
+        // Helper. Returns the intersection of list1 and list2
+        // Useful for matching local jobs against the whitelist designates
+        QList<QDBusObjectPath> FilteredJobs( \
+                const QList<QDBusObjectPath> list1, \
+                const QList<QDBusObjectPath> list2);
+
+        void AcknowledgeJobsDone(void);
+
         // temporary function for debug purposes
         void LogDumpTree(void);
 
 signals:
         // Instruct the GUI to update itself
         void UpdateGuiObjects(void);
+        void localJobsCompleted(void);
 
 public:
         // Temporary public functions
@@ -257,14 +272,24 @@ public:
 
         // SessionState Properties
         QList<QDBusObjectPath> SessionStateRunList(const QDBusObjectPath session);
+        QList<QDBusObjectPath> SessionStateJobList(const QDBusObjectPath session);
 
-        // UpdateJobResult - todo
+        void UpdateJobResult(const QDBusObjectPath session, \
+                                        const QDBusObjectPath &job_path, \
+                                        const QDBusObjectPath &result_path);
 
         // Service Methods
         void RunJob(const QDBusObjectPath session, const QDBusObjectPath opath);
 
         // Returns a tree of all the jobs
         JobTreeNode* GetJobTreeNodes();
+
+        const QList<QDBusObjectPath>& GetValidRunList(void) {
+            return valid_run_list;
+        }
+
+        // Debugging tool
+        const QString JobNameFromObjectPath(const QDBusObjectPath& opath);
 
 private:
         EngineState enginestate;
@@ -294,6 +319,22 @@ private:
 
         // Job Tree as defined by the "via" properties
         JobTreeNode* job_tree;
+
+        QList<QDBusObjectPath> m_job_list;
+
+        QList<QDBusObjectPath> m_desired_job_list;
+
+        QList<QDBusObjectPath> m_run_list;
+
+        QList<QDBusObjectPath> m_local_job_list;
+
+        QList<QDBusObjectPath> m_local_run_list;
+
+        QList<QDBusObjectPath> m_desired_local_job_list;
+
+// Used by the test program		
+protected:		
+        bool m_local_jobs_done;
 };
 
  #endif

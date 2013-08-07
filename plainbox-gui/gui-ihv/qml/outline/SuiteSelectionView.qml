@@ -87,7 +87,12 @@ Page {
               test jobs and show them to the user. 
 	      */
             guiEngine.RunLocalJobs();
-	    
+        }
+    }
+
+    Connections {
+        target: guiEngine
+        onLocalJobsCompleted: {
             // Now, we should repopulate the testlistmodel...
             testitemFactory.CreateTestListModel(testListModel);
             // NOTE: When the user is done, this is where to load up the TestSelection list

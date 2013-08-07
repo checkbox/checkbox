@@ -156,7 +156,7 @@ QVariantMap PBTreeNode::GetObjectProperties(const QDBusObjectPath &object_path, 
     // Connect to the freedesktop Properties interface
     QDBusInterface iface(PBBusName, \
                          object_path.path(), \
-                         "org.freedesktop.DBus.Properties", \
+                         ofDPropertiesName, \
                          QDBusConnection::sessionBus());
     if (!iface.isValid()) {
         qDebug("Could not connect to properties interface");
@@ -166,7 +166,7 @@ QVariantMap PBTreeNode::GetObjectProperties(const QDBusObjectPath &object_path, 
     // GetAll properties
     QDBusMessage reply = iface.call("GetAll",interface);
     if (reply.type() != QDBusMessage::ReplyMessage) {
-        qDebug("Could not get the properties");
+        // not worth complaining if they dont have properties, just return the empty
         return properties;
     }
 
@@ -234,6 +234,7 @@ GuiEngine::GuiEngine( QObject*parent ) : QObject(parent)
     pb_objects=NULL;
     valid_pb_objects = false;
     job_tree = NULL;
+    m_local_jobs_done = false;
 
     qDebug("GuiEngine::GuiEngine - Done");
 }
@@ -274,26 +275,40 @@ bool GuiEngine::Initialise(void)
         // Connect our change receivers
         QDBusConnection bus = QDBusConnection ::sessionBus();
 
-        if (!bus.connect(PBBusName, \
-                         PBObjectPathName, \
-                         ofDObjectManagerName,\
-                         "InterfacesAdded",\
-                         this,\
-                         SLOT(InterfacesAdded(QDBusMessage)))) {
+// FIXME - We will want these for process real job signals. For now they clutter the log :)
+//        if (!bus.connect(PBBusName, \
+//                         PBObjectPathName, \
+//                         ofDObjectManagerName,\
+//                         "InterfacesAdded",\
+//                         this,\
+//                         SLOT(InterfacesAdded(QDBusMessage)))) {
 
-            qDebug("Failed to connect slot for InterfacesAdded events");
+//            qDebug("Failed to connect slot for InterfacesAdded events");
 
-            return false;
-        }
+//            return false;
+//        }
 
+//        if (!bus.connect(PBBusName,\
+//                         PBObjectPathName,\
+//                         ofDObjectManagerName,\
+//                         "InterfacesRemoved",\
+//                         this,\
+//                         SLOT(InterfacesRemoved(QDBusMessage)))) {
+
+//            qDebug("Failed to connect slot for InterfacesRemoved events");
+
+//            return false;
+//        }
+
+        // Connect the JobResultAvailable signal receiver
         if (!bus.connect(PBBusName,\
-                         PBObjectPathName,\
-                         ofDObjectManagerName,\
-                         "InterfacesRemoved",\
+                         NULL,\
+                         PBInterfaceName,\
+                         "JobResultAvailable",\
                          this,\
-                         SLOT(InterfacesRemoved(QDBusMessage)))) {
+                         SLOT(JobResultAvailable(QDBusMessage)))) {
 
-            qDebug("Failed to connect slot for InterfacesRemoved events");
+            qDebug("Failed to connect slot for JobResultAvailable events");
 
             return false;
         }
@@ -556,7 +571,7 @@ void GuiEngine::InterfacesRemoved(QDBusMessage msg)
 }
 QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 {
-    qDebug("GuiEngine::GetJobNodes()");
+    //qDebug("GuiEngine::GetJobNodes()");
 
     QList<PBTreeNode*> jobnodes;
 
@@ -577,7 +592,7 @@ QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
          iter++;
     }
 
-    qDebug("GuiEngine::GetJobNodes() - done");
+    //qDebug("GuiEngine::GetJobNodes() - done");
 
     return jobnodes;
 }
@@ -687,118 +702,49 @@ void GuiEngine::dump_whitelist_selection(void)
  * to generate the correct "via" information for the _real_ jobs
  * which the user may want to run. This gives us our hierarchy to
  * show in the test selection screen.
+ *
+ * For clarity of understanding, the flow/style follows dbus-mini-client.py
  */
 void GuiEngine::RunLocalJobs(void)
 {
     qDebug("GuiEngine::RunLocalJobs");
 
-    QList<QDBusObjectPath> local_jobs = GetLocalJobs();
-
-    qDebug() << "We have " << local_jobs.count() << " local jobs";
-
-    // Now, we can call CreateSession() - this will do for the rest of the run
-    QList<QDBusObjectPath> provider_jobs = GetAllJobs();
-
-    qDebug() << "We have " << provider_jobs.count() << " provider jobs";
-
-    /* We keep two lists of Jobs:
-     *
-     * desired_local_job_list
-     * valid_run_list   // member variable
-     *
-     * These are derived by filtering local_jobs and provider_jobs
-     * against the WhiteList.Designates() to see if they are really
-     * needed.
-     *
-     * We run the local jobs immediately to generate the correct "via"
-     * hierarchy information for the real jobs.
-     *
-     * The valid_run_list is the list of all provider jobs that are designated
-     * to be run by one or more whitelists. We run these later as they
-     * constitute the "real" tests wanted by the user.
-     *
-     * TODO: Do we stil show the user the "local" jobs? Clearly they dont get
-     * run a second time of course.
+    /* Whitelist is selected elsewhere in GetWhiteListPathsAndNames()
+     * so by this point its contained in the member variable "whitelist"
+     * mini-runner gets these via GetManagedObjects. but it appears to be
+     * the same list as exposed by actually trawling DBus itself.
      */
 
-    QList<QDBusObjectPath> desired_local_job_list;
+    // Create a session and "seed" it with my job list:
+    m_job_list = GetAllJobs();
 
-    // Iterate through each whitelist, and check if it Designates each job
-    QMap<QDBusObjectPath, bool>::iterator iter_white = whitelist.begin();
-    while(iter_white != whitelist.end()) {
+    // Create a session
+    m_session = CreateSession(m_job_list);
 
-        // Try it if we have selected this whitelist
-        if (iter_white.value()) {
-            QDBusObjectPath white = iter_white.key();
+    // to get only the *jobs* that are designated by the whitelist.
+    m_desired_job_list = GenerateDesiredJobList(m_job_list);
 
-            // local_jobs
-            for(int i=0; i < local_jobs.count(); i++) {
+    // This is just the list of all provider jobs marked "local"
+    m_local_job_list = GetLocalJobs();
 
-                QDBusObjectPath job = local_jobs.at(i);
+    // desired local jobs are the Union of all local jobs and the desired jobs
+    m_desired_local_job_list = FilteredJobs(m_local_job_list,m_desired_job_list);
 
-                // Does the whitelist designate this job?
-                bool ok = WhiteListDesignates(white,job);
+    // Now I update the desired job list.
+    QStringList errors = UpdateDesiredJobList(m_session, m_desired_local_job_list);
+    if (errors.count() != 0) {
+        qDebug("UpdateDesiredJobList generated errors:");
 
-                // If ANY whitelist wants this job, we say yes
-                if (ok) {
-                    if (!desired_local_job_list.contains(job)) {
-                        desired_local_job_list.append(job);
-                    }
-                }
-            }
-
-            // provider_jobs
-            for(int i=0; i < provider_jobs.count(); i++) {
-
-                QDBusObjectPath job = provider_jobs.at(i);
-
-                // Does the whitelist designate this job?
-                bool ok = WhiteListDesignates(white,job);
-
-                // If ANY whitelist wants this job, we say yes
-                if (ok) {
-                    if (!valid_run_list.contains(job)) {
-                        valid_run_list.append(job);
-                    }
-                }
-            }
+        for (int i=0; i<errors.count(); i++) {
+            qDebug() << errors.at(i);
         }
-
-        // Next whitelist
-        iter_white++;
     }
 
-    qDebug() << "We have " \
-             << desired_local_job_list.count() << \
-                " designated local jobs";
+    // Now, the run_list contains the list of jobs I actually need to run \o/
+    m_run_list = SessionStateRunList(m_session);
+    qDebug() << "Running Local Job " << JobNameFromObjectPath(m_run_list.first());
 
-    // Create our Session with all the provider jobs
-    m_session = CreateSession(provider_jobs);
-
-    qDebug() << "Newly created Session is" << m_session.path();
-
-    QStringList results_of_job_list = \
-            UpdateDesiredJobList(m_session, desired_local_job_list);
-
-    QList<QDBusObjectPath> run_list = SessionStateRunList(m_session);
-
-    qDebug() << "We have " << run_list.count() << "Local jobs to run";
-
-    // Now, run all the jobs in order
-    for(int i =0; i< run_list.count(); i++) {
-        RunJob(m_session,run_list.at(i));
-    }
-
-    if (pb_objects) {
-        delete pb_objects;
-    }
-
-    // Obtain the initial tree of Plainbox objects, starting at the root "/"
-    pb_objects = new PBTreeNode();
-    pb_objects->AddNode(pb_objects, QDBusObjectPath("/"));
-    if (!pb_objects) {
-        qDebug("Failed to get Plainbox Objects");
-    }
+    RunJob(m_session,m_run_list.first());
 
     qDebug("GuiEngine::RunLocalJobs - Done");
 }
@@ -972,10 +918,30 @@ QList<QDBusObjectPath> GuiEngine::SessionStateRunList(const QDBusObjectPath sess
     return opathlist;
 }
 
+QList<QDBusObjectPath> GuiEngine::SessionStateJobList(const QDBusObjectPath session)
+{
+    PBTreeNode node;
+
+    QVariantMap map = node.GetObjectProperties(session,PBSessionStateInterface);
+
+    QList<QDBusObjectPath> opathlist;
+
+    QVariantMap::iterator iter = map.find("job_list");
+
+    QVariant variant = iter.value();
+
+    const QDBusArgument qda = variant.value<QDBusArgument>();
+
+    qda >> opathlist;
+
+    return opathlist;
+}
+
+
 void GuiEngine::RunJob(const QDBusObjectPath session, \
                        const QDBusObjectPath opath)
 {
-    qDebug() << "RunJob() " << session.path() << " " << opath.path();
+//    qDebug() << "RunJob() " << session.path() << " " << opath.path();
 
     QStringList job_list;
 
@@ -989,17 +955,24 @@ void GuiEngine::RunJob(const QDBusObjectPath session, \
         return;
     }
 
-   QDBusMessage reply = iface.call("RunJob", \
-               QVariant::fromValue<QDBusObjectPath>(session), \
-               QVariant::fromValue<QDBusObjectPath>(opath));
+    QDBusPendingCall async_reply = iface.asyncCall("RunJob", \
+                QVariant::fromValue<QDBusObjectPath>(session), \
+                QVariant::fromValue<QDBusObjectPath>(opath));
 
-   if (reply.type() != QDBusMessage::ReplyMessage) {
+    QDBusPendingCallWatcher watcher(async_reply,this);
 
-       decodeDBusMessageType(reply);
+    watcher.waitForFinished();
 
-       qDebug("Could not run this job");
-   }
+    QDBusPendingReply<QString,QByteArray> reply = async_reply;
+    if (reply.isError()) {
 
+        // For the moment, we wont get the "say" signature, just "o"
+        QDBusError qde = reply.error();
+
+        if (qde.name().compare("org.freedesktop.DBus.Error.InvalidSignature") !=0) {
+            qDebug() << qde.name() << " " << qde.message();
+        }
+    }
 }
 
 // temporary - Print the DBus argument type
@@ -1313,22 +1286,38 @@ void GuiEngine::LogDumpTree(void)
 
         while (temp != jt) {
             temp = temp->parent;
-            indent += "        ";
+            indent += "    ";
         }
 
-        qDebug() << indent.toStdString().c_str() << "Node: ";
+        // We should skip this if its not required
+        PBTreeNode* pbnode = node->m_node;
+        // is this a valid item for the user?
+        QList<QDBusObjectPath> list;
+
+        list.append(pbnode->object_path);
+
+        // check against our filtered list
+        QList<QDBusObjectPath> short_valid_list = FilteredJobs(list,\
+                                       GetValidRunList());
+
+        if (GetValidRunList().count() != 0) {
+            // we have _some_ valid tests :)
+            if (short_valid_list.isEmpty()) {
+                // we dont show this one
+                continue;
+            }
+        }
+
+        //qDebug() << indent.toStdString().c_str() << "Node: ";
 
         if (node) {
             PBTreeNode* pbtree = node->m_node;
 
             if (pbtree) {
                 QString name = node->m_name;
-                QString id = node->m_id;
-                QString via = node->m_via;
 
-                qDebug() << indent.toStdString().c_str() << "      Name: " << name;
-                qDebug() << indent.toStdString().c_str() << "        id: " << id;
-                qDebug() << indent.toStdString().c_str() << "       via: " << via;
+                qDebug() << indent.toStdString().c_str() << name.toStdString().c_str();
+
             } else {
                 qDebug("    *** INVALID ***");
             }
@@ -1338,4 +1327,212 @@ void GuiEngine::LogDumpTree(void)
     }
 
     qDebug("GuiEngine::LogDumpTree - Done");
+}
+
+QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> job_list)
+{
+    QList<QDBusObjectPath> desired_job_list;
+
+    // Iterate through each whitelist, and check if it Designates each job
+    QMap<QDBusObjectPath, bool>::iterator iter = whitelist.begin();
+    while(iter != whitelist.end()) {
+
+        // Try it if we have selected this whitelist
+        if (iter.value()) {
+            QDBusObjectPath white = iter.key();
+
+            // local_jobs
+            for(int i=0; i < job_list.count(); i++) {
+
+                QDBusObjectPath job = job_list.at(i);
+
+                // Does the whitelist designate this job?
+                bool ok = WhiteListDesignates(white,job);
+
+                // If ANY whitelist wants this job, we say yes
+                if (ok) {
+                    if (!desired_job_list.contains(job)) {
+                        desired_job_list.append(job);
+                    }
+                }
+            }
+        }
+
+        // Next whitelist
+        iter++;
+    }
+
+    return desired_job_list;
+}
+
+QList<QDBusObjectPath> GuiEngine::FilteredJobs( \
+        const QList<QDBusObjectPath> list1, \
+        const QList<QDBusObjectPath> list2)
+{
+    QList<QDBusObjectPath> intersection;
+
+    QList<QDBusObjectPath>::const_iterator iter1 = list1.begin();
+
+    while (iter1 != list1.end()) {
+        QList<QDBusObjectPath>::const_iterator iter2 = list2.begin();
+
+        while(iter2 != list2.end()) {
+            QDBusObjectPath obj1 = *iter1;
+            QDBusObjectPath obj2 = *iter2;
+
+            if (obj1 == obj2)
+            {
+                intersection.append(obj1);
+            }
+
+            iter2++;
+        }
+
+        iter1++;
+    }
+
+    return intersection;
+}
+
+void GuiEngine::UpdateJobResult(const QDBusObjectPath session, \
+                                           const QDBusObjectPath &job_path, \
+                                           const QDBusObjectPath &result_path
+                                           )
+{
+//    qDebug() << "UpdateJobResult() " << session.path() << " " << job_path.path();
+
+    QDBusInterface iface(PBBusName, \
+                         session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug() <<"Could not connect to " << PBInterfaceName;
+
+        return;
+    }
+
+    QDBusMessage reply = \
+            iface.call("UpdateJobResult", \
+                       QVariant::fromValue<QDBusObjectPath>(job_path), \
+                       QVariant::fromValue<QDBusObjectPath>(result_path));
+
+    if (reply.type() != QDBusMessage::ReplyMessage) {
+        qDebug() << "Error: " << reply.errorName() << " " << reply.errorName();
+    }
+}
+
+void GuiEngine::JobResultAvailable(QDBusMessage msg)
+{
+//    qDebug("GuiEngine::JobResultAvailable");
+
+    /* We need information about which job and jobresult we should look at
+     * in order to call UpdateJobResult().
+     */
+
+    QList<QVariant> args = msg.arguments();
+
+    QList<QVariant>::iterator iter = args.begin();
+
+    QVariant variant = *iter;
+
+    QDBusObjectPath job = variant.value<QDBusObjectPath>();
+
+    iter++;
+
+    variant = *iter;
+
+    QDBusObjectPath result = variant.value<QDBusObjectPath>();
+
+    UpdateJobResult(m_session,job,result);
+
+    // Pull the first thing off the list and discard it
+    m_run_list.pop_front();
+
+    if (!m_run_list.empty()) {
+        // Now run the next job
+        qDebug() << "Running Local Job " << JobNameFromObjectPath(m_run_list.first());
+
+        RunJob(m_session,m_run_list.first());
+
+        return;
+    }
+
+    qDebug("All Local Jobs completed\n");
+
+    // Now I update the desired job list to get jobs created from local jobs.
+    QStringList errors = UpdateDesiredJobList(m_session, m_desired_job_list);
+    if (errors.count() != 0) {
+        qDebug("UpdateDesiredJobList generated errors:");
+
+        for (int i=0; i<errors.count(); i++) {
+            qDebug() << errors.at(i);
+        }
+    }
+
+    // get the job-list: NB: From the SessionState this time
+    m_job_list = SessionStateJobList(m_session);
+
+    // to get only the *jobs* that are designated by the whitelist.
+    m_desired_job_list = GenerateDesiredJobList(m_job_list);
+
+    /* Now I update the desired job list.
+        XXX: Remove previous local jobs from this list to avoid evaluating
+        them twice
+    */
+    errors = UpdateDesiredJobList(m_session, m_desired_job_list);
+    if (errors.count() != 0) {
+        qDebug("UpdateDesiredJobList generated errors:");
+
+        for (int i=0; i<errors.count(); i++) {
+            qDebug() << errors.at(i);
+        }
+    }
+
+    // Now, the run_list contains the list of jobs I actually need to run \o/
+    m_run_list = SessionStateRunList(m_session);
+
+    // Now, store the list of valid runnable jobs for the GUI
+    valid_run_list = m_run_list;
+
+    // We must have reached the end, so
+    if (pb_objects) {
+        delete pb_objects;
+    }
+
+    // Obtain the initial tree of Plainbox objects, starting at the root "/"
+    pb_objects = new PBTreeNode();
+    pb_objects->AddNode(pb_objects, QDBusObjectPath("/"));
+    if (!pb_objects) {
+        qDebug("Failed to get Plainbox Objects");
+    }
+
+    // we should emit a signal to say its all done
+    emit localJobsCompleted();
+
+    // qDebug("GuiEngine::JobResultAvailable - Done");
+
+}
+
+void GuiEngine::AcknowledgeJobsDone(void)
+{
+    qDebug("GuiEngine::AcknowledgeJobsDone()");
+	
+    m_local_jobs_done = true;
+
+    qDebug("GuiEngine::AcknowledgeJobsDone() - done");
+}
+
+const QString GuiEngine::JobNameFromObjectPath(const QDBusObjectPath& opath)
+{
+    QString empty;
+
+    QList<PBTreeNode*> jlist = GetJobNodes();
+
+    for(int i=0;i<jlist.count();i++) {
+        if (jlist.at(i)->object_path.path().compare(opath.path()) == 0) {
+            return jlist.at(i)->name();
+        }
+    }
+
+    return empty;
 }
