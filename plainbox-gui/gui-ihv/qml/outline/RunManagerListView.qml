@@ -70,7 +70,7 @@ Rectangle {
 
             interactive: false
             width: parent.width
-            height:units.gu(7) * (groupedList.count + groupedList.sectionCount - groupedList.closedCount)
+            height:units.gu(7) * (groupedList.count - groupedList.closedCount)
 
             model: testListModel
             highlight: highlight
@@ -78,11 +78,6 @@ Rectangle {
 
             delegate: RunManagerTestDelegate {}
 
-            section {
-                property: "group"
-                criteria: ViewSection.FullString
-                delegate: RunManagerSuiteDelegate{}
-            }
 
 
             Component.onCompleted:{
@@ -111,24 +106,47 @@ Rectangle {
 
 
             //  Open/Close gruops
-            function openShutSubgroup(groupName, sel){
+            function openShutSubgroup(item_id, sel){
                 var oldCurrent = currentIndex;
                 currentIndex = -1
+
+                // We need to find the index for the item passed in as item_id
                 for (var i = 0; i < groupedList.contentItem.children.length; i++)
                 {
-                    var curItem = groupedList.contentItem.children[i];
+                    var cI = groupedList.contentItem.children[i];
 
-                    if (curItem.groupname === groupName && curItem.labelname !== groupName){
-                        curItem.height = sel? units.gu(7):units.gu(0);
-                        curItem.visible = sel;
-                        if (sel)
-                            closedCount--;
-                        else
-                            closedCount++;
+                    var top_depth = cI.my_depth;
+
+                    if (cI === item_id) {
+                        // ok, so now we hide/make visible the remaining items
+                        // which have a depth greater than our current depth
+
+                        for (var j = i+1; j < groupedList.contentItem.children.length; j++) {
+                            // check this item has a greater depth than the top item
+                            var cur_depth = groupedList.contentItem.children[j].my_depth;
+
+                            // Should we hide this item?
+                            if (top_depth < cur_depth) {
+                                // Yes, because its clearly deeper
+                                var hideItem = groupedList.contentItem.children[j];
+                                hideItem.visible = sel;
+                                hideItem.height = sel? units.gu(7):units.gu(0);
+                                if (sel)
+                                    closedCount--;
+                                else
+                                    closedCount++;
+
+                            } else {
+                                // we must have reached the end, so return
+                                return;
+                            }
+                        }
+
                     }
                 }
                 currentIndex = oldCurrent;
             }
+
 
             // counts the total test in the group
             function getTotalTests(groupName){

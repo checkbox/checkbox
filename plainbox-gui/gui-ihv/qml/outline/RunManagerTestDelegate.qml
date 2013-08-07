@@ -37,8 +37,16 @@ Component {
         property string groupname: group
         property string labelname: testname
 
+        property bool open: true
+        property bool is_branch: branch
+        property int my_depth: depth
+
+        onOpenChanged: {
+            open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
+        }
 
         MouseArea {
+            id: openshutbutton
             width: parent.width;
             height: parent.height
             anchors.fill: parent
@@ -47,6 +55,10 @@ Component {
                 groupedList.userChangingIndex = true;
                 groupedList.currentIndex = index;
                 groupedList.userChangingIndex = false;
+
+                testitem.open = !testitem.open
+                groupedList.openShutSubgroup(testitem, testitem.open)
+
             }
         }
 
@@ -56,16 +68,34 @@ Component {
 
             Item {
                 id: filler
-                width: units.gu(6)
+                // this is our indentation level. we get this out of the model
+                width: (depth * openshutIcon.width) + units.gu(2)
+            }
+
+            Image {
+                id: openshutIcon
+                source: "artwork/DownArrow.png"
+                width: units.gu(2)
+                height: units.gu(2)
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: filler.right
+
+                }
+                opacity: enabled ? 1.0 : 0.5
+
+                visible: is_branch
+                enabled: is_branch
             }
 
             Text {
                 id: namelabel
                 text: testname
-                width: units.gu(42)
+                width: units.gu(42)  - (depth * openshutIcon.width)
                 elide: Text.ElideRight
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: filler.right
+                anchors.left: openshutIcon.right
+                anchors.leftMargin: units.gu(2)
             }
 
             Item {
