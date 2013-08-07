@@ -194,9 +194,8 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
 
                     if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
                         // show plugin type
-                        QString plugin = "shell";
 
-                        if (plugin.compare(variant.toString())) {
+                        if (variant.toString().compare("shell") == 0) {
                             type = "Automatic"; // translation required
                         }
 
