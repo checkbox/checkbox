@@ -43,29 +43,7 @@ public:
 
 #include "PBTreeNode.h"
 
-// We need a tree to represent the derived hierarchy of job dependencies
-class JobTreeNode
-{
-public:
-    JobTreeNode();
-    ~JobTreeNode();
-
-    JobTreeNode* AddNode(JobTreeNode* jtnode, QList<PBTreeNode*> chain);
-
-    void Flatten(JobTreeNode* jnode, QList<JobTreeNode*> &list);
-
-public:
-    JobTreeNode* parent;
-    QString m_via;
-    PBTreeNode* m_node;
-    QList<JobTreeNode*> m_children;
-
-    // convenience for the displaymodel- how deep is this node
-    int m_depth;
-    QString m_name; // human readable name
-    QString m_id;   // the id string from /plainbox/job/id
-
-};
+#include "JobTreeNode.h"
 
 /* This class embodies the wrapper which can call Plainbox APIs over D-Bus
  *
@@ -217,8 +195,8 @@ private:
 
         QList<QDBusObjectPath> m_desired_local_job_list;
 
-// Used by the test program		
-protected:		
+// Used by the test program
+protected:
         bool m_local_jobs_done;
 };
 
