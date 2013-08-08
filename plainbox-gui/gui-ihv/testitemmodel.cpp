@@ -197,8 +197,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                          * Manual.
                          */
 
-                        if (variant.toString().compare("shell") == 0 ||
-                                variant.toString().compare("manual") == 0 ||
+                        if (variant.toString().compare("manual") == 0 ||
                                 variant.toString().compare("user-interact") == 0 ||
                                 variant.toString().compare("user-verify") == 0 ) {
                             type = tr("Manual");
