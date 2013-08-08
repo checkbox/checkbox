@@ -27,9 +27,15 @@ QT +=qml dbus xml
 
 TARGET = gui-engine
 
-HEADERS = gui-engine.h
+HEADERS = gui-engine.h \
+    PBTreeNode.h \
+    PBTypes.h \
+    PBNames.h \
+    JobTreeNode.h
 
-SOURCES = gui-engine.cpp
+SOURCES = gui-engine.cpp \
+    PBTreeNode.cpp \
+    JobTreeNode.cpp
 
 DESTDIR = ../plugins
 

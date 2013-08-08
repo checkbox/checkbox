@@ -23,202 +23,11 @@
 #include <QtDBus/QtDBus>
 #include <QDebug>
 
+#include "PBTreeNode.h"
+
 // Forward declarations
 void decodeDBusArgType(const QDBusArgument &arg);       // temporary
 void decodeDBusMessageType(const QDBusMessage &msg);    // temporary
-
-// Plainbox tree node class
-PBTreeNode::PBTreeNode()
-{
-    parent = NULL;
-    object_path.path().clear();
-    managed_objects.clear();
-    children.clear();
-    introspection = NULL;
-    xmlstring.clear();
-    interfaces.clear();
-}
-/* Add a new PBTreeNode based upon the supplied DBus object_path
- */
-PBTreeNode* PBTreeNode::AddNode(PBTreeNode* parentNode, \
-                                const QDBusObjectPath &object_path)
-{
-    PBTreeNode* pbtn = NULL;
-
-    // special case for the root node
-    if(parentNode->object_path.path().isNull()) {
-        // We ARE the parentNode this time
-        pbtn = parentNode;
-    }
-    else {
-        pbtn = new PBTreeNode();
-    }
-
-    pbtn->object_path = object_path;
-    pbtn->parent=parentNode;
-
-    // The introspected string describing this object
-    const QString intro_xml = GetIntrospectXml(object_path);
-
-    pbtn->introspection=new QDomDocument(intro_xml);
-    pbtn->xmlstring = intro_xml;
-
-    /* We fill in all the children.
-     *
-     * We do this by creating a new child node for each node in intro_xml,
-     * and then introspecting these child nodes until we get nothing more
-     */
-    QDomDocument doc;
-    doc.setContent(intro_xml);
-    QDomElement xmlnode=doc.documentElement();
-    QDomElement child=xmlnode.firstChildElement();
-    while(!child.isNull()) {
-
-        // Is this a node?
-        if (child.tagName() == "node") {
-            // Yes, so we should introspect that as well
-            QString child_path;
-
-            if (object_path.path() == "/") {
-                child_path = object_path.path() + child.attribute("name");
-            } else {
-                child_path = object_path.path() + "/" + child.attribute("name");
-            }
-
-            QDBusObjectPath child_object_path(child_path);
-
-            PBTreeNode* node = AddNode(pbtn,child_object_path);
-            if (node) {
-                pbtn->children.append(node);
-            }
-        }
-
-        // Is this an interface?
-        if (child.tagName() == "interface") {
-            QString iface_name = child.attribute("name");
-
-            // we dont need properties from freedesktop interfaces
-            if (iface_name != ofDIntrospectableName && \
-                    iface_name != ofDPropertiesName) {
-
-                QVariantMap properties;
-
-                properties = GetObjectProperties(object_path, iface_name);
-
-                if (!properties.empty()) {
-                    PBObjectInterface *iface = \
-                            new PBObjectInterface(iface_name,properties);
-
-                    pbtn->interfaces.append(iface);
-                }
-            }
-        }
-        child = child.nextSiblingElement();
-    }
-
-    return pbtn;
-}
-const QString PBTreeNode::GetIntrospectXml(const QDBusObjectPath &object_path)
-{
-    // Connect to the introspectable interface
-    QDBusInterface iface(PBBusName, \
-                         object_path.path(), \
-                         ofDIntrospectableName, \
-                         QDBusConnection::sessionBus());
-    if (!iface.isValid()) {
-        qDebug("Could not connect to introspectable interface");
-        return NULL;
-    }
-
-    // Lets see what we have - introspect this first
-    QDBusMessage reply = iface.call("Introspect");
-    if (reply.type() != QDBusMessage::ReplyMessage) {
-        qDebug("Could not introspect this object");
-        return NULL;
-    }
-
-    QList<QVariant> args = reply.arguments();
-
-    QList<QVariant>::iterator iter = args.begin();
-
-    QVariant variant = *iter;
-
-    // The introspected string describing this object
-    const QString intro_xml = variant.value<QString>();
-
-    return intro_xml;
-}
-QVariantMap PBTreeNode::GetObjectProperties(const QDBusObjectPath &object_path, \
-                                            const QString interface)
-{
-    QVariantMap properties;
-
-    // Connect to the freedesktop Properties interface
-    QDBusInterface iface(PBBusName, \
-                         object_path.path(), \
-                         ofDPropertiesName, \
-                         QDBusConnection::sessionBus());
-    if (!iface.isValid()) {
-        qDebug("Could not connect to properties interface");
-        return properties;
-    }
-
-    // GetAll properties
-    QDBusMessage reply = iface.call("GetAll",interface);
-    if (reply.type() != QDBusMessage::ReplyMessage) {
-        // not worth complaining if they dont have properties, just return the empty
-        return properties;
-    }
-
-    QList<QVariant> args = reply.arguments();
-
-    if (args.empty()) {
-        return properties;
-    }
-
-    QList<QVariant>::iterator p = args.begin();
-
-    QVariant variant = *p;
-
-    const QDBusArgument qda = variant.value<QDBusArgument>();
-
-    qda >> properties;
-
-    return properties;
-}
-
-PBTreeNode::~PBTreeNode()
-{
-    if (introspection) {
-        delete introspection;
-    }
-
-    // delete the interfaces
-    if (interfaces.count()) {
-        QList<PBObjectInterface*>::iterator iter = interfaces.begin();
-
-        while(iter != interfaces.end()) {
-            delete *iter;
-
-            iter++;
-        }
-    }
-
-    interfaces.erase(interfaces.begin(),interfaces.end());
-
-    if (children.count()) {
-
-        QList<PBTreeNode*>::iterator iter = children.begin();
-
-        while (iter != children.end()) {
-            delete *iter;
-
-            iter++;
-        }
-
-        children.erase(children.begin(),children.end());
-    }
-}
 
 void GuiEnginePlugin::registerTypes(const char *uri)
 {
@@ -226,15 +35,18 @@ void GuiEnginePlugin::registerTypes(const char *uri)
     qmlRegisterType<GuiEngine>(uri,1,0,"GuiEngine");
 }
 
-GuiEngine::GuiEngine( QObject*parent ) : QObject(parent)
+GuiEngine::GuiEngine( QObject*parent ) :
+    QObject(parent),
+    enginestate(UNINITIALISED),
+    pb_objects(NULL),
+    valid_pb_objects(false),
+    job_tree(NULL),
+    m_local_jobs_done(false)
+
 {
     qDebug("GuiEngine::GuiEngine");
 
-    enginestate = UNINITIALISED;
-    pb_objects=NULL;
-    valid_pb_objects = false;
-    job_tree = NULL;
-    m_local_jobs_done = false;
+    // Nothing to do here
 
     qDebug("GuiEngine::GuiEngine - Done");
 }
@@ -354,6 +166,7 @@ bool GuiEngine::Shutdown(void)
 
     return true;
 }
+
 // DBus-QT Demarshalling helper functions
 const QDBusArgument &operator>>(const QDBusArgument &argument, \
                                 om_smalldict &smalldict)
@@ -439,10 +252,6 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, \
 
     return argument;
 }
-const PBTreeNode* GuiEngine::GetPlainBoxObjects()
-{
-    return pb_objects;
-}
 
 const PBTreeNode* GuiEngine::GetRootJobsNode(const PBTreeNode* node)
 {
@@ -469,6 +278,7 @@ const PBTreeNode* GuiEngine::GetRootJobsNode(const PBTreeNode* node)
 
     return NULL;
 }
+
 const PBTreeNode* GuiEngine::GetRootWhiteListNode(const PBTreeNode* node)
 {
     // Are we there yet
@@ -494,6 +304,7 @@ const PBTreeNode* GuiEngine::GetRootWhiteListNode(const PBTreeNode* node)
 
     return NULL;
 }
+
 // Work in progress
 void GuiEngine::InterfacesAdded(QDBusMessage msg)
 {
@@ -569,6 +380,7 @@ void GuiEngine::InterfacesRemoved(QDBusMessage msg)
 
     qDebug("GuiEngine::InterfacesRemoved - done");
 }
+
 QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 {
     //qDebug("GuiEngine::GetJobNodes()");
@@ -576,7 +388,7 @@ QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
     QList<PBTreeNode*> jobnodes;
 
     PBTreeNode* jobnode = \
-            const_cast<PBTreeNode*>(GetRootJobsNode(GetPlainBoxObjects()));
+            const_cast<PBTreeNode*>(GetRootJobsNode(pb_objects));
     if (!jobnode) {
         return jobnodes;
     }
@@ -596,6 +408,7 @@ QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 
     return jobnodes;
 }
+
 QList<PBTreeNode*> GuiEngine::GetWhiteListNodes(void)
 {
     qDebug("GuiEngine::GetWhiteListNodes()");
@@ -603,7 +416,7 @@ QList<PBTreeNode*> GuiEngine::GetWhiteListNodes(void)
     QList<PBTreeNode*> whitelistnodes;
 
     PBTreeNode* whitelistnode = \
-            const_cast<PBTreeNode*>(GetRootWhiteListNode(GetPlainBoxObjects()));
+            const_cast<PBTreeNode*>(GetRootWhiteListNode(pb_objects));
     if (!whitelistnode) {
         return whitelistnodes;
     }
@@ -623,12 +436,13 @@ QList<PBTreeNode*> GuiEngine::GetWhiteListNodes(void)
 
     return whitelistnodes;
 }
+
 QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
 {
     QMap<QDBusObjectPath,QString> paths_and_names;
 
     PBTreeNode* whitenode = \
-            const_cast<PBTreeNode*>(GetRootWhiteListNode(GetPlainBoxObjects()));
+            const_cast<PBTreeNode*>(GetRootWhiteListNode(pb_objects));
     if (!whitenode) {
         return paths_and_names;
     }
@@ -728,7 +542,7 @@ void GuiEngine::RunLocalJobs(void)
     m_local_job_list = GetLocalJobs();
 
     // desired local jobs are the Union of all local jobs and the desired jobs
-    m_desired_local_job_list = FilteredJobs(m_local_job_list,m_desired_job_list);
+    m_desired_local_job_list = JobTreeNode::FilteredJobs(m_local_job_list,m_desired_job_list);
 
     // Now I update the desired job list.
     QStringList errors = UpdateDesiredJobList(m_session, m_desired_local_job_list);
@@ -1054,27 +868,6 @@ void decodeDBusMessageType(const QDBusMessage &msg)
     qDebug() << "Type: " << type << msg.errorMessage() << " " << msg.errorName();
 }
 
-PBTreeNode* PBTreeNode::FindJobNode(const QString via, QList<PBTreeNode*> jobnodes)
-{
-    // construct the object path
-    QString target = "/plainbox/job/" + via;
-
-    QList<PBTreeNode*>::iterator iter = jobnodes.begin();
-
-    while(iter != jobnodes.end()) {
-        PBTreeNode* node = *iter;
-
-        if (node->object_path.path().compare(target)==0) {
-            return node;
-        }
-
-        iter++;
-    }
-
-    // Cant find such a job
-    return NULL;
-}
-
 JobTreeNode* GuiEngine::GetJobTreeNodes(void)
 {
     if (job_tree) {
@@ -1109,225 +902,6 @@ JobTreeNode* GuiEngine::GetJobTreeNodes(void)
     return job_tree;
 }
 
-const QString PBTreeNode::via(void)
-{
-    for(int j=0; j < interfaces.count(); j++) {
-        PBObjectInterface* iface = interfaces.at(j);
-
-        if (iface == NULL) {
-            qDebug("Null interface");
-        } else {
-            if(iface->interface.compare(CheckBoxJobDefinition1) == 0) {
-                QVariant variant;
-                variant = *iface->properties.find("via");
-                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                    return variant.toString();
-                }
-            }
-        }
-    }
-
-    // There is no "via" so its a top level node
-    return QString("");
-}
-
-const QString PBTreeNode::name(void)
-{
-    for(int j=0; j < interfaces.count(); j++) {
-        PBObjectInterface* iface = interfaces.at(j);
-
-        if (iface == NULL) {
-            qDebug("Null interface");
-        } else {
-            if(iface->interface.compare(PlainboxJobDefinition1) == 0) {
-                QVariant variant;
-                variant = *iface->properties.find("name");
-                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                    return variant.toString();
-                }
-            }
-        }
-    }
-
-    // No name - should this be flagged as an error in the tests themselves?
-    return QString("");
-}
-
-const QString PBTreeNode::id(void)
-{
-    QStringList list = object_path.path().split("/");
-
-    return list.last();
-}
-
-// Some helper functions
-JobTreeNode::JobTreeNode()
-{
-    parent = NULL;
-    m_via = "";
-    m_node = NULL;
-    m_children.clear();
-    m_depth = 0;
-}
-
-JobTreeNode::~JobTreeNode()
-{
-    for(int i=0;i<m_children.count();i++) {
-        delete m_children.at(i);
-    }
-}
-
-// We presume we are the root node
-
-JobTreeNode* JobTreeNode::AddNode(JobTreeNode *jtnode, QList<PBTreeNode*> chain)
-{
-    //Do we have sensible arguments?
-    if (!jtnode) {
-        qDebug("There is no node");
-        return NULL;
-    }
-
-    if (chain.empty()) {
-        qDebug("There is no more chain to follow");
-        return NULL;
-    }
-
-    // Chain is an ordered list from top to bottom of our tree nodes
-
-    // Look for each chain element in turn, adding if needed
-    QList<PBTreeNode*> local_chain = chain;
-
-    // can we find this in our children?
-    QList<JobTreeNode*>::iterator iter = jtnode->m_children.begin();
-
-    // go through in turn
-    while(iter != jtnode->m_children.end()) {
-
-        // Is this the front of the chain?
-        JobTreeNode* node = *iter;
-
-        if (node->m_node == local_chain.first()) {
-            // ok, found it. now, is it the only element in the chain?
-
-            // follow it down I guess
-            local_chain.removeFirst();
-
-            if (!local_chain.empty()) {
-                return AddNode(node,local_chain);
-            } else {
-                /* we must have added this previously in order to
-                 * add a child element. As this is a leaf element,
-                 * there is nothing left to do but return.
-                 */
-                return NULL;
-            }
-        }
-
-        // round the loop
-        iter++;
-    }
-
-    // If we get here, we've not found this element in the tree at this level,
-    // so we shall add it
-    JobTreeNode* jt_new = new JobTreeNode();
-
-    jt_new->parent = jtnode;
-    jt_new->m_node = local_chain.first();
-    jt_new->m_name = local_chain.first()->name();
-    jt_new->m_id = local_chain.first()->id();
-    jt_new->m_via = local_chain.first()->via();
-
-    // Trim this item now we have stored it
-    local_chain.removeFirst();
-
-    jtnode->m_children.append(jt_new);
-
-    // Are there any more elements?
-    if (!local_chain.empty()) {
-        // Yep, we need to go down to the next level again
-        return AddNode(jt_new,local_chain);
-    }
-
-    return NULL;
-}
-
-// We just recursively add ourselves to the list
-void JobTreeNode::Flatten(JobTreeNode* jnode, QList<JobTreeNode*> &list)
-{
-    list.append(jnode);
-
-    for(int i=0; i < jnode->m_children.count() ;i++) {
-        Flatten(jnode->m_children.at(i),list);
-    }
-}
-
-void GuiEngine::LogDumpTree(void)
-{
-    qDebug("GuiEngine::LogDumpTree");
-
-    JobTreeNode* jt = GetJobTreeNodes();
-
-    QList<JobTreeNode*> nodelist;
-
-    jt->Flatten(jt,nodelist);
-
-    // pull the "top" node, as this aint real
-
-    nodelist.removeFirst();
-
-    for(int i=0;i<nodelist.count();i++) {
-        // Gather the information we need
-        JobTreeNode* node = nodelist.at(i);
-
-        // compute the depth of this node
-        JobTreeNode* temp = node->parent;
-
-        QString indent;
-
-        while (temp != jt) {
-            temp = temp->parent;
-            indent += "    ";
-        }
-
-        // We should skip this if its not required
-        PBTreeNode* pbnode = node->m_node;
-        // is this a valid item for the user?
-        QList<QDBusObjectPath> list;
-
-        list.append(pbnode->object_path);
-
-        // check against our filtered list
-        QList<QDBusObjectPath> short_valid_list = FilteredJobs(list,\
-                                       GetValidRunList());
-
-        if (GetValidRunList().count() != 0) {
-            // we have _some_ valid tests :)
-            if (short_valid_list.isEmpty()) {
-                // we dont show this one
-                continue;
-            }
-        }
-
-        //qDebug() << indent.toStdString().c_str() << "Node: ";
-
-        if (node) {
-            PBTreeNode* pbtree = node->m_node;
-
-            if (pbtree) {
-                QString name = node->m_name;
-
-                qDebug() << indent.toStdString().c_str() << name.toStdString().c_str();
-
-            } else {
-                qDebug("    *** INVALID ***");
-            }
-        } else {
-            qDebug("    *** INVALID ***");
-        }
-    }
-
-    qDebug("GuiEngine::LogDumpTree - Done");
-}
 
 QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> job_list)
 {
@@ -1363,35 +937,6 @@ QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> 
     }
 
     return desired_job_list;
-}
-
-QList<QDBusObjectPath> GuiEngine::FilteredJobs( \
-        const QList<QDBusObjectPath> list1, \
-        const QList<QDBusObjectPath> list2)
-{
-    QList<QDBusObjectPath> intersection;
-
-    QList<QDBusObjectPath>::const_iterator iter1 = list1.begin();
-
-    while (iter1 != list1.end()) {
-        QList<QDBusObjectPath>::const_iterator iter2 = list2.begin();
-
-        while(iter2 != list2.end()) {
-            QDBusObjectPath obj1 = *iter1;
-            QDBusObjectPath obj2 = *iter2;
-
-            if (obj1 == obj2)
-            {
-                intersection.append(obj1);
-            }
-
-            iter2++;
-        }
-
-        iter1++;
-    }
-
-    return intersection;
 }
 
 void GuiEngine::UpdateJobResult(const QDBusObjectPath session, \
@@ -1516,7 +1061,7 @@ void GuiEngine::JobResultAvailable(QDBusMessage msg)
 void GuiEngine::AcknowledgeJobsDone(void)
 {
     qDebug("GuiEngine::AcknowledgeJobsDone()");
-	
+
     m_local_jobs_done = true;
 
     qDebug("GuiEngine::AcknowledgeJobsDone() - done");
