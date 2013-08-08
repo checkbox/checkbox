@@ -114,7 +114,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         QString description;
         QString command;
         QString environ;
-        QString type = "Manual"; // translation required
+        QString type = tr("Automatic");
         QString user;
         QString via;
         QString group;
@@ -193,11 +193,14 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                     variant = *iface->properties.find("plugin");
 
                     if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                        // show plugin type
-                        QString plugin = "shell";
+                        /* show plugin type as either Automatic (default) or
+                         * Manual.
+                         */
 
-                        if (plugin.compare(variant.toString())) {
-                            type = "Automatic"; // translation required
+                        if (variant.toString().compare("manual") == 0 ||
+                                variant.toString().compare("user-interact") == 0 ||
+                                variant.toString().compare("user-verify") == 0 ) {
+                            type = tr("Manual");
                         }
 
                         if (variant.toString().compare("local") == 0) {
@@ -234,9 +237,14 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         }
 
         // Does this node have children?
-        bool branch = true;
-        if (jnode->m_children.isEmpty()) {
-            branch = false;
+        bool branch = false;
+        if (!jnode->m_children.isEmpty()) {
+            branch = true;
+
+            /* Avoid trying to determine the Automatic/Manual nature of
+             * various categories of tests.
+             */
+            type = tr("-");
         }
 
         // Is this to be shown to the user?
