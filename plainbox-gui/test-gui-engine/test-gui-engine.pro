@@ -23,8 +23,12 @@
 
 QT  += testlib dbus qml xml
 
-HEADERS += test-gui-engine.h ../gui-engine/gui-engine.h
+LIBS += -L../plugins/ -lgui-engine
 
-SOURCES += test-gui-engine.cpp  ../gui-engine/gui-engine.cpp
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../plugins\''
+
+HEADERS += test-gui-engine.h
+
+SOURCES += test-gui-engine.cpp
 
 
