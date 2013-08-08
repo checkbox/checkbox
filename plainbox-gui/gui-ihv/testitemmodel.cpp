@@ -94,7 +94,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
 
         // check against our filtered list
         QList<QDBusObjectPath> short_valid_list = \
-                myengine->FilteredJobs(list,\
+                JobTreeNode::FilteredJobs(list,\
                                        myengine->GetValidRunList());
 
         if (myengine->GetValidRunList().count() != 0) {

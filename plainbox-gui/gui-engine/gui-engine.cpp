@@ -35,15 +35,18 @@ void GuiEnginePlugin::registerTypes(const char *uri)
     qmlRegisterType<GuiEngine>(uri,1,0,"GuiEngine");
 }
 
-GuiEngine::GuiEngine( QObject*parent ) : QObject(parent)
+GuiEngine::GuiEngine( QObject*parent ) :
+    QObject(parent),
+    enginestate(UNINITIALISED),
+    pb_objects(NULL),
+    valid_pb_objects(false),
+    job_tree(NULL),
+    m_local_jobs_done(false)
+
 {
     qDebug("GuiEngine::GuiEngine");
 
-    enginestate = UNINITIALISED;
-    pb_objects=NULL;
-    valid_pb_objects = false;
-    job_tree = NULL;
-    m_local_jobs_done = false;
+    // Nothing to do here
 
     qDebug("GuiEngine::GuiEngine - Done");
 }
@@ -163,6 +166,7 @@ bool GuiEngine::Shutdown(void)
 
     return true;
 }
+
 // DBus-QT Demarshalling helper functions
 const QDBusArgument &operator>>(const QDBusArgument &argument, \
                                 om_smalldict &smalldict)
@@ -248,10 +252,6 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, \
 
     return argument;
 }
-const PBTreeNode* GuiEngine::GetPlainBoxObjects()
-{
-    return pb_objects;
-}
 
 const PBTreeNode* GuiEngine::GetRootJobsNode(const PBTreeNode* node)
 {
@@ -278,6 +278,7 @@ const PBTreeNode* GuiEngine::GetRootJobsNode(const PBTreeNode* node)
 
     return NULL;
 }
+
 const PBTreeNode* GuiEngine::GetRootWhiteListNode(const PBTreeNode* node)
 {
     // Are we there yet
@@ -303,6 +304,7 @@ const PBTreeNode* GuiEngine::GetRootWhiteListNode(const PBTreeNode* node)
 
     return NULL;
 }
+
 // Work in progress
 void GuiEngine::InterfacesAdded(QDBusMessage msg)
 {
@@ -378,6 +380,7 @@ void GuiEngine::InterfacesRemoved(QDBusMessage msg)
 
     qDebug("GuiEngine::InterfacesRemoved - done");
 }
+
 QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 {
     //qDebug("GuiEngine::GetJobNodes()");
@@ -385,7 +388,7 @@ QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
     QList<PBTreeNode*> jobnodes;
 
     PBTreeNode* jobnode = \
-            const_cast<PBTreeNode*>(GetRootJobsNode(GetPlainBoxObjects()));
+            const_cast<PBTreeNode*>(GetRootJobsNode(pb_objects));
     if (!jobnode) {
         return jobnodes;
     }
@@ -405,6 +408,7 @@ QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 
     return jobnodes;
 }
+
 QList<PBTreeNode*> GuiEngine::GetWhiteListNodes(void)
 {
     qDebug("GuiEngine::GetWhiteListNodes()");
@@ -412,7 +416,7 @@ QList<PBTreeNode*> GuiEngine::GetWhiteListNodes(void)
     QList<PBTreeNode*> whitelistnodes;
 
     PBTreeNode* whitelistnode = \
-            const_cast<PBTreeNode*>(GetRootWhiteListNode(GetPlainBoxObjects()));
+            const_cast<PBTreeNode*>(GetRootWhiteListNode(pb_objects));
     if (!whitelistnode) {
         return whitelistnodes;
     }
@@ -432,12 +436,13 @@ QList<PBTreeNode*> GuiEngine::GetWhiteListNodes(void)
 
     return whitelistnodes;
 }
+
 QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
 {
     QMap<QDBusObjectPath,QString> paths_and_names;
 
     PBTreeNode* whitenode = \
-            const_cast<PBTreeNode*>(GetRootWhiteListNode(GetPlainBoxObjects()));
+            const_cast<PBTreeNode*>(GetRootWhiteListNode(pb_objects));
     if (!whitenode) {
         return paths_and_names;
     }
@@ -537,7 +542,7 @@ void GuiEngine::RunLocalJobs(void)
     m_local_job_list = GetLocalJobs();
 
     // desired local jobs are the Union of all local jobs and the desired jobs
-    m_desired_local_job_list = FilteredJobs(m_local_job_list,m_desired_job_list);
+    m_desired_local_job_list = JobTreeNode::FilteredJobs(m_local_job_list,m_desired_job_list);
 
     // Now I update the desired job list.
     QStringList errors = UpdateDesiredJobList(m_session, m_desired_local_job_list);
@@ -897,73 +902,6 @@ JobTreeNode* GuiEngine::GetJobTreeNodes(void)
     return job_tree;
 }
 
-void GuiEngine::LogDumpTree(void)
-{
-    qDebug("GuiEngine::LogDumpTree");
-
-    JobTreeNode* jt = GetJobTreeNodes();
-
-    QList<JobTreeNode*> nodelist;
-
-    jt->Flatten(jt,nodelist);
-
-    // pull the "top" node, as this aint real
-
-    nodelist.removeFirst();
-
-    for(int i=0;i<nodelist.count();i++) {
-        // Gather the information we need
-        JobTreeNode* node = nodelist.at(i);
-
-        // compute the depth of this node
-        JobTreeNode* temp = node->parent;
-
-        QString indent;
-
-        while (temp != jt) {
-            temp = temp->parent;
-            indent += "    ";
-        }
-
-        // We should skip this if its not required
-        PBTreeNode* pbnode = node->m_node;
-        // is this a valid item for the user?
-        QList<QDBusObjectPath> list;
-
-        list.append(pbnode->object_path);
-
-        // check against our filtered list
-        QList<QDBusObjectPath> short_valid_list = FilteredJobs(list,\
-                                       GetValidRunList());
-
-        if (GetValidRunList().count() != 0) {
-            // we have _some_ valid tests :)
-            if (short_valid_list.isEmpty()) {
-                // we dont show this one
-                continue;
-            }
-        }
-
-        //qDebug() << indent.toStdString().c_str() << "Node: ";
-
-        if (node) {
-            PBTreeNode* pbtree = node->m_node;
-
-            if (pbtree) {
-                QString name = node->m_name;
-
-                qDebug() << indent.toStdString().c_str() << name.toStdString().c_str();
-
-            } else {
-                qDebug("    *** INVALID ***");
-            }
-        } else {
-            qDebug("    *** INVALID ***");
-        }
-    }
-
-    qDebug("GuiEngine::LogDumpTree - Done");
-}
 
 QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> job_list)
 {
@@ -999,35 +937,6 @@ QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> 
     }
 
     return desired_job_list;
-}
-
-QList<QDBusObjectPath> GuiEngine::FilteredJobs( \
-        const QList<QDBusObjectPath> list1, \
-        const QList<QDBusObjectPath> list2)
-{
-    QList<QDBusObjectPath> intersection;
-
-    QList<QDBusObjectPath>::const_iterator iter1 = list1.begin();
-
-    while (iter1 != list1.end()) {
-        QList<QDBusObjectPath>::const_iterator iter2 = list2.begin();
-
-        while(iter2 != list2.end()) {
-            QDBusObjectPath obj1 = *iter1;
-            QDBusObjectPath obj2 = *iter2;
-
-            if (obj1 == obj2)
-            {
-                intersection.append(obj1);
-            }
-
-            iter2++;
-        }
-
-        iter1++;
-    }
-
-    return intersection;
 }
 
 void GuiEngine::UpdateJobResult(const QDBusObjectPath session, \

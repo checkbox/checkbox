@@ -46,7 +46,8 @@ void TestGuiEngine::TestGetJobsNames()
     while(!m_local_jobs_done) {
         QTest::qWait(1);   // spin for 1ms in the event loop
     }
-    LogDumpTree();
+
+    GetJobTreeNodes()->LogDumpTree(GetValidRunList());
 }
 
 void TestGuiEngine::TestShutdown()

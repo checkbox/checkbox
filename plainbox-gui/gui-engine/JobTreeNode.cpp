@@ -121,3 +121,97 @@ void JobTreeNode::Flatten(JobTreeNode* jnode, QList<JobTreeNode*> &list)
     }
 }
 
+void JobTreeNode::LogDumpTree(const QList<QDBusObjectPath>& wanted)
+{
+    qDebug("JobTreeNode::LogDumpTree");
+
+    JobTreeNode* jt = this;
+
+    QList<JobTreeNode*> nodelist;
+
+    jt->Flatten(jt,nodelist);
+
+    // pull the "top" node, as this aint real
+
+    nodelist.removeFirst();
+
+    for(int i=0;i<nodelist.count();i++) {
+        // Gather the information we need
+        JobTreeNode* node = nodelist.at(i);
+
+        // compute the depth of this node
+        JobTreeNode* temp = node->parent;
+
+        QString indent;
+
+        while (temp != jt) {
+            temp = temp->parent;
+            indent += "    ";
+        }
+
+        // We should skip this if its not required
+        PBTreeNode* pbnode = node->m_node;
+        // is this a valid item for the user?
+        QList<QDBusObjectPath> list;
+
+        list.append(pbnode->object_path);
+
+        // check against our filtered list
+        QList<QDBusObjectPath> short_valid_list = JobTreeNode::FilteredJobs(list,\
+                                       wanted);
+
+        if (wanted.count() != 0) {
+            // we have _some_ valid tests :)
+            if (short_valid_list.isEmpty()) {
+                // we dont show this one
+                continue;
+            }
+        }
+
+        if (node) {
+            PBTreeNode* pbtree = node->m_node;
+
+            if (pbtree) {
+                QString name = node->m_name;
+
+                qDebug() << indent.toStdString().c_str() << name.toStdString().c_str();
+
+            } else {
+                qDebug("    *** INVALID ***");
+            }
+        } else {
+            qDebug("    *** INVALID ***");
+        }
+    }
+
+    qDebug("JobTreeNode::LogDumpTree - Done");
+}
+
+QList<QDBusObjectPath> JobTreeNode::FilteredJobs( \
+        const QList<QDBusObjectPath> list1, \
+        const QList<QDBusObjectPath> list2)
+{
+    QList<QDBusObjectPath> intersection;
+
+    QList<QDBusObjectPath>::const_iterator iter1 = list1.begin();
+
+    while (iter1 != list1.end()) {
+        QList<QDBusObjectPath>::const_iterator iter2 = list2.begin();
+
+        while(iter2 != list2.end()) {
+            QDBusObjectPath obj1 = *iter1;
+            QDBusObjectPath obj2 = *iter2;
+
+            if (obj1 == obj2)
+            {
+                intersection.append(obj1);
+            }
+
+            iter2++;
+        }
+
+        iter1++;
+    }
+
+    return intersection;
+}

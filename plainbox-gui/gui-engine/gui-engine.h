@@ -65,57 +65,66 @@ public:
         GuiEngine( QObject*parent = 0);
 
 public slots:
+
+        /* Called by the QML/Qt GUI */
+
         // Manage GuiEngine lifetime
         bool Initialise(void);
         bool Shutdown(void);
 
-        // update object tree based on callbacks from plainbox/dbus
+        // Returns whitelist object path, whitelist name
+        QMap<QDBusObjectPath,QString> GetWhiteListPathsAndNames(void);
+
+        void SetWhiteList(const QDBusObjectPath opath, const bool check);
+
+        /* Run all the jobs of type "local" in order to generate the true
+         * list of tests from which the user can select.
+         */
+        void RunLocalJobs(void);
+
+        /* Signal receivers from Plainbox
+         */
+
+        void JobResultAvailable(QDBusMessage msg);
+
         void InterfacesAdded(QDBusMessage msg);
         void InterfacesRemoved(QDBusMessage msg);
 
-        // Handle to the tree of PlainBox objects
-        const PBTreeNode* GetPlainBoxObjects(void);
+        /* Helper functions for logging and testing
+         */
 
-        // temporary
+        // Logging function
         void dump_whitelist_selection(void);
 
-        // temporary function to run the "local" jobs generators
-        void RunLocalJobs(void);
-
-        // Signal receiver from JobResultAvailable
-        void JobResultAvailable(QDBusMessage msg);
-
-        // Helper function when generating the desired local and real jobs
-        QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
-
-        // Helper. Returns the intersection of list1 and list2
-        // Useful for matching local jobs against the whitelist designates
-        QList<QDBusObjectPath> FilteredJobs( \
-                const QList<QDBusObjectPath> list1, \
-                const QList<QDBusObjectPath> list2);
-
+        // Used by the test program test-gui-engine
         void AcknowledgeJobsDone(void);
 
-        // temporary function for debug purposes
-        void LogDumpTree(void);
+public:
+        // Returns a list of all the jobnodes
+        QList<PBTreeNode*> GetJobNodes(void);
+
+        // Returns a tree of all the jobs
+        JobTreeNode* GetJobTreeNodes();
+
+        // Returns a list of DBus Object Paths for valid tests
+        const QList<QDBusObjectPath>& GetValidRunList(void) {
+            return valid_run_list;
+        }
 
 signals:
         // Instruct the GUI to update itself
         void UpdateGuiObjects(void);
         void localJobsCompleted(void);
 
-public:
+private:
+        // Helper function when generating the desired local and real jobs
+        QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
+
         // Temporary public functions
         const PBTreeNode* GetRootJobsNode(const PBTreeNode *node);
         const PBTreeNode* GetRootWhiteListNode(const PBTreeNode *node);
 
-        QList<PBTreeNode*> GetJobNodes(void);
         QList<PBTreeNode*> GetWhiteListNodes(void);
-
-        // Returns whitelist object path, whitelist name
-        QMap<QDBusObjectPath,QString> GetWhiteListPathsAndNames(void);
-
-        void SetWhiteList(const QDBusObjectPath opath, const bool check);
 
         bool WhiteListDesignates(const QDBusObjectPath white_opath, \
                                  const QDBusObjectPath job_opath);
@@ -143,13 +152,6 @@ public:
 
         // Service Methods
         void RunJob(const QDBusObjectPath session, const QDBusObjectPath opath);
-
-        // Returns a tree of all the jobs
-        JobTreeNode* GetJobTreeNodes();
-
-        const QList<QDBusObjectPath>& GetValidRunList(void) {
-            return valid_run_list;
-        }
 
         // Debugging tool
         const QString JobNameFromObjectPath(const QDBusObjectPath& opath);

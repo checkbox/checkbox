@@ -35,6 +35,14 @@ public:
 
     void Flatten(JobTreeNode* jnode, QList<JobTreeNode*> &list);
 
+    // outputs a log of the JobTree, subject to being in a "wanted" list
+    void LogDumpTree(const QList<QDBusObjectPath>& wanted);
+
+    // Returns the intersection of list1 and list2
+    static QList<QDBusObjectPath> FilteredJobs( \
+            const QList<QDBusObjectPath> list1, \
+            const QList<QDBusObjectPath> list2);
+
 public:
     JobTreeNode* parent;
     QString m_via;
