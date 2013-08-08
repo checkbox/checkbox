@@ -28,8 +28,9 @@ QT += dbus
 LIBS += -L../plugins/ -lgui-engine
 
 # Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH = 
+QML_IMPORT_PATH =
 
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
