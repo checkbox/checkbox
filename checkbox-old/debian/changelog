@@ -1,6 +1,8 @@
 checkbox (0.16.8) UNRELEASED; urgency=low
 
-  * Incremented changelog
+  [ Daniel Manrique ]
+  * scripts/network_device_info: ignore UTF-8 decoding errors from udevadm
+    output, as we do everywhere else (LP: #1210050)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 26 Jul 2013 15:37:40 -0400
 

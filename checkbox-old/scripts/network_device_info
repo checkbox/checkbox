@@ -214,7 +214,7 @@ def main(args):
     except CalledProcessError as err:
         raise SystemExit(err)
     try:
-        output = output.decode("UTF-8")
+        output = output.decode("UTF-8", errors='ignore')
     except UnicodeDecodeError as err:
         raise SystemExit("udevadm output is not valid UTF-8")
     udev = UdevadmParser(output)
