@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-24 05:09+0000\n"
-"X-Generator: Launchpad (build 16700)\n"
+"X-Launchpad-Export-Date: 2013-08-09 04:34+0000\n"
+"X-Generator: Launchpad (build 16723)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -1320,7 +1320,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:63
+#: ../jobs/suspend.txt.in:1378
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert-after-"
 "suspend test is run. It tests reading and writing to the MMC card after the "
@@ -1328,7 +1328,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:71
+#: ../jobs/suspend.txt.in:1386
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1358,14 +1358,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:103
+#: ../jobs/mediacard.txt.in:62
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:111
+#: ../jobs/mediacard.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1394,7 +1394,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:145
+#: ../jobs/suspend.txt.in:1420
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert-after-"
 "suspend test is run. It tests reading and writing to the SD card after the "
@@ -1433,14 +1433,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:197
+#: ../jobs/mediacard.txt.in:113
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:205
+#: ../jobs/mediacard.txt.in:121
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1470,7 +1470,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:239
+#: ../jobs/suspend.txt.in:1463
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert-after-"
 "suspend test is run. It tests reading and writing to the SDHC card after the "
@@ -1478,7 +1478,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:247
+#: ../jobs/suspend.txt.in:1471
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1508,14 +1508,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:279
+#: ../jobs/mediacard.txt.in:153
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:287
+#: ../jobs/mediacard.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1544,7 +1544,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:320
+#: ../jobs/mediacard.txt.in:194
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert-after-"
 "suspend test is run. It tests reading and writing to the CF card after the "
@@ -1552,7 +1552,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/mediacard.txt.in:328
+#: ../jobs/mediacard.txt.in:202
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2628,7 +2628,7 @@ msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:156
+#: ../jobs/suspend.txt.in:1339 ../jobs/usb.txt.in:156
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the "
 "server has usb storage devices plugged in prior to checkbox execution. It is "

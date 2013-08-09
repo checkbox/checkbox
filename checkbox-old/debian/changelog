@@ -1,4 +1,17 @@
-checkbox (0.16.7) UNRELEASED; urgency=low
+checkbox (0.16.8) UNRELEASED; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/network_device_info: ignore UTF-8 decoding errors from udevadm
+    output, as we do everywhere else (LP: #1210050)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 26 Jul 2013 15:37:40 -0400
+
+checkbox (0.16.7) saucy; urgency=low
+
+  [ Po-Hsu Lin ]
+  * jobs/mobilebroadband.txt.in: Make it disconnect from the mobile broadband
+    network after job is completed to avoid any unexpected data transmission 
+    expense (LP: #1204799)
 
   [ Jeff Lane ]
   * jobs/suspend.txt.in, jobs/usb.txt.in, jobs/mediacard.txt.in: moved jobs to
@@ -20,7 +33,7 @@ checkbox (0.16.7) UNRELEASED; urgency=low
   * scripts/memory_compare - take in to account 'bank' hardware which appears
     on systems with multiple memory modules installed (LP: #1204013)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:43:11 +0100
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 26 Jul 2013 15:36:42 -0400
 
 checkbox (0.16.6) raring; urgency=low
 

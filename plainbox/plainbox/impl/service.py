@@ -22,9 +22,12 @@
 =========================================================
 """
 
+from threading import Thread
+import collections
 import functools
 import itertools
 import logging
+import random
 
 try:
     from inspect import Signature
@@ -33,9 +36,12 @@ except ImportError:
         from plainbox.vendor.funcsigs import Signature
     except ImportError:
         raise SystemExit("DBus parts require 'funcsigs' from pypi.")
+from plainbox.vendor import extcmd
 
 from plainbox.impl import dbus
 from plainbox.impl.dbus import OBJECT_MANAGER_IFACE
+from plainbox.impl.result import DiskJobResult
+from plainbox.impl.runner import JobRunner
 from plainbox.impl.signal import Signal
 
 
@@ -51,6 +57,7 @@ JOB_RESULT_IFACE = _BASE_IFACE + "PlainBox.Result1"
 JOB_STATE_IFACE = _BASE_IFACE + "PlainBox.JobState1"
 WHITELIST_IFACE = _BASE_IFACE + "PlainBox.WhiteList1"
 CHECKBOX_JOB_IFACE = _BASE_IFACE + "CheckBox.JobDefinition1"
+RUNNING_JOB_IFACE = _BASE_IFACE + "PlainBox.RunningJob1"
 
 
 class PlainBoxObjectWrapper(dbus.service.ObjectWrapper):
@@ -156,7 +163,7 @@ class PlainBoxObjectWrapper(dbus.service.ObjectWrapper):
                 return cls.find_wrapper_by_native(obj)
             except KeyError:
                 raise dbus.exceptions.DBusException(
-                    "internal error, unable to lookup object wrapper")
+                    "(o) internal error, unable to lookup object wrapper")
 
         def translate_return_ao(object_list):
             try:
@@ -166,7 +173,7 @@ class PlainBoxObjectWrapper(dbus.service.ObjectWrapper):
                 ], signature='o')
             except KeyError:
                 raise dbus.exceptions.DBusException(
-                    "internal error, unable to lookup object wrapper")
+                    "(ao) internal error, unable to lookup object wrapper")
 
         def translate_return_a_brace_so_brace(mapping):
             try:
@@ -176,7 +183,7 @@ class PlainBoxObjectWrapper(dbus.service.ObjectWrapper):
                 }, signature='so')
             except KeyError:
                 raise dbus.exceptions.DBusException(
-                    "internal error, unable to lookup object wrapper")
+                    "(a{so}) internal error, unable to lookup object wrapper")
 
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -440,10 +447,6 @@ class JobStateWrapper(PlainBoxObjectWrapper):
 
     def __shared_initialize__(self, **kwargs):
         self._result_wrapper = JobResultWrapper(self.native.result)
-        self.native.on_result_changed.connect(self.on_result_changed)
-
-    def __del__(self):
-        self.native.on_result_changed.disconnect(self.on_result_changed)
 
     def publish_objects(self, connection):
         super(JobStateWrapper, self).publish_objects(connection)
@@ -486,10 +489,18 @@ class JobStateWrapper(PlainBoxObjectWrapper):
     @Signal.define
     def on_result_changed(self):
         result_wrapper = JobResultWrapper(self.native.result)
-        result_wrapper.publish_objects(self.connection)
-        self.PropertiesChanged(JOB_STATE_IFACE, {
-            self.__class__.result._dbus_property: result_wrapper
-        }, [])
+        try:
+            result_wrapper.publish_objects(self.connection)
+        except KeyError:
+            logger.warning("Result already exists for: %r", result_wrapper)
+            self.PropertiesChanged(JOB_STATE_IFACE, {
+                self.__class__.result._dbus_property:
+                result_wrapper._get_preferred_object_path()
+            }, [])
+        else:
+            self.PropertiesChanged(JOB_STATE_IFACE, {
+                self.__class__.result._dbus_property: result_wrapper
+            }, [])
 
     @dbus.service.property(dbus_interface=JOB_STATE_IFACE, signature='a(isss)')
     def readiness_inhibitor_list(self):
@@ -526,7 +537,7 @@ class JobStateWrapper(PlainBoxObjectWrapper):
              inhibitor.cause_name,
              (inhibitor.related_job.name
               if inhibitor.related_job is not None else ""),
-             (inhibitor.related_expression
+             (inhibitor.related_expression.text
               if inhibitor.related_expression is not None else ""))
             for inhibitor in self.native.readiness_inhibitor_list
         ], signature="(isss)")
@@ -547,10 +558,6 @@ class SessionWrapper(PlainBoxObjectWrapper):
             job_name: JobStateWrapper(job_state)
             for job_name, job_state in self.native.job_state_map.items()
         }
-        self.native.on_job_state_map_changed.connect(self.on_job_state_map_changed)
-
-    def __del__(self):
-        self.native.on_job_state_map_changed.disconnect(self.on_job_state_map_changed)
 
     def publish_objects(self, connection):
         self.publish_self(connection)
@@ -571,6 +578,24 @@ class SessionWrapper(PlainBoxObjectWrapper):
             [self.find_wrapper_by_native(job_state_wrapper.native.result)
              for job_state_wrapper in self._job_state_map_wrapper.values()])
 
+    def check_and_wrap_new_jobs(self):
+        # Since new jobs may have been added, we need to create and publish
+        # new JobDefinitionWrappers for them.
+        for job in self.native.job_list:
+            key = id(job)
+            if not key in self._native_id_to_wrapper_map:
+                logger.debug("Creating a new JobDefinitionWrapper for %s",
+                             job.name)
+                wrapper = JobDefinitionWrapper(job)
+                wrapper.publish_objects(self.connection)
+                #Newly created jobs also need a JobState.
+                #Note that publishing the JobState also should automatically
+                #publish the MemoryJobResult.
+                self._job_state_map_wrapper[job.name] = JobStateWrapper(
+                        self.native.job_state_map[job.name])
+                self._job_state_map_wrapper[job.name].publish_objects(
+                        self.connection)
+
     # Value added
 
     @dbus.service.method(
@@ -578,6 +603,8 @@ class SessionWrapper(PlainBoxObjectWrapper):
     @PlainBoxObjectWrapper.translate
     def UpdateDesiredJobList(self, desired_job_list: 'ao'):
         problem_list = self.native.update_desired_job_list(desired_job_list)
+        # Do the necessary housekeeping for any new jobs
+        self.check_and_wrap_new_jobs()
         # TODO: map each problem into a structure (check which fields should be
         # presented). Document this in the docstring.
         return [str(problem) for problem in problem_list]
@@ -593,10 +620,96 @@ class SessionWrapper(PlainBoxObjectWrapper):
     def GetEstimatedDuration(self):
         automated, manual = self.native.get_estimated_duration()
         if automated is None:
-            automated = -1
+            automated = -1.0
         if manual is None:
-            automated = -1
+            manual = -1.0
         return automated, manual
+
+    @dbus.service.method(
+        dbus_interface=SESSION_IFACE, in_signature='', out_signature='s')
+    def PreviousSessionFile(self):
+        previous_session_file = self.native.previous_session_file()
+        if previous_session_file:
+            return previous_session_file
+        else:
+            return ''
+
+    @dbus.service.method(
+        dbus_interface=SESSION_IFACE, in_signature='', out_signature='')
+    def Resume(self):
+        #FIXME TODO XXX KLUDGE ALERT
+        #The way we replace restored job definitions with the ones from the
+        #freshly-initialized session is extremely kludgy. This implementation
+        #needs to be revisited at some point and made cleaner. It was done this
+        #way to unblock usage of this API under time pressure.
+        #
+        #First, we take a snapshot of job definitions from the "pristine"
+        #session. These already have JobStateWrappers over DBus pointing to
+        #the ones created when the provider was exposed.
+        old_jobs = [state.job for state in self.native.job_state_map.values()]
+        #Now, native resume. This is the only non-kludgy line in this method.
+        self.native.resume()
+        #After the native resume completes, we need to "synchronize"
+        #the new job_list and job_state_map over DBus. This is very similar
+        # to what we do
+        #when adding jobs from a local job, with the exception that here,
+        #*all* the jobs need a JobStateWrapper because since they weren't
+        #known when the session was created, they don't have one yet.
+        # Also, we need to take the jobs as contained in the job_state_map,
+        #rather than job_list, otherwise they won't point to the correct
+        #dbus JobDefinition.
+        #Finally, the KLUDGE is that we look at the job definitions for each
+        #JobState. These were reconstructed from restored session information,
+        #and unfortunately they don't map to the exposed-over-dbus JobDefs.
+        #However, we can't just create the JobDefinition because since they're
+        #exposed over DBus using their unique checksum, trying to expose an
+        #identical JobDefinition will create a clash and a crash.
+        #The solution, then, is to replace each JobState's "job" attribute
+        #with the equivalent job from the old_jobs map. Those *should* be
+        #identical value-wise but point to the correct, already-exposed
+        #JobDefinition and their wrapper.
+        for job_state in self.native.job_state_map.values():
+            job = job_state.job
+            #Find old equivalent of this job
+            if job in old_jobs:
+                 index = old_jobs.index(job)
+                 #Next three statements are for debugging only, they further
+                 #underline the kludgy nature of this section of code.
+                 old_id = id(job)
+                 new_id = id(old_jobs[index])
+                 logger.debug("Replacing object %s with %s for job %s" %
+                              (old_id, new_id, job.name))
+                 job_state.job = old_jobs[index]
+            else:
+                #Here we just create new JobDefinitionWrappers, like we
+                #do in check_and_wrap_new_jobs, in case the session contained
+                #a job whose definition we don't have (i.e. one created by
+                #local jobs). I haven't seen this happen yet.
+                if not id(job) in self._native_id_to_wrapper_map:
+                    logger.debug("Creating a new JobDefinitionWrapper for %s",
+                                 job.name)
+                    wrapper = JobDefinitionWrapper(job)
+                    wrapper.publish_objects(self.connection)
+
+            #By here, either job definitions already exist, or they
+            #have been created. Create and publish the corresponding
+            #JobStateWrapper. Note that the JobStates already  had their
+            #'job' attribute pointed to an existing, mapped JobDefinition
+            #object.
+            self._job_state_map_wrapper[job.name] = JobStateWrapper(
+                    self.native.job_state_map[job.name])
+            self._job_state_map_wrapper[job.name].publish_objects(
+                    self.connection)
+
+    @dbus.service.method(
+        dbus_interface=SESSION_IFACE, in_signature='', out_signature='')
+    def Clean(self):
+        self.native.clean()
+
+    @dbus.service.method(
+        dbus_interface=SESSION_IFACE, in_signature='', out_signature='')
+    def PersistentSave(self):
+        self.native.persistent_save()
 
     @dbus.service.property(dbus_interface=SESSION_IFACE, signature='ao')
     @PlainBoxObjectWrapper.translate
@@ -750,7 +863,7 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         return self.native.get_all_exporters()
 
     @dbus.service.method(
-        dbus_interface=SERVICE_IFACE, in_signature='osass', out_signature='')
+        dbus_interface=SERVICE_IFACE, in_signature='osass', out_signature='s')
     @PlainBoxObjectWrapper.translate
     def ExportSession(self, session: 'o', output_format: 's',
                       option_list: 'as', output_file: 's'):
@@ -778,4 +891,113 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         dbus_interface=SERVICE_IFACE, in_signature='oo', out_signature='')
     @PlainBoxObjectWrapper.translate
     def RunJob(self, session: 'o', job: 'o'):
-        self.native.run_job(session, job)
+        running_job_wrp = RunningJob(job, session, conn=self.connection)
+        self.native.run_job(session, job, running_job_wrp)
+
+
+class UIOutputPrinter(extcmd.DelegateBase):
+    """
+    Delegate for extcmd that redirect all output to the UI.
+    """
+
+    def __init__(self, runner):
+        self._lineno = collections.defaultdict(int)
+        self._runner = runner
+
+    def on_line(self, stream_name, line):
+        self._lineno[stream_name] += 1
+        self._runner.IOLogGenerated(self._lineno[stream_name],
+                                    stream_name, line)
+
+
+class RunningJob(dbus.service.Object):
+    """
+    DBus representation of a running job.
+    """
+
+    def __init__(self, job, session, conn=None, object_path=None,
+                 bus_name=None):
+        self.path = object_path
+        if object_path is None:
+            id = str(random.uniform(1, 10)).replace('.', '')
+            self.path = "/plainbox/jobrunner/{}".format(id)
+        dbus.service.Object.__init__(self, conn, self.path, bus_name)
+        self.job = job
+        self.session = session
+        self.result = {}
+        self.ui_io_delegate = UIOutputPrinter(self)
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
+    def Kill(self):
+        pass
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
+    def Pause(self):
+        pass
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='ss', out_signature='')
+    def SetOutcome(self, outcome, comments=None):
+        self.result['outcome'] = outcome
+        self.result['comments'] = comments
+        job_result = DiskJobResult(self.result)
+        self.emitJobResultAvailable(self.job, job_result)
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='s', out_signature='')
+    def SetComments(self, comments):
+        pass
+
+    def _command_callback(self, return_code, record_path):
+        self.result['return_code'] = return_code
+        self.result['io_log_filename'] = record_path
+        self.emitAskForOutcomeSignal()
+
+    def _run_command(self, session, job, parent):
+        """
+        Run a Job command in a separate thread
+        """
+        ui_io_delegate = UIOutputPrinter(self)
+        runner = JobRunner(session.session_dir, session.jobs_io_log_dir,
+                           command_io_delegate=ui_io_delegate)
+        return_code, record_path = runner._run_command(job, None)
+        parent._command_callback(return_code, record_path)
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
+    def RunCommand(self):
+        runner = Thread(target=self._run_command,
+                        args=(self.session, self.job, self))
+        runner.start()
+
+    @dbus.service.signal(
+        dbus_interface=SERVICE_IFACE, signature='dsay')
+    def IOLogGenerated(self, offset, name, data):
+        pass
+
+    # XXX: Try to use PlainBoxObjectWrapper.translate here instead of calling
+    # emitJobResultAvailable to do the translation
+    @dbus.service.signal(
+        dbus_interface=SERVICE_IFACE, signature='oo')
+    def JobResultAvailable(self, job, result):
+        pass
+
+    @dbus.service.signal(
+        dbus_interface=SERVICE_IFACE, signature='o')
+    def AskForOutcome(self, runner):
+        pass
+
+    def emitAskForOutcomeSignal(self):
+        self.AskForOutcome(self.path)
+
+    def emitJobResultAvailable(self, job, result):
+        result_wrapper = JobResultWrapper(result)
+        result_wrapper.publish_objects(self.connection)
+        job_path = PlainBoxObjectWrapper.find_wrapper_by_native(job)
+        result_path = PlainBoxObjectWrapper.find_wrapper_by_native(result)
+        self.JobResultAvailable(job_path, result_path)
+
+    def update_job_result_callback(self, job, result):
+        self.emitJobResultAvailable(job, result)
