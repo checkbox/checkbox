@@ -59,6 +59,10 @@ class TestItem : public ListItem
     Q_PROPERTY(int depth READ depth WRITE setDepth NOTIFY depthChanged)
     Q_PROPERTY(int branch READ branch WRITE setBranch NOTIFY branchChanged)
 
+    // Job Result Information
+    Q_PROPERTY(QString io_log READ io_log WRITE setIo_log NOTIFY io_logChanged)
+    Q_PROPERTY(QString comments READ comments WRITE setComments NOTIFY commentsChanged)
+    Q_PROPERTY(QString outcome READ outcome WRITE setOutcome NOTIFY outcomeChanged)
 
 signals:
     void durationChanged();
@@ -86,6 +90,10 @@ signals:
 
     void depthChanged();
     void branchChanged();
+
+    void io_logChanged();
+    void commentsChanged();
+    void outcomeChanged();
 
 
 public:
@@ -118,6 +126,10 @@ public:
         ParentIdRole,
         DepthRole,
         BranchRole,
+
+        IOLogRole,
+        CommentsRole,
+        OutcomeRole
     };
 
 
@@ -228,6 +240,16 @@ public:
     inline int branch() const {return m_branch; }
     void setBranch(bool branch);
 
+    // io_log
+    inline QString io_log() const { return m_io_log; }
+    void setIo_log(const QString &io_log);
+
+    inline QString comments() const { return m_comments; }
+    void setComments(const QString &comments);
+
+    inline QString outcome() const { return m_outcome; }
+    void setOutcome(const QString &outcome);
+
 private:
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
 
@@ -263,6 +285,11 @@ private:
     int m_runstatus;
     int m_elapsedtime;
     int m_groupstatus;
+
+    // Job Result Information
+    QString m_io_log;   // Question: Is this going to be too much data?
+    QString m_comments; // Comments - whatever the user typed in running this
+    QString m_outcome;    // "pass"/"fail"/"skip"/"none"/"not-supported"
 };
 
 #endif // TESTITEM_H

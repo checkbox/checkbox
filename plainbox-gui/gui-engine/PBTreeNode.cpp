@@ -289,3 +289,125 @@ const QString PBTreeNode::id(void)
 
     return list.last();
 }
+
+// TODO - These can be refactored quite easily
+const QDBusObjectPath PBTreeNode::job(void)
+{
+    for(int j=0; j < interfaces.count(); j++) {
+        PBObjectInterface* iface = interfaces.at(j);
+
+        if (iface == NULL) {
+            qDebug("Null interface");
+        } else {
+            if(iface->interface.compare(JobStateInterface) == 0) {
+                QVariant variant;
+                variant = *iface->properties.find("job");
+                if (variant.isValid() ) {
+
+                    QDBusObjectPath job = variant.value<QDBusObjectPath>();
+
+                    return job;
+                }
+            }
+        }
+    }
+
+    // No job - should this be flagged as an error in the tests themselves?
+    qDebug("There is no job property");
+
+    return QDBusObjectPath("");
+}
+
+const QDBusObjectPath PBTreeNode::result(void)
+{
+    for(int j=0; j < interfaces.count(); j++) {
+        PBObjectInterface* iface = interfaces.at(j);
+
+        if (iface == NULL) {
+            qDebug("Null interface");
+        } else {
+            if(iface->interface.compare(JobStateInterface) == 0) {
+                QVariant variant;
+                variant = *iface->properties.find("result");
+                if (variant.isValid() ) {
+
+                    QDBusObjectPath result = variant.value<QDBusObjectPath>();
+
+                    return result;
+                }
+            }
+        }
+    }
+
+    // No name - should this be flagged as an error in the tests themselves?
+    return QDBusObjectPath("");
+}
+
+
+const QString PBTreeNode::io_log(void)
+{
+    for(int j=0; j < interfaces.count(); j++) {
+        PBObjectInterface* iface = interfaces.at(j);
+
+        if (iface == NULL) {
+            qDebug("Null interface");
+        } else {
+            if(iface->interface.compare(JobResultInterface) == 0) {
+                QVariant variant;
+                variant = *iface->properties.find("io_log");
+                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
+                    return variant.toString();
+                }
+            }
+        }
+    }
+
+    // No name - should this be flagged as an error in the tests themselves?
+    return QString("");
+}
+
+
+const QString PBTreeNode::comments(void)
+{
+    for(int j=0; j < interfaces.count(); j++) {
+        PBObjectInterface* iface = interfaces.at(j);
+
+        if (iface == NULL) {
+            qDebug("Null interface");
+        } else {
+            if(iface->interface.compare(JobResultInterface) == 0) {
+                QVariant variant;
+                variant = *iface->properties.find("comments");
+                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
+                    return variant.toString();
+                }
+            }
+        }
+    }
+
+    // No name - should this be flagged as an error in the tests themselves?
+    return QString("");
+}
+
+
+const QString PBTreeNode::outcome(void)
+{
+    for(int j=0; j < interfaces.count(); j++) {
+        PBObjectInterface* iface = interfaces.at(j);
+
+        if (iface == NULL) {
+            qDebug("Null interface");
+        } else {
+            if(iface->interface.compare(JobResultInterface) == 0) {
+                QVariant variant;
+                variant = *iface->properties.find("outcome");
+                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
+                    return variant.toString();
+                }
+            }
+        }
+    }
+
+    // No name - should this be flagged as an error in the tests themselves?
+    return QString("");
+}

@@ -35,10 +35,10 @@ void TestGuiEngine::TestGetWhiteListPathsAndNames()
     QVERIFY(whitenames.count() != 0);
 }
 
-void TestGuiEngine::TestGetJobsNames()
+void TestGuiEngine::TestRunLocalJobs()
 {
-    // we should connect a reciever to the LocalJobsCompleted() signal
-    connect(this, SIGNAL(localJobsCompleted(void)), this, SLOT(AcknowledgeJobsDone()));
+    // we should connect a receiver to the LocalJobsCompleted() signal
+    connect(this, SIGNAL(localJobsCompleted(void)), this, SLOT(AcknowledgeLocalJobsDone()));
 
     RunLocalJobs();
 
@@ -47,7 +47,25 @@ void TestGuiEngine::TestGetJobsNames()
         QTest::qWait(1);   // spin for 1ms in the event loop
     }
 
+    // For interest
     GetJobTreeNodes()->LogDumpTree(GetValidRunList());
+
+    // we should disconnect a the old receiver of the localJobsCompleted() signal
+    disconnect(this, SIGNAL(localJobsCompleted(void)), this, SLOT(AcknowledgeLocalJobsDone()));
+}
+
+void TestGuiEngine::TestRunJobs()
+{
+    // we should connect a reciever to the jobsCompleted() signal
+    connect(this, SIGNAL(jobsCompleted(void)), this, SLOT(AcknowledgeJobsDone()));
+
+    // Now, we want to run all the real jobs
+    RunJobs();
+
+    // Now, spin the loop to process Job completion signals from Plainbo
+    while(!m_jobs_done) {
+        QTest::qWait(1);   // spin for 1ms in the event loop
+    }
 }
 
 void TestGuiEngine::TestShutdown()

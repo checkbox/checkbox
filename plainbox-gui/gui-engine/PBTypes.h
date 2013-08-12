@@ -57,4 +57,9 @@ typedef QList<QDBusObjectPath> opath_array_t;
 
 Q_DECLARE_METATYPE(opath_array_t);
 
+/* We would like a metatype to represent returned job_state_map dictionary */
+typedef QMap<QString,QDBusObjectPath> jsm_t;
+
+Q_DECLARE_METATYPE(jsm_t);
+
 #endif // PB_TYPES_H

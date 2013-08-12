@@ -45,22 +45,22 @@ Page {
     // set testsuitelist.itemindex to the index of the current item in the ModelSectionCounter
     // testsuitelist.curSectionTested = "" when done completed
     // and item is the current item in the view.
-    Timer {
-        id: timer
+
+    Item {
+        id: timer	// TODO - This is a legacy name from the prototype. It should be renamed
         property int testIndex: 0                       // which test we are running from the list
         property int totalTests: testListModel.count
         property var startTime: new Date()
         property var testStartTime: new Date()
 
+        property bool running;
 
+        Connections {
+            target: guiEngine
 
-        interval:1;
-        running: true;
-        repeat: true
+            onJobsCompleted: {
+                console.log("onJobsCompleted");
 
-
-        onTriggered: {
-            if (testIndex == totalTests ){
                 // All tests are done
                 runmanagerview.testingComplete = true;
                 // update ui
@@ -68,32 +68,44 @@ Page {
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - timer.startTime)) + ")";
                 progress.enabled = false;
-                running = false;
+                timer.running = false;
 
                 // set flags in list (for group details)
                 testsuitelist.curSectionTested = "";  // set this as there is no more tested
             }
-            else {
-                // TODO - this is hardcoding the properties.... PB shuold be doing this
-                testListModel.setProperty(testIndex, "runstatus", 2);  // this will come from Plainbox
-                // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
-                testListModel.setProperty(testIndex, "groupstatus", 2);
 
-                testsuitelist.itemindex = testIndex;    // tell list which item to select
+            onUpdateGuiObjects: {
+                /* we must translate from job_id ("/plainbox/job/<id_string>
+                 * Into the index for one of the displayed items
+                 */
+                var i = 0;
+                for (i = testListModel.count -1; i>=0; i--) {
+
+                    // Compare the m_path to the job_id
+                    var item = testListModel.get(i);
+
+                    if (item.objectpath === job_id ) {
+                        timer.testIndex =i ;
+                    }
+                }
+                // TODO - this is hardcoding the properties.... PB shuold be doing this
+                testListModel.setProperty(timer.testIndex, "runstatus", 2);  // this will come from Plainbox
+                // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
+                testListModel.setProperty(timer.testIndex, "groupstatus", 2);
+
 
                 // set elapsed time
                 var stopTime = new Date();
-                testListModel.setProperty(testIndex, "elapsedtime", stopTime - timer.testStartTime);
+                testListModel.setProperty(timer.testIndex, "elapsedtime", stopTime - timer.testStartTime);
 
-                testStartTime = stopTime;
-                progress.value = testIndex + 1;
-                var testname =  testListModel.get(testIndex).testname;
-                progress.title = "Running " + (testIndex + 1)
+                timer.testStartTime = stopTime;
+                progress.value = timer.testIndex + 1;
+                var testname =  testListModel.get(timer.testIndex).testname;
+                progress.title = "Running " + (timer.testIndex + 1)
                         + " of "+ testListModel.count
                         + "  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")"
                         + "   " + testname;
             }
-            testIndex++;
         }
     }
 

@@ -42,9 +42,23 @@ static const QString PBWhiteListInterface("com.canonical.certification.PlainBox.
 // Session Interfaces
 static const QString PBSessionStateInterface("com.canonical.certification.PlainBox.Session1");
 
-// Well-known Plainbox/Checkbox Job Interfaces
-static const QString PlainboxJobDefinition1("com.canonical.certification.PlainBox.JobDefinition1");
-static const QString CheckBoxJobDefinition1("com.canonical.certification.CheckBox.JobDefinition1");
+// JobRunner Interfaces
+static const QString PBJobRunnerInterface("com.canonical.certification.PlainBox.RunningJob1");
 
+// Well-known Plainbox/Checkbox Job Interfaces
+static const QString CheckBoxJobDefinition1("com.canonical.certification.CheckBox.JobDefinition1");
+static const QString PlainboxJobDefinition1("com.canonical.certification.PlainBox.JobDefinition1");
+
+// JobState interfaces
+static const QString JobStateInterface("com.canonical.certification.PlainBox.JobState1");
+
+// JobResult interface
+static const QString JobResultInterface("com.canonical.certification.PlainBox.JobResult1");
+
+
+// JobResults
+static const QString JobResult_OUTCOME_PASS = "pass";
+static const QString JobResult_OUTCOME_FAIL = "fail";
+static const QString JobResult_OUTCOME_SKIP = "skip";
 
 #endif // PB_NAMES_H

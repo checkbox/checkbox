@@ -29,6 +29,7 @@
  private slots:
      void TestInitialise();
      void TestGetWhiteListPathsAndNames(void);
-     void TestGetJobsNames();
+     void TestRunLocalJobs();
+     void TestRunJobs();
      void TestShutdown();
  };
