@@ -21,6 +21,7 @@
  */
 
 #include <qdebug.h>
+#include "../gui-engine/PBNames.h"
 #include "testitem.h"
 
 
@@ -66,6 +67,10 @@ TestItem::TestItem(const double &duration, \
           m_elapsedtime(0),
               m_groupstatus(0)
 {
+    // FIXME - Hard-coded data whilst we correct the RunManagerTestDelegate
+    m_outcome = JobResult_OUTCOME_PASS;
+    m_comments = "No comment set";
+    m_io_log = "IO Log not set";
 }
 
 QHash<int, QByteArray> TestItem::roleNames() const
@@ -87,7 +92,7 @@ QHash<int, QByteArray> TestItem::roleNames() const
 
   names[GroupRole] = "group";
   names[CheckRole] = "check";
-  names[ObjectPathRole] = "path";
+  names[ObjectPathRole] = "objectpath";
 
   names[RunstatusRole] = "runstatus";
   names[ElapsedtimeRole] = "elapsedtime";
@@ -97,6 +102,10 @@ QHash<int, QByteArray> TestItem::roleNames() const
   names[ParentIdRole] = "parentid";
   names[DepthRole] = "depth";
   names[BranchRole] = "branch";
+
+  names[IOLogRole] = "io_log";
+  names[CommentsRole] = "comments";
+  names[OutcomeRole] = "outcome";
 
   return names;
 }
@@ -251,8 +260,19 @@ void TestItem::setData(const QVariant & value, int role){
     case BranchRole:
         setBranch(value.toBool());
         break;
-    }
 
+    case IOLogRole:
+        setIo_log(value.toString());
+        break;
+
+    case CommentsRole:
+        setComments(value.toString());
+        break;
+
+    case OutcomeRole:
+        setOutcome(value.toString());
+        break;
+    }
 }
 
 void TestItem::setGroup(const QString &groupName){
@@ -420,6 +440,30 @@ void TestItem::setBranch(bool branch){
     if (branch != m_branch){
         m_branch = branch;
         emit branchChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setIo_log(const QString &io_log){
+    if (m_io_log.compare(io_log) != 0 ) {
+        m_io_log = io_log;
+        emit io_logChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setComments(const QString &comments){
+    if (m_comments.compare(comments) != 0 ) {
+        m_comments = comments;
+        emit commentsChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setOutcome(const QString &outcome){
+    if (m_outcome.compare(outcome) != 0 ) {
+        m_outcome = outcome;
+        emit outcomeChanged();
         emit dataChanged();
     }
 }

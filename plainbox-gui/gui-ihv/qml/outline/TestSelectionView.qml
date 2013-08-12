@@ -150,6 +150,9 @@ Page {
         onStartTesting: {
             mainView.state = "RUNMANAGER"
             console.log("Start Testing")
+
+            /* kick off the real tests now */
+            guiEngine.RunJobs();
         }
     }
 

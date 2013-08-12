@@ -148,6 +148,9 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         // Local jobs use description as the visible name
         bool description_as_name = false;
 
+        // The path for this job is:
+        path = jnode->m_node->object_path.path();
+
         for(int j=0; j < node->interfaces.count(); j++) {
 
             iface = node->interfaces.at(j);

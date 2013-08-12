@@ -79,6 +79,15 @@ public:
     const QString id(void);
     const QString name(void);
 
+    // From JobState nodes
+    const QDBusObjectPath job(void);
+    const QDBusObjectPath result(void);
+
+    // From JobResult nodes (either DiskJobResult or MemoryJobResult)
+    const QString io_log(void); // note this can be very large
+    const QString comments(void);
+    const QString outcome(void);
+
 public:
     PBTreeNode *parent;
 

@@ -82,14 +82,17 @@ public slots:
          */
         void RunLocalJobs(void);
 
+        void RunJobs(void);
+
         /* Signal receivers from Plainbox
          */
-
-        void JobResultAvailable(QDBusMessage msg);
-
         void InterfacesAdded(QDBusMessage msg);
         void InterfacesRemoved(QDBusMessage msg);
 
+        void CatchallAskForOutcomeSignalsHandler(QDBusMessage msg);
+        void CatchallIOLogGeneratedSignalsHandler(QDBusMessage msg);
+        void CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg);
+        void CatchallJobResultAvailableSignalsHandler(QDBusMessage msg);
         /* Helper functions for logging and testing
          */
 
@@ -98,6 +101,7 @@ public slots:
 
         // Used by the test program test-gui-engine
         void AcknowledgeJobsDone(void);
+        void AcknowledgeLocalJobsDone(void);
 
 public:
         // Returns a list of all the jobnodes
@@ -108,19 +112,21 @@ public:
 
         // Returns a list of DBus Object Paths for valid tests
         const QList<QDBusObjectPath>& GetValidRunList(void) {
-            return valid_run_list;
+            return m_run_list;
         }
 
 signals:
         // Instruct the GUI to update itself
-        void UpdateGuiObjects(void);
+        void updateGuiObjects(const QString& job_id); // i.e. plainbox/job/<job_id>
         void localJobsCompleted(void);
+        void jobsCompleted(void);
 
 private:
         // Helper function when generating the desired local and real jobs
         QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
 
-        // Temporary public functions
+        bool RefreshPBObjects(void);
+
         const PBTreeNode* GetRootJobsNode(const PBTreeNode *node);
         const PBTreeNode* GetRootWhiteListNode(const PBTreeNode *node);
 
@@ -150,8 +156,25 @@ private:
                                         const QDBusObjectPath &job_path, \
                                         const QDBusObjectPath &result_path);
 
+        // JobRunner Methods
+        void RunCommand(const QDBusObjectPath& runner);
+        void SetOutcome(const QDBusObjectPath& runner, \
+                        const QString& outcome, \
+                        const QString& comments);
+
+        // Job Properties
+        QString GetCommand(const QDBusObjectPath& opath);
+
         // Service Methods
         void RunJob(const QDBusObjectPath session, const QDBusObjectPath opath);
+
+protected:  // for test purposes only
+        // JobStateMap
+        jsm_t GetJobStateMap(void);
+
+        void GetJobStates(void);
+
+        void GetJobResults(void);
 
         // Debugging tool
         const QString JobNameFromObjectPath(const QDBusObjectPath& opath);
@@ -159,7 +182,9 @@ private:
 private:
         EngineState enginestate;
 
-        // Contains our Tree of Plainbox objects (Methods, results, tests etc)
+        /* Contains our Tree of Plainbox objects (Methods, results, tests etc)
+         * Structure is as exposed on DBus.
+         */
         PBTreeNode* pb_objects;
 
         // Have we got valid tree of PlainBox objects?
@@ -172,9 +197,6 @@ private:
 
         // A user-selected list of tests. We store the object path
         QMap<QDBusObjectPath, bool> tests;
-
-        // All the jobs which are valid to be chosen by the user
-        QList<QDBusObjectPath> valid_run_list;
 
         // All the jobs ultimately selected by the user
         QList<QDBusObjectPath> final_run_list;
@@ -197,9 +219,23 @@ private:
 
         QList<QDBusObjectPath> m_desired_local_job_list;
 
+        // Job State Map
+        jsm_t m_jsm;
+
+        // Job State List (NB: These are NOT in pb_objects!)
+        QList<PBTreeNode*> m_job_state_list;
+
+        /* Job Results. These could be either DiskJobResults or MemoryJobResults
+         *
+         * (NB: These are NOT in pb_objects!)
+         */
+        QList<PBTreeNode*> m_job_state_results;
+
 // Used by the test program
 protected:
         bool m_local_jobs_done;
+
+        bool m_jobs_done;
 };
 
  #endif
