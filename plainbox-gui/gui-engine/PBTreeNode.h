@@ -88,6 +88,19 @@ public:
     const QString comments(void);
     const QString outcome(void);
 
+    // Convenient enumeration of Job Results. We will use these in the GUI
+    Q_ENUMS(PBJobResult);
+    enum PBJobResult {
+        PBJobResult_NotRun = 0,
+        PBJobResult_Skip = 1,
+        PBJobResult_Pass = 2,
+        PBJobResult_Fail = 3,
+        PBJobResult_Error = 4, // not clear what this means? log_viewer_with_trouble???
+        PBJobResult_UserInteraction = 5, // May not make sense here
+        PBJobResult_DepsNotMet = 6,  // We want to show jobs where deps are not met
+        PBJobResult_Running = 7 // this test is being run right now
+    };
+
 public:
     PBTreeNode *parent;
 

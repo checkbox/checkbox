@@ -151,6 +151,9 @@ Page {
             mainView.state = "RUNMANAGER"
             console.log("Start Testing")
 
+            // Finally update the really selected testsuitelist
+            testitemFactory.GetSelectedRealJobs(testListModel);
+
             /* kick off the real tests now */
             guiEngine.RunJobs();
         }

@@ -187,6 +187,7 @@ void JobTreeNode::LogDumpTree(const QList<QDBusObjectPath>& wanted)
     qDebug("JobTreeNode::LogDumpTree - Done");
 }
 
+// NB This preserves the ordering of list1 - Useful when generating the run_list
 QList<QDBusObjectPath> JobTreeNode::FilteredJobs( \
         const QList<QDBusObjectPath> list1, \
         const QList<QDBusObjectPath> list2)

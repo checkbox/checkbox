@@ -21,9 +21,6 @@
 
 #include "testitemmodel.h"
 
-
-
-
 // Factory class to create or update a TestItem Model
 ListModel* TestItemModel::CreateTestListModel(ListModel* model)
 {
@@ -114,6 +111,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         QString description;
         QString command;
         QString environ;
+        QString plugin;
         QString type = tr("Automatic");
         QString user;
         QString via;
@@ -196,10 +194,11 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                     variant = *iface->properties.find("plugin");
 
                     if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
+                        plugin = variant.toString();
+
                         /* show plugin type as either Automatic (default) or
                          * Manual.
                          */
-
                         if (variant.toString().compare("manual") == 0 ||
                                 variant.toString().compare("user-interact") == 0 ||
                                 variant.toString().compare("user-verify") == 0 ) {
@@ -260,6 +259,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                                           description, \
                                           command, \
                                           environ, \
+                                          plugin, \
                                           type, \
                                           user, \
                                           group, \
@@ -279,4 +279,70 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
     qDebug("TestItemModel::CreateTestListModel() - done");
 
     return model;
+}
+
+QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
+{
+    qDebug("TestItemModel::GetSelectedRealJobs()");
+
+    QList<QDBusObjectPath> selected_jobs_list;
+
+    if (!model) {
+        qDebug("No ListModel supplied");
+        return selected_jobs_list;
+    }
+
+    for(int i=0; i< model->getCount(); i++) {
+
+        /* Should this item be put into the run list? Yes,
+        * UNLESS it is a local or resource job. We need the
+        * objectpath and the plugin type to make the decision
+        */
+        QModelIndex index = model->index(i);
+        QVariant variant = model->data(index,TestItem::ObjectPathRole);
+        QString objectpath = variant.toString();
+
+        // Get the name of this test for logging purposes
+        variant = model->data(index,TestItem::TestNameRole);
+        QString name = variant.toString();
+
+        variant = model->data(index,TestItem::PluginRole);
+        QString plugin = variant.toString();
+
+        if (plugin.compare("local") != 0 && plugin.compare("resource") != 0) {
+            /* ok, potentially it could be selected, so now we check if the
+             * user REALLY wanted it before putting it in the list
+             */
+            variant = model->data(index,TestItem::CheckRole);
+            bool check = variant.toBool();
+
+            if (check) {
+                qDebug() << name.toStdString().c_str();
+
+                // Now, we might add this to our list
+                QDBusObjectPath opath(objectpath);
+
+                // Ok, your name is on the list...
+                selected_jobs_list.append(opath);
+
+            } else {
+                qDebug() << name.toStdString().c_str() << " SKIP ";
+            }
+        }
+    }
+
+    // Store this in the guiengine
+    const QString engname("");
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
+    if(myengine == NULL) {
+        qDebug("Cant find guiengine object");
+
+        return selected_jobs_list;
+    }
+
+    myengine->SetRealJobsList(selected_jobs_list);
+
+    qDebug("TestItemModel::GetSelectedRealJobs() - Done");
+
+    return selected_jobs_list;
 }

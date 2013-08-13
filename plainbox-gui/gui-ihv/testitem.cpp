@@ -33,6 +33,7 @@ TestItem::TestItem(const double &duration, \
                    const QString &description, \
                    const QString &command, \
                    const QString &environ, \
+                   const QString &plugin, \
                    const QString &type, \
                    const QString &user, \
                    const QString &via, \
@@ -53,6 +54,7 @@ TestItem::TestItem(const double &duration, \
               m_description(description), \
               m_command(command), \
               m_environ(environ), \
+              m_plugin(plugin), \
               m_type(type), \
               m_user(user), \
               m_via(via), \
@@ -86,6 +88,7 @@ QHash<int, QByteArray> TestItem::roleNames() const
 
   names[CommandRole] = "command";
   names[EnvironRole] = "environ";
+  names[PluginRole] = "plugin";
   names[TypeRole] = "type";
   names[UserRole] = "user";
   names[ViaRole] = "via";
@@ -130,6 +133,8 @@ QVariant TestItem::data(int role) const
       return command();
   case EnvironRole:
       return environ();
+  case PluginRole:
+      return plugin();
   case TypeRole:
       return type();
   case UserRole:
@@ -207,6 +212,10 @@ void TestItem::setData(const QVariant & value, int role){
 
     case EnvironRole:
         setEnviron(value.toString());
+        break;
+
+    case PluginRole:
+        setPlugin(value.toString());
         break;
 
     case TypeRole:
@@ -359,6 +368,14 @@ void TestItem::setEnviron(const QString &environ){
     if (environ.compare(environ) != 0 ) {
         m_environ = environ;
         emit environChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setPlugin(const QString &plugin){
+    if (plugin.compare(plugin) != 0 ) {
+        m_plugin = plugin;
+        emit pluginChanged();
         emit dataChanged();
     }
 }
