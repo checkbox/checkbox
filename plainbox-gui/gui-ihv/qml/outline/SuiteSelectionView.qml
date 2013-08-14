@@ -79,6 +79,9 @@ Page {
         text: i18n.tr("OK")
         color: UbuntuColors.lightAubergine
         onClicked: {
+            // Ensure we only ask the service about this once (Bug 1209284)
+            okbutton.enabled = false;
+
             // Dump the whitelist as finally selected by the user
             guiEngine.dump_whitelist_selection();
 
