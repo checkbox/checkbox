@@ -1525,6 +1525,19 @@ void GuiEngine::AcknowledgeJobsDone(void)
     qDebug("GuiEngine::AcknowledgeJobsDone() - done");
 }
 
+// Returns a list of DBus Object Paths for valid tests
+const QList<QDBusObjectPath>& GuiEngine::GetValidRunList(void)
+{
+    return m_run_list;
+}
+
+int GuiEngine::ValidRunListCount(void)
+{
+    qDebug("ValidRunListCount()");
+
+    return m_run_list.count();
+}
+
 bool GuiEngine::RefreshPBObjects(void)
 {
     qDebug("GuiEngine::RefreshPBObjects");

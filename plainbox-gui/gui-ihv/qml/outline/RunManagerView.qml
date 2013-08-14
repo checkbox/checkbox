@@ -49,8 +49,11 @@ Page {
     Item {
         id: updater
         property int completed: 0   // How many tests have we run so far?
-        property int testIndex: 0                       // which test we are running from the list
+        property int testIndex: 0   // which test we are running from the list
+
+        // totalTests: Denotes lines in the listview model, NOT real number of tests
         property int totalTests: testListModel.count
+
         property var startTime: new Date()
         property var testStartTime: new Date()
 
@@ -64,6 +67,7 @@ Page {
 
                 // All tests are done
                 runmanagerview.testingComplete = true;
+
                 // update ui
                 runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
@@ -105,11 +109,16 @@ Page {
                 updater.testStartTime = stopTime;
 
                 // Update the progress bar
-                progress.value = current_job_index; // from onUpdateGuiObjects
+                progress.maxValue = guiEngine.ValidRunListCount();
+
+                /* +1 because the index is from zero, but we want to show the
+                 * zero'th test as test 1
+                 */
+                progress.value = current_job_index+1; // from onUpdateGuiObjects
 
                 var testname =  testListModel.get(updater.testIndex).testname;
-                progress.title = "Running " + (current_job_index)
-                        + " of "+ testListModel.count
+                progress.title = "Running " + (progress.value)
+                        + " of "+ progress.maxValue
                         + "  (" + utils.formatElapsedTime(stopTime - updater.startTime) + ")"
                         + "   " + testname;
             }
@@ -224,7 +233,7 @@ Page {
             horizontalCenter: parent.horizontalCenter
         }
         title: i18n.tr("Running")
-        maxValue: testListModel.count //TODO put the number of tests here
+        maxValue: guiEngine.ValidRunListCount();
         value: 0
 
     }

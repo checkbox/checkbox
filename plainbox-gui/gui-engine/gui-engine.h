@@ -111,17 +111,18 @@ public slots:
         void AcknowledgeJobsDone(void);
         void AcknowledgeLocalJobsDone(void);
 
+        // Returns a list of DBus Object Paths for valid tests
+        const QList<QDBusObjectPath>& GetValidRunList(void);
+
+        // Useful for the progress bar in the run manager
+        int ValidRunListCount(void);
+
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
 
         // Returns a tree of all the jobs
         JobTreeNode* GetJobTreeNodes();
-
-        // Returns a list of DBus Object Paths for valid tests
-        const QList<QDBusObjectPath>& GetValidRunList(void) {
-            return m_run_list;
-        }
 
 signals:
         // Instruct the GUI to update itself
@@ -180,7 +181,6 @@ private:
 
         // Convenience functions
         const int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
-
 
 protected:  // for test purposes only
         // JobStateMap
