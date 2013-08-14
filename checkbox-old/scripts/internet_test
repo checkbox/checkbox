@@ -162,8 +162,8 @@ def ping(host, interface, count, deadline, verbose=False):
         command = ("ping -I%s -c %s -w %s %s"
                    % (interface, count, deadline, host))
 
-    reg = re.compile(r"(\d) received")
-    packets_received = 0
+    reg = re.compile(r"(\d+) packets transmitted, (\d+) received, (\d+)% packet loss")
+    ping_summary = None
 
     output = os.popen(command)
     for line in output.readlines():
@@ -172,9 +172,12 @@ def ping(host, interface, count, deadline, verbose=False):
 
         received = re.findall(reg, line)
         if received:
-            packets_received = int(received[0])
+            ping_summary = received[0]
 
-    return packets_received
+    ping_summary={'transmitted': int(ping_summary[0]),
+                  'received': int(ping_summary[1]),
+                  'pct_loss': int(ping_summary[2])}
+    return ping_summary
 
 
 def main(args):
@@ -199,6 +202,12 @@ def main(args):
                         default=default_delay,
                         type=int,
                         help="Timeouts in seconds.")
+    parser.add_argument("-t", "--threshold",
+                        default=0,
+                        type=int,
+                        help="Percentage of allowed packet loss before "
+                             "considering test failed. Defaults to 0 "
+                             "(meaning any packet loss will fail the test)")
     parser.add_argument("-v", "--verbose",
                         action='store_true',
                         help="Be verbose.")
@@ -206,23 +215,56 @@ def main(args):
                         help="Interface to ping from.")
     args = parser.parse_args()
 
+    #Ensure count and deadline make sense. Adjust them if not.
+
+    if args.deadline != default_delay and args.count != default_count:
+        #Ensure they're both consistent, and exit with a warning if
+        #not, rather than modifying what the user explicitly set.
+        if args.deadline <= args.count:
+            print("ERROR: not enough time for %s pings in %s seconds" %
+                  (args.count, args.deadline))
+            return(1)
+    elif args.deadline != default_delay:
+        #Adjust count according to delay.
+        args.count = args.deadline - 1
+        if args.count < 1:
+            args.count = 1
+        if args.verbose:
+            print("Adjusting ping count to %s to fit in %s-second deadline" %
+                  (args.count, args.deadline))
+    else:
+        #Adjust delay according to count
+        args.deadline = args.count + 1
+        if args.verbose:
+            print("Adjusting deadline to %s seconds to fit %s pings" %
+                  (args.deadline, args.count))
+
     #If given host is not pingable, override with something pingable.
     host = get_host_to_ping(interface=args.interface,
                             verbose=args.verbose, default=args.host)
 
     if args.verbose:
         print("Checking connectivity to %s" % host)
-    received_packets = 0
+    ping_summary = None
     if host:
-        received_packets = ping(host, args.interface, args.count,
-                                args.deadline, args.verbose)
+        ping_summary = ping(host, args.interface, args.count,
+                            args.deadline, args.verbose)
 
-    if received_packets == 0:
+    if ping_summary == None or ping_summary['received'] == 0:
         print(_("No Internet connection"))
         return 1
-    elif received_packets != args.count:
-        print(_("Connection established lost a packet"))
-        return 1
+    elif ping_summary['transmitted'] != ping_summary['received']:
+        print(_("Connection established, but lost {}% of packets".format(
+                                                  ping_summary['pct_loss'])))
+        if ping_summary['pct_loss'] > args.threshold:
+            print(_("FAIL: {}% packet loss is higher"
+                    "than {}% threshold").format(ping_summary['pct_loss'],
+                                                 args.threshold))
+            return 1
+        else:
+            print(_("PASS: {}% packet loss is within {}% threshold").format(
+                                   ping_summary['pct_loss'], args.threshold))
+            return 0
     else:
         print(_("Internet connection fully established"))
         return 0
