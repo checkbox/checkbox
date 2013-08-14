@@ -213,7 +213,7 @@ Page {
 
         anchors {
             bottom: runbuttons.top
-            bottomMargin: units.gu(4)
+            bottomMargin: units.gu(6) // SDK Bug? 0 places it Over the buttons!
             horizontalCenter: parent.horizontalCenter
         }
         title: i18n.tr("Running")
