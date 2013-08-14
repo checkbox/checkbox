@@ -47,9 +47,13 @@ Page {
     // and item is the current item in the view.
 
     Item {
-        id: timer	// TODO - This is a legacy name from the prototype. It should be renamed
-        property int testIndex: 0                       // which test we are running from the list
+        id: updater
+        property int completed: 0   // How many tests have we run so far?
+        property int testIndex: 0   // which test we are running from the list
+
+        // totalTests: Denotes lines in the listview model, NOT real number of tests
         property int totalTests: testListModel.count
+
         property var startTime: new Date()
         property var testStartTime: new Date()
 
@@ -63,12 +67,13 @@ Page {
 
                 // All tests are done
                 runmanagerview.testingComplete = true;
+
                 // update ui
                 runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
-                progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - timer.startTime)) + ")";
+                progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;
-                timer.running = false;
+                updater.running = false;
 
                 // set flags in list (for group details)
                 testsuitelist.curSectionTested = "";  // set this as there is no more tested
@@ -85,25 +90,36 @@ Page {
                     var item = testListModel.get(i);
 
                     if (item.objectpath === job_id ) {
-                        timer.testIndex =i ;
+                        updater.testIndex =i ;
                     }
                 }
-                // TODO - this is hardcoding the properties.... PB shuold be doing this
-                testListModel.setProperty(timer.testIndex, "runstatus", 2);  // this will come from Plainbox
-                // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
-                testListModel.setProperty(timer.testIndex, "groupstatus", 2);
 
+                // outcome comes from guiengine in this signal
+                testListModel.setProperty(updater.testIndex, "runstatus", outcome);
+
+                // We may consider setting the IO Log details too here, but not yet
+
+                // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
+                testListModel.setProperty(updater.testIndex, "groupstatus", 2);
 
                 // set elapsed time
                 var stopTime = new Date();
-                testListModel.setProperty(timer.testIndex, "elapsedtime", stopTime - timer.testStartTime);
+                testListModel.setProperty(updater.testIndex, "elapsedtime", stopTime - updater.testStartTime);
 
-                timer.testStartTime = stopTime;
-                progress.value = timer.testIndex + 1;
-                var testname =  testListModel.get(timer.testIndex).testname;
-                progress.title = "Running " + (timer.testIndex + 1)
-                        + " of "+ testListModel.count
-                        + "  (" + utils.formatElapsedTime(stopTime - timer.startTime) + ")"
+                updater.testStartTime = stopTime;
+
+                // Update the progress bar
+                progress.maxValue = guiEngine.ValidRunListCount();
+
+                /* +1 because the index is from zero, but we want to show the
+                 * zero'th test as test 1
+                 */
+                progress.value = current_job_index+1; // from onUpdateGuiObjects
+
+                var testname =  testListModel.get(updater.testIndex).testname;
+                progress.title = "Running " + (progress.value)
+                        + " of "+ progress.maxValue
+                        + "  (" + utils.formatElapsedTime(stopTime - updater.startTime) + ")"
                         + "   " + testname;
             }
         }
@@ -217,7 +233,7 @@ Page {
             horizontalCenter: parent.horizontalCenter
         }
         title: i18n.tr("Running")
-        maxValue: testListModel.count //TODO put the number of tests here
+        maxValue: guiEngine.ValidRunListCount();
         value: 0
 
     }
@@ -253,19 +269,19 @@ Page {
         }
 
         function resume(){
-            // TODO call into plainbox to resume
-            timer.testStartTime = new Date()
-            timer.running = true;
-            timer.repeat = true;
+            updater.testStartTime = new Date()
+            updater.running = true;
             console.log("Resume...")
+
+            guiEngine.Resume();
         }
 
         function pause(){
-            // TODO call into plainbox to pause
-            timer.running = false;
-            timer.repeat = false;
+            updater.running = false;
             progress.title = progress.title.replace("Running", "Paused ")
             console.log("Pause...")
+
+            guiEngine.Pause();
         }
 
         Component {
@@ -277,7 +293,7 @@ Page {
         Component {
             id: manual_dialog
             ManualInteractionDialog{
-                testItem: testListModel.get(timer.testIndex);
+                testItem: testListModel.get(updater.testIndex);
             }
         }
 

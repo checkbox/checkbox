@@ -41,6 +41,7 @@ GuiEngine::GuiEngine( QObject*parent ) :
     pb_objects(NULL),
     valid_pb_objects(false),
     job_tree(NULL),
+    m_running(true),
     m_local_jobs_done(false),
     m_jobs_done(false)
 
@@ -360,7 +361,7 @@ void GuiEngine::InterfacesAdded(QDBusMessage msg)
     // todo
 
     // Now tell the GUI to update its knowledge of the objects
-    emit updateGuiObjects("TBD1");
+    emit updateGuiObjects("TBD1",0,0);
 
     qDebug("GuiEngine::InterfacesAdded - done");
 }
@@ -399,7 +400,7 @@ void GuiEngine::InterfacesRemoved(QDBusMessage msg)
     // todo
 
     // Now tell the GUI to update its knowledge of the objects
-    emit updateGuiObjects("TBD2");
+    emit updateGuiObjects("TBD2",0,0);
 
     qDebug("GuiEngine::InterfacesRemoved - done");
 }
@@ -535,21 +536,80 @@ void GuiEngine::dump_whitelist_selection(void)
     }
 }
 
+void GuiEngine::Pause(void)
+{
+    // Very simple
+    m_running = false;
+}
+
+void GuiEngine::Resume(void)
+{
+    if (!m_running) {
+
+        // Make a note of it
+        m_running = true;
+
+        if (m_run_list.count() != m_current_job_index) {
+
+            // Update the GUI so it knows what job is starting
+            emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
+                                  m_current_job_index, \
+                                  PBTreeNode::PBJobResult_Running);
+
+            // Now run the next job
+            qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+
+            RunJob(m_session,m_run_list.at(m_current_job_index));
+
+            return;
+        }
+
+        // Tell the GUI its all finished
+        emit jobsCompleted();
+    }
+}
+
 /* Run all the "real" test jobs. For consistency and clarity, we follow the
  * logic found in dbus-mini-client.py
  */
 void GuiEngine::RunJobs(void)
 {
-    qDebug("GuiEngine::RunJobs");
+//    qDebug("GuiEngine::RunJobs");
 
+    /* First, filter out any jobs we really dont want (i.e. not user-selected)
+    *
+    * Note: m_final_run_list is in the order of items shown in the gui,
+    * so we try to preserve that when we give it to UpdateDesiredJobList()
+    * and hopefully it is similar when we get it back from SessionStateRunList()
+    */
+    m_desired_job_list = JobTreeNode::FilteredJobs(m_final_run_list,m_desired_job_list);
+
+    QStringList errors = UpdateDesiredJobList(m_session, m_desired_job_list);
+    if (errors.count() != 0) {
+        qDebug("UpdateDesiredJobList generated errors:");
+
+        for (int i=0; i<errors.count(); i++) {
+            qDebug() << errors.at(i);
+        }
+    }
+
+    // Now, the run_list contains the list of jobs I actually need to run \o/
+    m_run_list = SessionStateRunList(m_session);
+
+    // Start tracking which Job we are running, from the beginning
+    m_current_job_index = 0;
 
     // Tell the GUI so we know we have started running this job
-    updateGuiObjects(m_run_list.first().path());
+    emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
+                          m_current_job_index, \
+                          PBTreeNode::PBJobResult_Running);
 
     // Now the actual run, job by job
-    RunJob(m_session,m_run_list.first());
+    qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
 
-    qDebug("GuiEngine::RunJobs - Done");
+    RunJob(m_session,m_run_list.at(m_current_job_index));
+
+//    qDebug("GuiEngine::RunJobs - Done");
 }
 
 /* Run all the local "generator" jobs selected by the whitelists, in order
@@ -599,9 +659,12 @@ void GuiEngine::RunLocalJobs(void)
     // Now, the run_list contains the list of jobs I actually need to run \o/
     m_run_list = SessionStateRunList(m_session);
 
-    qDebug() << "Running Local Job " << JobNameFromObjectPath(m_run_list.first());
+    // Keep track of which job we are running
+    m_current_job_index = 0;
 
-    RunJob(m_session,m_run_list.first());
+    qDebug() << "Running Local Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+
+    RunJob(m_session,m_run_list.at(m_current_job_index));
 
     qDebug("GuiEngine::RunLocalJobs - Done");
 }
@@ -1203,15 +1266,15 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
 
     QDBusObjectPath runner = variant.value<QDBusObjectPath>();
 
-    QString job_cmd = GetCommand(m_run_list.first());
+    QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
 
     bool run_test = false; // TODO check with the gui whether to run this test
     if (run_test) {
         RunCommand(runner);
     }
 
-    // TODO need to signal the gui to get the results
-    QString outcome = JobResult_OUTCOME_PASS;
+    // TODO need to signal the gui to get the outcome and comments from the user
+    QString outcome = JobResult_OUTCOME_SKIP; // just to be factually correct and show something different
     QString comments = "Nothing to see here";
 
     SetOutcome(runner,outcome,comments);
@@ -1255,14 +1318,16 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     UpdateJobResult(m_session,job,result);
 
-    // Pull the first thing off the list and discard it
-    m_run_list.pop_front();
+    // Move to the next job
+    m_current_job_index++;
 
-    if (!m_run_list.empty()) {
-        // Now run the next job
-        qDebug() << "Running Local Job " << JobNameFromObjectPath(m_run_list.first());
+    // Have we finished?
+    if (m_run_list.count() != m_current_job_index ) {
 
-        RunJob(m_session,m_run_list.first());
+        // Not finished, so run the next job
+        qDebug() << "Running Local Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+
+        RunJob(m_session,m_run_list.at(m_current_job_index));
 
         return;
     }
@@ -1403,18 +1468,35 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     GetJobResults();
 
-    // Update the GUI with the state of the just-finished job
-    emit updateGuiObjects(job.path());
+      // How did this job turn out?
+    int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
 
-    // Pull the first thing off the list and discard it
-    m_run_list.pop_front();
+    // Update the GUI so it knows what the job outcome was
+    emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
+                          m_current_job_index, \
+                          outcome);
 
-    if (!m_run_list.empty()) {
+    // Move to the next job
+    m_current_job_index++;
+
+    // We should deal with Pause/Resume here
+    if (!m_running) {
+
+        // Dont start the next job
+        return;
+    }
+
+    if (m_run_list.count() != m_current_job_index) {
+
+        // Update the GUI so it knows what job is starting
+        emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
+                              m_current_job_index, \
+                              PBTreeNode::PBJobResult_Running);
 
         // Now run the next job
-        qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.first());
+        qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
 
-        RunJob(m_session,m_run_list.first());
+        RunJob(m_session,m_run_list.at(m_current_job_index));
 
         return;
     }
@@ -1441,6 +1523,19 @@ void GuiEngine::AcknowledgeJobsDone(void)
     m_jobs_done = true;
 
     qDebug("GuiEngine::AcknowledgeJobsDone() - done");
+}
+
+// Returns a list of DBus Object Paths for valid tests
+const QList<QDBusObjectPath>& GuiEngine::GetValidRunList(void)
+{
+    return m_run_list;
+}
+
+int GuiEngine::ValidRunListCount(void)
+{
+    qDebug("ValidRunListCount()");
+
+    return m_run_list.count();
 }
 
 bool GuiEngine::RefreshPBObjects(void)
@@ -1478,4 +1573,52 @@ const QString GuiEngine::JobNameFromObjectPath(const QDBusObjectPath& opath)
     }
 
     return empty;
+}
+
+const int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
+{
+    QString outcome;
+    int result = 0;
+
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping. then we go through m_job_state_results
+     * to obtain the actual result.
+     */
+
+    QDBusObjectPath resultpath;
+
+    for(int i=0; i < m_job_state_list.count(); i++) {
+        if (m_job_state_list.at(i)->job().path().compare(opath.path()) == 0) {
+            // ok, we found the right statelist entry
+            resultpath = m_job_state_list.at(i)->result();
+            break;
+        }
+    }
+
+    // Now to find the right result object
+    for(int i=0;i<m_job_state_results.count();i++) {
+        if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
+            outcome = m_job_state_results.at(i)->outcome();
+            break;
+        }
+    }
+
+    qDebug() << "Real outcome " << outcome;
+
+    // convert outcome string into a result number
+    if (outcome.compare(JobResult_OUTCOME_PASS) == 0 ) {
+        return PBTreeNode::PBJobResult_Pass;
+    }
+
+    if (outcome.compare(JobResult_OUTCOME_FAIL) == 0) {
+        return PBTreeNode::PBJobResult_Fail;
+    }
+
+
+    if (outcome.compare(JobResult_OUTCOME_SKIP) == 0) {
+        return PBTreeNode::PBJobResult_Skip;
+    }
+
+    // TODO - Should not really get here I think
+    return PBTreeNode::PBJobResult_Skip;
 }

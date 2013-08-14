@@ -77,12 +77,20 @@ public slots:
 
         void SetWhiteList(const QDBusObjectPath opath, const bool check);
 
+        void SetRealJobsList(const QList<QDBusObjectPath> &real_jobs) {
+            m_final_run_list = real_jobs;
+        }
+
         /* Run all the jobs of type "local" in order to generate the true
          * list of tests from which the user can select.
          */
         void RunLocalJobs(void);
 
         void RunJobs(void);
+
+        // Used when running the real tests
+        void Pause(void);
+        void Resume(void);
 
         /* Signal receivers from Plainbox
          */
@@ -103,6 +111,12 @@ public slots:
         void AcknowledgeJobsDone(void);
         void AcknowledgeLocalJobsDone(void);
 
+        // Returns a list of DBus Object Paths for valid tests
+        const QList<QDBusObjectPath>& GetValidRunList(void);
+
+        // Useful for the progress bar in the run manager
+        int ValidRunListCount(void);
+
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
@@ -110,14 +124,11 @@ public:
         // Returns a tree of all the jobs
         JobTreeNode* GetJobTreeNodes();
 
-        // Returns a list of DBus Object Paths for valid tests
-        const QList<QDBusObjectPath>& GetValidRunList(void) {
-            return m_run_list;
-        }
-
 signals:
         // Instruct the GUI to update itself
-        void updateGuiObjects(const QString& job_id); // i.e. plainbox/job/<job_id>
+        void updateGuiObjects(const QString& job_id, \
+                              const int current_job_index,
+                              const int outcome);
         void localJobsCompleted(void);
         void jobsCompleted(void);
 
@@ -168,6 +179,9 @@ private:
         // Service Methods
         void RunJob(const QDBusObjectPath session, const QDBusObjectPath opath);
 
+        // Convenience functions
+        const int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
+
 protected:  // for test purposes only
         // JobStateMap
         jsm_t GetJobStateMap(void);
@@ -199,7 +213,7 @@ private:
         QMap<QDBusObjectPath, bool> tests;
 
         // All the jobs ultimately selected by the user
-        QList<QDBusObjectPath> final_run_list;
+        QList<QDBusObjectPath> m_final_run_list;
 
         // We only care about one session
         QDBusObjectPath m_session;
@@ -219,6 +233,9 @@ private:
 
         QList<QDBusObjectPath> m_desired_local_job_list;
 
+        // The currently running job as an index into m_run_list
+        int m_current_job_index;
+
         // Job State Map
         jsm_t m_jsm;
 
@@ -230,6 +247,9 @@ private:
          * (NB: These are NOT in pb_objects!)
          */
         QList<PBTreeNode*> m_job_state_results;
+
+        // Are we running tests or not? (Used for Pause/Resume)
+        bool m_running;
 
 // Used by the test program
 protected:

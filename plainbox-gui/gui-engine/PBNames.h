@@ -53,7 +53,7 @@ static const QString PlainboxJobDefinition1("com.canonical.certification.PlainBo
 static const QString JobStateInterface("com.canonical.certification.PlainBox.JobState1");
 
 // JobResult interface
-static const QString JobResultInterface("com.canonical.certification.PlainBox.JobResult1");
+static const QString JobResultInterface("com.canonical.certification.PlainBox.Result1");
 
 
 // JobResults

@@ -39,7 +39,8 @@ class TestItem : public ListItem
     // From com.canonical.certification.CheckBox.JobDefinition1 - properties
     Q_PROPERTY(QString command READ command WRITE setCommand NOTIFY commandChanged)
     Q_PROPERTY(QString environ READ environ WRITE setEnviron NOTIFY environChanged)
-    Q_PROPERTY(QString type READ type WRITE setType NOTIFY typeChanged)
+    Q_PROPERTY(QString plugin READ plugin WRITE setPlugin NOTIFY pluginChanged)
+    Q_PROPERTY(QString type READ type WRITE setType NOTIFY typeChanged) // Auto/manual - derived from plugin
     Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
     Q_PROPERTY(QString via READ via WRITE setVia NOTIFY viaChanged)
 
@@ -74,6 +75,7 @@ signals:
 
     void commandChanged();
     void environChanged();
+    void pluginChanged();
     void typeChanged();
     void userChanged();
     void viaChanged();
@@ -109,6 +111,7 @@ public:
         // CheckBox.JobDefinition1
         CommandRole,
         EnvironRole,
+        PluginRole,
         TypeRole,
         UserRole,
         ViaRole,
@@ -143,6 +146,7 @@ public:
              const QString &description, \
              const QString &command, \
              const QString &environ, \
+             const QString &plugin, \
              const QString &type, \
              const QString &user, \
              const QString &via, \
@@ -192,6 +196,10 @@ public:
     // Environ
     inline QString environ() const {return m_environ; }
     void setEnviron(const QString &environ);
+
+    // Plugin
+    inline QString plugin() const {return m_plugin; }
+    void setPlugin(const QString &plugin);
 
     // Type
     inline QString type() const {return m_type; }
@@ -263,14 +271,15 @@ private:
     // From com.canonical.certification.CheckBox.JobDefinition1 - properties
     QString m_command;  // command
     QString m_environ;  // environ
-    QString m_type;     // plugin
+    QString m_plugin;   // plugin
+    QString m_type;     // Manual/Automated - derived from plugin
     QString m_user;     // user
     QString m_via;      // via
 
     // Internally required stuff
     QString m_group;    // top-level test grouping
 
-    bool m_check;   // Selected to be run?
+    bool m_check;   // Selected by the user to be run
 
     QString m_path; // ObjectPath for this job
 

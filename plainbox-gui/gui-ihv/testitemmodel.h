@@ -37,7 +37,9 @@ public:
 
 public slots:
     ListModel* CreateTestListModel(ListModel* model=NULL);
-    void foobar(void) {};
+
+    // We should obtain a list of desired jobs here
+    QList<QDBusObjectPath> GetSelectedRealJobs(ListModel* model=NULL);
 };
 
 #endif // TESTITEMMODEL_H
