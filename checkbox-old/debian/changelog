@@ -41,6 +41,8 @@ checkbox (0.16.7) saucy; urgency=low
     headphones)
   * jobs/stress.txt.in: Added --log-dir to poweroff and reboot stress tests so
     log files get written in the expected location (LP: #1205194)
+  * scripts/gpu_test, jobs/graphics.txt.in: Added checks for existence of
+    required video files, failing tests if they're not found (LP: #1202946)
 
   [ Brendan Donegan ]
   * checkbox/parsers/cpuinfo.py - update parser logic to understand cpuinfo
