@@ -36,7 +36,7 @@ Row {
     Button {
          id:selectButton
          text: i18n.tr("Select All")
-         color: UbuntuColors.warmGrey
+         color: UbuntuColors.coolGrey
          width: units.gu(18)
          onClicked: {
              bottombuttons.selectAll();
@@ -45,7 +45,7 @@ Row {
     Button {
          id: deselectButton
          text: i18n.tr("Deselect All")
-         color: UbuntuColors.warmGrey
+         color: UbuntuColors.coolGrey
          width: units.gu(18)
          onClicked:{
              bottombuttons.deselectAll();

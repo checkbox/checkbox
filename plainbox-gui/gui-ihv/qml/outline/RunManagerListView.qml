@@ -39,8 +39,6 @@ Rectangle {
     height: parent.height
     width: parent.width
 
-
-
     Flickable {
         id: listflick
         anchors.fill: parent
@@ -50,36 +48,24 @@ Rectangle {
         clip: true
         interactive: true
 
-        Component {
-            id: highlight
-            Rectangle {
-                width: groupedList.width
-                height: units.gu(7)
-                color: "lightsteelblue";
-                radius: 5
-            }
-        }
+        // The List of Tests
         ListView {
             id: groupedList
+            width: parent.width
+            height:units.gu(7) * (groupedList.count - groupedList.closedCount)
+            interactive: false
+            model: testListModel
 
+            // Tree view expansion/collapse support properties
             property int sectionCount: 0                // contain the number of sections for calculating height
             property int closedCount: 0                 // contains number of closed items for calculating height
             property bool userChangingIndex: false      //  indicates if user is changing index so 1 of 4 heading doesn't get messed up
             property string curSectionTested: currentSection // which section is currently under test
             property int curTest: 0                     // test index of test in relation to section
 
-            interactive: false
-            width: parent.width
-            height:units.gu(7) * (groupedList.count - groupedList.closedCount)
-
-            model: testListModel
-            highlight: highlight
-            highlightFollowsCurrentItem: true
-
             delegate: RunManagerTestDelegate {}
 
-
-
+            // Runs when this ListView is fully initialised
             Component.onCompleted:{
                 sectionCount = getSectionCount()
             }
@@ -102,10 +88,7 @@ Rectangle {
                 }
             }
 
-
-
-
-            //  Open/Close gruops
+            //  Open/Close groups
             function openShutSubgroup(item_id, sel){
                 var oldCurrent = currentIndex;
                 currentIndex = -1
@@ -192,11 +175,9 @@ Rectangle {
 
         }
     }
+
     Scrollbar {
         flickableItem: listflick
         align: Qt.AlignTrailing
     }
 }
-
-
-

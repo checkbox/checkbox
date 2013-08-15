@@ -26,41 +26,26 @@ Item {
     id: testseldetails
     property var testItem;
     property bool showDetails;
-    property int openHeight: units.gu(15)
+    property int openHeight: units.gu(17)
 
-
-    onTestItemChanged: {
-        // fill in details here
-        nameText.text = testItem.testname;
-        descriptionText.text = testItem.description;
-        dependsText.text = testItem.depends;
-        requiresText.text = testItem.requires;
-    }
-
-    onShowDetailsChanged:{
-        if (showDetails){
-            progressIcon.source = "artwork/DownArrow.png";
-            detailsFlick.height = openHeight
-        }
-        else{
-            progressIcon.source = "artwork/RightArrow.png";
-            detailsFlick.height = 0
-        }
-    }
+    height:detailsFlick.height + detailsItem.height
 
     // Open/Shut label + icon
     Item {
         id: detailsItem
-        height: parent.height
-        width: detailsLabel.width + progressIcon.width + units.gu(2)
+        height: detailsLabel.height
+        width: parent.width
+
+        anchors.bottom: detailsFlick.top
+
+        // Initially zero as the details box is closed
+        anchors.bottomMargin: 0
 
         Label {
             id: detailsLabel
             text: i18n.tr("Test Details")
             anchors {
-                left: parent.left
-                top: parent.top
-                margins: units.gu(1)
+                horizontalCenter: parent.horizontalCenter
             }
         }
 
@@ -69,8 +54,16 @@ Item {
             source: "artwork/RightArrow.png"
             anchors {
                 left: detailsLabel.right
-                top: parent.top
-                margins: units.gu(1)
+                leftMargin: units.gu(2)
+            }
+        }
+
+        Image {
+            id: progressIcon2
+            source: "artwork/RightArrow.png"
+            anchors {
+                right: detailsLabel.left
+                rightMargin: units.gu(2)
             }
         }
 
@@ -80,16 +73,19 @@ Item {
         }
     }
 
-
-
     // Right side of the details
     Flickable {
         id: detailsFlick
-        anchors.left: detailsItem.right
-        anchors.top: parent.top
-        anchors.leftMargin: units.gu(1)
-        width: parent.width - detailsItem.width - units.gu(2)
+        anchors.bottom: parent.bottom
+
+        anchors.left: parent.left
+        anchors.leftMargin: units.gu(2)
+
+        anchors.right: parent.right
+        anchors.rightMargin: units.gu(2)
+
         height: 0  // initialize to closed
+
         contentHeight: detailsblock.height
         clip: true
         boundsBehavior : Flickable.StopAtBounds
@@ -109,7 +105,7 @@ Item {
             Item{
                 id: detailsblock
 
-                height: nameText.height + descriptionText.height + dependsText.height + requiresText.height + otherText.height + units.gu(4)
+                height: nameText.height + descriptionText.height + dependsText.height + requiresText.height+units.gu(1)
                 width: parent.width
 
                 TestSelectionDetailsItems{
@@ -135,18 +131,43 @@ Item {
                     labelName: i18n.tr("requires:")
                     anchors.top: dependsText.bottom
                 }
-
-                TestSelectionDetailsItems{
-                    id: otherText
-                    labelName: i18n.tr("other:")
-                    anchors.top: requiresText.bottom
-                }
             }
         }
     }
+
     Scrollbar {
         flickableItem: detailsFlick
         align: Qt.AlignTrailing
     }
-}
 
+    // Update the details
+    onTestItemChanged: {
+        nameText.text = testItem.testname;
+        descriptionText.text = testItem.description;
+        dependsText.text = testItem.depends;
+        requiresText.text = testItem.requires;
+    }
+
+    // Expand/Collapse the details
+    onShowDetailsChanged:{
+        if (showDetails){
+            progressIcon.source = "artwork/DownArrow.png";
+            progressIcon2.source = "artwork/DownArrow.png";
+            detailsFlick.height = openHeight
+
+            // We need to be spaced away from the details box
+            detailsItem.anchors.bottomMargin = 2
+        }
+        else{
+            progressIcon.source = "artwork/RightArrow.png";
+            progressIcon2.source = "artwork/RightArrow.png";
+            detailsFlick.height = 0
+
+            // We dont need any margin from the details box as its closed
+            detailsItem.anchors.bottomMargin = 0
+        }
+
+        // for laying out of items in which we are included
+        testseldetails.height = detailsFlick.height + detailsLabel.height
+    }
+}

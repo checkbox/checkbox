@@ -26,6 +26,12 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import "./artwork"
 
+/* In order to simulate a tree with ListView, we end up having to embed some knowledge
+  in the display component and the underlying model. Qt 5.1 was meant to have a QML TreeView
+  but it doesnt seem to have transpired :(
+
+ */
+
 Component {
     id: testDelegate
 
@@ -37,6 +43,7 @@ Component {
         property string groupname: group
         property string labelname: testname
 
+        // These properties help to simulate the treeview
         property bool open: true
         property bool is_branch: branch
         property int my_depth: depth
@@ -91,18 +98,17 @@ Component {
             Text {
                 id: namelabel
                 text: testname
-                width: units.gu(42)  - (depth * openshutIcon.width)
                 elide: Text.ElideRight
+
                 anchors.verticalCenter: parent.verticalCenter
+
                 anchors.left: openshutIcon.right
                 anchors.leftMargin: units.gu(2)
+
+                anchors.right: statusicon.left
+                anchors.rightMargin: units.gu(7.5)
             }
 
-            Item {
-                id: statusFiller
-                width: units.gu(12)
-                anchors.left: namelabel.right
-            }
 
             Image {
                 id: statusicon
@@ -110,8 +116,12 @@ Component {
 
                 width: units.gu(3)
                 height: units.gu(3)
-                anchors.left: namelabel.right
+
+                anchors.right: timelabel.left
+                anchors.rightMargin: units.gu(6)
+
                 anchors.verticalCenter: parent.verticalCenter
+
                 source: ""
 
 
@@ -184,27 +194,16 @@ Component {
 
             }
 
-            Item {
-                id: timefiller
-                width: units.gu(10)
-                anchors.left: statusicon.right
-            }
-
             Text {
                 id: timelabel
                 text: {!elapsedtime ? "" : utils.formatElapsedTime(elapsedtime)}
-                width: units.gu(10)
-                anchors.left: timefiller.right
+                width: units.gu(6)
+                anchors.right: rerunicon.left
+                anchors.rightMargin: units.gu(9)
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignRight
 
            }
-
-            Item {
-                id: actionsfiller
-                width: units.gu(12)
-                anchors.left: timelabel.right
-            }
 
             Image {
                 id: rerunicon
@@ -213,8 +212,11 @@ Component {
 
                 width: units.gu(3)
                 height: units.gu(3)
-                anchors.left: actionsfiller.right
+
+                anchors.right: detailsicon.left
+                anchors.rightMargin: units.gu(9)
                 anchors.verticalCenter: parent.verticalCenter
+
                 source: ""
 
                 MouseArea {
@@ -246,12 +248,6 @@ Component {
                 }
             }
 
-            Item {
-                id: detailsfiller
-                width: units.gu(13)
-                anchors.left: rerunicon.right
-            }
-
             Image {
                 id: detailsicon
                 property bool detailsStatus: {!runstatus?false:true} // TODO this should be coming if the test has run or not
@@ -259,8 +255,12 @@ Component {
 
                 width: units.gu(3)
                 height: units.gu(3)
-                anchors.left: detailsfiller.right
+
+                anchors.right:  parent.right
+                anchors.rightMargin: units.gu(7.5)
+
                 anchors.verticalCenter: parent.verticalCenter
+
                 source: ""
 
                 MouseArea {
@@ -288,25 +288,30 @@ Component {
 
             }
         }
+
+        // Item dividing line
         ListItem.ThinDivider {}
 
         Component {
             id: log_viewer
             LogViewer{
-                showTroubleShootingLink: false
+//                //  Re-insert this for other/future versions of the GUI
+//                showTroubleShootingLink: false
                 text:testname
                 logText: description
             }
         }
 
-        Component {
-            id: log_viewer_with_trouble
-            LogViewer{
-                showTroubleShootingLink: true
-                text:testname
-                logText: description
-            }
-        }
+//        //  Re-insert this for other/future versions of the GUI
+//        Component {
+//            id: log_viewer_with_trouble
+//            LogViewer{
+//                showTroubleShootingLink: true
+//                text:testname
+//                logText: description
+//            }
+//        }
+
         Component {
             id: manual_dialog
             ManualInteractionDialog{
@@ -314,6 +319,5 @@ Component {
             }
         }
     }
-
-
 }
+

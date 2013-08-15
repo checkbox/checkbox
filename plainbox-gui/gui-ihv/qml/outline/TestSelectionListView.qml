@@ -34,7 +34,6 @@ Rectangle {
     height: parent.height
     width: parent.width
 
-
     function selectAll(sel) {
         groupedList.selectAll(sel);
     }
@@ -48,7 +47,7 @@ Rectangle {
         contentHeight: groupedList.height
         boundsBehavior : Flickable.StopAtBounds
 
-
+        // Blue Highlight Bar
         Component {
             id: highlight
             Rectangle {
@@ -60,8 +59,7 @@ Rectangle {
 
         }
 
-
-
+        // The List of Tests
         ListView {
             id: groupedList
             width: parent.width
@@ -69,6 +67,7 @@ Rectangle {
             interactive: false
             model: testListModel
 
+            // Tree view expansion/collapse support properties
             property int sectionCount: 0// this will contain the number of sections
             property int closedCount: 0 // this contains nuber of closed items
             property bool displayWarnings: true
@@ -78,6 +77,7 @@ Rectangle {
             highlight: highlight
             highlightFollowsCurrentItem: true
 
+            // Runs when this ListView is fully initialised
             Component.onCompleted: {
                 selectAll(true)
                 testdetails.testItem = testListModel.get(currentItem);
@@ -90,10 +90,9 @@ Rectangle {
                     PopupUtils.open(warning_dialog, caller_button);
             }
 
-            // functions to do something across the whole list
-
-            // select/deselect all items in the list
+            // Select/De-select all items
             function selectAll(sel){
+
                 // show the warning if sel is false
                 if(!sel) {
                     showWarning(groupedList);
@@ -340,6 +339,3 @@ Rectangle {
         }
     }
 }
-
-
-

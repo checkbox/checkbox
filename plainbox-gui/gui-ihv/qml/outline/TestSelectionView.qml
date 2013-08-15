@@ -41,6 +41,7 @@ Page {
         }
     }
 
+    // Test List Header Bar
     Item {
         id: testlistheaders
         width: parent.width - units.gu(4)
@@ -52,85 +53,61 @@ Page {
             margins: units.gu(2)
         }
 
-        Item {
-            id: compfiller
-            width: units.gu(6)
-            anchors.left: parent.left
-        }
         Text  {
             id: complabel
-            width: units.gu(12)
             text: i18n.tr("Components")
-            anchors.left: compfiller.right
-        }
-        Item {
-            id: typefiller
-            width: units.gu(20)
-            anchors.left: complabel.right
+            anchors.left: parent.left
+            anchors.leftMargin: units.gu(6)
+            anchors.right: typelabel.left
+            anchors.rightMargin: units.gu(2)
         }
 
         Text  {
             id: typelabel
             text: i18n.tr("Type")
-            anchors.left: typefiller.right
-            anchors.leftMargin: units.gu(10)
+            width: units.gu(6)
+            anchors.right: esttimelabel.left
+            anchors.rightMargin: units.gu(6)
             horizontalAlignment: Text.AlignHCenter
-        }
-
-        Item {
-            id: esttimefiller
-            width: units.gu(4)
-            anchors.left: typelabel.right
         }
 
         Text  {
             id: esttimelabel
             text: i18n.tr("Estimated Time")
-            anchors.left: esttimefiller.right
-            anchors.leftMargin: units.gu(10)
+            width: units.gu(6)
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(6)
             horizontalAlignment: Text.AlignHCenter
-        }
-
-        Item {
-            id: descfiller
-            width: units.gu(12)
-            anchors.left: esttimelabel.right
-        }
-        Text  {
-            id: descriptionlabel
-            width: units.gu(10)
-            text: i18n.tr("Description")
-            horizontalAlignment: Text.AlignHCenter
-            anchors.left: descfiller.right
         }
     }
 
+    // List of actual Tests.
     TestSelectionListView {
         id: testsuitelist
-        height: parent.height - filler.height - testlistheaders.height - testdetails.height - testbuttons.height - summary.height - units.gu(8)
-        //height: units.gu(60)
         width: testlistheaders.width
 
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: testlistheaders.bottom
+            bottom: testdetails.top
+            bottomMargin: units.gu(2)
         }
     }
 
-
+    // Test Details (Properties)
     TestSelectionDetails {
         id: testdetails
-        height: openHeight
+
         width: testlistheaders.width
 
         anchors{
             horizontalCenter: parent.horizontalCenter
-            top: testsuitelist.bottom
-            topMargin: units.gu(2)
+            bottom: testbuttons.top
+            bottomMargin: units.gu(2)
         }
     }
 
-
+    // Select All, Deselect All, Start Testing Buttons
     TestSelectionButtons {
         id: testbuttons
         anchors{
@@ -148,9 +125,6 @@ Page {
         }
 
         onStartTesting: {
-            // Ensure we only ask the service about this once (Bug 1209284)
-            testbuttons.enabled = false;
-
             mainView.state = "RUNMANAGER"
             console.log("Start Testing")
 
@@ -162,6 +136,7 @@ Page {
         }
     }
 
+    // Small blue test summary bar at the bottom of the page
     TestSelectionSummary{
         id: summary
         height: units.gu(2)
@@ -172,5 +147,3 @@ Page {
         }
     }
 }
-
-

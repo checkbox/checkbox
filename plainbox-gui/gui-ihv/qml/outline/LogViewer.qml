@@ -32,19 +32,21 @@ Dialog {
     text: i18n.tr("")
 
     property alias logText: logtext.text
-    property alias showTroubleShootingLink: troubleButton.visible
+//    property alias showTroubleShootingLink: troubleButton.visible
     property alias logHeight: flick.height
 
-    Button {
-        id: troubleButton
-        text: i18n.tr("Trouble Shooting")
-        color: UbuntuColors.orange
-        onClicked: {
-            // TODO put in real url!!
-            cmdTool.exec("xdg-open", "https://wiki.ubuntu.com/Testing/Automation/Checkbox/");
-        }
-    }
-
+    // Re-insert this for other/future versions of the GUI
+//    property alias showTroubleShootingLink: troubleButton.visible
+//
+//    Button {
+//        id: troubleButton
+//        text: i18n.tr("Trouble Shooting")
+//        color: UbuntuColors.orange
+//        onClicked: {
+//            // TODO put in real url!!
+//            cmdTool.exec("xdg-open", "https://wiki.ubuntu.com/Testing/Automation/Checkbox/");
+//        }
+//    }
 
     Flickable {
         id: flick
@@ -91,18 +93,6 @@ Dialog {
             onLinkActivated: {
                 cmdTool.exec("xdg-open", link)
             }
-
-        }
-    }
-
-
-    Button {
-        id: copyButton
-        text: i18n.tr("Copy")
-        color: UbuntuColors.lightAubergine
-        onClicked: {
-            logtext.selectAll();
-            logtext.copy();
         }
     }
 
@@ -114,11 +104,3 @@ Dialog {
     }
 
 }
-
-
-
-
-
-
-
-

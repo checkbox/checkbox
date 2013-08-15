@@ -26,9 +26,6 @@ import Ubuntu.Components.Popups 0.1
 import "."
 
 
-
-
-
 Page {
     id: runmanagerview
     title: i18n.tr("Run Manager")
@@ -36,22 +33,13 @@ Page {
     property bool reportIsSaved: false;
     property bool testingComplete: false
 
-    // TODO - this timer keeps track of time passing
-    // When using plainbox, get tests and advance using it
-    // currently itemindex is advanced at each timer interval
-    // and the runstatus is updated... which is FAKE.
-
-    // Need to do:
-    // set testsuitelist.itemindex to the index of the current item in the ModelSectionCounter
-    // testsuitelist.curSectionTested = "" when done completed
-    // and item is the current item in the view.
-
+    // Updates the test status based on GuiEngine signals
     Item {
         id: updater
         property int completed: 0   // How many tests have we run so far?
         property int testIndex: 0   // which test we are running from the list
 
-        // totalTests: Denotes lines in the listview model, NOT real number of tests
+        // totalTests: Denotes lines in the testListModel (display) model, NOT real number of tests
         property int totalTests: testListModel.count
 
         property var startTime: new Date()
@@ -131,8 +119,7 @@ Page {
         anchors.top: parent.top
     }
 
-
-
+    // Test List Header Bar
     Item {
         id: runmanagerlistheaders
         width: parent.width - units.gu(4)
@@ -144,69 +131,62 @@ Page {
             margins: units.gu(2)
         }
 
-        Item {
-            id: testcasenamefiller
-            width: units.gu(8)
-            anchors.left: parent.left
-        }
         Text  {
             id: testcasenamelabel
-            width: units.gu(12)
             text: i18n.tr("Test Case Name")
-            anchors.left: testcasenamefiller.right
-        }
-        Item {
-            id: statusfiller
-            width: units.gu(15)
-            anchors.left: testcasenamelabel.right
+            anchors.left: parent.left
+            anchors.leftMargin: units.gu(6)
+
+            anchors.right: statuslabel.left
+            anchors.rightMargin: units.gu(6)
         }
 
         Text  {
             id: statuslabel
             text: i18n.tr("Status")
-            anchors.left: statusfiller.right
-            anchors.leftMargin: units.gu(12)
-            horizontalAlignment: Text.AlignHCenter
-        }
 
-        Item {
-            id: eslapsedtimefiller
-            width: units.gu(2)
-            anchors.left: statuslabel.right
+            width: units.gu(6)
+
+            anchors.right: elapsedtimelabel.left
+            anchors.rightMargin: units.gu(6)
+
+            horizontalAlignment: Text.AlignHCenter
         }
 
         Text  {
-            id: eslapsedtimelabel
+            id: elapsedtimelabel
             text: i18n.tr("Elapsed Time")
-            anchors.left: eslapsedtimefiller.right
-            anchors.leftMargin: units.gu(10)
+
+            width: units.gu(6)
+
+            anchors.right: actionslabel.left
+            anchors.rightMargin: units.gu(6)
+
             horizontalAlignment: Text.AlignHCenter
         }
 
-        Item {
-            id: actionsfiller
-            width: units.gu(6)
-            anchors.left: eslapsedtimelabel.right
-        }
         Text  {
             id: actionslabel
-            width: units.gu(10)
             text: i18n.tr("Actions")
+
+            width: units.gu(6)
+
+            anchors.right: detailslabel.left
+            anchors.rightMargin: units.gu(6)
+
             horizontalAlignment: Text.AlignHCenter
-            anchors.left: actionsfiller.right
         }
 
-        Item {
-            id: detailsfiller
-            width: units.gu(6)
-            anchors.left: actionslabel.right
-        }
         Text  {
             id: detailslabel
-            width: units.gu(10)
             text: i18n.tr("Details")
+
+            width: units.gu(6)
+
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(6)
+
             horizontalAlignment: Text.AlignHCenter
-            anchors.left: detailsfiller.right
         }
     }
 
@@ -224,7 +204,7 @@ Page {
 
     Progress {
         id: progress
-        height: units.gu(4)-1
+        height: units.gu(4)
         width: parent.width - units.gu(20)
 
         anchors {
