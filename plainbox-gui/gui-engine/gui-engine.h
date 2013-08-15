@@ -117,6 +117,11 @@ public slots:
         // Useful for the progress bar in the run manager
         int ValidRunListCount(void);
 
+        // Resume after dealing with Manual Interaction Dialog
+        void ResumeFromManualInteractionDialog(bool run_test, \
+                                               const QString outcome, \
+                                               const QString comments);
+
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
@@ -131,6 +136,8 @@ signals:
                               const int outcome);
         void localJobsCompleted(void);
         void jobsCompleted(void);
+
+        void raiseManualInteractionDialog(const int outcome /* from PB */);
 
 private:
         // Helper function when generating the desired local and real jobs
@@ -181,6 +188,8 @@ private:
 
         // Convenience functions
         const int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
+
+        const QString ConvertOutcome(const int outcome);
 
 protected:  // for test purposes only
         // JobStateMap
@@ -250,6 +259,9 @@ private:
 
         // Are we running tests or not? (Used for Pause/Resume)
         bool m_running;
+
+        // Used to preserve interim data from Manual Interaction event
+        QDBusObjectPath m_runner;
 
 // Used by the test program
 protected:
