@@ -107,18 +107,27 @@ class Html5VideoThread(Thread):
     Start a thread performing playback of an HTML5 video in firefox
     """
 
-    def run(self):
-        html5_path = os.path.join(
+    @property
+    def html5_path(self):
+        if os.getenv('CHECKBOX_SHARE'):
+            return os.path.join(
             os.getenv('CHECKBOX_SHARE'),
             'data/websites/html5_video.html')
-        subprocess.call(
-            'firefox %s' % html5_path,
-            stdout=open(os.devnull, 'w'),
-            stderr=subprocess.STDOUT,
-            shell=True)
+
+    def run(self):
+        if self.html5_path and os.path.isfile(self.html5_path):
+            subprocess.call(
+                'firefox %s' % self.html5_path,
+                stdout=open(os.devnull, 'w'),
+                stderr=subprocess.STDOUT,
+                shell=True)
+        else:
+            print("WARNING: unable to start html5 video playback.")
+            print("WARNING: test results may be invalid.")
 
     def terminate(self):
-            subprocess.call("pkill firefox", shell=True)
+            if self.html5_path and os.path.isfile(self.html5_path):
+                subprocess.call("pkill firefox", shell=True)
 
 
 def check_gpu(log=None):
@@ -192,7 +201,7 @@ def main():
     DesktopSwitch.cancel = True
     time.sleep(10)
     Html5Video.terminate()
-    if check_gpu():
+    if check_gpu() or not Html5Video.html5_path:
         return 1
 
     if source.lookup("org.compiz.core", True):
