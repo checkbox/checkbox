@@ -148,6 +148,9 @@ Page {
         }
 
         onStartTesting: {
+            // Ensure we only ask the service about this once (Bug 1209284)
+            testbuttons.enabled = false;
+
             mainView.state = "RUNMANAGER"
             console.log("Start Testing")
 
