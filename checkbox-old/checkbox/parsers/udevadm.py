@@ -106,6 +106,12 @@ class UdevadmDevice:
         self._vendor = None
         self._vendor_id = None
 
+    def __repr__(self):
+        vid = int(self.vendor_id) if self.vendor_id else 0
+        pid = int(self.product_id) if self.product_id else 0
+        return("<{}: bus: {} id [{:x}:{:x}] {}>".format(
+             type(self).__name__, self.bus, vid, pid,
+             self.product))
     @property
     def bus(self):
         if self._bus is not None:
