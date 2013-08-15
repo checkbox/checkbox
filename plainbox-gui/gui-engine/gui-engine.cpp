@@ -1264,22 +1264,53 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
 
     QVariant variant = *iter;
 
-    QDBusObjectPath runner = variant.value<QDBusObjectPath>();
+    m_runner = variant.value<QDBusObjectPath>();
 
     QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
 
-    bool run_test = false; // TODO check with the gui whether to run this test
-    if (run_test) {
-        RunCommand(runner);
-    }
+    // we should look up the prior job result if available
+    int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
 
-    // TODO need to signal the gui to get the outcome and comments from the user
-    QString outcome = JobResult_OUTCOME_SKIP; // just to be factually correct and show something different
-    QString comments = "Nothing to see here";
-
-    SetOutcome(runner,outcome,comments);
+    // Open the GUI dialog -- TODO - Default the Yes/No/Skip icons
+    emit raiseManualInteractionDialog(outcome);
 
     qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler - Done");
+}
+
+void GuiEngine::ResumeFromManualInteractionDialog(bool run_test, \
+                                                  const QString outcome, \
+                                                  const QString comments)
+{
+    qDebug("GuiEngine::ResumeFromManualInteraction()");
+
+    if (run_test) {
+        RunCommand(m_runner);
+
+        return;
+    }
+
+    // This should trigger a further JobResultAvailable event
+    SetOutcome(m_runner,outcome,comments);
+
+    qDebug("GuiEngine::ResumeFromManualInteraction()");
+}
+
+const QString ConvertOutcome(const int outcome)
+{
+    // convert outcome id into a string
+    switch(outcome) {
+        case PBTreeNode::PBJobResult_Pass:
+            return JobResult_OUTCOME_PASS;
+        break;
+
+        case PBTreeNode::PBJobResult_Fail:
+            return JobResult_OUTCOME_FAIL;
+        break;
+
+        case PBTreeNode::PBJobResult_Skip:
+            return JobResult_OUTCOME_SKIP;
+        break;
+    }
 }
 
 void GuiEngine::CatchallIOLogGeneratedSignalsHandler(QDBusMessage msg)
@@ -1533,8 +1564,6 @@ const QList<QDBusObjectPath>& GuiEngine::GetValidRunList(void)
 
 int GuiEngine::ValidRunListCount(void)
 {
-    qDebug("ValidRunListCount()");
-
     return m_run_list.count();
 }
 

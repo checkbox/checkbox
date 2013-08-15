@@ -24,7 +24,9 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
-
+/* TODO - Default Yes/No/Skip based on plainbox interpretation of result
+ * which the user can then change if they wish.
+ */
 Dialog {
     id: dialog
 
@@ -54,6 +56,11 @@ Dialog {
         color: UbuntuColors.orange
         onClicked: {
             console.log("Test")
+
+            PopupUtils.close(dialog)
+
+            // Ok, run this test. Result and comments dont matter here
+            guiEngine.ResumeFromManualInteractionDialog(true,"fail","no comment")
         }
     }
 
@@ -62,7 +69,7 @@ Dialog {
         CheckBox {
             id: yescheck
             text: i18n.tr("Yes")
-            checked: true
+            checked: false
             onClicked: {
                 if (checked){
                     nocheck.checked = !checked
@@ -102,7 +109,7 @@ Dialog {
         CheckBox {
             id: skipcheck
             text: i18n.tr("Skip")
-            checked: false
+            checked: true   // default if user only types comments and Continues
             onClicked: {
                 if (checked){
                     nocheck.checked = !checked
@@ -145,9 +152,23 @@ Dialog {
             {
                 PopupUtils.open(skip_warning_dialog, continuebutton);
             }
-
-            else
+            else {
                 PopupUtils.close(dialog)
+            }
+
+            // Get the right outcome...
+            if (yescheck.checked) {
+                // Pass
+                guiEngine.ResumeFromManualInteractionDialog(false,"pass",comments.text)
+            } else if (nocheck.checked) {
+                // Fail
+                guiEngine.ResumeFromManualInteractionDialog(false,"fail",comments.text)
+            } else if (skipcheck.checked) {
+                // Fail
+                guiEngine.ResumeFromManualInteractionDialog(false,"skip",comments.text)
+            }
+
+            PopupUtils.close(dialog)
         }
     }
 
