@@ -39,39 +39,29 @@ Component {
         id: testitem
         width: parent.width
         height: units.gu(7)
+
         property string groupname: group
         property alias checked: itemcheckbox.checked
         property string labelname: testname
-    property bool open: true
-    property bool is_branch: branch
-    property int my_depth: depth
 
-        onOpenChanged: {
-            open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
-        }
+        // These properties help to simulate the treeview
+        property bool open: true
+        property bool is_branch: branch
+        property int my_depth: depth
 
+        // Select the highlight area
         MouseArea {
-            id: openshutbutton
-            width: parent.width
-            height: parent.height
-            anchors.right: parent.right
-
-            onClicked: {
-                testitem.open = !testitem.open
-                groupedList.openShutSubgroup(testitem, testitem.open)
-            }
-        }
-
-        MouseArea {
-            id: checkbutton
-            width: parent.width - itemcheckbox.width
-            height: parent.height
-            anchors.right: parent.right
+            id: selecthighlight
+            anchors.fill: parent
 
             onClicked: {
                 testdetails.testItem = testListModel.get(index);
-                groupedList.currentIndex = index;  // sets selection
+                groupedList.currentIndex = index;
             }
+        }
+
+        onOpenChanged: {
+            open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
         }
 
         Item {
@@ -96,8 +86,18 @@ Component {
 
                 opacity: enabled ? 1.0 : 0.5
 
-        visible: is_branch
-        enabled: is_branch
+                visible: is_branch
+                enabled: is_branch
+
+                MouseArea {
+                    id: openshutbutton
+                    anchors.fill: parent
+
+                    onClicked: {
+                        testitem.open = !testitem.open
+                        groupedList.openShutSubgroup(testitem, testitem.open)
+                    }
+                }
             }
 
             CheckBox {
@@ -107,53 +107,59 @@ Component {
                 anchors.leftMargin: units.gu(2)
                 checked: check
                 onClicked: {
+                    // Update the underlying model
                     testListModel.setProperty(index, "check", checked);
+
+                    // Update the ListView (display)
                     groupedList.setGroupCheck(testitem);
+
+                    // Update the summary bar at the bottom of TestSelectionView
                     groupedList.updateListSummary(testListModel.get(index), checked);
+
+                    // Warn the user if they are de-selecting tests
                     if (!checked)
                         groupedList.showWarning(itemcheckbox);
                 }
             }
 
-
             Text {
                 id: nameLabel
                 text: testname
-                width: units.gu(28) - (depth * itemcheckbox.width)
                 elide: Text.ElideRight
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: itemcheckbox.right
-                anchors.leftMargin: units.gu(1)
-            }
 
-            Item {
-                id: typefiller
-                width: units.gu(4)
-                anchors.left: nameLabel.right
+                anchors.verticalCenter: parent.verticalCenter
+
+                anchors.left: itemcheckbox.right
+                anchors.leftMargin: units.gu(2)
+
+                anchors.right: typelabel.left
+                anchors.rightMargin: units.gu(2)
             }
 
             Text {
                 id: typelabel
                 text: type
-                width: units.gu(10)
-                anchors.left: typefiller.right
+                width: units.gu(6)
+
+                anchors.right: esttimelabel.left
+                anchors.rightMargin: units.gu(6)
+
                 anchors.verticalCenter: parent.verticalCenter
+
                 horizontalAlignment: Text.AlignHCenter
 
-            }
-
-            Item {
-                id: esttimefiller
-                width: units.gu(11)
-                anchors.left: typelabel.right
             }
 
             Text {
                 id: esttimelabel
                 text: convertToText(duration)
-                width: units.gu(10)
-                anchors.left: esttimefiller.right
+                width: units.gu(6)
+
+                anchors.right: parent.right
+                anchors.rightMargin: units.gu(6)
+
                 anchors.verticalCenter: parent.verticalCenter
+
                 horizontalAlignment: Text.AlignHCenter
 
                 function convertToText(durationTime){
@@ -167,27 +173,11 @@ Component {
                             timeStr += 's';
                     }
                     return timeStr;
-                }           }
-
-            Item {
-                id: descfiller
-                width: units.gu(12)
-                anchors.left: esttimelabel.right
+                }
             }
-
-            Text {
-                id: descLabel
-                text: description
-                width: units.gu(14)
-                elide: Text.ElideRight
-                maximumLineCount: 1
-                anchors.left: descfiller.right
-                anchors.verticalCenter: parent.verticalCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-
         }
+
+        // Item dividing line
         ListItem.ThinDivider {}
     }
 }

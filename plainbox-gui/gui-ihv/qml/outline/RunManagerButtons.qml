@@ -39,9 +39,9 @@ Row {
 
 
     Button {
-         id:cancelButton
+         id:cancelButton // todo rename as the exit button
          text: i18n.tr("Exit")
-         color: UbuntuColors.warmGrey
+         color: UbuntuColors.coolGrey
          width: units.gu(18)
          onClicked: {
              bottombuttons.exit();

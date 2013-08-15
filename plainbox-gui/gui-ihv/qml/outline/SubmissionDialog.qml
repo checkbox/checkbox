@@ -82,7 +82,8 @@ Dialog {
     Component {
         id: log_viewer_results
         LogViewer{
-            showTroubleShootingLink: false
+//        //  Re-insert this for other/future versions of the GUI
+//            showTroubleShootingLink: false
             logHeight: units.gu(20)         // TODO - There is something wrong with the 'Dialog' that button become inactive when log view is too big
 
         }
