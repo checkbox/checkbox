@@ -63,6 +63,11 @@ class SubmissionRun:
 
 class TestSubmissionParser(TestCase):
 
+    def testParserVersion(self):
+        from checkbox.parsers import submission
+        ver = getattr(submission, "__version__")
+        self.assertTrue(ver)
+
     def getResult(self, name, project="test"):
         result = {}
         fixture = os.path.join(os.path.dirname(__file__), "fixtures", name)
