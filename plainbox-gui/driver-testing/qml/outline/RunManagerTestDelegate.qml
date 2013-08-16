@@ -211,7 +211,6 @@ Component {
 
             Image {
                 id: detailsicon
-                smooth: true
                 property bool detailsStatus: {!runstatus?false:true} // TODO this should be coming if the test has run or not
                                                   // currently assumes 0 = not run yet, 1 == completed
 
