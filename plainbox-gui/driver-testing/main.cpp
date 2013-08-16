@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
     }
 
     /* The test list model needs to be further updated by running all the "local"
-	 jobs. But this is not yet ready.
+     jobs. But this is not yet ready.
      */
     ListModel* testlistmodel = CreateTestListModel();
     if (!testlistmodel) {
@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     viewer.rootContext()->setContextProperty("testitemFactory",&testitemFactory);
 
     // Now, load the main page
-    viewer.setMainQmlFile(QStringLiteral("qml/outline/gui-ihv.qml"));
+    viewer.setMainQmlFile(QStringLiteral("qml/outline/driver-testing.qml"));
     viewer.showExpanded();
 
     return app.exec();
