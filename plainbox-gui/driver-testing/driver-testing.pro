@@ -61,4 +61,5 @@ OTHER_FILES += \
     qml/outline/RunManagerView.qml \
     qml/outline/RunManagerSuiteDelegate.qml \
     qml/outline/SubmissionDialog.qml \
-    qml/outline/FileDialog.qml
+    qml/outline/FileDialog.qml \
+    qml/outline/driver-testing.qml
