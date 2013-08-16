@@ -124,45 +124,6 @@ Component {
 
                 source: ""
 
-
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    onClicked:{
-                        // set user so the iterating tests continue
-                        // change currentindex to cause selection to move
-                        groupedList.userChangingIndex = true;
-                        groupedList.currentIndex = index
-
-                        switch (statusicon.testStatus){
-
-                        case 2:                         // passed
-                            PopupUtils.open(log_viewer, statusicon);
-                            break;
-                        case 3:                         // failed
-                        case 4:                         // error
-                            PopupUtils.open(log_viewer_with_trouble, statusicon);
-                            break;
-                        case 5:                         // user interaction req.
-                            PopupUtils.open(manual_dialog, statusicon);
-                            break;
-                        case 1:
-                        default://skipped
-                            break;
-                        }
-
-                        // TODO remove this --- this is just to try out the different icons behaviour
-                        // THIS should NOT really happen!!!!
-                        //if (statusicon.testStatus < 6)
-                        //    statusicon.testStatus++
-                        //else
-                        //    statusicon.testStatus = 1
-                        // TODO remove items above to the TODO!!!
-
-                        groupedList.userChangingIndex = false;                    }
-                }
-
                 onTestStatusChanged: {
                     // TODO these number are made up, change to what comes out of plainbox
                     switch (testStatus){
@@ -269,12 +230,10 @@ Component {
                     onClicked:{
                         groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index;
-                        //cmdTool.exec("gedit", logfileName)
 
-                        // TODO change this back to the log_viewer, this opens the manual_dialog for testing only!
-                        //PopupUtils.open(log_viewer, detailsicon);
-                        if (detailsicon.detailsStatus == true)
-                            PopupUtils.open(manual_dialog, detailsicon);
+                        // Open the log viewer
+                        PopupUtils.open(log_viewer, detailsicon);
+
                         groupedList.userChangingIndex = false;
                     }
                 }

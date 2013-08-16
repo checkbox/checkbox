@@ -42,8 +42,10 @@ GuiEngine::GuiEngine( QObject*parent ) :
     valid_pb_objects(false),
     job_tree(NULL),
     m_running(true),
-    m_local_jobs_done(false),
-    m_jobs_done(false)
+    m_running_manual_job(false),
+    m_local_jobs_done(false),   // for QtTest
+    m_jobs_done(false),         // for QtTest
+    m_testing_manual_job(false) // for QtTest
 
 {
     qDebug("GuiEngine::GuiEngine");
@@ -1268,11 +1270,27 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
 
     QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
 
+
+    // Get the interim Job Results
+    GetJobStateMap();
+
+    GetJobStates();
+
+    GetJobResults();
+
     // we should look up the prior job result if available
     int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
 
     // Open the GUI dialog -- TODO - Default the Yes/No/Skip icons
-    emit raiseManualInteractionDialog(outcome);
+    if (!m_running_manual_job) {
+        // must be the first time for this particular job
+        m_running_manual_job = true;
+
+        emit raiseManualInteractionDialog(outcome);
+    } else {
+        emit updateManualInteractionDialog(outcome);
+    }
+
 
     qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler - Done");
 }
@@ -1288,6 +1306,9 @@ void GuiEngine::ResumeFromManualInteractionDialog(bool run_test, \
 
         return;
     }
+
+    // No longer running a manual test
+    m_running_manual_job = false;
 
     // This should trigger a further JobResultAvailable event
     SetOutcome(m_runner,outcome,comments);
@@ -1321,7 +1342,7 @@ void GuiEngine::CatchallIOLogGeneratedSignalsHandler(QDBusMessage msg)
      * but for now its not important.
      */
 
- //   qDebug("GuiEngine::CatchallIOLogGeneratedSignalsHandler - Done");
+//    qDebug("GuiEngine::CatchallIOLogGeneratedSignalsHandler - Done");
 }
 
 
@@ -1556,6 +1577,25 @@ void GuiEngine::AcknowledgeJobsDone(void)
     qDebug("GuiEngine::AcknowledgeJobsDone() - done");
 }
 
+void GuiEngine::ManualTest(const int outcome)
+{
+    qDebug("GuiEngine::ManualTestAsk");
+
+    // We run the manual test _once_
+    if (!m_testing_manual_job) {
+        m_testing_manual_job = true;
+
+        ResumeFromManualInteractionDialog(true,"" /* outcome */,"" /* comments */);
+    } else {
+        m_testing_manual_job = false;
+
+        ResumeFromManualInteractionDialog(false,"pass","Run by test-gui-engine");
+    }
+
+
+    qDebug("GuiEngine::ManualTestAsk");
+}
+
 // Returns a list of DBus Object Paths for valid tests
 const QList<QDBusObjectPath>& GuiEngine::GetValidRunList(void)
 {
@@ -1646,6 +1686,10 @@ const int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
 
     if (outcome.compare(JobResult_OUTCOME_SKIP) == 0) {
         return PBTreeNode::PBJobResult_Skip;
+    }
+
+    if (outcome.compare(JobResult_OUTCOME_NONE) == 0) {
+        return PBTreeNode::PBJobResult_None;
     }
 
     // TODO - Should not really get here I think

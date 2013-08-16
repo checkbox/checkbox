@@ -59,6 +59,12 @@ void TestGuiEngine::TestRunJobs()
     // we should connect a reciever to the jobsCompleted() signal
     connect(this, SIGNAL(jobsCompleted(void)), this, SLOT(AcknowledgeJobsDone()));
 
+    // We should also connect the manual interaction signal
+    connect(this,SIGNAL(raiseManualInteractionDialog(int)),this,SLOT(ManualTest(int)));
+
+    // We should also connect the update manual interaction signal
+    connect(this,SIGNAL(updateManualInteractionDialog(int)),this,SLOT(ManualTest(int)));
+
     // Now, we want to run all the real jobs
     RunJobs();
 

@@ -52,12 +52,20 @@ Dialog {
     }
 
     Button {
+        id: manualtestbutton
         text: i18n.tr("Test")
         color: UbuntuColors.orange
         onClicked: {
             console.log("Test")
 
-            PopupUtils.close(dialog)
+            /* So the user knows this is happening, grey the buttons until
+             * we get a reply.
+             */
+            manualtestbutton.enabled = false;
+            continuebutton.enabled = false;
+            yescheck.enabled = false;
+            nocheck.enabled = false;
+            skipcheck.enabled = false;
 
             // Ok, run this test. Result and comments dont matter here
             guiEngine.ResumeFromManualInteractionDialog(true,"fail","no comment")
@@ -188,12 +196,50 @@ Dialog {
             }
         }
     }
+
+    Connections {
+        id: manual_interaction_connections
+        target: guiEngine
+        onUpdateManualInteractionDialog: {
+            console.log("updateManualInteractionDialog");
+
+            // Re-enable these buttons as the test has completed
+            manualtestbutton.enabled = true;
+            continuebutton.enabled = true;
+            yescheck.enabled = true;
+            nocheck.enabled = true;
+            skipcheck.enabled = true;
+
+            // Outcome values refer to PBJobResult enums
+            if (outcome === 2 /* PBJobResult_Pass */) {
+                yescheck.checked = true;
+                nocheck.checked = false;
+                skipcheck.checked = false; // we didnt skip it
+            } else if (outcome === 8 /* PBJobResult_None */){
+
+                /* FIXME - Plainbox currently doesnt provide a default
+                 * "outcome" for the result of running any manual test
+                 * command; but in future it can be added. This would
+                 * allow the gui to suggest a default pass/fail result
+                 * based on the return code of that command but which
+                 * can be overriden by the user decision if they see
+                 * some behaviour/effect which means the test really failed
+                 * or passed with a different result.
+                 *
+                 * For now, we take the view that an outcome of "none" probably
+                 * ought to default to "yes" because most tests ought to be
+                 * passing so this is the most time-efficient default
+                 * for the user.
+                 */
+
+                yescheck.checked = true;
+                nocheck.checked = false;
+                skipcheck.checked = false; // we didnt skip it
+            } else {
+                yescheck.checked = false;
+                nocheck.checked = true;
+                skipcheck.checked = false; // we didnt skip it
+            }
+        }
+    }
 }
-
-
-
-
-
-
-
-
