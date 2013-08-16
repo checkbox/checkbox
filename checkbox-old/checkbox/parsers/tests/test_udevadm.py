@@ -145,7 +145,7 @@ E: UDEV_LOG=3
 
     def test_DELL_LATITUDEE4310(self):
         devices = self.parse("DELL_LATITUDEE4310")
-        self.assertEqual(len(devices), 73)
+        self.assertEqual(len(devices), 74)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 1)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
@@ -159,13 +159,13 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "CAPTURE"), 0)
         self.assertEqual(self.count(devices, "RAID"), 1)
         self.assertEqual(self.count(devices, "BLUETOOTH"), 0)
-        self.assertEqual(self.count(devices, "DISK"), 2)
+        self.assertEqual(self.count(devices, "DISK"), 3)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.assertEqual(self.count(devices, "WIRELESS"), 1)
 
     def test_DELL_LATITUDEE6430(self):
         devices = self.parse("DELL_LATITUDEE6430")
-        self.assertEqual(len(devices), 76)
+        self.assertEqual(len(devices), 77)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 1)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
@@ -177,7 +177,7 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "ACCELEROMETER"), 0)
         self.assertEqual(self.count(devices, "TOUCHSCREEN"), 0)
         self.assertEqual(self.count(devices, "RAID"), 1)
-        self.assertEqual(self.count(devices, "DISK"), 2)
+        self.assertEqual(self.count(devices, "DISK"), 3)
         # Check that a Bluetooth device is properly detected
         # See https://bugs.launchpad.net/checkbox/+bug/1075052
         self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
@@ -187,7 +187,7 @@ E: UDEV_LOG=3
 
     def test_DELL_OPTIPLEX9020AIO(self):
         devices = self.parse("DELL_OPTIPLEX9020AIO")
-        self.assertEqual(len(devices), 60)
+        self.assertEqual(len(devices), 61)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
@@ -205,7 +205,7 @@ E: UDEV_LOG=3
         # https://bugs.launchpad.net/checkbox/+bug/1167733
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.assertEqual(self.count(devices, "WIRELESS"), 1)
-        self.assertEqual(self.count(devices, "DISK"), 2)
+        self.assertEqual(self.count(devices, "DISK"), 3)
 
     def test_DELL_VOSTRO3460_FINGERPRINT(self):
         """
@@ -216,7 +216,7 @@ E: UDEV_LOG=3
                 0011  VFS5011 Fingerprint Reader
         """
         devices = self.parse("DELL_VOSTRO3460_FINGERPRINT")
-        self.assertEqual(len(devices), 73)
+        self.assertEqual(len(devices), 74)
         self.assertEqual(devices[35].category, "OTHER")
         self.assertEqual(devices[35].vendor_id, 0x0138a)
         self.assertEqual(devices[35].product_id, 0x0011)
@@ -245,7 +245,7 @@ E: UDEV_LOG=3
                             "AR9285 Wireless Network Adapter (PCI-Express)":
                             ("WIRELESS", "pci", 0x168C, 0x002B)
                             }
-        self.assertEqual(len(devices), 60)
+        self.assertEqual(len(devices), 61)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 1)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
@@ -257,7 +257,7 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "ACCELEROMETER"), 0)
         self.assertEqual(self.count(devices, "TOUCHSCREEN"), 0)
         self.assertEqual(self.count(devices, "RAID"), 0)
-        self.assertEqual(self.count(devices, "DISK"), 2)
+        self.assertEqual(self.count(devices, "DISK"), 3)
         self.assertEqual(self.count(devices, "CAPTURE"), 1)
         self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
@@ -286,14 +286,14 @@ E: UDEV_LOG=3
 
     def test_HOME_MADE(self):
         devices = self.parse("HOME_MADE")
-        self.assertEqual(len(devices), 69)
+        self.assertEqual(len(devices), 71)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 2)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
         self.assertEqual(self.count(devices, "CDROM"), 2)
-        self.assertEqual(self.count(devices, "FLOPPY"), 1)
+        self.assertEqual(self.count(devices, "FLOPPY"), 2)
         self.assertEqual(self.count(devices, "FIREWIRE"), 1)
         self.assertEqual(self.count(devices, "MOUSE"), 1)
         self.assertEqual(self.count(devices, "ACCELEROMETER"), 0)
@@ -331,7 +331,7 @@ E: UDEV_LOG=3
 
     def test_HP_PRO2110(self):
         devices = self.parse("HP_PRO2110")
-        self.assertEqual(len(devices), 54)
+        self.assertEqual(len(devices), 59)
         # Check that the Avocent IBM 73P5832 is not a CAPTURE device
         # See https://bugs.launchpad.net/checkbox/+bug/1065064
         self.assertEqual(devices[32].product, "Avocent IBM 73P5832")
@@ -350,7 +350,7 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "BLUETOOTH"), 0)
         self.assertEqual(self.count(devices, "WIRELESS"), 0)
         self.assertEqual(self.count(devices, "RAID"), 0)
-        self.assertEqual(self.count(devices, "DISK"), 2)
+        self.assertEqual(self.count(devices, "DISK"), 3)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
 
     def test_HP_PROBOOK6550B_ACCELEROMETER(self):
@@ -360,10 +360,10 @@ E: UDEV_LOG=3
                             "82577LC Gigabit Network Connection":
                             ("NETWORK", "pci", 0x8086, 0x10EB)
                             }
-        self.assertEqual(len(devices), 78)
+        self.assertEqual(len(devices), 79)
         # Check the accelerometer device category/product
-        self.assertEqual(devices[76].product, "ST LIS3LV02DL Accelerometer")
-        self.assertEqual(devices[76].category, "ACCELEROMETER")
+        self.assertEqual(devices[77].product, "ST LIS3LV02DL Accelerometer")
+        self.assertEqual(devices[77].category, "ACCELEROMETER")
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 1)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
@@ -375,7 +375,7 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "ACCELEROMETER"), 1)
         self.assertEqual(self.count(devices, "TOUCHSCREEN"), 0)
         self.assertEqual(self.count(devices, "RAID"), 0)
-        self.assertEqual(self.count(devices, "DISK"), 2)
+        self.assertEqual(self.count(devices, "DISK"), 3)
         self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.assertEqual(self.count(devices, "CAPTURE"), 1)
@@ -463,7 +463,7 @@ E: UDEV_LOG=3
 
     def test_PANDABOARD(self):
         devices = self.parse("PANDABOARD")
-        self.assertEqual(len(devices), 13)
+        self.assertEqual(len(devices), 14)
         # Check that the wireless product name is extracted from the platform
         # modalias
         self.assertEqual(devices[2].product, "wl12xx")
@@ -482,7 +482,7 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "BLUETOOTH"), 0)
         self.assertEqual(self.count(devices, "CAPTURE"), 0)
         self.assertEqual(self.count(devices, "RAID"), 0)
-        self.assertEqual(self.count(devices, "DISK"), 1)
+        self.assertEqual(self.count(devices, "DISK"), 2)
 
     def test_SAMSUNG_N310(self):
         devices = self.parse("SAMSUNG_N310")
