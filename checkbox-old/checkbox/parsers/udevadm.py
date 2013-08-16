@@ -118,7 +118,7 @@ class UdevadmDevice:
             return self._bus
         # Change the bus from 'acpi' to 'pnp' for some devices
         if PNP_RE.match(self._environment.get("MODALIAS", "")) \
-           and self.path.endswith(":00"):
+           and self._raw_path.endswith(":00"):
             return "pnp"
 
         # Change the bus from 'block' to parent
@@ -353,6 +353,13 @@ class UdevadmDevice:
         ):
             devpath = re.sub(r"/[^/]+/[^/]+$", "", devpath)
         return devpath
+
+    @property
+    def _raw_path(self):
+        """ Returns the raw device path, this is used internally by
+            UdevadmParser only
+        """
+        return self._environment.get("DEVPATH")
 
     @property
     def product_id(self):
@@ -647,7 +654,7 @@ class UdevadmParser:
 
             # Update stack
             while stack:
-                if stack[-1].path + "/" in path:
+                if stack[-1]._raw_path + "/" in path:
                     break
                 stack.pop()
 
@@ -656,44 +663,44 @@ class UdevadmParser:
 
             device = self.device_factory(environment, self.bits, list(stack))
             if not self._ignoreDevice(device):
-                if device.path in self.devices:
-                    if self.devices[device.path].category == 'CARDREADER':
+                if device._raw_path in self.devices:
+                    if self.devices[device._raw_path].category == 'CARDREADER':
                         [
-                            setattr(self.devices[device.path],
+                            setattr(self.devices[device._raw_path],
                                     key, getattr(device, key))
                             for key in (
                                 "product", "vendor", "product_id", "vendor_id")
                             if getattr(device, key) is not None
                         ]
                     elif device.category != "OTHER":
-                        self.devices[device.path] = device
+                        self.devices[device._raw_path] = device
                 elif device.category == 'BLUETOOTH':
                     usb_interface_path = USB_SYSFS_CONFIG_RE.sub(
-                        '', device.path)
+                        '', device._raw_path)
                     if not [
                         d for d in self.devices.values()
                         if d.category == 'BLUETOOTH' and
-                        usb_interface_path in d.path
+                        usb_interface_path in d._raw_path
                     ]:
-                        self.devices[device.path] = device
+                        self.devices[device._raw_path] = device
                 elif device.category == 'CAPTURE':
-                    input_id = INPUT_SYSFS_ID.sub('', device.path)
+                    input_id = INPUT_SYSFS_ID.sub('', device._raw_path)
                     if [
                         d for d in self.devices.values()
-                        if d.category == 'CAPTURE' and input_id in d.path
+                        if d.category == 'CAPTURE' and input_id in d._raw_path
                     ]:
                         self.devices[input_id].product = device.product
                     else:
                         usb_interface_path = USB_SYSFS_CONFIG_RE.sub(
-                            '', device.path)
+                            '', device._raw_path)
                         if not [
                             d for d in self.devices.values()
                             if d.category == 'CAPTURE' and
-                            usb_interface_path in d.path
+                            usb_interface_path in d._raw_path
                         ]:
-                            self.devices[device.path] = device
+                            self.devices[device._raw_path] = device
                 else:
-                    self.devices[device.path] = device
+                    self.devices[device._raw_path] = device
             stack.append(device)
 
         for device in self.devices.values():
@@ -701,14 +708,14 @@ class UdevadmParser:
                 dev_interface = [
                     d for d in self.devices.values()
                     if d.category in ("NETWORK", "WIRELESS") and
-                    device.path != d.path and device.path in d.path
+                    device._raw_path != d._raw_path and device._raw_path in d._raw_path
                 ]
                 if dev_interface:
                     dev_interface = dev_interface.pop()
                     dev_interface.bus = device.bus
                     dev_interface.product_id = device.product_id
                     dev_interface.vendor_id = device.vendor_id
-                    self.devices.pop(device.path, None)
+                    self.devices.pop(device._raw_path, None)
 
         [result.addDevice(device) for device in self.devices.values()]
 

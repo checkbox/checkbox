@@ -8,6 +8,8 @@ checkbox (0.16.9) UNRELEASED; urgency=low
   * scripts/internet_test: Added a passing threshold parameter for packet
     loss, added auto-adjustment of ping count and deadline so that they don't
     conflict with each other (LP: #1211144)
+  * checkbox/parsers/udevadm: Fixed incorrect determination of network and
+    wireless device IDs(LP: #1211521)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 09 Aug 2013 12:47:17 -0400
 
