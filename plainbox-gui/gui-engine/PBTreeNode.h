@@ -98,7 +98,8 @@ public:
         PBJobResult_Error = 4, // not clear what this means? log_viewer_with_trouble???
         PBJobResult_UserInteraction = 5, // May not make sense here
         PBJobResult_DepsNotMet = 6,  // We want to show jobs where deps are not met
-        PBJobResult_Running = 7 // this test is being run right now
+        PBJobResult_Running = 7, // this test is being run right now
+        PBJobResult_None = 8    // no outcome is set for this job yet
     };
 
 public:

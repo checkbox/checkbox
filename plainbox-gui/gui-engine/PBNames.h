@@ -60,5 +60,6 @@ static const QString JobResultInterface("com.canonical.certification.PlainBox.Re
 static const QString JobResult_OUTCOME_PASS = "pass";
 static const QString JobResult_OUTCOME_FAIL = "fail";
 static const QString JobResult_OUTCOME_SKIP = "skip";
+static const QString JobResult_OUTCOME_NONE = "none";
 
 #endif // PB_NAMES_H

@@ -110,6 +110,7 @@ public slots:
         // Used by the test program test-gui-engine
         void AcknowledgeJobsDone(void);
         void AcknowledgeLocalJobsDone(void);
+        void ManualTest(const int outcome);
 
         // Returns a list of DBus Object Paths for valid tests
         const QList<QDBusObjectPath>& GetValidRunList(void);
@@ -138,6 +139,8 @@ signals:
         void jobsCompleted(void);
 
         void raiseManualInteractionDialog(const int outcome /* from PB */);
+
+        void updateManualInteractionDialog(const int outcome);
 
 private:
         // Helper function when generating the desired local and real jobs
@@ -263,11 +266,18 @@ private:
         // Used to preserve interim data from Manual Interaction event
         QDBusObjectPath m_runner;
 
+        /* lets us choose whether to raise the manual interaction dialog
+        * or simply update it
+        */
+        bool m_running_manual_job;
+
 // Used by the test program
 protected:
         bool m_local_jobs_done;
 
         bool m_jobs_done;
+
+        bool m_testing_manual_job;
 };
 
  #endif
