@@ -122,6 +122,10 @@ Component {
 
             width: units.gu(3)
             height: units.gu(3)
+
+            sourceSize.width: parent.width
+            sourceSize.height: parent.height
+
             anchors{
                 left: progressfiller.right
                 verticalCenter: parent.verticalCenter
