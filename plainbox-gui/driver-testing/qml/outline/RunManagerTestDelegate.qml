@@ -132,19 +132,19 @@ Component {
                         source = ""
                         break;
                     case 1:
-                        source = "./artwork/skipped.svg"
+                        source = "./artwork/pictogram-skip-orange-hex.svg"
                         break;
                     case 2:                 // pass
-                        source = "./artwork/passed.svg"
+                        source = "./artwork/pictogram-pass-green-hex.svg"
                         break;
                     case 3:                 // fail
-                        source = "./artwork/failed.svg"
+                        source = "./artwork/pictogram-fail-red-hex.svg"
                         break;
                     case 4:                 // error
-                        source = "./artwork/error.svg"
+                        source = "./artwork/error.svg" // todo
                         break;
                     case 5:                 // user info required
-                        source = "./artwork/userreq.svg"
+                        source = "./artwork/userreq.svg" // todo
                         break;
                     default:
                         source = ""
@@ -197,9 +197,9 @@ Component {
                     if (rerunStatus == 0)                       // not run
                         source = ""
                     if (rerunStatus == 1)                      // completed
-                        source = "./artwork/rerun.svg"
+                        source = "./artwork/pictogram-execute-grey-hex.svg"
                     else if (rerunStatus == 2){                 // queued for rerun
-                        source = "./artwork/rerunq.svg"
+                        source = "./artwork/pictogram-reexecute-obergine-hex.svg"
                         // reset other icons to blank
                         statusicon.testStatus = 0
                         detailsicon.detailsStatus = false
@@ -240,7 +240,7 @@ Component {
 
                 onDetailsStatusChanged:{
                     if (detailsStatus)               // completed
-                        source = "./artwork/details.svg"
+                        source = "./artwork/pictogram-articles-orange-hex.svg"
                     else                            // not run yet
                         source = ""
                 }
