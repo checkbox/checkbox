@@ -117,6 +117,9 @@ Component {
                 width: units.gu(3)
                 height: units.gu(3)
 
+                sourceSize.width: parent.width
+                sourceSize.height: parent.height
+
                 anchors.right: timelabel.left
                 anchors.rightMargin: units.gu(6)
 
@@ -174,6 +177,9 @@ Component {
                 width: units.gu(3)
                 height: units.gu(3)
 
+                sourceSize.width: parent.width
+                sourceSize.height: parent.height
+
                 anchors.right: detailsicon.left
                 anchors.rightMargin: units.gu(9)
                 anchors.verticalCenter: parent.verticalCenter
@@ -216,6 +222,9 @@ Component {
 
                 width: units.gu(3)
                 height: units.gu(3)
+
+                sourceSize.width: parent.width
+                sourceSize.height: parent.height
 
                 anchors.right:  parent.right
                 anchors.rightMargin: units.gu(7.5)
