@@ -31,5 +31,6 @@
      void TestGetWhiteListPathsAndNames(void);
      void TestRunLocalJobs();
      void TestRunJobs();
+     void TestGetResults();
      void TestShutdown();
  };
