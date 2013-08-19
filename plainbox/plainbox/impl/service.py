@@ -620,9 +620,9 @@ class SessionWrapper(PlainBoxObjectWrapper):
     def GetEstimatedDuration(self):
         automated, manual = self.native.get_estimated_duration()
         if automated is None:
-            automated = -1
+            automated = -1.0
         if manual is None:
-            automated = -1
+            manual = -1.0
         return automated, manual
 
     @dbus.service.method(
@@ -863,11 +863,18 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         return self.native.get_all_exporters()
 
     @dbus.service.method(
-        dbus_interface=SERVICE_IFACE, in_signature='osass', out_signature='s')
+        dbus_interface=SERVICE_IFACE, in_signature='osas', out_signature='s')
     @PlainBoxObjectWrapper.translate
     def ExportSession(self, session: 'o', output_format: 's',
+                      option_list: 'as'):
+        return self.native.export_session(session, output_format, option_list)
+
+    @dbus.service.method(
+        dbus_interface=SERVICE_IFACE, in_signature='osass', out_signature='s')
+    @PlainBoxObjectWrapper.translate
+    def ExportSessionToFile(self, session: 'o', output_format: 's',
                       option_list: 'as', output_file: 's'):
-        return self.native.export_session(session, output_format, option_list,
+        return self.native.export_session_to_file(session, output_format, option_list,
                                           output_file)
 
     @dbus.service.method(
@@ -930,11 +937,6 @@ class RunningJob(dbus.service.Object):
     @dbus.service.method(
         dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
     def Kill(self):
-        pass
-
-    @dbus.service.method(
-        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
-    def Pause(self):
         pass
 
     @dbus.service.method(

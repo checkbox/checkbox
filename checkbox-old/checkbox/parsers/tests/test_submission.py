@@ -63,6 +63,11 @@ class SubmissionRun:
 
 class TestSubmissionParser(TestCase):
 
+    def testParserVersion(self):
+        from checkbox.parsers import submission
+        ver = getattr(submission, "__version__")
+        self.assertTrue(ver)
+
     def getResult(self, name, project="test"):
         result = {}
         fixture = os.path.join(os.path.dirname(__file__), "fixtures", name)
@@ -146,13 +151,13 @@ class TestSubmissionParser(TestCase):
         """Device states can be in the udev element."""
         result = self.getResult("submission_udev.xml")
         self.assertTrue("device_states" in result)
-        self.assertEqual(len(result["device_states"]), 78)
+        self.assertEqual(len(result["device_states"]), 79)
 
     def test_device_udevadm(self):
         """Device states can be in a udevadm info element."""
         result = self.getResult("submission_info_udevadm.xml")
         self.assertTrue("device_states" in result)
-        self.assertEqual(len(result["device_states"]), 78)
+        self.assertEqual(len(result["device_states"]), 79)
 
     def test_device_dmidecode(self):
         """Device states can be in a dmidecode info element."""

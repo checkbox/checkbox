@@ -133,8 +133,9 @@ name: stress/reboot
 requires:
  package.name == 'upstart'
  package.name == 'fwts'
-command: pm_test -r 100 --silent --log-level=notset reboot
+command: pm_test -r 100 --silent --log-level=notset reboot --log-dir=$CHECKBOX_DATA
 user: root
+environ: CHECKBOX_DATA
 _description:
  Stress reboot system (100 cycles)
 
@@ -148,8 +149,9 @@ name: stress/poweroff
 requires:
  package.name == 'upstart'
  package.name == 'fwts'
-command: pm_test -r 100 --silent --log-level=notset poweroff
+command: pm_test -r 100 --silent --log-level=notset poweroff --log-dir=$CHECKBOX_DATA
 user: root
+environ: CHECKBOX_DATA
 _description:
  Stress poweroff system (100 cycles)
 
