@@ -43,6 +43,11 @@ SOURCES += main.cpp \
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
+desktop.path = /usr/share/applications
+desktop.files += driver-testing.desktop
+
+INSTALLS += desktop
+
 HEADERS += whitelistitem.h \
     testitem.h \
     listmodel.h \
