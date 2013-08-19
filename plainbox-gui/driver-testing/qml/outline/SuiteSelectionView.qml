@@ -30,6 +30,7 @@ import "."
 
 
 Page {
+    id: suiteselection
     title: i18n.tr("Suite Selection")
 
     Item {
@@ -65,6 +66,22 @@ Page {
             flickableItem: testselection
             align: Qt.AlignTrailing
         }
+
+        // At least one whitelist MUST be selected
+        function ensure_one_selection() {
+            var one_selection = false;
+
+            for (var i = whiteListModel.count - 1; i >= 0; i--){
+                var item = whiteListModel.get(i);
+
+                if (item.check === "true") {
+                    one_selection = true;
+                }
+            }
+
+            // If nothing is selected, disable the ok button
+            okbutton.enabled = one_selection
+        }
     }
 
 
@@ -87,8 +104,8 @@ Page {
 
             /* Now, we should go run the guiengine update to run the local jobs
               which happen to match the whitelist. Then we can collect the
-              test jobs and show them to the user. 
-	      */
+              test jobs and show them to the user.
+          */
             guiEngine.RunLocalJobs();
         }
     }

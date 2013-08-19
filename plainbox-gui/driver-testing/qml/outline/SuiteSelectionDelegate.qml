@@ -49,6 +49,11 @@ import "./artwork"
                     if (item.testname === testname)
                         whiteListModel.setProperty(i, "check", checked);
                 }
+
+                /* Update the ListView, primarily to ensure we dont
+                 * uncheck ALL the whitelists.
+                 */
+                suitelist.ensure_one_selection();
             }
         }
 
