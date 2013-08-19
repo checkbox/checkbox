@@ -19,11 +19,13 @@
 #
 
 # Add more folders to ship with the application, here
-folder_01.source = qml/outline
+folder_01.source = qml
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
 QT += dbus
+TARGET = driver-testing
+TEMPLATE = app
 
 LIBS += -L../plugins/ -lgui-engine
 
@@ -50,16 +52,16 @@ HEADERS += whitelistitem.h \
     testitemmodel.h
 
 OTHER_FILES += \
-    qml/outline/DummyListModel.qml \
-    qml/outline/TestSelectionButtons.qml \
-    qml/outline/TestSelectionView.qml \
-    qml/outline/TestSelectionListView.qml \
-    qml/outline/TestSelectionSuiteDelegate.qml \
-    qml/outline/TestSelectionTestDelegate.qml \
-    qml/outline/SuiteSelectionDelegate.qml \
-    qml/outline/SuiteSelectionView.qml \
-    qml/outline/RunManagerView.qml \
-    qml/outline/RunManagerSuiteDelegate.qml \
-    qml/outline/SubmissionDialog.qml \
-    qml/outline/FileDialog.qml \
-    qml/outline/driver-testing.qml
+    qml/DummyListModel.qml \
+    qml/TestSelectionButtons.qml \
+    qml/TestSelectionView.qml \
+    qml/TestSelectionListView.qml \
+    qml/TestSelectionSuiteDelegate.qml \
+    qml/TestSelectionTestDelegate.qml \
+    qml/SuiteSelectionDelegate.qml \
+    qml/SuiteSelectionView.qml \
+    qml/RunManagerView.qml \
+    qml/RunManagerSuiteDelegate.qml \
+    qml/SubmissionDialog.qml \
+    qml/FileDialog.qml \
+    qml/driver-testing.qml
