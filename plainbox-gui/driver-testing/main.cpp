@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QtWidgets/QApplication>
 #include <QtGui/QGuiApplication>
 #include <QPluginLoader>
 #include <QQmlExtensionPlugin>
@@ -84,7 +85,7 @@ ListModel* CreateTestListModel(ListModel* model=NULL )
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+     QApplication app(argc, argv);
 
     qmlRegisterType<WhiteListItem>("Ubuntu.IhvTest", 0, 1, "WhiteListItem");
     qmlRegisterType<TestItem>("Ubuntu.IhvTest", 0, 1, "TestItem");

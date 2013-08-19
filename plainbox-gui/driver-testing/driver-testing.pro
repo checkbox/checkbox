@@ -23,7 +23,7 @@ folder_01.source = qml
 folder_01.target = .
 DEPLOYMENTFOLDERS = folder_01
 
-QT += dbus
+QT += dbus widgets
 TARGET = driver-testing
 TEMPLATE = app
 
@@ -63,5 +63,4 @@ OTHER_FILES += \
     qml/RunManagerView.qml \
     qml/RunManagerSuiteDelegate.qml \
     qml/SubmissionDialog.qml \
-    qml/FileDialog.qml \
     qml/driver-testing.qml

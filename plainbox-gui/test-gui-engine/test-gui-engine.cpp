@@ -74,6 +74,14 @@ void TestGuiEngine::TestRunJobs()
     }
 }
 
+void TestGuiEngine::TestGetResults()
+{
+    QString format = "text";
+    QStringList options;    // No options needed
+
+    qDebug() << ExportSession(GetCurrentSession(),format,options);
+}
+
 void TestGuiEngine::TestShutdown()
 {
     QVERIFY(Shutdown());

@@ -27,6 +27,8 @@
 #include <QtDBus/QtDBus>
 #include <QtXml/QDomDocument>
 
+#include <QtWidgets/QFileDialog>
+
 class GuiEnginePlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
@@ -123,12 +125,31 @@ public slots:
                                                const QString outcome, \
                                                const QString comments);
 
+        // Convenience functions for the GUI
+        QString GuiExportSessionAsXML(void);
+
+        bool GuiExportSessionToFileAsXML(const QString& output_file);
+
+        // Convenience until we move to Qt 5.1 and the FileDialog component
+        QString GetSaveFileName(void);
+
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
 
         // Returns a tree of all the jobs
         JobTreeNode* GetJobTreeNodes();
+
+        // Obtain The Results
+        const QString ExportSession(const QDBusObjectPath session, \
+                                    const QString& output_format, \
+                                    const QStringList& option_list);
+
+
+        const QString ExportSessionToFile(const QDBusObjectPath session, \
+                                    const QString& output_format, \
+                                    const QStringList& option_list,
+                                    const QString& output_file);
 
 signals:
         // Instruct the GUI to update itself
@@ -204,6 +225,8 @@ protected:  // for test purposes only
 
         // Debugging tool
         const QString JobNameFromObjectPath(const QDBusObjectPath& opath);
+
+        const QDBusObjectPath GetCurrentSession(void);
 
 private:
         EngineState enginestate;

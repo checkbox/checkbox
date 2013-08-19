@@ -1334,6 +1334,112 @@ const QString ConvertOutcome(const int outcome)
     }
 }
 
+QString GuiEngine::GuiExportSessionAsXML(void)
+{
+    qDebug("GuiEngine::GuiExportSessionAsXML");
+
+    QString output_format = "xml";
+    QStringList options;    // No options
+
+    return ExportSession(m_session,output_format,options);
+}
+
+const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
+                                       const QString &output_format, \
+                                       const QStringList& option_list)
+{
+    QString empty;
+
+    QDBusInterface iface(PBBusName, \
+                         PBObjectPathName, \
+                         PBInterfaceName, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug() <<"Could not connect to " << PBInterfaceName;
+
+        // no meaningful results really
+        return empty;
+    }
+
+    // Construct a list of QVariants?
+    QVariantList varlist;
+
+    for(int i=0;i<option_list.count(); i++) {
+        varlist.append(option_list.at(i));
+    }
+
+    QDBusReply<QString> reply = \
+            iface.call("ExportSession", \
+                       QVariant::fromValue<QString>(session.path()), \
+                       QVariant::fromValue<QString>(output_format), \
+                       varlist);
+
+    if (!reply.isValid()) {
+        qDebug() << "Error: " << reply.error();
+
+        return empty;
+    }
+
+    return reply;
+}
+
+bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file)
+{
+    QString output_format = "xml";
+    QStringList options;    // No options
+
+    // very basic argument checking
+    if (output_file.isEmpty()) {
+        return false;
+    }
+
+    // FIXME - When we get a useful success/failure code here, return to caller
+    QString done = ExportSessionToFile(m_session,output_format,options,output_file);
+
+    return true;
+}
+
+const QString GuiEngine::ExportSessionToFile(const QDBusObjectPath session, \
+                                             const QString &output_format, \
+                                             const QStringList &option_list, \
+                                             const QString &output_file)
+{
+    QString empty;
+
+    QDBusInterface iface(PBBusName, \
+                         PBObjectPathName, \
+                         PBInterfaceName, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug() <<"Could not connect to " << PBInterfaceName;
+
+        // no meaningful results really
+        return empty;
+    }
+
+    // Construct a list of QVariants?
+    QVariantList varlist;
+
+    for(int i=0;i<option_list.count(); i++) {
+        varlist.append(option_list.at(i));
+    }
+
+    QDBusReply<QString> reply = \
+            iface.call("ExportSessionToFile", \
+                       QVariant::fromValue<QString>(session.path()), \
+                       QVariant::fromValue<QString>(output_format), \
+                       varlist, \
+                       QVariant::fromValue<QString>(output_file));
+
+    if (!reply.isValid()) {
+        qDebug() << "Error: " << reply.error();
+
+        return empty;
+    }
+
+    return reply;
+}
+
 void GuiEngine::CatchallIOLogGeneratedSignalsHandler(QDBusMessage msg)
 {
 //    qDebug("GuiEngine::CatchallIOLogGeneratedSignalsHandler");
@@ -1694,4 +1800,16 @@ const int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
 
     // TODO - Should not really get here I think
     return PBTreeNode::PBJobResult_Skip;
+}
+
+QString GuiEngine::GetSaveFileName(void)
+{
+    QString prompt = "Choose a filename:";
+
+    return QFileDialog::getSaveFileName(NULL,prompt);
+}
+
+const QDBusObjectPath GuiEngine::GetCurrentSession(void)
+{
+    return m_session;
 }

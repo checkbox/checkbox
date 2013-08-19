@@ -23,7 +23,7 @@
 
 TEMPLATE = lib
 CONFIG += qt plugin
-QT +=qml dbus xml
+QT +=qml dbus xml widgets gui
 
 TARGET = gui-engine
 

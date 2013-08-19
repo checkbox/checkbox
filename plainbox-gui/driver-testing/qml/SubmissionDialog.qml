@@ -38,8 +38,14 @@ Dialog {
         color: UbuntuColors.orange
         onClicked: {
             // open the directory dialog
-            PopupUtils.open(save_as_dialog, savebutton)
-            runmanagerview.reportIsSaved = true;
+            // FYI, in QT 5.1, here's how to do it
+            //                  import QtQuick 2.1
+            //                  import QtQuick.Controls 1.0
+            // fileDialog.open()
+
+            var mysavepath = guiEngine.GetSaveFileName();
+
+            runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsXML(mysavepath);
         }
     }
     Button {
@@ -89,13 +95,17 @@ Dialog {
         }
     }
 
-    Component {
-        id: save_as_dialog
-        FileDialog{
-        }
-    }
-
-
+    // Qt 5.1 can use this in theory rather than the QFileDialog
+    //FileDialog {
+    //    id: fileDialog
+    //    title: "Please select a folder to save to:"
+    //    selectFolder : true
+    //    onAccepted: {
+    //        console.log("You chose: " + fileDialog.fileUrls)
+    //    }
+     //   onRejected: {
+     //       console.log("Canceled")
+     //   }
 
 }
 
