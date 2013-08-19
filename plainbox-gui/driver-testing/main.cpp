@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     viewer.rootContext()->setContextProperty("testitemFactory",&testitemFactory);
 
     // Now, load the main page
-    viewer.setMainQmlFile(QStringLiteral("qml/outline/driver-testing.qml"));
+    viewer.setMainQmlFile(QStringLiteral("qml/driver-testing.qml"));
     viewer.showExpanded();
 
     return app.exec();

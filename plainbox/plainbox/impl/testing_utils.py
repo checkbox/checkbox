@@ -26,11 +26,13 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
+from functools import wraps
 from gzip import GzipFile
 from io import TextIOWrapper
 from mock import Mock
 from tempfile import NamedTemporaryFile
 import inspect
+import warnings
 
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import IOLogRecordWriter
@@ -101,3 +103,15 @@ def make_job_result(outcome="dummy"):
     return MemoryJobResult({
         'outcome': outcome
     })
+
+
+def suppress_warnings(func):
+    """
+    Suppress all warnings from the decorated function
+    """
+    @wraps(func)
+    def decorator(*args, **kwargs):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            return func(*args, **kwargs)
+    return decorator

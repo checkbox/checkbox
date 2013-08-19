@@ -161,22 +161,22 @@ Dialog {
                 PopupUtils.open(skip_warning_dialog, continuebutton);
             }
             else {
+                // Ok, we can continue
+
+                // Get the right outcome...
+                if (yescheck.checked) {
+                    // Pass
+                    guiEngine.ResumeFromManualInteractionDialog(false,"pass",comments.text)
+                } else if (nocheck.checked) {
+                    // Fail
+                    guiEngine.ResumeFromManualInteractionDialog(false,"fail",comments.text)
+                } else if (skipcheck.checked) {
+                    // Fail
+                    guiEngine.ResumeFromManualInteractionDialog(false,"skip",comments.text)
+                }
+
                 PopupUtils.close(dialog)
             }
-
-            // Get the right outcome...
-            if (yescheck.checked) {
-                // Pass
-                guiEngine.ResumeFromManualInteractionDialog(false,"pass",comments.text)
-            } else if (nocheck.checked) {
-                // Fail
-                guiEngine.ResumeFromManualInteractionDialog(false,"fail",comments.text)
-            } else if (skipcheck.checked) {
-                // Fail
-                guiEngine.ResumeFromManualInteractionDialog(false,"skip",comments.text)
-            }
-
-            PopupUtils.close(dialog)
         }
     }
 

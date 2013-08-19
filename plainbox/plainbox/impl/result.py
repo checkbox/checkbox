@@ -92,7 +92,7 @@ class _JobResultBase(IJobResult):
         The amount of time in seconds it took to run this
         jobs command.
         """
-        return self._data.get('execution_duration', None)
+        return self._data.get('execution_duration')
 
     @property
     def comments(self):
@@ -110,7 +110,9 @@ class _JobResultBase(IJobResult):
 
     @Signal.define
     def on_comments_changed(self, old, new):
-        pass
+        """
+        Signal sent when ``comments`` property value is changed
+        """
 
     @property
     def return_code(self):
@@ -179,12 +181,16 @@ class DiskJobResult(_JobResultBase):
     accessing particular parts of the log.
     """
 
+    @property
+    def io_log_filename(self):
+        """
+        pathname of the file containing serialized IO log records
+        """
+        return self._data.get("io_log_filename")
+
     def get_io_log(self):
-        try:
-            record_path = self._data['io_log_filename']
-        except KeyError:
-            pass
-        else:
+        record_path = self.io_log_filename
+        if record_path:
             with GzipFile(record_path, mode='rb') as gzip_stream, \
                     io.TextIOWrapper(gzip_stream, encoding='UTF-8') as stream:
                 for record in IOLogRecordReader(stream):

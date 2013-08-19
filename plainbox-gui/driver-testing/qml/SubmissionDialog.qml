@@ -49,7 +49,7 @@ Dialog {
         onClicked: {
             onClicked:{
                 PopupUtils.open(log_viewer_results, view_button);
-                //cmdTool.exec("gedit", "qml/outline/artwork/test.txt"); // TODO PUT FILENAME HERE
+                //cmdTool.exec("gedit", "qml/artwork/test.txt"); // TODO PUT FILENAME HERE
             }
         }
     }
