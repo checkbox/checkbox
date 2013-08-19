@@ -153,6 +153,15 @@ class TestSubmissionParser(TestCase):
         self.assertTrue("device_states" in result)
         self.assertEqual(len(result["device_states"]), 79)
 
+    def test_device_udev_armhf(self):
+        """ Ensure that device states from udev are also obtained
+        for an armhf device (see http://pad.lv/1214123). Udev data
+        is from the pandaboard as used in the udevadm parser tests.
+        """
+        result = self.getResult("submission_udev_armhf.xml")
+        self.assertTrue("device_states" in result)
+        self.assertEqual(len(result["device_states"]), 14)
+
     def test_device_udevadm(self):
         """Device states can be in a udevadm info element."""
         result = self.getResult("submission_info_udevadm.xml")
