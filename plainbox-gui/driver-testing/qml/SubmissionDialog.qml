@@ -54,8 +54,16 @@ Dialog {
         color: UbuntuColors.lightAubergine
         onClicked: {
             onClicked:{
-                PopupUtils.open(log_viewer_results, view_button);
-                //cmdTool.exec("gedit", "qml/artwork/test.txt"); // TODO PUT FILENAME HERE
+
+                // FIXME - Removed the integrated dialog until we have HTML file
+//                PopupUtils.open(log_viewer_results, view_button);
+
+                // Interim solution is to fire up a web browser
+                var mysavepath = '/tmp/report.xml';
+
+                runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsXML(mysavepath);
+
+                cmdTool.exec("xdg-open", mysavepath)
             }
         }
     }
