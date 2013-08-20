@@ -56,6 +56,9 @@ qml_files.files = qml/outline
 
 INSTALLS += qml_files
 
+target.path = $$PREFIX/bin
+INSTALLS += target
+
 OTHER_FILES += \
     qml/DummyListModel.qml \
     qml/TestSelectionButtons.qml \
