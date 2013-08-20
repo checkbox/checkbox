@@ -145,9 +145,9 @@ E: UDEV_LOG=3
 
     def test_DELL_LATITUDEE4310(self):
         devices = self.parse("DELL_LATITUDEE4310")
-        self.assertEqual(len(devices), 74)
+        self.assertEqual(len(devices), 75)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -165,9 +165,9 @@ E: UDEV_LOG=3
 
     def test_DELL_LATITUDEE6430(self):
         devices = self.parse("DELL_LATITUDEE6430")
-        self.assertEqual(len(devices), 77)
+        self.assertEqual(len(devices), 78)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -187,9 +187,9 @@ E: UDEV_LOG=3
 
     def test_DELL_OPTIPLEX9020AIO(self):
         devices = self.parse("DELL_OPTIPLEX9020AIO")
-        self.assertEqual(len(devices), 61)
+        self.assertEqual(len(devices), 62)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 2)
+        self.assertEqual(self.count(devices, "AUDIO"), 4)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
         self.assertEqual(self.count(devices, "CARDREADER"), 3)
@@ -216,12 +216,12 @@ E: UDEV_LOG=3
                 0011  VFS5011 Fingerprint Reader
         """
         devices = self.parse("DELL_VOSTRO3460_FINGERPRINT")
-        self.assertEqual(len(devices), 74)
+        self.assertEqual(len(devices), 76)
         self.assertEqual(devices[35].category, "OTHER")
         self.assertEqual(devices[35].vendor_id, 0x0138a)
         self.assertEqual(devices[35].product_id, 0x0011)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -245,9 +245,9 @@ E: UDEV_LOG=3
                             "AR9285 Wireless Network Adapter (PCI-Express)":
                             ("WIRELESS", "pci", 0x168C, 0x002B)
                             }
-        self.assertEqual(len(devices), 61)
+        self.assertEqual(len(devices), 63)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 0)
@@ -266,9 +266,9 @@ E: UDEV_LOG=3
 
     def test_DELL_XPS1340(self):
         devices = self.parse("DELL_XPS1340")
-        self.assertEqual(len(devices), 75)
+        self.assertEqual(len(devices), 76)
         self.assertEqual(self.count(devices, "VIDEO"), 2)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 3)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -286,9 +286,9 @@ E: UDEV_LOG=3
 
     def test_HOME_MADE(self):
         devices = self.parse("HOME_MADE")
-        self.assertEqual(len(devices), 71)
+        self.assertEqual(len(devices), 72)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 2)
+        self.assertEqual(self.count(devices, "AUDIO"), 4)
         self.assertEqual(self.count(devices, "KEYBOARD"), 2)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -307,11 +307,11 @@ E: UDEV_LOG=3
 
     def test_HP_PAVILIONSLEEKBOOK14_ACCELEROMETER(self):
         devices = self.parse("HP_PAVILIONSLEEKBOOK14_ACCELEROMETER")
-        self.assertEqual(len(devices), 56)
-        self.assertEqual(devices[54].product, "ST LIS3LV02DL Accelerometer")
-        self.assertEqual(devices[54].category, "ACCELEROMETER")
+        self.assertEqual(len(devices), 58)
+        self.assertEqual(devices[56].product, "ST LIS3LV02DL Accelerometer")
+        self.assertEqual(devices[56].category, "ACCELEROMETER")
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -331,13 +331,13 @@ E: UDEV_LOG=3
 
     def test_HP_PRO2110(self):
         devices = self.parse("HP_PRO2110")
-        self.assertEqual(len(devices), 59)
+        self.assertEqual(len(devices), 60)
         # Check that the Avocent IBM 73P5832 is not a CAPTURE device
         # See https://bugs.launchpad.net/checkbox/+bug/1065064
-        self.assertEqual(devices[32].product, "Avocent IBM 73P5832")
-        self.assertNotEqual(devices[32].category, "CAPTURE")
+        self.assertEqual(devices[33].product, "Avocent IBM 73P5832")
+        self.assertNotEqual(devices[33].category, "CAPTURE")
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
         self.assertEqual(self.count(devices, "CARDREADER"), 4)
@@ -360,12 +360,12 @@ E: UDEV_LOG=3
                             "82577LC Gigabit Network Connection":
                             ("NETWORK", "pci", 0x8086, 0x10EB)
                             }
-        self.assertEqual(len(devices), 79)
+        self.assertEqual(len(devices), 80)
         # Check the accelerometer device category/product
-        self.assertEqual(devices[77].product, "ST LIS3LV02DL Accelerometer")
-        self.assertEqual(devices[77].category, "ACCELEROMETER")
+        self.assertEqual(devices[78].product, "ST LIS3LV02DL Accelerometer")
+        self.assertEqual(devices[78].category, "ACCELEROMETER")
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -384,9 +384,9 @@ E: UDEV_LOG=3
 
     def test_LENOVO_E431(self):
         devices = self.parse("LENOVO_E431")
-        self.assertEqual(len(devices), 63)
+        self.assertEqual(len(devices), 65)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -404,9 +404,9 @@ E: UDEV_LOG=3
 
     def test_LENOVO_E445(self):
         devices = self.parse("LENOVO_E445")
-        self.assertEqual(len(devices), 76)
+        self.assertEqual(len(devices), 78)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 2)
+        self.assertEqual(self.count(devices, "AUDIO"), 4)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 1)
@@ -431,10 +431,10 @@ E: UDEV_LOG=3
                             "H5321 gw":
                             ("NETWORK", "usb", 0x0bdb, 0x1926)
                             }
-        self.assertEqual(len(devices), 102)
+        self.assertEqual(len(devices), 103)
         # Check that the Thinkpad hotkeys are not a CAPTURE device
-        self.assertEqual(devices[101].product, "ThinkPad Extra Buttons")
-        self.assertEqual(devices[101].category, "OTHER")
+        self.assertEqual(devices[102].product, "ThinkPad Extra Buttons")
+        self.assertEqual(devices[102].category, "OTHER")
         # Check that the Ericsson MBM module is set as a NETWORK device with
         # proper vendor/product names
         self.assertEqual(devices[54].product, "H5321 gw")
@@ -443,7 +443,7 @@ E: UDEV_LOG=3
             "Ericsson Business Mobile Networks BV")
         self.assertEqual(devices[54].category, "NETWORK")
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 6)
+        self.assertEqual(self.count(devices, "AUDIO"), 9)
         # Logitech Illuminated keyboard + T430S keyboard + KVM
         self.assertEqual(self.count(devices, "KEYBOARD"), 3)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
@@ -486,9 +486,9 @@ E: UDEV_LOG=3
 
     def test_SAMSUNG_N310(self):
         devices = self.parse("SAMSUNG_N310")
-        self.assertEqual(len(devices), 55)
+        self.assertEqual(len(devices), 57)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
-        self.assertEqual(self.count(devices, "AUDIO"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 2)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
         self.assertEqual(self.count(devices, "CARDREADER"), 0)
@@ -516,7 +516,7 @@ E: UDEV_LOG=3
                             "82579LM Gigabit Network Connection":
                             ("NETWORK", "pci", 0x8086, 0x1502)
                             }
-        self.assertEqual(len(devices), 64)
+        self.assertEqual(len(devices), 65)
         self.assertEqual(self.count(devices, "WIRELESS"), 1)
         self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
