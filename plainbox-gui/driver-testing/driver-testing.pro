@@ -51,6 +51,11 @@ HEADERS += whitelistitem.h \
     commandtool.h \
     testitemmodel.h
 
+qml_files.path = /usr/share/driver-testing/qml
+qml_files.files = qml/outline
+
+INSTALLS += qml_files
+
 OTHER_FILES += \
     qml/DummyListModel.qml \
     qml/TestSelectionButtons.qml \
