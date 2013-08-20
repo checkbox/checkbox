@@ -10,6 +10,8 @@ checkbox (0.16.9) UNRELEASED; urgency=low
     conflict with each other (LP: #1211144)
   * checkbox/parsers/udevadm: Fixed incorrect determination of network and
     wireless device IDs(LP: #1211521)
+  * checkbox:parsers:submission: Tests and fixes for architecture matching
+    which was causing udevadm processing to fail on armhf. (LP: #1214123).
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 09 Aug 2013 12:47:17 -0400
 

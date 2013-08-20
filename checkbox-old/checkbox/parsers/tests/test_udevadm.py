@@ -522,6 +522,28 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.verify_devices(devices, expected_devices)
 
+    def test_CALXEDA_HIGHBANK(self):
+        #This is a very bare-bones SoC meant for server use
+        devices = self.parse("CALXEDA_HIGHBANK")
+        self.assertEqual(len(devices), 3)
+        self.assertEqual(self.count(devices, "VIDEO"), 0)
+        self.assertEqual(self.count(devices, "AUDIO"), 0)
+        self.assertEqual(self.count(devices, "KEYBOARD"), 0)
+        self.assertEqual(self.count(devices, "TOUCHPAD"), 0)
+        self.assertEqual(self.count(devices, "CARDREADER"), 0)
+        self.assertEqual(self.count(devices, "CDROM"), 0)
+        self.assertEqual(self.count(devices, "FIREWIRE"), 0)
+        self.assertEqual(self.count(devices, "MOUSE"), 0)
+        self.assertEqual(self.count(devices, "ACCELEROMETER"), 0)
+        self.assertEqual(self.count(devices, "TOUCHSCREEN"), 0)
+        self.assertEqual(self.count(devices, "WIRELESS"), 0)
+        self.assertEqual(self.count(devices, "NETWORK"), 2)
+        self.assertEqual(self.count(devices, "BLUETOOTH"), 0)
+        self.assertEqual(self.count(devices, "CAPTURE"), 0)
+        self.assertEqual(self.count(devices, "RAID"), 0)
+        self.assertEqual(self.count(devices, "DISK"), 1)
+
+
     def verify_devices(self, devices, device_dict):
         """ Verify we have exactly one of each device given in the dict,
             also that category, bus, vendor_id and product_id match.
