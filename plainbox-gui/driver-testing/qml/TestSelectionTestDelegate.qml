@@ -115,7 +115,9 @@ Component {
                     groupedList.updateListModel();
 		    
                     // Update the summary bar at the bottom of TestSelectionView
-                    groupedList.updateListSummary(testListModel.get(index), checked);
+
+                    groupedList.setListSummary();
+
 
                     // Warn the user if they are de-selecting tests
                     if (!checked)

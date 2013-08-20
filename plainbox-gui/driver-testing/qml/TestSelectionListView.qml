@@ -420,25 +420,34 @@ Rectangle {
             // Set List Summary
             function setListSummary(){
                 var start = new Date();
+
                 // TODO count how many manuals testListModel
                 var testCnt = 0;
                 var manualCnt = 0;
 
                 var estTimeInt=0;
 
+                // We count from the bottom up, and we dont count anything
+                // that is a "branch" as this is a local/group kind of thing
                 for (var i = testListModel.count - 1; i >=0; i--)
                 {
                     var curItem = testListModel.get(i);
-                    if ( curItem.check === "true"){
-                        testCnt++;
-                        if (curItem.type === "Manual")
-                            manualCnt++;
-                        estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
+                    // is it a branch? if so we dont count it
+                    if (curItem.branch === "0") {
+                        // not a branch
+                        if ( curItem.check === "true"){
+                            testCnt++;
+                            if (curItem.type === "Manual")
+                                manualCnt++;
+                            estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
+                        }
                     }
                 }
                 summary.totalTests = testCnt;
                 summary.totalManualTests = manualCnt;
                 summary.totalTimeEst =  estTimeInt;
+
+                // Not strictly needed here
                 var end = new Date();
                 console.log("Time for summary:", end.getMilliseconds() - start.getMilliseconds());
 
