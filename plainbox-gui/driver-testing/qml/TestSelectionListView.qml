@@ -90,7 +90,7 @@ Rectangle {
                     PopupUtils.open(warning_dialog, caller_button);
             }
 
-            // Select/De-select all items
+            // Select/De-select all items - Called from TestSelectionButtons.qml
             function selectAll(sel){
 
                 // show the warning if sel is false
@@ -145,34 +145,183 @@ Rectangle {
 
                 // We need to find the index for the item passed in as item_id
                 for (var i = 0; i < groupedList.contentItem.children.length; i++) {
-                    var cI = groupedList.contentItem.children[i];
 
-                    var top_depth = cI.my_depth;
+                    // cI = The item which was clicked by the user
+                    var cI = groupedList.contentItem.children[i];
+                    var cI_depth = cI.my_depth;
 
                     if (cI === item_id) {
-                        // Now, we must make its children checked/unchecked as needed
-                        // ok, so now we hide/make visible the remaining items
-                        // which have a depth greater than our current depth
+                        /* Branch rules:
 
+                          Branch: Set
+                            Set all the leaves below us
+
+                          Branch: Un-set
+                            Un-set all the leaves below us
+                         */
                         for (var j = i+1; j < groupedList.contentItem.children.length; j++) {
 
                             // check this item has a greater depth than the top item
                             var cur_depth = groupedList.contentItem.children[j].my_depth;
 
                             // Should we check this item?
-                            if (top_depth < cur_depth) {
+                            if (cI_depth < cur_depth) {
                                 // Yes, because its deeper
                                 var thisItem = groupedList.contentItem.children[j];
                                 thisItem.checked = cI.checked;
                             } else {
-                                // we must have reached the end, so return
-                                return;
+                                // we've reached the end of this branch, so stop
+                                break;
                             }
+                        }
+			
+                        /* Leaf rules
+
+                            Leaf: Set
+                              If any branch above us is unchecked, we must set it.
+
+                            Leaf: Un-set
+                              If all the leaves at this level are unchecked, we uncheck
+                              the containing branch above us.
+                        */
+
+                        // Leaf set case. i is the current item index
+                        /* we go up each level and check the box */
+                        var interim_depth = cI_depth; // Track progress to the top
+
+                        if (cI.checked) {
+                            for (var j=i-1; j >= 0 ; j--) {
+                                // We are going UP the list/tree now
+                                var thisItem = groupedList.contentItem.children[j];
+                                var cur_depth = thisItem.my_depth;
+
+                                if (cur_depth < interim_depth) {
+                                    // we have gone up another level
+                                    interim_depth--;
+
+                                    // lets check this item
+                                    thisItem.checked = true;
+                                }
+
+                                // Have we reached the top-most branch?
+                                if (cur_depth === 0) {
+                                    // We dont need to go any further
+                                    break;  // end of for(j)
+                                }
+                            }
+                        } else {
+                            // Un set rule
+                            // recursive: Update parent
+                            updateBranchSelection(i);
                         }
                     }
                 }
                 currentIndex = oldCurrent;
+            }
 
+            /* Updates the item and child items based on whether it has
+              selected children.
+
+              Arguments:
+                item_index - Index into groupedList.contentItem.children[]
+
+              */
+            function updateBranchSelection(item_index) {
+                // The starting point (generally the root branch)
+                var curItem = groupedList.contentItem.children[item_index]
+                var cI_depth = curItem.my_depth;
+
+                // Avoid bad arguments
+                if (item_index < 0) {
+                    console.log("UpdateBranchSelection - Bad argument")
+                    return false;
+                }
+
+                // We dont need to do anything if its a root node
+                if (cI_depth === 0) {
+                    return;
+                }
+
+                // we assume its not checked
+                var result = false;
+
+                /* Find the bottommost item at this level.
+                  then, go up until the depth goes down by one. Then update that
+                  item.
+
+                  Example Tree as follows:
+
+                    ...
+                    [*]         <- top_Index computed below
+                        [ ]     <- Newly unchecked item suppiled as item_Index
+                        [*]
+                        [ ]
+                            [ ] <- bottom_Index computed below
+                    [ ]
+                    ...
+                  */
+
+                // Find bottom_Index
+                var bottom_Index = item_index;
+                for (var i = item_index+1; i < groupedList.contentItem.children.length; i++) {
+                    var this_Item = groupedList.contentItem.children[i];
+                    var tI_depth = this_Item.my_depth;
+
+                    // Have we reached the bottom of the tree?
+                    if (tI_depth < cI_depth) {
+                        bottom_Index = i;
+                        break;
+                    }
+
+                    // Is this a root node?
+                    if (tI_depth === 0) {
+                        bottom_Index = i;
+                        break;
+                    }
+                }
+
+                /* we should move up bottom_Index to be the bottom of our tree
+                 * and not the start of the next tree
+                 */
+                bottom_Index--;
+
+                /* top_Index is checked if _anything above bottom_Index
+                 * is selected.
+                 */
+                var result = false; // assume its unchecked
+                var top_Index = item_index;
+                for(var i = bottom_Index; i>=0; i--) {
+                    // have we reached the branch holding these children?
+                    if (groupedList.contentItem.children[i].my_depth < cI_depth) {
+                        // yes
+                        top_Index = i;
+                        break;
+                    }
+
+                    if (groupedList.contentItem.children[i].checked ) {
+                        result = true;  // at least one item is true
+                    }
+                }
+
+                // Now update the checked status of this box
+                groupedList.contentItem.children[top_Index].checked = result;
+
+                // Now, if we havent reached the root, do the next level
+                if (groupedList.contentItem.children[top_Index].my_depth >0 ) {
+                    updateBranchSelection(top_Index);
+                }
+            }
+
+            // Update the underlying model based on the UI display of check/uncheck items
+            function updateListModel() {
+
+                // do it for each item
+                for (var i=0; i < groupedList.contentItem.children.length; i++) {
+                    var thisItem = groupedList.contentItem.children[i];
+                    var sel = thisItem.checked;
+
+                    testListModel.setProperty(i, "check", sel);
+                }
             }
 
             // Add up all the selected tests in a group
@@ -210,7 +359,7 @@ Rectangle {
                 return  estTimeStr;
             }
 
-            //  Open/Close gruops
+            //  Open/Close groups
             function openShutSubgroup(item_id, sel){
                 var oldCurrent = currentIndex;
                 currentIndex = -1
@@ -220,7 +369,7 @@ Rectangle {
                 {
                     var cI = groupedList.contentItem.children[i];
 
-                    var top_depth = cI.my_depth;
+                    var cI_depth = cI.my_depth;
 
                     if (cI === item_id) {
                         // ok, so now we hide/make visible the remaining items
@@ -231,7 +380,7 @@ Rectangle {
                             var cur_depth = groupedList.contentItem.children[j].my_depth;
 
                             // Should we hide this item?
-                            if (top_depth < cur_depth) {
+                            if (cI_depth < cur_depth) {
                                 // Yes, because its clearly deeper
                                 var hideItem = groupedList.contentItem.children[j];
                                 hideItem.visible = sel;
@@ -252,6 +401,7 @@ Rectangle {
                 currentIndex = oldCurrent;
             }
 
+            // Update List Summary
             function updateListSummary(testItem, sel){
                 if (sel){
                     summary.totalTests += 1;
@@ -267,7 +417,7 @@ Rectangle {
                  }
             }
 
-
+            // Set List Summary
             function setListSummary(){
                 var start = new Date();
                 // TODO count how many manuals testListModel
