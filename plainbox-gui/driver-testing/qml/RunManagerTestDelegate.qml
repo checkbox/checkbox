@@ -48,6 +48,8 @@ Component {
         property bool is_branch: branch
         property int my_depth: depth
 
+        property int icon_size_gu: 4    // Adjustable icon size based on this
+
         onOpenChanged: {
             open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
         }
@@ -106,7 +108,7 @@ Component {
                 anchors.leftMargin: units.gu(2)
 
                 anchors.right: statusicon.left
-                anchors.rightMargin: units.gu(7.5)
+                anchors.rightMargin: units.gu(9-(icon_size_gu/2))
             }
 
 
@@ -114,8 +116,8 @@ Component {
                 id: statusicon
                 property int testStatus: runstatus// TODO this should be coming from the testitem status
 
-                width: units.gu(3)
-                height: units.gu(3)
+                width: units.gu(icon_size_gu)
+                height: units.gu(icon_size_gu)
 
                 sourceSize.width: parent.width
                 sourceSize.height: parent.height
@@ -163,7 +165,7 @@ Component {
                 text: {!elapsedtime ? "" : utils.formatElapsedTime(elapsedtime)}
                 width: units.gu(6)
                 anchors.right: rerunicon.left
-                anchors.rightMargin: units.gu(9)
+                anchors.rightMargin: units.gu(12-icon_size_gu)
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignRight
 
@@ -174,14 +176,14 @@ Component {
                 property int rerunStatus: !runstatus?0:1 // TODO this should be coming if the test has run or not
                                                   // currently assumes 0 = not run yet, 1 == completed 2 == queued for rerun
 
-                width: units.gu(3)
-                height: units.gu(3)
+                width: units.gu(icon_size_gu)
+                height: units.gu(icon_size_gu)
 
                 sourceSize.width: parent.width
                 sourceSize.height: parent.height
 
                 anchors.right: detailsicon.left
-                anchors.rightMargin: units.gu(9)
+                anchors.rightMargin: units.gu(12-icon_size_gu)
                 anchors.verticalCenter: parent.verticalCenter
 
                 source: ""
@@ -220,14 +222,14 @@ Component {
                 property bool detailsStatus: {!runstatus?false:true} // TODO this should be coming if the test has run or not
                                                   // currently assumes 0 = not run yet, 1 == completed
 
-                width: units.gu(3)
-                height: units.gu(3)
+                width: units.gu(icon_size_gu)
+                height: units.gu(icon_size_gu)
 
                 sourceSize.width: parent.width
                 sourceSize.height: parent.height
 
                 anchors.right:  parent.right
-                anchors.rightMargin: units.gu(7.5)
+                anchors.rightMargin: units.gu(9-(icon_size_gu/2))
 
                 anchors.verticalCenter: parent.verticalCenter
 
