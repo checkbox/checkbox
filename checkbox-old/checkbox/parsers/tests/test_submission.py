@@ -151,7 +151,7 @@ class TestSubmissionParser(TestCase):
         """Device states can be in the udev element."""
         result = self.getResult("submission_udev.xml")
         self.assertTrue("device_states" in result)
-        self.assertEqual(len(result["device_states"]), 79)
+        self.assertEqual(len(result["device_states"]), 80)
 
     def test_device_udev_armhf(self):
         """ Ensure that device states from udev are also obtained
@@ -166,7 +166,7 @@ class TestSubmissionParser(TestCase):
         """Device states can be in a udevadm info element."""
         result = self.getResult("submission_info_udevadm.xml")
         self.assertTrue("device_states" in result)
-        self.assertEqual(len(result["device_states"]), 79)
+        self.assertEqual(len(result["device_states"]), 80)
 
     def test_device_dmidecode(self):
         """Device states can be in a dmidecode info element."""
