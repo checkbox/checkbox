@@ -328,9 +328,27 @@ class UdevadmDevice:
             if self._environment["DRIVER"] == "floppy":
                 return "FLOPPY"
 
-        if self.product or self.product_id:
+        # Some audio and serial devices have a product but no vendor
+        # or product id. Special-case their categories for backwards-
+        # compatibility.
+        if self.bus ==  "sound":
+            return "AUDIO"
+
+        if self.bus == "tty":
             return "OTHER"
 
+        # Any devices that have a product name and proper vendor and product
+        # IDs, but had no other category, are lumped together in OTHER.
+        # A few devices may have no self.product but carry PRODUCT data in
+        # their environment.
+        if ((self.product or self._environment.get("PRODUCT")) and
+                not None in (self.vendor_id, self.product_id)):
+            return "OTHER"
+
+        # Limbo of devices I couldn't otherwise categorize. In practice
+        # having no category means the device may be uninteresting, it's
+        # up to downstream users of this class to decide what to do with
+        # those devices.
         return None
 
     @property
