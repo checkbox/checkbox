@@ -56,7 +56,7 @@ qml_files.files = qml/outline
 
 INSTALLS += qml_files
 
-target.path = $$PREFIX/bin
+target.path = /usr/bin
 INSTALLS += target
 
 OTHER_FILES += \
