@@ -30,6 +30,8 @@ try:
 except ImportError:
     import cElementTree as etree
 
+import re
+
 from io import StringIO
 from logging import getLogger
 from pkg_resources import resource_string
@@ -128,7 +130,8 @@ class SubmissionResult:
         self.dispatcher.publishEvent("cpu", cpu)
 
     def addCpuArchitecture(self, cpu, architecture):
-        if cpu["debian_name"] == architecture:
+        regex = re.compile(cpu['regex'])
+        if cpu["debian_name"] == architecture or regex.match(architecture):
             self.dispatcher.publishEvent("machine", cpu["gnu_name"])
             self.dispatcher.publishEvent("bits", cpu["bits"])
 
