@@ -141,6 +141,10 @@ int main(int argc, char *argv[])
 
     // Now, load the main page
     viewer.setMainQmlFile(QStringLiteral("qml/driver-testing.qml"));
+
+    // Ensure a reasonable minimum size for this window
+    viewer.setMinimumSize(QSize(800,600));
+
     viewer.showExpanded();
 
     return app.exec();
