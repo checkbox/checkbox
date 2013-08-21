@@ -65,6 +65,8 @@ void TestGuiEngine::TestRunJobs()
     // We should also connect the update manual interaction signal
     connect(this,SIGNAL(updateManualInteractionDialog(int)),this,SLOT(ManualTest(int)));
 
+	PrepareJobs();
+
     // Now, we want to run all the real jobs
     RunJobs();
 

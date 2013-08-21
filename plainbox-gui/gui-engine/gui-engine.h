@@ -88,6 +88,9 @@ public slots:
          */
         void RunLocalJobs(void);
 
+        // Helper which prepares the corrected run-list from plainbox
+        int PrepareJobs(void);
+
         void RunJobs(void);
 
         // Used when running the real tests
