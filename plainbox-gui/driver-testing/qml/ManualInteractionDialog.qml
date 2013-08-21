@@ -35,6 +35,13 @@ Dialog {
     title: i18n.tr("Manual Test")
     text: testItem.testname//i18n.tr("Name of the Test.")
 
+    ActivityIndicator {
+        id: manual_interaction_activity
+
+        anchors.horizontalCenter: instructions.horizontalCenter
+
+        running: false
+    }
 
     TextArea{
         id: instructions
@@ -66,6 +73,8 @@ Dialog {
             yescheck.enabled = false;
             nocheck.enabled = false;
             skipcheck.enabled = false;
+
+            manual_interaction_activity.running = true;
 
             // Ok, run this test. Result and comments dont matter here
             guiEngine.ResumeFromManualInteractionDialog(true,"fail","no comment")
@@ -202,6 +211,9 @@ Dialog {
         target: guiEngine
         onUpdateManualInteractionDialog: {
             console.log("updateManualInteractionDialog");
+
+            // Remove the activity indicator
+            manual_interaction_activity.running = false;
 
             // Re-enable these buttons as the test has completed
             manualtestbutton.enabled = true;
