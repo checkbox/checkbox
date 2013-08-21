@@ -84,6 +84,19 @@ Page {
         }
     }
 
+    ActivityIndicator {
+        id: suite_sel_activity
+
+        running: false
+
+        anchors.horizontalCenter: suitelist.horizontalCenter
+        anchors.verticalCenter: suitelist.verticalCenter
+
+        // FIXME - if a future version scales smoothly, we can add this back
+//        height: suitelist.height / 4;
+//        width: suitelist.width / 4;
+
+    }
 
     Button {
         id: okbutton
@@ -99,6 +112,10 @@ Page {
             // Ensure we only ask the service about this once (Bug 1209284)
             okbutton.enabled = false;
 
+            suite_sel_activity.running = true;
+
+            suitelist.visible = false;
+
             // Dump the whitelist as finally selected by the user
             guiEngine.dump_whitelist_selection();
 
@@ -113,6 +130,8 @@ Page {
     Connections {
         target: guiEngine
         onLocalJobsCompleted: {
+            suite_sel_activity.running = false;
+
             // Now, we should repopulate the testlistmodel...
             testitemFactory.CreateTestListModel(testListModel);
             // NOTE: When the user is done, this is where to load up the TestSelection list
