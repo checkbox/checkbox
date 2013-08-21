@@ -447,6 +447,21 @@ Rectangle {
                 summary.totalManualTests = manualCnt;
                 summary.totalTimeEst =  estTimeInt;
 
+                /* We should call into guiengine to find out the number of
+                 * implicit tests (really we will get a count of ALL of them...
+                 */
+
+                // Ok, we shouldnt need to do this tooo often!
+
+                // Update the really selected testsuitelist
+                testitemFactory.GetSelectedRealJobs(testListModel);
+
+                // Prep the jobs (we cant start them without this)
+                var total_generated_tests = guiEngine.PrepareJobs();
+
+                // All the above lets us count the number of real jobs
+                summary.totalImplicitTests = total_generated_tests - summary.totalTests;
+
                 // Not strictly needed here
                 var end = new Date();
                 console.log("Time for summary:", end.getMilliseconds() - start.getMilliseconds());
