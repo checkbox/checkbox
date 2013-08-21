@@ -25,6 +25,10 @@ TEMPLATE = lib
 CONFIG += qt plugin
 QT +=qml dbus xml widgets gui
 
+isEmpty(PREFIX) {
+      PREFIX = /usr/local
+}
+
 TARGET = gui-engine
 
 HEADERS = gui-engine.h \
@@ -39,5 +43,6 @@ SOURCES = gui-engine.cpp \
 
 DESTDIR = ../plugins
 
+target.path = $$PREFIX/share/driver-testing/plugins
 
-
+INSTALLS += target

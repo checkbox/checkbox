@@ -27,12 +27,16 @@ QT += dbus widgets
 TARGET = driver-testing
 TEMPLATE = app
 
+isEmpty(PREFIX) {
+      PREFIX = /usr/local
+}
+
 LIBS += -L../plugins/ -lgui-engine
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../plugins\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'$$PREFIX/share/driver-testing/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
@@ -51,13 +55,13 @@ HEADERS += whitelistitem.h \
     commandtool.h \
     testitemmodel.h
 
-qml_files.path = /usr/share/driver-testing/qml
-qml_files.files = qml/outline
+target.path = $$PREFIX/bin
+INSTALLS += target
+
+qml_files.path = $$PREFIX/share/driver-testing
+qml_files.files = qml
 
 INSTALLS += qml_files
-
-target.path = /usr/bin
-INSTALLS += target
 
 OTHER_FILES += \
     qml/DummyListModel.qml \
