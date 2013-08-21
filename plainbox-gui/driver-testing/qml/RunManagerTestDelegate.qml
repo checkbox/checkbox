@@ -130,26 +130,32 @@ Component {
                 source: ""
 
                 onTestStatusChanged: {
-                    // TODO these number are made up, change to what comes out of plainbox
+                    // These numbers match PBTreeNode.h:PBJobResult enums
                     switch (testStatus){
-                    case 0:
+                    case 0: // PBJobResult_NotRun
                         // not executed
                         source = ""
                         break;
-                    case 1:
+                    case 1: // PBJobResult_Skip
                         source = "./artwork/pictogram-skip-orange-hex.svg"
                         break;
-                    case 2:                 // pass
+                    case 2: // PBJobResult_Pass
                         source = "./artwork/pictogram-pass-green-hex.svg"
                         break;
-                    case 3:                 // fail
+                    case 3: // PBJobResult_Fail
                         source = "./artwork/pictogram-fail-red-hex.svg"
                         break;
-                    case 4:                 // error
+                    case 4: // PBJobResult_Error (doesnt seem to be used/useful?)
                         source = "./artwork/error.svg" // todo
                         break;
-                    case 5:                 // user info required
+                    case 5: // PBJobResult_UserInteraction
                         source = "./artwork/userreq.svg" // todo
+                        break;
+                    case 6: // PBJobResult_DepsNotMet
+                        source = "./artwork/pictogram-skip-grey-hex.svg"
+                        break;
+                    case 7: // PBJobResult_Running
+                        source = ""
                         break;
                     default:
                         source = ""
