@@ -62,13 +62,9 @@ Rectangle {
             property bool userChangingIndex: false      //  indicates if user is changing index so 1 of 4 heading doesn't get messed up
             property string curSectionTested: currentSection // which section is currently under test
             property int curTest: 0                     // test index of test in relation to section
+            property int hiddenCount: 0                 // the number of unchecked boxes from Test Selection. We dont show these ever
 
             delegate: RunManagerTestDelegate {}
-
-            // Runs when this ListView is fully initialised
-            Component.onCompleted:{
-                sectionCount = getSectionCount()
-            }
 
             onCurrentIndexChanged: {
                 // This code is used for counting up tests in the section for 1 of 5 header
@@ -86,6 +82,24 @@ Rectangle {
                         }
                     }
                 }
+            }
+
+            // Counts all the hidden items so we get the listview height correct
+            function countHiddenItems() {
+                var count = 0;
+
+                // We need to find the index for the item passed in as item_id
+                for (var i = 0; i < testListModel.count; i++)
+                {
+                    var item = testListModel.get(i);
+
+                    if (item.check === "true") {
+                        // do nothing, this is shown
+                    } else {
+                        count++;
+                    }
+                }
+                return count;
             }
 
             //  Open/Close groups
@@ -179,5 +193,16 @@ Rectangle {
     Scrollbar {
         flickableItem: listflick
         align: Qt.AlignTrailing
+    }
+
+    // Runs when this ListView is fully initialised
+    Component.onCompleted:{
+        groupedList.sectionCount = groupedList.getSectionCount()
+
+        // Update the number counted to get the right height
+        groupedList.hiddenCount = groupedList.countHiddenItems();
+
+        groupedList.height = units.gu(7) * (groupedList.count - groupedList.closedCount - groupedList.hiddenCount)
+        listflick.contentHeight = groupedList.height
     }
 }

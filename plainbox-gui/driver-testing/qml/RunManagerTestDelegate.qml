@@ -38,10 +38,14 @@ Component {
     Item{
         id: testitem
         width: parent.width
-        height: units.gu(7)
+
 
         property string groupname: group
         property string labelname: testname
+
+        // visibility - now follows what the user selected in test selection
+        visible: check
+        height: check ? units.gu(7) : units.gu(0);
 
         // These properties help to simulate the treeview
         property bool open: true
