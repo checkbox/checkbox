@@ -51,7 +51,7 @@ Item {
 
         Image {
             id: progressIcon
-            source: "artwork/RightArrow.png"
+            source: "artwork/UpArrow.png"
             anchors {
                 left: detailsLabel.right
                 leftMargin: units.gu(2)
@@ -60,7 +60,7 @@ Item {
 
         Image {
             id: progressIcon2
-            source: "artwork/RightArrow.png"
+            source: "artwork/UpArrow.png"
             anchors {
                 right: detailsLabel.left
                 rightMargin: units.gu(2)
@@ -159,8 +159,8 @@ Item {
             detailsItem.anchors.bottomMargin = 2
         }
         else{
-            progressIcon.source = "artwork/RightArrow.png";
-            progressIcon2.source = "artwork/RightArrow.png";
+            progressIcon.source = "artwork/UpArrow.png";
+            progressIcon2.source = "artwork/UpArrow.png";
             detailsFlick.height = 0
 
             // We dont need any margin from the details box as its closed
