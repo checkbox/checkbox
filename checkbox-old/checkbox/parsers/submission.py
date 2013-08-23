@@ -16,10 +16,21 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+
+# The version is an incrementing number, if the version changes it means
+# one of the parser's components has changed and may produce different
+# device data for a given submission.
+# This should be updated manually when a parser component changes, note
+# that this includes changes to any module under checkbox.parsers that is
+# used by this one (see imports below)
+__version__ = '1'
+
 try:
     import xml.etree.cElementTree as etree
 except ImportError:
     import cElementTree as etree
+
+import re
 
 from io import StringIO
 from logging import getLogger
@@ -119,7 +130,8 @@ class SubmissionResult:
         self.dispatcher.publishEvent("cpu", cpu)
 
     def addCpuArchitecture(self, cpu, architecture):
-        if cpu["debian_name"] == architecture:
+        regex = re.compile(cpu['regex'])
+        if cpu["debian_name"] == architecture or regex.match(architecture):
             self.dispatcher.publishEvent("machine", cpu["gnu_name"])
             self.dispatcher.publishEvent("bits", cpu["bits"])
 

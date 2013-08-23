@@ -26,11 +26,13 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
+from functools import wraps
 from gzip import GzipFile
 from io import TextIOWrapper
 from mock import Mock
 from tempfile import NamedTemporaryFile
 import inspect
+import warnings
 
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import IOLogRecordWriter
@@ -84,14 +86,18 @@ def make_job(name, plugin="dummy", requires=None, depends=None, **kwargs):
         # As recommended by the python documentation:
         # http://docs.python.org/3/library/inspect.html#the-interpreter-stack
         del caller_frame
-    settings = {
-        'name': name,
-        'plugin': plugin,
-        'requires': requires,
-        'depends': depends
-    }
-    settings.update(kwargs)
-    return JobDefinition(settings, origin)
+    # Carefully add additional data into the job definition so that we
+    # don't add any spurious None-valued keys that change the checksum.
+    data = {'name': name}
+    if plugin is not None:
+        data['plugin'] = plugin
+    if requires is not None:
+        data['requires'] = requires
+    if depends is not None:
+        data['depends'] = depends
+    # Add any custom key-value properties
+    data.update(kwargs)
+    return JobDefinition(data, origin)
 
 
 def make_job_result(outcome="dummy"):
@@ -101,3 +107,15 @@ def make_job_result(outcome="dummy"):
     return MemoryJobResult({
         'outcome': outcome
     })
+
+
+def suppress_warnings(func):
+    """
+    Suppress all warnings from the decorated function
+    """
+    @wraps(func)
+    def decorator(*args, **kwargs):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            return func(*args, **kwargs)
+    return decorator

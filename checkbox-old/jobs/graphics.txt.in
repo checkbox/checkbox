@@ -218,6 +218,7 @@ plugin: shell
 name: graphics/screenshot_fullscreen_video
 requires: package.name == 'fswebcam'
 command:
+ [ -f ${CHECKBOX_SHARE}/data/video/Ogg_Theora_Video.ogv ] || { echo "Video file not found"; exit 1; }
  dbus-launch gsettings set org.gnome.totem repeat true
  totem --fullscreen ${CHECKBOX_SHARE}/data/video/Ogg_Theora_Video.ogv 2>/dev/null &
  set -o pipefail

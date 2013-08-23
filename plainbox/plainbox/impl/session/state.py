@@ -45,7 +45,7 @@ from plainbox.impl.session.jobs import (
 logger = logging.getLogger("plainbox.session.state")
 
 
-class SessionMetadata:
+class SessionMetaData:
     """
     Class representing non-critical state of the session.
 
@@ -64,10 +64,12 @@ class SessionMetadata:
     # set this flag after successfully sending the result somewhere.
     FLAG_SUBMITTED = "submitted"
 
-    def __init__(self):
-        self._title = None
-        self._flags = set()
-        self._running_job_name = None
+    def __init__(self, title=None, flags=None, running_job_name=None):
+        if flags is None:
+            flags = []
+        self._title = title
+        self._flags = set(flags)
+        self._running_job_name = running_job_name
 
     def as_json(self):
         """
@@ -362,14 +364,50 @@ class SessionState(_LegacySessionState):
         :class:`plainbox.impl.resource.Resource` objects. This encapsulates all
         "knowledge" about the system plainbox is running on.
 
+
         It is needed to compute job readiness (as it stores resource data
         needed by resource programs). It is also available to exporters.
 
         This is computed internally from the output of checkbox resource jobs,
         it can only be changed by calling :meth:`update_job_result()`
 
-    :ivar dict metadata: instance of :class:`SessionMetadata`
+    :ivar dict metadata: instance of :class:`SessionMetaData`
     """
+
+    @Signal.define
+    def on_job_state_map_changed(self):
+        """
+        Signal fired after job_state_map is changed in any way.
+
+        This signal is always fired before any more specialized signals
+        such as :meth:`on_job_result_changed()` and :meth:`on_job_added()`.
+
+        This signal is fired pretty often, each time a job result is
+        presented to the session and each time a job is added. When
+        both of those events happen at the same time only one notification
+        is sent. The actual state is not sent as it is quite extensive
+        and can be easily looked at by the application.
+        """
+
+    @Signal.define
+    def on_job_result_changed(self, job, result):
+        """
+        Signal fired after a job get changed (set)
+
+        This signal is fired each time a result is presented to the session.
+
+        This signal is fired **after** :meth:`on_job_state_map_changed()`
+        """
+        logger.info("Job %s result changed to %r", job, result)
+
+    @Signal.define
+    def on_job_added(self, job):
+        """
+        Signal sent whenever a job is added to the session.
+
+        This signal is fired **after** :meth:`on_job_state_map_changed()`
+        """
+        logger.info("New job defined: %r", job)
 
     def __init__(self, job_list):
         """
@@ -415,7 +453,7 @@ class SessionState(_LegacySessionState):
         self._desired_job_list = []
         self._run_list = []
         self._resource_map = {}
-        self._metadata = SessionMetadata()
+        self._metadata = SessionMetaData()
         super(SessionState, self).__init__()
 
     def update_desired_job_list(self, desired_job_list):
@@ -435,6 +473,8 @@ class SessionState(_LegacySessionState):
         # Remember a copy of original desired job list. We may modify this list
         # so let's not mess up data passed by the caller.
         self._desired_job_list = list(desired_job_list)
+        # Reset run list just in case desired_job_list is empty
+        self._run_list = []
         # Try to solve the dependency graph. This is done in a loop as may need
         # to remove a problematic job and re-try. The loop provides a stop
         # condition as we will eventually run out of jobs.
@@ -470,11 +510,12 @@ class SessionState(_LegacySessionState):
         for execution of the test steps and verification of the result.
 
         :returns: (estimate_automated, estimate_manual)
-        
+
         where estimate_automated is the value for automated jobs only and
-        estimate_manual is the value for manual jobs only. These can be 
-        easily combined. Either value can be None if the  value could not be 
-        calculated due to any job lacking the required estimated_duration field.
+        estimate_manual is the value for manual jobs only. These can be
+        easily combined. Either value can be None if the  value could not be
+        calculated due to any job lacking the required estimated_duration
+        field.
         """
         estimate_automated = 0.0
         estimate_manual = 0.0
@@ -485,15 +526,14 @@ class SessionState(_LegacySessionState):
                 elif job.plugin != 'local':
                     estimate_automated = None
             elif not job.automated and estimate_manual is not None:
-                # We add 30 seconds to the run time for manual jobs to
-            	# account for extra time taken in reading the description
-            	# and performing any necessary steps
+                # We add a fixed extra amount of seconds to the run time
+                # for manual jobs to account for the time taken in reading
+                # the description and performing any necessary steps
                 estimate_manual += manual_overhead
                 if job.estimated_duration is not None:
-                     estimate_manual += job.estimated_duration
+                    estimate_manual += job.estimated_duration
                 elif job.command:
                     estimate_manual = None
-
         return (estimate_automated, estimate_manual)
 
     def update_job_result(self, job, result):
@@ -524,6 +564,7 @@ class SessionState(_LegacySessionState):
         # Store the result in job_state_map
         self._job_state_map[job.name].result = result
         self.on_job_state_map_changed()
+        self.on_job_result_changed(job, result)
         # Treat some jobs specially and interpret their output
         if job.plugin == "resource":
             self._process_resource_result(job, result)
@@ -557,10 +598,11 @@ class SessionState(_LegacySessionState):
         try:
             existing_job = self._job_state_map[new_job.name].job
         except KeyError:
-            logger.info("Storing new job %r", new_job)
             # Register the new job in our state
             self._job_state_map[new_job.name] = JobState(new_job)
             self._job_list.append(new_job)
+            self.on_job_state_map_changed()
+            self.on_job_added(new_job)
         else:
             # If there is a clash report DependencyDuplicateError only when the
             # hashes are different. This prevents a common "problem" where
@@ -579,6 +621,10 @@ class SessionState(_LegacySessionState):
         self._resource_map[resource_name] = resource_list
 
     def _process_resource_result(self, job, result):
+        """
+        Analyze a result of a CheckBox "resource" job and generate
+        or replace resource records.
+        """
         new_resource_list = []
         for record in self._gen_rfc822_records_from_io_log(job, result):
             # XXX: Consider forwarding the origin object here.  I guess we
@@ -590,6 +636,13 @@ class SessionState(_LegacySessionState):
         self._resource_map[job.name] = new_resource_list
 
     def _process_local_result(self, job, result):
+        """
+        Analyze a result of a CheckBox "local" job and generate
+        additional job definitions
+        """
+        # TODO: refactor using add_job() but make sure we compute
+        # job state map at most once
+
         # First parse all records and create a list of new jobs (confusing
         # name, not a new list of jobs)
         new_job_list = []
@@ -602,9 +655,10 @@ class SessionState(_LegacySessionState):
             try:
                 existing_job = self._job_state_map[new_job.name].job
             except KeyError:
-                logger.info("Storing new job %r", new_job)
                 self._job_state_map[new_job.name] = JobState(new_job)
                 self._job_list.append(new_job)
+                self.on_job_state_map_changed()
+                self.on_job_added(new_job)
             else:
                 # XXX: there should be a channel where such errors could be
                 # reported back to the UI layer. Perhaps update_job_result()
@@ -620,6 +674,9 @@ class SessionState(_LegacySessionState):
                         existing_job._via = new_job.via
 
     def _gen_rfc822_records_from_io_log(self, job, result):
+        """
+        Convert io_log from a job result to a sequence of rfc822 records
+        """
         logger.debug("processing output from a job: %r", job)
         # Select all stdout lines from the io log
         line_gen = (record[2].decode('UTF-8', errors='replace')
@@ -676,9 +733,12 @@ class SessionState(_LegacySessionState):
         """
         return self._job_state_map
 
-    @Signal.define
-    def on_job_state_map_changed(self):
-        pass
+    @property
+    def resource_map(self):
+        """
+        Map from resource name to a list of resource records
+        """
+        return self._resource_map
 
     @property
     def metadata(self):

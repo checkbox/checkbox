@@ -392,15 +392,16 @@ class JobResultWrapper(PlainBoxObjectWrapper):
         # XXX: it would be nice if we could not do this remapping.
         return self.native.outcome or "none"
 
-    @dbus.service.property(dbus_interface=JOB_RESULT_IFACE, signature="i")
+    @dbus.service.property(dbus_interface=JOB_RESULT_IFACE, signature="v")
     def return_code(self):
         """
         return code of the called program
         """
         value = self.native.return_code
         if value is None:
-            raise dbus.exceptions.DBusException("There is no return code yet")
-        return value
+            return ""
+        else:
+            return value
 
     # comments are settable, useful thing that
 
@@ -602,6 +603,7 @@ class SessionWrapper(PlainBoxObjectWrapper):
         dbus_interface=SESSION_IFACE, in_signature='ao', out_signature='as')
     @PlainBoxObjectWrapper.translate
     def UpdateDesiredJobList(self, desired_job_list: 'ao'):
+        logger.info("UpdateDesiredJobList(%r)", desired_job_list)
         problem_list = self.native.update_desired_job_list(desired_job_list)
         # Do the necessary housekeeping for any new jobs
         self.check_and_wrap_new_jobs()
@@ -863,11 +865,18 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         return self.native.get_all_exporters()
 
     @dbus.service.method(
-        dbus_interface=SERVICE_IFACE, in_signature='osass', out_signature='s')
+        dbus_interface=SERVICE_IFACE, in_signature='osas', out_signature='s')
     @PlainBoxObjectWrapper.translate
     def ExportSession(self, session: 'o', output_format: 's',
+                      option_list: 'as'):
+        return self.native.export_session(session, output_format, option_list)
+
+    @dbus.service.method(
+        dbus_interface=SERVICE_IFACE, in_signature='osass', out_signature='s')
+    @PlainBoxObjectWrapper.translate
+    def ExportSessionToFile(self, session: 'o', output_format: 's',
                       option_list: 'as', output_file: 's'):
-        return self.native.export_session(session, output_format, option_list,
+        return self.native.export_session_to_file(session, output_format, option_list,
                                           output_file)
 
     @dbus.service.method(
@@ -932,10 +941,15 @@ class RunningJob(dbus.service.Object):
     def Kill(self):
         pass
 
-    @dbus.service.method(
-        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
-    def Pause(self):
-        pass
+    @dbus.service.property(dbus_interface=RUNNING_JOB_IFACE, signature="s")
+    def outcome_from_command(self):
+        if self.result.get('return_code') is not None:
+            if self.result.get('return_code') == 0:
+                return "pass"
+            else:
+                return "fail"
+        else:
+            return ""
 
     @dbus.service.method(
         dbus_interface=RUNNING_JOB_IFACE, in_signature='ss', out_signature='')

@@ -31,6 +31,7 @@ import gzip
 import io
 import json
 import logging
+import inspect
 
 from plainbox.abc import IJobResult
 from plainbox.impl.signal import Signal
@@ -92,7 +93,7 @@ class _JobResultBase(IJobResult):
         The amount of time in seconds it took to run this
         jobs command.
         """
-        return self._data.get('execution_duration', None)
+        return self._data.get('execution_duration')
 
     @property
     def comments(self):
@@ -110,7 +111,9 @@ class _JobResultBase(IJobResult):
 
     @Signal.define
     def on_comments_changed(self, old, new):
-        pass
+        """
+        Signal sent when ``comments`` property value is changed
+        """
 
     @property
     def return_code(self):
@@ -119,11 +122,13 @@ class _JobResultBase(IJobResult):
         """
         return self._data.get('return_code')
 
+    # deprecated
     def _get_persistance_subset(self):
         return {
             "data": dict(self._data)
         }
 
+    # deprecated
     @classmethod
     def from_json_record(cls, record):
         """
@@ -179,16 +184,28 @@ class DiskJobResult(_JobResultBase):
     accessing particular parts of the log.
     """
 
+    @property
+    def io_log_filename(self):
+        """
+        pathname of the file containing serialized IO log records
+        """
+        return self._data.get("io_log_filename")
+
     def get_io_log(self):
-        try:
-            record_path = self._data['io_log_filename']
-        except KeyError:
-            pass
-        else:
+        record_path = self.io_log_filename
+        if record_path:
             with GzipFile(record_path, mode='rb') as gzip_stream, \
                     io.TextIOWrapper(gzip_stream, encoding='UTF-8') as stream:
                 for record in IOLogRecordReader(stream):
                     yield record
+
+    @property
+    def io_log(self):
+        caller_frame, filename, lineno = inspect.stack(0)[1][:3]
+        logger.warning(
+            "Expensive DiskJobResult.io_log property access from %r %s:%d",
+            caller_frame, filename, lineno)
+        return super(DiskJobResult, self).io_log
 
 
 # Deprecated
