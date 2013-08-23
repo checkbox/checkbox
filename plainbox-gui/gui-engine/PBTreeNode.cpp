@@ -158,10 +158,6 @@ QVariantMap PBTreeNode::GetObjectProperties(const QDBusObjectPath &object_path, 
                          object_path.path(), \
                          ofDPropertiesName, \
                          QDBusConnection::sessionBus());
-    if (!iface.isValid()) {
-        qDebug("Could not connect to properties interface");
-        return properties;
-    }
 
     // GetAll properties
     QDBusMessage reply = iface.call("GetAll",interface);
@@ -194,10 +190,6 @@ const QString PBTreeNode::GetIntrospectXml(const QDBusObjectPath &object_path)
                          object_path.path(), \
                          ofDIntrospectableName, \
                          QDBusConnection::sessionBus());
-    if (!iface.isValid()) {
-        qDebug("Could not connect to introspectable interface");
-        return NULL;
-    }
 
     // Lets see what we have - introspect this first
     QDBusMessage reply = iface.call("Introspect");
