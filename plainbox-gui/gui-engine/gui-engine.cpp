@@ -89,29 +89,31 @@ bool GuiEngine::Initialise(void)
         QDBusConnection bus = QDBusConnection ::sessionBus();
 
 // FIXME - We will want these for process real job signals. For now they clutter the log :)
-//        if (!bus.connect(PBBusName, \
-//                         PBObjectPathName, \
-//                         ofDObjectManagerName,\
-//                         "InterfacesAdded",\
-//                         this,\
-//                         SLOT(InterfacesAdded(QDBusMessage)))) {
+/*
+        if (!bus.connect(PBBusName, \
+                         PBObjectPathName, \
+                         ofDObjectManagerName,\
+                         "InterfacesAdded",\
+                         this,\
+                         SLOT(InterfacesAdded(QDBusMessage)))) {
 
-//            qDebug("Failed to connect slot for InterfacesAdded events");
+            qDebug("Failed to connect slot for InterfacesAdded events");
 
-//            return false;
-//        }
+            return false;
+        }
 
-//        if (!bus.connect(PBBusName,\
-//                         PBObjectPathName,\
-//                         ofDObjectManagerName,\
-//                         "InterfacesRemoved",\
-//                         this,\
-//                         SLOT(InterfacesRemoved(QDBusMessage)))) {
+        if (!bus.connect(PBBusName,\
+                         PBObjectPathName,\
+                         ofDObjectManagerName,\
+                         "InterfacesRemoved",\
+                         this,\
+                         SLOT(InterfacesRemoved(QDBusMessage)))) {
 
-//            qDebug("Failed to connect slot for InterfacesRemoved events");
+            qDebug("Failed to connect slot for InterfacesRemoved events");
 
-//            return false;
-//        }
+            return false;
+        }
+*/
 
         // Connect the JobResultAvailable signal receiver
         if (!bus.connect(PBBusName,\
@@ -1298,7 +1300,7 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
     GetJobResults();
 
     // we should look up the prior job result if available
-    int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
+    const int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
 
     // Open the GUI dialog -- TODO - Default the Yes/No/Skip icons
     if (!m_running_manual_job) {
@@ -1350,6 +1352,8 @@ const QString ConvertOutcome(const int outcome)
         case PBTreeNode::PBJobResult_Skip:
             return JobResult_OUTCOME_SKIP;
         break;
+        default:
+            return "?";
     }
 }
 
@@ -1646,7 +1650,7 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
     GetJobResults();
 
       // How did this job turn out?
-    int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
+    const int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
 
     // Update the GUI so it knows what the job outcome was
     emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
@@ -1769,10 +1773,9 @@ const QString GuiEngine::JobNameFromObjectPath(const QDBusObjectPath& opath)
     return empty;
 }
 
-const int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
+int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
 {
     QString outcome;
-    int result = 0;
 
     /* first, we need to go through the m_job_state_list to find the
      * relevant job to result mapping. then we go through m_job_state_results
