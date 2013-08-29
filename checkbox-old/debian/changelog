@@ -2,7 +2,10 @@ checkbox (0.16.10) UNRELEASED; urgency=low
 
   [ Jeff Lane ]
   * scripts/memory_compare: output now displays kB properly, not bytes labled
-  * as kB. (LP: #1217506)
+    as kB. (LP: #1217506)
+  * scripts/storage_test: script now ensures there is enough free disk space
+    before running bonnie++ and adjusts bonnie++ parameters accordingly if
+    necessary (LP: #1217268)
 
   [ Daniel Manrique ]
   * scripts/storage_test: Use parted silent mode to avoid hanging on disks
