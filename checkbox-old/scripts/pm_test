@@ -452,7 +452,7 @@ class CountdownDialog(Gtk.Dialog):
         logging.debug('Touchpad and Keyboard:\n'
                       '{xinput}'
                       .format(xinput=Command(
-                          'xinput list --name-only').run().stdout))
+                          'xinput list --name-only | sort').run().stdout))
         logging.debug('Pulse Audio Sink:\n'
                       '{pactl_sink}'
                       .format(pactl_sink=(Command('pactl list | grep Sink')

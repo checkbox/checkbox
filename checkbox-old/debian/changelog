@@ -9,6 +9,8 @@ checkbox (0.16.10) UNRELEASED; urgency=low
     with GPT (LP: #1215778)
   * jobs/stress.txt.in: Added path to reboot/poweroff stress test jobs
     so they get attached correctly (LP: #1218186)
+  * scripts/pm_test: Sort output of xinput to avoid spurious failures
+    (LP: #1218188)
 
   [ Sylvain Pineau ]
   * checkbox-old/scripts/fwts_test: Added the following new tests:
