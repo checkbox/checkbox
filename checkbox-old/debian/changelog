@@ -7,6 +7,8 @@ checkbox (0.16.10) UNRELEASED; urgency=low
   [ Daniel Manrique ]
   * scripts/storage_test: Use parted silent mode to avoid hanging on disks
     with GPT (LP: #1215778)
+  * jobs/stress.txt.in: Added path to reboot/poweroff stress test jobs
+    so they get attached correctly (LP: #1218186)
 
   [ Sylvain Pineau ]
   * checkbox-old/scripts/fwts_test: Added the following new tests:
