@@ -1,6 +1,31 @@
 checkbox (0.16.10) UNRELEASED; urgency=low
 
-  * Incremented changelog
+  [ Jeff Lane ]
+  * scripts/memory_compare: output now displays kB properly, not bytes labled
+    as kB. (LP: #1217506)
+  * scripts/storage_test: script now ensures there is enough free disk space
+    before running bonnie++ and adjusts bonnie++ parameters accordingly if
+    necessary (LP: #1217268)
+
+  [ Jeff Marcom ]
+  * scripts/network: now exits with proper exit code when poor networking
+  performance is detected.
+
+  [ Daniel Manrique ]
+  * scripts/storage_test: Use parted silent mode to avoid hanging on disks
+    with GPT (LP: #1215778)
+  * jobs/stress.txt.in: Added path to reboot/poweroff stress test jobs
+    so they get attached correctly (LP: #1218186)
+  * scripts/pm_test: Sort output of xinput to avoid spurious failures
+    (LP: #1218188)
+
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/fwts_test: Added the following new tests:
+    method, msr, aspm, klog, oops and uefirtvariable (LP: #1202493)
+
+  [ Daniel Manrique ]
+  * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
+    crashes that cause the test to hang (LP: #1217937)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 23 Aug 2013 14:22:13 +0100
 
