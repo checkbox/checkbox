@@ -308,7 +308,7 @@ def interface_test(args):
 
         if args.filesize:
             ftp_benchmark.binary_size = int(args.filesize)
-        return ftp_benchmark.run()
+        sys.exit(ftp_benchmark.run())
 
 
 def interface_info(args):
