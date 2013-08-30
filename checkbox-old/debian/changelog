@@ -4,6 +4,10 @@ checkbox (0.16.10) UNRELEASED; urgency=low
   * scripts/memory_compare: output now displays kB properly, not bytes labled
   * as kB. (LP: #1217506)
 
+  [ Jeff Marcom ]
+  * scripts/network: now exits with proper exit code when poor networking
+  performance is detected.
+
   [ Daniel Manrique ]
   * scripts/storage_test: Use parted silent mode to avoid hanging on disks
     with GPT (LP: #1215778)
