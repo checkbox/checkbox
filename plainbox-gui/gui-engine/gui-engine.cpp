@@ -1817,8 +1817,8 @@ const int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
         return PBTreeNode::PBJobResult_None;
     }
 
-    // TODO - Should not really get here I think
-    return PBTreeNode::PBJobResult_Skip;
+    // Machine could not otherwise run it
+    return PBTreeNode::PBJobResult_DepsNotMet;
 }
 
 QString GuiEngine::GetSaveFileName(void)
