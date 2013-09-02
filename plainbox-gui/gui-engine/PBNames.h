@@ -32,7 +32,7 @@ static const QString ofDPropertiesName("org.freedesktop.DBus.Properties");
 
 /* The names for Plainbox top-level DBus structures.
  */
-static const QString PBBusName("com.canonical.certification.PlainBox");
+static const QString PBBusName("com.canonical.certification.PlainBox1");
 static const QString PBObjectPathName("/plainbox/service1");
 static const QString PBInterfaceName("com.canonical.certification.PlainBox.Service1");
 
