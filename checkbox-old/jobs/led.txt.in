@@ -23,11 +23,11 @@ plugin: manual
 name: led/suspend
 _description:
  PURPOSE:
-     Suspend LED verification. If your system does not have a dedicated Suspend
-     LED, skip this test.
+     Suspend LED verification.
  STEPS:
+     Skip this test if your system does not have a dedicated Suspend LED.
      1. The Suspend LED should blink or change color while the system is
-     supended
+     suspended
  VERIFICATION
      Did the Suspend LED blink or change color while the system was suspended?
 
@@ -188,9 +188,9 @@ name: led/mute
 depends: keys/mute
 _description:
  PURPOSE:
-     Audio Mute LED verification. Skip this test if your system does not have
-     a special Audio Mute LED
+     Audio Mute LED verification.
  STEPS:
+     Skip this test if your system does not have a special Audio Mute LED.
      1. Press the Mute key twice and observe the Audio LED to determine if it
      either turned off and on or changed colors.
  VERIFICATION:

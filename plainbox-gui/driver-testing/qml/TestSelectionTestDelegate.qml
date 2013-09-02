@@ -107,14 +107,17 @@ Component {
                 anchors.leftMargin: units.gu(2)
                 checked: check
                 onClicked: {
-                    // Update the underlying model
-                    testListModel.setProperty(index, "check", checked);
 
                     // Update the ListView (display)
                     groupedList.setGroupCheck(testitem);
 
+                    // Update the underlying model
+                    groupedList.updateListModel();
+		    
                     // Update the summary bar at the bottom of TestSelectionView
-                    groupedList.updateListSummary(testListModel.get(index), checked);
+
+                    groupedList.setListSummary();
+
 
                     // Warn the user if they are de-selecting tests
                     if (!checked)

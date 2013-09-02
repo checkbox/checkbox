@@ -38,15 +38,21 @@ Component {
     Item{
         id: testitem
         width: parent.width
-        height: units.gu(7)
+
 
         property string groupname: group
         property string labelname: testname
+
+        // visibility - now follows what the user selected in test selection
+        visible: check
+        height: check ? units.gu(7) : units.gu(0);
 
         // These properties help to simulate the treeview
         property bool open: true
         property bool is_branch: branch
         property int my_depth: depth
+
+        property int icon_size_gu: 4    // Adjustable icon size based on this
 
         onOpenChanged: {
             open?openshutIcon.source = "artwork/DownArrow.png":openshutIcon.source = "artwork/RightArrow.png"
@@ -106,7 +112,7 @@ Component {
                 anchors.leftMargin: units.gu(2)
 
                 anchors.right: statusicon.left
-                anchors.rightMargin: units.gu(7.5)
+                anchors.rightMargin: units.gu(9-(icon_size_gu/2))
             }
 
 
@@ -114,8 +120,8 @@ Component {
                 id: statusicon
                 property int testStatus: runstatus// TODO this should be coming from the testitem status
 
-                width: units.gu(3)
-                height: units.gu(3)
+                width: units.gu(icon_size_gu)
+                height: units.gu(icon_size_gu)
 
                 sourceSize.width: parent.width
                 sourceSize.height: parent.height
@@ -128,26 +134,32 @@ Component {
                 source: ""
 
                 onTestStatusChanged: {
-                    // TODO these number are made up, change to what comes out of plainbox
+                    // These numbers match PBTreeNode.h:PBJobResult enums
                     switch (testStatus){
-                    case 0:
+                    case 0: // PBJobResult_NotRun
                         // not executed
                         source = ""
                         break;
-                    case 1:
+                    case 1: // PBJobResult_Skip
                         source = "./artwork/pictogram-skip-orange-hex.svg"
                         break;
-                    case 2:                 // pass
+                    case 2: // PBJobResult_Pass
                         source = "./artwork/pictogram-pass-green-hex.svg"
                         break;
-                    case 3:                 // fail
+                    case 3: // PBJobResult_Fail
                         source = "./artwork/pictogram-fail-red-hex.svg"
                         break;
-                    case 4:                 // error
+                    case 4: // PBJobResult_Error (doesnt seem to be used/useful?)
                         source = "./artwork/error.svg" // todo
                         break;
-                    case 5:                 // user info required
+                    case 5: // PBJobResult_UserInteraction
                         source = "./artwork/userreq.svg" // todo
+                        break;
+                    case 6: // PBJobResult_DepsNotMet
+                        source = "./artwork/pictogram-skip-grey-hex.svg"
+                        break;
+                    case 7: // PBJobResult_Running
+                        source = ""
                         break;
                     default:
                         source = ""
@@ -163,7 +175,7 @@ Component {
                 text: {!elapsedtime ? "" : utils.formatElapsedTime(elapsedtime)}
                 width: units.gu(6)
                 anchors.right: rerunicon.left
-                anchors.rightMargin: units.gu(9)
+                anchors.rightMargin: units.gu(12-icon_size_gu)
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignRight
 
@@ -174,14 +186,14 @@ Component {
                 property int rerunStatus: !runstatus?0:1 // TODO this should be coming if the test has run or not
                                                   // currently assumes 0 = not run yet, 1 == completed 2 == queued for rerun
 
-                width: units.gu(3)
-                height: units.gu(3)
+                width: units.gu(icon_size_gu)
+                height: units.gu(icon_size_gu)
 
                 sourceSize.width: parent.width
                 sourceSize.height: parent.height
 
                 anchors.right: detailsicon.left
-                anchors.rightMargin: units.gu(9)
+                anchors.rightMargin: units.gu(12-icon_size_gu)
                 anchors.verticalCenter: parent.verticalCenter
 
                 source: ""
@@ -220,14 +232,14 @@ Component {
                 property bool detailsStatus: {!runstatus?false:true} // TODO this should be coming if the test has run or not
                                                   // currently assumes 0 = not run yet, 1 == completed
 
-                width: units.gu(3)
-                height: units.gu(3)
+                width: units.gu(icon_size_gu)
+                height: units.gu(icon_size_gu)
 
                 sourceSize.width: parent.width
                 sourceSize.height: parent.height
 
                 anchors.right:  parent.right
-                anchors.rightMargin: units.gu(7.5)
+                anchors.rightMargin: units.gu(9-(icon_size_gu/2))
 
                 anchors.verticalCenter: parent.verticalCenter
 

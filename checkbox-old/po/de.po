@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-09 04:35+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2013-08-29 04:34+0000\n"
+"X-Generator: Launchpad (build 16738)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -41,18 +41,6 @@ msgid ""
 msgstr ""
 "Hochladen auf den Server gescheitert,\n"
 "bitte versuchen Sie es später noch einmal."
-
-#: ../plugins/launchpad_exchange.py:171
-msgid "Information not posted to Launchpad."
-msgstr "Die Informationen wurden nicht auf Launchpad eingetragen."
-
-#: ../plugins/launchpad_prompt.py:103
-msgid "Exchanging information with the server..."
-msgstr "Informationen werden mit dem Server ausgetauscht …"
-
-#: ../plugins/report_prompt.py:39
-msgid "Building report..."
-msgstr "Bericht wird erstellt …"
 
 #~ msgid "Testing your connection to the Internet:"
 #~ msgstr "Ihre Internetverbindung wird getestet:"
@@ -5165,6 +5153,10 @@ msgstr ""
 "direkt in die Systemdatenbank hoch:\n"
 "https://launchpad.net/+hwdb/+submit"
 
+#: ../plugins/launchpad_exchange.py:171
+msgid "Information not posted to Launchpad."
+msgstr "Die Informationen wurden nicht auf Launchpad eingetragen."
+
 #. Ignore whether to submit to HEXR
 #: ../plugins/launchpad_prompt.py:78
 #, python-format
@@ -5199,6 +5191,10 @@ msgstr "E-Mail"
 msgid "Email address must be in a proper format."
 msgstr "Die E-Mail-Adresse muss das richtige Format haben."
 
+#: ../plugins/launchpad_prompt.py:103
+msgid "Exchanging information with the server..."
+msgstr "Informationen werden mit dem Server ausgetauscht …"
+
 #: ../plugins/launchpad_report.py:172
 msgid ""
 "The generated report seems to have validation errors,\n"
@@ -5224,6 +5220,10 @@ msgstr ""
 "abgeschlossen werden. Möchten Sie den letzten\n"
 "Test wiederholen, mit dem nächsten Test\n"
 "fortfahren oder vom Anfang neu beginnen?"
+
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Bericht wird erstellt …"
 
 #: ../plugins/shell_test.py:52
 #, python-format

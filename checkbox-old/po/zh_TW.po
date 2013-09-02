@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-09 04:38+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2013-08-29 04:36+0000\n"
+"X-Generator: Launchpad (build 16738)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -50,11 +50,6 @@ msgstr "參數上沒有配置檔案。\n"
 #: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "按任意鍵繼續…"
-
-#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
-#, python-format
-msgid "Please choose (%s): "
-msgstr "請選擇 (%s)： "
 
 #: ../checkbox_cli/cli_interface.py:462
 msgid "Please type here and press Ctrl-D when finished:\n"
@@ -3363,6 +3358,11 @@ msgstr "否"
 msgid "skip"
 msgstr "略過"
 
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
+#, python-format
+msgid "Please choose (%s): "
+msgstr "請選擇 (%s)： "
+
 #: ../checkbox_cli/cli_interface.py:232 ../checkbox_cli/cli_interface.py:355
 #: ../checkbox_cli/cli_interface.py:386
 msgid "Space when finished"
@@ -3802,7 +3802,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:667
 msgid " Run "
-msgstr ""
+msgstr " 執行 "
 
 #: ../qt/frontend/ui_qtfront.h:624
 msgid ""
@@ -3825,23 +3825,23 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:674
 msgid "Submission details"
-msgstr ""
+msgstr "提交內容詳情"
 
 #: ../qt/frontend/ui_qtfront.h:676
 msgid "Email:"
-msgstr ""
+msgstr "電子郵件："
 
 #: ../qt/frontend/ui_qtfront.h:677
 msgid "Submit results"
-msgstr ""
+msgstr "提交結果"
 
 #: ../qt/frontend/ui_qtfront.h:678
 msgid "View results"
-msgstr ""
+msgstr "查看結果"
 
 #: ../qt/frontend/ui_qtfront.h:680
 msgid " Results "
-msgstr ""
+msgstr " 結果 "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "成功寄出資訊"

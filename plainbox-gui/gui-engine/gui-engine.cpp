@@ -571,12 +571,15 @@ void GuiEngine::Resume(void)
     }
 }
 
-/* Run all the "real" test jobs. For consistency and clarity, we follow the
- * logic found in dbus-mini-client.py
- */
-void GuiEngine::RunJobs(void)
+/* Prepare the jobs to be run for real. This allows us to compute the number
+* of jobs that will actually be run and show it to the user in the Test
+* Selection screen as additional implicit jobs
+*/
+
+int GuiEngine::PrepareJobs(void) 
 {
-//    qDebug("GuiEngine::RunJobs");
+
+    qDebug("\n\nGuiEngine::PrepareJobs()\n");
 
     /* First, filter out any jobs we really dont want (i.e. not user-selected)
     *
@@ -584,9 +587,12 @@ void GuiEngine::RunJobs(void)
     * so we try to preserve that when we give it to UpdateDesiredJobList()
     * and hopefully it is similar when we get it back from SessionStateRunList()
     */
-    m_desired_job_list = JobTreeNode::FilteredJobs(m_final_run_list,m_desired_job_list);
 
-    QStringList errors = UpdateDesiredJobList(m_session, m_desired_job_list);
+
+    QList<QDBusObjectPath> temp_desired_job_list = \
+            JobTreeNode::FilteredJobs(m_final_run_list,m_desired_job_list);
+
+    QStringList errors = UpdateDesiredJobList(m_session, temp_desired_job_list);
     if (errors.count() != 0) {
         qDebug("UpdateDesiredJobList generated errors:");
 
@@ -597,6 +603,19 @@ void GuiEngine::RunJobs(void)
 
     // Now, the run_list contains the list of jobs I actually need to run \o/
     m_run_list = SessionStateRunList(m_session);
+
+//    qDebug("\n\nGuiEngine::PrepareJobs() - Done\n");
+
+    // useful to the gui (summary bar in test selection screen)
+    return m_run_list.count();
+}
+
+/* Run all the "real" test jobs. For consistency and clarity, we follow the
+ * logic found in dbus-mini-client.py
+ */
+void GuiEngine::RunJobs(void)
+{
+//    qDebug("GuiEngine::RunJobs");
 
     // Start tracking which Job we are running, from the beginning
     m_current_job_index = 0;
@@ -1798,8 +1817,8 @@ const int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
         return PBTreeNode::PBJobResult_None;
     }
 
-    // TODO - Should not really get here I think
-    return PBTreeNode::PBJobResult_Skip;
+    // Machine could not otherwise run it
+    return PBTreeNode::PBJobResult_DepsNotMet;
 }
 
 QString GuiEngine::GetSaveFileName(void)

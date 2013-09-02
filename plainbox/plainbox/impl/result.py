@@ -31,6 +31,7 @@ import gzip
 import io
 import json
 import logging
+import inspect
 
 from plainbox.abc import IJobResult
 from plainbox.impl.signal import Signal
@@ -75,6 +76,12 @@ class _JobResultBase(IJobResult):
         return "<{} outcome:{!r}>".format(
             self.__class__.__name__, self.outcome)
 
+    @Signal.define
+    def on_outcome_changed(self, old, new):
+        """
+        Signal sent when ``outcome`` property value is changed
+        """
+
     @property
     def outcome(self):
         """
@@ -85,6 +92,13 @@ class _JobResultBase(IJobResult):
         mean that the job did not run for some particular reason.
         """
         return self._data.get('outcome', self.OUTCOME_NONE)
+
+    @outcome.setter
+    def outcome(self, new):
+        old = self.outcome
+        if old != new:
+            self._data['outcome'] = new
+            self.on_outcome_changed(old, new)
 
     @property
     def execution_duration(self):
@@ -105,7 +119,7 @@ class _JobResultBase(IJobResult):
     def comments(self, new):
         old = self.comments
         if old != new:
-            self.data['comments'] = new
+            self._data['comments'] = new
             self.on_comments_changed(old, new)
 
     @Signal.define
@@ -121,11 +135,13 @@ class _JobResultBase(IJobResult):
         """
         return self._data.get('return_code')
 
+    # deprecated
     def _get_persistance_subset(self):
         return {
             "data": dict(self._data)
         }
 
+    # deprecated
     @classmethod
     def from_json_record(cls, record):
         """
@@ -195,6 +211,14 @@ class DiskJobResult(_JobResultBase):
                     io.TextIOWrapper(gzip_stream, encoding='UTF-8') as stream:
                 for record in IOLogRecordReader(stream):
                     yield record
+
+    @property
+    def io_log(self):
+        caller_frame, filename, lineno = inspect.stack(0)[1][:3]
+        logger.warning(
+            "Expensive DiskJobResult.io_log property access from %s:%d",
+            filename, lineno)
+        return super(DiskJobResult, self).io_log
 
 
 # Deprecated

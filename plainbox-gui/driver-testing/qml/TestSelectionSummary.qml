@@ -29,6 +29,7 @@ Rectangle {
     property int totalTimeEst: 0
     property int totalTests: 6
     property int totalManualTests: 2
+    property int totalImplicitTests: 999
 
     height: units.gu(3)
     color: "lightsteelblue"
@@ -64,23 +65,45 @@ Rectangle {
 
     Text {
         id: totalTestsText
-        text: i18n.tr("Tests: [" + summary.totalTests + "]")
+        text: i18n.tr("Selected : [" + summary.totalTests + "]")
         color:"darkslateblue"
         anchors{
             verticalCenter: parent.verticalCenter
             left: estimatedTimeText.right
-            leftMargin: units.gu(10)
+            leftMargin: units.gu(4)
         }
     }
 
     Text {
         id: manualTestsText
-        text: i18n.tr("Manual tests: [" + summary.totalManualTests + "]")
+        text: i18n.tr("Manual : [" + summary.totalManualTests + "]")
         color: "darkslateblue"
         anchors{
             verticalCenter: parent.verticalCenter
             left: totalTestsText.right
-            leftMargin: units.gu(10)
+            leftMargin: units.gu(4)
+        }
+    }
+
+    Text {
+        id: implicitTestsText
+        text: i18n.tr("Implicit : [" + summary.totalImplicitTests + "]")
+        color: "darkslateblue"
+        anchors{
+            verticalCenter: parent.verticalCenter
+            left: manualTestsText.right
+            leftMargin: units.gu(4)
+        }
+    }
+
+    Text {
+        id: totalAllTestsText
+        text: i18n.tr("Total : [" + (parseInt(summary.totalTests) + parseInt(summary.totalImplicitTests)) + "]")
+        color: "darkslateblue"
+        anchors{
+            verticalCenter: parent.verticalCenter
+            left: implicitTestsText.right
+            leftMargin: units.gu(4)
         }
     }
 }

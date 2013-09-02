@@ -376,9 +376,11 @@ class JobResultWrapper(PlainBoxObjectWrapper):
 
     def __shared_initialize__(self, **kwargs):
         self.native.on_comments_changed.connect(self.on_comments_changed)
+        self.native.on_outcome_changed.connect(self.on_outcome_changed)
 
     def __del__(self):
         self.native.on_comments_changed.disconnect(self.on_comments_changed)
+        self.native.on_outcome_changed.disconnect(self.on_outcome_changed)
 
     # Value added
 
@@ -392,15 +394,33 @@ class JobResultWrapper(PlainBoxObjectWrapper):
         # XXX: it would be nice if we could not do this remapping.
         return self.native.outcome or "none"
 
-    @dbus.service.property(dbus_interface=JOB_RESULT_IFACE, signature="i")
+    @outcome.setter
+    def outcome(self, new_value):
+        """
+        set outcome of the job to a new value
+        """
+        # XXX: it would be nice if we could not do this remapping.
+        if new_value == "none":
+            new_value = None
+        self.native.outcome = new_value
+
+    @Signal.define
+    def on_outcome_changed(self, old, new):
+        logger.debug("on_outcome_changed(%r, %r)", old, new)
+        self.PropertiesChanged(JOB_RESULT_IFACE, {
+            self.__class__.outcome._dbus_property: new
+        }, [])
+
+    @dbus.service.property(dbus_interface=JOB_RESULT_IFACE, signature="v")
     def return_code(self):
         """
         return code of the called program
         """
         value = self.native.return_code
         if value is None:
-            raise dbus.exceptions.DBusException("There is no return code yet")
-        return value
+            return ""
+        else:
+            return value
 
     # comments are settable, useful thing that
 
@@ -433,7 +453,7 @@ class JobResultWrapper(PlainBoxObjectWrapper):
 
         The format is: array<struct<double, string, array<bytes>>>
         """
-        return dbus.types.Array(self.native.io_log, signature="(dsay)")
+        return dbus.types.Array(self.native.get_io_log(), signature="(dsay)")
 
 
 class JobStateWrapper(PlainBoxObjectWrapper):
@@ -602,6 +622,7 @@ class SessionWrapper(PlainBoxObjectWrapper):
         dbus_interface=SESSION_IFACE, in_signature='ao', out_signature='as')
     @PlainBoxObjectWrapper.translate
     def UpdateDesiredJobList(self, desired_job_list: 'ao'):
+        logger.info("UpdateDesiredJobList(%r)", desired_job_list)
         problem_list = self.native.update_desired_job_list(desired_job_list)
         # Do the necessary housekeeping for any new jobs
         self.check_and_wrap_new_jobs()
@@ -938,6 +959,16 @@ class RunningJob(dbus.service.Object):
         dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
     def Kill(self):
         pass
+
+    @dbus.service.property(dbus_interface=RUNNING_JOB_IFACE, signature="s")
+    def outcome_from_command(self):
+        if self.result.get('return_code') is not None:
+            if self.result.get('return_code') == 0:
+                return "pass"
+            else:
+                return "fail"
+        else:
+            return ""
 
     @dbus.service.method(
         dbus_interface=RUNNING_JOB_IFACE, in_signature='ss', out_signature='')

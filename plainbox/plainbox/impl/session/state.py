@@ -21,31 +21,27 @@
 :mod:`plainbox.impl.session.state` -- session state handling
 ============================================================
 """
-import json
 import logging
-import os
-import shutil
-import tempfile
 
 from plainbox.abc import IJobResult
-from plainbox.impl.depmgr import DependencyError, DependencyDuplicateError
+from plainbox.impl.depmgr import DependencyDuplicateError
+from plainbox.impl.depmgr import DependencyError
 from plainbox.impl.depmgr import DependencySolver
-from plainbox.impl.job import JobDefinition
 from plainbox.impl.resource import ExpressionCannotEvaluateError
 from plainbox.impl.resource import ExpressionFailedError
 from plainbox.impl.resource import Resource
-from plainbox.impl.result import DiskJobResult
-from plainbox.impl.result import MemoryJobResult
-from plainbox.impl.rfc822 import RFC822SyntaxError
 from plainbox.impl.rfc822 import gen_rfc822_records
+from plainbox.impl.rfc822 import RFC822SyntaxError
+from plainbox.impl.session.jobs import JobReadinessInhibitor
+from plainbox.impl.session.jobs import JobState
+from plainbox.impl.session.jobs import UndesiredJobReadinessInhibitor
 from plainbox.impl.signal import Signal
-from plainbox.impl.session.jobs import (
-    JobState, JobReadinessInhibitor, UndesiredJobReadinessInhibitor)
+
 
 logger = logging.getLogger("plainbox.session.state")
 
 
-class SessionMetadata:
+class SessionMetaData:
     """
     Class representing non-critical state of the session.
 
@@ -64,10 +60,12 @@ class SessionMetadata:
     # set this flag after successfully sending the result somewhere.
     FLAG_SUBMITTED = "submitted"
 
-    def __init__(self):
-        self._title = None
-        self._flags = set()
-        self._running_job_name = None
+    def __init__(self, title=None, flags=None, running_job_name=None):
+        if flags is None:
+            flags = []
+        self._title = title
+        self._flags = set(flags)
+        self._running_job_name = running_job_name
 
     def as_json(self):
         """
@@ -133,174 +131,7 @@ class SessionMetadata:
         self._running_job_name = running_job_name
 
 
-class _LegacySessionState:
-    """
-    Legacy features of SessionState that are being deprecated and replaced
-    """
-
-    session_data_filename = 'session.json'
-
-    def __init__(self):
-        # Temporary directory used as 'scratch space' for running jobs. Removed
-        # entirely when session is terminated. Internally this is exposed as
-        # $CHECKBOX_DATA to script environment.
-        self._session_dir = None
-
-        # Directory used to store jobs IO logs.
-        self._jobs_io_log_dir = None
-
-    @property
-    def session_dir(self):
-        """
-        pathname of a temporary directory for this session
-
-        This is not None only between calls to open() / close().
-        """
-        return self._session_dir
-
-    @property
-    def jobs_io_log_dir(self):
-        """
-        pathname of the jobs IO logs directory
-
-        This is not None only between calls to open() / close().
-        """
-        return self._jobs_io_log_dir
-
-    def open(self):
-        """
-        Open session state for running jobs.
-
-        This function creates the cache directory where jobs can store their
-        data. See:
-        http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
-        """
-        if self._session_dir is None:
-            xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
-                os.path.join(os.path.expanduser('~'), '.cache')
-            self._session_dir = os.path.join(
-                xdg_cache_home, 'plainbox', 'last-session')
-            if not os.path.isdir(self._session_dir):
-                os.makedirs(self._session_dir)
-        if self._jobs_io_log_dir is None:
-            self._jobs_io_log_dir = os.path.join(self._session_dir, 'io-logs')
-            if not os.path.isdir(self._jobs_io_log_dir):
-                os.makedirs(self._jobs_io_log_dir)
-        return self
-
-    def clean(self):
-        """
-        Clean the session directory.
-        """
-        if self._session_dir is not None:
-            shutil.rmtree(self._session_dir)
-            self._session_dir = None
-            self._jobs_io_log_dir = None
-            self.open()
-
-    def close(self):
-        """
-        Close the session.
-
-        It is automatically called by __exit__, the context manager exit
-        function.
-        """
-        self._session_dir = None
-        self._jobs_io_log_dir = None
-
-    def previous_session_file(self):
-        """
-        Check the filesystem for previous session data
-        Returns the full pathname to the session file if it exists
-        """
-        session_filename = os.path.join(self._session_dir,
-                                        self.session_data_filename)
-        if os.path.exists(session_filename):
-            return session_filename
-        else:
-            return None
-
-    def persistent_save(self):
-        """
-        Save to disk the minimum needed to resume plainbox where it stopped
-        """
-        # Ensure an atomic update of the session file:
-        #   - create a new temp file (on the same file system!)
-        #   - write data to the temp file
-        #   - fsync() the temp file
-        #   - rename the temp file to the appropriate name
-        #   - fsync() the containing directory
-        # Calling fsync() does not necessarily ensure that the entry in the
-        # directory containing the file has also reached disk.
-        # For that an explicit fsync() on a file descriptor for the directory
-        # is also needed.
-        filename = os.path.join(self._session_dir,
-                                self.session_data_filename)
-
-        with tempfile.NamedTemporaryFile(mode='wt',
-                                         encoding='UTF-8',
-                                         suffix='.tmp',
-                                         prefix='session',
-                                         dir=self._session_dir,
-                                         delete=False) as tmpstream:
-            # Save the session state to disk
-            json.dump(self, tmpstream, cls=SessionStateEncoder,
-                      ensure_ascii=False, indent=None, separators=(',', ':'))
-
-            tmpstream.flush()
-            os.fsync(tmpstream.fileno())
-
-        session_dir_fd = os.open(self._session_dir, os.O_DIRECTORY)
-        os.rename(tmpstream.name, filename)
-        os.fsync(session_dir_fd)
-        os.close(session_dir_fd)
-
-    def resume(self):
-        """
-        Erase the job_state_map and desired_job_list with the saved ones
-        """
-        with open(self.previous_session_file(), 'rt', encoding='UTF-8') as f:
-            previous_session = json.load(
-                f, object_hook=SessionStateEncoder().dict_to_object)
-        self._job_state_map = previous_session._job_state_map
-        desired_job_list = []
-        for job in previous_session._desired_job_list:
-            if job in self._job_list:
-                desired_job_list.extend(
-                    [j for j in self._job_list if j == job])
-            elif (previous_session._job_state_map[job.name].result.outcome !=
-                    IJobResult.OUTCOME_NONE):
-                # Keep jobs results from the previous session without a
-                # definition in the current job_list only if they have
-                # a valid result
-                desired_job_list.append(job)
-        self.update_desired_job_list(desired_job_list)
-        # FIXME: Restore io_logs from files
-
-    def _get_persistance_subset(self):
-        state = {}
-        state['_job_state_map'] = self._job_state_map
-        state['_desired_job_list'] = self._desired_job_list
-        return state
-
-    @classmethod
-    def from_json_record(cls, record):
-        """
-        Create a SessionState instance from JSON record
-        """
-        obj = cls([])
-        obj._job_state_map = record['_job_state_map']
-        obj._desired_job_list = record['_desired_job_list']
-        return obj
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *args):
-        self.close()
-
-
-class SessionState(_LegacySessionState):
+class SessionState:
     """
     Class representing all state needed during a single program session.
 
@@ -362,14 +193,50 @@ class SessionState(_LegacySessionState):
         :class:`plainbox.impl.resource.Resource` objects. This encapsulates all
         "knowledge" about the system plainbox is running on.
 
+
         It is needed to compute job readiness (as it stores resource data
         needed by resource programs). It is also available to exporters.
 
         This is computed internally from the output of checkbox resource jobs,
         it can only be changed by calling :meth:`update_job_result()`
 
-    :ivar dict metadata: instance of :class:`SessionMetadata`
+    :ivar dict metadata: instance of :class:`SessionMetaData`
     """
+
+    @Signal.define
+    def on_job_state_map_changed(self):
+        """
+        Signal fired after job_state_map is changed in any way.
+
+        This signal is always fired before any more specialized signals
+        such as :meth:`on_job_result_changed()` and :meth:`on_job_added()`.
+
+        This signal is fired pretty often, each time a job result is
+        presented to the session and each time a job is added. When
+        both of those events happen at the same time only one notification
+        is sent. The actual state is not sent as it is quite extensive
+        and can be easily looked at by the application.
+        """
+
+    @Signal.define
+    def on_job_result_changed(self, job, result):
+        """
+        Signal fired after a job get changed (set)
+
+        This signal is fired each time a result is presented to the session.
+
+        This signal is fired **after** :meth:`on_job_state_map_changed()`
+        """
+        logger.info("Job %s result changed to %r", job, result)
+
+    @Signal.define
+    def on_job_added(self, job):
+        """
+        Signal sent whenever a job is added to the session.
+
+        This signal is fired **after** :meth:`on_job_state_map_changed()`
+        """
+        logger.info("New job defined: %r", job)
 
     def __init__(self, job_list):
         """
@@ -415,7 +282,7 @@ class SessionState(_LegacySessionState):
         self._desired_job_list = []
         self._run_list = []
         self._resource_map = {}
-        self._metadata = SessionMetadata()
+        self._metadata = SessionMetaData()
         super(SessionState, self).__init__()
 
     def update_desired_job_list(self, desired_job_list):
@@ -435,6 +302,8 @@ class SessionState(_LegacySessionState):
         # Remember a copy of original desired job list. We may modify this list
         # so let's not mess up data passed by the caller.
         self._desired_job_list = list(desired_job_list)
+        # Reset run list just in case desired_job_list is empty
+        self._run_list = []
         # Try to solve the dependency graph. This is done in a loop as may need
         # to remove a problematic job and re-try. The loop provides a stop
         # condition as we will eventually run out of jobs.
@@ -474,7 +343,8 @@ class SessionState(_LegacySessionState):
         where estimate_automated is the value for automated jobs only and
         estimate_manual is the value for manual jobs only. These can be
         easily combined. Either value can be None if the  value could not be
-        calculated due to any job lacking the required estimated_duration field.
+        calculated due to any job lacking the required estimated_duration
+        field.
         """
         estimate_automated = 0.0
         estimate_manual = 0.0
@@ -485,15 +355,14 @@ class SessionState(_LegacySessionState):
                 elif job.plugin != 'local':
                     estimate_automated = None
             elif not job.automated and estimate_manual is not None:
-                # We add 30 seconds to the run time for manual jobs to
-            	# account for extra time taken in reading the description
-            	# and performing any necessary steps
+                # We add a fixed extra amount of seconds to the run time
+                # for manual jobs to account for the time taken in reading
+                # the description and performing any necessary steps
                 estimate_manual += manual_overhead
                 if job.estimated_duration is not None:
-                     estimate_manual += job.estimated_duration
+                    estimate_manual += job.estimated_duration
                 elif job.command:
                     estimate_manual = None
-
         return (estimate_automated, estimate_manual)
 
     def update_job_result(self, job, result):
@@ -524,6 +393,7 @@ class SessionState(_LegacySessionState):
         # Store the result in job_state_map
         self._job_state_map[job.name].result = result
         self.on_job_state_map_changed()
+        self.on_job_result_changed(job, result)
         # Treat some jobs specially and interpret their output
         if job.plugin == "resource":
             self._process_resource_result(job, result)
@@ -557,10 +427,11 @@ class SessionState(_LegacySessionState):
         try:
             existing_job = self._job_state_map[new_job.name].job
         except KeyError:
-            logger.info("Storing new job %r", new_job)
             # Register the new job in our state
             self._job_state_map[new_job.name] = JobState(new_job)
             self._job_list.append(new_job)
+            self.on_job_state_map_changed()
+            self.on_job_added(new_job)
         else:
             # If there is a clash report DependencyDuplicateError only when the
             # hashes are different. This prevents a common "problem" where
@@ -579,6 +450,10 @@ class SessionState(_LegacySessionState):
         self._resource_map[resource_name] = resource_list
 
     def _process_resource_result(self, job, result):
+        """
+        Analyze a result of a CheckBox "resource" job and generate
+        or replace resource records.
+        """
         new_resource_list = []
         for record in self._gen_rfc822_records_from_io_log(job, result):
             # XXX: Consider forwarding the origin object here.  I guess we
@@ -590,6 +465,13 @@ class SessionState(_LegacySessionState):
         self._resource_map[job.name] = new_resource_list
 
     def _process_local_result(self, job, result):
+        """
+        Analyze a result of a CheckBox "local" job and generate
+        additional job definitions
+        """
+        # TODO: refactor using add_job() but make sure we compute
+        # job state map at most once
+
         # First parse all records and create a list of new jobs (confusing
         # name, not a new list of jobs)
         new_job_list = []
@@ -602,9 +484,10 @@ class SessionState(_LegacySessionState):
             try:
                 existing_job = self._job_state_map[new_job.name].job
             except KeyError:
-                logger.info("Storing new job %r", new_job)
                 self._job_state_map[new_job.name] = JobState(new_job)
                 self._job_list.append(new_job)
+                self.on_job_state_map_changed()
+                self.on_job_added(new_job)
             else:
                 # XXX: there should be a channel where such errors could be
                 # reported back to the UI layer. Perhaps update_job_result()
@@ -620,10 +503,13 @@ class SessionState(_LegacySessionState):
                         existing_job._via = new_job.via
 
     def _gen_rfc822_records_from_io_log(self, job, result):
+        """
+        Convert io_log from a job result to a sequence of rfc822 records
+        """
         logger.debug("processing output from a job: %r", job)
         # Select all stdout lines from the io log
         line_gen = (record[2].decode('UTF-8', errors='replace')
-                    for record in result.io_log
+                    for record in result.get_io_log()
                     if record[1] == 'stdout')
         try:
             # Parse rfc822 records from the subsequent lines
@@ -676,9 +562,12 @@ class SessionState(_LegacySessionState):
         """
         return self._job_state_map
 
-    @Signal.define
-    def on_job_state_map_changed(self):
-        pass
+    @property
+    def resource_map(self):
+        """
+        Map from resource name to a list of resource records
+        """
+        return self._resource_map
 
     @property
     def metadata(self):
@@ -765,39 +654,3 @@ class SessionState(_LegacySessionState):
                         cause=JobReadinessInhibitor.FAILED_DEP,
                         related_job=dep_job_state.job)
                     job_state.readiness_inhibitor_list.append(inhibitor)
-
-
-class SessionStateEncoder(json.JSONEncoder):
-
-    _CLS_MAP = {
-        DiskJobResult: 'JOB_RESULT(d)',
-        JobDefinition: 'JOB_DEFINITION',
-        JobState: 'JOB_STATE',
-        MemoryJobResult: 'JOB_RESULT(m)',
-        SessionState: 'SESSION_STATE',
-    }
-
-    _CLS_RMAP = {value: key for key, value in _CLS_MAP.items()}
-
-    def default(self, obj):
-        """
-        JSON Serialize helper to encode SessionState attributes
-        Convert objects to a dictionary of their representation
-        """
-        if isinstance(obj, tuple(self._CLS_MAP.keys())):
-            d = {'_class_id': self._CLS_MAP[obj.__class__]}
-            d.update(obj._get_persistance_subset())
-            return d
-        else:
-            return json.JSONEncoder.default(self, obj)
-
-    def dict_to_object(self, data):
-        """
-        JSON Decoder helper
-        Convert dictionary to python objects
-        """
-        if '_class_id' in data:
-            cls = self._CLS_RMAP[data['_class_id']]
-            return cls.from_json_record(data)
-        else:
-            return data
