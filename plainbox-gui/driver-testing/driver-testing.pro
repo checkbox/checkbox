@@ -36,7 +36,7 @@ LIBS += -L../plugins/ -lgui-engine
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-QMAKE_LFLAGS += '-Wl,-rpath,\'$$PREFIX/share/driver-testing/plugins\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'$$PREFIX/lib/driver-testing/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
