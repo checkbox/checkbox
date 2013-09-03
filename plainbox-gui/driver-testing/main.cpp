@@ -91,9 +91,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<TestItem>("Ubuntu.IhvTest", 0, 1, "TestItem");
 
     QDir pluginsDir;
-    pluginsDir.setPath("/usr/share/driver-testing/plugins");
+    pluginsDir.setPath("../lib/driver-testing/plugins");
 
-    QPluginLoader loader("/usr/share/driver-testing/plugins/libgui-engine.so");
+    QPluginLoader loader("../lib/driver-testing/plugins/libgui-engine.so");
 
     QQmlExtensionPlugin *plugin = qobject_cast<QQmlExtensionPlugin*>(loader.instance());
     if (plugin)

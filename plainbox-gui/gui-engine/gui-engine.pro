@@ -43,6 +43,6 @@ SOURCES = gui-engine.cpp \
 
 DESTDIR = ../plugins
 
-target.path = $$PREFIX/share/driver-testing/plugins
+target.path = $$PREFIX/lib/driver-testing/plugins
 
 INSTALLS += target

@@ -49,7 +49,7 @@ SOURCES += main.cpp \
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
-desktop.path = /usr/share/applications
+desktop.path = $$PREFIX/share/applications
 desktop.files += driver-testing.desktop
 
 INSTALLS += desktop
