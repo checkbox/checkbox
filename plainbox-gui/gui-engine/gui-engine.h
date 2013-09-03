@@ -214,7 +214,7 @@ private:
         void RunJob(const QDBusObjectPath session, const QDBusObjectPath opath);
 
         // Convenience functions
-        const int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
+        int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
 
         const QString ConvertOutcome(const int outcome);
 
