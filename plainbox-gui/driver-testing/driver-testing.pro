@@ -31,12 +31,12 @@ isEmpty(PREFIX) {
       PREFIX = /usr/local
 }
 
-LIBS += -L../plugins/ -lgui-engine
+LIBS += -L../lib/$$TARGET/plugins/ -lgui-engine
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-QMAKE_LFLAGS += '-Wl,-rpath,\'$$PREFIX/lib/driver-testing/plugins\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'$$PREFIX/lib/$$TARGET/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
@@ -63,7 +63,7 @@ HEADERS += whitelistitem.h \
 target.path = $$PREFIX/bin
 INSTALLS += target
 
-qml_files.path = $$PREFIX/share/driver-testing
+qml_files.path = $$PREFIX/share/$$TARGET
 qml_files.files = qml
 
 INSTALLS += qml_files

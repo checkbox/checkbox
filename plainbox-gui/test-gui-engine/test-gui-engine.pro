@@ -23,9 +23,9 @@
 
 QT  += testlib dbus qml xml
 
-LIBS += -L../plugins/ -lgui-engine
+LIBS += -L../lib/driver-testing/plugins/ -lgui-engine
 
-QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../plugins\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/driver-testing/plugins\''
 
 HEADERS += test-gui-engine.h
 
