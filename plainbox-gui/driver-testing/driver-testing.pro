@@ -20,7 +20,7 @@
 
 # Add more folders to ship with the application, here
 folder_01.source = qml
-folder_01.target = .
+folder_01.target = ../share/driver-testing
 DEPLOYMENTFOLDERS = folder_01
 
 QT += dbus widgets
@@ -33,10 +33,8 @@ isEmpty(PREFIX) {
 
 LIBS += -L../lib/$$TARGET/plugins/ -lgui-engine
 
-# Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH =
-
-QMAKE_LFLAGS += '-Wl,-rpath,\'$$PREFIX/lib/$$TARGET/plugins\''
+# Additional import path used to resolve QML modules
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/driver-testing/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
@@ -63,7 +61,7 @@ HEADERS += whitelistitem.h \
 target.path = $$PREFIX/bin
 INSTALLS += target
 
-qml_files.path = $$PREFIX/share/$$TARGET
+qml_files.path = $$PREFIX/share/driver-testing
 qml_files.files = qml
 
 INSTALLS += qml_files
