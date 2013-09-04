@@ -20,19 +20,21 @@
 
 # Add more folders to ship with the application, here
 folder_01.source = qml
-folder_01.target = .
+folder_01.target = ../share/driver-testing
 DEPLOYMENTFOLDERS = folder_01
 
 QT += dbus widgets
 TARGET = driver-testing
 TEMPLATE = app
 
-LIBS += -L../plugins/ -lgui-engine
+isEmpty(PREFIX) {
+      PREFIX = /usr/local
+}
 
-# Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH =
+LIBS += -L../lib/$$TARGET/plugins/ -lgui-engine
 
-QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../plugins\''
+# Additional import path used to resolve QML modules
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/driver-testing/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
@@ -45,12 +47,12 @@ SOURCES += main.cpp \
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
-desktop.path = /usr/share/applications
+desktop.path = $$PREFIX/share/applications
 desktop.files += driver-testing.desktop
 
 INSTALLS += desktop
 
-icons.path = /usr/share/icons/hicolor
+icons.path = $$PREFIX/share/icons/hicolor
 icons.files += icons/* 
 
 INSTALLS += icons
@@ -60,6 +62,14 @@ HEADERS += whitelistitem.h \
     listmodel.h \
     commandtool.h \
     testitemmodel.h
+
+target.path = $$PREFIX/bin
+INSTALLS += target
+
+qml_files.path = $$PREFIX/share/driver-testing
+qml_files.files = qml
+
+INSTALLS += qml_files
 
 OTHER_FILES += \
     qml/DummyListModel.qml \

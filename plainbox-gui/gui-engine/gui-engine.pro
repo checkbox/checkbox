@@ -25,6 +25,10 @@ TEMPLATE = lib
 CONFIG += qt plugin
 QT +=qml dbus xml widgets gui
 
+isEmpty(PREFIX) {
+      PREFIX = /usr/local
+}
+
 TARGET = gui-engine
 
 HEADERS = gui-engine.h \
@@ -37,7 +41,8 @@ SOURCES = gui-engine.cpp \
     PBTreeNode.cpp \
     JobTreeNode.cpp
 
-DESTDIR = ../plugins
+DESTDIR = ../lib/driver-testing/plugins
 
+target.path = $$PREFIX/lib/driver-testing/plugins
 
-
+INSTALLS += target
