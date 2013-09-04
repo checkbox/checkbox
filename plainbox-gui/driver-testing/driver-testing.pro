@@ -52,6 +52,11 @@ desktop.files += driver-testing.desktop
 
 INSTALLS += desktop
 
+icons.path = $$PREFIX/share/icons/hicolor
+icons.files += icons/* 
+
+INSTALLS += icons
+
 HEADERS += whitelistitem.h \
     testitem.h \
     listmodel.h \
