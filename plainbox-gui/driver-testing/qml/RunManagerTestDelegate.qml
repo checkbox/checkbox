@@ -223,6 +223,8 @@ Component {
                         detailsicon.detailsStatus = false
                         timelabel.text = ""
                         testListModel.setProperty(index, "groupstatus", 0);   // group
+
+                        testListModel.setProperty(index,"rerun",1); // mark this for rerun
                     }
                 }
             }

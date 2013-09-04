@@ -578,7 +578,7 @@ void GuiEngine::Resume(void)
 * Selection screen as additional implicit jobs
 */
 
-int GuiEngine::PrepareJobs(void) 
+int GuiEngine::PrepareJobs(void)
 {
 
     qDebug("\n\nGuiEngine::PrepareJobs()\n");
@@ -612,6 +612,64 @@ int GuiEngine::PrepareJobs(void)
     return m_run_list.count();
 }
 
+void GuiEngine::GuiRerun(void)
+{
+    qDebug("GuiEngine::GuiRerun");
+
+    // We should kick off the run again, but this time only for the needed jobs.
+
+    // I guess this is like prepare jobs, but different
+    /* First, filter out any jobs we really dont want (i.e. not user-selected)
+    *
+    * Note: m_final_run_list is in the order of items shown in the gui,
+    * so we try to preserve that when we give it to UpdateDesiredJobList()
+    * and hopefully it is similar when we get it back from SessionStateRunList()
+    */
+
+
+    QList<QDBusObjectPath> temp_desired_job_list = \
+            JobTreeNode::FilteredJobs(m_run_list,m_rerun_list);
+
+    QStringList errors = UpdateDesiredJobList(m_session, temp_desired_job_list);
+    if (errors.count() != 0) {
+        qDebug("UpdateDesiredJobList generated errors:");
+
+        for (int i=0; i<errors.count(); i++) {
+            qDebug() << errors.at(i);
+        }
+    }
+
+    // Now, the m_rerun_list contains the list of jobs I actually need to run \o/
+    m_rerun_list = SessionStateRunList(m_session);
+
+    // Re-run!
+    RunJobs();
+
+    qDebug("GuiEngine::GuiRerun() - done");
+}
+
+int GuiEngine::NextRunJobIndex(int index)
+{
+    // Now we use the list of re-runs against the run_list to see what we do
+
+    int next = index+1;
+
+    while (next < m_run_list.count() ) {
+        /* If the re-run list contains the current job, thats one we will return
+         * otherwise we move on to the next.
+         */
+        if (m_rerun_list.contains(m_run_list.at(next))) {
+            return next;
+        }
+
+        // Move to the next job
+        next++;
+    }
+
+    // If we get this far we've really finished
+    return next;
+}
+
 /* Run all the "real" test jobs. For consistency and clarity, we follow the
  * logic found in dbus-mini-client.py
  */
@@ -620,7 +678,9 @@ void GuiEngine::RunJobs(void)
 //    qDebug("GuiEngine::RunJobs");
 
     // Start tracking which Job we are running, from the beginning
-    m_current_job_index = 0;
+    m_current_job_index = NextRunJobIndex(0);
+
+    // ok, this is new. we need to find the first job to really run
 
     // Tell the GUI so we know we have started running this job
     emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
@@ -1658,7 +1718,7 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
                           outcome);
 
     // Move to the next job
-    m_current_job_index++;
+    m_current_job_index = NextRunJobIndex(m_current_job_index);
 
     // We should deal with Pause/Resume here
     if (!m_running) {

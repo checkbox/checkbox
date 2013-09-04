@@ -57,16 +57,26 @@ Page {
                 runmanagerview.testingComplete = true;
 
                 // update ui
-                runbuttons.pauseButtonEnabled = false;
+                //runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;
                 updater.running = false;
 
+                // Progress is 100% even if we only re-ran a few jobs
+                progress.value = guiEngine.ValidRunListCount();
+
+                // now we should start with the re-run options
+                runbuttons.rerunButtonEnabled = true;
+
                 // set flags in list (for group details)
                 testsuitelist.curSectionTested = "";  // set this as there is no more tested
             }
 
+            // from gui-engine.h for reference:
+//            void updateGuiObjects(const QString& job_id, \
+//                                  const int current_job_index,
+//                                  const int outcome);
             onUpdateGuiObjects: {
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
@@ -84,6 +94,11 @@ Page {
 
                 // outcome comes from guiengine in this signal
                 testListModel.setProperty(updater.testIndex, "runstatus", outcome);
+
+                /* Note that this has now been run, so doesnt need to be re-run
+                * unless the user subsequently selects it
+                */
+                testListModel.setProperty(updater.testIndex, "rerun",false);
 
                 // We may consider setting the IO Log details too here, but not yet
 
@@ -109,6 +124,13 @@ Page {
                         + " of "+ progress.maxValue
                         + "  (" + utils.formatElapsedTime(stopTime - updater.startTime) + ")"
                         + "   " + testname;
+            }
+
+            onJobsBegin: {
+                console.log("onJobsBegin");
+
+                // update things like the progress bar
+
             }
         }
     }

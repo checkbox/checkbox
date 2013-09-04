@@ -44,6 +44,7 @@ TestItem::TestItem(const double &duration, \
                    const QList<QString> &parent_ids, \
                    const int &depth, \
                    const bool &branch, \
+                   const bool &rerun, \
                    QObject * parent  ) :
     ListItem(parent), \
               m_duration(duration), \
@@ -67,7 +68,8 @@ TestItem::TestItem(const double &duration, \
               m_branch(branch), \
           m_runstatus(0),
           m_elapsedtime(0),
-              m_groupstatus(0)
+              m_groupstatus(0),
+              m_rerun(true) // covers the first run of all the tests
 {
     // FIXME - Hard-coded data whilst we correct the RunManagerTestDelegate
     m_outcome = JobResult_OUTCOME_PASS;
@@ -109,6 +111,8 @@ QHash<int, QByteArray> TestItem::roleNames() const
   names[IOLogRole] = "io_log";
   names[CommentsRole] = "comments";
   names[OutcomeRole] = "outcome";
+
+  names[RerunRole] = "rerun";
 
   return names;
 }
@@ -168,6 +172,9 @@ QVariant TestItem::data(int role) const
 
   case BranchRole:
       return branch();
+
+  case RerunRole:
+      return rerun();
 
   default:
     return QVariant();
@@ -280,6 +287,10 @@ void TestItem::setData(const QVariant & value, int role){
 
     case OutcomeRole:
         setOutcome(value.toString());
+        break;
+
+    case RerunRole:
+        setRerun(value.toBool());
         break;
     }
 }
@@ -481,6 +492,14 @@ void TestItem::setOutcome(const QString &outcome){
     if (m_outcome.compare(outcome) != 0 ) {
         m_outcome = outcome;
         emit outcomeChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setRerun(bool rerun){
+    if (rerun != m_rerun){
+        m_rerun = rerun;
+        emit rerunChanged();
         emit dataChanged();
     }
 }

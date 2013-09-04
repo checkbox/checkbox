@@ -174,7 +174,7 @@ Rectangle {
                                 break;
                             }
                         }
-			
+
                         /* Leaf rules
 
                             Leaf: Set
@@ -455,6 +455,9 @@ Rectangle {
 
                 // Update the really selected testsuitelist
                 testitemFactory.GetSelectedRealJobs(testListModel);
+
+                // Mark all the jobs for one run-through
+                testitemFactory.GetSelectedRerunJobs(testListModel);
 
                 // Prep the jobs (we cant start them without this)
                 var total_generated_tests = guiEngine.PrepareJobs();
