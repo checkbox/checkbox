@@ -130,8 +130,10 @@ public slots:
 
         // Convenience functions for the GUI
         QString GuiExportSessionAsXML(void);
+        QString GuiExportSessionAsHTML(void);
 
         bool GuiExportSessionToFileAsXML(const QString& output_file);
+        bool GuiExportSessionToFileAsHTML(const QString& output_file);
 
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);

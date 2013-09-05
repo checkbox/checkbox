@@ -1367,6 +1367,16 @@ QString GuiEngine::GuiExportSessionAsXML(void)
     return ExportSession(m_session,output_format,options);
 }
 
+QString GuiEngine::GuiExportSessionAsHTML(void)
+{
+    qDebug("GuiEngine::GuiExportSessionAsHTML");
+
+    QString output_format = "html";
+    QStringList options;    // No options
+
+    return ExportSession(m_session,output_format,options);
+}
+
 const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
                                        const QString &output_format, \
                                        const QStringList& option_list)
@@ -1409,6 +1419,22 @@ const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
 bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file)
 {
     QString output_format = "xml";
+    QStringList options;    // No options
+
+    // very basic argument checking
+    if (output_file.isEmpty()) {
+        return false;
+    }
+
+    // FIXME - When we get a useful success/failure code here, return to caller
+    QString done = ExportSessionToFile(m_session,output_format,options,output_file);
+
+    return true;
+}
+
+bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file)
+{
+    QString output_format = "html";
     QStringList options;    // No options
 
     // very basic argument checking
@@ -1828,7 +1854,7 @@ QString GuiEngine::GetSaveFileName(void)
 {
     QString prompt = "Choose a filename:";
 
-    return QFileDialog::getSaveFileName(NULL,prompt);
+    return QFileDialog::getSaveFileName(NULL,prompt, "submission.xml", tr("XML files (*.xml)"));
 }
 
 const QDBusObjectPath GuiEngine::GetCurrentSession(void)
