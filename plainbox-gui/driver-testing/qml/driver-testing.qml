@@ -34,6 +34,8 @@ MainView {
     // TODO - For Resume dialog, when plainbox starts up, check if this is a 'Resume'
     // if it is, set pageName = "ResumeView", state = "RESUME"
 
+    Component.onDestruction: {console.log("SHUTDOWN"); guiEngine.Shutdown()}
+
     PageStack {
         id: pageStack
         state: "WELCOME"
