@@ -1351,6 +1351,8 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
 
     QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
 
+    /* FIXME: Find a better way to get the previous result, this one is too
+       expensive, see https://bugs.launchpad.net/checkbox-ihv-ng/+bug/1218846
 
     // Get the interim Job Results
     GetJobStateMap();
@@ -1360,7 +1362,10 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
     GetJobResults();
 
     // we should look up the prior job result if available
-    const int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
+    const int outcome = GetOutcomeFromJobResultPath(m_run_list.at(m_current_job_index));
+    */
+    // FIXME: we should look up the prior job result if available
+    const int outcome = PBTreeNode::PBJobResult_None;
 
     // Open the GUI dialog -- TODO - Default the Yes/No/Skip icons
     if (!m_running_manual_job) {
@@ -1427,6 +1432,16 @@ QString GuiEngine::GuiExportSessionAsXML(void)
     return ExportSession(m_session,output_format,options);
 }
 
+QString GuiEngine::GuiExportSessionAsHTML(void)
+{
+    qDebug("GuiEngine::GuiExportSessionAsHTML");
+
+    QString output_format = "html";
+    QStringList options;    // No options
+
+    return ExportSession(m_session,output_format,options);
+}
+
 const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
                                        const QString &output_format, \
                                        const QStringList& option_list)
@@ -1469,6 +1484,22 @@ const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
 bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file)
 {
     QString output_format = "xml";
+    QStringList options;    // No options
+
+    // very basic argument checking
+    if (output_file.isEmpty()) {
+        return false;
+    }
+
+    // FIXME - When we get a useful success/failure code here, return to caller
+    QString done = ExportSessionToFile(m_session,output_format,options,output_file);
+
+    return true;
+}
+
+bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file)
+{
+    QString output_format = "html";
     QStringList options;    // No options
 
     // very basic argument checking
@@ -1702,15 +1733,8 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     UpdateJobResult(m_session,job,result);
 
-    // Get the interim Job Results
-    GetJobStateMap();
-
-    GetJobStates();
-
-    GetJobResults();
-
-      // How did this job turn out?
-    const int outcome = GetOutcomeFromJobPath(m_run_list.at(m_current_job_index));
+    // How did this job turn out?
+    const int outcome = GetOutcomeFromJobResultPath(result);
 
     // Update the GUI so it knows what the job outcome was
     emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
@@ -1833,32 +1857,14 @@ const QString GuiEngine::JobNameFromObjectPath(const QDBusObjectPath& opath)
     return empty;
 }
 
-int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
+int GuiEngine::GetOutcomeFromJobResultPath(const QDBusObjectPath &opath)
 {
     QString outcome;
 
-    /* first, we need to go through the m_job_state_list to find the
-     * relevant job to result mapping. then we go through m_job_state_results
-     * to obtain the actual result.
-     */
-
-    QDBusObjectPath resultpath;
-
-    for(int i=0; i < m_job_state_list.count(); i++) {
-        if (m_job_state_list.at(i)->job().path().compare(opath.path()) == 0) {
-            // ok, we found the right statelist entry
-            resultpath = m_job_state_list.at(i)->result();
-            break;
-        }
-    }
-
-    // Now to find the right result object
-    for(int i=0;i<m_job_state_results.count();i++) {
-        if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
-            outcome = m_job_state_results.at(i)->outcome();
-            break;
-        }
-    }
+    PBTreeNode* result_node = new PBTreeNode();
+    result_node->AddNode(result_node, opath);
+    outcome = result_node->outcome();
+    delete result_node;
 
     qDebug() << "Real outcome " << outcome;
 
@@ -1888,7 +1894,7 @@ QString GuiEngine::GetSaveFileName(void)
 {
     QString prompt = "Choose a filename:";
 
-    return QFileDialog::getSaveFileName(NULL,prompt);
+    return QFileDialog::getSaveFileName(NULL,prompt, "submission.xml", tr("XML files (*.xml)"));
 }
 
 const QDBusObjectPath GuiEngine::GetCurrentSession(void)

@@ -59,9 +59,10 @@ Dialog {
 //                PopupUtils.open(log_viewer_results, view_button);
 
                 // Interim solution is to fire up a web browser
-                var mysavepath = '/tmp/report.xml';
+                // FIXME: ideally plainbox should generate a file that the app then has to unlink
+                var mysavepath = '/tmp/report.html';
 
-                runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsXML(mysavepath);
+                runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath);
 
                 cmdTool.exec("xdg-open", mysavepath)
             }
