@@ -25,14 +25,7 @@
 import abc
 import logging
 import os
-import shutil
-import tempfile
 
-from plainbox.abc import IJobResult
-from plainbox.impl.job import JobDefinition
-from plainbox.impl.result import DiskJobResult
-from plainbox.impl.result import MemoryJobResult
-from plainbox.impl.session.jobs import JobState
 from plainbox.impl.session.state import SessionState
 from plainbox.impl.session.manager import SessionManager
 from plainbox.impl.session.storage import SessionStorageRepository
@@ -243,7 +236,7 @@ class SessionStateLegacyAPICompatImpl(SessionState, ISessionStateLegacyAPI):
         This is not None only between calls to open() / close().
         """
         if self._commit_hint is not None:
-            sef._commit_manager()
+            self._commit_manager()
         if self._manager is None:
             return None
         else:
