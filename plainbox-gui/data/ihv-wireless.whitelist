@@ -1,0 +1,69 @@
+# Checkbox whitelist file IHV wireless tests
+# Resource Jobs
+cpuinfo
+cdimage
+display
+dmi
+dpkg
+efi
+gconf
+lsb
+meminfo
+module
+package
+device
+uname
+usb
+sleep
+optical_drive
+block_device
+touchpad_scroll
+#Info attachment jobs
+__info__
+codecs_attachment
+cpuinfo_attachment
+dmesg_attachment
+dmi_attachment
+dmidecode_attachment
+efi_attachment
+lspci_attachment
+meminfo_attachment
+modprobe_attachment
+modules_attachment
+sysctl_attachment
+sysfs_attachment
+udev_attachment
+lsmod_attachment
+acpi_sleep_attachment
+info/hdparm
+info/hdparm_.*.txt
+installer_debug.gz
+
+# Test suites
+__benchmarks__
+__hibernate__
+__led__
+__networking__
+__power-management__
+__suspend__
+__wireless__
+
+# Manual tests and dependencies
+networking/detect
+wireless/wireless_connection
+led/wireless
+
+# Automated tests
+benchmarks/network/network-loopback
+networking/info_automated
+networking/internet
+wireless/wireless_scanning
+power-management/rtc
+suspend/wireless_before_suspend
+suspend/suspend_advanced_auto
+# Some manual tests after suspend
+suspend/led_after_suspend/wireless
+suspend/wireless_after_suspend
+suspend/wifi_resume_time
+power-management/hibernate_advanced
+power-management/hibernate-single-log-attach
