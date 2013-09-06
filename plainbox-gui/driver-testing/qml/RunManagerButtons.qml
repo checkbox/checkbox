@@ -30,7 +30,8 @@ Row {
 
     property alias pauseButtonEnabled: pauseButton.enabled
     property alias resultsButtonEnabled: resultsButton.enabled
-
+    property alias rerunButtonShown: pauseButton.showRerun
+    property alias rerunButtonEnabled: pauseButton.enabled
 
     signal exit
     signal pauseTest
@@ -48,18 +49,33 @@ Row {
          }
     }
 
+    // This can be Resume, Pause, or Re-run
     Button {
         id: pauseButton
         property bool showPause: true  // either Pause or Resume
+        property bool showRerun: false // We may re-run
         enabled: true
-        text: showPause ? i18n.tr("Pause") : i18n.tr("Resume")
+        text: showRerun ? i18n.tr("Re-run") :( showPause ? i18n.tr("Pause") : i18n.tr("Resume"))
         color: UbuntuColors.lightAubergine
         width: units.gu(18)
 
         onClicked:{
-            showPause?pauseTest():resumeTest()
-            showPause = !showPause
 
+            // Behaviour depends on state
+            if (showRerun) {
+                // Update the list of things the user _really_ wants to rerun
+                testitemFactory.GetSelectedRerunJobs(testListModel);
+
+                // return the button to pause/re-run
+                showRerun = false;
+
+                // Get on with it
+                guiEngine.RunJobs();
+
+            } else {
+                showPause?pauseTest():resumeTest()
+                showPause = !showPause
+            }
         }
 
     }

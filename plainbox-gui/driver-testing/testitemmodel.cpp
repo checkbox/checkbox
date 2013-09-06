@@ -346,3 +346,69 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
 
     return selected_jobs_list;
 }
+
+QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
+{
+    qDebug("TestItemModel::GetSelectedRerunJobs()");
+
+    QList<QDBusObjectPath> selected_rerun_list;
+
+    if (!model) {
+        qDebug("No ListModel supplied");
+        return selected_rerun_list;
+    }
+
+    for(int i=0; i< model->getCount(); i++) {
+
+        /* Should this item be put into the run list? Yes,
+        * UNLESS it is a local or resource job. We need the
+        * objectpath and the plugin type to make the decision
+        */
+        QModelIndex index = model->index(i);
+        QVariant variant = model->data(index,TestItem::ObjectPathRole);
+        QString objectpath = variant.toString();
+
+        // Get the name of this test for logging purposes
+        variant = model->data(index,TestItem::TestNameRole);
+        QString name = variant.toString();
+
+        variant = model->data(index,TestItem::PluginRole);
+        QString plugin = variant.toString();
+
+        if (plugin.compare("local") != 0 && plugin.compare("resource") != 0) {
+            /* ok, potentially it could be selected, so now we check if the
+             * user REALLY wanted it before putting it in the list
+             */
+            variant = model->data(index,TestItem::RerunRole);
+            bool rerun = variant.toBool();
+
+            if (rerun) {
+                qDebug() << name.toStdString().c_str();
+
+                // Now, we might add this to our list
+                QDBusObjectPath opath(objectpath);
+
+                // Ok, your name is on the list...
+                selected_rerun_list.append(opath);
+
+            } else {
+                qDebug() << name.toStdString().c_str() << " SKIP ";
+            }
+        }
+    }
+
+    // Store this in the guiengine
+    const QString engname("");
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
+    if(myengine == NULL) {
+        qDebug("Cant find guiengine object");
+
+        return selected_rerun_list;
+    }
+
+    myengine->SetRerunJobsList(selected_rerun_list);
+
+    qDebug("TestItemModel::GetSelectedRerunJobs() - Done");
+
+    return selected_rerun_list;
+}

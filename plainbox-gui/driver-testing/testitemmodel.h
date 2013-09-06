@@ -40,6 +40,8 @@ public slots:
 
     // We should obtain a list of desired jobs here
     QList<QDBusObjectPath> GetSelectedRealJobs(ListModel* model=NULL);
+
+    QList<QDBusObjectPath> GetSelectedRerunJobs(ListModel* model=NULL);
 };
 
 #endif // TESTITEMMODEL_H

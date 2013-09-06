@@ -83,6 +83,10 @@ public slots:
             m_final_run_list = real_jobs;
         }
 
+        void SetRerunJobsList(const QList<QDBusObjectPath> &rerun_jobs) {
+            m_rerun_list = rerun_jobs;
+        }
+
         /* Run all the jobs of type "local" in order to generate the true
          * list of tests from which the user can select.
          */
@@ -158,12 +162,23 @@ public:
 
 signals:
         // Instruct the GUI to update itself
-        void updateGuiObjects(const QString& job_id, \
+        void localJobsCompleted(void);
+
+        // When starting a run of jobs
+        void jobsBegin(void);
+
+        void updateGuiBeginJob(const QString& job_id, \
+                                const int current_job_index);
+
+        // When a job has completed
+        void updateGuiEndJob(const QString& job_id, \
                               const int current_job_index,
                               const int outcome);
-        void localJobsCompleted(void);
+
+        // When all jobs are completed
         void jobsCompleted(void);
 
+        // Manual Interaction Dialog
         void raiseManualInteractionDialog(const int outcome /* from PB */);
 
         void updateManualInteractionDialog(const int outcome);
@@ -220,6 +235,9 @@ private:
 
         const QString ConvertOutcome(const int outcome);
 
+        // Find the next real job index to run based on current index through m_run_list
+        int NextRunJobIndex(int index);
+
 protected:  // for test purposes only
         // JobStateMap
         jsm_t GetJobStateMap(void);
@@ -272,6 +290,11 @@ private:
         QList<QDBusObjectPath> m_local_run_list;
 
         QList<QDBusObjectPath> m_desired_local_job_list;
+
+        /* Re-run list. First time round it contains ALL m_run_list
+         * but on subsequent rounds its only those selected by the user
+         */
+        QList<QDBusObjectPath> m_rerun_list;
 
         // The currently running job as an index into m_run_list
         int m_current_job_index;

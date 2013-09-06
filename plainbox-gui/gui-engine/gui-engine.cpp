@@ -365,7 +365,7 @@ void GuiEngine::InterfacesAdded(QDBusMessage msg)
     // todo
 
     // Now tell the GUI to update its knowledge of the objects
-    emit updateGuiObjects("TBD1",0,0);
+    //emit updateGuiObjects("TBD1",0,0);
 
     qDebug("GuiEngine::InterfacesAdded - done");
 }
@@ -404,7 +404,7 @@ void GuiEngine::InterfacesRemoved(QDBusMessage msg)
     // todo
 
     // Now tell the GUI to update its knowledge of the objects
-    emit updateGuiObjects("TBD2",0,0);
+    //emit updateGuiObjects("TBD2",0,0);
 
     qDebug("GuiEngine::InterfacesRemoved - done");
 }
@@ -556,9 +556,8 @@ void GuiEngine::Resume(void)
         if (m_run_list.count() != m_current_job_index) {
 
             // Update the GUI so it knows what job is starting
-            emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
-                                  m_current_job_index, \
-                                  PBTreeNode::PBJobResult_Running);
+            emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
+                                  m_current_job_index);
 
             // Now run the next job
             qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -578,7 +577,7 @@ void GuiEngine::Resume(void)
 * Selection screen as additional implicit jobs
 */
 
-int GuiEngine::PrepareJobs(void) 
+int GuiEngine::PrepareJobs(void)
 {
 
     qDebug("\n\nGuiEngine::PrepareJobs()\n");
@@ -589,8 +588,6 @@ int GuiEngine::PrepareJobs(void)
     * so we try to preserve that when we give it to UpdateDesiredJobList()
     * and hopefully it is similar when we get it back from SessionStateRunList()
     */
-
-
     QList<QDBusObjectPath> temp_desired_job_list = \
             JobTreeNode::FilteredJobs(m_final_run_list,m_desired_job_list);
 
@@ -606,10 +603,36 @@ int GuiEngine::PrepareJobs(void)
     // Now, the run_list contains the list of jobs I actually need to run \o/
     m_run_list = SessionStateRunList(m_session);
 
+    /* Ensure that the first time through we run everything including implicit jobs
+     */
+    m_rerun_list = m_run_list;
+
 //    qDebug("\n\nGuiEngine::PrepareJobs() - Done\n");
 
     // useful to the gui (summary bar in test selection screen)
     return m_run_list.count();
+}
+
+
+int GuiEngine::NextRunJobIndex(int index)
+{
+    // Now we use the list of re-runs against the run_list to see what we do
+    int next = index+1;
+
+    while (next < m_run_list.count() ) {
+        /* If the re-run list contains the current job, thats one we will return
+         * otherwise we move on to the next.
+         */
+        if (m_rerun_list.contains(m_run_list.at(next))) {
+            return next;
+        }
+
+        // Move to the next job
+        next++;
+    }
+
+    // If we get this far we've really finished
+    return next;
 }
 
 /* Run all the "real" test jobs. For consistency and clarity, we follow the
@@ -619,13 +642,21 @@ void GuiEngine::RunJobs(void)
 {
 //    qDebug("GuiEngine::RunJobs");
 
-    // Start tracking which Job we are running, from the beginning
-    m_current_job_index = 0;
+    // Tell the GUI we are running the jobs
+    emit jobsBegin();
+
+    /* Start tracking which Job we are running, from the beginning
+    * -1 to get index 0 because it normally runs at the end of a job,
+    * but this will not necessarily be true for re-runs, hence why
+    * we need to call NextRunJobIndex() and not just assume 0.
+    */
+    m_current_job_index = NextRunJobIndex(-1);
+
+    // ok, this is new. we need to find the first job to really run
 
     // Tell the GUI so we know we have started running this job
-    emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
-                          m_current_job_index, \
-                          PBTreeNode::PBJobResult_Running);
+    emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
+                          m_current_job_index);
 
     // Now the actual run, job by job
     qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -1677,12 +1708,12 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
     const int outcome = GetOutcomeFromJobResultPath(result);
 
     // Update the GUI so it knows what the job outcome was
-    emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
+    emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
                           m_current_job_index, \
                           outcome);
 
     // Move to the next job
-    m_current_job_index++;
+    m_current_job_index = NextRunJobIndex(m_current_job_index);
 
     // We should deal with Pause/Resume here
     if (!m_running) {
@@ -1694,9 +1725,8 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
     if (m_run_list.count() != m_current_job_index) {
 
         // Update the GUI so it knows what job is starting
-        emit updateGuiObjects(m_run_list.at(m_current_job_index).path(), \
-                              m_current_job_index, \
-                              PBTreeNode::PBJobResult_Running);
+        emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
+                              m_current_job_index);
 
         // Now run the next job
         qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -1705,6 +1735,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
         return;
     }
+
+    // nothing should be left for re-run
+    m_rerun_list.clear();
 
     // Tell the GUI its all finished
     emit jobsCompleted();
