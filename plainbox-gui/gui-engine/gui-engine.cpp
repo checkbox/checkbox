@@ -603,6 +603,10 @@ int GuiEngine::PrepareJobs(void)
     // Now, the run_list contains the list of jobs I actually need to run \o/
     m_run_list = SessionStateRunList(m_session);
 
+    /* Ensure that the first time through we run everything including implicit jobs
+     */
+    m_rerun_list = m_run_list;
+
 //    qDebug("\n\nGuiEngine::PrepareJobs() - Done\n");
 
     // useful to the gui (summary bar in test selection screen)
@@ -642,11 +646,11 @@ void GuiEngine::RunJobs(void)
     emit jobsBegin();
 
     /* Start tracking which Job we are running, from the beginning
-	* -1 to get index 0 because it normally runs at the end of a job,
-	* but this will not necessarily be true for re-runs, hence why
-	* we need to call NextRunJobIndex() and not just assume 0.
-	*/
-    m_current_job_index = NextRunJobIndex(-1); 
+    * -1 to get index 0 because it normally runs at the end of a job,
+    * but this will not necessarily be true for re-runs, hence why
+    * we need to call NextRunJobIndex() and not just assume 0.
+    */
+    m_current_job_index = NextRunJobIndex(-1);
 
     // ok, this is new. we need to find the first job to really run
 
@@ -1731,6 +1735,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
         return;
     }
+
+    // nothing should be left for re-run
+    m_rerun_list.clear();
 
     // Tell the GUI its all finished
     emit jobsCompleted();

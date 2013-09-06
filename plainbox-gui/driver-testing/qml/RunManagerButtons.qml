@@ -30,8 +30,8 @@ Row {
 
     property alias pauseButtonEnabled: pauseButton.enabled
     property alias resultsButtonEnabled: resultsButton.enabled
-    property alias rerunButtonEnabled: pauseButton.showRerun
-
+    property alias rerunButtonShown: pauseButton.showRerun
+    property alias rerunButtonEnabled: pauseButton.enabled
 
     signal exit
     signal pauseTest

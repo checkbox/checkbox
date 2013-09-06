@@ -234,6 +234,8 @@ Component {
                         testListModel.setProperty(index,"runstatus",0); // As if its not run
 
                         testListModel.setProperty(index,"rerun",1); // mark this for rerun
+
+                        runbuttons.rerunButtonEnabled = true;
                     }
                 }
             }

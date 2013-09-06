@@ -78,7 +78,8 @@ Page {
                 progress.value = guiEngine.ValidRunListCount();
 
                 // now we should start with the re-run options
-                runbuttons.rerunButtonEnabled = true;
+                runbuttons.rerunButtonShown = true;
+                runbuttons.rerunButtonEnabled = false;  // needs the user to pick something
 
                 // set flags in list (for group details)
                 testsuitelist.curSectionTested = "";  // set this as there is no more tested
@@ -88,12 +89,6 @@ Page {
 //            void updateGuiBeginJob(const QString& job_id, \
 //                                  const int current_job_index);
             onUpdateGuiBeginJob: {
-                console.log("onUpdateGuiBeginJob()")
-
-                console.log(job_id);
-
-                console.log("printed the id ok");
-
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
                  */
