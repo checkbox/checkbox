@@ -1834,7 +1834,12 @@ QString GuiEngine::GetSaveFileName(void)
 {
     QString prompt = "Choose a filename:";
 
-    return QFileDialog::getSaveFileName(NULL,prompt, "submission.xml", tr("XML files (*.xml)"));
+    return QFileDialog::getSaveFileName(NULL, \
+                                        prompt, \
+                                        "submission.xml", \
+                                        tr("XML files (*.xml)"), \
+                                        NULL, \
+                                        QFileDialog::DontUseNativeDialog);
 }
 
 const QDBusObjectPath GuiEngine::GetCurrentSession(void)
