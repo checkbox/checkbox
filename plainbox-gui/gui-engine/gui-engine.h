@@ -138,6 +138,8 @@ public slots:
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);
 
+        const QString GetIOLog(const QString& job);
+
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
@@ -217,6 +219,7 @@ private:
 
         // Convenience functions
         int GetOutcomeFromJobResultPath(const QDBusObjectPath &opath);
+        const QString GetIOLogFromJobPath(const QDBusObjectPath &opath);
 
         const QString ConvertOutcome(const int outcome);
 

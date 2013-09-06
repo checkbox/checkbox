@@ -335,9 +335,62 @@ const QDBusObjectPath PBTreeNode::result(void)
     return QDBusObjectPath("");
 }
 
+const QDBusArgument &operator>>(const QDBusArgument &argument, \
+                                io_log_inner_t &inner)
+{
+    argument.beginMap();
+    inner.dbl = 0;
+    inner.str = "";
+    inner.arr.clear();
+
+    while(!argument.atEnd()) {
+        argument.beginMapEntry();
+
+        double dbl;
+        QString str;
+        QByteArray arr;
+
+        argument >> dbl ;
+
+        argument >> str;
+
+        argument >> arr;
+
+        argument.endMapEntry();
+    }
+
+    argument.endMap();
+
+    return argument;
+}
+
+const QDBusArgument &operator>>(const QDBusArgument &argument, \
+                                io_log_outer_t &outer)
+{
+
+    argument.beginArray();
+    outer.clear();
+
+    while(!argument.atEnd())
+    {
+        argument.beginMapEntry();
+
+        io_log_inner_t inner;
+
+        argument >> inner;
+
+        argument.endMapEntry();
+    }
+
+    argument.endArray();
+
+    return argument;
+}
 
 const QString PBTreeNode::io_log(void)
 {
+    io_log_outer_t outer;
+
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
 
@@ -347,12 +400,24 @@ const QString PBTreeNode::io_log(void)
             if(iface->interface.compare(JobResultInterface) == 0) {
                 QVariant variant;
                 variant = *iface->properties.find("io_log");
+
+                qDebug("Found the io_log");
+
+
+                const QDBusArgument qda = variant.value<QDBusArgument>();
+
+                qda >> outer;
+
+                // Preserve this for future use
+
                 if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
                     return variant.toString();
                 }
             }
         }
     }
+
+    qDebug("Cant decode the io log");
 
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");

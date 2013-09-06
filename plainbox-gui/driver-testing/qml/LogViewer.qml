@@ -35,6 +35,8 @@ Dialog {
 //    property alias showTroubleShootingLink: troubleButton.visible
     property alias logHeight: flick.height
 
+    property string jobPath: "Not Set"
+
     // Re-insert this for other/future versions of the GUI
 //    property alias showTroubleShootingLink: troubleButton.visible
 //
@@ -89,6 +91,13 @@ Dialog {
             font.pixelSize: FontUtils.sizeToPixels("medium")
 
             onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+
+            Component.onCompleted: {
+               // text = io_log;
+
+                // get the log info from guiengine
+                text = guiEngine.GetIOLog(jobPath);
+            }
 
             onLinkActivated: {
                 cmdTool.exec("xdg-open", link)

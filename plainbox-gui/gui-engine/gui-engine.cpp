@@ -82,6 +82,11 @@ bool GuiEngine::Initialise(void)
         // Register our Job State Map metatype
         qDBusRegisterMetaType<jsm_t>();
 
+        // Register types needed to unpack the io log
+        //qDBusRegisterMetaType<io_log_inner_t>();
+        //qDBusRegisterMetaType<io_log_outer_t>();
+
+
         // Obtain the initial tree of Plainbox objects, starting at the root "/"
         RefreshPBObjects();
 
@@ -578,7 +583,7 @@ void GuiEngine::Resume(void)
 * Selection screen as additional implicit jobs
 */
 
-int GuiEngine::PrepareJobs(void) 
+int GuiEngine::PrepareJobs(void)
 {
 
     qDebug("\n\nGuiEngine::PrepareJobs()\n");
@@ -1797,6 +1802,36 @@ const QString GuiEngine::JobNameFromObjectPath(const QDBusObjectPath& opath)
     return empty;
 }
 
+const QString GuiEngine::GetIOLogFromJobPath(const QDBusObjectPath &opath)
+{
+    QString io_log;
+
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping. then we go through m_job_state_results
+     * to obtain the actual result.
+     */
+
+    QDBusObjectPath iologpath;
+
+    for(int i=0; i < m_job_state_list.count(); i++) {
+        if (m_job_state_list.at(i)->job().path().compare(opath.path()) == 0) {
+            // ok, we found the right statelist entry
+            iologpath = m_job_state_list.at(i)->result();
+            break;
+        }
+    }
+
+    // Now to find the right result object
+    for(int i=0;i<m_job_state_results.count();i++) {
+        if (m_job_state_results.at(i)->object_path.path().compare(iologpath.path()) == 0) {
+            io_log = m_job_state_results.at(i)->io_log();
+            break;
+        }
+    }
+
+    return io_log;
+}
+
 int GuiEngine::GetOutcomeFromJobResultPath(const QDBusObjectPath &opath)
 {
     QString outcome;
@@ -1840,4 +1875,19 @@ QString GuiEngine::GetSaveFileName(void)
 const QDBusObjectPath GuiEngine::GetCurrentSession(void)
 {
     return m_session;
+}
+
+const QString GuiEngine::GetIOLog(const QString& job)
+{
+    // need to go get the result object for this path
+
+    // then get the iolog property
+    qDebug() << job;
+
+    // Io_log is Array of [Struct of [Double, String, Array of [Byte])]
+
+    QDBusObjectPath opath(job);
+
+    // FIXME - The log unpacking is not yet completed
+    return "GetIOLogFromJobPath(opath);";
 }
