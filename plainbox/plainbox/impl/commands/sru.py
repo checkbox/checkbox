@@ -45,7 +45,7 @@ from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.exporter.xml import XMLSessionStateExporter
 from plainbox.impl.runner import JobRunner
-from plainbox.impl.session import SessionState
+from plainbox.impl.session import SessionStateLegacyAPI as SessionState
 from plainbox.impl.transport.certification import CertificationTransport
 from plainbox.impl.transport.certification import InvalidSecureIDError
 
@@ -100,7 +100,7 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
                 self.session.session_dir,
                 self.session.jobs_io_log_dir,
                 command_io_delegate=self,
-                outcome_callback=None,  # SRU runs are never interactive
+                interaction_callback=None,  # SRU runs are never interactive
                 dry_run=self.ns.dry_run
             )
             self._run_all_jobs()
@@ -277,7 +277,7 @@ class SRUCommand(PlainBoxCommand, CheckBoxCommandMixIn):
             '--staging',
             dest='c3_url',
             action='store_const',
-            const='https://certification.staging.canonical.com/',
+            const='https://certification.staging.canonical.com/submissions/submit/',
             help='Override --destination to use the staging certification website')
         group = parser.add_argument_group(title="execution options")
         group.add_argument(

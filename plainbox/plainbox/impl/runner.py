@@ -38,7 +38,7 @@ import time
 from plainbox.vendor import extcmd
 
 from plainbox.abc import IJobRunner, IJobResult
-from plainbox.impl.checkbox import CheckBoxSrcProvider
+from plainbox.impl.providers.checkbox import CheckBoxSrcProvider
 from plainbox.impl.result import DiskJobResult
 from plainbox.impl.result import IOLogRecord
 from plainbox.impl.result import IOLogRecordWriter
@@ -198,7 +198,7 @@ class JobRunner(IJobRunner):
     _DRY_RUN_PLUGINS = ('local', 'resource', 'attachment')
 
     def __init__(self, session_dir, jobs_io_log_dir,
-                 command_io_delegate=None, outcome_callback=None,
+                 command_io_delegate=None, interaction_callback=None,
                  dry_run=False):
         """
         Initialize a new job runner.
@@ -211,7 +211,7 @@ class JobRunner(IJobRunner):
         self._session_dir = session_dir
         self._jobs_io_log_dir = jobs_io_log_dir
         self._command_io_delegate = command_io_delegate
-        self._outcome_callback = outcome_callback
+        self._interaction_callback = interaction_callback
         self._dry_run = dry_run
 
     def run_job(self, job, config=None):
@@ -254,18 +254,12 @@ class JobRunner(IJobRunner):
         return self._just_run_command(job, config)
 
     def _plugin_manual(self, job, config):
-        if self._outcome_callback is None:
-            return MemoryJobResult({
-                'outcome': IJobResult.OUTCOME_SKIP,
-                'comment': "non-interactive test run"
-            })
+        # Get the outcome from the callback, if available,
+        # or put the special OUTCOME_UNDECIDED value.
+        if self._interaction_callback is not None:
+            return self._interaction_callback(self, job, config)
         else:
-            # FIXME: Restore the "plainbox run" mode
-            #result = self._just_run_command(job, config)
-            # XXX: make outcome writable
-            #result._data['outcome'] = self._outcome_callback()
-            #return result
-            self._outcome_callback()
+            return DiskJobResult({'outcome': IJobResult.OUTCOME_UNDECIDED})
 
     _plugin_user_interact = _plugin_manual
     _plugin_user_verify = _plugin_manual

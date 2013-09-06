@@ -142,7 +142,7 @@ _description:
 plugin: attachment
 name: stress/reboot_log
 depends: stress/reboot
-command: tar cvfz stress_reboot.tgz $CHECKBOX_DATA/*reboot.100.log && cat $CHECKBOX_DATA/stress_reboot.tgz
+command: tar cvfz $CHECKBOX_DATA/stress_reboot.tgz $CHECKBOX_DATA/*reboot.100.log && cat $CHECKBOX_DATA/stress_reboot.tgz
 
 plugin: shell
 name: stress/poweroff
@@ -158,7 +158,7 @@ _description:
 plugin: attachment
 name: stress/poweroff_log
 depends: stress/poweroff
-command: tar cvfz stress_poweroff.tgz $CHECKBOX_DATA/*poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff.tgz
+command: tar cvfz $CHECKBOX_DATA/stress_poweroff.tgz $CHECKBOX_DATA/*poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff.tgz
 
 plugin: shell
 name: stress/reboot_check
@@ -170,7 +170,7 @@ plugin: attachment
 name: stress/reboot_check_log
 depends: stress/reboot_check
 command:
- tar cvfz stress_reboot_check.tgz $CHECKBOX_DATA/pm_log_check_reboot.100.log && cat $CHECKBOX_DATA/stress_reboot_check.tgz
+ tar cvfz $CHECKBOX_DATA/stress_reboot_check.tgz $CHECKBOX_DATA/pm_log_check_reboot.100.log && cat $CHECKBOX_DATA/stress_reboot_check.tgz
 
 plugin: shell
 name: stress/poweroff_check
@@ -182,7 +182,7 @@ plugin: attachment
 name: stress/poweroff_check_log
 depends: stress/poweroff_check
 command:
- tar cvfz stress_poweroff_check.tgz $CHECKBOX_DATA/pm_log_check_poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff_check.tgz
+ tar cvfz $CHECKBOX_DATA/stress_poweroff_check.tgz $CHECKBOX_DATA/pm_log_check_poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff_check.tgz
 
 plugin: shell
 name: stress/graphics

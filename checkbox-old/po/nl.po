@@ -21,24 +21,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-21 04:34+0000\n"
-"X-Generator: Launchpad (build 16731)\n"
+"X-Launchpad-Export-Date: 2013-09-06 04:43+0000\n"
+"X-Generator: Launchpad (build 16760)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Test overslaan"
 
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "Één van: debug, info, warning, error of critical"
-
 #: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "Druk op een toets om verder te gaan…"
-
-#: ../checkbox_gtk/gtk_interface.py:525
-msgid "_Test Again"
-msgstr "Opnieuw _testen"
 
 #. Resolve dependencies
 #: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
@@ -1161,7 +1153,7 @@ msgstr ""
 "    1. Bekijk de bijlage later"
 
 #. description
-#: ../jobs/graphics.txt.in:240
+#: ../jobs/graphics.txt.in:241
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -2618,7 +2610,7 @@ msgstr ""
 "het mislukt."
 
 #. description
-#: ../jobs/optical.txt.in:93
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2715,7 +2707,7 @@ msgstr ""
 "    Werkte alle stappen?"
 
 #. description
-#: ../jobs/optical.txt.in:156
+#: ../jobs/optical.txt.in:158
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -3188,22 +3180,22 @@ msgstr ""
 "Voegt de log toe van de 250 cycli pauzestand/hervatting-test als die bestaat"
 
 #. description
-#: ../jobs/stress.txt.in:138
+#: ../jobs/stress.txt.in:139
 msgid "Stress reboot system (100 cycles)"
 msgstr "Stress computer herstarten (100 cycli)"
 
 #. description
-#: ../jobs/stress.txt.in:153
+#: ../jobs/stress.txt.in:155
 msgid "Stress poweroff system (100 cycles)"
 msgstr "Stress computer afsluiten (100 cycli)"
 
 #. description
-#: ../jobs/stress.txt.in:165
+#: ../jobs/stress.txt.in:167
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr "Logs controleren op de stress-herstarttest (100 cycli)"
 
 #. description
-#: ../jobs/stress.txt.in:177
+#: ../jobs/stress.txt.in:179
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr "Logs controleren op de stress-afsluittest (100 cycli)"
 
@@ -4555,6 +4547,10 @@ msgstr "Versie-informatie weergeven en afsluiten."
 msgid "The file to write the log to."
 msgstr "Het bestand om het logboek in op te slaan."
 
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "Één van: debug, info, warning, error of critical"
+
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
 msgstr "Parameters voor overschrijven van configuratie"
@@ -4763,6 +4759,10 @@ msgstr "Test"
 msgid "Test Again"
 msgstr "Test opnieuw"
 
+#: ../checkbox_gtk/gtk_interface.py:525
+msgid "_Test Again"
+msgstr "Opnieuw _testen"
+
 #: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:555
 msgid "Info"
 msgstr "Info"
@@ -4961,7 +4961,7 @@ msgstr "Voer tekst in:\n"
 msgid "Type Text"
 msgstr "Typ tekst"
 
-#: ../scripts/internet_test:221
+#: ../scripts/internet_test:254
 msgid "No Internet connection"
 msgstr "Geen internetverbinding"
 
@@ -4969,7 +4969,7 @@ msgstr "Geen internetverbinding"
 msgid "Connection established lost a packet"
 msgstr "Verbinding gemaakt, pakket verloren"
 
-#: ../scripts/internet_test:227
+#: ../scripts/internet_test:269
 msgid "Internet connection fully established"
 msgstr "Internetverbinding gemaakt"
 

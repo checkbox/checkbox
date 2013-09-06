@@ -31,7 +31,7 @@ from plainbox.abc import IJobResult
 from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.runner import JobRunner
-from plainbox.impl.session.state import SessionState
+from plainbox.impl.session.legacy import SessionStateLegacyAPI as SessionState
 
 
 logger = logging.getLogger("plainbox.highlevel")
@@ -95,7 +95,7 @@ class Service:
             session.session_dir,
             session.jobs_io_log_dir,
             command_io_delegate=running_job_wrapper.ui_io_delegate,
-            outcome_callback=running_job_wrapper.emitAskForOutcomeSignal
+            interaction_callback=running_job_wrapper.emitAskForOutcomeSignal
         )
         job_state = session.job_state_map[job.name]
         if job_state.can_start():
@@ -108,8 +108,10 @@ class Service:
         if job_result is not None:
             running_job_wrapper.update_job_result_callback(job, job_result)
 
+    # FIXME: broken layering, running_job_wrapper is from the dbus layer
     def run_job(self, session, job, running_job_wrapper):
         runner = Thread(target=self._run,
                         args=(session, job, running_job_wrapper))
         runner.start()
+        # FIXME: we need to keep track of this thread
         return job

@@ -31,7 +31,7 @@ from logging import getLogger
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
-from plainbox.impl.session import SessionState
+from plainbox.impl.session import SessionStateLegacyAPI as SessionState
 from plainbox.impl.runner import JobRunner
 
 
@@ -64,7 +64,7 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
         with self.session.open():
             runner = JobRunner(
                 self.session.session_dir, self.session.jobs_io_log_dir,
-                command_io_delegate=self, outcome_callback=None)
+                command_io_delegate=self, interaction_callback=None)
             again = True
             while again:
                 for job in self.session.run_list:

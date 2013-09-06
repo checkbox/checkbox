@@ -36,18 +36,18 @@ import sys
 from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
 
 from plainbox.abc import IJobResult
-from plainbox.impl.checkbox import CheckBoxDebProvider
+from plainbox.impl.providers.checkbox import CheckBoxDebProvider
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.exporter import get_all_exporters
-from plainbox.impl.result import MemoryJobResult
+from plainbox.impl.result import DiskJobResult, MemoryJobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.runner import authenticate_warmup
 from plainbox.impl.runner import slugify
-from plainbox.impl.session import SessionState
+from plainbox.impl.session import SessionStateLegacyAPI as SessionState
 from plainbox.impl.transport import get_all_transports
 
 
@@ -112,16 +112,44 @@ class RunInvocation(CheckBoxInvocationMixIn):
         except ValueError as exc:
             raise SystemExit(str(exc))
 
-    def ask_for_resume(self, prompt=None, allowed=None):
-        # FIXME: Add support/callbacks for a GUI
-        if prompt is None:
-            prompt = "Do you want to resume the previous session [Y/n]? "
-        if allowed is None:
-            allowed = ('', 'y', 'Y', 'n', 'N')
+    def ask_for_resume(self):
+        return self.ask_user(
+            "Do you want to resume the previous session?", ('y', 'n')
+        ).lower() == "y"
+
+    def ask_for_resume_action(self):
+        return self.ask_user(
+            "What do you want to do with that job?", ('skip', 'fail', 'run'))
+
+    def ask_user(self, prompt, allowed):
         answer = None
         while answer not in allowed:
-            answer = input(prompt)
-        return False if answer in ('n', 'N') else True
+            answer = input("{} [{}] ".format(prompt, ", ".join(allowed)))
+        return answer
+
+    def _maybe_skip_last_job_after_resume(self, session):
+        last_job = session.metadata.running_job_name
+        if last_job is None:
+            return
+        print("We have previously tried to execute {}".format(last_job))
+        action = self.ask_for_resume_action()
+        if action == 'skip':
+            result = MemoryJobResult({
+                'outcome': 'skip',
+                'comment': "Skipped after resuming execution"
+            })
+        elif action == 'fail':
+            result = MemoryJobResult({
+                'outcome': 'fail',
+                'comment': "Failed after resuming execution"
+            })
+        elif action == 'run':
+            result = None
+        if result:
+            session.update_job_result(
+                session.job_state_map[last_job].job, result)
+            session.metadata.running_job_name = None
+            session.persistent_save()
 
     def _run_jobs(self, ns, job_list, exporter, transport=None):
         # Compute the run list, this can give us notification about problems in
@@ -145,8 +173,11 @@ class RunInvocation(CheckBoxInvocationMixIn):
             if session.previous_session_file():
                 if self.ask_for_resume():
                     session.resume()
+                    self._maybe_skip_last_job_after_resume(session)
                 else:
                     session.clean()
+            session.metadata.title = " ".join(sys.argv)
+            session.persistent_save()
             self._update_desired_job_list(session, matching_job_list)
             # Ask the password before anything else in order to run jobs
             # requiring privileges
@@ -157,13 +188,13 @@ class RunInvocation(CheckBoxInvocationMixIn):
                     raise SystemExit(return_code)
             if (sys.stdin.isatty() and sys.stdout.isatty() and not
                     ns.not_interactive):
-                outcome_callback = self.ask_for_outcome
+                interaction_callback = self._interaction_callback
             else:
-                outcome_callback = None
+                interaction_callback = None
             runner = JobRunner(
                 session.session_dir,
                 session.jobs_io_log_dir,
-                outcome_callback=outcome_callback,
+                interaction_callback=interaction_callback,
                 dry_run=ns.dry_run
             )
             self._run_jobs_with_session(ns, session, runner)
@@ -217,18 +248,32 @@ class RunInvocation(CheckBoxInvocationMixIn):
         if output_file is not sys.stdout:
             output_file.close()
 
-    def ask_for_outcome(self, prompt=None, allowed=None):
+    def _interaction_callback(self, runner, job, config, prompt=None,
+                             allowed_outcome=None):
+        result = {}
         if prompt is None:
-            prompt = "what is the outcome? "
-        if allowed is None:
-            allowed = (IJobResult.OUTCOME_PASS,
-                       IJobResult.OUTCOME_FAIL,
-                       IJobResult.OUTCOME_SKIP)
-        answer = None
-        while answer not in allowed:
-            print("Allowed answers are: {}".format(", ".join(allowed)))
-            answer = input(prompt)
-        return answer
+            prompt = "Select an outcome or an action: "
+        if allowed_outcome is None:
+            allowed_outcome = [IJobResult.OUTCOME_PASS,
+                               IJobResult.OUTCOME_FAIL,
+                               IJobResult.OUTCOME_SKIP]
+        allowed_actions = ['comments']
+        if job.command:
+            allowed_actions.append('test')
+        result['outcome'] = IJobResult.OUTCOME_UNDECIDED
+        while result['outcome'] not in allowed_outcome:
+            print("Allowed answers are: {}".format(", ".join(allowed_outcome +
+                                                             allowed_actions)))
+            choice = input(prompt)
+            if choice in allowed_outcome:
+                result['outcome'] = choice
+                break
+            elif choice == 'test':
+                (result['return_code'],
+                 result['io_log_filename']) = runner._run_command(job, config)
+            elif choice == 'comments':
+                result['comments'] = input('Please enter your comments:\n')
+        return DiskJobResult(result)
 
     def _update_desired_job_list(self, session, desired_job_list):
         problem_list = session.update_desired_job_list(desired_job_list)
@@ -298,7 +343,11 @@ class RunInvocation(CheckBoxInvocationMixIn):
         if job_state.can_start():
             print("Running... (output in {}.*)".format(
                 join(session.jobs_io_log_dir, slugify(job.name))))
+            session.metadata.running_job_name = job.name
+            session.persistent_save()
             job_result = runner.run_job(job)
+            session.metadata.running_job_name = None
+            session.persistent_save()
             print("Outcome: {}".format(job_result.outcome))
             print("Comments: {}".format(job_result.comments))
         else:

@@ -4,12 +4,30 @@
 
 function run_bonnie() {
     echo "Running bonnie++ on $1..."
-
-    # Determine where to put the scratchdisk
-    mount_point=$(df -h | grep $1 | awk '{print $6}')
+    mount_point=$(df -h | grep -m 1 $1 | awk '{print $6}')
     echo "Putting scratch disk at $mount_point"
     mkdir -p "$mount_point/tmp/scratchdir"
-    bonnie++ -d "$mount_point/tmp/scratchdir" -u root
+    
+    # When running on disks with small drives (SSD/flash) we need to do
+    # some tweaking. Bonnie uses 2x RAM by default to write data. If that's 
+    # more than available disk space, the test will fail inappropriately.
+    free_space=$(df -m | grep -m 1 $1 | awk '{print $4}')
+    echo "    Disk $1 has ${free_space}MB available"
+    memory=$(free -m |grep Mem|awk '{print $2}')
+    echo "    System has ${memory}MB RAM"
+    disk_needed=$((memory * 2))
+    echo "    We need ${disk_needed}MB of disk space for testing"
+    if [[ "$disk_needed" -ge "$free_space" ]]; then
+        echo "    Insufficient disk space available for defaults."
+        echo "    reducing memory footprint to be 1/2 of free disk space."
+        # we need to pass an amount that's 1/2 the amount of available disk
+        # space to bonnie++ so she doesn't overwrite and fail.
+        disk_needed=$(($free_space/2))
+        bonnie++ -d $mount_point/tmp/scratchdir -u root -r $disk_needed
+    else
+        echo "   Free disk space is sufficient to continue testing."
+        bonnie++ -d $mount_point/tmp/scratchdir -u root
+    fi
 }
 
 disk=/dev/$1
@@ -17,7 +35,7 @@ disk=/dev/$1
 if [ -b $disk ]
 then
     echo "$disk is a block device"
-    size=`parted -l | grep $disk | awk '{print $3}'`
+    size=`parted -l -s | grep $disk | awk '{print $3}'`
 
     if [ -n "$size" ]
     then

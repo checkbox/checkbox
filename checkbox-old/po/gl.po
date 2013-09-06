@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-21 04:34+0000\n"
-"X-Generator: Launchpad (build 16731)\n"
+"X-Launchpad-Export-Date: 2013-09-06 04:43+0000\n"
+"X-Generator: Launchpad (build 16760)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -203,14 +203,14 @@ msgid ""
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "PROPÓSITO:\n"
-"    Esta proba verifica que un dispositivo de son USB funcione "
+"    Esta proba verifica que un dispositivo de son USB funciona "
 "correctamente\n"
 "PASOS:\n"
 "    1. Conecte un dispositivo de son USB ao sistema\n"
 "    2. Prema «Probar» e a seguir fale polo micrófono\n"
-"    3. Despois duns segundos, a súa gravación será reproducida de novo.\n"
+"    3. Despois duns segundos, a súa gravación reproducirase.\n"
 "COMPROBACIÓN:\n"
-"    Puido escoitar a súa fala reproducida de novo a través dos auriculares "
+"    Puido escoitar a súa voz reproducida de novo ao través dos auriculares "
 "USB?"
 
 #. description
@@ -1040,7 +1040,7 @@ msgstr ""
 "PASOS:\n"
 "    1. Prema «Probar» para que se mostre unha proba de vídeo.\n"
 "COMPROBACIÓN:\n"
-"    Ve as barras de cor e a estática?"
+"    Ve as barras de cor e a parte con ruído?"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -1141,7 +1141,7 @@ msgstr ""
 "    1. Revise o anexo manualmente mais tarde"
 
 #. description
-#: ../jobs/graphics.txt.in:240
+#: ../jobs/graphics.txt.in:241
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -2577,7 +2577,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:93
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2646,7 +2646,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:156
+#: ../jobs/optical.txt.in:158
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -3072,23 +3072,23 @@ msgstr ""
 "Anexa o rexistro da proba de 250 ciclos de Suspensión/Continuar se existe."
 
 #. description
-#: ../jobs/stress.txt.in:138
+#: ../jobs/stress.txt.in:139
 msgid "Stress reboot system (100 cycles)"
 msgstr "Proba de resistencia do sistema (100 ciclos)"
 
 #. description
-#: ../jobs/stress.txt.in:153
+#: ../jobs/stress.txt.in:155
 msgid "Stress poweroff system (100 cycles)"
 msgstr "Proba de resistencia de apagado do sistema (100 ciclos)"
 
 #. description
-#: ../jobs/stress.txt.in:165
+#: ../jobs/stress.txt.in:167
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr ""
 "Comprobar os rexistros da proba de resistencia de reinicio (100 ciclos)"
 
 #. description
-#: ../jobs/stress.txt.in:177
+#: ../jobs/stress.txt.in:179
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 "Comproba os rexistros da proba de resistencia do apagado (100 ciclos)"
@@ -4671,7 +4671,7 @@ msgstr "_Rematar"
 #. Resolve dependencies
 #: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
 msgid "Gathering information from your system..."
-msgstr "Obtendo información do sistema..."
+msgstr "Obtendo a información do sistema..."
 
 #: ../plugins/intro_prompt.py:28
 msgid ""
@@ -4828,7 +4828,7 @@ msgstr "Introduza o texto:\n"
 msgid "Type Text"
 msgstr "Escriba o texto"
 
-#: ../scripts/internet_test:221
+#: ../scripts/internet_test:254
 msgid "No Internet connection"
 msgstr "Non hai conexión a Internet"
 
@@ -4836,7 +4836,7 @@ msgstr "Non hai conexión a Internet"
 msgid "Connection established lost a packet"
 msgstr "A conexión estabelecida perdeu un paquete"
 
-#: ../scripts/internet_test:227
+#: ../scripts/internet_test:269
 msgid "Internet connection fully established"
 msgstr "Conexión a Internet totalmente estabelecida"
 

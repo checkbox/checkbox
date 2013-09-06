@@ -69,21 +69,21 @@ def main():
         percentage = difference / installed_memory * 100
     except ZeroDivisionError:
         print("Results:")
-        print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
-        print("\tlshw reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\t/proc/meminfo reports:\t%s kB" % (visible_memory / 1024), file=sys.stderr)
+        print("\tlshw reports:\t%s kB" % (installed_memory / 1024), file=sys.stderr)
         print("\nFAIL: Either lshw or /proc/meminfo returned a memory size of 0 kB", file=sys.stderr)
         return 1
     
     if percentage <= threshold:
         print("Results:")
-        print("\t/proc/meminfo reports:\t%s kB" % visible_memory)
-        print("\tlshw reports:\t%s kB" % installed_memory)
+        print("\t/proc/meminfo reports:\t%s kB" % (visible_memory / 1024))
+        print("\tlshw reports:\t%s kB" % (installed_memory / 1024))
         print("\nPASS: Meminfo reports %d bytes less than lshw, a difference of %.2f%%. This is less than the %d%% variance allowed." % (difference, percentage, threshold))
         return 0
     else:
         print("Results")
-        print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
-        print("\tlshw reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\t/proc/meminfo reports:\t%s kB" % (visible_memory / 1024), file=sys.stderr)
+        print("\tlshw reports:\t%s kB" % (installed_memory / 1024), file=sys.stderr)
         print("\nFAIL: Meminfo reports %d bytes less than lshw, a difference of %.2f%%. Only a variance of %d%% in reported memory is allowed." % (difference, percentage, threshold), file=sys.stderr)
         return 1
 

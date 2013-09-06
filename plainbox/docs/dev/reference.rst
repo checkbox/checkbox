@@ -94,6 +94,11 @@ Code reference
     :undoc-members:
     :show-inheritance:
 
+.. automodule:: plainbox.impl.exporter.html
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 .. automodule:: plainbox.impl.secure
     :members:
     :undoc-members:
@@ -193,6 +198,16 @@ Code reference
     :members:
     :undoc-members:
     :private-members:
+    :show-inheritance:
+
+.. automodule:: plainbox.impl.session.legacy
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: plainbox.impl.session.manager
+    :members:
+    :undoc-members:
     :show-inheritance:
 
 .. automodule:: plainbox.impl.testing_utils
