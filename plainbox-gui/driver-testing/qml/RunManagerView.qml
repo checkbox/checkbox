@@ -42,7 +42,10 @@ Page {
         // totalTests: Denotes lines in the testListModel (display) model, NOT real number of tests
         property int totalTests: testListModel.count
 
+        // Times the total run of tests
         property var startTime: new Date()
+
+        // start time for each test in turn
         property var testStartTime: new Date()
 
         property bool running;
@@ -50,9 +53,17 @@ Page {
         Connections {
             target: guiEngine
 
-            onJobsCompleted: {
-                console.log("onJobsCompleted");
+            onJobsBegin: {
+                // update things like the progress bar
+                progress.enabled = true;
+                updater.running = true;
 
+                progress.value = 0;
+
+                runmanagerview.testingComplete = false;
+            }
+
+            onJobsCompleted: {
                 // All tests are done
                 runmanagerview.testingComplete = true;
 
@@ -74,15 +85,58 @@ Page {
             }
 
             // from gui-engine.h for reference:
-//            void updateGuiObjects(const QString& job_id, \
-//                                  const int current_job_index,
-//                                  const int outcome);
-            onUpdateGuiObjects: {
+//            void updateGuiBeginJob(const QString& job_id, \
+//                                  const int current_job_index);
+            onUpdateGuiBeginJob: {
+                console.log("onUpdateGuiBeginJob()")
+
+                console.log(job_id);
+
+                console.log("printed the id ok");
+
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
                  */
                 var i = 0;
-                for (i = testListModel.count -1; i>=0; i--) {
+                for (i = 0; i < testListModel.count; i++) {
+
+                    // Compare the m_path to the job_id
+                    var item = testListModel.get(i);
+
+                    if (item.objectpath === job_id ) {
+                        updater.testIndex = i ;
+                    }
+                }
+
+                // Record the start time of this test
+                var timenow = new Date();
+                updater.testStartTime = timenow;
+
+                // Update the progress bar
+                progress.maxValue = guiEngine.ValidRunListCount();
+
+                /* +1 because the index is from zero, but we want to show the
+                 * zero'th test as test 1
+                 */
+                progress.value = current_job_index+1; // from onUpdateGuiObjects
+
+                var testname =  testListModel.get(updater.testIndex).testname;
+                progress.title = "Running " + (progress.value)
+                        + " of "+ progress.maxValue
+                        + "  (" + utils.formatElapsedTime(timenow - updater.startTime) + ")"
+                        + "   " + testname;
+            }
+
+            // from gui-engine.h for reference:
+//            void updateGuiEndJob(const QString& job_id, \
+//                                  const int current_job_index,
+//                                  const int outcome);
+            onUpdateGuiEndJob: {
+                /* we must translate from job_id ("/plainbox/job/<id_string>
+                 * Into the index for one of the displayed items
+                 */
+                var i = 0;
+                for (i = 0; i < testListModel.count; i++) {
 
                     // Compare the m_path to the job_id
                     var item = testListModel.get(i);
@@ -91,6 +145,13 @@ Page {
                         updater.testIndex =i ;
                     }
                 }
+
+                // set elapsed time
+                var stopTime = new Date();
+
+                var jobduration = stopTime - updater.testStartTime;
+
+                testListModel.setProperty(updater.testIndex, "elapsedtime", jobduration);
 
                 // outcome comes from guiengine in this signal
                 testListModel.setProperty(updater.testIndex, "runstatus", outcome);
@@ -105,12 +166,6 @@ Page {
                 // set the group status to the worst runstatus outcome ... failure?  userreq?, check runstatus
                 testListModel.setProperty(updater.testIndex, "groupstatus", 2);
 
-                // set elapsed time
-                var stopTime = new Date();
-                testListModel.setProperty(updater.testIndex, "elapsedtime", stopTime - updater.testStartTime);
-
-                updater.testStartTime = stopTime;
-
                 // Update the progress bar
                 progress.maxValue = guiEngine.ValidRunListCount();
 
@@ -124,13 +179,6 @@ Page {
                         + " of "+ progress.maxValue
                         + "  (" + utils.formatElapsedTime(stopTime - updater.startTime) + ")"
                         + "   " + testname;
-            }
-
-            onJobsBegin: {
-                console.log("onJobsBegin");
-
-                // update things like the progress bar
-
             }
         }
     }

@@ -428,7 +428,6 @@ void TestItem::setRunstatus(int runstatus){
         m_runstatus = runstatus;
         emit runstatusChanged();
         emit dataChanged();
-        //qDebug()<<"status changed";
     }
 }
 

@@ -134,6 +134,16 @@ Component {
                 source: ""
 
                 onTestStatusChanged: {
+                    // Update the other icons once the status is run
+                    if (testStatus !== 0 /* PBJobResult_NotRun*/) {
+                        // reset the re-run action if appropriate
+                        rerunicon.rerunStatus = 1;
+
+                        // Update the timelabel
+                        timelabel.text = utils.formatElapsedTime(elapsedtime);
+                    }
+
+
                     // These numbers match PBTreeNode.h:PBJobResult enums
                     switch (testStatus){
                     case 0: // PBJobResult_NotRun
@@ -219,10 +229,9 @@ Component {
                     else if (rerunStatus == 2){                 // queued for rerun
                         source = "./artwork/pictogram-reexecute-obergine-hex.svg"
                         // reset other icons to blank
-                        statusicon.testStatus = 0
-                        detailsicon.detailsStatus = false
                         timelabel.text = ""
                         testListModel.setProperty(index, "groupstatus", 0);   // group
+                        testListModel.setProperty(index,"runstatus",0); // As if its not run
 
                         testListModel.setProperty(index,"rerun",1); // mark this for rerun
                     }

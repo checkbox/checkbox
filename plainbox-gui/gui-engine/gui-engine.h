@@ -142,9 +142,6 @@ public slots:
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);
 
-        // Called when the gui wants to re-run the jobs
-        void GuiRerun(void);
-
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
@@ -170,8 +167,11 @@ signals:
         // When starting a run of jobs
         void jobsBegin(void);
 
+        void updateGuiBeginJob(const QString& job_id, \
+                                const int current_job_index);
+
         // When a job has completed
-        void updateGuiObjects(const QString& job_id, \
+        void updateGuiEndJob(const QString& job_id, \
                               const int current_job_index,
                               const int outcome);
 

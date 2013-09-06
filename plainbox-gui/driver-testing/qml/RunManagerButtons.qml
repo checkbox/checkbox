@@ -63,8 +63,6 @@ Row {
 
             // Behaviour depends on state
             if (showRerun) {
-                console.log ("we should re-run the tests");
-
                 // Update the list of things the user _really_ wants to rerun
                 testitemFactory.GetSelectedRerunJobs(testListModel);
 
@@ -72,7 +70,7 @@ Row {
                 showRerun = false;
 
                 // Get on with it
-                guiEngine.GuiRerun();
+                guiEngine.RunJobs();
 
             } else {
                 showPause?pauseTest():resumeTest()
