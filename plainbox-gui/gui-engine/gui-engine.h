@@ -313,6 +313,7 @@ private:
 
         // Are we running tests or not? (Used for Pause/Resume)
         bool m_running;
+        bool m_waiting_result;
 
         // Used to preserve interim data from Manual Interaction event
         QDBusObjectPath m_runner;

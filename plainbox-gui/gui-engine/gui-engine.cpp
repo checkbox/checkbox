@@ -42,6 +42,7 @@ GuiEngine::GuiEngine( QObject*parent ) :
     valid_pb_objects(false),
     job_tree(NULL),
     m_running(true),
+    m_waiting_result(false),
     m_running_manual_job(false),
     m_local_jobs_done(false),   // for QtTest
     m_jobs_done(false),         // for QtTest
@@ -548,6 +549,11 @@ void GuiEngine::Pause(void)
 
 void GuiEngine::Resume(void)
 {
+    if (m_waiting_result) {
+        m_running = true;
+        return;
+    }
+    
     if (!m_running) {
 
         // Make a note of it
@@ -560,7 +566,7 @@ void GuiEngine::Resume(void)
                                   m_current_job_index);
 
             // Now run the next job
-            qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+            qDebug() << "Running Job (Resume)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
 
             RunJob(m_session,m_run_list.at(m_current_job_index));
 
@@ -659,7 +665,7 @@ void GuiEngine::RunJobs(void)
                           m_current_job_index);
 
     // Now the actual run, job by job
-    qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+    qDebug() << "Running Job (RunJobs)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
 
     RunJob(m_session,m_run_list.at(m_current_job_index));
 
@@ -936,6 +942,7 @@ void GuiEngine::RunJob(const QDBusObjectPath session, \
     QDBusPendingCallWatcher watcher(async_reply,this);
 
     watcher.waitForFinished();
+    m_waiting_result = true;
 
     QDBusPendingReply<QString,QByteArray> reply = async_reply;
     if (reply.isError()) {
@@ -1715,6 +1722,8 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
     // Move to the next job
     m_current_job_index = NextRunJobIndex(m_current_job_index);
 
+    m_waiting_result = false;
+
     // We should deal with Pause/Resume here
     if (!m_running) {
 
@@ -1729,7 +1738,7 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
                               m_current_job_index);
 
         // Now run the next job
-        qDebug() << "Running Job " << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+        qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
 
         RunJob(m_session,m_run_list.at(m_current_job_index));
 
