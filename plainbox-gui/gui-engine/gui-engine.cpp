@@ -1321,6 +1321,7 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
     m_runner = variant.value<QDBusObjectPath>();
 
     QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
+    bool show_test = ! job_cmd.isEmpty();
 
     /* FIXME: Find a better way to get the previous result, this one is too
        expensive, see https://bugs.launchpad.net/checkbox-ihv-ng/+bug/1218846
@@ -1343,9 +1344,9 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
         // must be the first time for this particular job
         m_running_manual_job = true;
 
-        emit raiseManualInteractionDialog(outcome);
+        emit raiseManualInteractionDialog(outcome, show_test);
     } else {
-        emit updateManualInteractionDialog(outcome);
+        emit updateManualInteractionDialog(outcome, show_test);
     }
 
 

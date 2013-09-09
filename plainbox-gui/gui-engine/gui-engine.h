@@ -179,9 +179,9 @@ signals:
         void jobsCompleted(void);
 
         // Manual Interaction Dialog
-        void raiseManualInteractionDialog(const int outcome /* from PB */);
+        void raiseManualInteractionDialog(const int outcome /* from PB */, bool show_test);
 
-        void updateManualInteractionDialog(const int outcome);
+        void updateManualInteractionDialog(const int outcome, bool show_test);
 
 private:
         // Helper function when generating the desired local and real jobs
