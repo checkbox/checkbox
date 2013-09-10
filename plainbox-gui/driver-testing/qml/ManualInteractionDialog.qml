@@ -31,6 +31,11 @@ Dialog {
     id: dialog
 
     property var testItem;
+    /* Manual jobs may define a shell command as part of the test procedure.
+     * When such command exists, the following property is set, enabling
+     * the corresponding "Test" button. Otherwise it's greyed out.
+     */
+    property var showTestButton;
 
     title: i18n.tr("Manual Test")
     text: testItem.testname//i18n.tr("Name of the Test.")
@@ -62,6 +67,7 @@ Dialog {
         id: manualtestbutton
         text: i18n.tr("Test")
         color: UbuntuColors.orange
+        enabled: showTestButton ? true : false
         onClicked: {
             console.log("Test")
 
@@ -216,7 +222,11 @@ Dialog {
             manual_interaction_activity.running = false;
 
             // Re-enable these buttons as the test has completed
-            manualtestbutton.enabled = true;
+            if (show_test) {
+                manualtestbutton.enabled = true;
+            } else {
+                manualtestbutton.enabled = false;
+            }
             continuebutton.enabled = true;
             yescheck.enabled = true;
             nocheck.enabled = true;

@@ -31,7 +31,8 @@ Page {
     title: i18n.tr("Run Manager")
 
     property bool reportIsSaved: false;
-    property bool testingComplete: false
+    property bool testingComplete: false;
+    property bool showTest: true;
 
     // Updates the test status based on GuiEngine signals
     Item {
@@ -339,6 +340,7 @@ Page {
             id: manual_dialog
             ManualInteractionDialog{
                 testItem: testListModel.get(updater.testIndex);
+                showTestButton: showTest;
             }
         }
 
@@ -414,6 +416,7 @@ Page {
         id: myconnections
         target: guiEngine
         onRaiseManualInteractionDialog: {
+            showTest = show_test;
             PopupUtils.open(manual_dialog, runmanagerview);
         }
     }
