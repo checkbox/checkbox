@@ -463,7 +463,7 @@ class CountdownDialog(Gtk.Dialog):
                                             .run().stdout)))
 
         # Check kernel logs using firmware test suite
-        command = Command('fwts -r stdout klog dmesg_common oops').run()
+        command = Command('fwts -r stdout klog oops').run()
         if command.process.returncode != 0:
             # Don't abort the test loop,
             # errors can be retrieved by pm_log_check
