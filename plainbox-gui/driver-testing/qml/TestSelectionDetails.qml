@@ -105,7 +105,7 @@ Item {
             Item{
                 id: detailsblock
 
-                height: nameText.height + descriptionText.height + dependsText.height + requiresText.height+units.gu(1)
+                height: nameText.height + descriptionText.height + dependsText.height + requiresText.height + commandText.height + units.gu(1)
                 width: parent.width
 
                 TestSelectionDetailsItems{
@@ -131,6 +131,12 @@ Item {
                     labelName: i18n.tr("requires:")
                     anchors.top: dependsText.bottom
                 }
+
+                TestSelectionDetailsItems{
+                    id: commandText
+                    labelName: i18n.tr("command:")
+                    anchors.top: requiresText.bottom
+                }
             }
         }
     }
@@ -146,6 +152,7 @@ Item {
         descriptionText.text = testItem.description;
         dependsText.text = testItem.depends;
         requiresText.text = testItem.requires;
+        commandText.text = testItem.command;
     }
 
     // Expand/Collapse the details
