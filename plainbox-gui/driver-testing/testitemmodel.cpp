@@ -219,6 +219,11 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                     if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
                         via = variant.toString();
                     }
+
+                    variant = *iface->properties.find("command");
+                    if (variant.isValid() && variant.canConvert(QMetaType::QString)) {
+                        command = variant.toString();
+                    }
                 }
             }
         }
