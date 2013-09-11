@@ -1,6 +1,12 @@
 checkbox (0.16.12) UNRELEASED; urgency=low
 
+  [ Brendan Donegan ]
   * Incremented changelog
+
+  [ Daniel Manrique ]
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:38:08 +0100
 
