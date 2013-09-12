@@ -40,7 +40,7 @@ name_regex = re.compile("(?<=Name:).*")
 entry_pattern = "Name: %s.*?(?=Properties)"
 
 
-def unlocalized_env(reset={"LANG": "C.UTF-8"}):
+def unlocalized_env(reset={"LANG": "POSIX.UTF-8"}):
     """
     Create un-localized environment.
 
