@@ -6,6 +6,8 @@ checkbox (0.16.11) UNRELEASED; urgency=low
     (LP: #1206016)
   * Removed references to Ubuntu Friendly due to sunsetting of the project.
     (LP: #1224533)
+  * Ensured that pactl commands are run on a properly unlocalized environment
+    (LP: #1201126)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
 
