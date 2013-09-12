@@ -1,12 +1,11 @@
-checkbox (0.16.12) UNRELEASED; urgency=low
+checkbox (0.16.11) UNRELEASED; urgency=low
 
-  * Incremented changelog
-
- -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:38:08 +0100
-
-checkbox (0.16.11) saucy; urgency=low
-
-  * Incremented changelog
+  [ Daniel Manrique ]
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
+  * Removed references to Ubuntu Friendly due to sunsetting of the project.
+    (LP: #1224533)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
 

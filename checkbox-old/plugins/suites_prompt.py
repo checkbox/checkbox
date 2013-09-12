@@ -33,11 +33,7 @@ from gettext import gettext as _
 
 class SuitesPrompt(Plugin):
 
-    deselect_warning = String(default=_("""\
-Unselecting a test will invalidate your submission for Ubuntu Friendly. \
-If you plan to participate in Ubuntu Friendly, please, select all tests. \
-You can always skip individual tests if you don't have the needed equipment.\
-"""))
+    deselect_warning = String(default="")
 
     @property
     def persist(self):
