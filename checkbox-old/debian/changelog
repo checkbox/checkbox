@@ -8,6 +8,10 @@ checkbox (0.16.11) UNRELEASED; urgency=low
     (LP: #1224533)
   * Ensured that pactl commands are run on a properly unlocalized environment
     (LP: #1201126)
+  
+  [ Jeff Lane ]
+  * scripts/storage_test: test now exits with a warning if the drive is not
+    mounted prior to testing (LP: #1224820)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
 
