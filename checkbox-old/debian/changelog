@@ -13,6 +13,10 @@ checkbox (0.16.11) UNRELEASED; urgency=low
   * scripts/storage_test: test now exits with a warning if the drive is not
     mounted prior to testing (LP: #1224820)
 
+  [ Brendan Donegan ]
+  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
+    in fwts and change version dependency to latest version (LP: #1218993)
+
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
 
 checkbox (0.16.10) saucy; urgency=low
