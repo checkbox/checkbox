@@ -1,6 +1,5 @@
 checkbox (0.16.10) UNRELEASED; urgency=low
-  
-  [ Jeff Lane ]
+
   * scripts/memory_compare: output now displays kB properly, not bytes labled
     as kB. (LP: #1217506)
   * scripts/storage_test: script now ensures there is enough free disk space
@@ -27,6 +26,10 @@ checkbox (0.16.10) UNRELEASED; urgency=low
   [ Sylvain Pineau ]
   * checkbox-old/scripts/fwts_test: Added the following new tests:
     method, msr, aspm, klog, oops and uefirtvariable (LP: #1202493)
+
+  [ Brendan Donegan ]
+  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
+    in fwts and change version dependency to latest version (LP: #1218993)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 23 Aug 2013 14:22:13 +0100
 
