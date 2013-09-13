@@ -42,6 +42,15 @@ then
         echo "$disk reports a size of $size."
         # Have to account for the end of the size descriptor
         size_range=${size:(-2)}
+	
+        if mount | grep -q $disk
+        then
+            echo "$disk is mounted, proceeding."
+        else
+            echo "$disk is not mounted. It must be mounted before testing."
+            exit 1
+        fi
+
 
         if [ $size_range == "KB" ]
         then
