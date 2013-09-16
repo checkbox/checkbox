@@ -1,4 +1,15 @@
-checkbox (0.16.10) UNRELEASED; urgency=low
+checkbox (0.16.11) UNRELEASED; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
+  * Removed references to Ubuntu Friendly due to sunsetting of the project.
+    (LP: #1224533)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
+
+checkbox (0.16.10) saucy; urgency=low
 
   [ Jeff Lane ]
   * scripts/memory_compare: output now displays kB properly, not bytes labled
@@ -27,7 +38,7 @@ checkbox (0.16.10) UNRELEASED; urgency=low
   * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
     crashes that cause the test to hang (LP: #1217937)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 23 Aug 2013 14:22:13 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 06 Sep 2013 16:51:17 +0100
 
 checkbox (0.16.9) saucy; urgency=low
 

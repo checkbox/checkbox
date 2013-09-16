@@ -27,7 +27,7 @@ import logging
 import os
 
 from dbus import StarterBus, SessionBus
-from dbus.mainloop.glib import DBusGMainLoop
+from dbus.mainloop.glib import DBusGMainLoop, threads_init
 from dbus.service import BusName
 from gi.repository import GObject
 
@@ -54,8 +54,10 @@ def connect_to_session_bus():
     # NOTE: DBus tutorial suggests that we should create the loop _before_
     # connecting to the bus.
     logger.debug("Setting up glib-based event loop")
-    loop = GObject.MainLoop()
+    # Make sure gobject threads don't crash
     GObject.threads_init()
+    threads_init()
+    loop = GObject.MainLoop()
     # Let's get the system bus object.
     logger.debug("Connecting to DBus session bus")
     if os.getenv("DBUS_STARTER_ADDRESS"):
@@ -82,9 +84,9 @@ class ServiceInvocation:
         logger.debug("Constructing ServiceWrapper")
         service_wrp = ServiceWrapper(service_obj, on_exit=lambda: loop.quit())
         logger.info("Publishing all objects on DBus")
-        service_wrp.publish_objects(bus)
-        logger.info("Publishing all children (events should fire there)")
-        service_wrp.publish_children()
+        service_wrp.publish_related_objects(bus)
+        logger.info("Publishing all managed objects (events should fire there)")
+        service_wrp.publish_managed_objects()
         logger.debug("Attempting to claim bus name: %s", self.ns.bus_name)
         bus_name = BusName(self.ns.bus_name, bus)
         logger.info(

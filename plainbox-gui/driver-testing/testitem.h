@@ -65,6 +65,8 @@ class TestItem : public ListItem
     Q_PROPERTY(QString comments READ comments WRITE setComments NOTIFY commentsChanged)
     Q_PROPERTY(QString outcome READ outcome WRITE setOutcome NOTIFY outcomeChanged)
 
+    Q_PROPERTY(bool rerun READ rerun WRITE setRerun NOTIFY rerunChanged)
+
 signals:
     void durationChanged();
     void checksumChanged();
@@ -97,6 +99,7 @@ signals:
     void commentsChanged();
     void outcomeChanged();
 
+    void rerunChanged();
 
 public:
     enum Roles {
@@ -132,7 +135,9 @@ public:
 
         IOLogRole,
         CommentsRole,
-        OutcomeRole
+        OutcomeRole,
+
+        RerunRole
     };
 
 
@@ -157,6 +162,7 @@ public:
              const QList<QString> &parent_ids, \
              const int &depth, \
              const bool &branch, \
+             const bool &rerun, \
              QObject * parent = 0 );
 
     QVariant data(int role) const;
@@ -258,6 +264,9 @@ public:
     inline QString outcome() const { return m_outcome; }
     void setOutcome(const QString &outcome);
 
+    inline bool rerun() const { return m_rerun; }
+    void setRerun(bool rerun);
+
 private:
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
 
@@ -299,6 +308,8 @@ private:
     QString m_io_log;   // Question: Is this going to be too much data?
     QString m_comments; // Comments - whatever the user typed in running this
     QString m_outcome;    // "pass"/"fail"/"skip"/"none"/"not-supported"
+
+    bool m_rerun;       // Will be tagged by the GUI if user clicks re-run icon
 };
 
 #endif // TESTITEM_H
