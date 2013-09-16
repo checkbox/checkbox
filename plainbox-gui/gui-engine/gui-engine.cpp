@@ -1813,6 +1813,9 @@ const QString GuiEngine::GetIOLogFromJobPath(const QDBusObjectPath &opath)
 
     QDBusObjectPath iologpath;
 
+    GetJobStateMap();
+
+    GetJobStates();
     for(int i=0; i < m_job_state_list.count(); i++) {
         if (m_job_state_list.at(i)->job().path().compare(opath.path()) == 0) {
             // ok, we found the right statelist entry
@@ -1821,6 +1824,7 @@ const QString GuiEngine::GetIOLogFromJobPath(const QDBusObjectPath &opath)
         }
     }
 
+    GetJobResults();
     // Now to find the right result object
     for(int i=0;i<m_job_state_results.count();i++) {
         if (m_job_state_results.at(i)->object_path.path().compare(iologpath.path()) == 0) {
@@ -1889,5 +1893,5 @@ const QString GuiEngine::GetIOLog(const QString& job)
     QDBusObjectPath opath(job);
 
     // FIXME - The log unpacking is not yet completed
-    return "GetIOLogFromJobPath(opath);";
+    return GetIOLogFromJobPath(opath);;
 }

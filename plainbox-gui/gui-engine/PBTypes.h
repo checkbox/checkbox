@@ -68,9 +68,9 @@ Q_DECLARE_METATYPE(jsm_t);
  * We build this in pieces
  */
 struct io_log_inner_t {
-    double dbl;
-    QString str;
-    QByteArray arr;
+    double delay;
+    QString stream;
+    QByteArray data;
 };
 
 typedef QList<io_log_inner_t> io_log_outer_t;

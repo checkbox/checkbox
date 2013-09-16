@@ -336,30 +336,11 @@ const QDBusObjectPath PBTreeNode::result(void)
 }
 
 const QDBusArgument &operator>>(const QDBusArgument &argument, \
-                                io_log_inner_t &inner)
+                                io_log_inner_t &inner_log)
 {
-    argument.beginMap();
-    inner.dbl = 0;
-    inner.str = "";
-    inner.arr.clear();
-
-    while(!argument.atEnd()) {
-        argument.beginMapEntry();
-
-        double dbl;
-        QString str;
-        QByteArray arr;
-
-        argument >> dbl ;
-
-        argument >> str;
-
-        argument >> arr;
-
-        argument.endMapEntry();
-    }
-
-    argument.endMap();
+    argument.beginStructure();
+    argument >> inner_log.delay >> inner_log.stream >> inner_log.data;
+    argument.endStructure();
 
     return argument;
 }
@@ -367,23 +348,17 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, \
 const QDBusArgument &operator>>(const QDBusArgument &argument, \
                                 io_log_outer_t &outer)
 {
-
     argument.beginArray();
     outer.clear();
 
     while(!argument.atEnd())
     {
-        argument.beginMapEntry();
-
         io_log_inner_t inner;
-
         argument >> inner;
-
-        argument.endMapEntry();
+        outer.append(inner);
     }
 
     argument.endArray();
-
     return argument;
 }
 
@@ -403,16 +378,19 @@ const QString PBTreeNode::io_log(void)
 
                 qDebug("Found the io_log");
 
-
                 const QDBusArgument qda = variant.value<QDBusArgument>();
 
                 qda >> outer;
 
                 // Preserve this for future use
-
-                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                    return variant.toString();
+                // do something with outer
+                QString io_log;
+                for (int idx = 0; idx < outer.count(); idx++) {
+                    QString data = QString(outer.at(idx).data);
+                    io_log.append(outer.at(idx).data);
+                    io_log.append("\n");
                 }
+                return io_log;
             }
         }
     }
