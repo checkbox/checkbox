@@ -22,12 +22,29 @@
 #include "gui-engine.h"
 #include <QtDBus/QtDBus>
 #include <QDebug>
+#include <stdexcept>
 
 #include "PBTreeNode.h"
 
 // Forward declarations
 void decodeDBusArgType(const QDBusArgument &arg);       // temporary
 void decodeDBusMessageType(const QDBusMessage &msg);    // temporary
+
+QDBusArgument &operator<<(QDBusArgument &arg, const EstimatedDuration &ms)
+{
+    arg.beginStructure();
+    arg << ms.automated_duration << ms.manual_duration;
+    arg.endStructure();
+    return arg;
+}
+
+const QDBusArgument &operator>>(const QDBusArgument &arg, EstimatedDuration &ms)
+{
+    arg.beginStructure();
+    arg >> ms.automated_duration >> ms.manual_duration;
+    arg.endStructure();
+    return arg;
+}
 
 void GuiEnginePlugin::registerTypes(const char *uri)
 {
@@ -82,6 +99,9 @@ bool GuiEngine::Initialise(void)
 
         // Register our Job State Map metatype
         qDBusRegisterMetaType<jsm_t>();
+
+        // Register our GetEstimatedDuration signature metatype
+        qDBusRegisterMetaType<EstimatedDuration>();
 
         // Obtain the initial tree of Plainbox objects, starting at the root "/"
         RefreshPBObjects();
@@ -844,6 +864,31 @@ QList<QDBusObjectPath> GuiEngine::GetAllJobs(void)
     }
 
     return jobs;
+}
+
+QVariantMap GuiEngine::GetEstimatedDuration()
+{
+    QVariantMap estimated_duration;
+
+    QDBusInterface iface(PBBusName, \
+                         m_session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        throw std::runtime_error("Could not connect to com.canonical.certification.PlainBox.Service1 interface");
+    }
+
+    QDBusReply<EstimatedDuration> reply = \
+            iface.call("GetEstimatedDuration");
+
+    if (reply.isValid()) {
+        estimated_duration["automated_duration"] = QVariant::fromValue(reply.value().automated_duration);
+        estimated_duration["manual_duration"] = QVariant::fromValue(reply.value().manual_duration);
+    } else {
+        throw std::runtime_error("GetEstimatedDuration() failed, invalid reply");
+    }
+
+    return estimated_duration;
 }
 
 
