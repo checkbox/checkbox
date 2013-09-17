@@ -465,6 +465,10 @@ Rectangle {
                 // All the above lets us count the number of real jobs
                 summary.totalImplicitTests = total_generated_tests - summary.totalTests;
 
+                var total_duration = guiEngine.GetEstimatedDuration();
+                console.log("Estimated duration (automated tests):", total_duration["automated_duration"], "s")
+                console.log("Estimated duration (manual tests)   :", total_duration["manual_duration"], "s")
+
                 // Not strictly needed here
                 var end = new Date();
                 console.log("Time for summary:", end.getMilliseconds() - start.getMilliseconds());

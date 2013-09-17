@@ -47,6 +47,14 @@ public:
 
 #include "JobTreeNode.h"
 
+/* We need to extract the signature of GetEstimatedDuration(): (dd) */
+struct EstimatedDuration{
+    double automated_duration;
+    double manual_duration;
+};
+
+Q_DECLARE_METATYPE(EstimatedDuration);
+
 /* This class embodies the wrapper which can call Plainbox APIs over D-Bus
  *
  * Its intended clients are Test Suite selection, test selection etc.
@@ -100,6 +108,9 @@ public slots:
         // Used when running the real tests
         void Pause(void);
         void Resume(void);
+
+        // Session estimated duration
+        QVariantMap GetEstimatedDuration();
 
         /* Signal receivers from Plainbox
          */
@@ -205,8 +216,6 @@ private:
 
 
         // SessionState methods
-        // GetEstimatedDuration - todo if needed
-
         QStringList UpdateDesiredJobList(const QDBusObjectPath session, \
                                          QList<QDBusObjectPath> desired_job_list);
 
