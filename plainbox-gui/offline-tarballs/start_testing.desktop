@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name= Canonical Driver Testing
+Comment=Test your drivers
+Encoding=UTF-8
+Exec=bash -c "`dirname %k`/start_testing.sh"
+Terminal=true
+Type=Application
+Icon=checkbox
+Categories=Qt;Application;
