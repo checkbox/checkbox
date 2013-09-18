@@ -90,7 +90,7 @@ Rectangle {
                     PopupUtils.open(warning_dialog, caller_button);
             }
 
-            // Select/De-select all items - Called from TestSelectionButtons.qml
+            // Select/De-select all items - Called from TestSelectionView.qml
             function selectAll(sel){
 
                 // show the warning if sel is false

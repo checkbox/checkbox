@@ -127,29 +127,70 @@ Page {
     }
 
     // Select All, Deselect All, Start Testing Buttons
-    TestSelectionButtons {
-        id: testbuttons
-        anchors{
-             horizontalCenter: parent.horizontalCenter
-             bottom: summary.top
-             bottomMargin: units.gu(2)
+    tools: ToolbarItems {
+        back: Row {
+            anchors {
+                verticalCenter: parent.verticalCenter
+            }
+            spacing: units.gu(1)
+            Button {
+                 id: infoButton
+                 text: i18n.tr("Info")
+                 color: UbuntuColors.lightAubergine
+                 onTriggered: PopupUtils.open(actionSelectionPopover, infoButton)
+            }
+            Button {
+                 id:selectButton
+                 text: i18n.tr("Select All")
+                 color: UbuntuColors.coolGrey
+                 width: units.gu(18)
+                 onTriggered: testsuitelist.selectAll(true);
+            }
+            Button {
+                 id: deselectButton
+                 text: i18n.tr("Deselect All")
+                 color: UbuntuColors.coolGrey
+                 width: units.gu(18)
+                 onTriggered: testsuitelist.selectAll(false);
+            }
         }
-
-        onSelectAll:{
-            testsuitelist.selectAll(true);
+        Row {
+            anchors {
+                verticalCenter: parent.verticalCenter
+            }
+            Button {
+                id: startTesting
+                text: i18n.tr("Start Testing")
+                width: units.gu(18)
+                onTriggered: {
+                    mainView.state = "RUNMANAGER"
+                    console.log("Start Testing")
+                    /* kick off the real tests now */
+                    guiEngine.RunJobs();
+                }
+            }
         }
+        locked: true
+        opened: true
+    }
 
-        onDeselectAll: {
-            testsuitelist.selectAll(false);
-        }
-
-        onStartTesting: {
-            mainView.state = "RUNMANAGER"
-            console.log("Start Testing")
-
-
-            /* kick off the real tests now */
-            guiEngine.RunJobs();
+    Component {
+        id: actionSelectionPopover
+        ActionSelectionPopover {
+            callerMargin: units.gu(1)
+            contentWidth: units.gu(15)
+            actions: ActionList {
+                Action {
+                    text: i18n.tr("Selection Stats")
+                    onTriggered: {
+                        PopupUtils.open(stats_dialog)
+                    }
+                }
+                Action {
+                    text: i18n.tr("Test Details")
+                    onTriggered: PopupUtils.open(popoverDetails)
+                }
+            }
         }
     }
 
