@@ -89,21 +89,40 @@ Page {
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: testlistheaders.bottom
-            bottom: testdetails.top
-            bottomMargin: units.gu(2)
         }
     }
 
-    // Test Details (Properties)
-    TestSelectionDetails {
-        id: testdetails
+    Component {
+        id: popoverDetails
 
-        width: testlistheaders.width
+        Popover {
+            id: popover
+            opacity: 0.0
+            contentWidth: parent.width - units.gu(30)
+            callerMargin: units.gu(2)
 
-        anchors{
-            horizontalCenter: parent.horizontalCenter
-            bottom: testbuttons.top
-            bottomMargin: units.gu(2)
+            Flickable {
+                id: flickable
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    rightMargin: units.gu(1)
+                }
+                height: testdetails.height > mainView.height/2 ? mainView.height/2 : testdetails.height
+
+                contentHeight: testdetails.height
+                width: popover.width
+                clip: true
+                // Test Details (Properties)
+                TestSelectionDetails {
+                    id: testdetails
+                }
+            }
+            Scrollbar {
+                flickableItem: flickable
+                align: Qt.AlignTrailing
+            }
         }
     }
 
