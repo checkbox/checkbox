@@ -31,6 +31,10 @@ import "."
 Page {
     title: i18n.tr("Choose tests to run on your system:")
 
+    property int totalTimeEst: 0
+    property int totalTests: 6
+    property int totalManualTests: 2
+    property int totalImplicitTests: 999
 
     Item { // puts a space at the top
         id: filler
@@ -193,15 +197,52 @@ Page {
             }
         }
     }
-
-    // Small blue test summary bar at the bottom of the page
-    TestSelectionSummary{
-        id: summary
-        height: units.gu(2)
-        width: parent.width
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
+    Component {
+        id: stats_dialog
+        Dialog{
+            id: dialog
+            title: i18n.tr("Selection Stats")
+            function formatTotalTime(){
+                var estTimeStr = ""
+                if (totalTimeEst == 0)
+                    estTimeStr = i18n.tr("0");
+                else if (totalTimeEst/60 < 1)
+                    estTimeStr = i18n.tr("< 1 min");
+                else {
+                    var durMinutes = Math.round(totalTimeEst/60);
+                    estTimeStr = durMinutes.toString() + i18n.tr(" min");
+                }
+                return  estTimeStr;
+            }
+            Rectangle {
+                id: statrect
+                color: "transparent"
+                height: statgrid.height
+                Grid {
+                    id: statgrid
+                    columns: 2
+                    spacing: units.gu(2)
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Label {text: i18n.tr("Selected")}
+                    Label {text: totalTests}
+                    Label {text: i18n.tr("Manual")}
+                    Label {text: totalManualTests}
+                    Label {text: i18n.tr("Implicit")}
+                    Label {text: totalImplicitTests}
+                    Label {text: i18n.tr("Total")}
+                    Label {text: (parseInt(totalTests) + parseInt(totalImplicitTests))}
+                    Label {text: i18n.tr("Total time")}
+                    Label {text: "~ " + formatTotalTime(totalTimeEst)}
+                }
+            }
+            Button {
+                id: okButton
+                text: i18n.tr("OK")
+                color: UbuntuColors.orange
+                onClicked: {
+                    PopupUtils.close(dialog);
+                }
+            }
         }
     }
 }

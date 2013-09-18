@@ -326,7 +326,6 @@ Rectangle {
 
             // Add up all the selected tests in a group
             function getEstimatedTime(section){
-                var start = new Date();
                 var estTimeStr = "";
                 var estTimeInt=0;
                 var foundGroup = false;  // list is ordered in groups, after whole group found return
@@ -354,8 +353,6 @@ Rectangle {
                     if (durMinutes > 1)
                         estTimeStr += 's';
                 }
-                var end = new Date();
-                console.log("Time for estimated groups:", section, end.getMilliseconds() - start.getMilliseconds());
                 return  estTimeStr;
             }
 
@@ -404,16 +401,16 @@ Rectangle {
             // Update List Summary
             function updateListSummary(testItem, sel){
                 if (sel){
-                    summary.totalTests += 1;
-                    summary.totalTimeEst = parseInt(summary.totalTimeEst ) + parseInt(testItem.duration);
+                    totalTests += 1;
+                    totalTimeEst = parseInt(totalTimeEst ) + parseInt(testItem.duration);
                     if (testItem.type === "Manual")
-                        summary.totalManualTests += 1;
+                        totalManualTests += 1;
                 }
                 else {
-                    summary.totalTests -= 1;
-                    summary.totalTimeEst = parseInt(summary.totalTimeEst ) - testItem.duration;
+                    totalTests -= 1;
+                    totalTimeEst = parseInt(totalTimeEst ) - testItem.duration;
                     if (testItem.type === "Manual")
-                        summary.totalManualTests -= 1
+                        totalManualTests -= 1
                  }
             }
 
@@ -443,9 +440,9 @@ Rectangle {
                         }
                     }
                 }
-                summary.totalTests = testCnt;
-                summary.totalManualTests = manualCnt;
-                summary.totalTimeEst =  estTimeInt;
+                totalTests = testCnt;
+                totalManualTests = manualCnt;
+                totalTimeEst =  estTimeInt;
 
                 /* We should call into guiengine to find out the number of
                  * implicit tests (really we will get a count of ALL of them...
@@ -463,7 +460,7 @@ Rectangle {
                 var total_generated_tests = guiEngine.PrepareJobs();
 
                 // All the above lets us count the number of real jobs
-                summary.totalImplicitTests = total_generated_tests - summary.totalTests;
+                totalImplicitTests = total_generated_tests - totalTests;
 
                 var total_duration = guiEngine.GetEstimatedDuration();
                 console.log("Estimated duration (automated tests):", total_duration["automated_duration"], "s")
@@ -471,7 +468,7 @@ Rectangle {
 
                 // Not strictly needed here
                 var end = new Date();
-                console.log("Time for summary:", end.getMilliseconds() - start.getMilliseconds());
+                //console.log("Time for ", end.getMilliseconds() - start.getMilliseconds());
 
             }
 
