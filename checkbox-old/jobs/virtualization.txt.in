@@ -1,12 +1,4 @@
 plugin: shell
-name: virtualization/virtualization-check
-requires: cpuinfo.platform in ("i386", "x86_64")
-user: root
-command: virt_check
-_description:
- Test to check that virtualization is supported and the test system has at least a minimal amount of RAM to function as an OpenStack Compute Node
-
-plugin: shell
 name: virtualization/kvm_ok
 requires: package.name == 'cpu-checker'
 command: kvm-ok
