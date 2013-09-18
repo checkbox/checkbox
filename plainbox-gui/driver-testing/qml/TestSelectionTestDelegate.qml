@@ -55,7 +55,7 @@ Component {
             anchors.fill: parent
 
             onClicked: {
-                testdetails.testItem = testListModel.get(index);
+                currentTestItem = testListModel.get(index);
                 groupedList.currentIndex = index;
             }
         }

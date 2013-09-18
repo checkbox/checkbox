@@ -80,7 +80,7 @@ Rectangle {
             // Runs when this ListView is fully initialised
             Component.onCompleted: {
                 selectAll(true)
-                testdetails.testItem = testListModel.get(currentItem);
+                currentTestItem = testListModel.get(currentItem);
                 sectionCount = getSectionCount()
                 setListSummary();
             }
