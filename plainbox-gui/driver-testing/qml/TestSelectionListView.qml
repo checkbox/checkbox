@@ -30,8 +30,8 @@ import "."
 
 Rectangle {
     id: suitetestlist
-    color: "white"
     height: parent.height
+    color: Theme.palette.normal.background
     width: parent.width
 
     function selectAll(sel) {
