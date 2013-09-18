@@ -346,12 +346,10 @@ Rectangle {
                 if (estTimeInt == 0)
                     estTimeStr = "";
                 else if (estTimeInt/60 < 1)
-                    estTimeStr = i18n.tr("< 1 minute");
+                    estTimeStr = i18n.tr("< 1 min");
                 else {
                     var durMinutes = Math.round(estTimeInt/60);
-                    estTimeStr = durMinutes.toString() + i18n.tr(" minute");
-                    if (durMinutes > 1)
-                        estTimeStr += 's';
+                    estTimeStr = durMinutes.toString() + i18n.tr(" min");
                 }
                 return  estTimeStr;
             }
