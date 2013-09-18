@@ -61,6 +61,7 @@ Page {
         Text  {
             id: complabel
             text: i18n.tr("Components")
+            font.bold: true
             anchors.left: parent.left
             anchors.leftMargin: units.gu(6)
             anchors.right: typelabel.left
@@ -70,6 +71,7 @@ Page {
         Text  {
             id: typelabel
             text: i18n.tr("Type")
+            font.bold: true
             width: units.gu(6)
             anchors.right: esttimelabel.left
             anchors.rightMargin: units.gu(6)
@@ -79,6 +81,7 @@ Page {
         Text  {
             id: esttimelabel
             text: i18n.tr("Estimated Time")
+            font.bold: true
             width: units.gu(6)
             anchors.right: parent.right
             anchors.rightMargin: units.gu(6)
