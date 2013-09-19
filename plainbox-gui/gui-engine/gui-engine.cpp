@@ -1228,6 +1228,25 @@ QStringList GuiEngine::UpdateDesiredJobList(const QDBusObjectPath session, \
     return job_list;
 }
 
+QList<QDBusObjectPath> GuiEngine::SessionStateDesiredJobList(const QDBusObjectPath session)
+{
+    PBTreeNode node;
+
+    QVariantMap map = node.GetObjectProperties(session,PBSessionStateInterface);
+
+    QList<QDBusObjectPath> opathlist;
+
+    QVariantMap::iterator iter = map.find("desired_job_list");
+
+    QVariant variant = iter.value();
+
+    const QDBusArgument qda = variant.value<QDBusArgument>();
+
+    qda >> opathlist;
+
+    return opathlist;
+}
+
 QList<QDBusObjectPath> GuiEngine::SessionStateRunList(const QDBusObjectPath session)
 {
     PBTreeNode node;

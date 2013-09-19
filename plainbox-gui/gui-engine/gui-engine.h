@@ -240,6 +240,7 @@ private:
 
         void SessionResume(const QDBusObjectPath session);
         // SessionState Properties
+        QList<QDBusObjectPath> SessionStateDesiredJobList(const QDBusObjectPath session);
         QList<QDBusObjectPath> SessionStateRunList(const QDBusObjectPath session);
         QList<QDBusObjectPath> SessionStateJobList(const QDBusObjectPath session);
         void SetSessionStateMetadata(const QDBusObjectPath session, \
