@@ -55,7 +55,7 @@ Component {
             anchors.fill: parent
 
             onClicked: {
-                testdetails.testItem = testListModel.get(index);
+                currentTestItem = testListModel.get(index);
                 groupedList.currentIndex = index;
             }
         }
@@ -168,12 +168,10 @@ Component {
                 function convertToText(durationTime){
                     var timeStr = "";
                     if (durationTime/60 < 1)
-                        timeStr = i18n.tr("< 1 minute");
+                        timeStr = i18n.tr("< 1 min");
                     else {
                         var durMinutes = Math.round(duration/60);
-                        timeStr = durMinutes.toString() + i18n.tr(" minute");
-                        if (durMinutes > 1)
-                            timeStr += 's';
+                        timeStr = durMinutes.toString() + i18n.tr(" min");
                     }
                     return timeStr;
                 }
