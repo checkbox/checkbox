@@ -204,5 +204,9 @@ Rectangle {
 
         groupedList.height = units.gu(7) * (groupedList.count - groupedList.closedCount - groupedList.hiddenCount)
         listflick.contentHeight = groupedList.height
+
+        /* kick off the real tests now */
+        console.log("Start Testing")
+        guiEngine.RunJobs();
     }
 }
