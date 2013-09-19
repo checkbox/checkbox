@@ -26,7 +26,7 @@ import Ubuntu.Components 0.1
 
 Page {
     id: welcomePage
-    title: i18n.tr("Driver Testing")
+    title: i18n.tr("Canonical Driver Test Suite")
 
     Image {
         id: logo
@@ -83,7 +83,7 @@ Page {
                 }
 
                 // TODO load text from Plainbox
-                text: "<p>Welcome to the Canonical Hardware Driver Testing.</p>
+                text: "<p>Welcome to the Canonical Driver Test Suite.</p>
                     <p></p>
                     <p>This program contains automated and manual tests to help you discover issues that will arise when running your device drivers on Ubuntu.</p>
                     <p></p>

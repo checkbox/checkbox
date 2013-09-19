@@ -19,5 +19,5 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 TEMPLATE = subdirs
-SUBDIRS = gui-engine driver-testing test-gui-engine
+SUBDIRS = gui-engine canonical-driver-test-suite test-gui-engine
 CONFIG = ordered
