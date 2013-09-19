@@ -18,6 +18,8 @@ checkbox (0.16.11) UNRELEASED; urgency=low
     in fwts and change version dependency to latest version (LP: #1218993)
   * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
     former is deprecated (LP: #1224854)
+  * jobs/virtualization.txt.in - remove virtualization-check test and the 
+    virt_check script (LP: #1227071)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
 
