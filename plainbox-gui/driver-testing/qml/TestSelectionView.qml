@@ -269,8 +269,7 @@ Page {
             }
             Button {
                 id: okButton
-                text: i18n.tr("OK")
-                color: UbuntuColors.orange
+                text: i18n.tr("Back")
                 onClicked: {
                     PopupUtils.close(dialog);
                 }
