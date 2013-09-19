@@ -583,7 +583,8 @@ void GuiEngine::Resume(void)
 
             // Update the GUI so it knows what job is starting
             emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
-                                  m_current_job_index);
+                    m_current_job_index, \
+                    JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
             // Now run the next job
             qDebug() << "Running Job (Resume)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -682,7 +683,8 @@ void GuiEngine::RunJobs(void)
 
     // Tell the GUI so we know we have started running this job
     emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
-                          m_current_job_index);
+            m_current_job_index, \
+            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
     // Now the actual run, job by job
     qDebug() << "Running Job (RunJobs)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -1762,8 +1764,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     // Update the GUI so it knows what the job outcome was
     emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
-                          m_current_job_index, \
-                          outcome);
+            m_current_job_index, \
+            outcome, \
+            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
     // Move to the next job
     m_current_job_index = NextRunJobIndex(m_current_job_index);
@@ -1781,7 +1784,8 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
         // Update the GUI so it knows what job is starting
         emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
-                              m_current_job_index);
+                m_current_job_index, \
+                JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
         // Now run the next job
         qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));

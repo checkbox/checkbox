@@ -179,12 +179,14 @@ signals:
         void jobsBegin(void);
 
         void updateGuiBeginJob(const QString& job_id, \
-                                const int current_job_index);
+                                const int current_job_index,
+                                const QString& test_name);
 
         // When a job has completed
         void updateGuiEndJob(const QString& job_id, \
                               const int current_job_index,
-                              const int outcome);
+                              const int outcome,
+                              const QString& test_name);
 
         // When all jobs are completed
         void jobsCompleted(void);
