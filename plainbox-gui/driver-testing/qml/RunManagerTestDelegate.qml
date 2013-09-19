@@ -266,7 +266,7 @@ Component {
                         groupedList.currentIndex = index;
 
                         // Open the log viewer
-                        PopupUtils.open(log_viewer, detailsicon);
+                        PopupUtils.open(log_viewer);
 
                         groupedList.userChangingIndex = false;
                     }
@@ -290,7 +290,6 @@ Component {
             LogViewer{
 //                //  Re-insert this for other/future versions of the GUI
 //                showTroubleShootingLink: false
-                text:testname
                jobPath: objectpath
             }
         }

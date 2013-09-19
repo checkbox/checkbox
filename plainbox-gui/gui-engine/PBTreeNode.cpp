@@ -386,10 +386,13 @@ const QString PBTreeNode::io_log(void)
                 // do something with outer
                 QString io_log;
                 for (int idx = 0; idx < outer.count(); idx++) {
-                    QString data = QString(outer.at(idx).data);
+                    io_log.append("(" + outer.at(idx).stream + ")");
+                    io_log.append(QString::number(outer.at(idx).delay));
+                    io_log.append(" : ");
                     io_log.append(outer.at(idx).data);
-                    io_log.append("\n");
+                    io_log.append("<br />");
                 }
+                qDebug() << io_log;
                 return io_log;
             }
         }

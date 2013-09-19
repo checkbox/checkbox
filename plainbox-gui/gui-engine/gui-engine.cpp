@@ -1857,8 +1857,8 @@ const QString GuiEngine::GetIOLogFromJobPath(const QDBusObjectPath &opath)
     QDBusObjectPath iologpath;
 
     GetJobStateMap();
-
     GetJobStates();
+
     for(int i=0; i < m_job_state_list.count(); i++) {
         if (m_job_state_list.at(i)->job().path().compare(opath.path()) == 0) {
             // ok, we found the right statelist entry

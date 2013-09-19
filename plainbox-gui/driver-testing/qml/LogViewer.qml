@@ -25,17 +25,15 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 
-Dialog {
-    id: dialog
-
-    title: i18n.tr("Log Viewer")
-    text: i18n.tr("")
+Popover {
+    id: logview
 
     property alias logText: logtext.text
 //    property alias showTroubleShootingLink: troubleButton.visible
     property alias logHeight: flick.height
 
     property string jobPath: "Not Set"
+    contentWidth: parent.width - units.gu(30)
 
     // Re-insert this for other/future versions of the GUI
 //    property alias showTroubleShootingLink: troubleButton.visible
@@ -50,26 +48,27 @@ Dialog {
 //        }
 //    }
 
+    Scrollbar {
+        flickableItem: flick
+        align: Qt.AlignTrailing
+    }
+
     Flickable {
         id: flick
 
-        width: logtext.width;
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            rightMargin: units.gu(1)
+            leftMargin: units.gu(1)
+        }
+
+        width: logview.width;
         height: units.gu(50)
         contentWidth: logtext.paintedWidth
         contentHeight: logtext.paintedHeight
         clip: true
-
-        function ensureVisible(r)
-        {
-            if (contentX >= r.x)
-                contentX = r.x;
-            else if (contentX+width <= r.x+r.width)
-                contentX = r.x+r.width-width;
-            if (contentY >= r.y)
-                contentY = r.y;
-            else if (contentY+height <= r.y+r.height)
-                contentY = r.y+r.height-height;
-        }
 
         TextEdit{
             id: logtext
@@ -78,25 +77,23 @@ Dialog {
                 even more even more \n even more even more \n even more even more \n"
 
             //height: units.gu(60)
-            width: units.gu(30)
+            width: parent.width
             cursorVisible : true
             readOnly: true
             selectByMouse : true
             textFormat: TextEdit.RichText
-            wrapMode: TextEdit.Wrap
+            wrapMode: TextEdit.NoWrap
             focus: true
-            color: Theme.palette.normal.foregroundText
+            color: "black"
             selectedTextColor: Theme.palette.selected.foregroundText
             selectionColor: Theme.palette.selected.foreground
             font.pixelSize: FontUtils.sizeToPixels("medium")
-
-            onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
 
             Component.onCompleted: {
                // text = io_log;
 
                 // get the log info from guiengine
-                text = guiEngine.GetIOLog(jobPath);
+                text = "<code>" + guiEngine.GetIOLog(jobPath) + "</code>";
             }
 
             onLinkActivated: {
@@ -104,12 +101,4 @@ Dialog {
             }
         }
     }
-
-    Button {
-        id: doneButton
-        text: i18n.tr("Done")
-        color: UbuntuColors.warmGrey
-        onClicked: PopupUtils.close(dialog)
-    }
-
 }
