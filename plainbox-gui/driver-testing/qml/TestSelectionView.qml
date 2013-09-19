@@ -226,25 +226,45 @@ Page {
         Dialog{
             id: dialog
             title: i18n.tr("Selection Stats")
+            property var total_duration: guiEngine.GetEstimatedDuration();
             Rectangle {
                 id: statrect
                 color: "transparent"
-                height: statgrid.height
-                Grid {
-                    id: statgrid
-                    columns: 2
-                    spacing: units.gu(2)
+                height: statrow.height + okButton.height
+                Row {
+                    id: statrow
                     anchors.horizontalCenter: parent.horizontalCenter
-                    Label {text: i18n.tr("Selected")}
-                    Label {text: totalTests}
-                    Label {text: i18n.tr("Manual")}
-                    Label {text: totalManualTests}
-                    Label {text: i18n.tr("Implicit")}
-                    Label {text: totalImplicitTests}
-                    Label {text: i18n.tr("Total")}
-                    Label {text: (parseInt(totalTests) + parseInt(totalImplicitTests))}
-                    Label {text: i18n.tr("Total time")}
-                    Label {text: "~ " + formatTotalTime(totalTimeEst)}
+                    spacing: units.gu(4)
+                    Column {
+                        id: col1
+                        Label {text: i18n.tr("Total tests");fontSize: "large"; color: "white"}
+                        Label {text: i18n.tr("Selected")}
+                        Label {text: i18n.tr("Manual")}
+                        Label {text: i18n.tr("Implicit")}
+                        Label {text: i18n.tr(" "); fontSize: "large"}
+                        Label {text: i18n.tr("Estimated time"); fontSize: "large"; color: "white"}
+                        Label {text: i18n.tr("Automated")}
+                        Label {text: i18n.tr("Manual")}
+                    }
+                    Column {
+                        id: col2
+                        Label {
+                            text: (parseInt(totalTests) + parseInt(totalImplicitTests));
+                            anchors.right: col2.right;
+                            fontSize: "large"; color: "white"
+                        }
+                        Label {text: totalTests; anchors.right: col2.right}
+                        Label {text: totalManualTests; anchors.right: col2.right}
+                        Label {text: totalImplicitTests; anchors.right: col2.right}
+                        Label {text: i18n.tr(" "); fontSize: "large"}
+                        Label {
+                            text: formatTotalTime(total_duration["automated_duration"] + total_duration["manual_duration"]);
+                            anchors.right: col2.right;
+                            fontSize: "large"; color: "white"
+                        }
+                        Label {text: formatTotalTime(total_duration["automated_duration"]); anchors.right: col2.right}
+                        Label {text: formatTotalTime(total_duration["manual_duration"]); anchors.right: col2.right}
+                    }
                 }
             }
             Button {
