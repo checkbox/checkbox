@@ -670,7 +670,7 @@ int GuiEngine::NextRunJobIndex(int index)
  */
 void GuiEngine::RunJobs(void)
 {
-//    qDebug("GuiEngine::RunJobs");
+    qDebug("GuiEngine::RunJobs");
 
     // Tell the GUI we are running the jobs
     emit jobsBegin();
@@ -697,7 +697,7 @@ void GuiEngine::RunJobs(void)
 
     RunJob(m_session,m_run_list.at(m_current_job_index));
 
-//    qDebug("GuiEngine::RunJobs - Done");
+    qDebug("GuiEngine::RunJobs - Done");
 }
 
 /* Run all the local "generator" jobs selected by the whitelists, in order
@@ -717,11 +717,9 @@ void GuiEngine::RunLocalJobs(void)
      * the same list as exposed by actually trawling DBus itself.
      */
 
-    // Create a session and "seed" it with my job list:
-    m_job_list = GetAllJobs();
-
-    // Create a session
-    m_session = CreateSession(m_job_list);
+    // We rely upon an already created session; either created when
+    // the startup code looked for a previous session file, OR
+    // after the startup code resumed a previous session
 
     // to get only the *jobs* that are designated by the whitelist.
     m_desired_job_list = GenerateDesiredJobList(m_job_list);
@@ -933,6 +931,59 @@ void GuiEngine::SessionPersistentSave(const QDBusObjectPath session)
 
     // No reply expected from this
     iface.call("PersistentSave");
+}
+
+void GuiEngine::GuiSessionRemove(void)
+{
+    return SessionRemove(m_session);
+}
+
+void GuiEngine::SessionRemove(const QDBusObjectPath session)
+{
+    qDebug() << "GuiEngine::SessionRemove() ";
+
+    QDBusInterface iface(PBBusName, \
+                         session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+
+    // No reply expected from this
+    iface.call("Remove");
+}
+const QString GuiEngine::GuiPreviousSessionFile(void)
+{
+    // Create a session and "seed" it with my job list:
+    m_job_list = GetAllJobs();
+
+    // Create a session
+    m_session = CreateSession(m_job_list);
+
+    QString previous = PreviousSessionFile(m_session);
+
+    return previous;
+}
+
+void GuiEngine::GuiCreateSession(void)
+{
+    // Create a session and "seed" it with my job list:
+    m_job_list = GetAllJobs();
+
+    // Create a session
+    m_session = CreateSession(m_job_list);
+}
+
+const QString GuiEngine::PreviousSessionFile(const QDBusObjectPath session)
+{
+    qDebug() << "GuiEngine::PreviousSessionFile() ";
+
+    QDBusInterface iface(PBBusName, \
+                         session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+
+    QDBusReply<QString> reply = iface.call("PreviousSessionFile");
+
+    return reply;
 }
 
 bool GuiEngine::WhiteListDesignates(const QDBusObjectPath white_opath, \

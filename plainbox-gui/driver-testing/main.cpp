@@ -95,6 +95,25 @@ int main(int argc, char *argv[])
     CommandTool cmdTool;
     viewer.rootContext()->setContextProperty("cmdTool", &cmdTool);
 
+
+
+     // In the beginning, lets see if we need to resume
+    bool resumeSession = false;
+
+    QString previous = guiengine.GuiPreviousSessionFile();
+     if ( previous.isEmpty() ) {
+         // Show the Welcome screen
+     } else {
+          // show the resume screen
+         qDebug() << "Resume session file : " << previous;
+
+         resumeSession = true;
+     }
+
+    viewer.rootContext()->setContextProperty("resumePreviousSession",resumeSession);
+
+
+
     // Now, load the main page
     viewer.setMainQmlFile(QStringLiteral("../share/driver-testing/qml/driver-testing.qml"));
 

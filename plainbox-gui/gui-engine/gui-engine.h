@@ -49,7 +49,7 @@ public:
 
 #include "JobTreeNode.h"
 
-// Currently used for the metadata Ttle of saved sessions in Plainbox
+// Currently used for the metadata Title of saved sessions in Plainbox
 static const QString GUI_ENGINE_NAME_STR("GuiEngine");
 
 
@@ -159,6 +159,11 @@ public slots:
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);
 
+        // Session management from the GUI
+        void GuiSessionRemove(void);
+        const QString GuiPreviousSessionFile(void);
+        void GuiCreateSession(void);
+
 public:
         // Returns a list of all the jobnodes
         QList<PBTreeNode*> GetJobNodes(void);
@@ -178,6 +183,8 @@ public:
                                     const QString& output_file);
         // Suspend and Resume Session
         void SessionPersistentSave(const QDBusObjectPath session);
+        void SessionRemove(const QDBusObjectPath session);
+        const QString PreviousSessionFile(const QDBusObjectPath session);
 
 signals:
         // Instruct the GUI to update itself

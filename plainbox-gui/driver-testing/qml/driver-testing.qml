@@ -43,6 +43,14 @@ MainView {
 
         Component.onCompleted: {
             push(Qt.resolvedUrl(pageName))
+
+            // Check if we need to resume
+            if (resumePreviousSession === true)
+            {
+                pageName = "ResumeView.qml";
+                state = "RESUME"
+                push(Qt.resolvedUrl(pageName))
+            }
         }
 
         onPageNameChanged: {

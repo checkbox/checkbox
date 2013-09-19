@@ -45,6 +45,9 @@ Row {
          color: UbuntuColors.coolGrey
          width: units.gu(18)
          onClicked: {
+             // We should clean up the session before we go
+             guiEngine.GuiSessionRemove();
+
              bottombuttons.exit();
          }
     }
