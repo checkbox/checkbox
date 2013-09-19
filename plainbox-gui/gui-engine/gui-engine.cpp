@@ -573,7 +573,7 @@ void GuiEngine::Resume(void)
         m_running = true;
         return;
     }
-    
+
     if (!m_running) {
 
         // Make a note of it
@@ -588,6 +588,9 @@ void GuiEngine::Resume(void)
 
             // Now run the next job
             qDebug() << "Running Job (Resume)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+
+            // Preserve progress so far
+            EncodeGuiEngineStateAsJSON();
 
             RunJob(m_session,m_run_list.at(m_current_job_index));
 
@@ -689,6 +692,9 @@ void GuiEngine::RunJobs(void)
     // Now the actual run, job by job
     qDebug() << "Running Job (RunJobs)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
 
+    // Preserve progress so far
+    EncodeGuiEngineStateAsJSON();
+
     RunJob(m_session,m_run_list.at(m_current_job_index));
 
 //    qDebug("GuiEngine::RunJobs - Done");
@@ -749,6 +755,184 @@ void GuiEngine::RunLocalJobs(void)
     RunJob(m_session,m_run_list.at(m_current_job_index));
 
     qDebug("GuiEngine::RunLocalJobs - Done");
+}
+
+/* Saves:
+ * m_rerun_list
+ * <TBD>
+ */
+void GuiEngine::EncodeGuiEngineStateAsJSON(void)
+{
+//    qDebug("GuiEngine::EncodeGuiEngineStateAsJSON()");
+
+    // Everything will be preserved in here
+    QJsonObject guienginestate_js;
+
+    QJsonObject json_m_rerun_list = \
+            PBJsonUtils::QDBusObjectPathArrayToJson("m_rerun_list",m_rerun_list);
+
+    guienginestate_js.insert("m_rerun_list_object",json_m_rerun_list);
+
+    QJsonDocument jsd(guienginestate_js);
+
+    // Preserve our properties
+    SetSessionStateMetadata(m_session,\
+                            m_submitted ? PB_FLAG_SUBMITTED: PB_FLAG_INCOMPLETE,\
+                            m_run_list.at(m_current_job_index).path(),
+                            GUI_ENGINE_NAME_STR,
+                            jsd.toJson());
+
+    // Plainbox should save this session
+    SessionPersistentSave(m_session);
+
+//    qDebug("GuiEngine::EncodeGuiEngineStateAsJSON() - Done");
+}
+void GuiEngine::DecodeGuiEngineStateFromJSON(void)
+{
+//    qDebug("GuiEngine::DecodeGuiEngineStateFromJSON()");
+
+    QVariantMap metadata = SessionStateMetadata(m_session);
+
+    // Grep the run_list to find metadata job id (should not fail!)
+    QVariantMap::const_iterator iter = metadata.find("app_blob");
+    QString jsd_string = iter.value().toString();
+    if (jsd_string.isEmpty()) {
+        qDebug("There is no app_blob metadata");
+
+        // emit guiSomeFutureErrorDialog(); // FIXME - tell the user
+
+        return; // game over :(
+    }
+
+    // Now convert that app_blob string into JSON
+    QByteArray jsdb = jsd_string.toUtf8();
+
+    QJsonDocument jsd = QJsonDocument::fromJson(jsdb);
+
+    // Will contain the recovered state of guiengine
+    QJsonObject guienginestate_js;
+
+    guienginestate_js = jsd.object();
+
+    QJsonObject::const_iterator iter_rerun_object = guienginestate_js.find("m_rerun_list_object");
+    if (iter_rerun_object == guienginestate_js.end()) {
+        qDebug("Cannot find m_rerun_list_object");
+    }
+
+    QJsonObject json_m_rerun_list;
+
+    json_m_rerun_list = iter_rerun_object.value().toObject();
+
+    // Now we should find the next key
+    QJsonObject::const_iterator iter_rerun = json_m_rerun_list.find("m_rerun_list");
+
+    m_rerun_list = PBJsonUtils::JSONToQDBusObjectPathArray("m_rerun_list",json_m_rerun_list);
+
+//    qDebug("GuiEngine::DecodeGuiEngineStateFromJSON() - Done");
+}
+
+void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
+                                        const QString &flags, \
+                                        const QString &running_job_name, \
+                                        const QString &title, \
+                                        const QByteArray& app_blob)
+{
+//    qDebug() << "GuiEngine::SetSessionStateMetadata() \n" \
+//             << " " << session.path() \
+//             << " " << flags \
+//             << " " << running_job_name \
+//             << " " << title \
+//             << " " << app_blob;
+
+    QMap<QString,QVariant> metadata;
+
+    // flags contains an array of strings in a variant
+    QStringList flags_array;
+
+    // only one string for the moment
+    flags_array.append(flags);
+
+    QVariant flags_variant;
+    flags_variant = QVariant::fromValue<QStringList>(flags_array);
+
+    metadata.insert("flags",flags_variant);
+    metadata.insert("running_job_name",running_job_name);
+    metadata.insert("title",title);
+    metadata.insert("app_blob",app_blob);
+
+    QDBusInterface iface(PBBusName, \
+                         session.path(), \
+                         ofDPropertiesName, \
+                         QDBusConnection::sessionBus());
+
+    QDBusMessage reply = iface.call("Set",PBSessionStateInterface,"metadata",metadata);
+    if (reply.type() != QDBusMessage::ReplyMessage) {
+
+        qDebug() << "Failed to set metadata:";
+
+        decodeDBusMessageType(reply);
+    }
+
+    // qDebug("GuiEngine::SetSessionStateMetadata() - Done");
+}
+
+const QVariantMap GuiEngine::SessionStateMetadata(const QDBusObjectPath session)
+{
+    qDebug("SessionStateMetadata");
+
+    QVariantMap properties;
+
+    om_smalldict results;
+
+    // temp
+    PBTreeNode* node = new PBTreeNode();
+
+    properties = node->GetObjectProperties(session,PBSessionStateInterface);
+
+    QVariantMap::iterator iter = properties.find("metadata");
+
+    QVariant variant = iter.value();
+
+    const QDBusArgument qda = variant.value<QDBusArgument>();
+
+    qda >> results;
+
+    delete node;
+
+    QVariantMap metadata;
+
+    // Convert om_smalldict to QVariantMap
+    om_smalldict::iterator iter_m = results.begin();
+
+    QString metadata_str = "Metadata : ";
+
+    while(iter_m != results.end()) {
+        metadata.insert(iter_m.key(),iter_m.value().variant());
+
+        metadata_str.append(iter_m.key());
+        metadata_str.append(":");
+        metadata_str.append(iter_m.value().variant().toString());
+        metadata_str.append(" ");
+
+        iter_m++;
+    }
+
+    //qDebug() << metadata_str;
+
+    return metadata;
+}
+
+void GuiEngine::SessionPersistentSave(const QDBusObjectPath session)
+{
+//    qDebug() << "GuiEngine::SessionPersistentSave() ";
+
+    QDBusInterface iface(PBBusName, \
+                         session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+
+    // No reply expected from this
+    iface.call("PersistentSave");
 }
 
 bool GuiEngine::WhiteListDesignates(const QDBusObjectPath white_opath, \
@@ -1789,6 +1973,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
         // Now run the next job
         qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+
+        // Preserve progress so far
+        EncodeGuiEngineStateAsJSON();
 
         RunJob(m_session,m_run_list.at(m_current_job_index));
 

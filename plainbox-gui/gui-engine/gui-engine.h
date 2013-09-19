@@ -27,6 +27,8 @@
 #include <QtDBus/QtDBus>
 #include <QtXml/QDomDocument>
 
+#include "PBJsonUtils.h"
+
 #include <QtWidgets/QFileDialog>
 
 class GuiEnginePlugin : public QQmlExtensionPlugin
@@ -46,6 +48,10 @@ public:
 #include "PBTreeNode.h"
 
 #include "JobTreeNode.h"
+
+// Currently used for the metadata Ttle of saved sessions in Plainbox
+static const QString GUI_ENGINE_NAME_STR("GuiEngine");
+
 
 /* We need to extract the signature of GetEstimatedDuration(): (dd) */
 struct EstimatedDuration{
@@ -170,6 +176,8 @@ public:
                                     const QString& output_format, \
                                     const QStringList& option_list,
                                     const QString& output_file);
+        // Suspend and Resume Session
+        void SessionPersistentSave(const QDBusObjectPath session);
 
 signals:
         // Instruct the GUI to update itself
@@ -224,6 +232,16 @@ private:
         // SessionState Properties
         QList<QDBusObjectPath> SessionStateRunList(const QDBusObjectPath session);
         QList<QDBusObjectPath> SessionStateJobList(const QDBusObjectPath session);
+        void SetSessionStateMetadata(const QDBusObjectPath session, \
+                                     const QString& flags, \
+                                     const QString& running_job_name, \
+                                     const QString& title,
+                                     const QByteArray& app_blob);
+
+        const QVariantMap SessionStateMetadata(const QDBusObjectPath session);
+        // Encode/decode of internal state of this class
+        void EncodeGuiEngineStateAsJSON(void);
+        void DecodeGuiEngineStateFromJSON(void);
 
         void UpdateJobResult(const QDBusObjectPath session, \
                                         const QDBusObjectPath &job_path, \
@@ -334,6 +352,13 @@ private:
         */
         bool m_running_manual_job;
 
+        /* Records whether the results of running the tests have been submitted
+        * Note that depending on the GUI, this may simply mean saved to disk,
+        * or submitted to a validation website. it may not even matter. But this
+        * is here in order to allow the state to be preserved by plainbox
+        * in a saved session.
+        */
+        bool m_submitted;
 // Used by the test program
 protected:
         bool m_local_jobs_done;
