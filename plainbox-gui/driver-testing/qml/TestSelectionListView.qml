@@ -325,6 +325,7 @@ Rectangle {
             }
 
             // Add up all the selected tests in a group
+            // FIXME: function unused, See comment in qml/TestSelectionSuiteDelegate.qml
             function getEstimatedTime(section){
                 var estTimeStr = "";
                 var estTimeInt=0;
@@ -400,13 +401,11 @@ Rectangle {
             function updateListSummary(testItem, sel){
                 if (sel){
                     totalTests += 1;
-                    totalTimeEst = parseInt(totalTimeEst ) + parseInt(testItem.duration);
                     if (testItem.type === "Manual")
                         totalManualTests += 1;
                 }
                 else {
                     totalTests -= 1;
-                    totalTimeEst = parseInt(totalTimeEst ) - testItem.duration;
                     if (testItem.type === "Manual")
                         totalManualTests -= 1
                  }
@@ -440,7 +439,6 @@ Rectangle {
                 }
                 totalTests = testCnt;
                 totalManualTests = manualCnt;
-                totalTimeEst =  estTimeInt;
 
                 /* We should call into guiengine to find out the number of
                  * implicit tests (really we will get a count of ALL of them...
@@ -459,10 +457,6 @@ Rectangle {
 
                 // All the above lets us count the number of real jobs
                 totalImplicitTests = total_generated_tests - totalTests;
-
-                var total_duration = guiEngine.GetEstimatedDuration();
-                console.log("Estimated duration (automated tests):", total_duration["automated_duration"], "s")
-                console.log("Estimated duration (manual tests)   :", total_duration["manual_duration"], "s")
 
                 // Not strictly needed here
                 var end = new Date();

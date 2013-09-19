@@ -32,7 +32,6 @@ Page {
     title: i18n.tr("Choose tests to run on your system:")
 
     property var currentTestItem;
-    property int totalTimeEst: 0
     property int totalTests: 6
     property int totalManualTests: 2
     property int totalImplicitTests: 999
