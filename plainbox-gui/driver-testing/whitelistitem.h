@@ -20,6 +20,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef WHITELISTITEM_H
+#define WHITELISTITEM_H
+
 #include <QObject>
 #include "listmodel.h"
 #include "../gui-engine/gui-engine.h"
@@ -69,3 +72,5 @@ private:
     // Uniquely and persistently identifies this whitelist
     QString m_path;
 };
+
+#endif // WHITELISTITEM_H

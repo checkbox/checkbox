@@ -25,63 +25,16 @@
 #include <QQmlExtensionPlugin>
 #include <QDir>
 #include <QtQml>
+
 #include "qtquick2applicationviewer.h"
 #include "commandtool.h"
 #include "listmodel.h"
 #include "whitelistitem.h"
 #include "testitem.h"
 #include "testitemmodel.h"
+#include "WhiteListModelFactory.h"
 
 #include "../gui-engine/gui-engine.h"
-
-// Load up test suites here (it can be moved to another file)
-ListModel* CreateWhiteListModel()
-{
-    qDebug("CreateWhiteListModel()");
-
-    ListModel *model = new ListModel(new WhiteListItem, qApp);
-
-    const QString engname("");
-
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        // NB: Model will be empty at this point
-        return model;
-    }
-
-    QMap<QDBusObjectPath,QString> paths_and_names = \
-            myengine->GetWhiteListPathsAndNames();
-
-    QMap<QDBusObjectPath,QString>::const_iterator iter = paths_and_names.begin();
-
-    while(iter != paths_and_names.end() ) {
-
-        qDebug() << iter.key().path();
-
-        qDebug() << " Name: " << iter.value();
-
-        model->appendRow(new WhiteListItem(iter.value(), \
-                                           iter.key().path(), \
-                                           model));
-        iter++;
-    }
-
-    qDebug("CreateWhiteListModel() - Done");
-
-    return model;
-}
-
-// Load up test suites here (it can be moved to another file)
-ListModel* CreateTestListModel(ListModel* model=NULL )
-{
-    qDebug("CreateTestListModel()");
-
-    TestItemModel factory;
-
-    return factory.CreateTestListModel(model);
-}
 
 int main(int argc, char *argv[])
 {
@@ -90,54 +43,57 @@ int main(int argc, char *argv[])
     qmlRegisterType<WhiteListItem>("Ubuntu.IhvTest", 0, 1, "WhiteListItem");
     qmlRegisterType<TestItem>("Ubuntu.IhvTest", 0, 1, "TestItem");
 
-    QDir pluginsDir;
-    pluginsDir.setPath("../lib/driver-testing/plugins");
-
-    QPluginLoader loader("../lib/driver-testing/plugins/libgui-engine.so");
-
-    QQmlExtensionPlugin *plugin = qobject_cast<QQmlExtensionPlugin*>(loader.instance());
-    if (plugin)
-        plugin->registerTypes("GuiEngine");
+    QtQuick2ApplicationViewer viewer;
 
     // Create our GuiEngine and hang it on QGuiApplication
     GuiEngine guiengine((QObject*)&app);
 
+    // Register the GuiEngine with the QML runtime
+    viewer.rootContext()->setContextProperty("guiEngine", &guiengine);
+
     // Initialise - connect to Plainbox
     guiengine.Initialise();
 
-    QtQuick2ApplicationViewer viewer;
 
-    // WhiteList/Suite
-    ListModel* whitelistmodel = CreateWhiteListModel();
-    if (!whitelistmodel) {
-        qDebug("Cannot create whitelist model");
-        exit(1);
-    }
+    // WhiteList Item Model Factory and placeholder model registered with QML engine
+    WhiteListModelFactory whitelistfactory;
+    viewer.rootContext()->setContextProperty("whitelistitemFactory",&whitelistfactory);
 
-    /* The test list model needs to be further updated by running all the "local"
-     jobs. But this is not yet ready.
+    /* We need a placeholder object here or the QML integration is unhappy
+     * that this isnt a recognisable Qt object.
      */
-    ListModel* testlistmodel = CreateTestListModel();
-    if (!testlistmodel) {
-        qDebug("Cannot create Test List Model");
+    ListModel* whitelistmodel = new ListModel(new WhiteListItem, qApp);
+    if (!whitelistmodel) {
+        // Essentially we are likely out of memory here
+        qDebug("Cannot create whitelist model");
         exit(1);
     }
 
     viewer.rootContext()->setContextProperty("whiteListModel", whitelistmodel);
 
-    // List of Tests
+
+
+    // Test Item Model Factory and placeholder model registered with QML engine
+    TestItemModel testitemFactory;
+    viewer.rootContext()->setContextProperty("testitemFactory",&testitemFactory);
+
+    /* We need a placeholder object here or the QML integration is unhappy
+     * that this isnt a recognisable Qt object.
+     */
+    ListModel* testlistmodel = new ListModel(new TestItem, qApp); //CreateTestListModel();
+    if (!testlistmodel) {
+        // Essentially we are likely out of memory here
+        qDebug("Cannot create testlist model");
+        exit(1);
+    }
+
     viewer.rootContext()->setContextProperty("testListModel", testlistmodel);
 
+
+
+    // We may not need this at all
     CommandTool cmdTool;
     viewer.rootContext()->setContextProperty("cmdTool", &cmdTool);
-
-    // GuiEngine
-    viewer.rootContext()->setContextProperty("guiEngine", &guiengine);
-
-    // create a factory object to give us our test model
-    TestItemModel testitemFactory;
-
-    viewer.rootContext()->setContextProperty("testitemFactory",&testitemFactory);
 
     // Now, load the main page
     viewer.setMainQmlFile(QStringLiteral("../share/driver-testing/qml/driver-testing.qml"));
