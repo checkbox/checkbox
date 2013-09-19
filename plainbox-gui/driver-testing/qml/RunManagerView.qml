@@ -116,11 +116,10 @@ Page {
                  */
                 progress.value = current_job_index+1; // from onUpdateGuiObjects
 
-                var testname =  testListModel.get(updater.testIndex).testname;
                 progress.title = "Running " + (progress.value)
                         + " of "+ progress.maxValue
                         + "  (" + utils.formatElapsedTime(timenow - updater.startTime) + ")"
-                        + "   " + testname;
+                        + "   " + test_name;
             }
 
             // from gui-engine.h for reference:
@@ -170,11 +169,10 @@ Page {
                  */
                 progress.value = current_job_index+1; // from onUpdateGuiObjects
 
-                var testname =  testListModel.get(updater.testIndex).testname;
-                progress.title = "Running " + (progress.value)
+                progress.title = "Completed " + (progress.value)
                         + " of "+ progress.maxValue
                         + "  (" + utils.formatElapsedTime(stopTime - updater.startTime) + ")"
-                        + "   " + testname;
+                        + "   " + test_name;
             }
         }
     }
