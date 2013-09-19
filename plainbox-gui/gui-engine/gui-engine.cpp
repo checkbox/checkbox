@@ -136,19 +136,6 @@ bool GuiEngine::Initialise(void)
         }
 */
 
-        // Connect the JobResultAvailable signal receiver
-        if (!bus.connect(PBBusName,\
-                         NULL,\
-                         PBInterfaceName,\
-                         "JobResultAvailable",\
-                         this,\
-                         SLOT(CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage)))) {
-
-            qDebug("Failed to connect slot for JobResultAvailable events");
-
-            return false;
-        }
-
         enginestate = READY;
     }
 
@@ -675,6 +662,8 @@ void GuiEngine::RunJobs(void)
     // Tell the GUI we are running the jobs
     emit jobsBegin();
 
+    // Now connect the signal receivers
+    ConnectJobReceivers();
     /* Start tracking which Job we are running, from the beginning
     * -1 to get index 0 because it normally runs at the end of a job,
     * but this will not necessarily be true for re-runs, hence why
@@ -718,8 +707,18 @@ void GuiEngine::RunLocalJobs(void)
      */
 
     // We rely upon an already created session; either created when
-    // the startup code looked for a previous session file, OR
-    // after the startup code resumed a previous session
+
+    // Connect the LocalJobResultAvailable signal receiver
+    QDBusConnection bus = QDBusConnection ::sessionBus();
+    if (!bus.connect(PBBusName,\
+                     NULL,\
+                     PBInterfaceName,\
+                     "JobResultAvailable",\
+                     this,\
+                     SLOT(CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage)))) {
+
+        qDebug("Failed to connect slot for JobResultAvailable events");
+    }
 
     // to get only the *jobs* that are designated by the whitelist.
     m_desired_job_list = GenerateDesiredJobList(m_job_list);
@@ -755,6 +754,58 @@ void GuiEngine::RunLocalJobs(void)
     qDebug("GuiEngine::RunLocalJobs - Done");
 }
 
+void GuiEngine::ConnectJobReceivers(void)
+{
+    qDebug("ConnectJobReceivers");
+
+    // Connect the AskForOutcome signal receiver
+    QDBusConnection bus = QDBusConnection ::sessionBus();
+    if (!bus.connect(PBBusName,\
+                  NULL,\
+                  PBInterfaceName,\
+                  "AskForOutcome",\
+                  this,\
+                  SLOT(CatchallAskForOutcomeSignalsHandler(QDBusMessage)))) {
+
+     qDebug("Failed to connect slot for AskForOutcome events");
+
+     // TODO - Emit error for the gui
+
+     return;
+    }
+
+    // Connect the IOLogGenerated signal receiver
+    if (!bus.connect(PBBusName,\
+                  NULL,\
+                  PBInterfaceName,\
+                  "IOLogGenerated",\
+                  this,\
+                  SLOT(CatchallIOLogGeneratedSignalsHandler(QDBusMessage)))) {
+
+     qDebug("Failed to connect slot for IOLogGenerated events");
+
+     // TODO - Emit error for the gui
+
+     return;
+    }
+
+    // Connect the JobResultAvailable signal receiver
+    if (!bus.connect(PBBusName,\
+                     NULL,\
+                     PBInterfaceName,\
+                     "JobResultAvailable",\
+                     this,\
+                     SLOT(CatchallJobResultAvailableSignalsHandler(QDBusMessage)))) {
+
+        qDebug("Failed to connect slot for JobResultAvailable events");
+
+        // TODO - Emit error for the gui
+
+        return;
+    }
+
+    qDebug("GuiEngine::ConnectJobReceivers - Done");
+}
 /* Saves:
  * m_rerun_list
  * <TBD>
@@ -1893,38 +1944,8 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
         }
     }
 
-    // Connect the AskForOutcome signal receiver
+    // Disconnect the JobResultAvailable local job signal receiver
     QDBusConnection bus = QDBusConnection ::sessionBus();
-    if (!bus.connect(PBBusName,\
-                     NULL,\
-                     PBInterfaceName,\
-                     "AskForOutcome",\
-                     this,\
-                     SLOT(CatchallAskForOutcomeSignalsHandler(QDBusMessage)))) {
-
-        qDebug("Failed to connect slot for AskForOutcome events");
-
-        // TODO - Emit error for the gui
-
-        return;
-    }
-
-    // Connect the IOLogGenerated signal receiver
-    if (!bus.connect(PBBusName,\
-                     NULL,\
-                     PBInterfaceName,\
-                     "IOLogGenerated",\
-                     this,\
-                     SLOT(CatchallIOLogGeneratedSignalsHandler(QDBusMessage)))) {
-
-        qDebug("Failed to connect slot for IOLogGenerated events");
-
-        // TODO - Emit error for the gui
-
-        return;
-    }
-
-    // Connect the JobResultAvailable signal receiver
     if (!bus.disconnect(PBBusName,\
                      NULL,\
                      PBInterfaceName,\
@@ -1933,21 +1954,6 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
                      SLOT(CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage)))) {
 
         qDebug("Failed to disconnect slot for JobResultAvailable events");
-
-        // TODO - Emit error for the gui
-
-        return;
-    }
-
-    // Connect the JobResultAvailable signal receiver
-    if (!bus.connect(PBBusName,\
-                     NULL,\
-                     PBInterfaceName,\
-                     "JobResultAvailable",\
-                     this,\
-                     SLOT(CatchallJobResultAvailableSignalsHandler(QDBusMessage)))) {
-
-        qDebug("Failed to connect slot for JobResultAvailable events");
 
         // TODO - Emit error for the gui
 

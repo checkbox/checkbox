@@ -227,6 +227,8 @@ private:
 
         QDBusObjectPath CreateSession(QList<QDBusObjectPath> job_list);
 
+
+        void ConnectJobReceivers(void);
         QList<QDBusObjectPath> GetLocalJobs(void);
 
         QList<QDBusObjectPath> GetAllJobs(void);
