@@ -46,6 +46,26 @@ Page {
         }
     }
 
+    function formatTotalTime(s){
+        var estTimeStr = ""
+        if (s == 0)
+            estTimeStr = "0 min";
+        else if (s < 0)
+            estTimeStr = "N/A";
+        else if (s / 60 < 1)
+            estTimeStr = "< 1 min";
+        else if (Math.round(s / 60) < 60){
+            var durMinutes = Math.round(s / 60);
+            estTimeStr = durMinutes.toString() + " min";
+        }
+        else {
+            var hr = Math.round(s / (60 * 60));
+            s -= hr * (60 * 60);
+            estTimeStr = hr + " h " + Math.round(s / 60) + " min"
+        }
+        return  estTimeStr;
+    }
+
     // Test List Header Bar
     Item {
         id: testlistheaders
@@ -206,18 +226,6 @@ Page {
         Dialog{
             id: dialog
             title: i18n.tr("Selection Stats")
-            function formatTotalTime(){
-                var estTimeStr = ""
-                if (totalTimeEst == 0)
-                    estTimeStr = i18n.tr("0");
-                else if (totalTimeEst/60 < 1)
-                    estTimeStr = i18n.tr("< 1 min");
-                else {
-                    var durMinutes = Math.round(totalTimeEst/60);
-                    estTimeStr = durMinutes.toString() + i18n.tr(" min");
-                }
-                return  estTimeStr;
-            }
             Rectangle {
                 id: statrect
                 color: "transparent"
