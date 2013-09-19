@@ -707,6 +707,8 @@ void GuiEngine::RunLocalJobs(void)
      */
 
     // We rely upon an already created session; either created when
+    // the startup code looked for a previous session file, OR
+    // after the startup code resumed a previous session
 
     // Connect the LocalJobResultAvailable signal receiver
     QDBusConnection bus = QDBusConnection ::sessionBus();
