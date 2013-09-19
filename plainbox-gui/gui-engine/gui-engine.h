@@ -236,6 +236,7 @@ private:
         QStringList UpdateDesiredJobList(const QDBusObjectPath session, \
                                          QList<QDBusObjectPath> desired_job_list);
 
+        void SessionResume(const QDBusObjectPath session);
         // SessionState Properties
         QList<QDBusObjectPath> SessionStateRunList(const QDBusObjectPath session);
         QList<QDBusObjectPath> SessionStateJobList(const QDBusObjectPath session);

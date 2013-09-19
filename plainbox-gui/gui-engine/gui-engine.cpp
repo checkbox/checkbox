@@ -960,6 +960,10 @@ const QString GuiEngine::GuiPreviousSessionFile(void)
 
     QString previous = PreviousSessionFile(m_session);
 
+    if (!previous.isEmpty()) {
+        SessionResume(m_session);
+    }
+
     return previous;
 }
 
@@ -984,6 +988,18 @@ const QString GuiEngine::PreviousSessionFile(const QDBusObjectPath session)
     QDBusReply<QString> reply = iface.call("PreviousSessionFile");
 
     return reply;
+}
+
+void GuiEngine::SessionResume(const QDBusObjectPath session)
+{
+    qDebug() << "GuiEngine::SessionResume() ";
+
+    QDBusInterface iface(PBBusName, \
+                         session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+
+    iface.call("Resume");
 }
 
 bool GuiEngine::WhiteListDesignates(const QDBusObjectPath white_opath, \
