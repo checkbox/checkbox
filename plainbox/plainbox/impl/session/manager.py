@@ -30,8 +30,9 @@ from :class:`~plainbox.impl.session.storage.SessionStorageRepository`,
 and :class:`~plainbox.impl.session.suspend.SessionResumeHelper`.
 """
 
-import os
+import errno
 import logging
+import os
 
 from plainbox.impl.session.resume import SessionResumeHelper
 from plainbox.impl.session.state import SessionState
@@ -169,9 +170,9 @@ class SessionManager:
         return cls(state, storage)
 
     @classmethod
-    def load_session(cls, job_list, storage):
+    def load_session(cls, job_list, storage, early_cb=None):
         """
-        Open a previously checkpointed session.
+        Load a previously checkpointed session.
 
         This method allows one to re-open a session that was previously
         created by :meth:`SessionManager.checkpoint()`
@@ -192,6 +193,13 @@ class SessionManager:
             before it was saved.
         :ptype storage:
             :class:`~plainbox.impl.session.storage.SessionStorage`
+        :param early_cb:
+            A callback that allows the caller to "see" the session object
+            early, before the bulk of resume operation happens. This method can
+            be used to register callbacks on the new session before this method
+            call returns. The callback accepts one argument, session, which is
+            being resumed. This is being passed directly to
+            :meth:`plainbox.impl.session.resume.SessionResumeHelper.resume()`
         :raises:
             Anything that can be raised by
             :meth:`~plainbox.impl.session.storage.SessionStorage.
@@ -200,9 +208,16 @@ class SessionManager:
         :returns:
             Fresh instance of :class:`SessionManager`
         """
-        logger.debug("SessionManager.open_session()")
-        data = storage.load_checkpoint()
-        state = SessionResumeHelper(job_list).resume(data)
+        logger.debug("SessionManager.load_session()")
+        try:
+            data = storage.load_checkpoint()
+        except IOError as exc:
+            if exc.errno == errno.ENOENT:
+                state = SessionState(job_list)
+            else:
+                raise
+        else:
+            state = SessionResumeHelper(job_list).resume(data, early_cb)
         return cls(state, storage)
 
     def checkpoint(self):

@@ -1,4 +1,29 @@
-checkbox (0.16.10) UNRELEASED; urgency=low
+checkbox (0.16.11) UNRELEASED; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
+  * Removed references to Ubuntu Friendly due to sunsetting of the project.
+    (LP: #1224533)
+  * Ensured that pactl commands are run on a properly unlocalized environment
+    (LP: #1201126)
+  
+  [ Jeff Lane ]
+  * scripts/storage_test: test now exits with a warning if the drive is not
+    mounted prior to testing (LP: #1224820)
+
+  [ Brendan Donegan ]
+  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
+    in fwts and change version dependency to latest version (LP: #1218993)
+  * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
+    former is deprecated (LP: #1224854)
+  * jobs/virtualization.txt.in - remove virtualization-check test and the 
+    virt_check script (LP: #1227071)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
+
+checkbox (0.16.10) saucy; urgency=low
 
   * scripts/memory_compare: output now displays kB properly, not bytes labled
     as kB. (LP: #1217506)
@@ -31,7 +56,7 @@ checkbox (0.16.10) UNRELEASED; urgency=low
   * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
     in fwts and change version dependency to latest version (LP: #1218993)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 23 Aug 2013 14:22:13 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 06 Sep 2013 16:51:17 +0100
 
 checkbox (0.16.9) saucy; urgency=low
 

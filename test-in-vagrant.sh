@@ -5,6 +5,11 @@ mkdir -p vagrant-logs
 TIMING=vagrant-logs/timing.dat
 VAGRANT_DONE_ACTION=${VAGRANT_DONE_ACTION:-destroy}
 
+
+pastebinit() {
+    /usr/bin/python /usr/bin/pastebinit "$@";
+}
+
 test -z $(which vagrant) && echo "You need to install vagrant first" && exit
 
 # When running in tarmac, the state file .vagrant, will be removed when the

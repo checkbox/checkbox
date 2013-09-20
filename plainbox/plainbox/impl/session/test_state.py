@@ -383,8 +383,11 @@ class SessionStateReactionToJobResultTests(TestCase):
 
     def test_normal_job_result_updates(self):
         # This function checks what happens when a JobResult for job A is
-        # presented to the session.
-        result_A = MemoryJobResult({})
+        # presented to the session. Set the outcome to a "different" value as
+        # the initial job result was pretty much identical and the comparison
+        # below would fail to work as the update would have been silently
+        # ignored.
+        result_A = MemoryJobResult({'outcome': 'different'})
         self.session.update_job_result(self.job_A, result_A)
         # As before the result should be stored as-is
         self.assertIs(self.job_state('A').result, result_A)
@@ -554,3 +557,18 @@ class SessionMetadataTests(TestCase):
         self.assertEqual(metadata.flags, set(["f1", "f2"]))
         metadata.running_job_name = "name"
         self.assertEqual(metadata.running_job_name, "name")
+
+    def test_app_blob_default_value(self):
+        metadata = SessionMetaData()
+        self.assertIs(metadata.app_blob, None)
+
+    def test_app_blob_assignment(self):
+        metadata = SessionMetaData()
+        metadata.app_blob = b'blob'
+        self.assertEqual(metadata.app_blob, b'blob')
+        metadata.app_blob = None
+        self.assertEqual(metadata.app_blob, None)
+
+    def test_app_blob_kwarg_to_init(self):
+        metadata = SessionMetaData(app_blob=b'blob')
+        self.assertEqual(metadata.app_blob, b'blob')

@@ -98,7 +98,7 @@ class KVMTest(object):
 
         params = \
             '''
-            kvm -m {0} -net nic -net user,net={1},host={2},
+            qemu-system-x86_64 -m {0} -net nic -net user,net={1},host={2},
             hostfwd={3} -drive file={4},if=virtio -display none -nographic
             '''.format(
             "256",

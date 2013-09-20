@@ -69,6 +69,12 @@ considerations mentioned above. Generated jobs are re-created from whatever
 results that created them. The framework has special support code for knowing
 how to resume in light of the fact that some jobs might be generated during
 the resume process itself.
+
+Serialization format versions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1) The initial version
+2) Same as '1' but suspends
+   :attr:`plainbox.impl.session.state.SessionMetaData.app_blob`
 """
 
 import gzip
@@ -82,14 +88,18 @@ from plainbox.impl.result import MemoryJobResult
 logger = logging.getLogger("plainbox.session.suspend")
 
 
-class SessionSuspendHelper:
+class SessionSuspendHelper1:
     """
     Helper class for computing binary representation of a session.
 
     The helper only creates a bytes object to save. Actual saving should
     be performed using some other means, preferably using
     :class:`~plainbox.impl.session.storage.SessionStorage`.
+
+    This class creates version '1' snapshots.
     """
+
+    VERSION = 1
 
     def suspend(self, session):
         """
@@ -122,14 +132,14 @@ class SessionSuspendHelper:
 
             ``version``
                 A integral number describing the version of the representation.
-                Currently only the first (1) version is defined.
+                See the version table for details.
 
             ``session``
                 Representation of the session as computed by
                 :meth:`_repr_SessionState()`
         """
         return {
-            "version": 1,
+            "version": self.VERSION,
             "session": self._repr_SessionState(session),
         }
 
@@ -159,21 +169,7 @@ class SessionSuspendHelper:
 
             ``metadata``:
                 The representation of meta-data associated with the session
-                state object. This is encoded as a dictionary
-                with the following items:
-
-                    ``title``:
-                        Title of the session. Arbitrary text provided by
-                        the application.
-
-                    ``flags``:
-                        List of strings that enumerate the flags the session
-                        is in. There are some well-known flags but this list
-                        can have any items it it.
-
-                    ``running_job_name``:
-                        Name of the job that was about to be executed before
-                        snapshotting took place. Can be None.
+                state object.
         """
         return {
             "jobs": {
@@ -200,6 +196,21 @@ class SessionSuspendHelper:
             JSON-friendly representation.
         :rtype:
             dict
+
+        The result is a dictionary with the following items:
+
+            ``title``:
+                Title of the session. Arbitrary text provided by the
+                application.
+
+            ``flags``:
+                List of strings that enumerate the flags the session is in.
+                There are some well-known flags but this list can have any
+                items it it.
+
+            ``running_job_name``:
+                Name of the job that was about to be executed before
+                snapshotting took place. Can be None.
         """
         return {
             "title": obj.title,
@@ -319,3 +330,57 @@ class SessionSuspendHelper:
         """
         return [obj[0], obj[1],
                 base64.standard_b64encode(obj[2]).decode("ASCII")]
+
+
+class SessionSuspendHelper2(SessionSuspendHelper1):
+    """
+    Helper class for computing binary representation of a session.
+
+    The helper only creates a bytes object to save. Actual saving should
+    be performed using some other means, preferably using
+    :class:`~plainbox.impl.session.storage.SessionStorage`.
+
+    This class creates version '2' snapshots.
+    """
+
+    VERSION = 2
+
+    def _repr_SessionMetaData(self, obj):
+        """
+        Compute the representation of :class:`SessionMetaData`.
+
+        :returns:
+            JSON-friendly representation.
+        :rtype:
+            dict
+
+        The result is a dictionary with the following items:
+
+            ``title``:
+                Title of the session. Arbitrary text provided by the
+                application.
+
+            ``flags``:
+                List of strings that enumerate the flags the session is in.
+                There are some well-known flags but this list can have any
+                items it it.
+
+            ``running_job_name``:
+                Name of the job that was about to be executed before
+                snapshotting took place. Can be None.
+            ``app_blob``:
+                Arbitrary application specific binary blob encoded with base64.
+                This field may be null.
+        """
+        data = super(SessionSuspendHelper2, self)._repr_SessionMetaData(obj)
+        if obj.app_blob is None:
+            data['app_blob'] = None
+        else:
+            data['app_blob'] = base64.standard_b64encode(
+                obj.app_blob
+            ).decode("ASCII")
+        return data
+
+
+# Alias for the most recent version
+SessionSuspendHelper = SessionSuspendHelper2
