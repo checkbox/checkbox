@@ -30,10 +30,12 @@ const QJsonObject PBJsonUtils::QDBusObjectPathArrayToJson(\
 
     QJsonArray jsonarray;
 
-    for (int i=0; i < opath_list.count();i++) {
-        QString path = opath_list.at(i).path();
+    if ( opath_list.count() ) {
+        for (int i=0; i < opath_list.count();i++) {
+            QString path = opath_list.at(i).path();
 
-        jsonarray.append(path);
+            jsonarray.append(path);
+        }
     }
 
     QJsonValue value(jsonarray);

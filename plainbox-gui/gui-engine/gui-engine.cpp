@@ -58,9 +58,11 @@ GuiEngine::GuiEngine( QObject*parent ) :
     pb_objects(NULL),
     valid_pb_objects(false),
     job_tree(NULL),
+    m_current_job_index(-1),    // -1 ensures correct NextRunJobIndex from clean
     m_running(true),
     m_waiting_result(false),
     m_running_manual_job(false),
+    m_submitted(false),
     m_local_jobs_done(false),   // for QtTest
     m_jobs_done(false),         // for QtTest
     m_testing_manual_job(false) // for QtTest
@@ -662,14 +664,20 @@ void GuiEngine::RunJobs(void)
     // Tell the GUI we are running the jobs
     emit jobsBegin();
 
+    // Collect any pre-existing results (from previous resume)
+    //ResumeGetOutcomes();
+
     // Now connect the signal receivers
     ConnectJobReceivers();
+
     /* Start tracking which Job we are running, from the beginning
     * -1 to get index 0 because it normally runs at the end of a job,
     * but this will not necessarily be true for re-runs, hence why
     * we need to call NextRunJobIndex() and not just assume 0.
     */
     m_current_job_index = NextRunJobIndex(-1);
+
+    qDebug("computed next job");
 
     // ok, this is new. we need to find the first job to really run
 
@@ -756,6 +764,105 @@ void GuiEngine::RunLocalJobs(void)
     qDebug("GuiEngine::RunLocalJobs - Done");
 }
 
+/* Suspend/resume functionality
+ *
+ * We need to repopulate:
+ * m_run_list;
+ * pb_objects;
+ * the testitemmodel in the GuiEngine
+ * job_tree
+ * m_current_job_index
+ * m_jsm
+ * m_running
+ * m_running_manual_job
+ * tests
+ *
+ * We can recover
+ * job_list
+ * run_list
+ *
+ *From /plainbox/plainbox/impl/session/state.py:
+ * metadata: String flags, String running_job_name, String title
+ *
+ * So, dev tasks are:
+ * Ensure preservation of metadata first and foremost
+ * Functions to recover the metadata and other session info
+ * Begin the re-construction of the internal state of the gui (several pieces)
+*/
+ void GuiEngine::GuiResumeSession(const bool re_run)
+ {
+    qDebug() << "GuiEngine::GuiResumeSession( " << (re_run ? "true":"false") << ") ";
+
+    qDebug() << m_session.path() ;
+
+    /* Get the Session State properties
+     *
+     * We can recover:
+     * desired_job_list
+     * job_list
+     * run_list
+     * job_state_map
+     *
+     */
+
+    m_desired_job_list = SessionStateDesiredJobList(m_session);
+    m_job_list = SessionStateJobList(m_session);
+    m_run_list = SessionStateRunList(m_session);
+
+    if (m_desired_job_list.isEmpty()){
+        qDebug("Resumed session has no desired_job_list");
+        // fixme - a nice gui error message would be welcome here
+        return;
+    }
+
+    if (m_run_list.isEmpty()) {
+        qDebug("Resumed session has no run_list");
+        // fixme - a nice gui error message would be welcome here
+        return;
+    }
+
+    // Get the interim Job Results, this may take a few seconds as we dont have any shortcuts
+    GetJobStateMap();
+
+    GetJobStates();
+
+    GetJobResults();
+
+    // This should recover m_rerun_list for us
+    DecodeGuiEngineStateFromJSON();
+
+    // Having recoved the re-run list, this should be sufficent to skip
+    // all the previous tests and to retry failed test.
+    if (!re_run) {
+
+        // FIXME - set the outcome of this test
+
+        // Lets skip this one
+        m_rerun_list.pop_front();
+    }
+
+    qDebug() << "GuiEngine::GuiResumeSession() - Done";
+ }
+
+ // Called when RunManagerListView is setup
+void GuiEngine::ResumeGetOutcomes(void)
+{
+    qDebug("GuiEngine::GuiResumeGetOutcomes");
+
+    // pretend we have started the jobs
+
+    // This fixes the results display
+    for(int i=0; i<m_current_job_index; i++) {
+        int outcome = GetOutcomeFromJobPath(m_run_list.at(i));
+
+        // Update the GUI so it knows what the job outcome was
+        emit updateGuiEndJob(m_run_list.at(i).path(), \
+                         i, \
+                         outcome,
+                             "JobNameFromObjectPath(i)");
+    }
+}
+
 void GuiEngine::ConnectJobReceivers(void)
 {
     qDebug("ConnectJobReceivers");
@@ -826,10 +933,18 @@ void GuiEngine::EncodeGuiEngineStateAsJSON(void)
 
     QJsonDocument jsd(guienginestate_js);
 
+    QString current_job_id;
+
+    if (m_run_list.count() > m_current_job_index) {
+        current_job_id = m_run_list.at(m_current_job_index).path();
+    } else {
+        current_job_id = "none";
+    }
+
     // Preserve our properties
     SetSessionStateMetadata(m_session,\
                             m_submitted ? PB_FLAG_SUBMITTED: PB_FLAG_INCOMPLETE,\
-                            m_run_list.at(m_current_job_index).path(),
+                            current_job_id,
                             GUI_ENGINE_NAME_STR,
                             jsd.toJson());
 
@@ -888,12 +1003,12 @@ void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
                                         const QString &title, \
                                         const QByteArray& app_blob)
 {
-//    qDebug() << "GuiEngine::SetSessionStateMetadata() \n" \
-//             << " " << session.path() \
-//             << " " << flags \
-//             << " " << running_job_name \
-//             << " " << title \
-//             << " " << app_blob;
+    qDebug() << "GuiEngine::SetSessionStateMetadata() \n" \
+             << " " << session.path() \
+             << "\nflags           : " << flags \
+             << "\nrunning_job_name: " << running_job_name \
+             << "\ntitle           : " << title \
+             << "\napp_blob        : " << app_blob;
 
     QMap<QString,QVariant> metadata;
 
@@ -2046,6 +2161,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
             outcome, \
             JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
+    // Ok, lets note that we've run this, remove it from rerun
+    m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
+
     // Move to the next job
     m_current_job_index = NextRunJobIndex(m_current_job_index);
 
@@ -2078,6 +2196,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     // nothing should be left for re-run
     m_rerun_list.clear();
+
+    // Finaly note that its all over
+    EncodeGuiEngineStateAsJSON();
 
     // Tell the GUI its all finished
     emit jobsCompleted();
@@ -2178,6 +2299,55 @@ int GuiEngine::GetOutcomeFromJobResultPath(const QDBusObjectPath &opath)
     result_node->AddNode(result_node, opath);
     outcome = result_node->outcome();
     delete result_node;
+
+    qDebug() << "Real outcome " << outcome;
+
+    // convert outcome string into a result number
+    if (outcome.compare(JobResult_OUTCOME_PASS) == 0 ) {
+        return PBTreeNode::PBJobResult_Pass;
+    }
+
+    if (outcome.compare(JobResult_OUTCOME_FAIL) == 0) {
+        return PBTreeNode::PBJobResult_Fail;
+    }
+
+
+    if (outcome.compare(JobResult_OUTCOME_SKIP) == 0) {
+        return PBTreeNode::PBJobResult_Skip;
+    }
+
+    if (outcome.compare(JobResult_OUTCOME_NONE) == 0) {
+        return PBTreeNode::PBJobResult_None;
+    }
+
+    // Machine could not otherwise run it
+    return PBTreeNode::PBJobResult_DepsNotMet;
+}
+
+int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
+{
+    QString outcome = "No idea";
+
+   /* first, we need to go through the m_job_state_list to find the
+    * to obtain the actual result.
+    * relevant job to result mapping. then we go through m_job_state_results
+    */
+    QDBusObjectPath resultpath;
+
+    for(int i=0; i < m_job_state_list.count(); i++) {
+        if (m_job_state_list.at(i)->job().path().compare(opath.path()) == 0) {
+            // ok, we found the right statelist entry
+            resultpath = m_job_state_list.at(i)->result();
+            break;
+        }
+    }
+     // Now to find the right result object
+    for(int i=0;i<m_job_state_results.count();i++) {
+        if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
+            outcome = m_job_state_results.at(i)->outcome();
+            break;
+        }
+    }
 
     qDebug() << "Real outcome " << outcome;
 

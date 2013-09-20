@@ -162,6 +162,9 @@ public slots:
         // Session management from the GUI
         void GuiSessionRemove(void);
         const QString GuiPreviousSessionFile(void);
+
+        // Retrieve all the previous session data
+        void GuiResumeSession(const bool re_run);
         void GuiCreateSession(void);
 
 public:
@@ -185,6 +188,9 @@ public:
         void SessionPersistentSave(const QDBusObjectPath session);
         void SessionRemove(const QDBusObjectPath session);
         const QString PreviousSessionFile(const QDBusObjectPath session);
+
+        // Ensure the RunManager view is updated with the recovered data
+        void ResumeGetOutcomes(void);
 
 signals:
         // Instruct the GUI to update itself
@@ -272,6 +278,7 @@ private:
 
         // Convenience functions
         int GetOutcomeFromJobResultPath(const QDBusObjectPath &opath);
+        int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
 
         const QString ConvertOutcome(const int outcome);
 

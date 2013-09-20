@@ -65,6 +65,9 @@ Page {
                 // We need this to show the list of stuff
                 testitemFactory.CreateTestListModel(testListModel);
 
+		// Prepare for the run
+                guiEngine.GuiResumeSession(true /* re-run last test */);
+
                 mainView.state = "RUNMANAGER"
             }
         }
@@ -79,6 +82,9 @@ Page {
 
                 // We need this to show the list of stuff
                 testitemFactory.CreateTestListModel(testListModel);
+
+		// Prepare for the run
+                guiEngine.GuiResumeSession(false /* re-run last test */);
 
                 mainView.state = "RUNMANAGER"
             }
