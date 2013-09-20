@@ -91,9 +91,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<TestItem>("Ubuntu.IhvTest", 0, 1, "TestItem");
 
     QDir pluginsDir;
-    pluginsDir.setPath("../lib/driver-testing/plugins");
+    pluginsDir.setPath("../lib/canonical-driver-test-suite/plugins");
 
-    QPluginLoader loader("../lib/driver-testing/plugins/libgui-engine.so");
+    QPluginLoader loader("../lib/canonical-driver-test-suite/plugins/libgui-engine.so");
 
     QQmlExtensionPlugin *plugin = qobject_cast<QQmlExtensionPlugin*>(loader.instance());
     if (plugin)
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
     viewer.rootContext()->setContextProperty("testitemFactory",&testitemFactory);
 
     // Now, load the main page
-    viewer.setMainQmlFile(QStringLiteral("../share/driver-testing/qml/driver-testing.qml"));
+    viewer.setMainQmlFile(QStringLiteral("../share/canonical-driver-test-suite/qml/canonical-driver-test-suite.qml"));
 
     // Ensure a reasonable minimum size for this window
     viewer.setMinimumSize(QSize(800,600));

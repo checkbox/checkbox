@@ -41,8 +41,8 @@ SOURCES = gui-engine.cpp \
     PBTreeNode.cpp \
     JobTreeNode.cpp
 
-DESTDIR = ../lib/driver-testing/plugins
+DESTDIR = ../lib/canonical-driver-test-suite/plugins
 
-target.path = $$PREFIX/lib/driver-testing/plugins
+target.path = $$PREFIX/lib/canonical-driver-test-suite/plugins
 
 INSTALLS += target
