@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
 
     // Now, load the main page
-    viewer.setMainQmlFile(QStringLiteral("../share/driver-testing/qml/driver-testing.qml"));
+    viewer.setMainQmlFile(QStringLiteral("../share/canonical-driver-test-suite/qml/canonical-driver-test-suite.qml"));
 
     // Ensure a reasonable minimum size for this window
     viewer.setMinimumSize(QSize(800,600));

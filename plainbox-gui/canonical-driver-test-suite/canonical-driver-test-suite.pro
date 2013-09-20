@@ -20,11 +20,11 @@
 
 # Add more folders to ship with the application, here
 folder_01.source = qml
-folder_01.target = ../share/driver-testing
+folder_01.target = ../share/canonical-driver-test-suite
 DEPLOYMENTFOLDERS = folder_01
 
 QT += dbus widgets
-TARGET = driver-testing
+TARGET = canonical-driver-test-suite
 TEMPLATE = app
 
 isEmpty(PREFIX) {
@@ -34,7 +34,7 @@ isEmpty(PREFIX) {
 LIBS += -L../lib/$$TARGET/plugins/ -lgui-engine
 
 # Additional import path used to resolve QML modules
-QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/driver-testing/plugins\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/canonical-driver-test-suite/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
@@ -49,7 +49,7 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 desktop.path = $$PREFIX/share/applications
-desktop.files += driver-testing.desktop
+desktop.files += canonical-driver-test-suite.desktop
 
 INSTALLS += desktop
 
@@ -68,7 +68,7 @@ HEADERS += whitelistitem.h \
 target.path = $$PREFIX/bin
 INSTALLS += target
 
-qml_files.path = $$PREFIX/share/driver-testing
+qml_files.path = $$PREFIX/share/canonical-driver-test-suite
 qml_files.files = qml
 
 INSTALLS += qml_files
@@ -85,4 +85,4 @@ OTHER_FILES += \
     qml/RunManagerView.qml \
     qml/RunManagerSuiteDelegate.qml \
     qml/SubmissionDialog.qml \
-    qml/driver-testing.qml
+    qml/canonical-driver-test-suite.qml
