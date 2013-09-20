@@ -1989,5 +1989,5 @@ const QString GuiEngine::GetIOLog(const QString& job)
     QDBusObjectPath opath(job);
 
     // FIXME - The log unpacking is not yet completed
-    return GetIOLogFromJobPath(opath);;
+    return GetIOLogFromJobPath(opath);
 }

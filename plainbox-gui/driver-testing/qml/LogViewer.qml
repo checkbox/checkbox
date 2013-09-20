@@ -54,9 +54,7 @@ Popover {
 
                 TextArea {
                     id: logtext
-                    text: "Load this up with text\nhere's a url: <a href=\"http://www.ubuntu.com\">Visit Ubuntu</a>
-                           even more even more \n even more even more \n even more even more \n
-                           even more even more \n even more even more \n even more even more \n"
+                    text: "Unable to load IO log"
 
                     height: parent.height
                     width: parent.width
