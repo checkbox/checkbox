@@ -665,7 +665,7 @@ void GuiEngine::RunJobs(void)
     emit jobsBegin();
 
     // Collect any pre-existing results (from previous resume)
-    //ResumeGetOutcomes();
+    ResumeGetOutcomes();
 
     // Now connect the signal receivers
     ConnectJobReceivers();
@@ -849,17 +849,22 @@ void GuiEngine::ResumeGetOutcomes(void)
 {
     qDebug("GuiEngine::GuiResumeGetOutcomes");
 
-    // pretend we have started the jobs
+    if (m_run_list.isEmpty()) {
+        return;     // no results yet
+    }
 
     // This fixes the results display
-    for(int i=0; i<m_current_job_index; i++) {
+    for(int i=0; i<m_run_list.count(); i++) {
         int outcome = GetOutcomeFromJobPath(m_run_list.at(i));
 
-        // Update the GUI so it knows what the job outcome was
-        emit updateGuiEndJob(m_run_list.at(i).path(), \
-                         i, \
-                         outcome,
-                             "JobNameFromObjectPath(i)");
+        // only update things which have defined results
+        if (outcome != PBTreeNode::PBJobResult_None) {
+            // Update the GUI so it knows what the job outcome was
+            emit updateGuiEndJob(m_run_list.at(i).path(), \
+                             i, \
+                             outcome,
+                                 "JobNameFromObjectPath(i)");
+        }
     }
 }
 
