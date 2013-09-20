@@ -291,6 +291,7 @@ Component {
 //                //  Re-insert this for other/future versions of the GUI
 //                showTroubleShootingLink: false
                jobPath: objectpath
+               jobName: testname 
             }
         }
 

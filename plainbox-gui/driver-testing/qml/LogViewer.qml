@@ -29,75 +29,52 @@ Popover {
     id: logview
 
     property alias logText: logtext.text
-//    property alias showTroubleShootingLink: troubleButton.visible
     property alias logHeight: flick.height
 
+    property string jobName: "Not Set"
     property string jobPath: "Not Set"
     contentWidth: parent.width - units.gu(30)
 
-    // Re-insert this for other/future versions of the GUI
-//    property alias showTroubleShootingLink: troubleButton.visible
-//
-//    Button {
-//        id: troubleButton
-//        text: i18n.tr("Trouble Shooting")
-//        color: UbuntuColors.orange
-//        onClicked: {
-//            // TODO put in real url!!
-//            cmdTool.exec("xdg-open", "https://wiki.ubuntu.com/Testing/Automation/Checkbox/");
-//        }
-//    }
-
-    Scrollbar {
-        flickableItem: flick
-        align: Qt.AlignTrailing
-    }
-
-    Flickable {
-        id: flick
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-            rightMargin: units.gu(1)
-            leftMargin: units.gu(1)
-        }
-
-        width: logview.width;
-        height: units.gu(50)
-        contentWidth: logtext.paintedWidth
-        contentHeight: logtext.paintedHeight
-        clip: true
-
-        TextEdit{
-            id: logtext
-            text: "Load this up with text\nhere's a url: <a href=\"http://www.ubuntu.com\">Visit Ubuntu</a>
-                even more even more \n even more even more \n even more even more \n
-                even more even more \n even more even more \n even more even more \n"
-
-            //height: units.gu(60)
-            width: parent.width
-            cursorVisible : true
-            readOnly: true
-            selectByMouse : true
-            textFormat: TextEdit.RichText
-            wrapMode: TextEdit.NoWrap
-            focus: true
-            color: "black"
-            selectedTextColor: Theme.palette.selected.foregroundText
-            selectionColor: Theme.palette.selected.foreground
-            font.pixelSize: FontUtils.sizeToPixels("medium")
-
-            Component.onCompleted: {
-               // text = io_log;
-
-                // get the log info from guiengine
-                text = "<code>" + guiEngine.GetIOLog(jobPath) + "</code>";
+    Column {
+        Row {
+            Label {
+                text: jobName
+                fontSize: "large"
             }
+        }
+        Row {
+            Flickable {
+                id: flick
+                width: logview.width;
+                height: units.gu(50)
 
-            onLinkActivated: {
-                cmdTool.exec("xdg-open", link)
+                contentWidth: logtext.paintedWidth
+                contentHeight: logtext.paintedHeight
+                clip: true
+
+                TextArea {
+                    id: logtext
+                    text: "Load this up with text\nhere's a url: <a href=\"http://www.ubuntu.com\">Visit Ubuntu</a>
+                           even more even more \n even more even more \n even more even more \n
+                           even more even more \n even more even more \n even more even more \n"
+
+                    height: parent.height
+                    width: parent.width
+                    cursorVisible : true
+                    readOnly: true
+                    selectByMouse : true
+                    textFormat: TextEdit.RichText
+                    wrapMode: TextEdit.NoWrap
+                    focus: true
+                    font.pixelSize: FontUtils.sizeToPixels("medium")
+                    color: "white"
+                    style: Rectangle { color: "black" }
+
+                    Component.onCompleted: {
+                        // get the log info from guiengine
+                        text = "<code>" + guiEngine.GetIOLog(jobPath) + "</code>";
+                    }
+                }
             }
         }
     }
