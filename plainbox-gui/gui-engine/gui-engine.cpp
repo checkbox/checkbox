@@ -664,6 +664,18 @@ void GuiEngine::RunJobs(void)
     // Tell the GUI we are running the jobs
     emit jobsBegin();
 
+
+
+    if (m_run_list.count() == 0) {
+        // nothing should be left for re-run
+        m_rerun_list.clear();
+
+        // Tell the GUI its all finished
+        emit jobsCompleted();
+
+        return;
+    }
+
     // Collect any pre-existing results (from previous resume)
     ResumeGetOutcomes();
 
