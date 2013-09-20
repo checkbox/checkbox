@@ -155,7 +155,7 @@ Component {
 
             Text {
                 id: esttimelabel
-                text: convertToText(duration)
+                text: formatTotalTime(duration)
                 width: units.gu(6)
 
                 anchors.right: parent.right
@@ -164,17 +164,6 @@ Component {
                 anchors.verticalCenter: parent.verticalCenter
 
                 horizontalAlignment: Text.AlignHCenter
-
-                function convertToText(durationTime){
-                    var timeStr = "";
-                    if (durationTime/60 < 1)
-                        timeStr = i18n.tr("< 1 min");
-                    else {
-                        var durMinutes = Math.round(duration/60);
-                        timeStr = durMinutes.toString() + i18n.tr(" min");
-                    }
-                    return timeStr;
-                }
             }
         }
 

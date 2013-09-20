@@ -32,7 +32,6 @@ Page {
     title: i18n.tr("Choose tests to run on your system:")
 
     property var currentTestItem;
-    property int totalTimeEst: 0
     property int totalTests: 6
     property int totalManualTests: 2
     property int totalImplicitTests: 999
@@ -44,6 +43,26 @@ Page {
             left: parent.left
             top: parent.top
         }
+    }
+
+    function formatTotalTime(s){
+        var estTimeStr = ""
+        if (s == 0)
+            estTimeStr = "0 min";
+        else if (s < 0)
+            estTimeStr = "N/A";
+        else if (s / 60 < 1)
+            estTimeStr = "< 1 min";
+        else if (Math.round(s / 60) < 60){
+            var durMinutes = Math.round(s / 60);
+            estTimeStr = durMinutes.toString() + " min";
+        }
+        else {
+            var hr = Math.round(s / (60 * 60));
+            s -= hr * (60 * 60);
+            estTimeStr = hr + " h " + Math.round(s / 60) + " min"
+        }
+        return  estTimeStr;
     }
 
     // Test List Header Bar
@@ -206,43 +225,50 @@ Page {
         Dialog{
             id: dialog
             title: i18n.tr("Selection Stats")
-            function formatTotalTime(){
-                var estTimeStr = ""
-                if (totalTimeEst == 0)
-                    estTimeStr = i18n.tr("0");
-                else if (totalTimeEst/60 < 1)
-                    estTimeStr = i18n.tr("< 1 min");
-                else {
-                    var durMinutes = Math.round(totalTimeEst/60);
-                    estTimeStr = durMinutes.toString() + i18n.tr(" min");
-                }
-                return  estTimeStr;
-            }
+            property var total_duration: guiEngine.GetEstimatedDuration();
             Rectangle {
                 id: statrect
                 color: "transparent"
-                height: statgrid.height
-                Grid {
-                    id: statgrid
-                    columns: 2
-                    spacing: units.gu(2)
+                height: statrow.height + okButton.height
+                Row {
+                    id: statrow
                     anchors.horizontalCenter: parent.horizontalCenter
-                    Label {text: i18n.tr("Selected")}
-                    Label {text: totalTests}
-                    Label {text: i18n.tr("Manual")}
-                    Label {text: totalManualTests}
-                    Label {text: i18n.tr("Implicit")}
-                    Label {text: totalImplicitTests}
-                    Label {text: i18n.tr("Total")}
-                    Label {text: (parseInt(totalTests) + parseInt(totalImplicitTests))}
-                    Label {text: i18n.tr("Total time")}
-                    Label {text: "~ " + formatTotalTime(totalTimeEst)}
+                    spacing: units.gu(4)
+                    Column {
+                        id: col1
+                        Label {text: i18n.tr("Total tests");fontSize: "large"; color: "white"}
+                        Label {text: i18n.tr("Selected")}
+                        Label {text: i18n.tr("Manual")}
+                        Label {text: i18n.tr("Implicit")}
+                        Label {text: i18n.tr(" "); fontSize: "large"}
+                        Label {text: i18n.tr("Estimated time"); fontSize: "large"; color: "white"}
+                        Label {text: i18n.tr("Automated")}
+                        Label {text: i18n.tr("Manual")}
+                    }
+                    Column {
+                        id: col2
+                        Label {
+                            text: (parseInt(totalTests) + parseInt(totalImplicitTests));
+                            anchors.right: col2.right;
+                            fontSize: "large"; color: "white"
+                        }
+                        Label {text: totalTests; anchors.right: col2.right}
+                        Label {text: totalManualTests; anchors.right: col2.right}
+                        Label {text: totalImplicitTests; anchors.right: col2.right}
+                        Label {text: i18n.tr(" "); fontSize: "large"}
+                        Label {
+                            text: formatTotalTime(total_duration["automated_duration"] + total_duration["manual_duration"]);
+                            anchors.right: col2.right;
+                            fontSize: "large"; color: "white"
+                        }
+                        Label {text: formatTotalTime(total_duration["automated_duration"]); anchors.right: col2.right}
+                        Label {text: formatTotalTime(total_duration["manual_duration"]); anchors.right: col2.right}
+                    }
                 }
             }
             Button {
                 id: okButton
-                text: i18n.tr("OK")
-                color: UbuntuColors.orange
+                text: i18n.tr("Back")
                 onClicked: {
                     PopupUtils.close(dialog);
                 }
