@@ -31,6 +31,11 @@ import "."
 Page {
     title: i18n.tr("Choose tests to run on your system:")
 
+    property var currentTestItem;
+    property int totalTimeEst: 0
+    property int totalTests: 6
+    property int totalManualTests: 2
+    property int totalImplicitTests: 999
 
     Item { // puts a space at the top
         id: filler
@@ -56,6 +61,7 @@ Page {
         Text  {
             id: complabel
             text: i18n.tr("Components")
+            font.bold: true
             anchors.left: parent.left
             anchors.leftMargin: units.gu(6)
             anchors.right: typelabel.left
@@ -65,6 +71,7 @@ Page {
         Text  {
             id: typelabel
             text: i18n.tr("Type")
+            font.bold: true
             width: units.gu(6)
             anchors.right: esttimelabel.left
             anchors.rightMargin: units.gu(6)
@@ -74,6 +81,7 @@ Page {
         Text  {
             id: esttimelabel
             text: i18n.tr("Estimated Time")
+            font.bold: true
             width: units.gu(6)
             anchors.right: parent.right
             anchors.rightMargin: units.gu(6)
@@ -89,59 +97,156 @@ Page {
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: testlistheaders.bottom
-            bottom: testdetails.top
-            bottomMargin: units.gu(2)
         }
     }
 
-    // Test Details (Properties)
-    TestSelectionDetails {
-        id: testdetails
+    Component {
+        id: popoverDetails
 
-        width: testlistheaders.width
+        Popover {
+            id: popover
+            opacity: 0.0
+            contentWidth: parent.width - units.gu(30)
+            callerMargin: units.gu(2)
 
-        anchors{
-            horizontalCenter: parent.horizontalCenter
-            bottom: testbuttons.top
-            bottomMargin: units.gu(2)
+            Flickable {
+                id: flickable
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    rightMargin: units.gu(1)
+                }
+                height: testdetails.height > mainView.height/2 ? mainView.height/2 : testdetails.height
+
+                contentHeight: testdetails.height
+                width: popover.width
+                clip: true
+                // Test Details (Properties)
+                TestSelectionDetails {
+                    id: testdetails
+                }
+            }
+            Scrollbar {
+                flickableItem: flickable
+                align: Qt.AlignTrailing
+            }
         }
     }
 
     // Select All, Deselect All, Start Testing Buttons
-    TestSelectionButtons {
-        id: testbuttons
-        anchors{
-             horizontalCenter: parent.horizontalCenter
-             bottom: summary.top
-             bottomMargin: units.gu(2)
+    tools: ToolbarItems {
+        back: Row {
+            anchors {
+                verticalCenter: parent.verticalCenter
+            }
+            spacing: units.gu(1)
+            Button {
+                 id: infoButton
+                 text: i18n.tr("Info")
+                 color: UbuntuColors.lightAubergine
+                 onTriggered: PopupUtils.open(actionSelectionPopover, infoButton)
+            }
+            Button {
+                 id:selectButton
+                 text: i18n.tr("Select All")
+                 color: UbuntuColors.coolGrey
+                 width: units.gu(18)
+                 onTriggered: testsuitelist.selectAll(true);
+            }
+            Button {
+                 id: deselectButton
+                 text: i18n.tr("Deselect All")
+                 color: UbuntuColors.coolGrey
+                 width: units.gu(18)
+                 onTriggered: testsuitelist.selectAll(false);
+            }
         }
-
-        onSelectAll:{
-            testsuitelist.selectAll(true);
+        Row {
+            anchors {
+                verticalCenter: parent.verticalCenter
+            }
+            Button {
+                id: startTesting
+                text: i18n.tr("Start Testing")
+                width: units.gu(18)
+                onTriggered: {
+                    mainView.state = "RUNMANAGER"
+                    console.log("Start Testing")
+                    /* kick off the real tests now */
+                    guiEngine.RunJobs();
+                }
+            }
         }
-
-        onDeselectAll: {
-            testsuitelist.selectAll(false);
-        }
-
-        onStartTesting: {
-            mainView.state = "RUNMANAGER"
-            console.log("Start Testing")
-
-
-            /* kick off the real tests now */
-            guiEngine.RunJobs();
-        }
+        locked: true
+        opened: true
     }
 
-    // Small blue test summary bar at the bottom of the page
-    TestSelectionSummary{
-        id: summary
-        height: units.gu(2)
-        width: parent.width
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
+    Component {
+        id: actionSelectionPopover
+        ActionSelectionPopover {
+            callerMargin: units.gu(1)
+            contentWidth: units.gu(15)
+            actions: ActionList {
+                Action {
+                    text: i18n.tr("Selection Stats")
+                    onTriggered: {
+                        PopupUtils.open(stats_dialog)
+                    }
+                }
+                Action {
+                    text: i18n.tr("Test Details")
+                    onTriggered: PopupUtils.open(popoverDetails)
+                }
+            }
+        }
+    }
+    Component {
+        id: stats_dialog
+        Dialog{
+            id: dialog
+            title: i18n.tr("Selection Stats")
+            function formatTotalTime(){
+                var estTimeStr = ""
+                if (totalTimeEst == 0)
+                    estTimeStr = i18n.tr("0");
+                else if (totalTimeEst/60 < 1)
+                    estTimeStr = i18n.tr("< 1 min");
+                else {
+                    var durMinutes = Math.round(totalTimeEst/60);
+                    estTimeStr = durMinutes.toString() + i18n.tr(" min");
+                }
+                return  estTimeStr;
+            }
+            Rectangle {
+                id: statrect
+                color: "transparent"
+                height: statgrid.height
+                Grid {
+                    id: statgrid
+                    columns: 2
+                    spacing: units.gu(2)
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Label {text: i18n.tr("Selected")}
+                    Label {text: totalTests}
+                    Label {text: i18n.tr("Manual")}
+                    Label {text: totalManualTests}
+                    Label {text: i18n.tr("Implicit")}
+                    Label {text: totalImplicitTests}
+                    Label {text: i18n.tr("Total")}
+                    Label {text: (parseInt(totalTests) + parseInt(totalImplicitTests))}
+                    Label {text: i18n.tr("Total time")}
+                    Label {text: "~ " + formatTotalTime(totalTimeEst)}
+                }
+            }
+            Button {
+                id: okButton
+                text: i18n.tr("OK")
+                color: UbuntuColors.orange
+                onClicked: {
+                    PopupUtils.close(dialog);
+                }
+            }
         }
     }
 }

@@ -22,12 +22,29 @@
 #include "gui-engine.h"
 #include <QtDBus/QtDBus>
 #include <QDebug>
+#include <stdexcept>
 
 #include "PBTreeNode.h"
 
 // Forward declarations
 void decodeDBusArgType(const QDBusArgument &arg);       // temporary
 void decodeDBusMessageType(const QDBusMessage &msg);    // temporary
+
+QDBusArgument &operator<<(QDBusArgument &arg, const EstimatedDuration &ms)
+{
+    arg.beginStructure();
+    arg << ms.automated_duration << ms.manual_duration;
+    arg.endStructure();
+    return arg;
+}
+
+const QDBusArgument &operator>>(const QDBusArgument &arg, EstimatedDuration &ms)
+{
+    arg.beginStructure();
+    arg >> ms.automated_duration >> ms.manual_duration;
+    arg.endStructure();
+    return arg;
+}
 
 void GuiEnginePlugin::registerTypes(const char *uri)
 {
@@ -87,6 +104,8 @@ bool GuiEngine::Initialise(void)
         //qDBusRegisterMetaType<io_log_inner_t>();
         //qDBusRegisterMetaType<io_log_outer_t>();
 
+        // Register our GetEstimatedDuration signature metatype
+        qDBusRegisterMetaType<EstimatedDuration>();
 
         // Obtain the initial tree of Plainbox objects, starting at the root "/"
         RefreshPBObjects();
@@ -568,7 +587,8 @@ void GuiEngine::Resume(void)
 
             // Update the GUI so it knows what job is starting
             emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
-                                  m_current_job_index);
+                    m_current_job_index, \
+                    JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
             // Now run the next job
             qDebug() << "Running Job (Resume)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -667,7 +687,8 @@ void GuiEngine::RunJobs(void)
 
     // Tell the GUI so we know we have started running this job
     emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
-                          m_current_job_index);
+            m_current_job_index, \
+            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
     // Now the actual run, job by job
     qDebug() << "Running Job (RunJobs)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
@@ -849,6 +870,31 @@ QList<QDBusObjectPath> GuiEngine::GetAllJobs(void)
     }
 
     return jobs;
+}
+
+QVariantMap GuiEngine::GetEstimatedDuration()
+{
+    QVariantMap estimated_duration;
+
+    QDBusInterface iface(PBBusName, \
+                         m_session.path(), \
+                         PBSessionStateInterface, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        throw std::runtime_error("Could not connect to com.canonical.certification.PlainBox.Service1 interface");
+    }
+
+    QDBusReply<EstimatedDuration> reply = \
+            iface.call("GetEstimatedDuration");
+
+    if (reply.isValid()) {
+        estimated_duration["automated_duration"] = QVariant::fromValue(reply.value().automated_duration);
+        estimated_duration["manual_duration"] = QVariant::fromValue(reply.value().manual_duration);
+    } else {
+        throw std::runtime_error("GetEstimatedDuration() failed, invalid reply");
+    }
+
+    return estimated_duration;
 }
 
 
@@ -1722,8 +1768,9 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     // Update the GUI so it knows what the job outcome was
     emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
-                          m_current_job_index, \
-                          outcome);
+            m_current_job_index, \
+            outcome, \
+            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
     // Move to the next job
     m_current_job_index = NextRunJobIndex(m_current_job_index);
@@ -1741,7 +1788,8 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
         // Update the GUI so it knows what job is starting
         emit updateGuiBeginJob(m_run_list.at(m_current_job_index).path(), \
-                              m_current_job_index);
+                m_current_job_index, \
+                JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
         // Now run the next job
         qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));

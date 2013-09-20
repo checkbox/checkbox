@@ -13,20 +13,21 @@ Item {
     property alias labelName: nameLabel.text
     property alias text: nameText.text
 
-    Label {
+    TextEdit {
         id: nameLabel
         text: ""
+        font.bold: true
+        readOnly: true
         horizontalAlignment: Text.AlignRight
         width: units.gu(10)
         anchors {
             left: parent.left
-            top: parent.top
-            topMargin: units.gu(1)
             leftMargin: units.gu(1)
+            verticalCenter: nameRect.verticalCenter
         }
     }
 
-    Text {
+    TextEdit {
         id: nameText
         width: parent.width - nameLabel.width - units.gu(4)
         wrapMode: Text.Wrap
@@ -36,6 +37,8 @@ Item {
             verticalCenter: nameRect.verticalCenter
         }
         text:""
+        selectByMouse: true
+        readOnly: true
     }
 
     Rectangle {
@@ -43,6 +46,7 @@ Item {
         height: nameText.height + units.gu(1)
         width: parent.width - nameLabel.width - units.gu(3)
         color: "transparent"
+        radius: 6
         border{
             color: UbuntuColors.warmGrey
             width: 1
