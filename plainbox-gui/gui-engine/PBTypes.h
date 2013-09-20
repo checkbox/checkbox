@@ -62,4 +62,20 @@ typedef QMap<QString,QDBusObjectPath> jsm_t;
 
 Q_DECLARE_METATYPE(jsm_t);
 
+/* Plainbox Results Io_log is Array of [Struct of [Double, String, Array of [Byte])]
+ * or "dsay"
+ *
+ * We build this in pieces
+ */
+struct io_log_inner_t {
+    double delay;
+    QString stream;
+    QByteArray data;
+};
+
+typedef QList<io_log_inner_t> io_log_outer_t;
+
+Q_DECLARE_METATYPE(io_log_inner_t);
+Q_DECLARE_METATYPE(io_log_outer_t);
+
 #endif // PB_TYPES_H

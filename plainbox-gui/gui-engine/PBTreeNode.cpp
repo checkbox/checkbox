@@ -335,9 +335,37 @@ const QDBusObjectPath PBTreeNode::result(void)
     return QDBusObjectPath("");
 }
 
+const QDBusArgument &operator>>(const QDBusArgument &argument, \
+                                io_log_inner_t &inner_log)
+{
+    argument.beginStructure();
+    argument >> inner_log.delay >> inner_log.stream >> inner_log.data;
+    argument.endStructure();
+
+    return argument;
+}
+
+const QDBusArgument &operator>>(const QDBusArgument &argument, \
+                                io_log_outer_t &outer)
+{
+    argument.beginArray();
+    outer.clear();
+
+    while(!argument.atEnd())
+    {
+        io_log_inner_t inner;
+        argument >> inner;
+        outer.append(inner);
+    }
+
+    argument.endArray();
+    return argument;
+}
 
 const QString PBTreeNode::io_log(void)
 {
+    io_log_outer_t outer;
+
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
 
@@ -347,12 +375,26 @@ const QString PBTreeNode::io_log(void)
             if(iface->interface.compare(JobResultInterface) == 0) {
                 QVariant variant;
                 variant = *iface->properties.find("io_log");
-                if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
-                    return variant.toString();
+
+                qDebug("Found the io_log");
+
+                const QDBusArgument qda = variant.value<QDBusArgument>();
+
+                qda >> outer;
+
+                // Preserve this for future use
+                // do something with outer
+                QString io_log;
+                for (int idx = 0; idx < outer.count(); idx++) {
+                    io_log.append(outer.at(idx).data);
+                    io_log.append("<br />");
                 }
+                return io_log;
             }
         }
     }
+
+    qDebug("Cant decode the io log");
 
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");
