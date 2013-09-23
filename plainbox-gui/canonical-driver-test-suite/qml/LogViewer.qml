@@ -25,82 +25,55 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 
-Dialog {
-    id: dialog
-
-    title: i18n.tr("Log Viewer")
-    text: i18n.tr("")
+Popover {
+    id: logview
 
     property alias logText: logtext.text
-//    property alias showTroubleShootingLink: troubleButton.visible
     property alias logHeight: flick.height
 
-    // Re-insert this for other/future versions of the GUI
-//    property alias showTroubleShootingLink: troubleButton.visible
-//
-//    Button {
-//        id: troubleButton
-//        text: i18n.tr("Trouble Shooting")
-//        color: UbuntuColors.orange
-//        onClicked: {
-//            // TODO put in real url!!
-//            cmdTool.exec("xdg-open", "https://wiki.ubuntu.com/Testing/Automation/Checkbox/");
-//        }
-//    }
+    property string jobName: "Not Set"
+    property string jobPath: "Not Set"
+    contentWidth: parent.width - units.gu(30)
 
-    Flickable {
-        id: flick
-
-        width: logtext.width;
-        height: units.gu(50)
-        contentWidth: logtext.paintedWidth
-        contentHeight: logtext.paintedHeight
-        clip: true
-
-        function ensureVisible(r)
-        {
-            if (contentX >= r.x)
-                contentX = r.x;
-            else if (contentX+width <= r.x+r.width)
-                contentX = r.x+r.width-width;
-            if (contentY >= r.y)
-                contentY = r.y;
-            else if (contentY+height <= r.y+r.height)
-                contentY = r.y+r.height-height;
+    Column {
+        Row {
+            Label {
+                text: jobName
+                fontSize: "large"
+            }
         }
+        Row {
+            Flickable {
+                id: flick
+                width: logview.width;
+                height: units.gu(50)
 
-        TextEdit{
-            id: logtext
-            text: "Load this up with text\nhere's a url: <a href=\"http://www.ubuntu.com\">Visit Ubuntu</a>
-                even more even more \n even more even more \n even more even more \n
-                even more even more \n even more even more \n even more even more \n"
+                contentWidth: logtext.paintedWidth
+                contentHeight: logtext.paintedHeight
+                clip: true
 
-            //height: units.gu(60)
-            width: units.gu(30)
-            cursorVisible : true
-            readOnly: true
-            selectByMouse : true
-            textFormat: TextEdit.RichText
-            wrapMode: TextEdit.Wrap
-            focus: true
-            color: Theme.palette.normal.foregroundText
-            selectedTextColor: Theme.palette.selected.foregroundText
-            selectionColor: Theme.palette.selected.foreground
-            font.pixelSize: FontUtils.sizeToPixels("medium")
+                TextArea {
+                    id: logtext
+                    text: "Unable to load IO log"
 
-            onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+                    height: parent.height
+                    width: parent.width
+                    cursorVisible : true
+                    readOnly: true
+                    selectByMouse : true
+                    textFormat: TextEdit.RichText
+                    wrapMode: TextEdit.NoWrap
+                    focus: true
+                    font.pixelSize: FontUtils.sizeToPixels("medium")
+                    color: "white"
+                    style: Rectangle { color: "black" }
 
-            onLinkActivated: {
-                cmdTool.exec("xdg-open", link)
+                    Component.onCompleted: {
+                        // get the log info from guiengine
+                        text = "<code>" + guiEngine.GetIOLog(jobPath) + "</code>";
+                    }
+                }
             }
         }
     }
-
-    Button {
-        id: doneButton
-        text: i18n.tr("Done")
-        color: UbuntuColors.warmGrey
-        onClicked: PopupUtils.close(dialog)
-    }
-
 }

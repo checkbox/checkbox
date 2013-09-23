@@ -175,6 +175,8 @@ public slots:
         void GuiSessionRemove(void);
         const QString GuiPreviousSessionFile(void);
 
+        const QString GetIOLog(const QString& job);
+
         // Retrieve all the previous session data
         void GuiResumeSession(const bool re_run);
         void GuiCreateSession(void);
@@ -291,7 +293,8 @@ private:
         // Convenience functions
         int GetOutcomeFromJobResultPath(const QDBusObjectPath &opath);
         int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
-
+        const QString GetIOLogFromJobPath(const QDBusObjectPath &opath);
+	
         const QString ConvertOutcome(const int outcome);
 
         // Find the next real job index to run based on current index through m_run_list
