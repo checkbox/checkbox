@@ -691,6 +691,16 @@ void GuiEngine::RunJobs(void)
 
     qDebug("computed next job");
 
+    if (m_current_job_index >= m_run_list.count()) {
+        // nothing should be left for re-run
+        m_rerun_list.clear();
+
+        // Tell the GUI its all finished
+        emit jobsCompleted();
+
+        return;
+    }
+
     // ok, this is new. we need to find the first job to really run
 
     // Tell the GUI so we know we have started running this job
@@ -838,7 +848,7 @@ void GuiEngine::RunLocalJobs(void)
 
     // Having recoved the re-run list, this should be sufficent to skip
     // all the previous tests and to retry failed test.
-    if (!re_run) {
+    if (!re_run && !m_rerun_list.isEmpty()) {
 
         // FIXME - set the outcome of this test
 
