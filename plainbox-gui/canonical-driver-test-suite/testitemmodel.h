@@ -36,12 +36,18 @@ public:
     ~TestItemModel() {};
 
 public slots:
+
+    /* Needs some initial data populated in gui-engine class:
+     * m_run_list
+     */
     ListModel* CreateTestListModel(ListModel* model=NULL);
 
     // We should obtain a list of desired jobs here
     QList<QDBusObjectPath> GetSelectedRealJobs(ListModel* model=NULL);
 
     QList<QDBusObjectPath> GetSelectedRerunJobs(ListModel* model=NULL);
+
+    QList<QDBusObjectPath> GetSelectedVisibleJobs(ListModel* model=NULL);
 };
 
 #endif // TESTITEMMODEL_H

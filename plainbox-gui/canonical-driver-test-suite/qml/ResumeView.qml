@@ -62,11 +62,11 @@ Page {
             color: UbuntuColors.orange
             onClicked: {
 
+                // Prepare for the run
+                guiEngine.GuiResumeSession(true /* re-run last test */);
+
                 // We need this to show the list of stuff
                 testitemFactory.CreateTestListModel(testListModel);
-
-		// Prepare for the run
-                guiEngine.GuiResumeSession(true /* re-run last test */);
 
                 mainView.state = "RUNMANAGER"
             }
@@ -80,11 +80,11 @@ Page {
             onClicked: {
 
 
+                // Prepare for the run
+                guiEngine.GuiResumeSession(false /* re-run last test */);
+
                 // We need this to show the list of stuff
                 testitemFactory.CreateTestListModel(testListModel);
-
-		// Prepare for the run
-                guiEngine.GuiResumeSession(false /* re-run last test */);
 
                 mainView.state = "RUNMANAGER"
             }
@@ -100,8 +100,8 @@ Page {
                 // Lets clean up the old session
                 guiEngine.GuiSessionRemove();
 
-		// And create a fresh one
-		guiEngine.GuiCreateSession();
+        // And create a fresh one
+        guiEngine.GuiCreateSession();
 
                 mainView.state = "WELCOME"
             }

@@ -141,6 +141,18 @@ public slots:
         // Returns a list of DBus Object Paths for valid tests
         const QList<QDBusObjectPath>& GetValidRunList(void);
 
+        /* Returns a list of DBusObjectPaths representing tests
+         * which are relevant for human beings (i.e. excludes resource jobs)
+         */
+        const QList<QDBusObjectPath>& GetVisibleRunList(void);
+
+        /* Returns a list of DBusObjectPaths representing tests
+         * which are relevant for human beings (i.e. excludes resource jobs)
+         */
+        void SetVisibleJobsList(const QList<QDBusObjectPath> &visible_jobs) {
+            m_visible_run_list = visible_jobs;
+        }
+
         // Useful for the progress bar in the run manager
         int ValidRunListCount(void);
 
@@ -342,6 +354,17 @@ private:
          * but on subsequent rounds its only those selected by the user
          */
         QList<QDBusObjectPath> m_rerun_list;
+
+        /* Visible job list; this is mainly for the benefit
+         * of the gui, which needs to show real jobs being run,
+         * together with local jobs used to group the real tests being
+         * run.
+         *
+         * Its not ideal, just an interim solution. Ultimately,
+         * it would be best to be able to populate the gui with a single
+         * call to extract all the relevant data from the gui-engine.
+         */
+        QList<QDBusObjectPath> m_visible_run_list;
 
         // The currently running job as an index into m_run_list
         int m_current_job_index;

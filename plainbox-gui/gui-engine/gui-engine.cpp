@@ -814,7 +814,7 @@ void GuiEngine::RunLocalJobs(void)
      * job_list
      * run_list
      * job_state_map
-     *
+     * metadata
      */
 
     m_desired_job_list = SessionStateDesiredJobList(m_session);
@@ -832,13 +832,6 @@ void GuiEngine::RunLocalJobs(void)
         // fixme - a nice gui error message would be welcome here
         return;
     }
-
-    // Get the interim Job Results, this may take a few seconds as we dont have any shortcuts
-    GetJobStateMap();
-
-    GetJobStates();
-
-    GetJobResults();
 
     // This should recover m_rerun_list for us
     DecodeGuiEngineStateFromJSON();
@@ -864,6 +857,13 @@ void GuiEngine::ResumeGetOutcomes(void)
     if (m_run_list.isEmpty()) {
         return;     // no results yet
     }
+
+    // Get the interim Job Results, this may take a few seconds as we dont have any shortcuts
+    GetJobStateMap();
+
+    GetJobStates();
+
+    GetJobResults();
 
     // This fixes the results display
     for(int i=0; i<m_run_list.count(); i++) {
@@ -948,6 +948,11 @@ void GuiEngine::EncodeGuiEngineStateAsJSON(void)
 
     guienginestate_js.insert("m_rerun_list_object",json_m_rerun_list);
 
+    QJsonObject json_m_visible_run_list = \
+            PBJsonUtils::QDBusObjectPathArrayToJson("m_visible_run_list",m_visible_run_list);
+
+    guienginestate_js.insert("m_visible_run_list_object",json_m_visible_run_list);
+
     QJsonDocument jsd(guienginestate_js);
 
     QString current_job_id;
@@ -1010,6 +1015,21 @@ void GuiEngine::DecodeGuiEngineStateFromJSON(void)
     QJsonObject::const_iterator iter_rerun = json_m_rerun_list.find("m_rerun_list");
 
     m_rerun_list = PBJsonUtils::JSONToQDBusObjectPathArray("m_rerun_list",json_m_rerun_list);
+
+    // Visible run list (needed to repopulate the Run Manager View typically)
+    QJsonObject::const_iterator iter_visible_object = guienginestate_js.find("m_visible_run_list_object");
+    if (iter_visible_object == guienginestate_js.end()) {
+        qDebug("Cannot find m_visible_run_list_object");
+    }
+
+    QJsonObject json_m_visible_run_list;
+
+    json_m_visible_run_list = iter_visible_object.value().toObject();
+
+    // Now we should find the next key
+    QJsonObject::const_iterator iter_visible = json_m_visible_run_list.find("m_visible_run_list");
+
+    m_visible_run_list = PBJsonUtils::JSONToQDBusObjectPathArray("m_visible_run_list",json_m_visible_run_list);
 
 //    qDebug("GuiEngine::DecodeGuiEngineStateFromJSON() - Done");
 }
@@ -2135,6 +2155,9 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
     // Now, the run_list contains the list of jobs I actually need to run \o/
     m_run_list = SessionStateRunList(m_session);
 
+    // Keep a copy of what should be visible
+    m_visible_run_list = m_run_list;
+
     // Repopulate our knowledge of PlainBox
     RefreshPBObjects();
 
@@ -2264,6 +2287,14 @@ void GuiEngine::ManualTest(const int outcome)
 const QList<QDBusObjectPath>& GuiEngine::GetValidRunList(void)
 {
     return m_run_list;
+}
+
+/* Returns a list of DBusObjectPaths representing tests
+ * which are relevant for human beings (i.e. excludes resource jobs)
+ */
+const QList<QDBusObjectPath>& GuiEngine::GetVisibleRunList(void)
+{
+    return m_visible_run_list;
 }
 
 int GuiEngine::ValidRunListCount(void)

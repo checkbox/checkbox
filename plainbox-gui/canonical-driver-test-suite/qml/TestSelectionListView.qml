@@ -452,6 +452,12 @@ Rectangle {
                 // Mark all the jobs for one run-through
                 testitemFactory.GetSelectedRerunJobs(testListModel);
 
+                /* Ensure the gui-engine stores the list of visible tests as
+                 * as they will be needed when the gui is resumed from a saved
+                 * session.
+                 */
+                testitemFactory.GetSelectedVisibleJobs(testListModel);
+
                 // Prep the jobs (we cant start them without this)
                 var total_generated_tests = guiEngine.PrepareJobs();
 
