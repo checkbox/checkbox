@@ -246,6 +246,78 @@ class EndToEndTests(TestCaseWithParameters):
         self.assertIs(session, self.seen_session)
 
 
+class SessionStateResumeTests(TestCaseWithParameters):
+    """
+    Tests for :class:`~plainbox.impl.session.resume.SessionResumeHelper1` and
+    :class:`~plainbox.impl.session.resume.SessionResumeHelper2' and how they
+    handle resuming SessionState inside _build_SessionState() method.
+    """
+
+    parameter_names = ('resume_cls',)
+    parameter_values = ((SessionResumeHelper1,), (SessionResumeHelper2,))
+
+    def setUp(self):
+        self.session_repr = {}
+        self.helper = self.parameters.resume_cls([])
+
+    def test_calls_build_SessionState(self):
+        """
+        verify that _build_SessionState() gets called
+        """
+        with mock.patch.object(self.helper, attribute='_build_SessionState'):
+            self.helper._build_SessionState(self.session_repr)
+            self.helper._build_SessionState.assertCalledOnceWith(
+                self.session_repr, None)
+
+    def test_calls_restore_SessionState_jobs_and_results(self):
+        """
+        verify that _restore_SessionState_jobs_and_results() gets called by
+        _build_SessionState().
+        """
+        mpo = mock.patch.object
+        with mpo(self.helper, '_build_SessionState'), \
+                mpo(self.helper, '_restore_SessionState_jobs_and_results'):
+            session = self.helper._build_SessionState(self.session_repr)
+            self.helper._restore_SessionState_jobs_and_results. \
+                assertCalledOnceWith(session, self.session_repr)
+
+    def test_calls_restore_SessionState_metadata(self):
+        """
+        verify that _restore_SessionState_metadata() gets called by
+        _build_SessionState().
+        """
+        mpo = mock.patch.object
+        with mpo(self.helper, '_build_SessionState'), \
+                mpo(self.helper, '_restore_SessionState_metadata'):
+            session = self.helper._build_SessionState(self.session_repr)
+            self.helper._restore_SessionState_metadata. \
+                assertCalledOnceWith(session, self.session_repr)
+
+    def test_calls_restore_SessionState_desired_job_list(self):
+        """
+        verify that _restore_SessionState_desired_job_list() gets called by
+        _build_SessionState().
+        """
+        mpo = mock.patch.object
+        with mpo(self.helper, '_build_SessionState'), \
+                mpo(self.helper, '_restore_SessionState_desired_job_list'):
+            session = self.helper._build_SessionState(self.session_repr)
+            self.helper._restore_SessionState_desired_job_list. \
+                assertCalledOnceWith(session, self.session_repr)
+
+    def test_calls_restore_SessionState_job_list(self):
+        """
+        verify that _restore_SessionState_job_list() gets called by
+        _build_SessionState().
+        """
+        mpo = mock.patch.object
+        with mpo(self.helper, '_build_SessionState'), \
+                mpo(self.helper, '_restore_SessionState_job_list'):
+            session = self.helper._build_SessionState(self.session_repr)
+            self.helper._restore_SessionState_job_list.assertCalledOnceWith(
+                session, self.session_repr)
+
+
 class IOLogRecordResumeTests(TestCaseWithParameters):
     """
     Tests for :class:`~plainbox.impl.session.resume.SessionResumeHelper1` and
@@ -977,7 +1049,7 @@ class SessionMetaDataResumeTests2(TestCase):
         self.assertEqual(str(boom.exception), "app_blob is not ASCII")
         self.assertIsInstance(boom.exception.__context__, UnicodeEncodeError)
 
-    def test_build_SessionState_metadata_non_base64_app_blob(self):
+    def test_restore_SessionState_metadata_non_base64_app_blob(self):
         """
         verify that _restore_SessionState_metadata() checks that ``app_blob``
         is valid base64
@@ -1444,3 +1516,36 @@ class SessionJobsAndResultsResumeTests(TestCaseWithParameters):
                 session, session_repr)
         self.assertEqual(
             str(boom.exception), "Unknown jobs remaining: job-name")
+
+
+class SessionJobListResumeTests(TestCaseWithParameters):
+    """
+    Tests for :class:`~plainbox.impl.session.resume.SessionResumeHelper1` and
+    :class:`~plainbox.impl.session.resume.SessionResumeHelper2' and how they
+    handle resume session.job_list using _restore_SessionState_job_list()
+    method.
+    """
+
+    parameter_names = ('resume_cls',)
+    parameter_values = ((SessionResumeHelper1,), (SessionResumeHelper2,))
+
+    def test_simple_session(self):
+        """
+        verify that _restore_SessionState_job_list() does restore job_list
+        """
+        job_a = make_job(name='a')
+        job_b = make_job(name='b')
+        session_repr = {
+            'jobs': {
+                job_a.name: job_a.get_checksum()
+            },
+            'results': {
+                job_a.name: [],
+            }
+        }
+        helper = self.parameters.resume_cls([job_a, job_b])
+        session = SessionState([job_a, job_b])
+        helper._restore_SessionState_job_list(session, session_repr)
+        # Job "a" is still in the list but job "b" got removed
+        self.assertEqual(session.job_list, [job_a])
+        # The rest is tested by trim_job_list() tests
