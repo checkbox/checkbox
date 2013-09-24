@@ -124,5 +124,10 @@ int main(int argc, char *argv[])
 
     viewer.showExpanded();
 
-    return app.exec();
+    int errcode = app.exec();
+
+    // Shutdown the guiengine
+    guiengine.Shutdown();
+
+    return errcode;
 }
