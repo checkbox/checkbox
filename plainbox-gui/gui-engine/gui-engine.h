@@ -284,6 +284,13 @@ private:
                         const QString& outcome, \
                         const QString& comments);
 
+        /* A synthesised method. This is needed in the case of skipping tests
+         * on resuming a session, since in this circumstance, there is no
+         * runner object to serve as a means of setting the outcome.
+         */
+        void SetJobOutcome(const QDBusObjectPath& job_path, \
+                           const QString& outcome);
+
         // Job Properties
         QString GetCommand(const QDBusObjectPath& opath);
 
@@ -294,7 +301,7 @@ private:
         int GetOutcomeFromJobResultPath(const QDBusObjectPath &opath);
         int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
         const QString GetIOLogFromJobPath(const QDBusObjectPath &opath);
-	
+
         const QString ConvertOutcome(const int outcome);
 
         // Find the next real job index to run based on current index through m_run_list
@@ -371,6 +378,9 @@ private:
 
         // The currently running job as an index into m_run_list
         int m_current_job_index;
+
+        // The current job path (for tests being run)
+        QDBusObjectPath m_current_job_path;
 
         // Job State Map
         jsm_t m_jsm;

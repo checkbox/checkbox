@@ -854,7 +854,15 @@ void GuiEngine::RunLocalJobs(void)
     // all the previous tests and to retry failed test.
     if (!re_run && !m_rerun_list.isEmpty()) {
 
-        // FIXME - set the outcome of this test
+        // Get the interim Job Results, this may take a few seconds as we dont have any shortcuts
+        GetJobStateMap();
+
+        GetJobStates();
+
+        GetJobResults();
+
+        // Now, we can set the outcome of this test
+        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL);
 
         // Lets skip this one
         m_rerun_list.pop_front();
@@ -994,6 +1002,10 @@ void GuiEngine::DecodeGuiEngineStateFromJSON(void)
 //    qDebug("GuiEngine::DecodeGuiEngineStateFromJSON()");
 
     QVariantMap metadata = SessionStateMetadata(m_session);
+
+    // Grep the run_list to find metadata job id (should not fail!)
+    QVariantMap::const_iterator iter_jobname = metadata.find("running_job_name");
+    m_current_job_path = QDBusObjectPath(iter_jobname.value().toString());
 
     // Grep the run_list to find metadata job id (should not fail!)
     QVariantMap::const_iterator iter = metadata.find("app_blob");
@@ -1875,6 +1887,40 @@ void GuiEngine::SetOutcome(const QDBusObjectPath &runner, \
         qDebug() << "Error: " << reply.errorName() << " " << reply.errorName();
     }
     qDebug("GuiEngine::SetOutcome - Done");
+}
+
+/* A synthesised method. This is needed in the case of skipping tests
+ * on resuming a session, since in this circumstance, there is no
+ * runner object to serve as a means of setting the outcome.
+ */
+void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
+                              const QString &outcome)
+{
+    qDebug() << "GuiEngine::SetJobOutcome() " << job_path.path() << " " << outcome;
+
+    /* first, we need to go through the m_job_state_list to find the
+     * to obtain the actual result.
+     * relevant job to result mapping. then we go through m_job_state_results
+     */
+     QDBusObjectPath resultpath;
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             resultpath = m_job_state_list.at(i)->result();
+             break;
+         }
+     }
+
+      // Now to find the right result object
+     for(int i=0;i<m_job_state_results.count();i++) {
+         if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
+             m_job_state_results.at(i)->setOutcome(outcome);
+             break;
+         }
+     }
+
+    qDebug() << "GuiEngine::SetJobOutcome() - Done";
 }
 
 void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)

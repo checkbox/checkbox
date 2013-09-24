@@ -445,3 +445,19 @@ const QString PBTreeNode::outcome(void)
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");
 }
+
+void PBTreeNode::setOutcome(const QString &outcome)
+{
+    qDebug() << "PBTreeNode::setOutcome" << object_path.path() << outcome;
+
+    QDBusInterface iface(PBBusName, \
+                         object_path.path(), \
+                         ofDPropertiesName, \
+                         QDBusConnection::sessionBus());
+
+    QDBusMessage reply = iface.call("Set",JobResultInterface,"outcome",outcome);
+    if (reply.type() != QDBusMessage::ReplyMessage) {
+
+        qDebug() << "Failed to set outcome:";
+    }
+}
