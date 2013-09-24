@@ -35,11 +35,13 @@ HEADERS = gui-engine.h \
     PBTreeNode.h \
     PBTypes.h \
     PBNames.h \
-    JobTreeNode.h
+    JobTreeNode.h \
+    PBJsonUtils.h
 
 SOURCES = gui-engine.cpp \
     PBTreeNode.cpp \
-    JobTreeNode.cpp
+    JobTreeNode.cpp \
+    PBJsonUtils.cpp
 
 DESTDIR = ../lib/canonical-driver-test-suite/plugins
 

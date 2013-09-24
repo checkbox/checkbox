@@ -27,6 +27,8 @@
 #include <QtDBus/QtDBus>
 #include <QtXml/QDomDocument>
 
+#include "PBJsonUtils.h"
+
 #include <QtWidgets/QFileDialog>
 
 class GuiEnginePlugin : public QQmlExtensionPlugin
@@ -46,6 +48,10 @@ public:
 #include "PBTreeNode.h"
 
 #include "JobTreeNode.h"
+
+// Currently used for the metadata Title of saved sessions in Plainbox
+static const QString GUI_ENGINE_NAME_STR("GuiEngine");
+
 
 /* We need to extract the signature of GetEstimatedDuration(): (dd) */
 struct EstimatedDuration{
@@ -135,6 +141,18 @@ public slots:
         // Returns a list of DBus Object Paths for valid tests
         const QList<QDBusObjectPath>& GetValidRunList(void);
 
+        /* Returns a list of DBusObjectPaths representing tests
+         * which are relevant for human beings (i.e. excludes resource jobs)
+         */
+        const QList<QDBusObjectPath>& GetVisibleRunList(void);
+
+        /* Returns a list of DBusObjectPaths representing tests
+         * which are relevant for human beings (i.e. excludes resource jobs)
+         */
+        void SetVisibleJobsList(const QList<QDBusObjectPath> &visible_jobs) {
+            m_visible_run_list = visible_jobs;
+        }
+
         // Useful for the progress bar in the run manager
         int ValidRunListCount(void);
 
@@ -153,7 +171,15 @@ public slots:
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);
 
+        // Session management from the GUI
+        void GuiSessionRemove(void);
+        const QString GuiPreviousSessionFile(void);
+
         const QString GetIOLog(const QString& job);
+
+        // Retrieve all the previous session data
+        void GuiResumeSession(const bool re_run);
+        void GuiCreateSession(void);
 
 public:
         // Returns a list of all the jobnodes
@@ -172,6 +198,13 @@ public:
                                     const QString& output_format, \
                                     const QStringList& option_list,
                                     const QString& output_file);
+        // Suspend and Resume Session
+        void SessionPersistentSave(const QDBusObjectPath session);
+        void SessionRemove(const QDBusObjectPath session);
+        const QString PreviousSessionFile(const QDBusObjectPath session);
+
+        // Ensure the RunManager view is updated with the recovered data
+        void ResumeGetOutcomes(void);
 
 signals:
         // Instruct the GUI to update itself
@@ -214,6 +247,8 @@ private:
 
         QDBusObjectPath CreateSession(QList<QDBusObjectPath> job_list);
 
+
+        void ConnectJobReceivers(void);
         QList<QDBusObjectPath> GetLocalJobs(void);
 
         QList<QDBusObjectPath> GetAllJobs(void);
@@ -223,9 +258,21 @@ private:
         QStringList UpdateDesiredJobList(const QDBusObjectPath session, \
                                          QList<QDBusObjectPath> desired_job_list);
 
+        void SessionResume(const QDBusObjectPath session);
         // SessionState Properties
+        QList<QDBusObjectPath> SessionStateDesiredJobList(const QDBusObjectPath session);
         QList<QDBusObjectPath> SessionStateRunList(const QDBusObjectPath session);
         QList<QDBusObjectPath> SessionStateJobList(const QDBusObjectPath session);
+        void SetSessionStateMetadata(const QDBusObjectPath session, \
+                                     const QString& flags, \
+                                     const QString& running_job_name, \
+                                     const QString& title,
+                                     const QByteArray& app_blob);
+
+        const QVariantMap SessionStateMetadata(const QDBusObjectPath session);
+        // Encode/decode of internal state of this class
+        void EncodeGuiEngineStateAsJSON(void);
+        void DecodeGuiEngineStateFromJSON(void);
 
         void UpdateJobResult(const QDBusObjectPath session, \
                                         const QDBusObjectPath &job_path, \
@@ -237,6 +284,13 @@ private:
                         const QString& outcome, \
                         const QString& comments);
 
+        /* A synthesised method. This is needed in the case of skipping tests
+         * on resuming a session, since in this circumstance, there is no
+         * runner object to serve as a means of setting the outcome.
+         */
+        void SetJobOutcome(const QDBusObjectPath& job_path, \
+                           const QString& outcome);
+
         // Job Properties
         QString GetCommand(const QDBusObjectPath& opath);
 
@@ -245,6 +299,7 @@ private:
 
         // Convenience functions
         int GetOutcomeFromJobResultPath(const QDBusObjectPath &opath);
+        int GetOutcomeFromJobPath(const QDBusObjectPath &opath);
         const QString GetIOLogFromJobPath(const QDBusObjectPath &opath);
 
         const QString ConvertOutcome(const int outcome);
@@ -310,8 +365,22 @@ private:
          */
         QList<QDBusObjectPath> m_rerun_list;
 
+        /* Visible job list; this is mainly for the benefit
+         * of the gui, which needs to show real jobs being run,
+         * together with local jobs used to group the real tests being
+         * run.
+         *
+         * Its not ideal, just an interim solution. Ultimately,
+         * it would be best to be able to populate the gui with a single
+         * call to extract all the relevant data from the gui-engine.
+         */
+        QList<QDBusObjectPath> m_visible_run_list;
+
         // The currently running job as an index into m_run_list
         int m_current_job_index;
+
+        // The current job path (for tests being run)
+        QDBusObjectPath m_current_job_path;
 
         // Job State Map
         jsm_t m_jsm;
@@ -337,6 +406,13 @@ private:
         */
         bool m_running_manual_job;
 
+        /* Records whether the results of running the tests have been submitted
+        * Note that depending on the GUI, this may simply mean saved to disk,
+        * or submitted to a validation website. it may not even matter. But this
+        * is here in order to allow the state to be preserved by plainbox
+        * in a saved session.
+        */
+        bool m_submitted;
 // Used by the test program
 protected:
         bool m_local_jobs_done;

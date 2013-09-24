@@ -19,35 +19,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TESTITEMMODEL_H
-#define TESTITEMMODEL_H
+#ifndef PBJSONUTILS_H
+#define PBJSONUTILS_H
 
-#include <QObject>
-#include "testitem.h"
-#include "../gui-engine/gui-engine.h"
+#include <QtDBus/QtDBus>
+#include <QJsonValue>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
 
-// Factory class to create or update a TestItem Model
-class TestItemModel : public QObject
+class PBJsonUtils
 {
-    Q_OBJECT
-
 public:
-    TestItemModel() {};
-    ~TestItemModel() {};
-
-public slots:
-
-    /* Needs some initial data populated in gui-engine class:
-     * m_run_list
-     */
-    ListModel* CreateTestListModel(ListModel* model=NULL);
-
-    // We should obtain a list of desired jobs here
-    QList<QDBusObjectPath> GetSelectedRealJobs(ListModel* model=NULL);
-
-    QList<QDBusObjectPath> GetSelectedRerunJobs(ListModel* model=NULL);
-
-    QList<QDBusObjectPath> GetSelectedVisibleJobs(ListModel* model=NULL);
+    static const QJsonObject QDBusObjectPathArrayToJson(const QString& key, const QList<QDBusObjectPath> opath_list);
+    static const QList<QDBusObjectPath> JSONToQDBusObjectPathArray(const QString& key, const QJsonObject& object);
 };
 
-#endif // TESTITEMMODEL_H
+#endif // PBJSONUTILS_H

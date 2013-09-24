@@ -88,6 +88,9 @@ public:
     const QString comments(void);
     const QString outcome(void);
 
+    // Setters
+    void setOutcome(const QString& outcome);
+
     // Convenient enumeration of Job Results. We will use these in the GUI
     Q_ENUMS(PBJobResult);
     enum PBJobResult {

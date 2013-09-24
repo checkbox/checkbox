@@ -19,35 +19,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TESTITEMMODEL_H
-#define TESTITEMMODEL_H
+#ifndef WHITELISTMODELFACTORY_H
+#define WHITELISTMODELFACTORY_H
 
 #include <QObject>
-#include "testitem.h"
+#include "whitelistitem.h"
 #include "../gui-engine/gui-engine.h"
 
 // Factory class to create or update a TestItem Model
-class TestItemModel : public QObject
+class WhiteListModelFactory : public QObject
 {
     Q_OBJECT
 
 public:
-    TestItemModel() {};
-    ~TestItemModel() {};
+    WhiteListModelFactory() {};
+    ~WhiteListModelFactory() {};
 
 public slots:
-
-    /* Needs some initial data populated in gui-engine class:
-     * m_run_list
-     */
-    ListModel* CreateTestListModel(ListModel* model=NULL);
-
-    // We should obtain a list of desired jobs here
-    QList<QDBusObjectPath> GetSelectedRealJobs(ListModel* model=NULL);
-
-    QList<QDBusObjectPath> GetSelectedRerunJobs(ListModel* model=NULL);
-
-    QList<QDBusObjectPath> GetSelectedVisibleJobs(ListModel* model=NULL);
+    ListModel* CreateWhiteListModel(ListModel* model=NULL);
 };
 
-#endif // TESTITEMMODEL_H
+#endif // WHITELISTMODELFACTORY_H

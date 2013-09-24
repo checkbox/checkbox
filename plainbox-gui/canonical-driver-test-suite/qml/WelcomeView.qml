@@ -139,6 +139,12 @@ Page {
 
         text: i18n.tr("Continue")
         color: UbuntuColors.lightAubergine
-        onClicked: {mainView.state = "SUITESELECTION"}
+        onClicked: {
+            // Generate the the list of whitelists
+            whitelistitemFactory.CreateWhiteListModel(whiteListModel);
+
+            // Move to the whitelist selection screen
+            mainView.state = "SUITESELECTION"
+        }
     }
 }

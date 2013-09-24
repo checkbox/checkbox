@@ -41,7 +41,8 @@ SOURCES += main.cpp \
     testitem.cpp \
     listmodel.cpp \
     commandtool.cpp \
-    testitemmodel.cpp
+    testitemmodel.cpp \
+    WhiteListModelFactory.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
@@ -61,7 +62,8 @@ HEADERS += whitelistitem.h \
     testitem.h \
     listmodel.h \
     commandtool.h \
-    testitemmodel.h
+    testitemmodel.h \
+    WhiteListModelFactory.h
 
 target.path = $$PREFIX/bin
 INSTALLS += target

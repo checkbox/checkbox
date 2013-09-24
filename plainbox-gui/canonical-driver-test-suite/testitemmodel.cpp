@@ -92,9 +92,9 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         // check against our filtered list
         QList<QDBusObjectPath> short_valid_list = \
                 JobTreeNode::FilteredJobs(list,\
-                                       myengine->GetValidRunList());
+                                       myengine->GetVisibleRunList());
 
-        if (myengine->GetValidRunList().count() != 0) {
+        if (myengine->GetVisibleRunList().count() != 0) {
             // we have _some_ valid tests :)
             if (short_valid_list.isEmpty()) {
                 // we dont show this one
@@ -116,7 +116,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         QString user;
         QString via;
         QString group;
-        bool check;
+        bool check = true; // default to show every test
         QString path;
 
         QList<QString> parent_names;
@@ -140,7 +140,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
            temp = temp->parent;
         }
 
-        // Should we show this to the usr at all?
+        // Should we show this to the user at all?
         bool human = true;
 
         // Local jobs use description as the visible name
@@ -416,4 +416,76 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
     qDebug("TestItemModel::GetSelectedRerunJobs() - Done");
 
     return selected_rerun_list;
+}
+
+/* Track the jobs which are actually needed for display in the runmanager
+ * as they will be needed when the gui is reconstructed after a session
+ * is resumed
+ */
+QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
+{
+    qDebug("TestItemModel::GetSelectedVisibleJobs()");
+
+
+    QList<QDBusObjectPath> visible_jobs_list;
+
+    if (!model) {
+        qDebug("No ListModel supplied");
+        return visible_jobs_list;
+    }
+
+    for(int i=0; i< model->getCount(); i++) {
+
+        /* Should this item be put into the visible run list? Yes,
+        * UNLESS it is a resource job. We need the
+        * objectpath and the plugin type to make the decision
+        */
+        QModelIndex index = model->index(i);
+        QVariant variant = model->data(index,TestItem::ObjectPathRole);
+        QString objectpath = variant.toString();
+
+        // Get the name of this test for logging purposes
+        variant = model->data(index,TestItem::TestNameRole);
+        QString name = variant.toString();
+
+        variant = model->data(index,TestItem::PluginRole);
+        QString plugin = variant.toString();
+
+        // The run manager
+        if (plugin.compare("resource") != 0) {
+            /* ok, potentially it could be selected, so now we check if the
+             * user REALLY wanted it before putting it in the list
+             */
+            variant = model->data(index,TestItem::CheckRole);
+            bool check = variant.toBool();
+
+            if (check) {
+                qDebug() << name.toStdString().c_str();
+
+                // Now, we might add this to our list
+                QDBusObjectPath opath(objectpath);
+
+                // Ok, your name is on the list...
+                visible_jobs_list.append(opath);
+
+            } else {
+                qDebug() << name.toStdString().c_str() << " SKIP ";
+            }
+        }
+    }
+
+    // Store this in the guiengine
+    const QString engname("");
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
+    if(myengine == NULL) {
+        qDebug("Cant find guiengine object");
+
+        return visible_jobs_list;
+    }
+
+    myengine->SetVisibleJobsList(visible_jobs_list);
+
+    qDebug("TestItemModel::visible_jobs_list() - Done");
+
+    return visible_jobs_list;
 }

@@ -60,7 +60,16 @@ Page {
             text: i18n.tr("Rerun last test")
             width: buttoncol.buttonWidth
             color: UbuntuColors.orange
-            onClicked: mainView.state = "RUNMANAGER"
+            onClicked: {
+
+                // Prepare for the run
+                guiEngine.GuiResumeSession(true /* re-run last test */);
+
+                // We need this to show the list of stuff
+                testitemFactory.CreateTestListModel(testListModel);
+
+                mainView.state = "RUNMANAGER"
+            }
         }
 
         Button {
@@ -68,16 +77,34 @@ Page {
             text: i18n.tr("Continue")
             width: buttoncol.buttonWidth
             color: UbuntuColors.lightAubergine
-            onClicked: mainView.state = "RUNMANAGER"
-        }
+            onClicked: {
 
+
+                // Prepare for the run
+                guiEngine.GuiResumeSession(false /* re-run last test */);
+
+                // We need this to show the list of stuff
+                testitemFactory.CreateTestListModel(testListModel);
+
+                mainView.state = "RUNMANAGER"
+            }
+        }
 
         Button {
             id: restartButton
             text: i18n.tr("Restart")
             width: buttoncol.buttonWidth
             color: UbuntuColors.warmGrey
-            onClicked: mainView.state = "WELCOME"
+            onClicked: {
+
+                // Lets clean up the old session
+                guiEngine.GuiSessionRemove();
+
+        // And create a fresh one
+        guiEngine.GuiCreateSession();
+
+                mainView.state = "WELCOME"
+            }
         }
     }
 

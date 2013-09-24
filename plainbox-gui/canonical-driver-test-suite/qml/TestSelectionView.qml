@@ -191,9 +191,7 @@ Page {
                 width: units.gu(18)
                 onTriggered: {
                     mainView.state = "RUNMANAGER"
-                    console.log("Start Testing")
-                    /* kick off the real tests now */
-                    guiEngine.RunJobs();
+
                 }
             }
         }

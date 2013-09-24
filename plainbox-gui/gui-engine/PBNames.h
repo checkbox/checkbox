@@ -55,6 +55,9 @@ static const QString JobStateInterface("com.canonical.certification.PlainBox.Job
 // JobResult interface
 static const QString JobResultInterface("com.canonical.certification.PlainBox.Result1");
 
+// Session Metadata
+static const QString PB_FLAG_INCOMPLETE("incomplete");
+static const QString PB_FLAG_SUBMITTED("submitted");
 
 // JobResults
 static const QString JobResult_OUTCOME_PASS = "pass";
