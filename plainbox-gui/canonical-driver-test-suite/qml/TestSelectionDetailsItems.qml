@@ -12,18 +12,36 @@ Item {
 
     property alias labelName: nameLabel.text
     property alias text: nameText.text
+    property alias textFormat: nameText.textFormat
 
-    TextEdit {
+    Label {
         id: nameLabel
         text: ""
-        font.bold: true
-        readOnly: true
-        horizontalAlignment: Text.AlignRight
+        color: Qt.rgba(1, 1, 1, 0.9)
         width: units.gu(10)
         anchors {
             left: parent.left
             leftMargin: units.gu(1)
             verticalCenter: nameRect.verticalCenter
+        }
+    }
+
+    Rectangle {
+        id: nameRect
+        height: nameText.height + units.gu(1)
+        width: parent.width - nameLabel.width - units.gu(3)
+        color: Theme.palette.normal.background
+        antialiasing: true
+        radius: 6
+        border{
+            color: UbuntuColors.warmGrey
+            width: 1
+        }
+        anchors {
+            left: nameLabel.right
+            leftMargin: units.gu(1)
+            top: parent.top
+            topMargin: units.gu(1)
         }
     }
 
@@ -36,26 +54,10 @@ Item {
             leftMargin: units.gu(2)
             verticalCenter: nameRect.verticalCenter
         }
+        selectionColor: Theme.palette.selected.foreground
+        selectedTextColor: Theme.palette.selected.background
         text:""
         selectByMouse: true
         readOnly: true
-    }
-
-    Rectangle {
-        id: nameRect
-        height: nameText.height + units.gu(1)
-        width: parent.width - nameLabel.width - units.gu(3)
-        color: "transparent"
-        radius: 6
-        border{
-            color: UbuntuColors.warmGrey
-            width: 1
-        }
-        anchors {
-            left: nameLabel.right
-            leftMargin: units.gu(1)
-            top: parent.top
-            topMargin: units.gu(1)
-        }
     }
 }
