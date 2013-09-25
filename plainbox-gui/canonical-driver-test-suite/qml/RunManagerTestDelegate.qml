@@ -39,7 +39,6 @@ Component {
         id: testitem
         width: parent.width
 
-
         property string groupname: group
         property string labelname: testname
 
@@ -291,7 +290,7 @@ Component {
 //                //  Re-insert this for other/future versions of the GUI
 //                showTroubleShootingLink: false
                jobPath: objectpath
-               jobName: testname 
+               title: testname
             }
         }
 

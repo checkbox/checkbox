@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Sylvain Pineau <sylvain.pineau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,49 +25,46 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
-
-Popover {
+WideDialog {
     id: logview
-
-    property alias logText: logtext.text
-    property alias logHeight: flick.height
-
-    property string jobName: "Not Set"
+    title: "Not Set"
     property string jobPath: "Not Set"
-    contentWidth: parent.width - units.gu(30)
-
-    Column {
-        Row {
-            Label {
-                text: jobName
-                fontSize: "large"
-            }
+    Rectangle {
+        color: "black"
+        radius: units.gu(1)
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            bottom: backButton.top
+            topMargin: units.gu(5)
+            bottomMargin: units.gu(2)
         }
-        Row {
-            Flickable {
-                id: flick
-                width: logview.width;
-                height: units.gu(50)
 
-                contentWidth: logtext.paintedWidth
-                contentHeight: logtext.paintedHeight
+        Item {
+            id: logitem
+            anchors.margins: units.gu(1)
+            anchors.fill: parent
+
+            Flickable {
+                id: flickable
+                width: parent.width
+                height: parent.height
+                contentWidth: logtext.width
+                contentHeight: logtext.height
+                flickableDirection: Flickable.VerticalFlick
                 clip: true
 
-                TextArea {
+                TextEdit {
                     id: logtext
-                    text: "Unable to load IO log"
-
-                    height: parent.height
-                    width: parent.width
-                    cursorVisible : true
+                    width:logitem.width
+                    selectionColor: Theme.palette.selected.background
+                    color: Qt.rgba(1, 1, 1, 0.9)
+                    wrapMode: Text.Wrap
+                    text: "<code>Unable to load IO log</code>"
                     readOnly: true
-                    selectByMouse : true
+                    selectByMouse: true
                     textFormat: TextEdit.RichText
-                    wrapMode: TextEdit.NoWrap
-                    focus: true
-                    font.pixelSize: FontUtils.sizeToPixels("medium")
-                    color: "white"
-                    style: Rectangle { color: "black" }
 
                     Component.onCompleted: {
                         // get the log info from guiengine
@@ -74,6 +72,16 @@ Popover {
                     }
                 }
             }
+            Scrollbar {
+                flickableItem: flickable
+                align: Qt.AlignTrailing
+            }
         }
+    }
+    Button {
+        id: backButton
+        text: "Back"
+        onClicked: PopupUtils.close(logview)
+        anchors.bottom: parent.bottom
     }
 }

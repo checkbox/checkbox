@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Sylvain Pineau <sylvain.pineau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -120,36 +121,10 @@ Page {
     }
 
     Component {
-        id: popoverDetails
-
-        Popover {
-            id: popover
-            opacity: 0.0
-            contentWidth: parent.width - units.gu(30)
-            callerMargin: units.gu(2)
-
-            Flickable {
-                id: flickable
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    rightMargin: units.gu(1)
-                }
-                height: testdetails.height > mainView.height/2 ? mainView.height/2 : testdetails.height
-
-                contentHeight: testdetails.height
-                width: popover.width
-                clip: true
-                // Test Details (Properties)
-                TestSelectionDetails {
-                    id: testdetails
-                }
-            }
-            Scrollbar {
-                flickableItem: flickable
-                align: Qt.AlignTrailing
-            }
+        id: details_dialog
+        // Test Details (Properties)
+        TestSelectionDetails {
+            id: testdetails
         }
     }
 
@@ -213,7 +188,7 @@ Page {
                 }
                 Action {
                     text: i18n.tr("Test Details")
-                    onTriggered: PopupUtils.open(popoverDetails)
+                    onTriggered: PopupUtils.open(details_dialog)
                 }
             }
         }

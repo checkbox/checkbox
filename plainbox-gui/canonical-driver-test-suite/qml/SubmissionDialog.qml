@@ -94,16 +94,6 @@ Dialog {
         }
     }
 
-    Component {
-        id: log_viewer_results
-        LogViewer{
-//        //  Re-insert this for other/future versions of the GUI
-//            showTroubleShootingLink: false
-            logHeight: units.gu(20)         // TODO - There is something wrong with the 'Dialog' that button become inactive when log view is too big
-
-        }
-    }
-
     // Qt 5.1 can use this in theory rather than the QFileDialog
     //FileDialog {
     //    id: fileDialog
