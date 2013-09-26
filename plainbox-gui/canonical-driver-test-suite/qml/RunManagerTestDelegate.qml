@@ -264,8 +264,10 @@ Component {
                         groupedList.userChangingIndex = true;
                         groupedList.currentIndex = index;
 
-                        // Open the log viewer
-                        PopupUtils.open(log_viewer);
+                        detailsicon.source = "./artwork/pictogram-articles-grey-hex.svg"
+                        // start timer with 1 ms delay,
+                        // this has to be enough for the GUI to redraw
+                        myTimer.start()
 
                         groupedList.userChangingIndex = false;
                     }
@@ -277,8 +279,18 @@ Component {
                     else                            // not run yet
                         source = ""
                 }
-
             }
+
+        Timer {
+            id: myTimer
+            interval: 1; running: false; repeat: false
+            onTriggered: {
+                // Open the log viewer
+                PopupUtils.open(log_viewer)
+                detailsicon.source = "./artwork/pictogram-articles-orange-hex.svg"
+            }
+        }
+
         }
 
         // Item dividing line
