@@ -57,10 +57,14 @@ import "./artwork"
             }
         }
 
+        function remove_prefix_and_capitalize_first(prefix, suite) {
+            var suitename = suite.replace(prefix, '')
+            return suitename.substr(0, 1).toUpperCase() + suitename.substr(1)
+        }
 
         Text {
             id: suitetext
-            text: testname
+            text: remove_prefix_and_capitalize_first('ihv-', testname)
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitecheckbox.right
             anchors.leftMargin: units.gu(1)
