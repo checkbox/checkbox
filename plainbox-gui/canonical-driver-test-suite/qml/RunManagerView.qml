@@ -299,7 +299,12 @@ Page {
             else if (!reportIsSaved)
                 PopupUtils.open(submission_warning_dialog, runbuttons);
             else
+            {
+                // We should clean up the session before we go
+                guiEngine.GuiSessionRemove();
+
                 Qt.quit();
+            }
         }
 
         onPauseTest: {
