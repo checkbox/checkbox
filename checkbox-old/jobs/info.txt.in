@@ -130,7 +130,7 @@ command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep
 estimated_duration: 0.5
 _description: Attaches the contents of /proc/acpi/sleep if it exists.
 
-plugin: local
+plugin: shell 
 name: info/bootchart
 _description: Bootchart information.
 requires: package.name == 'bootchart' or package.name == 'pybootchartgui'
