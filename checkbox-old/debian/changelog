@@ -1,6 +1,12 @@
 checkbox (0.16.12) UNRELEASED; urgency=low
 
+  [ Brendan Donegan ]
   * Incremented changelog
+
+  [ Daniel Manrique ]
+  * scripts/gpu_test: Better validation that glxgears windows were found, to
+    avoid manipulation of nonexisting windows which causes threads to crash
+    and the entire program to stall. (LP: #1232232)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:10:13 +0100
 
