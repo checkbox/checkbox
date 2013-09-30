@@ -29,10 +29,13 @@ from unittest import TestCase
 
 from mock import Mock
 
+from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.job import CheckBoxJobValidator
 from plainbox.impl.job import JobDefinition
+from plainbox.impl.job import JobOutputTextSource
 from plainbox.impl.job import Problem
 from plainbox.impl.job import ValidationError
+from plainbox.impl.rfc822 import FileTextSource
 from plainbox.impl.rfc822 import Origin
 from plainbox.impl.rfc822 import RFC822Record
 from plainbox.testing_utils.testcases import TestCaseWithParameters
@@ -171,7 +174,7 @@ class CheckBoxJobValidatorTests2(TestCaseWithParameters):
         """
         verify that validate() checks if jobs have a wrong value for the 'user'
         field.
-        
+
         This field has been limited to either not defined or 'root' for sanity.
         While other choices _may_ be possible having just the two makes our job
         easier.
@@ -197,18 +200,18 @@ class TestJobDefinition(TestCase):
             'requires': 'requires',
             'command': 'command',
             'description': 'description'
-        }, Origin('file.txt', 1, 5))
+        }, Origin(FileTextSource('file.txt'), 1, 5))
         self._full_gettext_record = RFC822Record({
             '_plugin': 'plugin',
             '_name': 'name',
             '_requires': 'requires',
             '_command': 'command',
             '_description': 'description'
-        }, Origin('file.txt.in', 1, 5))
+        }, Origin(FileTextSource('file.txt.in'), 1, 5))
         self._min_record = RFC822Record({
             'plugin': 'plugin',
             'name': 'name',
-        }, Origin('file.txt', 1, 2))
+        }, Origin(FileTextSource('file.txt'), 1, 2))
 
     def test_smoke_full_record(self):
         job = JobDefinition(self._full_record.data)
@@ -251,9 +254,9 @@ class TestJobDefinition(TestCase):
         self.assertEqual(job.description, None)
 
     def test_from_rfc822_record_missing_name(self):
-        self.assertRaises(ValueError,
-                          JobDefinition.from_rfc822_record,
-                          RFC822Record({'plugin': 'plugin'}, None))
+        record = RFC822Record({'plugin': 'plugin'})
+        with self.assertRaises(ValueError):
+            JobDefinition.from_rfc822_record(record)
 
     def test_str(self):
         job = JobDefinition(self._min_record.data)
@@ -357,11 +360,30 @@ class TestJobDefinition(TestCase):
             "ad137ba3654827cb07a254a55c5e2a8daa4de6af604e84ccdbe9b7f221014362")
 
     def test_via_does_not_change_checksum(self):
+        """
+        verify that the 'via' attribute in no way influences job checksum
+        """
+        # Create a 'parent' job
         parent = JobDefinition({'name': 'parent', 'plugin': 'local'})
+        # Create a 'child' job, using create_child_job_from_record() should
+        # time the two so that child.via should be parent.checksum.
+        #
+        # The elaborate record that gets passed has all the meta-data that
+        # traces back to the 'parent' job (as well as some imaginary line_start
+        # and line_end values for the purpose of the test).
         child = parent.create_child_job_from_record(
-            RFC822Record({'name': 'test', 'plugin': 'shell'}, None))
-        helper = JobDefinition({'name': 'test', 'plugin': 'shell'})
+            RFC822Record(
+                data={'name': 'test', 'plugin': 'shell'},
+                origin=Origin(
+                    source=JobOutputTextSource(parent),
+                    line_start=1,
+                    line_end=1)))
+        # Now 'child.via' should be the same as 'parent.checksum'
         self.assertEqual(child.via, parent.get_checksum())
+        # Create an unrelated job 'helper' with the definition identical as
+        # 'child' but without any ties to the 'parent' job
+        helper = JobDefinition({'name': 'test', 'plugin': 'shell'})
+        # And again, child.checksum should be the same as helper.checksum
         self.assertEqual(child.get_checksum(), helper.get_checksum())
 
     def test_estimated_duration(self):
@@ -435,11 +457,11 @@ class JobEnvTests(TestCase):
         env = {
             "PATH": ""
         }
-        self.job.modify_execution_environment(env, self.session_dir,
-                                              self.checkbox_data_dir)
+        self.job.modify_execution_environment(
+            env, self.session_dir, self.checkbox_data_dir)
         self.assertEqual(env['CHECKBOX_SHARE'], 'checkbox-share-value')
-        self.assertEqual(env['CHECKBOX_DATA'], os.path.join(self.session_dir,
-                                                            "CHECKBOX_DATA"))
+        self.assertEqual(env['CHECKBOX_DATA'],
+                         os.path.join(self.session_dir, "CHECKBOX_DATA"))
 
     def test_without_config(self):
         env = {
@@ -449,8 +471,8 @@ class JobEnvTests(TestCase):
             # froz is not defined in the environment
         }
         # Ask the job to modify the environment
-        self.job.modify_execution_environment(env, self.session_dir,
-                                              self.checkbox_data_dir)
+        self.job.modify_execution_environment(
+            env, self.session_dir, self.checkbox_data_dir)
         # Check how foo bar and froz look like now
         self.assertNotIn('foo', env)
         self.assertEqual(env['bar'], 'old-bar-value')
@@ -464,16 +486,14 @@ class JobEnvTests(TestCase):
             # froz is not defined in the environment
         }
         # Setup a configuration object with values for foo and bar
-        from plainbox.impl.applogic import PlainBoxConfig
         config = PlainBoxConfig()
         config.environment = {
             'foo': 'foo-value',
             'bar': 'bar-value'
         }
         # Ask the job to modify the environment
-        self.job.modify_execution_environment(env, self.session_dir,
-                                              self.checkbox_data_dir,
-                                              config)
+        self.job.modify_execution_environment(
+            env, self.session_dir, self.checkbox_data_dir, config)
         # foo got copied from the config
         self.assertEqual(env['foo'], 'foo-value')
         # bar from the old environment
@@ -487,15 +507,13 @@ class JobEnvTests(TestCase):
         }
         # Setup a configuration object with values for baz.
         # Note that baz is *not* declared in the job's environ line.
-        from plainbox.impl.applogic import PlainBoxConfig
         config = PlainBoxConfig()
         config.environment = {
             'baz': 'baz-value'
         }
         # Ask the job to modify the environment
-        self.job.modify_execution_environment(env, self.session_dir,
-                                              self.checkbox_data_dir,
-                                              config)
+        self.job.modify_execution_environment(
+            env, self.session_dir, self.checkbox_data_dir, config)
         # bar from the old environment
         self.assertEqual(env['bar'], 'old-bar-value')
         # baz from the config environment

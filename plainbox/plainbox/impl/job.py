@@ -26,13 +26,16 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
+import functools
 import logging
 import os
 import re
 
 from plainbox.abc import IJobDefinition
+from plainbox.abc import ITextSource
 from plainbox.impl.config import Unset
 from plainbox.impl.resource import ResourceProgram
+from plainbox.impl.rfc822 import Origin
 from plainbox.impl.secure.checkbox_trusted_launcher import BaseJob
 from plainbox.impl.symbol import SymbolDef
 
@@ -44,9 +47,9 @@ class Problem(SymbolDef):
     """
     Symbols for each possible problem that a field value may have
     """
-    missing
-    wrong
-    useless
+    missing = 'missing'
+    wrong = 'wrong'
+    useless = 'useless'
 
 
 class ValidationError(ValueError):
@@ -154,6 +157,36 @@ class propertywithsymbols(property):
             fget, self.fset, self.fdel, self.__doc__, symbols=self.symbols)
 
 
+@functools.total_ordering
+class JobOutputTextSource(ITextSource):
+    """
+    A :class:`ITextSource` subclass indicating that text came from job output.
+
+    This class is used by
+    :meth:`SessionState._gen_rfc822_records_from_io_log()` to allow such
+    (generated) jobs to be traced back to the job that generated them.
+
+    :ivar job:
+        :class:`plainbox.impl.job.JobDefinition` instance that generated the
+        text
+    """
+
+    def __init__(self, job):
+        self.job = job
+
+    def __str__(self):
+        return str(self.job)
+
+    def __repr__(self):
+        return "<{} job:{!r}".format(self.__class__.__name__, self.job)
+
+    def __eq__(self, other):
+        return self.job == other.job
+
+    def __gt__(self, other):
+        return self.job > other.job
+
+
 class JobDefinition(BaseJob, IJobDefinition):
     """
     Job definition class.
@@ -166,23 +199,23 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         Symbols for each field that a JobDefinition can have
         """
-        name
-        plugin
-        command
-        description
-        user
-        environ
-        estimated_duration
+        name = 'name'
+        plugin = 'plugin'
+        command = 'command'
+        description = 'description'
+        user = 'user'
+        environ = 'environ'
+        estimated_duration = 'estimated_duration'
 
     class _PluginValues(SymbolDef):
         """
         Symbols for each value of the JobDefinition.plugin field
         """
-        shell
-        attachment
-        local
-        resource
-        manual
+        shell = 'shell'
+        attachment = 'attachment'
+        local = 'local'
+        resource = 'resource'
+        manual = 'manual'
         user_verify = "user-verify"
         user_interact = "user-interact"
 
@@ -232,7 +265,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         except ValueError:
             logger.warning((
                 "Incorrect value of 'estimated_duration' in job"
-                "%s read from %s"), self.name, self.origin)
+                " %s read from %s"), self.name, self.origin)
 
     @property
     def automated(self):
@@ -249,23 +282,23 @@ class JobDefinition(BaseJob, IJobDefinition):
         The checksum of the "parent" job when the current JobDefinition comes
         from a job output using the local plugin
         """
-        return self._via
+        if hasattr(self.origin.source, 'job'):
+            return self.origin.source.job.checksum
 
     @property
     def origin(self):
         """
         The Origin object associated with this JobDefinition
-
-        May be None
         """
         return self._origin
 
-    def __init__(self, data, origin=None, provider=None, via=None):
+    def __init__(self, data, origin=None, provider=None):
         super(JobDefinition, self).__init__(data)
+        if origin is None:
+            origin = Origin.get_caller_origin()
         self._resource_program = None
         self._origin = origin
         self._provider = provider
-        self._via = via
 
     def __str__(self):
         return self.name
@@ -402,11 +435,13 @@ class JobDefinition(BaseJob, IJobDefinition):
         Create a new JobDefinition from RFC822 record.
 
         This method should only be used to create additional jobs from local
-        jobs (plugin local). The intent is two-fold:
-        1) to encapsulate the sharing of the embedded checkbox reference.
-        2) to set the ``via`` attribute (to aid the trusted launcher)
+        jobs (plugin local). This ensures that the child job shares the
+        embedded provider reference.
         """
+        if not isinstance(record.origin.source, JobOutputTextSource):
+            raise ValueError("record.origin must be a JobOutputTextSource")
+        if not record.origin.source.job is self:
+            raise ValueError("record.origin.source.job must be this job")
         job = self.from_rfc822_record(record)
         job._provider = self._provider
-        job._via = self.get_checksum()
         return job

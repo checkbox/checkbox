@@ -27,11 +27,12 @@ from plainbox.abc import IJobResult
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyError
 from plainbox.impl.depmgr import DependencySolver
+from plainbox.impl.job import JobOutputTextSource
 from plainbox.impl.resource import ExpressionCannotEvaluateError
 from plainbox.impl.resource import ExpressionFailedError
 from plainbox.impl.resource import Resource
-from plainbox.impl.rfc822 import gen_rfc822_records
 from plainbox.impl.rfc822 import RFC822SyntaxError
+from plainbox.impl.rfc822 import gen_rfc822_records
 from plainbox.impl.session.jobs import JobReadinessInhibitor
 from plainbox.impl.session.jobs import JobState
 from plainbox.impl.session.jobs import UndesiredJobReadinessInhibitor
@@ -60,7 +61,8 @@ class SessionMetaData:
     # set this flag after successfully sending the result somewhere.
     FLAG_SUBMITTED = "submitted"
 
-    def __init__(self, title=None, flags=None, running_job_name=None, app_blob=None):
+    def __init__(self, title=None, flags=None, running_job_name=None,
+                 app_blob=None):
         if flags is None:
             flags = []
         self._title = title
@@ -586,11 +588,15 @@ class SessionState:
                 if new_job != existing_job:
                     logging.warning(
                         ("Local job %s produced job %r that collides with"
-                         " an existing job %r, the new job was discarded"),
-                        job, new_job, existing_job)
+                         " an existing job %s (from %s), the new job was"
+                         " discarded"),
+                        job, new_job, existing_job, existing_job.origin)
                 else:
-                    if not existing_job.via:
-                        existing_job._via = new_job.via
+                    # Patch the origin of the existing job so that it traces
+                    # back to the job that "generated" it again. This is
+                    # basically required to get __category__ jobs to associate
+                    # themselves with their children.
+                    existing_job._origin = new_job.origin
 
     def _gen_rfc822_records_from_io_log(self, job, result):
         """
@@ -601,9 +607,12 @@ class SessionState:
         line_gen = (record[2].decode('UTF-8', errors='replace')
                     for record in result.get_io_log()
                     if record[1] == 'stdout')
+        # Allow the generated records to be traced back to the job that defined
+        # the command which produced (printed) them.
+        source = JobOutputTextSource(job)
         try:
             # Parse rfc822 records from the subsequent lines
-            for record in gen_rfc822_records(line_gen):
+            for record in gen_rfc822_records(line_gen, source=source):
                 yield record
         except RFC822SyntaxError as exc:
             # When this exception happens we will _still_ store all the
