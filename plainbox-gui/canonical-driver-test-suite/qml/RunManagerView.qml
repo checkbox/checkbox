@@ -356,7 +356,11 @@ Page {
                 showContinue: true
                 showCheckbox: false
 
-                onCont: {Qt.quit();}
+                onCont: {
+                    // We should clean up the session before we go
+                    guiEngine.GuiSessionRemove();
+                    Qt.quit();
+                }
             }
         }
 
