@@ -46,7 +46,11 @@ class GlxThread(Thread):
             shell=True)
 
     def terminate(self):
-        subprocess.call('wmctrl -i -c %s' % self.id, shell=True)
+        if hasattr(self, 'id'):
+            subprocess.call('wmctrl -i -c %s' % self.id, shell=True)
+        else:
+            print("WARNING: Attempted to terminate non-existing window.")
+
 
 
 class RotateGlxThread(Thread):
@@ -168,8 +172,11 @@ def main():
             GlxWindows[i].id = str(
                 re.match(b'^(0x\w+)', app).group(0), 'utf-8')
             break
-        GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i + 1))
-        GlxRotate[i].start()
+        if hasattr(GlxWindows[i], "id"):
+            GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i + 1))
+            GlxRotate[i].start()
+        else:
+            print("WARNING: Window {} not found, not rotating it.".format(i))
 
     hsize = vsize = 2
     hsize_ori = vsize_ori = None
@@ -199,8 +206,9 @@ def main():
 
     time.sleep(35)
 
-    for i in range(2):
+    for i in range(len(GlxRotate)):
         GlxRotate[i].cancel = True
+    for i in range(len(GlxWindows)):
         GlxWindows[i].terminate()
     DesktopSwitch.cancel = True
     time.sleep(10)
