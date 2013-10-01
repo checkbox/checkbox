@@ -8,6 +8,8 @@ checkbox (0.16.12) UNRELEASED; urgency=low
   [ Brendan Donegan ] 
   * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
     former is deprecated (LP: #1224854)
+  * scripts/memory_test - use per-process memory limit if arch is ARM, except
+    for arm64 (LP: #1184688)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:10:13 +0100
 
