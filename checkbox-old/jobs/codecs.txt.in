@@ -1,4 +1,4 @@
-plugin: manual
+plugin: user-interact-verify
 name: codecs/ogg-vorbis
 requires:
  package.name == 'gstreamer0.10-plugins-base' or package.name == 'gstreamer1.0-plugins-base'
@@ -13,7 +13,7 @@ _description:
  VERIFICATION:
     Did the sample play correctly?
 
-plugin: manual
+plugin: user-interact-verify
 name: codecs/wav
 requires:
  package.name == 'gstreamer0.10-plugins-good' or package.name == 'gstreamer1.0-plugins-good'

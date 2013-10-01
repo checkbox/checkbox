@@ -14,7 +14,7 @@ requires:
 _description: Optical read test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
- plugin: manual
+ plugin: user-interact-verify
  name: optical/read_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
@@ -54,7 +54,7 @@ requires:
 _description: CD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
- plugin: manual
+ plugin: user-interact-verify
  name: optical/cdrom-write_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
@@ -115,7 +115,7 @@ requires:
 _description: DVD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
- plugin: manual
+ plugin: user-interact-verify
  name: optical/dvd-write_`ls /sys$path/block`
  requires: device.path == "$path"
  user: root
@@ -149,7 +149,7 @@ command:
   This is an automated version of optical/dvd-write. It assumes you have already inserted a data DVD into your optical drive prior to running Checkbox.
  EOF
 
-plugin: manual
+plugin: user-interact-verify
 name: optical/dvd_playback
 command: totem /media/cdrom
 requires:

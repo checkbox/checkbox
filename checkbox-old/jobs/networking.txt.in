@@ -8,7 +8,7 @@ command: network_device_info
 estimated_duration: 1.2
 _description: Test to detect the available network controllers
 
-plugin: shell 
+plugin: shell
 name: networking/internet
 depends: networking/detect
 command: internet_test
@@ -21,7 +21,7 @@ requires: device.category == 'NETWORK'
 _description: Network Information
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
- plugin: manual
+ plugin: user-interact-verify
  name: networking/info_$2
  requires: device.path == "$1"
  command: network_info $2
@@ -36,9 +36,9 @@ command:
       Is this correct?
  EOF
 
-plugin: shell 
+plugin: shell
 name: networking/info_automated
-requires: 
+requires:
  package.name == 'network-manager'
  device.category == 'NETWORK'
 command: udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
@@ -46,7 +46,7 @@ estimated_duration: 1.1
 _description:
  This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
 
-plugin: manual
+plugin: user-interact-verify
 name: networking/wired_connection
 command: network_check
 _description:
@@ -59,7 +59,7 @@ _description:
  VERIFICATION:
      Did a notification show and was the connection correctly established?
 
-plugin: manual
+plugin: user-interact-verify
 name: networking/modem_connection
 command: network_check
 _description:
@@ -93,7 +93,7 @@ plugin: shell
 name: networking/ntp
 requires: package.name == 'ntpdate'
 user: root
-command: network_ntp_test 
+command: network_ntp_test
 _description: Test to see if we can sync local clock to an NTP server
 
 plugin: shell

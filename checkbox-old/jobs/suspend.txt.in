@@ -142,7 +142,7 @@ command:
 _description:
  This is an automated Bluetooth test. It receives the given file from a remote host specified by the BTDEVADDR environment variable
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/bluetooth_obex_before_suspend_manual
 requires:
  package.name == 'bluez'
@@ -217,7 +217,7 @@ command: [ -e $CHECKBOX_DATA/suspend_single_times.log ] && sleep_time_check $CHE
 _description:
  Checks the sleep times to ensure that a machine suspends and resumes within a given threshold
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/usb_wakeup_keyboard
 user: root
 depends: suspend/suspend_advanced
@@ -232,7 +232,7 @@ _description:
  VERIFICATION:
      Did the system wake up from suspend mode when you pressed a keyboard key?
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/usb_wakeup_mouse
 user: root
 depends: suspend/suspend_advanced
@@ -266,7 +266,7 @@ requires:
  package.name == 'alsa-base'
 depends: suspend/suspend_advanced suspend/audio_before_suspend
 _description: Verify that mixer settings after suspend are the same as before suspend.
-command: 
+command:
  audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
 
 plugin: shell
@@ -432,7 +432,7 @@ _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/wireless_connection_after_suspend_wpa_bg_manual
 depends: suspend/suspend_advanced
 requires:
@@ -454,7 +454,7 @@ _description:
  VERIFICATION:
      Verification is automated, do not change the automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/wireless_connection_after_suspend_open_bg_manual
 depends: suspend/suspend_advanced
 requires:
@@ -476,7 +476,7 @@ _description:
  VERIFICATION:
      Verification is automated, do not change the automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/wireless_connection_after_suspend_wpa_n_manual
 depends: suspend/suspend_advanced
 requires:
@@ -498,7 +498,7 @@ _description:
  VERIFICATION:
      Verification is automated, do not change the automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/wireless_connection_after_suspend_open_n_manual
 depends: suspend/suspend_advanced
 requires:
@@ -760,7 +760,7 @@ command:
 _description:
  This is an automated Bluetooth test. It receives the given file from a remote host specified by the BTDEVADDR environment variable
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/bluetooth_obex_after_suspend_manual
 depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend_manual
 requires:
@@ -777,7 +777,7 @@ _description:
  VERIFICATION:
      Was the data correctly transferred?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/cycle_resolutions_after_suspend
 requires: package.name == 'xorg'
 depends: suspend/suspend_advanced graphics/cycle_resolution
@@ -967,7 +967,7 @@ _description:
  VERIFICATION:
      Does the LED light orange when battery is low after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/led_after_suspend/hdd
 depends: suspend/suspend_advanced
 command: led_hdd_test
@@ -980,7 +980,7 @@ _description:
  VERIFICATION:
      Did the HDD LED still blink with HDD activity after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/led_after_suspend/numeric-keypad
 depends: suspend/suspend_advanced
 command: keyboard_test
@@ -1047,7 +1047,7 @@ _description:
  VERIFICATION:
      Did the bluetooth LED turn off and on twice after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/led_after_suspend/camera
 depends:
  camera/detect
@@ -1104,7 +1104,7 @@ _description:
  VERIFICATION:
      Did the brightness change following to your key presses after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/keys_after_suspend/volume
 depends: suspend/suspend_advanced
 requires:
@@ -1121,7 +1121,7 @@ _description:
  VERIFICATION:
      Did the volume change following to your key presses?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/keys_after_suspend/mute
 depends: suspend/suspend_advanced
 requires:
@@ -1151,7 +1151,7 @@ _description:
  VERIFICATION:
      Did the system go to sleep after pressing the sleep key after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/keys_after_suspend/battery-info
 depends: suspend/suspend_advanced
 requires: dmi.product in ['Notebook','Laptop','Portable']
@@ -1181,7 +1181,7 @@ _description:
  VERIFICATION:
      Did the wireless go off on the first press and on again on the second after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/keys_after_suspend/media-control
 depends: suspend/suspend_advanced
 requires:
@@ -1198,7 +1198,7 @@ _description:
  VERIFICATION:
      Do the keys work as expected after resuming from suspend?
 
-plugin: manual
+plugin: user-interact-verify
 name: suspend/keys_after_suspend/super
 depends: suspend/suspend_advanced
 requires:
@@ -1243,7 +1243,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb_insert_after_suspend
-depends: 
+depends:
  suspend/suspend_advanced
 command: removable_storage_watcher insert usb
 _description:
@@ -1270,7 +1270,7 @@ _description:
      This test will check that the system correctly detects the insertion of
      a USB 3.0 storage device after suspend and resume.
  STEPS:
-     1. Click "Test" and insert a USB 3.0 storage device (pen-drive/HDD) in 
+     1. Click "Test" and insert a USB 3.0 storage device (pen-drive/HDD) in
         a USB 3.0 port. (Note: this test will time-out after 20 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
@@ -1280,7 +1280,7 @@ _description:
 plugin: user-interact
 name: suspend/usb_remove_after_suspend
 depends:
- suspend/usb_insert_after_suspend 
+ suspend/usb_insert_after_suspend
 command: removable_storage_watcher remove usb
 _description:
  PURPOSE:
@@ -1295,7 +1295,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb3_remove_after_suspend
-depends: 
+depends:
  suspend/usb3_insert_after_suspend
 requires:
  usb.usb3 == 'supported'
@@ -1427,8 +1427,8 @@ depends: suspend/sd-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
-     This test will check that the system correctly detects 
-     the removal of an SD card from the systems card reader 
+     This test will check that the system correctly detects
+     the removal of an SD card from the systems card reader
      after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SD card from the reader.
@@ -1444,7 +1444,7 @@ command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of an UNLOCKED SDHC media card after the 
+     detect the insertion of an UNLOCKED SDHC media card after the
      system has been suspended
  STEPS:
      1. Click "Test" and insert an UNLOCKED SDHC card into the reader.

@@ -7,7 +7,7 @@ _description:
 
 plugin: shell
 name: virtualization/kvm_check_vm
-requires: 
+requires:
  package.name == 'qemu-kvm'
  package.name == 'qemu-utils'
 depends: virtualization/kvm_ok
