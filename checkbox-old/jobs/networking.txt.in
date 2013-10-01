@@ -21,7 +21,7 @@ requires: device.category == 'NETWORK'
 _description: Network Information
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
- plugin: manual
+ plugin: user-interact-verify
  name: networking/info_$2
  requires: device.path == "$1"
  command: network_info $2
@@ -46,7 +46,7 @@ estimated_duration: 1.1
 _description:
  This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
 
-plugin: manual
+plugin: user-interact-verify
 name: networking/wired_connection
 command: network_check
 _description:
@@ -59,7 +59,7 @@ _description:
  VERIFICATION:
      Did a notification show and was the connection correctly established?
 
-plugin: manual
+plugin: user-interact-verify
 name: networking/modem_connection
 command: network_check
 _description:

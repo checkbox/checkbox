@@ -6,7 +6,7 @@ requires:
 command: cat /proc/asound/cards
 _description: Test to detect audio devices
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/playback_auto
 depends: audio/list_devices
 requires:
@@ -25,7 +25,7 @@ _description:
  VERIFICATION:
      Did you hear a tone?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/playback_hdmi
 requires:
  device.category == 'AUDIO'
@@ -43,7 +43,7 @@ _description:
  VERIFICATION:
      Did you hear the sound from the HDMI device?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/playback_displayport
 requires:
  device.category == 'AUDIO'
@@ -61,7 +61,7 @@ _description:
  VERIFICATION:
      Did you hear the sound from the DisplayPort device?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/playback_headphones
 depends: audio/list_devices
 requires:
@@ -79,7 +79,7 @@ _description:
  VERIFICATION:
      Did you hear a sound through the headphones and did the sound play without any distortion, clicks or other strange noises from your headphones?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/alsa_record_playback_internal
 depends: audio/playback_auto
 requires:
@@ -98,7 +98,7 @@ _description:
  VERIFICATION:
      Did you hear your speech played back?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/alsa_record_playback_external
 depends: audio/playback_headphones
 requires:
@@ -117,7 +117,7 @@ _description:
  VERIFICATION:
      Did you hear your speech played back?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/alsa_record_playback_usb
 requires:
  device.category == 'AUDIO'
@@ -165,7 +165,7 @@ command: [ -e ${CHECKBOX_DATA}/alsa_info.log ] && cat ${CHECKBOX_DATA}/alsa_info
 _description:
  Attaches the audio hardware data collection log to the results.
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/channels
 command: speaker-test -c 2 -l 1 -t wav
 _description:
@@ -203,7 +203,7 @@ _description:
       1. Do you hear a sound in the speakers? The internal speakers should *not* be muted automatically
       2. Do you hear the sound coming out on the corresponding channel?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/external-linein
 requires:
  device.category == 'AUDIO'
@@ -221,7 +221,7 @@ _description:
  VERIFICATION:
      Did you hear your recording?
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/balance_internal_speaker
 depends: audio/playback_auto
 requires:
@@ -241,7 +241,7 @@ _description:
  VERIFICATION:
      Does the slider move smoothly, as well as being followed by the setting by the actual audio output? 
 
-plugin: manual
+plugin: user-interact-verify
 name: audio/balance_headphones
 depends: audio/playback_headphones
 requires:

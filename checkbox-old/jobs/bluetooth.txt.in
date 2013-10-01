@@ -54,7 +54,7 @@ _description:
  VERIFICATION:
      Were all files copied correctly?
 
-plugin: manual
+plugin: user-interact-verify
 name: bluetooth/audio
 depends: bluetooth/detect-output
 command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
@@ -72,7 +72,7 @@ _description:
  VERIFICATION:
      Did you hear the sound you recorded in the bluetooth
 
-plugin: manual
+plugin: user-interact-verify
 name: bluetooth/HID
 depends: bluetooth/detect-output
 command: keyboard_test

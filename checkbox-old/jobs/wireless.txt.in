@@ -20,7 +20,7 @@ command:
 estimated_duration: 0.645
 _description: Wireless scanning test. It scans and reports on discovered APs.
 
-plugin: manual
+plugin: user-interact-verify
 name: wireless/wireless_connection
 command: network_check
 estimated_duration: 2.0
@@ -83,7 +83,7 @@ _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol.
 
-plugin: manual
+plugin: user-interact-verify
 name: wireless/wireless_connection_wpa_bg_manual
 requires:
  device.category == 'WIRELESS'
@@ -104,7 +104,7 @@ _description:
  VERIFICATION:
      Verification is automated, do not change the automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: wireless/wireless_connection_open_bg_manual
 requires:
  device.category == 'WIRELESS'
@@ -125,7 +125,7 @@ _description:
  VERIFICATION:
      Verification is automated, do not change the automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: wireless/wireless_connection_wpa_n_manual
 requires:
  device.category == 'WIRELESS'
@@ -146,7 +146,7 @@ _description:
  VERIFICATION:
      Verification is automated, do not change the automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: wireless/wireless_connection_open_n_manual
 requires:
  device.category == 'WIRELESS'

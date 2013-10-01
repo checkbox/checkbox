@@ -3,7 +3,7 @@ name: usb/detect
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4 || echo "No USB devices were detected" >&2
 _description: Detects and shows USB devices attached to this system.
 
-plugin: manual
+plugin: user-interact-verify
 name: usb/disk_detect
 depends: usb/detect
 command: removable_storage_test -l usb
@@ -18,7 +18,7 @@ _description:
  VERIFICATION:
      Were the drives detected?
 
-plugin: manual
+plugin: user-interact-verify
 name: usb/HID
 depends: usb/detect
 command: keyboard_test
@@ -97,7 +97,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: usb/storage-transfer
 depends: usb/insert
 user: root
@@ -113,7 +113,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact-verify
 name: usb3/storage-transfer
 requires:
  usb.usb3 == 'supported'

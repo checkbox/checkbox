@@ -27,7 +27,7 @@ requires:
  package.name == 'fwts'
 command: [ -e ${CHECKBOX_DATA}/fwts-wakealarm.log ] && cat ${CHECKBOX_DATA}/fwts-wakealarm.log
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/poweroff
 depends: power-management/fwts_wakealarm
 user: root
@@ -55,7 +55,7 @@ command: tar cvfz power-management_poweroff.tgz $CHECKBOX_DATA/*poweroff.1.log &
 _description:
  This will attach any logs from the power-management/poweroff test to the results.
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/reboot
 user: root
 environ: CHECKBOX_DATA
@@ -195,7 +195,7 @@ _description:
  VERIFICATION:
      Was the laptop plugged into AC?
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/reboot_manual
 user:root
 command: shutdown -r now
@@ -213,7 +213,7 @@ _description:
  VERIFICATION:
      Did the system reboot correctly?
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/shutdown_manual
 user: root
 command: shutdown -h now

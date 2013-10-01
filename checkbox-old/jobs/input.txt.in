@@ -28,7 +28,7 @@ _description:
  VERIFICATION:
      Did the pointing device work as expected?
 
-plugin: manual
+plugin: user-interact-verify
 name: input/keyboard
 command: keyboard_test
 requires: device.category == 'KEYBOARD'

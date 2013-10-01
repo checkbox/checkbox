@@ -9,7 +9,7 @@ _description:
  VERIFICATION:
      Did the brightness change following to your key presses?
 
-plugin: manual
+plugin: user-interact-verify
 name: keys/volume
 requires:
  device.category == 'KEYBOARD'
@@ -25,7 +25,7 @@ _description:
  VERIFICATION:
      Do the keys work as expected?
 
-plugin: manual
+plugin: user-interact-verify
 name: keys/mute
 requires:
  device.category == 'KEYBOARD'
@@ -54,7 +54,7 @@ _description:
  VERIFICATION:
      Did the system go to sleep after pressing the sleep key?
 
-plugin: manual
+plugin: user-interact-verify
 name: keys/battery-info
 requires: dmi.product in ['Notebook','Laptop','Portable']
 user: root
