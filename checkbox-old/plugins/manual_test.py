@@ -31,7 +31,7 @@ class ManualTest(Plugin):
              ("prompt-user-interact-verify", self.prompt_manual),
              ("report-manual", self.report_manual),
              ("report-user-verify", self.report_manual),
-             ("report-user-interact", self.report_manual)]:
+             ("report-user-interact", self.report_manual),
              ("report-user-interact-verify", self.report_manual)]:
             self._manager.reactor.call_on(rt, rh)
 
