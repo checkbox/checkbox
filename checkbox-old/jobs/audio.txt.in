@@ -1,4 +1,4 @@
-plugin: shell 
+plugin: shell
 name: audio/list_devices
 requires:
  device.category == 'AUDIO'
@@ -147,7 +147,7 @@ requires:
  device.category == 'AUDIO'
 command: audio_test
 _description:
- Play back a sound on the default output and listen for it on the 
+ Play back a sound on the default output and listen for it on the
  default input.
 
 plugin: shell
@@ -187,7 +187,7 @@ _description:
  your local system.  The test will validate that the volume is greater than
  or equal to minvol and less than or equal to maxvol for all sources (inputs)
  and sinks (outputs) recognized by PulseAudio.  It will also validate that the
- active source and sink are not muted.  You should not manually adjust the 
+ active source and sink are not muted.  You should not manually adjust the
  volume or mute before running this test.
 
 plugin: manual
@@ -239,7 +239,7 @@ _description:
      3. Move the balance slider from left to right and back.
      4. Check that actual speaker audio balance follows your setting.
  VERIFICATION:
-     Does the slider move smoothly, as well as being followed by the setting by the actual audio output? 
+     Does the slider move smoothly, as well as being followed by the setting by the actual audio output?
 
 plugin: user-interact-verify
 name: audio/balance_headphones
@@ -259,4 +259,4 @@ _description:
      3. Move the balance slider from left to right and back.
      4. Check that actual headphone audio balance follows your setting.
  VERIFICATION:
-     Does the slider move smoothly, as well as being followed by the setting by the actual audio output? 
+     Does the slider move smoothly, as well as being followed by the setting by the actual audio output?

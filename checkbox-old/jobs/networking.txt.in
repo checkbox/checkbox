@@ -8,7 +8,7 @@ command: network_device_info
 estimated_duration: 1.2
 _description: Test to detect the available network controllers
 
-plugin: shell 
+plugin: shell
 name: networking/internet
 depends: networking/detect
 command: internet_test
@@ -36,9 +36,9 @@ command:
       Is this correct?
  EOF
 
-plugin: shell 
+plugin: shell
 name: networking/info_automated
-requires: 
+requires:
  package.name == 'network-manager'
  device.category == 'NETWORK'
 command: udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
@@ -93,7 +93,7 @@ plugin: shell
 name: networking/ntp
 requires: package.name == 'ntpdate'
 user: root
-command: network_ntp_test 
+command: network_ntp_test
 _description: Test to see if we can sync local clock to an NTP server
 
 plugin: shell

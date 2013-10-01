@@ -266,7 +266,7 @@ requires:
  package.name == 'alsa-base'
 depends: suspend/suspend_advanced suspend/audio_before_suspend
 _description: Verify that mixer settings after suspend are the same as before suspend.
-command: 
+command:
  audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
 
 plugin: shell
@@ -1243,7 +1243,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb_insert_after_suspend
-depends: 
+depends:
  suspend/suspend_advanced
 command: removable_storage_watcher insert usb
 _description:
@@ -1270,7 +1270,7 @@ _description:
      This test will check that the system correctly detects the insertion of
      a USB 3.0 storage device after suspend and resume.
  STEPS:
-     1. Click "Test" and insert a USB 3.0 storage device (pen-drive/HDD) in 
+     1. Click "Test" and insert a USB 3.0 storage device (pen-drive/HDD) in
         a USB 3.0 port. (Note: this test will time-out after 20 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
@@ -1280,7 +1280,7 @@ _description:
 plugin: user-interact
 name: suspend/usb_remove_after_suspend
 depends:
- suspend/usb_insert_after_suspend 
+ suspend/usb_insert_after_suspend
 command: removable_storage_watcher remove usb
 _description:
  PURPOSE:
@@ -1295,7 +1295,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb3_remove_after_suspend
-depends: 
+depends:
  suspend/usb3_insert_after_suspend
 requires:
  usb.usb3 == 'supported'
@@ -1427,8 +1427,8 @@ depends: suspend/sd-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
-     This test will check that the system correctly detects 
-     the removal of an SD card from the systems card reader 
+     This test will check that the system correctly detects
+     the removal of an SD card from the systems card reader
      after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SD card from the reader.
@@ -1444,7 +1444,7 @@ command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of an UNLOCKED SDHC media card after the 
+     detect the insertion of an UNLOCKED SDHC media card after the
      system has been suspended
  STEPS:
      1. Click "Test" and insert an UNLOCKED SDHC card into the reader.

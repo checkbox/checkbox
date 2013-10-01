@@ -8,7 +8,7 @@ _description:
   This test will check that the update manager can find updates.
  STEPS:
   1. Click Test to launch update-manager.
-  2. Follow the prompts and if updates are found, install them. 
+  2. Follow the prompts and if updates are found, install them.
   3. When Update Manager has finished, please close the app by clicking the Close button in the lower right corner.
  VERIFICATION:
   Did Update manager find and install updates (Pass if no updates are found,
@@ -23,8 +23,8 @@ _description:
  PURPOSE:
   This test will check that the file browser can create a new folder.
  STEPS:
-  1. Click Test to open the File Browser. 
-  2. On the menu bar, click File -> Create Folder. 
+  1. Click Test to open the File Browser.
+  2. On the menu bar, click File -> Create Folder.
   3. In the name box for the new folder, enter the name Test Folder and hit Enter.
   4. Close the File browser.
  VERIFICATION:
@@ -38,7 +38,7 @@ _description:
  PURPOSE:
   This test will check that the file browser can copy a folder
  STEPS:
-  1. Click Test to open the File Browser. 
+  1. Click Test to open the File Browser.
   2. Right click on the folder called Test Folder and click on Copy.
   3. Right Click on any white area in the window and click on Paste.
   4. Right click on the folder called Test Folder(copy) and click Rename.
@@ -55,8 +55,8 @@ _description:
  PURPOSE:
   This test will verify that the file browser can move a folder.
  STEPS:
-  1. Click Test to open the File Browser. 
-  2. Click and drag the folder called Test Data onto the icon called Test Folder. 
+  1. Click Test to open the File Browser.
+  2. Click and drag the folder called Test Data onto the icon called Test Folder.
   3. Release the button.
   4. Double click the folder called Test Folder to open it up.
   5. Close the File Browser.
@@ -71,8 +71,8 @@ _description:
  PURPOSE:
   This test will check that the file browser can create a new file.
  STEPS:
-  1. Click Select Test to open the File Browser. 
-  2. Right click in the white space and click Create Document -> Empty Document. 
+  1. Click Select Test to open the File Browser.
+  2. Right click in the white space and click Create Document -> Empty Document.
   3. Enter the name Test File 1 in the name box and hit Enter.
   4. Close the File browser.
  VERIFICATION:
@@ -86,10 +86,10 @@ _description:
  PURPOSE:
   This test will check that the file browser can copy a file.
  STEPS:
-  1. Click Test to open the File Browser. 
-  2. Right click on the file called Test File 1 and click Copy. 
+  1. Click Test to open the File Browser.
+  2. Right click on the file called Test File 1 and click Copy.
   3. Right click in the white space and click Paste.
-  4. Right click on the file called Test File 1(copy) and click Rename. 
+  4. Right click on the file called Test File 1(copy) and click Rename.
   5. Enter the name Test File 2 in the name box and hit Enter.
   6. Close the File Browser.
  VERIFICATION:
@@ -103,8 +103,8 @@ _description:
  PURPOSE:
   This test will check that the file browser can move a file.
  STEPS:
-  1. Click Test to open the File Browser. 
-  2. Click and drag the file called Test File 2 onto the icon for the folder called Test Data. 
+  1. Click Test to open the File Browser.
+  2. Click and drag the file called Test File 2 onto the icon for the folder called Test Data.
   3. Release the button.
   4. Double click the icon for Test Data to open that folder up.
   5. Close the File Browser.
@@ -119,7 +119,7 @@ _description:
  PURPOSE:
   This test will check that the file browser can delete a file.
  STEPS:
-  1. Click Test to open the File Browser. 
+  1. Click Test to open the File Browser.
   2. Right click on the file called Test File 1 and click on Move To Trash.
   3. Verify that Test File 1 has been removed.
   4. Close the File Browser.
@@ -134,7 +134,7 @@ _description:
  PURPOSE:
   This test will check that the file browser can delete a folder.
  STEPS:
-  1. Click Test to open the File Browser. 
+  1. Click Test to open the File Browser.
   2. Right click on the folder called Test Folder and click on Move To Trash.
   3. Verify that the folder was deleted.
   4. Close the file browser.
@@ -153,7 +153,7 @@ command:
   PURPOSE:
    This test will check that common office document types can be opened in the default application.
   STEPS:
-   1. Click Test to open the file '$0' with its default viewer. 
+   1. Click Test to open the file '$0' with its default viewer.
    2. After the viewer opens, check out the file that was opened.
    3. Close the application (LibreOffice, Doc Viewer, etc.)
   VERIFICATION:
@@ -173,7 +173,7 @@ command:
   PURPOSE:
    This test will check that common audio files can be opened in the default player.
   STEPS:
-   1. Click Test to open the audio file '$0' with its default player. 
+   1. Click Test to open the audio file '$0' with its default player.
    2. After the player opens listen to the sound.
    3. Close the application.
   VERIFICATION:
@@ -193,7 +193,7 @@ command:
   PURPOSE:
    This test will check that common video files can be played in the default player.
   STEPS:
-   1. Click Test to play the video '$0' with its default player. 
+   1. Click Test to play the video '$0' with its default player.
    2. Watch the video.
    3. Close the application.
   VERIFICATION:
@@ -278,7 +278,7 @@ _description:
 plugin: user-interact-verify
 name: software/firefox-totem
 depends: software/firefox
-requires: 
+requires:
     package.name == 'firefox'
     package.name == 'gstreamer0.10-ffmpeg'
 command: firefox $CHECKBOX_SHARE/data/video/Quicktime_Video.mov
@@ -301,7 +301,7 @@ _description:
   This test will check that Empathy messaging client works.
  STEPS:
   1. Select Test to launch Empathy.
-  2. Configure it to connect to the Facebook Chat service. 
+  2. Configure it to connect to the Facebook Chat service.
   3. Once you have completed the test, please quit Empathy to continue here.
  VERIFICATION:
   Were you able to connect correctly and send/receive messages?
@@ -315,7 +315,7 @@ _description:
   This test will check that Empathy messaging client works.
  STEPS:
   1. Select Test to launch Empathy.
-  2. Configure it to connect to the Google Talk (gtalk) service. 
+  2. Configure it to connect to the Google Talk (gtalk) service.
   3. Once you have completed the test, please quit Empathy to continue here.
  VERIFICATION:
   Were you able to connect correctly and send/receive messages?
@@ -329,7 +329,7 @@ _description:
   This test will check that Empathy messaging client works.
  STEPS:
   1. Select Test to launch Empathy.
-  2. Configure it to connect to the Jabber service. 
+  2. Configure it to connect to the Jabber service.
   3. Once you have completed the test, please quit Empathy to continue here.
  VERIFICATION:
   Were you able to connect correctly and send/receive messages?
@@ -343,7 +343,7 @@ _description:
   This test will check that Empathy messaging client works.
  STEPS:
   1. Select Test to launch Empathy.
-  2. Configure it to connect to the AOL Instant Messaging (AIM) service. 
+  2. Configure it to connect to the AOL Instant Messaging (AIM) service.
   3. Once you have completed the test, please quit Empathy to continue here.
  VERIFICATION:
   Were you able to connect correctly and send/receive messages?
@@ -357,7 +357,7 @@ _description:
   This test will check that Empathy messaging client works.
  STEPS:
   1. Select Test to launch Empathy.
-  2. Configure it to connect to the Microsoft Network (MSN) service. 
+  2. Configure it to connect to the Microsoft Network (MSN) service.
   3. Once you have completed the test, please quit Empathy to continue here.
  VERIFICATION:
   Were you able to connect correctly and send/receive messages?

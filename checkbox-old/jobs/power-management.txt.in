@@ -47,7 +47,7 @@ _description:
   5. Once the test has completed, restart checkbox and select 'Re-run' when prompted.
  VERIFICATION:
   If the machine successfully shuts down and boots, select 'Yes', otherwise,
-  select 'No'. 
+  select 'No'.
 
 plugin: attachment
 name: power-management/poweroff-log-attach
@@ -174,8 +174,8 @@ command:
 plugin: shell
 name: power-management/battery_drain_sleep
 user: root
-requires: 
- package.name == 'upower' 
+requires:
+ package.name == 'upower'
  package.name == 'fwts'
 depends: power-management/unplug_ac
 _description: Checks the battery drain during suspend.  Reports time until
