@@ -1,7 +1,7 @@
 #!/bin/bash
 
-WANTED_PACKAGES="driver-testing"
-EXECUTABLE="driver-testing"
+WANTED_PACKAGES="canonical-driver-test-suite checkbox-ihv-graphics"
+EXECUTABLE="canonical-driver-test-suite"
 START_TESTING_LOG=/tmp/start_testing.log
 START_TESTING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Use log to write stuff to the logfile, and optionally show it to
