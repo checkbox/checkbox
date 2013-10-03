@@ -110,8 +110,9 @@ class UdevadmDevice:
         vid = int(self.vendor_id) if self.vendor_id else 0
         pid = int(self.product_id) if self.product_id else 0
         return("<{}: bus: {} id [{:x}:{:x}] {}>".format(
-             type(self).__name__, self.bus, vid, pid,
-             self.product))
+            type(self).__name__, self.bus, vid, pid,
+            self.product))
+
     @property
     def bus(self):
         if self._bus is not None:
@@ -345,7 +346,7 @@ class UdevadmDevice:
         # Some audio and serial devices have a product but no vendor
         # or product id. Special-case their categories for backwards-
         # compatibility.
-        if self.bus ==  "sound":
+        if self.bus == "sound":
             return "AUDIO"
 
         if self.bus == "tty":
@@ -740,7 +741,8 @@ class UdevadmParser:
                 dev_interface = [
                     d for d in self.devices.values()
                     if d.category in ("NETWORK", "WIRELESS") and
-                    device._raw_path != d._raw_path and device._raw_path in d._raw_path
+                    device._raw_path != d._raw_path and
+                    device._raw_path in d._raw_path
                 ]
                 if dev_interface:
                     dev_interface = dev_interface.pop()
