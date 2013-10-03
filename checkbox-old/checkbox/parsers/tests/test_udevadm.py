@@ -522,6 +522,34 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.verify_devices(devices, expected_devices)
 
+    def test_HP_ENVY_15_MEDIATEK_BT(self):
+        devices = self.parse("HP_ENVY_15_MEDIATEK_BT")
+        expected_devices = [
+            (None, "WIRELESS", "pci", 0x14C3, 0x7630),
+            ("RTL8111/8168B PCI Express Gigabit "
+             "Ethernet controller", "NETWORK", "pci",
+             0x10EC, 0x8168),
+            (None, "BLUETOOTH", "usb", 0x0e8d, 0x763f)]
+        self.assertEqual(len(devices), 63)
+        self.assertEqual(self.count(devices, "WIRELESS"), 1)
+        self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
+        self.assertEqual(self.count(devices, "NETWORK"), 1)
+        self.verify_devices(devices, expected_devices)
+
+    def test_HP_PAVILION14_NOTEBOOK_MEDIATEK_BT(self):
+        devices = self.parse("HP_PAVILION14_NOTEBOOK_MEDIATEK_BT")
+        expected_devices = [
+            (None, "WIRELESS", "pci", 0x14C3, 0x7630),
+            ("RTL8101E/RTL8102E PCI Express Fast "
+             "Ethernet controller", "NETWORK", "pci",
+             0x10EC, 0x8136),
+            (None, "BLUETOOTH", "usb", 0x0e8d, 0x763f)]
+        self.assertEqual(len(devices), 67)
+        self.verify_devices(devices, expected_devices)
+        self.assertEqual(self.count(devices, "WIRELESS"), 1)
+        self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
+        self.assertEqual(self.count(devices, "NETWORK"), 1)
+
     def test_CALXEDA_HIGHBANK(self):
         #This is a very bare-bones SoC meant for server use
         devices = self.parse("CALXEDA_HIGHBANK")
