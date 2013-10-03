@@ -239,12 +239,12 @@ E: UDEV_LOG=3
 
     def test_DELL_VOSTROV131(self):
         devices = self.parse("DELL_VOSTROV131")
-        expected_devices = {"RTL8111/8168 PCI Express Gigabit "
-                            "Ethernet controller":
-                            ("NETWORK", "pci", 0x10EC, 0x8168),
-                            "AR9285 Wireless Network Adapter (PCI-Express)":
-                            ("WIRELESS", "pci", 0x168C, 0x002B)
-                            }
+        expected_devices = [("RTL8111/8168 PCI Express Gigabit "
+                            "Ethernet controller",
+                            "NETWORK", "pci", 0x10EC, 0x8168),
+                            ("AR9285 Wireless Network Adapter (PCI-Express)",
+                            "WIRELESS", "pci", 0x168C, 0x002B)
+                            ]
         self.assertEqual(len(devices), 63)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 2)
@@ -355,11 +355,11 @@ E: UDEV_LOG=3
 
     def test_HP_PROBOOK6550B_ACCELEROMETER(self):
         devices = self.parse("HP_PROBOOK6550B_ACCELEROMETER")
-        expected_devices = {"Centrino Advanced-N 6200":
-                            ("WIRELESS", "pci", 0x8086, 0x4239),
-                            "82577LC Gigabit Network Connection":
-                            ("NETWORK", "pci", 0x8086, 0x10EB)
-                            }
+        expected_devices = [("Centrino Advanced-N 6200",
+                             "WIRELESS", "pci", 0x8086, 0x4239),
+                            ("82577LC Gigabit Network Connection",
+                             "NETWORK", "pci", 0x8086, 0x10EB)
+                            ]
         self.assertEqual(len(devices), 80)
         # Check the accelerometer device category/product
         self.assertEqual(devices[78].product, "ST LIS3LV02DL Accelerometer")
@@ -424,13 +424,13 @@ E: UDEV_LOG=3
 
     def test_LENOVO_T430S(self):
         devices = self.parse("LENOVO_T430S")
-        expected_devices = {"Centrino Ultimate-N 6300":
-                            ("WIRELESS", "pci", 0x8086, 0x4238),
-                            "82579LM Gigabit Network Connection":
-                            ("NETWORK", "pci", 0x8086, 0x1502),
-                            "H5321 gw":
-                            ("NETWORK", "usb", 0x0bdb, 0x1926)
-                            }
+        expected_devices = [("Centrino Ultimate-N 6300",
+                             "WIRELESS", "pci", 0x8086, 0x4238),
+                            ("82579LM Gigabit Network Connection",
+                             "NETWORK", "pci", 0x8086, 0x1502),
+                            ("H5321 gw",
+                             "NETWORK", "usb", 0x0bdb, 0x1926)
+                            ]
         self.assertEqual(len(devices), 103)
         # Check that the Thinkpad hotkeys are not a CAPTURE device
         self.assertEqual(devices[102].product, "ThinkPad Extra Buttons")
@@ -511,11 +511,11 @@ E: UDEV_LOG=3
 
     def test_LENOVO_T420(self):
         devices = self.parse("LENOVO_T420")
-        expected_devices = {"Centrino Advanced-N 6205 [Taylor Peak]":
-                            ("WIRELESS", "pci", 0x8086, 0x85),
-                            "82579LM Gigabit Network Connection":
-                            ("NETWORK", "pci", 0x8086, 0x1502)
-                            }
+        expected_devices = [("Centrino Advanced-N 6205 [Taylor Peak]",
+                             "WIRELESS", "pci", 0x8086, 0x85),
+                            ("82579LM Gigabit Network Connection",
+                             "NETWORK", "pci", 0x8086, 0x1502)
+                            ]
         self.assertEqual(len(devices), 65)
         self.assertEqual(self.count(devices, "WIRELESS"), 1)
         self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
@@ -543,33 +543,49 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "RAID"), 0)
         self.assertEqual(self.count(devices, "DISK"), 1)
 
-
-    def verify_devices(self, devices, device_dict):
-        """ Verify we have exactly one of each device given in the dict,
-            also that category, bus, vendor_id and product_id match.
-            Contents of the dict have a key per device,
-            which should be the product name, with the value
-            being a tuple with categorym, bus, vendor and product.
-            They look like:
-            {'Device name': (category, bus, vendor_id, product_id)}
+    def verify_devices(self, devices, expected_device_list):
+        """
+        Verify we have exactly one of each device given in the list,
+        and that product name, category, bus, vendor_id and
+        product_id match.
+        The list contains a tuple with product name, category, bus,
+        vendor and product.
+        They look like:
+        [(name, category, bus, vendor_id, product_id)]
+        Note that name can be None, in which case we don't need the
+        name to match. All other attributes must have a value and match.
         """
         # See this bug, that prompted for closer inspection of
         # devices and IDs:
         # https://bugs.launchpad.net/checkbox/+bug/1211521
-        for product, expected in device_dict.items():
+        for device in expected_device_list:
+            # Match by product and vendor ID
             indices = [idx for idx, elem in enumerate(devices)
-                       if elem.product == product]
+                       if elem.product_id == device[4] and
+                       elem.vendor_id == device[3]]
+            # If we have a name to match, eliminate everyhing without
+            # that name (as they are bogus, uninteresting devices)
+            if device[0] is not None:
+                indices = [idx for idx in indices
+                           if devices[idx].product == device[0]]
+            # Now do my validation checks
             self.assertEqual(len(indices), 1,
-                             "{} items of {} found".format(len(indices),
-                                                           product))
-            self.assertEqual(devices[indices[0]].category, expected[0],
-                             "Bad category for {}".format(product))
-            self.assertEqual(devices[indices[0]].bus, expected[1],
-                             "Bad bus for {}".format(product))
-            self.assertEqual(devices[indices[0]].vendor_id, expected[2],
-                             "Bad vendor_id for {}".format(product))
-            self.assertEqual(devices[indices[0]].product_id, expected[3],
-                             "Bad product_id for {}".format(product))
+                             "{} items of {} (id {}:{}) found".format(
+                                 len(indices),
+                                 device[0],
+                                 device[3],
+                                 device[4]))
+            if device[0] is not None:
+                self.assertEqual(devices[indices[0]].product, device[0],
+                                 "Bad product name for {}".format(device[0]))
+            self.assertEqual(devices[indices[0]].category, device[1],
+                             "Bad category for {}".format(device[0]))
+            self.assertEqual(devices[indices[0]].bus, device[2],
+                             "Bad bus for {}".format(device[0]))
+            self.assertEqual(devices[indices[0]].vendor_id, device[3],
+                             "Bad vendor_id for {}".format(device[0]))
+            self.assertEqual(devices[indices[0]].product_id, device[4],
+                             "Bad product_id for {}".format(device[0]))
 
 
 class TestDecodeId(TestCase):
