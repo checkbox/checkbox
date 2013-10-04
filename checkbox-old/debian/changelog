@@ -4,6 +4,8 @@ checkbox (0.16.12) UNRELEASED; urgency=low
   * scripts/gpu_test: Better validation that glxgears windows were found, to
     avoid manipulation of nonexisting windows which causes threads to crash
     and the entire program to stall. (LP: #1232232)
+  * parsers/udevadm: Added additional heuristics for mediatek bluetooth
+    controllers (LP: #1210405)
 
   [ Brendan Donegan ] 
   * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
