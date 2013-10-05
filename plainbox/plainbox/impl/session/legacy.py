@@ -73,6 +73,12 @@ class ISessionStateLegacyAPI(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
+    def remove(self):
+        """
+        Remove this session
+        """
+
+    @abc.abstractmethod
     def previous_session_file(self):
         """
         Check the filesystem for previous session data
@@ -156,6 +162,12 @@ class SessionStateLegacyAPICompatImpl(SessionState, ISessionStateLegacyAPI):
         Legacy API, this function does absolutely nothing
         """
         logger.debug("SessionState.close()")
+        self._manager = None
+        self._commit_hint = None
+
+    def remove(self):
+        logger.debug("SessionState.remove()")
+        self.manager.destroy()
         self._manager = None
         self._commit_hint = None
 
@@ -250,10 +262,8 @@ class SessionStateLegacyAPICompatImpl(SessionState, ISessionStateLegacyAPI):
         Returns the full pathname to the session file if it exists
         """
         last_storage = SessionStorageRepository().get_last_storage()
-        if last_storage:
-            return last_storage.location
-        else:
-            return None
+        if last_storage and os.path.exists(last_storage.session_file):
+            return last_storage.session_file
 
     def persistent_save(self):
         """

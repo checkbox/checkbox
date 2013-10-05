@@ -65,7 +65,7 @@ _description:
  VERIFICATION:
      Does the LED light orange when battery is low?
 
-plugin: manual
+plugin: user-interact-verify
 name: led/hdd
 command: led_hdd_test
 _description:
@@ -77,7 +77,7 @@ _description:
  VERIFICATION:
      Did the HDD LED light?
 
-plugin: manual
+plugin: user-interact-verify
 name: led/numeric-keypad
 command: keyboard_test
 _description:
@@ -142,7 +142,7 @@ _description:
  VERIFICATION:
      Did the bluetooth LED turn off and on twice?
 
-plugin: manual
+plugin: user-interact-verify
 name: led/camera
 depends: camera/detect
 command: camera_test led

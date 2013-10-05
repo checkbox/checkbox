@@ -27,6 +27,7 @@
 """
 
 from logging import getLogger
+from datetime import timedelta
 
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
@@ -58,6 +59,10 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
             self._print_dependency_report()
         if self.ns.print_interactivity_report:
             self._print_interactivity_report()
+        if self.ns.print_estimated_duration_report:
+            self._print_estimated_duration_report()
+        if self.ns.print_validation_report:
+            self._print_validation_report(self.ns.only_errors)
 
     def _run_local_jobs(self):
         print("[Running Local Jobs]".center(80, '='))
@@ -102,24 +107,60 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
 
     def _print_interactivity_report(self):
         print("[Interactivity Report]".center(80, '='))
-        is_interactive = {
-            'shell': False,
-            'local': False,
-            'resource': False,
-            'attachment': False,
-            'user-verify': True,
-            'user-interact': True,
-            'manual': True
-        }
         if not self.session.run_list:
             return
         max_job_len = max(len(job.name) for job in self.session.run_list)
-        fmt = "{{job:{}}}: {{interactive}}".format(max_job_len)
+        fmt = "{{job:{}}} : {{interactive:11}} : {{duration}}".format(
+            max_job_len)
         for job in self.session.run_list:
-            print(fmt.format(
-                job=job.name, interactive=(
-                    "interactive" if is_interactive[job.plugin]
-                    else "automatic")))
+            print(
+                fmt.format(
+                    job=job.name,
+                    interactive=(
+                        "automatic" if job.automated else "interactive"),
+                    duration=(
+                        timedelta(seconds=job.estimated_duration)
+                        if job.estimated_duration is not None
+                        else "unknown")
+                )
+            )
+
+    def _print_estimated_duration_report(self):
+        print("[Estimated Duration Report]".center(80, '='))
+        print("Estimated test duration:")
+        automated, manual = self.session.get_estimated_duration()
+        print("   automated tests: {}".format(
+            timedelta(seconds=automated) if automated is not None
+            else "cannot estimate"))
+        print("      manual tests: {}".format(
+            timedelta(seconds=manual) if manual is not None
+            else "cannot estimate"))
+        print("             total: {}".format(
+            timedelta(seconds=manual + automated)
+            if manual is not None and automated is not None
+            else "cannot estimate"))
+
+    def _print_validation_report(self, only_errors):
+        print("[Validation Report]".center(80, '='))
+        if not self.session.run_list:
+            return
+        max_job_len = max(len(job.name) for job in self.session.run_list)
+        fmt = "{{job:{}}} : {{problem}}".format(max_job_len)
+        problem = None
+        for job in self.session.run_list:
+            try:
+                job.validate()
+            except ValueError as exc:
+                problem = str(exc)
+            else:
+                if only_errors:
+                    continue
+                problem = ""
+            print(fmt.format(job=job.name, problem=problem))
+            if problem:
+                print("Job defined in {}".format(job.origin))
+        if only_errors and problem is None:
+            print("No problems found")
 
 
 class AnalyzeCommand(PlainBoxCommand, CheckBoxCommandMixIn):
@@ -155,6 +196,15 @@ class AnalyzeCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         group.add_argument(
             "-t", "--print-interactivity-report", action='store_true',
             help="Print interactivity report")
+        group.add_argument(
+            "-e", "--print-estimated-duration-report", action='store_true',
+            help="Print estimated duration report")
+        group.add_argument(
+            "-v", "--print-validation-report", action='store_true',
+            help="Print validation report")
+        group.add_argument(
+            "-E", "--only-errors", action='store_true', default=False,
+            help="When coupled with -v, only problematic jobs will be listed")
         parser.set_defaults(command=self)
         # Call enhance_parser from CheckBoxCommandMixIn
         self.enhance_parser(parser)

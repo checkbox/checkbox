@@ -44,6 +44,7 @@ from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import DiskJobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.session import JobState
+from plainbox.impl.signal import remove_signals_listeners
 
 logger = logging.getLogger("plainbox.service")
 
@@ -267,6 +268,7 @@ class JobDefinitionWrapper(PlainBoxObjectWrapper):
 
     def __shared_initialize__(self, **kwargs):
         self._checksum = self.native.get_checksum()
+        self._is_generated = False
 
     def _get_preferred_object_path(self):
         # TODO: this clashes with providers, maybe use a random ID instead
@@ -333,7 +335,7 @@ class JobDefinitionWrapper(PlainBoxObjectWrapper):
     def origin(self):
         if self.native.origin is not None:
             return dbus.Struct([
-                self.native.origin.filename,
+                str(self.native.origin.source),
                 self.native.origin.line_start,
                 self.native.origin.line_end
             ], signature="suu")
@@ -685,12 +687,7 @@ class SessionWrapper(PlainBoxObjectWrapper):
             self._job_state_map_wrapper[job_name] = state_wrapper
         # Keep track of new jobs as they are added to the session
         self.native.on_job_added.connect(self._job_added)
-
-    def __del__(self):
-        super(SessionWrapper, self).__del__()
-        self.native.on_job_added.disconnect(self._job_added)
-        for wrapper in self.managed_objects:
-            wrapper.remove_from_connection()
+        self.native.on_job_removed.connect(self._job_removed)
 
     def publish_related_objects(self, connection):
         super(SessionWrapper, self).publish_related_objects(connection)
@@ -769,6 +766,10 @@ class SessionWrapper(PlainBoxObjectWrapper):
         """
         logger.info("Adding job %r to DBus", job)
         job_wrapper = self._maybe_wrap(job)
+        # Mark this job as generated, so far we only add generated jobs at
+        # runtime and we need to treat those differently when we're changing
+        # the session.
+        job_wrapper._is_generated = True
         job_wrapper.publish_self(self.connection)
         self.add_managed_object(job_wrapper)
         return job_wrapper
@@ -781,21 +782,19 @@ class SessionWrapper(PlainBoxObjectWrapper):
             Job state to add to the bus
         :ptype state:
             JobState
-
-        Take a JobState, wrap it in JobStateWrapper, publish it so that
-        it shows up on DBus, add it to the collection of objects managed by
-        this SessionWrapper so that it sends InterfacesAdded signals and
-        can be enumerated with GetManagedObjects.
-
-        .. note::
-            This method must be called after both result and job definition
-            have been added (presumably with :meth:`add_job()` and
-            :meth:`add_result()`). This method *does not* publish those
-            objects, it only publishes the state object.
-
         :returns:
             The wrapper for the job that was added
 
+        Take a JobState, wrap it in JobStateWrapper, publish it so that it
+        shows up on DBus, add it to the collection of objects managed by this
+        SessionWrapper so that it sends InterfacesAdded signals and can be
+        enumerated with GetManagedObjects.
+
+        .. note::
+            This method must be called after both result and job definition
+            have been added (presumably with :meth:`add_job()`
+            and :meth:`add_result()`). This method *does not* publish those
+            objects, it only publishes the state object.
         """
         logger.info("Adding job state %r to DBus", state)
         state_wrapper = self._maybe_wrap(state)
@@ -855,6 +854,41 @@ class SessionWrapper(PlainBoxObjectWrapper):
             self._job_state_map_wrapper
         }, [])
 
+    def _job_removed(self, job):
+        """
+        Internal method connected to the SessionState.on_job_removed() signal.
+
+        This method is called (so far) only when the list of jobs is trimmed
+        after doing calling :meth:`Resume()`. This method looks up the
+        associated state and result object and removes them. If the removed job
+        was not a part of the provider set (it was a generated job) it is also
+        removed. Lastly this method sends the appropriate notifications.
+        """
+        logger.debug("_job_removed(%r)", job)
+        # Get references to the three key objects, job, state and result
+        state_wrapper = self._job_state_map_wrapper[job.name]
+        result_wrapper = state_wrapper._result_wrapper
+        job_wrapper = state_wrapper._job_wrapper
+        # Remove result and state from our managed object list
+        self.remove_managed_object(result_wrapper)
+        self.remove_managed_object(state_wrapper)
+        # Remove job from managed object list if it was generated
+        if job_wrapper._is_generated:
+            self.remove_managed_object(job_wrapper)
+        # Remove result and state wrappers from dbus
+        result_wrapper.remove_from_connection()
+        state_wrapper.remove_from_connection()
+        # Remove job from dbus if it was generated
+        if job_wrapper._is_generated:
+            job_wrapper.remove_from_connection()
+        # Update the job_state_map wrapper that we have here
+        del self._job_state_map_wrapper[job.name]
+        # Send the signal that the 'job_state_map' property has changed
+        self.PropertiesChanged(SESSION_IFACE, {
+            self.__class__.job_state_map._dbus_property:
+            self._job_state_map_wrapper
+        }, [])
+
     # Value added
 
     @dbus.service.method(
@@ -907,6 +941,18 @@ class SessionWrapper(PlainBoxObjectWrapper):
     def Clean(self):
         logger.info("Clean()")
         self.native.clean()
+
+    @dbus.service.method(
+        dbus_interface=SESSION_IFACE, in_signature='', out_signature='')
+    def Remove(self):
+        logger.info("Remove()")
+        # Disconnect all signals listeners from the native session object
+        remove_signals_listeners(self)
+        for wrapper in self.managed_objects:
+            wrapper.remove_from_connection()
+        self.remove_from_connection()
+        self.native.remove()
+        logger.debug("Remove() completed")
 
     @dbus.service.method(
         dbus_interface=SESSION_IFACE, in_signature='', out_signature='')
@@ -1105,6 +1151,8 @@ class ServiceWrapper(PlainBoxObjectWrapper):
     def RunJob(self, session: 'o', job: 'o'):
         logger.info("RunJob(%r, %r)", session, job)
         running_job_wrp = RunningJob(job, session, conn=self.connection)
+        PlainBoxObjectWrapper.find_wrapper_by_native(
+            session).add_managed_object(running_job_wrp)
         self.native.run_job(session, job, running_job_wrp)
 
 

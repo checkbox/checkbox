@@ -28,7 +28,7 @@ _description:
  VERIFICATION:
      Did the pointing device work as expected?
 
-plugin: manual
+plugin: user-interact-verify
 name: input/keyboard
 command: keyboard_test
 requires: device.category == 'KEYBOARD'
@@ -59,9 +59,9 @@ command: accelerometer_test -m
 _description:
  PURPOSE:
      This test will test your accelerometer to see if it is detected
-     and operational as a joystick device. 
+     and operational as a joystick device.
  STEPS:
      1. Click on Test
-     2. Tilt your hardware in the directions onscreen until the axis threshold is met. 
+     2. Tilt your hardware in the directions onscreen until the axis threshold is met.
  VERIFICATION:
      Is your accelerometer properly detected? Can you use the device?

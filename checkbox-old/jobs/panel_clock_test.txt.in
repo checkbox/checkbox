@@ -10,7 +10,7 @@ _description:
     Is the clock displaying the correct date and time for your timezone?
 
 name: panel_clock/test
-plugin: manual
+plugin: user-interact-verify
 depends: panel_clock/verify
 requires: package.name == 'gnome-system-tools'
 user: root

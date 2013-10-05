@@ -170,47 +170,6 @@ _description:
      automatically selected result.
 
 plugin: user-interact
-name: mediacard/cf-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of a CF card after the system has been suspended
- STEPS:
-     1. Click "Test" and insert a CF card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/cf-storage-after-suspend
-depends: mediacard/cf-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/cf-insert-after-suspend test
- is run. It tests reading and writing to the CF card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/cf-remove-after-suspend
-depends: mediacard/cf-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of a CF card from the systems card reader after the system has been suspended.
- STEPS:
-     1. Click "Test" and remove the CF card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
 name: mediacard/sdxc-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -251,48 +210,6 @@ _description:
      automatically selected result.
 
 plugin: user-interact
-name: mediacard/sdxc-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of a SDXC card after the system has been suspended
- STEPS:
-     1. Click "Test" and insert a SDXC card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/sdxc-storage-after-suspend
-depends: mediacard/sdxc-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/sdxc-insert-after-suspend test
- is run. It tests reading and writing to the SDXC card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/sdxc-remove-after-suspend
-depends: mediacard/sdxc-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of a SDXC card from the systems card reader after the system has been suspended.
- STEPS:
-     1. Click "Test" and remove the SDXC card from the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
 name: mediacard/ms-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -325,47 +242,6 @@ _description:
  PURPOSE:
      This test will check that the system correctly detects 
      the removal of a MS card from the systems card reader.
- STEPS:
-     1. Click "Test" and remove the MS card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
-name: mediacard/ms-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of a MS card after the system has been suspended
- STEPS:
-     1. Click "Test" and insert a MS card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/ms-storage-after-suspend
-depends: mediacard/ms-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/ms-insert-after-suspend test
- is run. It tests reading and writing to the MS card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/ms-remove-after-suspend
-depends: mediacard/ms-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of a MS card from the systems card reader after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the MS card from the reader.
         (Note: this test will time-out after 20 seconds.)
@@ -414,47 +290,6 @@ _description:
      automatically selected result.
 
 plugin: user-interact
-name: mediacard/msp-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of a MSP card after the system has been suspended
- STEPS:
-     1. Click "Test" and insert a MSP card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/msp-storage-after-suspend
-depends: mediacard/msp-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/msp-insert-after-suspend test
- is run. It tests reading and writing to the MSP card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/msp-remove-after-suspend
-depends: mediacard/msp-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of a MSP card from the systems card reader after the system has been suspended.
- STEPS:
-     1. Click "Test" and remove the MSP card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
 name: mediacard/xd-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -487,47 +322,6 @@ _description:
  PURPOSE:
      This test will check that the system correctly detects 
      the removal of a xD card from the systems card reader.
- STEPS:
-     1. Click "Test" and remove the xD card from the reader.
-        (Note: this test will time-out after 20 seconds.)
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: user-interact
-name: mediacard/xd-insert-after-suspend
-depends: suspend/suspend_advanced
-command: removable_storage_watcher --memorycard insert sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the systems media card reader can
-     detect the insertion of a xD card after the system has been suspended
- STEPS:
-     1. Click "Test" and insert a xD card into the reader.
-        If a file browser opens up, you can safely close it.
-        (Note: this test will time-out after 20 seconds.)
-     2. Do not remove the device after this test.
- VERIFICATION:
-     The verification of this test is automated. Do not change the
-     automatically selected result.
-
-plugin: shell
-name: mediacard/xd-storage-after-suspend
-depends: mediacard/xd-insert-after-suspend
-user: root
-command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
-_description:
- This test is automated and executes after the mediacard/xd-insert-after-suspend test
- is run. It tests reading and writing to the xD card after the system has been suspended.
-
-plugin: user-interact
-name: mediacard/xd-remove-after-suspend
-depends: mediacard/xd-insert-after-suspend
-command: removable_storage_watcher --memorycard remove sdio usb scsi
-_description:
- PURPOSE:
-     This test will check that the system correctly detects the removal
-     of a xD card from the systems card reader after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the xD card from the reader.
         (Note: this test will time-out after 20 seconds.)

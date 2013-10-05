@@ -27,11 +27,12 @@ from plainbox.abc import IJobResult
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyError
 from plainbox.impl.depmgr import DependencySolver
+from plainbox.impl.job import JobOutputTextSource
 from plainbox.impl.resource import ExpressionCannotEvaluateError
 from plainbox.impl.resource import ExpressionFailedError
 from plainbox.impl.resource import Resource
-from plainbox.impl.rfc822 import gen_rfc822_records
 from plainbox.impl.rfc822 import RFC822SyntaxError
+from plainbox.impl.rfc822 import gen_rfc822_records
 from plainbox.impl.session.jobs import JobReadinessInhibitor
 from plainbox.impl.session.jobs import JobState
 from plainbox.impl.session.jobs import UndesiredJobReadinessInhibitor
@@ -60,7 +61,8 @@ class SessionMetaData:
     # set this flag after successfully sending the result somewhere.
     FLAG_SUBMITTED = "submitted"
 
-    def __init__(self, title=None, flags=None, running_job_name=None, app_blob=None):
+    def __init__(self, title=None, flags=None, running_job_name=None,
+                 app_blob=None):
         if flags is None:
             flags = []
         self._title = title
@@ -253,6 +255,15 @@ class SessionState:
         """
         logger.info("New job defined: %r", job)
 
+    @Signal.define
+    def on_job_removed(self, job):
+        """
+        Signal sent whenever a job is removed from the session.
+
+        This signal is fired **after** :meth:`on_job_state_map_changed()`
+        """
+        logger.info("Job removed: %r", job)
+
     def __init__(self, job_list):
         """
         Initialize a new SessionState with a given list of jobs.
@@ -299,6 +310,72 @@ class SessionState:
         self._resource_map = {}
         self._metadata = SessionMetaData()
         super(SessionState, self).__init__()
+
+    def trim_job_list(self, qualifier):
+        """
+        Discard jobs that are selected by the given qualifier.
+
+        :param qualifier:
+            A qualifier that selects jobs to be removed
+        :ptype qualifier:
+            IJobQualifier
+
+        :raises ValueError:
+            If any of the jobs selected by the qualifier is on the desired job
+            list (or the run list)
+
+        This function correctly and safely discards certain jobs from the job
+        list. It also removes the associated job state (and referenced job
+        result) and results (for jobs that were resource jobs)
+        """
+        # Build a list for each of the jobs in job_list, that tells us if we
+        # should remove that job. This way we only call the qualifier once per
+        # job and can do efficient operations later.
+        #
+        # The whole function should be O(N), where N is len(job_list)
+        remove_flags = [
+            qualifier.designates(job) for job in self._job_list]
+        # Build a list of (job, should_remove) flags, we'll be using this list
+        # a few times below.
+        job_and_flag_list = list(zip(self._job_list, remove_flags))
+        # Build a set of names of jobs that we'll be removing
+        remove_job_name_set = frozenset([
+            job.name for job, should_remove in job_and_flag_list
+            if should_remove is True])
+        # Build a set of names of jobs that are on the run list
+        run_list_name_set = frozenset([job.name for job in self.run_list])
+        # Check if this is safe to do. None of the jobs may be in the run list
+        # (or the desired job list which is always a subset of run list)
+        unremovable_job_name_set = remove_job_name_set.intersection(
+            run_list_name_set)
+        if unremovable_job_name_set:
+            raise ValueError(
+                "cannot remove jobs that are on the run list: {}".format(
+                    ', '.join(sorted(unremovable_job_name_set))))
+        # Remove job state and resources (if present) for all the jobs we're
+        # about to remove. Note that while each job has a state object not all
+        # jobs generated resources so that removal is conditional.
+        for job, should_remove in job_and_flag_list:
+            if should_remove:
+                del self._job_state_map[job.name]
+                if job.name in self._resource_map:
+                    del self._resource_map[job.name]
+        # Compute a list of jobs to retain
+        retain_list = [
+            job for job, should_remove in job_and_flag_list
+            if should_remove is False]
+        # And a list of jobs to remove
+        remove_list = [
+            job for job, should_remove in job_and_flag_list
+            if should_remove is True]
+        # Replace job list with the filtered list
+        self._job_list = retain_list
+        if remove_list:
+            # Notify that the job state map has changed
+            self.on_job_state_map_changed()
+            # And that each removed job was actually removed
+            for job in remove_list:
+                self.on_job_removed(job)
 
     def update_desired_job_list(self, desired_job_list):
         """
@@ -511,11 +588,15 @@ class SessionState:
                 if new_job != existing_job:
                     logging.warning(
                         ("Local job %s produced job %r that collides with"
-                         " an existing job %r, the new job was discarded"),
-                        job, new_job, existing_job)
+                         " an existing job %s (from %s), the new job was"
+                         " discarded"),
+                        job, new_job, existing_job, existing_job.origin)
                 else:
-                    if not existing_job.via:
-                        existing_job._via = new_job.via
+                    # Patch the origin of the existing job so that it traces
+                    # back to the job that "generated" it again. This is
+                    # basically required to get __category__ jobs to associate
+                    # themselves with their children.
+                    existing_job._origin = new_job.origin
 
     def _gen_rfc822_records_from_io_log(self, job, result):
         """
@@ -526,9 +607,12 @@ class SessionState:
         line_gen = (record[2].decode('UTF-8', errors='replace')
                     for record in result.get_io_log()
                     if record[1] == 'stdout')
+        # Allow the generated records to be traced back to the job that defined
+        # the command which produced (printed) them.
+        source = JobOutputTextSource(job)
         try:
             # Parse rfc822 records from the subsequent lines
-            for record in gen_rfc822_records(line_gen):
+            for record in gen_rfc822_records(line_gen, source=source):
                 yield record
         except RFC822SyntaxError as exc:
             # When this exception happens we will _still_ store all the

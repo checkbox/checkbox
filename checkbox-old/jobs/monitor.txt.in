@@ -85,7 +85,7 @@ _description:
  VERIFICATION:
      Was the stretched desktop displayed correctly across both screens?
 
-plugin: manual
+plugin: user-interact-verify
 name: monitor/powersaving
 command: xset dpms force off
 _description:
@@ -97,7 +97,7 @@ _description:
  VERIFICATION:
      Did the monitor go blank and turn on again?
 
-plugin: manual
+plugin: user-interact-verify
 name: monitor/dim_brightness
 user: root
 command: brightness_test

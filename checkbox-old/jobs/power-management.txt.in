@@ -27,7 +27,7 @@ requires:
  package.name == 'fwts'
 command: [ -e ${CHECKBOX_DATA}/fwts-wakealarm.log ] && cat ${CHECKBOX_DATA}/fwts-wakealarm.log
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/poweroff
 depends: power-management/fwts_wakealarm
 user: root
@@ -47,7 +47,7 @@ _description:
   5. Once the test has completed, restart checkbox and select 'Re-run' when prompted.
  VERIFICATION:
   If the machine successfully shuts down and boots, select 'Yes', otherwise,
-  select 'No'. 
+  select 'No'.
 
 plugin: attachment
 name: power-management/poweroff-log-attach
@@ -55,7 +55,7 @@ command: tar cvfz power-management_poweroff.tgz $CHECKBOX_DATA/*poweroff.1.log &
 _description:
  This will attach any logs from the power-management/poweroff test to the results.
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/reboot
 user: root
 environ: CHECKBOX_DATA
@@ -174,8 +174,8 @@ command:
 plugin: shell
 name: power-management/battery_drain_sleep
 user: root
-requires: 
- package.name == 'upower' 
+requires:
+ package.name == 'upower'
  package.name == 'fwts'
 depends: power-management/unplug_ac
 _description: Checks the battery drain during suspend.  Reports time until
@@ -195,7 +195,7 @@ _description:
  VERIFICATION:
      Was the laptop plugged into AC?
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/reboot_manual
 user:root
 command: shutdown -r now
@@ -213,7 +213,7 @@ _description:
  VERIFICATION:
      Did the system reboot correctly?
 
-plugin: manual
+plugin: user-interact-verify
 name: power-management/shutdown_manual
 user: root
 command: shutdown -h now

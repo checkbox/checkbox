@@ -20,7 +20,7 @@ _description: Attaches a copy of /var/log/dmesg to the test results
 name: dmi_attachment
 plugin: attachment
 command: grep -r . /sys/class/dmi/id/ 2>/dev/null
-estimated_duration: 0.044 
+estimated_duration: 0.044
 _description: Attaches info on DMI
 
 name: dmidecode_attachment
@@ -130,7 +130,7 @@ command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep
 estimated_duration: 0.5
 _description: Attaches the contents of /proc/acpi/sleep if it exists.
 
-plugin: local
+plugin: shell
 name: info/bootchart
 _description: Bootchart information.
 requires: package.name == 'bootchart' or package.name == 'pybootchartgui'
@@ -149,7 +149,7 @@ command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: attachment
  name: info/hdparm_`ls /sys$path/block`.txt
- requires: 
+ requires:
   device.path == "$path"
   block_device.`ls /sys$path/block`_state != 'removable'
  user: root

@@ -1,4 +1,21 @@
-checkbox (0.16.11) UNRELEASED; urgency=low
+checkbox (0.16.12) UNRELEASED; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/gpu_test: Better validation that glxgears windows were found, to
+    avoid manipulation of nonexisting windows which causes threads to crash
+    and the entire program to stall. (LP: #1232232)
+  * parsers/udevadm: Added additional heuristics for mediatek bluetooth
+    controllers (LP: #1210405)
+
+  [ Brendan Donegan ] 
+  * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
+    former is deprecated (LP: #1224854)
+  * scripts/memory_test - use per-process memory limit if arch is ARM, except
+    for arm64 (LP: #1184688)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:10:13 +0100
+
+checkbox (0.16.11) saucy; urgency=low
 
   [ Daniel Manrique ]
   * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
@@ -8,6 +25,8 @@ checkbox (0.16.11) UNRELEASED; urgency=low
     (LP: #1224533)
   * Ensured that pactl commands are run on a properly unlocalized environment
     (LP: #1201126)
+  * scripts/fwts_test: Updated list of fwts tests to run, based on FWTS team
+    recommendations (LP: #1228168)
   
   [ Jeff Lane ]
   * scripts/storage_test: test now exits with a warning if the drive is not
@@ -16,12 +35,10 @@ checkbox (0.16.11) UNRELEASED; urgency=low
   [ Brendan Donegan ]
   * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
     in fwts and change version dependency to latest version (LP: #1218993)
-  * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
-    former is deprecated (LP: #1224854)
   * jobs/virtualization.txt.in - remove virtualization-check test and the 
     virt_check script (LP: #1227071)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Mon, 09 Sep 2013 09:30:32 +0100
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:09:54 +0100
 
 checkbox (0.16.10) saucy; urgency=low
 

@@ -28,50 +28,157 @@ Implementation of rfc822 serializer and deserializer.
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
-import logging
-
 from functools import total_ordering
 from inspect import cleandoc
+import inspect
+import logging
 
+from plainbox.abc import ITextSource
 from plainbox.impl.secure.checkbox_trusted_launcher import RFC822SyntaxError
 from plainbox.impl.secure.checkbox_trusted_launcher import BaseRFC822Record
 
 logger = logging.getLogger("plainbox.rfc822")
+
+
+class UnknownTextSource(ITextSource):
+    """
+    A :class:`ITextSource` subclass indicating that the source of text is
+    unknown.
+
+    This instances of this class are constructed by gen_rfc822_records() when
+    no explicit source is provided and the stream has no name. The serve as
+    non-None values to prevent constructing :class:`PythonFileTextSource` with
+    origin computed from :meth:`Origin.get_caller_origin()`
+    """
+
+    def __str__(self):
+        return "???"
+
+    def __repr__(self):
+        return "<{}>".format(self.__class__.__name__)
+
+    def __eq__(self, other):
+        if isinstance(other, UnknownTextSource):
+            return True
+        else:
+            return False
+
+    def __gt__(self, other):
+        return NotImplemented
+
+
+@total_ordering
+class FileTextSource(ITextSource):
+    """
+    A :class:`ITextSource` subclass indicating that text came from a file.
+
+    :ivar filename:
+        name of the file something comes from
+    """
+
+    def __init__(self, filename):
+        self.filename = filename
+
+    def __str__(self):
+        return self.filename
+
+    def __repr__(self):
+        return "<{} filename:{!r}>".format(
+            self.__class__.__name__, self.filename)
+
+    def __eq__(self, other):
+        if isinstance(other, FileTextSource):
+            return self.filename == other.filename
+        else:
+            return False
+
+    def __gt__(self, other):
+        if isinstance(other, FileTextSource):
+            return self.filename > other.filename
+        else:
+            return NotImplemented
+
+
+class PythonFileTextSource(FileTextSource):
+    """
+    A :class:`FileTextSource` subclass indicating the file was a python file.
+
+    It implements no differences but in some context it might be helpful to
+    differentiate on the type of the source field in the origin of a job
+    definition record.
+
+    :ivar filename:
+        name of the python filename that something comes from
+    """
+
 
 @total_ordering
 class Origin:
     """
     Simple class for tracking where something came from
 
-    :ivar filename: the name of the file
+    :ivar source:
+        something that describes where the text came frome, technically it
+        should be a :class:`~plainbox.abc.ITextSource` subclass but that
+        interface defines just the intent, not any concrete API.
 
-    :ivar line_start: the number of the line where the record begins
+    :ivar line_start:
+        the number of the line where the record begins
 
-    :ivar line_end: the number of the line where the record ends
+    :ivar line_end:
+        the number of the line where the record ends
     """
 
-    __slots__ = ['filename', 'line_start', 'line_end']
+    __slots__ = ['source', 'line_start', 'line_end']
 
-    def __init__(self, filename, line_start, line_end):
-        self.filename = filename
+    def __init__(self, source, line_start, line_end):
+        self.source = source
         self.line_start = line_start
         self.line_end = line_end
 
     def __repr__(self):
-        return "<Origin filename:{!r} line_start:{} line_end:{}>".format(
-            self.filename, self.line_start, self.line_end)
+        return "<{} source:{!r} line_start:{} line_end:{}>".format(
+            self.__class__.__name__,
+            self.source, self.line_start, self.line_end)
 
     def __str__(self):
         return "{}:{}-{}".format(
-            self.filename, self.line_start, self.line_end)
+            self.source, self.line_start, self.line_end)
 
     def __eq__(self, other):
-        return (self.filename, self.line_start, self.line_end) == \
-               (other.filename, other.line_start, other.line_end)
+        if isinstance(other, Origin):
+            return ((self.source, self.line_start, self.line_end) ==
+                    (other.source, other.line_start, other.line_end))
+        else:
+            return False
 
     def __gt__(self, other):
-        return (self.filename, self.line_start, self.line_end) > \
-               (other.filename, other.line_start, other.line_end)
+        if isinstance(other, Origin):
+            return ((self.source, self.line_start, self.line_end) >
+                    (other.source, other.line_start, other.line_end))
+        else:
+            return NotImplemented
+
+    @classmethod
+    def get_caller_origin(cls, back=0):
+        """
+        Create an Origin instance pointing at the call site of this method.
+        """
+        # Create an Origin instance that pinpoints the place that called
+        # get_caller_origin().
+        caller_frame, filename, lineno = inspect.stack(0)[2 + back][:3]
+        try:
+            source = PythonFileTextSource(filename)
+            origin = Origin(source, lineno, lineno)
+        finally:
+            # Explicitly delete the frame object, this breaks the
+            # reference cycle and makes this part of the code deterministic
+            # with regards to the CPython garbage collector.
+            #
+            # As recommended by the python documentation:
+            # http://docs.python.org/3/library/inspect.html#the-interpreter-stack
+            del caller_frame
+        return origin
 
 
 class RFC822Record(BaseRFC822Record):
@@ -82,7 +189,17 @@ class RFC822Record(BaseRFC822Record):
     Each instance also holds the origin of the data
     """
 
-    def __init__(self, data, origin):
+    def __init__(self, data, origin=None):
+        """
+        Initialize a new record.
+
+        :param data:
+            A dictionary with record data
+        :param origin:
+            A :class:`Origin` instance that describes where the data came from
+        """
+        if origin is None:
+            origin = Origin.get_caller_origin()
         self._data = data
         self._origin = origin
 
@@ -97,10 +214,48 @@ class RFC822Record(BaseRFC822Record):
         """
         return self._origin
 
+    def dump(self, stream):
+        """
+        Dump this record to a stream
+        """
+        def _dump_part(stream, key, values):
+            stream.write("%s:\n" % key)
+            for value in values:
+                if not value:
+                    stream.write(" .\n")
+                elif value == ".":
+                    stream.write(" ..\n")
+                else:
+                    stream.write(" %s\n" % value)
+        for key, value in self._data.items():
+            if isinstance(value, (list, tuple)):
+                _dump_part(stream, key, value)
+            elif isinstance(value, str) and "\n" in value:
+                values = value.split("\n")
+                if not values[-1]:
+                    values = values[:-1]
+                _dump_part(stream, key, values)
+            else:
+                stream.write("%s: %s\n" % (key, value))
+        stream.write("\n")
 
-def load_rfc822_records(stream, data_cls=dict):
+
+def load_rfc822_records(stream, data_cls=dict, source=None):
     """
     Load a sequence of rfc822-like records from a text stream.
+
+    :param stream:
+        A file-like object from which to load the rfc822 data
+    :param data_cls:
+        The class of the dictionary-like type to hold the results. This is
+        mainly there so that callers may pass collections.OrderedDict.
+    :param source:
+        A :class:`plainbox.abc.ITextSource` subclass instance that describes
+        where stream data is coming from. If None, it will be inferred from the
+        stream (if possible). Specialized callers should provider a custom
+        source object to allow developers to accurately keep track of where
+        (possibly problematic) RFC822 data is coming from. If this is None and
+        inferring fails then all of the loaded records will have a None origin.
 
     Each record consists of any number of key-value pairs. Subsequent records
     are separated by one blank line. A record key may have a multi-line value
@@ -110,12 +265,25 @@ def load_rfc822_records(stream, data_cls=dict):
     the optional data_cls argument is collections.OrderedDict then the values
     retain their original ordering.
     """
-    return list(gen_rfc822_records(stream, data_cls))
+    return list(gen_rfc822_records(stream, data_cls, source))
 
 
-def gen_rfc822_records(stream, data_cls=dict):
+def gen_rfc822_records(stream, data_cls=dict, source=None):
     """
     Load a sequence of rfc822-like records from a text stream.
+
+    :param stream:
+        A file-like object from which to load the rfc822 data
+    :param data_cls:
+        The class of the dictionary-like type to hold the results. This is
+        mainly there so that callers may pass collections.OrderedDict.
+    :param source:
+        A :class:`plainbox.abc.ITextSource` subclass instance that describes
+        where stream data is coming from. If None, it will be inferred from the
+        stream (if possible). Specialized callers should provider a custom
+        source object to allow developers to accurately keep track of where
+        (possibly problematic) RFC822 data is coming from. If this is None and
+        inferring fails then all of the loaded records will have a None origin.
 
     Each record consists of any number of key-value pairs. Subsequent records
     are separated by one blank line. A record key may have a multi-line value
@@ -130,6 +298,13 @@ def gen_rfc822_records(stream, data_cls=dict):
     key = None
     value_list = None
     origin = None
+    # If the source was not provided then try constructing a FileTextSource
+    # from the name of the stream. If that fails, keep using None.
+    if source is None:
+        try:
+            source = FileTextSource(stream.name)
+        except AttributeError:
+            source = UnknownTextSource()
 
     def _syntax_error(msg):
         """
@@ -153,12 +328,8 @@ def gen_rfc822_records(stream, data_cls=dict):
         key = None
         value_list = None
         data = None
-        try:
-            filename = stream.name
-        except AttributeError:
-            filename = None
-        if filename:
-            origin = Origin(filename, None, None)
+        if source is not None:
+            origin = Origin(source, None, None)
         data = data_cls()
         record = RFC822Record(data, origin)
 
@@ -255,33 +426,3 @@ def gen_rfc822_records(stream, data_cls=dict):
     if data:
         logger.debug("yielding record: %r", record)
         yield record
-
-
-def dump_rfc822_records(message, stream):
-    """Dump a message to the output stream.
-
-    :param message: Dictionary containing message key/values.
-    :param stream: Output stream.
-    """
-    def _dump_part(stream, key, values):
-        stream.write("%s:\n" % key)
-        for value in values:
-            if not value:
-                stream.write(" .\n")
-            elif value == ".":
-                stream.write(" ..\n")
-            else:
-                stream.write(" %s\n" % value)
-
-    for key, value in message.items():
-        if isinstance(value, (list, tuple)):
-            _dump_part(stream, key, value)
-        elif isinstance(value, str) and "\n" in value:
-            values = value.split("\n")
-            if not values[-1]:
-                values = values[:-1]
-            _dump_part(stream, key, values)
-        else:
-            stream.write("%s: %s\n" % (key, value))
-
-    stream.write("\n")

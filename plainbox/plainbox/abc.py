@@ -38,6 +38,16 @@ easier to understand (by not being mixed with additional source code).
 from abc import ABCMeta, abstractproperty, abstractmethod
 
 
+class ITextSource(metaclass=ABCMeta):
+    """
+    An abstract source of text.
+
+    Concrete instances of this class are used by
+    :class:`plainbox.impl.rfc822.Origin` to keep track of where each entry of a
+    RFC822-like document came from.
+    """
+
+
 class IJobDefinition(metaclass=ABCMeta):
     """
     Job definition that contains a mixture of meta-data and executable
@@ -195,6 +205,25 @@ class IJobResult(metaclass=ABCMeta):
         This is the return code of the process started to execute the command
         from the job definition. It can also encode the signal that the
         process was killed with, if any.
+        """
+
+
+class IJobQualifier(metaclass=ABCMeta):
+    """
+    An opaque qualifier for a job definition.
+
+    This is an abstraction for matching jobs definitions to names, patterns and
+    other means of selecting jobs.
+    """
+
+    @abstractmethod
+    def designates(self, job):
+        """
+        Check if this qualifier designates the specified
+        :class:`plainbox.abc.IJobDefinition`
+
+        :returns True: if the qualifier designates the specified job
+        :returns False: otherwise
         """
 
 

@@ -56,9 +56,19 @@ logger = getLogger("plainbox.commands.run")
 
 class RunInvocation(CheckBoxInvocationMixIn):
 
-    def __init__(self, provider, ns):
+    def __init__(self, provider, config, ns):
         super(RunInvocation, self).__init__(provider)
+        self.config = config
         self.ns = ns
+
+    @property
+    def is_interactive(self):
+        """
+        Flag indicating that this is an interactive invocation and we can
+        interact with the user when we encounter OUTCOME_UNDECIDED
+        """
+        return (sys.stdin.isatty() and sys.stdout.isatty() and not
+                self.ns.not_interactive)
 
     def run(self):
         ns = self.ns
@@ -186,15 +196,9 @@ class RunInvocation(CheckBoxInvocationMixIn):
                 return_code = authenticate_warmup()
                 if return_code:
                     raise SystemExit(return_code)
-            if (sys.stdin.isatty() and sys.stdout.isatty() and not
-                    ns.not_interactive):
-                interaction_callback = self._interaction_callback
-            else:
-                interaction_callback = None
             runner = JobRunner(
                 session.session_dir,
                 session.jobs_io_log_dir,
-                interaction_callback=interaction_callback,
                 dry_run=ns.dry_run
             )
             self._run_jobs_with_session(ns, session, runner)
@@ -249,7 +253,7 @@ class RunInvocation(CheckBoxInvocationMixIn):
             output_file.close()
 
     def _interaction_callback(self, runner, job, config, prompt=None,
-                             allowed_outcome=None):
+                              allowed_outcome=None):
         result = {}
         if prompt is None:
             prompt = "Select an outcome or an action: "
@@ -289,7 +293,8 @@ class RunInvocation(CheckBoxInvocationMixIn):
             print("Estimated duration is {:.2f} for automated jobs.".format(
                   estimated_duration_auto))
         else:
-            print("Estimated duration cannot be determined for automated jobs.")
+            print(
+                "Estimated duration cannot be determined for automated jobs.")
         if estimated_duration_manual:
             print("Estimated duration is {:.2f} for manual jobs.".format(
                   estimated_duration_manual))
@@ -346,6 +351,10 @@ class RunInvocation(CheckBoxInvocationMixIn):
             session.metadata.running_job_name = job.name
             session.persistent_save()
             job_result = runner.run_job(job)
+            if (job_result.outcome == IJobResult.OUTCOME_UNDECIDED
+                    and self.is_interactive):
+                job_result = self._interaction_callback(
+                    runner, job, self.config)
             session.metadata.running_job_name = None
             session.persistent_save()
             print("Outcome: {}".format(job_result.outcome))
@@ -361,11 +370,12 @@ class RunInvocation(CheckBoxInvocationMixIn):
 
 class RunCommand(PlainBoxCommand, CheckBoxCommandMixIn):
 
-    def __init__(self, provider):
+    def __init__(self, provider, config):
         self.provider = provider
+        self.config = config
 
     def invoked(self, ns):
-        return RunInvocation(self.provider, ns).run()
+        return RunInvocation(self.provider, self.config, ns).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser("run", help="run a test job")

@@ -12,7 +12,7 @@ _description:
  VERIFICATION:
      Nothing to verify for this test
 
-plugin: manual
+plugin: user-interact-verify
 name: miscellanea/chvt
 requires:
  package.name == 'kbd'
@@ -39,7 +39,7 @@ command:
 
 plugin: attachment
 name: miscellanea/fwts_results.log
-command: 
+command:
  [[ -e ${CHECKBOX_DATA}/fwts_results.log ]] && cat ${CHECKBOX_DATA}/fwts_results.log
 _description: Attaches the FWTS results log to the submission
 
@@ -62,7 +62,7 @@ plugin: shell
 name: miscellanea/apport-directory
 requires: package.name == 'apport'
 command: if [ -d /var/crash ]; then if [ $(find /var/crash -type f | grep -v .lock | wc -l) -eq 0 ]; then echo "/var/crash is empty"; else echo `ls /var/crash`; false; fi; else echo "/var/crash does not exist"; fi
-_description: 
+_description:
  Test that the /var/crash directory doesn't contain anything. Lists the files contained within if it does, or echoes the status of the directory (doesn't exist/is empty)
 
 plugin: shell
@@ -81,7 +81,7 @@ command:
  description:
   PURPOSE:
     This test will verify that you have attempted to PXE boot this machine from
-    the network device $2.  
+    the network device $2.
   STEPS:
     1. Prior to running this test, you should have attempted to boot this system via PXE on every Network Port available.
   VERIFICATION:
@@ -100,7 +100,7 @@ command:
  name: miscellanea/remote_shared_ipmi_$2
  description:
   PURPOSE:
-    This test will verify that you have attempted IPMI control of this machine from the network device $2.  
+    This test will verify that you have attempted IPMI control of this machine from the network device $2.
   STEPS:
     1. Prior to running this test, you should have configured and used IPMI to power this machine off and on using every Network Port available.
   VERIFICATION:
