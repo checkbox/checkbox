@@ -44,15 +44,15 @@ class MirroredObject:
     """
     Class representing a mirror of state exposed by an object on DBus.
 
-    Instances of this class are creted and destroyed automatically by
+    Instances of this class are crated and destroyed automatically by
     :class:`ObjectManagerClient`. Applications can look at the
     :attr:`interfaces_and_properties` without incurring any additional costs
     (expressed as the latency of DBus calls)
 
-    Managed objects have a number of properties (anhored at particular
+    Managed objects have a number of properties (anchored at particular
     interfaces) that are automatically updated whenever the particular object
     is changed remotely. Some properties may be expensive to compute or
-    transfer and are invalidated instead. Such properties are repesented as the
+    transfer and are invalidated instead. Such properties are represented as the
     special Invalidated value. Applications are free to perform explicit DBus
     Get() calls for any such property at the time that value is desired.
 
@@ -107,7 +107,7 @@ class MirroredObject:
             Name of the interface
         :param props_changed:
             A map of properties and their new values
-        :param props_invaidated:
+        :param props_invalidated:
             A list of properties that were invalidated
         """
         self._interfaces_and_properties[iface_name].update(props_changed)
@@ -160,7 +160,7 @@ class ObjectManagerClient:
 
     The first two signals deliver information about managed objects being
     added or removed from the bus. The first signal also carries all of the
-    properties exported by such objects. The last signal carires information
+    properties exported by such objects. The last signal carries information
     about updates to properties of already-existing objects.
 
     In addition the client listens to the following DBus signal:
@@ -462,7 +462,7 @@ class PlainBoxClient(ObjectManagerClient):
         signals that plainbox currently uses.
 
         :returns:
-            A tuple of SignalMatch instances that descibe observed signals.
+            A tuple of SignalMatch instances that describes observed signals.
         """
         match_everything = self._connection.add_signal_receiver(
             handler_function=self._on_signal,
@@ -483,9 +483,9 @@ class PlainBoxClient(ObjectManagerClient):
 
         Dispatches each received signal to a handler function. Doing the
         dispatch here allows us to register one listener for many signals and
-        then do all the routing inside tha application.
+        then do all the routing inside the application.
 
-        The overidden version supports the two PlainBox-specific signals,
+        The overridden version supports the two PlainBox-specific signals,
         relying the rest to the base class.
 
         :param args:
@@ -518,5 +518,5 @@ class PlainBoxClient(ObjectManagerClient):
         """
         Callback invoked when JobResultAvailable signal is received
         """
-        # Notify userz
+        # Notify users
         self._event_cb(self, 'ask-for-outcome', runner)
