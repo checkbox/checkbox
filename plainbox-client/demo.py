@@ -41,11 +41,7 @@ class ExampleApp:
         print("event: {}".format(event).center(80, '-'))
         if event == 'service-back':
             print(Fore.MAGENTA + 'Service Connected' + Style.RESET_ALL)
-            # Pre-seed ObjectManagerClient with data from all providers
-            for object_path, object in self.client.objects.items():
-                if ("org.freedesktop.DBus.ObjectManager"
-                        in object.interfaes_and_properties):
-                    self.client.pre_seed(object_path)
+            self.client.pre_seed('/plainbox/service1')
         elif event == 'service-lost':
             print(Fore.MAGENTA + 'Service Disconnected' + Style.RESET_ALL)
         elif event == 'object-added':
@@ -56,6 +52,9 @@ class ExampleApp:
                 print('\t[{}]'.format(interface))
                 for prop_name, prop_value in props.items():
                     print('\t\t{} = {}'.format(prop_name, prop_value))
+                if interface ==  "org.freedesktop.DBus.ObjectManager":
+                    print("\t\t (asking about managed object)")
+                    self.client.pre_seed(object_path)
             print(Style.RESET_ALL, end='')
         elif event == 'object-removed':
             object_path, interfaces = args
