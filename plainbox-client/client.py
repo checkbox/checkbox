@@ -20,6 +20,10 @@ such object. Invalidated properties are represented as an unique
 __all__ = ['Invalidated', 'MirroredObject', 'ObjectManagerClient']
 
 from collections import defaultdict
+from logging import getLogger
+
+
+_logger = getLogger("plainbox.client")
 
 
 class InvalidatedType:
@@ -180,6 +184,9 @@ class ObjectManagerClient:
         PropertiesChanged) observed by this object.
     """
 
+    DBUS_OBJECT_MANAGER_IFACE = 'org.freedesktop.DBus.ObjectManager'
+    DBUS_PROPERTIES_IFACE = 'org.freedesktop.DBus.Properties'
+
     def __init__(self, connection, bus_name, event_cb):
         """
         Initialize a new ObjectManagerClient
@@ -199,37 +206,8 @@ class ObjectManagerClient:
         self._bus_name = bus_name
         self._event_cb = event_cb
         self._objects = defaultdict(MirroredObject)
-        # Setup a watch for the owner of the bus name. This will allow us to
-        # reset internal state when the service goes away and comes back. It
-        # also allows us to start before the service itself becomes available.
-        self._watch = self._connection.watch_name_owner(
-            self._bus_name, self._on_name_owner_changed)
-        # Tell DBus that we want to see the three essential signals:
-        # - org.freedesktop.DBus.ObjectManager.InterfacesAdded
-        # - org.freedesktop.DBus.ObjectManager.InterfacesRemoved
-        # - org.freedesktop.DBus.Properties.PropertiesChanged
-        # XXX: I suspect that this racy, we perhaps should add many matches at
-        # once, not sure if this is possible in python though.
-        # NOTE: we want to observe all objects on this bus name, so we have a
-        # complete view of all of the objects. This is why we don't filter by
-        # object_path.
-        match_added = self._connection.add_signal_receiver(
-            handler_function=self._on_interfaces_added,
-            signal_name='InterfacesAdded',
-            dbus_interface='org.freedesktop.DBus.ObjectManager',
-            bus_name=self._bus_name)
-        match_removed = self._connection.add_signal_receiver(
-            handler_function=self._on_interfaces_removed,
-            signal_name='InterfacesRemoved',
-            dbus_interface='org.freedesktop.DBus.ObjectManager',
-            bus_name=self._bus_name)
-        match_changed = self._connection.add_signal_receiver(
-            handler_function=self._on_properties_changed,
-            signal_name='PropertiesChanged',
-            dbus_interface='org.freedesktop.DBus.Properties',
-            bus_name=self._bus_name,
-            path_keyword='object_path')
-        self._matches = (match_added, match_removed, match_changed)
+        self._watch = self._observe_bus_name()
+        self._matches = self._observe_signals()
 
     @property
     def objects(self):
@@ -279,6 +257,94 @@ class ObjectManagerClient:
         for object_path, interfaces_and_properties in managed_objects.items():
             self._objects[object_path]._add_properties(
                 interfaces_and_properties)
+
+    def _observe_bus_name(self):
+        """
+        Internal method of ObjectManagerClient.
+
+        Sets up a watch for the owner of the bus we are interested in
+
+        :returns:
+            A NameOwnerWatch instance that describes the watch
+        """
+        # Setup a watch for the owner of the bus name. This will allow us to
+        # reset internal state when the service goes away and comes back. It
+        # also allows us to start before the service itself becomes available.
+        return self._connection.watch_name_owner(
+            self._bus_name, self._on_name_owner_changed)
+
+    def _observe_signals(self):
+        """
+        Internal method of ObjectManagerClient
+
+        Sets up a set of matches that allow the client to observe enough
+        signals to keep internal mirror of the data correct.
+
+        Tells DBus that we want to see the three essential signals:
+
+        - org.freedesktop.DBus.ObjectManager.InterfacesAdded
+        - org.freedesktop.DBus.ObjectManager.InterfacesRemoved
+        - org.freedesktop.DBus.Properties.PropertiesChanged
+
+        NOTE: we want to observe all objects on this bus name, so we have a
+        complete view of all of the objects. This is why we don't filter by
+        object_path.
+
+        :returns:
+            A tuple of SignalMatch instances that describe observed signals.
+        """
+        match_object_manager = self._connection.add_signal_receiver(
+            handler_function=self._on_signal,
+            signal_name=None,  # match all signals
+            dbus_interface=self.DBUS_OBJECT_MANAGER_IFACE,
+            path=None,  # match all senders
+            bus_name=self._bus_name,
+            # extra keywords, those allow us to get meta-data to handlers
+            byte_arrays=True,
+            path_keyword='object_path',
+            interface_keyword='interface',
+            member_keyword='member')
+        match_properties = self._connection.add_signal_receiver(
+            handler_function=self._on_signal,
+            signal_name="PropertiesChanged",
+            dbus_interface=self.DBUS_PROPERTIES_IFACE,
+            path=None,  # match all senders
+            bus_name=self._bus_name,
+            # extra keywords, those allow us to get meta-data to handlers
+            byte_arrays=True,
+            path_keyword='object_path',
+            interface_keyword='interface',
+            member_keyword='member')
+        return (match_object_manager, match_properties)
+
+    def _on_signal(self, *args, object_path, interface, member):
+        """
+        Internal method of ObjectManagerClient
+
+        Dispatches each received signal to a handler function. Doing the
+        dispatch here allows us to register one listener for many signals and
+        then do all the routing inside the application.
+
+        :param args:
+            Arguments of the original signal
+        :param object_path:
+            Path of the object that sent the signal
+        :param interface:
+            Name of the DBus interface that designates the signal
+        :param member:
+            Name of the DBus signal (without the interface part)
+        """
+        if interface == self.DBUS_OBJECT_MANAGER_IFACE:
+            if member == 'InterfacesAdded':
+                return self._on_interfaces_added(*args)
+            elif member == 'InterfacesRemoved':
+                return self._on_interfaces_removed(*args)
+        elif interface == self.DBUS_PROPERTIES_IFACE:
+            if member == 'PropertiesChanged':
+                return self._on_properties_changed(
+                    *args, object_path=object_path)
+        _logger.warning("Unsupported signal received: %s.%s: %r",
+                        interface, member, args)
 
     def _on_name_owner_changed(self, name):
         """
