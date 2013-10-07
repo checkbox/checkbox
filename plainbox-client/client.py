@@ -115,34 +115,33 @@ class ObjectManagerClient:
     state that some service exposes over DBus and be notified whenever changes
     occur with a single callback.
 
-    The callback has two arguments: the object manager client instance itself
-    and the reason (or type of) the change that had happened. The following
-    reasons are supported:
+    The callback has at least two arguments: the object manager client instance
+    itself and event name. The following events are supported:
 
         "service-lost":
-            This reason is provided whenever the owner of the observed bus name
+            This event is provided whenever the owner of the observed bus name
             goes away. Typically this would happen when the process
             implementing the DBus service exits or disconnects from the bus.
         "service-back":
-            This reason is provided whenever the owner of the observed bus name
+            This event is provided whenever the owner of the observed bus name
             is established. If the bus name was already taken at the time the
             client is initialized then the on_change callback is invoked
             immediately.
         "object-added":
-            This reason is provided whenever an object is added to the observed
+            This event is provided whenever an object is added to the observed
             bus name. Note that only objects that would have been returned by
             GetManagedObjects() are reported this way. This also differentiates
             between objects merely being added to the bus (which is ignored)
             and objects being added to the managed collection (which is
             reported here).
         "object-removed":
-            This reason is provided whenever an object is removed from the
+            This event is provided whenever an object is removed from the
             observed bus name. Same restrictions as to "object-added" above
             apply.
         "object-changed":
-            This reason is provided whenever one or more properties on an
-            object are changed or invalidated (changed without providing the
-            updated value)
+            This event is provided whenever one or more properties on an object
+            are changed or invalidated (changed without providing the updated
+            value)
 
     The state is mirrored based on the three signals:
 
@@ -168,8 +167,8 @@ class ObjectManagerClient:
         A dbus.Connection object
     :ivar _bus_name:
         Well-known name of the bus that this client is observing
-    :ivar _change_cb:
-        The callback function invoked whenever something changes
+    :ivar _event_cb:
+        The callback function invoked whenever an event is produced
     :ivar _objects:
         Dictionary mapping from DBus object path to a :class:`MirroredObject`
     :ivar _watch:
@@ -181,7 +180,7 @@ class ObjectManagerClient:
         PropertiesChanged) observed by this object.
     """
 
-    def __init__(self, connection, bus_name, change_cb):
+    def __init__(self, connection, bus_name, event_cb):
         """
         Initialize a new ObjectManagerClient
 
@@ -189,14 +188,16 @@ class ObjectManagerClient:
             A dbus.Connection to work with
         :param bus_name:
             Bus name to client.
-        :param change_cb:
-            A callback invoked whenever something changes. The function is
-            called with two arguments, the instance of the client it was
-            registered on and the string that explains why the change happened.
+        :param event_cb:
+            A callback invoked whenever an event is produced. The function is
+            called at least two arguments, the instance of the client it was
+            registered on and the string with the name of the event.
+            Additional arguments (and keyword arguments) are provided, specific
+            to each event.
         """
         self._connection = connection
         self._bus_name = bus_name
-        self._change_cb = change_cb
+        self._event_cb = event_cb
         self._objects = defaultdict(MirroredObject)
         # Setup a watch for the owner of the bus name. This will allow us to
         # reset internal state when the service goes away and comes back. It
@@ -282,9 +283,9 @@ class ObjectManagerClient:
         """
         if name == '':
             self._objects.clear()
-            self._change_cb(self, 'service-lost')
+            self._event_cb(self, 'service-lost')
         else:
-            self._change_cb(self, 'service-back')
+            self._event_cb(self, 'service-back')
 
     def _on_interfaces_added(self, object_path, interfaces_and_properties):
         """
@@ -295,7 +296,9 @@ class ObjectManagerClient:
         # Apply changes
         self._objects[object_path]._add_properties(interfaces_and_properties)
         # Notify users
-        self._change_cb(self, 'object-added')
+        self._event_cb(
+            self, 'object-added',
+            object_path, interfaces_and_properties)
 
     def _on_interfaces_removed(self, object_path, interfaces):
         """
@@ -307,7 +310,7 @@ class ObjectManagerClient:
         if self._objects[object_path]._remove_interfaces(interfaces):
             del self._objects[object_path]
         # Notify users
-        self._change_cb(self, 'object-removed')
+        self._event_cb(self, 'object-removed', object_path, interfaces)
 
     def _on_properties_changed(self, iface_name, props_changed,
                                props_invalidated, *, object_path):
@@ -327,4 +330,6 @@ class ObjectManagerClient:
         self._objects[object_path]._change_properties(
             iface_name, props_changed, props_invalidated)
         # Notify users
-        self._change_cb(self, 'object-changed')
+        self._event_cb(
+            self, 'object-changed',
+            object_path, iface_name, props_changed, props_invalidated)
