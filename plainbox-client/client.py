@@ -108,8 +108,8 @@ class MirroredObject:
 
 class ObjectManagerClient:
     """
-    A client that observes and mirrors locally all of the objects
-    managed by one or more manager objects on a given bus name.
+    A client that observes and mirrors locally all of the objects managed by
+    one or more manager objects on a given bus name.
 
     Using this class an application can reliably maintain a mirror of all the
     state that some service exposes over DBus and be notified whenever changes
@@ -143,7 +143,7 @@ class ObjectManagerClient:
             are changed or invalidated (changed without providing the updated
             value)
 
-    The state is mirrored based on the three signals:
+    The state is mirrored based on the three DBus signals:
 
      - org.freedesktop.DBus.ObjectManager.InterfacesAdded
      - org.freedesktop.DBus.ObjectManager.InterfacesRemoved
@@ -154,7 +154,7 @@ class ObjectManagerClient:
     properties exported by such objects. The last signal carires information
     about updates to properties of already-existing objects.
 
-    In addition the client listens to the following signal:
+    In addition the client listens to the following DBus signal:
 
     - org.freedesktop.DBus.NameOwnerChanged
 
@@ -187,7 +187,7 @@ class ObjectManagerClient:
         :param connection:
             A dbus.Connection to work with
         :param bus_name:
-            Bus name to client.
+            The DBus bus name of where the ObjectManager objects reside.
         :param event_cb:
             A callback invoked whenever an event is produced. The function is
             called at least two arguments, the instance of the client it was
@@ -269,6 +269,9 @@ class ObjectManagerClient:
         knows about are mirrored locally. This method should be called right
         _after_ invoking :meth:`observe()` in a way that would cover this
         object. Calling those in the other order introduces a race condition.
+
+        .. warning::
+            This function does a synchronous (blocking) DBus method call.
         """
         proxy = self._connection.get_object(self._bus_name, object_path)
         managed_objects = proxy.GetManagedObjects(
