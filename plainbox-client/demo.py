@@ -7,10 +7,14 @@ Example application using the `client` module
 __all__ = ['ExampleApp']
 
 from gi.repository import GObject
+
+from colorama import Fore, Style
+from colorama import deinit as deinit_colorama
+from colorama import init as init_colorama
 from dbus import SessionBus
 from dbus.mainloop.glib import DBusGMainLoop
 
-from client import ObjectManagerClient
+from client import PlainBoxClient
 
 
 class ExampleApp:
@@ -18,13 +22,10 @@ class ExampleApp:
     Simple application that demonstrates how to use ObjectManagerClient
     """
 
-    BUS_NAME = 'com.canonical.certification.PlainBox1'
-
     def __init__(self):
         self.loop = GObject.MainLoop()
         self.bus = SessionBus(mainloop=DBusGMainLoop())
-        self.client = ObjectManagerClient(
-            self.bus, self.BUS_NAME, self._on_change)
+        self.client = PlainBoxClient(self.bus, self._on_event)
 
     def start(self):
         # Here the application can pretty much do anything it wants,
@@ -36,18 +37,62 @@ class ExampleApp:
         finally:
             self.client.close()
 
-    def _on_change(self, client, reason):
-        print("state changed, reason: {}".format(reason).center(80, '-'))
-        if reason == 'service-back':
-            # Pre-seed ObjectManagerClient with data from well-known providers
-            self.client.pre_seed('/plainbox/service1')
-            # XXX: ugly hack!
-            # This looks at object path, should use interfaces instead
-            for object_path in list(self.client.objects):
-                if object_path.startswith("/plainbox/provider"):
+    def _on_event(self, client, event, *args):
+        print("event: {}".format(event).center(80, '-'))
+        if event == 'service-back':
+            print(Fore.MAGENTA + 'Service Connected' + Style.RESET_ALL)
+            # Pre-seed ObjectManagerClient with data from all providers
+            for object_path, object in self.client.objects.items():
+                if ("org.freedesktop.DBus.ObjectManager"
+                        in object.interfaes_and_properties):
                     self.client.pre_seed(object_path)
+        elif event == 'service-lost':
+            print(Fore.MAGENTA + 'Service Disconnected' + Style.RESET_ALL)
+        elif event == 'object-added':
+            object_path, interfaces_and_properties = args
+            print(Fore.GREEN, end='')
+            print(object_path)
+            for interface, props in interfaces_and_properties.items():
+                print('\t[{}]'.format(interface))
+                for prop_name, prop_value in props.items():
+                    print('\t\t{} = {}'.format(prop_name, prop_value))
+            print(Style.RESET_ALL, end='')
+        elif event == 'object-removed':
+            object_path, interfaces = args
+            print(Fore.RED, end='')
+            print(object_path)
+            for interface in interfaces:
+                print('\t[{}]'.format(interface))
+            print(Style.RESET_ALL, end='')
+        elif event == 'object-changed':
+            object_path, interface, props_changed, props_invalidated = args
+            print(Fore.YELLOW, end='')
+            print(object_path)
+            print('\t[{}]'.format(interface))
+            for prop_name, prop_value in props_changed.items():
+                print('\t\t{} = {}'.format(prop_name, prop_value))
+            for prop_name in props_invalidated:
+                print('\t\t{} = invalidated'.format(prop_name, prop_value))
+            print(Style.RESET_ALL, end='')
+        elif event == 'job-result-available':
+            job, result = args
+            print(Fore.CYAN, end='')
+            print("Job result available:")
+            print("\tjob: {}".format(job))
+            print("\tresult:  {}".format(result))
+            print(Style.RESET_ALL, end='')
+        elif event == 'ask-for-outcome':
+            runner, = args
+            print(Fore.CYAN, end='')
+            print("Job result available:")
+            print("\trunner: {}".format(runner))
+            print(Style.RESET_ALL, end='')
+        else:
+            print("Unknown event: {}".format(event))
+
+    def _dump_state(self):
         # Print a dump of all the known objects
-        for path, obj in sorted(client.objects.items()):
+        for path, obj in sorted(self.client.objects.items()):
             print("{}".format(str(path)))
             for iface, props in sorted(obj.interfaces_and_properties.items()):
                 print("\t[{}]".format(str(iface)))
@@ -56,7 +101,11 @@ class ExampleApp:
 
 
 def main():
-    ExampleApp().start()
+    init_colorama()
+    try:
+        ExampleApp().start()
+    finally:
+        deinit_colorama()
 
 
 if __name__ == "__main__":
