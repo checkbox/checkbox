@@ -17,7 +17,12 @@ such object. Invalidated properties are represented as an unique
 :attr:`Invalidated` object.
 """
 
-__all__ = ['Invalidated', 'MirroredObject', 'ObjectManagerClient']
+__all__ = [
+    'Invalidated',
+    'MirroredObject',
+    'ObjectManagerClient',
+    'PlainBoxClient'
+]
 
 from collections import defaultdict
 from logging import getLogger
@@ -402,3 +407,116 @@ class ObjectManagerClient:
         self._event_cb(
             self, 'object-changed',
             object_path, iface_name, props_changed, props_invalidated)
+
+
+class PlainBoxClient(ObjectManagerClient):
+    """
+    A subclass of ObjectManagerClient that additionally observes PlainBox
+    specific DBus signals.
+
+    There are two new events that can show up on the event callback:
+
+        "job-result-available":
+            This event is provided whenever a job result becomes available on
+            Vthe bus. It is sent after the state on the bus settles and becomes
+            mirrored locally.
+        "ask-for-outcome":
+            This event is provided whenever a job result with outcome equal to
+            OUTCOME_UNDECIDED was produced by PlainBox and the application
+            needs to ask the user how to proceed.
+
+    The state is mirrored based on the same signals as in ObjectManagerClient,
+    in addition though, two more signals are being monitored:
+
+    Both signals are affected by this bug:
+        https://bugs.launchpad.net/checkbox-ihv-ng/+bug/1236322
+
+     - com.canonical.certification.PlainBox.Service1.JobResultAvailable
+     - com.canonical.certification.PlainBox.Service1.AskForOutcome
+    """
+
+    BUS_NAME = 'com.canonical.certification.PlainBox1'
+
+    def __init__(self, connection, event_cb):
+        """
+        Initialize a new PlainBoxClient
+
+        :param connection:
+            A dbus.Connection to work with
+        :param event_cb:
+            A callback invoked whenever an event is produced. The function is
+            called at least two arguments, the instance of the client it was
+            registered on and the string with the name of the event.
+            Additional arguments are provided, specific to each event.
+        """
+        super(PlainBoxClient, self).__init__(
+            connection, self.BUS_NAME, event_cb)
+
+    def _observe_signals(self):
+        """
+        Internal method of ObjectManagerClient
+
+        Unlike in ObjectManagerClient, in PlainBoxClient, it actually tells
+        DBus that we want to look at ALL the signals sent on the particular bus
+        name. This is less racy (one call) and gets us also the two other
+        signals that plainbox currently uses.
+
+        :returns:
+            A tuple of SignalMatch instances that descibe observed signals.
+        """
+        match_everything = self._connection.add_signal_receiver(
+            handler_function=self._on_signal,
+            signal_name=None,  # match all signals
+            dbus_interface=None,  # match all interfaces
+            path=None,  # match all senders
+            bus_name=self._bus_name,
+            # extra keywords, those allow us to get meta-data to handlers
+            byte_arrays=True,
+            path_keyword='object_path',
+            interface_keyword='interface',
+            member_keyword='member')
+        return (match_everything,)
+
+    def _on_signal(self, *args, object_path, interface, member):
+        """
+        Internal method of ObjectManagerClient
+
+        Dispatches each received signal to a handler function. Doing the
+        dispatch here allows us to register one listener for many signals and
+        then do all the routing inside tha application.
+
+        The overidden version supports the two PlainBox-specific signals,
+        relying the rest to the base class.
+
+        :param args:
+            Arguments of the original signal
+        :param object_path:
+            Path of the object that sent the signal
+        :param interface:
+            Name of the DBus interface that designates the signal
+        :param member:
+            Name of the DBus signal (without the interface part)
+        """
+
+        if member == "JobResultAvailable":
+            return self._on_job_result_available(*args)
+        elif member == "AskForOutcome":
+            return self._on_ask_for_outcome(*args)
+        else:
+            return super(PlainBoxClient, self)._on_signal(
+                *args,
+                object_path=object_path, interface=interface, member=member)
+
+    def _on_job_result_available(self, job, result):
+        """
+        Callback invoked when JobResultAvailable signal is received
+        """
+        # Notify users
+        self._event_cb(self, 'job-result-available', job, result)
+
+    def _on_ask_for_outcome(self, runner):
+        """
+        Callback invoked when JobResultAvailable signal is received
+        """
+        # Notify userz
+        self._event_cb(self, 'ask-for-outcome', runner)
