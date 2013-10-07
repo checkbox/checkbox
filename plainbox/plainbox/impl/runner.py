@@ -465,9 +465,13 @@ class JobRunner(IJobRunner):
         result_cmd = self._just_run_command(job, config)
         # Maybe ask the user
         result_user = self._call_interaction_callback(job, config)
-        # Copy whatever user has decided over to the command result. This way
-        # we preserve all logs and associated state.
-        result_cmd.outcome = result_user.outcome
+        # FIXME: result_user must never be None -- it is currently broken in
+        # the existing service/highlevel code as emitAskForOutcomeSignal()
+        # doesn't return anything.
+        if result_user is not None:
+            # Copy whatever user has decided over to the command result. This
+            # way we preserve all logs and associated state.
+            result_cmd.outcome = result_user.outcome
         return result_cmd
 
     def run_user_interact_verify_job(self, job, config):
@@ -518,9 +522,13 @@ class JobRunner(IJobRunner):
         result_cmd = self._just_run_command(job, config)
         # Maybe ask the user
         result_user = self._call_interaction_callback(job, config)
-        # Copy whatever user has decided over to the command result. This way
-        # we preserve all logs and associated state.
-        result_cmd.outcome = result_user.outcome
+        # FIXME: result_user must never be None -- it is currently broken in
+        # the existing service/highlevel code as emitAskForOutcomeSignal()
+        # doesn't return anything.
+        if result_user is not None:
+            # Copy whatever user has decided over to the command result. This
+            # way we preserve all logs and associated state.
+            result_cmd.outcome = result_user.outcome
         return result_cmd
 
     def _call_interaction_callback(self, job, config):
@@ -538,7 +546,12 @@ class JobRunner(IJobRunner):
         # Get the outcome from the callback, if available,
         # or put the special OUTCOME_UNDECIDED value.
         if self._interaction_callback is not None:
-            return self._interaction_callback(self, job, config)
+            result = self._interaction_callback(self, job, config)
+            if result is None:
+                logger.error(
+                    "Interaction callback %r didn't return a result",
+                    self._interaction_callback)
+            return result
         else:
             return MemoryJobResult({'outcome': IJobResult.OUTCOME_UNDECIDED})
 
