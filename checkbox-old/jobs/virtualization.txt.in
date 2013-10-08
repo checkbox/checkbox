@@ -7,6 +7,8 @@ _description:
 
 plugin: shell
 name: virtualization/kvm_check_vm
+user: root
+environ: http_proxy https_proxy
 requires:
  package.name == 'qemu-kvm'
  package.name == 'qemu-utils'

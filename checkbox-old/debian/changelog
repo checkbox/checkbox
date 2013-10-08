@@ -1,6 +1,13 @@
 checkbox (0.16.13) UNRELEASED; urgency=low
 
+  [ Brendan Donegan ]
   * Incremented changelog
+
+  [ Daniel Manrique ]
+  * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
+    ensure we're running under kvm and not tcg. Modified tests for environment
+    variables accordingly since we need to account for presence of proxy
+    variables.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 05 Oct 2013 11:18:17 +0100
 
