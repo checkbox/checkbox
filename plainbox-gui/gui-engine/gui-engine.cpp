@@ -819,6 +819,8 @@ void GuiEngine::RunLocalJobs(void)
  {
     qDebug() << "GuiEngine::GuiResumeSession( " << (re_run ? "true":"false") << ") ";
 
+    SessionResume(m_session);
+
     qDebug() << m_session.path() ;
 
     /* Get the Session State properties
