@@ -819,6 +819,8 @@ void GuiEngine::RunLocalJobs(void)
  {
     qDebug() << "GuiEngine::GuiResumeSession( " << (re_run ? "true":"false") << ") ";
 
+    SessionResume(m_session);
+
     qDebug() << m_session.path() ;
 
     /* Get the Session State properties
@@ -1190,36 +1192,6 @@ const QString GuiEngine::GuiPreviousSessionFile(void)
     m_session = CreateSession(m_job_list);
 
     QString previous = PreviousSessionFile(m_session);
-
-    if (!previous.isEmpty()) {
-        /* Now, we should check if this is really a valid session.
-         * This is a very simple check; we look for "GuiEngine" as the string
-         * stored in the title metadata of this session. If its present,
-         * we try to restore it. If not, we assume it is a session created
-         * by another client of plainbox, or by plainbox itself
-         */
-        SessionResume(m_session);
-
-        qDebug("Just resumed this session");
-
-        QVariantMap metadata = SessionStateMetadata(m_session);
-
-        QVariantMap::const_iterator iter = metadata.find("title");
-        QString title = iter.value().toString();
-        if (title.compare(GUI_ENGINE_NAME_STR) != 0) {
-            qDebug() << "This is not a valid session saved by the GUI" \
-                        << previous;
-
-            QString empty;
-
-            return empty; // not a problem, its likely just an auto-save by pb.
-        }
-
-        // If we get here, then the GUI really saved it all
-
-        // The objects should now have their via and other generated data
-        RefreshPBObjects();
-    }
 
     return previous;
 }
