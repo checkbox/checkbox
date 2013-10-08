@@ -1,4 +1,11 @@
 ## This whitelist is used for automated testing of the test cases themselves.
+# These resources are needed for a valid submission, so they are included
+# explicitly, even if they are usually run implicitly by jobs requiring them.
+cpuinfo
+dpkg
+lsb
+package
+uname
 #File Attachment Jobs
 __info__
 acpi_sleep_attachment
@@ -48,6 +55,7 @@ __memory__
 memory/info
 memory/check
 __miscellanea__
+miscellanea/submission-resources
 miscellanea/fwts_test
 miscellanea/fwts_results.log
 __networking__
