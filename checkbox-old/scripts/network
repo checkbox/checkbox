@@ -20,45 +20,124 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from argparse import ArgumentParser
 import configparser
+import datetime
 import fcntl
 import ftplib
 from ftplib import FTP
 import logging
 import os
+import re
 import shlex
+import signal
 import socket
 import struct
-from subprocess import check_call, CalledProcessError
+import subprocess
+from subprocess import (
+    CalledProcessError,
+    check_call
+)
 import sys
-import threading
 import time
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-class FTPPerformanceTest(object):
-    """
-    Provides file transfer rate based information while
-    using the FTP protocol and sending a file (DEFAULT=1GB)
-    over the local or public network using a specified network
-    interface on the host.
-    """
+def timed_process_execute(command, timeout):
+    """call shell-command and either return its output or kill it
+    if it doesn't normally exit within timeout seconds and return None"""
+    start = datetime.datetime.now()
+    process = subprocess.Popen(
+        shlex.split(command),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        universal_newlines=True)
+
+    while process.poll() is None:
+        time.sleep(0.1)
+        now = datetime.datetime.now()
+
+        if (now - start).seconds > timeout:
+            os.kill(process.pid, signal.SIGKILL)
+            os.waitpid(-1, os.WNOHANG)
+            return None
+    return process.stdout.read(), process.stderr.read()
+
+
+class IPerfPerformanceTest(object):
+    """Measures performance of interface using iperf client
+    and target. Calculated speed is measured against theorectical
+    throughput of selected interface"""
 
     def __init__(
             self,
             interface,
             target,
-            username="anonymous",
-            password="ftp"):
+            protocol="tcp",
+            mbytes="1024M"):
 
         self.iface = Interface(interface)
         self.target = target
+        self.protocol = protocol
+
+        self.mbytes = mbytes
+
+    def run(self):
+        cmd = "iperf -c {} -n {}".format(self.target, self.mbytes)
+
+        # iperf likes to hijack the terminal and remain active even after
+        # a failed connection attempt. Thus we need to use a combo a process
+        # timer. Note: the timeout feature of subprocess is not available for
+        # python versions < 3.3, we'll need to make our own here.
+
+        logging.debug(cmd)
+        iperf_return = timed_process_execute(cmd, 20)
+
+        if iperf_return is None:
+            print("Failed connecting to target")
+            print("Please check the iperf service configuration on the target")
+            return 90
+
+        # 930 Mbits/sec\n'
+        match = re.search(r'\d+\sMbits', iperf_return[0])
+        if match:
+            throughput = match.group(0).split()[0]
+
+            percent = int(throughput) / int(self.iface.max_speed) * 100
+            print("Transfer speed:")
+            print("%3.2f%% of" % percent)
+            print("theoretical max %smbs" % int(self.iface.max_speed))
+
+            if percent < 40:
+                logging.warn("Poor network performance detected")
+                return 30
+
+            logging.debug("Passed benchmark")
+        else:
+            print("Failed iperf benchmark")
+            return 1
+
+
+class FTPPerformanceTest(object):
+    """Provides file transfer rate based information while
+    using the FTP protocol and sending a file (DEFAULT=1GB)
+    over the local or public network using a specified network
+    interface on the host."""
+
+    def __init__(
+            self,
+            target,
+            username,
+            password,
+            interface,
+            binary_size=1,
+            file2send="ftp_performance_test"):
+
+        self.target = target
         self.username = username
         self.password = password
-
-        self.binary_size = 1
-
-        self.file2send = "ftp_performance_test"
+        self.iface = Interface(interface)
+        self.binary_size = binary_size
+        self.file2send = file2send
 
     def _make_file2send(self):
         """
@@ -88,7 +167,7 @@ class FTPPerformanceTest(object):
         try:
             logging.debug("Sending file")
             self.remote.storbinary("STOR " + filename, file, 1024)
-        except ftplib.all_errors as send_failure:
+        except (ftplib.all_errors) as send_failure:
             logging.error("Failed to send file to %s", self.target)
             logging.error("Reason: %s", send_failure)
             return 0, 0
@@ -150,6 +229,10 @@ class FTPPerformanceTest(object):
 
         # Connect to FTP target and send file
         connected = self.connect()
+
+        if connected is False:
+            return 3
+
         filesize, delay = self.send_file()
 
         # Remove created binary
@@ -166,9 +249,9 @@ class FTPPerformanceTest(object):
             # Calculate transfer rate and determine pass/fail status
             mbs_speed = float(filesize / 131072) / float(delay)
             percent = (mbs_speed / int(info["Speed"])) * 100
-            logging.debug("Transfer speed:")
-            logging.debug("%3.2f%% of", percent)
-            logging.debug("theoretical max %smbs", int(info["Speed"]))
+            print("Transfer speed:")
+            print("%3.2f%% of" % percent)
+            print("theoretical max %smbs" % int(info["Speed"]))
 
             if percent < 40:
                 logging.warn("Poor network performance detected")
@@ -285,30 +368,34 @@ def interface_test(args):
             check_call(shlex.split(cmd))
         except CalledProcessError as interface_failure:
             logging.error("Failed to use %s:%s", cmd, interface_failure)
-            return 1
+            sys.exit(3)
 
+    if test_target is None:
+        # Set FTP parameters based on config file
+        test_target = config.get("FTP", "Target")
+        test_user = config.get("FTP", "User")
+        test_pass = config.get("FTP", "Pass")
+
+        if args.test_type.lower() == "iperf":
+            test_target = config.get("IPERF", "Target")
+
+        if test_target == "canonical.com":
+            # Default values found in config file
+            logging.error("Please supply target via: %s", config_file)
+            sys.exit(1)
+
+    # Execute FTP transfer benchmarking test
     if args.test_type.lower() == "ftp":
-        if test_target is None:
-            # Set FTP parameters based on config file
-            test_target = config.get("FTP", "Target")
-            test_user = config.get("FTP", "User")
-            test_pass = config.get("FTP", "Pass")
-
-            if test_target == "canonical.com":
-                # Default values found in config file
-                logging.error("Please supply target via: %s", config_file)
-                sys.exit(1)
-
-        # Being FTP benchmark for specified interface
         ftp_benchmark = FTPPerformanceTest(
-            args.interface,
-            test_target,
-            test_user,
-            test_pass)
+            test_target, test_user, test_pass, args.interface)
 
         if args.filesize:
             ftp_benchmark.binary_size = int(args.filesize)
         sys.exit(ftp_benchmark.run())
+
+    elif args.test_type.lower() == "iperf":
+        iperf_benchmark = IPerfPerformanceTest(args.interface, test_target)
+        sys.exit(iperf_benchmark.run())
 
 
 def interface_info(args):
@@ -378,7 +465,7 @@ def main():
 
     test_parser.set_defaults(func=interface_test)
     info_parser.set_defaults(func=interface_info)
-    
+
     args = parser.parse_args()
 
     args.func(args)
