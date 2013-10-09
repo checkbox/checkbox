@@ -18,7 +18,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from argparse import ArgumentParser
+from argparse import (
+    ArgumentParser,
+    RawTextHelpFormatter
+)
 import configparser
 import fcntl
 import ftplib
@@ -389,7 +392,21 @@ def interface_info(args):
 
 
 def main():
-    parser = ArgumentParser(description="Network test module")
+
+    intro_message = "Network module\n\nThis script provides benchmarking " \
+    + "and information for a specified network interface.\n\n\n" \
+    + "Example NIC information usage:\nnetwork info -i eth0 --max-speed " \
+    + "\n\nFor running ftp benchmark test: \nnetwork test -i eth0 -t ftp " \
+    + "--target 192.168.0.1 --username USERID --password PASSW0RD " \
+    + "--filesize-2\n\nPlease note that this script can use configuration " \
+    + "values supplied via a config file.\nExample config file:\n[FTP]\n" \
+    + "Target: 192.168.1.23\nUser: FTPUser\nPass:PassW0Rd\n" \
+    + "[IPERF]\nTarget: 192.168.1.45\n**NOTE**\nDefault config location " \
+    + "is /etc/checkbox.d/network.cfg"
+
+
+    parser = ArgumentParser(
+        description=intro_message, formatter_class=RawTextHelpFormatter)
     subparsers = parser.add_subparsers()
 
     # Main cli options
@@ -409,7 +426,7 @@ def main():
     test_parser.add_argument('--password', type=str)
     test_parser.add_argument(
         '--filesize', type=str,
-        help="Size (GB) of binary file to send over network")
+        help="Size (GB) of binary file to send **Note** for FTP test only")
     test_parser.add_argument(
         '--config', type=str,
         default="/etc/checkbox.d/network.cfg",
