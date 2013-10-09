@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from argparse import ArgumentParser
 import configparser
-import datetime
 import fcntl
 import ftplib
 from ftplib import FTP
@@ -28,39 +27,18 @@ import logging
 import os
 import re
 import shlex
-import signal
 import socket
 import struct
 import subprocess
 from subprocess import (
     CalledProcessError,
-    check_call
+    check_call,
+    check_output
 )
 import sys
 import time
 
 logging.basicConfig(level=logging.DEBUG)
-
-
-def timed_process_execute(command, timeout):
-    """call shell-command and either return its output or kill it
-    if it doesn't normally exit within timeout seconds and return None"""
-    start = datetime.datetime.now()
-    process = subprocess.Popen(
-        shlex.split(command),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        universal_newlines=True)
-
-    while process.poll() is None:
-        time.sleep(0.1)
-        now = datetime.datetime.now()
-
-        if (now - start).seconds > timeout:
-            os.kill(process.pid, signal.SIGKILL)
-            os.waitpid(-1, os.WNOHANG)
-            return None
-    return process.stdout.read(), process.stderr.read()
 
 
 class IPerfPerformanceTest(object):
@@ -82,23 +60,18 @@ class IPerfPerformanceTest(object):
         self.mbytes = mbytes
 
     def run(self):
-        cmd = "iperf -c {} -n {}".format(self.target, self.mbytes)
-
-        # iperf likes to hijack the terminal and remain active even after
-        # a failed connection attempt. Thus we need to use a combo a process
-        # timer. Note: the timeout feature of subprocess is not available for
-        # python versions < 3.3, we'll need to make our own here.
+        cmd = "timeout 30 iperf -c {} -n {}".format(self.target, self.mbytes)
 
         logging.debug(cmd)
-        iperf_return = timed_process_execute(cmd, 20)
-
-        if iperf_return is None:
-            print("Failed connecting to target")
-            print("Please check the iperf service configuration on the target")
-            return 90
+        try:
+            iperf_return = check_output(
+                shlex.split(cmd), universal_newlines=True)
+        except CalledProcessError as iperf_exception:
+            logging.error("Failed executing iperf, Reason:", iperf_exception)
 
         # 930 Mbits/sec\n'
-        match = re.search(r'\d+\sMbits', iperf_return[0])
+        print(iperf_return)
+        match = re.search(r'\d+\sMbits', iperf_return)
         if match:
             throughput = match.group(0).split()[0]
 
