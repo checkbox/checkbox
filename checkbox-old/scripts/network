@@ -352,7 +352,7 @@ def interface_test(args):
         if args.test_type.lower() == "iperf":
             test_target = config.get("IPERF", "Target")
 
-        if test_target == "canonical.com":
+        if "example.com" in test_target:
             # Default values found in config file
             logging.error("Please supply target via: %s", config_file)
             sys.exit(1)
