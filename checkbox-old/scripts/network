@@ -419,11 +419,14 @@ def main():
     test_parser.add_argument(
         '-i', '--interface', type=str, required=True)
     test_parser.add_argument(
-        '-t', '--test_type', type=str, default="ftp",
-        help=("Choices [FTP *Default*]"))
+        '-t', '--test_type', type=str, 
+        choices=("ftp", "iperf"), default="ftp",
+        help=("[FTP *Default*]"))
     test_parser.add_argument('--target', type=str)
-    test_parser.add_argument('--username', type=str)
-    test_parser.add_argument('--password', type=str)
+    test_parser.add_argument(
+        '--username', type=str, help=("For FTP test only"))
+    test_parser.add_argument(
+        '--password', type=str, help=("For FTP test only"))
     test_parser.add_argument(
         '--filesize', type=str,
         help="Size (GB) of binary file to send **Note** for FTP test only")
