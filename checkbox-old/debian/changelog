@@ -8,6 +8,10 @@ checkbox (0.16.13) UNRELEASED; urgency=low
     ensure we're running under kvm and not tcg. Modified tests for environment
     variables accordingly since we need to account for presence of proxy
     variables.
+  * scripts/gpu_test: Revamped way of launching and stopping glxgears
+    windows/threads, to make 100% sure that we find and close them all,
+    avoiding leftover threads that cause the script not to exit.
+    (LP: #1237199)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 05 Oct 2013 11:18:17 +0100
 
