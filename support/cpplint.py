@@ -1677,7 +1677,7 @@ class _NestingState(object):
 
     # Update access control if we are inside a class/struct
     if self.stack and isinstance(self.stack[-1], _ClassInfo):
-      access_match = Match(r'\s*(public|private|protected)\s*:', line)
+      access_match = Match(r'\s*(public|private|protected)(| signals| slots)\s*:', line)
       if access_match:
         self.stack[-1].access = access_match.group(1)
 
@@ -2285,7 +2285,7 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
         error(filename, linenum, 'whitespace/blank_line', 3,
               'Blank line at the end of a code block.  Is this needed?')
 
-    matched = Match(r'\s*(public|protected|private):', prev_line)
+    matched = Match(r'\s*(public|protected|private)(| signals| slots):', prev_line)
     if matched:
       error(filename, linenum, 'whitespace/blank_line', 3,
             'Do not leave a blank line after "%s:"' % matched.group(1))
@@ -2513,7 +2513,7 @@ def CheckSectionSpacing(filename, clean_lines, class_info, linenum, error):
       linenum <= class_info.starting_linenum):
     return
 
-  matched = Match(r'\s*(public|protected|private):', clean_lines.lines[linenum])
+  matched = Match(r'\s*(public|protected|private)(| signals| slots):', clean_lines.lines[linenum])
   if matched:
     # Issue warning if the line before public/protected/private was
     # not a blank line, but don't do this if the previous line contains
@@ -2835,7 +2835,7 @@ def CheckStyle(filename, clean_lines, linenum, file_extension, nesting_state,
           'Line ends in whitespace.  Consider deleting these extra spaces.')
   # There are certain situations we allow one space, notably for labels
   elif ((initial_spaces == 1 or initial_spaces == 3) and
-        not Match(r'\s*\w+\s*:\s*$', cleansed_line)):
+        not Match(r'\s*\w+(| signals| slots)+\s*:\s*$', cleansed_line)):
     error(filename, linenum, 'whitespace/indent', 3,
           'Weird number of spaces at line-start.  '
           'Are you using a 2-space indent?')
