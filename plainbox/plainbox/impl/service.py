@@ -22,7 +22,7 @@
 =========================================================
 """
 
-from threading import Thread
+from threading import Thread, Lock
 import collections
 import functools
 import itertools
@@ -42,6 +42,7 @@ from plainbox.impl import dbus
 from plainbox.impl.dbus import OBJECT_MANAGER_IFACE
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import DiskJobResult
+from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.session import JobState
 from plainbox.impl.signal import remove_signals_listeners
@@ -181,6 +182,11 @@ class PlainBoxObjectWrapper(dbus.service.ObjectWrapper):
                 return [obj.native for obj in obj_list]
 
         def translate_return_o(obj):
+            if isinstance(obj, PlainBoxObjectWrapper):
+                cls._logger.warning(
+                    "Application error: %r should have returned native object"
+                    " but returned wrapper instead", func)
+                return obj
             try:
                 return cls.find_wrapper_by_native(obj)
             except KeyError:
@@ -1103,6 +1109,7 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         """
         # TODO: raise exception when job is in progress
         logger.info("Exit()")
+        self.native.close()
         self._on_exit()
 
     @dbus.service.method(
@@ -1132,6 +1139,7 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         dbus_interface=SERVICE_IFACE, in_signature='ao', out_signature='o')
     @PlainBoxObjectWrapper.translate
     def CreateSession(self, job_list: 'ao'):
+        logger.info("CreateSession(%r)", job_list)
         # Create a session
         session_obj = self.native.create_session(job_list)
         # Wrap it
@@ -1154,6 +1162,28 @@ class ServiceWrapper(PlainBoxObjectWrapper):
         PlainBoxObjectWrapper.find_wrapper_by_native(
             session).add_managed_object(running_job_wrp)
         self.native.run_job(session, job, running_job_wrp)
+
+    @dbus.service.method(
+        dbus_interface=SERVICE_IFACE, in_signature='oo', out_signature='o')
+    @PlainBoxObjectWrapper.translate
+    def PrimeJob(self, session: 'o', job: 'o') -> 'o':
+        logger.info("PrimeJob(%r, %r)", session, job)
+        # Get a primed job for the arguments we've got...
+        primed_job = self.native.prime_job(session, job)
+        # ...wrap it for DBus...
+        primed_job_wrapper = PrimedJobWrapper(
+            primed_job, session_wrapper=self.find_wrapper_by_native(session))
+        # ...publish it...
+        primed_job_wrapper.publish_self(self.connection)
+        # Call the method that decides on what to really do, see the docstring
+        # for details. This cannot be called inside __init__() as we need to
+        # publish the wrapper first. When that happens this method can safely
+        # send signals.
+        primed_job_wrapper._decide_on_what_to_do()
+        # ...and return it
+        return primed_job
+
+    RunJob = PrimeJob
 
 
 class UIOutputPrinter(extcmd.DelegateBase):
@@ -1207,12 +1237,14 @@ class RunningJob(dbus.service.Object):
     @dbus.service.method(
         dbus_interface=RUNNING_JOB_IFACE, in_signature='ss', out_signature='')
     def SetOutcome(self, outcome, comments=None):
+        logger.info("SetOutcome(%r, %r)", outcome, comments)
         self.result['outcome'] = outcome
         self.result['comments'] = comments
         job_result = DiskJobResult(self.result)
         self.emitJobResultAvailable(self.job, job_result)
 
     def _command_callback(self, return_code, record_path):
+        logger.info("_command_callback(%r, %r)", return_code, record_path)
         self.result['return_code'] = return_code
         self.result['io_log_filename'] = record_path
         self.emitAskForOutcomeSignal()
@@ -1221,6 +1253,7 @@ class RunningJob(dbus.service.Object):
         """
         Run a Job command in a separate thread
         """
+        logger.info("_run_command(%r, %r, %r)", session, job, parent)
         ui_io_delegate = UIOutputPrinter(self)
         runner = JobRunner(session.session_dir, session.jobs_io_log_dir,
                            command_io_delegate=ui_io_delegate)
@@ -1230,6 +1263,7 @@ class RunningJob(dbus.service.Object):
     @dbus.service.method(
         dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
     def RunCommand(self):
+        logger.info("RunCommand()")
         # FIXME: this thread object leaks, it needs to be .join()ed
         runner = Thread(target=self._run_command,
                         args=(self.session, self.job, self))
@@ -1237,25 +1271,28 @@ class RunningJob(dbus.service.Object):
 
     @dbus.service.signal(
         dbus_interface=SERVICE_IFACE, signature='dsay')
-    def IOLogGenerated(self, offset, name, data):
-        pass
+    def IOLogGenerated(self, delay, stream_name, data):
+        logger.info("IOLogGenerated(%r, %r, %r)", delay, stream_name, data)
 
     # XXX: Try to use PlainBoxObjectWrapper.translate here instead of calling
     # emitJobResultAvailable to do the translation
     @dbus.service.signal(
         dbus_interface=SERVICE_IFACE, signature='oo')
     def JobResultAvailable(self, job, result):
-        pass
+        logger.info("JobResultAvailable(%r, %r)", job, result)
 
     @dbus.service.signal(
         dbus_interface=SERVICE_IFACE, signature='o')
     def AskForOutcome(self, runner):
-        pass
+        logger.info("AskForOutcome(%r)", runner)
 
     def emitAskForOutcomeSignal(self, *args):
+        logger.debug("emitAskForOutcomeSignal(%r)", args)
         self.AskForOutcome(self.path)
+        return MemoryJobResult({'outcome': IJobResult.OUTCOME_UNDECIDED})
 
     def emitJobResultAvailable(self, job, result):
+        logger.debug("emitJobResultAvailable(%r, %r)", job, result)
         result_wrapper = JobResultWrapper(result)
         result_wrapper.publish_related_objects(self.connection)
         job_path = PlainBoxObjectWrapper.find_wrapper_by_native(job)
@@ -1263,4 +1300,237 @@ class RunningJob(dbus.service.Object):
         self.JobResultAvailable(job_path, result_path)
 
     def update_job_result_callback(self, job, result):
+        logger.debug("update_job_result_callback(%r, %r)", job, result)
         self.emitJobResultAvailable(job, result)
+
+
+class PrimedJobWrapper(PlainBoxObjectWrapper):
+    """
+    Wrapper for exposing PrimedJob objects on DBus
+    """
+
+    HIDDEN_INTERFACES = frozenset(
+        OBJECT_MANAGER_IFACE,
+    )
+
+    def __shared_initialize__(self, session_wrapper, **kwargs):
+        # SessionWrapper instance, we're using it to publish/unpublish results
+        # on DBus as they technically belong to the session.
+        self._session_wrapper = session_wrapper
+        # A result object we got from running the command OR the result this
+        # job used to have before. It should be always published on the bus.
+        self._result = None
+        # A future for the result each time we're waiting for the command to
+        # finish. Gets reset to None after the command is done executing.
+        self._result_future = None
+        # A lock that protects access to :ivar:`_result` and
+        # :ivar:`_result_future` from concurrent access from the thread that is
+        # executing Future callback which we register, the
+        # :meth:`_result_ready()`
+        self._result_lock = Lock()
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
+    def Kill(self):
+        """
+        Unused method.
+
+        Could be used to implement a way to cancel the command.
+        """
+        # NOTE: this should:
+        # 1) attempt to cancel the future in the extremely rare case where it
+        #    is not started yet
+        # 2) kill the job otherwise
+        logger.error("Kill() is not implemented")
+
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='', out_signature='')
+    def RunCommand(self):
+        """
+        Method invoked by the GUI each time the "test" button is pressed.
+
+        Two cases are possible here:
+
+        1) The command isn't running. In this case we start the command and
+           return. A callback will interpret the result once the command
+           finishes executing (see :meth:`_legacy_result_juggle()`)
+
+        2) The command is running. In that case we just ignore the call and log
+           a warning. The GUI should not make the "test" button clickable while
+           the command is runninig.
+        """
+        if self.native.job.automated:
+            logger.error(
+                "RunCommand() should not be called for automated jobs")
+        with self._result_lock:
+            if self._result_future is None:
+                logger.info("RunCommand() is starting to run the job")
+                self._result_future = self._run_and_set_callback()
+            else:
+                logger.warning(
+                    "RunCommand() ignored, waiting for command to finish")
+
+    # Legacy GUI behavior method.
+    # Should be redesigned when we can change GUI internals
+    @dbus.service.method(
+        dbus_interface=RUNNING_JOB_IFACE, in_signature='ss', out_signature='')
+    def SetOutcome(self, outcome, comments=None):
+        """
+        Method called by the GUI when the "continue" button is pressed.
+
+        Three cases are possible:
+        1) There is no result yet
+        2) There is a result already
+        3) The command is still running! (not handled)
+        """
+        logger.info("SetOutcome(%r, %r)", outcome, comments)
+        with self._result_lock:
+            if self._result_future is not None:
+                logger.error(
+                    "SetOutcome() called while the command is still running!")
+            if self._result is None:
+                # Warn us if this method is being called on jobs other than
+                # 'manual' before we get the result after running RunCommand()
+                if self.native.job.plugin != "manual":
+                    logger.warning("SetOutcome() called before RunCommand()")
+                    logger.warning("But the job is not manual, it is %s",
+                                   self.native.job.plugin)
+                # Create a new result object
+                self._result = MemoryJobResult({
+                    'outcome': outcome,
+                    'comments': comments
+                })
+                # Add the new result object to the bus
+                self._session_wrapper.add_result(self._result)
+            else:
+                # Set the values as requested
+                self._result.outcome = outcome
+                self._result.comments = comments
+            # Notify the application that the result is ready. This has to be
+            # done unconditionally each time this method called.
+            self.JobResultAvailable(
+                self.find_wrapper_by_native(self.native.job),
+                self.find_wrapper_by_native(self._result))
+
+    # Legacy GUI behavior signal.
+    # Should be redesigned when we can change GUI internals
+    @dbus.service.property(dbus_interface=RUNNING_JOB_IFACE, signature="s")
+    def outcome_from_command(self):
+        """
+        property that contains the 'outcome' of the result.
+        """
+        with self._result_lock:
+            if self._result is not None:
+                # TODO: make it so that we don't have to do this translation
+                if self._result.outcome == IJobResult.OUTCOME_NONE:
+                    return "none"
+                else:
+                    return self._result.outcome
+            else:
+                logger.warning("outcome_from_command() called too early!")
+                logger.warning("There is nothing to return yet")
+                return ""
+
+    @dbus.service.signal(
+        dbus_interface=SERVICE_IFACE, signature='dsay')
+    def IOLogGenerated(self, delay, stream_name, data):
+        """
+        Signal sent when IOLogRecord is generated
+
+        ..note::
+            This is not called at all in this implementation.
+        """
+        logger.info("IOLogGenerated(%r, %r, %r)", delay, stream_name, data)
+
+    # Legacy GUI behavior signal.
+    # Should be redesigned when we can change GUI internals
+    @dbus.service.signal(
+        dbus_interface=SERVICE_IFACE, signature='oo')
+    def JobResultAvailable(self, job: 'o', result: 'o'):
+        """
+        Signal sent when result of running a job is ready
+        """
+        logger.info("JobResultAvailable(%r, %r)", job, result)
+
+    # Legacy GUI behavior signal.
+    # Should be redesigned when we can change GUI internals
+    @dbus.service.signal(
+        dbus_interface=SERVICE_IFACE, signature='o')
+    def AskForOutcome(self, primed_job: 'o'):
+        """
+        Signal sent when the user should be consulted for the outcome.
+
+        The signal carries the primed_job instance (which is the sender of this
+        signal anyway). This signal triggers important interactions in the GUI
+        """
+        logger.info("AskForOutcome(%r)", primed_job)
+
+    def _decide_on_what_to_do(self):
+        """
+        Internal method of PrimedJobWrapper.
+
+        This methods decides on how to behave after we get initialized
+
+        This is a bit of a SNAFU... :/
+
+        The GUI runs jobs differently, depending on the 'plugin' value.
+        It either expects to call Service.RunJob() and see the job running
+        (so waiting for signals when it is done) or it calls Service.RunJob()
+        *and* runs RunCommand() on the returned object (possibly many times).
+        """
+        # TODO: change this to depend on jobbox 'startup' property
+        # http://jobbox.readthedocs.org/en/latest/jobspec.html#startup
+        if self.native.job.automated:
+            logger.info("Running job (command) right away")
+            with self._result_lock:
+                self._result_future = self._run_and_set_callback()
+        else:
+            logger.info("Sending AskForOutcome() and not starting the job...")
+            # Ask the application to show the interaction GUI
+            self.AskForOutcome(self)
+
+    def _run_and_set_callback(self):
+        """
+        Internal method of PrimedJobWrapper
+
+        Starts the future for the job result, adds a callbacks to it and
+        returns the future.
+        """
+        future = self.native.run()
+        future.add_done_callback(self._result_ready)
+        return future
+
+    def _result_ready(self, result_future):
+        """
+        Internal method called when the result future becomes ready
+        """
+        logger.debug("_result_ready(%r)", result_future)
+        with self._result_lock:
+            if self._result is not None:
+                # NOTE: I'm not sure how this would behave if someone were to
+                # already assign the old result to any state objects.
+                self._session_wrapper.remove_result(self._result)
+            # Unpack the result from the future
+            self._result = result_future.result()
+            # Add the new result object to the session wrapper (and to the bus)
+            self._session_wrapper.add_result(self._result)
+            # Reset the future so that RunCommand() can run the job again
+            self._result_future = None
+            # Now fiddle with the GUI notifications
+            if self._result.outcome != IJobResult.OUTCOME_UNDECIDED:
+                # NOTE: OUTCOME_UNDECIDED is never handled by this method as
+                # the user should already see the manual test interaction
+                # dialog on their screen. For all other cases we need to notify
+                # the GUI that execution has finished and we are really just
+                # done with testing.
+                logger.debug(
+                    "calling JobResultAvailable(%r, %r)",
+                    self.native.job, self._result)
+                self.JobResultAvailable(
+                    self.find_wrapper_by_native(self.native.job),
+                    self.find_wrapper_by_native(self._result))
+            else:
+                logger.warning(
+                    ("*NOT* sending AskForOutcome() after job finished"
+                     " running with OUTCOME_UNDECIDED"))
+                #self.AskForOutcome(self)
