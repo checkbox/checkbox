@@ -1,16 +1,9 @@
 plugin: shell
-name: virtualization/kvm_ok
-requires: package.name == 'cpu-checker'
-command: kvm-ok
-_description:
- Test to determine if this system is capable of running hardware accelerated KVM virtual machines
-
-plugin: shell
 name: virtualization/kvm_check_vm
 requires:
  package.name == 'qemu-kvm'
  package.name == 'qemu-utils'
-depends: virtualization/kvm_ok
+ kvm.status == 'supported'
 command: virtualization kvm --debug
 _description:
  Test to check that a cloud image boots and works properly with KVM
