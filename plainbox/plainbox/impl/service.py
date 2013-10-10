@@ -617,7 +617,10 @@ class JobStateWrapper(PlainBoxObjectWrapper):
         """
         logger.debug("_result_changed(%r, %r)", old, new)
         # Add the new result object
-        result_wrapper = self._session_wrapper.add_result(new)
+        try:
+            result_wrapper = self.find_wrapper_by_native(new)
+        except KeyError:
+            result_wrapper = self._session_wrapper.add_result(new)
         # Notify applications that the result property has changed
         self.PropertiesChanged(JOB_STATE_IFACE, {
             self.__class__.result._dbus_property: result_wrapper
@@ -1480,14 +1483,14 @@ class PrimedJobWrapper(PlainBoxObjectWrapper):
         """
         # TODO: change this to depend on jobbox 'startup' property
         # http://jobbox.readthedocs.org/en/latest/jobspec.html#startup
-        if self.native.job.automated:
-            logger.info("Running job (command) right away")
-            with self._result_lock:
-                self._result_future = self._run_and_set_callback()
-        else:
+        if self.native.job.startup_user_interaction_required:
             logger.info("Sending AskForOutcome() and not starting the job...")
             # Ask the application to show the interaction GUI
             self.AskForOutcome(self)
+        else:
+            logger.info("Running %r right away", self.native.job)
+            with self._result_lock:
+                self._result_future = self._run_and_set_callback()
 
     def _run_and_set_callback(self):
         """
@@ -1530,7 +1533,7 @@ class PrimedJobWrapper(PlainBoxObjectWrapper):
                     self.find_wrapper_by_native(self.native.job),
                     self.find_wrapper_by_native(self._result))
             else:
-                logger.warning(
-                    ("*NOT* sending AskForOutcome() after job finished"
+                logger.debug(
+                    ("sending AskForOutcome() after job finished"
                      " running with OUTCOME_UNDECIDED"))
-                #self.AskForOutcome(self)
+                self.AskForOutcome(self)
