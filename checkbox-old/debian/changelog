@@ -1,7 +1,7 @@
 checkbox (0.16.13) UNRELEASED; urgency=low
 
   [ Brendan Donegan ]
-  * jobs/resources.txt.in, jobs/virtualization.txt.in - added kvm resource job
+  * jobs/resource.txt.in, jobs/virtualization.txt.in - added kvm resource job
     which states whether the hardware supports KVM. Remove kvm_ok job and use the
     kvm resource job to determine if kvm_check_vm should run (LP: #1236776)
 
