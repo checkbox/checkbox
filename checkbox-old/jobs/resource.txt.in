@@ -159,7 +159,7 @@ description: Resource for hardware virtualization
 command:
  if kvm-ok > /dev/null
  then
-     echo "state: supported"
+     echo "status: supported"
  else
-     echo "state: unsupported"
+     echo "status: unsupported"
  fi
