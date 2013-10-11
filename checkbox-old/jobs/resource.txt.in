@@ -153,13 +153,13 @@ command:
     echo "cdma: supported"
  fi
 
-name: kvm
+name: virtualization
 plugin: resource
 description: Resource for hardware virtualization
 command:
  if kvm-ok > /dev/null
  then
-     echo "status: supported"
+     echo "kvm: supported"
  else
-     echo "status: unsupported"
+     echo "kvm: unsupported"
  fi
