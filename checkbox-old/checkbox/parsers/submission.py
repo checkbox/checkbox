@@ -23,7 +23,7 @@
 # This should be updated manually when a parser component changes, note
 # that this includes changes to any module under checkbox.parsers that is
 # used by this one (see imports below)
-__version__ = '1'
+__version__ = '2'
 
 try:
     import xml.etree.cElementTree as etree

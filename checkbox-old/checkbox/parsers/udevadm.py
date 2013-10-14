@@ -110,8 +110,9 @@ class UdevadmDevice:
         vid = int(self.vendor_id) if self.vendor_id else 0
         pid = int(self.product_id) if self.product_id else 0
         return("<{}: bus: {} id [{:x}:{:x}] {}>".format(
-             type(self).__name__, self.bus, vid, pid,
-             self.product))
+            type(self).__name__, self.bus, vid, pid,
+            self.product))
+
     @property
     def bus(self):
         if self._bus is not None:
@@ -230,6 +231,20 @@ class UdevadmDevice:
                     return "BLUETOOTH"
                 else:
                     return "WIRELESS"
+            if (interface_class, interface_subclass, interface_protocol) ==\
+               (255, 255, 255) and self.driver == "btusb":
+                # This heuristic accounts for bluetooth devices which usually
+                # have INTERFACE=224/*/1, however in the "field" we've run
+                # across a few (Mediatek combo cards) that have unknown
+                # (255/255/255) values and thus break the previous heuristic.
+                # We assume that if a device has these weird INTERFACE values
+                # *but* it uses the btusb driver, then it must be a bluetooth
+                # controller.  Other devices with btusb *but* with
+                # INTERFACE=255/1/1 have been seen on systems where the actual
+                # usb controller was identified by the old heuristic, so here
+                # we need to match all three fields to avoid duplicating
+                # devices.  See http://pad.lv/1210405
+                    return "BLUETOOTH"
 
         if 'ID_INPUT_KEYBOARD' in self._environment:
             return "KEYBOARD"
@@ -331,7 +346,7 @@ class UdevadmDevice:
         # Some audio and serial devices have a product but no vendor
         # or product id. Special-case their categories for backwards-
         # compatibility.
-        if self.bus ==  "sound":
+        if self.bus == "sound":
             return "AUDIO"
 
         if self.bus == "tty":
@@ -726,7 +741,8 @@ class UdevadmParser:
                 dev_interface = [
                     d for d in self.devices.values()
                     if d.category in ("NETWORK", "WIRELESS") and
-                    device._raw_path != d._raw_path and device._raw_path in d._raw_path
+                    device._raw_path != d._raw_path and
+                    device._raw_path in d._raw_path
                 ]
                 if dev_interface:
                     dev_interface = dev_interface.pop()

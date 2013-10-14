@@ -39,18 +39,22 @@ class GlxThread(Thread):
     """
 
     def run(self):
-        subprocess.call(
-            'glxgears -geometry 400x400',
-            stdout=open(os.devnull, 'w'),
-            stderr=subprocess.STDOUT,
-            shell=True)
+
+        try:
+            self.process = subprocess.Popen(
+                ["glxgears","-geometry", "400x400"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT)
+            self.process.communicate()
+        except (subprocess.CalledProcessError, FileNotFoundError) as er:
+            print("WARNING: Unable to start glxgears (%s)" % er)
+
 
     def terminate(self):
-        if hasattr(self, 'id'):
-            subprocess.call('wmctrl -i -c %s' % self.id, shell=True)
-        else:
+        if not hasattr(self, 'id'):
             print("WARNING: Attempted to terminate non-existing window.")
-
+        if hasattr(self, 'process'):
+            self.process.terminate()
 
 
 class RotateGlxThread(Thread):
@@ -173,8 +177,9 @@ def main():
                 re.match(b'^(0x\w+)', app).group(0), 'utf-8')
             break
         if hasattr(GlxWindows[i], "id"):
-            GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i + 1))
-            GlxRotate[i].start()
+            rotator = RotateGlxThread(GlxWindows[i].id, i + 1)
+            GlxRotate.append(rotator)
+            rotator.start()
         else:
             print("WARNING: Window {} not found, not rotating it.".format(i))
 

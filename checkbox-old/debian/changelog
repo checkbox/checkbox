@@ -1,9 +1,33 @@
-checkbox (0.16.12) UNRELEASED; urgency=low
+checkbox (0.16.13) UNRELEASED; urgency=low
+
+  [ Brendan Donegan ]
+  * jobs/resource.txt.in, jobs/virtualization.txt.in - added kvm resource job
+    which states whether the hardware supports KVM. Remove kvm_ok job and use the
+    kvm resource job to determine if kvm_check_vm should run (LP: #1236776)
+
+  [ Daniel Manrique ]
+  * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
+    ensure we're running under kvm and not tcg. Modified tests for environment
+    variables accordingly since we need to account for presence of proxy
+    variables.
+  * scripts/gpu_test: Revamped way of launching and stopping glxgears
+    windows/threads, to make 100% sure that we find and close them all,
+    avoiding leftover threads that cause the script not to exit.
+    (LP: #1237199)
+
+  [ Jeff Marcom ]
+  * scripts/network - added iperf test benchmark testing capabilities. 
+ 
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 05 Oct 2013 11:18:17 +0100
+
+checkbox (0.16.12) saucy; urgency=low
 
   [ Daniel Manrique ]
   * scripts/gpu_test: Better validation that glxgears windows were found, to
     avoid manipulation of nonexisting windows which causes threads to crash
     and the entire program to stall. (LP: #1232232)
+  * parsers/udevadm: Added additional heuristics for mediatek bluetooth
+    controllers (LP: #1210405)
 
   [ Brendan Donegan ] 
   * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 

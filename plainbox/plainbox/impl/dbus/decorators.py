@@ -28,12 +28,17 @@
 __all__ = ('method', 'signal')
 __docformat__ = 'restructuredtext'
 
+import functools
 import inspect
+import logging
 
 from dbus import validate_interface_name, Signature, validate_member_name
 from dbus.lowlevel import SignalMessage
 from dbus.exceptions import DBusException
 from dbus._compat import is_py2
+
+
+_logger = logging.getLogger('plainbox.dbus.decorators')
 
 
 def method(dbus_interface, in_signature=None, out_signature=None,
@@ -211,7 +216,17 @@ def method(dbus_interface, in_signature=None, out_signature=None,
                 'utf8_strings', False)
         elif 'utf8_strings' in kwargs:
             raise TypeError("unexpected keyword argument 'utf8_strings'")
-        return func
+
+        @functools.wraps(func)
+        def sanity(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except DBusException:
+                raise
+            except Exception:
+                _logger.exception("DBus method call failed")
+                raise
+        return sanity
 
     return decorator
 
@@ -322,7 +337,10 @@ def signal(dbus_interface, signature=None, path_keyword=None,
                 location[0].send_message(message)
         # end emit_signal
 
-        args = inspect.getargspec(func)[0]
+        if hasattr(func, '__wrapped__'):
+            args = inspect.getfullargspec(func.__wrapped__)[0]
+        else:
+            args = inspect.getfullargspec(func)[0]
         args.pop(0)
 
         for keyword in rel_path_keyword, path_keyword:
