@@ -143,3 +143,17 @@ _description:
      3. Tap the touchpad toggle hotkey again
  VERIFICATION:
      Verify the touchpad has been disabled and re-enabled.
+
+plugin: manual
+name: keys/keyboard-backlight
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     Verify that the keyboard backlight toggle key works properly
+ STEPS:
+     1. Tap the keyboard backlight key
+     2. Confirm that the keyboard backlight was toggled to the opposite state
+     3. Tap the keyboard backlight key again
+     4. Confirm that the keyboard backlight was toggled to the opposite state
+ VERIFICATION:
+     Did the keyboard backlight state change on each press?
