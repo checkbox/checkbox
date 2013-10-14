@@ -155,7 +155,7 @@ command:
 
 name: virtualization
 plugin: resource
-requires: package.name = "cpu-checker"
+requires: package.name == "cpu-checker"
 description: Resource for hardware virtualization
 command:
  if kvm-ok > /dev/null
