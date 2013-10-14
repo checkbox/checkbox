@@ -143,3 +143,22 @@ _description:
      3. Tap the touchpad toggle hotkey again
  VERIFICATION:
      Verify the touchpad has been disabled and re-enabled.
+
+plugin: user-interact-verify
+name: keys/microphone-mute
+requires:
+ device.category == 'AUDIO'
+ device.category == 'KEYBOARD'
+ package.name == 'alsa-base'
+ package.name == 'pulseaudio-utils'
+ package.name == 'gstreamer1.0-plugins-good' or package.name == 'gstreamer0.10-plugins-good'
+command: audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE 
+_description:
+ PURPOSE:
+     This test will test the mute key for your microphone
+ STEPS:
+     1. Click "Test" then speak: "Imagination is more important than knowledge" (or anything else) into your microphone.
+     2. While you are speaking, please press the mute key for the microphone to mute it and press it again to unmute.
+     3. After a few seconds, your speech will be played back to you. If the key works, your speech should be interrupted for a few seconds.
+ VERIFICATION:
+     Does the microphone mute key work as expected?
