@@ -152,3 +152,15 @@ command:
  then
     echo "cdma: supported"
  fi
+
+name: virtualization
+plugin: resource
+requires: package.name == "cpu-checker"
+description: Resource for hardware virtualization
+command:
+ if kvm-ok > /dev/null
+ then
+     echo "kvm: supported"
+ else
+     echo "kvm: unsupported"
+ fi

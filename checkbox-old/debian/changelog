@@ -1,7 +1,9 @@
 checkbox (0.16.13) UNRELEASED; urgency=low
 
   [ Brendan Donegan ]
-  * Incremented changelog
+  * jobs/resource.txt.in, jobs/virtualization.txt.in - added kvm resource job
+    which states whether the hardware supports KVM. Remove kvm_ok job and use the
+    kvm resource job to determine if kvm_check_vm should run (LP: #1236776)
 
   [ Daniel Manrique ]
   * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
@@ -15,6 +17,7 @@ checkbox (0.16.13) UNRELEASED; urgency=low
 
   [ Jeff Marcom ]
   * scripts/network - added iperf test benchmark testing capabilities. 
+ 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 05 Oct 2013 11:18:17 +0100
 
 checkbox (0.16.12) saucy; urgency=low
