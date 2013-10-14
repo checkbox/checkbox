@@ -143,3 +143,16 @@ _description:
      3. Tap the touchpad toggle hotkey again
  VERIFICATION:
      Verify the touchpad has been disabled and re-enabled.
+
+plugin: manual
+name: keys/hibernate
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     This test will test the hibernate key
+ STEPS:
+     1. Press the hibernate key on the keyboard
+     2. Check that the system hibernated correctly
+     3. Wake your system after hibernating by pressing the power button
+ VERIFICATION:
+     Did the system go to hibernate after pressing the hibernate key?
