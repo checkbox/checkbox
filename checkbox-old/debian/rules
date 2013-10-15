@@ -12,8 +12,8 @@ override_dh_auto_install:
 	set -ex; for python in $(shell py3versions -r); do \
 		$$python setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb; \
 	done;
-	mkdir -p $(CURDIR)/debian/tmp/usr/lib/checkbox
-	mv  $(CURDIR)/debian/tmp/usr/share/checkbox/scripts  $(CURDIR)/debian/tmp/usr/lib/checkbox/bin
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/checkbox/bin/
+	cp -R $(CURDIR)/debian/tmp/usr/share/checkbox/scripts/  $(CURDIR)/debian/tmp/usr/lib/checkbox/bin/
 
 override_dh_auto_test:
 ifeq (, $(findstring nocheck, $(DEB_BUILD_OPTIONS)))
