@@ -54,9 +54,9 @@ class KVMTest(object):
         self.image = image
         self.timeout = timeout
         self.debug_file = os.path.join(os.getcwd(), debug_file)
+        self.arch = check_output(['arch'], universal_newlines=True)
 
-    @classmethod
-    def download_image(cls, arch):
+    def download_image(self):
         """
         Downloads Cloud image for same release as host machine
         """
@@ -67,7 +67,7 @@ class KVMTest(object):
         # Construct URL
         cloud_url = "http://cloud-images.ubuntu.com"
 
-        if re.match("arm.*", arch):
+        if re.match("arm.*", self.arch):
             cloud_iso = release + "-server-cloudimg-armhf.tar.gz"
         else:
             cloud_iso = release + "-server-cloudimg-i386-disk1.img"
@@ -84,7 +84,7 @@ class KVMTest(object):
             return False
 
         # Unpack img file from tar
-        if re.match("arm.*", arch):
+        if re.match("arm.*", self.arch):
             cloud_iso_tgz = tarfile.open(cloud_iso)
             cloud_iso = cloud_iso.replace('tar.gz', 'img')
             cloud_iso_tgz.extract(cloud_iso)
@@ -94,11 +94,10 @@ class KVMTest(object):
 
         return cloud_iso
 
-    def boot_image(self, data_disk, arch):
+    def boot_image(self, data_disk):
         """
         Attempts to boot the newly created qcow image using
-        the config data defined in config.iso. Return instance
-        of currently running virtual machine
+        the config data defined in config.iso
         """
 
         logging.debug("Attempting boot for:{}".format(data_disk))
@@ -115,7 +114,7 @@ class KVMTest(object):
             cloud_disk = "-drive file=seed.iso,if=virtio"
 
 
-        if re.match("(arm.*|aarch64)", arch):
+        if re.match("(arm.*|aarch64)", self.arch):
             uname = check_output(['uname','-r'], universal_newlines=True)
             cloud_disk = cloud_disk.replace("virtio", "sd")
             params = 'qemu-system-arm -machine vexpress-a15 -cpu cortex-a15 -enable-kvm -m {} -kernel /boot/vmlinuz -append "console=ttyAMA0 earlyprintk=serial root=/dev/mmcblk0 ro rootfstype=ext4" -serial stdio -dtb /lib/firmware/{}/device-tree/vexpress-v2p-ca15-tc1.dtb -initrd /boot/initrd.img -net nic -net user,net={},host={},hostfwd={} -drive file={},if=sd,cache=writeback {} -display none -nographic'.format(uname, "256", netrange,image_ip, hostfwd, data_disk, cloud_disk)
@@ -153,8 +152,7 @@ class KVMTest(object):
             shlex.split(params), stdin=PIPE, stderr=file, stdout=file,
             universal_newlines=True, shell=False)
 
-    @classmethod
-    def create_cloud_disk(cls):
+    def create_cloud_disk(self):
         """
         Generate Cloud meta data and creates an iso object
         to be mounted as virtual device to instance during boot.
@@ -187,7 +185,7 @@ runcmd:
             logging.exception("Cloud data disk creation failed")
 
 
-    def start(self, arch):
+    def start(self):
         logging.debug('Starting KVM Test')
         status = 1
         # Create temp directory:
@@ -200,7 +198,7 @@ runcmd:
             if self.image is None:
                 logging.debug('No image specified, downloading one now.')
                 # Download cloud image
-                self.image = self.download_image(arch)
+                self.image = self.download_image()
 
             if os.path.isfile(self.image):
 
@@ -210,20 +208,18 @@ runcmd:
                     self.create_cloud_disk()
 
                 # Boot Virtual Machine
-                instance = self.boot_image(self.image, arch)
+                instance = self.boot_image(self.image)
 
-                if instance is not False:
-                    time.sleep(self.timeout)
-                    # Reset Console window to regain control from VM Serial I/0
-                    call('reset')
-                    # Check to be sure VM boot was successful
-                    if "END SSH HOST KEY KEYS" \
-                    in open(self.debug_file, 'r').read():
-                        print("Booted successfully", file=sys.stderr)
-                        status = 0
-                    else:
-                        print("KVM instance failed to boot", file=sys.stderr)
-                    self.process.terminate()
+                time.sleep(self.timeout)
+                # Reset Console window to regain control from VM Serial I/0
+                call('reset')
+                # Check to be sure VM boot was successful
+                if "END SSH HOST KEY KEYS" in open(self.debug_file, 'r').read():
+                    print("Booted successfully", file=sys.stderr)
+                    status = 0
+                else:
+                    print("KVM instance failed to boot", file=sys.stderr)
+                self.process.terminate()
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)
 
@@ -263,9 +259,8 @@ def test_kvm(args):
     if image == "":
         image = args.image
 
-    arch = check_output(['arch'], universal_newlines=True)
     kvm_test = KVMTest(image, timeout)
-    result = kvm_test.start(arch)
+    result = kvm_test.start()
 
     sys.exit(result)
 
