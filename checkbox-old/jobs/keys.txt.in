@@ -204,3 +204,16 @@ _description:
      3. Wake your system after hibernating by pressing the power button
  VERIFICATION:
      Did the system go to hibernate after pressing the hibernate key?
+
+plugin: manual
+name: keys/keyboard-overhead-light
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     This test will test the keyboard overhead light key or switch
+ STEPS:
+     1. Press the keyboard overhead light key or swtich on the light
+     2. Check the the keyboard overhead light turn on correctly
+     3. Press the key or switch again to toggle off the light 
+ VERIFICATION:
+     Did the keyboard overhead light key or switch turns on and off the light?
