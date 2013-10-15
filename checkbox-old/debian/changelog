@@ -48,6 +48,7 @@ checkbox (0.16.12) saucy; urgency=low
     former is deprecated (LP: #1224854)
   * scripts/memory_test - use per-process memory limit if arch is ARM, except
     for arm64 (LP: #1184688)
+  * scripts/virtualization - run qemu-system-arm on ARM platform (LP: #1184765)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:10:13 +0100
 
