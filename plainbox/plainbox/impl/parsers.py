@@ -32,9 +32,8 @@ import abc
 import inspect
 import json
 import logging
-import sys
 
-from plainbox.impl.plugins import PlugInCollection, PlugIn
+from plainbox.impl.plugins import PkgResourcesPlugInCollection, PlugIn
 
 
 logger = logging.getLogger("plainbox.parsers")
@@ -154,4 +153,5 @@ class ParserPlugIn(IParser, PlugIn):
 
 
 # Collection of all parsers
-all_parsers = PlugInCollection('plainbox.parsers', wrapper=ParserPlugIn)
+all_parsers = PkgResourcesPlugInCollection(
+    'plainbox.parsers', wrapper=ParserPlugIn)

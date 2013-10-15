@@ -46,6 +46,7 @@ import abc
 import collections
 import contextlib
 import logging
+import os
 
 import pkg_resources
 
@@ -97,28 +98,74 @@ class PlugIn(IPlugIn):
         return self._obj
 
 
-class PlugInCollection:
+class IPlugInCollection:
     """
-    Collection of plug-ins based on pkg_resources
-
-    Instantiate with :attr:`namespace`, call :meth:`load()` and then access any
-    of the loaded plug-ins using the API offered. All loaded objects are
-    wrapped by a plug-in container. By default that is :class:`PlugIn` but it
-    may be adjusted if required.
+    A collection of IPlugIn objects.
     """
 
-    def __init__(self, namespace, load=False, wrapper=PlugIn):
+    @abc.abstractmethod
+    def get_by_name(self, name):
         """
-        Initialize a collection of plug-ins from the specified name-space.
+        Get the specified plug-in (by name)
+        """
 
-        :param namespace:
-            pkg_resources entry-point name-space of the plug-in collection
+    @abc.abstractmethod
+    def get_all_names(self):
+        """
+        Get an iterator to a sequence of plug-in names
+        """
+
+    @abc.abstractmethod
+    def get_all_plugins(self):
+        """
+        Get an iterator to a sequence plug-ins
+        """
+
+    @abc.abstractmethod
+    def get_all_items(self):
+        """
+        Get an iterator to a sequence of (name, plug-in)
+        """
+
+    @abc.abstractmethod
+    def load(self):
+        """
+        Load all plug-ins.
+
+        This method loads all plug-ins from the specified name-space.  It may
+        perform a lot of IO so it's somewhat slow / expensive on a cold disk
+        cache.
+        """
+
+    @abc.abstractmethod
+    @contextlib.contextmanager
+    def fake_plugins(self, plugins):
+        """
+        Context manager for using fake list of plugins
+
+        :param plugins: list of PlugIn-alike objects
+
+        The provided list of plugins overrides any previously loaded
+        plugins and prevent loading any other, real, plugins. After
+        the context manager exits the previous state is restored.
+        """
+
+
+class PlugInCollectionBase(IPlugInCollection):
+    """
+    Base class that shares some of the implementation with the other
+    PlugInCollection implemenetations.
+    """
+
+    def __init__(self, load=False, wrapper=PlugIn):
+        """
+        Initialize a collection of plug-ins
+
         :param load:
             if true, load all of the plug-ins now
         :param wrapper:
             wrapper class for all loaded objects, defaults to :class:`PlugIn`
         """
-        self._namespace = namespace
         self._wrapper = wrapper
         self._plugins = collections.OrderedDict()
         self._loaded = False
@@ -150,38 +197,6 @@ class PlugInCollection:
         """
         return list(self._plugins.items())
 
-    def load(self):
-        """
-        Load all plug-ins.
-
-        This method loads all plug-ins from the specified name-space.  It may
-        perform a lot of IO so it's somewhat slow / expensive on a cold disk
-        cache.
-
-        .. note::
-            this method queries pkg-resources only once.
-        """
-        if self._loaded:
-            return
-        self._loaded = True
-        iterator = self._get_entry_points()
-        for entry_point in sorted(iterator, key=lambda ep: ep.name):
-            try:
-                obj = entry_point.load()
-            except ImportError as exc:
-                logger.exception("Unable to import %s", entry_point)
-            else:
-                obj = self._wrapper(entry_point.name, obj)
-                self._plugins[entry_point.name] = obj
-
-    def _get_entry_points(self):
-        """
-        Get entry points from pkg_resources.
-
-        This is the method you want to mock if you are writing unit tests
-        """
-        return pkg_resources.iter_entry_points(self._namespace)
-
     @contextlib.contextmanager
     def fake_plugins(self, plugins):
         """
@@ -205,3 +220,139 @@ class PlugInCollection:
         finally:
             self._loaded = old_loaded
             self._plugins = old_plugins
+
+
+class PkgResourcesPlugInCollection(PlugInCollectionBase):
+    """
+    Collection of plug-ins based on pkg_resources
+
+    Instantiate with :attr:`namespace`, call :meth:`load()` and then access any
+    of the loaded plug-ins using the API offered. All loaded objects are
+    wrapped by a plug-in container. By default that is :class:`PlugIn` but it
+    may be adjusted if required.
+    """
+
+    def __init__(self, namespace, load=False, wrapper=PlugIn):
+        """
+        Initialize a collection of plug-ins from the specified name-space.
+
+        :param namespace:
+            pkg_resources entry-point name-space of the plug-in collection
+        :param load:
+            if true, load all of the plug-ins now
+        :param wrapper:
+            wrapper class for all loaded objects, defaults to :class:`PlugIn`
+        """
+        self._namespace = namespace
+        super(PkgResourcesPlugInCollection, self).__init__(load, wrapper)
+
+    def load(self):
+        """
+        Load all plug-ins.
+
+        This method loads all plug-ins from the specified name-space.  It may
+        perform a lot of IO so it's somewhat slow / expensive on a cold disk
+        cache.
+
+        .. note::
+            this method queries pkg-resources only once.
+        """
+        if self._loaded:
+            return
+        self._loaded = True
+        iterator = self._get_entry_points()
+        for entry_point in sorted(iterator, key=lambda ep: ep.name):
+            try:
+                obj = entry_point.load()
+            except ImportError:
+                logger.exception("Unable to import %s", entry_point)
+            else:
+                obj = self._wrapper(entry_point.name, obj)
+                self._plugins[entry_point.name] = obj
+
+    def _get_entry_points(self):
+        """
+        Get entry points from pkg_resources.
+
+        This is the method you want to mock if you are writing unit tests
+        """
+        return pkg_resources.iter_entry_points(self._namespace)
+
+
+class FsPlugInCollection(PlugInCollectionBase):
+    """
+    Collection of plug-ins based on filesystem entries
+
+    Instantiate with :attr:`path` and :attr:`ext`, call :meth:`load()` and then
+    access any of the loaded plug-ins using the API offered. All loaded plugin
+    information files are wrapped by a plug-in container. By default that is
+    :class:`PlugIn` but it may be adjusted if required.
+
+    The name of each plugin is the base name of the plugin file, the object of
+    each plugin is the text read from the plugin file.
+    """
+
+    def __init__(self, path, ext, load=False, wrapper=PlugIn):
+        """
+        Initialize a collection of plug-ins from the specified name-space.
+
+        :param path:
+            a PATH like variable that uses os.path.pathsep to separate multiple
+            directory entries. Each directory is searched for (not recursively)
+            for plugins.
+        :param ext:
+            extension of each plugin definition file
+        :param load:
+            if true, load all of the plug-ins now
+        :param wrapper:
+            wrapper class for all loaded objects, defaults to :class:`PlugIn`
+        """
+        self._path = path
+        self._ext = ext
+        super(FsPlugInCollection, self).__init__(load, wrapper)
+
+    def load(self):
+        """
+        Load all plug-ins.
+
+        This method loads all plug-ins from the search directories (as defined
+        by the path attribute). Missing directories are silently ignored.
+        """
+        if self._loaded:
+            return
+        self._loaded = True
+        iterator = self._get_plugin_files()
+        for filename in sorted(iterator):
+            try:
+                with open(filename, encoding='UTF-8') as stream:
+                    text = stream.read()
+            except IOError as exc:
+                logger.error("Unable to load %r: %s", filename, str(exc))
+            else:
+                name = os.path.basename(filename)
+                obj = self._wrapper(name, text)
+                self._plugins[name] = obj
+
+    def _get_plugin_files(self):
+        """
+        Enumerate (generate) all plugin files according to 'path' and 'ext'
+        """
+        # Look in all parts of 'path' separated by standard system path
+        # separator.
+        for path in self._path.split(os.path.pathsep):
+            # List all files in each path component
+            try:
+                entries = os.listdir(path)
+            except OSError:
+                # Silently ignore anything we cannot access
+                continue
+            # Look at each file there
+            for entry in entries:
+                # Skip files with other extensions
+                if not entry.endswith(self._ext):
+                    continue
+                info_file = os.path.join(path, entry)
+                # Skip all non-files
+                if not os.path.isfile(info_file):
+                    continue
+                yield info_file
