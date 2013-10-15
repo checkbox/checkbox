@@ -59,7 +59,6 @@ DATA_FILES = [
     ("share/checkbox/report/", ["report/*.*"]),
     ("share/checkbox/report/images/", ["report/images/*"]),
     ("share/checkbox/scripts/", ["scripts/*"]),
-    ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
     ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
     ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
     ("share/apport/general-hooks/", ["apport/checkbox.py"])]
@@ -267,8 +266,7 @@ This project provides an extensible interface for system testing.
         ],
     },
     scripts=[
-        "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
-        "bin/checkbox-qt", "bin/checkbox-hw-collection"],
+        "bin/checkbox-cli", "bin/checkbox-qt", "bin/checkbox-hw-collection"],
     packages=find_packages(),
     package_data={
         "": ["cputable"]},
