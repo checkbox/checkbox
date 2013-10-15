@@ -147,6 +147,7 @@ _description:
 plugin: manual
 name: keys/hibernate
 requires: dmi.product in ['Notebook','Laptop','Portable']
+depends: power-management/hibernate_advanced
 _description:
  PURPOSE:
      This test will test the hibernate key
