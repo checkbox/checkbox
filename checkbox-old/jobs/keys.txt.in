@@ -190,3 +190,17 @@ _description:
      3. After a few seconds, your speech will be played back to you. If the key works, your speech should be interrupted for a few seconds.
  VERIFICATION:
      Does the microphone mute key work as expected?
+
+plugin: manual
+name: keys/hibernate
+requires: dmi.product in ['Notebook','Laptop','Portable']
+depends: power-management/hibernate_advanced
+_description:
+ PURPOSE:
+     This test will test the hibernate key
+ STEPS:
+     1. Press the hibernate key on the keyboard
+     2. Check that the system hibernated correctly
+     3. Wake your system after hibernating by pressing the power button
+ VERIFICATION:
+     Did the system go to hibernate after pressing the hibernate key?
