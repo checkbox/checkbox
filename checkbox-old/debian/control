@@ -80,16 +80,6 @@ Description: Command line interface for checkbox
  .
  This package provides a command line interface for answering tests.
 
-Package: checkbox-urwid
-Architecture: all
-Depends: checkbox (>= ${source:Version}), python3-urwid, ${misc:Depends}
-Description: Urwid interface for checkbox
- This project provides an extensible interface for system testing. The
- results can then be sent to Launchpad.
- .
- This package provides a command line interface (urwid version) for
- answering tests.
-
 Package: checkbox-qt
 Architecture: any
 Depends: checkbox (>= ${source:Version}),
