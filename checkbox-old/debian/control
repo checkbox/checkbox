@@ -47,7 +47,7 @@ Recommends: dpkg (>= 1.13),
             python3-gi
 Suggests: bonnie++,
           bootchart,
-          checkbox-cli | checkbox-gtk,
+          checkbox-cli
           curl,
           ethtool,
           fwts (>=13.09.00-0ubuntu1),
@@ -89,20 +89,6 @@ Description: Urwid interface for checkbox
  .
  This package provides a command line interface (urwid version) for
  answering tests.
-
-Package: checkbox-gtk
-Section: gnome
-Architecture: all
-Depends: checkbox (>= ${source:Version}),
-         gir1.2-gtk-3.0,
-         python3-gi,
-         python3-gi-cairo,
-         ${misc:Depends}
-Description: GTK interface for checkbox
- This project provides an extensible interface for system testing. The
- results can then be sent to Launchpad.
- .
- This package provides a GTK interface for answering tests.
 
 Package: checkbox-qt
 Architecture: any

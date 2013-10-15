@@ -1,9 +1,15 @@
 checkbox (0.16.13) UNRELEASED; urgency=low
 
+  [ Po-Hsu Lin ]
+  * jobs/keys.txt.in - adde keys/microphone-mute to test the mute key for 
+    microphone.
+
   [ Brendan Donegan ]
   * jobs/resource.txt.in, jobs/virtualization.txt.in - added kvm resource job
     which states whether the hardware supports KVM. Remove kvm_ok job and use the
     kvm resource job to determine if kvm_check_vm should run (LP: #1236776)
+  * jobs/keys.txt.in - added keys/keyboard-backlight job to test keyboard
+    backlight toggle key.
 
   [ Daniel Manrique ]
   * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
@@ -21,7 +27,11 @@ checkbox (0.16.13) UNRELEASED; urgency=low
    [ Yung Shen ]
   * jobs/keys.txt.in - added keys/hibernate job.
  
- -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 05 Oct 2013 11:18:17 +0100
+  [ Taihsiang Ho ]
+  * checkbox-old/jobs/keys.txt.in - added keys/lock-screen job to test
+    lock screen key.
+
+ -- Taihsiang Ho <taihsiang.ho@canonical.com>  Mon, 14 Oct 2013 17:35:23 -0400
 
 checkbox (0.16.12) saucy; urgency=low
 
