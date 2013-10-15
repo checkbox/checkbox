@@ -38,7 +38,7 @@ class BackendInfo(Plugin):
     # How we behave if I/O times out is dependent on the situation.
     timeout = Float(default=60.0)
 
-    command = Path(default="%(checkbox_share)s/backend")
+    command = Path(default=os.path.realpath("%(checkbox_share)s/backend"))
 
     next_sequence = 0
     expected_sequence = 0

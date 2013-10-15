@@ -20,6 +20,9 @@ checkbox (0.16.13) UNRELEASED; urgency=low
     windows/threads, to make 100% sure that we find and close them all,
     avoiding leftover threads that cause the script not to exit.
     (LP: #1237199)
+  * plugins/backend_info: Resolve and use full path to the backend script to
+    ensure it runs when invoked via pkexec which is unhappy with relative
+    paths (LP: #1240245)
 
   [ Jeff Marcom ]
   * scripts/network - added iperf test benchmark testing capabilities. 
