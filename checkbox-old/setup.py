@@ -56,6 +56,7 @@ DATA_FILES = [
     ("share/checkbox/install/", ["install/*"]),
     ("share/checkbox/patches/", ["patches/*"]),
     ("share/checkbox/plugins/", ["plugins/*.py"]),
+    ("share/plainbox-providers-1/", ["providers-1/*"]),
     ("share/checkbox/report/", ["report/*.*"]),
     ("share/checkbox/report/images/", ["report/images/*"]),
     ("share/checkbox/scripts/", ["scripts/*"]),
