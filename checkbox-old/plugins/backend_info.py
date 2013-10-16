@@ -38,7 +38,7 @@ class BackendInfo(Plugin):
     # How we behave if I/O times out is dependent on the situation.
     timeout = Float(default=60.0)
 
-    command = Path(default=os.path.realpath("%(checkbox_share)s/backend"))
+    command = Path(default="%(checkbox_share)s/backend")
 
     next_sequence = 0
     expected_sequence = 0
@@ -83,7 +83,8 @@ class BackendInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather, -100)
 
     def get_command(self, *args):
-        command = [self.command, "--path=%s" % os.environ["PATH"]]
+        self.absolute_command = os.path.realpath(self.command)
+        command = [self.absolute_command, "--path=%s" % os.environ["PATH"]]
 
         return command + list(args)
 
