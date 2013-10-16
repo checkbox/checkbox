@@ -1,7 +1,8 @@
-plugin: user-interact-verify
+plugin: user-interact
 name: keys/lock-screen
 requires:
  device.category == 'KEYBOARD'
+command: lock_screen_watcher
 _description:
  PURPOSE:
      This test will test the screen lock key
@@ -10,7 +11,8 @@ _description:
      2. If the screen is locked, move the mouse or press any key to activate the prompt
      3. Input the password to unlock the screen
  VERIFICATION:
-     Did the screen be locked following to your key presses?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
 name: keys/brightness
