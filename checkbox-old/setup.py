@@ -56,6 +56,7 @@ DATA_FILES = [
     ("share/checkbox/install/", ["install/*"]),
     ("share/checkbox/patches/", ["patches/*"]),
     ("share/checkbox/plugins/", ["plugins/*.py"]),
+    ("share/plainbox-providers-1/", ["providers-1/*"]),
     ("share/checkbox/report/", ["report/*.*"]),
     ("share/checkbox/report/images/", ["report/images/*"]),
     ("share/checkbox/scripts/", ["scripts/*"]),
@@ -145,7 +146,12 @@ class checkbox_build(build_extra, object):
         for source in self.sources:
             executable = os.path.splitext(source)[0]
             cc.link_executable(
-                [source], executable, libraries=["rt", "pthread"])
+                [source], executable, libraries=["rt", "pthread"],
+                # Enforce security with dpkg-buildflags --get CFLAGS
+                extra_preargs=[
+                    "-g", "-O2", "-fstack-protector",
+                    "--param=ssp-buffer-size=4", "-Wformat",
+                    "-Werror=format-security"])
 
 
 class checkbox_clean(clean, object):
