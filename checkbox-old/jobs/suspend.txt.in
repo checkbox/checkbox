@@ -1,6 +1,6 @@
 plugin: shell
 name: suspend/network_before_suspend
-depends: networking/detect
+depends: ethernet/detect
 _description: Record the current network before suspending.
 command: set -o pipefail; internet_test | tee $CHECKBOX_DATA/network_before_suspend.txt
 

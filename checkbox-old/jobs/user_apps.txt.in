@@ -1,6 +1,6 @@
 plugin: user-interact-verify
 name: software/update_manager_finds_updates
-depends: networking/detect
+depends: ethernet/detect
 user: root
 requires: package.name == 'update-manager'
 _description:

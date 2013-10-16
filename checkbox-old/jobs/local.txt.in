@@ -166,12 +166,12 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/monitor.txt?(.in)
 
-name: __networking__
+name: __ethernet__
 plugin: local
-_description: Networking tests
+_description: Ethernet Device tests
 command:
   shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/networking.txt?(.in)
+  cat $CHECKBOX_SHARE/jobs/ethernet.txt?(.in)
 
 name: __optical__
 plugin: local

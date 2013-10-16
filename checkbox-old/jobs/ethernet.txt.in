@@ -1,5 +1,5 @@
 plugin: shell
-name: networking/detect
+name: ethernet/detect
 requires:
  device.category == 'NETWORK' or device.category == 'WIRELESS'
  package.name == 'module-init-tools'
@@ -9,20 +9,20 @@ estimated_duration: 1.2
 _description: Test to detect the available network controllers
 
 plugin: shell
-name: networking/internet
-depends: networking/detect
+name: ethernet/internet
+depends: ethernet/detect
 command: internet_test
 estimated_duration: 2.000
 _description: Tests whether the system has a working Internet connection.
 
 plugin: local
-name: networking/info
+name: ethernet/info
 requires: device.category == 'NETWORK'
 _description: Network Information
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: user-interact-verify
- name: networking/info_$2
+ name: ethernet/info_$2
  requires: device.path == "$1"
  command: network_info $2
  _description:
@@ -37,7 +37,7 @@ command:
  EOF
 
 plugin: shell
-name: networking/info_automated
+name: ethernet/info_automated
 requires:
  package.name == 'network-manager'
  device.category == 'NETWORK'
@@ -47,7 +47,7 @@ _description:
  This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
 
 plugin: user-interact-verify
-name: networking/wired_connection
+name: ethernet/wired_connection
 command: network_check
 _description:
  PURPOSE:
@@ -60,7 +60,7 @@ _description:
      Did a notification show and was the connection correctly established?
 
 plugin: user-interact-verify
-name: networking/modem_connection
+name: ethernet/modem_connection
 command: network_check
 _description:
  PURPOSE:
@@ -77,45 +77,45 @@ _description:
      Did a notification show and was the connection correctly established?
 
 plugin: shell
-name: networking/ping
+name: ethernet/ping
 command: internet_test $CHECKBOX_SERVER
 _description:
  Automated test case to verify availability of some system on the network
  using ICMP ECHO packets.
 
 plugin: shell
-name: networking/http
+name: ethernet/http
 command: wget -SO /dev/null http://$TRANSFER_SERVER
 _description:
  Automated test case to make sure that it's possible to download files through HTTP
 
 plugin: shell
-name: networking/ntp
+name: ethernet/ntp
 requires: package.name == 'ntpdate'
 user: root
 command: network_ntp_test
 _description: Test to see if we can sync local clock to an NTP server
 
 plugin: shell
-name: networking/ssh
+name: ethernet/ssh
 requires: package.name == 'openssh-client'
 command: if [ $CHECKBOX_SERVER ]; then ssh -q -o 'StrictHostKeyChecking=no' -o "UserKnownHostsFile=/tmp/ssh_test_$$" -l ubuntu $CHECKBOX_SERVER "uname -a" && rm /tmp/ssh_test_$$; fi
 _description: Verify that an installation of checkbox-server on the network can be reached over SSH.
 
 plugin: shell
-name: networking/printer
+name: ethernet/printer
 requires: package.name == 'cups-client'
 command: network_printer_test -s $CHECKBOX_SERVER
 _description: Try to enable a remote printer on the network and print a test page.
 
 plugin: local
-name: networking/multi_nic
+name: ethernet/multi_nic
 requires: device.category == 'NETWORK'
 _description: Automated test to walk multiple network cards and test each one in sequence.
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell
- name: networking/multi_nic_$2
+ name: ethernet/multi_nic_$2
  requires:
   package.name == 'ethtool'
   package.name == 'nmap'
