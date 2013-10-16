@@ -67,7 +67,8 @@ Suggests: bonnie++,
           sysstat,
           wmctrl,
           wodim,
-          ${python:Depends},
+          python (>= 2.7),
+          ${python:Depends}
 Description: System testing application
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -164,6 +165,7 @@ Suggests: bonnie++,
           stress,
           sysstat,
           wmctrl,
-         ${python:Depends}
+          python (>= 2.7),
+          ${python:Depends}
 Description: CheckBox jobs
  This package provides the CheckBox jobs collection.
