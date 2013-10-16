@@ -372,7 +372,15 @@ def interface_test(args):
     elif args.test_type.lower() == "iperf":
         iperf_benchmark = IPerfPerformanceTest(args.interface, test_target)
         sys.exit(iperf_benchmark.run())
-
+    
+    for iface in extra_interfaces:
+        logging.debug("Restoring interface:%s", iface)
+        try:
+            cmd = "ip link set dev %s up" % iface
+            check_call(shlex.split(cmd))
+        except CalledProcessError as interface_failure:
+            logging.error("Failed to use %s:%s", cmd, interface_failure)
+            sys.exit(3)
 
 def interface_info(args):
 

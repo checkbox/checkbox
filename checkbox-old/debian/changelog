@@ -11,6 +11,8 @@ checkbox (0.16.13) UNRELEASED; urgency=low
     (LP: #1236776)
   * jobs/keys.txt.in - added keys/keyboard-backlight job to test keyboard
     backlight toggle key.
+  * scripts/network - restore other interfaces that were downed prior to running
+    the network test (LP: #1238570)
 
   [ Daniel Manrique ]
   * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
