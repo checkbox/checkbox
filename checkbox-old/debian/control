@@ -15,7 +15,6 @@ Build-Depends: debhelper (>= 9.2),
                python3-distutils-extra,
                python3-gi,
                python3-lxml,
-               python3-mock,
                python3-pkg-resources,
                python3-setuptools,
                qt4-qmake
@@ -47,7 +46,7 @@ Recommends: dpkg (>= 1.13),
             python3-gi
 Suggests: bonnie++,
           bootchart,
-          checkbox-cli
+          checkbox-cli,
           curl,
           ethtool,
           fwts (>=13.09.00-0ubuntu1),
@@ -66,7 +65,9 @@ Suggests: bonnie++,
           stress,
           sysstat,
           wmctrl,
-          wodim
+          wodim,
+          python (>= 2.7),
+          ${python:Depends}
 Description: System testing application
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -79,16 +80,6 @@ Description: Command line interface for checkbox
  results can then be sent to Launchpad.
  .
  This package provides a command line interface for answering tests.
-
-Package: checkbox-urwid
-Architecture: all
-Depends: checkbox (>= ${source:Version}), python3-urwid, ${misc:Depends}
-Description: Urwid interface for checkbox
- This project provides an extensible interface for system testing. The
- results can then be sent to Launchpad.
- .
- This package provides a command line interface (urwid version) for
- answering tests.
 
 Package: checkbox-qt
 Architecture: any
@@ -111,3 +102,69 @@ Description: CLI tool for collecting HW information from a system
  .
  This package provides a tool for collecting hardware information from
  a system and sending it to the HEXR hardware database.
+
+Package: python3-checkbox
+Section: python
+Architecture: all
+Depends: gir1.2-gudev-1.0,
+         python3-lxml,
+         udev,
+         udisks2 | udisks,
+         ${misc:Depends},
+         ${python3:Depends}
+Description: CheckBox python3 library
+ This package contains the CheckBox python3 library needed by some jobs.
+
+Package: plainbox-provider-resource-generic
+Architecture: all
+Depends: python3-checkbox, ${misc:Depends}, ${python3:Depends}
+Recommends: dmidecode, dpkg (>= 1.13), lsb-release, wodim
+Description: CheckBox generic resource jobs provider
+ This package provides the generic resource jobs.
+
+Package: plainbox-provider-resource-desktop
+Architecture: all
+Depends: plainbox-provider-resource-generic
+Recommends: gconf2, x11-xserver-utils, xinput
+Description: CheckBox desktop resource jobs provider
+ This metapackage provides the desktop resource jobs.
+
+Package: plainbox-provider-checkbox
+Architecture: any
+Depends: plainbox-provider-resource-generic,
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Recommends: gir1.2-gst-plugins-base-1.0,
+            gir1.2-gstreamer-1.0,
+            gstreamer1.0-plugins-good,
+            gstreamer1.0-pulseaudio,
+            libgstreamer1.0-0,
+            pm-utils,
+            python3-apt,
+            python3-dbus,
+            python3-gi
+Suggests: bonnie++,
+          bootchart,
+          curl,
+          ethtool,
+          fwts (>=13.09.00-0ubuntu1),
+          git-core,
+          glmark2,
+          glmark2-es2,
+          hdparm,
+          lshw,
+          mesa-utils,
+          nmap,
+          obexd-client,
+          obexftp,
+          render-bench,
+          smartmontools,
+          sox,
+          stress,
+          sysstat,
+          wmctrl,
+          python (>= 2.7),
+          ${python:Depends}
+Description: CheckBox jobs
+ This package provides the CheckBox jobs collection.

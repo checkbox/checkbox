@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 %:
-	dh "$@" --with python2,python3,translations
+	dh "$@" --with python3,translations
 
 override_dh_auto_build:
 	set -ex; for python in $(shell py3versions -r); do \
@@ -12,8 +12,23 @@ override_dh_auto_install:
 	set -ex; for python in $(shell py3versions -r); do \
 		$$python setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb; \
 	done;
-	mkdir -p $(CURDIR)/debian/tmp/usr/lib/checkbox
-	mv  $(CURDIR)/debian/tmp/usr/share/checkbox/scripts  $(CURDIR)/debian/tmp/usr/lib/checkbox/bin
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/checkbox/bin/
+	cp -R $(CURDIR)/debian/tmp/usr/share/checkbox/scripts/  $(CURDIR)/debian/tmp/usr/lib/checkbox/bin/
+	# Move the providers files to a new location
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/
+	# Resources provider files
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/bin/
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/jobs/
+	mv $(CURDIR)/debian/tmp/usr/share/checkbox/scripts/*_resource $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/bin/
+	mv $(CURDIR)/debian/tmp/usr/share/checkbox/jobs/resource.txt* $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/jobs/
+	# Job provider files
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/bin/
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/jobs/
+	find $(CURDIR)/debian/tmp/usr/share/checkbox/scripts -type f -not -iname  "*_resource" -execdir cp {} $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/bin/ \;
+	find $(CURDIR)/debian/tmp/usr/share/checkbox/jobs -type f -not -iname  "resource.txt*" -execdir cp {} $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/jobs/ \;
+	mv $(CURDIR)/debian/tmp/usr/share/checkbox/data/whitelists $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/
 
 override_dh_auto_test:
 ifeq (, $(findstring nocheck, $(DEB_BUILD_OPTIONS)))
@@ -21,12 +36,10 @@ ifeq (, $(findstring nocheck, $(DEB_BUILD_OPTIONS)))
 	# around LP#972324 (set by autopkgtest)
 	env -u LD_PRELOAD -u TMPDIR CHECKBOX_PACKAGING=1 ./setup.py test
 	rm -rf scripts/__pycache__
-endif	
+endif
 
 override_dh_installdeb:
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
-	cp debian/checkbox.postrm debian/checkbox-urwid.postrm
-	cp debian/checkbox.postrm debian/checkbox-gtk.postrm
 	cp debian/checkbox.postrm debian/checkbox-qt.postrm
 	cp debian/checkbox.postrm debian/checkbox-hw-collection.postrm
 	dh_installdeb
@@ -34,14 +47,12 @@ override_dh_installdeb:
 override_dh_installdocs:
 	dh_installdocs -pcheckbox ./README 
 	dh_installdocs -pcheckbox-cli ./README 
-	dh_installdocs -pcheckbox-urwid ./README 
-	dh_installdocs -pcheckbox-gtk ./README 
 	dh_installdocs -pcheckbox-qt ./README
 	dh_installdocs -pcheckbox-hw-collection ./README
 	dh_installdocs
 
 override_dh_clean:
 	-find . -name \*.mo -exec rm {} \;
-	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm debian/checkbox-qt.postrm debian/checkbox-hw-collection.postrm
+	-rm -f debian/checkbox-cli.postrm debian/checkbox-qt.postrm debian/checkbox-hw-collection.postrm
 	debconf-updatepo
 	dh_clean

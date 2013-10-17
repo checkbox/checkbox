@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from argparse import ArgumentParser
 import configparser
 import os
+import re
 import logging
 import lsb_release
 import shlex
@@ -38,6 +39,7 @@ from subprocess import (
 )
 import sys
 import tempfile
+import tarfile
 import time
 import urllib.request
 
@@ -52,9 +54,9 @@ class KVMTest(object):
         self.image = image
         self.timeout = timeout
         self.debug_file = os.path.join(os.getcwd(), debug_file)
+        self.arch = check_output(['arch'], universal_newlines=True)
 
-    @classmethod
-    def download_image(cls):
+    def download_image(self):
         """
         Downloads Cloud image for same release as host machine
         """
@@ -64,7 +66,11 @@ class KVMTest(object):
 
         # Construct URL
         cloud_url = "http://cloud-images.ubuntu.com"
-        cloud_iso = release + "-server-cloudimg-i386-disk1.img"
+
+        if re.match("arm.*", self.arch):
+            cloud_iso = release + "-server-cloudimg-armhf.tar.gz"
+        else:
+            cloud_iso = release + "-server-cloudimg-i386-disk1.img"
         image_url = "/".join((
             cloud_url, release, "current", cloud_iso))
 
@@ -77,6 +83,12 @@ class KVMTest(object):
             logging.exception("Failed download of image from:", image_url)
             return False
 
+        # Unpack img file from tar
+        if re.match("arm.*", self.arch):
+            cloud_iso_tgz = tarfile.open(cloud_iso)
+            cloud_iso = cloud_iso.replace('tar.gz', 'img')
+            cloud_iso_tgz.extract(cloud_iso)
+
         if not os.path.isfile(cloud_iso):
             return False
 
@@ -85,8 +97,7 @@ class KVMTest(object):
     def boot_image(self, data_disk):
         """
         Attempts to boot the newly created qcow image using
-        the config data defined in config.iso. Return instance
-        of currently running virtual machine
+        the config data defined in config.iso
         """
 
         logging.debug("Attempting boot for:{}".format(data_disk))
@@ -95,24 +106,31 @@ class KVMTest(object):
         netrange = "10.0.0.0/8"
         image_ip = "10.0.0.1"
         hostfwd = "tcp::2222-:22"
+        cloud_disk = ""        
 
-        params = \
-            '''
-            qemu-system-x86_64 -machine accel=kvm:tcg -m {0} -net nic 
-            -net user,net={1},host={2},hostfwd={3} -drive file={4},if=virtio 
-            -display none -nographic
-            '''.format(
-            "256",
-            netrange,
-            image_ip,
-            hostfwd,
-            data_disk).replace("\n", "").replace("  ", "")
-
+        # Should we attach the cloud config disk
         if os.path.isfile("seed.iso"):
             logging.debug("Attaching Cloud config disk")
+            cloud_disk = "-drive file=seed.iso,if=virtio"
 
-            params = params.replace(
-                "if=virtio", "if=virtio -drive file=seed.iso,if=virtio")
+
+        if re.match("(arm.*|aarch64)", self.arch):
+            uname = check_output(['uname','-r'], universal_newlines=True)
+            cloud_disk = cloud_disk.replace("virtio", "sd")
+            params = 'qemu-system-arm -machine vexpress-a15 -cpu cortex-a15 -enable-kvm -m {} -kernel /boot/vmlinuz -append "console=ttyAMA0 earlyprintk=serial root=/dev/mmcblk0 ro rootfstype=ext4" -serial stdio -dtb /lib/firmware/{}/device-tree/vexpress-v2p-ca15-tc1.dtb -initrd /boot/initrd.img -net nic -net user,net={},host={},hostfwd={} -drive file={},if=sd,cache=writeback {} -display none -nographic'.format(uname, "256", netrange,image_ip, hostfwd, data_disk, cloud_disk)
+        else:    
+            params = \
+                '''
+                qemu-system-x86_64 -machine accel=kvm:tcg -m {0} -net nic 
+                -net user,net={1},host={2}, hostfwd={3}
+                -drive file={4},if=virtio {5} -display none -nographic
+                '''.format(
+                "256",
+                netrange,
+                image_ip,
+                hostfwd,
+                data_disk,
+                cloud_disk).replace("\n", "").replace("  ", "")
 
         logging.debug("Using params:{}".format(params))
 
@@ -134,8 +152,7 @@ class KVMTest(object):
             shlex.split(params), stdin=PIPE, stderr=file, stdout=file,
             universal_newlines=True, shell=False)
 
-    @classmethod
-    def create_cloud_disk(cls):
+    def create_cloud_disk(self):
         """
         Generate Cloud meta data and creates an iso object
         to be mounted as virtual device to instance during boot.
@@ -193,18 +210,16 @@ runcmd:
                 # Boot Virtual Machine
                 instance = self.boot_image(self.image)
 
-                if instance is not False:
-                    time.sleep(self.timeout)
-                    # Reset Console window to regain control from VM Serial I/0
-                    call('reset')
-                    # Check to be sure VM boot was successful
-                    if "END SSH HOST KEY KEYS" \
-                    in open(self.debug_file, 'r').read():
-                        print("Booted successfully", file=sys.stderr)
-                        status = 0
-                    else:
-                        print("KVM instance failed to boot", file=sys.stderr)
-                    self.process.terminate()
+                time.sleep(self.timeout)
+                # Reset Console window to regain control from VM Serial I/0
+                call('reset')
+                # Check to be sure VM boot was successful
+                if "END SSH HOST KEY KEYS" in open(self.debug_file, 'r').read():
+                    print("Booted successfully", file=sys.stderr)
+                    status = 0
+                else:
+                    print("KVM instance failed to boot", file=sys.stderr)
+                self.process.terminate()
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)
 
