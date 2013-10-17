@@ -2,7 +2,6 @@
 import argparse
 import sys
 import subprocess
-from gettext import gettext as _
 
 from gi.repository import GObject
 
@@ -14,6 +13,7 @@ import time
 GObject.threads_init()
 
 class SceenSaverStatusHelper(threading.Thread):
+
     def __init__(self, loop):
         super(SceenSaverStatusHelper, self).__init__()
         self._loop = loop
@@ -33,93 +33,6 @@ class SceenSaverStatusHelper(threading.Thread):
             GObject.idle_add(self.query)
             time.sleep(1)
 
-
-class Reporter(object):
-
-    def __init__(self, main_loop):
-        self.main_loop = main_loop
-
-    def quit(self):
-        self.main_loop.quit()
-
-
-class GtkReporter(Reporter):
-
-    def __init__(self, *args, **kwargs):
-        super(GtkReporter, self).__init__(*args, **kwargs)
-        
-        from gi.repository import Gdk, Gtk
-
-        # Initialize GTK constants
-        self.ICON_SIZE = Gtk.IconSize.BUTTON
-        self.ICON_TESTED = Gtk.STOCK_YES
-        self.ICON_UNTESTED = Gtk.STOCK_INDEX
-        self.ICON_NOT_REQUIRED = Gtk.STOCK_REMOVE
-
-        self.button_factory = Gtk.Button
-        self.hbox_factory = Gtk.HBox
-        self.image_factory = Gtk.Image
-        self.label_factory = Gtk.Label
-        self.vbox_factory = Gtk.VBox
-
-        # Create GTK window.
-        window = Gtk.Window()
-        window.set_type_hint(Gdk.WindowType.TOPLEVEL)
-        window.set_size_request(100, 100)
-        window.set_resizable(False)
-        window.set_title(_("Key test"))
-        window.connect("delete_event", lambda w, e: self.quit())
-        window.connect(
-            "key-release-event",
-            lambda w, k: k.keyval == Gdk.KEY_Escape and self.quit())
-        window.show()
-
-        # Add common widgets to the window.
-        vbox = self._add_vbox(window)
-        self.label = self._add_label(vbox)
-        button_hbox = self._add_hbox(vbox)
-        validation_hbox = self._add_hbox(vbox)
-        skip_hbox = self._add_hbox(vbox)
-        exit_button = self._add_button(vbox, _("_Exit"), True)
-        exit_button.connect("clicked", lambda w: self.quit())
-
-        self.show_text(_("Please press the lock screen hot key on your keyboard."))
-        self.show_text(_(""))
-        self.show_text(_("If the key is not present in your keyboard, please just skip this test."))
-
-    def show_text(self, string):
-        self.label.set_text(self.label.get_text() + "\n" + string)
-
-    def _add_label(self, context, text=None):
-        label = self.label_factory()
-        context.add(label)
-        label.set_size_request(0, 0)
-        label.set_line_wrap(True)
-        if text:
-            label.set_text(text)
-        label.show()
-        return label
-
-    def _add_button(self, context, label, use_underline=False):
-        button = self.button_factory(label=label, use_underline=use_underline)
-        context.add(button)
-        button.show()
-        return button
-
-    def _add_hbox(self, context, spacing=4):
-        hbox = self.hbox_factory()
-        context.add(hbox)
-        hbox.set_spacing(4)
-        hbox.show()
-        return hbox
-
-    def _add_vbox(self, context):
-        vbox = self.vbox_factory()
-        vbox.set_homogeneous(False)
-        vbox.set_spacing(8)
-        context.add(vbox)
-        vbox.show()
-        return vbox
 
 class HotkeyFunctionListener:
 
@@ -154,10 +67,6 @@ class HotkeyFunctionListener:
         if timeout > 0:
             GObject.timeout_add_seconds(timeout, self._on_timeout_expired)
 
-        # a panel to show the testers they could press the hot key
-        reporter_factory = GtkReporter
-        reporter = reporter_factory(self._loop)
-
         # helper to listen the functionality is triggered or not
         query_thread = SceenSaverStatusHelper(self._loop)
         query_thread.start()
@@ -170,7 +79,7 @@ class HotkeyFunctionListener:
 def main():
     description = "Wait for the specified hotkey to be pressed."
     parser = argparse.ArgumentParser(description=description)
-    parser.add_argument('--timeout', type=int, default=5)
+    parser.add_argument('--timeout', type=int, default=30)
 
     args = parser.parse_args()
 
