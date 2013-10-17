@@ -35,6 +35,7 @@ checkbox (0.16.13) UNRELEASED; urgency=low
   [ Taihsiang Ho ]
   * checkbox-old/jobs/keys.txt.in - added keys/lock-screen job to test
     lock screen key.
+  * checkbox-old/scripts/lock_screen_watcher - the script for keys/lock-screen job
 
   [ Zygmunt Krynicki ]
   * Remove the GTK+ and Urwid interfaces
@@ -46,8 +47,7 @@ checkbox (0.16.13) UNRELEASED; urgency=low
     server-services.txt.in: Fixed "requires" expresions using the "and" 
     operator.
 
-
- -- Taihsiang Ho <taihsiang.ho@canonical.com>  Mon, 14 Oct 2013 17:35:23 -0400
+ -- Taihsiang Ho <taihsiang.ho@canonical.com>  Thu, 17 Oct 2013 12:34:41 -0400
 
 checkbox (0.16.12) saucy; urgency=low
 
