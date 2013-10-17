@@ -16,6 +16,10 @@ override_dh_auto_install:
 	cp -R $(CURDIR)/debian/tmp/usr/share/checkbox/scripts/  $(CURDIR)/debian/tmp/usr/lib/checkbox/bin/
 	# Move the providers files to a new location
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/
+	# Certification providers
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/certification/whitelists
+	mv $(CURDIR)/debian/tmp/usr/share/checkbox/data/whitelists/certification/* $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/certification/whitelists
+	rm -rf $(CURDIR)/debian/tmp/usr/share/checkbox/data/whitelists/certification
 	# Resources provider files
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/bin/
