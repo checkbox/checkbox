@@ -42,6 +42,10 @@ checkbox (0.16.13) UNRELEASED; urgency=low
   [ Sylvain Pineau]
   * jobs/resource.txt.in, scripts/wifi_interface_mode_resource: new resource
     job to detect the wifi chip supported interface modes.
+  * codecs.txt.in, info.txt.in, install.txt.in, networking.txt.in and
+    server-services.txt.in: Fixed "requires" expresions using the "and" 
+    operator.
+
 
  -- Taihsiang Ho <taihsiang.ho@canonical.com>  Mon, 14 Oct 2013 17:35:23 -0400
 
