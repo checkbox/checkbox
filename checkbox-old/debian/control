@@ -168,3 +168,24 @@ Suggests: bonnie++,
           ${python:Depends}
 Description: CheckBox jobs
  This package provides the CheckBox jobs collection.
+
+Package: plainbox-provider-certification-client
+Architecture: all
+Depends: plainbox-provider-checkbox
+Recommends: curl, fswebcam, gtkperf, imagemagick, obexftp
+Description: Client Certification
+ This package provides the Client Certification whitelists.
+
+Package: plainbox-provider-certification-server
+Architecture: all
+Depends: plainbox-provider-checkbox
+Recommends: apache2, bind9, cups, dnsutils, ipmitool, iperf, libapache2-mod-php5, mysql-server, php5-mysql, samba, ssh, tomcat6, winbind, cpu-checker, qemu-kvm, qemu-utils
+Description: Server Certification
+ This package provides the Server Certification whitelists.
+
+Package: plainbox-provider-certification-server-soc
+Architecture: all
+Depends: plainbox-provider-checkbox
+Recommends: apache2, bind9, cups, dnsutils, ipmitool, iperf, libapache2-mod-php5, mysql-server, php5-mysql, samba, ssh, tomcat6, winbind, cpu-checker, qemu-kvm, qemu-utils
+Description: SoC Certification
+ This package provides the Server SoC Certification whitelists.
