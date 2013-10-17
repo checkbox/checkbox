@@ -1,17 +1,7 @@
 plugin: shell
-name: networking/detect
-requires:
- device.category == 'NETWORK' or device.category == 'WIRELESS'
- package.name == 'module-init-tools'
- package.name == 'pciutils'
-command: network_device_info
-estimated_duration: 1.2
-_description: Test to detect the available network controllers
-
-plugin: shell
-name: networking/internet
-depends: networking/detect
-command: internet_test
+name: networking/gateway_ping
+depends: ethernet/detect
+command: gateway_ping_test
 estimated_duration: 2.000
 _description: Tests whether the system has a working Internet connection.
 
@@ -27,61 +17,37 @@ command:
  command: network_info $2
  _description:
   PURPOSE:
-      This test will check the different NIC
+      This test will check the different network devices
   STEPS:
-      1. Please verify the following information for NIC $2
+      1. Please verify the following information for $2
   INFO:
       \$output
   VERIFICATION:
       Is this correct?
  EOF
 
-plugin: shell
-name: networking/info_automated
-requires:
- package.name == 'network-manager'
- device.category == 'NETWORK'
-command: udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
-estimated_duration: 1.1
-_description:
- This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
-
-plugin: user-interact-verify
-name: networking/wired_connection
-command: network_check
-_description:
- PURPOSE:
-     This test will check your wired connection
- STEPS:
-     1. Click on the Network icon in the top panel
-     2. Select a network below the "Wired network" section
-     3. Click "Test" to verify that it's possible to establish a HTTP connection
- VERIFICATION:
-     Did a notification show and was the connection correctly established?
-
 plugin: user-interact-verify
 name: networking/modem_connection
 command: network_check
 _description:
  PURPOSE:
-     This test will check that a DSL modem can be configured and connected.
+    This test will check that a DSL modem can be configured and connected.
  STEPS:
-     1. Connect the telephone line to the computer
-     2. Click on the Network icon on the top panel.
-     3. Select "Edit Connections"
-     4. Select the "DSL" tab
-     5. Click on "Add" button
-     6. Configure the connection parameters properly
-     7. Click "Test" to verify that it's possible to establish an HTTP connection
+    1. Connect the telephone line to the computer
+    2. Click on the Network icon on the top panel.
+    3. Select "Edit Connections"
+    4. Select the "DSL" tab
+    5. Click on "Add" button
+    6. Configure the connection parameters properly
+    7. Click "Test" to verify that it's possible to establish an HTTP connection
  VERIFICATION:
-     Did a notification show and was the connection correctly established?
+    Did a notification show and was the connection correctly established?
 
 plugin: shell
 name: networking/ping
-command: internet_test $CHECKBOX_SERVER
+command: gateway_ping_test $CHECKBOX_SERVER
 _description:
- Automated test case to verify availability of some system on the network
- using ICMP ECHO packets.
+ Automated test case to verify availability of some system on the network using ICMP ECHO packets.
 
 plugin: shell
 name: networking/http
@@ -107,21 +73,3 @@ name: networking/printer
 requires: package.name == 'cups-client'
 command: network_printer_test -s $CHECKBOX_SERVER
 _description: Try to enable a remote printer on the network and print a test page.
-
-plugin: local
-name: networking/multi_nic
-requires: device.category == 'NETWORK'
-_description: Automated test to walk multiple network cards and test each one in sequence.
-command:
- cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
- plugin: shell
- name: networking/multi_nic_$2
- requires:
-  package.name == 'ethtool'
-  package.name == 'nmap'
-  device.path == "$1"
- user: root
- command: network test -i $2 -t iperf
- description:
-  Testing for NIC $2
- EOF

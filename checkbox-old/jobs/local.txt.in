@@ -54,6 +54,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/disk.txt?(.in)
 
+name: __ethernet__
+plugin: local
+_description: Ethernet Device tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/ethernet.txt?(.in)
+
 name: __esata__
 plugin: local
 _description: eSATA disk tests
@@ -168,7 +175,7 @@ command:
 
 name: __networking__
 plugin: local
-_description: Networking tests
+_description: Non-device specific networking tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/networking.txt?(.in)

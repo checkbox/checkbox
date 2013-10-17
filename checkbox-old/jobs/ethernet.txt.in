@@ -1,0 +1,50 @@
+plugin: shell
+name: ethernet/detect
+requires:
+ device.category == 'NETWORK' or device.category == 'WIRELESS'
+ package.name == 'module-init-tools'
+ package.name == 'pciutils'
+command: network_device_info
+estimated_duration: 1.2
+_description: Test to detect the available network controllers
+
+plugin: shell
+name: ethernet/info_automated
+requires:
+ package.name == 'network-manager'
+ device.category == 'NETWORK'
+command: udev_resource | filter_templates -w "category=WIRELESS" -w "category=NETWORK"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
+estimated_duration: 1.1
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
+
+plugin: user-interact-verify
+name: ethernet/wired_connection
+command: network_check
+_description:
+ PURPOSE:
+     This test will check your wired connection
+ STEPS:
+     1. Click on the Network icon in the top panel
+     2. Select a network below the "Wired network" section
+     3. Click "Test" to verify that it's possible to establish a HTTP connection
+ VERIFICATION:
+     Did a notification show and was the connection correctly established?
+
+plugin: local
+name: ethernet/multi_nic
+requires: device.category == 'NETWORK'
+_description: Automated test to walk multiple network cards and test each one in sequence.
+command:
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: ethernet/multi_nic_$2
+ requires:
+  package.name == 'ethtool'
+  package.name == 'nmap'
+  device.path == "$1"
+ user: root
+ command: network test -i $2 -t iperf
+ description:
+  Testing for NIC $2
+ EOF
