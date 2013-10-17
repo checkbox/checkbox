@@ -117,7 +117,8 @@ command:
  plugin: shell
  name: networking/multi_nic_$2
  requires:
-  package.name == 'ethtool' and package.name == 'nmap'
+  package.name == 'ethtool'
+  package.name == 'nmap'
   device.path == "$1"
  user: root
  command: network test -i $2 -t iperf

@@ -159,7 +159,7 @@ command:
 plugin: attachment
 name: bootchart.png
 depends: info/bootchart
-requires: (package.name == 'bootchart' and float(lsb.release) < 9.04) or package.name == 'pybootchartgui'
+requires: package.name == 'pybootchartgui'
 _description: Attaches the bootchart png file for bootchart runs
 command:
  file=`ls /var/log/bootchart/*.png 2>/dev/null | tail -1`; \
@@ -168,7 +168,6 @@ command:
 plugin: attachment
 name: bootchart.tgz
 depends: info/bootchart
-requires: package.name == 'bootchart' and float(lsb.release) >= 9.04
 _description: Attaches the bootchart log for bootchart test runs.
 command:
  file=`ls /var/log/bootchart/*.tgz 2>/dev/null | tail -1`; \
