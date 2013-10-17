@@ -83,6 +83,7 @@ QtFront::QtFront(QApplication *parent) :
     m_titleTestTypes["__camera__"] = checkboxTr("Camera Test", 0);
     m_titleTestTypes["__cpu__"] = checkboxTr("CPU Test", 0);
     m_titleTestTypes["__disk__"] = checkboxTr("Disk Test", 0);
+    m_titleTestTypes["__ethernet__"] = checkboxTr("Ethernet Device Test", 0);
     m_titleTestTypes["__firewire__"] = checkboxTr("Firewire Test", 0);
     m_titleTestTypes["__graphics__"] = checkboxTr("Graphics Test", 0);
     m_titleTestTypes["__info__"] = checkboxTr("Info Test", 0);
@@ -92,7 +93,7 @@ QtFront::QtFront(QApplication *parent) :
     m_titleTestTypes["__memory__"] = checkboxTr("Memory Test", 0);
     m_titleTestTypes["__miscellanea__"] = checkboxTr("Miscellanea Test", 0);
     m_titleTestTypes["__monitor__"] = checkboxTr("Monitor Test", 0);
-    m_titleTestTypes["__ethernet__"] = checkboxTr("Ethernet Device Test", 0);
+    m_titleTestTypes["__networking__"] = checkboxTr("Device Agnostic Network Test", 0);
     m_titleTestTypes["__wireless__"] = checkboxTr("Wireless Test", 0);
     m_titleTestTypes["__optical__"] = checkboxTr("Optical Test", 0);
     m_titleTestTypes["__expresscard__"] = checkboxTr("ExpressCard Test", 0);
