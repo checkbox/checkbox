@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2013 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -24,81 +24,17 @@ plainbox.impl.providers.test_special
 Test definitions for plainbox.impl.providers.special module
 """
 
-from unittest import TestCase
-
-from plainbox.impl.applogic import WhiteList
-from plainbox.impl.providers.special import IHVProvider
-from plainbox.impl.providers.v1 import DummyProvider1
-from plainbox.impl.providers.v1 import Provider1
-from plainbox.impl.testing_utils import make_job
+from plainbox.impl.providers.special import CheckBoxSrcProvider
+from plainbox.testing_utils.testcases import TestCaseWithParameters
 
 
-class TestIHVProvider(TestCase):
+class TestCheckBox(TestCaseWithParameters):
+    parameter_names = ('job',)
 
-    def setUp(self):
-        self.job_list = [make_job('foo'), make_job('bar')]
-        self.whitelist_list = [
-            WhiteList([], name='ihv-foo'), WhiteList([], name='other')]
-        self.real_provider = DummyProvider1(
-            job_list=self.job_list, whitelist_list=self.whitelist_list)
-        self.ihv_provider = IHVProvider(self.real_provider)
+    @classmethod
+    def get_parameter_values(cls):
+        for job in CheckBoxSrcProvider().get_builtin_jobs():
+            yield (job,)
 
-    def test_default_settings(self):
-        provider = IHVProvider()
-        # It is either CheckBoxSrcProvider or CheckBoxDebProvider but it's not
-        # easy to test that IMHO. This just ensures we got something there.
-        self.assertIsInstance(provider._real, Provider1)
-
-    def test_name(self):
-        """
-        verify IHVProvider.name property
-        """
-        self.assertEqual(self.ihv_provider.name, "ihv")
-
-    def test_description(self):
-        """
-        verify IHVProvider.description property
-        """
-        self.assertEqual(self.ihv_provider.description, "IHV")
-
-    def test_get_builtin_jobs(self):
-        """
-        verify that IHVProvider.get_builtin_jobs() just returns all jobs
-        """
-        self.assertEqual(self.ihv_provider.get_builtin_jobs(), self.job_list)
-
-    def test_get_builtin_whitelists(self):
-        """
-        verify that IHVProvider.get_builtin_whitelists() returns only
-        whitelists for which name starts with 'ihv-'.
-        """
-        self.assertEqual(
-            self.ihv_provider.get_builtin_whitelists(),
-            [self.whitelist_list[0]])
-
-    def test_CHECKBOX_SHARE(self):
-        """
-        verify that IHVProvider.CHECKBOX_SHARE property just returns the
-        value from the real provider
-        """
-        self.assertEqual(
-            self.ihv_provider.CHECKBOX_SHARE,
-            self.real_provider.CHECKBOX_SHARE)
-
-    def test_extra_PYTHONPATH(self):
-        """
-        verify that IHVProvider.extra_PYTHONPATH property just returns the
-        value from the real provider
-        """
-        self.assertEqual(
-            self.ihv_provider.extra_PYTHONPATH,
-            self.real_provider.extra_PYTHONPATH)
-
-    def test_extra_PATH(self):
-        """
-        verify that IHVProvider.extra_PATH property just returns the
-        value from the real provider
-        """
-        self.assertEqual(
-            self.ihv_provider.extra_PATH,
-            self.real_provider.extra_PATH)
+    def test_job_resource_expression(self):
+        self.parameters.job.get_resource_program()
