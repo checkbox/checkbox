@@ -8,27 +8,6 @@ command: network_device_info
 estimated_duration: 1.2
 _description: Test to detect the available network controllers
 
-plugin: local
-name: ethernet/info
-requires: device.category == 'NETWORK'
-_description: Network Information
-command:
- cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
- plugin: user-interact-verify
- name: ethernet/info_$2
- requires: device.path == "$1"
- command: network_info $2
- _description:
-  PURPOSE:
-      This test will check the different NIC
-  STEPS:
-      1. Please verify the following information for NIC $2
-  INFO:
-      \$output
-  VERIFICATION:
-      Is this correct?
- EOF
-
 plugin: shell
 name: ethernet/info_automated
 requires:

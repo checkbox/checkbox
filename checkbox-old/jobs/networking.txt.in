@@ -5,6 +5,27 @@ command: gateway_ping_test
 estimated_duration: 2.000
 _description: Tests whether the system has a working Internet connection.
 
+plugin: local
+name: networking/info
+requires: device.category == 'NETWORK'
+_description: Network Information
+command:
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: user-interact-verify
+ name: networking/info_$2
+ requires: device.path == "$1"
+ command: network_info $2
+ _description:
+  PURPOSE:
+      This test will check the different network devices
+  STEPS:
+      1. Please verify the following information for $2
+  INFO:
+      \$output
+  VERIFICATION:
+      Is this correct?
+ EOF
+
 plugin: user-interact-verify
 name: networking/modem_connection
 command: network_check
