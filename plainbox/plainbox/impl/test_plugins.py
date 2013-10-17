@@ -27,11 +27,10 @@ Test definitions for plainbox.impl.plugins module
 from unittest import TestCase
 import os
 
-import mock
-
 from plainbox.impl.plugins import FsPlugInCollection
 from plainbox.impl.plugins import IPlugIn, PlugIn
 from plainbox.impl.plugins import PkgResourcesPlugInCollection
+from plainbox.vendor import mock
 
 
 class PlugInTests(TestCase):
@@ -204,9 +203,9 @@ class FsPlugInCollectionTests(TestCase):
                 raise IOError("You cannot open this file")
             else:
                 raise IOError("Unexpected file: {}".format(path))
-        mock_listdir._wraps = fake_listdir
-        mock_isfile._wraps = fake_isfile
-        mock_open._wraps = fake_open
+        mock_listdir.side_effect = fake_listdir
+        mock_isfile.side_effect = fake_isfile
+        mock_open.side_effect = fake_open
         # Load all plugins now
         self.col.load()
         # And 'again', just to ensure we're doing the IO only once
