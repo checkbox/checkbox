@@ -20,15 +20,17 @@ override_dh_auto_install:
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/bin/
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/jobs/
-	mv $(CURDIR)/debian/tmp/usr/share/checkbox/scripts/*_resource $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/bin/
-	mv $(CURDIR)/debian/tmp/usr/share/checkbox/jobs/resource.txt* $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/jobs/
+	cp $(CURDIR)/debian/tmp/usr/share/checkbox/scripts/*_resource $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/bin/
+	cp $(CURDIR)/debian/tmp/usr/share/checkbox/jobs/resource.txt* $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/plainbox-resources/jobs/
 	# Job provider files
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/bin/
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/jobs/
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/data/
 	find $(CURDIR)/debian/tmp/usr/share/checkbox/scripts -type f -not -iname  "*_resource" -execdir cp {} $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/bin/ \;
 	find $(CURDIR)/debian/tmp/usr/share/checkbox/jobs -type f -not -iname  "resource.txt*" -execdir cp {} $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/jobs/ \;
-	mv $(CURDIR)/debian/tmp/usr/share/checkbox/data/whitelists $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/
+	cp -R $(CURDIR)/debian/tmp/usr/share/checkbox/data $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/
+	mv $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox/data/whitelists $(CURDIR)/debian/tmp/usr/lib/plainbox-providers-1/checkbox
 
 override_dh_auto_test:
 ifeq (, $(findstring nocheck, $(DEB_BUILD_OPTIONS)))
