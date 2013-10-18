@@ -221,3 +221,26 @@ _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11g protocol. This requires that you have a router pre-configured to only
   respond to requests on the 802.11g protocol.
+
+plugin: shell
+name: wireless/wireless_extension
+requires: device.category == 'WIRELESS'
+command: wireless_ext
+_description:
+ Test that the MAC80211 modules are loaded and wireless extensions are working.
+
+plugin: local
+name: wireless/iwconfig_info
+requires:
+ device.category == 'WIRELESS'
+command: 
+ cat <<'EOF' | udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }"
+ plugin: shell
+ name: wireless/iwconfig_check_$2
+ requires: device.path == "$1"
+ command: iwconfig $2
+ _description:
+  This test executes iwconfig requests against all the ethernet devices found on the system.
+ EOF
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
