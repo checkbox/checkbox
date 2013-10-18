@@ -48,3 +48,19 @@ command:
  description:
   Testing for NIC $2
  EOF
+
+plugin: local
+name: ethernet/ethtool_info
+requires:
+ device.category == 'NETWORK'
+command: 
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: ethernet/ethertool_check_$2
+ requires: device.path == "$1"
+ command: ethtool $2
+ _description:
+  This test executes ethtool requests against all the ethernet devices found on the system.
+ EOF
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.

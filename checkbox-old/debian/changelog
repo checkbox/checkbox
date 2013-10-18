@@ -1,6 +1,12 @@
 checkbox (0.16.14) UNRELEASED; urgency=low
 
-  * Incremented changelog
+    [ Chris Gregan ]
+  * jobs/wireless.txt.in - added tests for checking 80211 modules loaded and a 
+    script to scripts to execute that check named wireless_ext. Test added to run 
+    iwconfig query against all devices found on the system.
+
+  * jobs/ethernet.txt.in - added test for running ethtool queries against all 
+    devices found on the system.
 
  -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:36:53 -0400
 
