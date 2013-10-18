@@ -234,7 +234,7 @@ name: wireless/iwconfig_info
 requires:
  device.category == 'WIRELESS'
 command: 
- cat <<'EOF' | udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }"
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell
  name: wireless/iwconfig_check_$2
  requires: device.path == "$1"

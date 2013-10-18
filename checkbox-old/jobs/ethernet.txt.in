@@ -54,7 +54,7 @@ name: ethernet/ethtool_info
 requires:
  device.category == 'NETWORK'
 command: 
- cat <<'EOF' | udev_resource | filter_templates -w "category=NETWORK"| awk "/path: / { print \$2 }"
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell
  name: ethernet/ethertool_check_$2
  requires: device.path == "$1"
