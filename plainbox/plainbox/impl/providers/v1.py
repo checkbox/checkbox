@@ -28,8 +28,13 @@ import io
 
 from plainbox.abc import IProvider1, IProviderBackend1
 from plainbox.impl.applogic import WhiteList
+from plainbox.impl.config import Config, Variable
+from plainbox.impl.config import IValidator
+from plainbox.impl.config import NotEmptyValidator
+from plainbox.impl.config import PatternValidator
 from plainbox.impl.job import JobDefinition
-from plainbox.impl.plugins import PlugInCollection
+from plainbox.impl.plugins import FsPlugInCollection
+from plainbox.impl.plugins import IPlugIn
 from plainbox.impl.rfc822 import load_rfc822_records
 
 
@@ -45,7 +50,7 @@ class Provider1(IProvider1, IProviderBackend1):
     location for all other data.
     """
 
-    def __init__(self, base_dir, name, description):
+    def __init__(self, base_dir, name, description, uses_policykit):
         """
         Initialize the provider with the associated base directory.
 
@@ -57,6 +62,7 @@ class Provider1(IProvider1, IProviderBackend1):
         self._base_dir = base_dir
         self._name = name
         self._description = description
+        self._uses_policykit = uses_policykit
 
     @property
     def name(self):
@@ -80,15 +86,15 @@ class Provider1(IProvider1, IProviderBackend1):
         return os.path.join(self._base_dir, "jobs")
 
     @property
-    def scripts_dir(self):
+    def bin_dir(self):
         """
-        Return an absolute path of the scripts directory
+        Return an absolute path of the bin directory
 
         .. note::
-            The scripts may not work without setting PYTHONPATH and
-            CHECKBOX_SHARE.
+            The programs in that directory may not work without setting
+            PYTHONPATH and CHECKBOX_SHARE.
         """
-        return os.path.join(self._base_dir, "scripts")
+        return os.path.join(self._base_dir, "bin")
 
     @property
     def whitelists_dir(self):
@@ -130,7 +136,14 @@ class Provider1(IProvider1, IProviderBackend1):
         """
         # NOTE: This is always the script directory. The actual logic for
         # locating it is implemented in the property accessors.
-        return self.scripts_dir
+        return self.bin_dir
+
+    @property
+    def uses_policykit(self):
+        """
+        flag indicating that this provider relies on polickit
+        """
+        return self._uses_policykit
 
     def get_builtin_whitelists(self):
         logger.debug("Loading built-in whitelists...")
@@ -218,6 +231,10 @@ class DummyProvider1(IProvider1, IProviderBackend1):
     def extra_PATH(self):
         return self._extras.get("PATH", "")
 
+    @property
+    def uses_policykit(self):
+        return bool(self._extras.get("uses_policykit", ""))
+
     def get_builtin_whitelists(self):
         return self._whitelist_list
 
@@ -225,5 +242,156 @@ class DummyProvider1(IProvider1, IProviderBackend1):
         return self._job_list
 
 
+class IQNValidator(PatternValidator):
+    """
+    A validator for provider name.
+
+    Provider names use a RFC3720 IQN-like identifiers composed of the follwing
+    parts:
+
+    * year
+    * (dot separating the next section)
+    * domain name
+    * (colon separating the next section)
+    * identifier
+
+    Each of the fields has an informal definition below:
+
+        year:
+            four digit number
+        domain name:
+            identifiers spearated by dots, at least one dot has to be present
+        identifier:
+            `[a-z][a-z0-9-]*`
+    """
+
+    def __init__(self):
+        super(IQNValidator, self).__init__(
+            "[0-9]{4}\.[a-z][a-z0-9-]*(\.[a-z][a-z0-9-]*)+:[a-z][a-z0-9-]+")
+
+    def __call__(self, variable, new_value):
+        if super(IQNValidator, self).__call__(variable, new_value):
+            return "must look like RFC3720 IQN"
+
+
+class ExistingDirectoryValidator(IValidator):
+    """
+    A validator that checks that the value points to an existing directory
+    """
+
+    def __call__(self, variable, new_value):
+        if not os.path.isdir(new_value):
+            return "no such directory"
+
+
+class AbsolutePathValidator(IValidator):
+    """
+    A validator that checks that the value is an absolute path
+    """
+
+    def __call__(self, variable, new_value):
+        if not os.path.isabs(new_value):
+            return "cannot be relative"
+
+
+class Provider1Definition(Config):
+    """
+    A Config-like class for parsing plainbox provider definition files
+    """
+
+    location = Variable(
+        section='PlainBox Provider',
+        help_text="Base directory with provider data",
+        validator_list=[
+            NotEmptyValidator(),
+            AbsolutePathValidator(),
+            ExistingDirectoryValidator(),
+        ])
+
+    name = Variable(
+        section='PlainBox Provider',
+        help_text="Name of the provider",
+        validator_list=[
+            NotEmptyValidator(),
+            IQNValidator(),
+        ])
+
+    description = Variable(
+        section='PlainBox Provider',
+        help_text="Description of the provider")
+
+    uses_policykit = Variable(
+        section='PlainBox Provider',
+        help_text="Flag indicating that this provider uses policykit",
+        default=True,
+        kind=bool)
+
+
+class Provider1PlugIn(IPlugIn):
+    """
+    A specialized IPlugIn that loads Provider1 instances from their defition
+    files
+    """
+
+    def __init__(self, name, definition_text):
+        """
+        Initialize the plug-in with the specified name and external object
+        """
+        definition = Provider1Definition()
+        definition.read_string(definition_text)
+        self._provider = Provider1(
+            definition.location, definition.name, definition.description,
+            definition.uses_policykit)
+
+    def __repr__(self):
+        return "<{!s} plugin_name:{!r}>".format(
+            type(self).__name__, self.plugin_name)
+
+    @property
+    def plugin_name(self):
+        """
+        plugin name, the namespace of the provider
+        """
+        return self._provider.name
+
+    @property
+    def plugin_object(self):
+        """
+        plugin object, the actual Provider1 instance
+        """
+        return self._provider
+
+
+def get_default_PROVIDERPATH():
+    """
+    Computes the default value for PROVIDERPATH.
+
+    PROVIDERPATH should contain two directory entries:
+
+        * /usr/share/plainbox-providers-1
+        * $XDG_DATA_HOME/plainbox-providers-1
+    """
+    sys_wide = "/usr/share/plainbox-providers-1"
+    per_user = os.path.join(
+        os.getenv('XDG_DATA_HOME', os.path.expanduser("~/.local/share/")),
+        "plainbox-providers-1")
+    return os.path.pathsep.join([sys_wide, per_user])
+
+
+class Provider1PlugInCollection(FsPlugInCollection):
+    """
+    A collection of v1 provider plugins.
+
+    This class is just like FsPlugInCollection but knows the proper arguments
+    (PROVIDERPATH and the extension)
+    """
+
+    def __init__(self):
+        providerpath = os.getenv(
+            "PROVIDERPATH",  get_default_PROVIDERPATH())
+        super(Provider1PlugInCollection, self).__init__(
+            providerpath, '.provider', wrapper=Provider1PlugIn)
+
+
 # Collection of all providers
-all_providers = PlugInCollection('plainbox.provider.v1')
+all_providers = Provider1PlugInCollection()

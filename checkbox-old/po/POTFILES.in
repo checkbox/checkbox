@@ -1,5 +1,4 @@
 [encoding: UTF-8]
-[type: gettext/glade] gtk/checkbox-gtk.ui
 qt/checkbox-qt.desktop.in
 [type: gettext/rfc822deb] jobs/audio.txt.in
 [type: gettext/rfc822deb] jobs/benchmarks.txt.in
@@ -9,6 +8,7 @@ qt/checkbox-qt.desktop.in
 [type: gettext/rfc822deb] jobs/cpu.txt.in
 [type: gettext/rfc822deb] jobs/daemons.txt.in
 [type: gettext/rfc822deb] jobs/disk.txt.in
+[type: gettext/rfc822deb] jobs/ethernet.txt.in
 [type: gettext/rfc822deb] jobs/esata.txt.in
 [type: gettext/rfc822deb] jobs/expresscard.txt.in
 [type: gettext/rfc822deb] jobs/fingerprint.txt.in
@@ -51,8 +51,6 @@ checkbox/application.py
 checkbox/job.py
 checkbox/lib/signal.py
 checkbox_cli/cli_interface.py
-checkbox_urwid/urwid_interface.py
-checkbox_gtk/gtk_interface.py
 checkbox/user_interface.py
 plugins/backend_info.py
 plugins/final_prompt.py
@@ -71,7 +69,7 @@ plugins/suites_prompt.py
 plugins/user_interface.py
 scripts/keyboard_test
 scripts/key_test
-scripts/internet_test
+scripts/gateway_ping_test
 checkbox_qt/qt_interface.py
 qt/frontend/checkboxtr.cpp
 qt/frontend/checkboxtr.h

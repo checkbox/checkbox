@@ -36,7 +36,6 @@ import sys
 from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
 
 from plainbox.abc import IJobResult
-from plainbox.impl.providers.checkbox import CheckBoxDebProvider
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
@@ -56,8 +55,8 @@ logger = getLogger("plainbox.commands.run")
 
 class RunInvocation(CheckBoxInvocationMixIn):
 
-    def __init__(self, provider, config, ns):
-        super(RunInvocation, self).__init__(provider)
+    def __init__(self, provider_list, config, ns):
+        super(RunInvocation, self).__init__(provider_list)
         self.config = config
         self.ns = ns
 
@@ -229,7 +228,8 @@ class RunInvocation(CheckBoxInvocationMixIn):
     def _auth_warmup_needed(self, session):
         # Don't use authentication warm-up in modes other than 'deb' as it
         # makes no sense to do so.
-        if not isinstance(self.provider, CheckBoxDebProvider):
+        if all(provider.uses_policykit is False
+               for provider in self.provider_list):
             return False
         # Don't use authentication warm-up if none of the jobs on the run list
         # requires it.
@@ -350,6 +350,7 @@ class RunInvocation(CheckBoxInvocationMixIn):
                 join(session.jobs_io_log_dir, slugify(job.name))))
             session.metadata.running_job_name = job.name
             session.persistent_save()
+            # TODO: get a confirmation from the user for certain types of job.plugin
             job_result = runner.run_job(job)
             if (job_result.outcome == IJobResult.OUTCOME_UNDECIDED
                     and self.is_interactive):
@@ -370,12 +371,12 @@ class RunInvocation(CheckBoxInvocationMixIn):
 
 class RunCommand(PlainBoxCommand, CheckBoxCommandMixIn):
 
-    def __init__(self, provider, config):
-        self.provider = provider
+    def __init__(self, provider_list, config):
+        self.provider_list = provider_list
         self.config = config
 
     def invoked(self, ns):
-        return RunInvocation(self.provider, self.config, ns).run()
+        return RunInvocation(self.provider_list, self.config, ns).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser("run", help="run a test job")

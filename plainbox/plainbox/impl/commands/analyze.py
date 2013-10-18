@@ -26,6 +26,7 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
+import ast
 from logging import getLogger
 from datetime import timedelta
 
@@ -33,6 +34,7 @@ from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
 from plainbox.impl.session import SessionStateLegacyAPI as SessionState
+from plainbox.impl.resource import RequirementNodeVisitor
 from plainbox.impl.runner import JobRunner
 
 
@@ -41,8 +43,8 @@ logger = getLogger("plainbox.commands.special")
 
 class AnalyzeInvocation(CheckBoxInvocationMixIn):
 
-    def __init__(self, provider, ns):
-        super(AnalyzeInvocation, self).__init__(provider)
+    def __init__(self, provider_list, ns):
+        super(AnalyzeInvocation, self).__init__(provider_list)
         self.ns = ns
         self.job_list = self.get_job_list(ns)
         self.desired_job_list = self._get_matching_job_list(ns, self.job_list)
@@ -63,13 +65,15 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
             self._print_estimated_duration_report()
         if self.ns.print_validation_report:
             self._print_validation_report(self.ns.only_errors)
+        if self.ns.print_requirement_report:
+            self._print_requirement_report()
 
     def _run_local_jobs(self):
         print("[Running Local Jobs]".center(80, '='))
         with self.session.open():
             runner = JobRunner(
                 self.session.session_dir, self.session.jobs_io_log_dir,
-                command_io_delegate=self, interaction_callback=None)
+                command_io_delegate=self)
             again = True
             while again:
                 for job in self.session.run_list:
@@ -162,17 +166,37 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
         if only_errors and problem is None:
             print("No problems found")
 
+    def _print_requirement_report(self):
+        print("[Requirement Report]".center(80, '='))
+        if not self.session.run_list:
+            return
+        requirements = set()
+        for job in self.session.run_list:
+            if job.requires:
+                resource_program = job.get_resource_program()
+                if 'package' in resource_program.required_resources:
+                    for packages in [
+                            resource.text for resource in
+                            resource_program.expression_list
+                            if resource.resource_name == 'package']:
+                        node = ast.parse(packages)
+                        visitor = RequirementNodeVisitor()
+                        visitor.visit(node)
+                        requirements.add((' | ').join(visitor.packages_seen))
+        if requirements:
+            print(',\n'.join(sorted(requirements)))
+
 
 class AnalyzeCommand(PlainBoxCommand, CheckBoxCommandMixIn):
     """
     Implementation of ``$ plainbox dev analyze``
     """
 
-    def __init__(self, provider):
-        self.provider = provider
+    def __init__(self, provider_list):
+        self.provider_list = provider_list
 
     def invoked(self, ns):
-        return AnalyzeInvocation(self.provider, ns).run()
+        return AnalyzeInvocation(self.provider_list, ns).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser(
@@ -202,6 +226,9 @@ class AnalyzeCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         group.add_argument(
             "-v", "--print-validation-report", action='store_true',
             help="Print validation report")
+        group.add_argument(
+            "-r", "--print-requirement-report", action='store_true',
+            help="Print requirement report")
         group.add_argument(
             "-E", "--only-errors", action='store_true', default=False,
             help="When coupled with -v, only problematic jobs will be listed")

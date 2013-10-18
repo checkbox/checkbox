@@ -18,26 +18,11 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.providers.stubbox` -- stub job provider
-===========================================================
+:mod:`checkbox.vendor` -- vendorized packages
+=============================================
 
-The stubbox provider is useful for various kinds of testing where you don't
-want to pull in a volume of data, just a bit of each kind of jobs that we need
-to support.
+This module contains external packages that were vendorized (shipped with a
+tree of another project) to simplify dependency management. There is no problem
+with expressing those dependencies at pypi level but it would be annoying to
+have to first package and introduce them to Ubuntu.
 """
-
-import os
-
-from plainbox.impl import get_plainbox_dir
-from plainbox.impl.providers.v1 import Provider1
-
-
-class StubBoxProvider(Provider1):
-    """
-    A provider for stub, dummy and otherwise non-production jobs.
-    """
-
-    def __init__(self):
-        super(StubBoxProvider, self).__init__(
-            os.path.join(get_plainbox_dir(), "impl/providers/stubbox"),
-            "stubbox", "StubBox (dummy data for development)")

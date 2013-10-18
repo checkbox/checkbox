@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2013 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -18,52 +18,132 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.providers.special` -- Implementation of special providers
-=============================================================================
+:mod:`plainbox.impl.providers.special` -- various special providers
+===================================================================
+
+.. warning::
+
+    THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
 import logging
+import os
 
-from plainbox.abc import IProvider1, IProviderBackend1
-from plainbox.impl.providers.checkbox import CheckBoxAutoProvider
+from plainbox.impl import get_plainbox_dir
+from plainbox.impl.providers import ProviderNotFound
+from plainbox.impl.providers.v1 import Provider1
 
 
 logger = logging.getLogger("plainbox.providers.special")
 
 
-class IHVProvider(IProvider1, IProviderBackend1):
+class CheckBoxNotFound(ProviderNotFound):
+    """
+    Exception used to report that CheckBox cannot be located
+    """
 
-    def __init__(self, real=None):
-        if real is None:
-            real = CheckBoxAutoProvider()
-        self._real = real
+    def __repr__(self):
+        return "CheckBoxNotFound()"
+
+    def __str__(self):
+        return "CheckBox cannot be found"
+
+
+def _get_checkbox_dir():
+    """
+    Return the root directory of the checkbox source checkout
+
+    Historically plainbox used a git submodule with checkbox tree (converted to
+    git). This ended with the merge of plainbox into the checkbox tree.
+
+    Now it's the other way around and the checkbox tree can be located two
+    directories "up" from the plainbox module, in a checkbox-old directory.
+    """
+    return os.path.normpath(
+        os.path.join(
+            get_plainbox_dir(), "..", "..", "checkbox-old"))
+
+
+class ExecutablesInScriptsMixIn:
+    """
+    A mix-in class for Provider1 that switches to the "legacy" behavior of
+    looking up executable programs associated with that provider in the
+    'scripts' directory.
+    """
 
     @property
-    def name(self):
-        return "ihv"
+    def scripts_dir(self):
+        """
+        Return an absolute path of the scripts directory
 
-    @property
-    def description(self):
-        return "IHV"
-
-    def get_builtin_jobs(self):
-        # XXX: should we filter jobs too?
-        return self._real.get_builtin_jobs()
-
-    def get_builtin_whitelists(self):
-        return [
-            whitelist
-            for whitelist in self._real.get_builtin_whitelists()
-            if whitelist.name.startswith('ihv-')]
-
-    @property
-    def CHECKBOX_SHARE(self):
-        return self._real.CHECKBOX_SHARE
-
-    @property
-    def extra_PYTHONPATH(self):
-        return self._real.extra_PYTHONPATH
+        .. note::
+            The scripts may not work without setting PYTHONPATH and
+            CHECKBOX_SHARE.
+        """
+        return os.path.join(self._base_dir, "scripts")
 
     @property
     def extra_PATH(self):
-        return self._real.extra_PATH
+        """
+        Return additional entry for PATH
+
+        This entry is required to lookup CheckBox scripts.
+        """
+        return self.scripts_dir
+
+
+class CheckBoxSrcProvider(ExecutablesInScriptsMixIn, Provider1):
+    """
+    A provider for checkbox jobs when used in development mode.
+
+    This provider is only likely to be used when developing checkbox inside a
+    virtualenv environment. It assumes the particular layout of code and data
+    (relative to the code directory) directories.
+    """
+
+    def __init__(self):
+        super(CheckBoxSrcProvider, self).__init__(
+            _get_checkbox_dir(),
+            "2013.com.canonical:checkbox-src",
+            "CheckBox (live source)", False)
+        if not os.path.exists(self._base_dir):
+            raise CheckBoxNotFound()
+
+    @staticmethod
+    def exists():
+        """
+        Check if the source provider exists and can be actually used
+        """
+        return os.path.exists(_get_checkbox_dir())
+
+    @property
+    def extra_PYTHONPATH(self):
+        """
+        Return additional entry for PYTHONPATH
+
+        This entry is required for CheckBox scripts to import the correct
+        CheckBox python libraries.
+        """
+        # NOTE: When CheckBox is installed then all the scripts should not use
+        # 'env' to locate the python interpreter (otherwise they might use
+        # virtualenv which is not desirable for Debian packages). When we're
+        # using CheckBox from source then the source directory (which contains
+        # the 'checkbox' package) should be added to PYTHONPATH for all the
+        # imports to work.
+        return _get_checkbox_dir()
+
+
+class StubBoxProvider(ExecutablesInScriptsMixIn, Provider1):
+    """
+    A provider for stub, dummy and otherwise non-production jobs.
+
+    The stubbox provider is useful for various kinds of testing where you don't
+    want to pull in a volume of data, just a bit of each kind of jobs that we
+    need to support.
+    """
+
+    def __init__(self):
+        super(StubBoxProvider, self).__init__(
+            os.path.join(get_plainbox_dir(), "impl/providers/stubbox"),
+            "2013.com.canonical:stubbox",
+            "StubBox (dummy data for development)", False)

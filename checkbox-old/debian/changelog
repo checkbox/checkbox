@@ -1,4 +1,59 @@
-checkbox (0.16.12) UNRELEASED; urgency=low
+checkbox (0.16.13) UNRELEASED; urgency=low
+
+  [ Po-Hsu Lin ]
+  * jobs/keys.txt.in - adde keys/microphone-mute to test the mute key for 
+    microphone.
+
+  [ Brendan Donegan ]
+  * jobs/resource.txt.in, jobs/virtualization.txt.in - added kvm resource job
+    which states whether the hardware supports KVM. Remove kvm_ok job and
+    use the kvm resource job to determine if kvm_check_vm should run
+    (LP: #1236776)
+  * jobs/keys.txt.in - added keys/keyboard-backlight job to test keyboard
+    backlight toggle key.
+
+  [ Daniel Manrique ]
+  * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
+    ensure we're running under kvm and not tcg. Modified tests for environment
+    variables accordingly since we need to account for presence of proxy
+    variables.
+  * scripts/gpu_test: Revamped way of launching and stopping glxgears
+    windows/threads, to make 100% sure that we find and close them all,
+    avoiding leftover threads that cause the script not to exit.
+    (LP: #1237199)
+  * plugins/backend_info: Resolve and use full path to the backend script to
+    ensure it runs when invoked via pkexec which is unhappy with relative
+    paths (LP: #1240245)
+
+  [ Jeff Marcom ]
+  * scripts/network - added iperf test benchmark testing capabilities. 
+
+  [ Yung Shen ]
+  * jobs/keys.txt.in - added keys/hibernate job to test hibernate key
+    and keys/keyboard-overhead-light job to test the key.
+
+  [ Taihsiang Ho ]
+  * checkbox-old/jobs/keys.txt.in - added keys/lock-screen job to test
+    lock screen key.
+  * checkbox-old/scripts/lock_screen_watcher - the script for keys/lock-screen job
+
+  [ Zygmunt Krynicki ]
+  * Remove the GTK+ and Urwid interfaces
+
+  [ Sylvain Pineau]
+  * jobs/resource.txt.in, scripts/wifi_interface_mode_resource: new resource
+    job to detect the wifi chip supported interface modes.
+  * codecs.txt.in, info.txt.in, install.txt.in, networking.txt.in and
+    server-services.txt.in: Fixed "requires" expresions using the "and" 
+    operator.
+
+  [ Jeff Lane ]
+  * Renamed networking.txt.in to ethernet.txt.in. Renamed all jobs and
+    references to jobs with 'networking' in them to 'ethernet'
+
+ -- Taihsiang Ho <taihsiang.ho@canonical.com>  Mon, 14 Oct 2013 17:35:23 -0400
+
+checkbox (0.16.12) saucy; urgency=low
 
   [ Daniel Manrique ]
   * scripts/gpu_test: Better validation that glxgears windows were found, to
@@ -12,6 +67,7 @@ checkbox (0.16.12) UNRELEASED; urgency=low
     former is deprecated (LP: #1224854)
   * scripts/memory_test - use per-process memory limit if arch is ARM, except
     for arm64 (LP: #1184688)
+  * scripts/virtualization - run qemu-system-arm on ARM platform (LP: #1184765)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:10:13 +0100
 

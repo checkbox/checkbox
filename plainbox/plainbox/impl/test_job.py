@@ -27,8 +27,6 @@ Test definitions for plainbox.impl.job module
 import os
 from unittest import TestCase
 
-from mock import Mock
-
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.job import CheckBoxJobValidator
 from plainbox.impl.job import JobDefinition
@@ -39,6 +37,7 @@ from plainbox.impl.rfc822 import FileTextSource
 from plainbox.impl.rfc822 import Origin
 from plainbox.impl.rfc822 import RFC822Record
 from plainbox.testing_utils.testcases import TestCaseWithParameters
+from plainbox.vendor.mock import Mock
 
 
 class CheckBoxJobValidatorTests(TestCase):
@@ -393,6 +392,45 @@ class TestJobDefinition(TestCase):
         self.assertEqual(job2.estimated_duration, None)
         job3 = JobDefinition({'estimated_duration': '123.5'})
         self.assertEqual(job3.estimated_duration, 123.5)
+
+
+class TestJobDefinitionStartup(TestCaseWithParameters):
+    """
+    Continuation of unit tests for TestJobDefinition.
+
+    Moved to a separate class because of limitations of TestCaseWithParameters
+    which operates on the whole class.
+    """
+
+    parameter_names = ('plugin',)
+    parameter_values = (
+        ('shell',),
+        ('attachment',),
+        ('resource',),
+        ('local',),
+        ('manual',),
+        ('user-interact',),
+        ('user-verify',),
+        ('user-interact-verify',)
+    )
+    parameters_keymap = {
+        'shell': False,
+        'attachment': False,
+        'resource': False,
+        'local': False,
+        'manual': True,
+        'user-interact': True,
+        'user-verify': False,
+        'user-interact-verify': True,
+    }
+
+    def test_startup_user_interaction_required(self):
+        job = JobDefinition({
+            'name': 'name',
+            'plugin': self.parameters.plugin})
+        expected = self.parameters_keymap[self.parameters.plugin]
+        observed = job.startup_user_interaction_required
+        self.assertEqual(expected, observed)
 
 
 class ParsingTests(TestCaseWithParameters):

@@ -12,21 +12,29 @@ _description: Verifies that Print/CUPs server is running.
 
 plugin: shell
 name: services/dns_server_test
-requires: package.name == 'bind9' and package.name == 'dnsutils'
+requires:
+ package.name == 'bind9'
+ package.name == 'dnsutils'
 user: root
 command: dns_server_test
 _description: Verifies that DNS server is running and working.
 
 plugin: shell
 name: services/samba_test
-requires: package.name == 'samba' and package.name == 'winbind'
+requires:
+ package.name == 'samba'
+ package.name == 'winbind'
 user: root
 command: samba_test
 _description: Verifies that Samba server is running.
 
 plugin: shell
 name: services/lamp_test
-requires: package.name == 'apache2' and package.name == 'php5-mysql' and package.name == 'libapache2-mod-php5' and package.name == 'mysql-server'
+requires:
+ package.name == 'apache2'
+ package.name == 'php5-mysql'
+ package.name == 'libapache2-mod-php5'
+ package.name == 'mysql-server'
 user: root
 command: lamp_test
 _description: Verifies that the LAMP stack is running (Apache, MySQL and PHP).

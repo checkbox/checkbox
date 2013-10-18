@@ -33,9 +33,6 @@ setup(
     license="GPLv3+",
     description="Simple replacement for checkbox",
     long_description=open("README.rst", "rt", encoding="UTF-8").read(),
-    tests_require=[
-        'mock',
-    ],
     install_requires=[
         'lxml >= 2.3',
         'requests >= 1.0',
@@ -60,13 +57,6 @@ setup(
         'plainbox.transport': [
             'certification='
             'plainbox.impl.transport.certification:CertificationTransport',
-        ],
-        'plainbox.provider.v1': [
-            'checkbox-auto=plainbox.impl.providers.checkbox:CheckBoxAutoProvider',
-            'checkbox-src=plainbox.impl.providers.checkbox:CheckBoxSrcProvider',
-            'checkbox-deb=plainbox.impl.providers.checkbox:CheckBoxDebProvider',
-            'stubbox=plainbox.impl.providers.stubbox:StubBoxProvider',
-            'ihv=plainbox.impl.providers.special:IHVProvider',
         ],
     },
     include_package_data=True)
