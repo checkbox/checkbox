@@ -332,20 +332,6 @@ def interface_test(args):
     test_user = args.username
     test_pass = args.password
 
-    # Stop all other interfaces
-    extra_interfaces = \
-        [iface for iface in os.listdir("/sys/class/net")
-         if iface != "lo" and iface != args.interface]
-
-    for iface in extra_interfaces:
-        logging.debug("Shutting down interface:%s", iface)
-        try:
-            cmd = "ip link set dev %s down" % iface
-            check_call(shlex.split(cmd))
-        except CalledProcessError as interface_failure:
-            logging.error("Failed to use %s:%s", cmd, interface_failure)
-            sys.exit(3)
-
     if test_target is None:
         # Set FTP parameters based on config file
         test_target = config.get("FTP", "Target")
@@ -360,18 +346,35 @@ def interface_test(args):
             logging.error("Please supply target via: %s", config_file)
             sys.exit(1)
 
-    # Execute FTP transfer benchmarking test
-    if args.test_type.lower() == "ftp":
-        ftp_benchmark = FTPPerformanceTest(
-            test_target, test_user, test_pass, args.interface)
 
-        if args.filesize:
-            ftp_benchmark.binary_size = int(args.filesize)
-        sys.exit(ftp_benchmark.run())
+    result = 0
+    # Stop all other interfaces
+    extra_interfaces = \
+        [iface for iface in os.listdir("/sys/class/net")
+         if iface != "lo" and iface != args.interface]
 
-    elif args.test_type.lower() == "iperf":
-        iperf_benchmark = IPerfPerformanceTest(args.interface, test_target)
-        sys.exit(iperf_benchmark.run())
+    for iface in extra_interfaces:
+        logging.debug("Shutting down interface:%s", iface)
+        try:
+            cmd = "ip link set dev %s down" % iface
+            check_call(shlex.split(cmd))
+        except CalledProcessError as interface_failure:
+            logging.error("Failed to use %s:%s", cmd, interface_failure)
+            result = 3
+
+    if result == 0:
+        # Execute FTP transfer benchmarking test
+        if args.test_type.lower() == "ftp":
+            ftp_benchmark = FTPPerformanceTest(
+                test_target, test_user, test_pass, args.interface)
+
+            if args.filesize:
+                ftp_benchmark.binary_size = int(args.filesize)
+            result = ftp_benchmark.run()
+
+        elif args.test_type.lower() == "iperf":
+            iperf_benchmark = IPerfPerformanceTest(args.interface, test_target)
+            result = iperf_benchmark.run()
     
     for iface in extra_interfaces:
         logging.debug("Restoring interface:%s", iface)
@@ -380,7 +383,9 @@ def interface_test(args):
             check_call(shlex.split(cmd))
         except CalledProcessError as interface_failure:
             logging.error("Failed to use %s:%s", cmd, interface_failure)
-            sys.exit(3)
+            result = 3
+
+    return result
 
 def interface_info(args):
 
