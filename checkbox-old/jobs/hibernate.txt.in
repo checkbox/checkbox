@@ -1,6 +1,8 @@
 plugin: user-interact-verify
 name: power-management/hibernate_advanced
-depends: power-management/rtc
+requires:
+  sleep.disk == 'supported'
+  rtc.state == 'supported'
 environ: CHECKBOX_DATA
 user: root
 command:
