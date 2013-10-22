@@ -8,6 +8,12 @@ checkbox (0.16.14) UNRELEASED; urgency=low
   * jobs/ethernet.txt.in - added test for running ethtool queries against all 
     devices found on the system.
 
+  [ Brendan Donegan ]
+  * jobs/resources.txt.in, jobs/power-management.txt.in - refactor rtc test so
+    that it actually tests the RTC instead of just checking for its presence.
+    Also create a resource job to allow other jobs to determine if an RTC is
+    present. (LP: #1184733)
+
  -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:36:53 -0400
 
 checkbox (0.16.13) saucy; urgency=low
