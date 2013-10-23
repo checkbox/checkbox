@@ -11,8 +11,10 @@ _description:
 plugin: shell
 name: power-management/hibernate_30_cycles
 depends:
- power-management/rtc
  power-management/hibernate_advanced
+requires:
+ sleep.disk == 'supported'
+ rtc.state == 'supported'
 environ: CHECKBOX_DATA
 user: root
 command:
