@@ -63,7 +63,7 @@ class IPerfPerformanceTest(object):
         self.mbytes = mbytes
 
     def run(self):
-        cmd = "timeout 10 iperf -c {} -n {}".format(self.target, self.mbytes)
+        cmd = "timeout 30 iperf -c {} -n {}".format(self.target, self.mbytes)
 
         logging.debug(cmd)
         try:
