@@ -70,7 +70,7 @@ class IPerfPerformanceTest(object):
             iperf_return = check_output(
                 shlex.split(cmd), universal_newlines=True)
         except CalledProcessError as iperf_exception:
-            logging.error("Failed executing iperf")
+            logging.error("Failed executing iperf: {}", iperf_exception.output)
             return iperf_exception.returncode
 
         # 930 Mbits/sec\n'
