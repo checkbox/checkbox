@@ -133,6 +133,7 @@ name: power-management/rtc
 requires:
   rtc.state == 'supported'
   package.name == 'util-linux'
+user: root
 command: hwclock -r
 estimated_duration: 0.02
 _description:
