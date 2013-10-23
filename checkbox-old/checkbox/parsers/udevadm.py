@@ -694,6 +694,9 @@ class UdevadmParser:
             # Set default DEVPATH
             environment.setdefault("DEVPATH", path)
 
+            if environment['SUBSYSTEM'] == 'rtc':
+                import pdb; pdb.set_trace()
+
             device = self.device_factory(environment, self.bits, list(stack))
             if not self._ignoreDevice(device):
                 if device._raw_path in self.devices:

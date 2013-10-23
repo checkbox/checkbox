@@ -63,14 +63,15 @@ class IPerfPerformanceTest(object):
         self.mbytes = mbytes
 
     def run(self):
-        cmd = "timeout 30 iperf -c {} -n {}".format(self.target, self.mbytes)
+        cmd = "timeout 10 iperf -c {} -n {}".format(self.target, self.mbytes)
 
         logging.debug(cmd)
         try:
             iperf_return = check_output(
                 shlex.split(cmd), universal_newlines=True)
         except CalledProcessError as iperf_exception:
-            logging.error("Failed executing iperf, Reason:", iperf_exception)
+            logging.error("Failed executing iperf")
+            return iperf_exception.returncode
 
         # 930 Mbits/sec\n'
         print(iperf_return)
