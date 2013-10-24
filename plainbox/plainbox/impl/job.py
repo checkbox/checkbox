@@ -182,10 +182,14 @@ class JobOutputTextSource(ITextSource):
         return "<{} job:{!r}".format(self.__class__.__name__, self.job)
 
     def __eq__(self, other):
-        return self.job == other.job
+        if isinstance(other, JobOutputTextSource):
+            return self.job == other.job
+        return NotImplemented
 
     def __gt__(self, other):
-        return self.job > other.job
+        if isinstance(other, JobOutputTextSource):
+            return self.job > other.job
+        return NotImplemented
 
 
 class JobDefinition(BaseJob, IJobDefinition):
@@ -308,13 +312,37 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         return self._origin
 
-    def __init__(self, data, origin=None, provider=None):
+    def update_origin(self, origin):
+        """
+        Change the Origin object associated with this JobDefinition
+
+        .. note::
+
+            This method is a unfortunate side effect of how via and local jobs
+            that cat existing jobs are implemented. Ideally jobs would be
+            trully immutable. Do not use this method lightly.
+        """
+        self._origin = origin
+
+    @property
+    def controller(self):
+        """
+        The controller object associated with this JobDefinition
+        """
+        return self._controller
+
+    def __init__(self, data, origin=None, provider=None, controller=None):
         super(JobDefinition, self).__init__(data)
         if origin is None:
             origin = Origin.get_caller_origin()
+        if controller is None:
+            # XXX: moved here because of cyclic imports
+            from plainbox.impl.ctrl import checkbox_ctrl
+            controller = checkbox_ctrl
         self._resource_program = None
         self._origin = origin
         self._provider = provider
+        self._controller = controller
 
     def __str__(self):
         return self.name

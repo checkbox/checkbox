@@ -149,7 +149,7 @@ class Origin:
             return ((self.source, self.line_start, self.line_end) ==
                     (other.source, other.line_start, other.line_end))
         else:
-            return False
+            return NotImplemented
 
     def __gt__(self, other):
         if isinstance(other, Origin):
@@ -206,6 +206,16 @@ class RFC822Record:
         return "<{} data:{!r} origin:{!r}>".format(
             self.__class__.__name__, self._data, self._origin)
 
+    def __eq__(self, other):
+        if isinstance(other, RFC822Record):
+            return (self._data, self._origin) == (other._data, other._origin)
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, RFC822Record):
+            return (self._data, self._origin) != (other._data, other._origin)
+        return NotImplemented
+
     @property
     def data(self):
         """
@@ -255,6 +265,18 @@ class RFC822SyntaxError(SyntaxError):
         self.filename = filename
         self.lineno = lineno
         self.msg = msg
+
+    def __eq__(self, other):
+        if isinstance(other, RFC822SyntaxError):
+            return ((self.filename, self.lineno, self.msg)
+                    == (other.filename, other.lineno, other.msg))
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, RFC822SyntaxError):
+            return ((self.filename, self.lineno, self.msg)
+                    != (other.filename, other.lineno, other.msg))
+        return NotImplemented
 
 
 def load_rfc822_records(stream, data_cls=dict, source=None):
