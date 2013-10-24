@@ -1,6 +1,9 @@
 checkbox (0.16.14) UNRELEASED; urgency=low
 
     [ Chris Gregan ]
+  * jobs/suspend.txt.in - added tests for running iperf tests before and after 
+    suspend on all devices ether and wifi
+
   * jobs/wireless.txt.in - added tests for checking 80211 modules loaded and a 
     script to scripts to execute that check named wireless_ext. Test added to run 
     iwconfig query against all devices found on the system.

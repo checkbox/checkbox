@@ -38,6 +38,38 @@ _description:
  This test disconnects all connections and then connects to the wireless
  interface. It then checks the connection to confirm it's working as expected.
 
+plugin: local
+name: suspend/iperf_before_suspend_ether_auto
+requires:
+ device.category == 'NETWORK'
+command: 
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: ethernet/iperf_before_suspend_ether_auto_$2
+ requires: device.path == "$1"
+ command: network -i $2 -t iperf
+ _description:
+  This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
+ EOF
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
+
+plugin: local
+name: suspend/iperf_before_suspend_wifi_auto
+requires:
+ device.category == 'WIRELESS'
+command: 
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: ethernet/iperf_before_suspend_wifi_auto_$2
+ requires: device.path == "$1"
+ command: network -i $2 -t iperf
+ _description:
+  This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
+ EOF
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
+
 plugin: shell
 name: suspend/bluetooth_obex_before_suspend
 requires:
@@ -431,6 +463,38 @@ command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; 
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
+
+plugin: local
+name: suspend/iperf_after_suspend_ether_auto
+requires:
+ device.category == 'NETWORK'
+command: 
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: ethernet/iperf_before_suspend_ether_auto_$2
+ requires: device.path == "$1"
+ command: network -i $2 -t iperf
+ _description:
+  This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
+ EOF
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
+
+plugin: local
+name: suspend/iperf_after_suspend_wifi_auto
+requires:
+ device.category == 'WIRELESS'
+command: 
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: ethernet/iperf_before_suspend_wifi_auto_$2
+ requires: device.path == "$1"
+ command: network -i $2 -t iperf
+ _description:
+  This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
+ EOF
+_description:
+ This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
 
 plugin: user-interact-verify
 name: suspend/wireless_connection_after_suspend_wpa_bg_manual
