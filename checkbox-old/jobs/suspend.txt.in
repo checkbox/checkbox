@@ -48,6 +48,7 @@ command:
  name: suspend/iperf_before_suspend_ether_auto_$2
  depends: ethernet/detect
  requires: device.path == "$1"
+ user: root
  command: network -i $2 -t iperf
  _description:
   This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
@@ -65,6 +66,7 @@ command:
  name: suspend/iperf_before_suspend_wifi_auto_$2
  depends: wireless/wireless_connection
  requires: device.path == "$1"
+ user: root
  command: network -i $2 -t iperf
  _description:
   This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
@@ -476,6 +478,7 @@ command:
  name: suspend/iperf_after_suspend_ether_auto_$2
  depends: suspend/suspend_advanced
  requires: device.path == "$1"
+ user: root
  command: network -i $2 -t iperf
  _description:
   This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
@@ -493,6 +496,7 @@ command:
  name: suspend/iperf_before_suspend_wifi_auto_$2
  depends: suspend/suspend_advanced
  requires: device.path == "$1"
+ user: root
  command: network -i $2 -t iperf
  _description:
   This test executes iperf connection performance/stability against all the ethernet devices found on the system before suspend.
