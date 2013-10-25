@@ -386,7 +386,7 @@ def interface_test(args):
             logging.error("Failed to use %s:%s", cmd, interface_failure)
             result = 3
 
-    return result
+    sys.exit(result)
 
 def interface_info(args):
 
