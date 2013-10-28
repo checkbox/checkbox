@@ -320,9 +320,10 @@ class IProviderBackend1(metaclass=ABCMeta):
         """
 
     @abstractproperty
-    def uses_policykit(self):
+    def secure(self):
         """
-        flag indicating that this provider relies on polickit
+        flag indicating that this provider was loaded from the secure portion
+        of PROVIDERPATH and thus can be used with the checkbox-trusted-launcher.
         """
 
 
@@ -422,4 +423,44 @@ class ISessionStateController(metaclass=ABCMeta):
         the specified test result. Results can safely override older results.
         Results also change the ready map (jobs that can run) because of
         dependency relations.
+        """
+
+
+class IExecutionController(metaclass=ABCMeta):
+    """
+    Interface for job execution controller clases.
+
+    Execution controllers encapsulate knowledge on how to run command
+    associated with a particular job. Some executors might run the command
+    directly, others might delegate the task to a helper program or perform
+    some special-cased customization to the execution environment.
+    """
+
+    @abstractmethod
+    def execute_job(self, job, config, extcmd_popen):
+        """
+        Execute the specified job using the specified subprocess-like object
+
+        :param job:
+            The JobDefinition to execute
+        :param config:
+            A PlainBoxConfig instance which can be used to load missing
+            environment definitions that apply to all jobs. It is used to
+            provide values for missing environment variables that are required
+            by the job (as expressed by the environ key in the job definition
+            file).
+        :param extcmd_popen:
+            A subprocess.Popen like object
+        :returns:
+            The return code of the command, as returned by subprocess.call()
+        """
+
+    @abstractmethod
+    def get_score(self, job):
+        """
+        Compute how applicable this controller is for the specified job.
+
+        :returns:
+            A numeric score, or None if the controller cannot run this job.
+            The higher the value, the more applicable this controller is.
         """
