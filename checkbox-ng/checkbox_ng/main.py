@@ -23,12 +23,14 @@
 """
 
 import logging
+import sys
 
 from plainbox.impl.commands import PlainBoxToolBase
 from plainbox.impl.commands.check_config import CheckConfigCommand
 from plainbox.impl.commands.dev import DevCommand
 from plainbox.impl.commands.script import ScriptCommand
 from plainbox.impl.commands.sru import SRUCommand
+from checkbox_ng.commands.server import ServerCommand
 
 from checkbox_ng import __version__ as version
 from checkbox_ng.config import CheckBoxConfig
@@ -52,10 +54,16 @@ class CheckBoxNGTool(PlainBoxToolBase):
         return CheckBoxConfig
 
     def add_subcommands(self, subparsers):
-        SRUCommand(self._provider_list, self._config).register_parser(subparsers)
-        CheckConfigCommand(self._config).register_parser(subparsers)
-        ScriptCommand(self._provider_list, self._config).register_parser(subparsers)
-        DevCommand(self._provider_list, self._config).register_parser(subparsers)
+        SRUCommand(
+            self._provider_list, self._config).register_parser(subparsers)
+        CheckConfigCommand(
+            self._config).register_parser(subparsers)
+        ScriptCommand(
+            self._provider_list, self._config).register_parser(subparsers)
+        DevCommand(
+            self._provider_list, self._config).register_parser(subparsers)
+        ServerCommand(
+            self._provider_list, self._config).register_parser(subparsers)
 
 
 def main(argv=None):
@@ -63,3 +71,11 @@ def main(argv=None):
     checkbox command line utility
     """
     raise SystemExit(CheckBoxNGTool().main(argv))
+
+
+def cert_server(argv=None):
+    """
+    certification-server command line utility
+    """
+    raise SystemExit(
+        CheckBoxNGTool().main(['certification-server'] + sys.argv[1:]))
