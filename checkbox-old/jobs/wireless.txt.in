@@ -244,3 +244,18 @@ command:
  EOF
 _description:
  This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
+
+plugin: user-interact-verify
+name: wireless/wireless_rfkill
+command: rfkill list | zenity --text-info --title rfkill-Info
+estimated_duration: 2.0
+requires: device.category == 'WIRELESS'
+_description:
+ PURPOSE:
+     This test will check your wireless connection.
+ STEPS:
+     1. Use the hardware switch on the side of your device to switch off wireless.
+     2. If you do not have a hardware switch disable wireless from the network manager icon in the panel
+     3. Click "Test" to verify that the hard or soft blocks are in place.
+ VERIFICATION:
+     Did the hard or soft blocks show on in the dialog?
