@@ -61,4 +61,4 @@ if [ -n "$ACTIONS" ]; then
     $SUPER_COMMAND $START_TESTING_DIR/add_offline_repository $ACTIONS "$PACKAGES"
 fi
 message "Now starting driver testing application"
-$EXECUTABLE
+nohup $EXECUTABLE &
