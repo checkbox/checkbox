@@ -23,7 +23,7 @@ _description: Wireless scanning test. It scans and reports on discovered APs.
 plugin: user-interact-verify
 name: wireless/wireless_connection
 command: network_check
-estimated_duration: 2.0
+estimated_duration: 120.0
 requires: device.category == 'WIRELESS'
 _description:
  PURPOSE:
@@ -248,7 +248,7 @@ _description:
 plugin: user-interact-verify
 name: wireless/wireless_rfkill
 command: rfkill list | zenity --text-info --title rfkill-Info
-estimated_duration: 2.0
+estimated_duration: 120.0
 requires: device.category == 'WIRELESS'
 _description:
  PURPOSE:
