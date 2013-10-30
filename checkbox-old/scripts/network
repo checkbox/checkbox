@@ -63,26 +63,44 @@ class IPerfPerformanceTest(object):
         self.mbytes = mbytes
 
     def run(self):
-        cmd = "timeout 30 iperf -c {} -n {}".format(self.target, self.mbytes)
+        cmd = "timeout 180 iperf -c {} -n {}".format(self.target, self.mbytes)
 
         logging.debug(cmd)
         try:
             iperf_return = check_output(
                 shlex.split(cmd), universal_newlines=True)
         except CalledProcessError as iperf_exception:
-            logging.error("Failed executing iperf: {}", iperf_exception.output)
-            return iperf_exception.returncode
+            if iperf_exception.returncode != 124:
+                # timeout command will return 124 if iperf timed out, so any
+                # other return value means something did fail
+                logging.error("Failed executing iperf: %s",
+                              iperf_exception.output)
+                return iperf_exception.returncode
+            else:
+                # this is normal so we "except" this exception and we
+                # "pass through" whatever output iperf did manage to produce.
+                # When confronted with SIGTERM iperf should stop and output
+                # a partial (but usable) result.
+                logging.warning("iperf timed out - this should be OK")
+                iperf_return = iperf_exception.output
 
         # 930 Mbits/sec\n'
         print(iperf_return)
-        match = re.search(r'\d+\sMbits', iperf_return)
+        match = re.search(r'\d+\s([GM])bits', iperf_return)
         if match:
             throughput = match.group(0).split()[0]
-
-            percent = int(throughput) / int(self.iface.max_speed) * 100
-            print("Transfer speed:")
-            print("%3.2f%% of" % percent)
-            print("theoretical max %smbs" % int(self.iface.max_speed))
+            units = match.group(1)
+            # self.iface.max_speed is always in mb/s, so we need to scale
+            # throughput to match
+            scaled_throughput = int(throughput)
+            if units == 'G':
+                scaled_throughput *= 1000
+            if units == 'K':
+                scaled_throughput /= 1000
+            percent = scaled_throughput / int(self.iface.max_speed) * 100
+            print("Transfer speed: {} {}b/s".format(throughput, units))
+            print("%3.2f%% of " % percent, end="")
+            print("theoretical max %sMb/s" % int(self.iface.max_speed))
 
             if percent < 40:
                 logging.warn("Poor network performance detected")
