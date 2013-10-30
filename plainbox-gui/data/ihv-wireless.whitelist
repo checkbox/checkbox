@@ -50,20 +50,31 @@ __wireless__
 
 # Manual tests and dependencies
 networking/detect
+networking/info
+networking/info.*
 wireless/wireless_connection
+keys/wireless
 led/wireless
-
+wireless/maximum_bandwidth
+wireless/wireless_rfkill
 # Automated tests
 benchmarks/network/network-loopback
 networking/info_automated
-networking/internet
+networking/gateway_ping
 wireless/wireless_scanning
 power-management/rtc
 suspend/wireless_before_suspend
 suspend/suspend_advanced
+wireless/extension-check
+wireless/wireless_connection_wpa_bg
+wireless/wireless_connection_wpa_n
+wireless/iwconfig_info
+suspend/iperf_before_suspend_wifi_auto
+suspend/iperf_after_suspend_wifi_auto
 # Some manual tests after suspend
 suspend/led_after_suspend/wireless
 suspend/wireless_after_suspend
 suspend/wifi_resume_time
 power-management/hibernate_advanced
 power-management/hibernate-single-log-attach
+
