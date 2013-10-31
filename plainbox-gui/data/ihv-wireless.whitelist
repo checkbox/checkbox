@@ -53,16 +53,12 @@ networking/detect
 networking/info
 networking/info.*
 wireless/wireless_connection
-keys/wireless
-led/wireless
 wireless/maximum_bandwidth
 wireless/maximum_bandwidth.*
 wireless/wireless_rfkill
 # Automated tests
 benchmarks/network/network-loopback
 networking/info_automated
-networking/gateway_ping
-wireless/wireless_scanning
 power-management/rtc
 wireless/extension-check
 wireless/wireless_connection_wpa_bg
@@ -80,9 +76,5 @@ suspend/wireless_connection_after_suspend_open_n
 suspend/iperf_after_suspend_wifi_auto
 suspend/iperf_after_suspend_wifi_auto.*
 # Some manual tests after suspend
-suspend/led_after_suspend/wireless
 suspend/wireless_after_suspend
 suspend/wifi_resume_time
-power-management/hibernate_advanced
-power-management/hibernate-single-log-attach
-
