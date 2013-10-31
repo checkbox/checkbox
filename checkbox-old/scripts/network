@@ -241,9 +241,9 @@ class FTPPerformanceTest(object):
 
 class StressPerformanceTest:
 
-    def __init__(self, target, interface):
-        self.target = target
+    def __init__(self, interface, target):
         self.interface = interface
+        self.target = target
 
     def run(self):
         iperf_cmd = 'iperf -c {} -t 60'.format(self.target)
@@ -257,7 +257,6 @@ class StressPerformanceTest:
         (out, err) = ping.communicate()
 
         time_re = re.compile('(?<=time=)[0-9]*')
-        import pdb; pdb.set_trace()
         for line in out.decode().split('\n'):
             time = time_re.search(line)
 
@@ -509,8 +508,8 @@ def main():
 
     args = parser.parse_args()
 
-    args.func(args)
+    return args.func(args)
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
