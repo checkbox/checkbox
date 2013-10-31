@@ -64,14 +64,19 @@ networking/info_automated
 networking/gateway_ping
 wireless/wireless_scanning
 power-management/rtc
-suspend/wireless_before_suspend
-suspend/suspend_advanced
 wireless/extension-check
 wireless/wireless_connection_wpa_bg
 wireless/wireless_connection_wpa_n
+wireless/wireless_connection_open_bg
+wireless/wireless_connection_open_n
 wireless/iwconfig_info
 suspend/iperf_before_suspend_wifi_auto
 suspend/iperf_before_suspend_wifi_auto.*
+suspend/suspend_advanced
+suspend/wireless_connection_after_suspend_wpa_bg
+suspend/wireless_connection_after_suspend_wpa_n
+suspend/wireless_connection_after_suspend_open_bg
+suspend/wireless_connection_after_suspend_open_n
 suspend/iperf_after_suspend_wifi_auto
 suspend/iperf_after_suspend_wifi_auto.*
 # Some manual tests after suspend
