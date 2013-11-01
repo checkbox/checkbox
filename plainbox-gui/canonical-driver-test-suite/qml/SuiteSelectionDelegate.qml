@@ -27,10 +27,10 @@ import "./artwork"
 
 
     Item {
+        Component.onCompleted: visible = is_ihv(testname)
         id: itemdelegate
         width: parent.width
         height: units.gu(7)
-
 
         Item {
             id: suitefiller
@@ -55,6 +55,10 @@ import "./artwork"
                  */
                 suitelist.ensure_one_selection();
             }
+        }
+
+        function is_ihv(suite) {
+            return(suite.indexOf("ihv-") == 0)
         }
 
         function remove_prefix_and_capitalize_first(prefix, suite) {
