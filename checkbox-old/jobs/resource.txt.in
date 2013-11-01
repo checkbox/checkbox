@@ -171,3 +171,15 @@ command: wifi_interface_mode_resource
 requires: package.name == "iw"
 estimated_duration: 0.04
 description: Creates resource info for wifi supported interface modes.
+
+name: rtc
+plugin: resource
+command: 
+  if [ -e /sys/class/rtc ]
+  then
+      echo "state: supported"
+  else
+      echo "state: unsupported"
+  fi
+estimated_duration: 0.04
+description: Creates resource info for RTC

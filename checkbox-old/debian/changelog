@@ -1,4 +1,31 @@
-checkbox (0.16.13) UNRELEASED; urgency=low
+checkbox (0.16.14) UNRELEASED; urgency=low
+
+    [ Chris Gregan ]
+  * jobs/suspend.txt.in - added tests for running iperf tests before and after 
+    suspend on all devices ether and wifi
+
+  * jobs/wireless.txt.in - added tests for checking 80211 modules loaded and a 
+    script to scripts to execute that check named wireless_ext. Test added to run 
+    iwconfig query against all devices found on the system.
+
+  * jobs/ethernet.txt.in - added test for running ethtool queries against all 
+    devices found on the system.
+
+  [ Brendan Donegan ]
+  * jobs/resources.txt.in, jobs/power-management.txt.in - refactor rtc test so
+    that it actually tests the RTC instead of just checking for its presence.
+    Also create a resource job to allow other jobs to determine if an RTC is
+    present. (LP: #1184733)
+
+  [ Daniel Manrique ]
+  * jobs/ethernet.txt.in, jobs/wireless.txt.in: Added user-verify jobs to test
+    maximum throughput versus interface's max supported speed.
+  * scripts/network: Minor fixes and tweaks for nicer output and handling of
+    Kb/s and Gb/s.
+
+ -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:36:53 -0400
+
+checkbox (0.16.13) saucy; urgency=low
 
   [ Po-Hsu Lin ]
   * jobs/keys.txt.in - adde keys/microphone-mute to test the mute key for 
@@ -11,6 +38,8 @@ checkbox (0.16.13) UNRELEASED; urgency=low
     (LP: #1236776)
   * jobs/keys.txt.in - added keys/keyboard-backlight job to test keyboard
     backlight toggle key.
+  * scripts/network - restore other interfaces that were downed prior to running
+    the network test (LP: #1238570)
 
   [ Daniel Manrique ]
   * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
@@ -51,7 +80,7 @@ checkbox (0.16.13) UNRELEASED; urgency=low
   * Renamed networking.txt.in to ethernet.txt.in. Renamed all jobs and
     references to jobs with 'networking' in them to 'ethernet'
 
- -- Taihsiang Ho <taihsiang.ho@canonical.com>  Mon, 14 Oct 2013 17:35:23 -0400
+ -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:35:55 -0400
 
 checkbox (0.16.12) saucy; urgency=low
 

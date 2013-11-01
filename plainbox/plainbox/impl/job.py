@@ -28,15 +28,13 @@
 
 import functools
 import logging
-import os
 import re
 
 from plainbox.abc import IJobDefinition
 from plainbox.abc import ITextSource
-from plainbox.impl.config import Unset
 from plainbox.impl.resource import ResourceProgram
-from plainbox.impl.rfc822 import Origin
-from plainbox.impl.secure.checkbox_trusted_launcher import BaseJob
+from plainbox.impl.secure.job import BaseJob
+from plainbox.impl.secure.rfc822 import Origin
 from plainbox.impl.symbol import SymbolDef
 
 
@@ -182,10 +180,14 @@ class JobOutputTextSource(ITextSource):
         return "<{} job:{!r}".format(self.__class__.__name__, self.job)
 
     def __eq__(self, other):
-        return self.job == other.job
+        if isinstance(other, JobOutputTextSource):
+            return self.job == other.job
+        return NotImplemented
 
     def __gt__(self, other):
-        return self.job > other.job
+        if isinstance(other, JobOutputTextSource):
+            return self.job > other.job
+        return NotImplemented
 
 
 class JobDefinition(BaseJob, IJobDefinition):
@@ -308,13 +310,44 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         return self._origin
 
-    def __init__(self, data, origin=None, provider=None):
+    def update_origin(self, origin):
+        """
+        Change the Origin object associated with this JobDefinition
+
+        .. note::
+
+            This method is a unfortunate side effect of how via and local jobs
+            that cat existing jobs are implemented. Ideally jobs would be
+            trully immutable. Do not use this method lightly.
+        """
+        self._origin = origin
+
+    @property
+    def provider(self):
+        """
+        The provider object associated with this JobDefinition
+        """
+        return self._provider
+
+    @property
+    def controller(self):
+        """
+        The controller object associated with this JobDefinition
+        """
+        return self._controller
+
+    def __init__(self, data, origin=None, provider=None, controller=None):
         super(JobDefinition, self).__init__(data)
         if origin is None:
             origin = Origin.get_caller_origin()
+        if controller is None:
+            # XXX: moved here because of cyclic imports
+            from plainbox.impl.ctrl import checkbox_session_state_ctrl
+            controller = checkbox_session_state_ctrl
         self._resource_program = None
         self._origin = origin
         self._provider = provider
+        self._controller = controller
 
     def __str__(self):
         return self.name
@@ -326,12 +359,12 @@ class JobDefinition(BaseJob, IJobDefinition):
     def __eq__(self, other):
         if not isinstance(other, JobDefinition):
             return False
-        return self.get_checksum() == other.get_checksum()
+        return self.checksum == other.checksum
 
     def __ne__(self, other):
         if not isinstance(other, JobDefinition):
             return True
-        return self.get_checksum() != other.get_checksum()
+        return self.checksum != other.checksum
 
     def get_resource_program(self):
         """
@@ -391,60 +424,6 @@ class JobDefinition(BaseJob, IJobDefinition):
             If the job has any problems that make it unsuitable for execution.
         """
         validator_cls.validate(self)
-
-    def modify_execution_environment(self, env, session_dir,
-                                     checkbox_data_dir, config=None):
-        """
-        Alter execution environment as required to execute this job.
-
-        The environment is modified in place.
-
-        The session_dir argument can be passed to scripts to know where to
-        create temporary data. This data will persist during the lifetime of
-        the session.
-
-        The config argument (which defaults to None) should be a PlainBoxConfig
-        object. It is used to provide values for missing environment variables
-        that are required by the job (as expressed by the environ key in the
-        job definition file).
-
-        Computes and modifies the dictionary of additional values that need to
-        be added to the base environment. Note that all changes to the
-        environment (modifications, not replacements) depend on the current
-        environment.  This may be of importance when attempting to setup the
-        test session as another user.
-
-        This environment has additional PATH, PYTHONPATH entries. It also uses
-        fixed LANG so that scripts behave as expected. Lastly it sets
-        CHECKBOX_SHARE that is required by some scripts.
-        """
-        # XXX: this obviously requires a checkbox object to know where stuff is
-        # but during the transition we may not have one available.
-        assert self._provider is not None
-        # Use PATH that can lookup checkbox scripts
-        if self._provider.extra_PYTHONPATH:
-            env['PYTHONPATH'] = os.pathsep.join(
-                [self._provider.extra_PYTHONPATH]
-                + env.get("PYTHONPATH", "").split(os.pathsep))
-        # Update PATH so that scripts can be found
-        env['PATH'] = os.pathsep.join(
-            [self._provider.extra_PATH]
-            + env.get("PATH", "").split(os.pathsep))
-        # Add CHECKBOX_SHARE that is needed by one script
-        env['CHECKBOX_SHARE'] = self._provider.CHECKBOX_SHARE
-        # Add CHECKBOX_DATA (temporary checkbox data)
-        env['CHECKBOX_DATA'] = checkbox_data_dir
-        # Inject additional variables that are requested in the config
-        if config is not None and config.environment is not Unset:
-            for env_var in config.environment:
-                # Don't override anything that is already present in the
-                # current environment. This will allow users to customize
-                # variables without editing any config files.
-                if env_var in env:
-                    continue
-                # If the environment section of the configuration file has a
-                # particular variable then copy it over.
-                env[env_var] = config.environment[env_var]
 
     def create_child_job_from_record(self, record):
         """

@@ -95,9 +95,6 @@ Code reference
 .. automodule:: plainbox.impl.commands.sru
     :members:
 
-.. automodule:: plainbox.impl.config
-    :members:
-
 .. automodule:: plainbox.impl.dbus
     :members:
 
@@ -146,19 +143,10 @@ Code reference
 .. automodule:: plainbox.impl.parsers
     :members:
 
-.. automodule:: plainbox.impl.plugins
-    :members:
-
 .. automodule:: plainbox.impl.providers
     :members:
 
-.. automodule:: plainbox.impl.providers.checkbox
-    :members:
-
 .. automodule:: plainbox.impl.providers.special
-    :members:
-
-.. automodule:: plainbox.impl.providers.stubbox
     :members:
 
 .. automodule:: plainbox.impl.providers.v1
@@ -180,6 +168,24 @@ Code reference
     :members:
 
 .. automodule:: plainbox.impl.secure.checkbox_trusted_launcher
+    :members:
+
+.. automodule:: plainbox.impl.secure.config
+    :members:
+
+.. automodule:: plainbox.impl.secure.job
+    :members:
+
+.. automodule:: plainbox.impl.secure.plugins
+    :members:
+
+.. automodule:: plainbox.impl.secure.providers
+    :members:
+
+.. automodule:: plainbox.impl.secure.providers.v1
+    :members:
+
+.. automodule:: plainbox.impl.secure.rfc822
     :members:
 
 .. automodule:: plainbox.impl.service

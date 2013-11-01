@@ -24,20 +24,17 @@ plainbox.impl.test_job
 Test definitions for plainbox.impl.job module
 """
 
-import os
 from unittest import TestCase
 
-from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.job import CheckBoxJobValidator
 from plainbox.impl.job import JobDefinition
 from plainbox.impl.job import JobOutputTextSource
 from plainbox.impl.job import Problem
 from plainbox.impl.job import ValidationError
-from plainbox.impl.rfc822 import FileTextSource
-from plainbox.impl.rfc822 import Origin
-from plainbox.impl.rfc822 import RFC822Record
+from plainbox.impl.secure.rfc822 import FileTextSource
+from plainbox.impl.secure.rfc822 import Origin
+from plainbox.impl.secure.rfc822 import RFC822Record
 from plainbox.testing_utils.testcases import TestCaseWithParameters
-from plainbox.vendor.mock import Mock
 
 
 class CheckBoxJobValidatorTests(TestCase):
@@ -346,16 +343,16 @@ class TestJobDefinition(TestCase):
             'plugin': 'plugin'
         })
         # Two distinct but identical jobs have the same checksum
-        self.assertEqual(job1.get_checksum(), identical_to_job1.get_checksum())
+        self.assertEqual(job1.checksum, identical_to_job1.checksum)
         job2 = JobDefinition({
             'name': 'other name',
             'plugin': 'plugin'
         })
         # Two jobs with different definitions have different checksum
-        self.assertNotEqual(job1.get_checksum(), job2.get_checksum())
+        self.assertNotEqual(job1.checksum, job2.checksum)
         # The checksum is stable and does not change over time
         self.assertEqual(
-            job1.get_checksum(),
+            job1.checksum,
             "ad137ba3654827cb07a254a55c5e2a8daa4de6af604e84ccdbe9b7f221014362")
 
     def test_via_does_not_change_checksum(self):
@@ -378,12 +375,12 @@ class TestJobDefinition(TestCase):
                     line_start=1,
                     line_end=1)))
         # Now 'child.via' should be the same as 'parent.checksum'
-        self.assertEqual(child.via, parent.get_checksum())
+        self.assertEqual(child.via, parent.checksum)
         # Create an unrelated job 'helper' with the definition identical as
         # 'child' but without any ties to the 'parent' job
         helper = JobDefinition({'name': 'test', 'plugin': 'shell'})
         # And again, child.checksum should be the same as helper.checksum
-        self.assertEqual(child.get_checksum(), helper.get_checksum())
+        self.assertEqual(child.checksum, helper.checksum)
 
     def test_estimated_duration(self):
         job1 = JobDefinition({})
@@ -474,85 +471,3 @@ class ParsingTests(TestCaseWithParameters):
         expected = set({'foo', 'bar', 'froz'})
         observed = job.get_direct_dependencies()
         self.assertEqual(expected, observed)
-
-
-class JobEnvTests(TestCase):
-
-    def setUp(self):
-        self.job = JobDefinition({
-            'name': 'name',
-            'environ': 'foo bar froz'
-        })
-        self.job._provider = Mock()
-        self.job._provider.extra_PYTHONPATH = None
-        self.job._provider.extra_PATH = "value-of-extra-path"
-        self.job._provider.CHECKBOX_SHARE = "checkbox-share-value"
-        self.session_dir = "session-dir-value"
-        self.checkbox_data_dir = os.path.join(
-            self.session_dir, "CHECKBOX_DATA")
-
-    def test_provider_env(self):
-        env = {
-            "PATH": ""
-        }
-        self.job.modify_execution_environment(
-            env, self.session_dir, self.checkbox_data_dir)
-        self.assertEqual(env['CHECKBOX_SHARE'], 'checkbox-share-value')
-        self.assertEqual(env['CHECKBOX_DATA'],
-                         os.path.join(self.session_dir, "CHECKBOX_DATA"))
-
-    def test_without_config(self):
-        env = {
-            "PATH": "",
-            # foo is not defined in the environment
-            'bar': 'old-bar-value'
-            # froz is not defined in the environment
-        }
-        # Ask the job to modify the environment
-        self.job.modify_execution_environment(
-            env, self.session_dir, self.checkbox_data_dir)
-        # Check how foo bar and froz look like now
-        self.assertNotIn('foo', env)
-        self.assertEqual(env['bar'], 'old-bar-value')
-        self.assertNotIn('froz', env)
-
-    def test_with_config_and_environ_variables(self):
-        env = {
-            "PATH": "",
-            # foo is not defined in the environment
-            'bar': 'old-bar-value'
-            # froz is not defined in the environment
-        }
-        # Setup a configuration object with values for foo and bar
-        config = PlainBoxConfig()
-        config.environment = {
-            'foo': 'foo-value',
-            'bar': 'bar-value'
-        }
-        # Ask the job to modify the environment
-        self.job.modify_execution_environment(
-            env, self.session_dir, self.checkbox_data_dir, config)
-        # foo got copied from the config
-        self.assertEqual(env['foo'], 'foo-value')
-        # bar from the old environment
-        self.assertEqual(env['bar'], 'old-bar-value')
-        # froz is still empty
-        self.assertNotIn('froz', env)
-
-    def test_with_config_and_variables_not_in_environ(self):
-        env = {
-            'bar': 'old-bar-value'
-        }
-        # Setup a configuration object with values for baz.
-        # Note that baz is *not* declared in the job's environ line.
-        config = PlainBoxConfig()
-        config.environment = {
-            'baz': 'baz-value'
-        }
-        # Ask the job to modify the environment
-        self.job.modify_execution_environment(
-            env, self.session_dir, self.checkbox_data_dir, config)
-        # bar from the old environment
-        self.assertEqual(env['bar'], 'old-bar-value')
-        # baz from the config environment
-        self.assertEqual(env['baz'], 'baz-value')

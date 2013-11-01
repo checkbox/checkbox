@@ -1,8 +1,8 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2013 Canonical Ltd.
 # Written by:
-#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,23 +18,23 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-plainbox.impl.test_rfc822
-=========================
+plainbox.impl.secure.rfc822
+===========================
 
-Test definitions for plainbox.impl.rfc822 module
+Test definitions for plainbox.impl.secure.rfc822 module
 """
 
 from io import StringIO
 from unittest import TestCase
 import os
 
-from plainbox.impl.rfc822 import FileTextSource
-from plainbox.impl.rfc822 import Origin
-from plainbox.impl.rfc822 import PythonFileTextSource
-from plainbox.impl.rfc822 import RFC822Record
-from plainbox.impl.rfc822 import UnknownTextSource
-from plainbox.impl.rfc822 import load_rfc822_records
-from plainbox.impl.secure.checkbox_trusted_launcher import RFC822SyntaxError
+from plainbox.impl.secure.rfc822 import FileTextSource
+from plainbox.impl.secure.rfc822 import Origin
+from plainbox.impl.secure.rfc822 import PythonFileTextSource
+from plainbox.impl.secure.rfc822 import RFC822Record
+from plainbox.impl.secure.rfc822 import RFC822SyntaxError
+from plainbox.impl.secure.rfc822 import UnknownTextSource
+from plainbox.impl.secure.rfc822 import load_rfc822_records
 
 
 class OriginTests(TestCase):
@@ -258,24 +258,6 @@ class RFC822ParserTestsMixIn():
                 "Job has a duplicate key 'key1' with old value 'value1'"
                 " and new value 'value2'"))
 
-
-class NamedStringIO(StringIO):
-    """
-     Subclass of StringIO with a name attribute.
-     Use only for testing purposes, it's not guaranteed to be 100%
-     compatible with StringIO.
-    """
-    def __init__(self, string, fake_filename=None):
-        super(NamedStringIO, self).__init__(string)
-        self._fake_filename = fake_filename
-
-    @property
-    def name(self):
-        return(self._fake_filename)
-
-
-class RFC822ParserTests(TestCase, RFC822ParserTestsMixIn):
-
     def test_origin_from_stream_is_Unknown(self):
         """
         verify that gen_rfc822_records() uses origin instances with source
@@ -301,6 +283,21 @@ class RFC822ParserTests(TestCase, RFC822ParserTestsMixIn):
         self.assertEqual(len(records), 1)
         self.assertEqual(records[0].data, {'key': 'value'})
         self.assertEqual(records[0].origin, expected_origin)
+
+
+class NamedStringIO(StringIO):
+    """
+     Subclass of StringIO with a name attribute.
+     Use only for testing purposes, it's not guaranteed to be 100%
+     compatible with StringIO.
+    """
+    def __init__(self, string, fake_filename=None):
+        super(NamedStringIO, self).__init__(string)
+        self._fake_filename = fake_filename
+
+    @property
+    def name(self):
+        return(self._fake_filename)
 
 
 class RFC822WriterTests(TestCase):

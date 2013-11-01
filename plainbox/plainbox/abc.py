@@ -207,6 +207,18 @@ class IJobResult(metaclass=ABCMeta):
         process was killed with, if any.
         """
 
+    @abstractmethod
+    def get_io_log(self):
+        """
+        Compute and return the sequence of IOLogRecord objects.
+
+        :returns:
+            A sequence of tuples (delay, stream-name, data) where delay is the
+            delay since the previous message seconds (typically a fractional
+            number), stream name is either 'stdout' or 'stderr' and data is the
+            bytes object that was obtained from that stream.
+        """
+
 
 class IJobQualifier(metaclass=ABCMeta):
     """
@@ -308,9 +320,10 @@ class IProviderBackend1(metaclass=ABCMeta):
         """
 
     @abstractproperty
-    def uses_policykit(self):
+    def secure(self):
         """
-        flag indicating that this provider relies on polickit
+        flag indicating that this provider was loaded from the secure portion
+        of PROVIDERPATH and thus can be used with the checkbox-trusted-launcher.
         """
 
 
@@ -347,4 +360,107 @@ class IProvider1(metaclass=ABCMeta):
     def get_builtin_whitelists(self):
         """
         Load all the built-in whitelists and return them
+        """
+
+
+class ISessionStateController(metaclass=ABCMeta):
+    """
+    Interface for session state controller classes.
+
+    Session state controller classes cooperate with
+    :class:`~plainbox.impl.session.state.SessionState` and
+    :class:`~plainbox.impl.depmgr.DependencySolver` classes and implement
+    knowledge unique to particular job semantics. Before execution the
+    controller can influence job runnability (by setting inhibitors). After
+    execution the controller can observe the result and influence session state
+    """
+
+    @abstractmethod
+    def get_dependency_set(self, job):
+        """
+        Get the set of direct dependencies of a particular job.
+
+        :param job:
+            A IJobDefinition instance that is to be visited
+        :returns:
+            set of pairs (dep_type, job_name)
+
+        Returns a set of pairs (dep_type, job_name) that describe all
+        dependencies of the specified job. The first element in the pair,
+        dep_type, is either DEP_TYPE_DIRECT or DEP_TYPE_RESOURCE. The second
+        element is the name of the job.
+        """
+
+    @abstractmethod
+    def get_inhibitor_list(self, session_state, job):
+        """
+        Get a list of readiness inhibitors that inhibit a particular job.
+
+        :param session_state:
+            A SessionState instance that is used to interrogate the
+            state of the session where it matters for a particular
+            job. Currently this is used to access resources and job
+            results.
+        :param job:
+            A JobDefinition instance
+        :returns:
+            List of JobReadinessInhibitor
+        """
+
+    @abstractmethod
+    def observe_result(self, session_state, job, result):
+        """
+        Notice the specified test result and update readiness state.
+
+        :param session_state:
+            A SessionState object
+        :param job:
+            A JobDefinition object
+        :param result:
+            A IJobResult object
+
+        This function updates the internal result collection with the data from
+        the specified test result. Results can safely override older results.
+        Results also change the ready map (jobs that can run) because of
+        dependency relations.
+        """
+
+
+class IExecutionController(metaclass=ABCMeta):
+    """
+    Interface for job execution controller clases.
+
+    Execution controllers encapsulate knowledge on how to run command
+    associated with a particular job. Some executors might run the command
+    directly, others might delegate the task to a helper program or perform
+    some special-cased customization to the execution environment.
+    """
+
+    @abstractmethod
+    def execute_job(self, job, config, extcmd_popen):
+        """
+        Execute the specified job using the specified subprocess-like object
+
+        :param job:
+            The JobDefinition to execute
+        :param config:
+            A PlainBoxConfig instance which can be used to load missing
+            environment definitions that apply to all jobs. It is used to
+            provide values for missing environment variables that are required
+            by the job (as expressed by the environ key in the job definition
+            file).
+        :param extcmd_popen:
+            A subprocess.Popen like object
+        :returns:
+            The return code of the command, as returned by subprocess.call()
+        """
+
+    @abstractmethod
+    def get_score(self, job):
+        """
+        Compute how applicable this controller is for the specified job.
+
+        :returns:
+            A numeric score, or None if the controller cannot run this job.
+            The higher the value, the more applicable this controller is.
         """

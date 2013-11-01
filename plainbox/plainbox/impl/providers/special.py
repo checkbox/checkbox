@@ -64,48 +64,40 @@ def _get_checkbox_dir():
             get_plainbox_dir(), "..", "..", "checkbox-old"))
 
 
-class ExecutablesInScriptsMixIn:
-    """
-    A mix-in class for Provider1 that switches to the "legacy" behavior of
-    looking up executable programs associated with that provider in the
-    'scripts' directory.
-    """
-
-    @property
-    def scripts_dir(self):
-        """
-        Return an absolute path of the scripts directory
-
-        .. note::
-            The scripts may not work without setting PYTHONPATH and
-            CHECKBOX_SHARE.
-        """
-        return os.path.join(self._base_dir, "scripts")
-
-    @property
-    def extra_PATH(self):
-        """
-        Return additional entry for PATH
-
-        This entry is required to lookup CheckBox scripts.
-        """
-        return self.scripts_dir
-
-
-class CheckBoxSrcProvider(ExecutablesInScriptsMixIn, Provider1):
+class CheckBoxSrcProvider(Provider1):
     """
     A provider for checkbox jobs when used in development mode.
 
     This provider is only likely to be used when developing checkbox inside a
     virtualenv environment. It assumes the particular layout of code and data
     (relative to the code directory) directories.
+
+    Unlike normal v1 providers it has two legacy quirks that should not be
+    changed before we can stop using the old checkbox codebase.
+
+    1) The location for provider-specific executables is '$base/scripts'. This
+       is implemented by custom :attr:`extra_PATH` and :attr:`scripts_dir`.
+
+    2) The location for whitelists is '$base/data/whitelists'. This is
+       implemented by custom :attr:`whitelists_dir`.
+
+    It also has some quirks which might be revisited and dropped:
+
+    1) To ensure that old checkbox library codebase can be imported (whitout
+       installing or developing checkbox) it implements
+       :attr:`extra_PYTHONPATH`.
+
+    2) It has an utility method called :meth:`exists()` that makes one piece of
+       code shorter (save the time it takes to create CheckBoxSrcProvider and
+       catch-ignore ProviderNotFound).
     """
 
     def __init__(self):
         super(CheckBoxSrcProvider, self).__init__(
             _get_checkbox_dir(),
             "2013.com.canonical:checkbox-src",
-            "CheckBox (live source)", False)
+            "CheckBox (live source)",
+            secure=False)
         if not os.path.exists(self._base_dir):
             raise CheckBoxNotFound()
 
@@ -132,8 +124,35 @@ class CheckBoxSrcProvider(ExecutablesInScriptsMixIn, Provider1):
         # imports to work.
         return _get_checkbox_dir()
 
+    @property
+    def whitelists_dir(self):
+        """
+        Return an absolute path of the whitelist directory
+        """
+        return os.path.join(self._base_dir, "data", "whitelists")
 
-class StubBoxProvider(ExecutablesInScriptsMixIn, Provider1):
+    @property
+    def scripts_dir(self):
+        """
+        Return an absolute path of the scripts directory
+
+        .. note::
+            The scripts may not work without setting PYTHONPATH and
+            CHECKBOX_SHARE.
+        """
+        return os.path.join(self._base_dir, "scripts")
+
+    @property
+    def extra_PATH(self):
+        """
+        Return additional entry for PATH
+
+        This entry is required to lookup CheckBox scripts.
+        """
+        return self.scripts_dir
+
+
+class StubBoxProvider(Provider1):
     """
     A provider for stub, dummy and otherwise non-production jobs.
 
@@ -146,4 +165,5 @@ class StubBoxProvider(ExecutablesInScriptsMixIn, Provider1):
         super(StubBoxProvider, self).__init__(
             os.path.join(get_plainbox_dir(), "impl/providers/stubbox"),
             "2013.com.canonical:stubbox",
-            "StubBox (dummy data for development)", False)
+            "StubBox (dummy data for development)",
+            secure=False)

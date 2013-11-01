@@ -18,8 +18,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.plugins` -- interface for accessing extension points
-========================================================================
+:mod:`plainbox.impl.secure.plugins` -- interface for accessing extension points
+===============================================================================
 
 This module contains plugin interface for plainbox. Plugins are based on
 pkg_resources entry points feature. Any python package can advertise the
@@ -51,7 +51,7 @@ import os
 import pkg_resources
 
 
-logger = logging.getLogger("plainbox.plugins")
+logger = logging.getLogger("plainbox.secure.plugins")
 
 
 class IPlugIn(metaclass=abc.ABCMeta):
@@ -329,9 +329,8 @@ class FsPlugInCollection(PlugInCollectionBase):
             except IOError as exc:
                 logger.error("Unable to load %r: %s", filename, str(exc))
             else:
-                name = os.path.basename(filename)
-                obj = self._wrapper(name, text)
-                self._plugins[name] = obj
+                obj = self._wrapper(filename, text)
+                self._plugins[filename] = obj
 
     def _get_plugin_files(self):
         """

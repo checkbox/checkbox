@@ -1,7 +1,8 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2012, 2013 Canonical Ltd.
 # Written by:
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
@@ -18,8 +19,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.rfc822` -- RFC822 parser
-============================================
+:mod:`plainbox.impl.secure.rfc822` -- RFC822 parser
+===================================================
 
 Implementation of rfc822 serializer and deserializer.
 
@@ -34,10 +35,8 @@ import inspect
 import logging
 
 from plainbox.abc import ITextSource
-from plainbox.impl.secure.checkbox_trusted_launcher import RFC822SyntaxError
-from plainbox.impl.secure.checkbox_trusted_launcher import BaseRFC822Record
 
-logger = logging.getLogger("plainbox.rfc822")
+logger = logging.getLogger("plainbox.secure.rfc822")
 
 
 class UnknownTextSource(ITextSource):
@@ -150,7 +149,7 @@ class Origin:
             return ((self.source, self.line_start, self.line_end) ==
                     (other.source, other.line_start, other.line_end))
         else:
-            return False
+            return NotImplemented
 
     def __gt__(self, other):
         if isinstance(other, Origin):
@@ -181,7 +180,7 @@ class Origin:
         return origin
 
 
-class RFC822Record(BaseRFC822Record):
+class RFC822Record:
     """
     Class for tracking RFC822 records
 
@@ -206,6 +205,23 @@ class RFC822Record(BaseRFC822Record):
     def __repr__(self):
         return "<{} data:{!r} origin:{!r}>".format(
             self.__class__.__name__, self._data, self._origin)
+
+    def __eq__(self, other):
+        if isinstance(other, RFC822Record):
+            return (self._data, self._origin) == (other._data, other._origin)
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, RFC822Record):
+            return (self._data, self._origin) != (other._data, other._origin)
+        return NotImplemented
+
+    @property
+    def data(self):
+        """
+        The data set (dictionary)
+        """
+        return self._data
 
     @property
     def origin(self):
@@ -238,6 +254,29 @@ class RFC822Record(BaseRFC822Record):
             else:
                 stream.write("%s: %s\n" % (key, value))
         stream.write("\n")
+
+
+class RFC822SyntaxError(SyntaxError):
+    """
+    SyntaxError subclass for RFC822 parsing functions
+    """
+
+    def __init__(self, filename, lineno, msg):
+        self.filename = filename
+        self.lineno = lineno
+        self.msg = msg
+
+    def __eq__(self, other):
+        if isinstance(other, RFC822SyntaxError):
+            return ((self.filename, self.lineno, self.msg)
+                    == (other.filename, other.lineno, other.msg))
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, RFC822SyntaxError):
+            return ((self.filename, self.lineno, self.msg)
+                    != (other.filename, other.lineno, other.msg))
+        return NotImplemented
 
 
 def load_rfc822_records(stream, data_cls=dict, source=None):
@@ -289,7 +328,7 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
     are separated by one blank line. A record key may have a multi-line value
     if the line starts with whitespace character.
 
-    Returns a list of subsequent values as instances RFC822Record class.  If
+    Returns a list of subsequent values as instances RFC822Record class. If
     the optional data_cls argument is collections.OrderedDict then the values
     retain their original ordering.
     """
