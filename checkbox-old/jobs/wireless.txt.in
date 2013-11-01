@@ -275,3 +275,30 @@ _description:
      3. Click "Test" to verify that the hard or soft blocks are in place.
  VERIFICATION:
      Did the hard or soft blocks show on in the dialog?
+
+plugin: local
+name: wireless/maximum_bandwidth
+requires:
+ device.category == 'WIRELESS'
+ package.name == 'zenity'
+ package.name == 'iperf'
+command:
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: user-verify
+ user: root
+ name: wireless/maximum_bandwidth_$2
+ requires: device.path == "$1"
+ command: network test -i $2 -t iperf 2>&1 | cat - <(echo; echo "Verify the result and click OK to decide on the outcome") | zenity --text-info --title 'wireless max bw $2'
+ _description:
+  PURPOSE:
+      User verification of whether the observed transfer throughput is acceptable
+      for the type and maximum speed of each wireless interface.
+  STEPS:
+      1. Read the network test summary and confirm that the throughput is acceptable.
+      2. If needed, click "Test" again to repeat the transfer test.
+  VERIFICATION:
+     Was the reported throughput acceptable for the type and maximum speed of this interface?
+ EOF
+_description:
+ This test executes a maximum throughput test against all the wireless devices found on the system.
+

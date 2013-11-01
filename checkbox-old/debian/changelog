@@ -20,6 +20,12 @@ checkbox (0.16.14) UNRELEASED; urgency=low
     to stress the connection and monitor for dropped/delayed packets and 
     implemented the logic for them in the network script.
 
+  [ Daniel Manrique ]
+  * jobs/ethernet.txt.in, jobs/wireless.txt.in: Added user-verify jobs to test
+    maximum throughput versus interface's max supported speed.
+  * scripts/network: Minor fixes and tweaks for nicer output and handling of
+    Kb/s and Gb/s.
+
  -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:36:53 -0400
 
 checkbox (0.16.13) saucy; urgency=low
