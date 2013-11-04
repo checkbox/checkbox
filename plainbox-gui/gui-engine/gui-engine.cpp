@@ -516,12 +516,14 @@ QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
             QString name(var.toString());
 
             qDebug() << name;
+            // Only show the user whitelists with the desired prefix.
+            if (name.indexOf(WhiteListPrefix) == 0){
+                paths_and_names.insert(child->object_path,name);
 
-            paths_and_names.insert(child->object_path,name);
-
-            // First time round, fill in our whitelist member
-            if (!initialised) {
-                whitelist.insert(child->object_path,true);
+                // First time round, fill in our whitelist member
+                if (!initialised) {
+                    whitelist.insert(child->object_path,true);
+                }
             }
         }
 

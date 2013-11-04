@@ -27,7 +27,6 @@ import "./artwork"
 
 
     Item {
-        Component.onCompleted: visible = is_ihv(testname)
         id: itemdelegate
         width: parent.width
         height: units.gu(7)
@@ -44,12 +43,7 @@ import "./artwork"
             checked: true
             onClicked: {
                 // Update the list of selected whitelists
-                for (var i = whiteListModel.count - 1; i >= 0; i--){
-                    var item = whiteListModel.get(i);
-                    if (item.testname === testname)
-                        whiteListModel.setProperty(i, "check", checked);
-                }
-
+		update_selection(testname, checked)
                 /* Update the ListView, primarily to ensure we dont
                  * uncheck ALL the whitelists.
                  */
@@ -57,8 +51,14 @@ import "./artwork"
             }
         }
 
-        function is_ihv(suite) {
-            return(suite.indexOf("ihv-") == 0)
+
+        function update_selection(testname, checked){
+            for (var i = whiteListModel.count - 1; i >= 0; i--){
+                var item = whiteListModel.get(i);
+                if (item.testname === testname){
+                    whiteListModel.setProperty(i, "check", checked);
+                }
+            }
         }
 
         function remove_prefix_and_capitalize_first(prefix, suite) {

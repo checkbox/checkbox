@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WANTED_PACKAGES="canonical-driver-test-suite checkbox-ihv-graphics"
+WANTED_PACKAGES="canonical-driver-test-suite"
 EXECUTABLE="canonical-driver-test-suite"
 START_TESTING_LOG=/tmp/start_testing.log
 START_TESTING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
