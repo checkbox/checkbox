@@ -65,4 +65,7 @@ static const QString JobResult_OUTCOME_FAIL = "fail";
 static const QString JobResult_OUTCOME_SKIP = "skip";
 static const QString JobResult_OUTCOME_NONE = "none";
 
+// Acceptable whitelist prefix
+static const QString WhiteListPrefix = "ihv-";
+
 #endif // PB_NAMES_H
