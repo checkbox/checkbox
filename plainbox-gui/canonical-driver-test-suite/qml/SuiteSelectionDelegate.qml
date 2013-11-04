@@ -27,10 +27,10 @@ import "./artwork"
 
 
     Item {
-        Component.onCompleted: visible = is_ihv(testname)
+        visible: is_ihv(testname)
         id: itemdelegate
         width: parent.width
-        height: units.gu(7)
+        height: is_ihv(testname) ? units.gu(7) : 0
 
         Item {
             id: suitefiller
