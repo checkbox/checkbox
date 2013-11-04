@@ -27,6 +27,7 @@ import "./artwork"
 
 
     Item {
+	Component.onCompleted: deselect_unless(is_ihv(testname))
         visible: is_ihv(testname)
         id: itemdelegate
         width: parent.width
@@ -44,16 +45,27 @@ import "./artwork"
             checked: true
             onClicked: {
                 // Update the list of selected whitelists
-                for (var i = whiteListModel.count - 1; i >= 0; i--){
-                    var item = whiteListModel.get(i);
-                    if (item.testname === testname)
-                        whiteListModel.setProperty(i, "check", checked);
-                }
-
+		update_selection(testname, checked)
                 /* Update the ListView, primarily to ensure we dont
                  * uncheck ALL the whitelists.
                  */
                 suitelist.ensure_one_selection();
+            }
+        }
+
+        function deselect_unless(keep_selected){
+            if ( ! keep_selected){
+                update_selection(testname, false);
+            }
+
+        }
+
+        function update_selection(testname, checked){
+            for (var i = whiteListModel.count - 1; i >= 0; i--){
+                var item = whiteListModel.get(i);
+                if (item.testname === testname){
+                    whiteListModel.setProperty(i, "check", checked);
+                }
             }
         }
 
@@ -62,7 +74,7 @@ import "./artwork"
         }
 
         function remove_prefix_and_capitalize_first(prefix, suite) {
-            var suitename = suite.replace(prefix, '')
+            var suitename = suite.replace(prefix, '');
             return suitename.substr(0, 1).toUpperCase() + suitename.substr(1)
         }
 
