@@ -27,11 +27,9 @@ import "./artwork"
 
 
     Item {
-	Component.onCompleted: deselect_unless(is_ihv(testname))
-        visible: is_ihv(testname)
         id: itemdelegate
         width: parent.width
-        height: is_ihv(testname) ? units.gu(7) : 0
+        height: units.gu(7)
 
         Item {
             id: suitefiller
@@ -53,12 +51,6 @@ import "./artwork"
             }
         }
 
-        function deselect_unless(keep_selected){
-            if ( ! keep_selected){
-                update_selection(testname, false);
-            }
-
-        }
 
         function update_selection(testname, checked){
             for (var i = whiteListModel.count - 1; i >= 0; i--){
@@ -69,12 +61,8 @@ import "./artwork"
             }
         }
 
-        function is_ihv(suite) {
-            return(suite.indexOf("ihv-") == 0)
-        }
-
         function remove_prefix_and_capitalize_first(prefix, suite) {
-            var suitename = suite.replace(prefix, '');
+            var suitename = suite.replace(prefix, '')
             return suitename.substr(0, 1).toUpperCase() + suitename.substr(1)
         }
 
