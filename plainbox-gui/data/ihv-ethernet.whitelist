@@ -1,23 +1,7 @@
-# Checkbox whitelist file IHV wireless tests
-# Resource Jobs
-cpuinfo
-cdimage
-display
-dmi
-dpkg
-efi
-gconf
-lsb
-meminfo
-module
-package
-device
-uname
-usb
-sleep
-optical_drive
-block_device
-touchpad_scroll
+# Checkbox whitelist file IHV ethernet tests
+# A meta-job that includes the resources needed for a valid submission.
+# Please do not remove without good reason.
+miscellanea/submission-resources
 #Info attachment jobs
 __info__
 codecs_attachment
@@ -54,7 +38,6 @@ networking/info
 networking/info.*
 ethernet/maximum_bandwidth
 ethernet/maximum_bandwidth.*
-wireless/wireless_rfkill
 # Automated tests
 benchmarks/network/network-loopback
 networking/info_automated
@@ -67,7 +50,5 @@ suspend/iperf_after_suspend_ether_auto
 suspend/iperf_after_suspend_ether_auto.*
 # Some manual tests after suspend
 suspend/network_resume_time
-power-management/hibernate_advanced
-power-management/hibernate-single-log-attach
 stress/network_restart
 

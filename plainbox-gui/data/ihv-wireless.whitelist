@@ -1,23 +1,7 @@
 # Checkbox whitelist file IHV wireless tests
-# Resource Jobs
-cpuinfo
-cdimage
-display
-dmi
-dpkg
-efi
-gconf
-lsb
-meminfo
-module
-package
-device
-uname
-usb
-sleep
-optical_drive
-block_device
-touchpad_scroll
+# A meta-job that includes the resources needed for a valid submission.
+# Please do not remove without good reason.
+miscellanea/submission-resources
 #Info attachment jobs
 __info__
 codecs_attachment
