@@ -264,7 +264,7 @@ class StressPerformanceTest:
         self.target = target
 
     def run(self):
-        iperf_cmd = 'iperf -c {} -t 60'.format(self.target)
+        iperf_cmd = 'iperf -c {} -t 300'.format(self.target)
         print("Running iperf...")
         iperf = subprocess.Popen(shlex.split(iperf_cmd))
 
