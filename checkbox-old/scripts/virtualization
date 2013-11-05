@@ -242,7 +242,7 @@ def test_kvm(args):
         logging.warn("No config file found")
     else:
         try:    
-            timeout = int(config.get("KVM", "timeout"))
+            timeout = config.get("KVM", "timeout")
         except ValueError: 
             logging.exception('Invalid or Empty timeout in config file. '
                           'Falling back to default')
@@ -259,7 +259,7 @@ def test_kvm(args):
     if image == "":
         image = args.image
 
-    kvm_test = KVMTest(image, timeout)
+    kvm_test = KVMTest(image, float(timeout))
     result = kvm_test.start()
 
     sys.exit(result)
