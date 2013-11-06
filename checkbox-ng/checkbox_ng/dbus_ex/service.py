@@ -18,26 +18,26 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.dbus.service` -- DBus Service support code for PlainBox
-===========================================================================
+:mod:`plainbox.impl.dbus_ex.service` -- DBus Service Extensions
+===============================================================
 """
 
 import logging
 import threading
 import weakref
 
+from plainbox.impl.signal import Signal
 import _dbus_bindings
 import dbus
-import dbus.service
 import dbus.exceptions
+import dbus.service
 
-from plainbox.impl.signal import Signal
-from plainbox.impl.dbus import INTROSPECTABLE_IFACE
-from plainbox.impl.dbus import OBJECT_MANAGER_IFACE
-from plainbox.impl.dbus import PROPERTIES_IFACE
+from checkbox_ng.dbus_ex import INTROSPECTABLE_IFACE
+from checkbox_ng.dbus_ex import OBJECT_MANAGER_IFACE
+from checkbox_ng.dbus_ex import PROPERTIES_IFACE
 # Note: use our own version of the decorators because
 # vanilla versions choke on annotations
-from plainbox.impl.dbus.decorators import method, signal
+from checkbox_ng.dbus_ex.decorators import method, signal
 
 
 # This is the good old standard python property decorator
@@ -51,7 +51,7 @@ __all__ = [
     'signal',
 ]
 
-logger = logging.getLogger("plainbox.dbus")
+logger = logging.getLogger("checkbox.ng.dbus_ex")
 
 
 class InterfaceType(dbus.service.InterfaceType):

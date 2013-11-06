@@ -38,7 +38,7 @@ from dbus.exceptions import DBusException
 from dbus._compat import is_py2
 
 
-_logger = logging.getLogger('plainbox.dbus.decorators')
+_logger = logging.getLogger('checkbox.ng.dbus_ex.decorators')
 
 
 def method(dbus_interface, in_signature=None, out_signature=None,

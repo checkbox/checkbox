@@ -18,8 +18,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.service` -- DBus service for PlainBox
-=========================================================
+:mod:`checkbox_ng.service` -- DBus service for CheckBox
+=======================================================
 """
 
 from threading import Lock
@@ -35,19 +35,18 @@ except ImportError:
         from plainbox.vendor.funcsigs import Signature
     except ImportError:
         raise SystemExit("DBus parts require 'funcsigs' from pypi.")
-from plainbox.vendor import extcmd
-
 from plainbox.abc import IJobResult
-from plainbox.impl import dbus
-from plainbox.impl.dbus import OBJECT_MANAGER_IFACE
-from plainbox.impl.dbus import mangle_object_path
 from plainbox.impl.job import JobDefinition
-from plainbox.impl.result import DiskJobResult
 from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.session import JobState
 from plainbox.impl.signal import remove_signals_listeners
+from plainbox.vendor import extcmd
 
-logger = logging.getLogger("plainbox.service")
+from checkbox_ng import dbus_ex as dbus
+from checkbox_ng.dbus_ex import OBJECT_MANAGER_IFACE
+from checkbox_ng.dbus_ex import mangle_object_path
+
+logger = logging.getLogger("checkbox.ng.service")
 
 _BASE_IFACE = "com.canonical.certification."
 
