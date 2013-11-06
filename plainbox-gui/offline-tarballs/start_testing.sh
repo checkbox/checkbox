@@ -60,5 +60,6 @@ if [ -n "$ACTIONS" ]; then
     pkexec_or_sudo
     $SUPER_COMMAND $START_TESTING_DIR/add_offline_repository $ACTIONS "$PACKAGES"
 fi
-message "Now starting driver testing application"
-nohup $EXECUTABLE &
+message "Now starting driver testing application."
+message "(This terminal window can be safely ignored)."
+$EXECUTABLE
