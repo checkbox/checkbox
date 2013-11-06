@@ -19,20 +19,23 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-plainbox.impl.dbus.test_dbus
-====================================
+checkbox_ng.dbus_ex.test_dbus
+=============================
 
-Test definitions for plainbox.impl.dbus module
+Test definitions for checkbox_ng.dbus_ex module
 """
 import re
 
 from plainbox.testing_utils.testcases import TestCaseWithParameters
-from plainbox.impl.dbus import mangle_object_path
+
+from checkbox_ng.dbus_ex import mangle_object_path
+
 
 class TestManglePath(TestCaseWithParameters):
     parameter_names = ('dbus_path',)
-    parameter_values = (('/plainbox/whitelist/some-bogus.whitelist', ),
-            ('/plainbox/provider/2013.com.example:test-provider', ))
+    parameter_values = (
+        ('/plainbox/whitelist/some-bogus.whitelist', ),
+        ('/plainbox/provider/2013.com.example:test-provider', ))
 
     def setUp(self):
         # Note this regex fails to capture the root ("/") dbus path, not

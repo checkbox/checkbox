@@ -18,8 +18,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.dbus` -- DBus support code for PlainBox
-===========================================================
+:mod:`checkbox_ng.dbus_ex` -- DBus Extensions
+=============================================
 """
 
 __all__ = [
@@ -46,7 +46,8 @@ from dbus import types
 
 OBJECT_MANAGER_IFACE = "org.freedesktop.DBus.ObjectManager"
 
-from plainbox.impl.dbus import service
+from checkbox_ng.dbus_ex import service
+
 
 def mangle_object_path(path):
     """

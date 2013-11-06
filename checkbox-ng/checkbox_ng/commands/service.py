@@ -18,8 +18,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.commands.service` -- service sub-command
-============================================================
+:mod:`checkbox_ng.commands.service` -- service sub-command
+==========================================================
 
 """
 
@@ -30,13 +30,13 @@ from dbus import StarterBus, SessionBus
 from dbus.mainloop.glib import DBusGMainLoop, threads_init
 from dbus.service import BusName
 from gi.repository import GObject
-
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.highlevel import Service
-from plainbox.impl.service import ServiceWrapper
+
+from checkbox_ng.service import ServiceWrapper
 
 
-logger = logging.getLogger("plainbox.commands.service")
+logger = logging.getLogger("checkbox.ng.commands.service")
 
 
 def connect_to_session_bus():
