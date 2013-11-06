@@ -19,12 +19,11 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.transport.certification` -- send to certification database
-==============================================================================
+:mod:`checkbox.certification` -- plainbox transport to certification database
+=============================================================================
 
-.. warning::
-
-    THIS MODULE DOES NOT HAVE STABLE PUBLIC API
+This module contains a PlainBox transport that knows how to send the
+certification XML data to the Canonical certification database.
 """
 
 from logging import getLogger
@@ -34,7 +33,7 @@ import requests
 from plainbox.impl.secure.config import Unset
 from plainbox.impl.transport import TransportBase
 
-logger = getLogger("plainbox.transport.certification")
+logger = getLogger("checkbox.ng.certification")
 
 
 class InvalidSecureIDError(ValueError):
