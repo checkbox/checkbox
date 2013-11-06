@@ -18,23 +18,29 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-plainbox.impl.test_applogic
-===========================
+checkbox_ng.test_config
+=======================
 
-Test definitions for plainbox.impl.applogic module
+Test definitions for checkbox_ng.config module
 """
 
 from unittest import TestCase
 
-from plainbox.impl.applogic import get_matching_job_list
-from plainbox.impl.secure.qualifiers import RegExpJobQualifier
-from plainbox.impl.testing_utils import make_job
+from plainbox.impl.secure.config import Unset
+
+from checkbox_ng.config import CheckBoxConfig
 
 
-class FunctionTests(TestCase):
+class PlainBoxConfigTests(TestCase):
 
-    def test_get_matching_job_list(self):
-        job_list = [make_job('foo'), make_job('froz'), make_job('barg')]
-        self.assertEqual(
-            get_matching_job_list(job_list, RegExpJobQualifier('f.*')),
-            [make_job('foo'), make_job('froz')])
+    def test_smoke(self):
+        config = CheckBoxConfig()
+        self.assertIs(config.secure_id, Unset)
+        secure_id = "0123456789ABCDE"
+        config.secure_id = secure_id
+        self.assertEqual(config.secure_id, secure_id)
+        with self.assertRaises(ValueError):
+            config.secure_id = "bork"
+        self.assertEqual(config.secure_id, secure_id)
+        del config.secure_id
+        self.assertIs(config.secure_id, Unset)

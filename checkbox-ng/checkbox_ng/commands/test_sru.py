@@ -27,8 +27,9 @@ Test definitions for plainbox.impl.box module
 from inspect import cleandoc
 from unittest import TestCase
 
-from plainbox.impl.box import main
 from plainbox.testing_utils.io import TestIO
+
+from checkbox_ng.main import main
 
 
 class TestSru(TestCase):
@@ -40,7 +41,7 @@ class TestSru(TestCase):
             self.assertEqual(call.exception.args, (0,))
         self.maxDiff = None
         expected = """
-        usage: plainbox sru [-h] [--check-config] --secure-id SECURE-ID
+        usage: checkbox sru [-h] [--check-config] --secure-id SECURE-ID
                             [--fallback FILE] [--destination URL] [--staging] [-n]
                             [-i PATTERN] [-x PATTERN] [-w WHITELIST]
 

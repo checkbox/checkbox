@@ -89,9 +89,6 @@ Code reference
 .. automodule:: plainbox.impl.commands.special
     :members:
 
-.. automodule:: plainbox.impl.commands.sru
-    :members:
-
 .. automodule:: plainbox.impl.depmgr
     :members:
 
@@ -210,7 +207,4 @@ Code reference
     :members:
 
 .. automodule:: plainbox.impl.transport
-    :members:
-
-.. automodule:: plainbox.impl.transport.certification
     :members:
