@@ -19,8 +19,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox.impl.commands.sru` -- sru sub-command
-====================================================
+:mod:`checkbox_ng.commands.sru` -- sru sub-command
+==================================================
 
 .. warning::
 
@@ -285,4 +285,3 @@ class SRUCommand(PlainBoxCommand, CheckBoxCommandMixIn):
                   " Only local, resource and attachment jobs are started"))
         # Call enhance_parser from CheckBoxCommandMixIn
         self.enhance_parser(parser)
-
