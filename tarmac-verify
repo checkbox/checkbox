@@ -11,3 +11,7 @@ export VAGRANT_DONE_ACTION=destroy
 time -o timing.dat ./test-in-vagrant.sh
 echo "Complete checkbox, plainbox, integration and docs time:"
 cat timing.dat
+
+# Ping rtfd.org to refresh the documentation
+curl -X POST http://readthedocs.org/build/plainbox
+curl -X POST http://readthedocs.org/build/checkbox
