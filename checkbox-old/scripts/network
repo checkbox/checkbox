@@ -264,13 +264,16 @@ class StressPerformanceTest:
         self.target = target
 
     def run(self):
-        iperf_cmd = 'iperf -c {} -t 300'.format(self.target)
+        iperf_cmd = 'timeout 15 iperf -c {} -t 10'.format(self.target)
         print("Running iperf...")
         iperf = subprocess.Popen(shlex.split(iperf_cmd))
 
         ping_cmd = 'ping -I {} {}'.format(self.interface, self.target)
         ping = subprocess.Popen(shlex.split(ping_cmd), stdout=subprocess.PIPE)
         iperf.communicate()
+
+        if iperf.returncode != 0:
+            return iperf.returncode
 
         ping.terminate()
         (out, err) = ping.communicate()
@@ -279,13 +282,14 @@ class StressPerformanceTest:
         result = 0
         time_re = re.compile('(?<=time=)[0-9]*')
         for line in out.decode().split('\n'):
-            print(line)
             time = time_re.search(line)
 
             if time and int(time.group()) > 2000:
+                print(line)
                 print("ICMP packet was delayed by > 2000 ms.")
                 result = 1
             if 'unreachable' in line.lower():
+                print(line)
                 result = 1
         
         return result
