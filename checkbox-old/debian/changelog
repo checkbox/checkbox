@@ -1,6 +1,9 @@
 checkbox (0.16.15) UNRELEASED; urgency=low
 
-  * Incremented changelog
+  [ Brendan Donegan ]
+  * scripts/brightness_test - Update get_best_interface function to use
+    heuristic prescribed by the kernel for selecting the backlight
+    interface to use (LP: #1250437)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 01 Nov 2013 15:29:31 +0000
 
