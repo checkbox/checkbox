@@ -100,13 +100,23 @@ class Brightness(object):
         # over the more common acpi_video one
         if len(self._interfaces) == 0:
             return None
-        elif len(self._interfaces) > 1:
-            for interface in self._interfaces:
-                if not interface.__contains__('acpi_video'):
-                    return interface
-            return self._interfaces[-1]
         else:
-            return self._interfaces[0]
+            interfaces = {}
+            for interface in self._interfaces:
+                try:
+                    iface_type = open(interface + '/type').read().strip()
+                except IOError:
+                    continue
+                interfaces[iface_type] = interface
+
+            if interfaces.get('firmware'):
+                return interfaces.get('firmware')
+            elif interfaces.get('platform'):
+                return interfaces.get('platform')
+            elif interfaces.get('raw'):
+                return interfaces.get('raw')
+            else:
+                return interfaces[0]
 
     def was_brightness_applied(self, interface):
         '''See if the selected brightness was applied
