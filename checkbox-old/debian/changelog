@@ -29,6 +29,9 @@ checkbox (0.16.14) saucy; urgency=low
     that it actually tests the RTC instead of just checking for its presence.
     Also create a resource job to allow other jobs to determine if an RTC is
     present. (LP: #1184733)
+  * jobs/ethernet.txt.in, jobs/wireless.txt.in, scripts/network - added tests
+    to stress the connection and monitor for dropped/delayed packets and 
+    implemented the logic for them in the network script.
 
   [ Daniel Manrique ]
   * jobs/ethernet.txt.in, jobs/wireless.txt.in: Added user-verify jobs to test
