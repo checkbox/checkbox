@@ -8,6 +8,8 @@ checkbox (0.16.15) UNRELEASED; urgency=low
   [ Daniel Manrique ]
   * jobs/stress.txt: Refer the stress log checking jobs to a single test file,
     rather than using wildcards, which causes strange results (LP: #1161718)
+  * scripts/virtualization: Removed stray space in -net parameters causing
+    test failures (LP: #1250568)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 01 Nov 2013 15:29:31 +0000
 
