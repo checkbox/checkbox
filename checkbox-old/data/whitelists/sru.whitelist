@@ -1,8 +1,10 @@
 ## This whitelist contains tests that are useful for validating a Stable
 ## Release Update (SRU) on Ubuntu Certified systems.  This whitelist is not
 ## recommended for, nor will it be accepted for self-testing purposes.
-cpuinfo
+block_device
 cdimage
+cpuinfo
+device
 dmi
 dpkg
 efi
@@ -13,10 +15,9 @@ meminfo
 memory_card
 module
 package
-device
-uname
+rtc
 sleep
-block_device
+uname
 xinput
 #File Attachment Jobs
 __info__
