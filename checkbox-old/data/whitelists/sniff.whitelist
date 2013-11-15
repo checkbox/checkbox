@@ -3,8 +3,9 @@
 ## these comments. DO NOT delete the first 9 jobs in tis file. They are resource
 ## gathering jobs and are necessary to do any testing at all.
 # Resource Jobs (listed in jobs/resource.txt)
-cpuinfo
 cdimage
+cpuinfo
+device
 dmi
 dpkg
 efi
@@ -14,9 +15,9 @@ lsb
 meminfo
 module
 package
-device
-uname
+rtc
 sleep
+uname
 # Smoke sniffcases
 __audio__
 audio/device_driver_info
