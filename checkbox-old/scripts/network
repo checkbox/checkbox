@@ -257,7 +257,43 @@ class FTPPerformanceTest(object):
             print("Failed sending file via ftp")
             return 1
 
+class StressPerformanceTest:
 
+    def __init__(self, interface, target):
+        self.interface = interface
+        self.target = target
+
+    def run(self):
+        iperf_cmd = 'timeout 320 iperf -c {} -t 300'.format(self.target)
+        print("Running iperf...")
+        iperf = subprocess.Popen(shlex.split(iperf_cmd))
+
+        ping_cmd = 'ping -I {} {}'.format(self.interface, self.target)
+        ping = subprocess.Popen(shlex.split(ping_cmd), stdout=subprocess.PIPE)
+        iperf.communicate()
+        
+        ping.terminate()
+        (out, err) = ping.communicate()
+
+        if iperf.returncode != 0:
+            return iperf.returncode
+
+        print("Running ping test...")
+        result = 0
+        time_re = re.compile('(?<=time=)[0-9]*')
+        for line in out.decode().split('\n'):
+            time = time_re.search(line)
+
+            if time and int(time.group()) > 2000:
+                print(line)
+                print("ICMP packet was delayed by > 2000 ms.")
+                result = 1
+            if 'unreachable' in line.lower():
+                print(line)
+                result = 1
+        
+        return result
+        
 class Interface(socket.socket):
     """
     Simple class that provides network interface information.
@@ -357,7 +393,8 @@ def interface_test(args):
         test_user = config.get("FTP", "User")
         test_pass = config.get("FTP", "Pass")
 
-        if args.test_type.lower() == "iperf":
+        if (args.test_type.lower() == "iperf" or
+            args.test_type.lower() == "stress"):
             test_target = config.get("IPERF", "Target")
 
         if "example.com" in test_target:
@@ -394,6 +431,10 @@ def interface_test(args):
         elif args.test_type.lower() == "iperf":
             iperf_benchmark = IPerfPerformanceTest(args.interface, test_target)
             result = iperf_benchmark.run()
+
+        elif args.test_type.lower() == "stress":
+            stress_benchmark = StressPerformanceTest(args.interface, test_target)
+            result = stress_benchmark.run()
     
     for iface in extra_interfaces:
         logging.debug("Restoring interface:%s", iface)
@@ -404,7 +445,7 @@ def interface_test(args):
             logging.error("Failed to use %s:%s", cmd, interface_failure)
             result = 3
 
-    sys.exit(result)
+    return result
 
 def interface_info(args):
 
@@ -452,7 +493,7 @@ def main():
         '-i', '--interface', type=str, required=True)
     test_parser.add_argument(
         '-t', '--test_type', type=str, 
-        choices=("ftp", "iperf"), default="ftp",
+        choices=("ftp", "iperf", "stress"), default="ftp",
         help=("[FTP *Default*]"))
     test_parser.add_argument('--target', type=str)
     test_parser.add_argument(
@@ -466,6 +507,7 @@ def main():
         '--config', type=str,
         default="/etc/checkbox.d/network.cfg",
         help="Supply config file for target/host network parameters")
+
 
     # Sub info options
     info_parser.add_argument(
@@ -493,8 +535,8 @@ def main():
 
     args = parser.parse_args()
 
-    args.func(args)
+    return args.func(args)
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

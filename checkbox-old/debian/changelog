@@ -1,4 +1,21 @@
-checkbox (0.16.14) UNRELEASED; urgency=low
+checkbox (0.16.15) UNRELEASED; urgency=low
+
+  [ Brendan Donegan ]
+  * scripts/brightness_test - Update get_best_interface function to use
+    heuristic prescribed by the kernel for selecting the backlight
+    interface to use (LP: #1250437)
+
+  [ Daniel Manrique ]
+  * jobs/stress.txt: Refer the stress log checking jobs to a single test file,
+    rather than using wildcards, which causes strange results (LP: #1161718)
+  * scripts/virtualization: Removed stray space in -net parameters causing
+    test failures (LP: #1250568)
+  * data/whitelists: Updated whitelists that require the new rtc resource
+    (LP: #1251781)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 01 Nov 2013 15:29:31 +0000
+
+checkbox (0.16.14) saucy; urgency=low
 
     [ Chris Gregan ]
   * jobs/suspend.txt.in - added tests for running iperf tests before and after 
@@ -16,6 +33,9 @@ checkbox (0.16.14) UNRELEASED; urgency=low
     that it actually tests the RTC instead of just checking for its presence.
     Also create a resource job to allow other jobs to determine if an RTC is
     present. (LP: #1184733)
+  * jobs/ethernet.txt.in, jobs/wireless.txt.in, scripts/network - added tests
+    to stress the connection and monitor for dropped/delayed packets and 
+    implemented the logic for them in the network script.
 
   [ Daniel Manrique ]
   * jobs/ethernet.txt.in, jobs/wireless.txt.in: Added user-verify jobs to test
@@ -23,7 +43,7 @@ checkbox (0.16.14) UNRELEASED; urgency=low
   * scripts/network: Minor fixes and tweaks for nicer output and handling of
     Kb/s and Gb/s.
 
- -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:36:53 -0400
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 01 Nov 2013 15:29:13 +0000
 
 checkbox (0.16.13) saucy; urgency=low
 

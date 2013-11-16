@@ -312,18 +312,17 @@ class IProviderBackend1(metaclass=ABCMeta):
         """
 
     @abstractproperty
-    def extra_PATH(self):
+    def bin_dir(self):
         """
-        Return additional entry for PATH
-
-        This entry is required to lookup CheckBox scripts.
+        directory where all the executables needed by this provider reside
         """
 
     @abstractproperty
     def secure(self):
         """
         flag indicating that this provider was loaded from the secure portion
-        of PROVIDERPATH and thus can be used with the checkbox-trusted-launcher.
+        of PROVIDERPATH and thus can be used with the
+        plainbox-trusted-launcher-1.
         """
 
 

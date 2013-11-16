@@ -32,24 +32,30 @@ from shutil import copyfileobj
 import io
 import os
 import sys
+import textwrap
 
 from plainbox.abc import IJobResult
 from plainbox.impl.applogic import get_matching_job_list, get_whitelist_by_name
 from plainbox.impl.commands import PlainBoxCommand
+from plainbox.impl.commands.check_config import CheckConfigInvocation
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
 from plainbox.impl.commands.checkbox import CheckBoxInvocationMixIn
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.exporter import ByteStringStreamTranslator
+from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.exporter.html import HTMLSessionStateExporter
 from plainbox.impl.exporter.xml import XMLSessionStateExporter
-from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.result import DiskJobResult, MemoryJobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.runner import authenticate_warmup
 from plainbox.impl.runner import slugify
-from plainbox.impl.secure.config import Unset
+from plainbox.impl.secure.config import Unset, ValidationError
 from plainbox.impl.secure.qualifiers import WhiteList
 from plainbox.impl.session import SessionStateLegacyAPI as SessionState
+from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
+
+from checkbox_ng.certification import CertificationTransport
+from checkbox_ng.certification import InvalidSecureIDError
 
 
 logger = getLogger("checkbox.ng.commands.server")
@@ -74,6 +80,11 @@ class _ServerInvocation(CheckBoxInvocationMixIn):
         else:
             self.whitelist = get_whitelist_by_name(provider_list,
                                                    desired_whitelist)
+        if self.config.welcome_text is not Unset:
+            print()
+            for line in self.config.welcome_text.splitlines():
+                print(textwrap.fill(line, 80, replace_whitespace=False))
+            print()
         print("[ Analyzing Jobs ]".center(80, '='))
         self.job_list = self.get_job_list(ns)
         self.session = None
@@ -151,7 +162,7 @@ class _ServerInvocation(CheckBoxInvocationMixIn):
                 self.job_list, self.whitelist)
             self._update_desired_job_list(session, desired_job_list)
             if session.previous_session_file():
-                if self.ask_for_resume():
+                if self.is_interactive and self.ask_for_resume():
                     session.resume()
                     self._maybe_skip_last_job_after_resume(session)
                 else:
@@ -160,26 +171,51 @@ class _ServerInvocation(CheckBoxInvocationMixIn):
             session.persistent_save()
             # Ask the password before anything else in order to run jobs
             # requiring privileges
-            if self._auth_warmup_needed(session):
+            if self.is_interactive and self._auth_warmup_needed(session):
                 print("[ Authentication ]".center(80, '='))
                 return_code = authenticate_warmup()
                 if return_code:
                     raise SystemExit(return_code)
             runner = JobRunner(
-                session.session_dir,
-                session.jobs_io_log_dir,
-            )
+                session.session_dir, self.provider_list,
+                session.jobs_io_log_dir)
             self._run_jobs_with_session(ns, session, runner)
             self._save_results(session)
+            if self.config.secure_id is Unset:
+                again = True
+                if not self.is_interactive:
+                    again = False
+                while again:
+                    if self.ask_user(
+                        "\nSubmit results to certification.canonical.com?",
+                        ('y', 'n')
+                    ).lower() == "y":
+                        try:
+                            self.config.secure_id = input("Secure ID: ")
+                        except ValidationError as exc:
+                            print(
+                                "ERROR: Secure ID must be 15 or 18-character"
+                                " alphanumeric string")
+                        else:
+                            again = False
+                            self._submit_results(session)
+                    else:
+                        again = False
+            else:
+                # Automatically try to submit results if the secure_id is valid
+                self._submit_results(session)
 
         # FIXME: sensible return value
         return 0
 
     def _auth_warmup_needed(self, session):
-        # Don't use authentication warm-up in modes other than 'deb' as it
-        # makes no sense to do so.
-        if all(provider.uses_policykit is False
-               for provider in self.provider_list):
+        # Don't warm up plainbox-trusted-launcher-1 if none of the providers
+        # use it. We assume that the mere presence of a provider makes it
+        # possible for a root job to be preset but it could be improved to
+        # acutally know when this step is absolutely not required (no local
+        # jobs, no jobs
+        # need root)
+        if all(not provider.secure for provider in self.provider_list):
             return False
         # Don't use authentication warm-up if none of the jobs on the run list
         # requires it.
@@ -228,10 +264,43 @@ class _ServerInvocation(CheckBoxInvocationMixIn):
             with open(results_path, "wb") as stream:
                 exporter.dump(data_subset, stream)
         print("\nSaving submission file to {}".format(submission_file))
+        self.submission_file = submission_file
         print("View results (HTML): file://{}".format(results_file))
         if 'xlsx' in get_all_exporters():
             print("View results (XLSX): file://{}".format(
                 results_file.replace('html', 'xlsx')))
+
+    def _submit_results(self, session):
+        print("Submitting results to {0} for secure_id {1}".format(
+              self.config.c3_url, self.config.secure_id))
+        options_string = "secure_id={0}".format(self.config.secure_id)
+        # Create the transport object
+        try:
+            transport = CertificationTransport(
+                self.config.c3_url, options_string, self.config)
+        except InvalidSecureIDError as exc:
+            print(exc)
+            return False
+        with open(self.submission_file) as stream:
+            try:
+                # Send the data, reading from the fallback file
+                result = transport.send(stream)
+                if 'url' in result:
+                    print("Successfully sent, submission status at {0}".format(
+                          result['url']))
+                else:
+                    print("Successfully sent, server response: {0}".format(
+                          result))
+
+            except InvalidSchema as exc:
+                print("Invalid destination URL: {0}".format(exc))
+            except ConnectionError as exc:
+                print("Unable to connect to destination URL: {0}".format(exc))
+            except HTTPError as exc:
+                print(("Server returned an error when "
+                       "receiving or processing: {0}").format(exc))
+            except IOError as exc:
+                print("Problem reading a file: {0}".format(exc))
 
     def _interaction_callback(self, runner, job, config, prompt=None,
                               allowed_outcome=None):
@@ -357,6 +426,20 @@ class ServerCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         self.config = config
 
     def invoked(self, ns):
+        # Copy command-line arguments over configuration variables
+        try:
+            if ns.secure_id:
+                self.config.secure_id = ns.secure_id
+            if ns.c3_url:
+                self.config.c3_url = ns.c3_url
+        except ValidationError as exc:
+            print("Configuration problems prevent running Certification tests")
+            print(exc)
+            return 1
+        # Run check-config, if requested
+        if ns.check_config:
+            retval = CheckConfigInvocation(self.config).run()
+            return retval
         return _ServerInvocation(self.provider_list, self.config, ns).run()
 
     def register_parser(self, subparsers):
@@ -364,6 +447,32 @@ class ServerCommand(PlainBoxCommand, CheckBoxCommandMixIn):
             "certification-server",
             help="run the server certification tests")
         parser.set_defaults(command=self)
+        parser.add_argument(
+            "--check-config",
+            action="store_true",
+            help="Run check-config")
+        group = parser.add_argument_group("certification-specific options")
+        # Set defaults from based on values from the config file
+        group.set_defaults(c3_url=self.config.c3_url)
+        if self.config.secure_id is not Unset:
+            group.set_defaults(secure_id=self.config.secure_id)
+        group.add_argument(
+            '--secure-id', metavar="SECURE-ID",
+            action='store',
+            help=("Associate submission with a machine using this SECURE-ID"
+                  " (%(default)s)"))
+        group.add_argument(
+            '--destination', metavar="URL",
+            dest='c3_url',
+            action='store',
+            help=("POST the test report XML to this URL"
+                  " (%(default)s)"))
+        group.add_argument(
+            '--staging',
+            dest='c3_url',
+            action='store_const',
+            const='https://certification.staging.canonical.com/submissions/submit/',
+            help='Override --destination to use the staging certification website')
         group = parser.add_argument_group(title="user interface options")
         group.add_argument(
             '--self-test', action='store_true',

@@ -122,7 +122,7 @@ class KVMTest(object):
             params = \
                 '''
                 qemu-system-x86_64 -machine accel=kvm:tcg -m {0} -net nic 
-                -net user,net={1},host={2}, hostfwd={3}
+                -net user,net={1},host={2},hostfwd={3} 
                 -drive file={4},if=virtio {5} -display none -nographic
                 '''.format(
                 "256",
@@ -242,9 +242,9 @@ def test_kvm(args):
         logging.warn("No config file found")
     else:
         try:    
-            timeout = int(config.get("KVM", "timeout"))
+            timeout = config.getfloat("KVM", "timeout")
         except ValueError: 
-            logging.exception('Invalid or Empty timeout in config file. '
+            logging.warning('Invalid or Empty timeout in config file. '
                           'Falling back to default')
         except configparser.NoSectionError as e:
             logging.exception(e)
@@ -293,7 +293,12 @@ def main():
             logging.basicConfig(level=logging.DEBUG)
     except AttributeError:
         pass #avoids exception when trying to run without specifying 'kvm'
-
+    
+    #to check if not len(sys.argv) > 1
+    if len(vars(args)) == 0:
+        parser.print_help()
+        return False
+    
     args.func(args)
 
 if __name__ == "__main__":

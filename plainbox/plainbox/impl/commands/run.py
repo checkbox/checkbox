@@ -196,10 +196,8 @@ class RunInvocation(CheckBoxInvocationMixIn):
                 if return_code:
                     raise SystemExit(return_code)
             runner = JobRunner(
-                session.session_dir,
-                session.jobs_io_log_dir,
-                dry_run=ns.dry_run
-            )
+                session.session_dir, self.provider_list,
+                session.jobs_io_log_dir, dry_run=ns.dry_run)
             self._run_jobs_with_session(ns, session, runner)
             # Get a stream with exported session data.
             exported_stream = io.BytesIO()
@@ -226,10 +224,11 @@ class RunInvocation(CheckBoxInvocationMixIn):
         return 0
 
     def _auth_warmup_needed(self, session):
-        # Don't warm up checkbox-trusted-launcher if none of the providers use
-        # it. We assume that the mere presence of a provider makes it possible
-        # for a root job to be preset but it could be improved to acutally know
-        # when this step is absolutely not required (no local jobs, no jobs
+        # Don't warm up plainbox-trusted-launcher-1 if none of the providers
+        # use it. We assume that the mere presence of a provider makes it
+        # possible for a root job to be preset but it could be improved to
+        # acutally know when this step is absolutely not required (no local
+        # jobs, no jobs
         # need root)
         if all(not provider.secure for provider in self.provider_list):
             return False

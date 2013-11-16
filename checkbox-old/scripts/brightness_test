@@ -96,17 +96,33 @@ class Brightness(object):
 
     def get_best_interface(self):
         '''Get the best acpi interface'''
-        # Let's prefer the driver specific interface
-        # over the more common acpi_video one
+        # Follow the heuristic in https://www.kernel.org/doc/Documentation/
+        #ABI/stable/sysfs-class-backlight
         if len(self._interfaces) == 0:
             return None
-        elif len(self._interfaces) > 1:
-            for interface in self._interfaces:
-                if not interface.__contains__('acpi_video'):
-                    return interface
-            return self._interfaces[-1]
         else:
-            return self._interfaces[0]
+            interfaces = {}
+            for interface in self._interfaces:
+                try:
+                    with open(interface + '/type') as type_file:
+                        iface_type = type_file.read().strip()
+                except IOError:
+                    continue
+                interfaces[iface_type] = interface
+
+            if interfaces.get('firmware'):
+                return interfaces.get('firmware')
+            elif interfaces.get('platform'):
+                return interfaces.get('platform')
+            elif interfaces.get('raw'):
+                return interfaces.get('raw')
+            else:
+                fallback_type = sorted(interfaces.keys())[0]
+                print("WARNING: no interface of type firmware/platform/raw "
+                      "found. Using {} of type {}".format(
+                      interfaces[fallback_type],
+                      fallback_type))
+                return interfaces[fallback_type]
 
     def was_brightness_applied(self, interface):
         '''See if the selected brightness was applied
