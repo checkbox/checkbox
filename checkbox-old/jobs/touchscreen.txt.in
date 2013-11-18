@@ -1,5 +1,6 @@
 plugin: manual
 name: touchscreen/tap-detect
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Check touchscreen tap recognition
@@ -10,6 +11,7 @@ _description:
 
 plugin: manual
 name: touchscreen/drag-n-drop
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Check touchscreen drag & drop
@@ -21,6 +23,7 @@ _description:
 
 plugin: manual
 name: touchscreen/multitouch-zoom
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Check touchscreen pinch gesture for zoom
@@ -35,6 +38,7 @@ name: touchscreen/nontouch-automated
 requires:
   xinput.device_class == 'XITouchClass' and xinput.touch_mode != 'direct'
 command: true
+estimated_duration: 1.2
 _description:
  Determine whether the screen is detected as a non-touch device automatically.
 
@@ -43,12 +47,14 @@ name: touchscreen/multitouch-automated
 requires:
   xinput.device_class == 'XITouchClass' and xinput.touch_mode == 'direct'
 command: true
+estimated_duration: 1.2
 _description:
  Determine whether the screen is detected as a multitouch device automatically.
 
 plugin: manual
 name: touchscreen/multitouch-manual
 depends: touchscreen/nontouch-automated
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Touchscreen manual detection of multitouch.

@@ -1,6 +1,7 @@
 plugin: manual
 name: touchpad/basic
 requires: dmi.product in ['Notebook','Laptop','Portable']
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Touchpad user-verify
@@ -15,6 +16,7 @@ name: touchpad/horizontal
 requires:
   'Button Horiz Wheel Left' in xinput.button_labels and 'Button Horiz Wheel Right' in xinput.button_labels
 command: touchpad_test right left
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Touchpad horizontal scroll verification
@@ -29,6 +31,7 @@ name: touchpad/vertical
 requires:
   'Button Wheel Up' in xinput.button_labels and 'Button Wheel Down' in xinput.button_labels
 command: touchpad_test up down
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Touchpad vertical scroll verification
@@ -44,6 +47,7 @@ requires:
   dmi.product in ['Notebook','Laptop','Portable']
   xinput.device_class == 'XITouchClass' and xinput.touch_mode != 'dependent'
 command: true
+estimated_duration: 1.2
 _description:
  Determine whether the touchpad is detected as a singletouch device automatically.
 
@@ -59,6 +63,7 @@ _description:
 plugin: manual
 name: touchpad/multitouch-manual
 depends: touchpad/singletouch-automated
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Touchpad manual detection of multitouch.
