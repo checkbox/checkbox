@@ -1,10 +1,16 @@
-checkbox (0.17) UNRELEASED; urgency=low
+checkbox (0.17ubuntu1) UNRELEASED; urgency=low
 
+  [ Zygmunt Krynicki ]
   * Incremented changelog
   * Make plainbox-service a transitional package that depends on
     checkbox-ng-service. 
 
- -- Zygmunt Krynicki <zygmunt.krynicki@canonical.com>  Sat, 16 Nov 2013 11:32:14 +0100
+  [ Manoj Iyer ]
+  * Make cpu stress test work with cloud instances. Cloud instances have
+    typically have limited resources so added logic to utilize less memory,
+    at the same time keeping the CPU utilization unchanged at 100%.
+
+ -- Manoj Iyer <manoj.iyer@canonical.com>  Tue, 19 Nov 2013 13:49:33 -0600
 
 checkbox (0.16.15) precise; urgency=low
 
