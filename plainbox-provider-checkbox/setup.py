@@ -45,7 +45,17 @@ DATA_FILES.extend([
 class Build(build_extra.build_extra):
 
     def run(self):
+        # Build our own POTFILES.in as DistUtilsExtra does not include rfc822
+        # files automatically
+        with open('po/POTFILES.in', 'w') as potfiles_in:
+            potfiles_in.write('[encoding: UTF-8]\n')
+            for f in glob("provider_jobs/*"):
+                potfiles_in.write('[type: gettext/rfc822deb] ' + f + '\n')
+            for f in glob("provider_bin/*"):
+                potfiles_in.write(f + '\n')
+
         build_extra.build_extra.run(self)
+
         cc = new_compiler()
         for source in glob('provider_bin/*.c'):
             executable = os.path.splitext(source)[0]
@@ -56,6 +66,8 @@ class Build(build_extra.build_extra):
                     "-g", "-O2", "-fstack-protector",
                     "--param=ssp-buffer-size=4", "-Wformat",
                     "-Werror=format-security"])
+
+        os.unlink('po/POTFILES.in')
 
 
 DistUtilsExtra.auto.setup(
