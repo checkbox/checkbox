@@ -26,11 +26,13 @@ This `setup.py` is really a multiplexer to various setup.py files (for
 plainbox, checkbox-ng, etc). It was implemented because readthedocs.org cannot
 handle many projects in one repository correctly.
 """
+import glob
 import os
 import subprocess
 import sys
 
-delegate_to = ['plainbox', 'checkbox-ng']
+delegate_to = ['plainbox', 'checkbox-ng', 'checkbox-old']
+delegate_to.extend(glob.glob('plainbox-provider*'))
 try:
     base = os.path.dirname(__file__)
     for target_dir in delegate_to:
