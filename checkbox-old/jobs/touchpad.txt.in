@@ -115,7 +115,7 @@ _description:
 
 plugin: user-interact
 name: touchpad/multitouch-horizontal
-requires: touchpad/multitouch-automated
+depends: touchpad/multitouch-automated
 command: touchpad_test right left
 estimated_duration: 120.0
 _description:
@@ -129,7 +129,7 @@ _description:
 
 plugin: user-interact
 name: touchpad/multitouch-vertical
-requires: touchpad/multitouch-automated
+depends: touchpad/multitouch-automated
 command: touchpad_test up down
 estimated_duration: 120.0
 _description:
