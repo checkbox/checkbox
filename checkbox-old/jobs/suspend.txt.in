@@ -1757,3 +1757,14 @@ _description:
  VERIFICATION:
      The verification of this test is automated. Do not change the
      automatically selected result.
+
+plugin: shell
+name: touchpad/touchpad_after_suspend
+depends: suspend/suspend_advanced_auto
+requires:
+  dmi.product in ['Notebook','Laptop','Portable']
+  xinput.device_class == 'XITouchClass' and xinput.touch_mode != 'dependent'
+command: true
+estimated_duration: 1.2
+_description:
+ Determine if the touchpad is still functioning after suspend/resume.

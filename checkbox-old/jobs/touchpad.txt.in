@@ -71,3 +71,71 @@ _description:
      1. Look at the specifications for your system.
  VERIFICATION:
      Is the touchpad supposed to be multitouch?
+
+plugin: manual
+name: touchpad/singletouch-corner
+depends: touchpad/singletouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Determine that the hot corner feature is working as expected
+ STEPS:
+     1. Launch a browser.
+     2. Go to a website, and hover the cursor over a link.
+     3. Tap the upper right corner if the touchpad.
+ VERIFICATION:
+     Did the tap trigger a new tab to be opended?
+
+plugin: manual
+name: touchpad/singletouch-selection
+depends: touchpad/singletouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Determine that the selection window function is working as expected.
+ STEPS:
+     1. Open a file folder
+     2. Double tap and drag the cursor across several file.
+ VERIFICATION:
+     Did a selection window open and were several files selected?
+
+plugin: manual
+name: touchpad/singletouch-rightclick
+depends: touchpad/singletouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Determine that the right click function is working as expected.
+ STEPS:
+     1. Open a file folder
+     2. Hover cursor over file in folder
+     3. Double tap.
+ VERIFICATION:
+     Did the right click pop up menu appear?
+
+plugin: user-interact
+name: touchpad/multitouch-horizontal
+requires: touchpad/multitouch-automated
+command: touchpad_test right left
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Touchpad 2-touch horizontal scroll verification
+ STEPS:
+     1. Select "Test" when ready and place your cursor within the borders of the displayed test window.
+     2. Verify that you can move the horizontal slider by moving 2 fingers right and left along the touchpad.
+ VERIFICATION:
+     Could you scroll right and left?
+
+plugin: user-interact
+name: touchpad/multitouch-vertical
+requires: touchpad/multitouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Touchpad 2-touch vertical scroll verification
+ STEPS:
+     1. Select "Test" when ready and place your cursor within the borders of the displayed test window.
+     2. Verify that you can move the vertical slider by moving 2 fingers up and down along the touchpad.
+ VERIFICATION:
+     Could you scroll up and down?
