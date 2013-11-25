@@ -62,3 +62,28 @@ _description:
      1. Look at the specifications for your system.
  VERIFICATION:
      Is the screen supposed to be multitouch?
+
+plugin: manual
+name: touchscreen/multitouch-window-move
+depends: touchscreen/nontouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Validate that 3-touch drag is operating as expected
+ STEPS:
+     1. Open a windows and bring it to the foreground
+     2. 3-touch the window and drag
+ VERIFICATION:
+     Did the window move along with the drag?
+
+plugin: manual
+name: touchscreen/multitouch-dash
+depends: touchscreen/nontouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Validate that 4-touch tap is operating as expected
+ STEPS:
+     1. 4-touch tap anywhere on the touchscreen
+ VERIFICATION:
+     Did the tap open the Dash?

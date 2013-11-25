@@ -1768,3 +1768,15 @@ command: true
 estimated_duration: 1.2
 _description:
  Determine if the touchpad is still functioning after suspend/resume.
+
+plugin: manual
+name: touchscreen/touchscreen_after_suspend
+depends: suspend/suspend_advanced_auto
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Check touchscreen tap recognition
+ STEPS:
+     1. Tap an object on the screen with finger. The cursor should jump to location tapped and object should highlight
+ VERIFICATION:
+     Does tap recognition work?
