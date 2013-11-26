@@ -9,6 +9,21 @@ command:
  name: firmware/fwts_$1
  requires: package.name == 'fwts'
  user: root
- command: fwts_test -t $1 -l $CHECKBOX_DATA/firmware/fwts_$1.log
- description: Run $1 test from Firmware Test Suite.
+ command: fwts_test -t $1 -l $CHECKBOX_DATA/fwts_$1.log
+ _description: Run $1 test from Firmware Test Suite.
+ EOF
+
+plugin: local
+name: firmware/fwts_logs
+requires: package.name == 'fwts'
+_description: Automated tests for firmware using Firmware Test Suite.
+user: root
+command:
+ cat << 'EOF' | run_templates -s 'fwts_test --list'
+ plugin: attachment
+ name: firmware/fwts_$1.log
+ requires: package.name == 'fwts'
+ user: root
+ command: [[ -e ${CHECKBOX_DATA}/fwts_$1.log ]] && cat ${CHECKBOX_DATA}/fwts_$1.log
+ _description: Attach log for FWTS $1 test.
  EOF
