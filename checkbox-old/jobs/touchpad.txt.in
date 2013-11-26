@@ -100,8 +100,8 @@ _description:
      Did a selection window open and were several files selected?
 
 plugin: manual
-name: touchpad/singletouch-rightclick
-depends: touchpad/singletouch-automated
+name: touchpad/multitouch-rightclick
+depends: touchpad/multitouch-automated
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -109,7 +109,7 @@ _description:
  STEPS:
      1. Open a file folder
      2. Hover cursor over file in folder
-     3. Single tap.
+     3. 2-touch tap.
  VERIFICATION:
      Did the right click pop up menu appear?
 
