@@ -1,7 +1,6 @@
 #!/bin/bash
 
 WANTED_PACKAGES="canonical-driver-test-suite"
-EXECUTABLE="canonical-driver-test-suite"
 START_TESTING_LOG=/tmp/start_testing.log
 START_TESTING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Use log to write stuff to the logfile, and optionally show it to
@@ -60,6 +59,15 @@ if [ -n "$ACTIONS" ]; then
     pkexec_or_sudo
     $SUPER_COMMAND $START_TESTING_DIR/add_offline_repository $ACTIONS "$PACKAGES"
 fi
-message "Now starting driver testing application."
-message "(This terminal window can be safely ignored)."
-$EXECUTABLE
+cat <<EOF
+To start canonical-driver-test-suite in graphical mode please open the dash and
+search for 'canonical driver test suite'.
+
+To start canonical-driver-test-suite in terminal mode, please press ctrl-alt-t
+to open a terminal, then type 'canonical-driver-test-suite-cli' and press
+ENTER.
+
+Press ENTER to continue.
+EOF
+
+read confirmation
