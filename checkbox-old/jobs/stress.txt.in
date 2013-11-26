@@ -3,7 +3,7 @@ name: stress/cpu_stress_test
 requires:
  package.name == 'stress'
 user: root
-command: stress --cpu `cpuinfo_resource | awk '/count:/ {print $2}'` --vm `awk '/MemTotal/ {num_vm = $2/262144; if (num_vm != int(num_vm)) num_vm = int(num_vm) + 1; print num_vm}' /proc/meminfo` --timeout 7200
+command: num_vm=$(awk '/MemTotal/ {x=$2/262144; print ((x == int(x)) ? x : int(x) +1)}' /proc/meminfo); vm_bytes=$(($(awk '/MemTotal/ {print int($2/1024)}' /proc/meminfo)/$num_vm/4))M; stress --cpu `cpuinfo_resource | awk '/count:/ {print $2}'` --vm $num_vm --vm-bytes $vm_bytes --timeout 7200s
 _description:
  PURPOSE:
      Create jobs that use the CPU as much as possible for two hours. The test is considered passed if the system does not freeze.
@@ -165,7 +165,7 @@ command: tar cvfz $CHECKBOX_DATA/stress_poweroff.tgz $CHECKBOX_DATA/*poweroff.10
 plugin: shell
 name: stress/reboot_check
 depends: stress/reboot
-command: pm_log_check --log-level=notset $CHECKBOX_DATA/*reboot.100.log $CHECKBOX_DATA/pm_log_check_reboot.100.log
+command: pm_log_check --log-level=notset $CHECKBOX_DATA/pm_test.reboot.100.log $CHECKBOX_DATA/pm_log_check_reboot.100.log
 _description: Check logs for the stress reboot (100 cycles) test case
 
 plugin: attachment
@@ -177,7 +177,7 @@ command:
 plugin: shell
 name: stress/poweroff_check
 depends: stress/poweroff
-command: pm_log_check --log-level=notset $CHECKBOX_DATA/*poweroff.100.log $CHECKBOX_DATA/pm_log_check_poweroff.100.log
+command: pm_log_check --log-level=notset $CHECKBOX_DATA/pm_test.poweroff.100.log $CHECKBOX_DATA/pm_log_check_poweroff.100.log
 _description: Check logs for the stress poweroff (100 cycles) test case
 
 plugin: attachment

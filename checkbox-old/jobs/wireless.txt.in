@@ -211,6 +211,22 @@ _description:
   802.11b protocol. This requires that you have a router pre-configured to only
   respond to requests on the 802.11b protocol.
 
+plugin: local
+name: wireless/stress_performance
+requires:
+  device.category == 'NETWORK'
+_description: Automated test that tests performance of each wireless network device under stress.
+command:
+ cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=WIRELESS" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
+ plugin: shell
+ name: wireless/stress_performance_$2
+ requires: device.path == "$1"
+ user: root
+ command: network test -i $2 -t stress
+ _description:
+  This test executes iperf to generate a load on the network device and then performs a ping test to watch for dropped packets and very large latency periods.
+ EOF
+
 plugin: shell
 name: wireless/wireless_connection_open_g
 requires: device.category == 'WIRELESS'

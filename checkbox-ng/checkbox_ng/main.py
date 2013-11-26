@@ -29,11 +29,15 @@ from plainbox.impl.commands import PlainBoxToolBase
 from plainbox.impl.commands.check_config import CheckConfigCommand
 from plainbox.impl.commands.dev import DevCommand
 from plainbox.impl.commands.script import ScriptCommand
-from plainbox.impl.commands.sru import SRUCommand
-from checkbox_ng.commands.server import ServerCommand
 
 from checkbox_ng import __version__ as version
-from checkbox_ng.config import CheckBoxConfig
+from checkbox_ng.commands.cli import CliCommand
+from checkbox_ng.commands.sru import SRUCommand
+try:
+    from checkbox_ng.commands.service import ServiceCommand
+except ImportError:
+    pass
+from checkbox_ng.config import CertificationConfig, CheckBoxConfig
 
 
 logger = logging.getLogger("checkbox.ng.main")
@@ -62,8 +66,27 @@ class CheckBoxNGTool(PlainBoxToolBase):
             self._provider_list, self._config).register_parser(subparsers)
         DevCommand(
             self._provider_list, self._config).register_parser(subparsers)
-        ServerCommand(
-            self._provider_list, self._config).register_parser(subparsers)
+        CliCommand(
+            self._provider_list, self._config, 'default').register_parser(
+            subparsers, 'checkbox-cli')
+        CliCommand(
+            self._provider_list, self._config, 'server-cert').register_parser(
+            subparsers, 'certification-server')
+        CliCommand(
+            self._provider_list, self._config, 'ihv-firmware').register_parser(
+            subparsers, 'driver-test-suite-cli')
+        try:
+            ServiceCommand(self._provider_list, self._config).register_parser(
+                subparsers)
+        except NameError:
+            pass
+
+
+class CertificationNGTool(CheckBoxNGTool):
+
+    @classmethod
+    def get_config_cls(cls):
+        return CertificationConfig
 
 
 def main(argv=None):
@@ -73,9 +96,37 @@ def main(argv=None):
     raise SystemExit(CheckBoxNGTool().main(argv))
 
 
+def checkbox_cli(argv=None):
+    """
+    CheckBox command line utility
+    """
+    if argv:
+        args = argv
+    else:
+        args = sys.argv[1:]
+    raise SystemExit(
+        CheckBoxNGTool().main(['checkbox-cli'] + args))
+
+
+def cdts_cli(argv=None):
+    """
+    certification-server command line utility
+    """
+    if argv:
+        args = argv
+    else:
+        args = sys.argv[1:]
+    raise SystemExit(
+        CheckBoxNGTool().main(['driver-test-suite-cli'] + args))
+
+
 def cert_server(argv=None):
     """
     certification-server command line utility
     """
+    if argv:
+        args = argv
+    else:
+        args = sys.argv[1:]
     raise SystemExit(
-        CheckBoxNGTool().main(['certification-server'] + sys.argv[1:]))
+        CertificationNGTool().main(['certification-server'] + args))

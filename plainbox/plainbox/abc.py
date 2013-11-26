@@ -312,11 +312,9 @@ class IProviderBackend1(metaclass=ABCMeta):
         """
 
     @abstractproperty
-    def extra_PATH(self):
+    def bin_dir(self):
         """
-        Return additional entry for PATH
-
-        This entry is required to lookup CheckBox scripts.
+        directory where all the executables needed by this provider reside
         """
 
     @abstractproperty
@@ -341,6 +339,12 @@ class IProvider1(metaclass=ABCMeta):
         name of this provider
 
         This name should be dbus-friendly. It should not be localizable.
+        """
+
+    @abstractproperty
+    def version(self):
+        """
+        version of this provider
         """
 
     @abstractproperty

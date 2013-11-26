@@ -76,7 +76,7 @@ class CheckBoxSrcProvider(Provider1):
     changed before we can stop using the old checkbox codebase.
 
     1) The location for provider-specific executables is '$base/scripts'. This
-       is implemented by custom :attr:`extra_PATH` and :attr:`scripts_dir`.
+       is implemented by custom :attr:`bin_dir  `.
 
     2) The location for whitelists is '$base/data/whitelists'. This is
        implemented by custom :attr:`whitelists_dir`.
@@ -95,7 +95,7 @@ class CheckBoxSrcProvider(Provider1):
     def __init__(self):
         super(CheckBoxSrcProvider, self).__init__(
             _get_checkbox_dir(),
-            "2013.com.canonical:checkbox-src",
+            "2013.com.canonical:checkbox-src", "1.0",
             "CheckBox (live source)",
             secure=False)
         if not os.path.exists(self._base_dir):
@@ -132,7 +132,7 @@ class CheckBoxSrcProvider(Provider1):
         return os.path.join(self._base_dir, "data", "whitelists")
 
     @property
-    def scripts_dir(self):
+    def bin_dir(self):
         """
         Return an absolute path of the scripts directory
 
@@ -141,15 +141,6 @@ class CheckBoxSrcProvider(Provider1):
             CHECKBOX_SHARE.
         """
         return os.path.join(self._base_dir, "scripts")
-
-    @property
-    def extra_PATH(self):
-        """
-        Return additional entry for PATH
-
-        This entry is required to lookup CheckBox scripts.
-        """
-        return self.scripts_dir
 
 
 class StubBoxProvider(Provider1):
@@ -164,6 +155,6 @@ class StubBoxProvider(Provider1):
     def __init__(self):
         super(StubBoxProvider, self).__init__(
             os.path.join(get_plainbox_dir(), "impl/providers/stubbox"),
-            "2013.com.canonical:stubbox",
+            "2013.com.canonical:stubbox", "1.0",
             "StubBox (dummy data for development)",
             secure=False)
