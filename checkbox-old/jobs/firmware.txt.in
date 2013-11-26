@@ -2,7 +2,6 @@ plugin: local
 name: firmware/fwts
 requires: package.name == 'fwts'
 _description: Automated tests for firmware using Firmware Test Suite.
-user: root
 command:
  cat << 'EOF' | run_templates -s 'fwts_test --list'
  plugin: shell
@@ -17,7 +16,6 @@ plugin: local
 name: firmware/fwts_logs
 requires: package.name == 'fwts'
 _description: Automated tests for firmware using Firmware Test Suite.
-user: root
 command:
  cat << 'EOF' | run_templates -s 'fwts_test --list'
  plugin: attachment

@@ -152,13 +152,6 @@ def main():
                                   'wake from sleep.\n[Default: 3s]'))
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-c', '--cpufreq',
-                      action='store_true',
-                      help=('Chose this option to run the CPU Frequency\n'
-                            'Scaling test only'))
-    group.add_argument('-w', '--wakealarm',
-                      action='store_true', 
-                      help='Run the fwts wakealarm test only')
     group.add_argument('-t', '--test',
                        action='append',
                        help='Name of the test to run.')

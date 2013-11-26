@@ -17,7 +17,7 @@ user: root
 _description: Test ACPI Wakealarm (fwts wakealarm)
 requires:
  package.name == 'fwts'
-command: fwts_test -f aborted -w -l $CHECKBOX_DATA/fwts-wakealarm.log
+command: fwts_test -f aborted -t wakealarm -l $CHECKBOX_DATA/fwts-wakealarm.log
 
 plugin: attachment
 name: power-management/fwts_wakealarm-log-attach
