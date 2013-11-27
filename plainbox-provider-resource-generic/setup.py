@@ -6,9 +6,9 @@
 #   Sylvain Pineau <sylvain.pineau@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -40,7 +40,7 @@ DistUtilsExtra.auto.setup(
     url="https://launchpad.net/checkbox/",
     author="Sylvain Pineau",
     author_email="sylvain.pineau@canonical.com",
-    license="GPLv3+",
+    license="GPLv3",
     description="PlainBox resources provider",
     long_description=LONG_DESCRIPTION,
     data_files=DATA_FILES,
