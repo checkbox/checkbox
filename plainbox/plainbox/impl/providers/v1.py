@@ -5,9 +5,9 @@
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -61,6 +61,10 @@ class DummyProvider1(IProvider1, IProviderBackend1):
     @property
     def name(self):
         return self._extras.get('name', "dummy")
+
+    @property
+    def version(self):
+        return self._extras.get('version', '1.0')
 
     @property
     def description(self):

@@ -6,9 +6,8 @@
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,11 +25,13 @@ This `setup.py` is really a multiplexer to various setup.py files (for
 plainbox, checkbox-ng, etc). It was implemented because readthedocs.org cannot
 handle many projects in one repository correctly.
 """
+import glob
 import os
 import subprocess
 import sys
 
-delegate_to = ['plainbox', 'checkbox-ng']
+delegate_to = ['plainbox', 'checkbox-ng', 'checkbox-old']
+delegate_to.extend(glob.glob('plainbox-provider*'))
 try:
     base = os.path.dirname(__file__)
     for target_dir in delegate_to:

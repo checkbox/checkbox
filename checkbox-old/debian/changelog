@@ -1,4 +1,22 @@
-checkbox (0.16.15) UNRELEASED; urgency=low
+checkbox (0.17) UNRELEASED; urgency=low
+
+  [ Chris Gregan ]
+  * Updates made to touchpad and suspend jobs for new tests. 
+  * Updates made to the touchscreen jobs file for new tests.
+
+  [ Zygmunt Krynicki ]
+  * Incremented changelog
+  * Make plainbox-service a transitional package that depends on
+    checkbox-ng-service. 
+
+  [ Manoj Iyer ]
+  * Make cpu stress test work with cloud instances. Cloud instances have
+    typically have limited resources so added logic to utilize less memory,
+    at the same time keeping the CPU utilization unchanged at 100%.
+
+ -- Manoj Iyer <manoj.iyer@canonical.com>  Tue, 19 Nov 2013 13:49:33 -0600
+
+checkbox (0.16.15) saucy; urgency=low
 
   [ Brendan Donegan ]
   * scripts/brightness_test - Update get_best_interface function to use
@@ -13,7 +31,11 @@ checkbox (0.16.15) UNRELEASED; urgency=low
   * data/whitelists: Updated whitelists that require the new rtc resource
     (LP: #1251781)
 
- -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 01 Nov 2013 15:29:31 +0000
+  * Drop dependency from plainbox to checkbox, as it is not really required
+    and used to be there so that plainbox would see all of the jobs. Now with
+    fine-grained job providers this is no longer needed. 
+
+ -- Zygmunt Krynicki <zygmunt.krynicki@canonical.com>  Wed, 06 Nov 2013 14:00:42 +0100
 
 checkbox (0.16.14) saucy; urgency=low
 
@@ -147,6 +169,7 @@ checkbox (0.16.11) saucy; urgency=low
 
 checkbox (0.16.10) saucy; urgency=low
 
+  [ Jeff Lane ]
   * scripts/memory_compare: output now displays kB properly, not bytes labled
     as kB. (LP: #1217506)
   * scripts/storage_test: script now ensures there is enough free disk space
@@ -164,19 +187,14 @@ checkbox (0.16.10) saucy; urgency=low
     so they get attached correctly (LP: #1218186)
   * scripts/pm_test: Sort output of xinput to avoid spurious failures
     (LP: #1218188)
-  * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
-    crashes that cause the test to hang (LP: #1217937)
-  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
-    present in fwts and added specific version dependency to checkbox
-    (LP: #1206016)
 
   [ Sylvain Pineau ]
   * checkbox-old/scripts/fwts_test: Added the following new tests:
     method, msr, aspm, klog, oops and uefirtvariable (LP: #1202493)
 
-  [ Brendan Donegan ]
-  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
-    in fwts and change version dependency to latest version (LP: #1218993)
+  [ Daniel Manrique ]
+  * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
+    crashes that cause the test to hang (LP: #1217937)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 06 Sep 2013 16:51:17 +0100
 
@@ -275,9 +293,6 @@ checkbox (0.16.6) raring; urgency=low
     (LP: #1199259)
   * checkbox-old/jobs/input.txt.in: Add more details in pointing test names
     so they are easier to identify (LP: #1192541)
-  * scripts/audio_test: Changed the test frequency to 5040 Hz and increased
-    the sampling time to 5 seconds, to improve reliability (LP: #1070776)
-  * scripts/pm_test: Added support for invoking through pkexec (LP: #1201769)
 
   [ Sylvain Pineau ]
   * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
@@ -331,13 +346,21 @@ checkbox (0.16.4) saucy; urgency=low
     to match fwts_test output and not break sleep_time_check (LP: #1188221)
 
   [ Brendan Donegan ]
+  * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
+    the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
+  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
+    child nodes are actually unselected rather than partially selected as
+    before. (LP: #1180342)
+  * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
+    appropriate radio button in showTest if the test already has a result set
+    rather than just defaulting to skip always (LP: #1181952)
+  * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
+    touchpad/horizontal and touchpad/vertical so that those tests will
+    at least run on those systems where they are supposed to (LP: #1184882)
   * checkbox_qt/qt_interface.py - Order the list of items to be displayed
     alphabetically, so the order is consistent (LP: #1177647)
   * debian/rules - Add checkbox-hw-collection so that it's treated in the same
     way as other checkbox derived packages like checkbox-qt (LP: #1188601)
-  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
-    through new xml_sanitizer script which removes characters which are
-    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
 
   [ Daniel Manrique ]
   * jobs/stress.txt.in: fixed a few inconsistent invocations of sleep_test.
@@ -369,19 +392,6 @@ checkbox (0.16.3) saucy; urgency=low
     with no optical drive (LP: #1182489)
   * Added missing plugin files to po/POTFILES.in so their strings are
     translatable (LP: #1183271)
-
-  [ Brendan Donegan ]
-  * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
-    the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
-  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
-    child nodes are actually unselected rather than partially selected as
-    before. (LP: #1180342)
-  * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
-    appropriate radio button in showTest if the test already has a result set
-    rather than just defaulting to skip always (LP: #1181952)
-  * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
-    touchpad/horizontal and touchpad/vertical so that those tests will
-    at least run on those systems where they are supposed to (LP: #1184882)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:37 +0100
 
@@ -533,10 +543,6 @@ checkbox (0.15.7) raring; urgency=low
     jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
     specific rendercheck tests and use this to exclude the 'repeat' test
     from the set of rendercheck tests that run (LP: #1164566)
-  * scripts/sources_test - modified script so that it takes sources list
-    location and repository list as arguments
-  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
-    variables to the sources_test script (LP: #1149288)
   
   [ Jeff Lane ]
   * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)

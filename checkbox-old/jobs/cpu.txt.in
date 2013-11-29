@@ -4,7 +4,7 @@ requires:
  package.name == 'fwts'
 user: root
 environ: CHECKBOX_DATA
-command: fwts_test -c -l ${CHECKBOX_DATA}/scaling_test.log
+command: fwts_test -t cpufreq -l ${CHECKBOX_DATA}/scaling_test.log
 _description:
  Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq).
 

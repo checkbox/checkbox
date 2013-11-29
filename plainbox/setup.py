@@ -6,9 +6,9 @@
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -44,13 +44,13 @@ else:
 
 setup(
     name="plainbox",
-    version="0.4.dev",
+    version="0.4b1",
     url="https://launchpad.net/checkbox/",
     packages=find_packages(),
     author="Zygmunt Krynicki",
     test_suite='plainbox.tests.test_suite',
     author_email="zygmunt.krynicki@canonical.com",
-    license="GPLv3+",
+    license="GPLv3",
     description="Simple replacement for checkbox",
     long_description=long_description,
     install_requires=install_requires,

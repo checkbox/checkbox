@@ -5,9 +5,9 @@
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -95,7 +95,7 @@ class CheckBoxSrcProvider(Provider1):
     def __init__(self):
         super(CheckBoxSrcProvider, self).__init__(
             _get_checkbox_dir(),
-            "2013.com.canonical:checkbox-src",
+            "2013.com.canonical:checkbox-src", "1.0",
             "CheckBox (live source)",
             secure=False)
         if not os.path.exists(self._base_dir):
@@ -155,6 +155,6 @@ class StubBoxProvider(Provider1):
     def __init__(self):
         super(StubBoxProvider, self).__init__(
             os.path.join(get_plainbox_dir(), "impl/providers/stubbox"),
-            "2013.com.canonical:stubbox",
+            "2013.com.canonical:stubbox", "1.0",
             "StubBox (dummy data for development)",
             secure=False)

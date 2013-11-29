@@ -82,6 +82,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/firewire.txt?(.in)
 
+name: __firmware__
+plugin: local
+_description: Firmware tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/firmware.txt?(.in)
+
 name: __floppy__
 plugin: local
 _description: Floppy disk tests

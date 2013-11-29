@@ -5,9 +5,9 @@
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -35,4 +35,4 @@ if sys.version_info[0:2] < (3, 2):
 # PEP386 compliant version declaration.
 #
 # This is used by @public decorator to enforce our public API guarantees.
-__version__ = (0, 4, 0, "dev", 0)
+__version__ = (0, 4, 0, "beta", 1)
