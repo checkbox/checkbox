@@ -18,7 +18,7 @@ To build a tarball
   and set of seed packages like so:
 
 /path/to/dpkg_offline  /path/to/ubuntu-13.04-desktop-i386.iso \
-"driver-testing other-package-maybe" -r ppas.txt  -e extras.txt
+canonical-driver-test-suite -r ppas.txt  -e extras.txt
 
 - Wait a few minutes. If successful, a tarball will be left in the current
   directory. If a failure occurs, on-screen messages will point you to log files
