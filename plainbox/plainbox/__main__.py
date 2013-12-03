@@ -1,13 +1,12 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2013 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3,
 # as published by the Free Software Foundation.
-
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -18,21 +17,16 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`plainbox` -- main package
-===============================
+:mod:`plainbox.__main__` -- execute plainbox 
+============================================
 
-Simple checkbox redesign, without the complex message passing
+This module allows plainbox to be executed with:
 
-All public API is in :mod:`plainbox.public`.
-All abstract base classes are in :mod:`plainbox.abc`.
+    python3 -m plainbox
 """
 
-import sys
+from plainbox.public import main
 
-if sys.version_info[0:2] < (3, 2):
-    raise ImportError("plainbox requires python 3.2")  # pragma: no cover
 
-# PEP386 compliant version declaration.
-#
-# This is used by @public decorator to enforce our public API guarantees.
-__version__ = (0, 4, 0, "beta", 2)
+if __name__ == '__main__':
+    main()
