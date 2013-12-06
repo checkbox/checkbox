@@ -24,11 +24,14 @@
 
 import argparse
 import copy
+import logging
 import subprocess
 
 from plainbox.impl.job import JobDefinition
+from plainbox.impl.job import JobOutputTextSource
+from plainbox.impl.providers.special import CheckBoxSrcProvider
 from plainbox.impl.secure.providers.v1 import all_providers
-from plainbox.impl.secure.rfc822 import load_rfc822_records
+from plainbox.impl.secure.rfc822 import load_rfc822_records, RFC822SyntaxError
 
 
 class TrustedLauncher:
@@ -90,10 +93,17 @@ class TrustedLauncher:
         cmd = ['bash', '-c', job.command]
         output = subprocess.check_output(cmd, universal_newlines=True, env=env)
         job_list = []
-        record_list = load_rfc822_records(output)
-        for record in record_list:
-            job = JobDefinition.from_rfc822_record(record)
-            job_list.append(job)
+        source = JobOutputTextSource(job)
+        try:
+            record_list = load_rfc822_records(output, source=source)
+        except RFC822SyntaxError as exc:
+            logging.error(
+                "Syntax error in job generated from %s: %s",
+                job, exc)
+        else:
+            for record in record_list:
+                job = JobDefinition.from_rfc822_record(record)
+                job_list.append(job)
         return job_list
 
 
@@ -124,8 +134,8 @@ class UpdateAction(argparse.Action):
         """
         Internal method of argparse.Action
 
-        This method is invoked to "apply" the action after seeing all the values
-        for a given argument. Please refer to argparse source code for
+        This method is invoked to "apply" the action after seeing all the
+        values for a given argument. Please refer to argparse source code for
         information on how it is used.
         """
         items = copy.copy(argparse._ensure_value(namespace, self.dest, {}))
@@ -173,6 +183,8 @@ def main(argv=None):
     to run trusted-launcher as root (or another user).
     """
     parser = argparse.ArgumentParser(prog="plainbox-trusted-launcher-1")
+    parser.add_argument(
+        '--development', action='store_true', help=argparse.SUPPRESS)
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         '-w', '--warmup',
@@ -206,11 +218,17 @@ def main(argv=None):
     if ns.warmup:
         return 0
     launcher = TrustedLauncher()
-    # Siphon all jobs from all providers
-    all_providers.load()
-    for plugin in all_providers.get_all_plugins():
+    # Feed jobs into the trusted launcher
+    if ns.development:
+        # Use the checkbox source provider if requested via --development
         launcher.add_job_list(
-            plugin.plugin_object.get_builtin_jobs())
+            CheckBoxSrcProvider().get_builtin_jobs())
+    else:
+        # Siphon all jobs from all secure providers otherwise
+        all_providers.load()
+        for plugin in all_providers.get_all_plugins():
+            launcher.add_job_list(
+                plugin.plugin_object.get_builtin_jobs())
     # Run the local job and feed the result back to the launcher
     if ns.generator:
         try:
