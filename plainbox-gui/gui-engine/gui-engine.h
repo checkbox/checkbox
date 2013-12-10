@@ -231,6 +231,8 @@ signals:
 
         void updateManualInteractionDialog(const int outcome, bool show_test);
 
+        void closeManualInteractionDialog(void);
+
 private:
         // Helper function when generating the desired local and real jobs
         QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
