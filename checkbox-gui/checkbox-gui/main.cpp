@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
 {
      QApplication app(argc, argv);
 
-    qmlRegisterType<WhiteListItem>("Ubuntu.IhvTest", 0, 1, "WhiteListItem");
-    qmlRegisterType<TestItem>("Ubuntu.IhvTest", 0, 1, "TestItem");
+    qmlRegisterType<WhiteListItem>("Ubuntu.Checkbox", 0, 1, "WhiteListItem");
+    qmlRegisterType<TestItem>("Ubuntu.Checkbox", 0, 1, "TestItem");
 
     QtQuick2ApplicationViewer viewer;
 

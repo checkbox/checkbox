@@ -21,7 +21,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import Ubuntu.IhvTest 0.1
+import Ubuntu.Checkbox 0.1
 
 
 ListModel {
