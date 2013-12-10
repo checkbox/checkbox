@@ -140,3 +140,17 @@ _description:
      2. Verify that you can move the vertical slider by moving 2 fingers up and down along the touchpad.
  VERIFICATION:
      Could you scroll up and down?
+
+plugin: manual
+name: touchpad/drag-and-drop
+depends: touchpad/singletouch-automated
+estimated_duration: 120.0
+_description:
+ PURPOSE:
+     Determine that the drag and drop function is working as expected.
+ STEPS:
+     1. Browse to the examples folder in the current user's home directory
+     2. Double tap and hold to select the "Ubuntu_Free_Culture_Showcase" folder
+     2. Drag the selected folder to the desktop and remove finger from touchpad.
+ VERIFICATION:
+     Did a selected folder move to the desktop?

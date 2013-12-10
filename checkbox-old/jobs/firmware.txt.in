@@ -4,6 +4,7 @@ requires: package.name == 'fwts'
 _description: Automated tests for firmware using Firmware Test Suite.
 command:
  cat << 'EOF' | run_templates -s 'fwts_test --list'
+ estimated_duration: 1.2
  plugin: shell
  name: firmware/fwts_$1
  requires: package.name == 'fwts'
@@ -18,6 +19,7 @@ requires: package.name == 'fwts'
 _description: Automated tests for firmware using Firmware Test Suite.
 command:
  cat << 'EOF' | run_templates -s 'fwts_test --list'
+ estimated_duration: 1.2
  plugin: attachment
  name: firmware/fwts_$1.log
  requires: package.name == 'fwts'
