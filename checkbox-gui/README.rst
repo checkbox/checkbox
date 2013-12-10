@@ -1,22 +1,22 @@
-Plainbox GUI
+Checkbox GUI
 ============
 
-Plainbox GUI is a Qt/QML GUI running over D-Bus to control Plainbox.
+Checkbox GUI is a Qt/QML GUI running over D-Bus to control Plainbox.
 
 Folder layout/structure
 
 gui-engine/		Contains the D-Bus framework and C++ plugin which represents
 				plainbox classes/API
 				
-gui-ihv/		Contains the QML/Qt "skin" which is used to drive IHV use
-				cases. There may be other "skins" created later...
+checkbox-gui/   Contains the QML/Qt "skin" which is used to drive testing.
+                There may be other "skins" created later...
 
 External Documentation Links
 ============================
 
-How to test and work with gui-ihv code
+How to test and work with checkbox-gui code
 ======================================
-To test gui-ihv:  
+To test checkbox-gui:  
 	Software Needed:
 		QT Creator (2.7.0 or greater)  
 		Ubuntu.Components 0.1 - This is part of the Ubunutu distribution 
@@ -46,7 +46,7 @@ To test gui-ihv:
 Once the required tools and dependencies are installed:
 
 1. Open QT Creator
-2. File->Open Project->plainbox-gui.pro
+2. File->Open Project->checkbox-gui.pro
 3. Build->Run
 4. Interact with the UI
 

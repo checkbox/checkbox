@@ -1,4 +1,4 @@
-# This file is part of plainbox-gui
+# This file is part of Checkbox
 #
 # Copyright 2013 Canonical Ltd.
 #
@@ -19,7 +19,7 @@
 #
 # gui-engine.pro
 #
-# Hand-made pro file to create the gui-engine plugin for plainbox-gui
+# Hand-made pro file to create the gui-engine plugin for checkbox-gui
 
 TEMPLATE = lib
 CONFIG += qt plugin
