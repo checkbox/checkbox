@@ -20,11 +20,11 @@
 
 # Add more folders to ship with the application, here
 folder_01.source = qml
-folder_01.target = ../share/canonical-driver-test-suite
+folder_01.target = ../share/checkbox-gui
 DEPLOYMENTFOLDERS = folder_01
 
 QT += dbus widgets
-TARGET = canonical-driver-test-suite
+TARGET = checkbox-gui
 TEMPLATE = app
 
 isEmpty(PREFIX) {
@@ -34,7 +34,7 @@ isEmpty(PREFIX) {
 LIBS += -L../lib/$$TARGET/plugins/ -lgui-engine
 
 # Additional import path used to resolve QML modules
-QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/canonical-driver-test-suite/plugins\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/checkbox-gui/plugins\''
 
 SOURCES += main.cpp \
     whitelistitem.cpp \
@@ -49,7 +49,7 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 desktop.path = $$PREFIX/share/applications
-desktop.files += canonical-driver-test-suite.desktop
+desktop.files += checkbox-gui.desktop
 
 INSTALLS += desktop
 
@@ -68,7 +68,7 @@ HEADERS += whitelistitem.h \
 target.path = $$PREFIX/bin
 INSTALLS += target
 
-qml_files.path = $$PREFIX/share/canonical-driver-test-suite
+qml_files.path = $$PREFIX/share/checkbox-gui
 qml_files.files = qml
 
 INSTALLS += qml_files
@@ -85,4 +85,4 @@ OTHER_FILES += \
     qml/RunManagerView.qml \
     qml/RunManagerSuiteDelegate.qml \
     qml/SubmissionDialog.qml \
-    qml/canonical-driver-test-suite.qml
+    qml/checkbox-gui.qml

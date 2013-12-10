@@ -4,7 +4,6 @@
 #
 # Authors:
 # - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
-#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +16,35 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# gui-engine.pro
+#
+# Hand-made pro file to create the gui-engine plugin for plainbox-gui
 
-TEMPLATE = subdirs
-SUBDIRS = gui-engine canonical-driver-test-suite test-gui-engine
-CONFIG = ordered
+TEMPLATE = lib
+CONFIG += qt plugin
+QT +=qml dbus xml widgets gui
+
+isEmpty(PREFIX) {
+      PREFIX = /usr/local
+}
+
+TARGET = gui-engine
+
+HEADERS = gui-engine.h \
+    PBTreeNode.h \
+    PBTypes.h \
+    PBNames.h \
+    JobTreeNode.h \
+    PBJsonUtils.h
+
+SOURCES = gui-engine.cpp \
+    PBTreeNode.cpp \
+    JobTreeNode.cpp \
+    PBJsonUtils.cpp
+
+DESTDIR = ../lib/checkbox-gui/plugins
+
+target.path = $$PREFIX/lib/checkbox-gui/plugins
+
+INSTALLS += target

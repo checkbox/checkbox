@@ -115,9 +115,9 @@ int main(int argc, char *argv[])
 
 
     // Now, load the main page
-    viewer.setMainQmlFile(QStringLiteral("../share/canonical-driver-test-suite/qml/canonical-driver-test-suite.qml"));
+    viewer.setMainQmlFile(QStringLiteral("../share/checkbox-gui/qml/checkbox-gui.qml"));
 
-    viewer.setTitle(app.tr("Canonical Driver Test Suite"));
+    viewer.setTitle(app.tr("System Testing"));
 
     // Ensure a reasonable minimum size for this window
     viewer.setMinimumSize(QSize(800,600));

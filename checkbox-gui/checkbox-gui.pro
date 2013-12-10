@@ -1,9 +1,10 @@
-# This file is part of plainbox-gui
+# This file is part of checkbox-gui
 #
 # Copyright 2013 Canonical Ltd.
 #
 # Authors:
 # - Andrew Haigh <andrew.haigh@cellsoftware.co.uk>
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,19 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# test-gui-engine.pro
-#
-# Hand-made pro file to create the test executable for gui-engine plugin
 
-QT  += testlib dbus qml xml
-
-LIBS += -L../lib/canonical-driver-test-suite/plugins/ -lgui-engine
-
-QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/canonical-driver-test-suite/plugins\''
-
-HEADERS += test-gui-engine.h
-
-SOURCES += test-gui-engine.cpp
-
-
+TEMPLATE = subdirs
+SUBDIRS = gui-engine checkbox-gui test-gui-engine
+CONFIG = ordered

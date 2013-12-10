@@ -17,34 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# gui-engine.pro
+# test-gui-engine.pro
 #
-# Hand-made pro file to create the gui-engine plugin for plainbox-gui
+# Hand-made pro file to create the test executable for gui-engine plugin
 
-TEMPLATE = lib
-CONFIG += qt plugin
-QT +=qml dbus xml widgets gui
+QT  += testlib dbus qml xml
 
-isEmpty(PREFIX) {
-      PREFIX = /usr/local
-}
+LIBS += -L../lib/checkbox-gui/plugins/ -lgui-engine
 
-TARGET = gui-engine
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib/checkbox-gui/plugins\''
 
-HEADERS = gui-engine.h \
-    PBTreeNode.h \
-    PBTypes.h \
-    PBNames.h \
-    JobTreeNode.h \
-    PBJsonUtils.h
+HEADERS += test-gui-engine.h
 
-SOURCES = gui-engine.cpp \
-    PBTreeNode.cpp \
-    JobTreeNode.cpp \
-    PBJsonUtils.cpp
+SOURCES += test-gui-engine.cpp
 
-DESTDIR = ../lib/canonical-driver-test-suite/plugins
 
-target.path = $$PREFIX/lib/canonical-driver-test-suite/plugins
-
-INSTALLS += target
