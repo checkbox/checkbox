@@ -2255,6 +2255,11 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
     // How did this job turn out?
     const int outcome = GetOutcomeFromJobResultPath(result);
 
+    if (m_running_manual_job) {
+        m_running_manual_job = false;
+        emit closeManualInteractionDialog();
+    }
+
     // Update the GUI so it knows what the job outcome was
     emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
             m_current_job_index, \

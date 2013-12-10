@@ -263,5 +263,8 @@ Dialog {
                 skipcheck.checked = false; // we didnt skip it
             }
         }
+        onCloseManualInteractionDialog: {
+            PopupUtils.close(dialog)
+        }
     }
 }
