@@ -26,7 +26,7 @@ import Ubuntu.Components 0.1
 
 Page {
     id: welcomePage
-    title: i18n.tr("Canonical Driver Test Suite")
+    title: i18n.tr("System Testing")
 
     Image {
         id: logo
@@ -83,25 +83,16 @@ Page {
                 }
 
                 // TODO load text from Plainbox
-                text: "<p>Welcome to the Canonical Driver Test Suite.</p>
+                text: "<p>Welcome to System Testing.</p>
                     <p></p>
-                    <p>This program contains automated and manual tests to help you discover issues that will arise when running your device drivers on Ubuntu.</p>
+                    <p>This program contains automated and manual tests to help you assess how well your system works with Ubuntu.</p>
                     <p></p>
                     <p>This application will step the user through these tests in a predetermined order and automatically collect both system information as well as test results. It will also prompt the user for input when manual testing is required.</p>
                     <p></p>
-                    <p>The run time for the tests is determined by which tests you decide to execute. The user will have the opportunity to customize the test run to accommodate the driver and the amount of time available for testing.</p>
-                    <p></p>
-                    <p>If you have any questions during or after completing your test run, please do not hesitate to contact your Canonical account representative.</p>
+                    <p>The run time for the tests is determined by which tests you decide to execute. The user will have the opportunity to customize the test run based on the hardware components they are interested in and the amount of time they have available.</p>
                     <p></p>
                     <p>To begin, simply click the Continue button below and follow the onscreen instructions.</p>
                     <p></p>"
-
-                // links below are to test if the urls are working properly.
-                //<a href=\"mailto:me@here.there\">me@here.there</a>
-                //<p></p>
-                //<a href=\"http://www.canonical.com\">Canonical</a>"
-
-
 
                 height: units.gu(60)
                 width: units.gu(30)
