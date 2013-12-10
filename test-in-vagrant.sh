@@ -53,6 +53,18 @@ for target in $target_list; do
     fi
     # Display something before the first test output
     echo "[$target] Starting tests..."
+
+    # Build plainbox-gui
+    if time -o $TIMING vagrant ssh $target -c 'cd src/plainbox-gui; make distclean; qmake && make' >vagrant-logs/$target.plainbox-gui.log 2>vagrant-logs/$target.plainbox-gui.err; then
+        echo "[$target] PlainBox GUI build: $PASS"
+    else
+        outcome=1
+        echo "[$target] PlainBox GUI build: $FAIL"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox-gui.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox-gui.err)"
+    fi
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
+
     # Run checkbox unit tests
     if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-old && python3 setup.py test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
         echo "[$target] CheckBox test suite: $PASS"

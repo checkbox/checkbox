@@ -1,0 +1,27 @@
+## This whitelist is intended to be run as part of Canonical Driver Testing.
+# A meta-job that includes the resources needed for a valid submission.
+# Please do not remove without good reason.
+miscellanea/submission-resources
+# Touchscreen jobs
+__touchscreen__
+touchscreen/tap-detect
+touchscreen/drag-n-drop
+touchscreen/multitouch-zoom
+touchscreen/nontouch-automated
+touchscreen/multitouch-automated
+touchscreen/multitouch-manual
+touchscreen/multitouch-window-move
+touchscreen/multitouch-dash
+# Touchpad jobs
+__touchpad__
+touchpad/basic
+touchpad/horizontal
+touchpad/vertical
+touchpad/singletouch-automated
+touchpad/multitouch-automated
+touchpad/multitouch-manual
+touchpad/singletouch-corner
+touchpad/singletouch-selection
+touchpad/multitouch-rightclick
+touchpad/multitouch-horizontal
+touchpad/multitouch-vertical

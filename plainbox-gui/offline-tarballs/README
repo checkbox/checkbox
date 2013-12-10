@@ -1,0 +1,47 @@
+The contents of this directory allow preparation of offline tarballs for
+driver testing.
+
+An offline tarball contains all needed deb package dependencies to install
+driver-testing into a clean Ubuntu system. Tarballs need to be built for each
+specific architecture, flavor and release combination since dependencies
+are tailor-suited for each.
+
+
+To build a tarball
+==================
+
+- Get a copy of lp:dpkg_offline
+- Get the installer ISO for the desired target.
+- Ensure the PPAs and extra files make sense for your installation.
+  The config files as included should work out-of-the-box for driver-testing.
+- Call dpkg_offline specifying the ppas file, the extras file, target ISO
+  and set of seed packages like so:
+
+/path/to/dpkg_offline  /path/to/ubuntu-13.04-desktop-i386.iso \
+canonical-driver-test-suite -r ppas.txt  -e extras.txt
+
+- Wait a few minutes. If successful, a tarball will be left in the current
+  directory. If a failure occurs, on-screen messages will point you to log files
+  where you can get more details about what failed. Temporary directories
+  will not be cleaned up in case of a failure so you can do a post-mortem.
+
+
+To install a tarball
+====================
+
+1 - Copy to the target system
+2 - Uncompress the tarball. It will create a directory with a long name.
+3 - Switch to that directory, then either double-click the
+    "Canonical Driver Testing" icon or execute the "start_testing.sh" script.
+4 - If required, enter the password to set up local package repositories and
+    install packages.
+5 - The driver testing utility will be automatically launched once the install
+    is complete.
+
+
+To perform further testing
+==========================
+
+- Simply look for the "driver testing" application using the Ubuntu dash,
+  or repeat step 3 above (it will not ask for the password or install packages
+  again).
