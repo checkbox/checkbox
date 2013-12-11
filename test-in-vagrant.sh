@@ -54,14 +54,14 @@ for target in $target_list; do
     # Display something before the first test output
     echo "[$target] Starting tests..."
 
-    # Build plainbox-gui
-    if time -o $TIMING vagrant ssh $target -c 'cd src/plainbox-gui; make distclean; qmake && make' >vagrant-logs/$target.plainbox-gui.log 2>vagrant-logs/$target.plainbox-gui.err; then
-        echo "[$target] PlainBox GUI build: $PASS"
+    # Build checkbox-gui
+    if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-gui; make distclean; qmake && make' >vagrant-logs/$target.checkbox-gui.log 2>vagrant-logs/$target.checkbox-gui.err; then
+        echo "[$target] Checkbox GUI build: $PASS"
     else
         outcome=1
-        echo "[$target] PlainBox GUI build: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox-gui.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox-gui.err)"
+        echo "[$target] Checkbox GUI build: $FAIL"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-gui.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-gui.err)"
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
 
