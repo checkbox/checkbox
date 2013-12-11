@@ -10,6 +10,9 @@ checkbox (0.17.1) UNRELEASED; urgency=low
   [ Daniel Manrique ]
   * Removed suspend_test script which hasn't been touched in over 3 years
     and is not used in any jobs. (LP: #752881)
+  * Changed touchpad_test to use default scrolling method, and added a switch
+    to force edge scrolling if desired. Updated legacy tests to use edge
+    scrolling when the test description makes that appropriate. (LP: #1259987)
 
  -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 29 Nov 2013 22:30:45 +0100
 
