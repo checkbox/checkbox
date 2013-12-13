@@ -160,11 +160,9 @@ QVariant TestItem::data(int role) const
       return groupstatus();
 
   case ParentNameRole:
-//      return parentnamelist();
       break;
 
   case ParentIdRole:
-//       return parentidlist();
     break;
 
   case DepthRole:
