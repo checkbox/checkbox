@@ -43,7 +43,7 @@ import "./artwork"
             checked: true
             onClicked: {
                 // Update the list of selected whitelists
-		update_selection(testname, checked)
+                update_selection(testname, checked)
                 /* Update the ListView, primarily to ensure we dont
                  * uncheck ALL the whitelists.
                  */
