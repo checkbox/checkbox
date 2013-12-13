@@ -1,0 +1,26 @@
+## This whitelist is intended to be run as part of Canonical Driver Testing.
+# A meta-job that includes the resources needed for a valid submission.
+# Please do not remove without good reason.
+miscellanea/submission-resources
+# Audio tests
+__audio__
+audio/alsa_info_collect
+audio/alsa_info_attachment
+audio/alsa_record_playback_external
+audio/alsa_record_playback_internal
+audio/list_devices
+audio/playback_auto
+audio/playback_headphones
+audio/playback_hdmi
+audio/playback_displayport
+audio/alsa_record_playback_automated
+audio/channels
+audio/check_volume
+audio/external-lineout
+audio/external-linein
+audio/balance_internal_speaker
+audio/balance_headphones
+__suspend__
+suspend/audio_before_suspend
+suspend/suspend_advanced_auto
+suspend/audio_after_suspend
