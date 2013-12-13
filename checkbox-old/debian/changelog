@@ -1,7 +1,14 @@
-checkbox (0.17.1) UNRELEASED; urgency=low
+checkbox (0.17.2) UNRELEASED; urgency=low
+
+  * Incremented changelog
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Dec 2013 12:08:53 -0500
+
+checkbox (0.17.1) trusty; urgency=low
 
   [ Chris Gregan ]
-  * slight modification to existing touch tests to remove depends on failing mutitouch-automated 
+  * slight modification to existing touch tests to remove depends on failing
+    mutitouch-automated
 
   [ Jeff Lane ]
   * scripts/network Handle ZeroDivisionError better (LP: #1257308)
@@ -14,7 +21,7 @@ checkbox (0.17.1) UNRELEASED; urgency=low
     to force edge scrolling if desired. Updated legacy tests to use edge
     scrolling when the test description makes that appropriate. (LP: #1259987)
 
- -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 29 Nov 2013 22:30:45 +0100
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Dec 2013 12:08:26 -0500
 
 checkbox (0.17) trusty; urgency=low
 
