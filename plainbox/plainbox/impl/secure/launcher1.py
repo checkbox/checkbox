@@ -23,11 +23,15 @@
 """
 
 import argparse
+import copy
+import logging
 import subprocess
 
 from plainbox.impl.job import JobDefinition
+from plainbox.impl.job import JobOutputTextSource
+from plainbox.impl.providers.special import CheckBoxSrcProvider
 from plainbox.impl.secure.providers.v1 import all_providers
-from plainbox.impl.secure.rfc822 import load_rfc822_records
+from plainbox.impl.secure.rfc822 import load_rfc822_records, RFC822SyntaxError
 
 
 class TrustedLauncher:
@@ -72,12 +76,14 @@ class TrustedLauncher:
         cmd = ['bash', '-c', job.command]
         return subprocess.call(cmd, env=env)
 
-    def run_local_job(self, checksum):
+    def run_local_job(self, checksum, env):
         """
         Run a job with and interpret the stdout as a job definition.
 
         :param checksum:
             The checksum of the job to execute
+        :param env:
+            Environment to execute the job in.
         :returns:
             A list of job definitions that were parsed out of the output.
         :raises LookupError:
@@ -85,13 +91,62 @@ class TrustedLauncher:
         """
         job = self.find_job(checksum)
         cmd = ['bash', '-c', job.command]
-        output = subprocess.check_output(cmd, universal_newlines=True)
+        output = subprocess.check_output(cmd, universal_newlines=True, env=env)
         job_list = []
-        record_list = load_rfc822_records(output)
-        for record in record_list:
-            job = JobDefinition.from_rfc822_record(record)
-            job_list.append(job)
+        source = JobOutputTextSource(job)
+        try:
+            record_list = load_rfc822_records(output, source=source)
+        except RFC822SyntaxError as exc:
+            logging.error(
+                "Syntax error in job generated from %s: %s",
+                job, exc)
+        else:
+            for record in record_list:
+                job = JobDefinition.from_rfc822_record(record)
+                job_list.append(job)
         return job_list
+
+
+class UpdateAction(argparse.Action):
+    """
+    Argparse action that builds up a dictionary.
+
+    This action is similar to the built-in append action but it constructs
+    a dictionary instead of a list.
+    """
+
+    def __init__(self, option_strings, dest, nargs=None, const=None,
+                 default=None, type=None, choices=None, required=False,
+                 help=None, metavar=None):
+        if nargs == 0:
+            raise ValueError('nargs for append actions must be > 0; if arg '
+                             'strings are not supplying the value to append, '
+                             'the append const action may be more appropriate')
+        if const is not None and nargs != argparse.OPTIONAL:
+            raise ValueError(
+                'nargs must be {!r} to supply const'.format(argparse.OPTIONAL))
+        super().__init__(
+            option_strings=option_strings, dest=dest, nargs=nargs, const=const,
+            default=default, type=type, choices=choices, required=required,
+            help=help, metavar=metavar)
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        """
+        Internal method of argparse.Action
+
+        This method is invoked to "apply" the action after seeing all the
+        values for a given argument. Please refer to argparse source code for
+        information on how it is used.
+        """
+        items = copy.copy(argparse._ensure_value(namespace, self.dest, {}))
+        for value in values:
+            try:
+                k, v = value.split('=', 1)
+            except ValueError:
+                raise argparse.ArgumentError(self, "expected NAME=VALUE")
+            else:
+                items[k] = v
+        setattr(namespace, self.dest, items)
 
 
 def main(argv=None):
@@ -101,12 +156,11 @@ def main(argv=None):
     :param argv:
         Command line arguments to parse. If None (default) then sys.argv is
         used instead.
-
     :returns:
-        The return code of the job that was selected with the --hash argument
+        The return code of the job that was selected with the --target argument
         or zero if the --warmup argument was specified.
     :raises:
-        SystemExit if --hash or --via point to unknown jobs.
+        SystemExit if --taget or --generator point to unknown jobs.
 
     The trusted launcher is a sudo-like program, that can grant unprivileged
     users permission to run something as root, that is restricted to executing
@@ -129,47 +183,66 @@ def main(argv=None):
     to run trusted-launcher as root (or another user).
     """
     parser = argparse.ArgumentParser(prog="plainbox-trusted-launcher-1")
+    parser.add_argument(
+        '--development', action='store_true', help=argparse.SUPPRESS)
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
-        '--hash',
-        metavar='CHECKSUM',
-        help='run a job with this checksum')
-    group.add_argument(
-        '--warmup',
+        '-w', '--warmup',
         action='store_true',
         help='return immediately, only useful when used with pkexec(1)')
-    parser.add_argument(
-        '--via',
+    group.add_argument(
+        '-t', '--target',
         metavar='CHECKSUM',
-        dest='via',
+        help='run a job with this checksum')
+    group = parser.add_argument_group("target job specification")
+    group.add_argument(
+        '-T', '--target-environment', metavar='NAME=VALUE',
+        dest='target_env',
+        nargs='+',
+        action=UpdateAction,
+        help='environment passed to the target job')
+    group = parser.add_argument_group(title="generator job specification")
+    group.add_argument(
+        '-g', '--generator',
+        metavar='CHECKSUM',
         help='also run a job with this checksum (assuming it is a local job)')
-    parser.add_argument(
-        'env', metavar='NAME=VALUE', nargs='*',
-        help='set each NAME to VALUE in the string environment')
+    group.add_argument(
+        '-G', '--generator-environment',
+        dest='generator_env',
+        nargs='+',
+        metavar='NAME=VALUE',
+        action=UpdateAction,
+        help='environment passed to the generator job')
     ns = parser.parse_args(argv)
+    # Just quit if warming up
     if ns.warmup:
         return 0
+    launcher = TrustedLauncher()
+    # Feed jobs into the trusted launcher
+    if ns.development:
+        # Use the checkbox source provider if requested via --development
+        launcher.add_job_list(
+            CheckBoxSrcProvider().get_builtin_jobs())
     else:
-        # "parse environment"
-        try:
-            env = dict(item.split('=', 1) for item in ns.env)
-        except ValueError:
-            raise SystemExit(
-                "environment definitions must use NAME=VALUE syntax")
-        launcher = TrustedLauncher()
-        # Siphon all jobs from all providers
+        # Siphon all jobs from all secure providers otherwise
         all_providers.load()
         for plugin in all_providers.get_all_plugins():
             launcher.add_job_list(
                 plugin.plugin_object.get_builtin_jobs())
-        # Run the local job and feed the result back to the launcher
-        if ns.via:
-            try:
-                launcher.add_job_list(launcher.run_local_job(ns.via))
-            except LookupError as exc:
-                raise SystemExit(str(exc))
-        # Run the target job and return the result code
+    # Run the local job and feed the result back to the launcher
+    if ns.generator:
         try:
-            return launcher.run_shell_from_job(ns.hash, env)
+            generated_job_list = launcher.run_local_job(
+                ns.generator, ns.generator_env)
+            launcher.add_job_list(generated_job_list)
         except LookupError as exc:
             raise SystemExit(str(exc))
+    # Run the target job and return the result code
+    try:
+        return launcher.run_shell_from_job(ns.target, ns.target_env)
+    except LookupError as exc:
+        raise SystemExit(str(exc))
+
+
+if __name__ == "__main__":
+    main()

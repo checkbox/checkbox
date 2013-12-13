@@ -28,8 +28,9 @@ class GtkScroller(object):
     touchpad_key = "org.gnome.settings-daemon.peripherals.touchpad"
     exit_code = EXIT_WITH_FAILURE
 
-    def __init__(self, directions):
+    def __init__(self, directions, edge_scroll=False):
         self.directions = directions
+        self.edge_scroll = edge_scroll
 
         # Initialize GTK constants
         self.ICON_SIZE = Gtk.IconSize.BUTTON
@@ -123,7 +124,8 @@ class GtkScroller(object):
 
         # Set touchpad settings.
         touchpad_settings.set_boolean("horiz-scroll-enabled", True)
-        touchpad_settings.set_string("scroll-method", "edge-scrolling")
+        if self.edge_scroll:
+            touchpad_settings.set_string("scroll-method", "edge-scrolling")
 
         Gtk.main()
 
@@ -167,8 +169,10 @@ class GtkScroller(object):
 def main(args):
     gettext.textdomain("checkbox")
 
-    usage = """Usage: %prog DIRECTION..."""
+    usage = """Usage: %prog DIRECTION... [--edge-scroll]"""
     parser = OptionParser(usage=usage)
+    parser.add_option("--edge-scroll", action="store_true", default=False,
+                      help="Force touchpad to use edge scrolling only")
     (options, args) = parser.parse_args(args)
 
     if not args:
@@ -182,7 +186,7 @@ def main(args):
             parser.error("Unsupported direction: %s" % arg)
         directions.append(direction)
 
-    scroller = GtkScroller(directions)
+    scroller = GtkScroller(directions, edge_scroll=options.edge_scroll)
     try:
         scroller.run()
     except KeyboardInterrupt:

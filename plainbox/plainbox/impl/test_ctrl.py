@@ -24,6 +24,7 @@ plainbox.impl.test_ctrl
 Test definitions for plainbox.impl.ctrl module
 """
 
+from subprocess import CalledProcessError
 from unittest import TestCase
 import os
 
@@ -263,7 +264,7 @@ class CheckBoxSessionStateControllerTests(TestCase):
         mock_logger.warning.assert_called_once_with(
             "local script %s returned invalid RFC822 data: %s",
             job, RFC822SyntaxError(
-                None, 1, "Unexpected non-empty line"))
+                None, 1, "Unexpected non-empty line: 'barf\\n'"))
 
     @mock.patch('plainbox.impl.ctrl.gen_rfc822_records_from_io_log')
     def test_observe_result__local_typical(self, mock_gen):
@@ -438,7 +439,7 @@ class FunctionTests(TestCase):
         mock_logger.warning.assert_called_once_with(
             "local script %s returned invalid RFC822 data: %s",
             job, RFC822SyntaxError(
-                None, 3, "Unexpected non-empty line"))
+                None, 3, "Unexpected non-empty line: 'error\\n'"))
 
 
 class SymLinkNestTests(TestCase):
@@ -488,7 +489,8 @@ class CheckBoxExecutionControllerTestsMixIn:
 
     CLS = CheckBoxExecutionController
 
-    def setUp(self):
+    @mock.patch('plainbox.impl.ctrl.check_output')
+    def setUp(self, mock_check_output):
         self.ctrl = self.CLS(self.SESSION_DIR, self.PROVIDER_LIST)
         # Create mocked job definition.
         # Put a mocked provider on the job and give it some values for:
@@ -514,7 +516,8 @@ class CheckBoxExecutionControllerTestsMixIn:
             name='extcmd_popen',
             spec=extcmd.ExternalCommand)
 
-    def test_init(self):
+    @mock.patch('plainbox.impl.ctrl.check_output')
+    def test_init(self, mock_check_output):
         """
         verify that __init__() stores session_dir
         """
@@ -600,7 +603,7 @@ class UserJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
         self.assertEqual(self.ctrl.get_checkbox_score(self.job), 1)
 
     @mock.patch('os.getuid')
-    def test_get_checkbox_score_for_jobs_with_user(mock_getuid, self):
+    def test_get_checkbox_score_for_jobs_with_user(self, mock_getuid):
         """
         verify that score for jobs with an user override is minus one
         """
@@ -610,13 +613,13 @@ class UserJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
         self.assertEqual(self.ctrl.get_checkbox_score(self.job), -1)
 
     @mock.patch('os.getuid')
-    def test_get_checkbox_score_as_root(mock_getuid, self):
+    def test_get_checkbox_score_as_root(self, mock_getuid):
         """
-        verify that score for jobs with an user override is 3 if I am root
+        verify that score for jobs with an user override is 4 if I am root
         """
         mock_getuid.return_value = 0  # Pretend to be root
         self.job.user = 'root'
-        self.assertEqual(self.ctrl.get_checkbox_score(self.job), 3)
+        self.assertEqual(self.ctrl.get_checkbox_score(self.job), 4)
 
     @mock.patch.dict('os.environ', clear=True)
     def test_get_execution_environment_resets_LANG(self):
@@ -714,18 +717,32 @@ class RootViaPTL1ExecutionControllerTests(
         verify that we run plainbox-trusted-launcher-1 as the desired user
         """
         self.job.get_environ_settings.return_value = []
-        self.assertEqual(
-            self.ctrl.get_execution_command(
-                self.job, self.config, self.NEST_DIR),
-            ['pkexec', '--user', self.job.user,
-             'plainbox-trusted-launcher-1',
-             '--hash', self.job.checksum,
-             'CHECKBOX_DATA=session-dir/CHECKBOX_DATA',
-             'CHECKBOX_SHARE=CHECKBOX_SHARE',
-             'LANG=C.UTF-8',
-             'PATH={}'.format(
-                 os.pathsep.join([self.NEST_DIR, 'vanilla-path'])),
-             '--via', self.job.via])
+        self.job.origin.source.job = mock.Mock(
+            name='generator_job',
+            spec=JobDefinition,
+            provider=mock.Mock(
+                name='provider',
+                spec=IProvider1,
+                extra_PYTHONPATH=None,
+                CHECKBOX_SHARE='CHECKBOX_SHARE-generator'))
+        PATH = os.pathsep.join([self.NEST_DIR, 'vanilla-path'])
+        expected = [
+            'pkexec', '--user', self.job.user,
+            'plainbox-trusted-launcher-1',
+            '--generator', self.job.via,
+            '-G', 'CHECKBOX_DATA=session-dir/CHECKBOX_DATA',
+            '-G', 'CHECKBOX_SHARE=CHECKBOX_SHARE-generator',
+            '-G', 'LANG=C.UTF-8',
+            '-G', 'PATH={}'.format(PATH),
+            '--target', self.job.checksum,
+            '-T', 'CHECKBOX_DATA=session-dir/CHECKBOX_DATA',
+            '-T', 'CHECKBOX_SHARE=CHECKBOX_SHARE',
+            '-T', 'LANG=C.UTF-8',
+            '-T', 'PATH={}'.format(PATH),
+        ]
+        actual = self.ctrl.get_execution_command(
+            self.job, self.config, self.NEST_DIR)
+        self.assertEqual(actual, expected)
 
     @mock.patch.dict('os.environ', clear=True, PATH='vanilla-path')
     def test_get_command_without_via(self):
@@ -734,18 +751,18 @@ class RootViaPTL1ExecutionControllerTests(
         """
         self.job.get_environ_settings.return_value = []
         self.job.via = None
-        self.assertEqual(
-            self.ctrl.get_execution_command(
-                self.job, self.config, self.NEST_DIR),
-            ['pkexec', '--user', self.job.user,
-             'plainbox-trusted-launcher-1',
-             '--hash', self.job.checksum,
-             'CHECKBOX_DATA=session-dir/CHECKBOX_DATA',
-             'CHECKBOX_SHARE=CHECKBOX_SHARE',
-             'LANG=C.UTF-8',
-             'PATH={}'.format(
-                 os.pathsep.join([self.NEST_DIR, 'vanilla-path'])),
-            ])
+        PATH = os.pathsep.join([self.NEST_DIR, 'vanilla-path'])
+        expected = [
+            'pkexec', '--user', self.job.user,
+            'plainbox-trusted-launcher-1',
+            '--target', self.job.checksum,
+            '-T', 'CHECKBOX_DATA=session-dir/CHECKBOX_DATA',
+            '-T', 'CHECKBOX_SHARE=CHECKBOX_SHARE',
+            '-T', 'LANG=C.UTF-8',
+            '-T', 'PATH={}'.format(PATH)]
+        actual = self.ctrl.get_execution_command(
+            self.job, self.config, self.NEST_DIR)
+        self.assertEqual(actual, expected)
 
     def test_get_checkbox_score_for_other_providers(self):
         # Ensure that the job provider is not Provider1
@@ -769,14 +786,51 @@ class RootViaPTL1ExecutionControllerTests(
         # Ensure that we get a neutral score of zero
         self.assertEqual(self.ctrl.get_checkbox_score(self.job), 0)
 
-    def test_get_checkbox_score_for_secure_provider_and_root_job(self):
+    @mock.patch('plainbox.impl.ctrl.check_output')
+    def test_get_checkbox_score_for_secure_provider_root_job_with_policy(
+            self, mock_check_output):
         # Assume that the job is coming from Provider1 provider
         # and the provider is secure
         self.job.provider = mock.Mock(spec=Provider1, secure=True)
         # Assume that the job runs as root
         self.job.user = 'root'
+        # Ensure we get the right action id from pkaction(1)
+        mock_check_output.return_value = \
+            b"org.freedesktop.policykit.pkexec.run-plainbox-job\n"
+        # Ensure that we get a positive score of three
+        ctrl = self.CLS(self.SESSION_DIR, self.PROVIDER_LIST)
+        self.assertEqual(ctrl.get_checkbox_score(self.job), 3)
+
+    @mock.patch('plainbox.impl.ctrl.check_output')
+    def test_get_checkbox_score_for_secure_provider_root_job_with_policy_2(
+            self, mock_check_output):
+        # Assume that the job is coming from Provider1 provider
+        # and the provider is secure
+        self.job.provider = mock.Mock(spec=Provider1, secure=True)
+        # Assume that the job runs as root
+        self.job.user = 'root'
+        # Ensure we get the right action id from pkaction(1) even with
+        # polikt version < 0.110 (pkaction always exists with status 1), see:
+        # https://bugs.freedesktop.org/show_bug.cgi?id=29936#attach_78263
+        mock_check_output.side_effect = CalledProcessError(1, '',
+            b"org.freedesktop.policykit.pkexec.run-plainbox-job\n")
+        # Ensure that we get a positive score of three
+        ctrl = self.CLS(self.SESSION_DIR, self.PROVIDER_LIST)
+        self.assertEqual(ctrl.get_checkbox_score(self.job), 3)
+
+    @mock.patch('plainbox.impl.ctrl.check_output')
+    def test_get_checkbox_score_for_secure_provider_root_job_no_policy(
+            self, mock_check_output):
+        # Assume that the job is coming from Provider1 provider
+        # and the provider is secure
+        self.job.provider = mock.Mock(spec=Provider1, secure=True)
+        # Assume that the job runs as root
+        self.job.user = 'root'
+        # Ensure pkaction(1) return nothing
+        mock_check_output.return_value = "No action with action id BLAHBLAH"
         # Ensure that we get a positive score of two
-        self.assertEqual(self.ctrl.get_checkbox_score(self.job), 2)
+        ctrl = self.CLS(self.SESSION_DIR, self.PROVIDER_LIST)
+        self.assertEqual(ctrl.get_checkbox_score(self.job), 0)
 
 
 class RootViaPkexecExecutionControllerTests(

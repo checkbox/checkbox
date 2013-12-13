@@ -97,10 +97,20 @@ class IPerfPerformanceTest(object):
                 scaled_throughput *= 1000
             if units == 'K':
                 scaled_throughput /= 1000
-            percent = scaled_throughput / int(self.iface.max_speed) * 100
-            print("Transfer speed: {} {}b/s".format(throughput, units))
+            try:
+                percent = scaled_throughput / int(self.iface.max_speed) * 100
+            except ZeroDivisionError:
+                # Catches a condition where the interface functions fine but
+                # ethtool fails to properly report max speed. In this case
+                # it's up to the reviewer to pass or fail.
+                logging.error("Max Speed was not reported properly.  Run "
+                              "ethtool and verify that the card is properly "
+                              "reporting its capabilities.")
+                percent = 0
+
+            print("\nTransfer speed: {} {}b/s".format(throughput, units))
             print("%3.2f%% of " % percent, end="")
-            print("theoretical max %sMb/s" % int(self.iface.max_speed))
+            print("theoretical max %sMb/s\n" % int(self.iface.max_speed))
 
             if percent < 40:
                 logging.warn("Poor network performance detected")

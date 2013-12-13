@@ -266,6 +266,10 @@ class RFC822SyntaxError(SyntaxError):
         self.lineno = lineno
         self.msg = msg
 
+    def __repr__(self):
+        return "{}({!r}, {!r}, {!r})".format(
+            self.__class__.__name__, self.filename, self.lineno, self.msg)
+
     def __eq__(self, other):
         if isinstance(other, RFC822SyntaxError):
             return ((self.filename, self.lineno, self.msg)
@@ -398,6 +402,9 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
 
     # Start with an empty record
     _new_record()
+    # Support simple text strings
+    if isinstance(stream, str):
+        stream = iter(stream.splitlines())
     # Iterate over subsequent lines of the stream
     for lineno, line in enumerate(stream, start=1):
         logger.debug("Looking at line %d:%r", lineno, line)
@@ -448,8 +455,8 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
             if key in record.data:
                 raise _syntax_error((
                     "Job has a duplicate key {!r} "
-                    "with old value {!r} and new value {!r}").format(
-                        key, record.data[key], value))
+                    "with old value {!r} and new value {!r}"
+                ).format(key, record.data[key], value))
             # Construct initial value list out of the (only) value that we have
             # so far. Additional multi-line values will just append to
             # value_list
@@ -458,7 +465,7 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
             _update_end_lineno()
         # Treat all other lines as syntax errors
         else:
-            raise _syntax_error("Unexpected non-empty line")
+            raise _syntax_error("Unexpected non-empty line: {!r}".format(line))
     # Make sure to commit the last key from the record
     _commit_key_value_if_needed()
     # Once we've seen the whole file return the last record, if any

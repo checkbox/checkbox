@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-29 04:40+0000\n"
-"X-Generator: Launchpad (build 16847)\n"
+"X-Launchpad-Export-Date: 2013-12-07 05:18+0000\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #~ msgid "Testing your connection to the Internet:"
 #~ msgstr "Internet bağlantınız kontrol ediliyor:"
@@ -1436,7 +1436,7 @@ msgstr "Ses sınamaları"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Benchmarks tests"
-msgstr ""
+msgstr "Benchmarkın testleri"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1601,7 +1601,7 @@ msgstr "Stres testleri"
 #. description
 #: ../jobs/local.txt.in:290
 msgid "Smoke tests"
-msgstr ""
+msgstr "Duman testleri"
 
 #. description
 #: ../jobs/local.txt.in:297
@@ -1739,6 +1739,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"AMAÇ:\n"
+"    Bu test sistem medya kart okuyucusunun\n"
+"    sistem askıya alındıktan sonra taklıan SD kartın algılanabilmesini "
+"kontrol edecektir\n"
+"ADIMLAR:\n"
+"    1. \"Test\" butonuna tıklayın ve SD kartı okuyucuya yerleştirin.\n"
+"       (Not: bu test 20 saniye sonra zaman aşımına uğrayacaktır.)\n"
+"    2. Test sonrası aygıtı çıkartmayınız.\n"
+"DOĞRULAMA:\n"
+"    Test'in doğrulaması otomatik olarak yapılacaktır. Otomatik olarak\n"
+"    seçilmiş olan sonuçları değiştirmeyiniz."
 
 #. description
 #: ../jobs/mediacard.txt.in:140
@@ -2685,6 +2696,7 @@ msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
+"Sonuçlara power-management/poweroff testine ait tüm logları ekleyecektir."
 
 #. description
 #: ../jobs/power-management.txt.in:64
@@ -2708,6 +2720,7 @@ msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
+"Sonuçlara power-management/reboot testine ait tüm loglar eklenecektir."
 
 #. description
 #: ../jobs/power-management.txt.in:84

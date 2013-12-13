@@ -1,4 +1,23 @@
-checkbox (0.17) UNRELEASED; urgency=low
+checkbox (0.17.1) trusty; urgency=low
+
+  [ Chris Gregan ]
+  * slight modification to existing touch tests to remove depends on failing mutitouch-automated 
+
+  [ Jeff Lane ]
+  * scripts/network Handle ZeroDivisionError better (LP: #1257308)
+
+
+  [ Daniel Manrique ]
+  * Removed suspend_test script which hasn't been touched in over 3 years
+    and is not used in any jobs. (LP: #752881)
+  * Changed touchpad_test to use default scrolling method, and added a switch
+    to force edge scrolling if desired. Updated legacy tests to use edge
+    scrolling when the test description makes that appropriate. (LP: #1259987)
+  * checkbox-old/debian/changelog
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Dec 2013 12:23:45 -0500
+
+checkbox (0.17) trusty; urgency=low
 
   [ Chris Gregan ]
   * Updates made to touchpad and suspend jobs for new tests. 
@@ -14,7 +33,7 @@ checkbox (0.17) UNRELEASED; urgency=low
     typically have limited resources so added logic to utilize less memory,
     at the same time keeping the CPU utilization unchanged at 100%.
 
- -- Manoj Iyer <manoj.iyer@canonical.com>  Tue, 19 Nov 2013 13:49:33 -0600
+ -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 29 Nov 2013 22:28:52 +0100
 
 checkbox (0.16.15) saucy; urgency=low
 
@@ -187,14 +206,18 @@ checkbox (0.16.10) saucy; urgency=low
     so they get attached correctly (LP: #1218186)
   * scripts/pm_test: Sort output of xinput to avoid spurious failures
     (LP: #1218188)
-
+  * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
+    crashes that cause the test to hang (LP: #1217937)
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
   [ Sylvain Pineau ]
   * checkbox-old/scripts/fwts_test: Added the following new tests:
     method, msr, aspm, klog, oops and uefirtvariable (LP: #1202493)
 
-  [ Daniel Manrique ]
-  * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
-    crashes that cause the test to hang (LP: #1217937)
+  [ Brendan Donegan ]
+  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
+    in fwts and change version dependency to latest version (LP: #1218993)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 06 Sep 2013 16:51:17 +0100
 
@@ -293,7 +316,10 @@ checkbox (0.16.6) raring; urgency=low
     (LP: #1199259)
   * checkbox-old/jobs/input.txt.in: Add more details in pointing test names
     so they are easier to identify (LP: #1192541)
-
+  * scripts/audio_test: Changed the test frequency to 5040 Hz and increased
+    the sampling time to 5 seconds, to improve reliability (LP: #1070776)
+  * scripts/pm_test: Added support for invoking through pkexec (LP: #1201769)
+  [ Brendan Donegan ]
   [ Sylvain Pineau ]
   * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
     deterministic output. Meant to be used with after_suspend jobs.
@@ -361,14 +387,23 @@ checkbox (0.16.4) saucy; urgency=low
     alphabetically, so the order is consistent (LP: #1177647)
   * debian/rules - Add checkbox-hw-collection so that it's treated in the same
     way as other checkbox derived packages like checkbox-qt (LP: #1188601)
-
+  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
+    through new xml_sanitizer script which removes characters which are
+    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
   [ Daniel Manrique ]
   * jobs/stress.txt.in: fixed a few inconsistent invocations of sleep_test.
   * checkbox/tests/test_message_files.py: Added a test to verify jobs contain
     required fields (LP: #1187216).
-
   [ Sylvain Pineau ]
   * jobs/resource.txt.in: updated version of the package resource job command
+    supporting both precise and newer releases (LP: #1184197)
+  * scripts/audio_settings: Use the new pactl parser to guess the right profile
+    to select for HDMI / DisplayPort tests.
+  * setup.py: Use setuptools find_packages(), more future proof.
+  * checkbox/scripts/audio_settings.py: Save active profiles for all alsa cards
+    (LP: #169425)
+  * scripts/gst_pipeline_test: Use the logging module and the same config as
+    audio_settings.
     supporting both precise and newer releases (LP: #1184197)
   * scripts/audio_settings: Use the new pactl parser to guess the right profile
     to select for HDMI / DisplayPort tests.
@@ -392,6 +427,19 @@ checkbox (0.16.3) saucy; urgency=low
     with no optical drive (LP: #1182489)
   * Added missing plugin files to po/POTFILES.in so their strings are
     translatable (LP: #1183271)
+
+  [ Brendan Donegan ]
+  * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
+    the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
+  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
+    child nodes are actually unselected rather than partially selected as
+    before. (LP: #1180342)
+  * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
+    appropriate radio button in showTest if the test already has a result set
+    rather than just defaulting to skip always (LP: #1181952)
+  * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
+    touchpad/horizontal and touchpad/vertical so that those tests will
+    at least run on those systems where they are supposed to (LP: #1184882)
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:37 +0100
 
@@ -460,7 +508,7 @@ checkbox (0.16.1) saucy; urgency=low
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:20:49 +0100
 
-checkbox (0.16) raring; urgency=low
+checkbox (0.16) saucy; urgency=low
 
   [ Brendan Donegan ]
   * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
@@ -543,6 +591,10 @@ checkbox (0.15.7) raring; urgency=low
     jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
     specific rendercheck tests and use this to exclude the 'repeat' test
     from the set of rendercheck tests that run (LP: #1164566)
+  * scripts/sources_test - modified script so that it takes sources list
+    location and repository list as arguments
+  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
+    variables to the sources_test script (LP: #1149288)
   
   [ Jeff Lane ]
   * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)

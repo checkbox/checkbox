@@ -29,6 +29,7 @@
 from logging import getLogger
 from os.path import join
 from shutil import copyfileobj
+import curses
 import io
 import os
 import sys
@@ -49,42 +50,157 @@ from plainbox.impl.result import DiskJobResult, MemoryJobResult
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.runner import authenticate_warmup
 from plainbox.impl.runner import slugify
-from plainbox.impl.secure.config import Unset, ValidationError
+from plainbox.impl.secure.config import Unset
 from plainbox.impl.secure.qualifiers import WhiteList
 from plainbox.impl.session import SessionStateLegacyAPI as SessionState
-from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
-
-from checkbox_ng.certification import CertificationTransport
-from checkbox_ng.certification import InvalidSecureIDError
 
 
 logger = getLogger("checkbox.ng.commands.cli")
 
 
-class _CliInvocation(CheckBoxInvocationMixIn):
+def show_menu(stdscr, title, menu):
+    """
+    Display the appropriate curses menu and return the selected options
+    """
 
-    def __init__(self, provider_list, config, default_whitelist, ns):
+    curses.use_default_colors()
+    curses.curs_set(0)
+    stdscr.keypad(1)
+    # Modify color pair #1, to get black on white text
+    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+
+    option_count = len(menu)
+    position = 0  # Zero-based index of the selected menu option
+    old_position = None
+    key_pressed = None
+    selection = [position]
+    new_selection = False
+
+    while True:
+        if position != old_position or new_selection:
+            stdscr.erase()
+            old_position = position
+            new_selection = False
+            stdscr.border(0)
+            # Display title at x=2, y=2
+            stdscr.addstr(2, 2, title, curses.A_STANDOUT)
+
+            # Display all the menu items
+            for i in range(option_count):
+                text_style = curses.A_NORMAL
+                if position == i:
+                    text_style = curses.color_pair(1)
+                # Display options from line 4, column 4
+                stdscr.addstr(4 + i, 4, "[{}] - {}".format(
+                    'X' if i in selection else ' ',
+                    menu[i].replace('ihv-', '').capitalize()), text_style)
+
+            # Display "OK" at bottom of menu
+            text_style = curses.A_NORMAL
+            if position == option_count:
+                text_style = curses.color_pair(1)
+            # Add an empty line before the last option
+            stdscr.addstr(5 + option_count, 4, "OK", text_style)
+            stdscr.refresh()
+
+        key_pressed = stdscr.getch()
+        if key_pressed == curses.KEY_DOWN:
+            if position < option_count:
+                position += 1
+            else:
+                position = 0
+        elif key_pressed == curses.KEY_UP:
+            if position > 0:
+                position -= 1
+            else:
+                position = option_count
+        elif position == option_count:
+            break
+        elif key_pressed == 32:  # KEY_SPACE
+            if position in selection:
+                selection.remove(position)
+            elif position < option_count:
+                selection.append(position)
+            new_selection = True
+
+    return selection
+
+
+def show_welcome(stdscr, text):
+    """
+    Display a curses splash screen containing a welcome text
+
+    Left and right margins are set to 3 chars. Including the border width (1),
+    the text is wrapped to screen width - 3 * 2 - 1 *2 using:
+        * stdscr.getmaxyx()[1] - 8
+        * stdscr.addstr(i, 4, line)
+    8 equals to margins(3*2) + borders(2*1)
+    4 equals to left margin(3) + left border(1)
+    """
+    curses.use_default_colors()
+    curses.curs_set(0)
+    stdscr.border(0)
+
+    i = 0
+    for paragraph in text.splitlines():
+        i += 1
+        for line in textwrap.fill(paragraph,
+                                  stdscr.getmaxyx()[1] - 8,
+                                  replace_whitespace=False).splitlines():
+            stdscr.addstr(i, 4, line)
+            i += 1
+    stdscr.addstr(i + 1, 4, "Continue", curses.A_STANDOUT)
+    while True:
+        key_pressed = stdscr.getch()
+        if key_pressed == ord('\n'):
+            break
+
+
+class CliInvocation(CheckBoxInvocationMixIn):
+
+    def __init__(self, provider_list, config, settings, ns):
         super().__init__(provider_list)
         self.provider_list = provider_list
         self.config = config
+        self.settings = settings
         self.ns = ns
-        desired_whitelist = default_whitelist
+        self.whitelists = []
         if self.ns.whitelist:
-            self.whitelist = WhiteList.from_file(self.ns.whitelist[0].name)
+            for whitelist in self.ns.whitelist:
+                self.whitelists.append(WhiteList.from_file(whitelist.name))
         elif self.config.whitelist is not Unset:
-            self.whitelist = WhiteList.from_file(self.config.whitelist)
+            self.whitelists.append(WhiteList.from_file(self.config.whitelist))
         elif self.ns.include_pattern_list:
-            self.whitelist = WhiteList(self.ns.include_pattern_list)
+            self.whitelists.append(WhiteList(self.ns.include_pattern_list))
+
+        if self.is_interactive:
+            if self.settings['welcome_text']:
+                try:
+                    curses.wrapper(show_welcome, self.settings['welcome_text'])
+                except curses.error:
+                    raise SystemExit('Terminal size must be at least 80x24')
+            if not self.whitelists:
+                whitelists = []
+                for p in self.provider_list:
+                    if p.name in self.settings['default_providers']:
+                        whitelists.extend(
+                            [w.name for w in p.get_builtin_whitelists()])
+                try:
+                    selection = curses.wrapper(show_menu, "Suite selection",
+                                               whitelists)
+                except curses.error:
+                    raise SystemExit('Terminal size must be at least 80x24')
+                if not selection:
+                    raise SystemExit('No whitelists selected, aborting...')
+                for s in selection:
+                    self.whitelists.append(
+                        get_whitelist_by_name(provider_list, whitelists[s]))
         else:
-            self.whitelist = get_whitelist_by_name(provider_list,
-                                                   desired_whitelist)
-        if self.config.welcome_text is not Unset:
-            print()
-            for line in self.config.welcome_text.splitlines():
-                print(textwrap.fill(line, 80, replace_whitespace=False))
-            print()
+            self.whitelists.append(
+                get_whitelist_by_name(
+                    provider_list, self.settings['default_whitelist']))
+
         print("[ Analyzing Jobs ]".center(80, '='))
-        self.job_list = self.get_job_list(ns)
         self.session = None
         self.runner = None
 
@@ -144,7 +260,7 @@ class _CliInvocation(CheckBoxInvocationMixIn):
     def _run_jobs(self, ns, job_list):
         # Create a session that handles most of the stuff needed to run jobs
         try:
-            session = SessionState(self.job_list)
+            session = SessionState(job_list)
         except DependencyDuplicateError as exc:
             # Handle possible DependencyDuplicateError that can happen if
             # someone is using plainbox for job development.
@@ -156,8 +272,10 @@ class _CliInvocation(CheckBoxInvocationMixIn):
                 exc.duplicate_job.origin))
             raise SystemExit(exc)
         with session.open():
-            desired_job_list = get_matching_job_list(
-                self.job_list, self.whitelist)
+            desired_job_list = []
+            for whitelist in self.whitelists:
+                desired_job_list.extend(get_matching_job_list(job_list,
+                                                              whitelist))
             self._update_desired_job_list(session, desired_job_list)
             if session.previous_session_file():
                 if self.is_interactive and self.ask_for_resume():
@@ -178,30 +296,7 @@ class _CliInvocation(CheckBoxInvocationMixIn):
                 session.session_dir, self.provider_list,
                 session.jobs_io_log_dir)
             self._run_jobs_with_session(ns, session, runner)
-            self._save_results(session)
-            if self.config.secure_id is Unset:
-                again = True
-                if not self.is_interactive:
-                    again = False
-                while again:
-                    if self.ask_user(
-                        "\nSubmit results to certification.canonical.com?",
-                        ('y', 'n')
-                    ).lower() == "y":
-                        try:
-                            self.config.secure_id = input("Secure ID: ")
-                        except ValidationError as exc:
-                            print(
-                                "ERROR: Secure ID must be 15 or 18-character"
-                                " alphanumeric string")
-                        else:
-                            again = False
-                            self._submit_results(session)
-                    else:
-                        again = False
-            else:
-                # Automatically try to submit results if the secure_id is valid
-                self._submit_results(session)
+            self.save_results(session)
 
         # FIXME: sensible return value
         return 0
@@ -222,7 +317,7 @@ class _CliInvocation(CheckBoxInvocationMixIn):
         # Otherwise, do pre-authentication
         return True
 
-    def _save_results(self, session):
+    def save_results(self, session):
         if self.is_interactive:
             print("[ Results ]".center(80, '='))
             exporter = get_all_exporters()['text']()
@@ -267,38 +362,6 @@ class _CliInvocation(CheckBoxInvocationMixIn):
         if 'xlsx' in get_all_exporters():
             print("View results (XLSX): file://{}".format(
                 results_file.replace('html', 'xlsx')))
-
-    def _submit_results(self, session):
-        print("Submitting results to {0} for secure_id {1}".format(
-              self.config.c3_url, self.config.secure_id))
-        options_string = "secure_id={0}".format(self.config.secure_id)
-        # Create the transport object
-        try:
-            transport = CertificationTransport(
-                self.config.c3_url, options_string, self.config)
-        except InvalidSecureIDError as exc:
-            print(exc)
-            return False
-        with open(self.submission_file) as stream:
-            try:
-                # Send the data, reading from the fallback file
-                result = transport.send(stream)
-                if 'url' in result:
-                    print("Successfully sent, submission status at {0}".format(
-                          result['url']))
-                else:
-                    print("Successfully sent, server response: {0}".format(
-                          result))
-
-            except InvalidSchema as exc:
-                print("Invalid destination URL: {0}".format(exc))
-            except ConnectionError as exc:
-                print("Unable to connect to destination URL: {0}".format(exc))
-            except HTTPError as exc:
-                print(("Server returned an error when "
-                       "receiving or processing: {0}").format(exc))
-            except IOError as exc:
-                print("Problem reading a file: {0}".format(exc))
 
     def _interaction_callback(self, runner, job, config, prompt=None,
                               allowed_outcome=None):
@@ -370,8 +433,10 @@ class _CliInvocation(CheckBoxInvocationMixIn):
                 if job.plugin == "local":
                     # After each local job runs rebuild the list of matching
                     # jobs and run everything again
-                    desired_job_list = get_matching_job_list(
-                        session.job_list, self.whitelist)
+                    desired_job_list = []
+                    for whitelist in self.whitelists:
+                        desired_job_list.extend(
+                            get_matching_job_list(session.job_list, whitelist))
                     self._update_desired_job_list(session, desired_job_list)
                     again = True
                     break
@@ -418,60 +483,32 @@ class _CliInvocation(CheckBoxInvocationMixIn):
 
 
 class CliCommand(PlainBoxCommand, CheckBoxCommandMixIn):
+    """
+    Command for running tests using the command line UI.
+    """
 
-    def __init__(self, provider_list, config, default_whitelist):
+    def __init__(self, provider_list, config, settings):
         self.provider_list = provider_list
         self.config = config
-        self.default_whitelist = default_whitelist
+        self.settings = settings
 
     def invoked(self, ns):
-        # Copy command-line arguments over configuration variables
-        try:
-            if ns.secure_id:
-                self.config.secure_id = ns.secure_id
-            if ns.c3_url:
-                self.config.c3_url = ns.c3_url
-        except ValidationError as exc:
-            print("Configuration problems prevent running tests")
-            print(exc)
-            return 1
         # Run check-config, if requested
         if ns.check_config:
             retval = CheckConfigInvocation(self.config).run()
             return retval
-        return _CliInvocation(self.provider_list, self.config,
-                              self.default_whitelist, ns).run()
+        return CliInvocation(self.provider_list, self.config,
+                             self.settings, ns).run()
 
-    def register_parser(self, subparsers, parser_name, parser_help=None):
-        parser = subparsers.add_parser(parser_name, help=parser_help)
+    def register_parser(self, subparsers):
+        parser = subparsers.add_parser(self.settings['subparser_name'],
+                                       help=self.settings['subparser_help'])
         parser.set_defaults(command=self)
         parser.add_argument(
             "--check-config",
             action="store_true",
             help="Run check-config")
-        group = parser.add_argument_group("certification-specific options")
-        # Set defaults from based on values from the config file
-        group.set_defaults(c3_url=self.config.c3_url)
-        if self.config.secure_id is not Unset:
-            group.set_defaults(secure_id=self.config.secure_id)
-        group.add_argument(
-            '--secure-id', metavar="SECURE-ID",
-            action='store',
-            help=("Associate submission with a machine using this SECURE-ID"
-                  " (%(default)s)"))
-        group.add_argument(
-            '--destination', metavar="URL",
-            dest='c3_url',
-            action='store',
-            help=("POST the test report XML to this URL"
-                  " (%(default)s)"))
-        group.add_argument(
-            '--staging',
-            dest='c3_url',
-            action='store_const',
-            const='https://certification.staging.canonical.com/submissions/submit/',
-            help='Override --destination to use the staging certification website')
-        group.add_argument(
+        parser.add_argument(
             '--not-interactive', action='store_true',
             help="Skip tests that require interactivity")
         # Call enhance_parser from CheckBoxCommandMixIn
