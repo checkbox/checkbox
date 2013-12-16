@@ -294,6 +294,9 @@ private:
                                       const QString& outcome, \
                                       const QString& comments);
 
+        bool JobCanStart(const QDBusObjectPath& job_path);
+        const QString GetReadinessDescription(const QDBusObjectPath& job_path);
+
         // Job Properties
         QString GetCommand(const QDBusObjectPath& opath);
 

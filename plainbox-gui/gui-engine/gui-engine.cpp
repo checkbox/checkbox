@@ -1901,6 +1901,39 @@ QDBusObjectPath GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
     return resultpath;
 }
 
+bool GuiEngine::JobCanStart(const QDBusObjectPath &job_path)
+{
+    qDebug() << "GuiEngine::JobCanStart()";
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping.
+     */
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             return m_job_state_list.at(i)->CanStart();
+         }
+     }
+     return false;  // Error case defaults to dont run
+}
+
+const QString GuiEngine::GetReadinessDescription(const QDBusObjectPath &job_path)
+{
+    QString empty;
+    qDebug() << "GuiEngine::GetReadinessDescription()";
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping.
+     */
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             return m_job_state_list.at(i)->GetReadinessDescription();
+         }
+     }
+     return empty;
+}
+
 void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
 {
     qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler");
