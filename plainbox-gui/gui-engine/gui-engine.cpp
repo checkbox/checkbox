@@ -2269,53 +2269,55 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 {
 //    qDebug("GuiEngine::CatchallJobResultAvailableSignalsHandler");
 
-    /* We need information about which job and jobresult we should look at
-     * in order to call UpdateJobResult().
-     */
+    if (msg.type() != 0) { // QDBusMessage::InvalidMessage
+        /* We need information about which job and jobresult we should look at
+         * in order to call UpdateJobResult().
+         */
 
-    QList<QVariant> args = msg.arguments();
+        QList<QVariant> args = msg.arguments();
 
-    QList<QVariant>::iterator iter = args.begin();
+        QList<QVariant>::iterator iter = args.begin();
 
-    QVariant variant = *iter;
+        QVariant variant = *iter;
 
-    QDBusObjectPath job = variant.value<QDBusObjectPath>();
+        QDBusObjectPath job = variant.value<QDBusObjectPath>();
 
-    iter++;
+        iter++;
 
-    variant = *iter;
+        variant = *iter;
 
-    QDBusObjectPath result = variant.value<QDBusObjectPath>();
+        QDBusObjectPath result = variant.value<QDBusObjectPath>();
 
-    UpdateJobResult(m_session,job,result);
+        UpdateJobResult(m_session,job,result);
 
-    // How did this job turn out?
-    const int outcome = GetOutcomeFromJobResultPath(result);
+        // How did this job turn out?
+        const int outcome = GetOutcomeFromJobResultPath(result);
 
-    if (m_running_manual_job) {
-        m_running_manual_job = false;
-        emit closeManualInteractionDialog();
-    }
+        if (m_running_manual_job) {
+            m_running_manual_job = false;
+            emit closeManualInteractionDialog();
+        }
 
-    // Update the GUI so it knows what the job outcome was
-    emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
-            m_current_job_index, \
-            outcome, \
-            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
+        // Update the GUI so it knows what the job outcome was
+        emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
+                m_current_job_index, \
+                outcome, \
+                JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
-    // Ok, lets note that we've run this, remove it from rerun
-    m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
+        // Ok, lets note that we've run this, remove it from rerun
+        m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
 
-    // Move to the next job
-    m_current_job_index = NextRunJobIndex(m_current_job_index);
+        // Move to the next job
+        m_current_job_index = NextRunJobIndex(m_current_job_index);
 
-    m_waiting_result = false;
+        m_waiting_result = false;
 
-    // We should deal with Pause/Resume here
-    if (!m_running) {
+        // We should deal with Pause/Resume here
+        if (!m_running) {
 
-        // Dont start the next job
-        return;
+            // Dont start the next job
+            return;
+        }
     }
 
     if (m_run_list.count() != m_current_job_index) {
@@ -2325,13 +2327,29 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
                 m_current_job_index, \
                 JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
-        // Now run the next job
-        qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
-
         // Preserve progress so far
         EncodeGuiEngineStateAsJSON();
 
-        RunJob(m_session,m_run_list.at(m_current_job_index));
+        if (JobCanStart(m_run_list.at(m_current_job_index))) {
+            // Now run the next job
+            qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+            RunJob(m_session,m_run_list.at(m_current_job_index));
+        } else {
+            // Now, we can set the outcome/comments of this test
+            QDBusObjectPath result = SetJobOutcome(m_run_list.at(m_current_job_index), JobResult_OUTCOME_NOT_SUPPORTED, GetReadinessDescription(m_run_list.at(m_current_job_index)));
+
+            UpdateJobResult(m_session, m_run_list.at(m_current_job_index), result);
+
+            emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
+                    m_current_job_index, \
+                    PBTreeNode::PBJobResult_DepsNotMet, \
+                    JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
+
+            m_current_job_index = NextRunJobIndex(m_current_job_index);
+
+            QDBusMessage fake_msg;
+            CatchallJobResultAvailableSignalsHandler(fake_msg);
+        }
 
         return;
     }
