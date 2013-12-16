@@ -1,0 +1,58 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Helper script to download the packaging branch
+# ==============================================
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Ensure that we have bzr
+if [ "$(which bzr)" = "" ]; then
+    echo "E: you need to have bzr installed first"
+    exit 101
+fi
+
+# Ensure that we have the checkbox-packaging repository
+if [ ! -d "$CHECKBOX_TOP/support/checkbox-packaging" ]; then
+    echo "I: checking out the checkbox-packaging repository..."
+    # Create a bzr checkout of the checkbox-packaging repository
+    #
+    # This so lousy, can we please use git instead :P
+    #
+    # With git this can be a single repository and we just checkout the right
+    # commit, as we do with external-tarballs now. With bzr it's got to be a
+    # special 'lightweight' checkout that nobody uses, is not lightweight at
+    # all, gets write-through commit access straight to the backing branch.
+    bzr checkout lp:~checkbox-dev/checkbox/checkbox-packaging \
+        "$CHECKBOX_TOP/support/checkbox-packaging"
+fi
+
+# Get the desired revision name
+DESIRED_REVNO=$(cat $CHECKBOX_TOP/support/packaging-revision.txt)
+
+# Ensure that we are on the correct revision
+if ! bzr switch -r "$DESIRED_REVNO" -d "$CHECKBOX_TOP/support/checkbox-packaging"; then
+    echo "E: cannot switch to required commit!"
+    exit 1
+fi
