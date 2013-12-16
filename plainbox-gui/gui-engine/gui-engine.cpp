@@ -866,7 +866,8 @@ void GuiEngine::RunLocalJobs(void)
         GetJobResults();
 
         // Now, we can set the outcome of this test
-        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL);
+        QString empty;
+        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL, empty);
 
         // Lets skip this one
         m_rerun_list.pop_front();
@@ -1868,13 +1869,14 @@ void GuiEngine::SetOutcome(const QDBusObjectPath &runner, \
  * runner object to serve as a means of setting the outcome.
  */
 void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
-                              const QString &outcome)
+                              const QString &outcome, \
+                              const QString &comments)
 {
     qDebug() << "GuiEngine::SetJobOutcome() " << job_path.path() << " " << outcome;
 
     /* first, we need to go through the m_job_state_list to find the
-     * to obtain the actual result.
      * relevant job to result mapping. then we go through m_job_state_results
+     * to obtain the actual result.
      */
      QDBusObjectPath resultpath;
 
@@ -1890,6 +1892,7 @@ void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
      for(int i=0;i<m_job_state_results.count();i++) {
          if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
              m_job_state_results.at(i)->setOutcome(outcome);
+             m_job_state_results.at(i)->setComments(comments);
              break;
          }
      }

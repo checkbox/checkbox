@@ -291,7 +291,8 @@ private:
          * runner object to serve as a means of setting the outcome.
          */
         void SetJobOutcome(const QDBusObjectPath& job_path, \
-                           const QString& outcome);
+                           const QString& outcome, \
+                           const QString& comments);
 
         // Job Properties
         QString GetCommand(const QDBusObjectPath& opath);
