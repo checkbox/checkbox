@@ -1868,9 +1868,9 @@ void GuiEngine::SetOutcome(const QDBusObjectPath &runner, \
  * on resuming a session, since in this circumstance, there is no
  * runner object to serve as a means of setting the outcome.
  */
-void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
-                              const QString &outcome, \
-                              const QString &comments)
+QDBusObjectPath GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
+                                         const QString &outcome, \
+                                         const QString &comments)
 {
     qDebug() << "GuiEngine::SetJobOutcome() " << job_path.path() << " " << outcome;
 
@@ -1898,6 +1898,7 @@ void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
      }
 
     qDebug() << "GuiEngine::SetJobOutcome() - Done";
+    return resultpath;
 }
 
 void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
