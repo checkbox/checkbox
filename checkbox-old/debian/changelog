@@ -20,6 +20,8 @@ checkbox (0.17.1) trusty; urgency=low
   * Changed touchpad_test to use default scrolling method, and added a switch
     to force edge scrolling if desired. Updated legacy tests to use edge
     scrolling when the test description makes that appropriate. (LP: #1259987)
+  * scripts/virtualization: Shut down the VM properly so as to not damage the
+    disk image; work properly with "second-boot" VM images (LP: #1259879)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Dec 2013 12:08:26 -0500
 
