@@ -11,6 +11,7 @@ command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_befor
 
 plugin: shell
 name: suspend/audio_before_suspend
+estimated_duration: 1.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -297,6 +298,7 @@ command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_
 
 plugin: shell
 name: suspend/audio_after_suspend
+estimated_duration: 1.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
