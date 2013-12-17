@@ -866,7 +866,8 @@ void GuiEngine::RunLocalJobs(void)
         GetJobResults();
 
         // Now, we can set the outcome of this test
-        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL);
+        QString empty;
+        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL, empty);
 
         // Lets skip this one
         m_rerun_list.pop_front();
@@ -1867,14 +1868,15 @@ void GuiEngine::SetOutcome(const QDBusObjectPath &runner, \
  * on resuming a session, since in this circumstance, there is no
  * runner object to serve as a means of setting the outcome.
  */
-void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
-                              const QString &outcome)
+QDBusObjectPath GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
+                                         const QString &outcome, \
+                                         const QString &comments)
 {
     qDebug() << "GuiEngine::SetJobOutcome() " << job_path.path() << " " << outcome;
 
     /* first, we need to go through the m_job_state_list to find the
-     * to obtain the actual result.
      * relevant job to result mapping. then we go through m_job_state_results
+     * to obtain the actual result.
      */
      QDBusObjectPath resultpath;
 
@@ -1890,11 +1892,46 @@ void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
      for(int i=0;i<m_job_state_results.count();i++) {
          if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
              m_job_state_results.at(i)->setOutcome(outcome);
+             m_job_state_results.at(i)->setComments(comments);
              break;
          }
      }
 
     qDebug() << "GuiEngine::SetJobOutcome() - Done";
+    return resultpath;
+}
+
+bool GuiEngine::JobCanStart(const QDBusObjectPath &job_path)
+{
+    qDebug() << "GuiEngine::JobCanStart()";
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping.
+     */
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             return m_job_state_list.at(i)->CanStart();
+         }
+     }
+     return false;  // Error case defaults to dont run
+}
+
+const QString GuiEngine::GetReadinessDescription(const QDBusObjectPath &job_path)
+{
+    QString empty;
+    qDebug() << "GuiEngine::GetReadinessDescription()";
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping.
+     */
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             return m_job_state_list.at(i)->GetReadinessDescription();
+         }
+     }
+     return empty;
 }
 
 void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
@@ -2232,53 +2269,55 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 {
 //    qDebug("GuiEngine::CatchallJobResultAvailableSignalsHandler");
 
-    /* We need information about which job and jobresult we should look at
-     * in order to call UpdateJobResult().
-     */
+    if (msg.type() != 0) { // QDBusMessage::InvalidMessage
+        /* We need information about which job and jobresult we should look at
+         * in order to call UpdateJobResult().
+         */
 
-    QList<QVariant> args = msg.arguments();
+        QList<QVariant> args = msg.arguments();
 
-    QList<QVariant>::iterator iter = args.begin();
+        QList<QVariant>::iterator iter = args.begin();
 
-    QVariant variant = *iter;
+        QVariant variant = *iter;
 
-    QDBusObjectPath job = variant.value<QDBusObjectPath>();
+        QDBusObjectPath job = variant.value<QDBusObjectPath>();
 
-    iter++;
+        iter++;
 
-    variant = *iter;
+        variant = *iter;
 
-    QDBusObjectPath result = variant.value<QDBusObjectPath>();
+        QDBusObjectPath result = variant.value<QDBusObjectPath>();
 
-    UpdateJobResult(m_session,job,result);
+        UpdateJobResult(m_session,job,result);
 
-    // How did this job turn out?
-    const int outcome = GetOutcomeFromJobResultPath(result);
+        // How did this job turn out?
+        const int outcome = GetOutcomeFromJobResultPath(result);
 
-    if (m_running_manual_job) {
-        m_running_manual_job = false;
-        emit closeManualInteractionDialog();
-    }
+        if (m_running_manual_job) {
+            m_running_manual_job = false;
+            emit closeManualInteractionDialog();
+        }
 
-    // Update the GUI so it knows what the job outcome was
-    emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
-            m_current_job_index, \
-            outcome, \
-            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
+        // Update the GUI so it knows what the job outcome was
+        emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
+                m_current_job_index, \
+                outcome, \
+                JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
-    // Ok, lets note that we've run this, remove it from rerun
-    m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
+        // Ok, lets note that we've run this, remove it from rerun
+        m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
 
-    // Move to the next job
-    m_current_job_index = NextRunJobIndex(m_current_job_index);
+        // Move to the next job
+        m_current_job_index = NextRunJobIndex(m_current_job_index);
 
-    m_waiting_result = false;
+        m_waiting_result = false;
 
-    // We should deal with Pause/Resume here
-    if (!m_running) {
+        // We should deal with Pause/Resume here
+        if (!m_running) {
 
-        // Dont start the next job
-        return;
+            // Dont start the next job
+            return;
+        }
     }
 
     if (m_run_list.count() != m_current_job_index) {
@@ -2288,13 +2327,29 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
                 m_current_job_index, \
                 JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
-        // Now run the next job
-        qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
-
         // Preserve progress so far
         EncodeGuiEngineStateAsJSON();
 
-        RunJob(m_session,m_run_list.at(m_current_job_index));
+        if (JobCanStart(m_run_list.at(m_current_job_index))) {
+            // Now run the next job
+            qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+            RunJob(m_session,m_run_list.at(m_current_job_index));
+        } else {
+            // Now, we can set the outcome/comments of this test
+            QDBusObjectPath result = SetJobOutcome(m_run_list.at(m_current_job_index), JobResult_OUTCOME_NOT_SUPPORTED, GetReadinessDescription(m_run_list.at(m_current_job_index)));
+
+            UpdateJobResult(m_session, m_run_list.at(m_current_job_index), result);
+
+            emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
+                    m_current_job_index, \
+                    PBTreeNode::PBJobResult_DepsNotMet, \
+                    JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
+
+            m_current_job_index = NextRunJobIndex(m_current_job_index);
+
+            QDBusMessage fake_msg;
+            CatchallJobResultAvailableSignalsHandler(fake_msg);
+        }
 
         return;
     }

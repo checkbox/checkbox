@@ -461,3 +461,49 @@ void PBTreeNode::setOutcome(const QString &outcome)
         qDebug() << "Failed to set outcome:";
     }
 }
+
+void PBTreeNode::setComments(const QString &comments)
+{
+    qDebug() << "PBTreeNode::setComments" << object_path.path() << comments;
+
+    QDBusInterface iface(PBBusName, \
+                         object_path.path(), \
+                         ofDPropertiesName, \
+                         QDBusConnection::sessionBus());
+
+    QDBusMessage reply = iface.call("Set",JobResultInterface,"comments",comments);
+    if (reply.type() != QDBusMessage::ReplyMessage) {
+
+        qDebug() << "Failed to set comments:";
+    }
+}
+
+bool PBTreeNode::CanStart(void)
+{
+    qDebug() << "PBTreeNode::CanStart()";
+
+    QDBusInterface iface(PBBusName, \
+                         object_path.path(), \
+                         JobStateInterface, \
+                         QDBusConnection::sessionBus());
+
+    QDBusReply<bool> reply = iface.call("CanStart");
+    if (reply.isValid()) {
+        return reply.value();
+    }
+}
+
+const QString PBTreeNode::GetReadinessDescription(void)
+{
+    qDebug() << "PBTreeNode::GetReadinessDescription()";
+
+    QDBusInterface iface(PBBusName, \
+                         object_path.path(), \
+                         JobStateInterface, \
+                         QDBusConnection::sessionBus());
+
+    QDBusReply<QString> reply = iface.call("GetReadinessDescription");
+    if (reply.isValid()) {
+        return reply.value();
+    }
+}

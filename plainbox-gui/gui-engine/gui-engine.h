@@ -290,8 +290,12 @@ private:
          * on resuming a session, since in this circumstance, there is no
          * runner object to serve as a means of setting the outcome.
          */
-        void SetJobOutcome(const QDBusObjectPath& job_path, \
-                           const QString& outcome);
+        QDBusObjectPath SetJobOutcome(const QDBusObjectPath& job_path, \
+                                      const QString& outcome, \
+                                      const QString& comments);
+
+        bool JobCanStart(const QDBusObjectPath& job_path);
+        const QString GetReadinessDescription(const QDBusObjectPath& job_path);
 
         // Job Properties
         QString GetCommand(const QDBusObjectPath& opath);
