@@ -29,6 +29,7 @@ audio/alsa_record_playback_automated
 __bluetooth__
 bluetooth/detect-output
 __camera__
+camera/detect
 camera/multiple-resolution-images
 __cpu__
 cpu/scaling_test
@@ -60,9 +61,8 @@ miscellanea/fwts_test
 miscellanea/fwts_results.log
 __ethernet__
 ethernet/detect
-ethernet/http
-ethernet/internet
-ethernet/ping
+networking/http
+networking/gateway_ping
 __power-management__
 power-management/tickless_idle
 power-management/rtc
