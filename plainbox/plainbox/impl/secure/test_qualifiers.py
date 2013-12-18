@@ -44,6 +44,7 @@ class JobQualifierTests(TestCase):
 
     def test_RegExpJobQualifier_smoke(self):
         qualifier = RegExpJobQualifier("foo")
+        self.assertEqual(qualifier.pattern_text, "foo")
         self.assertEqual(
             repr(qualifier), "<RegExpJobQualifier pattern:'foo'>")
         self.assertTrue(qualifier.designates(make_job("foo")))
@@ -103,7 +104,10 @@ class WhiteListTests(TestCase):
         m_open = mock.MagicMock(name='open', spec=open)
         m_stream = mock.MagicMock(spec=TextIOWrapper)
         m_stream.__enter__.return_value = m_stream
+        # The next two lines are complementary, either will suffice but the
+        # test may need changes if the code that reads stuff changes.
         m_stream.__iter__.side_effect = lambda: iter(content)
+        m_stream.read.return_value = "\n".join(content)
         m_open.return_value = m_stream
         with mock.patch('plainbox.impl.secure.qualifiers.open', m_open,
                         create=True):
@@ -115,13 +119,40 @@ class WhiteListTests(TestCase):
             pattern_list = WhiteList._load_patterns(self._name)
         self.assertEqual(pattern_list, ['^foo$', '^bar$'])
 
-    def test_smoke(self):
+    def test_designates(self):
+        """
+        verify that WhiteList.designates() works
+        """
+        self.assertTrue(
+            WhiteList.from_string("foo").designates(make_job('foo')))
+        self.assertTrue(
+            WhiteList.from_string("foo\nbar\n").designates(make_job('foo')))
+        self.assertTrue(
+            WhiteList.from_string("foo\nbar\n").designates(make_job('bar')))
+        # Note, it's not matching either!
+        self.assertFalse(
+            WhiteList.from_string("foo").designates(make_job('foobar')))
+        self.assertFalse(
+            WhiteList.from_string("bar").designates(make_job('foobar')))
+
+    def test_from_file(self):
+        """
+        verify that WhiteList.from_file() works
+        """
         with self.mocked_file(self._name, self._content):
             whitelist = WhiteList.from_file(self._name)
         self.assertEqual(
             repr(whitelist.inclusive_qualifier_list[0]),
             "<RegExpJobQualifier pattern:'^foo$'>")
-        self.assertTrue(whitelist.designates(make_job('foo')))
+
+    def test_from_string(self):
+        """
+        verify that WhiteList.from_string() works
+        """
+        whitelist = WhiteList.from_string("\n".join(self._content))
+        self.assertEqual(
+            repr(whitelist.inclusive_qualifier_list[0]),
+            "<RegExpJobQualifier pattern:'^foo$'>")
 
     def test_repr(self):
         """
@@ -129,6 +160,32 @@ class WhiteListTests(TestCase):
         """
         whitelist = WhiteList([], name="test")
         self.assertEqual(repr(whitelist), "<WhiteList name:'test'>")
+
+    def test_name_getter(self):
+        """
+        verify that WhiteList.name getter works
+        """
+        self.assertEqual(WhiteList([], "foo").name, "foo")
+
+    def test_name_setter(self):
+        """
+        verify that WhiteList.name setter works
+        """
+        whitelist = WhiteList([], "foo")
+        whitelist.name = "bar"
+        self.assertEqual(whitelist.name, "bar")
+
+    def test_name_from_fielename(self):
+        """
+        verify how name_from_filename() works
+        """
+        self.assertEqual(
+            WhiteList.name_from_filename("some/path/foo.whitelist"), "foo")
+        self.assertEqual(WhiteList.name_from_filename("foo.whitelist"), "foo")
+        self.assertEqual(WhiteList.name_from_filename("foo."), "foo")
+        self.assertEqual(WhiteList.name_from_filename("foo"), "foo")
+        self.assertEqual(
+            WhiteList.name_from_filename("foo.notawhitelist"), "foo")
 
 
 class NameJobQualifierTests(TestCase):
