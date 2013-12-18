@@ -100,8 +100,8 @@ Page {
                 // Lets clean up the old session
                 guiEngine.GuiSessionRemove();
 
-        // And create a fresh one
-        guiEngine.GuiCreateSession();
+                // And create a fresh one
+                guiEngine.GuiCreateSession();
 
                 mainView.state = "WELCOME"
             }

@@ -206,7 +206,6 @@ Rectangle {
         listflick.contentHeight = groupedList.height
 
         /* kick off the real tests now */
-        console.log("Start Testing")
         guiEngine.RunJobs();
     }
 }

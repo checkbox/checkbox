@@ -20,7 +20,6 @@
  */
 
 import QtQuick 2.0
-//import GuiEngine 1.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import "."
@@ -33,8 +32,6 @@ MainView {
 
     // TODO - For Resume dialog, when plainbox starts up, check if this is a 'Resume'
     // if it is, set pageName = "ResumeView", state = "RESUME"
-
-    Component.onDestruction: {console.log("SHUTDOWN");}
 
     PageStack {
         id: pageStack

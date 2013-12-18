@@ -69,8 +69,6 @@ Dialog {
         color: UbuntuColors.orange
         enabled: showTestButton ? true : false
         onClicked: {
-            console.log("Test")
-
             /* So the user knows this is happening, grey the buttons until
              * we get a reply.
              */
@@ -170,7 +168,6 @@ Dialog {
         text: i18n.tr("Continue")
         color: UbuntuColors.warmGrey
         onClicked: {
-            console.log("Continue")
             if (skipcheck.checked && comments.text === "")
             {
                 PopupUtils.open(skip_warning_dialog, continuebutton);
@@ -207,7 +204,6 @@ Dialog {
             showCheckbox: false
 
             onOk: {
-                console.log("ok clicked");
             }
         }
     }
@@ -216,8 +212,6 @@ Dialog {
         id: manual_interaction_connections
         target: guiEngine
         onUpdateManualInteractionDialog: {
-            console.log("updateManualInteractionDialog");
-
             // Remove the activity indicator
             manual_interaction_activity.running = false;
 

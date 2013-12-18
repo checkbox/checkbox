@@ -51,7 +51,6 @@ Component {
                 groupedList.userChangingIndex = true;
                 itemdelegate.open = !itemdelegate.open
                 groupedList.openShutSubgroup(section, itemdelegate.open)
-                //console.log("Open/Shut items below")
                 groupedList.userChangingIndex = false;
             }
         }
