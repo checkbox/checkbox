@@ -118,6 +118,20 @@ Page {
             horizontalCenter: parent.horizontalCenter
             top: testlistheaders.bottom
         }
+
+   	    // At least one test MUST be selected
+    	function ensure_one_selection() {
+            var one_selection = false;
+            for (var i = testListModel.count - 1; i >= 0; i--){
+                var item = testListModel.get(i);
+                if (item.check === "true") {
+                    one_selection = true;
+                }
+            }
+
+            // If nothing is selected, disable the ok button
+            startTesting.enabled = one_selection
+        }
     }
 
     Component {
@@ -139,21 +153,29 @@ Page {
                  id: infoButton
                  text: i18n.tr("Info")
                  color: UbuntuColors.lightAubergine
-                 onTriggered: PopupUtils.open(actionSelectionPopover, infoButton)
+                 onClicked: {
+                     PopupUtils.open(actionSelectionPopover, infoButton)
+                 }
             }
             Button {
                  id:selectButton
                  text: i18n.tr("Select All")
                  color: UbuntuColors.coolGrey
                  width: units.gu(18)
-                 onTriggered: testsuitelist.selectAll(true);
+                 onClicked: {
+                     testsuitelist.selectAll(true)
+                     testsuitelist.ensure_one_selection()
+                 }
             }
             Button {
                  id: deselectButton
                  text: i18n.tr("Deselect All")
                  color: UbuntuColors.coolGrey
                  width: units.gu(18)
-                 onTriggered: testsuitelist.selectAll(false);
+                 onClicked: {
+                     testsuitelist.selectAll(false)
+                     testsuitelist.ensure_one_selection()
+                 }
             }
         }
         Row {
@@ -164,7 +186,7 @@ Page {
                 id: startTesting
                 text: i18n.tr("Start Testing")
                 width: units.gu(18)
-                onTriggered: {
+                onClicked: {
                     mainView.state = "RUNMANAGER"
 
                 }
