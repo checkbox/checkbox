@@ -20,6 +20,16 @@ command:
 estimated_duration: 0.645
 _description: Wireless scanning test. It scans and reports on discovered APs.
 
+plugin: shell
+name: wireless/info_automated
+requires:
+ package.name == 'network-manager'
+ device.category == 'WIRELESS'
+command: udev_resource | filter_templates -w "category=WIRELESS"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
+estimated_duration: 1.1
+_description:
+ This is an automated test to gather some info on the current state of your wireless devices. If no devices are found, the test will exit with an error.
+
 plugin: user-interact-verify
 name: wireless/wireless_connection
 command: network_check
