@@ -33,14 +33,14 @@ __suspend__
 __ethernet__
 
 # Manual tests and dependencies
-networking/detect
+ethernet/detect
 networking/info
 networking/info.*
 ethernet/maximum_bandwidth
 ethernet/maximum_bandwidth.*
 # Automated tests
 benchmarks/network/network-loopback
-networking/info_automated
+ethernet/info_automated
 networking/gateway_ping
 power-management/rtc
 suspend/iperf_before_suspend_ether_auto
