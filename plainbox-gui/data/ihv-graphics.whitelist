@@ -1,23 +1,8 @@
 # Checkbox whitelist file IHV graphics tests
 # Resource Jobs
-cpuinfo
-cdimage
-display
-dmi
-dpkg
-efi
-gconf
-lsb
-meminfo
-module
-package
-device
-uname
-usb
-sleep
-optical_drive
-block_device
-touchpad_scroll
+# A meta-job that includes the resources needed for a valid submission.
+# Please do not remove without good reason.
+miscellanea/submission-resources
 #Info attachment jobs
 __info__
 codecs_attachment
@@ -55,6 +40,10 @@ __rendercheck__
 __stress__
 __suspend__
 
+# Automated requisite tests for the manual ones
+graphics/xorg-version
+graphics/VESA_drivers_not_in_use
+
 # Manual tests
 graphics/display
 graphics/resolution-change
@@ -68,8 +57,6 @@ monitor/displayport
 monitor/hdmi
 
 # Automated tests
-graphics/xorg-version
-graphics/VESA_drivers_not_in_use
 graphics/driver_version
 graphics/xorg-process
 graphics/xorg-failsafe

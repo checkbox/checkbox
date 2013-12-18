@@ -33,18 +33,18 @@ __suspend__
 __wireless__
 
 # Manual tests and dependencies
-networking/detect
 networking/info
 networking/info.*
+wireless/info_automated
 wireless/wireless_connection
 wireless/maximum_bandwidth
 wireless/maximum_bandwidth.*
 wireless/wireless_rfkill
 # Automated tests
 benchmarks/network/network-loopback
-networking/info_automated
 power-management/rtc
-wireless/extension-check
+wireless/wireless_extension
+suspend/wireless_before_suspend
 wireless/wireless_connection_wpa_bg
 wireless/wireless_connection_wpa_n
 wireless/wireless_connection_open_bg
