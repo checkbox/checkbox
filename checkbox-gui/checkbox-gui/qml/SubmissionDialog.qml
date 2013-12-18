@@ -37,14 +37,7 @@ Dialog {
         text: i18n.tr("Save Results")
         color: UbuntuColors.orange
         onClicked: {
-            // open the directory dialog
-            // FYI, in QT 5.1, here's how to do it
-            //                  import QtQuick 2.1
-            //                  import QtQuick.Controls 1.0
-            // fileDialog.open()
-
             var mysavepath = guiEngine.GetSaveFileName();
-
             runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsXML(mysavepath);
         }
     }
@@ -54,16 +47,8 @@ Dialog {
         color: UbuntuColors.lightAubergine
         onClicked: {
             onClicked:{
-
-                // FIXME - Removed the integrated dialog until we have HTML file
-//                PopupUtils.open(log_viewer_results, view_button);
-
-                // Interim solution is to fire up a web browser
-                // FIXME: ideally plainbox should generate a file that the app then has to unlink
                 var mysavepath = '/tmp/report.html';
-
                 runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath);
-
                 cmdTool.exec("xdg-open", mysavepath)
             }
         }
@@ -88,30 +73,7 @@ Dialog {
             showContinue: false
             showCheckbox: false
 
-            //onOk:// do nothing and return to submission dialog
-
             onCancel: PopupUtils.close(dialog)
         }
     }
-
-    // Qt 5.1 can use this in theory rather than the QFileDialog
-    //FileDialog {
-    //    id: fileDialog
-    //    title: "Please select a folder to save to:"
-    //    selectFolder : true
-    //    onAccepted: {
-    //        console.log("You chose: " + fileDialog.fileUrls)
-    //    }
-     //   onRejected: {
-     //       console.log("Canceled")
-     //   }
-
 }
-
-
-
-
-
-
-
-

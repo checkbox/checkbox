@@ -107,7 +107,6 @@ Page {
                 font.pixelSize: FontUtils.sizeToPixels("medium")
 
                 onLinkActivated:  {
-                    console.log("onLinkActivated")
                     cmdTool.exec("xdg-open", link)
                 }
             }

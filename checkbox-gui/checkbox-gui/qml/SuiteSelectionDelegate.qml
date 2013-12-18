@@ -26,52 +26,52 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import "./artwork"
 
 
+Item {
+    id: itemdelegate
+    width: parent.width
+    height: units.gu(7)
+
     Item {
-        id: itemdelegate
-        width: parent.width
-        height: units.gu(7)
-
-        Item {
-            id: suitefiller
-            width: units.gu(1)
-        }
-
-        CheckBox {
-            id: suitecheckbox
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: suitefiller.right
-            checked: true
-            onClicked: {
-                // Update the list of selected whitelists
-		update_selection(testname, checked)
-                /* Update the ListView, primarily to ensure we dont
-                 * uncheck ALL the whitelists.
-                 */
-                suitelist.ensure_one_selection();
-            }
-        }
-
-
-        function update_selection(testname, checked){
-            for (var i = whiteListModel.count - 1; i >= 0; i--){
-                var item = whiteListModel.get(i);
-                if (item.testname === testname){
-                    whiteListModel.setProperty(i, "check", checked);
-                }
-            }
-        }
-
-        function remove_prefix_and_capitalize_first(prefix, suite) {
-            var suitename = suite.replace(prefix, '')
-            return suitename.substr(0, 1).toUpperCase() + suitename.substr(1)
-        }
-
-        Text {
-            id: suitetext
-            text: remove_prefix_and_capitalize_first('ihv-', testname)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: suitecheckbox.right
-            anchors.leftMargin: units.gu(1)
-        }
-        ListItem.ThinDivider {}
+        id: suitefiller
+        width: units.gu(1)
     }
+
+    CheckBox {
+        id: suitecheckbox
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: suitefiller.right
+        checked: true
+        onClicked: {
+            // Update the list of selected whitelists
+	        update_selection(testname, checked)
+            /* Update the ListView, primarily to ensure we dont
+             * uncheck ALL the whitelists.
+             */
+            suitelist.ensure_one_selection();
+        }
+    }
+
+
+    function update_selection(testname, checked){
+        for (var i = whiteListModel.count - 1; i >= 0; i--){
+            var item = whiteListModel.get(i);
+            if (item.testname === testname){
+                whiteListModel.setProperty(i, "check", checked);
+            }
+        }
+    }
+
+    function remove_prefix_and_capitalize_first(prefix, suite) {
+        var suitename = suite.replace(prefix, '')
+        return suitename.substr(0, 1).toUpperCase() + suitename.substr(1)
+    }
+
+    Text {
+        id: suitetext
+        text: remove_prefix_and_capitalize_first('ihv-', testname)
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: suitecheckbox.right
+        anchors.leftMargin: units.gu(1)
+    }
+    ListItem.ThinDivider {}
+}

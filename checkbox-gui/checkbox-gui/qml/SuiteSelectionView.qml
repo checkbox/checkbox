@@ -91,11 +91,6 @@ Page {
 
         anchors.horizontalCenter: suitelist.horizontalCenter
         anchors.verticalCenter: suitelist.verticalCenter
-
-        // FIXME - if a future version scales smoothly, we can add this back
-//        height: suitelist.height / 4;
-//        width: suitelist.width / 4;
-
     }
 
     Button {
@@ -122,7 +117,7 @@ Page {
             /* Now, we should go run the guiengine update to run the local jobs
               which happen to match the whitelist. Then we can collect the
               test jobs and show them to the user.
-          */
+             */
             guiEngine.RunLocalJobs();
         }
     }
