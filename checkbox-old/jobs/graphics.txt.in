@@ -58,6 +58,21 @@ _description:
  VERIFICATION:
      Is this acceptable for your display?
 
+plugin: user-verify
+name: graphics/screen-resolution
+requires:
+ device.category == 'VIDEO'
+ package.name == 'qmlscene'
+command: timeout 5 qmlscene --transparent --fullscreen $CHECKBOX_SHARE/scripts/resolution_test.qml
+estimated_duration: 10
+_description:
+ PURPOSE:
+     This test will verify the default display resolution
+ STEPS:
+     1. Click on Test to display the screen resolution overlay for 5 seconds.
+ VERIFICATION:
+     Is this acceptable for your display?
+
 plugin: shell
 name: graphics/minimum_resolution
 requires:
