@@ -20,7 +20,6 @@ optical_drive
 package
 rtc
 sleep
-touchpad_scroll
 uname
 usb
 xinput
@@ -28,11 +27,11 @@ xinput
 __audio__
 audio/alsa_info_collect
 audio/alsa_info_attachment
+audio/list_devices
+audio/playback_headphones
+audio/playback_auto
 audio/alsa_record_playback_external
 audio/alsa_record_playback_internal
-audio/list_devices
-audio/playback_auto
-audio/playback_headphones
 audio/playback_hdmi
 audio/playback_displayport
 audio/alsa_record_playback_automated
@@ -58,6 +57,8 @@ __esata__
 esata/insert
 esata/storage-test
 esata/remove
+__ethernet__
+ethernet/detect
 __expresscard__
 expresscard/verification
 __firewire__
@@ -77,8 +78,8 @@ graphics/display
 graphics/minimum_resolution
 graphics/xorg-failsafe
 graphics/xorg-process
-graphics/cycle_resolution
 graphics/VESA_drivers_not_in_use
+graphics/cycle_resolution
 __hibernate__
 #See below, power-management/hibernate_advanced
 __input__
@@ -94,13 +95,12 @@ keys/battery-info
 keys/brightness
 keys/media-control
 keys/mute
-keys/sleep
 keys/video-out
 keys/volume
 keys/wireless
 keys/keyboard-backlight
 keys/keyboard-overhead-light
-keys/hibernate
+# Sleep and hibernate keys tests can be found after suspend tests
 __led__
 led/wlan-disabled
 led/wlan
@@ -134,8 +134,6 @@ __mobilebroadband__
 mobilebroadband/gsm_connection
 mobilebroadband/cdma_connection
 __networking__
-networking/detect
-networking/internet
 networking/info
 networking/info_eth\d
 networking/info_wlan\d
@@ -206,6 +204,8 @@ suspend/suspend-single-log-check
 suspend/suspend-single-log-attach
 led/power-blink-suspend
 led/suspend
+keys/sleep
+keys/hibernate
 suspend/network_after_suspend
 suspend/resolution_after_suspend
 suspend/audio_after_suspend

@@ -64,10 +64,11 @@ __memory__
 memory/info
 memory/check
 __networking__
-networking/detect
-networking/bandwidth
-networking/multi_nic
-networking/multi_nic_eth\d
+ethernet/detect
+ethernet/maximum_bandwidth
+ethernet/maximum_bandwidth_eth\d
+ethernet/multi_nic
+ethernet/multi_nic_eth\d
 __power-management__
 power-management/rtc
 power-management/fwts_wakealarm
