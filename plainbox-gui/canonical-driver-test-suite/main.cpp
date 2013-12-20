@@ -21,6 +21,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtGui/QGuiApplication>
+#include <QCoreApplication>
 #include <QPluginLoader>
 #include <QQmlExtensionPlugin>
 #include <QDir>
@@ -39,6 +40,7 @@
 int main(int argc, char *argv[])
 {
      QApplication app(argc, argv);
+    qputenv("APP_ID", QFileInfo(QCoreApplication::applicationFilePath()).fileName().toUtf8());
 
     qmlRegisterType<WhiteListItem>("Ubuntu.IhvTest", 0, 1, "WhiteListItem");
     qmlRegisterType<TestItem>("Ubuntu.IhvTest", 0, 1, "TestItem");
