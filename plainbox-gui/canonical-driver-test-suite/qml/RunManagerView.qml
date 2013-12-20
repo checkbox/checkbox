@@ -30,6 +30,11 @@ Page {
     id: runmanagerview
     title: i18n.tr("Run Manager")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     property bool reportIsSaved: false;
     property bool testingComplete: false;
     property bool showTest: true;
