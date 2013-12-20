@@ -27,6 +27,10 @@ import Ubuntu.Components 0.1
 Page {
     title: i18n.tr("Resume")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
 
     Text {
         id: querylabel

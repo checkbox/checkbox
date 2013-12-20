@@ -28,6 +28,11 @@ Page {
     id: welcomePage
     title: i18n.tr("Canonical Driver Test Suite")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     Image {
         id: logo
         anchors {

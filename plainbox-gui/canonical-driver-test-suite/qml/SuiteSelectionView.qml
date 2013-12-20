@@ -33,6 +33,11 @@ Page {
     id: suiteselection
     title: i18n.tr("Suite Selection")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     Item {
         id: filler
         height: units.gu(4)
