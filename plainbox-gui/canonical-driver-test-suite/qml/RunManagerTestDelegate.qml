@@ -218,6 +218,8 @@ Component {
 
                     groupedList.userChangingIndex = false;
                 }
+
+                Connections { target: runmanagerview; onReRunRequested: rerunicon.checked = false }
             }
 
             Button {
