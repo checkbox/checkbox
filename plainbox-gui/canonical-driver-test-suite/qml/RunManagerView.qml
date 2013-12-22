@@ -40,6 +40,7 @@ Page {
     property bool testingComplete: false;
     property bool showTest: true;
     property int rerunCount: 0;
+    signal reRunRequested
 
     // Updates the test status based on GuiEngine signals
     Item {
@@ -322,6 +323,9 @@ Page {
         }
         onResults: {
             PopupUtils.open(submission_dialog, runbuttons);
+        }
+        onReRunTest: {
+            reRunRequested();
         }
 
         function resume(){
