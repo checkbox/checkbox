@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Sylvain Pineau <sylvain.pineau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -134,14 +135,13 @@ Component {
 
                 onTestStatusChanged: {
                     // Update the other icons once the status is run
-                    if (testStatus !== 0 /* PBJobResult_NotRun*/) {
-                        // reset the re-run action if appropriate
-                        rerunicon.rerunStatus = 1;
+                    if (testStatus !== 0 && testStatus !== 99 /* PBJobResult_NotRun or selected for Rerun */) {
+                        rerunicon.visible = true;
+                        rerunicon.enabled = true;
 
                         // Update the timelabel
                         timelabel.text = utils.formatElapsedTime(elapsedtime);
                     }
-
 
                     // These numbers match PBTreeNode.h:PBJobResult enums
                     switch (testStatus){
@@ -160,9 +160,14 @@ Component {
                         break;
                     case 6: // PBJobResult_DepsNotMet
                         source = "./artwork/skip-deps-not-met.svg"
+                        rerunicon.enabled = false
+                        detailsicon.gradient = UbuntuColors.greyGradient
+                        detailsicon.enabled = false
                         break;
                     case 7: // PBJobResult_Running
                         source = ""
+                        break;
+                    case 99: // ReRun selected
                         break;
                     default:
                         source = ""
@@ -178,58 +183,40 @@ Component {
                 text: {!elapsedtime ? "" : utils.formatElapsedTime(elapsedtime)}
                 width: units.gu(6)
                 anchors.right: rerunicon.left
-                anchors.rightMargin: units.gu(12-icon_size_gu)
+                anchors.rightMargin: units.gu(10-icon_size_gu)
                 anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignRight
 
            }
 
-            Image {
+            Switch {
                 id: rerunicon
-                property int rerunStatus: !runstatus?0:1 // TODO this should be coming if the test has run or not
-                                                  // currently assumes 0 = not run yet, 1 == completed 2 == queued for rerun
-
-                width: units.gu(icon_size_gu)
+                width: units.gu(icon_size_gu*2)
                 height: units.gu(icon_size_gu)
-
-                sourceSize.width: parent.width
-                sourceSize.height: parent.height
-
                 anchors.right: detailsicon.left
-                anchors.rightMargin: units.gu(12-icon_size_gu)
+                anchors.rightMargin: units.gu(10-icon_size_gu)
                 anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                checked: false
+                visible: false
 
-                source: ""
+                onCheckedChanged:{
+                    groupedList.userChangingIndex = true;
+                    groupedList.currentIndex = index
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked:{
-                        groupedList.userChangingIndex = true;
-                        groupedList.currentIndex = index
-
-                        if (rerunicon.rerunStatus == 1)
-                           rerunicon.rerunStatus = 2;
-
-                        groupedList.userChangingIndex = false;
-                    }
-                 }
-
-                onRerunStatusChanged:{
-                    if (rerunStatus == 0)                       // not run
-                        source = ""
-                    if (rerunStatus == 1)                      // completed
-                        source = "./artwork/pictogram-execute-grey-hex.svg"
-                    else if (rerunStatus == 2){                 // queued for rerun
-                        source = "./artwork/pictogram-reexecute-obergine-hex.svg"
-                        // reset other icons to blank
-                        timelabel.text = ""
-                        testListModel.setProperty(index, "groupstatus", 0);   // group
-                        testListModel.setProperty(index,"runstatus",0); // As if its not run
-
-                        testListModel.setProperty(index,"rerun",1); // mark this for rerun
-
+                    if (rerunicon.checked) {
+                        testListModel.setProperty(index,"runstatus",99); // As if its not run
+                        testListModel.setProperty(index,"rerun",true); // mark this for rerun
                         runbuttons.rerunButtonEnabled = true;
+                        rerunCount += 1;
                     }
+                    else {
+                        testListModel.setProperty(index,"rerun", false)
+                        if (rerunCount > 0) rerunCount -= 1;
+                        if (rerunCount == 0) runbuttons.rerunButtonEnabled = false;
+                    }
+
+                    groupedList.userChangingIndex = false;
                 }
             }
 

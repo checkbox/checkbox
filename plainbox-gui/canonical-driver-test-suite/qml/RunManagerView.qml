@@ -39,6 +39,7 @@ Page {
     property bool reportIsSaved: false;
     property bool testingComplete: false;
     property bool showTest: true;
+    property int rerunCount: 0;
 
     // Updates the test status based on GuiEngine signals
     Item {
