@@ -150,7 +150,7 @@ Component {
                         source = ""
                         break;
                     case 1: // PBJobResult_Skip
-                        source = "./artwork/pictogram-skip-orange-hex.svg"
+                        source = "./artwork/skip-manual.svg"
                         break;
                     case 2: // PBJobResult_Pass
                         source = "./artwork/pictogram-pass-green-hex.svg"
@@ -159,7 +159,7 @@ Component {
                         source = "./artwork/pictogram-fail-red-hex.svg"
                         break;
                     case 6: // PBJobResult_DepsNotMet
-                        source = "./artwork/pictogram-skip-grey-hex.svg"
+                        source = "./artwork/skip-deps-not-met.svg"
                         break;
                     case 7: // PBJobResult_Running
                         source = ""
