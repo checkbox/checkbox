@@ -233,45 +233,38 @@ Component {
                 }
             }
 
-            Image {
+            Button {
+                text: "≡"
                 id: detailsicon
                 property bool detailsStatus: {!runstatus?false:true} // TODO this should be coming if the test has run or not
                                                   // currently assumes 0 = not run yet, 1 == completed
 
                 width: units.gu(icon_size_gu)
                 height: units.gu(icon_size_gu)
-
-                sourceSize.width: parent.width
-                sourceSize.height: parent.height
-
+                visible: false
                 anchors.right:  parent.right
                 anchors.rightMargin: units.gu(9-(icon_size_gu/2))
-
                 anchors.verticalCenter: parent.verticalCenter
 
-                source: ""
+                onClicked:{
+                    groupedList.userChangingIndex = true;
+                    groupedList.currentIndex = index;
 
-                MouseArea {
-                    anchors.fill: parent
+                    //detailsicon.source = "./artwork/pictogram-articles-grey-hex.svg"
+                    detailsicon.enabled = false
+                    detailsicon.gradient = UbuntuColors.greyGradient
+                    // start timer with 1 ms delay,
+                    // this has to be enough for the GUI to redraw
+                    myTimer.start()
 
-                    onClicked:{
-                        groupedList.userChangingIndex = true;
-                        groupedList.currentIndex = index;
-
-                        detailsicon.source = "./artwork/pictogram-articles-grey-hex.svg"
-                        // start timer with 1 ms delay,
-                        // this has to be enough for the GUI to redraw
-                        myTimer.start()
-
-                        groupedList.userChangingIndex = false;
-                    }
+                    groupedList.userChangingIndex = false;
                 }
 
                 onDetailsStatusChanged:{
                     if (detailsStatus)               // completed
-                        source = "./artwork/pictogram-articles-orange-hex.svg"
+                        detailsicon.visible = true
                     else                            // not run yet
-                        source = ""
+                        detailsicon.visible = false
                 }
             }
 
@@ -281,7 +274,8 @@ Component {
             onTriggered: {
                 // Open the log viewer
                 PopupUtils.open(log_viewer)
-                detailsicon.source = "./artwork/pictogram-articles-orange-hex.svg"
+                detailsicon.enabled = true
+                detailsicon.gradient = UbuntuColors.orangeGradient
             }
         }
 
