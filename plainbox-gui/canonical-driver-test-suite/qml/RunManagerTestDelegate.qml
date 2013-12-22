@@ -153,10 +153,10 @@ Component {
                         source = "./artwork/skip-manual.svg"
                         break;
                     case 2: // PBJobResult_Pass
-                        source = "./artwork/pictogram-pass-green-hex.svg"
+                        source = "./artwork/passed.svg"
                         break;
                     case 3: // PBJobResult_Fail
-                        source = "./artwork/pictogram-fail-red-hex.svg"
+                        source = "./artwork/failed.svg"
                         break;
                     case 6: // PBJobResult_DepsNotMet
                         source = "./artwork/skip-deps-not-met.svg"
