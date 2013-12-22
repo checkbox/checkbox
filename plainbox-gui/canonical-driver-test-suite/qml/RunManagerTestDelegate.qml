@@ -158,12 +158,6 @@ Component {
                     case 3: // PBJobResult_Fail
                         source = "./artwork/pictogram-fail-red-hex.svg"
                         break;
-                    case 4: // PBJobResult_Error (doesnt seem to be used/useful?)
-                        source = "./artwork/error.svg" // todo
-                        break;
-                    case 5: // PBJobResult_UserInteraction
-                        source = "./artwork/userreq.svg" // todo
-                        break;
                     case 6: // PBJobResult_DepsNotMet
                         source = "./artwork/pictogram-skip-grey-hex.svg"
                         break;
