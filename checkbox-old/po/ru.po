@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-17 05:17+0000\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Launchpad-Export-Date: 2013-12-27 05:15+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
@@ -52,7 +52,7 @@ msgstr "повторить тест"
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Пожалуйста, наберите текст здесь и нажмите Ctrl-D:\n"
 
-#: ../plugins/final_prompt.py:34
+#: ../plugins/final_prompt.py:39
 msgid "_Finish"
 msgstr "_Завершить"
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Information not posted to Launchpad."
 msgstr "Информация не была отправлена на Launchpad."
 
-#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:104 ../qt/frontend/qtfront.cpp:105
 msgid "Done"
 msgstr "Выполнено"
 
@@ -219,7 +219,7 @@ msgstr ""
 "   2. Вы слышите звук?"
 
 #. description
-#: ../jobs/audio.txt.in:55
+#: ../jobs/audio.txt.in:73
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -241,7 +241,7 @@ msgstr ""
 "наушниках без искажений, щелчков или других искажённых звуков?"
 
 #. description
-#: ../jobs/audio.txt.in:73
+#: ../jobs/audio.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -266,7 +266,7 @@ msgstr ""
 "    Была ли воспроизведена ваша речь?"
 
 #. description
-#: ../jobs/audio.txt.in:92
+#: ../jobs/audio.txt.in:110
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -290,7 +290,7 @@ msgstr ""
 "    Была ли воспроизведена ваша речь?"
 
 #. description
-#: ../jobs/audio.txt.in:110
+#: ../jobs/audio.txt.in:128
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -324,7 +324,7 @@ msgstr ""
 "напрямую, например соединительным кабелем."
 
 #. description
-#: ../jobs/audio.txt.in:134
+#: ../jobs/audio.txt.in:156
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -335,7 +335,7 @@ msgstr ""
 "в контролируемом окружении."
 
 #. description
-#: ../jobs/audio.txt.in:143
+#: ../jobs/audio.txt.in:165
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr "Прикрепляет данные об аудиоустройствах к общим результатам."
 
@@ -345,146 +345,146 @@ msgid "Benchmark for each disk"
 msgstr "Проверка каждого диска"
 
 #. description
-#: ../jobs/benchmarks.txt.in:41
+#: ../jobs/benchmarks.txt.in:43
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
 msgstr "Запустить тест производительности Render-Bench XRender/Imlib2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:47
+#: ../jobs/benchmarks.txt.in:50
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
 msgstr ""
 "Запуск теста производительности \"gearsfancy\" из Qgears2 для XRender"
 
 #. description
-#: ../jobs/benchmarks.txt.in:53
+#: ../jobs/benchmarks.txt.in:57
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
 msgstr ""
 "Запуск теста производительности \"image scaling\" из Qgears2 для XRender"
 
 #. description
-#: ../jobs/benchmarks.txt.in:59
+#: ../jobs/benchmarks.txt.in:64
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
 msgstr "Запуск теста производительности \"gearsfancy\" из Qgears2 для OpenGL"
 
 #. description
-#: ../jobs/benchmarks.txt.in:65
+#: ../jobs/benchmarks.txt.in:71
 msgid "Run Qgears2 OpenGL image scaling benchmark"
 msgstr ""
 "Запуск теста производительности \"image scaling\" из Qgears2 для OpenGL"
 
 #. description
-#: ../jobs/benchmarks.txt.in:74
+#: ../jobs/benchmarks.txt.in:80
 msgid "Run GLmark2-ES2 benchmark"
 msgstr "Запустить тест производительности GLmark2-ES2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:83
+#: ../jobs/benchmarks.txt.in:90
 msgid "Run GLmark2 benchmark"
 msgstr "Запустить тест производительности GLmark2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:89
+#: ../jobs/benchmarks.txt.in:105
 msgid "Run Unigine Santuary benchmark"
 msgstr "Запуск теста производительности \"Santuary\" для Unigine"
 
 #. description
-#: ../jobs/benchmarks.txt.in:95
+#: ../jobs/benchmarks.txt.in:111
 msgid "Run Unigine Tropics benchmark"
 msgstr "Запуск теста производительности \"Tropics\" для Unigine"
 
 #. description
-#: ../jobs/benchmarks.txt.in:101
+#: ../jobs/benchmarks.txt.in:117
 msgid "Run Unigine Heaven benchmark"
 msgstr "Запуск теста производительности \"Heaven\" для Unigine"
 
 #. description
-#: ../jobs/benchmarks.txt.in:107
+#: ../jobs/benchmarks.txt.in:123
 msgid "Run Lightsmark benchmark"
 msgstr "Запуск теста производительности Lightsmark"
 
 #. description
-#: ../jobs/benchmarks.txt.in:113
+#: ../jobs/benchmarks.txt.in:129
 msgid "Run Cachebench Read benchmark"
 msgstr "Запуск теста производительности чтения кэша Cachebench"
 
 #. description
-#: ../jobs/benchmarks.txt.in:119
+#: ../jobs/benchmarks.txt.in:135
 msgid "Run Cachebench Write benchmark"
 msgstr "Запуск теста производительности записи кэша Cachebench"
 
 #. description
-#: ../jobs/benchmarks.txt.in:125
+#: ../jobs/benchmarks.txt.in:141
 msgid "Run Cachebench Read / Modify / Write benchmark"
 msgstr ""
 "Запуск теста производительности чтения-изменения-записи кэша Cachebench"
 
 #. description
-#: ../jobs/benchmarks.txt.in:131
+#: ../jobs/benchmarks.txt.in:147
 msgid "Run Stream Copy benchmark"
 msgstr "Запуск теста производительности Stream Copy"
 
 #. description
-#: ../jobs/benchmarks.txt.in:137
+#: ../jobs/benchmarks.txt.in:153
 msgid "Run Stream Scale benchmark"
 msgstr "Запуск теста производительности Stream Scale"
 
 #. description
-#: ../jobs/benchmarks.txt.in:143
+#: ../jobs/benchmarks.txt.in:159
 msgid "Run Stream Add benchmark"
 msgstr "Запуск теста производительности Stream Add"
 
 #. description
-#: ../jobs/benchmarks.txt.in:149
+#: ../jobs/benchmarks.txt.in:165
 msgid "Run Stream Triad benchmark"
 msgstr "Запуск теста производительности Stream Triad"
 
 #. description
-#: ../jobs/benchmarks.txt.in:155
+#: ../jobs/benchmarks.txt.in:172
 msgid "Run Network Loopback benchmark"
 msgstr "Запуск теста производительности сетевой петли Network Loopback"
 
 #. description
-#: ../jobs/benchmarks.txt.in:167
+#: ../jobs/benchmarks.txt.in:184
 msgid "Run Encode MP3 benchmark"
 msgstr "Запустить тест производительности кодирования MP3"
 
 #. description
-#: ../jobs/benchmarks.txt.in:173
+#: ../jobs/benchmarks.txt.in:190
 msgid "Run x264 H.264/AVC encoder benchmark"
 msgstr "Запустить тест производительности кодирования x264 H.264/AVC"
 
 #. description
-#: ../jobs/benchmarks.txt.in:179
+#: ../jobs/benchmarks.txt.in:196
 msgid "Run GnuPG benchmark"
 msgstr "Запустить тест производительности GnuPG"
 
 #. description
-#: ../jobs/benchmarks.txt.in:185
+#: ../jobs/benchmarks.txt.in:202
 msgid "Run Compress PBZIP2 benchmark"
 msgstr "Запустить тест производительности сжатия PBZIP2"
 
 #. description
-#: ../jobs/benchmarks.txt.in:191
+#: ../jobs/benchmarks.txt.in:208
 msgid "Run Compress 7ZIP benchmark"
 msgstr "Запустить тест производительности сжатия 7ZIP"
 
 #. description
-#: ../jobs/benchmarks.txt.in:197
+#: ../jobs/benchmarks.txt.in:214
 msgid "Run N-Queens benchmark"
 msgstr "Запуск теста производительности N-Queens"
 
 #. description
-#: ../jobs/benchmarks.txt.in:203
+#: ../jobs/benchmarks.txt.in:220
 msgid "Run Himeno benchmark"
 msgstr "Запустить тест производительности Himeno"
 
 #. description
-#: ../jobs/benchmarks.txt.in:209
+#: ../jobs/benchmarks.txt.in:226
 msgid "CPU utilization on an idle system."
 msgstr "Использование процессора в режиме бездействия."
 
 #. description
-#: ../jobs/benchmarks.txt.in:215
+#: ../jobs/benchmarks.txt.in:232
 msgid "Disk utilization on an idle system."
 msgstr "Обращение к жёсткому диску в режиме бездействия."
 
@@ -653,7 +653,7 @@ msgid "This Automated test attempts to detect a camera."
 msgstr "Эта автоматизированная проверка попытается определить камеру."
 
 #. description
-#: ../jobs/camera.txt.in:15
+#: ../jobs/camera.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -996,18 +996,18 @@ msgid "Floppy test"
 msgstr "Тест дискеты"
 
 #. description
-#: ../jobs/graphics.txt.in:10
+#: ../jobs/graphics.txt.in:12
 msgid "Test to output the Xorg version"
 msgstr "Тест, выводящий сведения о версии X.Org"
 
 #. description
-#: ../jobs/benchmarks.txt.in:34
+#: ../jobs/benchmarks.txt.in:35
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Выполнить gtkperf для определения работоспособности тестов на базе GTK"
 
 #. description
-#: ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -1062,12 +1062,12 @@ msgstr ""
 "    Повороты экрана выполнены надлежащим образом?"
 
 #. description
-#: ../jobs/graphics.txt.in:31
+#: ../jobs/graphics.txt.in:36
 msgid "Test that the X process is running."
 msgstr "Проверка выполнения процесса X."
 
 #. description
-#: ../jobs/graphics.txt.in:37
+#: ../jobs/graphics.txt.in:43
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Проверка незадействованности процесса X в безопасном режиме."
 
@@ -1081,7 +1081,7 @@ msgstr ""
 "на системах со встроенной графической системой intel."
 
 #. description
-#: ../jobs/graphics.txt.in:44
+#: ../jobs/graphics.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -1102,7 +1102,7 @@ msgstr ""
 "    Устраивает ли вас отображение на экране?"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:67
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
@@ -1111,12 +1111,12 @@ msgstr ""
 "рекомендуемое минимальное разрешение (800x600). Сведения:"
 
 #. description
-#: ../jobs/graphics.txt.in:59
+#: ../jobs/graphics.txt.in:67
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:81
+#: ../jobs/graphics.txt.in:101
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -1133,12 +1133,12 @@ msgstr ""
 "    Видите ли вы цветные полосы и статические?"
 
 #. description
-#: ../jobs/graphics.txt.in:92
+#: ../jobs/graphics.txt.in:113
 msgid "Check that VESA drivers are not in use"
 msgstr "Проверка задействования драйверов VESA"
 
 #. description
-#: ../jobs/graphics.txt.in:99
+#: ../jobs/graphics.txt.in:121
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1156,17 +1156,17 @@ msgstr ""
 "    Работает ли экран при переходе в каждый режим?"
 
 #. description
-#: ../jobs/graphics.txt.in:124
+#: ../jobs/graphics.txt.in:148
 msgid "Check that hardware is able to run compiz"
 msgstr "Проверка аппаратных возможностей для запуска compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:130
+#: ../jobs/graphics.txt.in:155
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Проверка аппаратных возможностей для запуска Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:136
+#: ../jobs/graphics.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1206,7 +1206,7 @@ msgstr ""
 "    1. Просмотрите вложение позднее самостоятельно"
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:806
+#: ../jobs/graphics.txt.in:215 ../jobs/suspend.txt.in:861
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr "Прикрепить снимок экрана созданный в graphics/screenshot."
 
@@ -1233,14 +1233,14 @@ msgstr ""
 "    1. Просмотрите вложение позднее самостоятельно"
 
 #. description
-#: ../jobs/graphics.txt.in:211
+#: ../jobs/graphics.txt.in:241
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
 "Прикрепить снимок экрана созданный в graphics/screenshot_fullscreen_video."
 
 #. description
-#: ../jobs/hibernate.txt.in:14
+#: ../jobs/hibernate.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will check to make sure your system can successfully hibernate "
@@ -1272,69 +1272,69 @@ msgstr ""
 "    Выполнен ли переход и выход из спящего режима надлежащим образом?"
 
 #. description
-#: ../jobs/info.txt.in:5
+#: ../jobs/info.txt.in:6
 msgid "Attaches a report of installed codecs for Intel HDA"
 msgstr "Добавляет отчёт об установленных кодеках для Intel HDA"
 
 #. description
-#: ../jobs/info.txt.in:10
+#: ../jobs/info.txt.in:12
 msgid "Attaches a report of CPU information"
 msgstr "Добавляет отчёт сведений о ЦПУ"
 
 #. description
-#: ../jobs/info.txt.in:15
+#: ../jobs/info.txt.in:18
 msgid "Attaches a copy of /var/log/dmesg to the test results"
 msgstr "Добавляет копию /var/log/dmesg в результаты проверки"
 
 #. description
-#: ../jobs/info.txt.in:20
+#: ../jobs/info.txt.in:24
 msgid "Attaches info on DMI"
 msgstr "Добавляет сведения о DMI"
 
 #. description
-#: ../jobs/info.txt.in:26
+#: ../jobs/info.txt.in:32
 msgid "Attaches dmidecode output"
 msgstr "Добавляет вывод dmidecode"
 
 #. description
-#: ../jobs/info.txt.in:37
+#: ../jobs/info.txt.in:52
 msgid "Attaches very verbose lspci output."
 msgstr "Добавляет подробный вывод lspci."
 
 #. description
-#: ../jobs/info.txt.in:42
+#: ../jobs/info.txt.in:58
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
 "Прикрепляет исчерпывающий вывод lspci  (с центральным запросом к базе "
 "данных)."
 
 #. description
-#: ../jobs/info.txt.in:49
+#: ../jobs/info.txt.in:66
 msgid "List USB devices"
 msgstr "Список USB устройств"
 
 #. description
-#: ../jobs/info.txt.in:58
+#: ../jobs/info.txt.in:77
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "Добавляет содержимое различных конфигурационных файлов modprobe."
 
 #. description
-#: ../jobs/info.txt.in:63
+#: ../jobs/info.txt.in:83
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "Добавляет содержимое файла /etc/modules."
 
 #. description
-#: ../jobs/info.txt.in:68
+#: ../jobs/info.txt.in:89
 msgid "attaches the contents of various sysctl config files."
 msgstr "Добавляет содержимое различных конфигурационных файлов sysctl."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:93
 msgid "Attaches a report of sysfs attributes."
 msgstr "Добавляет отчёт атрибутов sysfs."
 
 #. description
-#: ../jobs/info.txt.in:83
+#: ../jobs/info.txt.in:106
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
@@ -1342,47 +1342,47 @@ msgstr ""
 "об аппаратном обеспечении."
 
 #. description
-#: ../jobs/info.txt.in:95
+#: ../jobs/info.txt.in:119
 msgid "Attaches a tarball of gcov data if present."
 msgstr "Добавляет архив tarball данных gcov, если они существуют."
 
 #. description
-#: ../jobs/info.txt.in:100
+#: ../jobs/info.txt.in:125
 msgid "Attaches a list of the currently running kernel modules."
 msgstr "Добавляет список выполняемых в данный момент модулей ядра."
 
 #. description
-#: ../jobs/info.txt.in:105
+#: ../jobs/info.txt.in:131
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Добавляет содержимое /proc/acpi/sleep, если оно есть."
 
 #. description
-#: ../jobs/info.txt.in:109
+#: ../jobs/info.txt.in:135
 msgid "Bootchart information."
 msgstr "Сведения Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:118
+#: ../jobs/info.txt.in:144
 msgid "SATA/IDE device information."
 msgstr "Сведения о устройствах SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:137
+#: ../jobs/info.txt.in:163
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Добавляет файл bootchart png для запуска bootchart"
 
 #. description
-#: ../jobs/info.txt.in:146
+#: ../jobs/info.txt.in:172
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Добавление журнала bootchart при запуске теста bootchart."
 
 #. description
-#: ../jobs/info.txt.in:154
+#: ../jobs/info.txt.in:180
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "устанавливает инсталлятор bootchart tarball если он существует."
 
 #. description
-#: ../jobs/info.txt.in:159
+#: ../jobs/info.txt.in:186
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 "Прикрепляет отладочную информацию программы установки, если такая существует."
@@ -1573,7 +1573,7 @@ msgstr ""
 "    Работают ли клавиши надлежащим образом?"
 
 #. description
-#: ../jobs/keys.txt.in:107
+#: ../jobs/keys.txt.in:113
 msgid ""
 "PURPOSE:\n"
 "    This test will test the super key of your keyboard\n"
@@ -1758,17 +1758,17 @@ msgid "Wireless networking tests"
 msgstr "Проверка беспроводных сетей"
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:290
 msgid "Stress tests"
 msgstr "Стресс-тесты"
 
 #. description
-#: ../jobs/local.txt.in:290
+#: ../jobs/local.txt.in:297
 msgid "Smoke tests"
 msgstr "\"Дымовое\" тестирование"
 
 #. description
-#: ../jobs/local.txt.in:297
+#: ../jobs/local.txt.in:304
 msgid "Sniff Sniffers"
 msgstr "Слежка  за анализаторами траффика"
 
@@ -1799,7 +1799,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:21
+#: ../jobs/mediacard.txt.in:22
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
@@ -1809,7 +1809,7 @@ msgstr ""
 "MMC."
 
 #. description
-#: ../jobs/mediacard.txt.in:29
+#: ../jobs/mediacard.txt.in:30
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1860,7 +1860,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:61
+#: ../jobs/suspend.txt.in:1378
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert-after-"
 "suspend test is run. It tests reading and writing to the MMC card after the "
@@ -1871,7 +1871,7 @@ msgstr ""
 "чтение и запись на карту памяти MMC, после выхода из спящего режима."
 
 #. description
-#: ../jobs/mediacard.txt.in:69
+#: ../jobs/suspend.txt.in:1386
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1924,7 +1924,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:100
+#: ../jobs/mediacard.txt.in:62
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
@@ -1933,7 +1933,7 @@ msgstr ""
 "Будет выполнена проверка чтения и записи на карту памяти SD."
 
 #. description
-#: ../jobs/mediacard.txt.in:108
+#: ../jobs/mediacard.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1984,7 +1984,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:140
+#: ../jobs/suspend.txt.in:1420
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert-after-"
 "suspend test is run. It tests reading and writing to the SD card after the "
@@ -2049,7 +2049,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:189
+#: ../jobs/mediacard.txt.in:113
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
@@ -2058,7 +2058,7 @@ msgstr ""
 "insert». Он предназначен для проверки чтения с карты SDHC и записи на неё."
 
 #. description
-#: ../jobs/mediacard.txt.in:197
+#: ../jobs/mediacard.txt.in:121
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -2110,7 +2110,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:229
+#: ../jobs/suspend.txt.in:1463
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert-after-"
 "suspend test is run. It tests reading and writing to the SDHC card after the "
@@ -2121,7 +2121,7 @@ msgstr ""
 "система была приостановлена."
 
 #. description
-#: ../jobs/mediacard.txt.in:237
+#: ../jobs/suspend.txt.in:1471
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2174,7 +2174,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:268
+#: ../jobs/mediacard.txt.in:153
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
@@ -2184,7 +2184,7 @@ msgstr ""
 "неё."
 
 #. description
-#: ../jobs/mediacard.txt.in:276
+#: ../jobs/mediacard.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -2235,7 +2235,7 @@ msgstr ""
 "    выбираемый результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:308
+#: ../jobs/mediacard.txt.in:194
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert-after-"
 "suspend test is run. It tests reading and writing to the CF card after the "
@@ -2246,7 +2246,7 @@ msgstr ""
 "была приостановлена."
 
 #. description
-#: ../jobs/mediacard.txt.in:316
+#: ../jobs/mediacard.txt.in:202
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -2531,22 +2531,22 @@ msgstr ""
 "    Погас ли монитор и включился снова?"
 
 #. description
-#: ../jobs/networking.txt.in:8
+#: ../jobs/networking.txt.in:9
 msgid "Test to detect the available network controllers"
 msgstr "Проверка определения  доступных сетевых контроллеров"
 
 #. description
-#: ../jobs/networking.txt.in:14
+#: ../jobs/networking.txt.in:16
 msgid "Tests whether the system has a working Internet connection."
 msgstr "Проверка работоспособности соединения с сетью Интернет"
 
 #. description
-#: ../jobs/networking.txt.in:19
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr "Сведения о сети"
 
 #. description
-#: ../jobs/networking.txt.in:43
+#: ../jobs/networking.txt.in:46
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
@@ -2556,7 +2556,7 @@ msgstr ""
 "ошибкой."
 
 #. description
-#: ../jobs/networking.txt.in:49
+#: ../jobs/networking.txt.in:52
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2580,7 +2580,7 @@ msgstr ""
 "    Было ли отображено оповещение об установлении соединения?"
 
 #. description
-#: ../jobs/networking.txt.in:62
+#: ../jobs/networking.txt.in:65
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2612,7 +2612,7 @@ msgstr ""
 "    Было ли отображено оповещение об установлении соединения?"
 
 #. description
-#: ../jobs/networking.txt.in:79
+#: ../jobs/networking.txt.in:82
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -2621,7 +2621,7 @@ msgstr ""
 "некоторыми системами в сети."
 
 #. description
-#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:89 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -2629,12 +2629,12 @@ msgstr ""
 "Автоматизированная проверка возможности загрузки файлов с использованием HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:97
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr "Проверка возможности синхронизации локальных часов с NTP сервером"
 
 #. description
-#: ../jobs/networking.txt.in:100
+#: ../jobs/networking.txt.in:103
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
@@ -2642,13 +2642,13 @@ msgstr ""
 "Проверка возможности установки checkbox-сервера в сети с использованием SSH."
 
 #. description
-#: ../jobs/networking.txt.in:106
+#: ../jobs/networking.txt.in:109
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 "Попытаться включить удалённый принтер в сети и напечатать пробную страницу."
 
 #. description
-#: ../jobs/networking.txt.in:111
+#: ../jobs/networking.txt.in:114
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
@@ -2726,7 +2726,7 @@ msgstr ""
 "\"Нет\" в обратном случае."
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2824,7 +2824,7 @@ msgstr ""
 "    Все ли действия были выполнены без проблем?"
 
 #. description
-#: ../jobs/optical.txt.in:154
+#: ../jobs/optical.txt.in:158
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -3070,7 +3070,7 @@ msgstr ""
 "и затем Далее."
 
 #. description
-#: ../jobs/power-management.txt.in:54
+#: ../jobs/power-management.txt.in:55
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
@@ -3105,7 +3105,7 @@ msgstr ""
 " Если компьютер успешно выполнил перезагрузку, выберите Да и затем Далее."
 
 #. description
-#: ../jobs/power-management.txt.in:79
+#: ../jobs/power-management.txt.in:80
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
@@ -3173,12 +3173,12 @@ msgstr ""
 "    Возобновилось ли рабочее состояние после открытия крышки?"
 
 #. description
-#: ../jobs/power-management.txt.in:134
+#: ../jobs/power-management.txt.in:136
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Проверьте доступность RTC устройства."
 
 #. description
-#: ../jobs/power-management.txt.in:139
+#: ../jobs/power-management.txt.in:141
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -3229,7 +3229,7 @@ msgstr ""
 "отвечать на запросы."
 
 #. description
-#: ../jobs/stress.txt.in:24
+#: ../jobs/stress.txt.in:26
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3240,14 +3240,14 @@ msgstr ""
 "будет принудительно переводить компьютер в спящий режим и выходить из него"
 
 #. description
-#: ../jobs/stress.txt.in:31
+#: ../jobs/stress.txt.in:39
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 msgstr ""
 "Позволяет включить отчёт 30-циклового теста спящий режим/возобновление "
 "работы, если такой имеется"
 
 #. description
-#: ../jobs/stress.txt.in:47
+#: ../jobs/stress.txt.in:57
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3258,14 +3258,14 @@ msgstr ""
 "будет принудительно переводить компьютер в ждущий режим и выходить из него"
 
 #. description
-#: ../jobs/stress.txt.in:54
+#: ../jobs/stress.txt.in:70
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr ""
 "Добавляет отчёт 30-циклового теста ждущего режима/возобновление работы, если "
 "такой имеется"
 
 #. description
-#: ../jobs/stress.txt.in:76
+#: ../jobs/stress.txt.in:92
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3276,7 +3276,7 @@ msgstr ""
 "будет принудительно переводить компьютер в спящий режим и выходить из него"
 
 #. description
-#: ../jobs/stress.txt.in:83
+#: ../jobs/stress.txt.in:99
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
@@ -3284,7 +3284,7 @@ msgstr ""
 "спящего режима, если такой журнал существует"
 
 #. description
-#: ../jobs/stress.txt.in:99
+#: ../jobs/stress.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "   This is an automated stress test that will force the system to "
@@ -3295,29 +3295,29 @@ msgstr ""
 "будет принудительно переводить компьютер в ждущий режим и выходить из него"
 
 #. description
-#: ../jobs/stress.txt.in:106
+#: ../jobs/stress.txt.in:122
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
 "Прикрепляет журнал событий из 250-циклового теста перехода и выхода из "
 "ждущего режима, если такой журнал существует"
 
 #. description
-#: ../jobs/stress.txt.in:122
+#: ../jobs/stress.txt.in:139
 msgid "Stress reboot system (100 cycles)"
 msgstr "Стресс-тест перезагрузки системы (100 циклов)"
 
 #. description
-#: ../jobs/stress.txt.in:137
+#: ../jobs/stress.txt.in:155
 msgid "Stress poweroff system (100 cycles)"
 msgstr "Стресс-тест выключения питания системы (100 циклов)"
 
 #. description
-#: ../jobs/stress.txt.in:149
+#: ../jobs/stress.txt.in:167
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr "Проверяет результаты теста многократной перезагрузки (100 циклов)"
 
 #. description
-#: ../jobs/stress.txt.in:161
+#: ../jobs/stress.txt.in:179
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr "Проверяет отчеты теста многократного выключения (100 циклов)"
 
@@ -3352,7 +3352,7 @@ msgstr ""
 "ждущего режима"
 
 #. description
-#: ../jobs/suspend.txt.in:36
+#: ../jobs/suspend.txt.in:37
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3392,17 +3392,17 @@ msgstr ""
 "образом?"
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:195
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Это автоматизированная версия suspend/suspend_advanced."
 
 #. description
-#: ../jobs/suspend.txt.in:237
+#: ../jobs/suspend.txt.in:253
 msgid "Test the network after resuming."
 msgstr "Проверка сети после выхода из режима пониженного энергопотребления."
 
 #. description
-#: ../jobs/suspend.txt.in:243
+#: ../jobs/suspend.txt.in:259
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -3410,7 +3410,7 @@ msgstr ""
 "режим пониженного энергопотребления."
 
 #. description
-#: ../jobs/suspend.txt.in:252
+#: ../jobs/suspend.txt.in:278
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3418,17 +3418,17 @@ msgstr ""
 "и до него."
 
 #. description
-#: ../jobs/suspend.txt.in:265
+#: ../jobs/suspend.txt.in:291
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Проверяет доступность всех ЦПУ после возобновления рабочего режима"
 
 #. description
-#: ../jobs/suspend.txt.in:278
+#: ../jobs/suspend.txt.in:304
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Проверять доступность всей памяти после выхода из режима ожидания."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -3449,7 +3449,7 @@ msgstr ""
 "    Работает ли экран надлежащим образом после выхода из ждущего режима?"
 
 #. description
-#: ../jobs/suspend.txt.in:299
+#: ../jobs/suspend.txt.in:326
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3461,7 +3461,7 @@ msgstr ""
 "соединения."
 
 #. description
-#: ../jobs/suspend.txt.in:365
+#: ../jobs/suspend.txt.in:392
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -3471,7 +3471,7 @@ msgstr ""
 "ждущий режим."
 
 #. description
-#: ../jobs/suspend.txt.in:378
+#: ../jobs/suspend.txt.in:405
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -3481,7 +3481,7 @@ msgstr ""
 "ждущий режим."
 
 #. description
-#: ../jobs/suspend.txt.in:391
+#: ../jobs/suspend.txt.in:418
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
@@ -3491,7 +3491,7 @@ msgstr ""
 "режим."
 
 #. description
-#: ../jobs/suspend.txt.in:404
+#: ../jobs/suspend.txt.in:431
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
@@ -3501,7 +3501,7 @@ msgstr ""
 "ждущий режим."
 
 #. description
-#: ../jobs/suspend.txt.in:517
+#: ../jobs/suspend.txt.in:544
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3511,7 +3511,7 @@ msgstr ""
 "режим."
 
 #. description
-#: ../jobs/suspend.txt.in:621
+#: ../jobs/suspend.txt.in:652
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3521,7 +3521,7 @@ msgstr ""
 "BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:735
+#: ../jobs/suspend.txt.in:771
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3548,7 +3548,7 @@ msgstr ""
 "    Были ли данные переданы надлежащим образом?"
 
 #. description
-#: ../jobs/suspend.txt.in:749
+#: ../jobs/suspend.txt.in:785
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3567,7 +3567,7 @@ msgstr ""
 "    Отображение в определённом режиме на экране выглядит надлежащим образом?"
 
 #. description
-#: ../jobs/suspend.txt.in:761
+#: ../jobs/suspend.txt.in:797
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3578,7 +3578,7 @@ msgstr ""
 "сохранением снимков экрана и передачей их во вложении."
 
 #. description
-#: ../jobs/suspend.txt.in:770
+#: ../jobs/suspend.txt.in:806
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3587,7 +3587,7 @@ msgstr ""
 "«suspend/cycle_resolutions_after_suspend_auto» к результатам для отправки."
 
 #. description
-#: ../jobs/suspend.txt.in:780
+#: ../jobs/suspend.txt.in:835
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3600,7 +3600,7 @@ msgstr ""
 "кабельного соединения разъёма звукового выхода и разъёма звукового входа."
 
 #. description
-#: ../jobs/suspend.txt.in:786
+#: ../jobs/suspend.txt.in:841
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 "Добавляет к результатам отчет однократного теста засыпания-пробуждения"
@@ -3885,7 +3885,7 @@ msgstr ""
 "Этот тест запускается автоматически после выполнения теста «usb/insert»."
 
 #. description
-#: ../jobs/usb.txt.in:156
+#: ../jobs/suspend.txt.in:1339 ../jobs/usb.txt.in:156
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the "
 "server has usb storage devices plugged in prior to checkbox execution. It is "
@@ -4625,14 +4625,14 @@ msgstr ""
 " Выполнено надлежащим образом?"
 
 #. description
-#: ../jobs/wireless.txt.in:20
+#: ../jobs/wireless.txt.in:21
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
 "Проверка сканирование беспроводных устройств. Выполняется проверка и "
 "создаются отчёты об обнаруженных точках доступа."
 
 #. description
-#: ../jobs/wireless.txt.in:26
+#: ../jobs/wireless.txt.in:28
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -4655,7 +4655,7 @@ msgstr ""
 "    Было ли показано уведомление, а также работоспособно ли соединение?"
 
 #. description
-#: ../jobs/wireless.txt.in:44
+#: ../jobs/wireless.txt.in:46
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
@@ -4664,7 +4664,7 @@ msgstr ""
 "маршрутизатору по протоколу 802.11b/g используя WPA шифрование."
 
 #. description
-#: ../jobs/wireless.txt.in:56
+#: ../jobs/wireless.txt.in:58
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
@@ -4673,7 +4673,7 @@ msgstr ""
 "маршрутизатору по протоколу 802.11b/g не используя шифрование."
 
 #. description
-#: ../jobs/wireless.txt.in:68
+#: ../jobs/wireless.txt.in:70
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
@@ -4682,7 +4682,7 @@ msgstr ""
 "маршрутизатору по протоколу 802.11n используя WPA шифрование."
 
 #. description
-#: ../jobs/wireless.txt.in:80
+#: ../jobs/wireless.txt.in:82
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
@@ -4691,7 +4691,7 @@ msgstr ""
 "маршрутизатору по протоколу 802.11n не используя шифрование."
 
 #. description
-#: ../jobs/wireless.txt.in:176
+#: ../jobs/wireless.txt.in:178
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
@@ -4700,7 +4700,7 @@ msgstr ""
 "iperf."
 
 #. description
-#: ../jobs/wireless.txt.in:187
+#: ../jobs/wireless.txt.in:189
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -4868,7 +4868,8 @@ msgstr "тест"
 msgid "Checkbox System Testing"
 msgstr "Тестирование системы Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
+#: ../checkbox_urwid/urwid_interface.py:127 ../checkbox/user_interface.py:70
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Continue"
 msgstr "Продолжить"
 
@@ -4916,11 +4917,11 @@ msgstr "Проверить снова"
 msgid "_Test Again"
 msgstr "Тестировать снова"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:541
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:555
 msgid "Info"
 msgstr "Информация"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:227
 msgid "Error"
 msgstr "Ошибка"
 
@@ -4964,7 +4965,7 @@ msgstr "Хотите отправить отчёт об ошибке?"
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Запущено обновление пакетов? Ошибка: %s"
 
-#: ../plugins/final_prompt.py:33
+#: ../plugins/final_prompt.py:24
 msgid "Successfully finished testing!"
 msgstr "Проверка успешно завершена!"
 
@@ -5005,7 +5006,8 @@ msgstr ""
 msgid "Failed to process form: %s"
 msgstr "Не удалось обработать форму: %s"
 
-#: ../plugins/launchpad_prompt.py:77
+#. Ignore whether to submit to HEXR
+#: ../plugins/launchpad_prompt.py:78
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -5029,19 +5031,19 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
-#: ../plugins/launchpad_prompt.py:87
+#: ../plugins/launchpad_prompt.py:88
 msgid "Email"
 msgstr "Эл. почта"
 
-#: ../plugins/launchpad_prompt.py:96
+#: ../plugins/launchpad_prompt.py:97
 msgid "Email address must be in a proper format."
 msgstr "Адрес электронной почты должен быть правильно написан."
 
-#: ../plugins/launchpad_prompt.py:102
+#: ../plugins/launchpad_prompt.py:103
 msgid "Exchanging information with the server..."
 msgstr "Обмен данными с сервером..."
 
-#: ../plugins/launchpad_report.py:167
+#: ../plugins/launchpad_report.py:172
 msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
@@ -5049,7 +5051,7 @@ msgstr ""
 "Сформированный отчет, скорее всего, содержит ошибки проверки,\n"
 "поэтому может быть не обработан Launchpad."
 
-#: ../plugins/lock_prompt.py:63
+#: ../plugins/lock_prompt.py:66
 msgid "There is another checkbox running. Please close it first."
 msgstr "Checkbox уже запущен. Сначала завершите его."
 
@@ -5086,7 +5088,7 @@ msgstr ""
 "определённые проверки, если у вас отсутствует необходимое для проверки "
 "оборудование."
 
-#: ../plugins/suites_prompt.py:139 ../qt/frontend/ui_qtfront.h:642
+#: ../plugins/suites_prompt.py:139 ../qt/frontend/ui_qtfront.h:648
 msgid "Choose tests to run on your system:"
 msgstr "Выберите тесты для выполнения на вашем компьютере:"
 
@@ -5098,7 +5100,7 @@ msgstr "Введите текст:\n"
 msgid "Type Text"
 msgstr "Напечатать текст"
 
-#: ../scripts/internet_test:221
+#: ../scripts/internet_test:254
 msgid "No Internet connection"
 msgstr "Нет подключения к Интернет"
 
@@ -5106,75 +5108,75 @@ msgstr "Нет подключения к Интернет"
 msgid "Connection established lost a packet"
 msgstr "Потеря пакетов на установленном соединении"
 
-#: ../scripts/internet_test:227
+#: ../scripts/internet_test:269
 msgid "Internet connection fully established"
 msgstr "Интернет-подключение полностью работоспособно"
 
-#: ../qt/frontend/qtfront.cpp:80
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Audio Test"
 msgstr "Проверка звука"
 
-#: ../qt/frontend/qtfront.cpp:81
+#: ../qt/frontend/qtfront.cpp:82
 msgid "Bluetooth Test"
 msgstr "Проверка Bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:82
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Camera Test"
 msgstr "Проверка камеры"
 
-#: ../qt/frontend/qtfront.cpp:83
+#: ../qt/frontend/qtfront.cpp:84
 msgid "CPU Test"
 msgstr "Проверка ЦПУ"
 
-#: ../qt/frontend/qtfront.cpp:84
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Disk Test"
 msgstr "Проверка диска"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Firewire Test"
 msgstr "Проверка Firewire"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Graphics Test"
 msgstr "Проверка графической подсистемы"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Info Test"
 msgstr "Информационный тест"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Input Test"
 msgstr "Проверка ввода"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Keys Test"
 msgstr "Проверка клавиш"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Media Card Test"
 msgstr "Проверка карт памяти"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Memory Test"
 msgstr "Проверка памяти"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Miscellanea Test"
 msgstr "Различные тесты"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Monitor Test"
 msgstr "Проверка монитора"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Networking Test"
 msgstr "Проверка сетевых возможностей"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Wireless Test"
 msgstr "Проверка беспроводных возможностей"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Optical Test"
 msgstr "Проверка оптических дисков"
 
@@ -5182,51 +5184,51 @@ msgstr "Проверка оптических дисков"
 msgid "PCMCIA/PCIX Test"
 msgstr "Проверка PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Power Management Test"
 msgstr "Проверка управления электропитанием"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:100
 msgid "Suspend Test"
 msgstr "Проверка ждущего режима"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:101
 msgid "USB Test"
 msgstr "Проверка интерфейса USB"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:103
 msgid "Not Started"
 msgstr "Пока не выполнялась"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Supported"
 msgstr "Не поддерживается"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Resolved"
 msgstr "Нет отклика"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:108
 msgid "Not Tested"
 msgstr "Проверка не выполнялась"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:109
 msgid "In Progress"
 msgstr "Выполняется"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:161
 msgid "Are you sure?"
 msgstr "Вы действительно уверены?"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:161
 msgid "Do you really want to skip this test?"
 msgstr "Вы действительно хотите пропустить выполнение этой проверки?"
 
-#: ../qt/frontend/qtfront.cpp:161
+#: ../qt/frontend/qtfront.cpp:162
 msgid "Don't ask me again"
 msgstr "Больше не спрашивать"
 
-#: ../qt/frontend/ui_qtfront.h:635
+#: ../qt/frontend/ui_qtfront.h:641
 msgid "Form"
 msgstr "Форма"
 
@@ -5238,39 +5240,39 @@ msgstr "ОК"
 msgid "Don't show me this message in the future"
 msgstr "Не показывать это сообщение в дальнейшем"
 
-#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
+#: ../qt/frontend/ui_qtfront.h:645 ../qt/frontend/ui_qtfront.h:663
 msgid "Tab 1"
 msgstr "Вкладка 1"
 
-#: ../qt/frontend/ui_qtfront.h:640
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "10 tests completed out of 30 (30%)"
 msgstr "Выполнено 10 тестов из 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:643
+#: ../qt/frontend/ui_qtfront.h:649
 msgid "Components"
 msgstr "Компоненты"
 
-#: ../qt/frontend/ui_qtfront.h:644
+#: ../qt/frontend/ui_qtfront.h:650
 msgid "Status"
 msgstr "Состояние"
 
-#: ../qt/frontend/ui_qtfront.h:645
+#: ../qt/frontend/ui_qtfront.h:651
 msgid "Select all"
 msgstr "Выделить всё"
 
-#: ../qt/frontend/ui_qtfront.h:646
+#: ../qt/frontend/ui_qtfront.h:652
 msgid "Deselect all"
 msgstr "Снять выделение"
 
-#: ../qt/frontend/ui_qtfront.h:647
+#: ../qt/frontend/ui_qtfront.h:653
 msgid "Start testing"
 msgstr "Начать проверку"
 
-#: ../qt/frontend/ui_qtfront.h:648
+#: ../qt/frontend/ui_qtfront.h:654
 msgid " Selection "
 msgstr " Выбор "
 
-#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
+#: ../qt/frontend/ui_qtfront.h:655 ../qt/frontend/ui_qtfront.h:656
 msgid "TextLabel"
 msgstr "Поле текста"
 
@@ -5286,11 +5288,11 @@ msgstr "Нет"
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
+#: ../qt/frontend/ui_qtfront.h:664 ../qt/frontend/ui_qtfront.h:681
 msgid "Tab 2"
 msgstr "Вкладка 2"
 
-#: ../qt/frontend/ui_qtfront.h:661
+#: ../qt/frontend/ui_qtfront.h:667
 msgid " Run "
 msgstr " Выполнить "
 
@@ -5328,23 +5330,23 @@ msgstr ""
 "color:#000000;\">и щёлкните на кнопке подтверждения результатов, для "
 "отправки результатов проверки в Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:668
+#: ../qt/frontend/ui_qtfront.h:674
 msgid "Submission details"
 msgstr "Подробности сообщения"
 
-#: ../qt/frontend/ui_qtfront.h:670
+#: ../qt/frontend/ui_qtfront.h:676
 msgid "Email:"
 msgstr "Эл. почта:"
 
-#: ../qt/frontend/ui_qtfront.h:671
+#: ../qt/frontend/ui_qtfront.h:677
 msgid "Submit results"
 msgstr "Отправить результаты"
 
-#: ../qt/frontend/ui_qtfront.h:672
+#: ../qt/frontend/ui_qtfront.h:678
 msgid "View results"
 msgstr "Просмотр результатов"
 
-#: ../qt/frontend/ui_qtfront.h:673
+#: ../qt/frontend/ui_qtfront.h:680
 msgid " Results "
 msgstr " Результаты "
 
