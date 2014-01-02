@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Sylvain Pineau <sylvain.pineau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,6 +39,8 @@ Page {
     property bool reportIsSaved: false;
     property bool testingComplete: false;
     property bool showTest: true;
+    property int rerunCount: 0;
+    signal reRunRequested
 
     // Updates the test status based on GuiEngine signals
     Item {
@@ -236,7 +239,7 @@ Page {
 
         Text  {
             id: actionslabel
-            text: i18n.tr("Actions")
+            text: i18n.tr("Re-run")
 
             width: units.gu(6)
 
@@ -248,7 +251,7 @@ Page {
 
         Text  {
             id: detailslabel
-            text: i18n.tr("Details")
+            text: i18n.tr("Console Output")
 
             width: units.gu(6)
 
@@ -320,6 +323,9 @@ Page {
         }
         onResults: {
             PopupUtils.open(submission_dialog, runbuttons);
+        }
+        onReRunTest: {
+            reRunRequested();
         }
 
         function resume(){
