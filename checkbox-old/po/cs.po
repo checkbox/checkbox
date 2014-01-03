@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-12 16:08-0400\n"
-"PO-Revision-Date: 2012-04-20 20:19+0000\n"
+"PO-Revision-Date: 2014-01-02 14:28+0000\n"
 "Last-Translator: Tadeáš Pařík <tadeas.parik@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-27 05:13+0000\n"
+"X-Launchpad-Export-Date: 2014-01-03 05:11+0000\n"
 "X-Generator: Launchpad (build 16877)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
@@ -1425,6 +1425,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the super key work as expected?"
 msgstr ""
+"CÍL:\n"
+"    Tato část otestuje klávesu super na klávesnici\n"
+"POSTUP:\n"
+"    1. Klikněte na test pro otevření okna, ve kterém proběhne test klávesy "
+"super.\n"
+"    2. Bude-li klávesa fungovat, test proběhne a okno bude uzavřeno.\n"
+"OVĚŘENÍ:\n"
+"    Chovala se klávesa super podle očekávání?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -4665,6 +4673,10 @@ msgid ""
 "continue to the next test, or\n"
 "restart from the beginning?"
 msgstr ""
+"Checkbox nebyl dokončen.\n"
+"Chcete se vrátit k poslednímu testu,\n"
+"pokračovat k testu dalšímu nebo\n"
+"začít od začátku?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
