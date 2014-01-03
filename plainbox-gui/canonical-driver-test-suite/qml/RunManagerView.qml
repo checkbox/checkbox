@@ -41,6 +41,8 @@ Page {
     property bool showTest: true;
     property int rerunCount: 0;
     signal reRunRequested
+    signal pauseOrEndRun
+    signal resumeRun
 
     // Updates the test status based on GuiEngine signals
     Item {
@@ -74,6 +76,7 @@ Page {
 
             onJobsCompleted: {
                 // All tests are done
+                pauseOrEndRun()
                 runmanagerview.testingComplete = true;
 
                 // update ui
@@ -329,14 +332,16 @@ Page {
         }
 
         function resume(){
+            resumeRun();
             updater.testStartTime = new Date()
             updater.running = true;
-            console.log("Resume...")
+            console.log("Resume...");
 
             guiEngine.Resume();
         }
 
         function pause(){
+            pauseOrEndRun();
             updater.running = false;
             progress.title = progress.title.replace("Running", "Paused ")
             console.log("Pause...")

@@ -234,6 +234,7 @@ Component {
                 anchors.right:  parent.right
                 anchors.rightMargin: units.gu(9-(icon_size_gu/2))
                 anchors.verticalCenter: parent.verticalCenter
+		enabled: false
 
                 onClicked:{
                     groupedList.userChangingIndex = true;
@@ -255,6 +256,8 @@ Component {
                     else                            // not run yet
                         detailsicon.visible = false
                 }
+            	Connections { target: runmanagerview; onPauseOrEndRun: detailsicon.enabled = true }
+                Connections { target: runmanagerview; onResumeRun: detailsicon.enabled = false }
             }
 
         Timer {
