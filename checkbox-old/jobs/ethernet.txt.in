@@ -14,13 +14,14 @@ requires:
  package.name == 'network-manager'
  device.category == 'NETWORK'
 command: udev_resource | filter_templates -w "category=NETWORK"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
-estimated_duration: 1.1
+estimated_duration: 30.0
 _description:
  This is an automated test to gather some info on the current state of your network devices. If no devices are found, the test will exit with an error.
 
 plugin: user-interact-verify
 name: ethernet/wired_connection
 command: network_check
+estimated_duration: 1.2
 _description:
  PURPOSE:
      This test will check your wired connection
@@ -45,6 +46,7 @@ command:
   device.path == "$1"
  user: root
  command: network test -i $2 -t iperf
+ estimated_duration: 330.0
  description:
   Testing for NIC $2
  EOF
@@ -59,6 +61,7 @@ command:
  name: ethernet/ethertool_check_$2
  requires: device.path == "$1"
  command: ethtool $2
+ estimated_duration: 330.0
  _description:
   This test executes ethtool requests against all the ethernet devices found on the system.
  EOF
@@ -78,6 +81,7 @@ command:
  name: ethernet/maximum_bandwidth_$2
  requires: device.path == "$1"
  command: network test -i $2 -t iperf 2>&1 | cat - <(echo; echo "Verify the result and click OK to decide on the outcome") | zenity --text-info --title 'ethernet max bw $2'
+ estimated_duration: 330.0
  _description:
   PURPOSE:
       User verification of whether the observed transfer throughput is acceptable
@@ -103,6 +107,7 @@ command:
  requires: device.path == "$1"
  user: root
  command: network test -i $2 -t stress
+ estimated_duration: 330..0
  _description:
   This test executes iperf to generate a load on the network device and then performs a ping test to watch for dropped packets and very large latency periods.
  EOF
