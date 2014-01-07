@@ -30,7 +30,7 @@ import os
 import subprocess
 import sys
 
-delegate_to = ['plainbox', 'checkbox-ng', 'checkbox-old']
+delegate_to = ['plainbox', 'checkbox-ng', 'checkbox-old', 'checkbox-support']
 delegate_to.extend(glob.glob('plainbox-provider*'))
 try:
     base = os.path.dirname(__file__)
