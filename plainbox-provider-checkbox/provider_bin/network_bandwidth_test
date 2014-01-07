@@ -13,7 +13,7 @@ from time import sleep
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
-from checkbox.lib.conversion import string_to_type
+from checkbox_support.lib.conversion import string_to_type
 
 
 class CommandException(Exception):

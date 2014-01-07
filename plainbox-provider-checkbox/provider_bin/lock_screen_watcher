@@ -5,7 +5,7 @@ import subprocess
 
 from gi.repository import GObject
 
-from checkbox.dbus import connect_to_system_bus
+from checkbox_support.dbus import connect_to_system_bus
 
 import threading
 import time

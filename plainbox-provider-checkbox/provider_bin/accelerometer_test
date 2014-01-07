@@ -32,7 +32,7 @@ import sys
 import threading
 import time
 from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
-from checkbox.parsers.modinfo import ModinfoParser
+from checkbox_support.parsers.modinfo import ModinfoParser
 
 handler = logging.StreamHandler()
 logger = logging.getLogger()

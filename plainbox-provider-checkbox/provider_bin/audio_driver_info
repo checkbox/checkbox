@@ -5,7 +5,7 @@ import re
 
 from argparse import ArgumentParser
 from subprocess import check_output, STDOUT, CalledProcessError
-from checkbox.parsers.modinfo import ModinfoParser
+from checkbox_support.parsers.modinfo import ModinfoParser
 
 TYPES = ("source", "sink")
 

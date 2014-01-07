@@ -3,8 +3,8 @@
 import sys
 from io import StringIO
 from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
-from checkbox.parsers.udevadm import UdevadmParser
-from checkbox.parsers.modinfo import ModinfoParser
+from checkbox_support.parsers.udevadm import UdevadmParser
+from checkbox_support.parsers.modinfo import ModinfoParser
 
 # Command to retrieve udev information.
 COMMAND = 'udevadm info --export-db'

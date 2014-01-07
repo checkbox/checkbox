@@ -6,8 +6,8 @@ import posixpath
 
 from optparse import OptionParser
 
-from checkbox.lib.path import path_expand_recursive
-from checkbox.lib.template import Template
+from checkbox_support.lib.path import path_expand_recursive
+from checkbox_support.lib.template import Template
 
 
 class FilterError(Exception):

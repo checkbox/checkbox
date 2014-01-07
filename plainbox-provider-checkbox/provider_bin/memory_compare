@@ -3,8 +3,8 @@
 import os
 import sys
 
-from checkbox.parsers.lshwjson import LshwJsonParser
-from checkbox.parsers.meminfo import MeminfoParser
+from checkbox_support.parsers.lshwjson import LshwJsonParser
+from checkbox_support.parsers.meminfo import MeminfoParser
 from subprocess import check_output, PIPE
 
 THRESHOLD = 25

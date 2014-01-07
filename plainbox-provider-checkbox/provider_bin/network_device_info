@@ -24,8 +24,8 @@ import sys
 
 import dbus
 
-from checkbox.parsers.modinfo import ModinfoParser
-from checkbox.parsers.udevadm import UdevadmParser
+from checkbox_support.parsers.modinfo import ModinfoParser
+from checkbox_support.parsers.udevadm import UdevadmParser
 
 
 # This example lists basic information about network interfaces known to NM

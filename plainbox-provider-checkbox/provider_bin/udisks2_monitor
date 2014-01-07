@@ -24,8 +24,8 @@ import errno
 import logging
 import sys
 
-from checkbox.dbus import connect_to_system_bus, drop_dbus_type
-from checkbox.dbus.udisks2 import UDisks2Observer
+from checkbox_support.dbus import connect_to_system_bus, drop_dbus_type
+from checkbox_support.dbus.udisks2 import UDisks2Observer
 
 from dbus.exceptions import DBusException
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-from checkbox.parsers.modinfo import ModinfoParser
+from checkbox_support.parsers.modinfo import ModinfoParser
 from subprocess import Popen, PIPE, check_output, CalledProcessError
 
 
