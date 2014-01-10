@@ -163,6 +163,13 @@ class KVMTest(object):
 
 runcmd:
  - [ sh, -c, echo "========= CERTIFICATION TEST =========" ]
+
+power_state:
+    mode: halt
+    message: Bye
+    timeout: 480
+
+final_message: CERTIFICATION BOOT COMPLETE
 """
 
         meta_data = """\
@@ -214,11 +221,17 @@ runcmd:
                 # Reset Console window to regain control from VM Serial I/0
                 call('reset')
                 # Check to be sure VM boot was successful
-                if "END SSH HOST KEY KEYS" in open(self.debug_file, 'r').read():
-                    print("Booted successfully", file=sys.stderr)
-                    status = 0
-                else:
-                    print("KVM instance failed to boot", file=sys.stderr)
+                with open(self.debug_file, 'r') as debug_file:
+                    file_contents = debug_file.read()
+                    if "CERTIFICATION BOOT COMPLETE" in file_contents:
+                        if "END SSH HOST KEY KEYS" in file_contents:
+                            print("Booted successfully", file=sys.stderr)
+                        else:
+                            print("Booted successfully (Previously "
+                                  "initalized VM)", file=sys.stderr)
+                        status = 0
+                    else:
+                        print("KVM instance failed to boot", file=sys.stderr)
                 self.process.terminate()
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)

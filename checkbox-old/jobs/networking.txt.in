@@ -14,14 +14,12 @@ command:
  plugin: user-interact-verify
  name: networking/info_$2
  requires: device.path == "$1"
- command: network_info $2
+ command: network_info $2 | zenity --text-info --title="$2"
  _description:
   PURPOSE:
-      This test will check the different network devices
+      This test will check the $2 network interface
   STEPS:
-      1. Please verify the following information for $2
-  INFO:
-      \$output
+      1. Click "Test" to verify the information for $2
   VERIFICATION:
       Is this correct?
  EOF

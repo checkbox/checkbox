@@ -20,6 +20,16 @@ command:
 estimated_duration: 0.645
 _description: Wireless scanning test. It scans and reports on discovered APs.
 
+plugin: shell
+name: wireless/info_automated
+requires:
+ package.name == 'network-manager'
+ device.category == 'WIRELESS'
+command: udev_resource | filter_templates -w "category=WIRELESS"| awk "/path: / { print \$2 }"| xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do network_info \$i; done"
+estimated_duration: 1.2
+_description:
+ This is an automated test to gather some info on the current state of your wireless devices. If no devices are found, the test will exit with an error.
+
 plugin: user-interact-verify
 name: wireless/wireless_connection
 command: network_check
@@ -43,6 +53,7 @@ requires:
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
 command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols.
@@ -55,6 +66,7 @@ requires:
 user: root
 environ: OPEN_BG_SSID
 command: trap "nmcli con delete id $OPEN_BG_SSID" EXIT; create_connection wifi $OPEN_BG_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11b/g protocols.
@@ -67,6 +79,7 @@ requires:
 user: root
 environ: WPA_N_SSID WPA_N_PSK
 command: trap "nmcli con delete id $WPA_N_SSID" EXIT; create_connection wifi $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11n protocol.
@@ -79,6 +92,7 @@ requires:
 user: root
 environ: OPEN_N_SSID
 command: trap "nmcli con delete id $OPEN_N_SSID" EXIT; create_connection wifi $OPEN_N_SSID &&  gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol.
@@ -91,6 +105,7 @@ requires:
 user: root
 environ: ROUTER_SSID ROUTER_PSK
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using WPA
@@ -112,6 +127,7 @@ requires:
 user: root
 environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using
@@ -133,6 +149,7 @@ requires:
 user: root
 environ: ROUTER_SSID ROUTER_PSK
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using WPA
@@ -154,6 +171,7 @@ requires:
 user: root
 environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Tests that the systems wireless hardware can connect to a router using
@@ -175,6 +193,7 @@ requires:
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
 command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30
+estimated_duration: 330.0
 _description:
  Tests the performance of a systems wireless connection through the iperf tool.
 
@@ -186,6 +205,7 @@ requires:
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
 command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection wifi $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30 -u -b 100m -p 5050
+estimated_duration: 330.0
 _description:
  Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.
 
@@ -195,6 +215,7 @@ requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_A_SSID
 command: trap "nmcli con delete id $OPEN_A_SSID" EXIT; create_connection wifi $OPEN_A_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11a protocol. This requires that you have a router pre-configured to only
@@ -206,6 +227,7 @@ requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_B_SSID
 command: trap "nmcli con delete id $OPEN_B_SSID" EXIT; create_connection wifi $OPEN_B_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11b protocol. This requires that you have a router pre-configured to only
@@ -223,6 +245,7 @@ command:
  requires: device.path == "$1"
  user: root
  command: network test -i $2 -t stress
+ estimated_duration: 330.0
  _description:
   This test executes iperf to generate a load on the network device and then performs a ping test to watch for dropped packets and very large latency periods.
  EOF
@@ -233,6 +256,7 @@ requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_G_SSID
 command: trap "nmcli con delete id $OPEN_G_SSID" EXIT; create_connection wifi $OPEN_G_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+estimated_duration: 30.0
 _description:
   Test that the system's wireless hardware can connect to a router using the
   802.11g protocol. This requires that you have a router pre-configured to only
@@ -242,6 +266,7 @@ plugin: shell
 name: wireless/wireless_extension
 requires: device.category == 'WIRELESS'
 command: wireless_ext
+estimated_duration: 1.2
 _description:
  Test that the MAC80211 modules are loaded and wireless extensions are working.
 
@@ -255,6 +280,7 @@ command:
  name: wireless/iwconfig_check_$2
  requires: device.path == "$1"
  command: iwconfig $2
+ estimated_duration: 1.2
  _description:
   This test executes iwconfig requests against all the ethernet devices found on the system.
  EOF
@@ -289,6 +315,7 @@ command:
  name: wireless/maximum_bandwidth_$2
  requires: device.path == "$1"
  command: network test -i $2 -t iperf 2>&1 | cat - <(echo; echo "Verify the result and click OK to decide on the outcome") | zenity --text-info --title 'wireless max bw $2'
+ estimated_duration: 120.0
  _description:
   PURPOSE:
       User verification of whether the observed transfer throughput is acceptable

@@ -233,7 +233,6 @@ Rectangle {
 
                 // Avoid bad arguments
                 if (item_index < 0) {
-                    console.log("UpdateBranchSelection - Bad argument")
                     return false;
                 }
 
@@ -335,7 +334,6 @@ Rectangle {
                 {
                     var curItem = testListModel.get(i);
 
-                    //console.log("curItem.group:", curItem.group, "check", curItem.check)
                     if (curItem.group === section && curItem.check === "true"){
                         foundGroup = true;
                         estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
@@ -466,8 +464,6 @@ Rectangle {
 
                 // Not strictly needed here
                 var end = new Date();
-                //console.log("Time for ", end.getMilliseconds() - start.getMilliseconds());
-
             }
 
             function getSectionCount(){
@@ -487,7 +483,6 @@ Rectangle {
                       }
                 }
                 var end = new Date();
-                console.log("Time for Section Count:", end.getMilliseconds() - start.getMilliseconds());
                 return secCnt;
             }
         }
@@ -510,7 +505,6 @@ Rectangle {
             onOk: {
                 if (isChecked)
                     groupedList.displayWarnings = false;
-                console.log("ok clicked");
             }
         }
     }

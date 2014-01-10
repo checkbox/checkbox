@@ -11,7 +11,6 @@
 ListModel::ListModel(ListItem* prototype, QObject *parent) :
     QAbstractListModel(parent), m_prototype(prototype)
 {
-  //setRoleNames(m_prototype->roleNames());
 }
 
 int ListModel::rowCount(const QModelIndex &parent) const
@@ -57,7 +56,6 @@ void ListModel::appendRows(const QList<ListItem *> &items)
   beginInsertRows(QModelIndex(), rowCount(), rowCount()+items.size()-1);
   foreach(ListItem *item, items) {
     connect(item, SIGNAL(dataChanged()), SLOT(handleItemChange()));
-    //qDebug() << "Appended " << item->data(Qt::UserRole+2);
     m_list.append(item);
   }
   endInsertRows();
@@ -161,8 +159,4 @@ void ListModel::setProperty(int idx, const QString& property, const QVariant& va
     if ( hashItr.findNext(property.toUtf8()) ){
         m_list[idx]->setData(value, hashItr.key());
     }
-
-
 }
-
-

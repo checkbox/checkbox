@@ -69,7 +69,7 @@ TestItem::TestItem(const double &duration, \
           m_runstatus(0),
           m_elapsedtime(0),
               m_groupstatus(0),
-              m_rerun(true) // covers the first run of all the tests
+              m_rerun(rerun) // covers the first run of all the tests
 {
     // FIXME - Hard-coded data whilst we correct the RunManagerTestDelegate
     m_outcome = JobResult_OUTCOME_PASS;
@@ -160,11 +160,9 @@ QVariant TestItem::data(int role) const
       return groupstatus();
 
   case ParentNameRole:
-//      return parentnamelist();
       break;
 
   case ParentIdRole:
-//       return parentidlist();
     break;
 
   case DepthRole:

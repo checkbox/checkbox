@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2013 Canonical Ltd.
+# Copyright 2013, 2014 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -25,24 +25,104 @@ Qualifiers are callable objects that can be used to 'match' a job definition to
 some set of rules.
 """
 
+import abc
+import itertools
 import os
 import re
 
 from plainbox.abc import IJobQualifier
 
 
-class RegExpJobQualifier(IJobQualifier):
+class SimpleQualifier(IJobQualifier):
+    """
+    Abstract base class that implements common features of simple (non
+    composite) qualifiers. This allows two concrete subclasses below to
+    have share some code.
+    """
+
+    def __init__(self, inclusive=True):
+        self._inclusive = inclusive
+
+    @property
+    def inclusive(self):
+        return self._inclusive
+
+    @property
+    def is_primitive(self):
+        return True
+
+    def designates(self, job):
+        return self.get_vote(job) == self.VOTE_INCLUDE
+
+    @abc.abstractmethod
+    def get_simple_match(self, job):
+        """
+        Get a simple yes-or-no boolean answer if the given job matches the
+        simple aspect of this qualifier. This method should be overridden by
+        concrete subclasses.
+        """
+
+    def get_vote(self, job):
+        """
+        Get one of the ``VOTE_IGNORE``, ``VOTE_INCLUDE``, ``VOTE_EXCLUDE``
+        votes that this qualifier associated with the specified job.
+
+        :param job:
+            A IJobDefinition instance that is to be visited
+        :returns:
+            * ``VOTE_INCLUDE`` if the job matches the simple qualifier concept
+              embedded into this qualifier and this qualifier is **inclusive**.
+            * ``VOTE_EXCLUDE`` if the job matches the simple qualifier concept
+              embedded into this qualifier and this qualifier is **not
+              inclusive**.
+            * ``VOTE_IGNORE`` otherwise.
+
+        .. versionadded: 0.5
+        """
+        if self.get_simple_match(job):
+            if self.inclusive:
+                return self.VOTE_INCLUDE
+            else:
+                return self.VOTE_EXCLUDE
+        else:
+            return self.VOTE_IGNORE
+
+    def get_primitive_qualifiers(self):
+        """
+        Return a list of primitives that constitute this qualifier.
+
+        :returns:
+            A list of IJobQualifier objects that each is the smallest,
+            indivisible entity. Here it just returns a list of one element,
+            itself.
+
+        .. versionadded: 0.5
+        """
+        return [self]
+
+
+class RegExpJobQualifier(SimpleQualifier):
     """
     A JobQualifier that designates jobs by matching their name to a regular
     expression
     """
 
-    def __init__(self, pattern):
+    def __init__(self, pattern, inclusive=True):
         """
         Initialize a new RegExpJobQualifier with the specified pattern.
         """
+        super().__init__(inclusive)
         self._pattern = re.compile(pattern)
         self._pattern_text = pattern
+
+    def get_simple_match(self, job):
+        """
+        Check if the given job matches this qualifier.
+
+        This method should not be called directly, it is an implementation
+        detail of SimpleQualifier class.
+        """
+        return self._pattern.match(job.name) is not None
 
     @property
     def pattern_text(self):
@@ -51,28 +131,32 @@ class RegExpJobQualifier(IJobQualifier):
         """
         return self._pattern_text
 
-    def designates(self, job):
-        return self._pattern.match(job.name)
-
     def __repr__(self):
-        return "<{0} pattern:{1!r}>".format(
-            self.__class__.__name__, self._pattern_text)
+        return "{0}({1!r}, inclusive={2})".format(
+            self.__class__.__name__, self._pattern_text, self._inclusive)
 
 
-class NameJobQualifier(IJobQualifier):
+class NameJobQualifier(SimpleQualifier):
     """
     A JobQualifier that designates a single job with a particular name
     """
 
-    def __init__(self, name):
+    def __init__(self, name, inclusive=True):
+        super().__init__(inclusive)
         self._name = name
 
-    def designates(self, job):
+    def get_simple_match(self, job):
+        """
+        Check if the given job matches this qualifier.
+
+        This method should not be called directly, it is an implementation
+        detail of SimpleQualifier class.
+        """
         return self._name == job.name
 
     def __repr__(self):
-        return "<{0} name:{1!r}>".format(
-            self.__class__.__name__, self._name)
+        return "{0}({1!r}, inclusive={2})".format(
+            self.__class__.__name__, self._name, self._inclusive)
 
 
 class CompositeQualifier(IJobQualifier):
@@ -81,21 +165,42 @@ class CompositeQualifier(IJobQualifier):
     while not matching all of the exclusive qualifiers
     """
 
-    def __init__(self, inclusive_qualifier_list, exclusive_qualifier_list):
-        self.inclusive_qualifier_list = inclusive_qualifier_list
-        self.exclusive_qualifier_list = exclusive_qualifier_list
+    def __init__(self, qualifier_list):
+        self.qualifier_list = qualifier_list
+
+    @property
+    def is_primitive(self):
+        return False
 
     def designates(self, job):
-        # First reject stuff that is excluded
-        for qualifier in self.exclusive_qualifier_list:
-            if qualifier.designates(job):
-                return False
-        # Then allow stuff that is included
-        for qualifier in self.inclusive_qualifier_list:
-            if qualifier.designates(job):
-                return True
-        # Lastly reject by default
-        return False
+        return self.get_vote(job) == self.VOTE_INCLUDE
+
+    def get_vote(self, job):
+        """
+        Get one of the ``VOTE_IGNORE``, ``VOTE_INCLUDE``, ``VOTE_EXCLUDE``
+        votes that this qualifier associated with the specified job.
+
+        :param job:
+            A IJobDefinition instance that is to be visited
+        :returns:
+            * ``VOTE_INCLUDE`` if the job matches at least one qualifier voted
+              to select it and no qualifiers voted to deselect it.
+            * ``VOTE_EXCLUDE`` if at least one qualifier voted to deselect it
+            * ``VOTE_IGNORE`` otherwise or if the list of qualifiers is empty.
+
+        .. versionadded: 0.5
+        """
+        if self.qualifier_list:
+            return min([
+                qualifier.get_vote(job)
+                for qualifier in self.qualifier_list])
+        else:
+            return self.VOTE_IGNORE
+
+    def get_primitive_qualifiers(self):
+        return list(itertools.chain(*[
+            qual.get_primitive_qualifiers()
+            for qual in self.qualifier_list]))
 
 
 # NOTE: using CompositeQualifier seems strange but it's a tested proven
@@ -118,14 +223,13 @@ class WhiteList(CompositeQualifier):
 
     def __init__(self, pattern_list, name=None):
         """
-        Initialize a whitelist object with the specified list of patterns.
+        Initialize a WhiteList object with the specified list of patterns.
 
         The patterns must be already mangled with '^' and '$'.
         """
-        inclusive = [RegExpJobQualifier(pattern) for pattern in pattern_list]
-        exclusive = ()
-        super(WhiteList, self).__init__(inclusive, exclusive)
         self._name = name
+        super(WhiteList, self).__init__(
+            [RegExpJobQualifier(pattern) for pattern in pattern_list])
 
     def __repr__(self):
         return "<{} name:{!r}>".format(self.__class__.__name__, self.name)
@@ -137,42 +241,79 @@ class WhiteList(CompositeQualifier):
         """
         return self._name
 
+    @name.setter
+    def name(self, value):
+        """
+        set a new name for a WhiteList
+        """
+        self._name = value
+
     @classmethod
     def from_file(cls, pathname):
         """
         Load and initialize the WhiteList object from the specified file.
 
-        :param pathname: file to load
-        :returns: a fresh WhiteList object
+        :param pathname:
+            file to load
+        :returns:
+            a fresh WhiteList object
         """
         pattern_list = cls._load_patterns(pathname)
         name = os.path.splitext(os.path.basename(pathname))[0]
         return cls(pattern_list, name=name)
 
     @classmethod
-    def _load_patterns(self, pathname):
+    def from_string(cls, text):
         """
-        Load whitelist patterns from the specified file
+        Load and initialize the WhiteList object from the specified file.
+
+        :param pathname:
+            text to parse and load
+        :returns:
+            a fresh WhiteList object
+        """
+        pattern_list = cls._parse_patterns(text)
+        return cls(pattern_list)
+
+    @classmethod
+    def name_from_filename(cls, filename):
+        """
+        Compute the name of a whitelist based on the name
+        of the file it is stored in.
+        """
+        return os.path.splitext(os.path.basename(filename))[0]
+
+    @classmethod
+    def _parse_patterns(cls, text):
+        """
+        Load whitelist patterns from the specified text
         """
         pattern_list = []
         # Load the file
-        with open(pathname, "rt", encoding="UTF-8") as stream:
-            for line in stream:
-                # Strip shell-style comments if there are any
-                try:
-                    index = line.index("#")
-                except ValueError:
-                    pass
-                else:
-                    line = line[:index]
-                # Strip whitespace
-                line = line.strip()
-                # Skip empty lines (especially after stripping comments)
-                if line == "":
-                    continue
-                # Surround the pattern with ^ and $
-                # so that it wont just match a part of the job name.
-                regexp_pattern = r"^{pattern}$".format(pattern=line)
-                # Accumulate patterns into the list
-                pattern_list.append(regexp_pattern)
+        for line in text.splitlines():
+            # Strip shell-style comments if there are any
+            try:
+                index = line.index("#")
+            except ValueError:
+                pass
+            else:
+                line = line[:index]
+            # Strip whitespace
+            line = line.strip()
+            # Skip empty lines (especially after stripping comments)
+            if line == "":
+                continue
+            # Surround the pattern with ^ and $
+            # so that it wont just match a part of the job name.
+            regexp_pattern = r"^{pattern}$".format(pattern=line)
+            # Accumulate patterns into the list
+            pattern_list.append(regexp_pattern)
         return pattern_list
+
+    @classmethod
+    def _load_patterns(cls, pathname):
+        """
+        Load whitelist patterns from the specified file
+        """
+        with open(pathname, "rt", encoding="UTF-8") as stream:
+            return cls._parse_patterns(stream.read())

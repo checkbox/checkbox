@@ -299,22 +299,10 @@ Component {
         Component {
             id: log_viewer
             LogViewer{
-//                //  Re-insert this for other/future versions of the GUI
-//                showTroubleShootingLink: false
                jobPath: objectpath
                title: testname
             }
         }
-
-//        //  Re-insert this for other/future versions of the GUI
-//        Component {
-//            id: log_viewer_with_trouble
-//            LogViewer{
-//                showTroubleShootingLink: true
-//                text:testname
-//                logText: description
-//            }
-//        }
 
         Component {
             id: manual_dialog
@@ -324,4 +312,3 @@ Component {
         }
     }
 }
-

@@ -51,7 +51,6 @@ Component {
             onClicked: {
                 itemdelegate.open = !itemdelegate.open
                 groupedList.openShutSubgroup(section, itemdelegate.open)
-                //console.log("Open/Shut items below")
             }
         }
 
@@ -118,4 +117,3 @@ Component {
         ListItem.ThinDivider {}
     }
 }
-

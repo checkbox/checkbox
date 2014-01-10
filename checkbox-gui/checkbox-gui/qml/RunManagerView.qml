@@ -69,7 +69,6 @@ Page {
                 runmanagerview.testingComplete = true;
 
                 // update ui
-                //runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;
@@ -86,9 +85,6 @@ Page {
                 testsuitelist.curSectionTested = "";  // set this as there is no more tested
             }
 
-            // from gui-engine.h for reference:
-//            void updateGuiBeginJob(const QString& job_id, \
-//                                  const int current_job_index);
             onUpdateGuiBeginJob: {
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
@@ -122,10 +118,6 @@ Page {
                         + "   " + test_name;
             }
 
-            // from gui-engine.h for reference:
-//            void updateGuiEndJob(const QString& job_id, \
-//                                  const int current_job_index,
-//                                  const int outcome);
             onUpdateGuiEndJob: {
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
@@ -320,7 +312,6 @@ Page {
         function resume(){
             updater.testStartTime = new Date()
             updater.running = true;
-            console.log("Resume...")
 
             guiEngine.Resume();
         }
@@ -328,7 +319,6 @@ Page {
         function pause(){
             updater.running = false;
             progress.title = progress.title.replace("Running", "Paused ")
-            console.log("Pause...")
 
             guiEngine.Pause();
         }

@@ -23,7 +23,7 @@
 """
 
 import errno
-import io
+import itertools
 import logging
 import os
 
@@ -35,11 +35,84 @@ from plainbox.impl.secure.config import NotEmptyValidator
 from plainbox.impl.secure.config import PatternValidator
 from plainbox.impl.secure.plugins import FsPlugInCollection
 from plainbox.impl.secure.plugins import IPlugIn
+from plainbox.impl.secure.plugins import PlugInError
 from plainbox.impl.secure.qualifiers import WhiteList
+from plainbox.impl.secure.rfc822 import RFC822SyntaxError
 from plainbox.impl.secure.rfc822 import load_rfc822_records
 
 
 logger = logging.getLogger("plainbox.secure.providers.v1")
+
+
+class WhiteListPlugIn(IPlugIn):
+    """
+    A specialized :class:`plainbox.impl.secure.plugins.IPlugIn` that loads
+    :class:`plainbox.impl.secure.qualifiers.WhiteList` instances from a file.
+    """
+
+    def __init__(self, filename, text):
+        """
+        Initialize the plug-in with the specified name text
+        """
+        try:
+            self._whitelist = WhiteList.from_string(text)
+            self._whitelist.name = WhiteList.name_from_filename(filename)
+        except Exception as exc:
+            raise PlugInError(
+                "Cannot load whitelist {!r}: {}".format(filename, exc))
+
+    @property
+    def plugin_name(self):
+        """
+        plugin name, the name of the WhiteList
+        """
+        return self._whitelist.name
+
+    @property
+    def plugin_object(self):
+        """
+        plugin object, the actual WhiteList instance
+        """
+        return self._whitelist
+
+
+class JobDefinitionPlugIn(IPlugIn):
+    """
+    A specialized :class:`plainbox.impl.secure.plugins.IPlugIn` that loads a
+    list of :class:`plainbox.impl.job.JobDefinition` instances from a file.
+    """
+
+    def __init__(self, filename, text, provider):
+        """
+        Initialize the plug-in with the specified name text
+        """
+        self._filename = filename
+        self._job_list = []
+        logger.debug("Loading jobs definitions from %r...", filename)
+        try:
+            for record in load_rfc822_records(text):
+                job = JobDefinition.from_rfc822_record(record)
+                job._provider = provider
+                self._job_list.append(job)
+                logger.debug("Loaded %r", job)
+        except RFC822SyntaxError as exc:
+            raise PlugInError(
+                "Cannot load job definitions from {!r}: {}".format(
+                    filename, exc))
+
+    @property
+    def plugin_name(self):
+        """
+        plugin name, name of the file we loaded jobs from
+        """
+        return self._filename
+
+    @property
+    def plugin_object(self):
+        """
+        plugin object, a list of JobDefinition instances
+        """
+        return self._job_list
 
 
 class Provider1(IProvider1, IProviderBackend1):
@@ -65,6 +138,11 @@ class Provider1(IProvider1, IProviderBackend1):
         self._version = version
         self._description = description
         self._secure = secure
+        self._whitelist_collection = FsPlugInCollection(
+            self.whitelists_dir, ext=".whitelist", wrapper=WhiteListPlugIn)
+        self._job_collection = FsPlugInCollection(
+            self.jobs_dir, ext=(".txt", ".txt.in"),
+            wrapper=JobDefinitionPlugIn, provider=self)
 
     def __repr__(self):
         return "<{} name:{!r} base_dir:{!r}>".format(
@@ -160,42 +238,82 @@ class Provider1(IProvider1, IProviderBackend1):
         return self._secure
 
     def get_builtin_whitelists(self):
-        logger.debug("Loading built-in whitelists...")
-        whitelist_list = []
-        try:
-            items = os.listdir(self.whitelists_dir)
-        except OSError as exc:
-            if exc.errno == errno.ENOENT:
-                items = []
-            else:
-                raise
-        for name in items:
-            if name.endswith(".whitelist"):
-                whitelist_list.append(
-                    WhiteList.from_file(os.path.join(
-                        self.whitelists_dir, name)))
-        return sorted(whitelist_list, key=lambda whitelist: whitelist.name)
+        """
+        Load all the whitelists from :attr:`whitelists_dir` and return them
+
+        This method looks at the whitelist directory and loads all files ending
+        with .whitelist as a WhiteList object.
+
+        :returns:
+            A list of :class:`~plainbox.impl.secure.qualifiers.WhiteList`
+            objects sorted by
+            :attr:`plainbox.impl.secure.qualifiers.WhiteList.name`.
+        :raises IOError, OSError:
+            if there were any problems accessing files or directories.  Note
+            that OSError is silently ignored when the `whitelists_dir`
+            directory is missing.
+        """
+        self._whitelist_collection.load()
+        if self._whitelist_collection.problem_list:
+            raise self._whitelist_collection.problem_list[0]
+        else:
+            return sorted(self._whitelist_collection.get_all_plugin_objects(),
+                          key=lambda whitelist: whitelist.name)
 
     def get_builtin_jobs(self):
-        logger.debug("Loading built-in jobs...")
-        job_list = []
-        try:
-            items = os.listdir(self.jobs_dir)
-        except OSError as exc:
-            if exc.errno == errno.ENOENT:
-                items = []
-            else:
-                raise
-        for name in items:
-            if name.endswith(".txt") or name.endswith(".txt.in"):
-                job_list.extend(
-                    self.load_jobs(
-                        os.path.join(self.jobs_dir, name)))
-        return sorted(job_list, key=lambda job: job.name)
+        """
+        Load and parse all of the job definitions of this provider.
+
+        :returns:
+            A sorted list of JobDefinition objects
+        :raises RFC822SyntaxError:
+            if any of the loaded files was not valid RFC822
+        :raises IOError, OSError:
+            if there were any problems accessing files or directories.
+            Note that OSError is silently ignored when the `jobs_dir`
+            directory is missing.
+
+        ..note::
+            This method should not be used anymore. Consider transitioning your
+            code to :meth:`load_all_jobs()` which is more reliable.
+        """
+        job_list, problem_list = self.load_all_jobs()
+        if problem_list:
+            raise problem_list[0]
+        else:
+            return job_list
+
+    def load_all_jobs(self):
+        """
+        Load and parse all of the job definitions of this provider.
+
+        Unlike :meth:`get_builtin_jobs()` this method does not stop after the
+        first problem encountered and instead collects all of the problems into
+        a list which is returned alongside the job list.
+
+        :returns:
+            Pair (job_list, problem_list) where each job_list is a sorted list
+            of JobDefinition objects and each item from problem_list is an
+            exception.
+        """
+        self._job_collection.load()
+        job_list = sorted(
+            itertools.chain(
+                *self._job_collection.get_all_plugin_objects()),
+            key=lambda job: job.name)
+        problem_list = self._job_collection.problem_list
+        return job_list, problem_list
 
     def get_all_executables(self):
         """
         Discover and return all executables offered by this provider
+
+        :returns:
+            list of executable names (without the full path)
+        :raises IOError, OSError:
+            if there were any problems accessing files or directories. Note
+            that OSError is silently ignored when the `bin_dir` directory is
+            missing.
         """
         executable_list = []
         try:
@@ -210,31 +328,6 @@ class Provider1(IProvider1, IProviderBackend1):
             if os.access(filename, os.F_OK | os.X_OK):
                 executable_list.append(filename)
         return sorted(executable_list)
-
-    def load_jobs(self, somewhere):
-        """
-        Load job definitions from somewhere
-        """
-        if isinstance(somewhere, str):
-            # Load data from a file with the given name
-            filename = somewhere
-            with open(filename, 'rt', encoding='UTF-8') as stream:
-                return self.load_jobs(stream)
-        if isinstance(somewhere, io.TextIOWrapper):
-            stream = somewhere
-            logger.debug("Loading jobs definitions from %r...", stream.name)
-            record_list = load_rfc822_records(stream)
-            job_list = []
-            for record in record_list:
-                job = JobDefinition.from_rfc822_record(record)
-                job._provider = self
-                logger.debug("Loaded %r", job)
-                job_list.append(job)
-            return job_list
-        else:
-            raise TypeError(
-                "Unsupported type of 'somewhere': {!r}".format(
-                    type(somewhere)))
 
 
 class IQNValidator(PatternValidator):
@@ -344,7 +437,7 @@ class Provider1Definition(Config):
 
 class Provider1PlugIn(IPlugIn):
     """
-    A specialized IPlugIn that loads Provider1 instances from their defition
+    A specialized IPlugIn that loads Provider1 instances from their definition
     files
     """
 

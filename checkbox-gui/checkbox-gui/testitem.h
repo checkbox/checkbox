@@ -162,7 +162,7 @@ public:
              const QList<QString> &parent_ids, \
              const int &depth, \
              const bool &branch, \
-             const bool &rerun, \
+             const bool &rerun = false, \
              QObject * parent = 0 );
 
     QVariant data(int role) const;
