@@ -128,10 +128,14 @@ Rectangle {
                                 var hideItem = groupedList.contentItem.children[j];
                                 hideItem.visible = sel;
                                 hideItem.height = sel? units.gu(7):units.gu(0);
-                                if (sel)
+                                if (sel) {
                                     closedCount--;
-                                else
+                                    listflick.contentHeight += units.gu(7);
+                                }
+                                else {
                                     closedCount++;
+                                    listflick.contentHeight -= units.gu(7);
+                                }
 
                             } else {
                                 // we must have reached the end, so return
