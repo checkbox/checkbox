@@ -30,6 +30,7 @@ MainView {
     id: mainView
     width: units.gu(100)
     height: units.gu(90)
+    applicationName: applicationName
 
     // TODO - For Resume dialog, when plainbox starts up, check if this is a 'Resume'
     // if it is, set pageName = "ResumeView", state = "RESUME"
