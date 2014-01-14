@@ -21,6 +21,7 @@
 
 
 import QtQuick 2.0
+import QtQuick.LocalStorage 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
@@ -71,6 +72,7 @@ Rectangle {
             property int sectionCount: 0// this will contain the number of sections
             property int closedCount: 0 // this contains nuber of closed items
             property bool displayWarnings: true
+            property var db: null
 
             delegate: TestSelectionTestDelegate {}
 
@@ -79,13 +81,52 @@ Rectangle {
 
             // Runs when this ListView is fully initialised
             Component.onCompleted: {
+                displayWarnings = getSetting('deselection_warning')!=0?true:false;
                 selectAll(true)
                 currentTestItem = testListModel.get(currentItem);
                 sectionCount = getSectionCount()
                 setListSummary();
             }
 
+            function openDB() {
+                if(db !== null) return;
+
+                // db = LocalStorage.openDatabaseSync(identifier, version, description, estimated_size, callback(db))
+                db = LocalStorage.openDatabaseSync("ui_settings", "0.1", "UI LocalStorage", 1000);
+
+                try {
+                    db.transaction(function(tx){
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS settings(key TEXT UNIQUE, value INTEGER)');
+                        var table  = tx.executeSql("SELECT * FROM settings");
+                        // Seed the table with default values
+                        if (table.rows.length == 0) {
+                            tx.executeSql('INSERT INTO settings VALUES(?, ?)', ["deselection_warning", 1]);
+                        };
+                    });
+                } catch (err) {
+                    console.log("Error creating table in database: " + err);
+                };
+            }
+
+            function saveSetting(key, value) {
+                openDB();
+                db.transaction( function(tx){
+                    tx.executeSql('INSERT OR REPLACE INTO settings VALUES(?, ?)', [key, value]);
+                });
+            }
+
+            function getSetting(key) {
+                openDB();
+                var res = "";
+                db.transaction(function(tx) {
+                    var rs = tx.executeSql('SELECT value FROM settings WHERE key=?;', [key]);
+                    res = rs.rows.item(0).value;
+                });
+                return res;
+            }
+
             function showWarning(caller_button){
+                displayWarnings = getSetting('deselection_warning')!=0?true:false;
                 if (displayWarnings === true)
                     PopupUtils.open(warning_dialog, caller_button);
             }
@@ -509,8 +550,7 @@ Rectangle {
 
             onOk: {
                 if (isChecked)
-                    groupedList.displayWarnings = false;
-                console.log("ok clicked");
+                    groupedList.saveSetting("deselection_warning", 0);
             }
         }
     }
