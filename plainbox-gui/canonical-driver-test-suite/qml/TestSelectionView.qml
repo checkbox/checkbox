@@ -66,6 +66,10 @@ Page {
         return  estTimeStr;
     }
 
+    function validTotalTime(total_duration){
+        return Object.keys(total_duration).map(function (key) {return total_duration[key]}).indexOf(-1)
+    }
+
     // Test List Header Bar
     Item {
         id: testlistheaders
@@ -252,7 +256,7 @@ Page {
                         Label {text: totalImplicitTests; anchors.right: col2.right}
                         Label {text: i18n.tr(" "); fontSize: "large"}
                         Label {
-                            text: formatTotalTime(total_duration["automated_duration"] + total_duration["manual_duration"]);
+                            text: validTotalTime(total_duration)?formatTotalTime(total_duration["automated_duration"] + total_duration["manual_duration"]):"N/A";
                             anchors.right: col2.right;
                             fontSize: "large"; color: "white"
                         }
