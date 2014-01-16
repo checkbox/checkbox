@@ -41,7 +41,7 @@ import "./artwork"
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitefiller.right
             checked: true
-            onClicked: {
+            onCheckedChanged: {
                 // Update the list of selected whitelists
                 update_selection(testname, checked)
                 /* Update the ListView, primarily to ensure we dont
@@ -73,5 +73,13 @@ import "./artwork"
             anchors.left: suitecheckbox.right
             anchors.leftMargin: units.gu(1)
         }
+
         ListItem.ThinDivider {}
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                suitecheckbox.checked = !suitecheckbox.checked
+            }
+        }
     }
