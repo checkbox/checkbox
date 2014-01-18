@@ -7,6 +7,8 @@ checkbox (0.17.3) UNRELEASED; urgency=low
   [Daniel Manrique]
   * jobs/graphics.txt.in: Use grep to work around bad exit codes from
     unity_support_test (LP: #1212618)
+  * Added tests for 802.11ac networking, including environment variables for
+    their settings, and updated whitelists accordingly.
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 10 Jan 2014 11:02:47 +0000
 
