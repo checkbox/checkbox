@@ -123,6 +123,7 @@ public slots:
         void InterfacesAdded(QDBusMessage msg);
         void InterfacesRemoved(QDBusMessage msg);
 
+        void CatchallShowInteractiveUISignalsHandler(QDBusMessage msg);
         void CatchallAskForOutcomeSignalsHandler(QDBusMessage msg);
         void CatchallIOLogGeneratedSignalsHandler(QDBusMessage msg);
         void CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg);
@@ -227,9 +228,9 @@ signals:
         void jobsCompleted(void);
 
         // Manual Interaction Dialog
-        void raiseManualInteractionDialog(const int outcome /* from PB */, bool show_test);
+        void raiseManualInteractionDialog(const int suggested_outcome /* from PB */, bool show_test);
 
-        void updateManualInteractionDialog(const int outcome, bool show_test);
+        void updateManualInteractionDialog(const int suggested_outcome, bool show_test);
 
         void closeManualInteractionDialog(void);
 

@@ -911,11 +911,26 @@ void GuiEngine::ConnectJobReceivers(void)
 {
     qDebug("ConnectJobReceivers");
 
-    // Connect the AskForOutcome signal receiver
+    // Connect the ShowInteractiveUI signal receiver
     QDBusConnection bus = QDBusConnection ::sessionBus();
     if (!bus.connect(PBBusName,\
                   NULL,\
-                  PBInterfaceName,\
+                  PBSessionStateInterface,\
+                  "ShowInteractiveUI",\
+                  this,\
+                  SLOT(CatchallShowInteractiveUISignalsHandler(QDBusMessage)))) {
+
+     qDebug("Failed to connect slot for ShowInteractiveUI events");
+
+     // TODO - Emit error for the gui
+
+     return;
+    }
+
+    // Connect the AskForOutcome signal receiver
+    if (!bus.connect(PBBusName,\
+                  NULL,\
+                  PBSessionStateInterface,\
                   "AskForOutcome",\
                   this,\
                   SLOT(CatchallAskForOutcomeSignalsHandler(QDBusMessage)))) {
@@ -1934,47 +1949,67 @@ const QString GuiEngine::GetReadinessDescription(const QDBusObjectPath &job_path
      return empty;
 }
 
-void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
+void GuiEngine::CatchallShowInteractiveUISignalsHandler(QDBusMessage msg)
 {
-    qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler");
+    qDebug("GuiEngine::CatchallShowInteractiveUISignalsHandler");
 
     QList<QVariant> args = msg.arguments();
-
     QList<QVariant>::iterator iter = args.begin();
-
     QVariant variant = *iter;
-
     m_runner = variant.value<QDBusObjectPath>();
 
     QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
     bool show_test = ! job_cmd.isEmpty();
 
-    /* FIXME: Find a better way to get the previous result, this one is too
-       expensive, see https://bugs.launchpad.net/checkbox-ihv-ng/+bug/1218846
-
-    // Get the interim Job Results
-    GetJobStateMap();
-
-    GetJobStates();
-
-    GetJobResults();
-
-    // we should look up the prior job result if available
-    const int outcome = GetOutcomeFromJobResultPath(m_run_list.at(m_current_job_index));
-    */
-    // FIXME: we should look up the prior job result if available
-    const int outcome = PBTreeNode::PBJobResult_None;
-
-    // Open the GUI dialog -- TODO - Default the Yes/No/Skip icons
+    // Open the GUI dialog
     if (!m_running_manual_job) {
         // must be the first time for this particular job
         m_running_manual_job = true;
-
-        emit raiseManualInteractionDialog(outcome, show_test);
+        emit raiseManualInteractionDialog(PBTreeNode::PBJobResult_Skip, show_test);
     } else {
-        emit updateManualInteractionDialog(outcome, show_test);
+        emit updateManualInteractionDialog(PBTreeNode::PBJobResult_Skip, show_test);
     }
 
+    qDebug("GuiEngine::CatchallShowInteractiveUISignalsHandler - Done");
+}
+
+void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
+{
+    qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler");
+
+    QList<QVariant> args = msg.arguments();
+    QList<QVariant>::iterator iter = args.begin();
+    QVariant variant = *iter;
+    m_runner = variant.value<QDBusObjectPath>();
+    iter++;
+    variant = *iter;
+    QString suggested_outcome = variant.value<QString>();
+    int suggested_status;
+
+    // convert outcome string into a result number
+    if (suggested_outcome.compare(JobResult_OUTCOME_PASS) == 0 ) {
+        suggested_status = PBTreeNode::PBJobResult_Pass;
+    }
+
+    if (suggested_outcome.compare(JobResult_OUTCOME_FAIL) == 0) {
+        suggested_status = PBTreeNode::PBJobResult_Fail;
+    }
+
+    if (suggested_outcome.compare(JobResult_OUTCOME_SKIP) == 0) {
+        suggested_status = PBTreeNode::PBJobResult_Skip;
+    }
+
+    QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
+    bool show_test = ! job_cmd.isEmpty();
+
+    // Open the GUI dialog
+    if (!m_running_manual_job) {
+        // must be the first time for this particular job
+        m_running_manual_job = true;
+        emit raiseManualInteractionDialog(suggested_status, show_test);
+    } else {
+        emit updateManualInteractionDialog(suggested_status, show_test);
+    }
 
     qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler - Done");
 }
