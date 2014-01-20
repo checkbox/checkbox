@@ -39,6 +39,7 @@ Page {
     property bool reportIsSaved: false;
     property bool testingComplete: false;
     property bool showTest: true;
+    property int suggestedOutcome: 1;
     property int rerunCount: 0;
     signal reRunRequested
     signal pauseOrEndRun
@@ -360,6 +361,7 @@ Page {
             ManualInteractionDialog{
                 testItem: testListModel.get(updater.testIndex);
                 showTestButton: showTest;
+                testStatus: suggestedOutcome;
             }
         }
 
@@ -440,6 +442,7 @@ Page {
         target: guiEngine
         onRaiseManualInteractionDialog: {
             showTest = show_test;
+            suggestedOutcome = suggested_outcome;
             PopupUtils.open(manual_dialog, runmanagerview);
         }
     }
