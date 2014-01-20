@@ -53,6 +53,7 @@ class IPerfPerformanceTest(object):
             self,
             interface,
             target,
+            fail_speed,
             protocol="tcp",
             mbytes="1024M"):
 
@@ -112,7 +113,7 @@ class IPerfPerformanceTest(object):
             print("%3.2f%% of " % percent, end="")
             print("theoretical max %sMb/s\n" % int(self.iface.max_speed))
 
-            if percent < 80:
+            if percent < self.fail_speed:
                 logging.warn("Poor network performance detected")
                 return 30
 
@@ -439,7 +440,8 @@ def interface_test(args):
             result = ftp_benchmark.run()
 
         elif args.test_type.lower() == "iperf":
-            iperf_benchmark = IPerfPerformanceTest(args.interface, test_target)
+            iperf_benchmark = IPerfPerformanceTest(args.interface, test_target, 
+                                                   args.fail_speed)
             result = iperf_benchmark.run()
 
         elif args.test_type.lower() == "stress":
@@ -517,6 +519,12 @@ def main():
         '--config', type=str,
         default="/etc/checkbox.d/network.cfg",
         help="Supply config file for target/host network parameters")
+    test_parser.add_argument(
+        '--fail-speed', type=int,
+        default=40,
+        help=("IPERF Test ONLY. Set the failure threshold (Percent of maximum "
+              "theoretical bandwidth) as a number like 80.  (Default is "
+              "%(default)s)"))
 
 
     # Sub info options

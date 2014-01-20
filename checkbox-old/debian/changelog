@@ -7,6 +7,11 @@ checkbox (0.17.3) UNRELEASED; urgency=low
   [Daniel Manrique]
   * jobs/graphics.txt.in: Use grep to work around bad exit codes from
     unity_support_test (LP: #1212618)
+  
+  [Jeff Lane]
+  * scripts/network: fail threshold for iperf is now an option and defaults to
+    40%
+  * jobs/ethernet.txt.in: modified multinic to fail on 80% threshold
 
  -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 10 Jan 2014 11:02:47 +0000
 
