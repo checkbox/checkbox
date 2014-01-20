@@ -37,6 +37,7 @@ from plainbox.impl.secure.plugins import FsPlugInCollection
 from plainbox.impl.secure.plugins import IPlugIn
 from plainbox.impl.secure.plugins import PlugInError
 from plainbox.impl.secure.qualifiers import WhiteList
+from plainbox.impl.secure.rfc822 import FileTextSource
 from plainbox.impl.secure.rfc822 import RFC822SyntaxError
 from plainbox.impl.secure.rfc822 import load_rfc822_records
 
@@ -55,8 +56,7 @@ class WhiteListPlugIn(IPlugIn):
         Initialize the plug-in with the specified name text
         """
         try:
-            self._whitelist = WhiteList.from_string(text)
-            self._whitelist.name = WhiteList.name_from_filename(filename)
+            self._whitelist = WhiteList.from_string(text, filename=filename)
         except Exception as exc:
             raise PlugInError(
                 "Cannot load whitelist {!r}: {}".format(filename, exc))
@@ -90,7 +90,8 @@ class JobDefinitionPlugIn(IPlugIn):
         self._job_list = []
         logger.debug("Loading jobs definitions from %r...", filename)
         try:
-            for record in load_rfc822_records(text):
+            for record in load_rfc822_records(
+                    text, source=FileTextSource(filename)):
                 job = JobDefinition.from_rfc822_record(record)
                 job._provider = provider
                 self._job_list.append(job)
