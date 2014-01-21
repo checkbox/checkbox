@@ -25,6 +25,7 @@ Test definitions for plainbox.impl.secure.config module
 """
 from io import StringIO
 from unittest import TestCase
+import configparser
 
 from plainbox.impl.secure.config import ChoiceValidator
 from plainbox.impl.secure.config import ConfigMetaData
@@ -158,16 +159,19 @@ class ConfigTests(TestCase):
         # define a featureful config class
         class TestConfig(Config):
             v1 = Variable()
-            v2 = Variable(section="v2_section")
+            v2 = Variable(section="v23_section")
+            v3 = Variable(section="v23_section")
+            v_unset = Variable()
             v_bool = Variable(section="type_section", kind=bool)
             v_int = Variable(section="type_section", kind=int)
             v_float = Variable(section="type_section", kind=float)
             v_str = Variable(section="type_section", kind=str)
             s = Section()
         conf = TestConfig()
-        # assign value to each variable
+        # assign value to each variable, except v3_unset
         conf.v1 = "v1 value"
         conf.v2 = "v2 value"
+        conf.v3 = "v3 value"
         conf.v_bool = True
         conf.v_int = -7
         conf.v_float = 1.5
@@ -185,7 +189,11 @@ class ConfigTests(TestCase):
         parser = conf.get_parser_obj()
         # verify that section and section-less variables work
         self.assertEqual(parser.get("DEFAULT", "v1"), "v1 value")
-        self.assertEqual(parser.get("v2_section", "v2"), "v2 value")
+        self.assertEqual(parser.get("v23_section", "v2"), "v2 value")
+        self.assertEqual(parser.get("v23_section", "v3"), "v3 value")
+        # verify that unset variable is not getting set to anything
+        with self.assertRaises(configparser.Error):
+            parser.get("DEFAULT", "v_unset")
         # verify that various types got converted correctly and still resolve
         # to correct typed values
         self.assertEqual(parser.get("type_section", "v_bool"), "True")
@@ -210,8 +218,9 @@ class ConfigTests(TestCase):
                 "[DEFAULT]\n"
                 "v1 = v1 value\n"
                 "\n"
-                "[v2_section]\n"
+                "[v23_section]\n"
                 "v2 = v2 value\n"
+                "v3 = v3 value\n"
                 "\n"
                 "[type_section]\n"
                 "v_bool = True\n"
@@ -238,7 +247,7 @@ class ConfigTests(TestCase):
         del conf.s
         self.assertIs(conf.s, Unset)
 
-    def test_read(self):
+    def test_read_string(self):
         class TestConfig(Config):
             v = Variable()
         conf = TestConfig()
@@ -246,6 +255,20 @@ class ConfigTests(TestCase):
             "[DEFAULT]\n"
             "v = 1")
         self.assertEqual(conf.v, "1")
+        self.assertEqual(len(conf.problem_list), 0)
+
+    def test_read_string__does_not_ignore_nonmentioned_variables(self):
+        class TestConfig(Config):
+            v = Variable(validator_list=[NotUnsetValidator()])
+        conf = TestConfig()
+        conf.read_string("")
+        # Because Unset is the default, sadly
+        self.assertEqual(conf.v, Unset)
+        # But there was a problem noticed
+        self.assertEqual(len(conf.problem_list), 1)
+        self.assertEqual(conf.problem_list[0].variable, TestConfig.v)
+        self.assertEqual(conf.problem_list[0].new_value, Unset)
+        self.assertEqual(conf.problem_list[0].message, "must be set to something")
 
 
 class ConfigMetaDataTests(TestCase):

@@ -447,7 +447,9 @@ class Config(metaclass=ConfigMeta):
                     and variable.section != "DEFAULT"):
                 parser.add_section(variable.section)
             value = variable.__get__(self, self.__class__)
-            parser.set(variable.section, variable.name, str(value))
+            # Except Unset, we don't want that to convert to 'unset'
+            if value is not Unset:
+                parser.set(variable.section, variable.name, str(value))
         # Write all sections that we know about
         for section in self.Meta.section_list:
             if not parser.has_section(section.name):
@@ -459,6 +461,9 @@ class Config(metaclass=ConfigMeta):
     def read_string(self, string):
         """
         Load settings from a string.
+
+        :param string:
+            The full text of INI-like configuration to parse and apply
 
         This method parses the string as an INI file using
         :class:`PlainBoxConfigParser` (a simple ConfigParser subclass that
@@ -548,10 +553,8 @@ class Config(metaclass=ConfigMeta):
             try:
                 value = reader_fn[variable.kind](
                     variable.section, variable.name)
-            except configparser.NoSectionError:
-                continue
-            except configparser.NoOptionError:
-                continue
+            except (configparser.NoSectionError, configparser.NoOptionError):
+                value = variable.default
             # Try to assign it
             try:
                 variable.__set__(self, value)
