@@ -40,7 +40,7 @@ import "./artwork"
             id: suitecheckbox
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: suitefiller.right
-            checked: true
+            checked: false
             onCheckedChanged: {
                 // Update the list of selected whitelists
                 update_selection(testname, checked)
@@ -49,8 +49,13 @@ import "./artwork"
                  */
                 suitelist.ensure_one_selection();
             }
+            function suiteSelectHandler() {
+                checked = check
+            }
+            Component.onCompleted: {
+                testselection.suiteSelect.connect(suiteSelectHandler)
+            }
         }
-
 
         function update_selection(testname, checked){
             for (var i = whiteListModel.count - 1; i >= 0; i--){
