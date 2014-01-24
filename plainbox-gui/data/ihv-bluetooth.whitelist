@@ -1,0 +1,48 @@
+## This whitelist is intended to be run as part of IHV testing.
+# A meta-job that includes the resources needed for a valid submission.
+# Please do not remove without good reason.
+miscellanea/submission-resources
+#Info attachment jobs
+__info__
+codecs_attachment
+cpuinfo_attachment
+dmesg_attachment
+dmi_attachment
+dmidecode_attachment
+efi_attachment
+lspci_attachment
+meminfo_attachment
+modprobe_attachment
+modules_attachment
+sysctl_attachment
+sysfs_attachment
+udev_attachment
+lsmod_attachment
+acpi_sleep_attachment
+installer_debug.gz
+__bluetooth__
+bluetooth/detect-output
+bluetooth/browse-files
+bluetooth/file-transfer
+bluetooth/audio
+bluetooth/audio-a2dp
+bluetooth/HID
+__suspend__
+suspend/bluetooth_obex_before_suspend
+suspend/bluetooth_obex_send_before_suspend
+suspend/bluetooth_obex_browse_before_suspend
+suspend/bluetooth_obex_get_before_suspend
+suspend/bluetooth_obex_before_suspend_manual
+suspend/suspend_advanced_auto
+suspend/suspend_advanced
+suspend/suspend-single-log-check
+suspend/bluetooth_detect_after_suspend
+suspend/bluetooth_obex_after_suspend
+suspend/bluetooth_obex_after_suspend_auto
+suspend/bluetooth_obex_browse_after_suspend
+suspend/bluetooth_obex_browse_after_suspend_auto
+suspend/bluetooth_obex_send_after_suspend
+suspend/bluetooth_obex_send_after_suspend_auto
+suspend/bluetooth_obex_get_after_suspend
+suspend/bluetooth_obex_get_after_suspend_auto
+suspend/bluetooth_obex_after_suspend_manual
