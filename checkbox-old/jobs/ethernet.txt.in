@@ -107,7 +107,7 @@ command:
  requires: device.path == "$1"
  user: root
  command: network test -i $2 -t stress
- estimated_duration: 330..0
+ estimated_duration: 330.0
  _description:
   This test executes iperf to generate a load on the network device and then performs a ping test to watch for dropped packets and very large latency periods.
  EOF
