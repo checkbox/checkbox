@@ -146,12 +146,16 @@ class checkbox_build(build_extra, object):
         for source in self.sources:
             executable = os.path.splitext(source)[0]
             cc.link_executable(
-                [source], executable, libraries=["rt", "pthread"],
-                # Enforce security with dpkg-buildflags --get CFLAGS
+                [source], executable,
+                libraries=["rt", "pthread", "nl-3", "nl-genl-3"],
+                # Enforce security with CFLAGS + LDFLAGS (see dpkg-buildflags)
                 extra_preargs=[
                     "-g", "-O2", "-fstack-protector",
                     "--param=ssp-buffer-size=4", "-Wformat",
-                    "-Werror=format-security"])
+                    "-Werror=format-security",
+                    "-Wl,-Bsymbolic-functions",
+                    "-Wl,-z,relro",
+                    "-I/usr/include/libnl3"])
 
 
 class checkbox_clean(clean, object):
