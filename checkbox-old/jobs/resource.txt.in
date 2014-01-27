@@ -172,6 +172,12 @@ requires: package.name == "iw"
 estimated_duration: 0.04
 description: Creates resource info for wifi supported interface modes.
 
+name: IEEE_80211
+plugin: resource
+command: 80211_resource
+estimated_duration: 0.02
+description: Creates resource info for wifi supported protocols/interfaces
+
 name: rtc
 plugin: resource
 command: 
