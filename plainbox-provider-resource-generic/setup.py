@@ -36,7 +36,7 @@ DistUtilsExtra.auto.setup(
     # with provider_ so that DistUtilsExtra auto features avoid putting files
     # in /usr/bin and /usr/share automatically.
     name="plainbox-provider-resource-generic",
-    version="0.4.dev",
+    version="0.3",
     url="https://launchpad.net/checkbox/",
     author="Sylvain Pineau",
     author_email="sylvain.pineau@canonical.com",
