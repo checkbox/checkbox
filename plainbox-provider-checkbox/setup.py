@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # This file is part of Checkbox.
 #
-# Copyright 2013 Canonical Ltd.
+# Copyright 2014 Canonical Ltd.
 # Written by:
 #   Sylvain Pineau <sylvain.pineau@canonical.com>
 #
@@ -61,11 +61,13 @@ class Build(build_extra.build_extra):
             executable = os.path.splitext(source)[0]
             cc.link_executable(
                 [source], executable, libraries=["rt", "pthread"],
-                # Enforce security with dpkg-buildflags --get CFLAGS
+                # Enforce security with CFLAGS + LDFLAGS (see dpkg-buildflags)
                 extra_preargs=[
                     "-g", "-O2", "-fstack-protector",
                     "--param=ssp-buffer-size=4", "-Wformat",
-                    "-Werror=format-security"])
+                    "-Werror=format-security",
+                    "-Wl,-Bsymbolic-functions",
+                    "-Wl,-z,relro"])
 
         os.unlink('po/POTFILES.in')
 
