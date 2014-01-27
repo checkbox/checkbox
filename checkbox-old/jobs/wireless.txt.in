@@ -76,6 +76,8 @@ name: wireless/wireless_connection_wpa_n
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.n == 'supported'
+ IEEE_80211.band_5GHz == 'supported'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
 command: trap "nmcli con delete id $WPA_N_SSID" EXIT; create_connection wifi $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -89,6 +91,8 @@ name: wireless/wireless_connection_open_n
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.n == 'supported'
+ IEEE_80211.band_5GHz == 'supported'
 user: root
 environ: OPEN_N_SSID
 command: trap "nmcli con delete id $OPEN_N_SSID" EXIT; create_connection wifi $OPEN_N_SSID &&  gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -102,6 +106,7 @@ name: wireless/wireless_connection_wpa_ac
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.ac == 'supported'
 user: root
 environ: WPA_AC_SSID WPA_AC_PSK
 command: trap "nmcli con delete id $WPA_AC_SSID" EXIT; create_connection wifi $WPA_AC_SSID --security=wpa --key=$WPA_AC_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -115,6 +120,7 @@ name: wireless/wireless_connection_open_ac
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.ac == 'supported'
 user: root
 environ: OPEN_AC_SSID
 command: trap "nmcli con delete id $OPEN_AC_SSID" EXIT; create_connection wifi $OPEN_AC_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -172,6 +178,8 @@ name: wireless/wireless_connection_wpa_n_manual
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'single'
+ IEEE_80211.n == 'supported'
+ IEEE_80211.band_5GHz == 'supported'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -194,6 +202,8 @@ name: wireless/wireless_connection_open_n_manual
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'single'
+ IEEE_80211.n == 'supported'
+ IEEE_80211.band_5GHz == 'supported'
 user: root
 environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -216,6 +226,7 @@ name: wireless/wireless_connection_wpa_ac_manual
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'single'
+ IEEE_80211.ac == 'supported'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -238,6 +249,7 @@ name: wireless/wireless_connection_open_ac_manual
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'single'
+ IEEE_80211.ac == 'supported'
 user: root
 environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -281,7 +293,9 @@ _description:
 
 plugin: shell
 name: wireless/wireless_connection_open_a
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ IEEE_80211.band_5GHz == 'supported'
 user: root
 environ: OPEN_A_SSID
 command: trap "nmcli con delete id $OPEN_A_SSID" EXIT; create_connection wifi $OPEN_A_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -293,7 +307,8 @@ _description:
 
 plugin: shell
 name: wireless/wireless_connection_open_b
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
 user: root
 environ: OPEN_B_SSID
 command: trap "nmcli con delete id $OPEN_B_SSID" EXIT; create_connection wifi $OPEN_B_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -322,7 +337,8 @@ command:
 
 plugin: shell
 name: wireless/wireless_connection_open_g
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
 user: root
 environ: OPEN_G_SSID
 command: trap "nmcli con delete id $OPEN_G_SSID" EXIT; create_connection wifi $OPEN_G_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
