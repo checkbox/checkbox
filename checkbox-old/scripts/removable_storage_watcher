@@ -7,7 +7,7 @@ import dbus
 import logging
 import sys
 
-from gi.repository import GObject, GUdev
+from gi.repository import GLib, GUdev
 
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
@@ -102,7 +102,7 @@ class UDisks1StorageDeviceListener:
             self._loop.quit()
 
         logging.debug("Adding timeout listener, timeout=%r", timeout)
-        GObject.timeout_add_seconds(timeout, timeout_callback)
+        GLib.timeout_add_seconds(timeout, timeout_callback)
         logging.debug("Starting event loop...")
         self._loop.run()
 
@@ -482,7 +482,7 @@ class UDisks2StorageDeviceListener:
         """
         # Setup a timeout if requested
         if timeout > 0:
-            GObject.timeout_add_seconds(timeout, self._on_timeout_expired)
+            GLib.timeout_add_seconds(timeout, self._on_timeout_expired)
         # Connect the observer to the bus. This will start giving us events
         # (actually when the loop starts later below)
         self._udisks2_observer.connect_to_bus(self._bus)
