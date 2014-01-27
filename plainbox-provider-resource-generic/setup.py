@@ -60,7 +60,7 @@ class Build(build_extra.build_extra):
                     # Enforce security with CFLAGS + LDFLAGS
                     # See dpkg-buildflags
                     extra_preargs=[
-                        "-g", "-O2", "-fstack-protector",
+                        "-O2", "-fstack-protector",
                         "--param=ssp-buffer-size=4", "-Wformat",
                         "-Werror=format-security",
                         "-Wl,-Bsymbolic-functions",

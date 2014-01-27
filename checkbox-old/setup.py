@@ -150,7 +150,7 @@ class checkbox_build(build_extra, object):
                 libraries=["rt", "pthread", "nl-3", "nl-genl-3"],
                 # Enforce security with CFLAGS + LDFLAGS (see dpkg-buildflags)
                 extra_preargs=[
-                    "-g", "-O2", "-fstack-protector",
+                    "-O2", "-fstack-protector",
                     "--param=ssp-buffer-size=4", "-Wformat",
                     "-Werror=format-security",
                     "-Wl,-Bsymbolic-functions",
