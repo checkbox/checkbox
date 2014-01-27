@@ -165,12 +165,11 @@ command:
      echo "kvm: unsupported"
  fi
 
-name: wifi_interface_mode
+name: IEEE_80211
 plugin: resource
-command: wifi_interface_mode_resource
-requires: package.name == "iw"
-estimated_duration: 0.04
-description: Creates resource info for wifi supported interface modes.
+command: 80211_resource
+estimated_duration: 0.02
+description: Creates resource info for wifi supported protocols/interfaces
 
 name: rtc
 plugin: resource
