@@ -33,12 +33,14 @@ from functools import total_ordering
 from inspect import cleandoc
 import inspect
 import logging
+import os
 
 from plainbox.abc import ITextSource
 
 logger = logging.getLogger("plainbox.secure.rfc822")
 
 
+@total_ordering
 class UnknownTextSource(ITextSource):
     """
     A :class:`ITextSource` subclass indicating that the source of text is
@@ -54,7 +56,7 @@ class UnknownTextSource(ITextSource):
         return "???"
 
     def __repr__(self):
-        return "<{}>".format(self.__class__.__name__)
+        return "{}()".format(self.__class__.__name__)
 
     def __eq__(self, other):
         if isinstance(other, UnknownTextSource):
@@ -63,7 +65,10 @@ class UnknownTextSource(ITextSource):
             return False
 
     def __gt__(self, other):
-        return NotImplemented
+        if isinstance(other, UnknownTextSource):
+            return False
+        else:
+            return NotImplemented
 
 
 @total_ordering
@@ -82,7 +87,7 @@ class FileTextSource(ITextSource):
         return self.filename
 
     def __repr__(self):
-        return "<{} filename:{!r}>".format(
+        return "{}({!r})".format(
             self.__class__.__name__, self.filename)
 
     def __eq__(self, other):
@@ -96,6 +101,18 @@ class FileTextSource(ITextSource):
             return self.filename > other.filename
         else:
             return NotImplemented
+
+    def relative_to(self, base_dir):
+        """
+        Compute a FileTextSource with the filename being a realtive path from
+        the specified base directory.
+
+        :param base_dir:
+            A base directory name
+        :returns:
+            A new FileTextSource with filename relative to that base_dir
+        """
+        return self.__class__(os.path.relpath(self.filename, base_dir))
 
 
 class PythonFileTextSource(FileTextSource):
@@ -143,6 +160,27 @@ class Origin:
     def __str__(self):
         return "{}:{}-{}".format(
             self.source, self.line_start, self.line_end)
+
+    def relative_to(self, base_dir):
+        """
+        Create a Origin with source relative to the specified base directory.
+
+        :param base_dir:
+            A base directory name
+        :returns:
+            A new Origin with source replaced by the result of calling
+            relative_to(base_dir) on the current source *iff* the current
+            source has that method, self otherwise.
+
+        This method is useful for obtaining user friendly Origin objects that
+        have short, understandable filenames.
+        """
+        if hasattr(self.source, 'relative_to'):
+            return Origin(
+                self.source.relative_to(base_dir),
+                self.line_start, self.line_end)
+        else:
+            return self
 
     def __eq__(self, other):
         if isinstance(other, Origin):
@@ -282,6 +320,9 @@ class RFC822SyntaxError(SyntaxError):
                     != (other.filename, other.lineno, other.msg))
         return NotImplemented
 
+    def __hash__(self):
+        return hash((self.filename, self.lineno, self.msg))
+
 
 def load_rfc822_records(stream, data_cls=dict, source=None):
     """
@@ -408,8 +449,11 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
     # Iterate over subsequent lines of the stream
     for lineno, line in enumerate(stream, start=1):
         logger.debug("Looking at line %d:%r", lineno, line)
+        # Treat # as comments
+        if line.startswith("#"):
+            pass
         # Treat empty lines as record separators
-        if line.strip() == "":
+        elif line.strip() == "":
             # Commit the current record so that the multi-line value of the
             # last key, if any, is saved as a string
             _commit_key_value_if_needed()
@@ -426,14 +470,17 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
             if key is None:
                 # If we have not seen any keys yet then this is a syntax error
                 raise _syntax_error("Unexpected multi-line value")
+            # If the line is is composed of a leading space and a dot the strip
+            # those away. This allows us to support a generic escape sequence
+            # after which any characters can be injected (until the end of the
+            # line), including empty lines, lines any number of dots.
+            if line.startswith(" ."):
+                line = line[2:]
+            # Strip the whitespace from the right side
+            line = line.strip()
             # Append the current line to the list of values of the most recent
             # key. This prevents quadratic complexity of string concatenation
-            if line == " .\n":
-                value_list.append(" ")
-            elif line == " ..\n":
-                value_list.append(" .")
-            else:
-                value_list.append(line.rstrip())
+            value_list.append(line)
             # Update the end line location of this record
             _update_end_lineno()
         # Treat lines with a colon as new key-value pairs

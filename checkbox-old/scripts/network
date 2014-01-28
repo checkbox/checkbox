@@ -112,7 +112,7 @@ class IPerfPerformanceTest(object):
             print("%3.2f%% of " % percent, end="")
             print("theoretical max %sMb/s\n" % int(self.iface.max_speed))
 
-            if percent < 40:
+            if percent < 80:
                 logging.warn("Poor network performance detected")
                 return 30
 

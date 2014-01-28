@@ -85,6 +85,22 @@ _description:
  .
  https://help.ubuntu.com/community/Installation/SystemRequirements
 
+plugin: user-verify
+name: graphics/maximum_resolution
+requires:
+ device.category == 'VIDEO'
+ package.name == 'zenity'
+command: zenity --info --text "Maximum resolution: $(xrandr -q |grep -A 1 "connected\( primary\)* [0-9]" |tail -1 |awk '{print $1}')"
+estimated_duration: 10
+_description:
+ PURPOSE:
+     This test will verify the display is operating at its maximum supported resolution 
+ STEPS:
+     1. Consult the system's specifications and locate the screen's maximum supported resolution.
+     2. Click on Test to display the maximum resolution that can be used by Ubuntu on the current display.
+ VERIFICATION:
+     Is this the display's maximum resolution?
+
 name: graphics/modes
 plugin: shell
 command: graphics_modes_info
@@ -158,14 +174,14 @@ _description:
 plugin: shell
 name: graphics/compiz_check
 requires: package.name == 'nux-tools'
-command: set -o pipefail; /usr/lib/nux/unity_support_test -c -p | ansi_parser
+command: ! /usr/lib/nux/unity_support_test -c -p | ansi_parser | grep ":\(\s\+\)no"
 estimated_duration: 0.130
 _description: Check that hardware is able to run compiz
 
 plugin: shell
 name: graphics/unity-support
 requires: package.name == 'nux-tools'
-command: set -o pipefail; /usr/lib/nux/unity_support_test -p | ansi_parser
+command: ! /usr/lib/nux/unity_support_test -p | ansi_parser | grep ":\(\s\+\)no"
 estimated_duration: 0.131
 _description: Check that hardware is able to run Unity 3D
 

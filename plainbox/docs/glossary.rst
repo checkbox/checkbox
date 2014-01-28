@@ -28,11 +28,12 @@ Glossary
         currently under active development. It is not pre-installed on Ubuntu.
         It is developed inside CheckBox code repository.
 
-    white list
+    whitelist
 
-        White lists are text files used by CheckBox to select Jobs for
+        Whitelists are text files used by Checkbox to select jobs for
         execution.  They can include simple regular expressions to match and
-        pick many similar jobs at once.
+        pick many similar jobs at once. For more information see
+        :doc:`Checkbox Whitelist Files <author/whitelists>`
 
     job
 

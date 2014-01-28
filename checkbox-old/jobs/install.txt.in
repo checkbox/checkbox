@@ -7,15 +7,3 @@ _description:
  Tests to see that apt can access repositories and get updates (does
  not install updates). This is done to confirm that you could recover
  from an incomplete or broken update.
-
-plugin: shell
-name: install/oem-config
-requires:
- package.name == 'oem-config-gtk'
- package.name == 'python-xpresser'
-user: root
-environ: CHECKBOX_SHARE
-command: oem_config_test -u 'testaccount1' -p 'testaccount1' -d $CHECKBOX_SHARE/data/images/oem-config/
-_description:
- Tests oem-config using Xpresser, and then checks that the user has been created successfully.
- Cleans up the newly created user after the test has passed.

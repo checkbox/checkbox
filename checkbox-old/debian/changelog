@@ -1,8 +1,33 @@
-checkbox (0.17.2) UNRELEASED; urgency=low
+checkbox (0.17.3) UNRELEASED; urgency=low
 
+  [ Po-Hsu Lin]
+  * jobs/power-management.txt.in: add product requirement for laptops into 
+    the power-management/lid test case. (LP: #1270689)
+
+  [ Rod Smith ]
+  * Modified network test to fail on 80% rather than 40% of theoretical max
+    speed.
+
+  [Daniel Manrique]
+  * jobs/graphics.txt.in: Use grep to work around bad exit codes from
+    unity_support_test (LP: #1212618)
+  * Added tests for 802.11ac networking, including environment variables for
+    their settings, and updated whitelists accordingly.
+  * scripts/sleep_test_log_check: Rewrote the parser logic to avoid missing
+    failures due to file format changes (LP: #1201667)
+  * parsers/udevadm: Added additional heuristics for video devices with
+    PCI subclass "2", like newer NVidia GPUs (LP: #1270139)
+  * checkbox/scripts/audio_settings: Place/read active_profiles in an
+    absolute, known-writable location (LP: #1271707)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 10 Jan 2014 11:02:47 +0000
+
+checkbox (0.17.2) trusty; urgency=low
+
+  [ Daniel Manrique ]
   * Incremented changelog
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Dec 2013 12:08:53 -0500
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 10 Jan 2014 10:44:27 +0000
 
 checkbox (0.17.1) trusty; urgency=low
 
