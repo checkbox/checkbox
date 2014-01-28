@@ -4,10 +4,10 @@ depends: audio/list_devices
 estimated_duration: 120.0
 requires:
  device.category == 'AUDIO'
-command: totem $CHECKBOX_SHARE/audio/dolby51.ac3
+command: totem $CHECKBOX_SHARE/data/dolby51.ac3
 _description:
  PURPOSE:
-     Check that Dolby surround is working as expected using encoded mp4 with AC3 Passthrough.ate
+     Check that Dolby surround is working as expected using encoded mp4 with AC3 Passthrough.
  STEPS:
      1. Click the test button
      2. Open Edit menu and select Preferences
