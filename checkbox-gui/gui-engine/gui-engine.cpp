@@ -2339,7 +2339,7 @@ void GuiEngine::AcknowledgeJobsDone(void)
     qDebug("GuiEngine::AcknowledgeJobsDone() - done");
 }
 
-void GuiEngine::ManualTest(const int outcome)
+void GuiEngine::ManualTest(const int /*outcome*/)
 {
     qDebug("GuiEngine::ManualTestAsk");
 
