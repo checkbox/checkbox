@@ -367,10 +367,82 @@ class Interface(socket.socket):
         return self._read_data("device/label")
 
 
+def get_test_parameters(args, environ, config_filename):
+    # Decide the actual values for test parameters, which can come
+    # from one of three possible sources: a config file, command-line
+    # arguments, or environment variables.
+    # - If command-line args were given, they take precedence
+    # - Next come environment variables, if set.
+    # - Last, values in the config file are used if present.
+
+    params = {"test_target_ftp": None,
+              "test_user": None,
+              "test_pass": None,
+              "test_target_iperf": None}
+
+    #First (try to) load values from config file
+    config = configparser.SafeConfigParser()
+
+    try:
+        with open(config_filename) as config_file:
+            config.readfp(config_file)
+            params["test_target_ftp"] = config.get("FTP", "Target")
+            params["test_user"] = config.get("FTP", "User")
+            params["test_pass"] = config.get("FTP", "Pass")
+            params["test_target_iperf"] = config.get("IPERF", "Target")
+    except FileNotFoundError as err:
+        pass  # No biggie, we can still get configs from elsewhere
+
+    # Next see if we have environment variables to override the config file
+    # "partial" overrides are not allowed; if an env variable is missing,
+    # we won't use this at all.
+    if all([param.upper() in os.environ for param in params.keys()]):
+        for key in params.keys():
+            params[key] = os.environ[key.upper()]
+
+    # Finally, see if we have the command-line arguments that are the ultimate
+    # override. Again, we will only override if we have all of them.
+    if args.target and args.username and args.password:
+        params["test_target_ftp"] = args.target
+        params["test_user"] = args.username
+        params["test_pass"] = args.password
+        params["test_target_iperf"] = args.target
+
+    return params
+
+
 def interface_test(args):
     if not "test_type" in vars(args):
         return
 
+
+    # Determine whether to use the default or user-supplied config
+    # file name.
+    DEFAULT_CFG = "/etc/checkbox.d/network.cfg"
+    if not "config" in vars(args):
+        config_filename = DEFAULT_CFG
+    else:
+        config_filename = args.config
+
+    # Get the actual test data from one of three possible sources
+    test_parameters = get_test_parameters(args, os.environ, config_filename)
+
+    test_user = test_parameters["test_user"]
+    test_pass = test_parameters["test_pass"]
+    if (args.test_type.lower() == "iperf" or
+            args.test_type.lower() == "stress"):
+        test_target = test_parameters["test_target_iperf"]
+    else:
+        test_target = test_parameters["test_target_ftp"]
+
+    # Validate that we got reasonable values
+    if "example.com" in test_target:
+        # Default values found in config file
+        logging.error("Please supply target via: %s", config_filename)
+        sys.exit(1)
+
+    # Testing begins here!
+    #
     # Check and make sure that interface is indeed connected
     try:
         cmd = "ip link set dev %s up" % args.interface
@@ -381,37 +453,6 @@ def interface_test(args):
 
     # Give interface enough time to get DHCP address
     time.sleep(10)
-
-    # Open Network config file
-    DEFAULT_CFG = "/etc/checkbox.d/network.cfg"
-    if not "config" in vars(args):
-        config_file = DEFAULT_CFG
-    else:
-        config_file = args.config
-
-    config = configparser.SafeConfigParser()
-    config.readfp(open(config_file))
-
-    # Set default network config options
-    test_target = args.target
-    test_user = args.username
-    test_pass = args.password
-
-    if test_target is None:
-        # Set FTP parameters based on config file
-        test_target = config.get("FTP", "Target")
-        test_user = config.get("FTP", "User")
-        test_pass = config.get("FTP", "Pass")
-
-        if (args.test_type.lower() == "iperf" or
-            args.test_type.lower() == "stress"):
-            test_target = config.get("IPERF", "Target")
-
-        if "example.com" in test_target:
-            # Default values found in config file
-            logging.error("Please supply target via: %s", config_file)
-            sys.exit(1)
-
 
     result = 0
     # Stop all other interfaces
