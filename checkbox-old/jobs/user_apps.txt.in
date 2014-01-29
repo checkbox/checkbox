@@ -234,20 +234,6 @@ _description:
   Did the Ubuntu Test page load correctly?
 
 plugin: user-interact-verify
-name: software/firefox-java
-depends: software/firefox
-requires: package.name == 'firefox'
-command: firefox $CHECKBOX_SHARE/data/websites/javatest.html
-_description:
- PURPOSE:
-  This test will check that Firefox can run a java applet in a web page. Note:
-  this may require installing additional software to complete successfully.
- STEPS:
-  1. Select Test to open Firefox with the Java test page, and follow the instructions there.
- VERIFICATION:
-  Did the applet display?
-
-plugin: user-interact-verify
 name: software/firefox-flash
 depends: software/firefox
 requires: package.name == 'firefox'

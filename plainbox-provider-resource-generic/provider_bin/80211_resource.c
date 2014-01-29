@@ -1,0 +1,1 @@
+../../checkbox-old/scripts/80211_resource.c

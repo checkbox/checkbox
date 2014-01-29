@@ -15,7 +15,7 @@ plugin: user-interact
 name: touchpad/horizontal
 requires:
   'Button Horiz Wheel Left' in xinput.button_labels and 'Button Horiz Wheel Right' in xinput.button_labels
-command: touchpad_test right left
+command: touchpad_test right left --edge-scroll
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -30,7 +30,7 @@ plugin: user-interact
 name: touchpad/vertical
 requires:
   'Button Wheel Up' in xinput.button_labels and 'Button Wheel Down' in xinput.button_labels
-command: touchpad_test up down
+command: touchpad_test up down --edge-scroll
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -74,7 +74,6 @@ _description:
 
 plugin: manual
 name: touchpad/singletouch-corner
-depends: touchpad/singletouch-automated
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -88,7 +87,6 @@ _description:
 
 plugin: manual
 name: touchpad/singletouch-selection
-depends: touchpad/singletouch-automated
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -115,7 +113,6 @@ _description:
 
 plugin: user-interact
 name: touchpad/multitouch-horizontal
-depends: touchpad/multitouch-automated
 command: touchpad_test right left
 estimated_duration: 120.0
 _description:
@@ -129,7 +126,6 @@ _description:
 
 plugin: user-interact
 name: touchpad/multitouch-vertical
-depends: touchpad/multitouch-automated
 command: touchpad_test up down
 estimated_duration: 120.0
 _description:
@@ -143,7 +139,6 @@ _description:
 
 plugin: manual
 name: touchpad/drag-and-drop
-depends: touchpad/singletouch-automated
 estimated_duration: 120.0
 _description:
  PURPOSE:

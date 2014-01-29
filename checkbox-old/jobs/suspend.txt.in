@@ -11,6 +11,7 @@ command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_befor
 
 plugin: shell
 name: suspend/audio_before_suspend
+estimated_duration: 1.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -297,6 +298,7 @@ command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_
 
 plugin: shell
 name: suspend/audio_after_suspend
+estimated_duration: 1.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -417,6 +419,32 @@ _description:
  security and the 802.11n protocol after the system has been suspended.
 
 plugin: shell
+name: suspend/wireless_connection_after_suspend_wpa_ac
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: WPA_AC_SSID WPA_AC_PSK
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_AC_SSID" EXIT; create_connection wifi $WPA_AC_SSID --security=wpa --key=$WPA_AC_PSK; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11ac protocol after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_open_ac
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: OPEN_AC_SSID
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_AC_SSID" EXIT; create_connection wifi $OPEN_AC_SSID; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ security and the 802.11ac protocol after the system has been suspended.
+
+plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_bg_auto
 depends: suspend/suspend_advanced_auto
 requires:
@@ -467,6 +495,32 @@ command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; 
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_wpa_ac_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: WPA_AC_SSID WPA_AC_PSK
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_AC_SSID" EXIT; create_connection wifi $WPA_AC_SSID --security=wpa --key=$WPA_AC_PSK; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11ac protocol after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_open_ac_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: OPEN_AC_SSID
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_AC_SSID" EXIT; create_connection wifi $OPEN_AC_SSID; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ security and the 802.11ac protocol after the system has been suspended.
 
 plugin: local
 name: suspend/iperf_after_suspend_ether_auto
@@ -586,6 +640,50 @@ _description:
  STEPS:
      1. Open your routers configuration tool
      2. Change the settings to only accept connections on the N wireless band
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use no security
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: user-interact-verify
+name: suspend/wireless_connection_after_suspend_wpa_ac_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'single'
+user: root
+environ: ROUTER_SSID ROUTER_PSK
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using WPA
+     security and the 802.11ac protocol.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the 802.11ac protocol.
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use WPA2 and ensure the PSK matches that set in ROUTER_PSK
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: user-interact-verify
+name: suspend/wireless_connection_after_suspend_open_ac_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'single'
+user: root
+environ: ROUTER_SSID
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection wifi $ROUTER_SSID && gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using
+     no security and the 802.11ac protocol.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the 802.11ac protocol.
      3. Make sure the SSID is set to ROUTER_SSID
      4. Change the security settings to use no security
      5. Click the 'Test' button to create a connection to the router and test the connection

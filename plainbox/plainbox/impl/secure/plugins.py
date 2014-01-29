@@ -72,6 +72,13 @@ class IPlugIn(metaclass=abc.ABCMeta):
         """
 
 
+class PlugInError(Exception):
+    """
+    Exception that may be raised by PlugIn.__init__() to signal it cannot
+    be fully loaded and should not be added to any collection.
+    """
+
+
 class PlugIn(IPlugIn):
     """
     Simple plug-in that does not offer any guarantees beyond knowing it's name
@@ -91,14 +98,20 @@ class PlugIn(IPlugIn):
 
     @property
     def plugin_name(self):
+        """
+        plugin name, arbitrary string
+        """
         return self._name
 
     @property
     def plugin_object(self):
+        """
+        plugin object, arbitrary object
+        """
         return self._obj
 
 
-class IPlugInCollection:
+class IPlugInCollection(metaclass=abc.ABCMeta):
     """
     A collection of IPlugIn objects.
     """
@@ -122,9 +135,24 @@ class IPlugInCollection:
         """
 
     @abc.abstractmethod
+    def get_all_plugin_objects(self):
+        """
+        Get an list of plug-in objects
+
+        This is a shortcut that gives fastest access to a list of
+        :attr:`IPlugIn.plugin_object` of each loaded plugin.
+        """
+
+    @abc.abstractmethod
     def get_all_items(self):
         """
         Get an iterator to a sequence of (name, plug-in)
+        """
+
+    @abc.abstractproperty
+    def problem_list(self):
+        """
+        List of problems encountered while loading plugins
         """
 
     @abc.abstractmethod
@@ -139,15 +167,18 @@ class IPlugInCollection:
 
     @abc.abstractmethod
     @contextlib.contextmanager
-    def fake_plugins(self, plugins):
+    def fake_plugins(self, plugins, problem_list=None):
         """
         Context manager for using fake list of plugins
 
-        :param plugins: list of PlugIn-alike objects
+        :param plugins:
+            list of PlugIn-alike objects
+        :param problem_list:
+            list of problems (exceptions)
 
-        The provided list of plugins overrides any previously loaded
-        plugins and prevent loading any other, real, plugins. After
-        the context manager exits the previous state is restored.
+        The provided list of plugins and exceptions overrides any previously
+        loaded plugins and prevent loading any other, real, plugins. After the
+        context manager exits the previous state is restored.
         """
 
 
@@ -157,7 +188,8 @@ class PlugInCollectionBase(IPlugInCollection):
     PlugInCollection implemenetations.
     """
 
-    def __init__(self, load=False, wrapper=PlugIn):
+    def __init__(self, load=False, wrapper=PlugIn, *wrapper_args,
+                 **wrapper_kwargs):
         """
         Initialize a collection of plug-ins
 
@@ -165,61 +197,131 @@ class PlugInCollectionBase(IPlugInCollection):
             if true, load all of the plug-ins now
         :param wrapper:
             wrapper class for all loaded objects, defaults to :class:`PlugIn`
+        :param wrapper_args:
+            additional arguments passed to each instantiated wrapper
+        :param wrapper_kwargs:
+            additional keyword arguments passed to each instantiated wrapper
         """
         self._wrapper = wrapper
+        self._wrapper_args = wrapper_args
+        self._wrapper_kwargs = wrapper_kwargs
         self._plugins = collections.OrderedDict()
         self._loaded = False
         self._mocked_objects = None
+        self._problem_list = []
         if load:
             self.load()
 
     def get_by_name(self, name):
         """
         Get the specified plug-in (by name)
+
+        :param name:
+            name of the plugin to locate
+        :returns:
+            :class:`PlugIn` like object associated with the name
+        :raises KeyError:
+            if the specified name cannot be found
         """
         return self._plugins[name]
 
     def get_all_names(self):
         """
-        Get an iterator to a sequence of plug-in names
+        Get a list of all the plug-in names
+
+        :returns:
+            a list of plugin names
         """
         return list(self._plugins.keys())
 
     def get_all_plugins(self):
         """
-        Get an iterator to a sequence plug-ins
+        Get a list of all the plug-ins
+
+        :returns:
+            a list of plugin objects
         """
         return list(self._plugins.values())
 
+    def get_all_plugin_objects(self):
+        """
+        Get an list of plug-in objects
+        """
+        return [plugin.plugin_object for plugin in self._plugins.values()]
+
     def get_all_items(self):
         """
-        Get an iterator to a sequence of (name, plug-in)
+        Get a list of all the pairs of plugin name and plugin
+
+        :returns:
+            a list of tuples (plugin.plugin_name, plugin)
         """
         return list(self._plugins.items())
 
+    @property
+    def problem_list(self):
+        """
+        List of problems encountered while loading plugins
+        """
+        return self._problem_list
+
     @contextlib.contextmanager
-    def fake_plugins(self, plugins):
+    def fake_plugins(self, plugins, problem_list=None):
         """
         Context manager for using fake list of plugins
 
-        :param plugins: list of PlugIn-alike objects
+        :param plugins:
+            list of PlugIn-alike objects
+        :param problem_list:
+            list of problems (exceptions)
 
         The provided list of plugins overrides any previously loaded
         plugins and prevent loading any other, real, plugins. After
         the context manager exits the previous state is restored.
         """
         old_loaded = self._loaded
+        old_problem_list = self._problem_list
         old_plugins = self._plugins
         self._loaded = True
         self._plugins = collections.OrderedDict([
             (plugin.plugin_name, plugin)
             for plugin in sorted(
                 plugins, key=lambda plugin: plugin.plugin_name)])
+        if problem_list is None:
+            problem_list = []
+        self._problem_list = problem_list
         try:
             yield
         finally:
             self._loaded = old_loaded
             self._plugins = old_plugins
+            self._problem_list = old_problem_list
+
+    def wrap_and_add_plugin(self, plugin_name, plugin_obj):
+        """
+        Internal method of PlugInCollectionBase.
+
+        :param plugin_name:
+            plugin name, some arbitrary string
+        :param plugin_obj:
+            plugin object, some arbitrary object.
+
+        This method prepares a wrapper (PlugIn subclass instance) for the
+        specified plugin name/object by attempting to instantiate the wrapper
+        class. If a PlugInError exception is raised then it is added to the
+        problem_list and the corresponding plugin is not added to the
+        collection of plugins.
+        """
+        try:
+            wrapper = self._wrapper(
+                plugin_name, plugin_obj,
+                *self._wrapper_args, **self._wrapper_kwargs)
+        except PlugInError as exc:
+            logger.warning(
+                "Unable to prepare plugin %s: %s", plugin_name, exc)
+            self._problem_list.append(exc)
+        else:
+            self._plugins[plugin_name] = wrapper
 
 
 class PkgResourcesPlugInCollection(PlugInCollectionBase):
@@ -232,7 +334,8 @@ class PkgResourcesPlugInCollection(PlugInCollectionBase):
     may be adjusted if required.
     """
 
-    def __init__(self, namespace, load=False, wrapper=PlugIn):
+    def __init__(self, namespace, load=False, wrapper=PlugIn, *wrapper_args,
+                 **wrapper_kwargs):
         """
         Initialize a collection of plug-ins from the specified name-space.
 
@@ -242,9 +345,13 @@ class PkgResourcesPlugInCollection(PlugInCollectionBase):
             if true, load all of the plug-ins now
         :param wrapper:
             wrapper class for all loaded objects, defaults to :class:`PlugIn`
+        :param wrapper_args:
+            additional arguments passed to each instantiated wrapper
+        :param wrapper_kwargs:
+            additional keyword arguments passed to each instantiated wrapper
         """
         self._namespace = namespace
-        super(PkgResourcesPlugInCollection, self).__init__(load, wrapper)
+        super().__init__(load, wrapper, *wrapper_args, **wrapper_kwargs)
 
     def load(self):
         """
@@ -264,11 +371,11 @@ class PkgResourcesPlugInCollection(PlugInCollectionBase):
         for entry_point in sorted(iterator, key=lambda ep: ep.name):
             try:
                 obj = entry_point.load()
-            except ImportError:
+            except ImportError as exc:
                 logger.exception("Unable to import %s", entry_point)
+                self._problem_list.append(exc)
             else:
-                obj = self._wrapper(entry_point.name, obj)
-                self._plugins[entry_point.name] = obj
+                self.wrap_and_add_plugin(entry_point.name, obj)
 
     def _get_entry_points(self):
         """
@@ -283,33 +390,39 @@ class FsPlugInCollection(PlugInCollectionBase):
     """
     Collection of plug-ins based on filesystem entries
 
-    Instantiate with :attr:`path` and :attr:`ext`, call :meth:`load()` and then
-    access any of the loaded plug-ins using the API offered. All loaded plugin
-    information files are wrapped by a plug-in container. By default that is
-    :class:`PlugIn` but it may be adjusted if required.
+    Instantiate with :attr:`dir_list` and :attr:`ext`, call :meth:`load()` and
+    then access any of the loaded plug-ins using the API offered. All loaded
+    plugin information files are wrapped by a plug-in container. By default
+    that is :class:`PlugIn` but it may be adjusted if required.
 
     The name of each plugin is the base name of the plugin file, the object of
     each plugin is the text read from the plugin file.
     """
 
-    def __init__(self, path, ext, load=False, wrapper=PlugIn):
+    def __init__(self, dir_list, ext, load=False, wrapper=PlugIn,
+                 *wrapper_args, **wrapper_kwargs):
         """
         Initialize a collection of plug-ins from the specified name-space.
 
-        :param path:
-            a PATH like variable that uses os.path.pathsep to separate multiple
-            directory entries. Each directory is searched for (not recursively)
-            for plugins.
+        :param dir_list:
+            a list of directories to search
         :param ext:
-            extension of each plugin definition file
+            extension of each plugin definition file (or a list of those)
         :param load:
             if true, load all of the plug-ins now
         :param wrapper:
             wrapper class for all loaded objects, defaults to :class:`PlugIn`
+        :param wrapper_args:
+            additional arguments passed to each instantiated wrapper
+        :param wrapper_kwargs:
+            additional keyword arguments passed to each instantiated wrapper
         """
-        self._path = path
+        if (not isinstance(dir_list, list)
+                or not all(isinstance(item, str) for item in dir_list)):
+            raise TypeError("dir_list needs to be List[str]")
+        self._dir_list = dir_list
         self._ext = ext
-        super(FsPlugInCollection, self).__init__(load, wrapper)
+        super().__init__(load, wrapper, *wrapper_args, **wrapper_kwargs)
 
     def load(self):
         """
@@ -326,11 +439,11 @@ class FsPlugInCollection(PlugInCollectionBase):
             try:
                 with open(filename, encoding='UTF-8') as stream:
                     text = stream.read()
-            except IOError as exc:
+            except (OSError, IOError) as exc:
                 logger.error("Unable to load %r: %s", filename, str(exc))
+                self._problem_list.append(exc)
             else:
-                obj = self._wrapper(filename, text)
-                self._plugins[filename] = obj
+                self.wrap_and_add_plugin(filename, text)
 
     def _get_plugin_files(self):
         """
@@ -338,19 +451,26 @@ class FsPlugInCollection(PlugInCollectionBase):
         """
         # Look in all parts of 'path' separated by standard system path
         # separator.
-        for path in self._path.split(os.path.pathsep):
+        for dirname in self._dir_list:
             # List all files in each path component
             try:
-                entries = os.listdir(path)
+                entries = os.listdir(dirname)
             except OSError:
                 # Silently ignore anything we cannot access
                 continue
             # Look at each file there
             for entry in entries:
                 # Skip files with other extensions
-                if not entry.endswith(self._ext):
-                    continue
-                info_file = os.path.join(path, entry)
+                if isinstance(self._ext, str):
+                    if not entry.endswith(self._ext):
+                        continue
+                elif isinstance(self._ext, collections.Sequence):
+                    for ext in self._ext:
+                        if entry.endswith(ext):
+                            break
+                    else:
+                        continue
+                info_file = os.path.join(dirname, entry)
                 # Skip all non-files
                 if not os.path.isfile(info_file):
                     continue

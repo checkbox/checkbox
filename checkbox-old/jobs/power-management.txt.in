@@ -82,6 +82,7 @@ _description:
 
 plugin: manual
 name: power-management/lid
+requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
      This test will check your lid sensors.

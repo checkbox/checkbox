@@ -41,7 +41,7 @@ import logging
 import os
 import posix
 import tempfile
-from subprocess import check_output, CalledProcessError
+from subprocess import check_output, CalledProcessError, STDOUT
 
 from plainbox.abc import IExecutionController
 from plainbox.abc import IJobResult
@@ -515,6 +515,10 @@ class CheckBoxExecutionController(IExecutionController):
         env['CHECKBOX_SHARE'] = job.provider.CHECKBOX_SHARE
         # Add CHECKBOX_DATA (temporary checkbox data)
         env['CHECKBOX_DATA'] = self.CHECKBOX_DATA
+        # Add plainbox equivalents of the two above
+        env['PLAINBOX_PROVIDER_DATA'] = os.path.join(
+            job.provider.CHECKBOX_SHARE, 'data')
+        env['PLAINBOX_SESSION_SHARE'] = self.CHECKBOX_DATA
         # Inject additional variables that are requested in the config
         if config is not None and config.environment is not Unset:
             for env_var in config.environment:
@@ -663,7 +667,8 @@ class RootViaPTL1ExecutionController(CheckBoxDifferentialExecutionController):
         # exits with status 1, see:
         # https://bugs.freedesktop.org/show_bug.cgi?id=29936#attach_78263
         try:
-            result = check_output(["pkaction", "--action-id", action_id])
+            result = check_output(["pkaction", "--action-id", action_id],
+                                  stderr=STDOUT)
         except CalledProcessError as exc:
             result = exc.output
         self.is_supported = True if result.strip() == action_id else False

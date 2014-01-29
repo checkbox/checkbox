@@ -1,5 +1,6 @@
 plugin: shell
 name: audio/list_devices
+estimated_duration: 1.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -8,6 +9,7 @@ _description: Test to detect audio devices
 
 plugin: user-interact-verify
 name: audio/playback_auto
+estimated_duration: 5.0
 depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
@@ -27,6 +29,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/playback_hdmi
+estimated_duration: 30.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -45,6 +48,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/playback_displayport
+estimated_duration: 30.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -63,6 +67,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/playback_headphones
+estimated_duration: 20.0
 depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
@@ -81,6 +86,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/alsa_record_playback_internal
+estimated_duration: 20.0
 depends: audio/playback_auto
 requires:
  device.category == 'AUDIO'
@@ -100,6 +106,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/alsa_record_playback_external
+estimated_duration: 20.0
 depends: audio/playback_headphones
 requires:
  device.category == 'AUDIO'
@@ -137,6 +144,7 @@ _description:
 
 plugin: shell
 name: audio/alsa_record_playback_automated
+estimated_duration: 10.0
 requires:
  package.name == 'python3-gi'
  package.name == 'gir1.2-gstreamer-1.0'
@@ -152,6 +160,7 @@ _description:
 
 plugin: shell
 name: audio/alsa_info_collect
+estimated_duration: 2.0
 command: alsa_info --no-dialog --no-upload --output ${CHECKBOX_DATA}/alsa_info.log
 _description:
  Collect audio-related system information. This data can be used to
@@ -161,12 +170,14 @@ _description:
 plugin: attachment
 name: audio/alsa_info_attachment
 depends: audio/alsa_info_collect
+estimated_duration: 1.0
 command: [ -e ${CHECKBOX_DATA}/alsa_info.log ] && cat ${CHECKBOX_DATA}/alsa_info.log
 _description:
  Attaches the audio hardware data collection log to the results.
 
 plugin: user-interact-verify
 name: audio/channels
+estimated_duration:  20.0
 command: speaker-test -c 2 -l 1 -t wav
 _description:
  PURPOSE:
@@ -178,6 +189,7 @@ _description:
 
 plugin: shell
 name: audio/check_volume
+estimated_duration: 1.0
 requires:
  package.name == 'pulseaudio-utils'
  device.category == 'AUDIO'
@@ -192,6 +204,7 @@ _description:
 
 plugin: manual
 name: audio/external-lineout
+estimated_duration: 30.0
 _description:
  PURPOSE:
       Check that external line out connection works correctly
@@ -205,6 +218,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/external-linein
+estimated_duration: 120.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -223,6 +237,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/balance_internal_speaker
+estimated_duration: 20.0
 depends: audio/playback_auto
 requires:
  device.category == 'AUDIO'
@@ -244,6 +259,7 @@ _description:
 plugin: user-interact-verify
 name: audio/balance_headphones
 depends: audio/playback_headphones
+estimated_duration: 30.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -260,3 +276,77 @@ _description:
      4. Check that actual headphone audio balance follows your setting.
  VERIFICATION:
      Does the slider move smoothly, as well as being followed by the setting by the actual audio output?
+
+plugin: shell
+name: audio/list_devices_after_suspend_30_cycles
+estimated_duration: 1.0
+depends: power-management/suspend_30_cycles
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+command: cat /proc/asound/cards
+_description: Test to detect audio devices after suspending 30 times.
+
+plugin: user-interact-verify
+name: audio/playback_auto_after_suspend_30_cycles
+estimated_duration: 5.0
+depends: audio/list_devices power-management/suspend_30_cycles
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+ package.name == 'pulseaudio-utils'
+command: audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
+_description:
+ PURPOSE:
+     This test will check that internal speakers work correctly after suspending 30 times.
+ STEPS:
+     1. Make sure that no external speakers or headphones are connected
+        If testing a desktop, external speakers are allowed
+     2. Click the Test button to play a brief tone on your audio device
+ VERIFICATION:
+     Did you hear a tone?
+
+plugin: shell
+name: audio/alsa_record_playback_automated_after_suspend_30_cycles
+estimated_duration: 10.0
+depends: power-management/suspend_30_cycles
+requires:
+ package.name == 'python3-gi'
+ package.name == 'gir1.2-gstreamer-1.0'
+ package.name == 'libgstreamer1.0-0'
+ package.name == 'gstreamer1.0-plugins-good'
+ package.name == 'gstreamer1.0-pulseaudio'
+ package.name == 'alsa-base'
+ device.category == 'AUDIO'
+command: audio_test
+_description:
+ Play back a sound on the default output and listen for it on the
+ default input, after suspending 30 times.
+
+plugin: shell
+name: audio/check_volume_after_suspend_30_cycles
+estimated_duration: 1.0
+depends: power-management/suspend_30_cycles
+requires:
+ package.name == 'pulseaudio-utils'
+ device.category == 'AUDIO'
+command: volume_test --minvol 1 --maxvol 100
+_description:
+ This test will verify that the volume levels are at an acceptable level on
+ your local system.  The test will validate that the volume is greater than
+ or equal to minvol and less than or equal to maxvol for all sources (inputs)
+ and sinks (outputs) recognized by PulseAudio.  It will also validate that the
+ active source and sink are not muted.  You should not manually adjust the
+ volume or mute before running this test.
+
+plugin: shell
+name: audio/audio_after_suspend_30_cycles
+estimated_duration: 1.0
+depends: power-management/suspend_30_cycles
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+_description: Record mixer settings after suspending 30 times.
+command:
+ audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend_30_cycles; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend_30_cycles

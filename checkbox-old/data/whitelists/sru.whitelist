@@ -1,6 +1,7 @@
 ## This whitelist contains tests that are useful for validating a Stable
 ## Release Update (SRU) on Ubuntu Certified systems.  This whitelist is not
 ## recommended for, nor will it be accepted for self-testing purposes.
+IEEE_80211
 block_device
 cdimage
 cpuinfo
@@ -12,7 +13,6 @@ environment
 gconf
 lsb
 meminfo
-memory_card
 module
 package
 rtc
@@ -42,6 +42,7 @@ audio/alsa_record_playback_automated
 __bluetooth__
 bluetooth/detect-output
 __camera__
+camera/detect
 camera/multiple-resolution-images
 __cpu__
 cpu/scaling_test
@@ -69,9 +70,10 @@ memory/info
 memory/check
 __ethernet__
 ethernet/detect
-ethernet/http
-ethernet/internet
-ethernet/ping
+ethernet/info_automated
+__networking__
+networking/http
+networking/gateway_ping
 __power-management__
 power-management/tickless_idle
 power-management/rtc
@@ -86,6 +88,8 @@ wireless/wireless_connection_wpa_bg
 wireless/wireless_connection_open_bg
 wireless/wireless_connection_wpa_n
 wireless/wireless_connection_open_n
+wireless/wireless_connection_wpa_ac
+wireless/wireless_connection_open_ac
 wireless/monitor_wireless_connection_udp
 __suspend__
 suspend/audio_before_suspend
@@ -111,6 +115,8 @@ suspend/wireless_connection_after_suspend_wpa_bg_auto
 suspend/wireless_connection_after_suspend_open_bg_auto
 suspend/wireless_connection_after_suspend_wpa_n_auto
 suspend/wireless_connection_after_suspend_open_n_auto
+suspend/wireless_connection_after_suspend_wpa_ac_auto
+suspend/wireless_connection_after_suspend_open_ac_auto
 suspend/gpu_lockup_after_suspend
 suspend/screenshot_after_suspend
 screenshot_after_suspend.jpg

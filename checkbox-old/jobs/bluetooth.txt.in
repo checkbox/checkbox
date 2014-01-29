@@ -1,6 +1,7 @@
 
 plugin: shell
 name: bluetooth/detect-output
+estimated_duration: 1.2
 requires:
  package.name == 'bluez'
  device.category == 'BLUETOOTH'
@@ -25,6 +26,7 @@ _description:
 plugin: manual
 name: bluetooth/browse-files
 depends: bluetooth/detect-output
+estimated_duration: 120.0
 _description:
  PURPOSE:
      This test will check that bluetooth connection works correctly
@@ -44,6 +46,7 @@ _description:
 plugin: manual
 name: bluetooth/file-transfer
 depends: bluetooth/browse-files bluetooth/detect-output
+estimated_duration: 120.0
 _description:
  PURPOSE:
      This test will check that you can transfer information through a bluetooth connection
@@ -55,8 +58,27 @@ _description:
      Were all files copied correctly?
 
 plugin: user-interact-verify
+name: bluetooth/audio-a2dp
+depends: bluetooth/detect-output
+estimated_duration: 120.0
+command: audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
+_description:
+ PURPOSE:
+     This test will check that you can record and hear audio using a bluetooth audio device
+ STEPS:
+     1. Enable the bluetooth headset
+     2. Click on the sound icon
+     3. Click "Sound Settings"
+     4. Look for the device in the list and select it
+     5. Set Quality to A2DP
+     6. Click "Test" to record for five seconds and reproduce in the bluetooth device
+ VERIFICATION:
+     Did you hear the sound?
+
+plugin: user-interact-verify
 name: bluetooth/audio
 depends: bluetooth/detect-output
+estimated_duration: 120.0
 command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
 _description:
  PURPOSE:
@@ -68,13 +90,17 @@ _description:
      4. Look for the device in the list and select it
      5. In the device write the PIN code automatically chosen by the wizard
      6. The device should pair with the computer
-     7. Click "Test" to record for five seconds and reproduce in the bluetooth device
+     7. Click the sound icon
+     8. Click "Sound Settings"
+     9. Select device and ensure Quality is set to "HSP/HFP"
+     10. Click "Test" to record for five seconds and reproduce in the bluetooth device
  VERIFICATION:
      Did you hear the sound you recorded in the bluetooth
 
 plugin: user-interact-verify
 name: bluetooth/HID
 depends: bluetooth/detect-output
+estimated_duration: 120.0
 command: keyboard_test
 _description:
  PURPOSE:

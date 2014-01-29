@@ -30,7 +30,7 @@ from dbus import SystemBus
 from dbus.mainloop.glib import DBusGMainLoop
 from dbus import (Array, Boolean, Byte, Dictionary, Double, Int16, Int32,
                   Int64, ObjectPath, String, Struct, UInt16, UInt32, UInt64)
-from gi.repository import GObject
+from gi.repository import GLib, GObject
 
 
 def connect_to_system_bus():
@@ -48,7 +48,7 @@ def connect_to_system_bus():
     # NOTE: DBus tutorial suggests that we should create the loop _before_
     # connecting to the bus.
     logging.debug("Setting up glib-based event loop")
-    loop = GObject.MainLoop()
+    loop = GLib.MainLoop()
     # Let's get the system bus object. We need that to access UDisks2 object
     logging.debug("Connecting to DBus system bus")
     system_bus = SystemBus(mainloop=DBusGMainLoop())

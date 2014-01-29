@@ -175,7 +175,7 @@ class UdevadmDevice:
                 else:
                     return "NETWORK"
             if class_id == Pci.BASE_CLASS_DISPLAY:
-                if subclass_id == Pci.CLASS_DISPLAY_VGA:
+                if subclass_id == Pci.CLASS_DISPLAY_VGA or subclass_id == Pci.CLASS_DISPLAY_3D:
                     return "VIDEO"
             if class_id == Pci.BASE_CLASS_SERIAL \
                and subclass_id == Pci.CLASS_SERIAL_USB:
