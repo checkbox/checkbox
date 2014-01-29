@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Copyright (C) 2012 Canonical Ltd.
+Copyright (C) 2012-2014 Canonical Ltd.
 
 Authors
   Jeff Marcom <jeff.marcom@canonical.com>
+  Daniel Manrique <roadmr@ubuntu.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3,
@@ -517,17 +518,53 @@ def interface_info(args):
 
 def main():
 
-    intro_message = "Network module\n\nThis script provides benchmarking " \
-    + "and information for a specified network interface.\n\n\n" \
-    + "Example NIC information usage:\nnetwork info -i eth0 --max-speed " \
-    + "\n\nFor running ftp benchmark test: \nnetwork test -i eth0 -t ftp " \
-    + "--target 192.168.0.1 --username USERID --password PASSW0RD " \
-    + "--filesize-2\n\nPlease note that this script can use configuration " \
-    + "values supplied via a config file.\nExample config file:\n[FTP]\n" \
-    + "Target: 192.168.1.23\nUser: FTPUser\nPass:PassW0Rd\n" \
-    + "[IPERF]\nTarget: 192.168.1.45\n**NOTE**\nDefault config location " \
-    + "is /etc/checkbox.d/network.cfg"
+    intro_message = """
+Network module
 
+This script provides benchmarking and information for a specified network
+interface.
+
+Example NIC information usage:
+network info -i eth0 --max-speed
+
+For running ftp benchmark test:
+network test -i eth0 -t ftp
+--target 192.168.0.1 --username USERID --password PASSW0RD
+--filesize-2
+
+Configuration
+=============
+
+Configuration can be supplied in three different ways, with the following
+priorities:
+
+1- Command-line parameters (see above).
+2- Environment variables (example will follow).
+3- Configuration file (example will follow).
+   Default config location is /etc/checkbox.d/network.cfg
+
+Environment variables
+=====================
+ALL environment variables must be defined, even if empty, for them to be
+picked up. The variables are:
+TEST_TARGET_FTP
+TEST_USER
+TEST_PASS
+TEST_TARGET_IPERF
+
+example config file
+===================
+[FTP]
+
+Target: 192.168.1.23
+User: FTPUser
+Pass:PassW0Rd
+
+[IPERF]
+Target: 192.168.1.45
+**NOTE**
+
+"""
 
     parser = ArgumentParser(
         description=intro_message, formatter_class=RawTextHelpFormatter)
