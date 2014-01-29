@@ -1,5 +1,5 @@
 /*
- * This file is part of Checkbox
+ * This file is part of plainbox-gui
  *
  * Copyright 2013 Canonical Ltd.
  *
@@ -114,6 +114,33 @@ bool GuiEngine::Initialise(void)
 
         // Connect our change receivers
         QDBusConnection bus = QDBusConnection ::sessionBus();
+
+// FIXME - We will want these for process real job signals. For now they clutter the log :)
+/*
+        if (!bus.connect(PBBusName, \
+                         PBObjectPathName, \
+                         ofDObjectManagerName,\
+                         "InterfacesAdded",\
+                         this,\
+                         SLOT(InterfacesAdded(QDBusMessage)))) {
+
+            qDebug("Failed to connect slot for InterfacesAdded events");
+
+            return false;
+        }
+
+        if (!bus.connect(PBBusName,\
+                         PBObjectPathName,\
+                         ofDObjectManagerName,\
+                         "InterfacesRemoved",\
+                         this,\
+                         SLOT(InterfacesRemoved(QDBusMessage)))) {
+
+            qDebug("Failed to connect slot for InterfacesRemoved events");
+
+            return false;
+        }
+*/
 
         enginestate = READY;
     }
@@ -398,6 +425,8 @@ void GuiEngine::InterfacesRemoved(QDBusMessage msg)
 
 QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 {
+    //qDebug("GuiEngine::GetJobNodes()");
+
     QList<PBTreeNode*> jobnodes;
 
     PBTreeNode* jobnode = \
@@ -416,6 +445,8 @@ QList<PBTreeNode*> GuiEngine::GetJobNodes(void)
 
          iter++;
     }
+
+    //qDebug("GuiEngine::GetJobNodes() - done");
 
     return jobnodes;
 }
@@ -486,11 +517,13 @@ QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
 
             qDebug() << name;
             // Only show the user whitelists with the desired prefix.
-            paths_and_names.insert(child->object_path,name);
+            if (name.indexOf(WhiteListPrefix) == 0){
+                paths_and_names.insert(child->object_path,name);
 
-            // First time round, fill in our whitelist member
-            if (!initialised) {
-                whitelist.insert(child->object_path,true);
+                // First time round, fill in our whitelist member
+                if (!initialised) {
+                    whitelist.insert(child->object_path,true);
+                }
             }
         }
 
@@ -598,6 +631,8 @@ int GuiEngine::PrepareJobs(void)
     /* Ensure that the first time through we run everything including implicit jobs
      */
     m_rerun_list = m_run_list;
+
+//    qDebug("\n\nGuiEngine::PrepareJobs() - Done\n");
 
     // useful to the gui (summary bar in test selection screen)
     return m_run_list.count();
@@ -831,7 +866,8 @@ void GuiEngine::RunLocalJobs(void)
         GetJobResults();
 
         // Now, we can set the outcome of this test
-        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL);
+        QString empty;
+        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL, empty);
 
         // Lets skip this one
         m_rerun_list.pop_front();
@@ -875,11 +911,26 @@ void GuiEngine::ConnectJobReceivers(void)
 {
     qDebug("ConnectJobReceivers");
 
-    // Connect the AskForOutcome signal receiver
+    // Connect the ShowInteractiveUI signal receiver
     QDBusConnection bus = QDBusConnection ::sessionBus();
     if (!bus.connect(PBBusName,\
                   NULL,\
-                  PBInterfaceName,\
+                  PBSessionStateInterface,\
+                  "ShowInteractiveUI",\
+                  this,\
+                  SLOT(CatchallShowInteractiveUISignalsHandler(QDBusMessage)))) {
+
+     qDebug("Failed to connect slot for ShowInteractiveUI events");
+
+     // TODO - Emit error for the gui
+
+     return;
+    }
+
+    // Connect the AskForOutcome signal receiver
+    if (!bus.connect(PBBusName,\
+                  NULL,\
+                  PBSessionStateInterface,\
                   "AskForOutcome",\
                   this,\
                   SLOT(CatchallAskForOutcomeSignalsHandler(QDBusMessage)))) {
@@ -981,7 +1032,10 @@ void GuiEngine::DecodeGuiEngineStateFromJSON(void)
     QString jsd_string = iter.value().toString();
     if (jsd_string.isEmpty()) {
         qDebug("There is no app_blob metadata");
-        return;
+
+        // emit guiSomeFutureErrorDialog(); // FIXME - tell the user
+
+        return; // game over :(
     }
 
     // Now convert that app_blob string into JSON
@@ -1000,7 +1054,12 @@ void GuiEngine::DecodeGuiEngineStateFromJSON(void)
     }
 
     QJsonObject json_m_rerun_list;
+
     json_m_rerun_list = iter_rerun_object.value().toObject();
+
+    // Now we should find the next key
+    QJsonObject::const_iterator iter_rerun = json_m_rerun_list.find("m_rerun_list");
+
     m_rerun_list = PBJsonUtils::JSONToQDBusObjectPathArray("m_rerun_list",json_m_rerun_list);
 
     // Visible run list (needed to repopulate the Run Manager View typically)
@@ -1010,8 +1069,15 @@ void GuiEngine::DecodeGuiEngineStateFromJSON(void)
     }
 
     QJsonObject json_m_visible_run_list;
+
     json_m_visible_run_list = iter_visible_object.value().toObject();
+
+    // Now we should find the next key
+    QJsonObject::const_iterator iter_visible = json_m_visible_run_list.find("m_visible_run_list");
+
     m_visible_run_list = PBJsonUtils::JSONToQDBusObjectPathArray("m_visible_run_list",json_m_visible_run_list);
+
+//    qDebug("GuiEngine::DecodeGuiEngineStateFromJSON() - Done");
 }
 
 void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
@@ -1055,6 +1121,8 @@ void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
 
         decodeDBusMessageType(reply);
     }
+
+    // qDebug("GuiEngine::SetSessionStateMetadata() - Done");
 }
 
 const QVariantMap GuiEngine::SessionStateMetadata(const QDBusObjectPath session)
@@ -1098,11 +1166,15 @@ const QVariantMap GuiEngine::SessionStateMetadata(const QDBusObjectPath session)
         iter_m++;
     }
 
+    //qDebug() << metadata_str;
+
     return metadata;
 }
 
 void GuiEngine::SessionPersistentSave(const QDBusObjectPath session)
 {
+//    qDebug() << "GuiEngine::SessionPersistentSave() ";
+
     QDBusInterface iface(PBBusName, \
                          session.path(), \
                          PBSessionStateInterface, \
@@ -1180,6 +1252,11 @@ void GuiEngine::SessionResume(const QDBusObjectPath session)
 bool GuiEngine::WhiteListDesignates(const QDBusObjectPath white_opath, \
                                     const QDBusObjectPath job_opath)
 {
+    /*
+      qDebug() << "GuiEngine::WhiteListDesignates " << white_opath.path() << \
+                job_opath.path();
+    */
+
     QDBusInterface iface(PBBusName, \
                          white_opath.path(), \
                          PBWhiteListInterface, \
@@ -1408,6 +1485,8 @@ QList<QDBusObjectPath> GuiEngine::SessionStateJobList(const QDBusObjectPath sess
 void GuiEngine::RunJob(const QDBusObjectPath session, \
                        const QDBusObjectPath opath)
 {
+//    qDebug() << "RunJob() " << session.path() << " " << opath.path();
+
     QStringList job_list;
 
     QDBusInterface iface(PBBusName, \
@@ -1443,6 +1522,8 @@ void GuiEngine::RunJob(const QDBusObjectPath session, \
 
 jsm_t GuiEngine::GetJobStateMap(void)
 {
+//    qDebug("GuiEngine::GetJobStateMap()");
+
     jsm_t jsm;
 
     QVariantMap properties = \
@@ -1465,11 +1546,15 @@ jsm_t GuiEngine::GetJobStateMap(void)
     // Preserve this for future use
     m_jsm = jsm;
 
+//    qDebug("GuiEngine::GetJobStateMap() - done");
+
     return jsm;
 }
 
 void GuiEngine::GetJobStates(void)
 {
+//    qDebug("GuiEngine::GetJobStates()");
+
     if (m_jsm.isEmpty()) {
         return;
     }
@@ -1500,10 +1585,14 @@ void GuiEngine::GetJobStates(void)
 
         iter++;
     }
+
+//    qDebug("GuiEngine::GetJobStates() - Done");
 }
 
 void GuiEngine::GetJobResults(void)
 {
+//    qDebug("GuiEngine::GetJobResults()");
+
     if (m_job_state_list.empty()) {
 
         qDebug("No Job States available yet");
@@ -1528,16 +1617,23 @@ void GuiEngine::GetJobResults(void)
 
         PBTreeNode* node = m_job_state_list.at(i);
 
+        //QVariant variant = node->interfaces.
+
         QDBusObjectPath job = node->job();
         QDBusObjectPath result = node->result();
 
+        //qDebug() << "job " << job.path() << " result " << result.path();
+
         // now, append the results to m_job_state_results;
         PBTreeNode* result_node = new PBTreeNode();
+
         result_node->AddNode(result_node,result);
 
         m_job_state_results.append(result_node);
 
     }
+
+//    qDebug("GuiEngine::GetJobResults()");
 }
 
 // temporary - Print the DBus argument type
@@ -1695,6 +1791,8 @@ void GuiEngine::UpdateJobResult(const QDBusObjectPath session, \
                                            const QDBusObjectPath &result_path
                                            )
 {
+//    qDebug() << "UpdateJobResult() " << session.path() << " " << job_path.path();
+
     QDBusInterface iface(PBBusName, \
                          session.path(), \
                          PBSessionStateInterface, \
@@ -1785,14 +1883,15 @@ void GuiEngine::SetOutcome(const QDBusObjectPath &runner, \
  * on resuming a session, since in this circumstance, there is no
  * runner object to serve as a means of setting the outcome.
  */
-void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
-                              const QString &outcome)
+QDBusObjectPath GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
+                                         const QString &outcome, \
+                                         const QString &comments)
 {
     qDebug() << "GuiEngine::SetJobOutcome() " << job_path.path() << " " << outcome;
 
     /* first, we need to go through the m_job_state_list to find the
-     * to obtain the actual result.
      * relevant job to result mapping. then we go through m_job_state_results
+     * to obtain the actual result.
      */
      QDBusObjectPath resultpath;
 
@@ -1808,11 +1907,70 @@ void GuiEngine::SetJobOutcome(const QDBusObjectPath &job_path, \
      for(int i=0;i<m_job_state_results.count();i++) {
          if (m_job_state_results.at(i)->object_path.path().compare(resultpath.path()) == 0) {
              m_job_state_results.at(i)->setOutcome(outcome);
+             m_job_state_results.at(i)->setComments(comments);
              break;
          }
      }
 
     qDebug() << "GuiEngine::SetJobOutcome() - Done";
+    return resultpath;
+}
+
+bool GuiEngine::JobCanStart(const QDBusObjectPath &job_path)
+{
+    qDebug() << "GuiEngine::JobCanStart()";
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping.
+     */
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             return m_job_state_list.at(i)->CanStart();
+         }
+     }
+     return false;  // Error case defaults to dont run
+}
+
+const QString GuiEngine::GetReadinessDescription(const QDBusObjectPath &job_path)
+{
+    QString empty;
+    qDebug() << "GuiEngine::GetReadinessDescription()";
+    /* first, we need to go through the m_job_state_list to find the
+     * relevant job to result mapping.
+     */
+
+     for(int i=0; i < m_job_state_list.count(); i++) {
+         if (m_job_state_list.at(i)->job().path().compare(job_path.path()) == 0) {
+             // ok, we found the right statelist entry
+             return m_job_state_list.at(i)->GetReadinessDescription();
+         }
+     }
+     return empty;
+}
+
+void GuiEngine::CatchallShowInteractiveUISignalsHandler(QDBusMessage msg)
+{
+    qDebug("GuiEngine::CatchallShowInteractiveUISignalsHandler");
+
+    QList<QVariant> args = msg.arguments();
+    QList<QVariant>::iterator iter = args.begin();
+    QVariant variant = *iter;
+    m_runner = variant.value<QDBusObjectPath>();
+
+    QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
+    bool show_test = ! job_cmd.isEmpty();
+
+    // Open the GUI dialog
+    if (!m_running_manual_job) {
+        // must be the first time for this particular job
+        m_running_manual_job = true;
+        emit raiseManualInteractionDialog(PBTreeNode::PBJobResult_Skip, show_test);
+    } else {
+        emit updateManualInteractionDialog(PBTreeNode::PBJobResult_Skip, show_test);
+    }
+
+    qDebug("GuiEngine::CatchallShowInteractiveUISignalsHandler - Done");
 }
 
 void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
@@ -1820,29 +1978,38 @@ void GuiEngine::CatchallAskForOutcomeSignalsHandler(QDBusMessage msg)
     qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler");
 
     QList<QVariant> args = msg.arguments();
-
     QList<QVariant>::iterator iter = args.begin();
-
     QVariant variant = *iter;
-
     m_runner = variant.value<QDBusObjectPath>();
+    iter++;
+    variant = *iter;
+    QString suggested_outcome = variant.value<QString>();
+    int suggested_status;
+
+    // convert outcome string into a result number
+    if (suggested_outcome.compare(JobResult_OUTCOME_PASS) == 0 ) {
+        suggested_status = PBTreeNode::PBJobResult_Pass;
+    }
+
+    if (suggested_outcome.compare(JobResult_OUTCOME_FAIL) == 0) {
+        suggested_status = PBTreeNode::PBJobResult_Fail;
+    }
+
+    if (suggested_outcome.compare(JobResult_OUTCOME_SKIP) == 0) {
+        suggested_status = PBTreeNode::PBJobResult_Skip;
+    }
 
     QString job_cmd = GetCommand(m_run_list.at(m_current_job_index));
     bool show_test = ! job_cmd.isEmpty();
 
-    // FIXME: we should look up the prior job result if available
-    const int outcome = PBTreeNode::PBJobResult_None;
-
-    // Open the GUI dialog -- TODO - Default the Yes/No/Skip icons
+    // Open the GUI dialog
     if (!m_running_manual_job) {
         // must be the first time for this particular job
         m_running_manual_job = true;
-
-        emit raiseManualInteractionDialog(outcome, show_test);
+        emit raiseManualInteractionDialog(suggested_status, show_test);
     } else {
-        emit updateManualInteractionDialog(outcome, show_test);
+        emit updateManualInteractionDialog(suggested_status, show_test);
     }
-
 
     qDebug("GuiEngine::CatchallAskForOutcomeSignalsHandler - Done");
 }
@@ -2020,16 +2187,22 @@ const QString GuiEngine::ExportSessionToFile(const QDBusObjectPath session, \
     return reply;
 }
 
-void GuiEngine::CatchallIOLogGeneratedSignalsHandler(QDBusMessage /*msg*/)
+void GuiEngine::CatchallIOLogGeneratedSignalsHandler(QDBusMessage msg)
 {
+//    qDebug("GuiEngine::CatchallIOLogGeneratedSignalsHandler");
+
     /* TODO - This could be used for updating a live display of the IO Log
      * but for now its not important.
      */
+
+//    qDebug("GuiEngine::CatchallIOLogGeneratedSignalsHandler - Done");
 }
 
 
 void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
 {
+//    qDebug("GuiEngine::CatchallLocalJobResultAvailableSignalsHandler");
+
     /* We need information about which job and jobresult we should look at
      * in order to call UpdateJobResult().
      */
@@ -2122,57 +2295,64 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     // we should emit a signal to say its all done
     emit localJobsCompleted();
+
+    // qDebug("GuiEngine::CatchallLocalJobResultAvailableSignalsHandler - Done");
+
 }
 
 void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 {
-    /* We need information about which job and jobresult we should look at
-     * in order to call UpdateJobResult().
-     */
+//    qDebug("GuiEngine::CatchallJobResultAvailableSignalsHandler");
 
-    QList<QVariant> args = msg.arguments();
+    if (msg.type() != 0) { // QDBusMessage::InvalidMessage
+        /* We need information about which job and jobresult we should look at
+         * in order to call UpdateJobResult().
+         */
 
-    QList<QVariant>::iterator iter = args.begin();
+        QList<QVariant> args = msg.arguments();
 
-    QVariant variant = *iter;
+        QList<QVariant>::iterator iter = args.begin();
 
-    QDBusObjectPath job = variant.value<QDBusObjectPath>();
+        QVariant variant = *iter;
 
-    iter++;
+        QDBusObjectPath job = variant.value<QDBusObjectPath>();
 
-    variant = *iter;
+        iter++;
 
-    QDBusObjectPath result = variant.value<QDBusObjectPath>();
+        variant = *iter;
 
-    UpdateJobResult(m_session,job,result);
+        QDBusObjectPath result = variant.value<QDBusObjectPath>();
 
-    // How did this job turn out?
-    const int outcome = GetOutcomeFromJobResultPath(result);
+        UpdateJobResult(m_session,job,result);
 
-    if (m_running_manual_job) {
-        m_running_manual_job = false;
-        emit closeManualInteractionDialog();
-    }
+        // How did this job turn out?
+        const int outcome = GetOutcomeFromJobResultPath(result);
 
-    // Update the GUI so it knows what the job outcome was
-    emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
-            m_current_job_index, \
-            outcome, \
-            JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
+        if (m_running_manual_job) {
+            m_running_manual_job = false;
+            emit closeManualInteractionDialog();
+        }
 
-    // Ok, lets note that we've run this, remove it from rerun
-    m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
+        // Update the GUI so it knows what the job outcome was
+        emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
+                m_current_job_index, \
+                outcome, \
+                JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
-    // Move to the next job
-    m_current_job_index = NextRunJobIndex(m_current_job_index);
+        // Ok, lets note that we've run this, remove it from rerun
+        m_rerun_list.removeOne(m_run_list.at(m_current_job_index));
 
-    m_waiting_result = false;
+        // Move to the next job
+        m_current_job_index = NextRunJobIndex(m_current_job_index);
 
-    // We should deal with Pause/Resume here
-    if (!m_running) {
+        m_waiting_result = false;
 
-        // Dont start the next job
-        return;
+        // We should deal with Pause/Resume here
+        if (!m_running) {
+
+            // Dont start the next job
+            return;
+        }
     }
 
     if (m_run_list.count() != m_current_job_index) {
@@ -2182,13 +2362,29 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
                 m_current_job_index, \
                 JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
 
-        // Now run the next job
-        qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
-
         // Preserve progress so far
         EncodeGuiEngineStateAsJSON();
 
-        RunJob(m_session,m_run_list.at(m_current_job_index));
+        if (JobCanStart(m_run_list.at(m_current_job_index))) {
+            // Now run the next job
+            qDebug() << "Running Job (CatchallJobResultAvailableSignalsHandler)" << JobNameFromObjectPath(m_run_list.at(m_current_job_index));
+            RunJob(m_session,m_run_list.at(m_current_job_index));
+        } else {
+            // Now, we can set the outcome/comments of this test
+            QDBusObjectPath result = SetJobOutcome(m_run_list.at(m_current_job_index), JobResult_OUTCOME_NOT_SUPPORTED, GetReadinessDescription(m_run_list.at(m_current_job_index)));
+
+            UpdateJobResult(m_session, m_run_list.at(m_current_job_index), result);
+
+            emit updateGuiEndJob(m_run_list.at(m_current_job_index).path(), \
+                    m_current_job_index, \
+                    PBTreeNode::PBJobResult_DepsNotMet, \
+                    JobNameFromObjectPath(m_run_list.at(m_current_job_index)));
+
+            m_current_job_index = NextRunJobIndex(m_current_job_index);
+
+            QDBusMessage fake_msg;
+            CatchallJobResultAvailableSignalsHandler(fake_msg);
+        }
 
         return;
     }
@@ -2201,6 +2397,8 @@ void GuiEngine::CatchallJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     // Tell the GUI its all finished
     emit jobsCompleted();
+
+//    qDebug("GuiEngine::CatchallJobResultAvailableSignalsHandler - Done");
 }
 
 void GuiEngine::AcknowledgeLocalJobsDone(void)
@@ -2221,7 +2419,7 @@ void GuiEngine::AcknowledgeJobsDone(void)
     qDebug("GuiEngine::AcknowledgeJobsDone() - done");
 }
 
-void GuiEngine::ManualTest(const int /*outcome*/)
+void GuiEngine::ManualTest(const int outcome)
 {
     qDebug("GuiEngine::ManualTestAsk");
 

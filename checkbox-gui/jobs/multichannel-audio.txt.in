@@ -1,0 +1,17 @@
+plugin: user-interact-verify
+name: audio/dolby51
+depends: audio/list_devices
+estimated_duration: 120.0
+requires:
+ device.category == 'AUDIO'
+command: totem $CHECKBOX_SHARE/data/dolby51.ac3
+_description:
+ PURPOSE:
+     Check that Dolby surround is working as expected using encoded mp4 with AC3 Passthrough.
+ STEPS:
+     1. Click the test button
+     2. Open Edit menu and select Preferences
+     3. Click the Audio tab and set Audio Output Type to AC3 Passthrough.
+     4. Listen to the audio signal play across the various speakers in your setup
+ VERIFICATION:
+     Did the audio system perform as expected?

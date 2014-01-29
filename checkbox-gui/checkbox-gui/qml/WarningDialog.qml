@@ -61,6 +61,13 @@ Dialog {
             anchors.left: checkbox.right
             anchors.leftMargin: 8
             anchors.verticalCenter: checkbox.verticalCenter
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    checkbox.checked = !checkbox.checked
+                }
+            }
         }
 
     }

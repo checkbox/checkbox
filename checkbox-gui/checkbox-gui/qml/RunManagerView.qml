@@ -1,10 +1,11 @@
 /*
- * This file is part of Checkbox
+ * This file is part of plainbox-gui
  *
  * Copyright 2013 Canonical Ltd.
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Sylvain Pineau <sylvain.pineau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +31,19 @@ Page {
     id: runmanagerview
     title: i18n.tr("Run Manager")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     property bool reportIsSaved: false;
     property bool testingComplete: false;
     property bool showTest: true;
+    property int suggestedOutcome: 1;
+    property int rerunCount: 0;
+    signal reRunRequested
+    signal pauseOrEndRun
+    signal resumeRun
 
     // Updates the test status based on GuiEngine signals
     Item {
@@ -66,9 +77,11 @@ Page {
 
             onJobsCompleted: {
                 // All tests are done
+                pauseOrEndRun()
                 runmanagerview.testingComplete = true;
 
                 // update ui
+                //runbuttons.pauseButtonEnabled = false;
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;
@@ -85,6 +98,9 @@ Page {
                 testsuitelist.curSectionTested = "";  // set this as there is no more tested
             }
 
+            // from gui-engine.h for reference:
+//            void updateGuiBeginJob(const QString& job_id, \
+//                                  const int current_job_index);
             onUpdateGuiBeginJob: {
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
@@ -118,6 +134,10 @@ Page {
                         + "   " + test_name;
             }
 
+            // from gui-engine.h for reference:
+//            void updateGuiEndJob(const QString& job_id, \
+//                                  const int current_job_index,
+//                                  const int outcome);
             onUpdateGuiEndJob: {
                 /* we must translate from job_id ("/plainbox/job/<id_string>
                  * Into the index for one of the displayed items
@@ -223,7 +243,7 @@ Page {
 
         Text  {
             id: actionslabel
-            text: i18n.tr("Actions")
+            text: i18n.tr("Re-run")
 
             width: units.gu(6)
 
@@ -235,7 +255,7 @@ Page {
 
         Text  {
             id: detailslabel
-            text: i18n.tr("Details")
+            text: i18n.tr("Console Output")
 
             width: units.gu(6)
 
@@ -308,17 +328,24 @@ Page {
         onResults: {
             PopupUtils.open(submission_dialog, runbuttons);
         }
+        onReRunTest: {
+            reRunRequested();
+        }
 
         function resume(){
+            resumeRun();
             updater.testStartTime = new Date()
             updater.running = true;
+            console.log("Resume...");
 
             guiEngine.Resume();
         }
 
         function pause(){
+            pauseOrEndRun();
             updater.running = false;
             progress.title = progress.title.replace("Running", "Paused ")
+            console.log("Pause...")
 
             guiEngine.Pause();
         }
@@ -334,6 +361,7 @@ Page {
             ManualInteractionDialog{
                 testItem: testListModel.get(updater.testIndex);
                 showTestButton: showTest;
+                testStatus: suggestedOutcome;
             }
         }
 
@@ -414,6 +442,7 @@ Page {
         target: guiEngine
         onRaiseManualInteractionDialog: {
             showTest = show_test;
+            suggestedOutcome = suggested_outcome;
             PopupUtils.open(manual_dialog, runmanagerview);
         }
     }
