@@ -28,6 +28,11 @@ Page {
     id: welcomePage
     title: i18n.tr("System Testing")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     Image {
         id: logo
         anchors {
