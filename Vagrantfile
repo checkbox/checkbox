@@ -28,9 +28,16 @@ Vagrant::Config.run do |config|
     config.vm.boot_mode = :gui
   end
 
-  # Setup an apt cache if one is available
   if ENV.key? "VAGRANT_APT_CACHE"
+    # Setup an apt cache if one is available and explicitly configured
     config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"#{ENV['VAGRANT_APT_CACHE']}\"; };' > /etc/apt/apt.conf"
+  elsif File.exists? "/etc/apt-cacher-ng"
+    # If apt-cacher-ng is installed on this machine then just use it.
+    require 'socket'
+    guessed_address = Socket.ip_address_list.detect{|intf| !intf.ipv4_loopback?}
+    if guessed_address
+      config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"http://#{guessed_address.ip_address}:3142\"; };' > /etc/apt/apt.conf"
+    end
   end
 
   # Provision everything using a standalone shell script
