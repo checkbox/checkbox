@@ -268,6 +268,7 @@ class FTPPerformanceTest(object):
             print("Failed sending file via ftp")
             return 1
 
+
 class StressPerformanceTest:
 
     def __init__(self, interface, target):
@@ -282,7 +283,7 @@ class StressPerformanceTest:
         ping_cmd = 'ping -I {} {}'.format(self.interface, self.target)
         ping = subprocess.Popen(shlex.split(ping_cmd), stdout=subprocess.PIPE)
         iperf.communicate()
-        
+
         ping.terminate()
         (out, err) = ping.communicate()
 
@@ -302,9 +303,10 @@ class StressPerformanceTest:
             if 'unreachable' in line.lower():
                 print(line)
                 result = 1
-        
+
         return result
-        
+
+
 class Interface(socket.socket):
     """
     Simple class that provides network interface information.
@@ -416,7 +418,6 @@ def interface_test(args):
     if not "test_type" in vars(args):
         return
 
-
     # Determine whether to use the default or user-supplied config
     # file name.
     DEFAULT_CFG = "/etc/checkbox.d/network.cfg"
@@ -485,9 +486,10 @@ def interface_test(args):
             result = iperf_benchmark.run()
 
         elif args.test_type.lower() == "stress":
-            stress_benchmark = StressPerformanceTest(args.interface, test_target)
+            stress_benchmark = StressPerformanceTest(args.interface,
+                                                     test_target)
             result = stress_benchmark.run()
-    
+
     for iface in extra_interfaces:
         logging.debug("Restoring interface:%s", iface)
         try:
@@ -498,6 +500,7 @@ def interface_test(args):
             result = 3
 
     return result
+
 
 def interface_info(args):
 
@@ -580,7 +583,7 @@ Target: 192.168.1.45
     test_parser.add_argument(
         '-i', '--interface', type=str, required=True)
     test_parser.add_argument(
-        '-t', '--test_type', type=str, 
+        '-t', '--test_type', type=str,
         choices=("ftp", "iperf", "stress"), default="ftp",
         help=("[FTP *Default*]"))
     test_parser.add_argument('--target', type=str)
@@ -595,7 +598,6 @@ Target: 192.168.1.45
         '--config', type=str,
         default="/etc/checkbox.d/network.cfg",
         help="Supply config file for target/host network parameters")
-
 
     # Sub info options
     info_parser.add_argument(
