@@ -23,14 +23,33 @@ Vagrant::Config.run do |config|
     raring_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-i386-vagrant-disk1.box"
   end
 
+  # Define a Ubuntu Server image (cloud) for the 13.10 release (saucy)
+  config.vm.define :saucy do |saucy_config|
+    saucy_config.vm.box = "saucy-cloud-i386"
+    saucy_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-i386-vagrant-disk1.box"
+  end
+
+  # Define a Ubuntu Server image (cloud) for the 14.04 release (trusty)
+  config.vm.define :trusty do |trusty_config|
+    trusty_config.vm.box = "trusty-cloud-i386"
+    trusty_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
+  end
+
   # For debugging and later future GUI testing
   if ENV.key? "VAGRANT_GUI"
     config.vm.boot_mode = :gui
   end
 
-  # Setup an apt cache if one is available
   if ENV.key? "VAGRANT_APT_CACHE"
+    # Setup an apt cache if one is available and explicitly configured
     config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"#{ENV['VAGRANT_APT_CACHE']}\"; };' > /etc/apt/apt.conf"
+  elsif File.exists? "/etc/apt-cacher-ng"
+    # If apt-cacher-ng is installed on this machine then just use it.
+    require 'socket'
+    guessed_address = Socket.ip_address_list.detect{|intf| !intf.ipv4_loopback?}
+    if guessed_address
+      config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"http://#{guessed_address.ip_address}:3142\"; };' > /etc/apt/apt.conf"
+    end
   end
 
   # Provision everything using a standalone shell script

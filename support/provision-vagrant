@@ -27,6 +27,26 @@ export CHECKBOX_TOP=/vagrant
 # Make sure that dpkg never stops to have a chat with the user
 export DEBIAN_FRONTEND=noninteractive
 
+# Vagrant sanity check, see if /vagrant really works.
+#
+# On various installations of Ubuntu this is not the case as the cloud images
+# we depend on seem to have broken virtualbox tools installation inside.  This
+# causes the filesystem mounted on /vagrant to crash horribly and kill all
+# processes attempting to use it.
+if ! find /vagrant -mindepth 1 -maxdepth 1 >/dev/null; then
+    cat <<__EOM__
+E: It seems that /vagrant directory is broken
+E: This is a known issue.
+E: See this link for a workaround if you have recent-enough VirtualBox:
+E: https://bugs.launchpad.net/ubuntu/+source/virtualbox/+bug/1252872
+E: Alternatively you can use NFS on any version of VirtualBox:
+E: http://docs.vagrantup.com/v2/synced-folders/nfs.html
+__EOM__
+    exit 1
+else
+    echo "I: it seems that /vagrant is working okay"
+fi
+
 # Add any necessary PPA repositories
 $CHECKBOX_TOP/support/install-ppa-dependencies
 
