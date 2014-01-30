@@ -270,3 +270,22 @@ name: screenshot_fullscreen_video.jpg
 depends: graphics/screenshot_fullscreen_video
 command: base64 ${CHECKBOX_DATA}/screenshot_fullscreen_video.jpg
 _description: Attaches the screenshot captured in graphics/screenshot_fullscreen_video.
+
+plugin: shell
+name: graphics/screenshot_opencv_validation
+requires: package.name == 'python-opencv'
+environ: EXTERNAL_WEBCAM_DEVICE
+command:
+ screenshot_validation \
+    ${CHECKBOX_SHARE}/data/images/logo_Ubuntu_stacked_black.png \
+    --device=${EXTERNAL_WEBCAM_DEVICE:-/dev/external_webcam} \
+    -o ${CHECKBOX_DATA}/screenshot_opencv_validation.jpg
+_description:
+ Take a screengrab of the screen displaying a black and white Ubuntu logo.
+ Check that the screenshot matches the original file using OpenCV ORB detection.
+
+plugin: attachment
+name: screenshot_opencv_validation.jpg
+depends: graphics/screenshot_opencv_validation
+command: base64 ${CHECKBOX_DATA}/screenshot_opencv_validation.jpg
+_description: Attaches the screenshot captured in graphics/screenshot_opencv_validation.
