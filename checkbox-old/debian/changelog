@@ -19,11 +19,13 @@ checkbox (0.17.4) UNRELEASED; urgency=low
     PCI subclass "2", like newer NVidia GPUs (LP: #1270139)
   * checkbox/scripts/audio_settings: Place/read active_profiles in an
     absolute, known-writable location (LP: #1271707)
+  * scripts/virtualization, scripts/network: Use specific environment
+    variables for configuration, if available (LP: #1260507)
 
   [ Zygmunt Krynicki ]
   * Incremented changelog
 
- -- Zygmunt Krynicki <zygmunt.krynicki@canonical.com>  Tue, 28 Jan 2014 03:06:27 +0100
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 29 Jan 2014 17:07:13 -0500
 
 checkbox (0.17.2) trusty; urgency=low
 
