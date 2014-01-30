@@ -3,10 +3,11 @@
 """
 Script to test virtualization functionality
 
-Copyright (C) 2013 Canonical Ltd.
+Copyright (C) 2013, 2014 Canonical Ltd.
 
 Authors
   Jeff Marcom <jeff.marcom@canonical.com>
+  Daniel Manrique <roadmr@ubuntu.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3,
@@ -43,6 +44,7 @@ import tarfile
 import time
 import urllib.request
 
+DEFAULT_TIMEOUT = 500
 
 class XENTest(object):
     pass
@@ -246,6 +248,8 @@ def test_kvm(args):
     image = ""
     timeout = ""
 
+    # Configuration data can come from three sources.
+    # Lowest priority is the config file.
     config_file = DEFAULT_CFG
     config = configparser.SafeConfigParser()
 
@@ -267,9 +271,22 @@ def test_kvm(args):
         except configparser.NoSectionError:
             logging.exception('Invalid or Empty image in config file.')
 
-    if timeout == "":
+    # Next in priority are environment variables.
+    if 'KVM_TIMEOUT' in os.environ:
+        try:
+            timeout = float(os.environ['KVM_TIMEOUT'])
+        except ValueError as err:
+            logging.warning("TIMEOUT env variable: %s" % err)
+            timeout = DEFAULT_TIMEOUT
+    if 'KVM_IMAGE' in os.environ:
+        image = os.environ['KVM_IMAGE']
+
+    # Finally, highest-priority are command line arguments.
+    if args.timeout:
         timeout = args.timeout
-    if image == "":
+    elif not timeout:
+        timeout = DEFAULT_TIMEOUT
+    if args.image:
         image = args.image
 
     kvm_test = KVMTest(image, timeout)
@@ -294,7 +311,7 @@ def main():
     kvm_test_parser.add_argument(
         '-i', '--image', type=str, default=None)
     kvm_test_parser.add_argument(
-        '-t', '--timeout', type=int, default=500)
+        '-t', '--timeout', type=int)
     kvm_test_parser.add_argument(
         '--debug', action="store_true")
     kvm_test_parser.set_defaults(func=test_kvm)
