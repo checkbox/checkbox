@@ -49,11 +49,20 @@ generate_iso(){
 }
 
 burn_iso(){
-    #Burn the ISO with wodim
+    # Burn the ISO with the appropriate tool
     echo "Sleeping 10 seconds in case drive is not yet ready ..."
     sleep 10
     echo "Beginning image burn ..."
-    wodim -eject dev=$OPTICAL_DRIVE $ISO_NAME
+    if [ "$OPTICAL_TYPE" == 'cd' ]
+    then
+        wodim -eject dev=$OPTICAL_DRIVE $ISO_NAME
+    elif [ "$OPTICAL_TYPE" == 'dvd' || "$OPTICAL_TYPE" == 'bd' ]
+    then
+        growisofs -dvd-compat -Z $OPTICAL_DRIVE=$ISO_NAME
+    else
+        echo "Invalid type specified '$OPTICAL_TYPE'"
+        exit 1
+    fi
     rt=$?
     return $rt
 }
@@ -87,7 +96,7 @@ check_disk(){
         
     echo "Deleting original data files ..."
     rm -rf $SAMPLE_FILE
-    if [ ! -z "$(mount | grep $OPTICAL_DRIVE)" ]; then
+    if [ -n "$(mount | grep $OPTICAL_DRIVE)" ]; then
         MOUNT_PT=$(mount | grep $OPTICAL_DRIVE | awk '{print $3}')
         echo "Disk is mounted to $MOUNT_PT"
     else
@@ -132,6 +141,12 @@ if [ -e $1 ]; then
 else
     OPTICAL_DRIVE='/dev/sr0'
 fi    
+
+if [ -n "$2" ]; then
+    OPTICAL_TYPE=$2
+else
+    OPTICAL_TYPE='cd'
+fi
 
 create_working_dirs || failed "Failed to create working directories"
 get_sample_data || failed "Failed to copy sample data"
