@@ -235,6 +235,26 @@ _description:
  VERIFICATION:
      Did you hear your recording?
 
+plugin: user-interact
+name: audio/speaker-headphone-plug-detection
+estimated_duration: 60.0
+requires:
+ device.category == 'AUDIO'
+ package.name == 'pulseaudio-utils'
+command: speaker-headphone-plug-detection
+_description:
+ PURPOSE:
+     Check that system detects speakers or headphones being plugged in
+ STEPS:
+     1. Prepare a pair of headphones or speakers with a standard 3.5mm jack
+     2. Locate the speaker / headphone jack on the device under test
+     3. Run the test (you have 30 seconds from now on)
+     4. Plug headphones or speakers into the appropriate jack
+     5. Unplug the device for subsequent tests.
+ VERIFICATION:
+     Verification is automatic, no action is required.
+     The test times out after 30 seconds (and fails in that case).
+
 plugin: user-interact-verify
 name: audio/balance_internal_speaker
 estimated_duration: 20.0
