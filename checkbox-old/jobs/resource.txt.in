@@ -88,19 +88,18 @@ command: for state in `cat /sys/power/state`; do echo "$state: supported"; done
 description: Create resource info for supported sleep states
 estimated_duration: 0.100
 
+plugin: local
 name: optical_drive
-plugin: resource
+requires: device.category == 'CDROM'
+_description: Optical read test.
 command:
- for media in CD DVD; do
-     if wodim -prcap 2>/dev/null | grep -q -i "Does write $media"; then
-             echo "$media: writable"
-     elif wodim -prcap 2>/dev/null | grep -q -i "Does not write $media"; then
-             echo "$media: readonly"
-     fi
- done
-estimated_duration: 36.0
-requires: package.name == "wodim"
-description: Create resource info for supported optical actions
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ name: optical_drive_`ls /sys$path/block`
+ plugin: resource
+ command: optical_resource /dev/`ls /sys/$path/block`
+ estimated_duration: 0.5
+ description: Create resource info for supported optical actions
+ EOF
 
 name: block_device
 plugin: resource
