@@ -241,7 +241,7 @@ estimated_duration: 60.0
 requires:
  device.category == 'AUDIO'
  package.name == 'pulseaudio-utils'
-command: speaker-headphone-plug-detection
+command: pulse-active-port-change sinks
 _description:
  PURPOSE:
      Check that system detects speakers or headphones being plugged in
