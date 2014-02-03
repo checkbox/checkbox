@@ -17,21 +17,23 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 """
-speaker-headphone-plug-detection
-================================
+pulse-active-port-change
+========================
 
-This script checks if speakers or headphones plugged into the DUT are detected
-by the system. The script is fully automatic and either times out after 30
-seconds or returns as soon as the change is detected.
+This script checks if the active port on either sinks (speakers or headphones)
+or sources (microphones, webcams) is changed after an appropriate device is
+plugged into the DUT. The script is fully automatic and either times out after
+30 seconds or returns as soon as the change is detected.
 
 The script monitors pulse audio events with `pactl subscribe`. Any changes to
-sinks are treated as a possible match. A match is verified by running `pactl
-list sinks` and constructing a set of pairs (sink-name, sink-active-port). Any
+sinks (or sources, depending on the mode) are treated as a possible match. A
+match is verified by running `pactl list sinks` (or `pactl list sources`) and
+constructing a set of pairs (sink-source-name, sink-source-active-port). Any
 change to the computed set, as compared to the initially computed set, is
 considered a match.
 
 Due to the algorithm used, it will also detect things like USB headsets, HDMI
-monitors/speakers, etc.
+monitors/speakers, webcams, etc.
 
 The script depends on:
     python3-checkbox-old
@@ -48,7 +50,10 @@ from checkbox.parsers.pactl import parse_pactl_output
 
 class AudioPlugDetection:
 
-    def __init__(self):
+    def __init__(self, timeout, mode):
+        # store parameters
+        self.timeout = timeout
+        self.mode = mode
         # get the un-localized environment
         env = dict(os.environb)
         env[b'LANG'] = b''
@@ -60,7 +65,7 @@ class AudioPlugDetection:
 
     def get_sound_config(self):
         text = subprocess.check_output(
-            ["pactl", "list", "sinks"],
+            ["pactl", "list", self.mode],  # either 'sources' or 'sinks'
             env=self.unlocalized_env, universal_newlines=True)
         doc = parse_pactl_output(text)
         cfg = set()
@@ -74,24 +79,35 @@ class AudioPlugDetection:
         print("Time is up")
         raise SystemExit(1)
 
-    def main(self):
+    @classmethod
+    def main(cls):
         parser = argparse.ArgumentParser(
             description=__doc__.split("")[0],
             epilog=__doc__.split("")[1],
             formatter_class=argparse.RawDescriptionHelpFormatter)
         parser.add_argument(
+            'mode', choices=['sinks', 'sources'],
+            help='Monitor either sinks or sources')
+        parser.add_argument(
             '-t', '--timeout', type=int, default=30,
             help='Timeout after which the script fails')
         ns = parser.parse_args()
-        return self.run(ns.timeout)
+        return cls(ns.timeout, ns.mode).run()
 
-    def run(self, timeout):
+    def run(self):
         found = False
+        if self.mode == 'sinks':
+            look_for = "Event 'change' on sink #"
+        elif self.mode == 'sources':
+            look_for = "Event 'change' on source #"
+        else:
+            assert False
+        # Get the initial / baseline configuration
         initial_cfg = self.get_sound_config()
         print("Starting with config: {}".format(initial_cfg))
-        print("You have {} seconds to plug something".format(timeout))
+        print("You have {} seconds to plug something".format(self.timeout))
         # Start the timer
-        signal.alarm(timeout)
+        signal.alarm(self.timeout)
         # run subscribe in a pty as it doesn't fflush() after every event
         pid, master_fd = pty.fork()
         if pid == 0:
@@ -100,7 +116,7 @@ class AudioPlugDetection:
             child_stream = os.fdopen(master_fd, "rt", encoding='UTF-8')
             try:
                 for line in child_stream:
-                    if line.startswith("Event 'change' on sink #"):
+                    if line.startswith(look_for):
                         new_cfg = self.get_sound_config()
                         print("Now using config: {}".format(new_cfg))
                         if new_cfg != initial_cfg:
@@ -116,4 +132,4 @@ class AudioPlugDetection:
 
 
 if __name__ == "__main__":
-    raise SystemExit(AudioPlugDetection().main())
+    raise SystemExit(AudioPlugDetection.main())
