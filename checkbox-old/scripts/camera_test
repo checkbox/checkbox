@@ -264,7 +264,7 @@ class CameraTest:
         image size and quiet controls whether the image is displayed to the
         user (quiet = True means do not display image).
         """
-        command = ["fswebcam", "-S 3", "--no-banner",
+        command = ["fswebcam", "-D 1", "-S 50", "--no-banner",
                    "-d", self.args.device,
                    "-r", "%dx%d"
                    % (width, height), filename]
