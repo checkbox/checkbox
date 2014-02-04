@@ -56,7 +56,7 @@ burn_iso(){
     if [ "$OPTICAL_TYPE" == 'cd' ]
     then
         wodim -eject dev=$OPTICAL_DRIVE $ISO_NAME
-    elif [ "$OPTICAL_TYPE" == 'dvd' || "$OPTICAL_TYPE" == 'bd' ]
+    elif [ "$OPTICAL_TYPE" == 'dvd' ] || [ "$OPTICAL_TYPE" == 'bd' ]
     then
         growisofs -dvd-compat -Z $OPTICAL_DRIVE=$ISO_NAME
     else
