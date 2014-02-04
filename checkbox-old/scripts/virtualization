@@ -202,7 +202,7 @@ final_message: CERTIFICATION BOOT COMPLETE
 
             os.chmod(temp_dir, 0o744)
             os.chdir(temp_dir)
-            if self.image is None:
+            if not self.image:
                 logging.debug('No image specified, downloading one now.')
                 # Download cloud image
                 self.image = self.download_image()
