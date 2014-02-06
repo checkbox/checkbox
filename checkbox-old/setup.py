@@ -65,17 +65,6 @@ DATA_FILES = [
     ("share/apport/general-hooks/", ["apport/checkbox.py"])]
 
 
-def changelog_version(changelog="debian/changelog"):
-    version = "dev"
-    if posixpath.exists(changelog):
-        head = open(changelog).readline()
-        match = re.compile(".*\((.*)\).*").match(head)
-        if match:
-            version = match.group(1)
-
-    return version
-
-
 def expand_data_files(data_files):
     for f in data_files:
         if type(f) != str:
@@ -259,7 +248,7 @@ class checkbox_build_icons(build_icons, object):
 
 setup(
     name="checkbox",
-    version=changelog_version(),
+    version="0.17.5",
     author="Marc Tardif",
     author_email="marc.tardif@canonical.com",
     license="GPL",
