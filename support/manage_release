@@ -1,0 +1,97 @@
+#!/usr/bin/python
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Brendan Donegan <brendan.donegan@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Manage release of Checkbox packages
+# ===================================
+from __future__ import absolute_import, print_function
+
+import sys
+
+from argparse import ArgumentParser
+from launchpadlib.launchpad import Launchpad
+from lazr.restfulclient.errors import BadRequest
+
+COPY_PACKAGES = ['checkbox', 'checkbox-certification', 'fwts']
+COPY_SERIES = ['precise', 'quantal', 'raring', 'saucy', 'trusty']
+
+
+def _get_distro_series(distro):
+    # For now just get from precise forward but later on this
+    # could be made more intelligent
+    distro_series = []
+    for series in COPY_SERIES:
+        try:
+            distro_series.append(distro.getSeries(name_or_version=series))
+        except BadRequest:
+            raise SystemExit("Unable to get info on series '{}' from "
+                             "Launchpad - make sure this is a valid "
+                             "series name.".format(series))
+    return distro_series
+
+
+def publish(args):
+    lp = Launchpad.login_with(sys.argv[0], 'production')
+    # Get all the series we want to publish for
+    ubuntu = lp.distributions['ubuntu']
+    distro_series = _get_distro_series(ubuntu)
+    # Get the testing PPA and the stable PPA to copy packages
+    testing_ppa = lp.people['checkbox-dev'].getPPAByName(name='testing')
+    stable_ppa = (lp.people['hardware-certification']
+                  .getPPAByName(name='public'))
+
+    packages = (COPY_PACKAGES if not args.package else args.package)
+    for package in packages:
+        for series in distro_series:
+            source_package = testing_ppa.getPublishedSources(
+                source_name=package,
+                distro_series=series)
+            if source_package:
+                src = source_package[0]
+                try:
+                    stable_ppa.syncSource(from_archive=testing_ppa.self_link,
+                                          include_binaries=True,
+                                          source_name=src.source_package_name,
+                                          to_pocket='Release',
+                                          version=src.source_package_version)
+                except BadRequest as error:
+                    raise SystemExit("Copy failed because {}".format(error))
+                print("Copied {} version {} to stable PPA.".format(
+                      src.source_package_name,
+                      src.source_package_version))
+            else:
+                print("{} not published in testing PPA.".format(package))
+
+
+def main():
+    parser = ArgumentParser("Tool for managing the release of packages, "
+                            "to the terms of the Canonical Hardware "
+                            "Certification team.")
+    subparsers = parser.add_subparsers()
+    publish_parser = subparsers.add_parser('publish', help='Publish release')
+    publish_parser.set_defaults(func=publish)
+    publish_parser.add_argument('-p', '--package',
+                                action='append',
+                                help='Package to copy from testing to stable')
+
+    args = parser.parse_args()
+    return args.func(args)
+
+if __name__ == "__main__":
+    sys.exit(main())
