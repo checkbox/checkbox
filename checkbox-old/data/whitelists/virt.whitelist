@@ -18,6 +18,7 @@ module
 package
 device
 uname
+rtc
 sleep
 #Info attachment jobs
 __info__
@@ -27,6 +28,7 @@ dmi_attachment
 dmidecode_attachment
 efi_attachment
 lspci_attachment
+lsusb_attachment
 meminfo_attachment
 modprobe_attachment
 modules_attachment
@@ -41,7 +43,6 @@ info/hdparm_.*.txt
 installer_debug.gz
 # Actual test cases
 __virtualization__
+virtualization/virtualization-check
+virtualization/kvm_ok
 virtualization/kvm_check_vm
-virtualization/xen_ok
-virtualization/xen_check_vm
-
