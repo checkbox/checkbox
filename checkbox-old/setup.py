@@ -213,7 +213,7 @@ class checkbox_install_data(install_data, object):
             os.symlink(etcdir, dstdir)
 
         # Substitute version in examplesfiles and etcfiles
-        version = changelog_version()
+        version = self.distribution.metadata.version
         for examplesfile in examplesfiles:
             etcfile = posixpath.join(etcdir,
                 posixpath.basename(examplesfile))
