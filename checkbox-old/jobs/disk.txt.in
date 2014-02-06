@@ -39,23 +39,6 @@ command:
  EOF
 
 plugin: local
-name: disk/max_diskspace_used
-requires:
- device.category == 'DISK'
-_description: Maximum disk space used during a default installation test
-command:
- cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
- plugin: shell
- name: disk/max_diskspace_used_`ls /sys$path/block`
- requires: 
-  device.path == "$path"
-  block_device.`ls /sys$path/block`_state != 'removable'
- description: Maximum disk space test for $product
- user: root
- command: max_diskspace_used `ls /sys$path/block | sed 's|!|/|'`
- EOF
-
-plugin: local
 name: disk/read_performance
 requires:
  device.category == 'DISK'

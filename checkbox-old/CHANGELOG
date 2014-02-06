@@ -21,6 +21,8 @@ checkbox (0.17.4) UNRELEASED; urgency=low
     absolute, known-writable location (LP: #1271707)
   * scripts/virtualization, scripts/network: Use specific environment
     variables for configuration, if available (LP: #1260507)
+  * jobs/disk.txt.in: Remove max_diskspace* tests that are confusing and not
+    used in any whitelist (LP: #1031997)
 
   [ Zygmunt Krynicki ]
   * Incremented changelog
