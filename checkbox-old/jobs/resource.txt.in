@@ -91,7 +91,7 @@ estimated_duration: 0.100
 plugin: local
 name: optical_drive
 requires: device.category == 'CDROM'
-_description: Optical read test.
+_description: Create resource info for supported optical actions
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  name: optical_drive_`ls /sys$path/block`
