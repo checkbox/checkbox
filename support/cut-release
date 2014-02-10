@@ -1,0 +1,528 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Helper script to "cut" releases
+# ===============================
+#
+# This script is indented to run in a directory with lp:checkbox checked-out
+# (with bzr) as 'trunk'. Every change made by this script is local. The
+# resulting branches are intended to be proposed back into trunk and merged
+# with the CI system. 
+
+
+assert() {
+    if ! "$@"; then
+        echo "E: assertion failed: $@" >&2
+        exit 1
+    fi
+}
+
+
+pep386_parse() {
+    # Parse a human friendly version string into PEP386 canonical version
+    #
+    # Arguments:
+    #   1 (version):
+    #   The human-friendly version string
+    # Return:
+    #   canonical representation of that version
+    if [ -z "$1" ]; then
+        echo "E: pep386_parse: missing argument: version">&2
+        exit 1
+    fi
+    echo "D: parsing version: $1" >&2
+    local version=$(echo "$1" | awk -- '{ gsub(/a/, "alpha"); gsub(/b/, "beta"); gsub(/c|rc/, "candidate"); gsub(/[a-z]+/, ".&."); print; }')
+    echo "D: after awk processing: $version" >&2
+    local major=
+    local minor=
+    local micro=
+    local releaselevel=final
+    local serial=
+    local rest=$version
+    local next=
+    while test -n "$rest"; do
+        if echo "$rest" | grep -F . -q; then
+            next=$(echo "$rest" | cut -d . -f 1)
+            rest=$(echo "$rest" | cut -d . -f 2-)
+        else
+            next="$rest"
+            rest=''
+        fi
+        case "$next" in
+            dev|alpha|beta|candidate|final)
+                releaselevel=$next
+                test -z "$major" && major=0
+                test -z "$minor" && minor=0
+                test -z "$micro" && micro=0
+                ;;
+            *)
+                if [ -z "$major" ]; then
+                    major=$next
+                elif [ -z "$minor" ]; then
+                    minor=$next
+                elif [ -z "$micro" ]; then
+                    micro=$next
+                elif [ -z "$serial" ]; then
+                    serial=$next
+                fi
+                ;;
+        esac
+    done
+    test -z "$major" && major=0
+    test -z "$minor" && minor=0
+    test -z "$micro" && micro=0
+    test -z "$serial" && serial=0
+    echo "D: after shell split/reassembly: $major.$minor.$micro.$releaselevel.$serial" >&2
+    echo "$major.$minor.$micro.$releaselevel.$serial"
+}
+
+
+pep386_unparse() {
+    # Reverse the pep386_parse() operation
+    #
+    # Arguments:
+    #   1 (canonical_version):
+    #   The canonical PEP386 version string
+    # Return:
+    #   human friendly version string without needless zeros, etc
+    if [ -z "$1" ]; then
+        echo "E: pep386_parse: missing argument: canonical_version">&2
+        exit 1
+    fi
+    echo "D: unparsing version: $1" >&2
+    local major=$(echo "$1" | cut -d . -f 1)
+    local minor=$(echo "$1" | cut -d . -f 2)
+    local micro=$(echo "$1" | cut -d . -f 3)
+    local releaselevel=$(echo "$1" | cut -d . -f 4)
+    local serial=$(echo "$1" | cut -d . -f 5)
+    local version="$major.$minor"
+    if [ "$micro" -ne 0 ]; then
+        version="$version.$micro"
+    fi
+    case "$releaselevel" in 
+        dev)
+            if [ "$serial" -ne 0 ]; then
+                version="${version}.dev.${serial}"
+            else
+                version="${version}.dev"
+            fi
+            ;;
+        alpha)
+            version="${version}a${serial}"
+            ;;
+        beta)
+            version="${version}b${serial}"
+            ;;
+        candidate)
+            version="${version}c${serial}"
+            ;;
+        final)
+            ;;
+    esac
+    echo "D: unparsing: $version" >&2
+    echo "$version"
+}
+
+
+pep386_as_tuple() {
+    # Convert PEP386 version to python tuple sometimes found in __version__ 
+    #
+    # Arguments:
+    #   1 (canonical_version):
+    #   The canonical PEP386 version string
+    # Return:
+    #   Python tuple with the same data 
+    if [ -z "$1" ]; then
+        echo "E: pep386_as_tuple: missing argument: canonical_version">&2
+        exit 1
+    fi
+    echo "D: canonical version: $1" >&2
+    local major=$(echo "$1" | cut -d . -f 1)
+    local minor=$(echo "$1" | cut -d . -f 2)
+    local micro=$(echo "$1" | cut -d . -f 3)
+    local releaselevel=$(echo "$1" | cut -d . -f 4)
+    local serial=$(echo "$1" | cut -d . -f 5)
+    local version="$major"
+    local tuple="($major, $minor, $micro, \"$releaselevel\", $serial)"
+    echo "D: python tuple: $tuple" >&2
+    echo "$tuple"
+}
+
+
+pep386_attr() {
+    # Access fields of pep386 canonical version
+    #
+    # Arguments:
+    #   1 (canonical_version):
+    #   The canonical PEP386 version string
+    #   2+ (operation):
+    #   Operations to perform. For getters they have a form of --field where
+    #   field is one of the fields defined by the canonical version (major,
+    #   minor, micro, releaselevel, serial). For setters the syntax is
+    #   --field=value. Any number of setters can be used together. The first
+    #   getter terminates the procedure. 
+    #
+    # Return:
+    #   If a getter was used, the field that was referred to. Otherwise the
+    #   canonical version is returned (after being modified by any of the
+    #   setters).
+    if [ -z "$1" ]; then
+        echo "E: pep386_attr: missing argument: canonical_version">&2
+        exit 1
+    fi
+    local major=$(echo "$1" | cut -d . -f 1)
+    local minor=$(echo "$1" | cut -d . -f 2)
+    local micro=$(echo "$1" | cut -d . -f 3)
+    local releaselevel=$(echo "$1" | cut -d . -f 4)
+    local serial=$(echo "$1" | cut -d . -f 5)
+    shift
+    while test -n "$1"; do
+        case "$1" in
+            --major)
+                echo "$major"
+                return
+                ;;
+            --major=*)
+                major=$(echo "$1" | cut -d = -f 2)
+                ;;
+            --minor)
+                echo "$minor"
+                return
+                ;;
+            --minor=*)
+                minor=$(echo "$1" | cut -d = -f 2)
+                ;;
+            --micro)
+                echo "$micro"
+                return
+                ;;
+            --micro=*)
+                micro=$(echo "$1" | cut -d = -f 2)
+                ;;
+            --releaselevel)
+                echo "$releaselevel"
+                return
+                ;;
+            --releaselevel=*)
+                releaselevel=$(echo "$1" | cut -d = -f 2)
+                ;;
+            --serial)
+                echo "$serial"
+                return
+                ;;
+            --serial=*)
+                serial=$(echo "$1" | cut -d = -f 2)
+                ;;
+            *)
+                echo "E: pep386_attr: bad argument: $1" >&2
+                exit 1
+                ;;
+        esac
+        shift
+    done
+    echo "$major.$minor.$micro.$releaselevel.$serial"
+}
+
+
+release_component() {
+    if [ -z "$1" ]; then
+        echo "E: release_component: missing argument: component_path" >&2
+        exit 1
+    fi
+    # path to the top-level directory of the component relative to tree root
+    local component_path=$1; shift
+
+    # Ensure that trunk exist
+    assert test -d trunk
+
+    # Interrogate name/version
+    local name=$(trunk/$component_path/setup.py --name)
+    
+    # name of the component's top-level python package
+    local component_python_package=$name
+    # name of the component as it shows up in the commit message
+    local component_commit_name=$name
+    # name of the component as it shows up in tags
+    local component_tag_name=$name
+    # release policy (micro/minor/major/rc)
+    local bump_version=
+    local bump_level=
+
+    # Parse keyword arguments
+    while test -n "$1"; do
+        local value=$(echo $1 | cut -d = -f 2-)
+        case "$1" in
+            --python-pkg=*)
+                component_python_package=$value
+                ;;
+            --tag-name=*)
+                component_tag_name=$value
+                ;;
+            --commit-name=*)
+                component_commit_name=$value
+                ;;
+            --bump-version=*)
+                bump_version=$value
+                ;;
+            --bump-level=*)
+                bump_level=$value
+                ;;
+            *)
+                echo "E: release_component: bad argument: $1" >&2
+                exit 1
+                ;;
+        esac
+        shift
+    done
+
+    echo "I: preparing release candidate of $name"
+    echo "D: inspecting current version..."
+    local version=$(trunk/$component_path/setup.py --version)
+    echo "I: current version is $version"
+
+    # Parse version
+    local canonical_version=$(pep386_parse "$version")
+    echo "D: canonical version is $canonical_version"
+
+    # Compute next version (each release increments version)
+    echo "D: computing next version..."
+    echo "D: bump_level: $bump_level"
+    echo "D: bump_version: $bump_version"
+    local canonical_next_version=$canonical_version
+    case "$bump_version" in
+        major)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --major=$(expr $(pep386_attr "$canonical_next_version" --major) + 1) --minor=0 --micro=0) 
+            ;;
+        minor)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --minor=$(expr $(pep386_attr "$canonical_next_version" --minor) + 1) --micro=0) 
+            ;;
+        micro)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --micro=$(expr $(pep386_attr "$canonical_next_version" --micro) + 1)) 
+            ;;
+    esac
+    case "$bump_level" in
+        dev)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=dev --serial=0)
+            ;;
+        alpha)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=alpha --serial=1)
+            ;;
+        beta)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=beta --serial=1)
+            ;;
+        candidate)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=candidate --serial=1)
+            ;;
+        final)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=final --serial=0)
+            ;;
+        next-level)
+            case "$(pep386_attr \"$canonical_version\" --releaselevel)" in
+                dev)
+                    canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=alpha --serial=1)
+                    ;;
+                alpha)
+                    canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=beta --serial=1)
+                    ;;
+                beta)
+                    canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=candidate --serial=1)
+                    ;;
+                candidate)
+                    canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=final --serial=0)
+                    ;;
+            esac
+            ;;
+        next-serial)
+            canonical_next_version=$(pep386_attr "$canonical_next_version" --serial=$(expr $(pep386_attr "$canonical_next_version" --serial) + 1)) 
+            ;;
+    esac
+    echo "D: canonical next version is $canonical_next_version"
+    local next_version=$(pep386_unparse "$canonical_next_version")
+    echo "I: next version is $next_version"
+
+    if [ -z "$dry_run" ]; then
+        # Create a branch for the new release
+        echo "D: preparing release branch..."
+        local release_dir=$name-$next_version
+        assert test ! -e $release_dir
+        echo "I: branching trunk to ${release_dir}..."
+        bzr branch trunk "$release_dir" --quiet
+
+        # Apply the new version
+        echo "I: patching setup.py..."
+        sed -i -e "s!$version!$next_version!g" $release_dir/$component_path/setup.py
+        echo "I: patching $name/__init__.py..."
+        sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" $release_dir/$component_path/$component_python_package/__init__.py
+
+        # Commit and tag
+        echo "I: commiting version bump"
+        # NOTE: no way to bzr commit has no '-d'
+        (cd $release_dir && bzr commit -m "$component_commit_name: increment version to $next_version" --quiet)
+        bzr tag -d $release_dir "$component_tag_name-v$next_version" --quiet
+        echo "I: component $name is ready to be built in $release_dir"
+    else
+        echo "I: not doing anything in dry-run mode"
+    fi
+}
+
+
+help() {
+    echo "usage: cut-release [--debug] (checkbox|checkbox-ng|plainbox) [options]" >&2
+    echo
+    echo "This script is indented to run in a directory with lp:checkbox"
+    echo "branched (with bzr) as 'trunk'. Every change made is local."
+    echo
+    echo "component:"
+    echo "  checkbox        release checkbox-old"
+    echo "  checkbox-ng     release checkbox-ng"
+    echo "  plainbox        release plainbox"
+    echo
+    echo "general options"
+    echo "  -n|--dry-run"
+    echo "    don't prepare branch with version changes"
+    echo "  --debug"
+    echo "    display additional diagnostic messages"
+    echo
+    echo "component version options"
+    echo "  --bump-version={major,minor,micro}"
+    echo "    increment version component"
+    echo "  --major|--minor|--micro"
+    echo "    same as --bump-version=..."
+    echo
+    echo "component release level options"
+    echo "  --bump-level={dev,alpha,beta,candidate,final,next-level,next-serial}"
+    echo "    set/increment release level and serial"
+    echo "  --dev|--alpha|--beta|--candidate|--final"
+    echo "    same as --bump-level=..."
+    echo "  --rc"
+    echo "    same as --candidate"
+    echo 
+    echo "NOTE: If any version change options are used without --bump-level"
+    echo "      then the program behaves as if --bump-level=dev was passed"
+    echo "NOTE: Using: --bump-level=next-level resets serial to 1"
+    echo "      (except for final, where it must be 0)"
+    echo "NOTE: Using: --bump-level=next-level never goes past final"
+    echo
+    echo "WARNING: Using: --bump-level=next-serial just increments the serial number"
+    echo "      That is *incorrect* if current level is 'dev' or 'final'"
+}
+
+
+main() {
+    local component=
+    local bump_version=
+    local bump_level=
+    local dry_run=
+    # Parse keyword arguments
+    while test -n "$1"; do
+        if echo "$1" | grep -F -q =; then 
+            local value=$(echo $1 | cut -d = -f 2-)
+        else
+            local value=
+        fi
+        case $1 in
+            checkbox)
+                component=checkbox
+                ;;
+            checkbox-ng)
+                component=checkbox-ng
+                ;;
+            plainbox)
+                component=plainbox
+                ;;
+            -n|--dry-run)
+                dry_run=1
+                ;;
+            --bump-version=*)
+                bump_version=$value
+                ;;
+            --major)
+                bump_version=major
+                ;;
+            --minor)
+                bump_version=minor
+                ;;
+            --micro)
+                bump_version=micro
+                ;;
+            --bump-level=*)
+                bump_level=$value
+                ;;
+            --dev)
+                bump_level=dev
+                ;;
+            --alpha)
+                bump_level=alpha
+                ;;
+            --beta)
+                bump_level=beta
+                ;;
+            --candidate|--rc)
+                bump_level=candidate
+                ;;
+            --final)
+                bump_level=final
+                ;;
+            --help)
+                help
+                exit 0
+                ;;
+            *)
+                echo "E: cut-release: bad argument: $1" >&2
+                exit 1
+                ;;
+        esac
+        shift
+    done
+    if [ -z "$component" ]; then
+        echo "E: cut-release: component name required"
+        echo
+        help
+        exit 1
+    fi
+    if [ -z "$bump_level" ] && [ -z "$bump_version" ]; then
+        echo "E: cut-release: expected at least one of --bump-level=... or --bump-version=..." 
+        echo
+        help
+        exit 1
+    fi
+    if [ -n "$bump_version" ] && [ -z "$bump_level" ]; then
+        echo "I: assuming --bump-level=dev"
+        bump_level=dev
+    fi
+    case "$component" in
+        checkbox)
+            release_component checkbox-old --tag-name=checkbox --commit-name=checkbox-old --python-pkg=checkbox --bump-version=$bump_version --bump-level=$bump_level
+            ;;
+        checkbox-ng)
+            release_component checkbox-ng --python-pkg=checkbox_ng --bump-version=$bump_version --bump-level=$bump_level
+            ;;
+        plainbox)
+            release_component plainbox --bump-version=$bump_version --bump-level=$bump_level
+            ;;
+    esac
+}
+
+
+if [ "$1" = --debug ]; then
+    shift
+    main "$@" 2>&1
+else
+    main "$@" 2>&1 | grep -E -v "^D:"
+fi
