@@ -62,18 +62,21 @@ _description:
 
 plugin: shell
 name: power-management/suspend-30-cycles-log-check
+depends: power-management/suspend_30_cycles
 command: [ -e $CHECKBOX_DATA/suspend_30_cycles.log ] && sleep_test_log_check -v s3 $CHECKBOX_DATA/suspend_30_cycles.log
 _description:
  Automated check of the 30 cycle hibernate log for errors detected by fwts.
 
 plugin: attachment
 name: power-management/suspend-30-cycle-log-attach
+depends: power-management/suspend_30_cycles
 command: [ -e $CHECKBOX_DATA/suspend_30_cycles.log ] && cat $CHECKBOX_DATA/suspend_30_cycles.log
 _description:
  Attaches the log from the 30 cycle Suspend/Resume test if it exists
 
 plugin: shell
 name: power-management/suspend-30-cycles-time-check
+depends: power-management/suspend_30_cycles
 command: [ -e $CHECKBOX_DATA/suspend_30_cycles_times.log ] && sleep_time_check $CHECKBOX_DATA/suspend_30_cycles_times.log
 _description:
  Checks the sleep times to ensure that a machine suspends and resumes within a given threshold

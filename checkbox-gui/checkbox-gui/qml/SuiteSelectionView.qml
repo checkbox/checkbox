@@ -33,6 +33,11 @@ Page {
     id: suiteselection
     title: i18n.tr("Suite Selection")
 
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     Item {
         id: filler
         height: units.gu(4)
@@ -60,6 +65,25 @@ Page {
             model: whiteListModel
 
             delegate: SuiteSelectionDelegate{}
+
+            signal suiteSelect();
+
+            Component.onCompleted: {
+                // First uncheck all the suites
+                for (var i = whiteListModel.count - 1; i >= 0; i--){
+                    var item = whiteListModel.get(i);
+                    whiteListModel.setProperty(i, "check", false);
+                }
+                // Select only the one(s) mathing the 'default' pattern
+                for (var i = whiteListModel.count - 1; i >= 0; i--){
+                    var item = whiteListModel.get(i);
+                    if (item.testname.match(/default/i)) {
+                        whiteListModel.setProperty(i, "check", true);
+                        return;
+                    }
+                }
+                suiteSelect();
+            }
         }
 
         Scrollbar {

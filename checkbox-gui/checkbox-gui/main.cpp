@@ -21,6 +21,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtGui/QGuiApplication>
+#include <QCoreApplication>
 #include <QPluginLoader>
 #include <QQmlExtensionPlugin>
 #include <QDir>
@@ -38,7 +39,10 @@
 
 int main(int argc, char *argv[])
 {
-     QApplication app(argc, argv);
+    QApplication app(argc, argv);
+    QByteArray applicationName;
+    applicationName = QFileInfo(QCoreApplication::applicationFilePath()).fileName().toUtf8();
+    qputenv("APP_ID", applicationName);
 
     qmlRegisterType<WhiteListItem>("Ubuntu.Checkbox", 0, 1, "WhiteListItem");
     qmlRegisterType<TestItem>("Ubuntu.Checkbox", 0, 1, "TestItem");
@@ -47,6 +51,9 @@ int main(int argc, char *argv[])
 
     // Create our GuiEngine and hang it on QGuiApplication
     GuiEngine guiengine((QObject*)&app);
+
+    // Register the applicationName with the QML runtime
+    viewer.rootContext()->setContextProperty("applicationName", applicationName);
 
     // Register the GuiEngine with the QML runtime
     viewer.rootContext()->setContextProperty("guiEngine", &guiengine);

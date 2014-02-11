@@ -107,7 +107,6 @@ Component {
                 anchors.leftMargin: units.gu(2)
                 checked: check
                 onClicked: {
-
                     // Update the ListView (display)
                     groupedList.setGroupCheck(testitem);
 
@@ -122,6 +121,7 @@ Component {
                     // Warn the user if they are de-selecting tests
                     if (!checked)
                         groupedList.showWarning(itemcheckbox);
+                    testsuitelist.ensure_one_selection()
                 }
             }
 

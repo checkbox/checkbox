@@ -24,8 +24,9 @@ if [ "x$VAGRANT_STATE_FILE" != "x" ]; then
 fi
 
 if [ "$1" = "" ]; then
-    # XXX: this list needs to be in sync with Vagrantfile
-    target_list="precise quantal raring"
+    # Vagrantfile defines several ubuntu target releases, the ones
+    # we actually want to test in should be included in target_list below.
+    target_list="precise trusty"
 else
     target_list="$1"
 fi

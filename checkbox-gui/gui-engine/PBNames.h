@@ -64,5 +64,6 @@ static const QString JobResult_OUTCOME_PASS = "pass";
 static const QString JobResult_OUTCOME_FAIL = "fail";
 static const QString JobResult_OUTCOME_SKIP = "skip";
 static const QString JobResult_OUTCOME_NONE = "none";
+static const QString JobResult_OUTCOME_NOT_SUPPORTED = "not-supported";
 
 #endif // PB_NAMES_H

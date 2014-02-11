@@ -13,6 +13,7 @@ lsb
 meminfo
 module
 package
+rtc
 sleep
 uname
 virtualization
@@ -22,6 +23,7 @@ cpuinfo_attachment
 dmesg_attachment
 efi_attachment
 lspci_attachment
+lsusb_attachment
 meminfo_attachment
 modprobe_attachment
 modules_attachment
@@ -36,7 +38,7 @@ info/disk_partitions
 # Actual test cases
 # Moved the miscellanea to put manual tests at the beginning
 __miscellanea__
-miscellanea/tester-info
+miscellanea/tester_info
 miscellanea/fwts_test
 miscellanea/fwts_results.log
 __benchmarks__
@@ -61,15 +63,13 @@ disk/smart
 disk/smart_.*
 disk/storage_devices
 disk/storage_device_.*
+__ethernet__
+ethernet/detect
+ethernet/multi_nic
+ethernet/multi_nic_eth\d
 __memory__
 memory/info
 memory/check
-__networking__
-ethernet/detect
-ethernet/maximum_bandwidth
-ethernet/maximum_bandwidth_eth\d
-ethernet/multi_nic
-ethernet/multi_nic_eth\d
 __power-management__
 power-management/rtc
 power-management/fwts_wakealarm

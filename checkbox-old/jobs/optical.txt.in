@@ -50,15 +50,16 @@ plugin: local
 name: optical/cdrom-write
 requires:
  device.category == 'CDROM'
- optical_drive.cd == 'writable'
 _description: CD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: user-interact-verify
  name: optical/cdrom-write_`ls /sys$path/block`
- requires: device.path == "$path"
+ requires: 
+  device.path == "$path"
+  optical_drive_`ls /sys$path/block`.cd_write == 'supported'
  user: root
- command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` cd | ansi_parser
  description:
   PURPOSE:
       This test will check your system's $product CD writing capabilities. This test requires a blank CD-R or CD+R.
@@ -75,15 +76,16 @@ plugin: local
 name: optical/cdrom-write-automated
 requires:
  device.category == 'CDROM'
- optical_drive.cd == 'writable'
 _description: Automated CD write test
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
  name: optical/cdrom-write-automated_`ls /sys$path/block`
- requires: device.path == "$path"
+ requires: 
+  device.path == "$path"
+  optical_drive_`ls /sys$path/block`.cd_write == 'supported'
  user: root
- command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` cd | ansi_parser
  description:
   This is an automated version of optical/cdrom-write. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
  EOF
@@ -111,15 +113,16 @@ plugin: local
 name: optical/dvd-write
 requires:
  device.category == 'CDROM'
- optical_drive.dvd == 'writable'
 _description: DVD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: user-interact-verify
  name: optical/dvd-write_`ls /sys$path/block`
- requires: device.path == "$path"
+ requires: 
+  device.path == "$path"
+  optical_drive_`ls /sys$path/block`.dvd_write == 'supported'
  user: root
- command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` dvd | ansi_parser
  description:
   PURPOSE:
       This test will check your system's $product writing capabilities. This test requires a blank DVD-R or DVD+R.
@@ -136,15 +139,16 @@ plugin: local
 name: optical/dvd-write-automated
 requires:
  device.category == 'CDROM'
- optical_drive.dvd == 'writable'
 _description: Automated DVD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
  name: optical/dvd-write-automated_`ls /sys$path/block`
- requires: device.path == "$path"
+ requires: 
+  device.path == "$path"
+  optical_drive_`ls /sys$path/block`.dvd_write == 'supported'
  user: root
- command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` dvd | ansi_parser
  description:
   This is an automated version of optical/dvd-write. It assumes you have already inserted a data DVD into your optical drive prior to running Checkbox.
  EOF
@@ -163,3 +167,54 @@ _description:
      2. Click "Test" to play the DVD in Totem
  VERIFICATION:
      Did the file play?
+
+plugin: local
+name: optical/bluray-read
+requires: device.category == 'CDROM'
+_description: Automated Blu-Ray read test.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ plugin: user-interact
+ name: optical/bluray-read_`ls /sys$path/block`
+ requires:
+  device.path == "$path"
+  optical_drive_`ls /sys$path/block`.bd_read == "supported"
+ user: root
+ command: optical_read_test /dev/`ls /sys$path/block`
+ estimated_duration: 10.00
+ description:
+  PURPOSE:
+   This test will check your $product device's ability to read Blu-Ray (BD) media
+  STEPS:
+   1. Insert appropriate non-blank media into your Blu-Ray drive. Movie and Audio Disks may not work. Self-created data disks have the greatest chance of working.
+   2. If a file browser window opens, you can safely close or ignore that window.
+   3. Click "Test" to begin the test.
+  VERIFICATION:
+   This test should automatically select "Yes" if it passes, "No" if it fails.
+ EOF
+
+plugin: local
+name: optical/bluray-write
+requires: device.category == 'CDROM'
+_description: Automated Blu-Ray write test.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ plugin: user-interact
+ name: optical/bluray-write_`ls /sys$path/block`
+ requires:
+  device.path == "$path"
+  optical_drive_`ls /sys$path/block`.bd_write == "supported"
+  package.name == "growisofs"
+ user: root
+ command: set -o pipefail; optical_write_test /dev/`ls /sys$path/block` bd | ansi_parser
+ estimated_duration: 120.00
+ description:
+  PURPOSE:
+   This test will check your $product device's ability to write Blu-Ray (BD) media
+  STEPS:
+   Skip this test if you do not have a blank BD-R disc
+   1. Insert appropriate writable media into your Blu-Ray drive.
+   2. Click "Test" to begin the test.
+  VERIFICATION:
+   This test should automatically select "Yes" if it passes, "No" if it fails.
+ EOF

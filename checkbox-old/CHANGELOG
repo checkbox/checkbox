@@ -1,0 +1,3059 @@
+checkbox (0.17.4) UNRELEASED; urgency=low
+
+  [ Po-Hsu Lin]
+  * jobs/power-management.txt.in: add product requirement for laptops into 
+    the power-management/lid test case. (LP: #1270689)
+
+  [ Rod Smith ]
+  * Modified network test to fail on 80% rather than 40% of theoretical max
+    speed.
+
+  [Daniel Manrique]
+  * jobs/graphics.txt.in: Use grep to work around bad exit codes from
+    unity_support_test (LP: #1212618)
+  * Added tests for 802.11ac networking, including environment variables for
+    their settings, and updated whitelists accordingly.
+  * scripts/sleep_test_log_check: Rewrote the parser logic to avoid missing
+    failures due to file format changes (LP: #1201667)
+  * parsers/udevadm: Added additional heuristics for video devices with
+    PCI subclass "2", like newer NVidia GPUs (LP: #1270139)
+  * checkbox/scripts/audio_settings: Place/read active_profiles in an
+    absolute, known-writable location (LP: #1271707)
+  * scripts/virtualization, scripts/network: Use specific environment
+    variables for configuration, if available (LP: #1260507)
+  * jobs/disk.txt.in: Remove max_diskspace* tests that are confusing and not
+    used in any whitelist (LP: #1031997)
+
+  [ Zygmunt Krynicki ]
+  * Incremented changelog
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 29 Jan 2014 17:07:13 -0500
+
+checkbox (0.17.2) trusty; urgency=low
+
+  [ Daniel Manrique ]
+  * Incremented changelog
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 10 Jan 2014 10:44:27 +0000
+
+checkbox (0.17.1) trusty; urgency=low
+
+  [ Chris Gregan ]
+  * slight modification to existing touch tests to remove depends on failing
+    mutitouch-automated
+
+  [ Jeff Lane ]
+  * scripts/network Handle ZeroDivisionError better (LP: #1257308)
+
+
+  [ Daniel Manrique ]
+  * Removed suspend_test script which hasn't been touched in over 3 years
+    and is not used in any jobs. (LP: #752881)
+  * Changed touchpad_test to use default scrolling method, and added a switch
+    to force edge scrolling if desired. Updated legacy tests to use edge
+    scrolling when the test description makes that appropriate. (LP: #1259987)
+  * scripts/virtualization: Shut down the VM properly so as to not damage the
+    disk image; work properly with "second-boot" VM images (LP: #1259879)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Dec 2013 12:08:26 -0500
+
+checkbox (0.17) trusty; urgency=low
+
+  [ Chris Gregan ]
+  * Updates made to touchpad and suspend jobs for new tests. 
+  * Updates made to the touchscreen jobs file for new tests.
+
+  [ Zygmunt Krynicki ]
+  * Incremented changelog
+  * Make plainbox-service a transitional package that depends on
+    checkbox-ng-service. 
+
+  [ Manoj Iyer ]
+  * Make cpu stress test work with cloud instances. Cloud instances have
+    typically have limited resources so added logic to utilize less memory,
+    at the same time keeping the CPU utilization unchanged at 100%.
+
+ -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 29 Nov 2013 22:28:52 +0100
+
+checkbox (0.16.15) saucy; urgency=low
+
+  [ Brendan Donegan ]
+  * scripts/brightness_test - Update get_best_interface function to use
+    heuristic prescribed by the kernel for selecting the backlight
+    interface to use (LP: #1250437)
+
+  [ Daniel Manrique ]
+  * jobs/stress.txt: Refer the stress log checking jobs to a single test file,
+    rather than using wildcards, which causes strange results (LP: #1161718)
+  * scripts/virtualization: Removed stray space in -net parameters causing
+    test failures (LP: #1250568)
+  * data/whitelists: Updated whitelists that require the new rtc resource
+    (LP: #1251781)
+
+  * Drop dependency from plainbox to checkbox, as it is not really required
+    and used to be there so that plainbox would see all of the jobs. Now with
+    fine-grained job providers this is no longer needed. 
+
+ -- Zygmunt Krynicki <zygmunt.krynicki@canonical.com>  Wed, 06 Nov 2013 14:00:42 +0100
+
+checkbox (0.16.14) saucy; urgency=low
+
+    [ Chris Gregan ]
+  * jobs/suspend.txt.in - added tests for running iperf tests before and after 
+    suspend on all devices ether and wifi
+
+  * jobs/wireless.txt.in - added tests for checking 80211 modules loaded and a 
+    script to scripts to execute that check named wireless_ext. Test added to run 
+    iwconfig query against all devices found on the system.
+
+  * jobs/ethernet.txt.in - added test for running ethtool queries against all 
+    devices found on the system.
+
+  [ Brendan Donegan ]
+  * jobs/resources.txt.in, jobs/power-management.txt.in - refactor rtc test so
+    that it actually tests the RTC instead of just checking for its presence.
+    Also create a resource job to allow other jobs to determine if an RTC is
+    present. (LP: #1184733)
+  * jobs/ethernet.txt.in, jobs/wireless.txt.in, scripts/network - added tests
+    to stress the connection and monitor for dropped/delayed packets and 
+    implemented the logic for them in the network script.
+
+  [ Daniel Manrique ]
+  * jobs/ethernet.txt.in, jobs/wireless.txt.in: Added user-verify jobs to test
+    maximum throughput versus interface's max supported speed.
+  * scripts/network: Minor fixes and tweaks for nicer output and handling of
+    Kb/s and Gb/s.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 01 Nov 2013 15:29:13 +0000
+
+checkbox (0.16.13) saucy; urgency=low
+
+  [ Po-Hsu Lin ]
+  * jobs/keys.txt.in - adde keys/microphone-mute to test the mute key for 
+    microphone.
+
+  [ Brendan Donegan ]
+  * jobs/resource.txt.in, jobs/virtualization.txt.in - added kvm resource job
+    which states whether the hardware supports KVM. Remove kvm_ok job and
+    use the kvm resource job to determine if kvm_check_vm should run
+    (LP: #1236776)
+  * jobs/keys.txt.in - added keys/keyboard-backlight job to test keyboard
+    backlight toggle key.
+  * scripts/network - restore other interfaces that were downed prior to running
+    the network test (LP: #1238570)
+
+  [ Daniel Manrique ]
+  * jobs/virtualization.txt.in: Set the kvm_check_vm test to run as root, to
+    ensure we're running under kvm and not tcg. Modified tests for environment
+    variables accordingly since we need to account for presence of proxy
+    variables.
+  * scripts/gpu_test: Revamped way of launching and stopping glxgears
+    windows/threads, to make 100% sure that we find and close them all,
+    avoiding leftover threads that cause the script not to exit.
+    (LP: #1237199)
+  * plugins/backend_info: Resolve and use full path to the backend script to
+    ensure it runs when invoked via pkexec which is unhappy with relative
+    paths (LP: #1240245)
+
+  [ Jeff Marcom ]
+  * scripts/network - added iperf test benchmark testing capabilities. 
+
+  [ Yung Shen ]
+  * jobs/keys.txt.in - added keys/hibernate job to test hibernate key
+    and keys/keyboard-overhead-light job to test the key.
+
+  [ Taihsiang Ho ]
+  * checkbox-old/jobs/keys.txt.in - added keys/lock-screen job to test
+    lock screen key.
+  * checkbox-old/scripts/lock_screen_watcher - the script for keys/lock-screen job
+
+  [ Zygmunt Krynicki ]
+  * Remove the GTK+ and Urwid interfaces
+
+  [ Sylvain Pineau]
+  * jobs/resource.txt.in, scripts/wifi_interface_mode_resource: new resource
+    job to detect the wifi chip supported interface modes.
+  * codecs.txt.in, info.txt.in, install.txt.in, networking.txt.in and
+    server-services.txt.in: Fixed "requires" expresions using the "and" 
+    operator.
+
+  [ Jeff Lane ]
+  * Renamed networking.txt.in to ethernet.txt.in. Renamed all jobs and
+    references to jobs with 'networking' in them to 'ethernet'
+
+ -- Sylvain Pineau <sylvain.pineau@canonical.com>  Fri, 18 Oct 2013 15:35:55 -0400
+
+checkbox (0.16.12) saucy; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/gpu_test: Better validation that glxgears windows were found, to
+    avoid manipulation of nonexisting windows which causes threads to crash
+    and the entire program to stall. (LP: #1232232)
+  * parsers/udevadm: Added additional heuristics for mediatek bluetooth
+    controllers (LP: #1210405)
+
+  [ Brendan Donegan ] 
+  * scripts/virtualization - change kvm command to qemu-system-x86_64 as the 
+    former is deprecated (LP: #1224854)
+  * scripts/memory_test - use per-process memory limit if arch is ARM, except
+    for arm64 (LP: #1184688)
+  * scripts/virtualization - run qemu-system-arm on ARM platform (LP: #1184765)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:10:13 +0100
+
+checkbox (0.16.11) saucy; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
+  * Removed references to Ubuntu Friendly due to sunsetting of the project.
+    (LP: #1224533)
+  * Ensured that pactl commands are run on a properly unlocalized environment
+    (LP: #1201126)
+  * scripts/fwts_test: Updated list of fwts tests to run, based on FWTS team
+    recommendations (LP: #1228168)
+  
+  [ Jeff Lane ]
+  * scripts/storage_test: test now exits with a warning if the drive is not
+    mounted prior to testing (LP: #1224820)
+
+  [ Brendan Donegan ]
+  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
+    in fwts and change version dependency to latest version (LP: #1218993)
+  * jobs/virtualization.txt.in - remove virtualization-check test and the 
+    virt_check script (LP: #1227071)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 20 Sep 2013 16:09:54 +0100
+
+checkbox (0.16.10) saucy; urgency=low
+
+  [ Jeff Lane ]
+  * scripts/memory_compare: output now displays kB properly, not bytes labled
+    as kB. (LP: #1217506)
+  * scripts/storage_test: script now ensures there is enough free disk space
+    before running bonnie++ and adjusts bonnie++ parameters accordingly if
+    necessary (LP: #1217268)
+
+  [ Jeff Marcom ]
+  * scripts/network: now exits with proper exit code when poor networking
+  performance is detected.
+
+  [ Daniel Manrique ]
+  * scripts/storage_test: Use parted silent mode to avoid hanging on disks
+    with GPT (LP: #1215778)
+  * jobs/stress.txt.in: Added path to reboot/poweroff stress test jobs
+    so they get attached correctly (LP: #1218186)
+  * scripts/pm_test: Sort output of xinput to avoid spurious failures
+    (LP: #1218188)
+  * scripts/gpu_test: Catch CalledProcessError when calling wmctrl, to avoid
+    crashes that cause the test to hang (LP: #1217937)
+  * scripts/pm_test, scripts/fwts_test: Removed dmesg_common that's no longer
+    present in fwts and added specific version dependency to checkbox
+    (LP: #1206016)
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/fwts_test: Added the following new tests:
+    method, msr, aspm, klog, oops and uefirtvariable (LP: #1202493)
+
+  [ Brendan Donegan ]
+  * scripts/fwts_test: Removed dmi_decode and smbios tests that are no longer present
+    in fwts and change version dependency to latest version (LP: #1218993)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 06 Sep 2013 16:51:17 +0100
+
+checkbox (0.16.9) saucy; urgency=low
+
+  [ Brendan Donegan ]
+  * data/whitelists/sru.whitelist - Remove erroneously added usb3 after suspend
+    test in SRU whitelist.
+
+  [ Daniel Manrique ]
+  * scripts/internet_test: Added a passing threshold parameter for packet
+    loss, added auto-adjustment of ping count and deadline so that they don't
+    conflict with each other (LP: #1211144)
+  * checkbox/parsers/udevadm: Fixed incorrect determination of network and
+    wireless device IDs(LP: #1211521)
+  * checkbox:parsers:submission: Tests and fixes for architecture matching
+    which was causing udevadm processing to fail on armhf. (LP: #1214123).
+  * checkbox/parsers/udevadm: Sent some uninteresting devices to the null
+    category, and other minor tweaks to device categorization (LP: #1211369)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 23 Aug 2013 14:21:51 +0100
+
+checkbox (0.16.8) raring; urgency=low
+
+  [ Daniel Manrique ]
+  * scripts/network_device_info: ignore UTF-8 decoding errors from udevadm
+    output, as we do everywhere else (LP: #1210050)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 09 Aug 2013 12:46:29 -0400
+
+checkbox (0.16.7) saucy; urgency=low
+
+  [ Po-Hsu Lin ]
+  * jobs/mobilebroadband.txt.in: Make it disconnect from the mobile broadband
+    network after job is completed to avoid any unexpected data transmission 
+    expense (LP: #1204799)
+
+  [ Jeff Lane ]
+  * jobs/suspend.txt.in, jobs/usb.txt.in, jobs/mediacard.txt.in: moved jobs to
+    suspend.txt.in for USB and Mediacard after suspend, renamed jobs
+    appropriately and adjusted the descriptions.
+    data/sru.whitelist: added usb and usb3 after suspend jobs for SRU i
+    (LP: #1201420)
+
+  [ Daniel Manrique ]
+  * scripts/audio_test: Changed the test frequency to 5040 Hz and increased
+    the sampling time to 5 seconds, to improve reliability (LP: #1070776)
+  * scripts/pm_test: Added support for invoking through pkexec (LP: #1201769)
+  * jobs/audio.txt.in: Added balance jobs (both internal speakers and
+    headphones)
+  * jobs/stress.txt.in: Added --log-dir to poweroff and reboot stress tests so
+    log files get written in the expected location (LP: #1205194)
+  * scripts/gpu_test, jobs/graphics.txt.in: Added checks for existence of
+    required video files, failing tests if they're not found (LP: #1202946)
+
+  [ Brendan Donegan ]
+  * checkbox/parsers/cpuinfo.py - update parser logic to understand cpuinfo
+    files produced by ARM processors (LP: #1197397)
+  * scripts/memory_compare - take in to account 'bank' hardware which appears
+    on systems with multiple memory modules installed (LP: #1204013)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 26 Jul 2013 15:36:42 -0400
+
+checkbox (0.16.6) raring; urgency=low
+
+  [ Brendan Donegan ]
+  * plugins/launchpad_report.py - Don't include attachments which have a status
+    of 'unsupported' (LP: #1196531)
+  * checkbox/parsers/lshwjson.py, scripts/memory_compare - Create a parser for
+    lshw and use this in the memory_compare script instead of dmidecode
+    (LP: #1184661)
+  * plugins/subunit_report.py - Prevent crash when job output contains 
+    non-ASCII characters (LP: #1196838)
+  * jobs/info.txt.in - Add lshw_attachment job with dependency on the lshw
+    package, and also give dmidecode_attachment a dependency on dmidecode,
+    this way we get the right attachments (LP: #1199245)
+
+  [ Alberto Milone ]
+  * checkbox-old/scripts/color_depth_info:
+    - Be more strict in the regex so as to make sure that we catch the
+      correct string.
+    - Open the log using the 'rb' flag. This prevents python from throwing
+      a UnicodeDecodeError.
+  
+  [ Jeff Lane ]
+  * scripts/fwts_test: script now fails on aborted tests if desired. 
+    jobs/power-management.txt.in: jobs that depend on fwts_wakealarm to pass or
+    fail now fail on aborted test result. (LP: #1192684)
+
+  [ Daniel Manrique ]
+  * checkbox-old/scripts/gst_pipeline_test: Better debugging output, and
+    script exits gracefully when the pipeline is unparsable or has a missing
+    element.
+  * checkbox-old/jobs/graphics.txt.in: Use videoconvert instead of
+    ffmpegcolorspace, with a fallback if videoconvert is not found
+    (LP: #1199259)
+  * checkbox-old/jobs/input.txt.in: Add more details in pointing test names
+    so they are easier to identify (LP: #1192541)
+  * scripts/audio_test: Changed the test frequency to 5040 Hz and increased
+    the sampling time to 5 seconds, to improve reliability (LP: #1070776)
+  * scripts/pm_test: Added support for invoking through pkexec (LP: #1201769)
+  [ Brendan Donegan ]
+  [ Sylvain Pineau ]
+  * checkbox-old/scripts/meminfo_resource, cpuinfo_resource: sort items for a
+    deterministic output. Meant to be used with after_suspend jobs.
+  * checkbox-old/scripts/gpu_test: Open kern.log in byte mode to avoid the
+    UnicodeDecodeError management.
+  * checkbox-old/scripts/memory_compare: set a variable diff. threshold.
+  * checkbox-old/jobs/suspend.txt.in: Set the wifi reconnect timeout to 90s.
+  * checkbox-old/scripts/bluetooth_test: Full rewrite in python to log all
+    obexftp errors.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Sat, 13 Jul 2013 11:42:48 +0100
+
+checkbox (0.16.5) saucy; urgency=low
+
+  [ Po-Hsu Lin]
+  * scripts/network_device_info: script is now able to detect Modem devices,
+    modified the error message for missing devices, provide more information
+    to users. (LP: #1194170)
+
+  [ Brendan Donegan ]
+  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
+    through new xml_sanitizer script which removes characters which are
+    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
+
+  [ Jeff Marcom ]
+  * scripts/virtualization: fixed issue introduced in last patch that
+    caused the kvm test to not run at all. Changed file permission lvl
+    on created temporary directory. Fixed issue where test log was being
+    deleted along with temporary directory(LP: #1192979)
+
+  [ Daniel Manrique ]
+  * scripts/audio_test: Improved peak detection algorithm and made the
+    audio_test slighly more sensitive (LP: #1070776). Rewrote script to
+    use/require Python 3 and gstreamer 1.0. Updated job requirements and
+    checkbox dependencies accordingly. 
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 28 Jun 2013 15:02:37 +0100
+
+checkbox (0.16.4) saucy; urgency=low
+
+  [ Jeff Lane ]
+  * scripts/virtualization: script no longer fails when trying to cast an
+    empty timeout setting in config file to int(). Added additional error
+    handling. (LP: #1186259)
+  * jobs/stress.txt.in: added dependencies on single cycle tests to the 30
+    cycle S3 and S4 test to avoid unnecessary rebooting by tester on expected
+    failures. (LP: #1188284)
+  * scripts/fwts_test, scripts/sleep_test: Tests now use a more reliabe marker
+    to determine when the system completed resume. sleep_test output cleaned up
+    to match fwts_test output and not break sleep_time_check (LP: #1188221)
+
+  [ Brendan Donegan ]
+  * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
+    the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
+  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
+    child nodes are actually unselected rather than partially selected as
+    before. (LP: #1180342)
+  * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
+    appropriate radio button in showTest if the test already has a result set
+    rather than just defaulting to skip always (LP: #1181952)
+  * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
+    touchpad/horizontal and touchpad/vertical so that those tests will
+    at least run on those systems where they are supposed to (LP: #1184882)
+  * checkbox_qt/qt_interface.py - Order the list of items to be displayed
+    alphabetically, so the order is consistent (LP: #1177647)
+  * debian/rules - Add checkbox-hw-collection so that it's treated in the same
+    way as other checkbox derived packages like checkbox-qt (LP: #1188601)
+  * scripts/xml_sanitizer, jobs/info.txt.in - pipe output from udevadm
+    through new xml_sanitizer script which removes characters which are
+    invalid in XML, so that it doesn't cause trouble (LP: #1192093)
+  [ Daniel Manrique ]
+  * jobs/stress.txt.in: fixed a few inconsistent invocations of sleep_test.
+  * checkbox/tests/test_message_files.py: Added a test to verify jobs contain
+    required fields (LP: #1187216).
+  [ Sylvain Pineau ]
+  * jobs/resource.txt.in: updated version of the package resource job command
+    supporting both precise and newer releases (LP: #1184197)
+  * scripts/audio_settings: Use the new pactl parser to guess the right profile
+    to select for HDMI / DisplayPort tests.
+  * setup.py: Use setuptools find_packages(), more future proof.
+  * checkbox/scripts/audio_settings.py: Save active profiles for all alsa cards
+    (LP: #169425)
+  * scripts/gst_pipeline_test: Use the logging module and the same config as
+    audio_settings.
+    supporting both precise and newer releases (LP: #1184197)
+  * scripts/audio_settings: Use the new pactl parser to guess the right profile
+    to select for HDMI / DisplayPort tests.
+  * setup.py: Use setuptools find_packages(), more future proof.
+  * checkbox/scripts/audio_settings.py: Save active profiles for all alsa cards
+    (LP: #169425)
+  * scripts/gst_pipeline_test: Use the logging module and the same config as
+    audio_settings.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:42 +0100
+
+checkbox (0.16.3) saucy; urgency=low
+
+  [ Sylvain Pineau ]
+  * jobs/info.txt.in, scripts/efi_resource: parse the kern.log backups too.
+  * scripts/gpu_test, jobs/suspend.txt.in: Call firefox instead of the default
+    browser.
+
+  [ Daniel Manrique ]
+  * Expanded optical_drive resource command so it correctly handles systems
+    with no optical drive (LP: #1182489)
+  * Added missing plugin files to po/POTFILES.in so their strings are
+    translatable (LP: #1183271)
+
+  [ Brendan Donegan ]
+  * jobs/optical.txt.in - Added VERIFICATION section for cdrom-write job so that
+    the Qt UI doesn't barf when it finds there is no such section (LP: #1185759)
+  * qt/frontend/treemodel.cpp: Deselect a parent node only if all of its
+    child nodes are actually unselected rather than partially selected as
+    before. (LP: #1180342)
+  * qt/frontend/qtfront.cpp, qtfront.h, checkbox_qt/qt_interface.py: Select
+    appropriate radio button in showTest if the test already has a result set
+    rather than just defaulting to skip always (LP: #1181952)
+  * jobs/touchpad.txt.in - Remove the requires line for touch_mode in
+    touchpad/horizontal and touchpad/vertical so that those tests will
+    at least run on those systems where they are supposed to (LP: #1184882)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 31 May 2013 16:04:37 +0100
+
+checkbox (0.16.2) saucy; urgency=low
+
+  [ Alberto Milone ]
+  * scripts/graphics_stress_test, scripts/rotation_test: make sure to
+    always reset the "screen" variable. Somehow the NVIDIA driver manages
+    to make it unusable after the first time. (LP: #1172667)
+
+  [ Brendan Donegan ]
+  * checkbox/parsers/submission.py - publish kernel-release information to
+    interested parties.
+
+  [ Daniel Manrique ]
+  * Ensured that button strings from the "continue" dialog are translatable
+    (LP: #1176695) 
+  
+  [ Jeff Lane ]
+  * checkbox/parsers/cpuinfo.py - split on first instance of ':' in cpuinfo
+    output lines to avoid splitting into more than 2 items. Also fixed a pep8
+    issue discovered while working on this. (LP: #1180496)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:21:05 +0100
+
+checkbox (0.16.1) saucy; urgency=low
+
+  [ Jeff Lane ]
+  * scripts/cpu_offlining: Modified script to no longer offline cpu0 to resolve
+    a bug on ARM. Modified output so most of it is redirected to stderr for
+    fail cases, we don't need that much for success cases. (LP: #1078897) 
+  * jobs/mediacard.txt.in: Modified test instructions to be less confusing
+    (LP: #970857)
+  * scripts/cpu_topology: define the cpuinfo nested dicts on creation rather
+    than define elements during parsing of /proc/cpuinfo (LP: #1111878)
+  * scripts/lsmod_info: Corrected error handling for the check_output() call to
+    trap the correct error. (LP: #1103647)
+  * jobs/camera.txt.in: removed an extraneous requres line for gir1.2
+    scripts/camera_test: added code to determine what version of gst we're
+    using and set video type and plugin accordingly. (LP: #1100594)
+  * scripts/network_check: added ability to specify custom target URL for
+    debugging failures (LP: #1128017)
+  * scripts/removable_storage_test: Added error handling to trap OSError on
+    non-writable media and modified output to handle subsequent
+    ZeroDivisionError issues when summarizing test results.
+    jobs/media.txt.in: Modified instructions for SD/SDHC to specify using
+    UNLOCKED cards to avoid issues when testing read-only media (LP: #1153894)
+
+  [ Sylvain Pineau ]
+  * jobs/suspend.txt.in, scripts/gpu_test: Remove the need of running the script
+    with the root user, restore the workspaces switch and the HTML5 video
+    playback ; remove the extra suspend/resume (LP: #1172851)
+  * checkbox/parsers/udevadm.py: Only filter devices without product AND vendor
+    information (LP: #1167733)
+
+  [ Brendan Donegan ]
+  * scripts/rendercheck_test - change nargs='+' to action='append' for blacklist
+    option so it works as expected.
+    jobs/rendercheck.txt.in - blacklist gradients test as it is known to produce
+    false positives. (LP: #1093718)
+  * plugins/hexr_transport.py - added plugin for submitting to HEXR and 
+    certification based on certify_new_transport from checkbox-certification.
+    examples/checkbox-qt.ini - blacklisted hexr_transport as we won't use it
+    examples/checkbox-cli.ini - blacklisted hexr_transport as we won't use it
+    examples/checkbox-urwid.ini - blacklisted hexr_transport as we won't use it
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 07 May 2013 19:20:49 +0100
+
+checkbox (0.16) saucy; urgency=low
+
+  [ Brendan Donegan ]
+  * Add hidden 'Submit to HEXR' checkbox on submission screen, so that it can
+    be utilised in checkbox-certification.
+  * checkbox/user_interface.py - fixed keyword argument in show_entry.
+    checkbox_cli/cli_interface.py - return tuple as expected. (LP: #1173103)
+
+  [ Po-Hsu Lin]
+  * jobs/led.txt.in: Modified the description of led/power-blink-suspend test to
+    cover more cases.
+    jobs/suspend.txt.in: Modified the description of suspend/suspend_advanced
+    test cover more cases. (LP: #1172108)
+
+  [ Jeff Lane ]
+  * scripts/sleep_test_log_check: added new script to parse fwts logs for
+    errors
+    jobs/hibernate.txt.in, jobs/stress.txt.in, jobs/suspend.txt.in: added jobs
+    to use the sleep_test_log_check script after s3/s4 tests. Modified current
+    s3/s4 tests to use the new None fail level for fwts_test
+    scripts/fwts_test: no longer fails on fwts errors if "-f none" is chosen.
+    Now it should only fail by manual indication if the actual sleep action
+    fails. (LP: #1169922)
+  * scripts/bluetooth_test: test no longer generates odd Broken Pipe error when
+    the dpkg bit verifies obexftp is installed (LP: #1169488)
+  * jobs/networking.txt.in: fixed networking/info jobs that were not being run
+    because $output was being resolved too early (LP: #1065983)
+  * scripts/memory_compare: cleaned up the output to be more explanatory and
+    easier to visually parse (LP: #1072666)
+
+  [ Daniel Manrique ]
+  * scripts/alsa_record_playback: Replaced alsasrc with autoaudiosrc
+    (LP: #1059544)
+
+  [ Jeff Marcom ]
+  * scripts/network: added new script for testing and retrieving information for
+    network interfaces.
+  * configs,examples/network.cfg: added config file 
+    for network test configuration and setup
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 26 Apr 2013 18:22:42 +0100
+
+checkbox (0.15.8) raring; urgency=low
+
+  * jobs/monitor.txt.in: Modified the description of dim_brightness test to make 
+    it consistent with the code. (LP: #1170244)
+
+  [ Jeff Lane] 
+  * jobs/miscellanea.txt.in: Added jobs for manual verification of PXE boot and
+    remote IPMI to improve server test coverage.
+  * jobs/led.txt.in: Modified Jobs: led/power, led/wlan, led/wlan-disabled. New
+    jobs: led/power-blink-suspend, led/suspend, led/mute
+    jobs/keys.txt.in: modified keys/wireless
+  * plugins/lock_prompt.py: added a lock release to cleanly clear lock on stop.
+    plugins/persist_prompt.py: promoted save to run before lock release.
+    checkbox/lib/fifo.py: trap OSError exception at close when the input/output
+    fifo fds disappear before fifo.close() can get to them. (LP: #115561)
+
+  [ Brendan Donegan ]
+  * scripts/sources_test - modified script so that it takes sources list
+    location and repository list as arguments
+  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
+    variables to the sources_test script (LP: #1149288)
+  * Added mobile broadband tests and updated create_connection script to allow
+    creation of mobile broadband connections.
+
+  [ Sylvain Pineau ]
+  * debian/control: Added python3-mock as a build dependency.
+  * debian/rules: Clean __pycache__ directory after running scripts unit tests.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Tue, 23 Apr 2013 14:53:54 +0100
+
+checkbox (0.15.7) raring; urgency=low
+
+  [ Zygmunt Krynicki ]
+  * jobs/graphics.txt.in, jobs/suspend.txt.in: convert package resource 
+    programs to be compatible with plainbox
+
+  [ Brendan Donegan ]  
+  * scripts/rendercheck_test, scripts/graphics_stress_test, 
+    jobs/rendercheck.txt.in, jobs/stress.txt.in - Allow blacklisting of 
+    specific rendercheck tests and use this to exclude the 'repeat' test
+    from the set of rendercheck tests that run (LP: #1164566)
+  * scripts/sources_test - modified script so that it takes sources list
+    location and repository list as arguments
+  * jobs/miscellanea.txt.in - provide REPOSITORY and SOURCES_LIST environment
+    variables to the sources_test script (LP: #1149288)
+  
+  [ Jeff Lane ]
+  * jobs/info.txt.in: fixed bad driver name in audio_codecs job (LP: #1165215)
+  * jobs/mediacard.txt.in: reduce test file size for MMC to 64MB (LP: #1167214)
+  * jobs/led.txt.in, jobs/suspend.txt.in: removed bits about WLAN LED flashing
+    from the WLAN jobs as that no longer happens on data tx/rx (LP: #1157606)
+  * jobs/power-management.txt.in: added manual reboot and shutdown tests for
+    server and Xen testing.  Took the opportunity to correct punctuation in the
+    descriptions or other manual jobs.
+    jobs/virtualization.txt.in: added virtualization/xen_ok and
+    virtualization/xen_check_vms jobs for Xen testing
+    scripts/xen_test: added script to perform Xen testing
+
+  [ Jeff Marcom ]
+  * scripts/virtualization - Fixes issue where console terminal would 
+    remain hijacked by child kvm process (LP: #1164028)
+
+   [ Daniel Manrique ]
+   * checkbox/parsers/submission.py: Fixed incorrect context for memory
+     parsing, which resulted in absent memory information when parsing
+     xml files.
+
+  [ Sylvain Pineau ]
+  * scripts/gputest_benchmark: Added a wrapper for the Geeks3D GpuTest
+    benchmark.
+  * jobs/benchmarks.txt.in: Added the corresponding GpuTest jobs (Furmark,
+    Gimark and Tessmark)
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Fri, 05 Apr 2013 17:04:44 +0100
+
+checkbox (0.15.6) raring; urgency=low
+
+  [ Brendan Donegan ]
+  * jobs/benchmarks.txt.in - fix typo in command field of 
+    benchmarks/graphics/globs job (LP: #1157615)
+
+  [ Jeff Marcom ]
+  * jobs/input.txt.in: Added manual check job for accelerometer hardware
+  * scripts/virtualization: Fixed issue where specifying test timeout via 
+    vitualization.cfg was pulled in as a string rather than integer.
+  * scripts/virtualization: Added classmethod for generating cloud 
+    config data based on ISO in use
+
+  [ Zygmunt Krynicki ]
+  * debian/control: add missing build dependency on python3-setuptools
+  * debian/control: add another missing build dependency on python-setuptools
+    (apparently needed because dh_auth_xxx) poke setup.py as python2)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 29 Mar 2013 10:41:06 +0000
+
+checkbox (0.15.5) raring; urgency=low
+
+  * New upstream release (LP: #1158798)
+
+  [ Brendan Donegan ]
+  * Incremented version number.
+  * data/whitelists/sru.whitelist - remove bluetooth_obex_before_suspend
+    as it is made redundant by browse/get/send (LP: #1155325)
+
+  [Sylvain Pineau]
+  * scripts/udev_resource: Set the decoding error policy to 'ignore' to avoid
+    breaking tests that depends on the udevadm resource (LP: #1151562)
+  * scripts/udev_resource: Identify KVM devices as such to avoid reporting them
+    as just CAPTURE devices (LP: #1065064)
+
+  [ Daniel Manrique ]
+  * scripts/glob_test: Fixed swapping of repetitions and time parameters.
+    jobs/benchmarks.txt.in: Set a 26 FPS threshold for passing globs
+    benchmark.
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Wed, 20 Mar 2013 10:08:23 +0000
+
+checkbox (0.15.4) raring; urgency=low
+
+  * New upstream release (LP: #1152223)
+
+  [ Brendan Donegan ]
+  * Incremented version number.
+
+  [ Daniel Manrique ]
+  * Added pipefail option to a few jobs using ansi_parser (LP: #1131598)
+  * Added sru.whitelist used to test stable release update kernels.
+
+  [ Jeff Marcom ]
+  * jobs/input.txt.in Added job requirement for accelerometer test (LP: #1135832)
+
+  [Sylvain Pineau]
+  * scripts/network_device_info, scripts/udev_resource,
+    checkbox/parsers/udevadm.py: Use udev to categorise network devices instead
+    of lspci (LP: #1091633)
+  
+  [Jeff Lane]
+  * jobs/various: Changed the jobs that use removable_storage_watcher to
+    generate ~256MB files to combat problems where the files are cached and not
+    written directly to devices during test. (LP: #1149213)
+
+ -- Jeff Marcom <jeff.marcom@ubuntu.com>  Mon, 18 Feb 2013 14:35:27 +0000
+
+checkbox (0.15.3) raring; urgency=low
+
+  * New upstream release (LP: #1131801)
+
+  [ Daniel Manrique ]
+  * scripts/pts_run: modified to output the full log from phoronix-test-suite
+    (LP: #1102819)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 08 Feb 2013 13:37:38 -0500
+
+checkbox (0.15.2) raring; urgency=low
+
+  * New upstream release (LP: #1119529)
+
+  [ Daniel Manrique ]
+  * Bumped revision number to 0.15.1 and restored previous trunk changelog.
+  * jobs/peripheral.txt.in: fixed string with repeated "add" (LP: #1102665) 
+  * scripts/graphics_stress_test: added missing import (LP: #1102812)
+
+  [ Jeff Lane ]
+  * scripts/rendercheck_test - added missing import for errno (LP: #1103343)
+    jobs/rendercheck.txt.in - fixed command string to report the correct exit
+    code to checkbox
+  
+  [ Jeff Marcom ]
+  * Converted kvm virtualization test to python3. Test will use parameters
+    in config file in the event the system under test does not have internet
+    access. Updated jobs/virtualization.txt.in
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 30 Jan 2013 19:28:51 -0500
+
+checkbox (0.15.1) raring; urgency=low
+
+  * New upstream release (LP: #1110802)
+
+  * Launchpad automated translation updates.
+
+  [ Jeff Lane ]
+  * jobs/monitor.txt.in - added new job monitor/multi-head to test mulitple
+    displays on desktops. 
+  
+  [ Brendan Donegan ]
+  * jobs/bluetooth.txt.in, jobs/suspend.txt.in - unblock Bluetooth hardware
+    before running any Bluetooth tests to avoid these failing (LP: #1084601)
+  * scripts/network_reconnect_resume_time - do not fail if resume time cannot
+    be calculated as this usually just means the driver does not print 
+    appropriate messages to determine this. (LP: #1065009)
+
+ -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 23 Jan 2013 16:30:22 -0500
+
+checkbox (0.15) raring; urgency=low
+
+  [ Daniel Manrique ]
+  * New version 0.15 for Raring Ringtail development.
+  * Fail gracefully with a friendly and useful error message if audio settings
+    file format is invalid. (LP: #1065703)
+  * Added environ key to poweroff and reboot jobs so they create logs in the
+    expected location (LP: #1085833)
+  * Added reporting of dependencies that are outright missing from the
+    whitelist to avoid confusion (LP: #1084986)
+  * scripts/memory_compare: Fixed accumulator expression to give good results
+    (LP: #1089046)
+  * added scripts/key_test to the list of translatable files (LP: #1073359)
+  * Added wireless network devices to networking/info local job (LP: #1089787)
+  * Updated call to Thread constructor to use positional arguments
+    (LP: #1097866)
+
+  [ Brendan Donegan ] 
+  * Change forward-slashes to asterisks in the filename of a connection, since
+    this is what NetworkManager does internally (LP: #1073335)
+  * Create a test to move a 3D window around the screen to check if there is any tearing
+    or other artifacts.
+  * jobs/info.txt.in - add an xrandr attachment job to provide information
+    about displays connected to the system (LP: #1085219)
+  * jobs/suspend.txt.in - changed suspend_advanced_auto dependency of key_after_suspend
+    and led_after_suspend tests to suspend/suspend_advanced, since they are manual and
+    should depend on the manual suspend test (LP: #1089227)
+  * scripts/piglit_test, jobs/piglit.txt.in - create a script which wraps and
+    parses the piglit test results and use it in the piglit jobs
+  * scripts/touchhpad_driver_info - changed the shebang to python3, since it is
+    using modules that will only be installed for python3 (LP: #1089727)
+  * plugins/recover_prompt.py - changed the order of the buttons in the recover
+    prompt to put them in the same order as mentioned in the text (LP: #1092143)
+  * jobs/suspend.txt.in - fix typo that was introduced into suspend_advanced job
+    by a previous bug fix (LP: #1096799)
+  * jobs/miscellanea.txt.in, plugins/environment_info.py - added test to check
+    a sources file for specific repositories to make sure they are present
+  * scripts/sources_test - show link to wiki for test configuration if not set up
+    correctly
+
+  [ Jeff Lane ]
+  * jobs/suspend.txt.in - removed incorrect multiple router requirement for
+    suspend/wireless_after_suspend (LP: #1070333)
+  * jobs/suspend.txt.in - fixed cycle_resolutions_after_suspend_auto so that it
+    properly depends on suspend_advanced_auto rather than suspend_advanced
+    (LP: #1071605)
+  * jobs/graphics.txt.in - removed perl wrappings from tests using
+    unity_support_test. They should pipe through ansi_parser like other jobs.
+    (LP: #1087777)
+  * jobs/info.txt.in - added job info/disk_partitions (LP: #1081833)
+  * jobs/stress.txt.in, jobs/suspend.txt.in - fixed a bug in the command for
+    the suspend jobs where checkbox was getting the exitcode for tee rather
+    than for sleep_test or fwts_test (LP: #1095713)
+  * jobs/stress.txt.in, jobs/hibernate.txt.in - increased device-check-delay
+    from 30 seconds to 45 seconds to avoid a race condition.
+    jobs/suspend.txt.in - added 45 second device-check-delay to the
+    suspend_advanced and suspend_avanced_auto jobs to avoid a race condition.
+    (LP: #1095668)
+  * jobs/bluetooth.txt.in - added pipefail to bluetooth/detect-output 
+    jobs/suspend.txt.in - added pipefail to suspend/network_before_suspend
+    (LP: #1096948)
+
+  [Sylvain Pineau]
+  * jobs/info.txt.in: Fixed the requirement of info/touchpad_driver.
+  * jobs/info.txt.in: Fixed the info/xrandr command.
+  * jobs/audio.txt.in: Added Line In/Out and Display Port tests.
+  * checkbox/tests/test_message_files.py:
+    test_shell_jobs_with_root_have_needed_environ now checks every jobs
+    containing a command line parameter.
+  * jobs/graphics.txt.in: Set the bash pipefail option for tests using
+    unity_support_test and piped to ansi_parser.
+  * scripts/network_device_info: Set the driver version to 'Unknown' if the
+    modinfo_parser returns nothing (LP: #1089911)
+  * scripts/kvm_test: Add verbose output on errors (LP: #1086048)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 16 Nov 2012 12:14:21 -0500
+
+checkbox (0.14.10) quantal; urgency=low
+
+  [Jeff Marcom]
+  * jobs/keys.txt.in - Fixed job command line to have appropriate volume "Up"
+    and Volume "Down" UI instructions.
+
+  [ Jeff Lane ]
+  * Increased version number after final Ubuntu Quantal release.
+
+  [Brendan Donegan]
+  * jobs/suspend.txt.in - make sure FWTS logs end with .log so file names
+    don't get tampered with (LP: #1065932)
+  * plugins/launchpad_exchange.py - Remove call to string_to_type on
+    self.timeout, which is an int (LP: #1066967)
+  * checkbox/lib/templates.py, jobs/resources.txt.in, jobs/wireless.txt.in,
+    jobs/suspend.txt.in - Don't try and coerce keys of resource jobs to
+    lowercase, as it upset the core of Checkbox (LP: #1067280)
+  * jobs/suspend.txt.in - created new batch of wireless tests depending only on
+    suspend_advanced so that they will run in manual testing (LP: #1067678)
+  * jobs/suspend.txt.in - Let suspend_advanced only depend on
+    power-management/rtc (LP: #1067692)
+  * scripts/resolution_test - Slightly clarify output of script so that it's
+    a bit more obvious why it failed (LP: #1065976)
+  * Allow verification and interaction to be used as aliases for manual tests
+    so that we can distinguish between tests which are partly manual and
+    those which are entirely manual.
+  * plugins/launchpad_exchange.py - make sure exchange-error signal is sent
+    with a string instead of an Exception (LP: #1066862)
+  * scripts/network_check - Get the base page for cdimage.ubuntu.com instead
+    of some subdirectory which may or may not change in future (LP: #1065855)
+  * scripts/internet_test - Wait some time (ten seconds) for the ARP cache to
+    be populated, as it can be slow on some systems
+  * Change the plugin types verification and interaction to user-verify and
+    user-interact, to clarify their meaning.
+  * Added a unit test to ensure user-verify and user-interact jobs
+    have a command
+  * Change most of the job plugin fields to use the appropriate new plugin type,
+    i.e. user-verify or user-interact.
+  * scripts/audio_settings - Use pactl instead of pacmd where possible as it
+    is better maintained than pacmd (LP: #1067026)
+  
+  [Daniel Manrique]
+  * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
+    parameters in string, applied pep8 fixes.
+  * checkbox-cli progress indicator is now static, spinning around instead of
+    filling the screen with dots. (LP: #926104)
+  * Increased version number after final Ubuntu Quantal release.
+  * Added environment resource to whitelists (LP: #1067038)
+  * Added retrying pactl commands in case audio layer is not up yet
+    (LP: #1065908)
+  * Removed references to inexistent opts.verbose setting (LP: #1070829)
+  * Added unit test to catch jobs with mismatching environ and actual
+    variables used in shell command (LP: #955053)
+  * Forced utf-8 decoding on modinfo output and updated to use check_output
+    instead of communicate (LP: #1055730)
+
+  [Marc Tardif]
+  * plugins/environment_info.py: Enabling environment to take precedence
+    over configuration files.
+  * setup.py: added support for installing in virtualenv
+  * setup.py: made build dependency on qt4-make optional
+  * debian/control: Added python3-gi to run checkbox-qt.
+  * jobs/input.txt.in, jobs/touchpad.txt.in: Added input/pointing tests
+    and simplified horizontal/vertical scrolling tests.
+  * scripts/touchpad_scroll_resource, scripts/xinput_resource: Replaced
+    the touchpad_scroll_resource by reusing the xinput_resource script.
+  * plugins/error_prompt.py: Fixed call to show_error (LP: #1075605)
+
+  [Sean Feole]
+  * [FEATURE] jobs/optical.txt.in: modified existing automation test
+    jobs. Added a _description field to each so that the test cases properly
+    appear in the checkbox UI (LP: #1064189)
+
+  [Sylvain Pineau]
+  * [FEATURE] scripts/network_restart, jobs/stress.txt.in: Added a new stress
+    test: network restart.
+  * debian/control: Fixed a missing dependency (python3-pkg-resources) to build
+    the package (LP: #1066502)
+  * jobs/stress.txt.in: stress/sdhc now launches removable_storage_test with
+    --memorycard. stress/sdhc and stress/usb run with root privileges to mount
+    all partitions (LP: #1065862)
+  * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
+  * jobs/power-management.txt.in: Fixed path to the /proc acpi lid button
+    (LP: #1068799)
+  * scripts/fwts_test: Properly handle UnicodeDecodeError when parsing syslog
+    (LP: #1075080)
+  * scripts/camera_test: Fix the camera resolution test to give the pixelformat
+    to use with fswebcam (LP: #1073176)
+  * checkbox/parsers/udevadm.py: Enhanced bluetooth detection by looking at the
+    RFKILL_TYPE property (LP: #1075052) 
+
+  [Zygmunt Krynicki]
+  * scripts/removable_storage_watcher - properly detect removal of 'firewire',
+    'usb' and 'sdio devices' when either or both 'ata_serial_esata' or 'scsi'
+    were provided on command line, in addition to the device actually being
+    manipulated. (LP: #1066948)
+  * checkbox/dbus/udisks2.py: Fix typo in fireware name LP: #1070859
+  * scripts/udev_resource: Use simpler interfaces
+  * checkbox/parsers/udevadm.py: Allow using UdevadmParser with a string
+  
+  [Jeff Lane]
+  * scripts/sleep_test - Added timeing code to create start/end markers in
+    for each sleep/resume iteration.  Pull kernel timestamps to determine the
+    time to sleep and time to resume for each iteration.  Output the times for
+    each iteration and an average time for all iterations.  Tweaks to output to
+    make it all look better. Verified perf code doesn't run on S4 tests.
+    scripts/fwts_test - Added similar performance code to fwts_test.  Added
+    sleep test functions to fwts_test to provide the ability to run sleep tests
+    via fwts using the wrapper.  Tweaked the output to make it pretty. Added
+    some code to prevent the perf stuff from running on S4 tests.
+    jobs/suspend.txt, jobs/stress.txt, jobs/hibernate.txt - modifed jobs to use
+    the shell code to call fwts_test if fwts is installed and fall back to
+    sleep_test otherwise.  Modifed the commands so that they all call fwts_test
+    rather than fwts directly.  Ensured all are calling with the proper
+    options. Fixed log name problems that caused log attachment jobs to not
+    work.
+  * checkbox/parsers/modinfo.py - added exception handling to address possible
+    bad output from modinfo causing a ValueError to occur. (LP: #1066118)
+  * [FEATURE] jobs/expresscard.txt.in - renamed pcmcia-pcix.txt to
+    expresscard.txt.
+    renamed pcmcia-pcix/detect to expresscard/verification. Modified
+    instructions slightly.
+    data/whitelists/default.whitelist - modified list to reflect new
+    expresscard test name.
+    jobs/local.txt.in - changed __pcmcia-pcix__ job to reflect changes to the
+    job name
+    qt/frontend/qtfront.cpp - modified the list of testnames to reflect changes
+    to the expresscard test
+    setup.cfg - modified the list of job files since I renamed pcmcia-pcix.txt
+  * scripts/sleep_test, scripts/fwts_test - removed the code that triggered a 
+    fail if the system took too long to sleep or resume. Also removed the 
+    options to set sleep or resume time from sleep_test as they were no longer 
+    necessary.
+    jobs/hibernate.txt.in, jobs/suspend.txt.in, jobs/stress.txt.in - added
+    environ: to the sleep jobs so the logs would be written properly. Modified
+    suspend jobs to also write output to log files so we can capture timing
+    data. Added jobs to parse the new sleep times logs and faile if outside the
+    threshold.
+    scripts/sleep_time_check - added script to check the logs generated by
+    the sleept tests and fail if the average times exceed a given threshold
+    po/POTFILES.in - changed the pcmcia-pcix.txt.in pointer to expresscard.txt.in
+  * removed xorg_memory_test and graphics/xorg-memory as the test produces no
+    real benefit and fails about 100% of the time. (LP: #764376)
+  * scrips/volume_test - script now only fails if volume is greater than maxvol or
+    less than minvol, not when equal to either. (LP: #1077008)
+  * Added root user requirement to all jobs using removable storage test 
+    (LP: #1014813)
+  * scripts/alsa_info - updated script to latest version available 
+    (LP: #1078837) 
+  * jobs/mediacard.txt.in - fixed the depends for all *remove* mediacard tests
+    to more properly depend on the insert tests rather than storage.
+    (LP: #1070328)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 15 Nov 2012 10:50:03 -0500
+
+checkbox (0.14.6) quantal; urgency=low
+
+  [Chris Wayne]
+  * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
+    adding in touchpad scroll detection resource job, and modified jobs
+    to require the capability to be present.
+
+  [Jeff Lane]
+  * Cleaning up duplicated modinfo code: (LP: #1043521)
+    * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
+    * scripts/audio_driver_info: modified to use modinfo parser
+    * scripts/network_device_info: modified to use modinfo parser
+    * scripts/accelerometer_test: modified to use modinfo parser
+  * Cleaning up missing touchpad driver info bits: (LP: #1052942)
+    * scripts/touchpad_driver_info: added script from automation sprint to get
+      driver info for installed/detected touchpad devices
+    * jobs/info.txt.in: added job to get driver info during info job phase.
+      Moved audio_driver_info and network_driver_info into info.txt.in because
+      they are better suited there. Moved network_device_info job into
+      info.txt.in.
+  * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
+    connections. This is necessary for adequate QA testing (LP: #1042425)
+  * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
+    exception on hybrid systems (LP: #1048058)
+  * setup.py: added checkbox.dbus to packages (LP: #1052601)
+  * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
+    as it was redundant (LP: #868643)
+  * [FEATURE] jobs/fingerprint.txt.in: Cleaned up the definitions to
+    match current Unity (LP: #946184)
+  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests
+    with usb/HID to combine them so the tester can choose one device rather
+    than requiring multiple devices. (LP: #1053032)
+  * [FEATURE] jobs/keys.txt.in: modified the battery info key job to
+    use the keys_test script as we do with other hotkey tests (LP: #990538)
+  * [FEATURE] jobs/bluetooth.txt.in: removed the bluetooth/keyboard job
+    and modified bluetooth/mouse to be bluetooth/HID and allow the tester
+    to choose a device to use. (LP: #1053010)
+  * jobs/piglit.txt.in: fixed the texturing job that was incorrectly using the
+    word texturize, causing the tests to not run (LP: #1060432)
+
+  [Jeff Marcom]
+  * jobs/optical.txt.in: Changed optical read/write job commands to use
+    a more reliable dev path (LP: #990560)
+  * Fixed bug where previous test description and instructions were displayed
+    while an automated test was running (LP: #1012377)
+
+  [Daniel Manrique]
+  * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
+    daily build recipe.
+  * scripts/audio_settings: Added exception handlers to catch problems with
+    unwritable or absent settings files (LP: #1041644) (LP: #1041340)
+  * Ensured that strings passed to qtiface.showError via dbus are strings,
+    and not NoneType as could happen under certain circumstances.
+    (LP: #1032337)
+  * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
+  * scripts/graphics_driver, scripts/color_depth_info: Added ignoring
+    possible invalid characters in Xorg logfiles (LP: #1048096)
+  * scripts/audio_test: made the default mode verbose, it now sends all
+    output to stderr (but still exits a proper return value). Jobs using it
+    are updated to remove the now-unneeded -v parameter.
+  * Added tests to ensure all job files are declared in setup.cfg,
+    po/POTFILES.in and included in jobs/local.txt.in. (LP: #1052986)
+  * setup.cfg, po/POTFILES.in, jobs/local.txt.in: Fixed so the tests pass.
+    (LP: #1052986)
+  * [FEATURE] checkbox/tests/message_files.py: Added a test to validate
+    that all shell jobs have descriptions (LP: #1052992).
+  * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
+    description (LP: #1052992).
+  * Added consecutive numbering to messages sent to the backend, so the
+    frontend knows to discard out-of-sequence messages. (LP: #886118)
+  * [FEATURE] Added a test to verify that jobs contain only keys
+    declared in the schema (avoid stray keys).
+
+  [Alberto Milone]
+  * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
+    window_test to open and close 3D windows in various conditions for
+    graphics testing. Added three new window_test based jobs to graphics.txt.in.
+  * [FEATURE] scripts/graphics_stress_test, jobs/stress.txt.in: Added script to
+    do some graphics stress by ensuring the graphics system continues to
+    function after several iterations of: switching VTs, suspend/resume, screen
+    rotation and running the rendercheck graphics suite.
+
+  [Marc Tardif]
+  * scripts/touchpad_scroll_resource: Added support for systems without
+    a touchpad (LP #1045066)
+  * [FEATURE] scripts/xinput_resource, checkbox/parsers/xinput.py: Xinput
+    resource script to test multitouch devices.
+  * patch/0.14.2: Fixed patch to rmtree instead of rmdir scripts directory.
+  * [FEATURE] debian/checkbox.templates, debian/checkbox.config: Added support to
+    preseed properties in environment_info plugin.
+  * [FEATURE] qt/frontend/qtfront.ui: Fixed warnings when building with
+    qtcreator (LP #1053126)
+  * setup.py: Fixed required dependency on distutils-extra by providing
+    fake implementations of build_i18n and build_icons (LP #1049218)
+  * checkbox/parsers/description.py: Fixed the PURPOSE and STEPS parts
+    of the description parser to automatically fix bad descriptions.
+  * plugins/suites_prompt.py: Fixed tree view in selection window (LP #1056432)
+  * [FEATURE] tools/lint: Added script to consistently check syntax.
+  * plugins/apport_prompt.py: Removed apport plugin that caused crashes
+    when trying to send bug report (LP #1047857)
+  * jobs/optical.txt.in: Fixed missing category assignment in optical
+    dvd write tests (LP: #1057762)
+  * [FEATURE] jobs/touchpad.txt.in, jobs/touchscreen.txt.in: Added singletouch
+    and multitouch for touchpads and touchscreens.
+  * Cleaning up test modules.
+  * Removed package.name == 'linux' only needed by the apport_prompt plugin.
+
+  [Sean Feole]
+  * [FEATURE] scripts/battery_test: measures battery capacity before and after
+    an activity and determines battery life at the rate of drain.
+    jobs/power-management.txt.in: added two manual tests to ask the user to
+    unplug and then re-plug the laptop so that three new automated battery
+    drain tests can run:
+   * power-management/battery_drain_idle
+   * power-management/battery_drain_movie
+   * power-management/battery_drain_sleep
+
+  [Brendan Donegan]
+  * [FEATURE] Add environment_info plugin which sets environment variables
+    according to the values set in the plugin via Checkboxes INI files.
+  * [FEATURE] Added semi-automated wireless tests which require only a single
+    router to run, prompting the user to modify the routers config during 
+    the test.
+  * [FEATURE] Added semi-automated wireless after suspend tests to suspend.txt.in,
+    since they were missed in the previous merge    
+  * Attach the output of udev_resource, for debugging purposes (LP: #974271)
+  * Make audio_settings before/after suspend tests more robust by not requiring
+    every little audio setting to be the same before and after suspend, just
+    the major ones such as the current source/sink and the mute/volume settings
+    on them (LP: #1043144)
+  * Remove default value from windows_number argument since the logic following
+    it dictates that it's only valid for certain tests (LP: #1047621)
+  * scripts/frequency_governors_test - Ensure that check for difference in
+    expected and actual speedup only fails if the actual speedup is less than
+    the expected speedup (LP: #999547)
+  * jobs/cpu.txt.in, jobs/stress.txt.in - add environ field containing
+    CHECKBOX_DATA to allow that environment variable to be used in the command
+    (LP: #1049595)
+  * jobs/wireless.txt.in - replace use of network_wireless_test in wireless_scanning
+    with a simple Bash script using nmcli and delete network_wireless_test (LP: #900370)
+  * jobs/audio.txt.in - fix description of audio/playback_hdmi (LP: #1052136)
+  * [FEATURE] plugin/environment_info.py - allow BT device address to be set
+    in the checkbox.ini file to facilitate self-testing
+  * [UIFe] qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp - set focus to Continue
+    button and make it the default so that it can be 'clicked' using Enter,
+    as well as renaming it to 'continueButton' (LP: #1052506)
+  * jobs/keys.txt.in, scripts/key_test - Fix keys/battery test to have correct
+    fields and tidy up pep8 violations in key_test script (LP: #1054410)
+  * [FEATURE] jobs/power-management.txt.in, jobs/touchpad.txt.in,
+    jobs/sniff.txt.in - Fix incorrect formatting of job descriptions to
+    allow steps to be displayed by the UI (LP: #1054208)
+  * jobs/usb.txt.in - Fix dependencies of USB tests so that things work properly if
+    the usb/storage-automated test fails (LP: #987876)
+  * Remove networking/bandwidth job since it is not useful (LP: #1009658)
+  * scripts/network_info - add exception handling to file reading so that
+    sensible values are given if the required file cannot be read (LP: #823606)
+  * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
+    to avoid invalid characters ending up in the submission.xml (LP: #1060332)
+  * scripts/network_reconnect_resume_test - map reconnect time strings to float
+    that they can be used in calculations later on (LP: #1064385)
+  * scripts/network_reconnect_resume_test - convert map of reconnect times into
+    a list in order to check if the list is empty (LP: #1064425)
+ 
+  [Sylvain Pineau]
+  * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
+    calling fwts with the live CD (LP: #1045687)
+  * qt/frontend/qtfront.ui: Fixed the test purpose widget size to allow two
+    lines of description (LP: #1032255)
+  * qt/frontend/qtfront.ui: Fixed the progressLabel widget size to support job
+    names > 50 chars (LP: #1046274)
+  * scripts/camera_test, jobs/camera.txt.in: Added a 10s timeout to the camera
+    still test (LP: #990133)
+  * scripts/graphics_stress_test, scripts/rendercheck_test, jobs/stress.txt.in: 
+    Exit with proper error message if rendercheck is not installed.
+    (LP: #1048262)
+  * [FEATURE] jobs/suspend.txt.in: Add usb wakeup tests (mouse and keyboard).
+  * setup.py, qt/checkbox-qt.ui: Removed the old UI design file (LP: #1049912)
+  * [FEATURE] jobs/rendercheck.txt.in, po/POTFILES.in, setup.cfg: Fixed
+    the rendercheck tests, added the suite file to setup.cfg/POTFILES.in
+    and moved the rendercheck/tarball job into an attachment (LP #1053033)
+  * scripts/optical_write_test: Filter ANSI escape char outputed by wodim 
+    (LP: #1052803)
+  * checkbox/parsers/udevadm.py: Improved wireless devices detection.
+    The wireless category is now set if the subsystem is equal to ieee80211 
+    (LP: #855382)
+  * scripts/memorycard_resource, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Fixed the memorycard regexp flags and 
+    add the DriveVendor Udisks property to the re.search() string (LP: #1050920)
+  * scripts/display_resource, jobs/resource.txt.in: Added a new display 
+    resource script to properly handle connector names returned by proprietary
+    drivers (LP: #956139 and #992727)
+  * debian/control, jobs/esata.txt.in, jobs/firewire.txt.in, jobs/usb.txt.in,
+    jobs/mediacard.txt.in: Remove udisks package references in all of the jobs
+    that use removable_storage scripts (LP: #1059620)
+  * scripts/graphics_driver: Added NVIDIA driver detection (LP: #1060211)
+  * [FEATURE] jobs/mediacard.txt.in: Added SDXC, MS, MSP and XD memory card
+    tests.
+  * setup.py: Add the missing checkbox.heuristics module (LP: #1064220)
+  * scripts/pts_run: Force pts_run to exit on errors as phoronix-test-suite
+    always exits with success (LP: #1061297)
+  * [FEATURE] jobs/keys.txt.in: Added video-out and touchpad keys tests.
+  * [FEATURE] jobs/keys.txt.in, jobs/led.txt.in, jobs/suspend.txt.in: Provide
+    leds and special keys tests after suspend. Volume and Mute key tests now
+    use the key_test script. Fix steps numbering for led/wireless.
+
+  [Zygmunt Krynicki]
+  * Fixed simple duplicate 'the' mistakes (LP: #1040022)
+  * Fix incorrect debconf template description for 802.11n open access point
+    SSID (LP: #1049563)
+  * Add new utility, scripts/udisks2_monitor, for looking at various storage
+    changes interactively
+  * Make scripts/removable_storage_watcher {insert,remove} properly validate
+    the 'device' argument (bus type) and require at least one value
+  * [FEATURE] scripts/removable_storage_watcher: add support for debugging
+
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 02 Oct 2012 16:21:12 -0400
+
+checkbox (0.14.5) quantal; urgency=low
+
+  [Sylvain Pineau]
+  * New version 0.14.5 for Quantal Quetzal development.
+  * jobs/virtualization.txt.in, scripts/kvm_test, jobs/miscellanea.txt.in,
+    setup.cfg: Added a new KVM test to ensure that a VM boots and works
+    properly with KVM.
+  * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
+    script docstrings from Flash to HTML5 video playback.
+  * [FEATURE] scripts/removable_storage_test, scripts/removable_storage_watcher,
+    jobs/mediacard.txt.in: Added memory cards detection (on bus other than sdio)
+    and a new automated (based on usb/storage-pre-inserted) for SD cards.
+
+  [Jeff Marcom]
+  * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
+    oem manufacturer info, and cleanup up job step formatting.
+  * /jobs/touchpad.txt.in: Fixed instruction steps for manual touchpad horizontal 
+     and vertical tests.
+  * scripts/audio_settings, jobs/audio.txt.in: Added automated switch to 
+    HDMI interface, modified corresponding jobs file..
+  * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
+    and instead only return the exit code for the appropriate audio test.
+  * scripts/audio_settings: Added automated switch to restore previous 
+    audio profile setting
+
+  [ Daniel Manrique ]
+  * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
+  * jobs/resource.txt.in: Added usb resource that indicates which versions of
+    the protocol are supported (currently only reports for USB 2.0 and 3.0).
+  * scripts/removable_storage_watcher, scripts/removable_storage_test: Added
+    a parameter to specify minimum speed to accept a device, and a parameter
+    to fail removable_storage_test if the transfer speed is below a threshold.
+  * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
+    device is inserted/removed/tested.
+  * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
+  * [FEATURE]: qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
+    buttons with radiobuttons,  made comment area always visible, and added
+    keyboard shortcuts.
+  * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
+
+  [ Jeff Lane ]
+  * scripts/removable_storage_test (total overhaul):
+    * Added --iterations option, now you can run -i iterations of -c files of
+      -s size.
+    * Added RandomData class to generate test files using a much faster method.
+    * Replaced copy_file() with file_write() and file_read() to take advantage of
+      buffer flushing and fsync() opeations not available to shutils/copy2.
+    * Redid the runtime bits of main() so now for every device found, it runs I
+      iterations of C files.
+    * Redid output so now you get an avg write speed per iteration and a summary
+      at the end of all iterations for each device.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
+  * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
+    of removable_storage_test
+  * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
+  
+  [Matt Fischer]
+  * scripts/audio_driver_info: added script to find info on loaded drivers
+    jobs/audio.txt.in: added automated job to determine audio drivers loaded
+    jobs/networking.txt.in: added a requires on networking/info for
+    module-init-tools package.
+    scripts/volume_test: cleanup and fixing a small issue
+  * scripts/network-device-info: fixed a problem with output causing a
+    traceback and a problem where modules with improper modules field causes
+    problems. (LP: #1042395)
+    jobs/networking.txt.in: added requires for pciutils for the above bugfix
+
+  [Alberto Milone]
+  * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
+    rendercheck test suites.
+    [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
+    script.
+    [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
+  * checkbox/contrib/gdk.py: removed legacy code and used python 3.
+  * scripts/rotation_test:
+    * Made sure to report all failures, not only the first.
+    * Made it look more pythonic.
+    * Fixed issues with python 3 and used python 3.
+  * checkbox/contrib/xrandr.py:
+    * Fixed issues with python 3 and used python 3 (LP: #1043155).
+
+  [Sean Feole]
+  * scripts/network-reconnect-resume-time: fixed the wifi-reconnect-resume-time
+    script to also check wired connections for completeness (LP: #1042391)
+
+  [Chris Wayne]
+  * [FEATURE] Added oem_config_test, related jobs and data files
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 30 Aug 2012 12:45:49 -0400
+
+checkbox (0.14.4) quantal; urgency=low
+
+  * New upstream release (LP #1039094):
+
+  [ Daniel Manrique ]
+  * New version 0.14.4 for Quantal Quetzal development.
+  * Added new audio_test and test definitions.
+
+  [Jeff Lane]
+  * jobs/esata.txt.in: added tests for removable eSATA drives
+    scripts/removable_storage_test: added support for ata_serial_esata devices
+    scripts/removable_storage_watcher: added support for ata_serial_esata
+    devices
+  * scripts/optical_write_test: changed behaviour to timeout after 5 minutes
+    rather than a few seconds to give testers a chance to complete the test
+    without having to sit on top of the machine waiting. If tester doesn't hit
+    itself and proceed.
+    jobs/optical.txt.in: Cleared up text in the existing manual optical write
+    tests and added two automated tests that can be used if desired (they still
+    require the user to push the tray in after writing, but eliminate other
+    steps)
+  * scripts/graphics_driver: Added this script based to parse Xorg.0.log and
+    discover the currently running graphics driver and driver version
+    jobs/graphics.txt.in: Added a new job to take advantage of the
+    graphics_driver script.
+    data/whitelists/default.whitelist: Added the graphics_driver job to the
+    default whitelist because this would be good data to gather for UF and
+    doesn't cost much
+  * scripts/graphics_driver: Merged Alberto Milone's work on a
+    hybrid_graphics_test into graphics_driver as his stuff and my stuff were
+    similar enough to be in the same script, plus this allows the advantage of
+    using Bryce Harrington's xorglog library down the road.
+  * scripts/removable_storage_test: removed a lot of unnecessary output to
+    clean up the test run and also added in some basic performance monitoring.
+
+  [Sylvain Pineau]
+  * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
+    section.
+  * jobs/benchmarks.txt.in, scripts/wifi_time2reconnect: Add a test to monitor
+    the time needed to reconnect to a WIFI access point.
+  * jobs/cpu.txt.in: Added a check for ARM Vector Floating Point Unit support.
+  * jobs/touchscreen.txt.in: Add 3 new manual tests (tap-detect, drag-n-drop and
+    multitouch-zoom)
+  * jobs/audio.txt.in: Added a test that verifies that the various audio 
+    channels are working properly.
+  * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
+    in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
+  * jobs/led.txt.in, jobs/local.txt.in, scripts/led_hdd_test.py: Add LED
+    tests.
+  * jobs/suspend.txt.in: Resurrect scripts/sleep_test as a fallback of fwts for
+    the suspend/suspend_advanced test.
+
+  [Brendan Donegan]
+  * scripts/audio_settings: Converted script from Perl to Python(3), putting 
+    it in line with approved technology guidelines
+  * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
+    instead of piping to STDOUT.
+  * Prettify the Step icons that appear next to each test step in the test run
+    screen (LP: #1036085)
+  * Remove the 'Don't show this message on startup' checkbox from the
+    introduction screen, since it isn't used (LP: #1036218)
+  * Continue to run the progress bar when the test dependencies are being
+    resolved so that it doesn't look like the UI hung (LP: #1036573)
+  * Remove gcov_attachment from default whitelist since it depends on lcov
+    which is not in the default install, and is not used anyway.
+  * Better feedback from resolution_test script. Display the expected and
+    detected resolution values.
+
+  [Nathan Williams]
+  * scripts/network_check: Fixed exception handling in the absence of zenity
+    (LP: #988260)
+
+  [Samantha Jian]
+  * Added disk spindown test script and definition.
+  * Added support for BT devices on PCI bus. (LP: #1036124)
+
+  [Jeff Marcom]
+  * Added Accelerometer test.
+  * scripts/gst_pipeline_test, jobs/audio.txt.in: Added device sink check
+
+  [Matt Fischer]
+  * Added test to check that volume is within acceptable range and audio
+    elements are not muted.
+  * scripts/camera_test: added the resolutions option to take sample pictures
+    in all resolutions supported by the specified webcam
+    jobs/camera.txt.in: added the camera/multiple-resolution-images test which
+    utilitizes the changes to the camera_test script 
+
+  [Alberto Milone]
+  * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
+    checkbox/contrib/xrandr.py: Added library for manipulating graphics
+    settings similar to how xrandr does it.
+    scripts/brightness_test: Added automated test to verify that backlight
+    settings are properly honored
+    scripts/color_depth_info: Added script to get info on color depth and pixel
+    format
+    scripts/graphics_modes_info: Added script to gather info on the supported
+    graphics modes available
+    scripts/rotation_test: Added script to automate screen rotation testing
+    jobs/graphics.txt.in, jobs/monitor.txt.in: Added jobs to take advantage of
+    the new scripts added to Checkbox
+
+  [ Sean Feole ]
+  * scripts/wifi_reconnect_resume_test, jobs/wifi_resume_time added.
+  * Fixed an output issue in scripts/wifi_reconnect_test that was not handled
+    in the original merge. Also tweaked error messages to be more useful.
+
+  [Chris Wayne]
+  * Added in bluetooth_test and related jobs for automated bluetooth
+    testing
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 16:47:08 -0400
+
+checkbox (0.14.3) quantal; urgency=low
+
+  * New upstream release (LP: #1033652)
+
+  [Benjamin Kerensa]
+  * Changed description of PCMCIA/PCIX to PCMCIA/ExpressCard since PCIX
+    generally applies to servers (LP: #992249) 
+
+  [Brendan Donegan]
+  * Removed call to unlink temporary file in Html5Thread part of gpu_test.
+    Also addressed a few pyflakes complaints and removed a stray print.
+  * Include block device name in fields of block_device resource
+    output. This will prevent different block device fields from being
+    confused with each other (LP: #1027849)
+  * Fix apport_prompt.py so it properly checks the value in
+    /etc/default/apport (LP: #1029897)
+  * Initially disable the 'Run' tab in the Qt UI, re-enabling it when the
+    'Start Testing' has been clicked (LP: #1029815)
+  * Put Component and Status into one tree view on the selection screen,
+    rather than two seperate ones (LP: #1030871)
+  * Disable the Select All and Deselect All buttons in the selection
+    view during testing (LP: #1032259)
+
+  [Daniel Manrique]
+  * New version 0.14.3 for Quantal Quetzal development.
+  * alsa_info is invoked with --no-dialog, otherwise if dialog is installed
+    it results in invalid data in the submission file and results.
+    (LP: #1028065)
+  * Instruct Chromium browser to accept file:// URLs so it can correctly
+    open the checkbox submission.xml report (LP: #1026614)
+  * scripts/gconf_resource: decode gconf output as utf-8 rather than ascii
+    (LP: #1022593)
+  * jobs/user_apps.txt.in: Quicktime test now depends on gstreamer0.10-ffmpeg
+    to ensure it's able to play .mov files (LP: #633009)
+  * scripts/network_check: InvalidURL exception is caught and handled more
+    cleanly (LP: #751701)
+  
+  [Sylvain Pineau]
+  * jobs/usb.txt.in, scripts/disk_read_performance_test: Add a USB3 read
+    performance test.
+    scripts/block_device_resource: Add the maximum usb specification supported
+    by both a block device and the corresponding root hub port.
+  * qt/frontend/qtfront.ui, qt/frontend/images/checkbox-qt-head.png: 
+    Add transparency properties to the main window header to keep the main theme
+    colors in the widget background (LP: #1030857)
+
+  [Jeff Marcom]
+  * Added timeout to job call for disk smart test.
+
+  [Marc Tardif]
+  * Escaping encoded strings in udevadm output (LP: #1025381)
+
+  [Jeff Lane]
+  * jobs/cpu.txt.in: added a depends to cpu/scaling_test-log-attach to ensure
+    that job does not run until afte cpu/scaling_test (LP: #1031994)
+  
+  [Matt Fischer]
+  * scripts/network_device_info: added a check to ensure what lspci reports and
+    what NetworkManger reports (if it is installed) are the same. Reports more
+    useful info now like driver and driver version, IP address, etc.
+  * scripts/cycle_vts: added checks to fail test if chvt returns a non-zero
+    exit code. Added a final check at the end to verify we did land back on the
+    original VT after testing.
+    jobs/miscellanea.txt.in: fixed a typo in the chvt job. It used to reqire
+    'package.alias' instead of 'package.name'
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 06 Aug 2012 09:26:41 -0400
+
+checkbox (0.14.2) quantal; urgency=low
+
+  * New upstream release (LP: #1025869)
+
+  [Jeff Marcom]
+  * scripts/gpu_test - Fixed potential thread exiting issue.
+
+  [Javier Collado]
+  * Fixed detection of circular references in resolver.
+
+  [Jeff Lane]
+  * New version 0.14.2 for Quantal Quetzal development.
+  * jobs/cpu.txt.in: added cpu_scaling_test log attachment job
+  * jobs/disk.txt.in: modified block_device requirements so they'll work right
+    jobs/info.txt.in: added block_device resource requirements to hdparm job so
+    it won't run on removable stuff where it's not necessary.
+  * jobs/info.txt.in: removed extraneous fwts_log job
+    jobs/miscellanea.txt.in: modified fwts_results.log job
+  * scripts/optical_detect: minor tweak to send error output to stderr
+    scripts/optical_read_test: added root user check because this needs to be
+    run with root privileges. Added some additional output for stderr for
+    failures so we will know WHY a test or the script failed. Replaced 
+    sys.stdout.write() and flush() calls with simple print statements.
+  * scripts/ipmi_test: output tweaks so error messages now go to stderr. No BMC
+    message is a little more clear. Module failed to load now generates an
+    error rather than a simple exit.
+  * scripts/network_device_info: minor change so that the fail message now
+    specifies that it was an error and outputs to stderr properly.
+  * scripts/disk_smart: Improvements to the logging and output during testing.
+  * scripts/cpu_scaling_test: lots of output changes using logging module.
+    renamed script to frequency_governors_test to be more descriptive and less
+    confusing. Added a --log option to write logs to an actual file
+    jobs/cpu.txt.in: added an attachment job to attach the freq_governors log.
+    Modified cpu/frequency_governors to write to log file
+  * scripts/cpu_offlining: added an extra bit of output in case of failures. 
+  * scripts/fwts_test: improved console output so that the info displayed in
+    submission.xml is more useful.
+    jobs/power-management.txt.in: added job to attach fwts_wakealarm.log to
+    results.
+  * scripts/network_ntp_test: Tweaked output to use log levels more
+    appropriately. Added some decoding so that bytes output show up as strings
+    properly in output. Converted from optparse to argparse. Added a root
+    check because this needs to be root to properly run.
+  * scripts/disk_read_performance_test: Added extra targeted output so that
+    users can understand what's going on. Moved the exit bits so the test will
+    actuall run on multiple drives as originally intended and not exit on the
+    first failure.
+  * scripts/removable_storage_test: vastly improved the output from that script
+    and also introduced some new error handling to cover a couple conditions
+    that generated unhelpful tracebacks.
+  * scripts/memory_compare: changed the output a little so failures now dump
+    data to stderr and success to stdout. Also added a try/except block to
+    catch possible ZeroDivisionError cases if dmi or meminfo return 0 (found on
+    my local system due to a library issue)
+  * jobs/power-management.txt.in: improved rtc and tickless idle tests to
+    provide more useful output, even though they are very simple tests.
+  * jobs/networking.txt.in: added some output to networking/multi_nic so a 
+    failure due to unconfigured ifaces generates something beyond a blank line
+  * scripts/cpu_topology: Changed it so there is less output on success and
+    more useful output on failure. Fixed a bug in the test for Failure that
+    caused the False condition to never be met.
+  * scripts/network_bandwidth_test: fleshed out the output to make it a little
+    more useful in both debug and info levels. Was going to set the
+    networking/bandwidth job to debug, but the info output should now be
+    sufficient to begin diagnosing test failures.
+  * jobs/usb.txt.in: Added output to usb/detect in case no USB controllers are
+    found. Added dependencies on the udisks package which may not be installed
+    by default.
+    debian/control: Added udisks as a suggests for checkbox as it's required
+    for the USB tests to function.
+  * scripts/memory_test: converted from optparse to argparse. Added some extra
+    stderr output that may be useful if this test fails. redirected some
+    existing error messages to stderr also
+  * scripts/disk_stats_test: some minor changes to output. Also, error output
+    now goes to stderr on test failure.
+
+  [Marc Tardif]
+  * Fixed duplicate jobs appearing in the store when rerunning jobs.
+  * Fixed packaging to install scripts under /usr/lib.
+
+  [Daniel Manrique]
+  * Added a message file format test that does some simplistic checks
+    on jobs/* files to ensure they are sane.
+  * Fixed two typos in jobs/suspend.txt.in.
+  * Merging of translations into job files prior to running message 
+    file format test, to further ensure that translated strings
+    and field descriptions are parsed correctly.
+  * Explicit encoding of error strings in Job.execute, so that data returned
+    is consistent and invokers of this method don't choke on it. (LP:
+    #1024541)
+
+  [Brendan Donegan]
+  * Make a call to rfkill unblock in the create_connection script, incase
+    those nasty Broadcom drivers have left a soft-block on the wireless after
+    loading. Also do a bit of refactoring to use check_output and check_call
+    instead of Popen (LP: #1019162)
+  * Move the call to unblock to before the connection is created
+  * Reimplemented memory_compare in python3 and restructured it to put
+    things into dictionaries for easy access. Also fixed bug with detecting
+    non-RAM devices as RAM. (LP: #960087)
+  * Wait longer to get the window handle in gpu_test, so that we don't fall foul
+    of timing issues. (LP: #1018563)
+  * Catch exception raised in memory_compare by DMI RAM entries with No Module
+    Installed in the Size field (LP: #1023220)
+  * Also unblock wireless before wireless_scanning test, as I neglected to do
+    this before. (LP: #1023619)
+  * Replace Flash video playback with HTML5 video playback. This has better
+    support in Ubuntu and is more relevant (LP: #1024078)
+
+  [Sylvain Pineau]
+  * Add the firmware version (BIOS or UEFI) to the XML report.
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Jul 2012 16:26:06 -0400
+
+checkbox (0.14.1) quantal; urgency=low
+
+  * New upstream release (LP: #1018571)
+
+  [Brendan Donegan]
+  * Fixed up a few things with the gpu_lockup tests. Removed depends,
+    renamed to gpu_lockup_suspend to reflect behaviour and removed the
+    requirement on Firefox
+  * Changed suspend_advanced and suspend_advanced_auto to use less
+    strict definition of fwts s3 test.
+
+  [Javier Collado]
+  * Make sure that jobs are topologically ordered (LP: #990075)
+  * Keep job ordering as close to whitelist as possible (LP: #1017951)
+
+  [Marc Tardif]
+  * New version 0.14.1 for Quantal Quetzal development.
+  * jobs/suspend.txt.in: Fixed trailing newline on otherwise empty line.
+  * scripts/run_templates: Fixed calls to Popen to use universal_newlines
+    to return strings instead of bytes (LP: #1018354)
+
+  [Daniel Manrique]
+  * Fixed duplicate suspend/bluetooth_obex_after_suspend job name.
+  * scripts/dpkg_resource: Changed encoding from ascii to utf-8 to handle
+    non-ascii locales (LP: #1018353)
+
+  [Jeff Lane]
+  * Migrated audio/external-HDMI-playback into checkbox. Modified the
+    command to match our other audio tests that save and reset mixer
+    levels.
+
+ -- Javier Collado <javier.collado@canonical.com>  Tue, 26 Jun 2012 16:07:04 +0200
+
+checkbox (0.14) quantal; urgency=low
+
+  New upstream release (LP: #1016746):
+
+  [Brendan Donegan]
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/create_connection - switched to using argparse and fixed
+      representation of octal literal
+    * scripts/internet_test - ran 2to3 tool and decoded result of
+      check_output. Also replaced optparse with argparse
+    * scripts/memory_info
+    * scripts/removable_storage_test - ran 2to3 tool and fixed some
+      encoding issues
+    * scripts/removable_storage_watcher - ran 2to3 tool and swapped
+      use of gobject with gi.repository.GObject
+    * scripts/xrandr_cycle - ran 2to3 tool and fixed encoding issue
+    * scripts/obex_send - ran 2to3 tool and swapped
+      use of gobject with gi.repository.GObject
+  * Update touchpad.py to use gsettings instead of deprecated gconf
+    (LP: #1004212)
+  * Instead of checking output of nmcli con up in create_connection,
+    check the return code is success instead (LP: #1013537)
+  * base64 encode the after suspend screenshot attachement so that it can
+    be uploaded properly (LP: #1016126)
+  * Fixed simple type in xorg_memory_test, introduced by Python3
+    conversion (LP: #1016387)
+  * [FEATURE] Add suspend/bluetooth_obex_after_suspend_auto test to be
+    used during fully automated SRU testing
+
+  [Marc Tardif]
+  * [FEATURE] Reworked media_keys_test into key_test, making it more generic
+    and able to test for any key that sends an scancode. Used it to implement
+    a test for the Super key.
+  * [FEATURE] Added new interactive and auto-verifying touchpad scrolling
+    test.
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/ansi_parser
+    * scripts/cking_suite
+    * scripts/floppy_test
+    * scripts/network_bandwidth_test
+    * scripts/cpu_scaling_test
+  * Removed sleep_test script no longer used by any test definition.
+  * [FEATURE] Deprecated scripts:
+    * scripts/autotest_filter and scripts/autotest_suite
+    * scripts/ltp_filter and scripts/ltp_suite
+    * scripts/mago_filter and scripts/mago_suite
+    * scripts/qa_regression_suite
+
+  [Daniel Manrique]
+  * New version 0.14 for Quantal Quetzal development.
+  * Set the correct user (root) for fwts-wakealarm test (LP: #1004102)
+  * Set correct user (root) for usb/storage-preinserted, so it works correctly
+    on servers (LP: #1004131)
+  * Log (at level INFO) name of each message we execute, so the currently
+    running job can be determined by looking at the logfile, rather than
+    hunting through process lists.
+  * [FEATURE] Added script and jobs to collect and attach output from
+    alsa-info.sh.
+  * Assume utf-8 encoding always, when opening template files.
+    (LP: #1015174)
+  * [FEATURE] Replaced the context menu in the selection tree with explicit
+    "select/deselect all" buttons.
+
+  [Javier Collado]
+  * Submission screen in Qt interface updated to support certification client:
+    - customize contents depending on the upload target (launchpad or certification)
+    - display links to the report properly in the show_entry method
+  * Fixed qt interface show_entry method preopulates widget that gets
+    user input (LP: #1000451)
+  * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
+  * show_error method shows long text properly in gtk/qt interfaces (LP:
+    #1012052)
+
+  [Jeff Lane]
+  * [FEATURE] Changes to Power Management testing in Checkbox:
+    * scripts/pm_test: added a slightly modified version of OEM team's pm.py
+      script for reboot/poweroff testing
+    * jobs/hibernate.txt.in: modified hibernate test to use fwts and added new
+      jobs to attach log files from hibernate testing.
+    * jobs/power-management.txt.in: added new poweroff and reboot jobs using pm_test
+      script. Added jobs to attach logs from reboot and poweroff tests to
+      results.
+    * jobs/stress.txt.in: modified suspend_30_cycles and hibernate_30_cycles to
+      use fwts. Added jobs to attach logs from 30 cycle tests to results.
+    * jobs/suspend.txt.in: Modified suspend_advanced and suspend_advanced_auto to use
+      fwts. Added job to attach log from suspend_advanced and suspend_advanced_auto
+      to results.
+  * [FEATURE] jobs/miscellanea.txt.in: added a job to gather tester info for
+    certification purposes. Not to be used for UF.
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/cpu_topology: ran 2to3, made modificates based on code review and
+      tested script to verify functionality.
+    * scripts/disk_smart: ported to Python 3. Inserted bits to decode byte
+      data returned by Popen. Fixed list_handler to decode bytes types to clean
+      up debug output.  Added bits to improve debug output. Migrated from
+      optparse to argparse.
+    * scripts/network_check: ran 2to3 and that was all that was needed. Also
+      took the liberty of migrating from optparse to ArgParse sine we're
+      Python3 only now.
+    * scripts/network_device_info: ran 2to3 and changed shebang.
+    * scripts/network_info: ran 2to3 and changed shebang. Fixed encoding issue
+      with interface[:15] (needed to be a bytes object).
+    * scripts/fwts_test: ran 2to3 and changed shebang, fixed an encoding bug
+      with Popen output. Cleaned up the final output to be more useful for
+      debugging test failures.
+    * scripts/keyboard_test: nothing to do for conversion beyond changing shebang.
+    * scripts/network_ntp_test: 2to3 changed nothing, so modified shebang.
+      Fixed an encoding issue with Popen output in. Re-inserted a call to
+      SilentCall() that was removed from TimeSkew() by someone in a previous
+      revision, which made the TimeSkew() function do nothing. Fixed an
+      unbuffered I/O error in SilentCall() discovered while testing Python3
+      changes.
+    * scripts/optical_detect, scripts/optical_read_test: ran 2to3 and changed
+      shebang. Changes were minimal.
+    * scripts/xorg_memory_test: 2to3 made minimal changes, modifed shebang.
+      Converted optparse code to argparse code and replaced sys.argv[] stuff
+      with more useful positional arguments. Removed a redundant import that
+      2to3 injected.
+    * scripts/resolution_test: ran 2to3 with minimal changes. Changed shebang.
+      Converted optparse to argparse and removed unnecessary calls to
+      sys.argv[]
+    * scripts/pm_log_check: ran 2to3 and changed shebang.
+    * scripts/pm_test: ran 2to3 and changed shebang. After a lot of trial and
+      error, changed the way xinput is called to avoid confusing bytecode
+      embedded in the command output that was causing problems with
+      bytes.decode() on the "after reboot" hardware checks.
+
+  [Jeff Marcom]
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/memory_info
+    * scripts/memory_test
+    * scripts/touchpad_test
+  * Deprecated: wake_on_lan_test
+  * Update touchpad.py to use gsettings instead of deprecated gconf
+    (LP: #1004212)
+
+  [Marc Tardif]
+  * [FEATURE] Reworked media_keys_test into key_test, making it more generic
+    and able to test for any key that sends an scancode. Used it to implement
+    a test for the Super key.
+  * [FEATURE] Added new interactive and auto-verifying touchpad scrolling
+    test.
+  * Removed sleep_test script no longer used by any test definition.
+  * Migrated project minus scripts to Python 3.
+
+  [Sylvain Pineau]
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/gst_pipeline_test. Migrated to PyGI.
+    * scripts/removable_resource: Add a resource job to identify removable
+      block devices. __disks__ jobs updated to run only on internal drives.
+  * [FEATURE] jobs/benchmarks.txt.in, scripts/pts_run: Add a reworked launcher
+    for phoronix-test-suite tests.
+  * [FEATURE] Python 2 to 3 conversion:
+  * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
+    and log analysis jobs
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 22 Jun 2012 17:04:14 -0400
+
+checkbox (0.13.8) precise; urgency=low
+
+  [Brendan Donegan]
+  * Run fwts_test as root so that the log can be written to on servers and
+    also because it's supposed to be run as root (LP: #989701)
+  * Fixed cpu_offlining to work properly on systems with ten or more CPU
+    cores. (LP: #926136)
+  * Give more verbose output from fwts_test script and upload results log as an
+    attachment. (LP: #992607)
+  * Fix identation on optical/read-automated (LP: #991737)
+  * Fixed problem with fwts test log attachment (No bug filed)
+
+  [Nathan Williams]
+  * fix typo in jobs/optical.txt.in (lp: #987652)
+
+  [Jeff Lane]
+  * Bumped revision to 0.13.8
+  * scripts/removable_storage_watcher: increased default timeout to 20 seconds
+    to account for time for testers to plug devices in and for the system to
+    register the insert/remove event (LP: #978925)
+  * [FEATURE] plugins/jobs_prompt.py, plugins/recover_prompt.py, 
+    plugins/suites_prompt.py: Added "Fail last test" functionality. Now if a
+    test causes a crash (checkbox, system or otherwise), when we recover we
+    have the option to just mark the last test failed and move on, or re-run
+    the last test and try again.
+  * [FEATURE] jobs/local.txt.in, jobs/sniff.txt.in added 8 simple manual sniff 
+    tests to be used for test purposes when developing features.
+  * [FEATURE] data/whitelists/sniff.whitelist added a whitelist to make use of 
+    the basic sniff tests.
+
+  [Daniel Manrique]
+  * [FEATURE] checkbox/user_interface.py, checkbox/qt-interface.py,
+    plugins/jobs_prompt.py, plugins/recover_prompt.py,
+    plugins/suites_prompt.py: Made some modifications to the recover prompt
+    changes that better handle accented and other characters in translation.
+    This avoides a situation where the recovery could fail due to accented
+    characters in translations.
+
+  [Łukasz Zemczak]
+  * [FEATURE] checkbox_gtk/gtk_interface.py: Capture ESC keypresses so that
+    Checkbox doesn't close/die when user presses ESC.
+
+  [Sylvain Pineau]
+  * [FEATURE] jobs/info.txt.in: added new attachments, lspci -vvnnQ and
+    lsusb -vv and ensure outputs of lscpi, lsusb and dmidecode return UTF8.
+
+  [Tim Chen]
+  * Use nmcli con delete instead of deleting the connection file, also avoid
+    bringing eth0 down when running the wireless_monitoring tests.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 14 May 2012 10:20:59 -0400
+
+checkbox (0.13.7) precise; urgency=low
+
+  [Tiago Salem Herrmann]
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h: Do async calls to some ui methods and avoid
+    unexpected dbus timeouts (LP: #962333)
+
+  [Sylvain Pineau]
+  * qt/frontend/qtfront.cpp: Submit/View results buttons are disabled until
+    every selected test has been run (LP: #937715)
+
+  [Jeff Lane]
+  * Converted submissionWarningLabel and text to submissionUbuntuFriendlyLabel
+    wtih instructional text for submitting results. This is a workaround for
+    the bug causing the warning to be displayed at all times rather than only
+    when testing is incomplete. (LP: #967457)
+  * [FEATURE] Modified stress jobs so that they are all automated per decision
+     made during the cert sprint.
+  * Removed dhclient call from networking/multi_nic tests because of a bug in
+    dhclient that can cause it to hang when run on eth0. New test requirement
+    will be that the tester must configure and bring up all ethernet devices
+    prior to running checkbox. Also added a check to make sure we're not trying
+    to run the test on a device that's not active. (LP: #926229)
+
+  [Daniel Manrique]
+  * jobs/optical.txt.in: Change test descriptions to avoid confusing
+    instruction to press the "Next" button (which is incorrect). (LP: #971181)
+  * jobs/local.txt.in: Fixed touchpad local job which was using suspend.txt 
+    as the job source) (LP: #979344) 
+  * jobs/mediacards.txt.in: Added usb and scsi devices to
+    removable_storage_test commands (LP: #979356)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Apr 2012 19:23:45 -0400
+
+checkbox (0.13.6) precise; urgency=low
+
+  [Jeff Lane]
+  * Removed files in /data that are not used in any job descriptions
+    (LP: #957396)
+
+  [Javier Collado]
+  * plugins/jobs_info.py: Checkbox doesn't warn that invalid whitelist patterns
+    are being used (LP: #937651)
+  * [FEATURE] Added smoke test jobs, whitelist and local job to use for
+    checkbox development purposes.
+  * Fixed "camera_test detect" problem with missing args attributes (LP:
+    #967419)
+
+  [Marc Tardif]
+  * Fixed string_to_type conversion in network_bandwidth_test (LP: #954587)
+
+  [Sylvain Pineau]
+  * qt/frontend/qtfront.cpp, qt/frontend/qtfront.h, plugins/suites_prompt.py,
+    checkbox_qt/qt_interface.py, plugins/jobs_prompt.py: The selection tree is
+    now updated when recovering from a previous run (LP: #937696)
+
+  [Brendan Donegan]
+  * [FEATURE] Added touchpad tests from CE QA Checkbox to allow touchpad
+    testing to be performed
+
+  [Daniel Manrique]
+  * Internationalization support in checkbox-qt; updated checkbox.pot file
+    (LP: #951054) 
+
+ -- Javier Collado <javier.collado@canonical.com>  Wed, 28 Mar 2012 17:02:53 -0400
+
+checkbox (0.13.5) precise; urgency=low
+
+  New upstream release (LP: #960633):
+
+  [Tiago Salem Herrmann]
+  * qt/frontend/qtfront.ui: If the test text is too long, then it is cut off
+    (LP: #950111)
+  * checkbox/user_interface.py, checkbox_qt/qt_interface.py,
+    plugins/user_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Correctly update automated test execution status in the Selection tab
+    (LP: #950105).
+  * qt/frontend/qtfront.cpp: Avoid QDBusArgument warnings when running
+    checkbox-qt from a terminal (LP: #957476)
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, qt/frontend/qtfront.ui: add a popup comment box
+    for each test under the "Run" tab. (LP: #959452)
+  * checkbox/user_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, checkbox_qt/qt_interface.py: Set
+    interface.direction to NEXT if all the tests were executed and the user
+    either analyzed or submitted the results. (LP: #956329)
+  * checkbox/user_interface.py, plugins/user_interface.py,
+    qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    checkbox_qt/qt_interface.py: Use the ui persistent storage to keep some ui
+    configuration values. (LP: #937626)
+  * checkbox/user_interface.py: Avoid using fork() + call() to run a web
+    browser. Use Popen instead.(LP: #956307)
+  * qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Removed welcome tab (LP: #957090)
+
+  [Jeff Lane]
+  * Reset default checkbox log level to INFO from DEBUG to make logs less
+    confusing and verbose. (LP: #949745) 
+  * Removed dependency on bluetooth/detect-output on the
+    suspend/suspend_advanced job. (LP: #955375)
+  * jobs/mediacard.txt.in, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Modified removable_storage_watcher and
+    removable_storage_test to accept list of busses to watch to resolve
+    problems on systems with MMC readers that present themselves as USB
+    devices rather than SDIO (LP: #953160)
+  * jobs/optical.txt.in: Fixed the job descriptions for optical/read and
+    optical/cdrom-audio-playback to account for changes in Precise and make
+    them less confusing (LP: #954606)
+  * Created automated version of optical/read for server testing
+    Fixed issues with optical_read_test script:
+    - test could pass if /dev/cdrom did not exist
+    - test could pass if /dev/cdrom was inaccessible
+    - test could pass if no optical device was passed in (LP: #945178)
+  * Removed hard coded paths from scripts (LP: #949435)
+
+  [Marc Tardif]
+  * Linted qt_interface which had a few syntax errors (LP: #949957)
+  * plugins/apport_prompt.py: Fixed apport integration was producing a trace
+    (LP: #959463)
+
+  [Daniel Manrique]
+  * Bumped revision number to 0.13.5 in trunk
+  * jobs/keys.txt.in: Fix definition for keys/media-keys test which failed to
+    run (LP: #954480)
+  * Reverted feature to keep tests ordered, as the sortkey attribute causes
+    undesirable secondary effects.
+
+  [Sylvain Pineau]
+  * Show the UF invalidation warning if all test cases are unchecked from the
+    right click menu (LP: #956757)
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h: Tests now select Yes on PASS status (LP: #954556)
+
+  [Brendan Donegan]
+  * jobs/suspend.txt.in: Fixed dependencies on wireless and suspend_advanced
+    jobs.
+  * Changed screenshot jobs to use /dev/external_webcam which will be set by
+    a udev rule (LP: #956885)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 16 Mar 2012 19:14:09 -0400
+
+checkbox (0.13.4) precise; urgency=low
+
+  [Brendan Donegan]
+  * Added 'scsi' as a valid bus ID for determining product in udevadm.py
+    (LP: #940249)
+  * Added 'cciss' as a valid bus ID for determining product in udevadm.py
+    (LP: #942548)
+  * Updated command fields in composite disk jobs to address the ! in 
+    some disk paths (LP: #942769)
+  * Updated create_connection to poll for registration of connection and 
+    then attempt to bring it up (LP: #944662)
+  * Fixed command run by wireless_connection tests so that they fail if the
+    internet_test fails, but still clean up the connection file (LP: #944176)
+  * Fixed wireless_connection_open_* jobs to not provide security options
+    (LP: #947163)
+
+  [Daniel Manrique]
+  * Tweaks to internet_test: don't try to ping an IP that's unreachable from 
+    the specified interface (or at all), try to find something pingable via
+    other means.
+
+  [Javier Collado]
+  * Added python-cairo as a dependency for checkbox-gtk (LP: #940163)
+  * Updated camera_test script to use better tool for capturing the image
+    and allow specifying a device to use, plus other improvements. Create a
+    job which takes a capture from the webcam of the desktop.
+  * Added jobs to take screenshots after suspend and attach the resulting jpg
+
+  [Marc Tardif]
+  * Tidied up logic for determining DISK device product and vendor 
+    (LP: #942548)
+  * Fixed filename matching expression for local jobs (LP: #942273)
+  * Fixed duplicate System Testing applications after upgrade (LP: #940627)
+
+  [Aurelien Gateau]
+  * lib/template.py, lib/template_i18n.py, plugins/jobs_info.py,
+    plugins/suites_prompt.py: Add a "sortkey" attribute to jobs, the sortkey
+    order matches the order in which they appear in jobfiles.
+  * checkbox_gtk/gtk_interface.py: Shows jobs and suites in sortkey order
+    (that is, as they appear in job definition files, rather than
+    alphabetically).
+  * checkbox_gtk/gtk_interface.py, gtk/checkbox-gtk.ui,
+    plugins/jobs_prompt.py: Added a progress bar showing tests completed and
+    total.
+
+  [Sylvain Pineau]
+  * Updated gst_pipeline_test to add a --fullscreen option for video playback.
+  * Add python-gtk2 dependency, Gst from gi.repository don't work well with 
+    messages (See https://bugzilla.gnome.org/show_bug.cgi?id=631901).
+  * Add a new job to capture screen during fullscreen video playback.
+
+  [Tiago Salem Herrmann]
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, qt/frontend/treemodel.cpp, qt/frontend/treemodel.h:
+    Makes it possible for the job selection tree to have more than 2 levels of
+    children nodes.
+ 
+  [Tim Chen]
+  * Modifications to removable_storage_test to handle cases where removable
+    media is not mounted prior to test running. (LP: #944623)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 08 Mar 2012 09:29:10 -0500
+
+checkbox (0.13.3) precise; urgency=low
+
+  New upstream release (LP: #939549):
+ 
+  [Brendan Donegan]
+  * Typo in command for for miscellanea/virtualization-check (LP: #934243)
+  * Resized test selection views in checkbox-qt (LP: #937113)
+
+  [Daniel Manrique]
+  * Use GObject from gi.repository instead of gobject (LP: #937099)
+  * Disable flushing to disk after every file access during gathering phase for
+    a significant speed boost. (LP: #939019)
+
+  [Javier Collado]
+  * Fixed running of disk/read_performance tests (LP: #933528)
+  
+  [Sylvain Pineau]
+  * Fix depends fields in info and suspend test suites (LP: #934051) 
+  * Display results report in non-graphical interfaces (LP: #937657)
+
+  [ Tiago Salem Herrmann ]
+  * Remove auto generated qt resource file (LP: #938863)
+ 
+  [Ara Pulido]
+  * Fix the Ubuntu Friendly warning message (LP: #939448)
+
+ -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Feb 2012 10:31:18 -0500
+
+checkbox (0.13.2) precise; urgency=low
+
+  New upstream release (LP: #933090):
+
+  [Jeff Lane]
+  * Added a Hard Disk Stats Test that was part of a much older merge request
+    for server test suite.
+  * Modified apport-directory to provide feedback
+  * Added new optical_write_test script and created appropriate jobs to refine
+    optical drive testing
+  * Created new resource job that creates an optical.{CD-R,DVD-R} resource to
+    determine if a machine's optical drive supports writing or is read-only.
+  * Added virt-check test to determine if a server will work as an OpenStack
+    Compute Node.
+  * Moved apport-directory changes from an old branch to checkbox where the
+    job now resides.
+
+  [Marc Tardif]
+  * Removed trailing directories from the devpath of disk devices (LP: #925582)
+  * Fixed awk regular expression in max_diskspace_used script (LP: #926312)
+  * Implemented anonymous submissions to Launchpad with a dummy e-mail
+    address.
+  * Qt: Moved widgets around in Results window.
+  * Changed options and arguments passed to show_tree method, and related UI
+    changes.
+  * Simplified running checkbox-qt from source tree, by compiling if needed.
+  * Added support for decimals and multiple partitions in max_diskspace_used.
+  * Fixed reference to xrandr_detect_modes replaced by VESA_drivers_not_in_use.
+  * Fixed depends in debian/control file for checkbox-qt.
+
+  [Daniel Manrique]
+  * Changed way of obtaining preferred browser to ensure we honor the user's
+    preference rather than Chromium's clobbering of
+    /etc/alternatives/gnome-www-browser (LP: #925603) 
+  * Added submission_path_prompt config variable; if set, it will be shown to
+    the user before the test selection screen, and the value entered will
+    override the default filename for the xml report.
+  * plugins/suites_prompt.py: Fixed jobs being run despite being deselected. 
+  * Qt: Changed color of the step bubbles to Ubuntu Orange, and made it
+    parametrizable.
+  * Qt: View report functionality.
+  * Qt: Set the runtime application icon.
+  * Fixed typo in network/info.
+  * Fixed typo in create_connection.
+
+  [Brendan Donegan]
+  * Changed checkbox-cli text to clearly explain what + does (LP: #926417)
+  * Changed progress bar of Qt UI to standard rather than custom one,
+    prettified tabs and updated Launchpad email text amongst other UI tweaks
+    in qt/frontend/qtfront.ui
+  * Fixed some oversights in the mediacard job files regarding test 
+    descriptions and card types.
+  * Tweaked the memory_compare script a bit to make it easier to maintain.
+  * Used regexes in default whitelist.
+
+  [Javier Collado]
+  * Removed job that installed ipmitool by default (LP: #931954)
+
+  [Tiago Salem Herrmann]
+  * Implementation of Qt frontend for checkbox.
+  * Qt-related features and bugfixes:
+  * Qt: Added welcome screen image and background color.
+  * Qt: Removed maximize/restore button.
+  * Qt: added select/deselect all popup menu.
+  * Qt: Status screen
+  * Qt: Antialiasing hint for step numbers and question mark.
+  
+  [Sylvain Pineau]
+  * Tests will run in in order specified by the whitelist.
+  * JobStore caches most of a job's attributes in memory to speed up sorting.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 15 Feb 2012 00:11:21 -0500
+
+checkbox (0.13.1) precise; urgency=low
+
+  New upstream release (LP: #925090):
+
+  [Brendan Donegan]
+  * Fixed the cpu_topology script so that it doesn't mistake the word
+    'processor' in the value of another field for the field 'processor'
+    (LP: #882161)
+  * Added create_connection script and jobs to automatically create/test a
+    wireless network connection.
+  * Updated wireless job dependencies.
+  * Add wireless performance data collecting tests.
+  * Changed is_laptop test to a shell test and implemented a check_is_laptop
+    script to check automatically for a systems 'laptopness' (LP: #886668)
+  * Fixed connect_wireless script which continued failing to correctly
+    identify wireless connections.
+  * Don't fail the sleep_test if the wake alarm is still set (LP: #911161)
+  * Add requirement for mem sleep state to be supported to the
+    suspend_advanced_auto job (LP: #804190)
+  * Fixed the camera/display test and removed the camera/video one.
+  * Added display resource and matching requirements to external video 
+    output tests.
+  * Added removable_storage_watcher script to replace watch_command to make
+    testing USB, FireWire and MMC devices easier and more cohesive.
+  * Added memory_compare script to automate the memory/info job
+  * Switch audio settings to correct device before running audio tests
+    (LP: #916859)
+  * Nixed graphics/xorg-version-output job and updated other job dependencies,
+    since it is redundant with graphics/xorg-version. (LP: #671144)
+
+  [Gabor Kelemen]
+  * Fixed last two remaining strings with backslashes (LP: #868571)
+  * Fix misplaced parentheses, so translation can work (LP: #904876)
+
+  [Marc Tardif]
+  * Refactored install scripts to be agnostic of variant name: 
+    install/postinst, install/config and debian/*.postinst.
+  * Using title defined in user_interface plugin in GTK interface.
+  * Updated default.whitelist to reflect renamed jobs.
+  * Removed files with non-printable characters from submission.xml.
+  * Fixed parser for submission files with empty question comments
+    and context info (LP: #912546)
+  * Added support for skipping tests when the depends don't pass
+    (LP: #509598)
+  * Removed extraneous code from the sleep_test.
+  * Refactored logic to check for network after suspend.
+  * Removed deprecated hwtest package.
+  * cpu_offlining was incorrectly using return instead of exit.
+
+  [Daniel Manrique]
+  * Update control files under debian/ to eliminate (most) lintian warnings
+    (LP: #352986)
+  * Environment variables specified with environ: in a job description will be
+    passed to the backend for it to add to its environment. (LP: #897889)
+  * Handle malformed LANGUAGE environment variable values (LP: #912946)
+  * Added interactive media_keys_test script.
+  * Make creation of wireless connection files more robust (LP: #923836)
+  * Recommend gstreamer-gconf to enable media tests on kubuntu (LP: #898641)
+  * Add bluetooth device requirement to obex jobs (LP: #921128)
+  * Add a plugin conf variable for the welcome string (shown on the first
+    screen when checkbox runs), so it can be changed without much effort.
+  * Remove superflous bluetooth/detect job
+  * Fixed typo in jobs/local.txt.in (phoronix misspelled as peripherals).
+  * Rearranged a misplaced changelog entry.
+  * Updated debian/control to remove unneeded Uploader: field.
+
+  [Robert Roth]
+  * Fixed spelling mistakes in user_apps job file. (LP: #904209)
+
+  [Jeff Lane]
+  * Created automated network info test to get some config info during automated 
+    runs. (LP: #912038)
+  * Added requires to suspend wireless jobs so they won't run if wireless isn't
+    present (LP: #907150)
+  * Fixed issue in usb_test with unwritable filesystems (LP: #912522)
+  * Fixed USB tests so that insert, storage, remove run in proper order
+  * Removed usb_storage_after_suspend since it's superfluous, all other USB
+    tests already run after suspend.
+  * Modifed usb_test to handle firewire drives as well, renamed script to
+    removable_storage_test
+
+  [Aurélien Gâteau]
+  * Improvements to Recover dialog and show_info method.
+
+  [ Javier Collado ]
+  * Error while creating binary package fixed (LP: #921576)
+
+  [ Sylvain Pineau ]
+  * Replaced xrandr_display_modes with automated check for VESA driver
+  * Refactored Unity compatibility tests
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 10 Feb 2012 11:19:05 -0500
+
+checkbox (0.13) precise; urgency=low
+
+  New upstream release (LP: #892268):
+
+  [Marc Tardif]
+  * Generate a submission.xml file that contains all device and attachment
+  * Write the report before reporting the validation error.
+  * Changed device.product to dmi.product for the formfactor (LP: #875312)
+
+  [Daniel Manrique]
+  * Use gettext for string (LP: #869267)
+  * Move progress indicator to main checkbox dialog instead of a 
+    transient window (LP: #868995)
+  * Ignore malformed dpkg entries in package_resource (LP: #794747)
+  * Reset window title after finishing a manual test (LP: #874690)
+  * Handle "@" in locale names (as in ca@valencia).
+
+  [Jeff Lane]
+  * Went through all the job files and:
+    * Updated descriptions to match Unity UI structure
+    * Added descriptions where necessary
+    * Added further details to some descriptions
+    * Moved some jobs to more appropriate files
+    * Fixed job names in older job files to match new naming scheme 
+      (suite/testname)
+    * Added jobs to local.txt to ensure all job files are now parsed
+      (this allows easier addition of existing tests to whitelists)
+    * Changed remaining manual job descriptions to match the new format
+  * Updated CD and DVD write tests to be more clear about when to skip
+    them (LP: #772794)
+
+  [Ara Pulido]
+  * Rewrote all job descriptions to match OEM QA syntax
+
+  [Brendan Donegan]  
+  * Fix the code that assigns keys in checkbox-cli so that it never assigns
+    keys which have other uses. (LP: #877467)
+  * Show details of unmet job requirements (LP: #855852)
+  * Ensure that connect_wireless chooses a wireless connection from the list
+    of available connections (LP: #877752)
+  * Have the bluetooth/detect tests require a device with the category
+    BLUETOOTH to run, thus preventing the test from failing on systems with
+    no Bluetooth device (LP: #862322)
+  * Rename attachment jobs to not have a forward slash in their name
+    (LP: #887964)
+  * Guard against trying to write files to logical partitions on USB sticks
+    (which will obviously fail) in usb_test (LP: #887049)
+  * Make the OpenGL test ignore the return value of glxgears and improve
+    the test description (LP: #890725)
+  * Allow input/mouse test to run if a TOUCH device is present
+    (LP: #886129)
+
+  [ Javier Collado ]
+  * Broken job dependencies fixed (LP: #888447)
+  * Regex support when specifying blacklists and whitelists on the
+    commandline (LP: #588647)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 18 Nov 2011 12:46:21 -0500
+
+checkbox (0.12.8) oneiric; urgency=low
+
+  New upstream release (LP: #862579):
+
+  [Brendan Donegan]
+  * Remove test for FTP connection from network_check script (LP: #854222)
+  * Update a parameter in usb_test to have it run faster.
+  * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
+  * Fix minor typo in multi-monitor friendly resolution_test script which caused 
+    minimum_resolution test to fail (LP: #855599)
+  * Remove storage_devices_test from Ubuntu Friendly whitelist since bonnie++  (which it uses) is not installed by default (LP: #855841)
+  * Changed description and name to reflect Ubuntu Friendly branding. Now when a user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
+  * Reset the selections at the test suite prompt if No is selected at the recover prompt (LP: #861208)
+  * Save the connection name(s) instead of the interface name so that they can be reconnected to properly after the wireless before/after suspend tests have completed (LP: #861502)
+  * Make connect_wireless use the UUID of the connection instead of the name for greater reliability (LP: #862190)
+
+  [Daniel Manrique]
+  * Restored _recover attribute, re-enabling welcome and test selection
+    screens (LP: #852204)
+  * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
+  * Use diff instead of grep, better comparing of empty files (LP: #852014)
+  * Apport integration: new mandatory "tag" value in ApportOptions (LP: #852201)
+  * Add warning prior to starting the tests (LP: #855328)
+  * Apport integration: Fix instantiation of Gtk.RadioButton, needed due 
+    to PyGI related API changes (LP: #805679)
+  * Remove ping -R parameter that apparently caused ICMP packets to be dropped
+    by some routers (LP: #861404)
+
+  [ Evan Broder ]
+  * Replace resolution_test with an implementation which uses GdkScreen to
+    be multimonitor-aware (LP: #632987)
+
+  [Jeff Lane]
+  * Fix names of optical drive tests and remove a non-existing test from the
+    whitelist (LP: #854808) 
+  * Fix wireless_*_suspend jobs so they recreate iface file instead of append
+    each time (LP: #855845)
+    (LP: #852201)
+  * Clarify better the intend of the is_laptop question (LP: #861844)
+  * Fixed dependencies for tests that depend on suspend/suspend_advanced 
+    (LP: #860651)
+
+  [Tim Chen]
+  * Fix cpu_scaling_test (LP: #811177)
+ 
+  [Ara Pulido]
+  * Avoid connect_wireless messing with AP with similar names (LP: #861538)
+  * Remove bluetooth/file-transfer from the list of tests to run, since due to
+    bug 834348 it always fails.
+
+  [Marc Tardif]
+  * Added support for wildcards when verifying the transport certificate.
+  * Applying depends across suites (LP: #861218)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 29 Sep 2011 13:12:01 -0400
+
+checkbox (0.12.7) oneiric; urgency=low
+
+  New upstream release (LP: #850395):
+
+  [Brendan Donegan]
+  * Redirecting stderr to pipe to fix the gconf_resource script (LP: #832321)
+  * Clear jobs directory when user selects No to recover question (LP: #836623)
+
+  [Daniel Manrique]
+  * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
+  * More explicit handling of string decoding/encoding, avoids problems with
+    non-ascii characters (LP: #833747)
+  * Changed architecture from all to any for checkbox base, to build
+    architecture-specific binaries (LP: #833696)
+
+  [Jeff Lane]
+  * Several corrections necessary due to test name changes or typos found in
+    job files
+
+  [Marc Tardif]
+  * Connecting hyper text widgets only once (LP: #827904)
+  * Detecting MMC readers as OTHER instead of DISK (LP: #822948)
+  * Validating the hostname in the SSL certificate (LP: #625076)
+  * Validating the submission.xml (LP: #838123)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 14 Sep 2011 17:15:26 -0400
+
+checkbox (0.12.6) oneiric; urgency=low
+
+  New upstream release (LP: #841983):
+
+  [ Daniel Manrique ]
+  * Work around PyGTK API changes that kept checkbox from starting up
+    (LP: #839675).
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 05 Sep 2011 12:47:58 -0400
+
+checkbox (0.12.5) oneiric; urgency=low
+
+  New upstream release (LP: #838745):
+
+  [Ara Pulido]
+  * Created a "suspend" suite and renamed relevant tests.
+
+  [Brendan Donegan]
+  * Removed redundant tests in power-management suite.
+  * Fixed dependencies in power-management suite.
+
+  [Daniel Manrique]
+  * Changed name of apt-get test to reflect the suite it's in.
+  * Fixed typos in job definitions that caused them to not be run.
+  * Added missing description to info/hdparm test (LP: #832351)
+  * Quote command to obtain bluetooth address, to avoid hanging if 
+    a device is not present (LP: #836756).
+  * Added BLUETOOTH category to udev parser.
+  * Removed some tests from default whitelist.
+  * Fixed dependencies for keys/sleep.
+  
+  [Jeff Lane]
+  * Added new USB storage transfer test
+  * Re-worked and added automated audio test
+
+  [Marc Tardif]
+  * Added WIRELESS category to udev parser.
+
+ -- Ara Pulido <ara@ubuntu.com>  Thu, 01 Sep 2011 12:23:07 +0100
+
+checkbox (0.12.4) oneiric; urgency=low
+
+  New upstream release (LP: #824180):
+
+  [Brendan Donegan]
+  * Refactored job definition files.
+  * Fixed dependencies and test naming.
+  * Added Online CPU before/after suspend test.
+  * Automated wireless tests.
+  * Removed redundant sru_suite.txt, updated dependencies accordingly.
+  * Automated bluetooth_obex tests.
+
+  [Daniel Manrique]
+  * Further improvements to make frontend/backend communication more reliable.
+    Prevents stuck backends, failure to close the GUI due to lack of reply
+    from the backend, and test specifying "user" not being run.
+  * scripts/keyboard_test modified to account for pygi-related GTK API
+    changes. (LP: #804369)
+  * scripts/sleep_test: improve handling of NetworkManager DBus API
+    changes. (LP: #808423)
+  * scripts/cdimage_resource: properly handle releases with "LTS" in their
+    name (LP: #814085)
+  * Updated minimum_resolution test as per latest system requirements, leaving
+    just one unified test. (LP: #767166)
+
+  [Javier Collado]
+  * Checkbox exits with EX_NOINPUT if a whitelist or blacklist file is
+    specified and cannot be found.
+  * Deselect a test suite automatically when none of its children is selected,
+    in the GTK interface. (LP: #651878)
+  * Make the "Next" button the default action when Enter is pressed, to 
+    streamline testing with the GTK interface.
+
+  [Marc Tardif]
+  * Fixed udevam not being found because /sbin not in PATH (LP: #597305)
+  * Fixed hardware attachments for udev and dmi (LP: #822682)
+
+  [Sylvain Pineau]
+  * Expose the message store to other plugins, via firing an expose-msgstore
+    event.
+
+  [Andrew Faulkner]
+  * Fix description for nautilus_file_create job (LP: #821141) 
+
+  [Kenneth Wimer]
+  * New header image that follows brand guidelines (LP: #554202)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 10 Aug 2011 15:16:39 -0400
+
+checkbox (0.12.3) oneiric; urgency=low
+
+  [Marc Tardif]
+  * Only reading CHECKBOX_* environment variables in config (LP: #802458)
+  * Imported scripts and jobs from Platform Services.
+
+  [Chad A. Davis]
+  * Switch to dh_python2 and debhelper7 (LP: #788514)
+
+  [Barry Warsaw]
+  * Fix checkbox_clean.run() to ignore missing executables, as is the case
+    in a fresh checkout.
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 01 Jul 2011 11:37:27 -0400
+
+checkbox (0.12.2) oneiric; urgency=low
+
+  New upstream release (LP: #800199):
+
+  [Brendan Donegan]
+  * Added interface parameter to internet_test script.
+
+  [Daniel Manrique]
+  * GTK GUI: Change assignment of TreeStore model to TreeView to account for
+    pygi-related API changes. Also seems to fix lingering select/deselect all
+    buttons. (LP: #796666) (LP: #796622)
+  * GTK GUI: Fix call to Gtk buffer get_text to add now-mandatory fourth
+    parameter, keeps the GUI from misbehaving in connection to fixed bug.
+    (LP: #796827)
+  * GTK GUI: Fix handling of mouse events in gtk_hypertext_view.py which
+    prevented displaying the final report.
+  * Put test name as part of the window title, as an aid to
+    reporting/debugging (LP: #744190)
+  * plugins/apport_prompt.py: Add test name to "Do you want to report a bug?"
+    dialog to make it clearer.
+
+  [Sylvain Pineau]
+  * Fix evaluation of job requirements (LP: #798200)
+  * Added "in" operator to job requirements.
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 21 Jun 2011 09:41:57 -0400
+
+checkbox (0.12.1) oneiric; urgency=low
+
+  New upstream release (LP: #796629):
+
+  [Brendan Donegan]
+  * Fix timeout in sleep_test script (LP: #665299)
+  * Fix traces in hyper_text_view module (LP: #796508)
+  * Added camera test (LP: #764222)
+
+  [Daniel Manrique]
+  * Fix GUI definition file so main window uses "natural request", growing
+    when child widgets require so (LP: #776734)
+  * Fix open/read blocking behavior and backend/frontend communications to
+    avoid hangs and lingering backends. (LP: #588539)
+  * Render header text dynamically over the image background, and updated pot
+    file with the new string. (LP: #621880)
+
+  [Robert Roth]
+  * Improve command line key prompts (LP: #786924)
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 03 Jun 2011 17:00:11 -0400
+
+checkbox (0.12) oneiric; urgency=low
+
+  New upstream release (LP: #784076):
+  * Removed dead pixel test.
+
+  [Bilal Akhtar]
+  * Port checkbox to Gtk3/PyGI (LP: #783822)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 17 May 2011 09:48:07 -0400
+
+checkbox (0.11.4) natty; urgency=low
+
+  * Changed udev_resource to report CAPTURE for USB VIDEO devices
+  * Fixed eval of resources with names like list item names
+  
+  [Carl Milette]
+  * Fixed hard coded disk in disk_bench_test so that it matches convention
+    utilizing udev_resource for finding devices. (LP: #507943)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 22 Apr 2011 11:05:19 -0400
+
+checkbox (0.11.3) natty; urgency=low
+
+  New upstream release (LP: #751928):
+  * Fixed sleep_test crashing with ioerror (LP: #630785)
+  * Fixed keyerror when running some manual tests (LP: #729431)
+
+  [Ara Pulido]
+  * Improved debconf messages and ordering (LP: #553777)
+  * Video bugs should be reported as a display symptom (LP: #744964)
+  * Added checkbox log to apport report
+
+  [Gerhard Burger]
+  * Fixed punctuation inconsistencies in verification procedures (LP: #744167):
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 05 Apr 2011 16:19:17 -0400
+
+checkbox (0.11.2) natty; urgency=low
+
+  New upstream release (LP: #736919):
+  * Added version to dpkg dependency
+  * Added multiarch support to install script (LP: #727411)
+  * Fixed submitting data twice (LP: #531010)
+  * Fixed job descriptions for checkbox-cli (LP: #221400)
+
+  [Daniel Manrique]
+  * Fixed strings in audio tests and updated pot file (LP: #691241)
+  
+  [Jochen Kemnade]
+  * Fixed grammar in user-apps tests (LP: #642001)
+
+  [Jeff Lane]
+  * Added reboot instructions to suspend/hibernate tests (LP: #420493)
+  * Made the firewire instructions make more sense (LP: #693068)
+  
+  [Michael Terry]
+  * Fixed several strings appear in English although translated (LP: #514401)
+    - jobs/fingerprint.txt.in
+    - jobs/media.txt.in
+    - jobs/monitor.txt.in
+    - jobs/sleep.txt.in
+    - jobs/firewire.txt.in
+    - po/checkbox.pot
+  * Fixed grammar (LP: #525454)
+    + jobs/fingerprint.txt.in
+
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 29 Mar 2011 09:17:36 -0400
+
+checkbox (0.11.1) natty; urgency=low
+
+  New upstream release (LP: #725110):
+  * Checking for lock file before firing stop-all event (LP: #719552)
+  * Changed description of nautilus_file_copy job (LP: #709688)
+
+  [Javier Collado]
+  * Fixed title in progress dialog
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 25 Feb 2011 11:56:43 -0500
+
+checkbox (0.11) natty; urgency=low
+
+  New upstream release (LP: #719073):
+  * Changed support for persist plugin as optional (LP: #561816)
+
+  [Ara Pulido]
+  * Fixed lintian errors and warnings
+
+  [Eitan Isaacson]
+  * Migrate the UI from libglade to gtkbuilder  
+
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 14 Feb 2011 18:19:27 -0500
+
+checkbox (0.10.4) maverick; urgency=low
+
+  * Fixed parsing of config parameters (LP: #689140)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 14 Sep 2010 12:43:51 -0400
+
+checkbox (0.10.3) maverick; urgency=low
+
+  New upstream release (LP: #638333):
+  * Fixed verification of SSL validity (LP: #625076)
+  * Improved audio test questions.
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 14 Sep 2010 12:43:51 -0400
+
+checkbox (0.10.2) maverick; urgency=low
+
+  New upstream release (LP: #617583):
+  * Fixed sleep_test to check the connection if using network-manager.
+  * Fixed reporting bugs against alsa-base and xorg (LP: #607214)
+  * Fixed apport dialog no longer appearing (LP: #607217)
+  * Reduced data file size for the desktop image.
+  * Updated report to be more pretty.
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 13 Aug 2010 16:23:16 -0400
+
+checkbox (0.10.1) maverick; urgency=low
+
+  New upstream release (LP: #597295):
+  * Added support for urwid interface.
+  * Added sound check test.
+  * Added document viewer test.
+  * Added update-manager and nautilus tests.
+  * Added resolution tests.
+  * Added sleep tests.
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 22 Jun 2010 10:43:52 -0400
+
+checkbox (0.10) maverick; urgency=low
+
+  * Added media tests (LP: #397944)
+  * Added support for comments in templates.
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 04 May 2010 11:51:22 -0400
+
+checkbox (0.9.2) lucid; urgency=low
+
+  New upstream release (LP: #567568):
+  * Added referer when sending submissions to Launchpad (LP: #550973)
+  * Added suggests to checkbox package in debian/control file (LP: #352740)
+  * Fixed udev_resource script to be more resilient (LP: #556824)
+  * Fixed cdimage_resource script to read casper.log (LP: #558728)
+  * Fixed reporting all resources found for a job (LP: #560948)
+  * Fixed stalling when using kdesudo to start backend (LP: #557443)
+  * Fixed starting the appropriate default browser on UNR (LP: #563050)
+  * Fixed ansi_parser script when outputting to stdout (LP: #560952)
+  * Fixed opening the report with the gconf preferred browser (LP: #562580)
+  * Fixed suspend_test to use relative time for wakealarm (LP: #349768)
+  * Fixed backend not getting terminated upon closing (LP: #553328)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 06 Apr 2010 14:17:46 -0400
+
+checkbox (0.9.1) lucid; urgency=low
+
+  New upstream release (LP: #548800):
+  * Added cpu_scaling_test script.
+  * Fixed hard drive detection (LP: #549714)
+  * Fixed backend to handle empty messages (LP: #536645)
+  * Fixed parsing of package resource (LP: #539691)
+  * Fixed malformed xml report (LP: #485445)
+  * Fixed running root manual tests as normal user (LP: #383559)
+  * Fixed writing apport files only after submitting (LP: #530380)
+  * Fixed audio test instructions (LP: #529205)
+  * Fixed gathering chassis information (LP: #537435)
+  * Fixed detection of disks in kvm (LP: #552998)
+  * Fixed udev_resource script to be more resilient (LP: #552999)
+  * Fixed filter_packages script to use new resources.
+
+ -- Marc Tardif <marc@ubuntu.com>  Sun, 07 Mar 2010 15:05:44 -0400
+
+checkbox (0.9) lucid; urgency=low
+
+  * Introduced job_prompt plugin to treat all jobs (suites, tests, etc.) as composites.
+  * Replaced the registry and resource scripts and centralized job iteration.
+  * Replaced dependency on dbus by using sudo/gksu/kdesudo instead.
+  * Replaced mktemp with mkdtemp for security purposes.
+  * Fixed strings in fingerprint and modem tests (LP: #457759)
+  * Fixed client side validation of Launchpad form (LP: #438671)
+  * Added device information to tags when reporting bugs with apport.
+  * Added shorthands for blacklist-file and whitelist-file.
+  * Added support for apport default configuration (LP: #465447)
+  * Added support for scrolled options list (LP: #411526)
+  * Added support for tests generated by suites to run as root.
+  * Added support for requirements in attachments.
+  * Added support for armv7l processor
+  * Added Autotest integration
+  * Added LTP integration
+  * Added Phoronix integration
+  * Added qa-regression-testing integration
+
+ -- Marc Tardif <marc@ubuntu.com>  Wed, 04 Nov 2009 19:36:09 -0400
+
+checkbox (0.8.5) karmic; urgency=low
+
+  * Fixed translation of suites and tests files (LP: #456115)
+  * Fixed checking the status of command registries (LP: #457502)
+  * Fixed selecting suites in the command line (LP: #457559)
+  * Fixed reporting of bugs to contain test description (LP: #427932)
+  * Fixed execute permissions on scripts (LP: #459606)
+  * Renamed processors_info plugin to singular because processor
+    information is reported as a single structure with a count attribute
+  * Updated translation files.
+
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 26 Oct 2009 12:17:30 -0400
+
+checkbox (0.8.4) karmic; urgency=low
+
+  * Fixed failing dependencies when not available (LP: #430051)
+  * Fixed supporting udevadm not providing DEVPATH variable (LP: #430084)
+  * Fixed supporting audio devices without a /proc/asound entry (LP: #430086)
+  * Fixed running when python-apport package is not installed (LP: #430103)
+  * Fixed X error when exiting after reporting a bug (LP: #430776)
+  * Fixed prompting to report a bug according to GNOME HIG (LP: #429701)
+  * Fixed prompting for answer in checkbox-cli (LP: #429764)
+  * Fixed resolution_test message for fglrx driver (LP: #346816)
+  * Fixed adding of manpage symlinks for gtk and cli (LP: #426641)
+  * Fixed recovering from connecting to the backend (LP: #446693)
+  * Fixed backend to use dbus instead of policykit (LP: #435714)
+  * Fixed interpolation of output variable in cli (LP: #450673)
+  * Fixed selection of suites in cli (LP: #450713)
+  * Fixed parsing of virtio-pci devices (LP: #450774)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 13 Oct 2009 16:44:12 -0400
+
+checkbox (0.8.3) karmic; urgency=low
+
+  * Fixed trailing newline requirement in test definitions (LP: #427993)
+  * Fixed reporting firmware version as product name (LP: #428563)
+  * Fixed detecting pci and usb audio devices (LP: #429558)
+  * Fixed prompting to report a bug when there's no package (LP: #429668)
+
+ -- Marc Tardif <marc@ubuntu.com>  Sat, 12 Sep 2009 15:37:40 -0400
+
+checkbox (0.8.2) karmic; urgency=low
+
+  * Fixed adding test information when reporting with apport (LP: #423798)
+  * Fixed tagging bugs when reporting with apport (LP: #423799)
+  * Fixed expressing package aliases for the linux package (LP: #423805)
+  * Fixed detecting the disk category in devices (LP: #423864)
+  * Fixed supporting apport symptoms when reporting bugs (LP: #424063)
+  * Fixed gathering of dmi information for Launchpad report (LP: #424454)
+  * Fixed tests using gksudo returning empty output (LP: #425284)
+
+  [Javier Collado]
+  * Fixed reporting of output in shell plugin (LP: #393894)
+
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 31 Aug 2009 17:16:38 -0500
+
+checkbox (0.8.1) karmic; urgency=low
+
+  * New upstream version:
+    * Added disk tests.
+    * Added fingerprint reader tests.
+    * Added firewire tets.
+    * Added kms tests.
+    * Added media tests.
+  * Fixed dependency on hal and using udev instead (LP: #399319)
+  * Fixed calling ubuntu-bug when a test fails (LP: #418978)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 26 Aug 2009 17:36:05 -0500
+
+checkbox (0.8~alpha4) karmic; urgency=low
+
+  * New upstream version:
+    * Changed icon.
+    * Added timeout property to lock_prompt plugin.
+    * Added concept of attachments to tests.
+    * Added support for backslahes in templates to wrap lines.
+    * Added support blacklisting and whitelisting both tests and suites.
+    * Introduced the concept of jobs for suites, tests and attachments.
+    * Removed upstart event which is no longer needed.
+    * Replaced architecture and category with requires in test definitions.
+  * Fixed pygst dependency (LP: #334442)
+  * Fixed configuration file updates during install (LP: #330596)
+  * Fixed DBus exceptions (LP: #344916, #359440)
+  * Fixed and expanded translations (LP: #347038)
+  * Fixed ignored system proxy settings (LP: #345548)
+  * Fixed parsing blank lines in templates (LP: #393907)
+  * Fixed escaping of lists (LP: #394001)
+  * Fixed timeout in manual tests (LP: #377986)
+  * Fixed CLI interface dialog.
+  * Fixed support for FreeDesktop XDG base directory specification (LP: #363549)
+  * Added general and package specific apport hooks
+
+  [ Gabor Keleman ]
+  * Fixed untranslated strings in tests (LP: #374666)
+  * Fixed untranslated last screen (LP: #374646)
+
+ -- Marc Tardif <marc@ubuntu.com>  Wed, 19 Aug 2009 15:36:05 -0500
+
+checkbox (0.7) jaunty; urgency=low
+
+  [ Dave Murphy ]
+  * Fixed viewing of report files in Firefox 3 (LP: #331481)
+  * Added additional contextual information
+   * /etc/sysctl* (LP: #331055)
+   * /etc/modprobe.d (LP: #331056)
+   * /etc/modules (LP: #331057)
+  * Fixed packaging for Jaunty
+   * https://lists.ubuntu.com/archives/ubuntu-devel/2009-February/027439.html
+   * Uses --install-layout=deb
+   * Installs to dist-packages instead of site-packages
+
+  [ Andy Whitcroft ]
+  * suspend_test: update suspend_test to version V6 matching kernel version.
+    The version here will become the master copy.
+  * suspend_test: add a --dry-run mode to simplify developement
+  * suspend_test: add a automation mode for checkbox integration
+  * suspend_test: add a new pm-suspend test
+  * suspend_test: record and restore timer_delay around the variable
+    time test.
+  * suspend_test: release v7.
+  * suspend_test: initial version of suspend power consumption test
+    from a patch by Pete Graner.
+  * suspend_test: power -- made the sleep time configurable
+  * suspend_test: detect batteries and disable ac/power tests
+  * suspend_test: disable dbus tests when we have no primary user
+  * suspend_test: handle AC transitions better
+  * suspend_test: enable power test as part of --full
+  * suspend_test: reduce the noise in the test instructions
+  * suspend_test: use minutes in output when that is more appropriate
+  * suspend_test: track actual AC transitions and report them
+  * suspend_test: only mention AC at all if we have a battery
+  * suspend_test: report useful data at the bottom for posting
+  * suspend_test: document the new power test in the usage
+  * suspend_test: power -- indicate when the result is unreliable
+  * suspend_test: report -- fix up spacing issues
+  * suspend_test: release v8
+
+ -- Dave Murphy <schwuk@ubuntu.com>  Tue, 17 Mar 2009 09:46:16 +0000
+
+checkbox (0.6) jaunty; urgency=low
+
+  * New upstream version:
+    * Added suspend_test script - for more details see:
+      https://wiki.ubuntu.com/KernelTeam/SuspendResumeTesting
+    * Added XSL Stylesheet and the ability to view generated reports
+    * Added support for PolicyKit to run the application as a user
+    * Added logging for backend and logrotation script.
+  * Fixed calling ucf was run via debconf (LP: #330502)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 17 Feb 2009 15:36:05 +0000
+
+checkbox (0.5) jaunty; urgency=low
+
+  * New upstream version:
+    * Added concept of hyper text view to display clickable links.
+    * Added concept of properties to components.
+    * Added pci information to launchpad report.
+    * Added dmi information to launchpad report.
+    * Added text area to keyboard test.
+    * Removed sourcing of base postrm script.
+    * Updated translations from Launchpad.
+  * Fixed handling of interrupt signal (LP: #327810)
+  * Fixed display of text in graphical interface (LP: #240374)
+  * Fixed support for regexes in blacklist and whitelist (LP: #327177)
+  * Fixed opening of subunit log file (LP: #325737)
+  * Fixed internet test.
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 20 Jan 2009 18:55:20 -0500
+
+checkbox (0.4) jaunty; urgency=low
+
+  * Setup bzr-builddeb in native mode.
+  * Removed LGPL notice from the copyright file.
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 20 Jan 2009 16:46:15 -0500
+
+checkbox (0.3) jaunty; urgency=low
+
+  * New upstream version:
+    * Renamed hwtest to checkbox.
+    * Renamed auto tests to shell tests.
+    * Added watch file.
+    * Added README file pointing to the Ubuntu wiki.
+    * Added subunit to the test suite.
+    * Added the subunit_report plugin to produce a standard test report.
+    * Added pvs registry.
+    * Added support for int return values to recursive registry eval.
+    * Added debug information when a command registry returns an error.
+    * Added mounts registry.
+    * Added patches to upgrade the configuration files.
+    * Added support for CHECKBOX_OPTIONS environment variable.
+    * Added usage information.
+    * Added gconf registry.
+    * Added logging to checkbox event.
+    * Added locking plugin.
+    * Added message store and schema types.
+    * Added caching to automatic tests so that they are not run multiple
+      times.
+    * Added persistence to category and system_id.
+    * Added lshw registry and plugin.
+    * Added newlines to German introduction message.
+  * Fixed e-mail address should be remembered (LP: #156725)
+  * Fixed $output variable does not seem to be reinterpolated when
+    testing again (LP: #189404)
+  * Fixed command line interface does not provide a test nor test again
+    option (LP: #189423)
+  * Fixed translation template unavailable, even though hwtest is in main
+    (LP: #202447)
+  * Fixed internet_test should support providing a destination other
+    than canonical.com (LP: #216111)
+  * Fixed hwtest loads editor backup files from suite dir (LP: #237954)
+  * Fixed application should only have one instance running (LP: #266899)
+  * Fixed disk information should be gathered (LP: #267889)
+  * Fixed typo: payback device (LP: #288331)
+  * Fixed tests skipped by constraint should be reported (LP: #304176)
+  * Fixed manual tests which have commands should not be run automatically
+    (LP: #304231)
+  * Fixed CHECKBOX_DATA mapping is not working (LP: #304736)
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 16 Jan 2009 12:05:32 -0500
+
+hwtest (0.1-0ubuntu10) hardy; urgency=low
+
+  * Fixed xalign and yalign in exchange summary.
+
+ -- Marc Tardif <marc@interunion.ca>  Mon, 21 Apr 2008 15:07:39 -0400
+
+hwtest (0.1-0ubuntu9) hardy; urgency=low
+
+  * Fixed internet_test to ping default gateway rather than canonical.com.
+  * Fixed python-support issues to support upgrades of hwtest.
+  * Fixed tooltip to be HIG compliant.
+  * Fixed category to use GTK;System;Settings;.
+  * Fixed command line interface to support escape characters.
+  * Using python-central instead of python-support.
+  * Added support to i18n the .desktop file.
+  * Added support for http_proxy and https_proxy.
+  * Added summary of information being submitted.
+
+ -- Marc Tardif <marc@interunion.ca>  Thu, 17 Apr 2008 12:01:50 -0400
+
+hwtest (0.1-0ubuntu8) hardy; urgency=low
+
+  * debian/patches/01_change_menu_category.patch:
+    - change the category so the item is moved to system, administration and not
+      the only entry in applications, system tools on a default installation
+
+ -- Sebastien Bacher <seb128@canonical.com>  Mon, 14 Apr 2008 15:49:06 +0200
+
+hwtest (0.1-0ubuntu7) hardy; urgency=low
+
+  * Fixed packaging bugs.
+  * Improved internationalization.
+  * Renamed questions and answers to tests and results.
+
+ -- Marc Tardif <marc@interunion.ca>  Thu,  6 Mar 2008 10:58:43 -0500
+
+hwtest (0.1-0ubuntu6) hardy; urgency=low
+
+  * Upload to hardy/universe (without the .bzr files).
+  * Make package conformant with current Python policy.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 11 Mar 2008 14:06:02 +0000
+
+hwtest (0.1-0ubuntu5) hardy; urgency=low
+
+  * Set default timeout to None instead of 60 seconds.
+  * Updated copyright information.
+  * Reverted to using gksu to limit dependencies.
+  * Removed dependency on python-apt.
+
+ -- Marc Tardif <marc@interunoin.ca>  Thu, 28 Feb 2008 17:07:07 -0500
+
+hwtest (0.1-0ubuntu4) hardy; urgency=low
+
+  * Improved text in questions text file.
+  * Improved user experience by only showing auto questions
+    progress bar when there are actual questions.
+  * Also improved the user experience by showing a progress
+    bar while building the report.
+
+ -- Marc Tardif <marc@interunion.ca>  Wed, 27 Feb 2008 23:12:24 -0500
+
+hwtest (0.1-0ubuntu3) hardy; urgency=low
+
+  * Fixed hwtest_cli so that it doesn't strip the DISPLAY environment
+    variable.
+  * Fixed system_info plugin so that it does a better effort for
+    gathering system information instead of relying on non standard
+    information from HAL.
+
+ -- Marc Tardif <marc@interunion.ca>  Wed, 27 Feb 2008 10:52:33 -0500
+
+hwtest (0.1-0ubuntu2) hardy; urgency=low
+
+  * Fixed packaging following lintian error.
+  * Added packages registry and plugin.
+
+ -- Marc Tardif <marc@interunion.ca>  Tue,  5 Feb 2008 15:02:26 -0500
+
+hwtest (0.1-0ubuntu1) hardy; urgency=low
+
+  * Initial Release.
+
+ -- Marc Tardif <marc@interunion.ca>  Mon, 17 Sep 2007 17:25:54 -0300

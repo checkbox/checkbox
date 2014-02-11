@@ -36,6 +36,7 @@ Dialog {
      * the corresponding "Test" button. Otherwise it's greyed out.
      */
     property var showTestButton;
+    property var testStatus;
 
     title: i18n.tr("Manual Test")
     text: testItem.testname//i18n.tr("Name of the Test.")
@@ -90,7 +91,7 @@ Dialog {
         CheckBox {
             id: yescheck
             text: i18n.tr("Yes")
-            checked: false
+            checked: testStatus === 2 /* PBJobResult_Pass */ ? true : false
             onClicked: {
                 if (checked){
                     nocheck.checked = !checked
@@ -110,7 +111,7 @@ Dialog {
         CheckBox {
             id: nocheck
             text: i18n.tr("No")
-            checked: false
+            checked: testStatus === 3 /* PBJobResult_Fail */ ? true : false
             onClicked: {
                 if (checked){
                     yescheck.checked = !checked
@@ -130,7 +131,7 @@ Dialog {
         CheckBox {
             id: skipcheck
             text: i18n.tr("Skip")
-            checked: true   // default if user only types comments and Continues
+            checked: testStatus === 1 /* PBJobResult_Skip */ ? true : false
             onClicked: {
                 if (checked){
                     nocheck.checked = !checked
@@ -228,26 +229,6 @@ Dialog {
 
             // Outcome values refer to PBJobResult enums
             if (outcome === 2 /* PBJobResult_Pass */) {
-                yescheck.checked = true;
-                nocheck.checked = false;
-                skipcheck.checked = false; // we didnt skip it
-            } else if (outcome === 8 /* PBJobResult_None */){
-
-                /* FIXME - Plainbox currently doesnt provide a default
-                 * "outcome" for the result of running any manual test
-                 * command; but in future it can be added. This would
-                 * allow the gui to suggest a default pass/fail result
-                 * based on the return code of that command but which
-                 * can be overriden by the user decision if they see
-                 * some behaviour/effect which means the test really failed
-                 * or passed with a different result.
-                 *
-                 * For now, we take the view that an outcome of "none" probably
-                 * ought to default to "yes" because most tests ought to be
-                 * passing so this is the most time-efficient default
-                 * for the user.
-                 */
-
                 yescheck.checked = true;
                 nocheck.checked = false;
                 skipcheck.checked = false; // we didnt skip it

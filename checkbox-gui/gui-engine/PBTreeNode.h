@@ -90,6 +90,11 @@ public:
 
     // Setters
     void setOutcome(const QString& outcome);
+    void setComments(const QString& comments);
+
+    // Methods
+    bool CanStart(void);
+    const QString GetReadinessDescription(void);
 
     // Convenient enumeration of Job Results. We will use these in the GUI
     Q_ENUMS(PBJobResult);

@@ -5,6 +5,7 @@
  *
  * Authors:
  * - Julia Segal <julia.segal@cellsoftware.co.uk>
+ * - Sylvain Pineau <sylvain.pineau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +37,7 @@ Row {
     signal exit
     signal pauseTest
     signal resumeTest
+    signal reRunTest
     signal results
 
 
@@ -70,6 +72,7 @@ Row {
                 showRerun = false;
 
                 // Get on with it
+                reRunTest()
                 guiEngine.RunJobs();
 
             } else {

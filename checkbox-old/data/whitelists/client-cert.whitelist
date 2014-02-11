@@ -5,6 +5,7 @@
 ## properly in your test environment.  To avoid false failures, please use the 
 ## client-selftest.whitelist instead.
 # Resource Jobs
+IEEE_80211
 block_device
 cdimage
 cpuinfo
@@ -20,9 +21,11 @@ meminfo
 mobilebroadband
 module
 optical_drive
+optical_drive_.*
 package
 rtc
 sleep
+touchpad_scroll
 uname
 usb
 xinput
@@ -30,11 +33,11 @@ xinput
 __audio__
 audio/alsa_info_collect
 audio/alsa_info_attachment
-audio/list_devices
-audio/playback_headphones
-audio/playback_auto
 audio/alsa_record_playback_external
 audio/alsa_record_playback_internal
+audio/list_devices
+audio/playback_auto
+audio/playback_headphones
 audio/playback_hdmi
 audio/playback_displayport
 audio/alsa_record_playback_automated
@@ -56,12 +59,12 @@ __cpu__
 __disk__
 # See Automated Tests section at the end of this file
 disk/detect
+__ethernet__
+# See Networking section below
 __esata__
 esata/insert
 esata/storage-test
 esata/remove
-__ethernet__
-ethernet/detect
 __expresscard__
 expresscard/verification
 __firewire__
@@ -82,8 +85,8 @@ graphics/minimum_resolution
 graphics/maximum_resolution
 graphics/xorg-failsafe
 graphics/xorg-process
-graphics/VESA_drivers_not_in_use
 graphics/cycle_resolution
+graphics/VESA_drivers_not_in_use
 __hibernate__
 #See below, power-management/hibernate_advanced
 __input__
@@ -99,12 +102,14 @@ keys/battery-info
 keys/brightness
 keys/media-control
 keys/mute
+keys/sleep
 keys/video-out
 keys/volume
 keys/wireless
 keys/keyboard-backlight
 keys/keyboard-overhead-light
-# Sleep and hibernate keys tests can be found after suspend tests
+keys/hibernate
+keys/microphone-mute
 __led__
 led/wlan
 led/power
@@ -138,6 +143,8 @@ mobilebroadband/gsm_connection
 mobilebroadband/cdma_connection
 __networking__
 # See before the Automated Tests section at the end of this file
+ethernet/detect
+networking/gateway_ping
 networking/info
 networking/info_eth\d
 networking/info_wlan\d
@@ -150,6 +157,10 @@ optical/cdrom-write
 optical/cdrom-write_.*
 optical/dvd-write
 optical/dvd-write_.*
+optical/bluray-read
+optical/bluray-read_.*
+optical/bluray-write
+optical/bluray-write_.*
 __power-management__
 # See Automated Tests section at the end of this file
 power-management/lid
@@ -206,8 +217,6 @@ suspend/suspend-single-log-check
 suspend/suspend-single-log-attach
 led/power-blink-suspend
 led/suspend
-keys/sleep
-keys/hibernate
 suspend/network_after_suspend
 suspend/resolution_after_suspend
 suspend/audio_after_suspend
@@ -293,6 +302,7 @@ dmi_attachment
 dmidecode_attachment
 efi_attachment
 lspci_attachment
+lsusb_attachment
 meminfo_attachment
 modprobe_attachment
 modules_attachment
