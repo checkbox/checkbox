@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-01 05:22+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 05:28+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #. Title of the user interface
@@ -5179,17 +5179,8 @@ msgstr " Rezultati "
 #~ msgid "Is this ok?"
 #~ msgstr "Je li ovo u redu?"
 
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "Da li vaš miš ispravno radi?"
-
-#~ msgid "Testing your connection to the Internet:"
-#~ msgstr "Testiranje vaše veze sa internetom:"
-
 #~ msgid "Was the connection correctly established?"
 #~ msgstr "Da li je veza uspješno uspostavljena?"
-
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "Je li ovo prihvatljivo za vaš ekran?"
 
 #~ msgid "This display is using the following resolution:"
 #~ msgstr "Ovaj ekran koristi slijedeću rezoluciju:"
@@ -5214,9 +5205,6 @@ msgstr " Rezultati "
 #~ "Preduslovi: Ova vrsta testa pretpostavlja da postoji nalog testiranja iz "
 #~ "kojeg su pokrenuti testovi i lični nalog koji korisnik koristi da bi "
 #~ "provjerio čitač otisaka"
-
-#~ msgid "Moving the mouse should move the cursor on the screen."
-#~ msgstr "Pomjeranjem miša treba da se pomjera kursor na ekranu."
 
 #~ msgid "QA regression tests (destructive)"
 #~ msgstr "Testovi QA regresije (destruktivno)"
@@ -5257,10 +5245,6 @@ msgstr " Rezultati "
 
 #~ msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 #~ msgstr "Skraćenica za --config=checkbox/plugins/jobs_info/whitelist_file."
-
-#, python-format
-#~ msgid "Unable to start web browser to open %s."
-#~ msgstr "Ne mogu da pokrenem internet pregledač da bih otvorio %s."
 
 #~ msgid "Facebook Chat"
 #~ msgstr "Facebook Razgovor"
@@ -5444,17 +5428,11 @@ msgstr " Rezultati "
 #~ "Desno tipkom miša kliknite na datoteka Testna Datoteka 1 (kopija) i "
 #~ "odaberite Preimenuj. Unesite ime Testna Datoteka 2 i kliknite Enter."
 
-#~ msgid "Is this correct?"
-#~ msgstr "Da li je ovo tačno?"
-
 #~ msgid "Please connect a pair of headphones to your audio device."
 #~ msgstr "Molimo vas priključite par slušalica u vaš zvučni uređaj."
 
 #~ msgid "Detecting your sound device(s):"
 #~ msgstr "Detekcija vašeg zvučnog uređaja:"
-
-#~ msgid "Test and report system information"
-#~ msgstr "Testiraj i prikaži informacije o sistemu"
 
 #~ msgid "Disk benchmark:"
 #~ msgstr "Benčmark diska:"
@@ -5477,23 +5455,11 @@ msgstr " Rezultati "
 #~ msgid "Did the file play?"
 #~ msgstr "Da li je došlo do reprodukcije?"
 
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "Detekcija vašeg(ih) mrežnog(ih) kontrolera:"
-
 #~ msgid "Did the monitor go blank?"
 #~ msgstr "Da li je monitor postao bea slike?"
 
 #~ msgid "Automated benchmark testing"
 #~ msgstr "Automatizovano benčmark testiranje"
-
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "Da li je vaša tastatura radila ispravno?"
-
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "Kliknite na dugme ''Testiraj'' da prikažete video test."
-
-#~ msgid "Do you see color bars and static?"
-#~ msgstr "Da li vidite trake boja i statik?"
 
 #~ msgid ""
 #~ "Connect a display (if not already connected) to the DisplayPort on your "
@@ -5563,9 +5529,6 @@ msgstr " Rezultati "
 
 #~ msgid "If your system does not have a VGA port, please skip this test."
 #~ msgstr "Ako vaš sistem nema VGA port, molim preskočite ovaj test."
-
-#~ msgid "$output"
-#~ msgstr "$output"
 
 #~ msgid ""
 #~ "Did you hear a sound and was that sound free of any distortion, clicks or "
@@ -6920,34 +6883,6 @@ msgstr " Rezultati "
 #~ msgid "Autotest Suite tests"
 #~ msgstr "Autotest Suite testovi"
 
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Da li ste čuli zvuk?"
-
-#~ msgid "_Server"
-#~ msgstr "_Server"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Upspješno poslana informacija!"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Laptop"
-
-#~ msgid "_Desktop"
-#~ msgstr "Radna površina"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Autentifikacija"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Trajanje testa %s..."
-
-#~ msgid "Category"
-#~ msgstr "Kategorija"
-
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will test the media keys of your keyboard\n"
@@ -7516,3 +7451,68 @@ msgstr " Rezultati "
 #~ "Ovo je automatizivana verzija testa usb/automatska memorija i pretpostavlja "
 #~ "da server imaubačene memorijske uređaja prije nego se checkbox izvrši. "
 #~ "Namijenjen je za servere i automatsko SRU testiranje."
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Upspješno poslana informacija!"
+
+#~ msgid "_Desktop"
+#~ msgstr "Radna površina"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Laptop"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "Test and report system information"
+#~ msgstr "Testiraj i prikaži informacije o sistemu"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Da li ste čuli zvuk?"
+
+#~ msgid "Do you see color bars and static?"
+#~ msgstr "Da li vidite trake boja i statik?"
+
+#~ msgid "Moving the mouse should move the cursor on the screen."
+#~ msgstr "Pomjeranjem miša treba da se pomjera kursor na ekranu."
+
+#~ msgid "Is your mouse working properly?"
+#~ msgstr "Da li vaš miš ispravno radi?"
+
+#~ msgid "Detecting your network controller(s):"
+#~ msgstr "Detekcija vašeg(ih) mrežnog(ih) kontrolera:"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Is this correct?"
+#~ msgstr "Da li je ovo tačno?"
+
+#~ msgid "Testing your connection to the Internet:"
+#~ msgstr "Testiranje vaše veze sa internetom:"
+
+#~ msgid "$output"
+#~ msgstr "$output"
+
+#~ msgid "Is your keyboard working properly?"
+#~ msgstr "Da li je vaša tastatura radila ispravno?"
+
+#~ msgid "Authentication"
+#~ msgstr "Autentifikacija"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Trajanje testa %s..."
+
+#~ msgid "Category"
+#~ msgstr "Kategorija"
+
+#~ msgid "Is this acceptable for your display?"
+#~ msgstr "Je li ovo prihvatljivo za vaš ekran?"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Kliknite na dugme ''Testiraj'' da prikažete video test."
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Ne mogu da pokrenem internet pregledač da bih otvorio %s."

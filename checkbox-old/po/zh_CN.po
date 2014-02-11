@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-01 05:26+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 05:33+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
@@ -4576,45 +4576,6 @@ msgstr "查看结果"
 msgid " Results "
 msgstr " 结果 "
 
-#~ msgid "Successfully sent information!"
-#~ msgstr "发送信息成功！"
-
-#~ msgid "_Desktop"
-#~ msgstr "桌面(_D)"
-
-#~ msgid "_Laptop"
-#~ msgstr "笔记本(_L)"
-
-#~ msgid "_Server"
-#~ msgstr "服务器(_S)"
-
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "检测你的网络控制器："
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Testing your connection to the Internet:"
-#~ msgstr "测试你的互联网链接："
-
-#~ msgid "$output"
-#~ msgstr "$output"
-
-#~ msgid "Exchange"
-#~ msgstr "交换"
-
-#~ msgid "Category"
-#~ msgstr "分类"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "欢迎使用系统测试程序！"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "请选择系统的种类。"
-
-#~ msgid "Running shell tests..."
-#~ msgstr "正在运行 shell 测试 %s..."
-
 #~ msgid "Network tests"
 #~ msgstr "网络测试"
 
@@ -4644,10 +4605,6 @@ msgstr " 结果 "
 #~ msgid ""
 #~ "The following screens and video modes have been detected on your system:"
 #~ msgstr "在您的系统上检测到以下屏幕/视频模式："
-
-#, python-format
-#~ msgid "Unable to start web browser to open %s."
-#~ msgstr "无法用浏览器打开 %s。"
 
 #, python-format
 #~ msgid ""
@@ -4941,13 +4898,6 @@ msgstr " 结果 "
 #~ "set-up."
 #~ msgstr ""
 #~ "还有，您需要确认您的系统没有开机密码或硬盘密码。如果您的计算机设置了多重启动，您需要在 grub 中设置 Ubuntu 为缺省启动的操作系统。"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "正在运行测试 %s..."
-
-#~ msgid "Authentication"
-#~ msgstr "验证"
 
 #~ msgid ""
 #~ "Select Test to play a sound on the automatically detected playback device."
@@ -5918,9 +5868,6 @@ msgstr " 结果 "
 #~ "这是 usb/storage-automated 的自动化版本，其假设在复选框执行前已将 USB 存储设备插入到了服务器中。其用于服务器和 SRU "
 #~ "自动测试。"
 
-#~ msgid "Is this correct?"
-#~ msgstr "对吗？"
-
 #~ msgid ""
 #~ "Disconnect any external microphones that you have plugged in.  \\ Click the "
 #~ "Test button, then speak into your internal microphone.  \\ After a few "
@@ -6043,28 +5990,10 @@ msgstr " 结果 "
 #~ msgid "Was the connection correctly established?"
 #~ msgstr "是否已经正常建立连接？"
 
-#~ msgid "Moving the mouse should move the cursor on the screen."
-#~ msgstr "移动鼠标时屏幕上的指针也将跟着移动。"
-
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "鼠标是否工作正常？"
-
 #~ msgid ""
 #~ "Click the Test button to open a text area where to type keys on your \\ "
 #~ "keyboard."
 #~ msgstr "点击测试按钮将打开一个可以用键盘输入的文本框。"
-
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "键盘是否工作正常？"
-
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "显示效果是否正常？"
-
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "点击测试按钮进行视频测试。"
-
-#~ msgid "Do you see color bars and static?"
-#~ msgstr "是否看到屏幕上出现彩色条纹？"
 
 #~ msgid "Click Test to cycle through the detected video modes for your system."
 #~ msgstr "点击测试按钮循环测试系统上检测到的视频模式。"
@@ -6088,3 +6017,74 @@ msgstr " 结果 "
 
 #~ msgid "Personal details"
 #~ msgstr "个人信息"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "发送信息成功！"
+
+#~ msgid "_Desktop"
+#~ msgstr "桌面(_D)"
+
+#~ msgid "_Laptop"
+#~ msgstr "笔记本(_L)"
+
+#~ msgid "_Server"
+#~ msgstr "服务器(_S)"
+
+#~ msgid "Do you see color bars and static?"
+#~ msgstr "是否看到屏幕上出现彩色条纹？"
+
+#~ msgid "Moving the mouse should move the cursor on the screen."
+#~ msgstr "移动鼠标时屏幕上的指针也将跟着移动。"
+
+#~ msgid "Is your mouse working properly?"
+#~ msgstr "鼠标是否工作正常？"
+
+#~ msgid "Detecting your network controller(s):"
+#~ msgstr "检测你的网络控制器："
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Is this correct?"
+#~ msgstr "对吗？"
+
+#~ msgid "Testing your connection to the Internet:"
+#~ msgstr "测试你的互联网链接："
+
+#~ msgid "$output"
+#~ msgstr "$output"
+
+#~ msgid "Is your keyboard working properly?"
+#~ msgstr "键盘是否工作正常？"
+
+#~ msgid "Authentication"
+#~ msgstr "验证"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "正在运行测试 %s..."
+
+#~ msgid "Exchange"
+#~ msgstr "交换"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "正在运行 shell 测试 %s..."
+
+#~ msgid "Category"
+#~ msgstr "分类"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "请选择系统的种类。"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "欢迎使用系统测试程序！"
+
+#~ msgid "Is this acceptable for your display?"
+#~ msgstr "显示效果是否正常？"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "点击测试按钮进行视频测试。"
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "无法用浏览器打开 %s。"

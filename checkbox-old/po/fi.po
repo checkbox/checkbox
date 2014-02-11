@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-01 05:22+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 05:29+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #. Title of the user interface
@@ -4726,70 +4726,6 @@ msgstr "Tutki tuloksia"
 msgid " Results "
 msgstr " Tulokset "
 
-#~ msgid "Successfully sent information!"
-#~ msgstr "Tiedot lähetettiin onnistuneesti."
-
-#~ msgid "_Desktop"
-#~ msgstr "_Työpöytä"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Kannettava"
-
-#~ msgid "_Server"
-#~ msgstr "_Palvelin"
-
-#~ msgid "Moving the mouse should move the cursor on the screen."
-#~ msgstr "Hiiren siirtämisen tulisi siirtää osoitinta näytöllä."
-
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "Toimiiko hiiresi oikein?"
-
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "Tunnistetaan verkko-ohjaimia:"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Is this correct?"
-#~ msgstr "Onko tämä oikein?"
-
-#~ msgid "Testing your connection to the Internet:"
-#~ msgstr "Testataan yhteyttä Internetiin:"
-
-#~ msgid "$output"
-#~ msgstr "$output"
-
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "Toimiiko näppäimistö oikein?"
-
-#~ msgid "Exchange"
-#~ msgstr "Tietojen siirto"
-
-#~ msgid "Category"
-#~ msgstr "Luokka"
-
-#~ msgid "Do you see color bars and static?"
-#~ msgstr "Näetkö väripalkkeja ja kohinaa?"
-
-#~ msgid "Test and report system information"
-#~ msgstr "Testaa ja raportoi järjestelmätietoja"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Kuuletko ääntä?"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Tervetuloa järjestelmän testaukseen"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Valitse järjestelmäsi luokka."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Suoritetaan komentorivitestejä..."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Suoritetaan testiä %s..."
-
 #~ msgid "Autotest suite (destructive)"
 #~ msgstr "Automaattitestaussarja (tuhoava)"
 
@@ -5065,12 +5001,6 @@ msgstr " Tulokset "
 #~ msgid "Did the file play?"
 #~ msgstr "Toistuiko tiedosto?"
 
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "Onko tämä sopiva näytöllesi?"
-
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "Napsauta Testaa-painiketta suorittaaksesi videotestin."
-
 #~ msgid "Check that hardware is able to run compiz."
 #~ msgstr "Tarkistetaan, kykeneekö laitteisto ajamaan compizia."
 
@@ -5089,10 +5019,6 @@ msgstr " Tulokset "
 #~ "For HDMI, please also check that sound is played in the monitor speakers."
 #~ msgstr ""
 #~ "HDMI:n tapauksessa tarkista myös, että ääni kuuluu näytön kaiuttimista."
-
-#, python-format
-#~ msgid "Unable to start web browser to open %s."
-#~ msgstr "Selaimella ei voi avata osoitetta %s."
 
 #~ msgid "Select the suites to test"
 #~ msgstr "Valitse testattavat kohteet"
@@ -5174,9 +5100,6 @@ msgstr " Tulokset "
 
 #~ msgid "Did the video play correctly?"
 #~ msgstr "Toistuiko video ongelmitta?"
-
-#~ msgid "Authentication"
-#~ msgstr "Tunnistautuminen"
 
 #~ msgid ""
 #~ "Did you hear a sound and was that sound free of any distortion, clicks or "
@@ -6508,3 +6431,80 @@ msgstr " Tulokset "
 
 #~ msgid "Personal details"
 #~ msgstr "Henkilökohtaiset tiedot"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Tiedot lähetettiin onnistuneesti."
+
+#~ msgid "_Desktop"
+#~ msgstr "_Työpöytä"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Kannettava"
+
+#~ msgid "_Server"
+#~ msgstr "_Palvelin"
+
+#~ msgid "Test and report system information"
+#~ msgstr "Testaa ja raportoi järjestelmätietoja"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Kuuletko ääntä?"
+
+#~ msgid "Do you see color bars and static?"
+#~ msgstr "Näetkö väripalkkeja ja kohinaa?"
+
+#~ msgid "Moving the mouse should move the cursor on the screen."
+#~ msgstr "Hiiren siirtämisen tulisi siirtää osoitinta näytöllä."
+
+#~ msgid "Is your mouse working properly?"
+#~ msgstr "Toimiiko hiiresi oikein?"
+
+#~ msgid "Detecting your network controller(s):"
+#~ msgstr "Tunnistetaan verkko-ohjaimia:"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Is this correct?"
+#~ msgstr "Onko tämä oikein?"
+
+#~ msgid "Testing your connection to the Internet:"
+#~ msgstr "Testataan yhteyttä Internetiin:"
+
+#~ msgid "$output"
+#~ msgstr "$output"
+
+#~ msgid "Is your keyboard working properly?"
+#~ msgstr "Toimiiko näppäimistö oikein?"
+
+#~ msgid "Authentication"
+#~ msgstr "Tunnistautuminen"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Suoritetaan testiä %s..."
+
+#~ msgid "Exchange"
+#~ msgstr "Tietojen siirto"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Suoritetaan komentorivitestejä..."
+
+#~ msgid "Category"
+#~ msgstr "Luokka"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Valitse järjestelmäsi luokka."
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Tervetuloa järjestelmän testaukseen"
+
+#~ msgid "Is this acceptable for your display?"
+#~ msgstr "Onko tämä sopiva näytöllesi?"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Napsauta Testaa-painiketta suorittaaksesi videotestin."
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Selaimella ei voi avata osoitetta %s."

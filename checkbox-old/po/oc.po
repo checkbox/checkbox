@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-01 05:24+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 05:31+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #. Title of the user interface
@@ -4141,9 +4141,6 @@ msgstr " Resultats "
 #~ "Checkbox es estat interromput abans la fin.\n"
 #~ "Volètz reprene sa precedenta execucion ?"
 
-#~ msgid "Test and report system information"
-#~ msgstr "Testar e mandar las informacions sul sistèma"
-
 #~ msgid "Network tests"
 #~ msgstr "Tèsts de las rets"
 
@@ -4162,9 +4159,6 @@ msgstr " Resultats "
 
 #~ msgid "Detecting your sound device(s):"
 #~ msgstr "Deteccion de vòstres periferics àudio :"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Ausissètz un son ?"
 
 #~ msgid ""
 #~ "Connect a USB audio device to your system.  Then open the \\ volume control "
@@ -4223,12 +4217,6 @@ msgstr " Resultats "
 
 #~ msgid "Did you hear your speech played back?"
 #~ msgstr "L'enregistrament de vòstra votz es estat restituit coma caliá ?"
-
-#~ msgid "Is this correct?"
-#~ msgstr "Es corrècte ?"
-
-#~ msgid "$output"
-#~ msgstr "$output"
 
 #~ msgid ""
 #~ "Open the volume control application by right-clicking on the speaker \\ icon "
@@ -4329,9 +4317,6 @@ msgstr " Resultats "
 #~ "temporàriament dins una consòla en mòde tèxte puèi tornar a la\r\n"
 #~ "sesilha actuala."
 
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "Vòstre clavièr fonciona corrèctament ?"
-
 #~ msgid "Was the connection correctly established?"
 #~ msgstr "La connexion es estada establida corrèctament ?"
 
@@ -4341,19 +4326,6 @@ msgstr " Resultats "
 #~ msgstr ""
 #~ "Clicatz sul boton « Testar » per dobrir una zòna de tèxte que \r\n"
 #~ "vos permetrà de testar las tòcas de vòstre clavièr."
-
-#~ msgid "Testing your connection to the Internet:"
-#~ msgstr "Tèst de la connexion a Internet :"
-
-#~ msgid "Moving the mouse should move the cursor on the screen."
-#~ msgstr ""
-#~ "Lo desplaçament de la mirga deuriá far bolegar lo cursor sus l'ecran."
-
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "Vòstra mirga fonciona corrèctament ?"
-
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "Deteccion de vòstra(s) carta(s) de ret :"
 
 #~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
 #~ msgstr ""
@@ -4406,34 +4378,17 @@ msgstr " Resultats "
 #~ "Sens vos comandar, repetètz lo tèst amb los diferents tipes de sortida vidèo "
 #~ "(VGA, DVI, DisplayPort e HDMI)."
 
-#~ msgid "Do you see color bars and static?"
-#~ msgstr "Vesètz de barras de colors e d'interferéncias ?"
-
 #~ msgid ""
 #~ "Plug video output to an external monitor. Is the image displayed correctly?"
 #~ msgstr ""
 #~ "Brancatz la sortida vidèo sus un ecran extèrne. L'imatge s'aficha "
 #~ "corrèctament ?"
 
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "Clicatz sul boton « Testar » per afichar un tèst vidèo."
-
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "Aquò conven per vòstre ecran ?"
-
 #~ msgid ""
 #~ "For HDMI, please also check that sound is played in the monitor speakers."
 #~ msgstr ""
 #~ "Per l'HDMI, verificatz tanben que lo son sortís corrèctament\r\n"
 #~ "dels nauts-parlaires."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Execucion del tèst %s..."
-
-#, python-format
-#~ msgid "Unable to start web browser to open %s."
-#~ msgstr "Impossible d'aviar lo navigador web per dobrir %s."
 
 #, python-format
 #~ msgid ""
@@ -4462,9 +4417,6 @@ msgstr " Resultats "
 
 #~ msgid "Select the suites to test"
 #~ msgstr "Seleccionatz los components de testar"
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Execucion dels tèsts shell..."
 
 #~ msgid "No e-mail address provided, not submitting to Launchpad."
 #~ msgstr ""
@@ -5034,3 +4986,51 @@ msgstr " Resultats "
 
 #~ msgid "Lists of tests to run based on your system:"
 #~ msgstr "Lista de tèsts d'efectuar sus vòstre sistèma :"
+
+#~ msgid "Test and report system information"
+#~ msgstr "Testar e mandar las informacions sul sistèma"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Ausissètz un son ?"
+
+#~ msgid "Do you see color bars and static?"
+#~ msgstr "Vesètz de barras de colors e d'interferéncias ?"
+
+#~ msgid "Moving the mouse should move the cursor on the screen."
+#~ msgstr ""
+#~ "Lo desplaçament de la mirga deuriá far bolegar lo cursor sus l'ecran."
+
+#~ msgid "Is your mouse working properly?"
+#~ msgstr "Vòstra mirga fonciona corrèctament ?"
+
+#~ msgid "Detecting your network controller(s):"
+#~ msgstr "Deteccion de vòstra(s) carta(s) de ret :"
+
+#~ msgid "Is this correct?"
+#~ msgstr "Es corrècte ?"
+
+#~ msgid "Testing your connection to the Internet:"
+#~ msgstr "Tèst de la connexion a Internet :"
+
+#~ msgid "$output"
+#~ msgstr "$output"
+
+#~ msgid "Is your keyboard working properly?"
+#~ msgstr "Vòstre clavièr fonciona corrèctament ?"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Execucion del tèst %s..."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Execucion dels tèsts shell..."
+
+#~ msgid "Is this acceptable for your display?"
+#~ msgstr "Aquò conven per vòstre ecran ?"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Clicatz sul boton « Testar » per afichar un tèst vidèo."
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Impossible d'aviar lo navigador web per dobrir %s."

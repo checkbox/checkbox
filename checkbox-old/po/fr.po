@@ -13,7 +13,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-01 05:23+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 05:29+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #. Title of the user interface
@@ -5301,48 +5301,6 @@ msgstr "Voir les résultats"
 msgid " Results "
 msgstr " Résultats "
 
-#~ msgid "Successfully sent information!"
-#~ msgstr "Informations envoyées avec succès !"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Bureau"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Portable"
-
-#~ msgid "_Server"
-#~ msgstr "_Serveur"
-
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "Votre souris fonctionne-t-elle correctement ?"
-
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "Détection de votre/vos carte(s) réseau :"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Is this correct?"
-#~ msgstr "Est-ce correct ?"
-
-#~ msgid "$output"
-#~ msgstr "$output"
-
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "Votre clavier fonctionne-t-il correctement ?"
-
-#~ msgid "Exchange"
-#~ msgstr "Intervertir"
-
-#~ msgid "Category"
-#~ msgstr "Catégorie"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Veuillez sélectionner la catégorie de votre système."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Exécution des tests shell..."
-
 #~ msgid "Network tests"
 #~ msgstr "Tests des réseaux"
 
@@ -5397,9 +5355,6 @@ msgstr " Résultats "
 
 #~ msgid "Detecting your sound device(s):"
 #~ msgstr "Détection de vos périphériques audio :"
-
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "Cliquez sur le bouton « Test » pour afficher un test vidéo."
 
 #~ msgid "Please connect a pair of headphones to your audio device."
 #~ msgstr "Veuillez connecter des écouteurs à votre périphérique audio."
@@ -5736,13 +5691,6 @@ msgstr " Résultats "
 #~ msgid "Was the connection correctly established?"
 #~ msgstr "La connexion a-t-elle correctement été établie ?"
 
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Exécution du test %s..."
-
-#~ msgid "Authentication"
-#~ msgstr "Authentification"
-
 #~ msgid ""
 #~ "Did you hear a sound and was that sound free of any distortion, clicks or "
 #~ "other strange noises?"
@@ -5784,10 +5732,6 @@ msgstr " Résultats "
 #~ "The following screens and video modes have been detected on your system:"
 #~ msgstr ""
 #~ "Les écrans et les modes vidéos suivants ont été détectés sur votre système :"
-
-#, python-format
-#~ msgid "Unable to start web browser to open %s."
-#~ msgstr "Impossible de lancer le navigateur Web pour ouvrir %s."
 
 #, python-format
 #~ msgid ""
@@ -6131,9 +6075,6 @@ msgstr " Résultats "
 
 #~ msgid "Did the resolution change as expected?"
 #~ msgstr "La résolution a-t-elle changé comme prévu ?"
-
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "Cela convient-il pour votre appareil ?"
 
 #~ msgid "Did the screen appear to be working for each mode?"
 #~ msgstr "L'écran semble-t-il fonctionner correctement pour chacun des modes ?"
@@ -7943,3 +7884,62 @@ msgstr " Résultats "
 #~ "VÉRIFICATION :\n"
 #~ "Le système est-il entré en hibernation et s'est-il réveillé 30 fois avec "
 #~ "succès ?"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Informations envoyées avec succès !"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Bureau"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Portable"
+
+#~ msgid "_Server"
+#~ msgstr "_Serveur"
+
+#~ msgid "Is your mouse working properly?"
+#~ msgstr "Votre souris fonctionne-t-elle correctement ?"
+
+#~ msgid "Detecting your network controller(s):"
+#~ msgstr "Détection de votre/vos carte(s) réseau :"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Is this correct?"
+#~ msgstr "Est-ce correct ?"
+
+#~ msgid "$output"
+#~ msgstr "$output"
+
+#~ msgid "Is your keyboard working properly?"
+#~ msgstr "Votre clavier fonctionne-t-il correctement ?"
+
+#~ msgid "Authentication"
+#~ msgstr "Authentification"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Exécution du test %s..."
+
+#~ msgid "Exchange"
+#~ msgstr "Intervertir"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Exécution des tests shell..."
+
+#~ msgid "Category"
+#~ msgstr "Catégorie"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Veuillez sélectionner la catégorie de votre système."
+
+#~ msgid "Is this acceptable for your display?"
+#~ msgstr "Cela convient-il pour votre appareil ?"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Cliquez sur le bouton « Test » pour afficher un test vidéo."
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Impossible de lancer le navigateur Web pour ouvrir %s."

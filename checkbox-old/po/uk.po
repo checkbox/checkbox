@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-01 05:25+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 05:32+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:10
@@ -4208,46 +4208,6 @@ msgstr "Переглянути результати"
 msgid " Results "
 msgstr " Результати "
 
-#~ msgid "Moving the mouse should move the cursor on the screen."
-#~ msgstr "Рух миші повинен рухати курсор на екрані."
-
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "Ваша миша працює нормально?"
-
-#~ msgid "Is this correct?"
-#~ msgstr "Це правильно?"
-
-#~ msgid "_Server"
-#~ msgstr "_Сервер"
-
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "Визначення Ваших мережевих контролерів:"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Do you see color bars and static?"
-#~ msgstr "Ви бачете кольорові полоски?"
-
-#~ msgid "Test and report system information"
-#~ msgstr "Тестувати та доповісти системну інформацію"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Ви чуєте звук?"
-
-#~ msgid "$output"
-#~ msgstr "$output"
-
-#~ msgid "Category"
-#~ msgstr "Категорія"
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Виконується перевірка..."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Виконується перевірка %s..."
-
 #~ msgid "Network tests"
 #~ msgstr "Перевірка мережі"
 
@@ -4843,34 +4803,6 @@ msgstr " Результати "
 #~ msgid "Did you see the image?"
 #~ msgstr "Ви бачите зображення?"
 
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "Це допустимо для вашого дисплею?"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Ноутбук"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Стільниця"
-
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "Натисніть на кнопку Перевірити, щоб запустити перевірку відео."
-
-#, python-format
-#~ msgid "Unable to start web browser to open %s."
-#~ msgstr "Неможливо запустити переглядач тенет, щоб відкрити %s."
-
-#~ msgid "Authentication"
-#~ msgstr "Аутентифікація"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Будь ласка виберіть категорію вашої системи."
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Ласкаво просимо до перевірки системи!"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Інформацію успішно надіслано!"
-
 #~ msgid "Test that the /var/crash directory doesn't contain anything."
 #~ msgstr "Перевірте чи пуста тека /var/crash"
 
@@ -4914,9 +4846,77 @@ msgstr " Результати "
 #~ msgid "Captures a screenshot."
 #~ msgstr "Знімає скріншот."
 
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "Чи коректно працює Ваша клавіатура?"
-
 #~ msgid "Gather log from the Firmware Test Suite run."
 #~ msgstr ""
 #~ "Збір запису подій, що відбулися під час виконання Firmware Test Suite."
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Інформацію успішно надіслано!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Стільниця"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Ноутбук"
+
+#~ msgid "_Server"
+#~ msgstr "_Сервер"
+
+#~ msgid "Test and report system information"
+#~ msgstr "Тестувати та доповісти системну інформацію"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Ви чуєте звук?"
+
+#~ msgid "Do you see color bars and static?"
+#~ msgstr "Ви бачете кольорові полоски?"
+
+#~ msgid "Moving the mouse should move the cursor on the screen."
+#~ msgstr "Рух миші повинен рухати курсор на екрані."
+
+#~ msgid "Is your mouse working properly?"
+#~ msgstr "Ваша миша працює нормально?"
+
+#~ msgid "Detecting your network controller(s):"
+#~ msgstr "Визначення Ваших мережевих контролерів:"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Is this correct?"
+#~ msgstr "Це правильно?"
+
+#~ msgid "$output"
+#~ msgstr "$output"
+
+#~ msgid "Is your keyboard working properly?"
+#~ msgstr "Чи коректно працює Ваша клавіатура?"
+
+#~ msgid "Authentication"
+#~ msgstr "Аутентифікація"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Виконується перевірка %s..."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Виконується перевірка..."
+
+#~ msgid "Category"
+#~ msgstr "Категорія"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Будь ласка виберіть категорію вашої системи."
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Ласкаво просимо до перевірки системи!"
+
+#~ msgid "Is this acceptable for your display?"
+#~ msgstr "Це допустимо для вашого дисплею?"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Натисніть на кнопку Перевірити, щоб запустити перевірку відео."
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Неможливо запустити переглядач тенет, щоб відкрити %s."
