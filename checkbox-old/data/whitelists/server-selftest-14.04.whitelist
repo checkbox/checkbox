@@ -1,9 +1,7 @@
-## This whitelist is intended for use inside Canonical's test labs.  The tests
-## conained in this list are the same as those contained in the
-## server-selftest.whitelist file that OEMs may use. The difference here is that
-## some of these tests depend on a specific network environment and may not run
-## properly in your test environment.  To avoid false failures, please use the 
-## server-selftest.whitelist instead.
+## This whitelist is intended to be used for OEM self-testing
+## the tests contained here should work in any test lab envrionement.
+## Please use this whitelist for the Ubuntu Certification self-testing
+## programme.
 # Resource Jobs
 block_device
 cdimage
@@ -43,6 +41,11 @@ info/hdparm
 info/hdparm_.*.txt
 info/disk_partitions
 # Actual test cases
+# Moved the miscellanea to put manual tests at the beginning
+__miscellanea__
+miscellanea/fwts_test
+miscellanea/fwts_results.log
+miscellanea/ipmi_test
 __benchmarks__
 benchmarks/disk/hdparm-read
 benchmarks/disk/hdparm-read_.*
@@ -72,17 +75,9 @@ ethernet/multi_nic_eth\d
 __floppy__
 floppy/check
 floppy/check_fd\d
-__install__
-install/apt-get-gets-updates
 __memory__
 memory/info
 memory/check
-__miscellanea__
-miscellanea/fwts_test
-miscellanea/fwts_results.log
-miscellanea/ipmi_test
-__networking__
-networking/ntp
 __optical__
 optical/detect
 optical/read-automated
