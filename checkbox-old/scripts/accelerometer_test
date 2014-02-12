@@ -24,7 +24,6 @@ accelerometer, and check to be sure that the x, y, z axis respond
 to physical movement of hardware.
 '''
 from argparse import ArgumentParser
-from gi.repository import Gdk, GLib, Gtk
 import logging
 import os
 import re
@@ -39,71 +38,73 @@ logger = logging.getLogger()
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
+def _get_ui():
+    from gi.repository import Gdk, GLib, Gtk
+    class AccelerometerUI(Gtk.Window):
+        """Builds UI Framework for axis threshold tests using Gtk"""
 
-class AccelerometerUI(Gtk.Window):
-    """Builds UI Framework for axis threshold tests using Gtk"""
+        def __init__(self):
+            Gtk.Window.__init__(self, title="Accelerometer Test")
 
-    def __init__(self):
-        Gtk.Window.__init__(self, title="Accelerometer Test")
+            self.set_default_size(450, 100)
+            self.set_type_hint(Gdk.WindowType.TOPLEVEL)
 
-        self.set_default_size(450, 100)
-        self.set_type_hint(Gdk.WindowType.TOPLEVEL)
+            self.enabled = False
 
-        self.enabled = False
+            # Create UI Grid
+            w_table = Gtk.Grid()
+            self.add(w_table)
 
-        # Create UI Grid
-        w_table = Gtk.Grid()
-        self.add(w_table)
+            # Create axis buttons
+            self.up_icon = Gtk.Image(stock=Gtk.STOCK_GO_UP)
+            self.up_icon.set_padding(10, 30)
+            self.down_icon = Gtk.Image(stock=Gtk.STOCK_GO_DOWN)
+            self.down_icon.set_padding(10, 30)
+            self.left_icon = Gtk.Image(stock=Gtk.STOCK_GO_BACK)
+            self.right_icon = Gtk.Image(stock=Gtk.STOCK_GO_FORWARD)
 
-        # Create axis buttons
-        self.up_icon = Gtk.Image(stock=Gtk.STOCK_GO_UP)
-        self.up_icon.set_padding(10, 30)
-        self.down_icon = Gtk.Image(stock=Gtk.STOCK_GO_DOWN)
-        self.down_icon.set_padding(10, 30)
-        self.left_icon = Gtk.Image(stock=Gtk.STOCK_GO_BACK)
-        self.right_icon = Gtk.Image(stock=Gtk.STOCK_GO_FORWARD)
+            # Set debug
+            self.debug_label = Gtk.Label("Debug")
 
-        # Set debug
-        self.debug_label = Gtk.Label("Debug")
+            # Set Grid layout for UI
+            message = "Please tilt your hardware in the positions shown below:"
+            w_table.attach(Gtk.Label(message), 0, 0, 4, 1)
 
-        # Set Grid layout for UI
-        message = "Please tilt your hardware in the positions shown below:"
-        w_table.attach(Gtk.Label(message), 0, 0, 4, 1)
+            w_table.attach(self.up_icon, 2, 2, 1, 1)
+            w_table.attach_next_to(self.debug_label, self.up_icon,
+                                   Gtk.PositionType.BOTTOM, 1, 1)
+            w_table.attach_next_to(self.down_icon, self.debug_label,
+                                   Gtk.PositionType.BOTTOM, 1, 1)
+            w_table.attach_next_to(self.left_icon, self.debug_label,
+                                   Gtk.PositionType.LEFT, 1, 1)
+            w_table.attach_next_to(self.right_icon, self.debug_label,
+                                   Gtk.PositionType.RIGHT, 1, 1)
 
-        w_table.attach(self.up_icon, 2, 2, 1, 1)
-        w_table.attach_next_to(self.debug_label, self.up_icon,
-                               Gtk.PositionType.BOTTOM, 1, 1)
-        w_table.attach_next_to(self.down_icon, self.debug_label,
-                               Gtk.PositionType.BOTTOM, 1, 1)
-        w_table.attach_next_to(self.left_icon, self.debug_label,
-                               Gtk.PositionType.LEFT, 1, 1)
-        w_table.attach_next_to(self.right_icon, self.debug_label,
-                               Gtk.PositionType.RIGHT, 1, 1)
+        def update_axis_icon(self, direction):
+            """Change desired directional icon to checkmark"""
+            exec('self.%s_icon.set_from_stock' % (direction) \
+                 + '(Gtk.STOCK_YES, size=Gtk.IconSize.BUTTON)')
 
-    def update_axis_icon(self, direction):
-        """Change desired directional icon to checkmark"""
-        exec('self.%s_icon.set_from_stock' % (direction) \
-             + '(Gtk.STOCK_YES, size=Gtk.IconSize.BUTTON)')
+        def update_debug_label(self, text):
+            """Update axis information in center of UI"""
+            self.debug_label.set_text(text)
 
-    def update_debug_label(self, text):
-        """Update axis information in center of UI"""
-        self.debug_label.set_text(text)
+        def destroy(self):
+            Gtk.main_quit()
 
-    def destroy(self):
-        Gtk.main_quit()
+        def enable(self):
+            self.enabled = True
+            self.connect("delete-event", Gtk.main_quit)
+            self.show_all()
 
-    def enable(self):
-        self.enabled = True
-        self.connect("delete-event", Gtk.main_quit)
-        self.show_all()
-
-        # Enable GLib/Gdk threading so the UI won't lock main
-        GLib.threads_init()
-        Gdk.threads_init()
-        Gdk.threads_enter()
-        Gtk.main()
-        Gdk.threads_leave()
-
+            # Enable GLib/Gdk threading so the UI won't lock main
+            GLib.threads_init()
+            Gdk.threads_init()
+            Gdk.threads_enter()
+            Gtk.main()
+            Gdk.threads_leave()
+    ui = AccelerometerUI()
+    return ui
 
 class PermissionException(RuntimeError):
     def __init__(self, error):
@@ -119,28 +120,27 @@ class AxisData(threading.Thread):
     FAILURE:1. FAILURE is likely to exists when thread is unable to
     obtain a valid reading from the hardware."""
 
-    def __init__(self, device_path, ui_control=None):
+    def __init__(self, oem_module, device_path, ui_control=None):
         threading.Thread.__init__(self)
         self.ui = ui_control
-        self.device_path = device_path.strip("/")
+        if oem_module == 'hdaps':
+            self.position_path = '/sys/devices/platform/hdaps/position'
+        else:
+            self.position_path = os.path.join('/sys',device_path,
+                                              'device', 'position')
         self.tilt_threshold = 600
         self.x_test_pool = ["up", "down"]
         self.y_test_pool = ["left", "right"]
 
-        if self.ui == None:
-            self.ui.enabled = False
-
     def grab_current_readings(self):
         """Search device path and return axis tuple"""
         time.sleep(0.5)  # Sleep to accomodate slower processors
-        data_file = os.path.join("/sys", self.device_path,
-                                 "device", "position")
 
         # Try and retrieve positional data from kernel
         try:
-            position_tuple = open(data_file)
+            position_tuple = open(self.position_path)
         except (OSError, IOError):
-            logging.error("Failed to open: %s" % data_file)
+            logging.error("Failed to open: %s" % self.position_path)
             return False
 
         # Split data for x, y, z as it's easier to manage threshold tests.
@@ -189,7 +189,7 @@ class AxisData(threading.Thread):
 
             debug_info = "X: %s Y: %s Z: %s" % (x_data, y_data, z_data)
 
-            if self.ui.enabled:
+            if self.ui and self.ui.enabled:
                 # Update positional values in UI
                 self.ui.update_debug_label(debug_info)
 
@@ -211,7 +211,7 @@ class AxisData(threading.Thread):
                 logging.debug("Latest Readings: %s" % debug_info)
                 break
 
-        if self.ui.enabled:
+        if self.ui and self.ui.enabled:
             self.ui.destroy()
         return 0
 
@@ -238,15 +238,13 @@ def insert_supported_module(oem_module):
 
     return insmod_output.returncode
 
-
-def check_module_status():
+def _get_oem_module():
     """Looks to see if it can determine the hardware manufacturer
     and report corresponding accelerometer driver status"""
     oem_driver_pool = {"hewlett-packard": "hp_accel",
                        "toshiba": "hp_accel",
                        "ibm": "hdaps", "lenovo": "hdaps"}
 
-    oem_module = None
     dmi_info = Popen(['dmidecode'], stdout=PIPE, stderr=PIPE,
                      universal_newlines=True)
 
@@ -266,11 +264,9 @@ def check_module_status():
 
     # Now we look to see if there was any info during boot
     # time that would help in debugging this failure
-    for vendor, module in oem_driver_pool.items():
-        if manufacturer.lower() == vendor:
-            oem_module = oem_driver_pool.get(vendor)
-            break  # We've found our desired module to probe.
+    return oem_driver_pool.get(manufacturer.lower())
 
+def check_module_status(oem_module):
     if oem_module != None:
         if insert_supported_module(oem_module) != None:
             logging.error("Failed module insertion")
@@ -311,7 +307,6 @@ def check_for_accelerometer():
 
 
 def main():
-
     parser = ArgumentParser(description="Tests accelerometer functionality")
 
     parser.add_argument('-m', '--manual', default=False,
@@ -322,17 +317,19 @@ def main():
                         help="For automated test using defined parameters")
 
     args = parser.parse_args()
-
     sys_path = check_for_accelerometer()
+    oem_module = _get_oem_module()
     if not sys_path:
         try:
-            check_module_status()
+            check_module_status(oem_module)
         except PermissionException as error:
             print(error, file=sys.stderr)
         sys.exit(1)
 
-    ui = AccelerometerUI()
-    grab_data = AxisData(sys_path, ui)
+    ui = None
+    if args.manual:
+        ui = _get_ui()
+    grab_data = AxisData(oem_module, sys_path, ui)
     grab_data.setDaemon(True)
     grab_data.start()
 
