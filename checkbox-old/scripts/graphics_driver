@@ -169,6 +169,8 @@ class XorgLog(object):
                 continue
 
             # EDID and Modelines
+            # We use this part to determine which driver is in use
+            # For Intel / RADEON
             m = re.search(r'\(II\) (.*)\(\d+\): EDID for output (.*)', line)
             if m:
                 self.displays[display_name] = display
@@ -186,6 +188,7 @@ class XorgLog(object):
                 display = {'Output': display_name}
                 continue
 
+            # For NVIDIA
             m = re.search(r'\(II\) (.*)\(\d+\): Setting mode "(.*?):', line)
             if m:
                 self.displays[display_name] = display
@@ -193,6 +196,17 @@ class XorgLog(object):
                 display_name = m.group(2)
                 display = {'Output': display_name}
                 continue
+
+            # For 4th Intel on 3.11
+            m = re.search(
+                r'\(II\) (.*)\(\d+\): switch to mode .* using (.*),', line)
+            if m:
+                self.displays[display_name] = display
+                self.video_driver = m.group(1)
+                display_name = m.group(2)
+                display = {'Output': display_name}
+                continue
+
 
             m = re.search(
                 r'Manufacturer: (.*) *Model: (.*) *Serial#: (.*)', line)
