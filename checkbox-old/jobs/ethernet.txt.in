@@ -45,7 +45,7 @@ command:
   package.name == 'nmap'
   device.path == "$1"
  user: root
- command: network test -i $2 -t iperf
+ command: network test -i $2 -t iperf --fail-threshold 80
  estimated_duration: 330.0
  description:
   Testing for NIC $2
