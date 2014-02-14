@@ -475,7 +475,15 @@ main() {
                 origin=$value
                 ;;
             --bump-version=*)
-                bump_version=$value
+                case $value in
+                    major|minor|micro)
+                        bump_version=$value
+                        ;;
+                    *)
+                        echo "E: releasectl: bad value for --bump-version: $value" >&2
+                        exit 1
+                        ;;
+                esac
                 ;;
             --major)
                 bump_version=major
