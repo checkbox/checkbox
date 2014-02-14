@@ -495,7 +495,15 @@ main() {
                 bump_version=micro
                 ;;
             --bump-level=*)
-                bump_level=$value
+                case $value in
+                    dev|alpha|beta|candidate|final|next-level|next-serial)
+                        bump_level=$value
+                        ;;
+                    *)
+                        echo "E: releasectl: bad value for --bump-level: $value" >&2
+                        exit 1
+                        ;;
+                esac
                 ;;
             --dev)
                 bump_level=dev
