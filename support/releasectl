@@ -248,18 +248,16 @@ release_component() {
     # path to the top-level directory of the component relative to tree root
     local component_path=$1; shift
 
-    # Ensure that trunk exist
-    assert test -d trunk
-
-    # Interrogate name/version
-    local name=$(trunk/$component_path/setup.py --name)
+    # Component name and version
+    local name=
+    local version=
     
     # name of the component's top-level python package
-    local component_python_package=$name
+    local component_python_package=
     # name of the component as it shows up in the commit message
-    local component_commit_name=$name
+    local component_commit_name=
     # name of the component as it shows up in tags
-    local component_tag_name=$name
+    local component_tag_name=
     # release policy (micro/minor/major/rc)
     local bump_version=
     local bump_level=
@@ -295,10 +293,19 @@ release_component() {
         shift
     done
 
-    echo "I: preparing release candidate of $name"
-    echo "D: inspecting current version..."
-    local version=$(trunk/$component_path/setup.py --version)
-    echo "I: current version is $version"
+    # Ensure that origin branch exist
+    assert test -d trunk
+
+    echo "I: inspecting component..."
+    # Interrogate name/version
+    name=$(trunk/$component_path/setup.py --name)
+    version=$(trunk/$component_path/setup.py --version)
+    echo "I: component is $name-$version"
+
+    # set defaults for various name-like variabls
+    test -z "$component_python_package" && component_python_package="$name"
+    test -z "$component_commit_name" && component_commit_name="$name"
+    test -z "$component_tag_name" && component_tag_name="$name"
 
     # Parse version
     local canonical_version=$(pep386_parse "$version")
