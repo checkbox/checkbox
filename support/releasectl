@@ -440,7 +440,7 @@ release_component() {
             echo "I: applying tag: $tag_name"
             bzr tag -d "$target" "$tag_name" --quiet
         fi
-        echo "I: component $name is ready to be built in $target"
+        echo "I: component $name is ready in $target"
     else
         echo "I: not doing anything in dry-run mode"
     fi
