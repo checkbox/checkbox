@@ -248,8 +248,11 @@ release_component() {
     # path to the top-level directory of the component relative to tree root
     local component_path=$1; shift
 
-    # origin branch
+    # origin and target branches
     local origin=trunk
+    local target=
+    # clobber origin branch directly
+    local in_place=
 
     # Component name and version
     local name=
@@ -277,6 +280,12 @@ release_component() {
         case "$1" in
             --origin=*)
                 origin=$value
+                ;;
+            --target=*)
+                target=$value
+                ;;
+            --in-place=*)
+                in_place=$value
                 ;;
             --python-pkg=*)
                 component_python_package=$value
@@ -405,27 +414,33 @@ release_component() {
     esac
 
     if [ -z "$dry_run" ]; then
-        # Create a branch for the new release
-        echo "D: preparing release branch..."
-        local release_dir=$name-$next_version
-        assert test ! -e $release_dir
-        echo "I: branching $origin to ${release_dir}..."
-        bzr branch "$origin" "$release_dir" --quiet
-
+        if [ "$in_place" = "yes" ]; then
+            target="$origin"
+        elif [ -z "$target" ]; then
+            target="$name-$next_version"
+            echo "I: derived --target=$target from component name/version"
+        fi
+        if [ "$target" != "$origin" ]; then
+            echo "I: branching $origin to ${target}..."
+            assert test ! -e "$target"
+            bzr branch "$origin" "$target" --quiet
+        else
+            echo "I: not branching $origin (will apply changes in-place)"
+        fi
         # Apply the new version
         echo "I: patching setup.py..."
-        sed -i -e "s!$version!$next_version!g" $release_dir/$component_path/setup.py
+        sed -i -e "s!$version!$next_version!g" "$target/$component_path/setup.py"
         echo "I: patching $name/__init__.py..."
-        sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" $release_dir/$component_path/$component_python_package/__init__.py
+        sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" "$target/$component_path/$component_python_package/__init__.py"
         echo "I: commiting version bump"
         # NOTE: no way to bzr commit has no '-d'
-        (cd $release_dir && bzr commit -m "$component_commit_name: increment version to $next_version" --quiet)
+        (cd $target && bzr commit -m "$component_commit_name: increment version to $next_version" --quiet)
         # Apply the tag if required
         if [ "$should_tag" = yes ]; then
             echo "I: applying tag: $tag_name"
-            bzr tag -d $release_dir "$tag_name" --quiet
+            bzr tag -d "$target" "$tag_name" --quiet
         fi
-        echo "I: component $name is ready to be built in $release_dir"
+        echo "I: component $name is ready to be built in $target"
     else
         echo "I: not doing anything in dry-run mode"
     fi
@@ -452,6 +467,10 @@ help() {
     echo "branch selection options"
     echo "  --origin=BRANCH"
     echo "    use BRANCH as origin branch (default=trunk)"
+    echo "  --target=BRANCH"
+    echo "    use BRANCH as target branch (default=derived from name and version)"
+    echo "  --in-place"
+    echo "    modify origin branch in-place (ignores --target)"
     echo
     echo "component version options"
     echo "  --bump-version={major,minor,micro}"
@@ -480,6 +499,8 @@ help() {
 
 main() {
     local origin=
+    local target=
+    local in_place=no
     local component=
     local bump_version=
     local bump_level=
@@ -506,6 +527,12 @@ main() {
                 ;;
             --origin=*)
                 origin=$value
+                ;;
+            --target=*)
+                target=$value
+                ;;
+            --in-place)
+                in_place=yes
                 ;;
             --bump-version=*)
                 case $value in
@@ -588,6 +615,8 @@ main() {
         checkbox)
             release_component checkbox-old \
                 --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
                 --tag-name=checkbox \
                 --commit-name=checkbox-old \
                 --python-pkg=checkbox \
@@ -597,6 +626,8 @@ main() {
         checkbox-ng)
             release_component checkbox-ng \
                 --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
                 --python-pkg=checkbox_ng \
                 --bump-version=$bump_version \
                 --bump-level=$bump_level
@@ -604,6 +635,8 @@ main() {
         plainbox)
             release_component plainbox \
                 --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
                 --bump-version=$bump_version \
                 --bump-level=$bump_level
             ;;
