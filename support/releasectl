@@ -266,7 +266,11 @@ release_component() {
 
     # Parse keyword arguments
     while test -n "$1"; do
-        local value=$(echo $1 | cut -d = -f 2-)
+        if echo "$1" | grep -F -q =; then
+            local value=$(echo $1 | cut -d = -f 2-)
+        else
+            local value=
+        fi
         case "$1" in
             --python-pkg=*)
                 component_python_package=$value
