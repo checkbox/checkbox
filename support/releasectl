@@ -264,6 +264,8 @@ release_component() {
     # release policy (micro/minor/major/rc)
     local bump_version=
     local bump_level=
+    # tagging policy (yes|no|auto*)
+    local tagging_policy=
 
     # Parse keyword arguments
     while test -n "$1"; do
@@ -290,6 +292,9 @@ release_component() {
                 ;;
             --bump-level=*)
                 bump_level=$value
+                ;;
+            --tagging-policy=*)
+                tagging_policy=$value
                 ;;
             *)
                 echo "E: release_component: bad argument: $1" >&2
@@ -373,6 +378,32 @@ release_component() {
     local next_version=$(pep386_unparse "$canonical_next_version")
     echo "I: next version is $next_version"
 
+    # Determine tag name and tagging policy
+    local tag_name="$component_tag_name-v$next_version"
+    local should_tag=
+    case "$tagging_policy" in
+        force)
+            should_tag=yes
+            echo "I: will apply tag: $tag_name (due to --tagging-policy=force)"
+            ;;
+        never)
+            should_tag=no
+            echo "I: will not apply tag (due to --tagging-policy=never)"
+            ;;
+        auto|'')
+            case "$(pep386_attr \"$canonical_next_version\" --releaselevel)" in
+                dev)
+                    should_tag=no
+                    echo "I: will not apply tag (dev version)"
+                    ;;
+                *)
+                    should_tag=yes
+                    echo "I: will apply tag: $tag_name"
+                    ;;
+            esac
+            ;;
+    esac
+
     if [ -z "$dry_run" ]; then
         # Create a branch for the new release
         echo "D: preparing release branch..."
@@ -386,12 +417,14 @@ release_component() {
         sed -i -e "s!$version!$next_version!g" $release_dir/$component_path/setup.py
         echo "I: patching $name/__init__.py..."
         sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" $release_dir/$component_path/$component_python_package/__init__.py
-
-        # Commit and tag
         echo "I: commiting version bump"
         # NOTE: no way to bzr commit has no '-d'
         (cd $release_dir && bzr commit -m "$component_commit_name: increment version to $next_version" --quiet)
-        bzr tag -d $release_dir "$component_tag_name-v$next_version" --quiet
+        # Apply the tag if required
+        if [ "$should_tag" = yes ]; then
+            echo "I: applying tag: $tag_name"
+            bzr tag -d $release_dir "$tag_name" --quiet
+        fi
         echo "I: component $name is ready to be built in $release_dir"
     else
         echo "I: not doing anything in dry-run mode"
