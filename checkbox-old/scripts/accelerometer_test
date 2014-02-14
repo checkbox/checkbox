@@ -126,7 +126,7 @@ class AxisData(threading.Thread):
         if oem_module == 'hdaps':
             self.position_path = '/sys/devices/platform/hdaps/position'
         else:
-            self.position_path = os.path.join('/sys',device_path,
+            self.position_path = os.path.join('/sys',device_path.lstrip('/'),
                                               'device', 'position')
         self.tilt_threshold = 600
         self.x_test_pool = ["up", "down"]
