@@ -248,6 +248,9 @@ release_component() {
     # path to the top-level directory of the component relative to tree root
     local component_path=$1; shift
 
+    # origin branch
+    local origin=trunk
+
     # Component name and version
     local name=
     local version=
@@ -270,6 +273,9 @@ release_component() {
             local value=
         fi
         case "$1" in
+            --origin=*)
+                origin=$value
+                ;;
             --python-pkg=*)
                 component_python_package=$value
                 ;;
@@ -294,12 +300,12 @@ release_component() {
     done
 
     # Ensure that origin branch exist
-    assert test -d trunk
+    assert test -d "$origin"
 
     echo "I: inspecting component..."
     # Interrogate name/version
-    name=$(trunk/$component_path/setup.py --name)
-    version=$(trunk/$component_path/setup.py --version)
+    name=$($origin/$component_path/setup.py --name)
+    version=$($origin/$component_path/setup.py --version)
     echo "I: component is $name-$version"
 
     # set defaults for various name-like variabls
@@ -372,8 +378,8 @@ release_component() {
         echo "D: preparing release branch..."
         local release_dir=$name-$next_version
         assert test ! -e $release_dir
-        echo "I: branching trunk to ${release_dir}..."
-        bzr branch trunk "$release_dir" --quiet
+        echo "I: branching $origin to ${release_dir}..."
+        bzr branch "$origin" "$release_dir" --quiet
 
         # Apply the new version
         echo "I: patching setup.py..."
@@ -410,6 +416,10 @@ help() {
     echo "  --debug"
     echo "    display additional diagnostic messages"
     echo
+    echo "branch selection options"
+    echo "  --origin=BRANCH"
+    echo "    use BRANCH as origin branch (default=trunk)"
+    echo
     echo "component version options"
     echo "  --bump-version={major,minor,micro}"
     echo "    increment version component"
@@ -436,6 +446,7 @@ help() {
 
 
 main() {
+    local origin=
     local component=
     local bump_version=
     local bump_level=
@@ -459,6 +470,9 @@ main() {
                 ;;
             -n|--dry-run)
                 dry_run=1
+                ;;
+            --origin=*)
+                origin=$value
                 ;;
             --bump-version=*)
                 bump_version=$value
@@ -517,15 +531,32 @@ main() {
         echo "I: assuming --bump-level=dev"
         bump_level=dev
     fi
+    if [ -z "$origin" ]; then
+        echo "W: assuming --origin=trunk"
+        origin=trunk
+    fi
     case "$component" in
         checkbox)
-            release_component checkbox-old --tag-name=checkbox --commit-name=checkbox-old --python-pkg=checkbox --bump-version=$bump_version --bump-level=$bump_level
+            release_component checkbox-old \
+                --origin=$origin \
+                --tag-name=checkbox \
+                --commit-name=checkbox-old \
+                --python-pkg=checkbox \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level
             ;;
         checkbox-ng)
-            release_component checkbox-ng --python-pkg=checkbox_ng --bump-version=$bump_version --bump-level=$bump_level
+            release_component checkbox-ng \
+                --origin=$origin \
+                --python-pkg=checkbox_ng \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level
             ;;
         plainbox)
-            release_component plainbox --bump-version=$bump_version --bump-level=$bump_level
+            release_component plainbox \
+                --origin=$origin \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level
             ;;
     esac
 }
