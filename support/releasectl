@@ -448,7 +448,7 @@ release_component() {
 
 
 help() {
-    echo "usage: releasectl [--debug] (checkbox|checkbox-ng|plainbox) [options]" >&2
+    echo "usage: releasectl (checkbox|checkbox-ng|plainbox) [options]" >&2
     echo
     echo "This script is indented to run in a directory with lp:checkbox"
     echo "branched (with bzr) as 'trunk'. Every change made is local."
@@ -461,8 +461,6 @@ help() {
     echo "general options"
     echo "  -n|--dry-run"
     echo "    don't prepare branch with version changes"
-    echo "  --debug"
-    echo "    display additional diagnostic messages"
     echo
     echo "branch selection options"
     echo "  --origin=BRANCH"
@@ -644,9 +642,4 @@ main() {
 }
 
 
-if [ "$1" = --debug ]; then
-    shift
-    main "$@" 2>&1
-else
-    main "$@" 2>&1 | grep -E -v "^D:"
-fi
+main "$@"
