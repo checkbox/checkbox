@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
-# Helper script to "cut" releases
-# ===============================
+# Release management script
+# =========================
 #
 # This script is indented to run in a directory with lp:checkbox checked-out
 # (with bzr) as 'trunk'. Every change made by this script is local. The
@@ -383,7 +383,7 @@ release_component() {
 
 
 help() {
-    echo "usage: cut-release [--debug] (checkbox|checkbox-ng|plainbox) [options]" >&2
+    echo "usage: releasectl [--debug] (checkbox|checkbox-ng|plainbox) [options]" >&2
     echo
     echo "This script is indented to run in a directory with lp:checkbox"
     echo "branched (with bzr) as 'trunk'. Every change made is local."
@@ -484,20 +484,20 @@ main() {
                 exit 0
                 ;;
             *)
-                echo "E: cut-release: bad argument: $1" >&2
+                echo "E: releasectl: bad argument: $1" >&2
                 exit 1
                 ;;
         esac
         shift
     done
     if [ -z "$component" ]; then
-        echo "E: cut-release: component name required"
+        echo "E: releasectl: component name required"
         echo
         help
         exit 1
     fi
     if [ -z "$bump_level" ] && [ -z "$bump_version" ]; then
-        echo "E: cut-release: expected at least one of --bump-level=... or --bump-version=..." 
+        echo "E: releasectl: expected at least one of --bump-level=... or --bump-version=..."
         echo
         help
         exit 1
