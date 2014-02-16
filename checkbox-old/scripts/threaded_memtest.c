@@ -31,6 +31,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+#ifdef __linux__
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
 #include <sys/time.h>
@@ -419,3 +420,9 @@ int main(int argc, char **argv) {
     printf("Testing complete.\n");
     return rv;
 }
+#else
+int main(int argc, char **argv) {
+    printf("Unsupported architecture\n");
+    return 1;
+}
+#endif
