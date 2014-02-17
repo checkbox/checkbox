@@ -9,6 +9,8 @@ _description:
 plugin: shell
 name: memory/check
 user: root
+requires:
+ uname.name == 'Linux'
 command: memory_test
 _description:
  Test and exercise memory.
