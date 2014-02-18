@@ -81,6 +81,9 @@ class CheckBoxJobValidator:
         # Check if name is empty
         if job.name is None:
             raise ValidationError(job.fields.name, Problem.missing)
+        # Check if summary is empty
+        if job.summary is None:
+            raise ValidationError(job.fields.summary, Problem.missing)
         # Check if plugin is empty
         if job.plugin is None:
             raise ValidationError(job.fields.plugin, Problem.missing)
@@ -204,6 +207,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         Symbols for each field that a JobDefinition can have
         """
         name = 'name'
+        summary = 'summary'
         plugin = 'plugin'
         command = 'command'
         description = 'description'
@@ -236,6 +240,10 @@ class JobDefinition(BaseJob, IJobDefinition):
         if value is None:
             value = super(JobDefinition, self).get_record_value(name, default)
         return value
+
+    @property
+    def summary(self):
+        return self.get_record_value('summary', self.name)
 
     @property
     def name(self):
@@ -351,7 +359,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         self._controller = controller
 
     def __str__(self):
-        return self.name
+        return self.summary
 
     def __repr__(self):
         return "<JobDefinition name:{!r} plugin:{!r}>".format(
