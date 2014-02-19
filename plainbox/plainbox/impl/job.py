@@ -78,9 +78,9 @@ class CheckBoxJobValidator:
         """
         Validate the specified job
         """
-        # Check if name is empty
-        if job.name is None:
-            raise ValidationError(job.fields.name, Problem.missing)
+        # Check if id is empty
+        if job.id is None:
+            raise ValidationError(job.fields.id, Problem.missing)
         # Check if summary is empty
         if job.summary is None:
             raise ValidationError(job.fields.summary, Problem.missing)
@@ -207,6 +207,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         Symbols for each field that a JobDefinition can have
         """
         name = 'name'
+        id = 'id'
         summary = 'summary'
         plugin = 'plugin'
         command = 'command'
@@ -242,8 +243,12 @@ class JobDefinition(BaseJob, IJobDefinition):
         return value
 
     @property
+    def id(self):
+        return self.get_record_value('id', self.name)
+
+    @property
     def summary(self):
-        return self.get_record_value('summary', self.name)
+        return self.get_record_value('summary', self.id)
 
     @property
     def name(self):
@@ -278,7 +283,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         except ValueError:
             logger.warning(
                 _("Incorrect value of 'estimated_duration' in job"
-                  " %s read from %s"), self.name, self.origin)
+                  " %s read from %s"), self.id, self.origin)
 
     @property
     def automated(self):
@@ -362,8 +367,8 @@ class JobDefinition(BaseJob, IJobDefinition):
         return self.summary
 
     def __repr__(self):
-        return "<JobDefinition name:{!r} plugin:{!r}>".format(
-            self.name, self.plugin)
+        return "<JobDefinition id:{!r} plugin:{!r}>".format(
+            self.id, self.plugin)
 
     def __eq__(self, other):
         if not isinstance(other, JobDefinition):
@@ -400,7 +405,7 @@ class JobDefinition(BaseJob, IJobDefinition):
         mixture of white-space (including newlines) and commas are allowed.
         """
         if self.depends:
-            return {name for name in re.split('[\s,]+', self.depends)}
+            return {id for id in re.split('[\s,]+', self.depends)}
         else:
             return set()
 
@@ -421,11 +426,11 @@ class JobDefinition(BaseJob, IJobDefinition):
 
         The record must be a RFC822Record instance.
 
-        Only the 'name' and 'plugin' keys are required.
+        Only the 'id' and 'plugin' keys are required.
         All other data is stored as is and is entirely optional.
         """
-        if 'name' not in record.data:
-            raise ValueError(_("Cannot create job without a name"))
+        if 'id' not in record.data and 'name' not in record.data:
+            raise ValueError(_("Cannot create job without an id"))
         return cls(record.data, record.origin)
 
     def validate(self, validator_cls=CheckBoxJobValidator):
@@ -540,7 +545,7 @@ class JobTreeNode:
         # Always keep this list sorted to easily find a given leaf by index
         # Note bisect.insort(a, x) cannot be used here as JobDefinition are
         # not sortable
-        self._jobs = sorted(self.jobs, key=lambda job: job.name)
+        self._jobs = sorted(self.jobs, key=lambda job: job.id)
 
     def get_ancestors(self):
         """
