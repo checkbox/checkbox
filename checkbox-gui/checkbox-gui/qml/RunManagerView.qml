@@ -368,6 +368,7 @@ Page {
         Component {
             id: submission_warning_dialog
             WarningDialog{
+                // TRANSLATORS: Be careful not to translate the \n (newline) characters
                 text: i18n.tr("You are about to exit this test run without saving your results report. \n\nAre you sure? \n\n(Press Continue to Quit)");
 
                 showOK: false

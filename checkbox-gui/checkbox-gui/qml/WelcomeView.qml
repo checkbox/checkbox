@@ -88,16 +88,8 @@ Page {
                 }
 
                 // TODO load text from Plainbox
-                text: "<p>Welcome to System Testing.</p>
-                    <p></p>
-                    <p>This program contains automated and manual tests to help you assess how well your system works with Ubuntu.</p>
-                    <p></p>
-                    <p>This application will step the user through these tests in a predetermined order and automatically collect both system information as well as test results. It will also prompt the user for input when manual testing is required.</p>
-                    <p></p>
-                    <p>The run time for the tests is determined by which tests you decide to execute. The user will have the opportunity to customize the test run based on the hardware components they are interested in and the amount of time they have available.</p>
-                    <p></p>
-                    <p>To begin, simply click the Continue button below and follow the onscreen instructions.</p>
-                    <p></p>"
+                // TRANSLATORS: The <p> tags are HTML - DO NOT translate them.
+                text: i18n.tr("<p>Welcome to System Testing.</p><p></p><p>This program contains automated and manual tests to help you assess how well your system works with Ubuntu.</p><p></p><p>This application will step the user through these tests in a predetermined order and automatically collect both system information as well as test results. It will also prompt the user for input when manual testing is required.</p><p></p><p>The run time for the tests is determined by which tests you decide to execute. The user will have the opportunity to customize the test run based on the hardware components they are interested in and the amount of time they have available.</p><p></p><p>To begin, simply click the Continue button below and follow the onscreen instructions.</p><p></p>")
 
                 height: units.gu(60)
                 width: units.gu(30)

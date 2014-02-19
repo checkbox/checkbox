@@ -386,9 +386,11 @@ Rectangle {
                 if (estTimeInt == 0)
                     estTimeStr = "";
                 else if (estTimeInt/60 < 1)
+                    // TRANSLATORS: min here stands for minute, not minimum.
                     estTimeStr = i18n.tr("< 1 min");
                 else {
                     var durMinutes = Math.round(estTimeInt/60);
+                    // TRANSLATORS: min here stands for minute, not minimum.
                     estTimeStr = durMinutes.toString() + i18n.tr(" min");
                 }
                 return  estTimeStr;
