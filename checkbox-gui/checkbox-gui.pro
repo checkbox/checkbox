@@ -19,5 +19,5 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 TEMPLATE = subdirs
-SUBDIRS = gui-engine checkbox-gui test-gui-engine
+SUBDIRS = gui-engine checkbox-gui test-gui-engine po
 CONFIG = ordered
