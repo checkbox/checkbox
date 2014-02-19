@@ -45,7 +45,7 @@ TIMEOUT = 15.0
 def hdaps_test(run_time):
     hdapsd = Popen(['/usr/sbin/hdapsd'], stdout=PIPE, stderr=PIPE,
                    universal_newlines=True)
-    time.sleep(run_time)
+    time.sleep(float(run_time))
     hdapsd.terminate()
     # Look for parking message in hdapsd output.
     stdout = hdapsd.communicate()[0]
@@ -64,7 +64,7 @@ def main():
                         help='The time allowed before the test fails.')
     print('Starting HDD protection test - move the system around on '
           'all axis. No particular force should be required.')
-    return hdaps_test(args.timeout)
+    return hdaps_test(parser.parse_args().timeout)
 
 if __name__ == "__main__":
     sys.exit(main())
