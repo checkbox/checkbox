@@ -239,7 +239,7 @@ Page {
                         Label {text: i18n.tr("Selected")}
                         Label {text: i18n.tr("Manual")}
                         Label {text: i18n.tr("Implicit")}
-                        Label {text: i18n.tr(" "); fontSize: "large"}
+                        Label {text: " "; fontSize: "large"}
                         Label {text: i18n.tr("Estimated time"); fontSize: "large"; color: "white"}
                         Label {text: i18n.tr("Automated")}
                         Label {text: i18n.tr("Manual")}
@@ -254,7 +254,7 @@ Page {
                         Label {text: totalTests; anchors.right: col2.right}
                         Label {text: totalManualTests; anchors.right: col2.right}
                         Label {text: totalImplicitTests; anchors.right: col2.right}
-                        Label {text: i18n.tr(" "); fontSize: "large"}
+                        Label {text: " "; fontSize: "large"}
                         Label {
                             text: validTotalTime(total_duration)?formatTotalTime(total_duration["automated_duration"] + total_duration["manual_duration"]):"N/A";
                             anchors.right: col2.right;
