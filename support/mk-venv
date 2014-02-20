@@ -103,6 +103,9 @@ $CHECKBOX_TOP/support/install-deb-dependencies
 echo "I: creating virtualbox in $CHECKBOX_VENV_PATH"
 virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VENV_PATH
 
+# Add PLAINBOX_LOCALE_DIR to the venv
+echo "export PLAINBOX_LOCALE_DIR=$CHECKBOX_TOP/plainbox/build/mo"
+
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate
 

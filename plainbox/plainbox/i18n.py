@@ -20,10 +20,7 @@
 :mod:`plainbox.i18n` -- i18n support
 ====================================
 
-This module provides public APIs for plainbox translation system. Currently
-all functions exported here are STUB and offer no translations. In addition,
-functions defined in this module are assumed to implicitly use the gettext
-domain ``"plainbox"``.
+This module provides public APIs for plainbox translation system.
 """
 
 import codecs
@@ -206,7 +203,8 @@ class GettextTranslator:
             return self._translations[domain]
         except KeyError:
             try:
-                translation = gettext_module.translation(domain, self._locale_dir)
+                translation = gettext_module.translation(
+                    domain, self._locale_dir)
             except IOError:
                 translation = gettext_module.NullTranslations()
             self._translations[domain] = translation
@@ -235,6 +233,83 @@ _translators = {
     "rot-13": Rot13Translator,
 }
 
+
+def docstring(docstring):
+    """
+    Decorator factory for assigning docstrings to functions.
+
+    This decorator is intended for functions that reuse their docstring
+    as translatable text that needs to be tagged with gettext_noop.
+
+    Example:
+
+        @docstring("the foo function")
+        def foo():
+            pass
+
+
+        @docstring("the Foo class")
+        class Foo:
+            pass
+    """
+    def decorator(cls_or_func):
+        try:
+            cls_or_func.__doc__ = docstring
+            return cls_or_func
+        except AttributeError:
+            assert isinstance(cls_or_func, type)
+            return type(
+                cls_or_func.__name__,
+                (cls_or_func,),
+                {'__doc__': docstring})
+    return decorator
+
+
+def textdomain(domain):
+    """
+    Set global gettext domain
+
+    :param domain:
+        Name of the global gettext domain. This domain will be used to all
+        unqualified calls to gettext() and ngettext().
+
+    .. note::
+        gettext and ngettext exposed from this module transparently use
+        "plainbox" as the domain name. This call affects all *other*, typical
+        gettext calls.
+    """
+    gettext_module.textdomain(domain)
+
+
+def bindtextdomain(domain, localedir=None):
+    """
+    Set set directory for gettext messages for a specific domain
+
+    :param domain:
+        Name of the domain to configure
+    :param localedir:
+        Name of the directory with translation catalogs.
+    """
+    gettext_module.bindtextdomain(domain, localedir)
+
+
+def gettext_noop(msgid):
+    """
+    No-operation gettext implementation.
+
+    :param msgid:
+        The message not to translate
+    :returns:
+        msgid itself
+
+    This function should be used (typically aliased as ``N_`` to mark strings
+    that don't require translation at the place where they are defined but will
+    be translated later on. This is just a hint to the message extraction
+    system.
+    """
+    return msgid
+
+
 _mode = os.getenv("PLAINBOX_I18N_MODE", "gettext")
 try:
     _translator = _translators[_mode]
@@ -243,4 +318,3 @@ except KeyError:
 gettext = _translator.gettext
 ngettext = _translator.ngettext
 dgettext = _translator.dgettext
-gettext_noop = lambda msgid: msgid
