@@ -23,33 +23,22 @@
 This module provides public APIs for plainbox translation system.
 """
 
-import codecs
 import collections
 import gettext as gettext_module
+import logging
 import os
 import random
 import re
 
+__all__ = [
+    'bindtextdomain',
+    'dgettext',
+    'gettext',
+    'ngettext',
+    'textdomain',
+]
 
-class Rot13Translator:
-
-    rot13 = codecs.getencoder("rot-13")
-
-    @classmethod
-    def gettext(cls, msgid):
-        return cls.rot13(msgid)[0]
-
-    @classmethod
-    def dgettext(cls, domain, msgid):
-        return cls.rot13(msgid)[0]
-
-    @classmethod
-    def ngettext(cls, msgid1, msgid2, n):
-        if n == 1:
-            return cls.rot13(msgid1)[0]
-        else:
-            return cls.rot13(msgid2)[0]
-
+_logger = logging.getLogger("plainbox.i18n")
 
 class NoOpTranslator:
 
@@ -58,7 +47,7 @@ class NoOpTranslator:
         return msgid
 
     @classmethod
-    def dgettext(cls, domian, msgid):
+    def dgettext(cls, domain, msgid):
         return msgid
 
     @classmethod
@@ -217,21 +206,7 @@ class GettextTranslator:
         return self._get_translation(self._domain).gettext(msgid)
 
     def ngettext(self, msgid1, msgid2, n):
-        return self._get_translation(self._domian).ngettext(msgid1, msgid2, n)
-
-
-_translators = {
-    "gettext": GettextTranslator("plainbox"),
-    "lorem-ipsum-ar": LoremIpsumTranslator("ar"),
-    "lorem-ipsum-ch": LoremIpsumTranslator("ch"),
-    "lorem-ipsum-he": LoremIpsumTranslator("he"),
-    "lorem-ipsum-jp": LoremIpsumTranslator("jp"),
-    "lorem-ipsum-kr": LoremIpsumTranslator("kr"),
-    "lorem-ipsum-pl": LoremIpsumTranslator("pl"),
-    "lorem-ipsum-ru": LoremIpsumTranslator("ru"),
-    "no-op": NoOpTranslator,
-    "rot-13": Rot13Translator,
-}
+        return self._get_translation(self._domain).ngettext(msgid1, msgid2, n)
 
 
 def docstring(docstring):
@@ -278,7 +253,8 @@ def textdomain(domain):
         "plainbox" as the domain name. This call affects all *other*, typical
         gettext calls.
     """
-    gettext_module.textdomain(domain)
+    _logger.debug("textdomain(%r)", domain)
+    return gettext_module.textdomain(domain)
 
 
 def bindtextdomain(domain, localedir=None):
@@ -290,7 +266,8 @@ def bindtextdomain(domain, localedir=None):
     :param localedir:
         Name of the directory with translation catalogs.
     """
-    gettext_module.bindtextdomain(domain, localedir)
+    _logger.debug("bindtextdomain(%r, %r)", domain, localedir)
+    return gettext_module.bindtextdomain(domain, localedir)
 
 
 def gettext_noop(msgid):
@@ -310,11 +287,24 @@ def gettext_noop(msgid):
     return msgid
 
 
-_mode = os.getenv("PLAINBOX_I18N_MODE", "gettext")
+# This is the global plainbox-specific translator.
 try:
-    _translator = _translators[_mode]
-except KeyError:
-    raise RuntimeError("Unsupported PLAINBOX_I18N_MODE: {!r}".format(_mode))
+    _translator = {
+        "gettext": GettextTranslator("plainbox"),
+        "no-op": NoOpTranslator,
+        "lorem-ipsum-ar": LoremIpsumTranslator("ar"),
+        "lorem-ipsum-ch": LoremIpsumTranslator("ch"),
+        "lorem-ipsum-he": LoremIpsumTranslator("he"),
+        "lorem-ipsum-jp": LoremIpsumTranslator("jp"),
+        "lorem-ipsum-kr": LoremIpsumTranslator("kr"),
+        "lorem-ipsum-pl": LoremIpsumTranslator("pl"),
+        "lorem-ipsum-ru": LoremIpsumTranslator("ru"),
+    }[os.getenv("PLAINBOX_I18N_MODE", "gettext")]
+except KeyError as exc:
+    raise RuntimeError(
+        "Unsupported PLAINBOX_I18N_MODE: {!r}".format(exc.args[0]))
+
+# This is the public API of this module
 gettext = _translator.gettext
 ngettext = _translator.ngettext
 dgettext = _translator.dgettext
