@@ -104,6 +104,7 @@ class ParseCommand(PlainBoxCommand):
     def register_parser(self, subparsers):
         parser = subparsers.add_parser(
             "parse", help=_("parse stdin with the specified parser"),
+            # TRANSLATORS: please keep plainbox.parsers untranslated.
             description=_("""
                 This command can be used to invoke any of the parsers exposed
             to the `plainbox.parsers` entry point, parse standard input and
@@ -113,9 +114,8 @@ class ParseCommand(PlainBoxCommand):
             mind. You may have to override the environment variable LANG to
             "C".
             """),
-            epilog=_("""
-            Example: LANG=C pactl list | plainbox dev parse pactl-list
-            """),
+            epilog=(_("Example: ")
+                    + "LANG=C pactl list | plainbox dev parse pactl-list"),
         )
         parser.set_defaults(command=self)
         parser.add_argument(

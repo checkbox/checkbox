@@ -66,7 +66,7 @@ class SelfTestCommand(PlainBoxCommand):
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser(
-            "self-test", help=_("run integration tests"))
+            "self-test", help=_("run unit and integration tests"))
         parser.set_defaults(command=self)
         # Add an option that selects either integration tests or unit tests
         group = parser.add_mutually_exclusive_group(required=True)
@@ -75,13 +75,13 @@ class SelfTestCommand(PlainBoxCommand):
             action='store_const',
             dest='suite_loader',
             const=load_integration_tests,
-            help=_("Run integration test suite (this verifies checkbox jobs)"))
+            help=_("run integration test suite (this verifies checkbox jobs)"))
         group.add_argument(
             '-u', '--unit-tests',
             action='store_const',
             dest='suite_loader',
             const=load_unit_tests,
-            help=_("Run unit tests (this only verifies plainbox core)"))
+            help=_("run unit tests (this only verifies plainbox core)"))
         # Register a number of TextTestRunner options.
         # More items may be added here as the need arises.
         parser.add_argument(

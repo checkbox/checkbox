@@ -29,6 +29,7 @@
 import logging
 import os
 
+from plainbox.i18n import gettext as _
 from plainbox.impl import get_plainbox_dir
 from plainbox.impl.providers import ProviderNotFound
 from plainbox.impl.providers.v1 import Provider1
@@ -46,7 +47,7 @@ class CheckBoxNotFound(ProviderNotFound):
         return "CheckBoxNotFound()"
 
     def __str__(self):
-        return "CheckBox cannot be found"
+        return _("CheckBox cannot be found")
 
 
 def _get_checkbox_dir():
@@ -97,7 +98,8 @@ class CheckBoxSrcProvider(Provider1):
             _get_checkbox_dir(),
             "2013.com.canonical:checkbox-src", "1.0",
             "CheckBox (live source)",
-            secure=False)
+            secure=False,
+            gettext_domain="checkbox")
         if not os.path.exists(self.base_dir):
             raise CheckBoxNotFound()
 
@@ -157,4 +159,5 @@ class StubBoxProvider(Provider1):
             os.path.join(get_plainbox_dir(), "impl/providers/stubbox"),
             "2013.com.canonical:stubbox", "1.0",
             "StubBox (dummy data for development)",
-            secure=False)
+            secure=False,
+            gettext_domain="plainbox")

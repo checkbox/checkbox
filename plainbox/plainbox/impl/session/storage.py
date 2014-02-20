@@ -36,7 +36,7 @@ import stat
 import sys
 import tempfile
 
-from plainbox.i18n import gettext as _
+from plainbox.i18n import gettext as _, ngettext
 
 logger = logging.getLogger("plainbox.session.storage")
 
@@ -365,7 +365,9 @@ class SessionStorage:
         _next_session_pathname = os.path.join(
             self._location, self._SESSION_FILE_NEXT)
         logger.debug(
-            _("Forcibly unlinking 'next' file %r:"), _next_session_pathname)
+            # TRANSLATORS: unlinking as in deleting a file
+            # Please keep the 'next' string untranslated
+            _("Forcibly unlinking 'next' file %r"), _next_session_pathname)
         os.unlink(_next_session_pathname)
 
     def _load_checkpoint_unix_py32(self):
@@ -384,14 +386,18 @@ class SessionStorage:
             # Stat the file to know how much to read
             session_stat = os.fstat(session_fd)
             logger.debug(
+                # TRANSLATORS: stat is a system call name, don't translate it
                 _("Stat'ed session state file: %s"), session_stat)
             try:
                 # Read session data
-                logger.debug(
-                    _("Reading %d bytes of session state"),
-                    session_stat.st_size)
+                logger.debug(ngettext(
+                    "Reading %d byte of session state",
+                    "Reading %d bytes of session state",
+                    session_stat.st_size), session_stat.st_size)
                 data = os.read(session_fd, session_stat.st_size)
-                logger.debug(_("Read %d bytes of session state"), len(data))
+                logger.debug(ngettext(
+                    "Read %d byte of session state",
+                    "Read %d bytes of session state", len(data)), len(data))
                 if len(data) != session_stat.st_size:
                     raise IOError(_("partial read?"))
             finally:
@@ -440,9 +446,10 @@ class SessionStorage:
         # but keep in mind that the rename race is always there.
         if not isinstance(data, bytes):
             raise TypeError("data must be bytes")
-        logger.debug(
-            _("Saving %d bytes of data (UNIX, python 3.2 or older)"),
-            len(data))
+        logger.debug(ngettext(
+            "Saving %d byte of data (UNIX, python 3.2 or older)",
+            "Saving %d bytes of data (UNIX, python 3.2 or older)",
+            len(data)), len(data))
         # Helper pathnames, needed because we don't have *at functions
         _next_session_pathname = os.path.join(
             self._location, self._SESSION_FILE_NEXT)
@@ -484,13 +491,16 @@ class SessionStorage:
                 # get a partial write _or_ we run out of disk space, raise an
                 # explicit IOError.
                 num_written = os.write(next_session_fd, data)
-                logger.debug(
-                    _("Wrote %d bytes of data to descriptor %d"),
-                    num_written, next_session_fd)
+                logger.debug(ngettext(
+                    "Wrote %d byte of data to descriptor %d",
+                    "Wrote %d bytes of data to descriptor %d",
+                    num_written), num_written, next_session_fd)
                 if num_written != len(data):
                     raise IOError(_("partial write?"))
             except:
                 # If anything goes wrong we should unlink the next file.
+
+                # TRANSLATORS: unlinking as in deleting a file
                 logger.warning(_("Unlinking %r"), _next_session_pathname)
                 os.unlink(_next_session_pathname)
             else:
@@ -499,6 +509,7 @@ class SessionStorage:
                 # We want to be sure this data is really on disk by now as we
                 # may crash the machine soon after this method exits.
                 logger.debug(
+                    # TRANSLATORS: please don't translate fsync()
                     _("Calling fsync() on descriptor %d"), next_session_fd)
                 os.fsync(next_session_fd)
             finally:
@@ -514,6 +525,8 @@ class SessionStorage:
                 # Same as above, if we fail we need to unlink the next file
                 # otherwise any other attempts will not be able to open() it
                 # with O_EXCL flag.
+
+                # TRANSLATORS: unlinking as in deleting a file
                 logger.warning(_("Unlinking %r"), _next_session_pathname)
                 os.unlink(_next_session_pathname)
             # Flush kernel buffers on the directory.
@@ -521,6 +534,8 @@ class SessionStorage:
             # This should ensure the rename operation is really on disk by now.
             # As noted above, this is essential for being able to survive
             # system crash immediately after exiting this method.
+
+            # TRANSLATORS: please don't translate fsync()
             logger.debug(_("Calling fsync() on descriptor %d"), location_fd)
             os.fsync(location_fd)
         finally:
@@ -531,9 +546,10 @@ class SessionStorage:
     def _save_checkpoint_unix_py33(self, data):
         if not isinstance(data, bytes):
             raise TypeError("data must be bytes")
-        logger.debug(
-            _("Saving %d bytes of data (UNIX, python 3.2 or older)"),
-            len(data))
+        logger.debug(ngettext(
+            "Saving %d byte of data (UNIX, python 3.3 or newer)",
+            "Saving %d bytes of data (UNIX, python 3.3 or newer)",
+            len(data)), len(data))
         # Open the location directory, we need to fsync that later
         # XXX: this may fail, maybe we should keep the fd open all the time?
         location_fd = os.open(self._location, os.O_DIRECTORY)
@@ -573,8 +589,9 @@ class SessionStorage:
                 # get a partial write _or_ we run out of disk space, raise an
                 # explicit IOError.
                 num_written = os.write(next_session_fd, data)
-                logger.debug(
-                    _("Wrote %d bytes of data to descriptor %d"),
+                logger.debug(ngettext(
+                    "Wrote %d byte of data to descriptor %d",
+                    "Wrote %d bytes of data to descriptor %d", num_written),
                     num_written, next_session_fd)
                 if num_written != len(data):
                     raise IOError(_("partial write?"))
@@ -582,6 +599,8 @@ class SessionStorage:
                 # If anything goes wrong we should unlink the next file. As
                 # with the open() call above we use unlinkat to prevent race
                 # conditions.
+
+                # TRANSLATORS: unlinking as in deleting a file
                 logger.warning(_("Unlinking %r"), self._SESSION_FILE_NEXT)
                 os.unlink(self._SESSION_FILE_NEXT, dir_fd=location_fd)
             else:
@@ -590,6 +609,7 @@ class SessionStorage:
                 # We want to be sure this data is really on disk by now as we
                 # may crash the machine soon after this method exits.
                 logger.debug(
+                    # TRANSLATORS: please don't translate fsync()
                     _("Calling fsync() on descriptor %d"), next_session_fd)
                 os.fsync(next_session_fd)
             finally:
@@ -610,6 +630,8 @@ class SessionStorage:
                 # Same as above, if we fail we need to unlink the next file
                 # otherwise any other attempts will not be able to open() it
                 # with O_EXCL flag.
+
+                # TRANSLATORS: unlinking as in deleting a file
                 logger.warning(_("Unlinking %r"), self._SESSION_FILE_NEXT)
                 os.unlink(self._SESSION_FILE_NEXT, dir_fd=location_fd)
             # Flush kernel buffers on the directory.
@@ -617,6 +639,8 @@ class SessionStorage:
             # This should ensure the rename operation is really on disk by now.
             # As noted above, this is essential for being able to survive
             # system crash immediately after exiting this method.
+
+            # TRANSLATORS: please don't translate fsync()
             logger.debug(_("Calling fsync() on descriptor %d"), location_fd)
             os.fsync(location_fd)
         finally:

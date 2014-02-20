@@ -154,13 +154,13 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
         print(_("[Estimated Duration Report]").center(80, '='))
         print(_("Estimated test duration:"))
         automated, manual = self.session.get_estimated_duration()
-        print(_("   automated tests: {}").format(
+        print("   " + _("automated tests: {}").format(
             timedelta(seconds=automated) if automated is not None
             else _("cannot estimate")))
-        print(_("      manual tests: {}").format(
+        print("      " + _("manual tests: {}").format(
             timedelta(seconds=manual) if manual is not None
             else _("cannot estimate")))
-        print(_("             total: {}").format(
+        print("             " + _("total: {}").format(
             timedelta(seconds=manual + automated)
             if manual is not None and automated is not None
             else _("cannot estimate")))
@@ -199,7 +199,7 @@ class AnalyzeInvocation(CheckBoxInvocationMixIn):
                     for packages in [
                             resource.text for resource in
                             resource_program.expression_list
-                            if resource.resource_id== 'package']:
+                            if resource.resource_id == 'package']:
                         node = ast.parse(packages)
                         visitor = RequirementNodeVisitor()
                         visitor.visit(node)
@@ -230,6 +230,8 @@ class AnalyzeCommand(PlainBoxCommand, CheckBoxCommandMixIn):
         group.add_argument(
             '-L', '--skip-local',
             action='store_false', dest='run_local',
+            # TRANSLATORS: please keep the word 'local' untranslated.
+            # It designates special type of jobs, not their location.
             help=_('Do not run local jobs'))
         group = parser.add_argument_group("reports")
         group.add_argument(
