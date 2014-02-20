@@ -35,7 +35,10 @@ import os
 import pdb
 import sys
 
+from plainbox.i18n import bindtextdomain
+from plainbox.i18n import dgettext
 from plainbox.i18n import gettext as _
+from plainbox.i18n import textdomain
 from plainbox.impl._argparse import LegacyHelpFormatter
 from plainbox.impl.logging import adjust_logging
 
@@ -101,6 +104,14 @@ class CommandBase(metaclass=abc.ABCMeta):
                 name = name.replace("command", "")
         return name
 
+    def get_localized_docstring(self):
+        """
+        Get a cleaned-up, localized copy of docstring of this class.
+        """
+        if self.__class__.__doc__ is not None:
+            return inspect.cleandoc(
+                dgettext(self.get_gettext_domain(), self.__class__.__doc__))
+
     def get_command_help(self):
         """
         Get a single-line help string associated with this command, as seen on
@@ -118,7 +129,7 @@ class CommandBase(metaclass=abc.ABCMeta):
         except AttributeError:
             pass
         try:
-            return inspect.getdoc(self.__class__).splitlines()[0]
+            return self.get_localized_docstring().splitlines()[0]
         except (AttributeError, ValueError, IndexError):
             pass
 
@@ -145,7 +156,7 @@ class CommandBase(metaclass=abc.ABCMeta):
             pass
         try:
             return '\n'.join(
-                inspect.getdoc(self.__class__).splitlines()[1:]
+                self.get_localized_docstring().splitlines()[1:]
             ).split('@EPILOG@', 1)[0].strip()
         except (AttributeError, IndexError, ValueError):
             pass
@@ -171,9 +182,27 @@ class CommandBase(metaclass=abc.ABCMeta):
             pass
         try:
             return '\n'.join(
-                inspect.getdoc(self.__class__).splitlines()[1:]
+                self.get_localized_docstring().splitlines()[1:]
             ).split('@EPILOG@', 1)[1].strip()
         except (AttributeError, IndexError, ValueError):
+            pass
+
+    def get_gettext_domain(self):
+        """
+        Get the gettext translation domain associated with this command.
+
+        The domain will be used to translate the description, epilog and help
+        string, as obtained by their respective methods.
+
+        :returns:
+            self.gettext_domain, if defined
+        :returns:
+            None, otherwise. Note that it will cause the string to be
+            translated with the globally configured domain.
+        """
+        try:
+            return self.gettext_domain
+        except AttributeError:
             pass
 
     def add_subcommand(self, subparsers):
@@ -187,11 +216,12 @@ class CommandBase(metaclass=abc.ABCMeta):
         :meth:`get_command_name(), :meth:`get_command_help()`,
         :meth:`get_command_description()` and :meth:`get_command_epilog()`.
         """
+        help = self.get_command_help()
+        description = self.get_command_description()
+        epilog = self.get_command_epilog()
+        name = self.get_command_name()
         parser = subparsers.add_parser(
-            self.get_command_name(),
-            help=self.get_command_help(),
-            description=self.get_command_description(),
-            epilog=self.get_command_epilog())
+            name, help=help, description=description, epilog=epilog)
         parser.set_defaults(command=self)
         return parser
 
@@ -281,7 +311,37 @@ class ToolBase(metaclass=abc.ABCMeta):
         Do very early initialization. This is where we initialize stuff even
         without seeing a shred of command line data or anything else.
         """
+        self.setup_i18n()
         self._early_parser = self.construct_early_parser()
+
+    def setup_i18n(self):
+        """
+        Setup i18n and l10n system.
+        """
+        domain = self.get_gettext_domain()
+        if domain is not None:
+            textdomain(domain)
+            bindtextdomain(domain, self.get_locale_dir())
+
+    def get_gettext_domain(self):
+        """
+        Get the name of the gettext domain that should be used by this tool.
+
+        The value returned will be used to select translations to
+        global calls to gettext() and ngettext() everywhere in
+        python.
+        """
+        return None
+
+    def get_locale_dir(self):
+        """
+        Get the path of the gettext translation catalogs for this tool.
+
+        This value is used to bind the domain returned by
+        :meth:`get_gettext_domain()` to a specific directory. By default None
+        is returned, which means that standard, system-wide locations are used.
+        """
+        return None
 
     def late_init(self, early_ns):
         """
@@ -351,7 +411,7 @@ class ToolBase(metaclass=abc.ABCMeta):
 
     def add_early_parser_arguments(self, parser):
         group = parser.add_argument_group(
-            title="logging and debugging")
+            title=_("logging and debugging"))
         # Add the --log-level argument
         group.add_argument(
             "-l", "--log-level",
@@ -365,6 +425,7 @@ class ToolBase(metaclass=abc.ABCMeta):
             dest="log_level",
             action="store_const",
             const="INFO",
+            # TRANSLATORS: please keep --log-level=INFO untranslated
             help=_("be more verbose (same as --log-level=INFO)"))
         # Add the --debug flag
         group.add_argument(
@@ -372,18 +433,21 @@ class ToolBase(metaclass=abc.ABCMeta):
             dest="log_level",
             action="store_const",
             const="DEBUG",
+            # TRANSLATORS: please keep DEBUG untranslated
             help=_("enable DEBUG messages on the root logger"))
         # Add the --debug flag
         group.add_argument(
             "-C", "--debug-console",
             action="store_true",
+            # TRANSLATORS: please keep DEBUG untranslated
             help=_("display DEBUG messages in the console"))
         # Add the --trace flag
         group.add_argument(
             "-T", "--trace",
-            metavar="LOGGER",
+            metavar=_("LOGGER"),
             action="append",
             default=[],
+            # TRANSLATORS: please keep DEBUG untranslated
             help=_("enable DEBUG messages on the specified logger "
                    "(can be used multiple times)"))
         # Add the --pdb flag
@@ -391,12 +455,15 @@ class ToolBase(metaclass=abc.ABCMeta):
             "-P", "--pdb",
             action="store_true",
             default=False,
+            # TRANSLATORS: please keep pdb untranslated
             help=_("jump into pdb (python debugger) when a command crashes"))
         # Add the --debug-interrupt flag
         group.add_argument(
             "-I", "--debug-interrupt",
             action="store_true",
             default=False,
+            # TRANSLATORS: please keep SIGINT/KeyboardInterrupt and --pdb
+            # untranslated
             help=_("crash on SIGINT/KeyboardInterrupt, useful with --pdb"))
 
     def dispatch_command(self, ns):
@@ -424,6 +491,8 @@ class ToolBase(metaclass=abc.ABCMeta):
         except SystemExit:
             # Don't let SystemExit be caught in the logic below, we really
             # just want to exit when that gets thrown.
+
+            # TRANSLATORS: please keep SystemExit untranslated
             logger.debug(_("caught SystemExit, exiting"))
             # We may want to raise SystemExit as it can carry a status code
             # along and we cannot just consume that.
@@ -488,7 +557,7 @@ def autopager(pager_list=['sensible-pager', 'less', 'more']):
       sys.stderr is connected to a tty
 
     .. note::
-        Pager selection is influenced by the pager environment variabe. if set
+        Pager selection is influenced by the pager environment variable. if set
         it will be prepended to the pager_list. This makes the expected
         behavior of allowing users to customize their environment work okay.
 

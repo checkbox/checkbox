@@ -34,7 +34,9 @@ import shutil
 import tarfile
 
 from plainbox import __version__ as version
+from plainbox.i18n import docstring
 from plainbox.i18n import gettext as _
+from plainbox.i18n import gettext_noop as N_
 from plainbox.impl.commands import ToolBase, CommandBase
 from plainbox.impl.job import Problem
 from plainbox.impl.job import ValidationError as JobValidationError
@@ -59,6 +61,8 @@ class ManageCommand(CommandBase):
     going to work with. Using the :meth:`get_provider()` method you can load
     the provider that is being worked on even if it's not in PROVIDERPATH.
     """
+
+    gettext_domain = "plainbox"
 
     def __init__(self, definition):
         """
@@ -86,8 +90,16 @@ class ManageCommand(CommandBase):
             secure=False, gettext_domain=self.definition.gettext_domain)
 
 
-class InstallCommand(ManageCommand):
-    """
+@docstring(
+    # TRANSLATORS: please leave various options (both long and short forms),
+    # environment variables and paths in their original form. Also keep the
+    # special @EPILOG@ string. The first line of the translation is special and
+    # is used as the help message. Please keep the pseudo-statement form and
+    # don't finish the sentence with a dot. Pay extra attention to whitespace.
+    # It must be correctly preserved or the result won't work. In particular
+    # the leading whitespace *must* be preserved and *must* have the same
+    # length on each line.
+    N_("""
     install this provider in the system
 
     This command installs the provider to the specified prefix.
@@ -103,7 +115,8 @@ class InstallCommand(ManageCommand):
     directory: jobs, whitelists, bin, data. Missing directories are silently
     ignored. A new, generated ``.provider`` file will be created at an
     appropriate location, based on the meta-data from the ``manage.py`` script.
-    """
+    """))
+class InstallCommand(ManageCommand):
 
     _INCLUDED_ITEMS = ['jobs', 'whitelists', 'bin', 'data']
 
@@ -167,8 +180,16 @@ class InstallCommand(ManageCommand):
                 shutil.copytree(src_name, dst_name)
 
 
-class SourceDistributionCommand(ManageCommand):
-    """
+@docstring(
+    # TRANSLATORS: please leave various options (both long and short forms),
+    # environment variables and paths in their original form. Also keep the
+    # special @EPILOG@ string. The first line of the translation is special and
+    # is used as the help message. Please keep the pseudo-statement form and
+    # don't finish the sentence with a dot. Pay extra attention to whitespace.
+    # It must be correctly preserved or the result won't work. In particular
+    # the leading whitespace *must* be preserved and *must* have the same
+    # length on each line.
+    N_("""
     create a source tarball
 
     This commands creates a source distribution (tarball) of all of the
@@ -188,7 +209,8 @@ class SourceDistributionCommand(ManageCommand):
     - the data directory as above
 
     Any of the missing items are silently ignored.
-    """
+    """))
+class SourceDistributionCommand(ManageCommand):
 
     name = "sdist"
 
@@ -248,8 +270,16 @@ class SourceDistributionCommand(ManageCommand):
                     tarball.add(src_name, dst_name)
 
 
-class DevelopCommand(ManageCommand):
-    """
+@docstring(
+    # TRANSLATORS: please leave various options (both long and short forms),
+    # environment variables and paths in their original form. Also keep the
+    # special @EPILOG@ string. The first line of the translation is special and
+    # is used as the help message. Please keep the pseudo-statement form and
+    # don't finish the sentence with a dot. Pay extra attention to whitespace.
+    # It must be correctly preserved or the result won't work. In particular
+    # the leading whitespace *must* be preserved and *must* have the same
+    # length on each line.
+    N_("""
     install/remove this provider, only for development
 
     This commands creates or removes the ``.provider`` file describing the
@@ -268,7 +298,8 @@ class DevelopCommand(ManageCommand):
 
     Note that the full path of the source directory is placed in the generated
     file so you will need to re-run develop if you move this directory around.
-    """
+    """))
+class DevelopCommand(ManageCommand):
 
     def register_parser(self, subparsers):
         """
@@ -285,6 +316,7 @@ class DevelopCommand(ManageCommand):
         parser = self.add_subcommand(subparsers)
         parser.add_argument(
             "-u", "--uninstall", default=False, action="store_true",
+            # TRANSLATORS: don't translate the extension name
             help=_("remove the generated .provider file"))
         parser.add_argument(
             "-f", "--force", default=False, action="store_true",
@@ -309,15 +341,24 @@ class DevelopCommand(ManageCommand):
                     self.definition.write(stream)
 
 
-class InfoCommand(ManageCommand):
-    """
+@docstring(
+    # TRANSLATORS: please leave various options (both long and short forms),
+    # environment variables and paths in their original form. Also keep the
+    # special @EPILOG@ string. The first line of the translation is special and
+    # is used as the help message. Please keep the pseudo-statement form and
+    # don't finish the sentence with a dot. Pay extra attention to whitespace.
+    # It must be correctly preserved or the result won't work. In particular
+    # the leading whitespace *must* be preserved and *must* have the same
+    # length on each line.
+    N_("""
     display basic information about this provider
 
     This command displays various essential facts about the provider associated
     with the ``manage.py`` script. Displayed data includes provider name and
     other meta-data, all of the jobs and whitelist, with their precise
     locations.
-    """
+    """))
+class InfoCommand(ManageCommand):
 
     def register_parser(self, subparsers):
         """
@@ -336,17 +377,22 @@ class InfoCommand(ManageCommand):
     def invoked(self, ns):
         provider = self.get_provider()
         print(_("[Provider MetaData]"))
-        print(_("\tname: {}").format(provider.name))
-        print(_("\tversion: {}").format(provider.version))
-        print(_("\tgettext_domain: {}").format(provider.gettext_domain))
+        # TRANSLATORS: {} is the name of the test provider
+        print("\t" + _("name: {}").format(provider.name))
+        # TRANSLATORS: {} is the version of the test provider
+        print("\t" + _("version: {}").format(provider.version))
+        # TRANSLATORS: {} is the gettext translation domain of the provider
+        print("\t" + _("gettext domain: {}").format(provider.gettext_domain))
         print(_("[Job Definitions]"))
         job_list, problem_list = provider.load_all_jobs()
         for job in job_list:
-            print(_("\t{!a}, from {}").format(
+            # TRANSLATORS: {!a} is the job name, {} is the filename
+            print("\t" + ("{!a}, from {}").format(
                 job.name, job.origin.relative_to(provider.base_dir)))
         if problem_list:
-            print(_("\tSome jobs could not be parsed correctly"))
-            print(_("\tPlease run `manage.py validate` for details"))
+            print("\t" + _("Some jobs could not be parsed correctly"))
+            # TRANSLATORS: please don't translate `manage.py validate`
+            print("\t" + _("Please run `manage.py validate` for details"))
         print(_("[White Lists]"))
         try:
             whitelist_list = provider.get_builtin_whitelists()
@@ -357,13 +403,24 @@ class InfoCommand(ManageCommand):
             print(_("Errors prevent whitelists from being displayed"))
         else:
             for whitelist in whitelist_list:
-                print(_("\t{!a}, from {}").format(
+                # TRANSLATORS: the fields are as follows:
+                # 0: whitelist name
+                # 1: pathname of the file the whitelist is defined in
+                print("\t" + _("{0!a}, from {1}").format(
                     whitelist.name,
                     whitelist.origin.relative_to(provider.base_dir)))
 
 
-class ValidateCommand(ManageCommand):
-    """
+@docstring(
+    # TRANSLATORS: please leave various options (both long and short forms),
+    # environment variables and paths in their original form. Also keep the
+    # special @EPILOG@ string. The first line of the translation is special and
+    # is used as the help message. Please keep the pseudo-statement form and
+    # don't finish the sentence with a dot. Pay extra attention to whitespace.
+    # It must be correctly preserved or the result won't work. In particular
+    # the leading whitespace *must* be preserved and *must* have the same
+    # length on each line.
+    N_("""
     perform various static analysis and validation
 
     This command inspects all of the jobs defined in the provider associated
@@ -379,7 +436,8 @@ class ValidateCommand(ManageCommand):
 
     The exit code can be used to determine if there were any failures. If you
     have any, ``manage.py validate`` is something that could run in a CI loop.
-    """
+    """))
+class ValidateCommand(ManageCommand):
 
     def register_parser(self, subparsers):
         """
@@ -425,7 +483,12 @@ class ValidateCommand(ManageCommand):
             Problem.useless: _("useless field in this context"),
         }
         for job, error in problem_list:
-            print(_("{}: job {!a}, field {!a}: {}").format(
+            # TRANSLATORS: fields are as follows:
+            # 0: filename with job definition
+            # 1: job name
+            # 2: field name
+            # 3: explanation of the problem
+            print(_("{0}: job {1!a}, field {2!a}: {3}").format(
                 job.origin.relative_to(provider.base_dir),
                 job.name, error.field.name, explain[error.problem]))
         if problem_list:
@@ -453,10 +516,10 @@ class ProviderManagerTool(ToolBase):
         a normal test run.
 
     `manage.py develop`:
-        This command ensures that plainbox can see this provider. It creates
-        a defintion file in $XDG_DATA_HOME/plainbox-providers-1/{name}.provider
-        with all the meta-data and locatin pointing at the directory with
-        the manage.py script
+        This command ensures that plainbox can see this provider. It creates a
+        definition file in $XDG_DATA_HOME/plainbox-providers-1/{name}.provider
+        with all the meta-data and location pointing at the directory with the
+        manage.py script
 
     `manage.py install`:
         This command installs all of the files required by this provider to
@@ -489,6 +552,8 @@ class ProviderManagerTool(ToolBase):
     def create_parser_object(self):
         parser = argparse.ArgumentParser(
             prog=self.get_exec_name(),
+            # TRANSLATORS: please keep 'manage.py', '--help', '--version'
+            # untranslated. Translate only '[options]' and '<command>'
             usage=_("manage.py [--help] [--version] [options] <command>"))
         parser.add_argument(
             "--version", action="version", version=self.get_exec_version())
@@ -514,6 +579,12 @@ class ProviderManagerTool(ToolBase):
         """
         for cmd_cls in self._SUB_COMMANDS:
             cmd_cls(self.definition).register_parser(subparsers)
+
+    def get_gettext_domain(self):
+        return "plainbox"
+
+    def get_locale_dir(self):
+        return os.getenv("PLAINBOX_LOCALE_DIR", None)
 
 
 def setup(**kwargs):
