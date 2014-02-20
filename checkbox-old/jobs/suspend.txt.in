@@ -398,6 +398,7 @@ depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.n == 'supported'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection wifi $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -411,6 +412,7 @@ depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.n == 'supported'
 user: root
 environ: OPEN_N_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection wifi $OPEN_N_SSID; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -424,6 +426,7 @@ depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.ac == 'supported'
 user: root
 environ: WPA_AC_SSID WPA_AC_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_AC_SSID" EXIT; create_connection wifi $WPA_AC_SSID --security=wpa --key=$WPA_AC_PSK; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -437,6 +440,7 @@ depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
  environment.ROUTERS == 'multiple'
+ IEEE_80211.ac == 'supported'
 user: root
 environ: OPEN_AC_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_AC_SSID" EXIT; create_connection wifi $OPEN_AC_SSID; gateway_ping_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`

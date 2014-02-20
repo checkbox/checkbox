@@ -1,6 +1,8 @@
 checkbox (0.17.4) UNRELEASED; urgency=low
 
   [ Po-Hsu Lin]
+  * Remove the 5GHz resource reqiurement for 802.11n wireless test, added
+    corresponding 802.11 requirements into the wireless part of suspend test.
   * Move the volume key test to right after the mute key test.
   * scripts/graphics_driver: added a new pattern for parsing Intel driver on
     12.04.4 (LP: #1279222) 
