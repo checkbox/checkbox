@@ -42,13 +42,13 @@ static const char *ifmodes[NL80211_IFTYPE_MAX + 1] = {
 	"IBSS",
 	"managed",
 	"AP",
-	"AP/VLAN",
+	"AP_VLAN",
 	"WDS",
 	"monitor",
-	"mesh point",
-	"P2P-client",
-	"P2P-GO",
-	"P2P-device",
+	"mesh_point",
+	"P2P_client",
+	"P2P_GO",
+	"P2P_device",
 };
 
 #define BIT(x) (1ULL<<(x))
