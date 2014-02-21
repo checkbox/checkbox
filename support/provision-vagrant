@@ -62,6 +62,10 @@ apt-get update
 # the case.
 # apt-get dist-upgrade --yes
 
+# Remove checkbox and plainbox packages from the archive so they don't interfere with
+# our testing.
+apt-get remove -y --force-yes --purge python3-{checkbox,plainbox}-*
+
 set -e
 $CHECKBOX_TOP/support/install-deb-dependencies
 $CHECKBOX_TOP/support/get-external-tarballs
