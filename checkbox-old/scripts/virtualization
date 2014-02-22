@@ -141,7 +141,8 @@ class KVMTest(object):
 
         if checkbox_dir is not None:
             self.debug_file = os.path.join(checkbox_dir, self.debug_file)
-
+        logging.info("Storing VM console output in {}".format(
+                     os.path.realpath(self.debug_file)))
         # Open VM STDERR/STDOUT log file for writing
         try:
             file = open(self.debug_file, 'w')
@@ -232,7 +233,12 @@ final_message: CERTIFICATION BOOT COMPLETE
                                   "initalized VM)", file=sys.stderr)
                         status = 0
                     else:
-                        print("KVM instance failed to boot", file=sys.stderr)
+                        print("E: KVM instance failed to boot", file=sys.stderr)
+                        print("Console output".center(72, "="),
+                              file=sys.stderr)
+                        with open(self.debug_file, 'r') as console_log:
+                            print(console_log.read(), file=sys.stderr)
+                        print("E: KVM instance failed to boot", file=sys.stderr)
                 self.process.terminate()
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)
@@ -311,15 +317,15 @@ def main():
         '-i', '--image', type=str, default=None)
     kvm_test_parser.add_argument(
         '-t', '--timeout', type=int)
-    kvm_test_parser.add_argument(
-        '--debug', action="store_true")
+    kvm_test_parser.add_argument('--debug', dest='log_level',
+                                 action="store_const", const=logging.DEBUG,
+                                 default=logging.INFO)
     kvm_test_parser.set_defaults(func=test_kvm)
 
     args = parser.parse_args()
 
     try:
-        if args.debug:
-            logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(level=args.log_level)
     except AttributeError:
         pass  # avoids exception when trying to run without specifying 'kvm'
 
