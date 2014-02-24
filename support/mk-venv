@@ -96,6 +96,9 @@ if $CHECKBOX_TOP/support/install-ppa-dependencies; then
     sudo apt-get update
 fi
 
+# Ensure that certain Debian dependencies are *not* installed
+$CHECKBOX_TOP/support/remove-deb-anty-dependencies
+
 # Ensure that all Debian dependencies are installed
 $CHECKBOX_TOP/support/install-deb-dependencies
 
