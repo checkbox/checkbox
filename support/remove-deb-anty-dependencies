@@ -1,0 +1,55 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Helper script to remove all of the Debian anty-dependencies
+# ===========================================================
+# Sadly, this script is required as there are some known issues in our
+# virtualenv + pip stack that can cause broken environment to be created, if
+# some of the packages that we are working on _or_ some of the packages that
+# are part of virtualenv are installed on the outer system.
+
+set -e
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Construct a list of required Debian packages.
+debian_pkg_list="$(find "$CHECKBOX_TOP" -path '*/requirements/remove-deb-*.txt' -exec cat "{}" \;  | grep -v '^#' | sort | uniq)"
+
+# Check each one and remove if required
+echo "I: checking if the following Debian packages are removed:" $debian_pkg_list
+dpkgs_to_remove_list=""
+for debian_pkg in $debian_pkg_list; do
+    if [ "$(dpkg-query -s $debian_pkg 2>/dev/null | grep '^Status:')" != "" ]; then
+        echo "I: package $debian_pkg may be installed, queueing for removal"
+        dpkgs_to_remove_list="$dpkgs_to_remove_list $debian_pkg"
+    fi
+done
+if [ -n "$dpkgs_to_remove_list" ]; then
+    if [ $(id -u) != 0 ]; then
+        sudo apt-get remove --quiet --quiet --yes --purge $dpkgs_to_remove_list
+    else
+        apt-get remove --quiet --quiet --yes --purge $dpkgs_to_remove_list
+    fi
+fi
