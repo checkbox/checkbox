@@ -1,0 +1,23 @@
+id: coverage/erase
+summary: Erase Coverage Data
+description:
+    This job resets coverage data for subsequent jobs.
+depends: support/virtualenv
+plugin: shell
+estimated_duration: 0.1
+command:
+    .. $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
+    coverage erase
+
+id: coverage/report
+summary: Generate code coverage report
+description:
+    Generate code coverage report
+    .
+    This job creates a simple text coverage report for the entire project.
+depends: support/virtualenv
+plugin: attachment
+estimated_duration: 1.0
+command:
+    .. $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
+    coverage report

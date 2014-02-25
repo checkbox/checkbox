@@ -1,0 +1,40 @@
+id: plainbox/unit-tests
+summary: PlainBox Unit Tests
+description:
+    Run PlainBox Unit Tests.
+    .
+    This job runs all of the plainbox unit tests. The tests are executed with
+    automatic coverage and branch analysis.
+    .
+    This test depends on the test that resets coverage data.
+depends:
+    support/virtualenv
+    coverage/erase
+plugin: shell
+estimated_duration: 5.0
+command:
+    .. $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
+    coverage run --append --branch \
+        --module plainbox self-test --after-reexec --quiet --unit-tests
+
+id: plainbox/integration-tests
+summary: PlainBox Integration Tests
+command:
+    .. $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
+    coverage run --append --branch \
+        --module plainbox self-test --after-reexec --quiet --integration-tests
+depends:
+    support/virtualenv
+    coverage/erase
+plugin: shell
+estimated_duration: 1.0
+description:
+    Run PlainBox Integration Tests.
+    .
+    This job runs all of the plainbox "integration tests". Integration tests
+    are really mis-named and should eventually be removed and transitioned into
+    testing all of the providers that live in this project. In practice
+    integration tests run a set of automated tests on a small subset of the
+    "checkbox source" provider.
+    .
+    This test depends on the test that resets coverage data.
