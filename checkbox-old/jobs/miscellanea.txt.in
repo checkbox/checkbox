@@ -1,6 +1,14 @@
 plugin: shell
 name: miscellanea/submission-resources
-depends: cpuinfo dpkg lsb package uname
+depends:
+ cpuinfo
+ dpkg
+ lsb
+ package
+ uname
+ dmi_attachment
+ sysfs_attachment
+ udev_attachment
 estimated_duration: 1.0
 command: true
 _description:
