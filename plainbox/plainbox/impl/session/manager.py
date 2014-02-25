@@ -55,7 +55,7 @@ class WellKnownDirsHelper:
     """
 
     def __init__(self, storage):
-        assert isinstance(storage, SessionStorage)
+        # assert isinstance(storage, SessionStorage)
         self._storage = storage
 
     @property
@@ -106,8 +106,8 @@ class SessionManager:
         :class:`~plainbox.impl.session.state.SessionState` and
         :class:`~plainbox.impl.session.storage.SessionStorage`.
         """
-        assert isinstance(state, SessionState)
-        assert isinstance(storage, SessionStorage)
+        # assert isinstance(state, SessionState)
+        # assert isinstance(storage, SessionStorage)
         self._state = state
         self._storage = storage
         logger.debug(
@@ -133,7 +133,39 @@ class SessionManager:
         return self._storage
 
     @classmethod
-    def create_session(cls, job_list=None, repo=None, legacy_mode=False):
+    def create_with_state(cls, state, repo=None, legacy_mode=False):
+        """
+        Create a session manager by wrapping existing session state.
+
+        This method populates the session storage with all of the well known
+        directories (using :meth:`WellKnownDirsHelper.populate()`)
+
+        :param stage:
+            A pre-existing SessioState object.
+        :param repo:
+            If specified then this particular repository will be used to create
+            the storage for this session. If left out, a new repository is
+            constructed with the default location.
+        :ptype repo:
+            :class:`~plainbox.impl.session.storage.SessionStorageRepository`.
+        :param legacy_mode:
+            Propagated to
+            :meth:`~plainbox.impl.session.storage.SessionStorage.create()`
+            to ensure that legacy (single session) mode is used.
+        :ptype legacy_mode:
+            bool
+        :return:
+            fresh :class:`SessionManager` instance
+        """
+        logger.debug("SessionManager.create_with_state()")
+        if repo is None:
+            repo = SessionStorageRepository()
+        storage = SessionStorage.create(repo.location, legacy_mode)
+        WellKnownDirsHelper(storage).populate()
+        return cls(state, storage)
+
+    @classmethod
+    def create_with_job_list(cls, job_list=None, repo=None, legacy_mode=False):
         """
         Create a session manager with a fresh session.
 
@@ -228,7 +260,7 @@ class SessionManager:
         Create a checkpoint of the session.
 
         After calling this method you can later reopen the same session with
-        :meth:`SessionManager.open_session()`.
+        :meth:`SessionManager.load_session()`.
         """
         logger.debug("SessionManager.checkpoint()")
         data = SessionSuspendHelper().suspend(self.state)
