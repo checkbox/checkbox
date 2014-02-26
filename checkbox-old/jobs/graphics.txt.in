@@ -174,7 +174,7 @@ _description:
 plugin: shell
 name: graphics/compiz_check
 requires: package.name == 'nux-tools'
-command: ! /usr/lib/nux/unity_support_test -c -p | ansi_parser | grep ":\(\s\+\)no"
+command: ! /usr/lib/nux/unity_support_test -c -p | ansi_parser | grep ":\(\s\+\)no$"
 estimated_duration: 0.130
 _description: Check that hardware is able to run compiz
 
