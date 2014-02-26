@@ -1,8 +1,11 @@
 checkbox (0.17.4) UNRELEASED; urgency=low
 
   [ Po-Hsu Lin]
+  * graphics/compiz_check: fixed false-positive result that caused by nouveau
+    driver (LP: #1285038)
   * Remove the 5GHz resource reqiurement for 802.11n wireless test, added
     corresponding 802.11 requirements into the wireless part of suspend test.
+    (LP: #1279225)
   * Move the volume key test to right after the mute key test.
   * scripts/graphics_driver: added a new pattern for parsing Intel driver on
     12.04.4 (LP: #1279222) 
