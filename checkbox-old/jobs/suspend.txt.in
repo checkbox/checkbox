@@ -1523,6 +1523,29 @@ _description:
  server has usb 3.0 storage devices plugged in prior to checkbox execution. It
  is intended for servers and SRU automated testing.
 
+plugin: shell
+name: suspend/usb_performance_after_suspend
+depends: suspend/usb_insert_after_suspend
+user: root
+estimated_duration: 45.00
+command: removable_storage_test -s 268400000 -p 15 usb
+_description:
+ This test will check that your USB 2.0 port transfers data at a
+ minimum expected speed.
+
+plugin: shell
+name: suspend/usb3_superspeed_performance_after_suspend
+requires:
+ usb.usb3 == 'supported'
+depends: suspend/usb3_insert_after_suspend
+user: root
+estimated_duration: 45.00
+command: removable_storage_test -s 268400000 -m 500000000 -p 60 usb
+_description:
+ This test will check that your USB 3.0 port transfers data at a
+ minimum expected speed in accordance with the specification of
+ USB 3.0 SuperSpeed mode.
+
 plugin: user-interact
 name: suspend/mmc-insert-after-suspend
 depends: suspend/suspend_advanced
