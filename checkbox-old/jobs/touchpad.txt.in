@@ -14,6 +14,7 @@ _description:
 plugin: user-interact
 name: touchpad/horizontal
 requires:
+  dmi.product in ['Notebook','Laptop','Portable']
   'Button Horiz Wheel Left' in xinput.button_labels and 'Button Horiz Wheel Right' in xinput.button_labels
 command: touchpad_test right left --edge-scroll
 estimated_duration: 120.0
@@ -29,6 +30,7 @@ _description:
 plugin: user-interact
 name: touchpad/vertical
 requires:
+  dmi.product in ['Notebook','Laptop','Portable']
   'Button Wheel Up' in xinput.button_labels and 'Button Wheel Down' in xinput.button_labels
 command: touchpad_test up down --edge-scroll
 estimated_duration: 120.0

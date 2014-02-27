@@ -99,6 +99,7 @@ _description:
 
 plugin: user-interact-verify
 name: monitor/dim_brightness
+requires: dmi.product in ['Notebook','Laptop','Portable']
 user: root
 command: brightness_test
 _description:
