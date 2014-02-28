@@ -1,5 +1,6 @@
 plugin: user-interact
 name: mediacard/mmc-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -16,6 +17,7 @@ _description:
 
 plugin: shell
 name: mediacard/mmc-storage
+estimated_duration: 30.0
 depends: mediacard/mmc-insert
 user: root
 command: removable_storage_test -s 67120000 --memorycard sdio usb scsi
@@ -25,6 +27,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/mmc-remove
+estimated_duration: 30.0
 depends: mediacard/mmc-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -40,6 +43,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sd-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -56,6 +60,7 @@ _description:
 
 plugin: shell
 name: mediacard/sd-storage
+estimated_duration: 30.0
 depends: mediacard/sd-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -65,6 +70,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sd-remove
+estimated_duration: 30.0
 depends: mediacard/sd-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -80,6 +86,7 @@ _description:
 
 plugin: shell
 name: mediacard/sd-preinserted
+estimated_duration: 30.0
 user: root
 requires: device.category == 'CARDREADER'
 command: removable_storage_test -s 268400000 --memorycard -l sdio usb scsi && removable_storage_test --memorycard sdio usb scsi
@@ -90,6 +97,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdhc-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -107,6 +115,7 @@ _description:
 
 plugin: shell
 name: mediacard/sdhc-storage
+estimated_duration: 30.0
 depends: mediacard/sdhc-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -116,6 +125,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdhc-remove
+estimated_duration: 30.0
 depends: mediacard/sdhc-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -131,6 +141,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/cf-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -147,6 +158,7 @@ _description:
 
 plugin: shell
 name: mediacard/cf-storage
+estimated_duration: 30.0
 depends: mediacard/cf-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -157,6 +169,7 @@ _description:
 plugin: user-interact
 name: mediacard/cf-remove
 depends: mediacard/cf-storage
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -171,6 +184,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdxc-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -187,6 +201,7 @@ _description:
 
 plugin: shell
 name: mediacard/sdxc-storage
+estimated_duration: 30.0
 depends: mediacard/sdxc-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -196,6 +211,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdxc-remove
+estimated_duration: 30.0
 depends: mediacard/sdxc-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -211,6 +227,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/ms-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -227,6 +244,7 @@ _description:
 
 plugin: shell
 name: mediacard/ms-storage
+estimated_duration: 30.0
 depends: mediacard/ms-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -236,6 +254,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/ms-remove
+estimated_duration: 30.0
 depends: mediacard/ms-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -251,6 +270,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/msp-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -267,6 +287,7 @@ _description:
 
 plugin: shell
 name: mediacard/msp-storage
+estimated_duration: 30.0
 depends: mediacard/msp-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -276,6 +297,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/msp-remove
+estimated_duration: 30.0
 depends: mediacard/msp-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -291,6 +313,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/xd-insert
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
  PURPOSE:
@@ -307,6 +330,7 @@ _description:
 
 plugin: shell
 name: mediacard/xd-storage
+estimated_duration: 30.0
 depends: mediacard/xd-insert
 user: root
 command: removable_storage_test -s 268400000 --memorycard sdio usb scsi
@@ -316,6 +340,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/xd-remove
+estimated_duration: 30.0
 depends: mediacard/xd-insert
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
