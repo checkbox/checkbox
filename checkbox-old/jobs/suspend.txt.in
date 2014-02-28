@@ -1479,7 +1479,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb_insert_after_suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends:
  suspend/suspend_advanced
 command: removable_storage_watcher insert usb
@@ -1497,7 +1497,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb3_insert_after_suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 requires:
  usb.usb3 == 'supported'
 depends:
@@ -1517,7 +1517,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb_remove_after_suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends:
  suspend/usb_insert_after_suspend
 command: removable_storage_watcher remove usb
@@ -1534,7 +1534,7 @@ _description:
 
 plugin: user-interact
 name: suspend/usb3_remove_after_suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends:
  suspend/usb3_insert_after_suspend
 requires:
@@ -1623,7 +1623,7 @@ _description:
 
 plugin: user-interact
 name: suspend/mmc-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1652,7 +1652,7 @@ _description:
 plugin: user-interact
 name: suspend/mmc-remove-after-suspend
 depends: suspend/mmc-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -1667,7 +1667,7 @@ _description:
 
 plugin: user-interact
 name: suspend/sd-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1696,7 +1696,7 @@ _description:
 
 plugin: user-interact
 name: suspend/sd-remove-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/sd-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -1713,7 +1713,7 @@ _description:
 
 plugin: user-interact
 name: suspend/sdhc-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1742,7 +1742,7 @@ _description:
 
 plugin: user-interact
 name: suspend/sdhc-remove-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/sdhc-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -1758,7 +1758,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/cf-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1786,7 +1786,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/cf-remove-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: mediacard/cf-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -1803,7 +1803,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/sdxc-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1832,7 +1832,7 @@ _description:
 plugin: user-interact
 name: mediacard/sdxc-remove-after-suspend
 depends: mediacard/sdxc-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
  PURPOSE:
@@ -1848,7 +1848,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/ms-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1876,7 +1876,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/ms-remove-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: mediacard/ms-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -1892,7 +1892,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/msp-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1920,7 +1920,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/msp-remove-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: mediacard/msp-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -1936,7 +1936,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/xd-insert-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -1964,7 +1964,7 @@ _description:
 
 plugin: user-interact
 name: mediacard/xd-remove-after-suspend
-estimated_duration: 120.0
+estimated_duration: 30.0
 depends: mediacard/xd-insert-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
 _description:
@@ -1992,7 +1992,7 @@ _description:
 plugin: manual
 name: touchscreen/touchscreen_after_suspend
 depends: suspend/suspend_advanced_auto
-estimated_duration: 120.0
+estimated_duration: 30.0
 _description:
  PURPOSE:
      Check touchscreen tap recognition
