@@ -72,6 +72,6 @@ def set_logging(level, log=None):
             handler.setFormatter(Formatter(format))
             logging.getLogger().addHandler(handler)
         if log_level:
-            logging.getLogger().setLevel(log_level)
+            logging.getLogger().setLevel(level.upper())
     elif not logging.getLogger().handlers:
         logging.disable(logging.CRITICAL)
