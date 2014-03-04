@@ -228,7 +228,7 @@ Dialog {
             skipcheck.enabled = true;
 
             // Outcome values refer to PBJobResult enums
-            if (outcome === 2 /* PBJobResult_Pass */) {
+            if (suggested_outcome === 2 /* PBJobResult_Pass */) {
                 yescheck.checked = true;
                 nocheck.checked = false;
                 skipcheck.checked = false; // we didnt skip it
