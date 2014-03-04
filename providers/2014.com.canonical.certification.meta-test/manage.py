@@ -17,6 +17,5 @@ setup(
     name='2014.com.canonical.certification:meta-test',
     version="1.0",
     description=("Meta provider that checks the Checkbox project itself"
-                 "with itself!"),
-    gettext_domain=""
+                 " with itself!"),
 )
