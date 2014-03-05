@@ -42,4 +42,4 @@ try:
         cwd = os.path.join(base, target_dir)
         subprocess.check_call(cmd, cwd=cwd)
 except subprocess.CalledProcessError as exc:
-    raise SystemExit(str(exc))
+    raise SystemExit("{} in {}".format(exc, cwd))
