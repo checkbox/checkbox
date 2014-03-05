@@ -30,6 +30,7 @@ import os
 
 from plainbox.abc import IJobResult
 from plainbox.abc import IProvider1
+from plainbox.abc import IProviderBackend1
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.ctrl import CheckBoxExecutionController
 from plainbox.impl.ctrl import CheckBoxSessionStateController
@@ -501,9 +502,19 @@ class CheckBoxExecutionControllerTestsMixIn:
             spec=JobDefinition,
             provider=mock.Mock(
                 name='provider',
-                spec=IProvider1,
+                # XXX: create a new type that has both IProvider1 and
+                # IProviderBackend1 API This type will define the API of the
+                # mocked provider object. We need to access IProvider1.name
+                # (for RootViaPTL1ExecutionController) but we also need to
+                # access many of IProviderBackend1 APIs for all the other code
+                # here. Instead of fusing the interfaces we can just pass a
+                # "concrete provider" "interface" just for this set of tests.
+                spec=type(
+                    'IProvider1+IProviderBackend1',
+                    (IProviderBackend1, IProvider1), {}),
                 extra_PYTHONPATH=None,
-                CHECKBOX_SHARE='CHECKBOX_SHARE'))
+                CHECKBOX_SHARE='CHECKBOX_SHARE',
+                data_dir='data_dir'))
         # Create mocked config.
         # Put an empty dictionary of environment overrides
         # that is expected by get_execution_environment()
@@ -722,8 +733,9 @@ class RootViaPTL1ExecutionControllerTests(
             spec=JobDefinition,
             provider=mock.Mock(
                 name='provider',
-                spec=IProvider1,
+                spec=IProviderBackend1,
                 extra_PYTHONPATH=None,
+                data_dir="data_dir-generator",
                 CHECKBOX_SHARE='CHECKBOX_SHARE-generator'))
         PATH = os.pathsep.join([self.NEST_DIR, 'vanilla-path'])
         expected = [
@@ -734,14 +746,14 @@ class RootViaPTL1ExecutionControllerTests(
             '-G', 'CHECKBOX_SHARE=CHECKBOX_SHARE-generator',
             '-G', 'LANG=C.UTF-8',
             '-G', 'PATH={}'.format(PATH),
-            '-G', 'PLAINBOX_PROVIDER_DATA=CHECKBOX_SHARE-generator/data',
+            '-G', 'PLAINBOX_PROVIDER_DATA=data_dir-generator',
             '-G', 'PLAINBOX_SESSION_SHARE=session-dir/CHECKBOX_DATA',
             '--target', self.job.checksum,
             '-T', 'CHECKBOX_DATA=session-dir/CHECKBOX_DATA',
             '-T', 'CHECKBOX_SHARE=CHECKBOX_SHARE',
             '-T', 'LANG=C.UTF-8',
             '-T', 'PATH={}'.format(PATH),
-            '-T', 'PLAINBOX_PROVIDER_DATA=CHECKBOX_SHARE/data',
+            '-T', 'PLAINBOX_PROVIDER_DATA=data_dir',
             '-T', 'PLAINBOX_SESSION_SHARE=session-dir/CHECKBOX_DATA',
         ]
         actual = self.ctrl.get_execution_command(
@@ -764,7 +776,7 @@ class RootViaPTL1ExecutionControllerTests(
             '-T', 'CHECKBOX_SHARE=CHECKBOX_SHARE',
             '-T', 'LANG=C.UTF-8',
             '-T', 'PATH={}'.format(PATH),
-            '-T', 'PLAINBOX_PROVIDER_DATA=CHECKBOX_SHARE/data',
+            '-T', 'PLAINBOX_PROVIDER_DATA=data_dir',
             '-T', 'PLAINBOX_SESSION_SHARE=session-dir/CHECKBOX_DATA',
         ]
         actual = self.ctrl.get_execution_command(
@@ -819,8 +831,8 @@ class RootViaPTL1ExecutionControllerTests(
         # Ensure we get the right action id from pkaction(1) even with
         # polikt version < 0.110 (pkaction always exists with status 1), see:
         # https://bugs.freedesktop.org/show_bug.cgi?id=29936#attach_78263
-        mock_check_output.side_effect = CalledProcessError(1, '',
-            b"org.freedesktop.policykit.pkexec.run-plainbox-job\n")
+        mock_check_output.side_effect = CalledProcessError(
+            1, '', b"org.freedesktop.policykit.pkexec.run-plainbox-job\n")
         # Ensure that we get a positive score of three
         ctrl = self.CLS(self.SESSION_DIR, self.PROVIDER_LIST)
         self.assertEqual(ctrl.get_checkbox_score(self.job), 3)
@@ -871,7 +883,7 @@ class RootViaPkexecExecutionControllerTests(
              'LANG=C.UTF-8',
              'PATH={}'.format(
                  os.pathsep.join([self.NEST_DIR, 'vanilla-path'])),
-             'PLAINBOX_PROVIDER_DATA=CHECKBOX_SHARE/data',
+             'PLAINBOX_PROVIDER_DATA=data_dir',
              'PLAINBOX_SESSION_SHARE=session-dir/CHECKBOX_DATA',
              'bash', '-c', self.job.command])
 
@@ -911,7 +923,7 @@ class RootViaSudoExecutionControllerTests(
              'LANG=C.UTF-8',
              'PATH={}'.format(
                  os.pathsep.join([self.NEST_DIR, 'vanilla-path'])),
-             'PLAINBOX_PROVIDER_DATA=CHECKBOX_SHARE/data',
+             'PLAINBOX_PROVIDER_DATA=data_dir',
              'PLAINBOX_SESSION_SHARE=session-dir/CHECKBOX_DATA',
              'bash', '-c', self.job.command])
 
