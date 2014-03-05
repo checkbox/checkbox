@@ -41,9 +41,9 @@ coverage=${1:-coverage3}
 # to run plainbox self-test which we are not doing here)
 $coverage run --branch --module plainbox self-test \
     --after-reexec \
+    --unit-tests \
     --fail-fast \
-    --quiet \
-    --unit-tests
+    --quiet
 
 # Run integrations tests as well, unless --skip-integration
 if [ "$1" != "--skip-integration" ]; then
@@ -59,5 +59,12 @@ $coverage report
 
 # Generate the HTML report
 rm -rf htmlcov
+if [ -n "$VIRTUAL_ENV" ]; then
+    # With the defaults $VIRTUAL_ENV might be in /ramdisk which might be a
+    # tmpfs. Generating coverage data there is way faster and better on SSDs
+    rm -rf "$VIRTUAL_ENV/htmlcov"
+    mkdir "$VIRTUAL_ENV/htmlcov"
+    ln -s $VIRTUAL_ENV/htmlcov htmlcov
+fi
 $coverage html
 echo "The HTML report is now ready in htmlcov" 
