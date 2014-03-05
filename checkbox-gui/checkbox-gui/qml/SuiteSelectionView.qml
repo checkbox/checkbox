@@ -79,7 +79,6 @@ Page {
                     var item = whiteListModel.get(i);
                     if (item.testname.match(/default/i)) {
                         whiteListModel.setProperty(i, "check", true);
-                        return;
                     }
                 }
                 suiteSelect();
@@ -125,6 +124,7 @@ Page {
             bottom: parent.bottom
             margins: units.gu(2)
         }
+        enabled: false
         text: i18n.tr("OK")
         color: UbuntuColors.lightAubergine
         onClicked: {
