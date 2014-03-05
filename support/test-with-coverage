@@ -41,9 +41,9 @@ coverage=${1:-coverage3}
 # to run plainbox self-test which we are not doing here)
 $coverage run --branch --module plainbox self-test \
     --after-reexec \
+    --unit-tests \
     --fail-fast \
-    --quiet \
-    --unit-tests
+    --quiet
 
 # Run integrations tests as well, unless --skip-integration
 if [ "$1" != "--skip-integration" ]; then
