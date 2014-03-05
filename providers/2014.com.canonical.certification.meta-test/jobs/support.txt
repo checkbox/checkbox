@@ -1,6 +1,6 @@
 id: support/virtualenv
-summary: Create a virtualenv for testing
-description:
+_summary: Create a virtualenv for testing
+_description:
     This job creates a new virtualenv that is required by other tests. This
     virtualenv is created in the $PLAINBOX_SESSION_SHARE directory, which is a
     temporary directory unique to each testing session.

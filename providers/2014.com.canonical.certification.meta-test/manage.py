@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from plainbox.provider_manager import setup
+from plainbox.provider_manager import N_
 
 # You can inject other stuff here but please don't go overboard.
 #
@@ -16,7 +17,7 @@ from plainbox.provider_manager import setup
 setup(
     name='2014.com.canonical.certification:meta-test',
     version="1.0",
-    description=("Meta provider that checks the Checkbox project itself"
-                 "with itself!"),
-    gettext_domain=""
+    description=N_("Meta provider that checks the Checkbox project itself"
+                   " with itself!"),
+    gettext_domain='2014.com.canonical.certification.meta-test',
 )
