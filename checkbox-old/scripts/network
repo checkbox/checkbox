@@ -61,6 +61,7 @@ class IPerfPerformanceTest(object):
         self.iface = Interface(interface)
         self.target = target
         self.protocol = protocol
+        self.fail_threshold = fail_threshold
 
         self.mbytes = mbytes
 
