@@ -8,23 +8,19 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-03 12:45+0100\n"
-"PO-Revision-Date: 2014-03-04 10:07+0000\n"
+"PO-Revision-Date: 2014-03-06 16:48+0000\n"
 "Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-05 05:29+0000\n"
+"X-Launchpad-Export-Date: 2014-03-07 05:44+0000\n"
 "X-Generator: Launchpad (build 16948)\n"
 
 #. Title of the user interface
 #: ../qt/checkbox-qt.desktop.in.h:1 ../plugins/user_interface.py:43
 msgid "System Testing"
 msgstr "系統測試"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "列印版本資訊並離開。"
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
@@ -33,14 +29,6 @@ msgstr "debug、info、warning、error 或 critical 之一。"
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
 msgstr "設定會無視參數。"
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "參數上沒有配置檔案。\n"
-
-#: ../checkbox_cli/cli_interface.py:127
-msgid "Press any key to continue..."
-msgstr "按任意鍵繼續…"
 
 #: ../checkbox_cli/cli_interface.py:462
 msgid "Please type here and press Ctrl-D when finished:\n"
@@ -51,17 +39,9 @@ msgstr "請在此輸入，並在完成後按 Ctrl-D：\n"
 msgid "Gathering information from your system..."
 msgstr "收集您系統的資訊中..."
 
-#: ../plugins/launchpad_prompt.py:97
-msgid "Email address must be in a proper format."
-msgstr "電郵地址格式必須要正確。"
-
 #: ../plugins/launchpad_prompt.py:103
 msgid "Exchanging information with the server..."
-msgstr "正與伺服器交換資訊..."
-
-#: ../plugins/report_prompt.py:39
-msgid "Building report..."
-msgstr "正建立報告..."
+msgstr "正與伺服器交換資訊中..."
 
 #~ msgid "_Skip this test"
 #~ msgstr "略過此測試(_S)"
@@ -136,6 +116,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound from the HDMI device?"
 msgstr ""
+"目的：\n"
+"　　HDMI 音效輸出測試\n"
+"步驟：\n"
+"　　1. 請連接一個能夠播放聲音的 HDMI 裝置 (針對本測試，請一次只使用一個 HDMI/DisplayPort 介面)\n"
+"　　2. 點擊 『測試』按鈕\n"
+"檢查：\n"
+"　　您是否有聽到由該 HDMI 音訊裝置中播出的音效？"
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -149,6 +136,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound from the DisplayPort device?"
 msgstr ""
+"目的：\n"
+"　　DisplayPort 音效輸出測試\n"
+"步驟：\n"
+"　　1. 請連接一個能夠播放聲音的 DisplayPort 裝置 (針對本測試，請一次只使用一個 HDMI/DisplayPort 介面)\n"
+"　　2. 點擊 『測試』按鈕\n"
+"檢查：\n"
+"　　您是否有聽到由該 DisplayPort 音訊裝置中播出的音效？"
 
 #. description
 #: ../jobs/audio.txt.in:78
@@ -253,7 +247,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:175
 msgid "Attaches the audio hardware data collection log to the results."
-msgstr ""
+msgstr "將音效硬體資料附加至測試結果中"
 
 #. description
 #: ../jobs/audio.txt.in:182
@@ -806,57 +800,57 @@ msgstr ""
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr "測試套裝程式安裝後, 測試 atd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 atd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 cron 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 cron 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 cupsd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 cupsd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 getty 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 getty 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 init 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 init 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 klogd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 klogd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 daemon 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 nmbd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 smbd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 smbd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 syslogd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 syslogd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:60
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 udevd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 udevd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/daemons.txt.in:66
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr "當套裝程式安裝後, 測試 winbindd 後臺程序是否已經啓動."
+msgstr "當套件安裝後，測試 winbindd 常駐程式是否已經啟動"
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -2034,7 +2028,7 @@ msgstr "CPU 測試"
 #. description
 #: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
-msgstr "系統後臺服務程序測試"
+msgstr "系統常駐程式測試"
 
 #. description
 #: ../jobs/local.txt.in:52
@@ -2189,7 +2183,7 @@ msgstr "休眠測試"
 #. description
 #: ../jobs/local.txt.in:262
 msgid "Touchpad tests"
-msgstr ""
+msgstr "觸控板測試"
 
 #. description
 #: ../jobs/local.txt.in:269
@@ -2839,6 +2833,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"目的：\n"
+"　　這個測試會檢查您的 HDMI 圖形輸出。\n"
+"步驟：\n"
+"　　若您的電腦上沒有 HDMI 埠則請略過本測試。\n"
+"　　1. 請將外接螢幕連接至您電腦上的 HDMI 埠 (若它還沒被接上 HDMI 埠的話)\n"
+"檢查：\n"
+"　　桌面是否有正確的顯示在兩個螢幕上呢？"
 
 #. description
 #: ../jobs/monitor.txt.in:52
@@ -5818,6 +5819,10 @@ msgstr ""
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "用法： checkbox [選項]"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "顯示版本資訊並結束。"
+
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
 msgstr "寫入日誌的檔案。"
@@ -5837,6 +5842,10 @@ msgstr ""
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
 msgstr ""
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "未有以引數方式提供配置檔案。\n"
 
 #: ../checkbox/job.py:85
 msgid "Command not found."
@@ -5943,6 +5952,10 @@ msgstr "否"
 #: ../checkbox_cli/cli_interface.py:33
 msgid "skip"
 msgstr "略過"
+
+#: ../checkbox_cli/cli_interface.py:127
+msgid "Press any key to continue..."
+msgstr "按任意鍵繼續..."
 
 #: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:237
 #, python-format
@@ -6064,10 +6077,10 @@ msgid ""
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 "未能聯絡伺服器。請重試\n"
-"或是直接上傳下列檔案：\n"
+"或是直接將下列檔案：\n"
 "%s\n"
 "\n"
-"到系統資料庫：\n"
+"上傳到系統資料庫：\n"
 "https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:159
@@ -6102,6 +6115,10 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
+#: ../plugins/launchpad_prompt.py:97
+msgid "Email address must be in a proper format."
+msgstr "電郵地址格式必須正確。"
+
 #: ../plugins/launchpad_report.py:172
 msgid ""
 "The generated report seems to have validation errors,\n"
@@ -6124,6 +6141,10 @@ msgid ""
 "continue to the next test, or\n"
 "restart from the beginning?"
 msgstr ""
+
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "建立報告中..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
