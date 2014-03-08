@@ -246,7 +246,10 @@ class JobDefinition(BaseJob, IJobDefinition):
 
     @property
     def id(self):
-        return self.get_record_value('id', self.name)
+        if self._provider:
+            return "{}::{}".format(self._provider.namespace, self.partial_id)
+        else:
+            return self.partial_id
 
     @property
     def partial_id(self):
@@ -418,7 +421,12 @@ class JobDefinition(BaseJob, IJobDefinition):
         Raises ResourceProgramError or SyntaxError
         """
         if self.requires is not None and self._resource_program is None:
-            self._resource_program = ResourceProgram(self.requires)
+            if self._provider is not None:
+                implicit_namespace = self._provider.namespace
+            else:
+                implicit_namespace = None
+            self._resource_program = ResourceProgram(
+                self.requires, implicit_namespace)
         return self._resource_program
 
     def get_direct_dependencies(self):
@@ -428,8 +436,16 @@ class JobDefinition(BaseJob, IJobDefinition):
         To combat a simple mistake where the jobs are space-delimited any
         mixture of white-space (including newlines) and commas are allowed.
         """
+        def transform_id(some_id):
+            if "::" not in some_id and self._provider is not None:
+                return "{}::{}".format(self._provider.namespace, some_id)
+            else:
+                return some_id
         if self.depends:
-            return {id for id in re.split('[\s,]+', self.depends)}
+            return {
+                transform_id(maybe_partial_id)
+                for maybe_partial_id in re.split('[\s,]+', self.depends)
+            }
         else:
             return set()
 

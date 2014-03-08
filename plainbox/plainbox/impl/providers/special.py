@@ -139,13 +139,11 @@ def get_stubbox_def():
     Get a Provider1Definition for stubbox
     """
     stubbox_def = Provider1Definition()
-    stubbox_def.name = "2013.com.canonical:stubbox"
+    stubbox_def.name = "2013.com.canonical.plainbox:stubbox"
     stubbox_def.version = "1.0"
     stubbox_def.description = N_("StubBox (dummy data for development)")
     stubbox_def.secure = False
     stubbox_def.gettext_domain = "stubbox"
-    stubbox_def.location = os.path.join(get_plainbox_dir(), "impl/providers/stubbox")
-    locale_dir = os.path.join(stubbox_def.location, 'build/mo')
-    if os.path.isdir(locale_dir):
-        stubbox_def.locale_dir = locale_dir
+    stubbox_def.location = os.path.join(
+        get_plainbox_dir(), "impl/providers/stubbox")
     return stubbox_def

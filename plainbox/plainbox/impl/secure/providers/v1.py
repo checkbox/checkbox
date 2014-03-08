@@ -55,12 +55,13 @@ class WhiteListPlugIn(IPlugIn):
     :class:`plainbox.impl.secure.qualifiers.WhiteList` instances from a file.
     """
 
-    def __init__(self, filename, text):
+    def __init__(self, filename, text, implicit_namespace=None):
         """
         Initialize the plug-in with the specified name text
         """
         try:
-            self._whitelist = WhiteList.from_string(text, filename=filename)
+            self._whitelist = WhiteList.from_string(
+                text, filename=filename, implicit_namespace=implicit_namespace)
         except Exception as exc:
             raise PlugInError(
                 _("Cannot load whitelist {!r}: {}").format(filename, exc))
@@ -199,7 +200,8 @@ class Provider1(IProvider1, IProviderBackend1):
         else:
             whitelists_dir_list = []
         self._whitelist_collection = FsPlugInCollection(
-            whitelists_dir_list, ext=".whitelist", wrapper=WhiteListPlugIn)
+            whitelists_dir_list, ext=".whitelist", wrapper=WhiteListPlugIn,
+            implicit_namespace=self.namespace)
         if self.jobs_dir is not None:
             jobs_dir_list = [self.jobs_dir]
         else:
