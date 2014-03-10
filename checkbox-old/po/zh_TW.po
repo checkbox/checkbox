@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-03 12:45+0100\n"
-"PO-Revision-Date: 2014-03-08 07:22+0000\n"
+"PO-Revision-Date: 2014-03-09 15:13+0000\n"
 "Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-09 05:40+0000\n"
+"X-Launchpad-Export-Date: 2014-03-10 05:33+0000\n"
 "X-Generator: Launchpad (build 16948)\n"
 
 #. Title of the user interface
@@ -361,7 +361,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:329
 msgid "Test to detect audio devices after suspending 30 times."
-msgstr ""
+msgstr "本測試會在暫停30次後偵測音效裝置"
 
 #. description
 #: ../jobs/audio.txt.in:341
@@ -398,7 +398,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:391
 msgid "Record mixer settings after suspending 30 times."
-msgstr ""
+msgstr "在暫停30次後紀錄混音器設定"
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1300,7 +1300,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:246 ../jobs/suspend.txt.in:1091
 msgid "Attaches the screenshot captured in graphics/screenshot."
-msgstr ""
+msgstr "將 graphics/screenshot 測試項中所拍到的畫面附加至測試報告中。"
 
 #. description
 #: ../jobs/graphics.txt.in:259
@@ -1319,7 +1319,7 @@ msgstr ""
 #: ../jobs/graphics.txt.in:272
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
-msgstr ""
+msgstr "將 graphics/screenshot_fullscreen_video 測試項中所拍到的畫面附加至測試報告中。"
 
 #. description
 #: ../jobs/graphics.txt.in:283
@@ -1333,7 +1333,7 @@ msgstr ""
 #: ../jobs/graphics.txt.in:291
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_opencv_validation."
-msgstr ""
+msgstr "將 graphics/screenshot_opencv_validation 測試項中所拍到的畫面附加至測試報告中。"
 
 #. description
 #: ../jobs/hibernate.txt.in:17
@@ -1352,6 +1352,15 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"目的：\n"
+"　　本測試將會檢查您電腦的休眠功能是否正常 (若有支援的話)\n"
+"步驟：\n"
+"　　1. 按下測試按鈕\n"
+"　　2. 您的電腦將會進入休眠模式，並在大約五分鐘後自動醒來\n"
+"　　3. 若您的電腦在五分鐘後並沒有自己醒來，請手動按下電源鈕來喚醒它\n"
+"　　4. 若您的電腦無法正常自休眠模式中被喚醒，請重新啟動本系統測試工具並將此測項標記為測試失敗\n"
+"驗證：\n"
+"　　您的電腦是否正常的進入休眠模式，並在被喚醒後正常運作？"
 
 #. description
 #: ../jobs/hibernate.txt.in:31
@@ -1804,6 +1813,12 @@ msgid ""
 "    Did the Power LED blink or change color while the system was suspended "
 "for the previous suspend test?"
 msgstr ""
+"目的：\n"
+"　　電源 LED 顯示燈運作測試。\n"
+"步驟：\n"
+"　　1. 您電腦的電源 LED 顯示燈應該會在電腦暫停時閃爍或變色。\n"
+"檢查：\n"
+"　　您電腦的電源 LED 顯示燈在先前的暫停測試中有閃爍或變色嗎？"
 
 #. description
 #: ../jobs/led.txt.in:24
@@ -2178,7 +2193,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:255
 msgid "Suspend tests"
-msgstr "休眠測試"
+msgstr "暫停測試"
 
 #. description
 #: ../jobs/local.txt.in:262
@@ -3546,6 +3561,8 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 30 cycles."
 msgstr ""
+"目的：\n"
+"　　本自動化測試將會強迫系統進行30次暫停/恢復的壓力測試。"
 
 #. description
 #: ../jobs/stress.txt.in:67
@@ -3556,7 +3573,7 @@ msgstr ""
 #. description
 #: ../jobs/stress.txt.in:74
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
-msgstr ""
+msgstr "若暫停/恢復30次的測試紀錄存在，則將其附加至測試報告中"
 
 #. description
 #: ../jobs/stress.txt.in:97
@@ -3579,18 +3596,20 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 250 cycles."
 msgstr ""
+"目的：\n"
+"　　本自動化測試將會強迫系統進行250次暫停/恢復的壓力測試。"
 
 #. description
 #: ../jobs/stress.txt.in:127
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
-msgstr ""
+msgstr "若暫停/恢復250次的測試紀錄存在，則將其附加至測試報告中"
 
 #. description
 #: ../jobs/stress.txt.in:133 ../jobs/suspend.txt.in:265
 msgid ""
 "Checks the sleep times to ensure that a machine suspends and resumes within "
 "a given threshold"
-msgstr ""
+msgstr "檢查系統進入暫停狀態以及由暫停狀態恢復的所需時間是否符合給定的門檻值"
 
 #. description
 #: ../jobs/stress.txt.in:144
@@ -3655,7 +3674,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:5
 msgid "Record the current network before suspending."
-msgstr ""
+msgstr "在暫停前紀錄當前網路設定。"
 
 #. description
 #: ../jobs/suspend.txt.in:11
@@ -3665,7 +3684,7 @@ msgstr "在暫停之前紀錄目前的解析度。"
 #. description
 #: ../jobs/suspend.txt.in:20
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "在暫停前紀錄混音器設定。"
 
 #. description
 #: ../jobs/suspend.txt.in:26
@@ -3722,6 +3741,16 @@ msgid ""
 "and resumed. Power/Suspend LED verification will occur after this test is "
 "completed.)"
 msgstr ""
+"目的：\n"
+"　　本測試將檢查電腦的暫停以及恢復之功能\n"
+"步驟：\n"
+"　　1. 按下測試按鈕後，您的電腦將會進入暫停狀態約30到60秒\n"
+"　　2. 觀察電源 LED 指示燈於暫停模式下是否會閃爍或變色\n"
+"　　3. 若您的電腦在60秒後沒有自動從暫停模式中恢復，請手動按下電源鈕來喚醒它\n"
+"　　4. 若您的電腦完全無法從暫停模式中恢復並需要重新開機，請在重新開機後重新啟動本系統測試工具並將此測項標記為測試失敗\n"
+"驗證：\n"
+"　　您的電腦是否有正常的暫停並恢復？\n"
+"　　(註：請依據電腦是否正常的暫停並恢復來選擇測試結果，關於電源 LED 指示燈的驗證將於本測試結束後進行。)"
 
 #. description
 #: ../jobs/suspend.txt.in:243
@@ -4031,14 +4060,14 @@ msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
-msgstr "這個測試將會檢查暫停後復原時支援的視訊模式確信仍然有效. 選測試以開始."
+msgstr "這個測試將會檢查暫停後復原時所支援的視訊模式仍然有效。此自動測試將會拍攝螢幕截圖並將其以附加檔之形式上傳。"
 
 #. description
 #: ../jobs/suspend.txt.in:1033
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
-msgstr ""
+msgstr "將 suspend/cycle_resolutions_after_suspend_auto 測試項中所拍到的畫面附加至測試報告中。"
 
 #. description
 #: ../jobs/suspend.txt.in:1064
@@ -4054,7 +4083,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:1070
 msgid "Attaches the log from the single suspend/resume test to the results"
-msgstr ""
+msgstr "將單次暫停/恢復的測試紀錄檔附加到測試結果中"
 
 #. description
 #: ../jobs/suspend.txt.in:1079
@@ -4086,7 +4115,7 @@ msgstr ""
 msgid ""
 "Checks the length of time it takes to reconnect an existing wifi connection "
 "after a suspend/resume cycle."
-msgstr ""
+msgstr "檢查在暫停/恢復後重新連上現存的無線網路需要多久時間"
 
 #. description
 #: ../jobs/suspend.txt.in:1152
@@ -4094,7 +4123,7 @@ msgid ""
 "Checks the length of time it takes to reconnect an existing wired "
 "connection\n"
 " after a suspend/resume cycle."
-msgstr ""
+msgstr "檢查在暫停/恢復後重新連上現存的有線網路需要多久時間"
 
 #. description
 #: ../jobs/suspend.txt.in:1160
@@ -4841,7 +4870,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:1988
 msgid "Determine if the touchpad is still functioning after suspend/resume."
-msgstr ""
+msgstr "確認觸控板在暫停/恢復後是否仍正常運作。"
 
 #. description
 #: ../jobs/suspend.txt.in:1995 ../jobs/touchscreen.txt.in:35
