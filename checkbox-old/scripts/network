@@ -89,31 +89,38 @@ class IPerfPerformanceTest(object):
 
         # 930 Mbits/sec\n'
         print(iperf_return)
-        match = re.search(r'\d+\s([GM])bits', iperf_return)
+        match = re.search(r'[\d\.]+\s([GM])bits', iperf_return)
         if match:
             throughput = match.group(0).split()[0]
             units = match.group(1)
             # self.iface.max_speed is always in mb/s, so we need to scale
             # throughput to match
-            scaled_throughput = int(throughput)
+            scaled_throughput = float(throughput)
             if units == 'G':
                 scaled_throughput *= 1000
             if units == 'K':
                 scaled_throughput /= 1000
             try:
                 percent = scaled_throughput / int(self.iface.max_speed) * 100
-            except ZeroDivisionError:
+            except (ZeroDivisionError, TypeError) as error:
                 # Catches a condition where the interface functions fine but
                 # ethtool fails to properly report max speed. In this case
                 # it's up to the reviewer to pass or fail.
                 logging.error("Max Speed was not reported properly.  Run "
                               "ethtool and verify that the card is properly "
                               "reporting its capabilities.")
+                logging.error(error)
                 percent = 0
 
             print("\nTransfer speed: {} {}b/s".format(throughput, units))
             print("%3.2f%% of " % percent, end="")
-            print("theoretical max %sMb/s\n" % int(self.iface.max_speed))
+            try:
+                print("theoretical max %sMb/s\n" % int(self.iface.max_speed))
+            except TypeError as error:
+                logging.error("Max Speed was not reported properly.  Run "
+                              "ethtool and verify that the card is properly "
+                              "reporting its capabilities.")
+                logging.error(error)
 
             if percent < self.fail_threshold:
                 logging.warn("Poor network performance detected")
