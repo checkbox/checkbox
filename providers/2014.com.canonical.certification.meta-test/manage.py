@@ -15,7 +15,7 @@ from plainbox.provider_manager import N_
 # (optional)
 
 setup(
-    name='2014.com.canonical.certification:meta-test',
+    name='2014.com.canonical.certification.meta:meta-test',
     version="1.0",
     description=N_("Meta provider that checks the Checkbox project itself"
                    " with itself!"),
