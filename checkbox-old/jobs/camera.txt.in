@@ -1,5 +1,6 @@
 plugin: shell
 name: camera/detect
+estimated_duration: 1.2
 requires:
  device.category == 'CAPTURE'
 command: camera_test detect
@@ -7,6 +8,7 @@ _description: This Automated test attempts to detect a camera.
 
 plugin: user-verify
 name: camera/display
+estimated_duration: 120.0
 depends: camera/detect
 requires:
  device.category == 'CAPTURE'
@@ -21,6 +23,7 @@ _description:
 
 plugin: user-verify
 name: camera/still
+estimated_duration: 120.0
 depends: camera/detect
 requires:
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
@@ -38,6 +41,7 @@ _description:
 
 plugin: shell
 name: camera/multiple-resolution-images
+estimated_duration: 1.2
 depends: camera/detect
 requires:
  package.name == 'fswebcam' or package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'

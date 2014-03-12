@@ -1,5 +1,6 @@
 plugin: shell
 name: mobilebroadband/gsm_connection
+estimated_duration: 20.0
 requires:
     package.name == 'network-manager'
     package.name == 'modemmanager'
@@ -11,6 +12,7 @@ _description: Creates a mobile broadband connection for a GSM based modem and ch
 
 plugin: shell
 name: mobilebroadband/cdma_connection
+estimated_duration: 20.0
 requires:
     package.name == 'network-manager'
     package.name == 'modemmanager'
