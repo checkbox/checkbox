@@ -44,7 +44,6 @@ from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.exporter.xml import XMLSessionStateExporter
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.config import ValidationError, Unset
-from plainbox.impl.secure.qualifiers import WhiteList
 from plainbox.impl.session import SessionStateLegacyAPI as SessionState
 
 from checkbox_ng.certification import CertificationTransport
@@ -66,9 +65,11 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
         self.config = config
         self.ns = ns
         if self.ns.whitelist:
-            self.whitelist = WhiteList.from_file(self.ns.whitelist[0].name)
+            self.whitelist = self.get_whitelist_from_file(
+                self.ns.whitelist[0].name, self.ns.whitelist)
         elif self.config.whitelist is not Unset:
-            self.whitelist = WhiteList.from_file(self.config.whitelist)
+            self.whitelist = self.get_whitelist_from_file(
+                self.config.whitelist)
         else:
             self.whitelist = get_whitelist_by_name(provider_list, 'sru')
         self.job_list = self.get_job_list(ns)
@@ -88,7 +89,7 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
             # someone is using plainbox for job development.
             print("The job database you are currently using is broken")
             print("At least two jobs contend for the name {0}".format(
-                exc.job.name))
+                exc.job.id))
             print("First job defined in: {0}".format(exc.job.origin))
             print("Second job defined in: {0}".format(
                 exc.duplicate_job.origin))
@@ -169,7 +170,7 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
                 # Skip jobs that already have result, this is only needed when
                 # we run over the list of jobs again, after discovering new
                 # jobs via the local job output
-                result = self.session.job_state_map[job.name].result
+                result = self.session.job_state_map[job.id].result
                 if result.outcome is not None:
                     continue
                 self._run_single_job(job)
@@ -182,7 +183,7 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
                     break
 
     def _run_single_job(self, job):
-        print("- {}:".format(job.name), end=' ')
+        print("- {}:".format(job.id), end=' ')
         sys.stdout.flush()
         job_state, job_result = run_job_if_possible(
             self.session, self.runner, self.config, job)
