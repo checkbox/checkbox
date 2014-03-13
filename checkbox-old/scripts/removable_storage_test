@@ -122,7 +122,7 @@ class DiskTest():
             logging.error("  %s", exc)
             return False
         except IOError as exc:
-            logging.error("Device %s is mounted Read Only.", dest)
+            logging.error("I/O Error when accessing device %s.", dest)
             logging.error("  %s", exc)
             return False
         with outfile:
