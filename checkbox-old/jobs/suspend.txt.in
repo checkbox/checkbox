@@ -249,6 +249,7 @@ estimated_duration: 90.000
 
 plugin: shell
 name: suspend/suspend-single-log-check
+estimated_duration: 1.2
 command: [ -e $CHECKBOX_DATA/suspend_single.log ] && sleep_test_log_check -v s3 $CHECKBOX_DATA/suspend_single.log
 _description:
  Automated check of the suspend log to look for errors reported by fwts
@@ -261,6 +262,7 @@ _description:
 
 plugin: shell
 name: suspend/suspend-time-check
+estimated_duration: 1.2
 command: [ -e $CHECKBOX_DATA/suspend_single_times.log ] && sleep_time_check $CHECKBOX_DATA/suspend_single_times.log
 _description:
  Checks the sleep times to ensure that a machine suspends and resumes within a given threshold
@@ -1181,6 +1183,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/battery-charged
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Validate that the battery LED properly displays charged status after resuming from suspend
@@ -1194,6 +1197,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/battery-low
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Validate that the battery LED indicated low power after resuming from suspend
@@ -1206,6 +1210,7 @@ _description:
 plugin: user-interact-verify
 name: suspend/led_after_suspend/hdd
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 command: led_hdd_test
 _description:
  PURPOSE:
@@ -1218,6 +1223,7 @@ _description:
 
 plugin: user-interact-verify
 name: suspend/led_after_suspend/numeric-keypad
+estimated_duration: 120.0
 depends: suspend/suspend_advanced
 command: keyboard_test
 _description:
@@ -1234,6 +1240,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/caps-lock
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Validate that the Caps Lock key operates the same before and after resuming from suspend
@@ -1246,6 +1253,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/wlan
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      WLAN LED verification after resuming from suspend
@@ -1258,6 +1266,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/wlan-disabled
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Validate that WLAN LED shuts off when disabled after resuming from suspend
@@ -1272,6 +1281,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/bluetooth
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Validate that the Bluetooth LED turns on and off when BT is enabled/disabled after resuming from suspend
@@ -1285,6 +1295,7 @@ _description:
 
 plugin: user-interact-verify
 name: suspend/led_after_suspend/camera
+estimated_duration: 120.0
 depends:
  camera/detect
  suspend/suspend_advanced
@@ -1301,6 +1312,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/touchpad
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Touchpad LED verification after resuming from suspend
@@ -1315,6 +1327,7 @@ _description:
 plugin: manual
 name: suspend/led_after_suspend/wireless
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 _description:
  PURPOSE:
      Validate Wireless (WLAN + Bluetooth) LED operated the same after resuming from suspend
@@ -1331,6 +1344,7 @@ _description:
 plugin: manual
 name: suspend/keys_after_suspend/brightness
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
@@ -1343,6 +1357,7 @@ _description:
 plugin: user-interact-verify
 name: suspend/keys_after_suspend/volume
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -1360,6 +1375,7 @@ _description:
 plugin: user-interact-verify
 name: suspend/keys_after_suspend/mute
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -1376,6 +1392,7 @@ _description:
 plugin: manual
 name: suspend/keys_after_suspend/sleep
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires:
  device.category == 'KEYBOARD'
 _description:
@@ -1390,6 +1407,7 @@ _description:
 plugin: user-interact-verify
 name: suspend/keys_after_suspend/battery-info
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires: dmi.product in ['Notebook','Laptop','Portable']
 user: root
 command: key_test -s '0xe071,0xef1:Battery Info'
@@ -1407,6 +1425,7 @@ _description:
 plugin: manual
 name: suspend/keys_after_suspend/wireless
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
@@ -1419,6 +1438,7 @@ _description:
 
 plugin: user-interact-verify
 name: suspend/keys_after_suspend/media-control
+estimated_duration: 120.0
 depends: suspend/suspend_advanced
 requires:
  device.category == 'KEYBOARD'
@@ -1437,6 +1457,7 @@ _description:
 plugin: user-interact-verify
 name: suspend/keys_after_suspend/super
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires:
  device.category == 'KEYBOARD'
 user: root
@@ -1453,6 +1474,7 @@ _description:
 plugin: manual
 name: suspend/keys_after_suspend/video-out
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
@@ -1466,6 +1488,7 @@ _description:
 plugin: manual
 name: suspend/keys_after_suspend/touchpad
 depends: suspend/suspend_advanced
+estimated_duration: 120.0
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:

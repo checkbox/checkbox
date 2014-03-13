@@ -126,6 +126,7 @@ _description:
 
 plugin: user-interact-verify
 name: audio/alsa_record_playback_usb
+estimated_duration: 120.0
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'

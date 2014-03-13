@@ -55,6 +55,7 @@ _description:
 
 plugin: shell
 name: touchpad/multitouch-automated
+estimated_duration: 1.2
 requires:
   dmi.product in ['Notebook','Laptop','Portable']
   xinput.device_class == 'XITouchClass' and xinput.touch_mode == 'dependent'
