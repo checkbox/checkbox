@@ -305,6 +305,27 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "DISK"), 1)
         self.verify_devices(devices, expected_devices)
 
+    def test_DELL_INSPIRON_3048_AMD(self):
+        devices = self.parse("DELL_INSPIRON_3048")
+        expected_devices = [(None,
+                             "WIRELESS", "pci", 0x168c, 0x0036),
+                            (None,
+                             "VIDEO", "pci", 0x1002, 0x6664),
+                            (None,
+                             "VIDEO", "pci", 0x8086, 0x0402)
+                            ]
+        # The first video device is an AMD GPU, which is too new
+        # to have a  device name. The second one is the built-in Haswell
+        # GPU.
+        self.assertEqual(len(devices), 63)
+        self.assertEqual(self.count(devices, "WIRELESS"), 1)
+        self.assertEqual(self.count(devices, "BLUETOOTH"), 1)
+        self.assertEqual(self.count(devices, "NETWORK"), 1)
+        self.assertEqual(self.count(devices, "AUDIO"), 4)
+        self.assertEqual(self.count(devices, "DISK"), 1)
+        self.assertEqual(self.count(devices, "VIDEO"), 2)
+        self.verify_devices(devices, expected_devices)
+
     def test_HOME_MADE(self):
         devices = self.parse("HOME_MADE")
         self.assertEqual(len(devices), 72)
@@ -373,6 +394,8 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "RAID"), 0)
         self.assertEqual(self.count(devices, "DISK"), 3)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
+        expected_devices = [(None, "VIDEO", "pci", 0x8086, 0x2E32)]
+        self.verify_devices(devices, expected_devices)
 
     def test_HP_PROBOOK6550B_ACCELEROMETER(self):
         devices = self.parse("HP_PROBOOK6550B_ACCELEROMETER")
@@ -426,7 +449,7 @@ E: UDEV_LOG=3
     def test_LENOVO_E445(self):
         devices = self.parse("LENOVO_E445")
         self.assertEqual(len(devices), 78)
-        self.assertEqual(self.count(devices, "VIDEO"), 1)
+        self.assertEqual(self.count(devices, "VIDEO"), 2)
         self.assertEqual(self.count(devices, "AUDIO"), 4)
         self.assertEqual(self.count(devices, "KEYBOARD"), 1)
         self.assertEqual(self.count(devices, "TOUCHPAD"), 1)
@@ -442,6 +465,11 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "CAPTURE"), 1)
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.assertEqual(self.count(devices, "WIRELESS"), 1)
+        # System has two CPUs, AMD Richland [Radeon HD 8650G] and
+        # Sun PRO [Radeon HD 8570A/8570M]
+        expected_devices = [(None, "VIDEO", "pci", 0x1002, 0x990b),
+                            (None, "VIDEO", "pci", 0x1002, 0x6663)]
+        self.verify_devices(devices, expected_devices)
 
     def test_LENOVO_T430S(self):
         devices = self.parse("LENOVO_T430S")
