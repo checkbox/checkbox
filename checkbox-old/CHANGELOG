@@ -20,6 +20,8 @@ checkbox (0.17.4) UNRELEASED; urgency=low
     new 14.04 only version for Trusty testing. This is the foundation for 14.04
     server cert changes.
   * Added usb3/storage-preinserted to server-selftest-14.04.whitelist
+  * /scripts/removable_storage_test: fixed an unhandled exception with write
+    protected devices that caused the script to crash (LP: #1291664)
 
   [ Po-Hsu Lin]
   * jobs/power-management.txt.in: add product requirement for laptops into 

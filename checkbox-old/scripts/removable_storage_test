@@ -121,6 +121,10 @@ class DiskTest():
             logging.error("Unable to open %s for writing.", dest)
             logging.error("  %s", exc)
             return False
+        except IOError as exc:
+            logging.error("I/O Error when accessing device %s.", dest)
+            logging.error("  %s", exc)
+            return False
         with outfile:
             try:
                 outfile.write(self.data)
