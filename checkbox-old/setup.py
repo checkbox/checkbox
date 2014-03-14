@@ -248,7 +248,7 @@ class checkbox_build_icons(build_icons, object):
 
 setup(
     name="checkbox",
-    version="0.17.8.dev",
+    version="0.17.9.dev",
     author="Marc Tardif",
     author_email="marc.tardif@canonical.com",
     license="GPL",
