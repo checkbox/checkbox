@@ -270,7 +270,8 @@ private:
                                      const QString& flags, \
                                      const QString& running_job_name, \
                                      const QString& title,
-                                     const QByteArray& app_blob);
+                                     const QByteArray& app_blob,
+                                     const QString& app_id);
 
         const QVariantMap SessionStateMetadata(const QDBusObjectPath session);
         // Encode/decode of internal state of this class

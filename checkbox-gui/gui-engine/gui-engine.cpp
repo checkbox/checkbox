@@ -975,7 +975,8 @@ void GuiEngine::EncodeGuiEngineStateAsJSON(void)
                             m_submitted ? PB_FLAG_SUBMITTED: PB_FLAG_INCOMPLETE,\
                             current_job_id,
                             GUI_ENGINE_NAME_STR,
-                            jsd.toJson());
+                            jsd.toJson(),
+                            "com.canonical.checkbox-gui");
 
     // Plainbox should save this session
     SessionPersistentSave(m_session);
@@ -1044,14 +1045,16 @@ void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
                                         const QString &flags, \
                                         const QString &running_job_name, \
                                         const QString &title, \
-                                        const QByteArray& app_blob)
+                                        const QByteArray& app_blob, \
+                                        const QString &app_id)
 {
     qDebug() << "GuiEngine::SetSessionStateMetadata() \n" \
              << " " << session.path() \
              << "\nflags           : " << flags \
              << "\nrunning_job_name: " << running_job_name \
              << "\ntitle           : " << title \
-             << "\napp_blob        : " << app_blob;
+             << "\napp_blob        : " << app_blob \
+             << "\napp_id          : " << app_id;
 
     QMap<QString,QVariant> metadata;
 
@@ -1068,6 +1071,7 @@ void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
     metadata.insert("running_job_name",running_job_name);
     metadata.insert("title",title);
     metadata.insert("app_blob",app_blob);
+    metadata.insert("app_id",app_id);
 
     QDBusInterface iface(PBBusName, \
                          session.path(), \
