@@ -490,7 +490,7 @@ QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
 
             // First time round, fill in our whitelist member
             if (!initialised) {
-                whitelist.insert(child->object_path,true);
+                whitelist.insert(child->object_path, false);
             }
         }
 
@@ -505,22 +505,6 @@ void GuiEngine::SetWhiteList(const QDBusObjectPath opath, const bool check)
     whitelist.remove(opath);
 
     whitelist.insert(opath,check);
-}
-
-// temporary helper
-void GuiEngine::dump_whitelist_selection(void)
-{
-    // loop around all the children
-    QMap<QDBusObjectPath,bool>::const_iterator iter = whitelist.begin();
-
-    while(iter != whitelist.end() ) {
-
-        bool yes = iter.value();
-
-        qDebug() << iter.key().path() << (yes ? "Yes" : "No");
-
-        iter++;
-    }
 }
 
 void GuiEngine::Pause(void)

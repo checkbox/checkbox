@@ -28,9 +28,9 @@
 #include <QtQml>
 
 #include "qtquick2applicationviewer.h"
-#include "commandtool.h"
 #include "listmodel.h"
 #include "whitelistitem.h"
+#include "settings.h"
 #include "testitem.h"
 #include "testitemmodel.h"
 #include "WhiteListModelFactory.h"
@@ -61,10 +61,14 @@ int main(int argc, char *argv[])
     // Initialise - connect to Plainbox
     guiengine.Initialise();
 
+    Settings* settings;
+    settings = new Settings();
+    if (app.arguments().size() > 1) {
+        settings = new Settings(app.arguments().at(1));
+    }
+    viewer.rootContext()->setContextProperty("settings", settings);
 
-    // WhiteList Item Model Factory and placeholder model registered with QML engine
     WhiteListModelFactory whitelistfactory;
-    viewer.rootContext()->setContextProperty("whitelistitemFactory",&whitelistfactory);
 
     /* We need a placeholder object here or the QML integration is unhappy
      * that this isnt a recognisable Qt object.
@@ -76,9 +80,9 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    whitelistfactory.CreateWhiteListModel(whitelistmodel, settings->value("welcome/whitelist_filter", ".*"));
+
     viewer.rootContext()->setContextProperty("whiteListModel", whitelistmodel);
-
-
 
     // Test Item Model Factory and placeholder model registered with QML engine
     TestItemModel testitemFactory;
@@ -95,14 +99,6 @@ int main(int argc, char *argv[])
     }
 
     viewer.rootContext()->setContextProperty("testListModel", testlistmodel);
-
-
-
-    // We may not need this at all
-    CommandTool cmdTool;
-    viewer.rootContext()->setContextProperty("cmdTool", &cmdTool);
-
-
 
      // In the beginning, lets see if we need to resume
     bool resumeSession = false;
@@ -124,7 +120,7 @@ int main(int argc, char *argv[])
     // Now, load the main page
     viewer.setMainQmlFile(QStringLiteral("../share/checkbox-gui/qml/checkbox-gui.qml"));
 
-    viewer.setTitle(app.tr("System Testing"));
+    viewer.setTitle(settings->value("welcome/title", app.tr("System Testing")));
 
     // Ensure a reasonable minimum size for this window
     viewer.setMinimumSize(QSize(800,600));

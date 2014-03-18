@@ -36,7 +36,7 @@ public:
     ~WhiteListModelFactory() {};
 
 public slots:
-    ListModel* CreateWhiteListModel(ListModel* model=NULL);
+    ListModel* CreateWhiteListModel(ListModel* model=NULL, const QString &filter=QString());
 };
 
 #endif // WHITELISTMODELFACTORY_H
