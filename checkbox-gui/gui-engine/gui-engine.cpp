@@ -507,22 +507,6 @@ void GuiEngine::SetWhiteList(const QDBusObjectPath opath, const bool check)
     whitelist.insert(opath,check);
 }
 
-// temporary helper
-void GuiEngine::dump_whitelist_selection(void)
-{
-    // loop around all the children
-    QMap<QDBusObjectPath,bool>::const_iterator iter = whitelist.begin();
-
-    while(iter != whitelist.end() ) {
-
-        bool yes = iter.value();
-
-        qDebug() << iter.key().path() << (yes ? "Yes" : "No");
-
-        iter++;
-    }
-}
-
 void GuiEngine::Pause(void)
 {
     // Very simple

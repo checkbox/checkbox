@@ -135,9 +135,6 @@ Page {
 
             suitelist.visible = false;
 
-            // Dump the whitelist as finally selected by the user
-            guiEngine.dump_whitelist_selection();
-
             /* Now, we should go run the guiengine update to run the local jobs
               which happen to match the whitelist. Then we can collect the
               test jobs and show them to the user.

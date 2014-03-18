@@ -131,9 +131,6 @@ public slots:
         /* Helper functions for logging and testing
          */
 
-        // Logging function
-        void dump_whitelist_selection(void);
-
         // Used by the test program test-gui-engine
         void AcknowledgeJobsDone(void);
         void AcknowledgeLocalJobsDone(void);
