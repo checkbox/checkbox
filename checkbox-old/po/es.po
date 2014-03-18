@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-04 05:41+0000\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Launchpad-Export-Date: 2014-03-18 05:38+0000\n"
+"X-Generator: Launchpad (build 16963)\n"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -5973,6 +5973,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PROPÓSITO:\n"
+"Esta prueba comprueba que el sistema detecta correctamente la eliminación "
+"de\n"
+"un dispositivo de almacenamiento USB después de la suspensión.\n"
+"PASOS:\n"
+"1. Pulse «Probar» y retire el dispositivo USB.\n"
+"(Nota:. Esta prueba tiene un tiempo de espera de 20 segundos)\n"
+"VERIFICACIÓN:\n"
+"La verificación de esta prueba está automatizado. No cambie el\n"
+"resultado seleccionado automáticamente."
 
 #. description
 #: ../jobs/suspend.txt.in:1543
