@@ -21,7 +21,7 @@
 
 #include "WhiteListModelFactory.h"
 
-ListModel* WhiteListModelFactory::CreateWhiteListModel(ListModel *model)
+ListModel* WhiteListModelFactory::CreateWhiteListModel(ListModel *model, const QString &filter)
 {
     qDebug("WhiteListModelFactory::CreateWhiteListModel()");
 
@@ -53,15 +53,16 @@ ListModel* WhiteListModelFactory::CreateWhiteListModel(ListModel *model)
 
     QMap<QDBusObjectPath,QString>::const_iterator iter = paths_and_names.begin();
 
+    QRegExp rx(filter);
+
     while(iter != paths_and_names.end() ) {
-
-        qDebug() << iter.key().path();
-
-        qDebug() << " Name: " << iter.value();
-
-        model->appendRow(new WhiteListItem(iter.value(), \
-                                           iter.key().path(), \
-                                           model));
+        if (rx.exactMatch(iter.value())) {
+            qDebug() << iter.key().path();
+            qDebug() << " Name: " << iter.value();
+            model->appendRow(new WhiteListItem(iter.value(), \
+                                               iter.key().path(), \
+                                               model));
+        }
         iter++;
     }
 

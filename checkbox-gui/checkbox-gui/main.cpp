@@ -68,9 +68,7 @@ int main(int argc, char *argv[])
     }
     viewer.rootContext()->setContextProperty("settings", settings);
 
-    // WhiteList Item Model Factory and placeholder model registered with QML engine
     WhiteListModelFactory whitelistfactory;
-    viewer.rootContext()->setContextProperty("whitelistitemFactory",&whitelistfactory);
 
     /* We need a placeholder object here or the QML integration is unhappy
      * that this isnt a recognisable Qt object.
@@ -82,9 +80,9 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    whitelistfactory.CreateWhiteListModel(whitelistmodel, settings->value("welcome/whitelist_filter", ".*"));
+
     viewer.rootContext()->setContextProperty("whiteListModel", whitelistmodel);
-
-
 
     // Test Item Model Factory and placeholder model registered with QML engine
     TestItemModel testitemFactory;
@@ -122,7 +120,7 @@ int main(int argc, char *argv[])
     // Now, load the main page
     viewer.setMainQmlFile(QStringLiteral("../share/checkbox-gui/qml/checkbox-gui.qml"));
 
-    viewer.setTitle(app.tr("System Testing"));
+    viewer.setTitle(settings->value("welcome/title", app.tr("System Testing")));
 
     // Ensure a reasonable minimum size for this window
     viewer.setMinimumSize(QSize(800,600));

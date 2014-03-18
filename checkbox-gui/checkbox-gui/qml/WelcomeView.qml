@@ -26,7 +26,7 @@ import Ubuntu.Components 0.1
 
 Page {
     id: welcomePage
-    title: i18n.tr("System Testing")
+    title: settings.value("welcome/title", i18n.tr("System Testing"));
 
     tools: ToolbarItems {
         locked: true
@@ -87,9 +87,8 @@ Page {
                     margins: units.gu(2)
                 }
 
-                // TODO load text from Plainbox
                 // TRANSLATORS: The <p> tags are HTML - DO NOT translate them.
-                text: i18n.tr("<p>Welcome to System Testing.</p><p></p><p>This program contains automated and manual tests to help you assess how well your system works with Ubuntu.</p><p></p><p>This application will step the user through these tests in a predetermined order and automatically collect both system information as well as test results. It will also prompt the user for input when manual testing is required.</p><p></p><p>The run time for the tests is determined by which tests you decide to execute. The user will have the opportunity to customize the test run based on the hardware components they are interested in and the amount of time they have available.</p><p></p><p>To begin, simply click the Continue button below and follow the onscreen instructions.</p><p></p>")
+                text: settings.value("welcome/text", i18n.tr("<p>Welcome to System Testing.</p><p></p><p>This program contains automated and manual tests to help you assess how well your system works with Ubuntu.</p><p></p><p>This application will step the user through these tests in a predetermined order and automatically collect both system information as well as test results. It will also prompt the user for input when manual testing is required.</p><p></p><p>The run time for the tests is determined by which tests you decide to execute. The user will have the opportunity to customize the test run based on the hardware components they are interested in and the amount of time they have available.</p><p></p><p>To begin, simply click the Continue button below and follow the onscreen instructions.</p><p></p>"))
 
                 height: units.gu(60)
                 width: units.gu(30)
@@ -127,9 +126,6 @@ Page {
         text: i18n.tr("Continue")
         color: UbuntuColors.lightAubergine
         onClicked: {
-            // Generate the the list of whitelists
-            whitelistitemFactory.CreateWhiteListModel(whiteListModel);
-
             // Move to the whitelist selection screen
             mainView.state = "SUITESELECTION"
         }
