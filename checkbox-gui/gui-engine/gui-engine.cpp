@@ -581,7 +581,7 @@ int GuiEngine::PrepareJobs(void)
     * and hopefully it is similar when we get it back from SessionStateRunList()
     */
     QList<QDBusObjectPath> temp_desired_job_list = \
-            JobTreeNode::FilteredJobs(m_final_run_list,m_desired_job_list);
+            JobTreeNode::FilteredJobs(m_desired_job_list,m_final_run_list);
 
     QStringList errors = UpdateDesiredJobList(m_session, temp_desired_job_list);
     if (errors.count() != 0) {
@@ -719,23 +719,18 @@ void GuiEngine::RunLocalJobs(void)
                      "JobResultAvailable",\
                      this,\
                      SLOT(CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage)))) {
-
         qDebug("Failed to connect slot for JobResultAvailable events");
     }
 
     // to get only the *jobs* that are designated by the whitelist.
-    m_desired_job_list = GenerateDesiredJobList(m_job_list);
+    m_desired_job_list = GenerateDesiredJobList();
 
     // This is just the list of all provider jobs marked "local"
-    m_local_job_list = GetLocalJobs();
-
-    // desired local jobs are the Union of all local jobs and the desired jobs
-    m_desired_local_job_list = JobTreeNode::FilteredJobs(m_local_job_list, \
-                                                         m_desired_job_list);
+    m_local_job_list = GetLocalJobs(m_desired_job_list);
 
     // Now I update the desired job list.
     QStringList errors = UpdateDesiredJobList(m_session, \
-                                              m_desired_local_job_list);
+                                              m_local_job_list);
     if (errors.count() != 0) {
         qDebug("UpdateDesiredJobList generated errors:");
 
@@ -1259,40 +1254,24 @@ QDBusObjectPath GuiEngine::CreateSession(QList<QDBusObjectPath> job_list)
     return session;
 }
 
-QList<QDBusObjectPath> GuiEngine::GetLocalJobs(void)
+QList<QDBusObjectPath> GuiEngine::GetLocalJobs(const QList<QDBusObjectPath> &job_list)
 {
     QList<QDBusObjectPath> generator_jobs;
 
-    QList<PBTreeNode*> jobnodes = GetJobNodes();
-
-    QList<PBTreeNode*>::const_iterator iter = jobnodes.begin();
-
-    while(iter != jobnodes.end()) {
-
-        PBTreeNode* node = *iter;
-
-        QList<PBObjectInterface*> interfaces = node->interfaces;
-
-        // Now find the plainbox interface
-        for (int i=0; i< interfaces.count(); i++) {
-            if (interfaces.at(i)->interface.compare(CheckBoxJobDefinition1) == 0) {
-
-                // Now we need to find the plugin property
-                QVariant variant;
-
-                variant = interfaces.at(i)->properties.find("plugin").value();
-
-                if (variant.isValid() && variant.canConvert(QMetaType::QString)) {
-                    if (variant.toString().compare("local") == 0) {
-
-                        // now append this to the list of jobs for CreateSession()
-                        generator_jobs.append(node->object_path);
-                    }
-                }
-            }
+    QListIterator<QDBusObjectPath> jobs(job_list);
+    while (jobs.hasNext()) {
+        QDBusObjectPath job = jobs.next();
+        QDBusInterface job_iface(PBBusName, \
+                           job.path(), \
+                           CheckBoxJobDefinition1, \
+                           QDBusConnection::sessionBus());
+        if (!job_iface.isValid()) {
+            throw std::runtime_error("Could not connect to com.canonical.certification.CheckBox.JobDefinition1 interface");
         }
-
-        iter++;
+        if (job_iface.property("plugin").toString() == "local") {
+            generator_jobs.append(job);
+            qDebug() << job.path();
+        }
     }
 
     return generator_jobs;
@@ -1685,39 +1664,38 @@ JobTreeNode* GuiEngine::GetJobTreeNodes(void)
 }
 
 
-QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList(QList<QDBusObjectPath> job_list)
+QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList()
 {
     QList<QDBusObjectPath> desired_job_list;
 
-    // Iterate through each whitelist, and check if it Designates each job
+    QDBusInterface iface(PBBusName, \
+                         PBObjectPathName, \
+                         PBInterfaceName, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug("Could not connect to \
+               com.canonical.certification.PlainBox.Service1 interface");
+        return desired_job_list;
+    }
+
+    QList<QDBusObjectPath> whitelists;
     QMap<QDBusObjectPath, bool>::iterator iter = whitelist.begin();
-    while(iter != whitelist.end()) {
-
-        // Try it if we have selected this whitelist
+    while (iter != whitelist.end()) {
         if (iter.value()) {
-            QDBusObjectPath white = iter.key();
-
-            // local_jobs
-            for(int i=0; i < job_list.count(); i++) {
-
-                QDBusObjectPath job = job_list.at(i);
-
-                // Does the whitelist designate this job?
-                bool ok = WhiteListDesignates(white,job);
-
-                // If ANY whitelist wants this job, we say yes
-                if (ok) {
-                    if (!desired_job_list.contains(job)) {
-                        desired_job_list.append(job);
-                    }
-                }
-            }
+            whitelists.append(iter.key());
         }
-
-        // Next whitelist
         iter++;
     }
 
+    QDBusReply<opath_array_t> reply = \
+            iface.call("SelectJobs", \
+                       QVariant::fromValue<opath_array_t>(whitelists));
+
+    if (reply.isValid()) {
+        desired_job_list = reply.value();
+    } else {
+        qDebug("Failed to CreateSession()");
+    }
     return desired_job_list;
 }
 
@@ -2192,11 +2170,8 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
         return;
     }
 
-    // get the job-list: NB: From the SessionState this time
-    m_job_list = SessionStateJobList(m_session);
-
     // to get only the *jobs* that are designated by the whitelist.
-    m_desired_job_list = GenerateDesiredJobList(m_job_list);
+    m_desired_job_list = GenerateDesiredJobList();
 
     /* Now I update the desired job list.
         XXX: Remove previous local jobs from this list to avoid evaluating
@@ -2213,6 +2188,7 @@ void GuiEngine::CatchallLocalJobResultAvailableSignalsHandler(QDBusMessage msg)
 
     // Now, the run_list contains the list of jobs I actually need to run \o/
     m_run_list = SessionStateRunList(m_session);
+    QListIterator<QDBusObjectPath> run_jobs(m_run_list);
 
     // Keep a copy of what should be visible
     m_visible_run_list = m_run_list;

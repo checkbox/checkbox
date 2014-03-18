@@ -236,7 +236,7 @@ signals:
 
 private:
         // Helper function when generating the desired local and real jobs
-        QList<QDBusObjectPath> GenerateDesiredJobList(QList<QDBusObjectPath> job_list);
+        QList<QDBusObjectPath> GenerateDesiredJobList();
 
         bool RefreshPBObjects(void);
 
@@ -252,7 +252,7 @@ private:
 
 
         void ConnectJobReceivers(void);
-        QList<QDBusObjectPath> GetLocalJobs(void);
+        QList<QDBusObjectPath> GetLocalJobs(const QList<QDBusObjectPath> &job_list);
 
         QList<QDBusObjectPath> GetAllJobs(void);
 
