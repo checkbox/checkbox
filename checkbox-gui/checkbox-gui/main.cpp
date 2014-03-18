@@ -28,7 +28,6 @@
 #include <QtQml>
 
 #include "qtquick2applicationviewer.h"
-#include "commandtool.h"
 #include "listmodel.h"
 #include "whitelistitem.h"
 #include "testitem.h"
@@ -95,14 +94,6 @@ int main(int argc, char *argv[])
     }
 
     viewer.rootContext()->setContextProperty("testListModel", testlistmodel);
-
-
-
-    // We may not need this at all
-    CommandTool cmdTool;
-    viewer.rootContext()->setContextProperty("cmdTool", &cmdTool);
-
-
 
      // In the beginning, lets see if we need to resume
     bool resumeSession = false;

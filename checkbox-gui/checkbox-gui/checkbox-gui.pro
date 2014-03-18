@@ -40,7 +40,6 @@ SOURCES += main.cpp \
     whitelistitem.cpp \
     testitem.cpp \
     listmodel.cpp \
-    commandtool.cpp \
     testitemmodel.cpp \
     WhiteListModelFactory.cpp
 
@@ -61,7 +60,6 @@ INSTALLS += icons
 HEADERS += whitelistitem.h \
     testitem.h \
     listmodel.h \
-    commandtool.h \
     testitemmodel.h \
     WhiteListModelFactory.h
 
