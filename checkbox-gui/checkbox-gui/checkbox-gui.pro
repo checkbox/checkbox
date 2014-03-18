@@ -41,6 +41,7 @@ SOURCES += main.cpp \
     testitem.cpp \
     listmodel.cpp \
     testitemmodel.cpp \
+    settings.cpp \
     WhiteListModelFactory.cpp
 
 # Please do not modify the following two lines. Required for deployment.
@@ -61,6 +62,7 @@ HEADERS += whitelistitem.h \
     testitem.h \
     listmodel.h \
     testitemmodel.h \
+    settings.h \
     WhiteListModelFactory.h
 
 target.path = $$PREFIX/bin

@@ -30,6 +30,7 @@
 #include "qtquick2applicationviewer.h"
 #include "listmodel.h"
 #include "whitelistitem.h"
+#include "settings.h"
 #include "testitem.h"
 #include "testitemmodel.h"
 #include "WhiteListModelFactory.h"
@@ -60,6 +61,12 @@ int main(int argc, char *argv[])
     // Initialise - connect to Plainbox
     guiengine.Initialise();
 
+    Settings* settings;
+    settings = new Settings();
+    if (app.arguments().size() > 1) {
+        settings = new Settings(app.arguments().at(1));
+    }
+    viewer.rootContext()->setContextProperty("settings", settings);
 
     // WhiteList Item Model Factory and placeholder model registered with QML engine
     WhiteListModelFactory whitelistfactory;
