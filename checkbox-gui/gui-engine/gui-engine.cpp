@@ -490,7 +490,7 @@ QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
 
             // First time round, fill in our whitelist member
             if (!initialised) {
-                whitelist.insert(child->object_path,true);
+                whitelist.insert(child->object_path, false);
             }
         }
 
