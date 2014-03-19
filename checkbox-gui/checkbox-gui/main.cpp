@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    whitelistfactory.CreateWhiteListModel(whitelistmodel, settings->value("welcome/whitelist_filter", ".*"));
+    whitelistfactory.CreateWhiteListModel(whitelistmodel, settings->value("suite/whitelist_filter", ".*"));
 
     viewer.rootContext()->setContextProperty("whiteListModel", whitelistmodel);
 

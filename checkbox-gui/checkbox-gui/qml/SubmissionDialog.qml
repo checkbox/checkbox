@@ -49,7 +49,7 @@ Dialog {
             onClicked:{
                 var mysavepath = '/tmp/report.html';
                 runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath);
-                cmdTool.exec("xdg-open", mysavepath)
+                Qt.openUrlExternally(mysavepath)
             }
         }
     }

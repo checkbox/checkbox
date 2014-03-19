@@ -103,7 +103,7 @@ Page {
                 font.pixelSize: FontUtils.sizeToPixels("medium")
 
                 onLinkActivated:  {
-                    cmdTool.exec("xdg-open", link)
+                    Qt.openUrlExternally(link)
                 }
             }
         }
