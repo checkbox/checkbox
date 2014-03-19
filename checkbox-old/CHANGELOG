@@ -46,6 +46,7 @@ checkbox (0.17.4) UNRELEASED; urgency=low
     variables for configuration, if available (LP: #1260507)
   * jobs/disk.txt.in: Remove max_diskspace* tests that are confusing and not
     used in any whitelist (LP: #1031997)
+  * checkbox/job/job.py: Silently ignore invalid environ entries (LP: #1294007)
 
   [ Zygmunt Krynicki ]
   * Incremented changelog
