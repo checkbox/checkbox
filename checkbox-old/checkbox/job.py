@@ -62,9 +62,11 @@ class Job:
         # Sanitize environment
         process_environ = dict(os.environ)
         for environ in self.environ:
-            key, value = environ.split("=", 1)
-            value = Template(value).safe_substitute(process_environ)
-            process_environ[key] = value
+            key_value = environ.split("=", 1)
+            if len(key_value) == 2:
+                (key, value) = key_value
+                value = Template(value).safe_substitute(process_environ)
+                process_environ[key] = value
 
         logging.info("Running command: %s", self.command)
         process = Process(self.command, process_environ)
