@@ -165,6 +165,11 @@ public slots:
 
         bool GuiExportSessionToFileAsXML(const QString& output_file);
         bool GuiExportSessionToFileAsHTML(const QString& output_file);
+        
+        const QString SendSubmissionViaCertificationTransport( \
+                                     const QString &submission_path,
+                                     const QString &secure_id,
+                                     const bool submitToHexr);
 
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);
@@ -196,6 +201,12 @@ public:
                                     const QString& output_format, \
                                     const QStringList& option_list,
                                     const QString& output_file);
+        
+        QString SendDataViaTransport(const QString &transport, \
+                                     const QString &url, \
+                                     const QString &option_list, \
+                                     const QString &data);
+        
         // Suspend and Resume Session
         void SessionPersistentSave(const QDBusObjectPath session);
         void SessionRemove(const QDBusObjectPath session);
