@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-03 12:45+0100\n"
-"PO-Revision-Date: 2014-02-19 11:43+0000\n"
-"Last-Translator: trylik <marek.trylinski@gmail.com>\n"
+"PO-Revision-Date: 2014-03-19 12:34+0000\n"
+"Last-Translator: Pawel Kasprowicz <civi7@o2.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-18 05:37+0000\n"
-"X-Generator: Launchpad (build 16963)\n"
+"X-Launchpad-Export-Date: 2014-03-20 05:28+0000\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -61,7 +61,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:8
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Test wykrywający urządzenia audio"
 
 #. description
 #: ../jobs/audio.txt.in:20
@@ -195,6 +195,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdzi, czy urządzenie audio USB działa prawidłowo\n"
+"KROKI:\n"
+"    1. Podłącz urządzenie audio USB do twojego systemu\n"
+"    2. Kliknij \"Test\", następnie mów do mikrofonu\n"
+"    3. Po kilku sekundach, twoje słowa zostaną tobie powtórzone\n"
+"WERYFIKACJA:\n"
+"    Czy usłyszałeś wypowiedziane przez ciebie słowa powtórzone przez "
+"słuchawki USB?"
 
 #. description
 #: ../jobs/audio.txt.in:157
@@ -210,11 +219,14 @@ msgid ""
 "this computer's audio subsystem and perform more detailed tests under a "
 "controlled environment."
 msgstr ""
+"Zbierz informacje systemowe związane z audio. Te dane będą użyte do "
+"symulacji podsystemu audio tego komputera i wykonania bardziej szczegółowych "
+"testów pod kontrolowanym środowiskiem."
 
 #. description
 #: ../jobs/audio.txt.in:175
 msgid "Attaches the audio hardware data collection log to the results."
-msgstr ""
+msgstr "Dołącza kolekcję danych o sprzęcie audio i dziennik z wynikami."
 
 #. description
 #: ../jobs/audio.txt.in:182
@@ -226,6 +238,12 @@ msgid ""
 "VERIFICATION:\n"
 "    You should clearly hear a voice from the different audio channels"
 msgstr ""
+"CEL:\n"
+"    Sprawdź, czy wszystkie kanały audio działają poprawnie\n"
+"KROKI:\n"
+"    1. Kliknij przycisk Test\n"
+"WERYFIKACJA:\n"
+"    Powinieneś wyraźnie słyszeć głos wydobywający się z różnych kanałów audio"
 
 #. description
 #: ../jobs/audio.txt.in:208
@@ -370,22 +388,23 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Benchmark dla każdego dysku"
 
 #. description
 #: ../jobs/benchmarks.txt.in:35
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Uruchom gtkperf by upewnić się, że testy oparte o GTK działają poprawnie"
 
 #. description
 #: ../jobs/benchmarks.txt.in:43
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
-msgstr ""
+msgstr "Uruchom test Render-Bench XRender /lmlib2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:50
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
-msgstr ""
+msgstr "Uruchom test Qgears2 Xrender Extension gearsfancy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:57
@@ -410,7 +429,7 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:90
 msgid "Run GLmark2 benchmark"
-msgstr ""
+msgstr "Uruchom benchmark GLmark2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:99
@@ -435,17 +454,17 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:123
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Uruchom benchmark Lightsmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:129
 msgid "Run Cachebench Read benchmark"
-msgstr ""
+msgstr "Uruchom benchmark odczytu Cachebench"
 
 #. description
 #: ../jobs/benchmarks.txt.in:135
 msgid "Run Cachebench Write benchmark"
-msgstr ""
+msgstr "Uruchom benchmark zapisu Cachebench"
 
 #. description
 #: ../jobs/benchmarks.txt.in:141
@@ -455,7 +474,7 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:147
 msgid "Run Stream Copy benchmark"
-msgstr ""
+msgstr "Uruchom benchmark kopiowania strumienia"
 
 #. description
 #: ../jobs/benchmarks.txt.in:153
@@ -475,12 +494,13 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:172
 msgid "Run Network Loopback benchmark"
-msgstr ""
+msgstr "Uruchom benchmark pętli sieciowej"
 
 #. description
 #: ../jobs/benchmarks.txt.in:178
 msgid "Check the time needed to reconnect to a WIFI access point"
 msgstr ""
+"Sprawdź czas potrzebny na ponowne podłączenie do punktu dostępowego WIFI"
 
 #. description
 #: ../jobs/benchmarks.txt.in:184
@@ -495,7 +515,7 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:196
 msgid "Run GnuPG benchmark"
-msgstr ""
+msgstr "Uruchom benchmark GnuPG"
 
 #. description
 #: ../jobs/benchmarks.txt.in:202
@@ -520,12 +540,12 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:226
 msgid "CPU utilization on an idle system."
-msgstr ""
+msgstr "Użycie CPU w stanie bezczynności"
 
 #. description
 #: ../jobs/benchmarks.txt.in:232
 msgid "Disk utilization on an idle system."
-msgstr ""
+msgstr "Użycie dysku w stanie bezczynności"
 
 #. description
 #: ../jobs/benchmarks.txt.in:241
@@ -574,6 +594,8 @@ msgstr ""
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Zautomatyzowany test do przechowywania informacji o urządzeniu bluetooth w "
+"raporcie checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:30
@@ -697,7 +719,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:6
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Ten test spróbuje wykryć kamerę"
 
 #. description
 #: ../jobs/camera.txt.in:14
@@ -710,6 +732,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdzi, czy wbudowana kamera działa prawidłowo\n"
+"KROKI:\n"
+"    1. Wciśnij \"Test\" aby przez dziesięć sekund wyświetlić obraz z "
+"kamery.\n"
+"WERYFIKACJA:\n"
+"    Czy widziałeś\\aś obraz z kamery?"
 
 #. description
 #: ../jobs/camera.txt.in:31
@@ -743,6 +772,13 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"CEL:\n"
+"   Ten test sprawdzi, czy system może odtwarzać pliki dźwiękowe Ogg Vorbis\n"
+"KROKI:\n"
+"   1. Naciśnij na przycisk Test, aby odtworzyć plik Ogg Vorbis (.ogg)\n"
+"   2. Zamknij odtwarzacz aby przejść dalej.\n"
+"WERYFIKACJA:\n"
+"   Czy dźwięk jest odtwarzany poprawnie?"
 
 #. description
 #: ../jobs/codecs.txt.in:24
@@ -755,37 +791,48 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"CEL:\n"
+"   Ten test sprawdzi czy twój system może odtwarzać pliki .wav.\n"
+"KROKI:\n"
+"   1. Naciśnij na Test, aby odtworzyć plik Wave Audio (.wav).\n"
+"   2. Zamknij okno odtwarzacza aby kontynuować.\n"
+"WERYFIKACJA:\n"
+"   Czy słyszysz dźwięk poprawnie?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Test możliwości skalowania procesora za pomocą Kompletu Oprogramowania "
+"Testowego (fwts spufreq)"
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Attaches the log generated by cpu/scaling_test to the results"
-msgstr ""
+msgstr "Załącza do wyników log wygenerowany przez cpu/test skalowania"
 
 #. description
 #: ../jobs/cpu.txt.in:21
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Sprawdzanie odchylenia zegara"
 
 #. description
 #: ../jobs/cpu.txt.in:28
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Przetestuj wyłączanie procesorów w układach wielordzeniowych."
 
 #. description
 #: ../jobs/cpu.txt.in:35
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Ten test sprawdza topologię procesora pod względem zgodności"
 
 #. description
 #: ../jobs/cpu.txt.in:42
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Ten test sprawdza, czy ustawione przez zarządcę częstotliwości procesora są "
+"przestrzegane."
 
 #. description
 #: ../jobs/cpu.txt.in:49
@@ -796,56 +843,67 @@ msgstr ""
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa adt jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa cron jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa cups jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa getty jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa init jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa klogd jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa nmbd jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa smbd jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa syslogd jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:60
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa udevd jest uruchomiona."
 
 #. description
 #: ../jobs/daemons.txt.in:66
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Test sprawdza czy po zainstalowaniu pakietu usługa winbindd jest uruchomiona."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -855,17 +913,18 @@ msgstr "Wykrywa i wyświetla dyski podłączone do komputera."
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Check stats changes for each disk"
-msgstr ""
+msgstr "Sprawdź zmiany statystyk dla każdego dysku"
 
 #. description
 #: ../jobs/disk.txt.in:27
 msgid "SMART test"
-msgstr ""
+msgstr "Test SMART"
 
 #. description
 #: ../jobs/disk.txt.in:45
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Sprawdź, czy system zapisu jest równy lub przekracza wydajność bazową."
 
 #. description
 #: ../jobs/disk.txt.in:62
@@ -873,6 +932,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Upewnij się, że urządzenia magazynujące, takie jak Fibre Channel i RAID mogą "
+"zostać wykryte i działać pod wpływem obciążenia."
 
 #. description
 #: ../jobs/disk.txt.in:82
@@ -968,6 +1029,8 @@ msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached eSATA HDD"
 msgstr ""
+"To jest automatyczny test, który wykonuje operacje odczytu/zapisu na "
+"przyłączonym dysku eSATA"
 
 #. description
 #: ../jobs/esata.txt.in:28
@@ -1058,6 +1121,8 @@ msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
 msgstr ""
+"Jest to zautomatyzowany test, który przeprowadza operacje odczyt/zapis na "
+"dołączonym dysku FireWire"
 
 #. description
 #: ../jobs/firewire.txt.in:28
@@ -1110,16 +1175,27 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdzi czy interfejs graficzny będzie nadawał się do użytku "
+"po ręcznej zmianie rozdzielczości\n"
+"KROKI:\n"
+"    1. Otwórz aplikację zarządzania obrazem\n"
+"    2. Wybierz z listy inną rozdzielczość\n"
+"    3. Wciśnij \"Zastosuj\"\n"
+"    4. Select the original resolution from the dropdown list\n"
+"    5. Click on Apply\n"
+"WERYFIKACJA:\n"
+"    Czy rozdzielczość zmieniła się zgodnie z przewidzeniami?"
 
 #. description
 #: ../jobs/graphics.txt.in:36
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Sprawdza czy proces X jest uruchomiony."
 
 #. description
 #: ../jobs/graphics.txt.in:43
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Sprawdza czy X pracuje w trybie awaryjnym"
 
 #. description
 #: ../jobs/graphics.txt.in:51
@@ -1133,6 +1209,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"CEL:\n"
+"    Test ten sprawdzi domyślną rozdzielczość ekranu\n"
+"KROKI:\n"
+"    1. Ten wyświelacz używa następującą rozdzielczość:\n"
+"INFO:\n"
+"    $output\n"
+"WERYFIKACJA\n"
+"    Czy ta rozdzielczość jest akceptowalna dla twojego ekranu?"
 
 #. description
 #: ../jobs/graphics.txt.in:68
@@ -1152,6 +1236,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Upewnij się, że obecna rozdzielczość spełnia lub przekracza zalecaną "
+"rozdzielczość minimalną (800x600). Dowiedz się więcej:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -1203,11 +1289,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"CEL:\n"
+"    Test ten sprawdzi domyślny ekran\n"
+"KROKI:\n"
+"    1. Kliknij \"Test\", aby wyświetlić test video.\n"
+"WERYFIKACJA:\n"
+"    Czy widzisz kolorowe paski ?"
 
 #. description
 #: ../jobs/graphics.txt.in:144
 msgid "Check that VESA drivers are not in use"
-msgstr ""
+msgstr "Sprawdź czy sterowniki VESA nie są aktualnie używane"
 
 #. description
 #: ../jobs/graphics.txt.in:152
@@ -1238,12 +1330,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:179
 msgid "Check that hardware is able to run compiz"
-msgstr ""
+msgstr "Sprawdź, czy ten sprzęt jest w stanie uruchomić compiz"
 
 #. description
 #: ../jobs/graphics.txt.in:186
 msgid "Check that hardware is able to run Unity 3D"
-msgstr ""
+msgstr "Sprawdź, czy ten sprzęt jest w stanie uruchomić Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:192
@@ -1258,6 +1350,15 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdza podstawowe właściwości 3D twojej karty graficznej\n"
+"KROKI:\n"
+"    1. Wciśnij \"Test\" aby uruchomić demo OpenGl. Wciśnij \"ESC\" w "
+"jakimkolwiek momencie aby zamknąć.\n"
+"    2. Sprawdź czy animacja działa prawidłowo i dostatecznie szybko.\n"
+"WERYFIKACJA:\n"
+"    1. Czy pojawiła się animacja trójwymiarowa?\n"
+"    2. Czy animacja działa prawidłowo i dostatecznie szybko?"
 
 #. description
 #: ../jobs/graphics.txt.in:207
@@ -1354,27 +1455,27 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:6
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Załącza raport o zainstalowanych kodekach dla Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:12
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Dołącza raport na temat CPU"
 
 #. description
 #: ../jobs/info.txt.in:18
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Dołącza kopię pliku /var/log/dmesg to wyników testu"
 
 #. description
 #: ../jobs/info.txt.in:24
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Dołącza informacje o DMI"
 
 #. description
 #: ../jobs/info.txt.in:32
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Dołącza wyjście dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:39
@@ -1384,12 +1485,12 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:46
 msgid "Attaches the firmware version"
-msgstr ""
+msgstr "Załącza wersję oprogramowania wbudowanego (firmware)"
 
 #. description
 #: ../jobs/info.txt.in:52
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Dołącza szczegółową informację lspci."
 
 #. description
 #: ../jobs/info.txt.in:58
@@ -1399,33 +1500,33 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:66
 msgid "List USB devices"
-msgstr ""
+msgstr "Wyświetla urządzenia USB"
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Dołącza zawartość różnych plików konfiguracyjnych modprobe"
 
 #. description
 #: ../jobs/info.txt.in:83
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Dołącza zawartość pliku /etc/modules"
 
 #. description
 #: ../jobs/info.txt.in:89
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Dołącza zawartość różnych plików konfiguracyjnych sysctl"
 
 #. description
 #: ../jobs/info.txt.in:93
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Dołącza raport parametrów sysfs"
 
 #. description
 #: ../jobs/info.txt.in:106
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
-msgstr ""
+msgstr "Załącza zrzut bazy danych udev pokazując informacje o sprzęcie"
 
 #. description
 #: ../jobs/info.txt.in:112
@@ -1435,27 +1536,27 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:119
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Dołącza archiwum danych gcov (jeśli istnieje)."
 
 #. description
 #: ../jobs/info.txt.in:125
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Dołącza listę działających w tej chwili modułów jądra."
 
 #. description
 #: ../jobs/info.txt.in:131
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Dołącza zawartość /proc/acpi/sleep (jeśli istnieje)"
 
 #. description
 #: ../jobs/info.txt.in:135
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informacje Bootchart."
 
 #. description
 #: ../jobs/info.txt.in:144
 msgid "SATA/IDE device information."
-msgstr ""
+msgstr "Informacja dotyczące nośników SATA/IDE"
 
 #. description
 #: ../jobs/info.txt.in:163
@@ -1520,6 +1621,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdzi twoje urządzenie wskazujące\n"
+"KROKI:\n"
+"    1.Porusz kursorem używając urządzenia wskazującego lub dotknij ekranu.\n"
+"    2.Wykonaj kilka operacji używając pojedyńczego/podwójnego/prawego "
+"kilknięcia.\n"
+"SPRAWDZENIE:\n"
+"    Czy urządzenie działa poprawnie ?"
 
 #. description
 #: ../jobs/input.txt.in:35
@@ -1532,6 +1641,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdzi twoją klawiaturę\n"
+"KROKI:\n"
+"    1.Kliknij na test\n"
+"    2.Spróbuj napisać coś w polu tekstowym\n"
+"SPRAWDZENIE:\n"
+"    Czy klawiatura pracuje poprawnie?"
 
 #. description
 #: ../jobs/input.txt.in:46
@@ -1565,6 +1681,9 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"Sprawdza, czy apt może połączyć się z repozytoriami i pobrać aktualizacje "
+"(nie instaluje aktualizacji). Sprawdza to, czy można powrócić z "
+"nieukończonej lub uszkodzonej aktualizacji."
 
 #. description
 #: ../jobs/keys.txt.in:6
@@ -1593,6 +1712,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"CEL:\n"
+"    Ten test sprawdza działanie klawisza jasności\n"
+"KROKI:\n"
+"    1.Naciśnij na klawiaturze klawisz jasności\n"
+"SPRAWDZENIE:\n"
+"    Czy jasność się zmienia zgodnie z twoimi naciśnięciami?"
 
 #. description
 #: ../jobs/keys.txt.in:35
@@ -2176,7 +2301,7 @@ msgstr "Testy wstrzymywania systemu"
 #. description
 #: ../jobs/local.txt.in:262
 msgid "Touchpad tests"
-msgstr ""
+msgstr "Testy panelu dotykowego"
 
 #. description
 #: ../jobs/local.txt.in:269
@@ -2900,7 +3025,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:6
 msgid "Tests whether the system has a working Internet connection."
-msgstr ""
+msgstr "Sprawdza, czy system ma działające połączenie z Internetem."
 
 #. description
 #: ../jobs/networking.txt.in:11
@@ -2959,7 +3084,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:4
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Test na wykrycie napędów optycznych"
 
 #. description
 #: ../jobs/optical.txt.in:14
@@ -3396,22 +3521,22 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "Sprawdza, czy sshd jest uruchomione."
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "Sprawdza czy Serwer druku/CUPs jest uruchomiony."
 
 #. description
 #: ../jobs/server-services.txt.in:20
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Sprawdza czy serwer DNS jest uruchomiony i działa."
 
 #. description
 #: ../jobs/server-services.txt.in:29
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Sprawdza czy serwer Samba jest uruchomiony."
 
 #. description
 #: ../jobs/server-services.txt.in:40
@@ -3421,7 +3546,7 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:47
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Sprawcza czy serwer Tomcat jest uruchomiony i działa."
 
 #. description
 #: ../jobs/smoke.txt.in:4
@@ -3712,7 +3837,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:243
 msgid "This is the automated version of suspend/suspend_advanced."
-msgstr ""
+msgstr "To jest zautomatyzowana wersja uśpienia/uśpienia_zaawansowanego"
 
 #. description
 #: ../jobs/suspend.txt.in:253
@@ -3796,6 +3921,10 @@ msgid ""
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
+"Test ten ma na celu sprawdzanie czy interfejs sieci bezprzewodowej będzie "
+"działać po uśpieniu systemu. Odłącza wszystkie interfejsy a następnie włącza "
+"je oraz podłącza się do sieci. Po tych czynnościach sprawdzane jest czy "
+"połączenie działa poprawnie."
 
 #. description
 #: ../jobs/suspend.txt.in:488
@@ -3972,6 +4101,8 @@ msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Jest to zautomatzowany test przesyłu danych przez Bluetooth. Wysyła zdjęcie "
+"do urządzenia określonego przez zmienne środowisko BTDEVADDR."
 
 #. description
 #: ../jobs/suspend.txt.in:928
@@ -4020,6 +4151,9 @@ msgid ""
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
+"Test ten sprawdza czy tryby video dziają po uśpieniu i wznowieniu systemu. "
+"Jest to wykonywane automatycznie poprzez robienie zdjęć oraz wysyłanie ich "
+"jako załącznik."
 
 #. description
 #: ../jobs/suspend.txt.in:1033
@@ -5061,7 +5195,7 @@ msgstr ""
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
-msgstr ""
+msgstr "Wykrywa i pokazuje urządzenia USB podłaczone do tego systemu"
 
 #. description
 #: ../jobs/usb.txt.in:12
@@ -5619,6 +5753,8 @@ msgstr ""
 #: ../jobs/wireless.txt.in:21
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Przeszukiwanie sieci bezprzewodowych. Skanowanie oraz raportowanie o "
+"odkrytych AP"
 
 #. description
 #: ../jobs/wireless.txt.in:30
@@ -5640,6 +5776,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"CEL: \n"
+"    Ten test sprawdzi twoje połaczenie bezprzewodowe.\n"
+"KROKI:\n"
+"    1. Kliknij na ikone Sieci na panelu.\n"
+"    2. Wybierz sieć poniżej sekcji 'Sieci bezprzewodowe'.\n"
+"    3. Kliknij \"Test\", aby zweryfikować porawność nawiazania połacznia "
+"HTTP.\n"
+"WERYFIKACJA:\n"
+"    Czy pokazało się powiadomienie i czy połączenie jest poprawnie nawiązane "
+"?"
 
 #. description
 #: ../jobs/wireless.txt.in:57
@@ -5647,6 +5793,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Sprawdź czy karta bezprzewodowa może połączyć się z ruterem za pomocą "
+"zabezpieczenia WPA i protokołu 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -5661,6 +5809,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Sprawdź czy karta bezprzewodowa może połączyć się z ruterem za pomocą "
+"zabezpieczenia WPA i protokołu 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:98
@@ -5729,6 +5879,7 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Sprawdź wydajność karty bezprzewodowej korzystając z narzędzia iperf."
 
 #. description
 #: ../jobs/wireless.txt.in:289
@@ -5736,6 +5887,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Sprawdź wydajność karty bezprzewodowej korzystając z narzędzia iperf, "
+"urzywając pakietów UDP."
 
 #. description
 #: ../jobs/wireless.txt.in:301
