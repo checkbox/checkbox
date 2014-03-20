@@ -454,7 +454,6 @@ help() {
     echo "branched (with bzr) as 'trunk'. Every change made is local."
     echo
     echo "component:"
-    echo "  checkbox        release checkbox-old"
     echo "  checkbox-ng     release checkbox-ng"
     echo "  plainbox        release plainbox"
     echo
@@ -610,17 +609,6 @@ main() {
         origin=trunk
     fi
     case "$component" in
-        checkbox)
-            release_component checkbox-old \
-                --origin=$origin \
-                --target=$target \
-                --in-place=$in_place \
-                --tag-name=checkbox \
-                --commit-name=checkbox-old \
-                --python-pkg=checkbox \
-                --bump-version=$bump_version \
-                --bump-level=$bump_level
-            ;;
         checkbox-ng)
             release_component checkbox-ng \
                 --origin=$origin \
