@@ -1,5 +1,0 @@
-#!/bin/sh
-
-config_file="/etc/hwtest.d/$1.ini"
-
-sed -i 's|question|suite|' $config_file
