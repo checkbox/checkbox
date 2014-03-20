@@ -2082,6 +2082,79 @@ const QString GuiEngine::ExportSessionToFile(const QDBusObjectPath session, \
     return reply;
 }
 
+QString GuiEngine::SendDataViaTransport(const QString &transport, \
+                                        const QString &url, \
+                                        const QString &option_list, \
+                                        const QString &data)
+{
+    QDBusInterface iface(PBBusName, \
+                         PBObjectPathName, \
+                         PBInterfaceName, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug() << "Could not connect to " << PBInterfaceName;
+        return QString("Could not connect to " + PBInterfaceName);
+    }
+
+    QDBusReply<QString> reply = \
+            iface.call("SendDataViaTransport", \
+                       QVariant::fromValue<QString>(transport), \
+                       QVariant::fromValue<QString>(url), \
+                       QVariant::fromValue<QString>(option_list), \
+                       QVariant::fromValue<QString>(data));
+    if (!reply.isValid()) {
+        qDebug() << "Error: " << reply.error();
+        return QString("Error: " + reply.error().message());
+    }
+    return reply;                          
+}
+
+const QString GuiEngine::SendSubmissionViaCertificationTransport( \
+        const QString &submission_path,
+        const QString &secure_id,
+        const bool submit_to_hexr)
+{
+    QDBusInterface iface(PBBusName, \
+                         PBObjectPathName, \
+                         PBInterfaceName, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug() << "Could not connect to " << PBInterfaceName;
+        return QString("Could not connect to " + PBInterfaceName);
+    }
+
+
+    QDBusReply<QStringList> reply = iface.call("GetAllTransports");
+    if (!reply.isValid()) {
+        qDebug() << "Error: " << reply.error();
+        return QString("Error: " + reply.error().message());
+    }
+    if (!reply.value().contains("certification")) {
+        return QString("'certification' is not a supported transport");
+    }
+
+    // Read submission file
+    QFile submissionFile(submission_path);
+    QByteArray submissionData;
+    if (submissionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        submissionData = submissionFile.readAll();
+        submissionFile.close();
+    }
+    else {
+        qDebug() << "Could not read " << submission_path;
+        return QString("Could not read " + submission_path);
+    }
+
+    QStringList options;
+    options << QString("secure_id=" + secure_id);
+    options << QString("submit_to_hexr=" + QString::number(submit_to_hexr));
+
+    return SendDataViaTransport("certification", \
+            "https://certification.canonical.com/submissions/submit/", \
+            options.join(','), \
+            submissionData);
+}
+
 void GuiEngine::CatchallIOLogGeneratedSignalsHandler(QDBusMessage /*msg*/)
 {
     /* TODO - This could be used for updating a live display of the IO Log

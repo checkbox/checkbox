@@ -29,16 +29,85 @@ Dialog {
     id: dialog
 
     title: i18n.tr("Report")
-    text: i18n.tr("The following report has be generated for submission to the Launchpad hardware database.")
+    text: settings.value("submission/message", i18n.tr("The following test report has been generated. You may view it now or save it for later."))
 
+    TextField {
+        RegExpValidator {
+            id: regex_validator
+            regExp: new RegExp(settings.value("submission/regex", ".*"));
+        }
+        function initialize() {
+            var input_type = settings.value("submission/input_type", "")
+            if (input_type == "regex") {
+                validator = regex_validator;
+                visible = true;
+            }
+            else if (input_type == "email") {
+                inputMethodHints = Qt.ImhEmailCharactersOnly;
+                visible = true;
+            }
+            else {
+                visible = false;
+            }
+            var secure_id = settings.value("submission/secure_id","");
+            if (secure_id) {
+                text = secure_id;
+            }
+        }
+
+        id: upload_input
+        placeholderText: settings.value("submission/input_placeholder", "")
+        Component.onCompleted: initialize()
+    }
+
+    Row {
+        function initialize() {
+            if (settings.value("submission/submit_to_hexr","false").toLowerCase() == "true") {
+                visible = true;
+            }
+        }
+
+        spacing: units.gu(8)
+        visible: false
+        Label {
+            id: submit_to_hexr_label
+            text: i18n.tr("Submit to HEXR:")
+        }
+
+        CheckBox {
+            id: submit_to_hexr
+            text: i18n.tr("Submit to HEXR:")
+        }
+        Component.onCompleted: initialize()
+
+    }
 
     Button {
-        id: savebutton
-        text: i18n.tr("Save Results")
+        id: submitbutton
+        text: settings.value("submission/ok_btn_text", "Save Results")
+        enabled: upload_input.acceptableInput
         color: UbuntuColors.orange
         onClicked: {
-            var mysavepath = guiEngine.GetSaveFileName();
-            runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsXML(mysavepath);
+            var submit_to = settings.value("transport/submit_to", "")
+            var export_path = settings.value("exporter/xml_export_path", "")
+
+            if (!export_path) {
+                export_path = guiEngine.GetSaveFileName();
+            }
+            var success = guiEngine.GuiExportSessionToFileAsXML(export_path);
+            if (submit_to == "certification") {
+                if (success) {
+                    dialog.text = guiEngine.SendSubmissionViaCertificationTransport(export_path,
+                                                                                    upload_input.text,
+                                                                                    submit_to_hexr.checked);
+                }
+                else {
+                    dialog.text = i18n.tr("Could not export the tests results for uploading.");
+                }
+            }
+            else {
+                runmanagerview.reportIsSaved = success;
+            }
         }
     }
     Button {
@@ -68,7 +137,7 @@ Dialog {
     Component {
         id: submission_warning_dialog
         WarningDialog{
-            text: i18n.tr("You are about to exit this test run without saving your results report.  Do you want to save the report?");
+            text: settings.value("submission/cancel_warning", i18n.tr("You are about to exit this test run without saving your results report.  Do you want to save the report?"))
 
             showContinue: false
             showCheckbox: false
