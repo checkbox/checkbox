@@ -66,17 +66,6 @@ for target in $target_list; do
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
 
-    # Run checkbox unit tests
-    if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-old && python3 setup.py test' >vagrant-logs/$target.checkbox.log 2>vagrant-logs/$target.checkbox.err; then
-        echo "[$target] CheckBox test suite: $PASS"
-    else
-        outcome=1
-        echo "[$target] CheckBox test suite: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
     # Refresh plainbox installation. This is needed if .egg-info (which is
     # essential for 'develop' to work) was removed in the meantime, for
     # example, by tarmac.
