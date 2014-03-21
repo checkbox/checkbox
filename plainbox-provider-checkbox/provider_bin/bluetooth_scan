@@ -1,1 +1,7 @@
-../../checkbox-old/scripts/bluetooth_scan
+#!/bin/bash
+
+hciconfig hci0 reset
+
+name=`zenity --title="Bluetooth Send" --entry --text="Bluetooth Send"`
+address=`hcitool scan | grep "$name" | awk '{print $1}'`
+echo $address
