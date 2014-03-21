@@ -22,3 +22,20 @@ _attic
 # Ignore stuff we get from somewhere else
 support/external-tarballs
 support/checkbox-packaging
+# Ignore generated meta-object compiler files
+moc_*.cpp
+# Ignore particular generated makefiles
+checkbox-gui/Makefile
+checkbox-gui/checkbox-gui/Makefile
+checkbox-gui/gui-engine/Makefile
+checkbox-gui/po/Makefile
+checkbox-gui/test-gui-engine/Makefile
+# Ignore particular binaries
+checkbox-gui/checkbox-gui/checkbox-gui
+checkbox-gui/plugins/libgui-engine.so
+checkbox-gui/test-gui-engine/test-gui-engine
+# Ignore checkbox-gui share and lib directories
+checkbox-gui/lib
+checkbox-gui/share
+# Ignore any patches that may lay around
+*.patch
