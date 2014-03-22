@@ -36,6 +36,7 @@ from plainbox.i18n import gettext as _
 from plainbox.impl.resource import ResourceProgram
 from plainbox.impl.secure.job import BaseJob
 from plainbox.impl.secure.rfc822 import Origin
+from plainbox.impl.secure.rfc822 import normalize_rfc822_value
 from plainbox.impl.symbol import SymbolDef
 
 
@@ -235,15 +236,6 @@ class JobDefinition(BaseJob, IJobDefinition):
     def plugin(self):
         return self.get_record_value('plugin')
 
-    def get_record_value(self, name, default=None):
-        """
-        Obtain the value of the specified record attribute
-        """
-        value = super(JobDefinition, self).get_record_value("_{}".format(name))
-        if value is None:
-            value = super(JobDefinition, self).get_record_value(name, default)
-        return value
-
     @property
     def id(self):
         if self._provider:
@@ -268,7 +260,8 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         Get the translated version of :meth:`summary`
         """
-        return self.get_translated_data(self.summary)
+        return self.get_normalized_translated_data(
+            self.get_raw_record_value('summary'))
 
     @property
     def name(self):
@@ -286,7 +279,8 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         Get the translated version of :meth:`description`
         """
-        return self.get_translated_data(self.description)
+        return self.get_normalized_translated_data(
+            self.get_raw_record_value('description'))
 
     @property
     def depends(self):
@@ -377,8 +371,33 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         return self._controller
 
-    def __init__(self, data, origin=None, provider=None, controller=None):
-        super(JobDefinition, self).__init__(data)
+    def __init__(self, data, origin=None, provider=None, controller=None,
+                 raw_data=None):
+        """
+        Initialize a new JobDefinition instance.
+
+        :param data:
+            Normalized data that makes up this job definition
+        :param origin:
+            An (optional) Origin object. If omitted a fake origin object is
+            created. Normally the origin object should be obtained from the
+            RFC822Record object.
+        :param provider:
+            An (optional) Provider1 object. If omitted it defaults to None but
+            the actual job definition is not suitable for execution. All job
+            definitions are expected to have a provider.
+        :param controller:
+            An (optional) session state controller. If omitted a checkbox
+            session state controller is implicitly used. The controller defines
+            how this job influences the session it executes in.
+        :param raw_data:
+            An (optional) raw version of data, without whitespace
+            normalization. If omitted then raw_data is assumed to be data.
+
+        .. note::
+            You should almost always use :meth:`from_rfc822_record()` instead.
+        """
+        super(JobDefinition, self).__init__(data, raw_data)
         if origin is None:
             origin = Origin.get_caller_origin()
         if controller is None:
@@ -472,7 +491,12 @@ class JobDefinition(BaseJob, IJobDefinition):
         if 'id' not in record.data and 'name' not in record.data:
             # TRANSLATORS: don't translate id or translate it as 'id field'
             raise ValueError(_("Cannot create job without an id"))
-        return cls(record.data, record.origin)
+        # Strip the trailing newlines form all the raw values coming from the
+        # RFC822 parser. We don't need them and they don't match gettext keys
+        # (xgettext strips out those newlines)
+        return cls(record.data, record.origin, raw_data={
+            key: value.rstrip('\n')
+            for key, value in record.raw_data.items()})
 
     def validate(self, validator_cls=CheckBoxJobValidator):
         """
@@ -513,6 +537,23 @@ class JobDefinition(BaseJob, IJobDefinition):
         """
         if msgid and self._provider:
             return self._provider.get_translated_data(msgid)
+        else:
+            return msgid
+
+    def get_normalized_translated_data(self, msgid):
+        """
+        Get a localized piece of data and filter it with RFC822 parser
+        normalization
+
+        :param msgid:
+            data to translate
+        :returns:
+            translated and normalized data obtained from the provider if this
+            job has one, msgid itself otherwise.
+        """
+        msgstr = self.get_translated_data(msgid)
+        if msgstr is not None:
+            return normalize_rfc822_value(msgstr)
         else:
             return msgid
 

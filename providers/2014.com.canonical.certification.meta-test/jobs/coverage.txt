@@ -6,7 +6,7 @@ depends: support/virtualenv
 plugin: shell
 estimated_duration: 0.1
 command:
-    .. $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
+    . $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
     coverage erase
 
 id: coverage/report
@@ -19,5 +19,5 @@ depends: support/virtualenv
 plugin: attachment
 estimated_duration: 1.0
 command:
-    .. $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
+    . $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
     coverage report
