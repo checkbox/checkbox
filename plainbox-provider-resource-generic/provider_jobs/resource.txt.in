@@ -2,7 +2,6 @@ name: cpuinfo
 estimated_duration: 0.37
 plugin: resource
 command: cpuinfo_resource
-estimated_duration: 0.08
 description: Gets CPU resource info from /proc/cpuinfo
 
 name: cdimage
@@ -10,14 +9,12 @@ estimated_duration: 0.61
 plugin: resource
 user: root
 command: cdimage_resource
-estimated_duration: 0.5
 description: Gets installation info from casper.log and media-info
 
 name: dpkg
 estimated_duration: 0.19
 plugin: resource
 command: dpkg_resource
-estimated_duration: 0.5
 requires: package.name == "dpkg"
 description: Gets info on the version of dpkg installed
 
@@ -25,7 +22,6 @@ name: gconf
 estimated_duration: 0.42
 plugin: resource
 command: gconf_resource | filter_templates -w 'name=.*proxy.*'
-estimated_duration: 0.6
 requires: package.name == "gconf2"
 description: Generates resource info from gconf settings
 
@@ -33,7 +29,6 @@ name: lsb
 estimated_duration: 1.63
 plugin: resource
 command: lsb_resource
-estimated_duration: 1.0
 requires: package.name == "lsb-release"
 description: Generates release info based on /etc/lsb-release
 
@@ -41,21 +36,18 @@ name: meminfo
 estimated_duration: 0.1
 plugin: resource
 command: meminfo_resource
-estimated_duration: 0.12
 description: Generates resource info based on /proc/meminfo
 
 name: module
 estimated_duration: 0.13
 plugin: resource
 command: module_resource
-estimated_duration: 0.4
 description: Generates resources info on running kernel modules
 
 name: package
 estimated_duration: 1.16
 plugin: resource
 command: dpkg-query -W -f='name: ${Package}\nversion: ${Version}\n\n'
-estimated_duration: 4.0
 description: Generates a list of packages
 
 name: executable
@@ -69,7 +61,6 @@ name: device
 estimated_duration: 0.48
 plugin: resource
 command: udev_resource
-estimated_duration: 0.36
 requires: package.name == "udev"
 description: Creates resource info from udev 
 
@@ -79,20 +70,17 @@ plugin: resource
 user: root
 requires: package.name == "dmidecode"
 command: dmi_resource
-estimated_duration: 0.5
 
 name: efi
 estimated_duration: 0.56
 plugin: resource
 user: root
 command: efi_resource
-estimated_duration: 0.3
 
 name: uname
 estimated_duration: 0.09
 plugin: resource
 command: uname_resource
-estimated_duration: 0.04
 description: Creates resource info from uname output
 
 name: sleep
@@ -100,7 +88,6 @@ estimated_duration: 0.03
 plugin: resource
 command: for state in `cat /sys/power/state`; do echo "$state: supported"; done
 description: Create resource info for supported sleep states
-estimated_duration: 0.100
 
 plugin: local
 name: optical_drive
@@ -120,14 +107,12 @@ name: block_device
 estimated_duration: 0.08
 plugin: resource
 command: block_device_resource
-estimated_duration: 0.060
 description: Create resource info for removable block devices 
 
 name: display
 estimated_duration: 0.43
 plugin: resource
 command: display_resource
-estimated_duration: 0.3
 requires: package.name == "x11-xserver-utils"
 description: Creates display resource info from xrandr output
 
@@ -140,7 +125,6 @@ command:
      echo -n "usb$version: "
      lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
  done
-estimated_duration: 0.15
 
 name: xinput
 estimated_duration: 0.19
@@ -190,7 +174,6 @@ name: IEEE_80211
 estimated_duration: 0.08
 plugin: resource
 command: 80211_resource
-estimated_duration: 0.02
 description: Creates resource info for wifi supported protocols/interfaces
 
 name: rtc
@@ -203,5 +186,4 @@ command:
   else
       echo "state: unsupported"
   fi
-estimated_duration: 0.04
 description: Creates resource info for RTC
