@@ -447,7 +447,7 @@ def interface_test(args):
         test_target = test_parameters["test_target_ftp"]
 
     # Validate that we got reasonable values
-    if "example.com" in test_target:
+    if not test_target or "example.com" in test_target:
         # Default values found in config file
         logging.error("Please supply target via: %s", config_filename)
         sys.exit(1)
