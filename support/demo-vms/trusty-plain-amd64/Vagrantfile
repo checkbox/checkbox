@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby sw=2 ts=2 :
+
+Vagrant.configure("2") do |config|
+  # Use a basic trusty desktop image from git://github.com/zyga/vagrant-desktop-images.git
+  config.vm.box = "trusty-desktop-amd64"
+
+  # Tweak VirtualBox configuration for GUI applications
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = true
+    vb.customize ["modifyvm", :id, "--memory", 1024]
+    vb.customize ["modifyvm", :id, "--vram", 64]
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+  end
+
+  # Setup apt proxy for faster package updates
+  if ENV.key? "VAGRANT_APT_CACHE"
+    # Setup an apt cache if one is available and explicitly configured
+    config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"#{ENV['VAGRANT_APT_CACHE']}\"; };' > /etc/apt/apt.conf.d/00proxy"
+  elsif File.exists? "/etc/apt-cacher-ng"
+    # If apt-cacher-ng is installed on this machine then just use it.
+    require 'socket'
+    guessed_address = Socket.ip_address_list.detect{|intf| !intf.ipv4_loopback?}
+    if guessed_address
+      config.vm.provision :shell, :inline => "echo 'Acquire::http { Proxy \"http://#{guessed_address.ip_address}:3142\"; };' > /etc/apt/apt.conf.d/00proxy"
+    end
+  end
+
+  # Update to have the latest packages
+  config.vm.provision :shell, :inline => "apt-get update"
+  config.vm.provision :shell, :inline => "DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade --yes"
+
+  # Ready :-)
+end
