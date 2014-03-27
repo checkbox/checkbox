@@ -213,11 +213,23 @@ user: root
 command: removable_storage_test -s 10240000 -c 100 -i 3 usb
 _description: Runs a test that transfers 100 10MB files 3 times to usb.
 
-plugin: shell
+plugin: user-interact
 name: stress/sdhc
 user: root
+_summary: Stress test for SDHC card
 command: removable_storage_test -s 10240000 -c 100 -i 3 sdio scsi usb --memorycard
-_description: Runs a test that transfers 100 10MB files 3 times to a SDHC card.
+_description:
+ PURPOSE:
+     This test will transfers 100 10MB files 3 times to a SDHC card, to
+     check that the systems media card reader can transfer large amounts
+     of data.
+ STEPS:
+     1. Insert a SDHC card into the reader and then Click "Test".
+        If a file browser opens up, you can safely close it.
+     2. Do not remove the device during this test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: shell
 name: stress/network_restart
