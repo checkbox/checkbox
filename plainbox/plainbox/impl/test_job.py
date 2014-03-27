@@ -488,7 +488,7 @@ class TestJobDefinition(TestCase):
 
     def test_tr_summary(self):
         """
-        Verify that Provider1.tr_description() works as expected
+        Verify that Provider1.tr_summary() works as expected
         """
         job = JobDefinition(self._full_record.data)
         with mock.patch.object(job, "get_normalized_translated_data") as mgntd:
@@ -497,6 +497,14 @@ class TestJobDefinition(TestCase):
         mgntd.assert_called_once_with(job.summary)
         # Ensure tr_summary() returned its return value
         self.assertEqual(retval, mgntd())
+
+    def test_tr_summary__falls_back_to_id(self):
+        """
+        Verify that Provider1.tr_summary() falls back to job.id, if summary is
+        not defined
+        """
+        job = JobDefinition({'id': 'id'})
+        self.assertEqual(job.tr_summary(), 'id')
 
     def test_tr_description(self):
         """
