@@ -217,6 +217,7 @@ plugin: user-interact
 name: stress/sdhc
 user: root
 _summary: Stress test for SDHC card
+estimated_duration: 780.0
 command: removable_storage_test -s 10240000 -c 100 -i 3 sdio scsi usb --memorycard
 _description:
  PURPOSE:
