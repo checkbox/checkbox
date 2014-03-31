@@ -82,8 +82,8 @@ class KVMTest(object):
         # Attempt download
         try:
             resp = urllib.request.urlretrieve(image_url, cloud_iso)
-        except urllib.error.HTTPError as exception:
-            logging.exception("Failed download of image from:", image_url)
+        except (IOError, OSError, urllib.error.HTTPError) as exception:
+            logging.error("Failed download of image from %s: %s", image_url, exception)
             return False
 
         # Unpack img file from tar
@@ -209,7 +209,7 @@ final_message: CERTIFICATION BOOT COMPLETE
                 # Download cloud image
                 self.image = self.download_image()
 
-            if os.path.isfile(self.image):
+            if self.image and os.path.isfile(self.image):
 
                 if "cloud" in self.image:
                     # Will assume we need to supply cloud meta data
@@ -240,6 +240,8 @@ final_message: CERTIFICATION BOOT COMPLETE
                             print(console_log.read(), file=sys.stderr)
                         print("E: KVM instance failed to boot", file=sys.stderr)
                 self.process.terminate()
+            elif not self.image:
+                print("Could not find downloaded image")
             else:
                 print("Could not find: {}".format(self.image), file=sys.stderr)
 
