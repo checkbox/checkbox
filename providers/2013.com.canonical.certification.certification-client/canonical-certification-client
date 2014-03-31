@@ -1,0 +1,23 @@
+#!/bin/bash
+
+config="canonical-certification-client/certification-client.conf"
+config_path=
+
+if [ -z $XDG_DATA_DIRS ]; then
+  XDG_DATA_DIRS=/usr/share
+fi
+
+for p in ${XDG_DATA_DIRS//:/ }
+do
+    if [ -r $p/$config ]; then
+        config_path="$p/$config"
+        break
+    fi
+done
+
+if [ -z $config_path ]; then
+    echo "ERROR: $config not found"
+    exit 1
+else
+    checkbox-gui $config_path
+fi
