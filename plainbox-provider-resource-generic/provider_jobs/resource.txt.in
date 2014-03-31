@@ -147,15 +147,7 @@ name: mobilebroadband
 estimated_duration: 0.38
 plugin: resource
 description: Create resource for mobile broadband devices
-command:
- if mm-test --no-scan | grep -q 'GSM modem'
- then
-    echo "gsm: supported"
- fi
- if mm-test --no-scan | grep -q 'CDMA modem'
- then
-    echo "cdma: supported"
- fi
+command: mobilebroadband_resource
 
 name: virtualization
 estimated_duration: 0.13
