@@ -422,10 +422,17 @@ while x < len(sys.argv):
 bus = dbus.SystemBus()
 
 # Get available modems:
-manager_proxy = bus.get_object('org.freedesktop.ModemManager', '/org/freedesktop/ModemManager')
-manager_iface = dbus.Interface(manager_proxy, dbus_interface='org.freedesktop.ModemManager')
-modems = manager_iface.EnumerateDevices()
-
+try:
+    manager_proxy = bus.get_object('org.freedesktop.ModemManager', '/org/freedesktop/ModemManager')
+    manager_iface = dbus.Interface(manager_proxy, dbus_interface='org.freedesktop.ModemManager')
+    modems = manager_iface.EnumerateDevices()
+except dbus.exceptions.DBusException as excp:
+    if (excp.get_dbus_name() == "org.freedesktop.DBus.Error.ServiceUnknown"):
+        print("ERROR: mm-test doesn't work on ModemManager 1.0 and newer: {}".format(
+            excp.get_dbus_message()))
+    else:
+        print("ERROR: {}".format(excp.get_dbus_message()))
+    sys.exit(1)
 if not modems:
     print("No modems found")
     sys.exit(1)
