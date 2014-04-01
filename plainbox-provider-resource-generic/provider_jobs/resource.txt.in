@@ -179,3 +179,15 @@ command:
       echo "state: unsupported"
   fi
 description: Creates resource info for RTC
+
+name: requirements
+estimated_duration: 0.01
+plugin: resource
+command: cat $PLAINBOX_PROVIDER_DATA/requirements_docs.txt
+description:
+ Provide links to requirements documents.
+ .
+ Each requirement should have two keys with their respective
+ values:
+ name: (to be used as the anchor text)
+ link: (the actual URL)
