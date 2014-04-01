@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
 
     // Register the applicationName with the QML runtime
     viewer.rootContext()->setContextProperty("applicationName", applicationName);
+    viewer.rootContext()->setContextProperty("client_name", applicationName);
 
     // Register the GuiEngine with the QML runtime
     viewer.rootContext()->setContextProperty("guiEngine", &guiengine);
