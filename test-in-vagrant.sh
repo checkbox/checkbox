@@ -123,6 +123,17 @@ for target in $target_list; do
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
 
+    # Validate the resource provider
+    if time -o $TIMING vagrant ssh $target -c 'cd src/providers/plainbox-provider-resource-generic && ./manage.py validate' >vagrant-logs/$target.resource.log 2>vagrant-logs/$target.resource.err; then
+        echo "[$target] Resource provider: $PASS"
+    else
+        outcome=1
+        echo "[$target] Resource provider: $FAIL"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.resource.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.resource.err)"
+    fi
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
+
     # Decide what to do with the VM
     case $VAGRANT_DONE_ACTION in
         suspend)
