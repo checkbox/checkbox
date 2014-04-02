@@ -104,6 +104,9 @@ case "$ID-$VERSION_ID" in
     elementary-0.2)
         PLATFORM_SUPPORT=partial
         ;;
+    fedora-19|fedora-20)
+        PLATFORM_SUPPORT=partial
+        ;;
 esac
 
 # Inform the user about platform support
@@ -143,7 +146,7 @@ fi
 export CHECKBOX_TOP
 
 # Add any necessary PPA repositories and run apt-get update if required
-if $CHECKBOX_TOP/support/install-ppa-dependencies; then
+if $CHECKBOX_TOP/support/install-ppa-dependencies && [ "$(which dpkg 2>/dev/null)" = "" ]; then
     # we need to update our dependencies
     sudo apt-get update
 fi
@@ -153,6 +156,9 @@ $CHECKBOX_TOP/support/remove-deb-anty-dependencies
 
 # Ensure that all Debian dependencies are installed
 $CHECKBOX_TOP/support/install-deb-dependencies
+
+# Ensure that all Fedora dependencies are installed
+$CHECKBOX_TOP/support/install-rpm-dependencies
 
 # Create a virtualenv with python3
 echo "I: creating virtualbox in $CHECKBOX_VENV_PATH"

@@ -1,0 +1,52 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2013 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Helper script to install all of the RPM dependencies
+# ====================================================
+
+set -e
+
+# Ensure that we have 'yum' and 'rpm', exit silently if we don't
+if [ "$(which yum 2>/dev/null)" = "" ] || [ "$(which rpm 2>/dev/null)" = "" ]; then
+    exit 0
+fi
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Construct a list of required RPM packages.
+rpm_pkg_list="$(find "$CHECKBOX_TOP" -path '*/requirements/rpm-*.txt' -exec cat "{}" \;  | grep -v '^#' | sort | uniq)"
+
+# Check each one and install if required
+echo "I: checking if the following RPM packages are installed:" $rpm_pkg_list
+for rpm_pkg in $rpm_pkg_list; do
+    if ! rpm --query --quiet $rpm_pkg; then
+        echo "I: package $rpm_pkg is missing, installing"
+        if [ $(id -u) != 0 ]; then
+            sudo yum install --quiet --assumeyes $rpm_pkg
+        else
+            yum install --quiet --assumeyes $rpm_pkg
+        fi
+    fi
+done

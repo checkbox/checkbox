@@ -28,6 +28,11 @@
 
 set -e
 
+# Ensure that we have 'dpkg', exit silently if we don't
+if [ "$(which dpkg 2>/dev/null)" = "" ]; then
+    exit 0
+fi
+
 # Ensure that CHECKBOX_TOP is not empty
 if [ "$CHECKBOX_TOP" = "" ]; then
     echo "E: this script requires \$CHECKBOX_TOP"
