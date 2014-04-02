@@ -52,32 +52,84 @@ if [ -d $CHECKBOX_VENV_PATH ]; then
     exit 1
 fi
 
-# Do a sanity check on lsb_release that is missing on Fedora the last time I
-# had a look at it.
-if [ "x$(which lsb_release)" = "x" ]; then
-    echo "This script requires the 'lsb_release' command"
-    exit 1
+# Try to guess where we are running
+if [ -f /etc/os-release ]; then
+    # Load /etc/os-release if present
+    . /etc/os-release
+elif [ "$(which lsb_release)" != "" ]; then
+    # Emulate /etc/os-release for well-known Ubuntu releases that lack it
+    # Ubuntu ships /etc/os-release starting with 12.04.2 or 12.10
+    # https://bugs.launchpad.net/ubuntu/+source/base-files/+bug/947236
+    case "$(lsb_release --short --description)" in
+        "Ubuntu 12.04 LTS")
+            NAME="Ubuntu"
+            VERSION="12.04 LTS, Precise Pangolin"
+            ID=ubuntu
+            ID_LIKE=debian
+            PRETTY_NAME="Ubuntu precise (12.04 LTS)"
+            VERSION_ID="12.04"
+            ;;
+        "Ubuntu 12.04.1 LTS")
+            NAME="Ubuntu"
+            VERSION="12.04.1 LTS, Precise Pangolin"
+            ID=ubuntu
+            ID_LIKE=debian
+            PRETTY_NAME="Ubuntu precise (12.04.1 LTS)"
+            VERSION_ID="12.04"
+            ;;
+        *)
+            NAME=Linux
+            ;;
+    esac
 fi
 
-# The code below is a mixture of Debian/Ubuntu packages and pypi packages.
-# It is designed to work on Ubuntu 12.04 or later.
-# There are _some_ differences between how each release is handled.
+# Add missing ANSI_COLOR to Ubuntu if missing
+if [ "$ID" = "ubuntu" -a -z "$ANSI_COLOR" ]; then
+    ANSI_COLOR="0;35"
+fi
+
+# Determine if this is a fully or partially or a not supported platform
 #
 # Non Ubuntu systems are not tested as they don't have the required checkbox
 # package. Debian might be supported once we have JobBox and stuff like Fedora
 # would need a whole new approach but patches are welcome [CLA required] 
-if [ "$(lsb_release --short --id)" != "Ubuntu" ] && [ $(lsb_release --short --id --upstream) != "Ubuntu" ]; then
-    echo "Only Ubuntu is supported by this script."
-    echo "If you are interested in using it with your distribution"
-    echo "then please join us in #ubuntu-quality on freenode"
-    echo
-    echo "Alternatively you can use vagrant to develop plainbox"
-    echo "on any operating system, even Windows ;-)" 
-    echo
-    echo "See: http://www.vagrantup.com/ for details"
-    exit 1
-fi
-# From now on we can assume a Debian-like system
+PLATFORM_SUPPORT=none
+case "$ID-$VERSION_ID" in
+    ubuntu-1[24].04)
+        PLATFORM_SUPPORT=full
+        ;;
+    ubuntu-12.10|ubuntu-13.04)
+        PLATFORM_SUPPORT=partial
+        ;;
+    elementary-0.2)
+        PLATFORM_SUPPORT=partial
+        ;;
+esac
+
+# Inform the user about platform support
+case $PLATFORM_SUPPORT in
+    none)
+        echo "E: Only Ubuntu is supported by this script."
+        echo "E: If you are interested in using it with your distribution"
+        echo "E: then please join us in #ubuntu-quality on freenode"
+        echo
+        echo "E: Alternatively you can use vagrant to develop plainbox"
+        echo "E: on any operating system, even Windows ;-)"
+        echo
+        echo "E: See: http://www.vagrantup.com/ for details"
+        exit 1
+        ;;
+    partial)
+        echo "W: NOTE: The platform you are running on has no official maintainer"
+        echo "W: Things might work but your mileage may vary"
+        ;;
+    full)
+        ;;
+esac
+
+# Start setting things up
+CTS="\\x1b["
+/bin/echo -e "I: setting ${CTS}37;1m{Plain,Check}Box${CTS}0m development on ${CTS}${ANSI_COLOR}m${PRETTY_NAME}${CTS}0m..."
 
 # Find the top of checkbox tree
 if [ "$CHECKBOX_TOP" = "" ]; then
