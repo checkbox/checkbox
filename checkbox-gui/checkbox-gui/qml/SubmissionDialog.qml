@@ -90,11 +90,13 @@ Dialog {
         onClicked: {
             var submit_to = settings.value("transport/submit_to", "")
             var export_path = settings.value("exporter/xml_export_path", "")
+            var option_list = new Array("client-name=" + client_name);
 
             if (!export_path) {
                 export_path = guiEngine.GetSaveFileName();
             }
-            var success = guiEngine.GuiExportSessionToFileAsXML(export_path);
+            var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
+                                                                option_list);
             if (submit_to == "certification") {
                 if (success) {
                     dialog.text = guiEngine.SendSubmissionViaCertificationTransport(export_path,
@@ -117,8 +119,10 @@ Dialog {
         onClicked: {
             onClicked:{
                 var mysavepath = '/tmp/report.html';
-                runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath);
-                Qt.openUrlExternally(mysavepath)
+                var option_list = new Array("client-name=" + client_name);
+                runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath,
+                                                                                      option_list);
+                Qt.openUrlExternally(mysavepath);
             }
         }
     }

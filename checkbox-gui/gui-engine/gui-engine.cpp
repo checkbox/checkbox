@@ -2009,10 +2009,10 @@ const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
     return reply;
 }
 
-bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file)
+bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file,
+                                            const QStringList& option_list)
 {
     QString output_format = "xml";
-    QStringList options;    // No options
 
     // very basic argument checking
     if (output_file.isEmpty()) {
@@ -2020,15 +2020,15 @@ bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file)
     }
 
     // FIXME - When we get a useful success/failure code here, return to caller
-    QString done = ExportSessionToFile(m_session,output_format,options,output_file);
+    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
 
     return true;
 }
 
-bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file)
+bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file,
+                                             const QStringList& option_list)
 {
     QString output_format = "html";
-    QStringList options;    // No options
 
     // very basic argument checking
     if (output_file.isEmpty()) {
@@ -2036,7 +2036,7 @@ bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file)
     }
 
     // FIXME - When we get a useful success/failure code here, return to caller
-    QString done = ExportSessionToFile(m_session,output_format,options,output_file);
+    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
 
     return true;
 }
