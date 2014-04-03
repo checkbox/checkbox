@@ -30,8 +30,6 @@ import logging
 import sys
 import tempfile
 
-from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
-
 from plainbox.impl.applogic import get_matching_job_list
 from plainbox.impl.applogic import get_whitelist_by_name
 from plainbox.impl.applogic import run_job_if_possible
@@ -45,9 +43,9 @@ from plainbox.impl.exporter.xml import XMLSessionStateExporter
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.config import ValidationError, Unset
 from plainbox.impl.session import SessionStateLegacyAPI as SessionState
+from plainbox.impl.transport import TransportError
 
 from checkbox_ng.certification import CertificationTransport
-from checkbox_ng.certification import InvalidSecureIDError
 
 
 logger = logging.getLogger("plainbox.commands.sru")
@@ -127,12 +125,7 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
               self.config.c3_url, self.config.secure_id))
         options_string = "secure_id={0}".format(self.config.secure_id)
         # Create the transport object
-        try:
-            transport = CertificationTransport(
-                self.config.c3_url, options_string, self.config)
-        except InvalidSecureIDError as exc:
-            print(exc)
-            return False
+        transport = CertificationTransport(self.config.c3_url, options_string)
         # Prepare the data for submission
         data = self.exporter.get_session_data_subset(self.session)
         with tempfile.NamedTemporaryFile(mode='w+b') as stream:
@@ -143,21 +136,15 @@ class _SRUInvocation(CheckBoxInvocationMixIn):
             stream.seek(0)
             try:
                 # Send the data, reading from the temporary file
-                result = transport.send(stream)
+                result = transport.send(stream, self.config, self.session)
                 if 'url' in result:
                     print("Successfully sent, submission status at {0}".format(
-                          result['url']))
+                        result['url']))
                 else:
                     print("Successfully sent, server response: {0}".format(
-                          result))
-
-            except InvalidSchema as exc:
-                print("Invalid destination URL: {0}".format(exc))
-            except ConnectionError as exc:
-                print("Unable to connect to destination URL: {0}".format(exc))
-            except HTTPError as exc:
-                print(("Server returned an error when "
-                       "receiving or processing: {0}").format(exc))
+                        result))
+            except (ValueError, TransportError) as exc:
+                print(str(exc))
             except IOError as exc:
                 print("Problem reading a file: {0}".format(exc))
 

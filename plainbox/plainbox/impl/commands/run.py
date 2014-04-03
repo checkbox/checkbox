@@ -33,8 +33,6 @@ from shutil import copyfileobj
 import io
 import sys
 
-from requests.exceptions import ConnectionError, InvalidSchema, HTTPError
-
 from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
 from plainbox.impl.commands import PlainBoxCommand
@@ -48,6 +46,7 @@ from plainbox.impl.runner import JobRunner
 from plainbox.impl.runner import authenticate_warmup
 from plainbox.impl.runner import slugify
 from plainbox.impl.session import SessionStateLegacyAPI as SessionState
+from plainbox.impl.transport import TransportError
 from plainbox.impl.transport import get_all_transports
 
 
@@ -212,15 +211,9 @@ class RunInvocation(CheckBoxInvocationMixIn):
             if transport:
                 exported_stream.seek(0)
                 try:
-                    transport.send(exported_stream.read())
-                except InvalidSchema as exc:
-                    print(_("Invalid destination URL: {0}").format(exc))
-                except ConnectionError as exc:
-                    print(_("Unable to connect "
-                            "to destination URL: {0}").format(exc))
-                except HTTPError as exc:
-                    print(_("Server returned an error when "
-                            "receiving or processing: {0}").format(exc))
+                    transport.send(exported_stream.read(), self.config, session)
+                except TransportError as exc:
+                    print(str(exc))
 
         # FIXME: sensible return value
         return 0
@@ -425,6 +418,6 @@ class RunCommand(PlainBoxCommand, CheckBoxCommandMixIn):
             '--transport-options',
             metavar=_('OPTIONS'),
             help=_('comma-separated list of key-value options (k=v) to '
-                   ' be passed to the transport'))
+                   'be passed to the transport'))
         # Call enhance_parser from CheckBoxCommandMixIn
         self.enhance_parser(parser)
