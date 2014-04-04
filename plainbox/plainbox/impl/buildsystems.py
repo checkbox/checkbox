@@ -18,7 +18,7 @@ class MakefileBuildSystem(IBuildSystem):
     A build system for projects using classic makefiles
     """
 
-    def probe(self, src_dir: str) -> float:
+    def probe(self, src_dir: str) -> int:
         # If a configure script exists (autotools?) then let's not pretend we
         # do the whole thing and bail out. It's better to let test authors to
         # customize everything.
@@ -35,12 +35,27 @@ class MakefileBuildSystem(IBuildSystem):
                 os.path.join(src_dir, 'Makefile'), build_dir)))
 
 
+class AutotoolsBuildSystem(IBuildSystem):
+    """
+    A build system for projects using autotools
+    """
+
+    def probe(self, src_dir: str) -> int:
+        if os.path.isfile(os.path.join(src_dir, "configure")):
+            return 90
+        return 0
+
+    def get_build_command(self, src_dir: str, build_dir: str) -> str:
+        return "{}/configure && make".format(
+            shlex.quote(os.path.relpath(src_dir, build_dir)))
+
+
 class GoBuildSystem(IBuildSystem):
     """
     A build system for projects written in go
     """
 
-    def probe(self, src_dir: str) -> float:
+    def probe(self, src_dir: str) -> int:
         if glob.glob("{}/*.go".format(src_dir)) != []:
             return 50
         return 0
