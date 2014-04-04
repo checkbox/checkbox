@@ -42,12 +42,12 @@ Dialog {
                 validator = regex_validator;
                 visible = true;
             }
-            else if (input_type == "email") {
-                inputMethodHints = Qt.ImhEmailCharactersOnly;
-                visible = true;
+            else if (input_type == "none") {
+                visible = false;
             }
             else {
-                visible = false;
+                inputMethodHints = Qt.ImhEmailCharactersOnly;
+                visible = true;
             }
             var secure_id = settings.value("submission/secure_id","");
             if (secure_id) {
@@ -56,7 +56,7 @@ Dialog {
         }
 
         id: upload_input
-        placeholderText: settings.value("submission/input_placeholder", "")
+        placeholderText: settings.value("submission/input_placeholder", i18n.tr("Launchpad E-Mail Address"))
         Component.onCompleted: initialize()
     }
 
@@ -84,13 +84,13 @@ Dialog {
 
     Button {
         id: submitbutton
-        text: settings.value("submission/ok_btn_text", "Save Results")
+        text: settings.value("submission/ok_btn_text", "Submit Results")
         enabled: upload_input.acceptableInput
         color: UbuntuColors.orange
         onClicked: {
             var submit_to = settings.value("transport/submit_to", "")
-            var export_path = settings.value("exporter/xml_export_path", "")
             var option_list = new Array("client-name=" + client_name);
+            var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
 
             if (!export_path) {
                 export_path = guiEngine.GetSaveFileName();
@@ -107,8 +107,14 @@ Dialog {
                     dialog.text = i18n.tr("Could not export the tests results for uploading.");
                 }
             }
+            else if (submit_to == "local") {
+                if (success) {
+                    runmanagerview.reportIsSaved = success;
+                }
+            }
             else {
-                runmanagerview.reportIsSaved = success;
+                dialog.text = guiEngine.SendSubmissionViaLaunchpadTransport(export_path,
+                                                                            upload_input.text);
             }
         }
     }

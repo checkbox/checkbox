@@ -40,3 +40,6 @@ echo "I: running 'develop' on plainbox"
 
 echo "I: running 'develop' on checkbox-ng"
 ( cd $CHECKBOX_TOP/checkbox-ng/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
+
+echo "I: running 'develop' on checkbox-support"
+( cd $CHECKBOX_TOP/checkbox-support/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )

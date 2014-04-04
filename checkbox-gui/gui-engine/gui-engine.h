@@ -172,6 +172,10 @@ public slots:
                                      const QString &submission_path,
                                      const QString &secure_id,
                                      const bool submitToHexr);
+        
+        const QString SendSubmissionViaLaunchpadTransport( \
+                                     const QString &submission_path,
+                                     const QString &email);
 
         // Convenience until we move to Qt 5.1 and the FileDialog component
         QString GetSaveFileName(void);
@@ -204,7 +208,8 @@ public:
                                     const QStringList& option_list,
                                     const QString& output_file);
         
-        QString SendDataViaTransport(const QString &transport, \
+        QString SendDataViaTransport(const QDBusObjectPath session, \
+                                     const QString &transport, \
                                      const QString &url, \
                                      const QString &option_list, \
                                      const QString &data);

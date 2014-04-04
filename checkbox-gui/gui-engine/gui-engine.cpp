@@ -2082,7 +2082,8 @@ const QString GuiEngine::ExportSessionToFile(const QDBusObjectPath session, \
     return reply;
 }
 
-QString GuiEngine::SendDataViaTransport(const QString &transport, \
+QString GuiEngine::SendDataViaTransport(const QDBusObjectPath session, \
+                                        const QString &transport, \
                                         const QString &url, \
                                         const QString &option_list, \
                                         const QString &data)
@@ -2098,6 +2099,7 @@ QString GuiEngine::SendDataViaTransport(const QString &transport, \
 
     QDBusReply<QString> reply = \
             iface.call("SendDataViaTransport", \
+                       QVariant::fromValue<QString>(session.path()), \
                        QVariant::fromValue<QString>(transport), \
                        QVariant::fromValue<QString>(url), \
                        QVariant::fromValue<QString>(option_list), \
@@ -2149,8 +2151,52 @@ const QString GuiEngine::SendSubmissionViaCertificationTransport( \
     options << QString("secure_id=" + secure_id);
     options << QString("submit_to_hexr=" + QString::number(submit_to_hexr));
 
-    return SendDataViaTransport("certification", \
+    return SendDataViaTransport(m_session, "certification", \
             "https://certification.canonical.com/submissions/submit/", \
+            options.join(','), \
+            submissionData);
+}
+
+const QString GuiEngine::SendSubmissionViaLaunchpadTransport( \
+        const QString &submission_path,
+        const QString &email)
+{
+    QDBusInterface iface(PBBusName, \
+                         PBObjectPathName, \
+                         PBInterfaceName, \
+                         QDBusConnection::sessionBus());
+    if (!iface.isValid()) {
+        qDebug() << "Could not connect to " << PBInterfaceName;
+        return QString("Could not connect to " + PBInterfaceName);
+    }
+
+
+    QDBusReply<QStringList> reply = iface.call("GetAllTransports");
+    if (!reply.isValid()) {
+        qDebug() << "Error: " << reply.error();
+        return QString("Error: " + reply.error().message());
+    }
+    if (!reply.value().contains("launchpad")) {
+        return QString("'launchpad' is not a supported transport");
+    }
+
+    // Read submission file
+    QFile submissionFile(submission_path);
+    QByteArray submissionData;
+    if (submissionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        submissionData = submissionFile.readAll();
+        submissionFile.close();
+    }
+    else {
+        qDebug() << "Could not read " << submission_path;
+        return QString("Could not read " + submission_path);
+    }
+
+    QStringList options;
+    options << QString("field.emailaddress=" + email);
+
+    return SendDataViaTransport(m_session, "launchpad", \
+            "https://launchpad.net/+hwdb/+submit", \
             options.join(','), \
             submissionData);
 }
