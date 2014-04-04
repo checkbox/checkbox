@@ -38,8 +38,8 @@ export http_proxy=http://127.0.0.1:9
 echo "I: running 'develop' on plainbox"
 ( cd $CHECKBOX_TOP/plainbox/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
 
-echo "I: running 'develop' on checkbox-ng"
-( cd $CHECKBOX_TOP/checkbox-ng/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
-
 echo "I: running 'develop' on checkbox-support"
 ( cd $CHECKBOX_TOP/checkbox-support/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
+
+echo "I: running 'develop' on checkbox-ng"
+( cd $CHECKBOX_TOP/checkbox-ng/ && python3 setup.py develop --quiet | sed -e 's/^/I (develop output) /' )
