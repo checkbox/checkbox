@@ -134,6 +134,17 @@ for target in $target_list; do
     fi
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
 
+    # Validate the checkbox provider
+    if time -o $TIMING vagrant ssh $target -c 'cd src/providers/plainbox-provider-checkbox && ./manage.py validate' >vagrant-logs/$target.checkbox-provider.log 2>vagrant-logs/$target.checkbox-provider.err; then
+        echo "[$target] Checkbox provider: $PASS"
+    else
+        outcome=1
+        echo "[$target] Checkbox provider: $FAIL"
+        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-provider.log)"
+        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-provider.err)"
+    fi
+    cat $TIMING | sed -e "s/^/[$target] (timing) /"
+
     # Decide what to do with the VM
     case $VAGRANT_DONE_ACTION in
         suspend)
