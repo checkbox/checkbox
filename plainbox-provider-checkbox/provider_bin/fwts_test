@@ -211,7 +211,7 @@ def main():
     elif args.test:
         tests.extend(args.test)
     elif args.all:
-        tests.extend(['wakealarm', 'cpufreq'] + TESTS)
+        tests.extend(['wakealarm', 'cpufreq', 'maxfreq'] + TESTS)
     elif args.sleep:
         args.sleep = fix_sleep_args(args.sleep)
         iterations = 1
