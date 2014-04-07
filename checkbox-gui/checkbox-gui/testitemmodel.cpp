@@ -178,7 +178,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                         description = variant.toString();
                     }
 
-                    variant = *iface->properties.find("name");
+                    variant = *iface->properties.find("partial_id");
                     if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
                         testname = variant.toString();
                     }
