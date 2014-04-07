@@ -1,0 +1,29 @@
+plugin: local
+id: firmware/fwts
+requires: package.name == 'fwts'
+_description: Automated tests for firmware using Firmware Test Suite.
+command:
+ cat << 'EOF' | run_templates -s 'fwts_test --list'
+ estimated_duration: 1.2
+ plugin: shell
+ id: firmware/fwts_$1
+ requires: package.name == 'fwts'
+ user: root
+ command: fwts_test -t $1 -l $PLAINBOX_SESSION_SHARE/fwts_$1.log
+ _description: Run $1 test from Firmware Test Suite.
+ EOF
+
+plugin: local
+id: firmware/fwts_logs
+requires: package.name == 'fwts'
+_description: Automated tests for firmware using Firmware Test Suite.
+command:
+ cat << 'EOF' | run_templates -s 'fwts_test --list'
+ estimated_duration: 1.2
+ plugin: attachment
+ id: firmware/fwts_$1.log
+ requires: package.name == 'fwts'
+ user: root
+ command: [[ -e ${PLAINBOX_SESSION_SHARE}/fwts_$1.log ]] && cat ${PLAINBOX_SESSION_SHARE}/fwts_$1.log
+ _description: Attach log for FWTS $1 test.
+ EOF
