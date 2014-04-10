@@ -3,24 +3,10 @@
 ## Please use this whitelist for the Ubuntu Certification self-testing
 ## programme.
 # Resource Jobs
-block_device
-cdimage
-cpuinfo
-device
-dmi
-dpkg
-efi
-environment
-lsb
-meminfo
-module
 optical_drive
 optical_drive_.*
-package
-rtc
-sleep
-uname
-virtualization
+# Meta-job to include required resources, please don't remove
+miscellanea/submission-resources
 #Info attachment jobs
 __info__
 cpuinfo_attachment
