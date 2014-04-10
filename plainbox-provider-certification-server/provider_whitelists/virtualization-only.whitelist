@@ -5,21 +5,10 @@
 ## properly in your test environment.  To avoid false failures, please use the 
 ## server-selftest.whitelist instead.
 # Resource Jobs
-cpuinfo
-cdimage
-dmi
-dpkg
-efi
-environment
-gconf
-lsb
-meminfo
-module
-package
-device
-uname
-rtc
-sleep
+optical_drive
+optical_drive_.*
+# Meta-job to include required resources, please don't remove
+miscellanea/submission-resources
 #Info attachment jobs
 __info__
 cpuinfo_attachment
@@ -27,6 +16,7 @@ dmesg_attachment
 dmi_attachment
 dmidecode_attachment
 efi_attachment
+lshw_attachment
 lspci_attachment
 lsusb_attachment
 meminfo_attachment
