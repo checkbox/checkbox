@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+from plainbox.provider_manager import InstallCommand
 from plainbox.provider_manager import SourceDistributionCommand
 from plainbox.provider_manager import manage_py_extension
 from plainbox.provider_manager import setup, N_
@@ -28,6 +29,17 @@ class SourceDistributionCommandExt(SourceDistributionCommand):
     # Overridden version of SourceDistributionCommand that handles COPYING
     __doc__ = SourceDistributionCommand.__doc__
     _INCLUDED_ITEMS = SourceDistributionCommand._INCLUDED_ITEMS + ['COPYING']
+
+
+@manage_py_extension
+class InstallCommandExt(InstallCommand):
+    # Overridden version of InstallCommand that handles launcher/
+    __doc__ = InstallCommand.__doc__
+    name = 'install'
+
+    def _copy_all_executables(self, root, prefix, layout, provider):
+        if provider.get_all_executables():
+            super()._copy_all_executables(root, prefix, layout, provider)
 
 
 setup(
