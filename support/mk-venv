@@ -167,6 +167,9 @@ virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VE
 # Add PLAINBOX_LOCALE_DIR to the venv
 echo "export PLAINBOX_LOCALE_DIR=$CHECKBOX_TOP/plainbox/build/mo" >> $CHECKBOX_VENV_PATH/bin/activate
 
+# Add CHECKBOX_NG_LOCALE_DIR to the venv
+echo "export CHECKBOX_NG_LOCALE_DIR=$CHECKBOX_TOP/checkbox-ng/build/mo" >> $CHECKBOX_VENV_PATH/bin/activate
+
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate
 
