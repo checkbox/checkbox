@@ -812,7 +812,7 @@ class SessionWrapper(PlainBoxObjectWrapper):
 
     def add_state(self, state):
         """
-        Add a job state representatio to DBus.
+        Add a job state representation to DBus.
 
         :param state:
             Job state to add to the bus
@@ -1226,7 +1226,7 @@ class ServiceWrapper(PlainBoxObjectWrapper):
     @dbus.service.method(
         dbus_interface=SERVICE_IFACE, in_signature='ossss', out_signature='s')
     @PlainBoxObjectWrapper.translate
-    def SendDataViaTransport(self, session: 'o', transport: 's', where: 's', 
+    def SendDataViaTransport(self, session: 'o', transport: 's', where: 's',
                              options: 's', data: 's'):
         return self.native.send_data_via_transport(session, transport, where,
                                                    options, data)
