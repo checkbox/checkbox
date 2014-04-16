@@ -2,8 +2,8 @@
 # vi: set ft=ruby sw=2 ts=2 :
 
 Vagrant.configure("2") do |config|
-  # Use a basic precise desktop image from git://github.com/zyga/vagrant-desktop-images.git
-  config.vm.box = "precise-desktop-amd64"
+  # Use a basic trusty desktop image from git://github.com/zyga/vagrant-desktop-images.git
+  config.vm.box = "trusty-desktop-amd64"
 
   # Tweak VirtualBox configuration for GUI applications
   config.vm.provider :virtualbox do |vb|
@@ -32,7 +32,6 @@ Vagrant.configure("2") do |config|
   # Install package that provides add-apt-repository 
   config.vm.provision :shell, :inline => "apt-get install --yes python-software-properties"
   # Add the checkbox-dev/ppa ppa with daily builds 
-  config.vm.provision :shell, :inline => "add-apt-repository ppa:ubuntu-sdk-team/ppa"
   config.vm.provision :shell, :inline => "add-apt-repository ppa:checkbox-dev/ppa"
   # Update apt cache again
   config.vm.provision :shell, :inline => "apt-get update"
