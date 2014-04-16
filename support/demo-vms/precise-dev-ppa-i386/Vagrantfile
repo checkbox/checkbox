@@ -32,6 +32,7 @@ Vagrant.configure("2") do |config|
   # Install package that provides add-apt-repository 
   config.vm.provision :shell, :inline => "apt-get install --yes python-software-properties"
   # Add the checkbox-dev/ppa ppa with daily builds 
+  config.vm.provision :shell, :inline => "add-apt-repository ppa:ubuntu-sdk-team/ppa"
   config.vm.provision :shell, :inline => "add-apt-repository ppa:checkbox-dev/ppa"
   # Update apt cache again
   config.vm.provision :shell, :inline => "apt-get update"
