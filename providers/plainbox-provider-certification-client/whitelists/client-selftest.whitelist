@@ -177,10 +177,8 @@ power-management/tickless_idle
 power-management/fwts_wakealarm
 power-management/fwts_wakealarm-log-attach
 power-management/hibernate_advanced
-power-management/hibernate-single-log-check
 power-management/hibernate-single-log-attach
 suspend/hybrid_sleep
-suspend/hybrid-sleep-single-log-check
 suspend/hybrid-sleep-single-log-attach
 __touchpad__
 touchpad/horizontal
@@ -227,7 +225,6 @@ suspend/bluetooth_obex_browse_before_suspend
 suspend/bluetooth_obex_get_before_suspend
 suspend/suspend_advanced
 suspend/suspend-time-check
-suspend/suspend-single-log-check
 suspend/suspend-single-log-attach
 led/power-blink-suspend
 led/suspend
@@ -303,11 +300,9 @@ disk/storage_device_.*
 memory/info
 memory/check
 power-management/suspend_30_cycles
-power-management/suspend-30-cycles-log-check
 power-management/suspend-30-cycle-log-attach
 power-management/suspend-30-cycles-time-check
 power-management/hibernate_30_cycles
-power-management/hibernate-30-cycles-log-check
 power-management/hibernate-30-cycle-log-attach
 __stress__
 stress/cpu_stress_test
