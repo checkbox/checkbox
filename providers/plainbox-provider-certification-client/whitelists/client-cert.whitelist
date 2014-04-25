@@ -58,6 +58,8 @@ camera/display
 camera/multiple-resolution-images
 __cpu__
 # See Automated Tests section at the end of this file
+cpu/cstates
+cpu/cstates_results.log
 __disk__
 # See Automated Tests section at the end of this file
 disk/detect
@@ -69,6 +71,15 @@ esata/storage-test
 esata/remove
 __expresscard__
 expresscard/verification
+__firmware__
+firmware/fwts
+firmware/fwts_logs
+firmware/fwts_desktop_diagnosis
+firmware/fwts_desktop_diagnosis_results.log
+firmware/fwts_wakealarm
+firmware/fwts_wakealarm.log
+firmware/fwts_uefirtvariable
+firmware/fwts_uefirtvariable.log
 __firewire__
 firewire/insert
 firewire/storage-test
@@ -131,6 +142,8 @@ mediacard/sdhc-remove
 __memory__
 # See Automated Tests section at the end of this file
 __miscellanea__
+miscellanea/oops
+miscellanea/oops_results.log
 # See Automated Tests section at the end of this file
 __monitor__
 monitor/powersaving
@@ -175,10 +188,8 @@ power-management/tickless_idle
 power-management/fwts_wakealarm
 power-management/fwts_wakealarm-log-attach
 power-management/hibernate_advanced
-power-management/hibernate-single-log-check
 power-management/hibernate-single-log-attach
 suspend/hybrid_sleep
-suspend/hybrid-sleep-single-log-check
 suspend/hybrid-sleep-single-log-attach
 __touchpad__
 touchpad/basic
@@ -230,7 +241,6 @@ suspend/bluetooth_obex_browse_before_suspend
 suspend/bluetooth_obex_get_before_suspend
 suspend/suspend_advanced
 suspend/suspend-time-check
-suspend/suspend-single-log-check
 suspend/suspend-single-log-attach
 led/power-blink-suspend
 led/suspend
@@ -300,14 +310,10 @@ disk/storage_devices
 disk/storage_device_.*
 memory/info
 memory/check
-miscellanea/fwts_test
-miscellanea/fwts_results.log
 power-management/suspend_30_cycles
-power-management/suspend-30-cycles-log-check
 power-management/suspend-30-cycle-log-attach
 power-management/suspend-30-cycles-time-check
 power-management/hibernate_30_cycles
-power-management/hibernate-30-cycles-log-check
 power-management/hibernate-30-cycle-log-attach
 __stress__
 stress/cpu_stress_test
