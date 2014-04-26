@@ -88,18 +88,18 @@ __floppy__
 floppy/check
 floppy/check_fd\d
 __graphics__
-graphics/glxgears
+graphics/generator_.*
+graphics/1_glxgears_.*
 graphics/xorg-version
-graphics/driver_version
-graphics/compiz_check
-graphics/rotation
-graphics/display
-graphics/minimum_resolution
-graphics/maximum_resolution
-graphics/\d_maximum_resolution.*
+graphics/1_driver_version_.*
+graphics/1_compiz_check_.*
+graphics/1_rotation_.*
+graphics/1_display_.*
+graphics/1_minimum_resolution_.*
+graphics/1_maximum_resolution_.*
 graphics/xorg-failsafe
 graphics/xorg-process
-graphics/cycle_resolution
+graphics/1_cycle_resolution_.*
 graphics/VESA_drivers_not_in_use
 __hibernate__
 #See below, power-management/hibernate_advanced
