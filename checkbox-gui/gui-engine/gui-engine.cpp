@@ -1970,6 +1970,17 @@ QString GuiEngine::GuiExportSessionAsHTML(void)
     return ExportSession(m_session,output_format,options);
 }
 
+QString GuiEngine::GuiExportSessionAsXLSX(void)
+{
+    qDebug("GuiEngine::GuiExportSessionAsXLSX");
+
+    QString output_format = "xlsx";
+    QStringList options;    // No options
+
+    return ExportSession(m_session,output_format,options);
+}
+
+
 const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
                                        const QString &output_format, \
                                        const QStringList& option_list)
@@ -2029,6 +2040,22 @@ bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file,
                                              const QStringList& option_list)
 {
     QString output_format = "html";
+
+    // very basic argument checking
+    if (output_file.isEmpty()) {
+        return false;
+    }
+
+    // FIXME - When we get a useful success/failure code here, return to caller
+    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
+
+    return true;
+}
+
+bool GuiEngine::GuiExportSessionToFileAsXLSX(const QString& output_file,
+                                             const QStringList& option_list)
+{
+    QString output_format = "xlsx";
 
     // very basic argument checking
     if (output_file.isEmpty()) {

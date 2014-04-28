@@ -162,10 +162,13 @@ public slots:
         // Convenience functions for the GUI
         QString GuiExportSessionAsXML(void);
         QString GuiExportSessionAsHTML(void);
+        QString GuiExportSessionAsXLSX(void);
 
         bool GuiExportSessionToFileAsXML(const QString& output_file,
                                          const QStringList& option_list);
         bool GuiExportSessionToFileAsHTML(const QString& output_file,
+                                          const QStringList& option_list);
+        bool GuiExportSessionToFileAsXLSX(const QString& output_file,
                                           const QStringList& option_list);
         
         const QString SendSubmissionViaCertificationTransport( \
