@@ -95,10 +95,16 @@ fi
 # would need a whole new approach but patches are welcome [CLA required] 
 PLATFORM_SUPPORT=none
 case "$ID-$VERSION_ID" in
+    ubuntu-14.10)
+        PLATFORM_SUPPORT=full
+        ;;
     ubuntu-1[24].04)
         PLATFORM_SUPPORT=full
         ;;
     ubuntu-12.10|ubuntu-13.04)
+        PLATFORM_SUPPORT=partial
+        ;;
+    ubuntu-*)
         PLATFORM_SUPPORT=partial
         ;;
     elementary-0.2)
@@ -166,6 +172,9 @@ virtualenv --quiet --system-site-packages --python=/usr/bin/python3 $CHECKBOX_VE
 
 # Add PLAINBOX_LOCALE_DIR to the venv
 echo "export PLAINBOX_LOCALE_DIR=$CHECKBOX_TOP/plainbox/build/mo" >> $CHECKBOX_VENV_PATH/bin/activate
+
+# Add CHECKBOX_NG_LOCALE_DIR to the venv
+echo "export CHECKBOX_NG_LOCALE_DIR=$CHECKBOX_TOP/checkbox-ng/build/mo" >> $CHECKBOX_VENV_PATH/bin/activate
 
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate

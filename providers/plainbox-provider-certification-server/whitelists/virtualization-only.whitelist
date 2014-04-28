@@ -1,0 +1,38 @@
+## This whitelist is intended for use inside Canonical's test labs.  The tests
+## conained in this list are the same as those contained in the
+## server-selftest.whitelist file that OEMs may use. The difference here is that
+## some of these tests depend on a specific network environment and may not run
+## properly in your test environment.  To avoid false failures, please use the 
+## server-selftest.whitelist instead.
+# Resource Jobs
+optical_drive
+optical_drive_.*
+# Meta-job to include required resources, please don't remove
+miscellanea/submission-resources
+#Info attachment jobs
+__info__
+cpuinfo_attachment
+dmesg_attachment
+dmi_attachment
+dmidecode_attachment
+efi_attachment
+lshw_attachment
+lspci_attachment
+lsusb_attachment
+meminfo_attachment
+modprobe_attachment
+modules_attachment
+sysctl_attachment
+sysfs_attachment
+udev_attachment
+gcov_attachment
+lsmod_attachment
+acpi_sleep_attachment
+info/hdparm
+info/hdparm_.*.txt
+installer_debug.gz
+# Actual test cases
+__virtualization__
+virtualization/virtualization-check
+virtualization/kvm_ok
+virtualization/kvm_check_vm

@@ -26,7 +26,6 @@ from checkbox_support.lib.input import Input
 from checkbox_support.lib.pci import Pci
 from checkbox_support.lib.usb import Usb
 
-
 PCI_RE = re.compile(
     r"^pci:"
     r"v(?P<vendor_id>[%(hex)s]{8})"
@@ -175,7 +174,21 @@ class UdevadmDevice:
                 else:
                     return "NETWORK"
             if class_id == Pci.BASE_CLASS_DISPLAY:
-                if subclass_id == Pci.CLASS_DISPLAY_VGA:
+                # Not all DISPLAY devices are display adapters. The ones with
+                # subclass OTHER are usually uninteresting devices. As an
+                # exception, some vendors have recently begun to use the
+                # 0x80 (Pci.CLASS_DISPLAY_OTHER) subclass identifier. In order
+                # to correctly identify them special heuristics are needed,
+                # these are encapsulated in the known_to_be_video_device method
+                # (further below).
+                if subclass_id == Pci.CLASS_DISPLAY_VGA or \
+                        subclass_id == Pci.CLASS_DISPLAY_3D or \
+                        (subclass_id == Pci.CLASS_DISPLAY_OTHER \
+                         and known_to_be_video_device(self.vendor_id,
+                                                      self.product_id,
+                                                      class_id,
+                                                      subclass_id)
+                       ):
                     return "VIDEO"
             if class_id == Pci.BASE_CLASS_SERIAL \
                and subclass_id == Pci.CLASS_SERIAL_USB:
@@ -621,6 +634,12 @@ class UdevadmParser:
         if not device.bus:
             return True
 
+        # Do not ignore devices with bus == net and ID_NET_NAME_MAC
+        # These can be virtual network interfaces which don't have PCI
+        # product/vendor ID, yet still constitute valid ethX interfaces.
+        if device.bus == "net" and "ID_NET_NAME_MAC" in device._environment:
+            return False
+
         # Ignore devices without product AND vendor information
         if (device.product is None and device.product_id is None and
                 device.vendor is None and device.vendor_id is None):
@@ -759,6 +778,25 @@ def decode_id(id):
     decoded_id = encoded_id.decode("unicode-escape")
     return decoded_id.strip()
 
+def known_to_be_video_device(vendor_id, product_id, pci_class, pci_subclass):
+    # Usually a video device has a PCI subclass_id of Pci.CLASS_DISPLAY_VGA or
+    # Pci.CLASS_DISPLAY_3d. However, some manufacturers which hadn't previously
+    # used a subclass_id of Pci.CLASS_DISPLAY_OTHER (0x80 or decimal 128) have
+    # begun to do so (as of 2013-2014); and others which previously used this
+    # class for uninteresting devices are now using it for actual video
+    # devices. This method encapsulates heuristics to decide if a device is a
+    # valid video adapter, based on product/vendor and pci class/subclass
+    # information.
+    if vendor_id == Pci.VENDOR_ID_AMD:
+        # AMD hadn't used subclass OTHER before, so all AMD devices we get asked about
+        # are VIDEO.
+        return True
+    if vendor_id == Pci.VENDOR_ID_INTEL:
+        # Intel recently (2014) started using subclass OTHER erratically, some older
+        # GPUs have subdevices with OTHER which are uninteresting. If Intel,
+        # we only consider OTHER devices as VIDEO if they are in this explicit
+        # list
+        return product_id in [0x0152]
 
 class UdevResult:
     def __init__(self):
