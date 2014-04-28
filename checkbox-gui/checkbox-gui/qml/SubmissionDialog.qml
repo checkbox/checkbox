@@ -97,6 +97,8 @@ Dialog {
             }
             var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
                                                                 option_list);
+            var xls_export_path = export_path.replace('.xml', '.xls');
+            guiEngine.GuiExportSessionToFileAsXLSX(xls_export_path, []);
             if (submit_to == "certification") {
                 if (success) {
                     dialog.text = guiEngine.SendSubmissionViaCertificationTransport(export_path,
