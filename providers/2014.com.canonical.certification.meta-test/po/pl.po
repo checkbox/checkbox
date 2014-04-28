@@ -1,0 +1,102 @@
+# PlainBox translations
+# Copyright (C) 2014 Canonical
+# This file is distributed under the same license as the palinbox package.
+# Zygmunt Krynicki <zygmunt.krynicki@canonical.com>, 2014.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 2014.com.canonical.certification.meta-test 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-05 10:09+0100\n"
+"PO-Revision-Date: 2014-02-20 23:52+0000\n"
+"Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
+"Language-Team: polski <>\n"
+"Language: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2014-02-22 05:30+0000\n"
+"X-Generator: Launchpad (build 16926)\n"
+
+#. summary
+#: ../jobs/coverage.txt:2
+msgid "Erase Coverage Data"
+msgstr "Usuń dane pokrycia wykonania kodu"
+
+#. description
+#: ../jobs/coverage.txt:3
+msgid "   This job resets coverage data for subsequent jobs."
+msgstr ""
+"   To zadanie resetuje dane pokrycia wykonania kodu dla późniejszych zadań."
+
+#. summary
+#: ../jobs/coverage.txt:13
+msgid "Generate code coverage report"
+msgstr "Wygeneruj raport pokrycia wykonania kodu"
+
+#. description
+#: ../jobs/coverage.txt:14
+msgid ""
+"   Generate code coverage report\n"
+"   .\n"
+"   This job creates a simple text coverage report for the entire project."
+msgstr ""
+
+#. summary
+#: ../jobs/support.txt:2
+msgid "Create a virtualenv for testing"
+msgstr "Utwórz środowisko virtualenv do testowania"
+
+#. description
+#: ../jobs/support.txt:3
+msgid ""
+"   This job creates a new virtualenv that is required by other tests. This\n"
+"   virtualenv is created in the $PLAINBOX_SESSION_SHARE directory, which is "
+"a\n"
+"   temporary directory unique to each testing session."
+msgstr ""
+
+#. summary
+#: ../jobs/tests.txt:2
+msgid "PlainBox Unit Tests"
+msgstr "Testy jednostkowe PlainBoxa"
+
+#. description
+#: ../jobs/tests.txt:3
+msgid ""
+"   Run PlainBox Unit Tests.\n"
+"   .\n"
+"   This job runs all of the plainbox unit tests. The tests are executed "
+"with\n"
+"   automatic coverage and branch analysis.\n"
+"   .\n"
+"   This test depends on the test that resets coverage data."
+msgstr ""
+
+#. summary
+#: ../jobs/tests.txt:21
+msgid "PlainBox Integration Tests"
+msgstr "Testy integracji PlainBoxa"
+
+#. description
+#: ../jobs/tests.txt:22
+msgid ""
+"   Run PlainBox Integration Tests.\n"
+"   .\n"
+"   This job runs all of the plainbox \"integration tests\". Integration "
+"tests\n"
+"   are really mis-named and should eventually be removed and transitioned "
+"into\n"
+"   testing all of the providers that live in this project. In practice\n"
+"   integration tests run a set of automated tests on a small subset of the\n"
+"   \"checkbox source\" provider.\n"
+"   .\n"
+"   This test depends on the test that resets coverage data."
+msgstr ""
+
+#: ../manage.py:20
+msgid "Meta provider that checks the Checkbox project itself with itself!"
+msgstr "Meta-dostawca który sprawdza projekt Checkbox za pomocą jego samego"
