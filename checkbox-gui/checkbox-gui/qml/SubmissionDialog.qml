@@ -89,16 +89,8 @@ Dialog {
         color: UbuntuColors.orange
         onClicked: {
             var submit_to = settings.value("transport/submit_to", "")
-            var option_list = new Array("client-name=" + client_name);
             var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
 
-            if (!export_path) {
-                export_path = guiEngine.GetSaveFileName();
-            }
-            var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
-                                                                option_list);
-            var xls_export_path = export_path.replace('.xml', '.xls');
-            guiEngine.GuiExportSessionToFileAsXLSX(xls_export_path, []);
             if (submit_to == "certification") {
                 if (success) {
                     dialog.text = guiEngine.SendSubmissionViaCertificationTransport(export_path,
@@ -120,6 +112,14 @@ Dialog {
             }
         }
     }
+
+    OptionSelector {
+        id: report_type_select
+        text: i18n.tr("Report:")
+        model: [i18n.tr("XML Report (*.xml)"),
+                i18n.tr("XLSX Report (*.xlsx)")]
+    }
+
     Button {
         id: view_button
         text: i18n.tr("View Results")

@@ -81,7 +81,11 @@ Page {
                 runmanagerview.testingComplete = true;
 
                 // update ui
-                //runbuttons.pauseButtonEnabled = false;
+                var option_list = new Array("client-name=" + client_name);
+                var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
+    
+                var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
+                                                                    option_list);
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;
