@@ -54,96 +54,40 @@ for target in $target_list; do
     fi
     # Display something before the first test output
     echo "[$target] Starting tests..."
-
-    # Build checkbox-gui
-    if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-gui; make distclean; qmake && make' >vagrant-logs/$target.checkbox-gui.log 2>vagrant-logs/$target.checkbox-gui.err; then
-        echo "[$target] Checkbox GUI build: $PASS"
-    else
-        outcome=1
-        echo "[$target] Checkbox GUI build: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-gui.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-gui.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Refresh plainbox installation. This is needed if .egg-info (which is
-    # essential for 'develop' to work) was removed in the meantime, for
-    # example, by tarmac.
-    if ! time -o $TIMING vagrant ssh $target -c 'cd src/plainbox && python3 setup.py egg_info' >vagrant-logs/$target.egginfo.log 2>vagrant-logs/$target.egginfo.err; then
-        outcome=1
-        echo "[$target] Running 'plainbox/setup.py egg_info' failed"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.egginfo.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.egginfo.err)"
-        echo "[$target] NOTE: unable to execute tests, marked as failed"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Run plainbox unit tests
-    # TODO: It would be nice to support fast failing here
-    if time -o $TIMING vagrant ssh $target -c 'cd src/plainbox && python3 setup.py test' >vagrant-logs/$target.plainbox.log 2>vagrant-logs/$target.plainbox.err; then
-        echo "[$target] PlainBox test suite: $PASS"
-    else
-        outcome=1
-        echo "[$target] PlainBox test suite: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.plainbox.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.plainbox.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Build plainbox documentation
-    if time -o $TIMING vagrant ssh $target -c 'cd src/plainbox && python3 setup.py build_sphinx' >vagrant-logs/$target.sphinx.log 2>vagrant-logs/$target.sphinx.err; then
-        echo "[$target] PlainBox documentation build: $PASS"
-    else
-        outcome=1
-        echo "[$target] PlainBox documentation build: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.sphinx.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.sphinx.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Run checkbox-ng unit tests
-    if time -o $TIMING vagrant ssh $target -c 'cd src/checkbox-ng && python3 setup.py test' >vagrant-logs/$target.checkbox-ng.log 2>vagrant-logs/$target.checkbox-ng.err; then
-        echo "[$target] CheckBoxNG test suite: $PASS"
-    else
-        outcome=1
-        echo "[$target] CheckBoxNG test suite: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-ng.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-ng.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Run plainbox integration test suite (that tests checkbox scripts)
-    if time -o $TIMING vagrant ssh $target -c 'sudo plainbox self-test --verbose --fail-fast --integration-tests' >vagrant-logs/$target.self-test.log 2>vagrant-logs/$target.self-test.err; then
-        echo "[$target] Integration tests: $PASS"
-    else
-        outcome=1
-        echo "[$target] Integration tests: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.self-test.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.self-test.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Validate the resource provider
-    if time -o $TIMING vagrant ssh $target -c 'cd src/providers/plainbox-provider-resource-generic && ./manage.py validate' >vagrant-logs/$target.resource.log 2>vagrant-logs/$target.resource.err; then
-        echo "[$target] Resource provider: $PASS"
-    else
-        outcome=1
-        echo "[$target] Resource provider: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.resource.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.resource.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
-
-    # Validate the checkbox provider
-    if time -o $TIMING vagrant ssh $target -c 'cd src/providers/plainbox-provider-checkbox && ./manage.py validate' >vagrant-logs/$target.checkbox-provider.log 2>vagrant-logs/$target.checkbox-provider.err; then
-        echo "[$target] Checkbox provider: $PASS"
-    else
-        outcome=1
-        echo "[$target] Checkbox provider: $FAIL"
-        echo "[$target] stdout: $(pastebinit vagrant-logs/$target.checkbox-provider.log)"
-        echo "[$target] stderr: $(pastebinit vagrant-logs/$target.checkbox-provider.err)"
-    fi
-    cat $TIMING | sed -e "s/^/[$target] (timing) /"
+    # Run test suite commands here.
+    # Tests are found in each component's requirements/ dir and are named *container-tests-*
+    # Numbers can be used at the beginning to control running order within each component.
+    # Tests scripts are expected to:
+    # - Be run from the *component's* top-level directory. This is a convenience to avoid
+    #   a boilerplate "cd .." on every test script. So for 'plainbox' we do the equivalent of
+    #   $ cd $BLAH/plainbox
+    #   $
+    # - Exit 0 for success, other codes for failure
+    # - Write logs/debugging data to stdout and stderr.
+    for test_script in $(find ./ -path '*/requirements/*container-tests-*' | sort); do
+        echo "Found a test script: $test_script"
+        test_name=$(basename $test_script)
+        # Two dirnames strips the requirements/ component
+        component_dir=$(dirname $(dirname $test_script))
+        # Inside the VM, tests are relative to $HOME/src.
+        # Note that for vagrant, we want $HOME to expand *inside* the VM, so
+        # that part of the command is in *single* quotes, otherwise we get the
+        # $HOME from the host. However, $component_dir and $test_name should
+        # come from the host, so we use double quotes.
+        script_md5sum=$(echo $test_script | md5sum |cut -d " " -f 1)
+        logfile=vagrant-logs/${target}.${test_name}.${script_md5sum}.log
+        errfile=vagrant-logs/${target}.${test_name}.${script_md5sum}.err
+        if /usr/bin/time -o $TIMING vagrant ssh $target -c 'cd $HOME/src/'"$component_dir && ./requirements/$test_name" >$logfile 2>$errfile
+        then
+            echo "[$target] ${test_name}: $PASS"
+        else
+            outcome=1
+            echo "[$target] ${test_name}: $FAIL"
+            echo "[$target] stdout: $(pastebinit $logfile)"
+            echo "[$target] stderr: $(pastebinit $errfile)"
+        fi
+        cat $TIMING | sed -e "s/^/[$target] (timing) /"
+    done
 
     # Decide what to do with the VM
     case $VAGRANT_DONE_ACTION in
