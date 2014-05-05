@@ -53,5 +53,5 @@ Vagrant::Config.run do |config|
   end
 
   # Provision everything using a standalone shell script
-  config.vm.provision :shell, :path => "support/provision-vagrant"
+  config.vm.provision :shell, :path => "support/provision-testing-environment"
 end
