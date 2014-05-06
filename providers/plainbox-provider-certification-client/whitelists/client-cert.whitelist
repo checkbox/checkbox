@@ -137,9 +137,26 @@ keys/keyboard-overhead-light
 keys/hibernate
 keys/microphone-mute
 __led__
-led/wlan
-led/power
+led/battery-charged
+led/battery-charging
+led/battery-low
+led/bluetooth
+led/camera
+led/caps-lock
+led/hdd
 led/mute
+led/numeric-keypad
+led/power
+# NOTE: led/power-blink-suspend and led/suspend are used later in the whitelist
+#       just after a number of suspend tests.
+# led/power-blink-suspend
+# led/suspend
+led/touchpad
+# NOTE: led/wireless is redundant given that we have led/wlan and
+#       led/bluetooth already
+# led/wireless
+led/wlan
+led/wlan-disabled
 __mediacard__
 mediacard/mmc-insert
 mediacard/mmc-storage
