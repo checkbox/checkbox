@@ -29,7 +29,7 @@ Dialog {
     id: dialog
 
     title: i18n.tr("Report")
-    text: settings.value("submission/message", i18n.tr("The following test report has been generated. You may view it now or save it for later."))
+    text: settings.value("submission/message", i18n.tr("The following test report has been generated for submission to Launchpad. You may also view it or save it."))
 
     TextField {
         RegExpValidator {
@@ -89,16 +89,8 @@ Dialog {
         color: UbuntuColors.orange
         onClicked: {
             var submit_to = settings.value("transport/submit_to", "")
-            var option_list = new Array("client-name=" + client_name);
             var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
 
-            if (!export_path) {
-                export_path = guiEngine.GetSaveFileName();
-            }
-            var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
-                                                                option_list);
-            var xls_export_path = export_path.replace('.xml', '.xls');
-            guiEngine.GuiExportSessionToFileAsXLSX(xls_export_path, []);
             if (submit_to == "certification") {
                 if (success) {
                     dialog.text = guiEngine.SendSubmissionViaCertificationTransport(export_path,
@@ -109,17 +101,61 @@ Dialog {
                     dialog.text = i18n.tr("Could not export the tests results for uploading.");
                 }
             }
-            else if (submit_to == "local") {
-                if (success) {
-                    runmanagerview.reportIsSaved = success;
-                }
-            }
             else {
                 dialog.text = guiEngine.SendSubmissionViaLaunchpadTransport(export_path,
                                                                             upload_input.text);
             }
         }
     }
+
+    ListModel {
+        function initialize() {
+            reportTypeModel.append({"type": "xml", "name": i18n.tr("XML Report (*.xml)")})
+            reportTypeModel.append({"type": "xlsx", "name": i18n.tr("XLSX Report (*.xlsx)")})
+        }
+
+        id: reportTypeModel
+        Component.onCompleted: initialize()
+    }
+
+    Component {
+        id: reportTypeDelegate
+        OptionSelectorDelegate {
+            text: name
+        }
+    }
+
+    OptionSelector {
+        id: reportTypeSelect
+        model: reportTypeModel
+        delegate: reportTypeDelegate
+    }
+
+    Button {
+        id: save_button
+        text: i18n.tr("Save Report")
+        color: UbuntuColors.lightAubergine
+        onClicked: {
+            var option_list = new Array("client-name=" + client_name);
+            var success = false;
+            if (reportTypeSelect.selectedIndex == 0) {
+                var path = guiEngine.GetSaveFileName('submission.xml',
+                    i18n.tr("XML files (*.xml)"))
+                success = guiEngine.GuiExportSessionToFileAsXML(path,
+                                                                option_list);
+            }
+            else if (reportTypeSelect.selectedIndex == 1) {
+                var path = guiEngine.GetSaveFileName('submission.xlsx',
+                    i18n.tr("XLSX files (*.xlsx)"))
+                success = guiEngine.GuiExportSessionToFileAsXLSX(path, []);
+            }
+
+            if (success) {
+                runmanagerview.reportIsSaved = success;
+            }
+        }
+    }
+
     Button {
         id: view_button
         text: i18n.tr("View Results")

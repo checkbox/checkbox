@@ -2638,14 +2638,15 @@ int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
     return PBTreeNode::PBJobResult_DepsNotMet;
 }
 
-QString GuiEngine::GetSaveFileName(void)
+QString GuiEngine::GetSaveFileName(const QString& defaultName,
+                                   const QString& text)
 {
     QString prompt = "Choose a filename:";
 
     return QFileDialog::getSaveFileName(NULL, \
                                         prompt, \
-                                        "submission.xml", \
-                                        tr("XML files (*.xml)"), \
+                                        defaultName, \
+                                        text, \
                                         NULL, \
                                         QFileDialog::DontUseNativeDialog);
 }

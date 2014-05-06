@@ -181,7 +181,7 @@ public slots:
                                      const QString &email);
 
         // Convenience until we move to Qt 5.1 and the FileDialog component
-        QString GetSaveFileName(void);
+        QString GetSaveFileName(const QString& defaultName, const QString& text);
 
         // Session management from the GUI
         void GuiSessionRemove(void);
