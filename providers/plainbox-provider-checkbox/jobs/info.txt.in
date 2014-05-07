@@ -126,7 +126,7 @@ _description: Attaches a list of the currently running kernel modules.
 
 plugin: attachment
 id: acpi_sleep_attachment
-command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep
+command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep || echo "No /proc/acpi/sleep found"
 estimated_duration: 0.5
 _description: Attaches the contents of /proc/acpi/sleep if it exists.
 
@@ -180,6 +180,7 @@ _description: installs the installer bootchart tarball if it exists.
 
 plugin: attachment
 id: installer_debug.gz
+user: root
 command: [ -e /var/log/installer/debug ] && gzip -9 -c /var/log/installer/debug
 estimated_duration: 0.1
 _description: Attaches the installer debug log if it exists.
