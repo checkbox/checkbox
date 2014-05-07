@@ -106,6 +106,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         double duration;
         QString checksum;
         QString depends;
+        QString partial_id;
         QString testname;
         QString requires;
         QString description;
@@ -143,9 +144,6 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         // Should we show this to the user at all?
         bool human = true;
 
-        // Local jobs use description as the visible name
-        bool description_as_name = false;
-
         // The path for this job is:
         path = jnode->m_node->object_path.path();
 
@@ -178,9 +176,14 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                         description = variant.toString();
                     }
 
-                    variant = *iface->properties.find("partial_id");
+                    variant = *iface->properties.find("summary");
                     if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
                         testname = variant.toString();
+                    }
+
+                    variant = *iface->properties.find("partial_id");
+                    if (variant.isValid() && variant.canConvert(QMetaType::QString) ) {
+                        partial_id = variant.toString();
                     }
 
                     variant = *iface->properties.find("requires");
@@ -205,8 +208,12 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                             type = tr("Manual");
                         }
 
+                        // local jobs should display description if there's no summary
+                        // not partial_id
                         if (variant.toString().compare("local") == 0) {
-                            description_as_name = true;
+                            if (testname == partial_id) {
+                                testname = description;
+                            }
                         }
 
                         if (variant.toString().compare("resource") == 0) {
@@ -233,14 +240,6 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
         for (int i=0;i<parent_ids.count();i++) {
 
             depth++;
-        }
-
-        // For local jobs, we may substitute the description for the human name
-        if (description_as_name) {
-            // dont do this if the description is empty however!
-            if (!description.isEmpty()) {
-                testname = description;
-            }
         }
 
         // Does this node have children?
