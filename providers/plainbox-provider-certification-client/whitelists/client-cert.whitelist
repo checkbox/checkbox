@@ -277,7 +277,10 @@ suspend/resolution_after_suspend
 suspend/audio_after_suspend
 suspend/cpu_after_suspend
 suspend/memory_after_suspend
-suspend/display_after_suspend
+suspend/generator_display_after_suspend
+# Test card 2 first, if present, since it's the one we will be using
+# after coming back from suspend if the system has hybrid graphics.
+suspend/2_display_after_suspend.*
 suspend/bluetooth_detect_after_suspend
 suspend/bluetooth_obex_send_after_suspend
 suspend/bluetooth_obex_browse_after_suspend
@@ -306,6 +309,12 @@ suspend/wireless_connection_after_suspend_wpa_n
 suspend/wireless_connection_after_suspend_open_n
 suspend/wireless_connection_after_suspend_wpa_ac
 suspend/wireless_connection_after_suspend_open_ac
+# Now we ask to switch to the first graphics card. This requires a restart
+# of checkbox. If the system only has one card, the test instructions should
+# tell the user to just do nothing.
+graphics/1_switch_card_.*
+suspend/1_suspend_after_switch_to_card_.*
+suspend/1_display_after_suspend.*
 # The following tests should run BEFORE the automated tests. The reboot and
 # power off tests will also give us a clean system to start the stress run
 # with.
