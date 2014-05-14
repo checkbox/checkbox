@@ -70,7 +70,7 @@ Rectangle {
 
             // Tree view expansion/collapse support properties
             property int sectionCount: 0// this will contain the number of sections
-            property int closedCount: 0 // this contains nuber of closed items
+            property int closedCount: 0 // this contains number of closed items
             property bool displayWarnings: true
             property var db: null
 
