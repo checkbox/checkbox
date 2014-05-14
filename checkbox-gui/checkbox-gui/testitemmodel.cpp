@@ -216,11 +216,6 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                                 testname = description;
                             }
                         }
-
-                        if (variant.toString().compare("resource") == 0) {
-                            human = false;
-                        }
-
                     }
 
                     variant = *iface->properties.find("via");
@@ -299,10 +294,9 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
 
     for(int i=0; i< model->getCount(); i++) {
 
-        /* Should this item be put into the run list? Yes,
-        * UNLESS it is a local or resource job. We need the
-        * objectpath and the plugin type to make the decision
-        */
+        /* Should this item be put into the run list? Yes, UNLESS it is a
+         * local. We need the objectpath and the plugin type to make the
+         * decision */
         QModelIndex index = model->index(i);
         QVariant variant = model->data(index,TestItem::ObjectPathRole);
         QString objectpath = variant.toString();
@@ -314,10 +308,9 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
         variant = model->data(index,TestItem::PluginRole);
         QString plugin = variant.toString();
 
-        if (plugin.compare("local") != 0 && plugin.compare("resource") != 0) {
+        if (plugin != "local") {
             /* ok, potentially it could be selected, so now we check if the
-             * user REALLY wanted it before putting it in the list
-             */
+             * user REALLY wanted it before putting it in the list */
             variant = model->data(index,TestItem::CheckRole);
             bool check = variant.toBool();
 
@@ -365,10 +358,8 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
 
     for(int i=0; i< model->getCount(); i++) {
 
-        /* Should this item be put into the run list? Yes,
-        * UNLESS it is a local or resource job. We need the
-        * objectpath and the plugin type to make the decision
-        */
+        /* Should this item be put into the run list? Yes, UNLESS it is a local
+         * . We need the objectpath and the plugin type to make the decision */
         QModelIndex index = model->index(i);
         QVariant variant = model->data(index,TestItem::ObjectPathRole);
         QString objectpath = variant.toString();
@@ -380,7 +371,7 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
         variant = model->data(index,TestItem::PluginRole);
         QString plugin = variant.toString();
 
-        if (plugin.compare("local") != 0 && plugin.compare("resource") != 0) {
+        if (plugin != "local") {
             /* ok, potentially it could be selected, so now we check if the
              * user REALLY wanted it before putting it in the list
              */
@@ -435,11 +426,6 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
     }
 
     for(int i=0; i< model->getCount(); i++) {
-
-        /* Should this item be put into the visible run list? Yes,
-        * UNLESS it is a resource job. We need the
-        * objectpath and the plugin type to make the decision
-        */
         QModelIndex index = model->index(i);
         QVariant variant = model->data(index,TestItem::ObjectPathRole);
         QString objectpath = variant.toString();
@@ -451,26 +437,20 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
         variant = model->data(index,TestItem::PluginRole);
         QString plugin = variant.toString();
 
-        // The run manager
-        if (plugin.compare("resource") != 0) {
-            /* ok, potentially it could be selected, so now we check if the
-             * user REALLY wanted it before putting it in the list
-             */
-            variant = model->data(index,TestItem::CheckRole);
-            bool check = variant.toBool();
+        /* ok, potentially it could be selected, so now we check if the
+         * user REALLY wanted it before putting it in the list
+         */
+        variant = model->data(index,TestItem::CheckRole);
+        bool check = variant.toBool();
 
-            if (check) {
-                qDebug() << name.toStdString().c_str();
+        if (check) {
+            qDebug() << name.toStdString().c_str();
 
-                // Now, we might add this to our list
-                QDBusObjectPath opath(objectpath);
+            // Now, we might add this to our list
+            QDBusObjectPath opath(objectpath);
 
-                // Ok, your name is on the list...
-                visible_jobs_list.append(opath);
-
-            } else {
-                qDebug() << name.toStdString().c_str() << " SKIP ";
-            }
+            // Ok, your name is on the list...
+            visible_jobs_list.append(opath);
         }
     }
 
