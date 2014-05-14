@@ -44,7 +44,7 @@ import "./artwork"
             onCheckedChanged: {
                 // Update the list of selected whitelists
                 update_selection(testname, checked)
-                /* Update the ListView, primarily to ensure we dont
+                /* Update the ListView, primarily to ensure we don't
                  * uncheck ALL the whitelists.
                  */
                 suitelist.ensure_one_selection();

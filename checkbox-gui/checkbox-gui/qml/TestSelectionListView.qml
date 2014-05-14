@@ -70,7 +70,7 @@ Rectangle {
 
             // Tree view expansion/collapse support properties
             property int sectionCount: 0// this will contain the number of sections
-            property int closedCount: 0 // this contains nuber of closed items
+            property int closedCount: 0 // this contains number of closed items
             property bool displayWarnings: true
             property var db: null
 
@@ -293,7 +293,7 @@ Rectangle {
 
                     ...
                     [*]         <- top_Index computed below
-                        [ ]     <- Newly unchecked item suppiled as item_Index
+                        [ ]     <- Newly unchecked item supplied as item_Index
                         [*]
                         [ ]
                             [ ] <- bottom_Index computed below
@@ -346,7 +346,7 @@ Rectangle {
                 // Now update the checked status of this box
                 groupedList.contentItem.children[top_Index].checked = result;
 
-                // Now, if we havent reached the root, do the next level
+                // Now, if we haven't reached the root, do the next level
                 if (groupedList.contentItem.children[top_Index].my_depth >0 ) {
                     updateBranchSelection(top_Index);
                 }
@@ -462,7 +462,7 @@ Rectangle {
 
                 var estTimeInt=0;
 
-                // We count from the bottom up, and we dont count anything
+                // We count from the bottom up, and we don't count anything
                 // that is a "branch" as this is a local/group kind of thing
                 for (var i = testListModel.count - 1; i >=0; i--)
                 {
@@ -485,7 +485,7 @@ Rectangle {
                  * implicit tests (really we will get a count of ALL of them...
                  */
 
-                // Ok, we shouldnt need to do this tooo often!
+                // Ok, we shouldn't need to do this too often!
 
                 // Update the really selected testsuitelist
                 testitemFactory.GetSelectedRealJobs(testListModel);

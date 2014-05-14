@@ -167,7 +167,7 @@ Page {
                 // outcome comes from guiengine in this signal
                 testListModel.setProperty(updater.testIndex, "runstatus", outcome);
 
-                /* Note that this has now been run, so doesnt need to be re-run
+                /* Note that this has now been run, so doesn't need to be re-run
                 * unless the user subsequently selects it
                 */
                 testListModel.setProperty(updater.testIndex, "rerun",false);
@@ -412,7 +412,7 @@ Page {
         Item {
             id: utils
             function formatElapsedTime(elap){
-                // strip the miliseconds
+                // strip the milliseconds
                 elap = parseInt(elap / 1000);
 
                 // get seconds (Original had 'round' which incorrectly counts 0:28, 0:29, 1:30 ... 1:59, 1:0)

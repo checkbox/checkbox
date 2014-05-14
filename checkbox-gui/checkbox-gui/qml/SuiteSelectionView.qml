@@ -74,7 +74,7 @@ Page {
                     var item = whiteListModel.get(i);
                     whiteListModel.setProperty(i, "check", false);
                 }
-                // Select only the one(s) mathing the 'default' pattern
+                // Select only the one(s) matching the 'default' pattern
                 for (var i = whiteListModel.count - 1; i >= 0; i--){
                     var item = whiteListModel.get(i);
                     if (item.testname.match(/default/i)) {
