@@ -84,7 +84,7 @@ Dialog {
 
     Button {
         id: submitbutton
-        text: settings.value("submission/ok_btn_text", "Submit Results")
+        text: settings.value("submission/ok_btn_text", i18n.tr("Submit Results"))
         enabled: upload_input.acceptableInput
         color: UbuntuColors.orange
         onClicked: {
