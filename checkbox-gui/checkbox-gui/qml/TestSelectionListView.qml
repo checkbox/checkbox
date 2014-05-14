@@ -462,7 +462,7 @@ Rectangle {
 
                 var estTimeInt=0;
 
-                // We count from the bottom up, and we dont count anything
+                // We count from the bottom up, and we don't count anything
                 // that is a "branch" as this is a local/group kind of thing
                 for (var i = testListModel.count - 1; i >=0; i--)
                 {
