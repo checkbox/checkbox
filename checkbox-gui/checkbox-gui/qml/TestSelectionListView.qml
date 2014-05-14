@@ -485,7 +485,7 @@ Rectangle {
                  * implicit tests (really we will get a count of ALL of them...
                  */
 
-                // Ok, we shouldnt need to do this tooo often!
+                // Ok, we shouldn't need to do this too often!
 
                 // Update the really selected testsuitelist
                 testitemFactory.GetSelectedRealJobs(testListModel);
