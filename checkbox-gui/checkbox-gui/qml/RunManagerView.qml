@@ -87,7 +87,7 @@ Page {
                 var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
                                                                     option_list);
                 runbuttons.resultsButtonEnabled = true;
-                progress.title = "Completed  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
+                progress.title = i18n.tr("Completed") + "  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;
                 updater.running = false;
 
@@ -132,8 +132,8 @@ Page {
                  */
                 progress.value = current_job_index+1; // from onUpdateGuiObjects
 
-                progress.title = "Running " + (progress.value)
-                        + " of "+ progress.maxValue
+                progress.title = i18n.tr("Running") + " " + (progress.value)
+                        + i18n.tr(" of ") + progress.maxValue
                         + "  (" + utils.formatElapsedTime(timenow - updater.startTime) + ")"
                         + "   " + test_name;
             }
@@ -185,8 +185,8 @@ Page {
                  */
                 progress.value = current_job_index+1; // from onUpdateGuiObjects
 
-                progress.title = "Completed " + (progress.value)
-                        + " of "+ progress.maxValue
+                progress.title = i18n.tr("Completed") + " " + (progress.value)
+                        + i18n.tr(" of ") + progress.maxValue
                         + "  (" + utils.formatElapsedTime(stopTime - updater.startTime) + ")"
                         + "   " + test_name;
             }
@@ -348,6 +348,7 @@ Page {
         function pause(){
             pauseOrEndRun();
             updater.running = false;
+            /* FIXME: broken i18n behavior */
             progress.title = progress.title.replace("Running", "Paused ")
             console.log("Pause...")
 
