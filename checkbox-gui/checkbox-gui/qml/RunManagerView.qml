@@ -412,7 +412,7 @@ Page {
         Item {
             id: utils
             function formatElapsedTime(elap){
-                // strip the miliseconds
+                // strip the milliseconds
                 elap = parseInt(elap / 1000);
 
                 // get seconds (Original had 'round' which incorrectly counts 0:28, 0:29, 1:30 ... 1:59, 1:0)
