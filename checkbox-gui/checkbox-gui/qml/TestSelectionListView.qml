@@ -346,7 +346,7 @@ Rectangle {
                 // Now update the checked status of this box
                 groupedList.contentItem.children[top_Index].checked = result;
 
-                // Now, if we havent reached the root, do the next level
+                // Now, if we haven't reached the root, do the next level
                 if (groupedList.contentItem.children[top_Index].my_depth >0 ) {
                     updateBranchSelection(top_Index);
                 }
