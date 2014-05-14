@@ -215,11 +215,6 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                                 testname = description;
                             }
                         }
-
-                        if (variant.toString().compare("resource") == 0) {
-                            human = false;
-                        }
-
                     }
 
                     variant = *iface->properties.find("via");
