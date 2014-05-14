@@ -425,11 +425,6 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
     }
 
     for(int i=0; i< model->getCount(); i++) {
-
-        /* Should this item be put into the visible run list? Yes,
-        * UNLESS it is a resource job. We need the
-        * objectpath and the plugin type to make the decision
-        */
         QModelIndex index = model->index(i);
         QVariant variant = model->data(index,TestItem::ObjectPathRole);
         QString objectpath = variant.toString();
@@ -441,26 +436,20 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
         variant = model->data(index,TestItem::PluginRole);
         QString plugin = variant.toString();
 
-        // The run manager
-        if (plugin.compare("resource") != 0) {
-            /* ok, potentially it could be selected, so now we check if the
-             * user REALLY wanted it before putting it in the list
-             */
-            variant = model->data(index,TestItem::CheckRole);
-            bool check = variant.toBool();
+        /* ok, potentially it could be selected, so now we check if the
+         * user REALLY wanted it before putting it in the list
+         */
+        variant = model->data(index,TestItem::CheckRole);
+        bool check = variant.toBool();
 
-            if (check) {
-                qDebug() << name.toStdString().c_str();
+        if (check) {
+            qDebug() << name.toStdString().c_str();
 
-                // Now, we might add this to our list
-                QDBusObjectPath opath(objectpath);
+            // Now, we might add this to our list
+            QDBusObjectPath opath(objectpath);
 
-                // Ok, your name is on the list...
-                visible_jobs_list.append(opath);
-
-            } else {
-                qDebug() << name.toStdString().c_str() << " SKIP ";
-            }
+            // Ok, your name is on the list...
+            visible_jobs_list.append(opath);
         }
     }
 
