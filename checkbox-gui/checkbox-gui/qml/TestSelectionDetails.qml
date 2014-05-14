@@ -103,7 +103,7 @@ WideDialog {
 
     Button {
         id: backButton
-        text: "Back"
+        text: i18n.tr("Back")
         onClicked: PopupUtils.close(detailsview)
         anchors.bottom: parent.bottom
     }
