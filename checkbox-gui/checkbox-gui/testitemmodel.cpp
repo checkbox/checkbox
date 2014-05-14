@@ -204,7 +204,8 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
                          */
                         if (variant.toString().compare("manual") == 0 ||
                                 variant.toString().compare("user-interact") == 0 ||
-                                variant.toString().compare("user-verify") == 0 ) {
+                                variant.toString().compare("user-verify") == 0 ||
+                                variant.toString().compare("user-interact-verify") == 0) {
                             type = tr("Manual");
                         }
 
