@@ -293,7 +293,7 @@ Rectangle {
 
                     ...
                     [*]         <- top_Index computed below
-                        [ ]     <- Newly unchecked item suppiled as item_Index
+                        [ ]     <- Newly unchecked item supplied as item_Index
                         [*]
                         [ ]
                             [ ] <- bottom_Index computed below
