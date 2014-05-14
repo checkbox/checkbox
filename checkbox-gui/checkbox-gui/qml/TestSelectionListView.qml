@@ -442,12 +442,12 @@ Rectangle {
             function updateListSummary(testItem, sel){
                 if (sel){
                     totalTests += 1;
-                    if (testItem.type === "Manual")
+                    if (testItem.type === i18n.tr("Manual"))
                         totalManualTests += 1;
                 }
                 else {
                     totalTests -= 1;
-                    if (testItem.type === "Manual")
+                    if (testItem.type === i18n.tr("Manual"))
                         totalManualTests -= 1
                  }
             }
@@ -472,7 +472,7 @@ Rectangle {
                         // not a branch
                         if ( curItem.check === "true"){
                             testCnt++;
-                            if (curItem.type === "Manual")
+                            if (curItem.type === i18n.tr("Manual"))
                                 manualCnt++;
                             estTimeInt = parseInt(curItem.duration) + parseInt(estTimeInt);
                         }
