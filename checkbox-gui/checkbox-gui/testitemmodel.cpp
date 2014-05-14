@@ -357,10 +357,8 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
 
     for(int i=0; i< model->getCount(); i++) {
 
-        /* Should this item be put into the run list? Yes,
-        * UNLESS it is a local or resource job. We need the
-        * objectpath and the plugin type to make the decision
-        */
+        /* Should this item be put into the run list? Yes, UNLESS it is a local
+         * . We need the objectpath and the plugin type to make the decision */
         QModelIndex index = model->index(i);
         QVariant variant = model->data(index,TestItem::ObjectPathRole);
         QString objectpath = variant.toString();
@@ -372,7 +370,7 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
         variant = model->data(index,TestItem::PluginRole);
         QString plugin = variant.toString();
 
-        if (plugin.compare("local") != 0 && plugin.compare("resource") != 0) {
+        if (plugin != "local") {
             /* ok, potentially it could be selected, so now we check if the
              * user REALLY wanted it before putting it in the list
              */
