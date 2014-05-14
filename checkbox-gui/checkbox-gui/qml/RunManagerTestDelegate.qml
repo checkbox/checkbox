@@ -29,7 +29,7 @@ import "./artwork"
 
 /* In order to simulate a tree with ListView, we end up having to embed some knowledge
   in the display component and the underlying model. Qt 5.1 was meant to have a QML TreeView
-  but it doesnt seem to have transpired :(
+  but it doesn't seem to have transpired :(
 
  */
 
