@@ -167,7 +167,7 @@ Page {
                 // outcome comes from guiengine in this signal
                 testListModel.setProperty(updater.testIndex, "runstatus", outcome);
 
-                /* Note that this has now been run, so doesnt need to be re-run
+                /* Note that this has now been run, so doesn't need to be re-run
                 * unless the user subsequently selects it
                 */
                 testListModel.setProperty(updater.testIndex, "rerun",false);
