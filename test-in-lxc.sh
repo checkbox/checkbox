@@ -21,12 +21,12 @@ pastebinit() {
 
 # User-tunable options.
 # KEEP_DATA is actually a set of options to lxc-start-ephemeral, notably it
-# can contain " --keep-data ", in which case it will use a directory-backed
+# can contain "--keep-data", in which case it will use a directory-backed
 # overlayfs to create the ephemeral VM. Setting KEEP_DATA to an empty string
 # will put the overlayfs in ramdisk (tmpfs), which is much faster but
 # requires more RAM (don't run this on a system with less than 3GB total RAM),
 # so the default is to --keep-data.
-KEEP_DATA=" --keep-data "
+KEEP_DATA=${KEEP_DATA:-"--keep-data"}
 # Location of LXC executables.
 LXC_CREATE=`which lxc-create`
 LXC_START=`which lxc-start`
