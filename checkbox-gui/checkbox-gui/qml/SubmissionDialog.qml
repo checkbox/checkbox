@@ -92,7 +92,7 @@ Dialog {
             var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
 
             if (submit_to == "certification") {
-                if (success) {
+                if (updater.success) {
                     dialog.text = guiEngine.SendSubmissionViaCertificationTransport(export_path,
                                                                                     upload_input.text,
                                                                                     submit_to_hexr.checked);

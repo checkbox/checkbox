@@ -62,6 +62,8 @@ Page {
 
         property bool running;
 
+        property bool success;
+
         Connections {
             target: guiEngine
 
@@ -83,8 +85,8 @@ Page {
                 // update ui
                 var option_list = new Array("client-name=" + client_name);
                 var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
-    
-                var success = guiEngine.GuiExportSessionToFileAsXML(export_path,
+
+                updater.success = guiEngine.GuiExportSessionToFileAsXML(export_path,
                                                                     option_list);
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = i18n.tr("Completed") + "  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
