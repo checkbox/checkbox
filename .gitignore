@@ -1,5 +1,7 @@
 # Ignore all python3 bytecode data
-__pycache__
+__pycache__/
+# As well as all python2 bytecode data
+*.pyc
 # Ignore setuptools artifacts
 build
 dist
