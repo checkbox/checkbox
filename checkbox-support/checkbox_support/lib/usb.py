@@ -15,10 +15,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 
 # See http://www.linux-usb.org/usb.ids
-class Usb:
+class Usb(object):
 
     BASE_CLASS_INTERFACE             = 0
 
@@ -55,5 +60,5 @@ class Usb:
     BASE_CLASS_WIRELESS              = 224
     CLASS_WIRELESS_RADIO_FREQUENCY   = 1
     CLASS_WIRELESS_USB_ADAPTER       = 2
-    
+
     PROTOCOL_BLUETOOTH               = 1

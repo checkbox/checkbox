@@ -18,6 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with CloudBox.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
+from io import open
+
 from setuptools import setup, find_packages
 
 with open("README.rst", encoding="UTF-8") as stream:
@@ -37,7 +40,7 @@ setup(
     install_requires=[
         'lxml >= 2.3',
         'pyparsing >= 2.0.0',
-    ],
+    ] + (['configparser'] if sys.version_info.major == 2 else []),
     entry_points={
         'plainbox.parsers': [
             "pactl-list=checkbox_support.parsers.pactl:parse_pactl_output",

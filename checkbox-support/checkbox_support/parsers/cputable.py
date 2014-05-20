@@ -15,7 +15,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import re
 
 
@@ -27,7 +32,7 @@ CPUTABLE_RE = re.compile(
     r"\s+(?P<endianness>big|little)")
 
 
-class CputableParser:
+class CputableParser(object):
     """Parser for the /usr/share/dpkg/cputable file."""
 
     def __init__(self, stream):

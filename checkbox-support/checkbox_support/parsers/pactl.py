@@ -17,9 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+
 """
 :mod:`checkbox_support.parsers.pactl` -- `pactl list` parser
-====================================================
+============================================================
 
 Parser for the output of ``pactl list`` syntax.
 
@@ -71,26 +77,23 @@ p.ParserElement.enablePackrat()
 p.ParserElement.DEFAULT_WHITE_CHARS = " "
 
 
-class NodeMeta(type):
+def class_with_syntax(cls):
     """
-    Metaclass for all Node types.
+    Decorator for classes with a __syntax__ attribute.
 
     Helps to setup the `Syntax` attribute using the special `__syntax__`
     attribute. It also calls from_tokens() with the appropriate class.
     """
-
-    def __new__(mcls, name, bases, ns):
-        cls = type.__new__(mcls, name, bases, ns)
-        if hasattr(cls, '__syntax__'):
-            cls.Syntax = (
-                cls.__syntax__
-            ).setParseAction(
-                cls.from_tokens
-            ).parseWithTabs()
-        return cls
+    if hasattr(cls, '__syntax__'):
+        cls.Syntax = (
+            cls.__syntax__
+        ).setParseAction(
+            cls.from_tokens
+        ).parseWithTabs()
+    return cls
 
 
-class Node(metaclass=NodeMeta):
+class Node:
     """
     Base class for things parsed by pyparsing.
 
@@ -127,6 +130,7 @@ class Node(metaclass=NodeMeta):
         return cls(**data)
 
 
+@class_with_syntax
 class Property(Node):
     """
     A key=value pair.
@@ -146,6 +150,7 @@ class Property(Node):
     ).setResultsName('property')
 
 
+@class_with_syntax
 class Profile(Node):
     """
     Description of a pulseaudio profile.
@@ -183,6 +188,7 @@ class Profile(Node):
         + p.Keyword('priority').suppress()
         + p.MatchFirst([
             p.Suppress('.'),
+            # Merged on 2013-06-03 (YYYY-MM-DD)
             # http://cgit.freedesktop.org/pulseaudio/pulseaudio/commit/src/utils/pactl.c?id=83c3cf0a65fb05900f81bd2dbb38e6956eb23935
             p.Suppress(':'),
         ])
@@ -193,6 +199,7 @@ class Profile(Node):
     ).setResultsName("profile")
 
 
+@class_with_syntax
 class Port(Node):
     """
     Description of a port on a sink
@@ -249,6 +256,7 @@ PropertyAttributeValue = (
     ).setResultsName("attribute-value"))
 
 
+@class_with_syntax
 class PortWithProfile(Node):
     """
     Variant of :class:`Port` that is used by "card" records inside
@@ -385,6 +393,7 @@ GenericSimpleAttributeValue = p.MatchFirst([
 ])
 
 
+@class_with_syntax
 class GenericSimpleAttribute(Node):
 
     __fragments__ = {
@@ -452,6 +461,7 @@ GenericListAttributeValue = p.MatchFirst([
 ])
 
 
+@class_with_syntax
 class GenericListAttribute(Node):
 
     __fragments__ = {
@@ -470,6 +480,7 @@ class GenericListAttribute(Node):
     ).setResultsName("attribute")
 
 
+@class_with_syntax
 class Record(Node):
     """
     Single standalone entry of `pactl list`.
@@ -517,6 +528,7 @@ class Record(Node):
                 for attr in ['name', 'attribute_list']]))
 
 
+@class_with_syntax
 class Document(Node):
     """
     Encompasses whole output of `pactl list`

@@ -15,17 +15,23 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 from io import StringIO
+from io import open
+from unittest import TestCase
 
 from pkg_resources import resource_filename
-from unittest import TestCase
 
 from checkbox_support.parsers.udevadm import UdevadmParser, decode_id
 from checkbox_support.parsers.udevadm import parse_udevadm_output
 
 
-class DeviceResult:
+class DeviceResult(object):
 
     def __init__(self):
         self.devices = []
@@ -41,7 +47,7 @@ class DeviceResult:
         return None
 
 
-class UdevadmDataMixIn:
+class UdevadmDataMixIn(object):
     """
     Mix in with a helper method to load sample udevadm data
     """
@@ -239,12 +245,12 @@ E: UDEV_LOG=3
 
     def test_DELL_VOSTROV131(self):
         devices = self.parse("DELL_VOSTROV131")
-        expected_devices = [("RTL8111/8168 PCI Express Gigabit "
-                            "Ethernet controller",
-                            "NETWORK", "pci", 0x10EC, 0x8168),
-                            ("AR9285 Wireless Network Adapter (PCI-Express)",
-                            "WIRELESS", "pci", 0x168C, 0x002B)
-                            ]
+        expected_devices = [
+            ("RTL8111/8168 PCI Express Gigabit Ethernet controller",
+             "NETWORK", "pci", 0x10EC, 0x8168),
+            ("AR9285 Wireless Network Adapter (PCI-Express)",
+             "WIRELESS", "pci", 0x168C, 0x002B)
+        ]
         self.assertEqual(len(devices), 63)
         self.assertEqual(self.count(devices, "VIDEO"), 1)
         self.assertEqual(self.count(devices, "AUDIO"), 2)
@@ -651,7 +657,7 @@ E: UDEV_LOG=3
         # parser to single these out.  It's a desktop system so no touchpad and
         # has an external mouse.  The card reader is not detected as such,
         # instead it appears as about 11 disk devices.
-        # Finally, it's a hybrid video system with a second Nvidia GPU. 
+        # Finally, it's a hybrid video system with a second Nvidia GPU.
         devices = self.parse("DELL_VOSTRO_270")
         self.assertEqual(self.count(devices, "VIDEO"), 2)
         self.assertEqual(self.count(devices, "AUDIO"), 4)
@@ -670,8 +676,8 @@ E: UDEV_LOG=3
         self.assertEqual(self.count(devices, "NETWORK"), 1)
         self.assertEqual(self.count(devices, "WIRELESS"), 1)
         self.assertEqual(len(devices), 71)
-        # First card is an Intel Xeon E3-1200 v2/3rd Gen Core processor Graphics Controller
-        # Second one is NVidia  GF119 [GeForce GT 620 OEM]
+        # First card is an Intel Xeon E3-1200 v2/3rd Gen Core processor
+        # Graphics Controller Second one is NVidia  GF119 [GeForce GT 620 OEM]
         expected_devices = [
             (None, "VIDEO", "pci", 0x8086, 0x0152),
             (None, "VIDEO", "pci", 0x10de, 0x1049),

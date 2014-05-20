@@ -15,15 +15,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
-__all__ = [
-    "tzutc",
-    ]
 
-from datetime import (
-    timedelta,
-    tzinfo,
-    )
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+__all__ = ["tzutc"]
+
+from datetime import timedelta
+from datetime import tzinfo
 
 
 ZERO = timedelta(0)
@@ -47,7 +48,7 @@ class _tzutc(tzinfo):
         return not self.__eq__(other)
 
     def __repr__(self):
-        return "%s()" % self.__class__.__name__
+        return "{}()".format(self.__class__.__name__)
 
     __reduce__ = object.__reduce__
 

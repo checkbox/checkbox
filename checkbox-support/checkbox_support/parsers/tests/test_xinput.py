@@ -16,10 +16,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
-import os
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+from io import open
 from unittest import TestCase
+import os
 
 from checkbox_support.parsers.xinput import (
     DEVICE_RE,
@@ -86,7 +91,6 @@ class XinputResult(IXinputResult):
 
 class TestXinputParser(TestCase):
 
-
     def getResult(self, name):
         fixture = os.path.join(os.path.dirname(__file__), "fixtures", name)
         result = XinputResult()
@@ -108,11 +112,13 @@ class TestXinputParser(TestCase):
     def test_multitouch_touchpad_device(self):
         """The toshiba xinput contains a multitouch touchpad device."""
         result = self.getResult("xinput_toshiba.txt")
-        devices = [device for device in result.devices.values()
+        devices = [
+            device for device in result.devices.values()
             if device["name"] == "AlpsPS/2 ALPS DualPoint TouchPad"]
         self.assertEqual(len(devices), 1)
 
-        classes = [cls for cls in devices[0]["classes"]
+        classes = [
+            cls for cls in devices[0]["classes"]
             if cls["device_class"] == "XITouchClass"]
         self.assertEqual(len(classes), 1)
         self.assertEqual(classes[0]["touch_mode"], "dependent")
@@ -120,11 +126,13 @@ class TestXinputParser(TestCase):
     def test_multitouch_touchscreen_device(self):
         """The quantal xinput contains a multitouch touchscreen device."""
         result = self.getResult("xinput_quantal.txt")
-        devices = [device for device in result.devices.values()
+        devices = [
+            device for device in result.devices.values()
             if device["name"] == "Quanta OpticalTouchScreen"]
         self.assertEqual(len(devices), 1)
 
-        classes = [cls for cls in devices[0]["classes"]
+        classes = [
+            cls for cls in devices[0]["classes"]
             if cls["device_class"] == "XITouchClass"]
         self.assertEqual(len(classes), 1)
         self.assertEqual(classes[0]["touch_mode"], "direct")

@@ -15,10 +15,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import os
 
 from checkbox_support.lib.conversion import string_to_type
+
 
 # See also 3.3.4.1 of the "System Management BIOS Reference Specification,
 # Version 2.6.1" (Preliminary Standard) document, available from
@@ -142,20 +148,20 @@ class DmiDevice:
         "Unknown",
         )
     _serial_blacklist = (
-       "0",
-       "00000000",
-       "00 00 00 00 00 00 00 00",
-       "0123456789",
-       "Base Board Serial Number",
-       "Chassis Serial Number",
-       "N/A",
-       "None",
-       "Not Applicable",
-       "Not Available",
-       "Not Specified",
-       "OEM",
-       "System Serial Number",
-       )
+        "0",
+        "00000000",
+        "00 00 00 00 00 00 00 00",
+        "0123456789",
+        "Base Board Serial Number",
+        "Chassis Serial Number",
+        "N/A",
+        "None",
+        "Not Applicable",
+        "Not Available",
+        "Not Specified",
+        "OEM",
+        "System Serial Number",
+    )
     _version_blacklist = (
         "-1",
         "<BAD INDEX>",

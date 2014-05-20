@@ -15,18 +15,18 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+from string import hexdigits
+from string import ascii_uppercase
 import re
 
-from string import (
-    hexdigits,
-    ascii_uppercase,
-    )
-
-from checkbox_support.lib.dmi import (
-    Dmi,
-    DmiDevice,
-    )
+from checkbox_support.lib.dmi import Dmi
+from checkbox_support.lib.dmi import DmiDevice
 
 
 HANDLE_RE = re.compile(
@@ -39,7 +39,7 @@ KEY_VALUE_RE = re.compile(
     % ascii_uppercase)
 
 
-class DmidecodeParser:
+class DmidecodeParser(object):
     """Parser for the dmidecode command."""
 
     _key_map = {
@@ -99,7 +99,8 @@ class DmidecodeParser:
             category = Dmi.type_names[type_index]
             category = category.upper().split(" ")[-1]
             if category not in (
-                "BOARD", "BIOS", "CHASSIS", "DEVICE", "PROCESSOR", "SYSTEM"):
+                    "BOARD", "BIOS", "CHASSIS", "DEVICE", "PROCESSOR",
+                    "SYSTEM"):
                 continue
 
             # Parse attributes

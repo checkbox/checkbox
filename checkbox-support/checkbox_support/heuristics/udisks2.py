@@ -17,9 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 """
 checkbox_support.heuristics.udisks2
-===========================
+===================================
 
 Heuristics for udisks2.
 
@@ -28,7 +33,9 @@ Heuristics for udisks2.
     Bug tracker: http://bugs.freedesktop.org/ (using systemd product)
 """
 
-from checkbox_support.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
+from checkbox_support.parsers.udevadm import CARD_READER_RE
+from checkbox_support.parsers.udevadm import FLASH_RE
+from checkbox_support.parsers.udevadm import GENERIC_RE
 
 
 def is_memory_card(vendor, model, udisks2_media):
