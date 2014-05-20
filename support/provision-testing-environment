@@ -99,6 +99,39 @@ elif [ "$container" = "lxc" ]; then
     # default), so we need to create the home dir ourselves.
     [ ! -d $HOME ] && mkdir -p $HOME
     ln --no-dereference --force --symbolic $CHECKBOX_TOP $HOME/src
+if patch -p0 /usr/lib/python3/dist-packages/pkg_resources.py << EOF
+--- pkg_resources.py.orig	2014-05-15 19:39:38.365807720 +0000
++++ pkg_resources.py	2014-05-15 19:44:50.449807720 +0000
+@@ -1749,11 +1749,16 @@
+                     for dist in find_distributions(os.path.join(path_item, entry)):
+                         yield dist
+                 elif not only and lower.endswith('.egg-link'):
+-                    for line in open(os.path.join(path_item, entry)):
+-                        if not line.strip(): continue
+-                        for item in find_distributions(os.path.join(path_item,line.rstrip())):
+-                            yield item
+-                        break
++                    try:
++                        entry_file = open(os.path.join(path_item, entry))
++                        for line in entry_file:
++                            if not line.strip(): continue
++                            for item in find_distributions(os.path.join(path_item,line.rstrip())):
++                                yield item
++                            break
++                    finally:
++                        entry_file.close()
++
+ register_finder(ImpWrapper,find_on_path)
+
+ _declare_state('dict', _namespace_handlers={})
+EOF
+then
+	echo "Patching pkg_resources.py succeeded"
+else
+	echo "Patching pkg_resources.py failed"
+	echo "This is not necessarily bad, this is only needed on precise"
+fi
+
 fi
 
 
