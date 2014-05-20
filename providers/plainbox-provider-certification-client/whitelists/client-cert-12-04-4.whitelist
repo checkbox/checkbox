@@ -4,6 +4,8 @@
 ## some of these tests depend on a specific network environment and may not run
 ## properly in your test environment.  To avoid false failures, please use the 
 ## client-selftest.whitelist instead.
+# Meta-job to include required resources, don't remove.
+miscellanea/submission-resources
 # Resource Jobs
 block_device
 cdimage
