@@ -35,10 +35,13 @@ LXC_DESTROY=`which lxc-destroy`
 LXC_START_EPHEMERAL=`which lxc-start-ephemeral`
 LXC_ATTACH=`which lxc-attach`
 LXC_LS=`which lxc-ls`
+LXC_WAIT=`which lxc-wait`
+LXC_INFO=`which lxc-info`
 
 test_lxc_can_run(){
     PROBLEM=0
-    for tool in "$LXC_CREATE" "$LXC_START" "$LXC_STOP" "$LXC_DESTROY" "$LXC_ATTACH"; do
+    for tool in "$LXC_CREATE" "$LXC_START" "$LXC_STOP" "$LXC_DESTROY" \
+                "$LXC_ATTACH" "$LXC_WAIT" "$LXC_INFO"; do
     if [ -z "$tool" ]; then
         echo "lxc commands not found, maybe you need to install lxc"
         PROBLEM=1
@@ -175,14 +178,24 @@ for target_release in $target_list; do
         cat $TIMING | sed -e "s/^/[$target] (timing) /"
     done
 
-    # Destroy the target, it's just an overlayfs on an ephemeral container so cost of
-    # destroy/rebuild is minimal.
-        echo "[$target] Destroying container"
-    if ! sudo lxc-destroy -n $target -f >$LOG_DIR/$target.destroy.log 2>$LOG_DIR/$target.destroy.err; then
-        echo "[$target] Unable to destroy container!"
-        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.destroy.log)"
-        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.destroy.err)"
-        echo "[$target] You may need to manually 'sudo lxc-destroy -f -n $target' to fix this"
+    echo "[$target] Destroying container"
+    # Stop the container first
+    if ! sudo $LXC_STOP -n $target >$LOG_DIR/$target.stop.log 2>$LOG_DIR/$target.stop.err; then
+        echo "[$target] Unable to stop container!"
+        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.stop.log)"
+        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.stop.err)"
+        echo "[$target] You may need to manually 'sudo lxc-stop -n $target' to fix this"
+    fi
+    # Wait for container to actually stop
+    sudo $LXC_WAIT -n $target -s 'STOPPED'
+    # If still present, then destroy it
+    if sudo $LXC_INFO -n $target; then
+        if ! sudo $LXC_DESTROY -n $target -f >$LOG_DIR/$target.destroy.log 2>$LOG_DIR/$target.destroy.err; then
+            echo "[$target] Unable to destroy container!"
+            echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.destroy.log)"
+            echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.destroy.err)"
+            echo "[$target] You may need to manually 'sudo lxc-destroy -f -n $target' to fix this"
+        fi
     fi
 done
 # Propagate failure code outside
