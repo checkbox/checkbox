@@ -27,6 +27,10 @@ pastebinit() {
 # requires more RAM (don't run this on a system with less than 3GB total RAM),
 # so the default is to --keep-data.
 KEEP_DATA=${KEEP_DATA:-"--keep-data"}
+# The name of the user we will create inside the container, we will also
+# run commands inside the container as this user, using sudo.
+CONTAINER_USER=ubuntu
+
 # Location of LXC executables.
 LXC_CREATE=`which lxc-create`
 LXC_START=`which lxc-start`
@@ -66,7 +70,7 @@ start_lxc_for(){
     if ! sudo $LXC_LS |grep -q $pristine_container; then
         step="[$target] creating pristine container"
         echo $step
-        if ! /usr/bin/time -o $TIMING sudo $LXC_CREATE  -n $pristine_container -t ubuntu -- -r $target --packages=python-software-properties,software-properties-common >$LOG_DIR/$target.pristine.log 2>$LOG_DIR/$target.pristine.err; then
+        if ! /usr/bin/time -o $TIMING sudo $LXC_CREATE  -n $pristine_container -t ubuntu -- -r $target --user=$CONTAINER_USER --packages=python-software-properties,software-properties-common >$LOG_DIR/$target.pristine.log 2>$LOG_DIR/$target.pristine.err; then
             outcome=1
             echo "[$target] Unable to create pristine container!"
             echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.pristine.log)"
@@ -177,6 +181,19 @@ for target_release in $target_list; do
         fi
         cat $TIMING | sed -e "s/^/[$target] (timing) /"
     done
+
+    # Fix permissions.
+    # provision-testing-environment runs as root and creates a series of
+    # root-owned files in the branch directory. Later, tarmac will want
+    # to delete these files, so after provisioning we change everything
+    # under the branch directory to be owned by the unprivileged user,
+    # so stuff can be deleted correctly later.
+    if ! sudo $LXC_ATTACH --keep-env -n $target_container -- bash -c "chown -R --reference=test-in-lxc.sh $PWD" >$LOG_DIR/$target.fix-perms.log 2>$LOG_DIR/$target.fix-perms.err; then
+        echo "[$target] Unable to fix permissions!"
+        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.fix-perms.log)"
+        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.fix-perms.err)"
+        echo "[$target] Some files owned by root may have been left around, fix them manually with chown."
+    fi
 
     echo "[$target] Destroying container"
     # Stop the container first
