@@ -27,6 +27,10 @@ pastebinit() {
 # requires more RAM (don't run this on a system with less than 3GB total RAM),
 # so the default is to --keep-data.
 KEEP_DATA=${KEEP_DATA:-"--keep-data"}
+# The name of the user we will create inside the container, we will also
+# run commands inside the container as this user, using sudo.
+CONTAINER_USER=ubuntu
+
 # Location of LXC executables.
 LXC_CREATE=`which lxc-create`
 LXC_START=`which lxc-start`
@@ -35,10 +39,13 @@ LXC_DESTROY=`which lxc-destroy`
 LXC_START_EPHEMERAL=`which lxc-start-ephemeral`
 LXC_ATTACH=`which lxc-attach`
 LXC_LS=`which lxc-ls`
+LXC_WAIT=`which lxc-wait`
+LXC_INFO=`which lxc-info`
 
 test_lxc_can_run(){
     PROBLEM=0
-    for tool in "$LXC_CREATE" "$LXC_START" "$LXC_STOP" "$LXC_DESTROY" "$LXC_ATTACH"; do
+    for tool in "$LXC_CREATE" "$LXC_START" "$LXC_STOP" "$LXC_DESTROY" \
+                "$LXC_ATTACH" "$LXC_WAIT" "$LXC_INFO"; do
     if [ -z "$tool" ]; then
         echo "lxc commands not found, maybe you need to install lxc"
         PROBLEM=1
@@ -63,7 +70,7 @@ start_lxc_for(){
     if ! sudo $LXC_LS |grep -q $pristine_container; then
         step="[$target] creating pristine container"
         echo $step
-        if ! /usr/bin/time -o $TIMING sudo $LXC_CREATE  -n $pristine_container -t ubuntu -- -r $target --packages=python-software-properties,software-properties-common >$LOG_DIR/$target.pristine.log 2>$LOG_DIR/$target.pristine.err; then
+        if ! /usr/bin/time -o $TIMING sudo $LXC_CREATE  -n $pristine_container -t ubuntu -- -r $target --user=$CONTAINER_USER --packages=python-software-properties,software-properties-common >$LOG_DIR/$target.pristine.log 2>$LOG_DIR/$target.pristine.err; then
             outcome=1
             echo "[$target] Unable to create pristine container!"
             echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.pristine.log)"
@@ -175,14 +182,37 @@ for target_release in $target_list; do
         cat $TIMING | sed -e "s/^/[$target] (timing) /"
     done
 
-    # Destroy the target, it's just an overlayfs on an ephemeral container so cost of
-    # destroy/rebuild is minimal.
-        echo "[$target] Destroying container"
-    if ! sudo lxc-destroy -n $target -f >$LOG_DIR/$target.destroy.log 2>$LOG_DIR/$target.destroy.err; then
-        echo "[$target] Unable to destroy container!"
-        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.destroy.log)"
-        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.destroy.err)"
-        echo "[$target] You may need to manually 'sudo lxc-destroy -f -n $target' to fix this"
+    # Fix permissions.
+    # provision-testing-environment runs as root and creates a series of
+    # root-owned files in the branch directory. Later, tarmac will want
+    # to delete these files, so after provisioning we change everything
+    # under the branch directory to be owned by the unprivileged user,
+    # so stuff can be deleted correctly later.
+    if ! sudo $LXC_ATTACH --keep-env -n $target_container -- bash -c "chown -R --reference=test-in-lxc.sh $PWD" >$LOG_DIR/$target.fix-perms.log 2>$LOG_DIR/$target.fix-perms.err; then
+        echo "[$target] Unable to fix permissions!"
+        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.fix-perms.log)"
+        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.fix-perms.err)"
+        echo "[$target] Some files owned by root may have been left around, fix them manually with chown."
+    fi
+
+    echo "[$target] Destroying container"
+    # Stop the container first
+    if ! sudo $LXC_STOP -n $target >$LOG_DIR/$target.stop.log 2>$LOG_DIR/$target.stop.err; then
+        echo "[$target] Unable to stop container!"
+        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.stop.log)"
+        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.stop.err)"
+        echo "[$target] You may need to manually 'sudo lxc-stop -n $target' to fix this"
+    fi
+    # Wait for container to actually stop
+    sudo $LXC_WAIT -n $target -s 'STOPPED'
+    # If still present, then destroy it
+    if sudo $LXC_INFO -n $target; then
+        if ! sudo $LXC_DESTROY -n $target -f >$LOG_DIR/$target.destroy.log 2>$LOG_DIR/$target.destroy.err; then
+            echo "[$target] Unable to destroy container!"
+            echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.destroy.log)"
+            echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.destroy.err)"
+            echo "[$target] You may need to manually 'sudo lxc-destroy -f -n $target' to fix this"
+        fi
     fi
 done
 # Propagate failure code outside

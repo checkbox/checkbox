@@ -6,9 +6,18 @@ set -e
 # Destroy VMs after we're done with each image. This works around
 # a bug in virtualbox shared folder filesystem.
 export VAGRANT_DONE_ACTION=destroy
-
+# Which test runner/container to use. We default to LXC but
+# honor an external env variable to set this.
+TEST_RUNNER=${TEST_RUNNER:-lxc}
+# Use tmpfs for the lxc containers, faster but requires more RAM (about 2 GB)
+export KEEP_DATA=""
 # Run checkbox tests, plainbox tests, integration tests and plainbox docs
-time -o timing.dat ./test-in-vagrant.sh
+if [ "$TEST_RUNNER" = "vagrant" ]; then
+    time -o timing.dat ./test-in-vagrant.sh
+else
+    time -o timing.dat ./test-in-lxc.sh
+fi
+# Vagrant testing can be done with this line
 echo "Complete checkbox, plainbox, integration and docs time:"
 cat timing.dat
 
