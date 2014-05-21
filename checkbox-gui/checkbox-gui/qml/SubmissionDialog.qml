@@ -147,7 +147,7 @@ Dialog {
             else if (reportTypeSelect.selectedIndex == 1) {
                 var path = guiEngine.GetSaveFileName('submission.xlsx',
                     i18n.tr("XLSX files (*.xlsx)"))
-                success = guiEngine.GuiExportSessionToFileAsXLSX(path, []);
+                success = guiEngine.GuiExportSessionToFileAsXLSX(path, ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"]);
             }
 
             if (success) {
