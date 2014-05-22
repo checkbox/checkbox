@@ -157,6 +157,13 @@ QList<QDBusObjectPath> JobTreeNode::FilteredJobs( \
         const QList<QDBusObjectPath> list1, \
         const QList<QDBusObjectPath> list2)
 {
+    qDebug() << "[" << __FUNCTION__ << "]";
+    qDebug() << "list1:";
+    for (QList<QDBusObjectPath>::const_iterator iter = list1.constBegin(); iter != list1.constEnd(); ++iter)
+        qDebug() << " -" << iter->path();
+    qDebug() << "list2:";
+    for (QList<QDBusObjectPath>::const_iterator iter = list2.constBegin(); iter != list2.constEnd(); ++iter)
+        qDebug() << " -" << iter->path();
     QList<QDBusObjectPath> intersection;
     QList<QDBusObjectPath>::const_iterator iter1 = list1.begin();
     while (iter1 != list1.end()) {
@@ -172,5 +179,8 @@ QList<QDBusObjectPath> JobTreeNode::FilteredJobs( \
         }
         iter1++;
     }
+    qDebug() << "intersection:";
+    for (QList<QDBusObjectPath>::const_iterator iter = intersection.constBegin(); iter != intersection.constEnd(); ++iter)
+        qDebug() << " -" << iter->path();
     return intersection;
 }
