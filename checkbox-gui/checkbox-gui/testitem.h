@@ -30,6 +30,7 @@ class TestItem : public ListItem
     Q_OBJECT
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
     Q_PROPERTY(double duration READ duration WRITE setDuration NOTIFY durationChanged)
+    Q_PROPERTY(QString partial_id READ partialId WRITE setPartialId NOTIFY partialIdChanged)
     Q_PROPERTY(QString checksum READ checksum WRITE setChecksum NOTIFY checksumChanged)
     Q_PROPERTY(QString depends READ depends WRITE setDepends NOTIFY dependsChanged)
     Q_PROPERTY(QString testname READ testname WRITE setTestname NOTIFY testnameChanged)
@@ -69,6 +70,7 @@ class TestItem : public ListItem
 
 signals:
     void durationChanged();
+    void partialIdChanged();
     void checksumChanged();
     void dependsChanged();
     void testnameChanged();
@@ -105,6 +107,7 @@ public:
     enum Roles {
         // PlainBox.JobDefinition1
         DurationRole = Qt::UserRole+1,
+        PartialIdRole,
         ChecksumRole,
         DependsRole,
         TestNameRole,
@@ -144,6 +147,7 @@ public:
 public:
     TestItem(QObject * parent = 0 ) : ListItem(parent), m_check(true), m_runstatus(0), m_elapsedtime(0), m_groupstatus(0){}
     TestItem(const double &duration, \
+             const QString &partial_id, \
              const QString &checksum, \
              const QString &depends, \
              const QString &testname, \
@@ -174,6 +178,10 @@ public:
     // Duration
     inline double duration() const { return m_duration; }
     void setDuration(int duration);
+
+    // Partial ID
+    inline QString partialId() const { return m_partial_id; }
+    void setPartialId(const QString &partial_id);
 
     // Checksum
     inline QString checksum() const { return m_checksum; }
@@ -271,6 +279,7 @@ private:
     // From com.canonical.certification.PlainBox.JobDefinition1 - properties
 
     double m_duration;  // estimated_duration
+    QString m_partial_id;
     QString m_checksum; // checksum
     QString m_depends;  // depends
     QString m_testName; // name

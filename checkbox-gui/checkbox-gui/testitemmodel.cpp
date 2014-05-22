@@ -141,9 +141,6 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
            temp = temp->parent;
         }
 
-        // Should we show this to the user at all?
-        bool human = true;
-
         // The path for this job is:
         path = jnode->m_node->object_path.path();
 
@@ -249,30 +246,11 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
             type = tr("-");
         }
 
-        // Is this to be shown to the user?
-        if (human) {
-            model->appendRow(new TestItem(duration, \
-                                          checksum, \
-                                          depends, \
-                                          testname, \
-                                          requires, \
-                                          description, \
-                                          command, \
-                                          environ, \
-                                          plugin, \
-                                          type, \
-                                          user, \
-                                          group, \
-                                          via, \
-                                          check, \
-                                          path, \
-                                          parent_names, \
-                                          parent_ids, \
-                                          depth, \
-                                          branch, \
-                                          model));
-        }
-
+        model->appendRow(
+            new TestItem(duration,
+                partial_id, checksum, depends, testname, requires, description, command,
+                environ, plugin, type, user, group, via, check, path,
+                parent_names, parent_ids, depth, branch, model));
         iter++;
     }
 
@@ -281,133 +259,78 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
     return model;
 }
 
+
 QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
 {
-    qDebug("TestItemModel::GetSelectedRealJobs()");
-
     QList<QDBusObjectPath> selected_jobs_list;
-
     if (!model) {
-        qDebug("No ListModel supplied");
+        qDebug() << "ERROR" << __FUNCTION__ << "model not supplied";
         return selected_jobs_list;
     }
-
-    for(int i=0; i< model->getCount(); i++) {
-
-        /* Should this item be put into the run list? Yes, UNLESS it is a
-         * local. We need the objectpath and the plugin type to make the
-         * decision */
+    for (int i=0; i<model->getCount(); i++) {
         QModelIndex index = model->index(i);
-        QVariant variant = model->data(index,TestItem::ObjectPathRole);
-        QString objectpath = variant.toString();
-
-        // Get the name of this test for logging purposes
-        variant = model->data(index,TestItem::TestNameRole);
-        QString name = variant.toString();
-
-        variant = model->data(index,TestItem::PluginRole);
-        QString plugin = variant.toString();
-
-        if (plugin != "local") {
-            /* ok, potentially it could be selected, so now we check if the
-             * user REALLY wanted it before putting it in the list */
-            variant = model->data(index,TestItem::CheckRole);
-            bool check = variant.toBool();
-
-            if (check) {
-                qDebug() << name.toStdString().c_str();
-
-                // Now, we might add this to our list
-                QDBusObjectPath opath(objectpath);
-
-                // Ok, your name is on the list...
-                selected_jobs_list.append(opath);
-
-            } else {
-                qDebug() << name.toStdString().c_str() << " SKIP ";
-            }
+        QString objectpath = model->data(
+            index, TestItem::ObjectPathRole).toString();
+        QString partial_id = model->data(
+            index, TestItem::PartialIdRole).toString();
+        QString plugin = model->data(
+            index, TestItem::PluginRole).toString();
+        bool check = model->data(
+            index,TestItem::CheckRole).toBool();
+        if (check && plugin != "local") {
+            qDebug() << "[" << __FUNCTION__ << "]" << " SELECTING " << partial_id;
+            QDBusObjectPath opath(objectpath);
+            selected_jobs_list.append(opath);
+        } else {
+            qDebug() << "[" << __FUNCTION__ << "]" << " NOT SELECTING " << partial_id;
         }
     }
-
-    // Store this in the guiengine
-    const QString engname("");
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        return selected_jobs_list;
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>("");
+    if (myengine) {
+        myengine->SetRealJobsList(selected_jobs_list);
+        qDebug() << "[" << __FUNCTION__ << "]" \
+            << "SELECTED jobs copied to m_final_run_list";
+    } else {
+        qDebug() << "ERROR" << __FUNCTION__ << "cannot get gui-engine";
     }
-
-    myengine->SetRealJobsList(selected_jobs_list);
-
-    qDebug("TestItemModel::GetSelectedRealJobs() - Done");
-
     return selected_jobs_list;
 }
 
+
 QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
 {
-    qDebug("TestItemModel::GetSelectedRerunJobs()");
-
     QList<QDBusObjectPath> selected_rerun_list;
-
     if (!model) {
-        qDebug("No ListModel supplied");
+        qDebug() << "ERROR" << __FUNCTION__ << "model not supplied";
         return selected_rerun_list;
     }
-
-    for(int i=0; i< model->getCount(); i++) {
-
-        /* Should this item be put into the run list? Yes, UNLESS it is a local
-         * . We need the objectpath and the plugin type to make the decision */
+    for (int i=0; i<model->getCount(); i++) {
         QModelIndex index = model->index(i);
-        QVariant variant = model->data(index,TestItem::ObjectPathRole);
-        QString objectpath = variant.toString();
-
-        // Get the name of this test for logging purposes
-        variant = model->data(index,TestItem::TestNameRole);
-        QString name = variant.toString();
-
-        variant = model->data(index,TestItem::PluginRole);
-        QString plugin = variant.toString();
-
-        if (plugin != "local") {
-            /* ok, potentially it could be selected, so now we check if the
-             * user REALLY wanted it before putting it in the list
-             */
-            variant = model->data(index,TestItem::RerunRole);
-            bool rerun = variant.toBool();
-
-            if (rerun) {
-                qDebug() << name.toStdString().c_str();
-
-                // Now, we might add this to our list
-                QDBusObjectPath opath(objectpath);
-
-                // Ok, your name is on the list...
-                selected_rerun_list.append(opath);
-
-            } else {
-                qDebug() << name.toStdString().c_str() << " SKIP ";
-            }
+        QString objectpath = model->data(
+            index, TestItem::ObjectPathRole).toString();
+        QString partial_id = model->data(
+            index, TestItem::PartialIdRole).toString();
+        QString plugin = model->data(
+            index, TestItem::PluginRole).toString();
+        bool rerun = model->data(index, TestItem::RerunRole).toBool();
+        if (rerun && plugin != "local") {
+            qDebug() << "[" << __FUNCTION__ << "]" << "SELECTING" << partial_id;
+            selected_rerun_list.append(QDBusObjectPath(objectpath));
+        } else {
+            qDebug() << "[" << __FUNCTION__ << "]" << "NOT SELECTING" << partial_id;
         }
     }
-
-    // Store this in the guiengine
-    const QString engname("");
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        return selected_rerun_list;
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>("");
+    if (myengine) {
+        myengine->SetRerunJobsList(selected_rerun_list);
+        qDebug() << "[" << __FUNCTION__ << "]" \
+            << "SELECTED jobs copied to m_rerun_list";
+    } else {
+        qDebug() << "ERROR" << __FUNCTION__ << "cannot get gui-engine";
     }
-
-    myengine->SetRerunJobsList(selected_rerun_list);
-
-    qDebug("TestItemModel::GetSelectedRerunJobs() - Done");
-
     return selected_rerun_list;
 }
+
 
 /* Track the jobs which are actually needed for display in the runmanager
  * as they will be needed when the gui is reconstructed after a session
@@ -415,57 +338,34 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
  */
 QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
 {
-    qDebug("TestItemModel::GetSelectedVisibleJobs()");
-
-
     QList<QDBusObjectPath> visible_jobs_list;
-
     if (!model) {
-        qDebug("No ListModel supplied");
+        qDebug() << "ERROR" << __FUNCTION__ << "model not supplied";
         return visible_jobs_list;
     }
-
-    for(int i=0; i< model->getCount(); i++) {
+    for (int i=0; i<model->getCount(); i++) {
         QModelIndex index = model->index(i);
-        QVariant variant = model->data(index,TestItem::ObjectPathRole);
-        QString objectpath = variant.toString();
-
-        // Get the name of this test for logging purposes
-        variant = model->data(index,TestItem::TestNameRole);
-        QString name = variant.toString();
-
-        variant = model->data(index,TestItem::PluginRole);
-        QString plugin = variant.toString();
-
-        /* ok, potentially it could be selected, so now we check if the
-         * user REALLY wanted it before putting it in the list
-         */
-        variant = model->data(index,TestItem::CheckRole);
-        bool check = variant.toBool();
-
+        QString objectpath = model->data(
+            index, TestItem::ObjectPathRole).toString();
+        QString partial_id = model->data(
+            index, TestItem::PartialIdRole).toString();
+        QString plugin = model->data(
+            index, TestItem::PluginRole).toString();
+        bool check = model->data(index, TestItem::CheckRole).toBool();
         if (check) {
-            qDebug() << name.toStdString().c_str();
-
-            // Now, we might add this to our list
-            QDBusObjectPath opath(objectpath);
-
-            // Ok, your name is on the list...
-            visible_jobs_list.append(opath);
+            qDebug() << "[" << __FUNCTION__ << "]" << "VISIBLE" << partial_id;
+            visible_jobs_list.append(QDBusObjectPath(objectpath));
+        } else {
+            qDebug() << "[" << __FUNCTION__ << "]" << "NOT VISIBLE" << partial_id;
         }
     }
-
-    // Store this in the guiengine
-    const QString engname("");
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        return visible_jobs_list;
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>("");
+    if (myengine) {
+        myengine->SetVisibleJobsList(visible_jobs_list);
+        qDebug() << "[" << __FUNCTION__ << "]" \
+            << "VISIBLE jobs copied to m_final_run_list";
+    } else {
+        qDebug() << "ERROR" << __FUNCTION__ << "cannot get gui-engine";
     }
-
-    myengine->SetVisibleJobsList(visible_jobs_list);
-
-    qDebug("TestItemModel::visible_jobs_list() - Done");
-
     return visible_jobs_list;
 }
