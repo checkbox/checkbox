@@ -597,6 +597,7 @@ void GuiEngine::RunLocalJobs(void)
     m_desired_job_list = SessionStateDesiredJobList(m_session);
     m_job_list = SessionStateJobList(m_session);
     m_run_list = SessionStateRunList(m_session);
+    RefreshPBObjects();
     if (m_desired_job_list.isEmpty()){
         qDebug("Resumed session has no desired_job_list");
         // fixme - a nice gui error message would be welcome here
