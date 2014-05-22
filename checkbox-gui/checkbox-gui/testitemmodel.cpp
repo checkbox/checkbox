@@ -296,67 +296,38 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
     return selected_jobs_list;
 }
 
+
 QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
 {
-    qDebug("TestItemModel::GetSelectedRerunJobs()");
-
     QList<QDBusObjectPath> selected_rerun_list;
-
     if (!model) {
-        qDebug("No ListModel supplied");
+        qDebug() << "ERROR" << __FUNCTION__ << "model not supplied";
         return selected_rerun_list;
     }
-
-    for(int i=0; i< model->getCount(); i++) {
-
-        /* Should this item be put into the run list? Yes, UNLESS it is a local
-         * . We need the objectpath and the plugin type to make the decision */
+    for (int i=0; i<model->getCount(); i++) {
         QModelIndex index = model->index(i);
-        QVariant variant = model->data(index,TestItem::ObjectPathRole);
-        QString objectpath = variant.toString();
-
-        // Get the name of this test for logging purposes
-        variant = model->data(index,TestItem::TestNameRole);
-        QString name = variant.toString();
-
-        variant = model->data(index,TestItem::PluginRole);
-        QString plugin = variant.toString();
-
-        if (plugin != "local") {
-            /* ok, potentially it could be selected, so now we check if the
-             * user REALLY wanted it before putting it in the list
-             */
-            variant = model->data(index,TestItem::RerunRole);
-            bool rerun = variant.toBool();
-
-            if (rerun) {
-                qDebug() << name.toStdString().c_str();
-
-                // Now, we might add this to our list
-                QDBusObjectPath opath(objectpath);
-
-                // Ok, your name is on the list...
-                selected_rerun_list.append(opath);
-
-            } else {
-                qDebug() << name.toStdString().c_str() << " SKIP ";
-            }
+        QString objectpath = model->data(
+            index, TestItem::ObjectPathRole).toString();
+        QString partial_id = model->data(
+            index, TestItem::PartialIdRole).toString();
+        QString plugin = model->data(
+            index, TestItem::PluginRole).toString();
+        bool rerun = model->data(index, TestItem::RerunRole).toBool();
+        if (rerun && plugin != "local") {
+            qDebug() << "[" << __FUNCTION__ << "]" << "SELECTING" << partial_id;
+            selected_rerun_list.append(QDBusObjectPath(objectpath));
+        } else {
+            qDebug() << "[" << __FUNCTION__ << "]" << "NOT SELECTING" << partial_id;
         }
     }
-
-    // Store this in the guiengine
-    const QString engname("");
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        return selected_rerun_list;
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>("");
+    if (myengine) {
+        myengine->SetRerunJobsList(selected_rerun_list);
+        qDebug() << "[" << __FUNCTION__ << "]" \
+            << "SELECTED jobs copied to m_rerun_list";
+    } else {
+        qDebug() << "ERROR" << __FUNCTION__ << "cannot get gui-engine";
     }
-
-    myengine->SetRerunJobsList(selected_rerun_list);
-
-    qDebug("TestItemModel::GetSelectedRerunJobs() - Done");
-
     return selected_rerun_list;
 }
 
