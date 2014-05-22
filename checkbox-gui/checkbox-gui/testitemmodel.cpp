@@ -280,8 +280,8 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
         QString objectpath = variant.toString();
 
         // Get the name of this test for logging purposes
-        variant = model->data(index,TestItem::TestNameRole);
-        QString name = variant.toString();
+        variant = model->data(index,TestItem::PartialIdRole);
+        QString partial_id = variant.toString();
 
         variant = model->data(index,TestItem::PluginRole);
         QString plugin = variant.toString();
@@ -293,7 +293,7 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
             bool check = variant.toBool();
 
             if (check) {
-                qDebug() << name.toStdString().c_str();
+                qDebug() << "Selecting job: " << partial_id.toStdString().c_str();
 
                 // Now, we might add this to our list
                 QDBusObjectPath opath(objectpath);
@@ -302,7 +302,7 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRealJobs(ListModel* model)
                 selected_jobs_list.append(opath);
 
             } else {
-                qDebug() << name.toStdString().c_str() << " SKIP ";
+                qDebug() << "NOT selecting job: " << partial_id.toStdString().c_str() << " SKIP ";
             }
         }
     }
