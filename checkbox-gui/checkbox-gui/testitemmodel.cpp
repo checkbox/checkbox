@@ -331,63 +331,41 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedRerunJobs(ListModel* model)
     return selected_rerun_list;
 }
 
+
 /* Track the jobs which are actually needed for display in the runmanager
  * as they will be needed when the gui is reconstructed after a session
  * is resumed
  */
 QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
 {
-    qDebug("TestItemModel::GetSelectedVisibleJobs()");
-
-
     QList<QDBusObjectPath> visible_jobs_list;
-
     if (!model) {
-        qDebug("No ListModel supplied");
+        qDebug() << "ERROR" << __FUNCTION__ << "model not supplied";
         return visible_jobs_list;
     }
-
-    for(int i=0; i< model->getCount(); i++) {
+    for (int i=0; i<model->getCount(); i++) {
         QModelIndex index = model->index(i);
-        QVariant variant = model->data(index,TestItem::ObjectPathRole);
-        QString objectpath = variant.toString();
-
-        // Get the name of this test for logging purposes
-        variant = model->data(index,TestItem::TestNameRole);
-        QString name = variant.toString();
-
-        variant = model->data(index,TestItem::PluginRole);
-        QString plugin = variant.toString();
-
-        /* ok, potentially it could be selected, so now we check if the
-         * user REALLY wanted it before putting it in the list
-         */
-        variant = model->data(index,TestItem::CheckRole);
-        bool check = variant.toBool();
-
+        QString objectpath = model->data(
+            index, TestItem::ObjectPathRole).toString();
+        QString partial_id = model->data(
+            index, TestItem::PartialIdRole).toString();
+        QString plugin = model->data(
+            index, TestItem::PluginRole).toString();
+        bool check = model->data(index, TestItem::CheckRole).toBool();
         if (check) {
-            qDebug() << name.toStdString().c_str();
-
-            // Now, we might add this to our list
-            QDBusObjectPath opath(objectpath);
-
-            // Ok, your name is on the list...
-            visible_jobs_list.append(opath);
+            qDebug() << "[" << __FUNCTION__ << "]" << "VISIBLE" << partial_id;
+            visible_jobs_list.append(QDBusObjectPath(objectpath));
+        } else {
+            qDebug() << "[" << __FUNCTION__ << "]" << "NOT VISIBLE" << partial_id;
         }
     }
-
-    // Store this in the guiengine
-    const QString engname("");
-    GuiEngine* myengine = qApp->findChild<GuiEngine*>(engname);
-    if(myengine == NULL) {
-        qDebug("Cant find guiengine object");
-
-        return visible_jobs_list;
+    GuiEngine* myengine = qApp->findChild<GuiEngine*>("");
+    if (myengine) {
+        myengine->SetVisibleJobsList(visible_jobs_list);
+        qDebug() << "[" << __FUNCTION__ << "]" \
+            << "VISIBLE jobs copied to m_final_run_list";
+    } else {
+        qDebug() << "ERROR" << __FUNCTION__ << "cannot get gui-engine";
     }
-
-    myengine->SetVisibleJobsList(visible_jobs_list);
-
-    qDebug("TestItemModel::visible_jobs_list() - Done");
-
     return visible_jobs_list;
 }
