@@ -363,7 +363,7 @@ QList<QDBusObjectPath> TestItemModel::GetSelectedVisibleJobs(ListModel* model)
     if (myengine) {
         myengine->SetVisibleJobsList(visible_jobs_list);
         qDebug() << "[" << __FUNCTION__ << "]" \
-            << "VISIBLE jobs copied to m_final_run_list";
+            << "VISIBLE jobs copied to m_visible_run_list";
     } else {
         qDebug() << "ERROR" << __FUNCTION__ << "cannot get gui-engine";
     }
