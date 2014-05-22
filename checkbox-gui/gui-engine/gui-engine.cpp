@@ -1290,7 +1290,7 @@ QList<QDBusObjectPath> GuiEngine::GenerateDesiredJobList()
     if (reply.isValid()) {
         desired_job_list = reply.value();
     } else {
-        qDebug("Failed to CreateSession()");
+        qDebug("Failed to GenerateDesiredJobList()");
     }
     return desired_job_list;
 }
