@@ -424,10 +424,7 @@ int GuiEngine::PrepareJobs(void)
     * so we try to preserve that when we give it to UpdateDesiredJobList()
     * and hopefully it is similar when we get it back from SessionStateRunList()
     */
-    QList<QDBusObjectPath> temp_desired_job_list = \
-            JobTreeNode::FilteredJobs(m_desired_job_list,m_final_run_list);
-
-    QStringList errors = UpdateDesiredJobList(m_session, temp_desired_job_list);
+    QStringList errors = UpdateDesiredJobList(m_session, m_final_run_list);
     if (errors.count() != 0) {
         qDebug("UpdateDesiredJobList generated errors:");
         for (int i=0; i<errors.count(); i++) {
