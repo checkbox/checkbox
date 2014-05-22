@@ -26,6 +26,7 @@
 
 
 TestItem::TestItem(const double &duration, \
+                   const QString &partial_id, \
                    const QString &checksum, \
                    const QString &depends, \
                    const QString &testname, \
@@ -48,6 +49,7 @@ TestItem::TestItem(const double &duration, \
                    QObject * parent  ) :
     ListItem(parent), \
               m_duration(duration), \
+              m_partial_id(partial_id), \
               m_checksum(checksum), \
               m_depends(depends), \
               m_testName(testname), \
@@ -82,6 +84,7 @@ QHash<int, QByteArray> TestItem::roleNames() const
   QHash<int, QByteArray> names;
 
   names[DurationRole] = "duration";
+  names[PartialIdRole] = "partial_id";
   names[ChecksumRole] = "checksum";
   names[DependsRole] = "depends";
   names[TestNameRole] = "testname";
@@ -122,6 +125,8 @@ QVariant TestItem::data(int role) const
   switch(role) {
   case DurationRole:
       return duration();
+  case PartialIdRole:
+      return partialId();
   case ChecksumRole:
     return checksum();
   case DependsRole:
@@ -187,6 +192,9 @@ void TestItem::setData(const QVariant & value, int role){
 
     case DurationRole:
         setDuration(value.toDouble());
+        break;
+    case PartialIdRole:
+        setPartialId(value.toString());
         break;
 
     case ChecksumRole:
@@ -337,6 +345,14 @@ void TestItem::setDuration(int duration){
     if (duration != m_duration){
         m_duration = duration;
         emit durationChanged();
+        emit dataChanged();
+    }
+}
+
+void TestItem::setPartialId(const QString &partial_id) {
+    if (partial_id != m_partial_id){
+        m_partial_id = partial_id;
+        emit partialIdChanged();
         emit dataChanged();
     }
 }

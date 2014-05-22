@@ -248,7 +248,7 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
 
         model->appendRow(
             new TestItem(duration,
-                checksum, depends, testname, requires, description, command,
+                partial_id, checksum, depends, testname, requires, description, command,
                 environ, plugin, type, user, group, via, check, path,
                 parent_names, parent_ids, depth, branch, model));
         iter++;
