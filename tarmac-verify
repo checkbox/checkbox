@@ -10,7 +10,9 @@ export VAGRANT_DONE_ACTION=destroy
 # honor an external env variable to set this.
 TEST_RUNNER=${TEST_RUNNER:-lxc}
 # Use tmpfs for the lxc containers, faster but requires more RAM (about 2 GB)
-export KEEP_DATA=""
+# NOTE: Needs to be a non-empty blank string due to weird ${param:-default}
+# semantics
+export KEEP_DATA=" "
 # Run checkbox tests, plainbox tests, integration tests and plainbox docs
 if [ "$TEST_RUNNER" = "vagrant" ]; then
     time -o timing.dat ./test-in-vagrant.sh
