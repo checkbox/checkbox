@@ -141,9 +141,6 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
            temp = temp->parent;
         }
 
-        // Should we show this to the user at all?
-        bool human = true;
-
         // The path for this job is:
         path = jnode->m_node->object_path.path();
 
@@ -249,30 +246,11 @@ ListModel* TestItemModel::CreateTestListModel(ListModel* model)
             type = tr("-");
         }
 
-        // Is this to be shown to the user?
-        if (human) {
-            model->appendRow(new TestItem(duration, \
-                                          checksum, \
-                                          depends, \
-                                          testname, \
-                                          requires, \
-                                          description, \
-                                          command, \
-                                          environ, \
-                                          plugin, \
-                                          type, \
-                                          user, \
-                                          group, \
-                                          via, \
-                                          check, \
-                                          path, \
-                                          parent_names, \
-                                          parent_ids, \
-                                          depth, \
-                                          branch, \
-                                          model));
-        }
-
+        model->appendRow(
+            new TestItem(duration,
+                checksum, depends, testname, requires, description, command,
+                environ, plugin, type, user, group, via, check, path,
+                parent_names, parent_ids, depth, branch, model));
         iter++;
     }
 
