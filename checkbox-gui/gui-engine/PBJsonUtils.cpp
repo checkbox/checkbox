@@ -27,21 +27,15 @@ const QJsonObject PBJsonUtils::QDBusObjectPathArrayToJson(\
         const QList<QDBusObjectPath> opath_list)
 {
     QJsonObject object;
-
     QJsonArray jsonarray;
-
     if ( opath_list.count() ) {
         for (int i=0; i < opath_list.count();i++) {
             QString path = opath_list.at(i).path();
-
             jsonarray.append(path);
         }
     }
-
     QJsonValue value(jsonarray);
-
     object.insert(key,value);
-
     return object;
 }
 
@@ -51,21 +45,14 @@ const QList<QDBusObjectPath> PBJsonUtils::JSONToQDBusObjectPathArray(\
         const QJsonObject& object)
 {
     QJsonArray jsonarray;
-
     QJsonValue value;
-
     value = object.find(key).value();
-
     jsonarray = value.toArray();
-
     QList<QDBusObjectPath> opath_list;
-
     for(int i=0; i<jsonarray.count(); i++) {
         QString path = jsonarray.at(i).toString();
         QDBusObjectPath opath(path);
-
         opath_list.append(opath);
     }
-
     return opath_list;
 }

@@ -39,30 +39,21 @@ PBTreeNode::~PBTreeNode()
     if (introspection) {
         delete introspection;
     }
-
     // delete the interfaces
     if (interfaces.count()) {
         QList<PBObjectInterface*>::iterator iter = interfaces.begin();
-
         while(iter != interfaces.end()) {
             delete *iter;
-
             iter++;
         }
     }
-
     interfaces.erase(interfaces.begin(),interfaces.end());
-
     if (children.count()) {
-
         QList<PBTreeNode*>::iterator iter = children.begin();
-
         while (iter != children.end()) {
             delete *iter;
-
             iter++;
         }
-
         children.erase(children.begin(),children.end());
     }
 }
@@ -73,7 +64,6 @@ PBTreeNode* PBTreeNode::AddNode(PBTreeNode* parentNode, \
                                 const QDBusObjectPath &object_path)
 {
     PBTreeNode* pbtn = NULL;
-
     // special case for the root node
     if(parentNode->object_path.path().isNull()) {
         // We ARE the parentNode this time
@@ -82,16 +72,12 @@ PBTreeNode* PBTreeNode::AddNode(PBTreeNode* parentNode, \
     else {
         pbtn = new PBTreeNode();
     }
-
     pbtn->object_path = object_path;
     pbtn->parent=parentNode;
-
     // The introspected string describing this object
     const QString intro_xml = GetIntrospectXml(object_path);
-
     pbtn->introspection=new QDomDocument(intro_xml);
     pbtn->xmlstring = intro_xml;
-
     /* We fill in all the children.
      *
      * We do this by creating a new child node for each node in intro_xml,
@@ -102,49 +88,38 @@ PBTreeNode* PBTreeNode::AddNode(PBTreeNode* parentNode, \
     QDomElement xmlnode=doc.documentElement();
     QDomElement child=xmlnode.firstChildElement();
     while(!child.isNull()) {
-
         // Is this a node?
         if (child.tagName() == "node") {
             // Yes, so we should introspect that as well
             QString child_path;
-
             if (object_path.path() == "/") {
                 child_path = object_path.path() + child.attribute("name");
             } else {
                 child_path = object_path.path() + "/" + child.attribute("name");
             }
-
             QDBusObjectPath child_object_path(child_path);
-
             PBTreeNode* node = AddNode(pbtn,child_object_path);
             if (node) {
                 pbtn->children.append(node);
             }
         }
-
         // Is this an interface?
         if (child.tagName() == "interface") {
             QString iface_name = child.attribute("name");
-
             // we dont need properties from freedesktop interfaces
             if (iface_name != ofDIntrospectableName && \
                     iface_name != ofDPropertiesName) {
-
                 QVariantMap properties;
-
                 properties = GetObjectProperties(object_path, iface_name);
-
                 if (!properties.empty()) {
                     PBObjectInterface *iface = \
                             new PBObjectInterface(iface_name,properties);
-
                     pbtn->interfaces.append(iface);
                 }
             }
         }
         child = child.nextSiblingElement();
     }
-
     return pbtn;
 }
 
@@ -158,28 +133,20 @@ QVariantMap PBTreeNode::GetObjectProperties(const QDBusObjectPath &object_path, 
                          object_path.path(), \
                          ofDPropertiesName, \
                          QDBusConnection::sessionBus());
-
     // GetAll properties
     QDBusMessage reply = iface.call("GetAll",interface);
     if (reply.type() != QDBusMessage::ReplyMessage) {
         // not worth complaining if they dont have properties, just return the empty
         return properties;
     }
-
     QList<QVariant> args = reply.arguments();
-
     if (args.empty()) {
         return properties;
     }
-
     QList<QVariant>::iterator p = args.begin();
-
     QVariant variant = *p;
-
     const QDBusArgument qda = variant.value<QDBusArgument>();
-
     qda >> properties;
-
     return properties;
 }
 
@@ -190,23 +157,17 @@ const QString PBTreeNode::GetIntrospectXml(const QDBusObjectPath &object_path)
                          object_path.path(), \
                          ofDIntrospectableName, \
                          QDBusConnection::sessionBus());
-
     // Lets see what we have - introspect this first
     QDBusMessage reply = iface.call("Introspect");
     if (reply.type() != QDBusMessage::ReplyMessage) {
         qDebug("Could not introspect this object");
         return NULL;
     }
-
     QList<QVariant> args = reply.arguments();
-
     QList<QVariant>::iterator iter = args.begin();
-
     QVariant variant = *iter;
-
     // The introspected string describing this object
     const QString intro_xml = variant.value<QString>();
-
     return intro_xml;
 }
 
@@ -214,19 +175,14 @@ PBTreeNode* PBTreeNode::FindJobNode(const QString via, QList<PBTreeNode*> jobnod
 {
     // construct the object path
     QString target = "/plainbox/job/" + via;
-
     QList<PBTreeNode*>::iterator iter = jobnodes.begin();
-
     while(iter != jobnodes.end()) {
         PBTreeNode* node = *iter;
-
         if (node->object_path.path().compare(target)==0) {
             return node;
         }
-
         iter++;
     }
-
     // Cant find such a job
     return NULL;
 }
@@ -235,7 +191,6 @@ const QString PBTreeNode::via(void)
 {
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
@@ -248,7 +203,6 @@ const QString PBTreeNode::via(void)
             }
         }
     }
-
     // There is no "via" so its a top level node
     return QString("");
 }
@@ -257,7 +211,6 @@ const QString PBTreeNode::name(void)
 {
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
@@ -270,7 +223,6 @@ const QString PBTreeNode::name(void)
             }
         }
     }
-
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");
 }
@@ -278,7 +230,6 @@ const QString PBTreeNode::name(void)
 const QString PBTreeNode::id(void)
 {
     QStringList list = object_path.path().split("/");
-
     return list.last();
 }
 
@@ -287,7 +238,6 @@ const QDBusObjectPath PBTreeNode::job(void)
 {
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
@@ -295,18 +245,14 @@ const QDBusObjectPath PBTreeNode::job(void)
                 QVariant variant;
                 variant = *iface->properties.find("job");
                 if (variant.isValid() ) {
-
                     QDBusObjectPath job = variant.value<QDBusObjectPath>();
-
                     return job;
                 }
             }
         }
     }
-
     // No job - should this be flagged as an error in the tests themselves?
     qDebug("There is no job property");
-
     return QDBusObjectPath("");
 }
 
@@ -314,7 +260,6 @@ const QDBusObjectPath PBTreeNode::result(void)
 {
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
@@ -322,15 +267,12 @@ const QDBusObjectPath PBTreeNode::result(void)
                 QVariant variant;
                 variant = *iface->properties.find("result");
                 if (variant.isValid() ) {
-
                     QDBusObjectPath result = variant.value<QDBusObjectPath>();
-
                     return result;
                 }
             }
         }
     }
-
     // No name - should this be flagged as an error in the tests themselves?
     return QDBusObjectPath("");
 }
@@ -341,7 +283,6 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, \
     argument.beginStructure();
     argument >> inner_log.delay >> inner_log.stream >> inner_log.data;
     argument.endStructure();
-
     return argument;
 }
 
@@ -350,14 +291,12 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, \
 {
     argument.beginArray();
     outer.clear();
-
     while(!argument.atEnd())
     {
         io_log_inner_t inner;
         argument >> inner;
         outer.append(inner);
     }
-
     argument.endArray();
     return argument;
 }
@@ -365,23 +304,17 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, \
 const QString PBTreeNode::io_log(void)
 {
     io_log_outer_t outer;
-
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
             if(iface->interface.compare(JobResultInterface) == 0) {
                 QVariant variant;
                 variant = *iface->properties.find("io_log");
-
                 qDebug("Found the io_log");
-
                 const QDBusArgument qda = variant.value<QDBusArgument>();
-
                 qda >> outer;
-
                 // Preserve this for future use
                 // do something with outer
                 QString io_log;
@@ -393,9 +326,7 @@ const QString PBTreeNode::io_log(void)
             }
         }
     }
-
     qDebug("Cant decode the io log");
-
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");
 }
@@ -405,7 +336,6 @@ const QString PBTreeNode::comments(void)
 {
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
@@ -418,7 +348,6 @@ const QString PBTreeNode::comments(void)
             }
         }
     }
-
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");
 }
@@ -428,7 +357,6 @@ const QString PBTreeNode::outcome(void)
 {
     for(int j=0; j < interfaces.count(); j++) {
         PBObjectInterface* iface = interfaces.at(j);
-
         if (iface == NULL) {
             qDebug("Null interface");
         } else {
@@ -441,7 +369,6 @@ const QString PBTreeNode::outcome(void)
             }
         }
     }
-
     // No name - should this be flagged as an error in the tests themselves?
     return QString("");
 }
@@ -449,15 +376,12 @@ const QString PBTreeNode::outcome(void)
 void PBTreeNode::setOutcome(const QString &outcome)
 {
     qDebug() << "PBTreeNode::setOutcome" << object_path.path() << outcome;
-
     QDBusInterface iface(PBBusName, \
                          object_path.path(), \
                          ofDPropertiesName, \
                          QDBusConnection::sessionBus());
-
     QDBusMessage reply = iface.call("Set",JobResultInterface,"outcome",outcome);
     if (reply.type() != QDBusMessage::ReplyMessage) {
-
         qDebug() << "Failed to set outcome:";
     }
 }
@@ -465,15 +389,12 @@ void PBTreeNode::setOutcome(const QString &outcome)
 void PBTreeNode::setComments(const QString &comments)
 {
     qDebug() << "PBTreeNode::setComments" << object_path.path() << comments;
-
     QDBusInterface iface(PBBusName, \
                          object_path.path(), \
                          ofDPropertiesName, \
                          QDBusConnection::sessionBus());
-
     QDBusMessage reply = iface.call("Set",JobResultInterface,"comments",comments);
     if (reply.type() != QDBusMessage::ReplyMessage) {
-
         qDebug() << "Failed to set comments:";
     }
 }
@@ -481,12 +402,10 @@ void PBTreeNode::setComments(const QString &comments)
 bool PBTreeNode::CanStart(void)
 {
     qDebug() << "PBTreeNode::CanStart()";
-
     QDBusInterface iface(PBBusName, \
                          object_path.path(), \
                          JobStateInterface, \
                          QDBusConnection::sessionBus());
-
     QDBusReply<bool> reply = iface.call("CanStart");
     if (reply.isValid()) {
         return reply.value();
@@ -496,12 +415,10 @@ bool PBTreeNode::CanStart(void)
 const QString PBTreeNode::GetReadinessDescription(void)
 {
     qDebug() << "PBTreeNode::GetReadinessDescription()";
-
     QDBusInterface iface(PBBusName, \
                          object_path.path(), \
                          JobStateInterface, \
                          QDBusConnection::sessionBus());
-
     QDBusReply<QString> reply = iface.call("GetReadinessDescription");
     if (reply.isValid()) {
         return reply.value();
