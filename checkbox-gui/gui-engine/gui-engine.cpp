@@ -621,7 +621,7 @@ void GuiEngine::RunLocalJobs(void)
         QString empty;
         SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL, empty);
         // Lets skip this one
-        m_rerun_list.pop_front();
+        m_rerun_list.removeOne(m_current_job_path);
     }
     qDebug() << "GuiEngine::GuiResumeSession() - Done";
  }
