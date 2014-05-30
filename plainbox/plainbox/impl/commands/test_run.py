@@ -111,12 +111,16 @@ class TestRun(TestCase):
     def test_run_without_args(self, mock_check_output):
         with TestIO(combined=True) as io:
             with self.assertRaises(SystemExit) as call:
-                main(['run'])
+                main(['run', '--no-color'])
             self.assertEqual(call.exception.args, (0,))
         expected = """
         ===============================[ Analyzing Jobs ]===============================
+        =============================[ Session Statistics ]=============================
+        This session is about 0.00% complete
         Estimated duration cannot be determined for automated jobs.
         Estimated duration cannot be determined for manual jobs.
+        Size of the desired job list: 0
+        Size of the effective execution plan: 0
         ==============================[ Running All Jobs ]==============================
         ==================================[ Results ]===================================
         """

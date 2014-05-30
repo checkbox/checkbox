@@ -176,6 +176,56 @@ class FallbackCommandOutputPrinter(extcmd.DelegateBase):
             self._abort = True
 
 
+class JobRunnerUIDelegate(extcmd.DelegateBase):
+    """
+    Delegate for extcmd that delegates extcmd events to IJobRunnerUI
+
+    The file itself is only opened once on_begin() gets called by extcmd. This
+    makes it safe to instantiate this without worrying about dangling
+    resources.
+
+    The instance attribute 'ui' can be changed at any time. It can also be set
+    to None to silence all notifications from execution progress of external
+    programs.
+    """
+
+    def __init__(self, ui=None):
+        """
+        Initialize the JobRunnerUIDelegate
+
+        :param ui:
+            (optional) an instnace of IJobRunnerUI to delegate events to
+        """
+        self.ui = ui
+
+    def on_begin(self, args, kwargs):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called when a command is being invoked
+        """
+        if self.ui is not None:
+            self.ui.about_to_execute_program(args, kwargs)
+
+    def on_end(self, returncode):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called when a command finishes running
+        """
+        if self.ui is not None:
+            self.ui.finished_executing_program(returncode)
+
+    def on_line(self, stream_name, line):
+        """
+        Internal method of extcmd.DelegateBase
+
+        Called for each line of output.
+        """
+        if self.ui is not None:
+            self.ui.got_program_output(stream_name, line)
+
+
 class JobRunner(IJobRunner):
     """
     Runner for jobs - executes jobs and produces results
@@ -204,9 +254,13 @@ class JobRunner(IJobRunner):
         :param jobs_io_log_dir:
             Base directory where IO log files are created.
         :param command_io_delegate:
-            Application specific extcmd IO delegate applicable for
+            (deprecated) Application specific extcmd IO delegate applicable for
             extcmd.ExternalCommandWithDelegate. Can be Left out, in which case
             :class:`FallbackCommandOutputPrinter` is used instead.
+
+            This argument is deprecated. Use The ui argument on
+            :meth:`run_job()` instead. Note that it has different (but
+            equivalent) API.
         :param dry_run:
             Flag indicating that the runner is in "dry run mode". When True
             most normal commands won't execute. Useful for testing.
@@ -225,7 +279,9 @@ class JobRunner(IJobRunner):
                 UserJobExecutionController(session_dir, provider_list),
             ]
         self._jobs_io_log_dir = jobs_io_log_dir
+        # NOTE: deprecated
         self._command_io_delegate = command_io_delegate
+        self._job_runner_ui_delegate = JobRunnerUIDelegate()
         self._dry_run = dry_run
         self._execution_ctrl_list = execution_ctrl_list
 
@@ -252,7 +308,7 @@ class JobRunner(IJobRunner):
                 warm_up_list.append(warm_up_func)
         return warm_up_list
 
-    def run_job(self, job, config=None):
+    def run_job(self, job, config=None, ui=None):
         """
         Run the specified job an return the result
 
@@ -263,6 +319,10 @@ class JobRunner(IJobRunner):
             is only used for the environment variables (that should be
             specified in the environment but, for simplicity in certain setups,
             can be pulled from a special section of the configuration file.
+        :param ui:
+            A IJobRunnerUI object (optional) which will be used do relay
+            external process interaction events during the execution of this
+            job.
         :returns:
             A IJobResult subclass that describes the result
         :raises ValueError:
@@ -293,7 +353,11 @@ class JobRunner(IJobRunner):
             if self._dry_run and job.plugin not in self._DRY_RUN_PLUGINS:
                 return self._get_dry_run_result(job)
             else:
-                return runner(job, config)
+                self._job_runner_ui_delegate.ui = ui
+                try:
+                    return runner(job, config)
+                finally:
+                    self._job_runner_ui_delegate.ui = None
 
     def run_shell_job(self, job, config):
         """
@@ -598,6 +662,7 @@ class JobRunner(IJobRunner):
 
     def _prepare_io_handling(self, job, config):
         ui_io_delegate = self._command_io_delegate
+        # NOTE: deprecated
         # If there is no UI delegate specified create a simple
         # delegate that logs all output to the console
         if ui_io_delegate is None:
@@ -615,6 +680,9 @@ class JobRunner(IJobRunner):
         # It takes no arguments as all the interesting stuff is added as a
         # signal listener.
         io_log_gen = IOLogRecordGenerator()
+        # FIXME: this description is probably inaccurate and definitely doesn't
+        # take self._job_runner_ui_delegate into account.
+        #
         # Create the delegate for routing IO
         #
         # Split the stream of data into three parts (each part is expressed as
@@ -631,7 +699,8 @@ class JobRunner(IJobRunner):
         #
         # Send the third copy to the output writer that writes everything to
         # disk.
-        delegate = extcmd.Chain([ui_io_delegate, io_log_gen, output_writer])
+        delegate = extcmd.Chain([self._job_runner_ui_delegate, ui_io_delegate,
+                                 io_log_gen, output_writer])
         logger.debug(_("job[%s] extcmd delegate: %r"), job.id, delegate)
         # Attach listeners to io_log_gen (the IOLogRecordGenerator instance)
         # One listener appends each record to an array
@@ -662,17 +731,20 @@ class JobRunner(IJobRunner):
                     gzip_stream, encoding='UTF-8') as record_stream:
             writer = IOLogRecordWriter(record_stream)
             io_log_gen.on_new_record.connect(writer.write_record)
-            # Start the process and wait for it to finish getting the
-            # result code. This will actually call a number of callbacks
-            # while the process is running. It will also spawn a few
-            # threads although all callbacks will be fired from a single
-            # thread (which is _not_ the main thread)
-            logger.debug(
-                _("job[%s] starting command: %s"), job.id, job.command)
-            # Run the job command using extcmd
-            return_code = self._run_extcmd(job, config, extcmd_popen)
-            logger.debug(
-                _("job[%s] command return code: %r"), job.id, return_code)
+            try:
+                # Start the process and wait for it to finish getting the
+                # result code. This will actually call a number of callbacks
+                # while the process is running. It will also spawn a few
+                # threads although all callbacks will be fired from a single
+                # thread (which is _not_ the main thread)
+                logger.debug(
+                    _("job[%s] starting command: %s"), job.id, job.command)
+                # Run the job command using extcmd
+                return_code = self._run_extcmd(job, config, extcmd_popen)
+                logger.debug(
+                    _("job[%s] command return code: %r"), job.id, return_code)
+            finally:
+                io_log_gen.on_new_record.disconnect(writer.write_record)
         return return_code, record_path
 
     def _run_extcmd(self, job, config, extcmd_popen):

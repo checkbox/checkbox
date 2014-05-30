@@ -53,6 +53,21 @@ logger = logging.getLogger("plainbox.result")
 IOLogRecord = namedtuple("IOLogRecord", "delay stream_name data".split())
 
 
+def tr_outcome(outcome):
+    """
+    Get the translated value of OUTCOME_ constant
+    """
+    return {
+        IJobResult.OUTCOME_NONE: _("none"),
+        IJobResult.OUTCOME_PASS: _("pass"),
+        IJobResult.OUTCOME_FAIL: _("fail"),
+        IJobResult.OUTCOME_SKIP: _("skip"),
+        IJobResult.OUTCOME_NOT_SUPPORTED: _("not supported"),
+        IJobResult.OUTCOME_NOT_IMPLEMENTED: _("not implemented"),
+        IJobResult.OUTCOME_UNDECIDED: _("undecided")
+    }[outcome]
+
+
 class _JobResultBase(IJobResult):
     """
     Base class for :`IJobResult` implementations.
@@ -113,6 +128,12 @@ class _JobResultBase(IJobResult):
         if old != new:
             self._data['outcome'] = new
             self.on_outcome_changed(old, new)
+
+    def tr_outcome(self):
+        """
+        Get the translated value of the outcome
+        """
+        return tr_outcome(self.outcome)
 
     @property
     def execution_duration(self):
