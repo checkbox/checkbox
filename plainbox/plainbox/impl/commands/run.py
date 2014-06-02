@@ -220,7 +220,7 @@ class NormalUI(IJobRunnerUI):
         self._color = color
 
     def considering_job(self, job, job_state):
-        print(self.C.header(job.tr_summary()))
+        print(self.C.header(job.tr_summary(), fill='-'))
         print(_("ID: {0}").format(job.id))
 
     def about_to_start_running(self, job, job_state):
@@ -240,7 +240,7 @@ class NormalUI(IJobRunnerUI):
         if self.show_cmd_output:
             print(self.C.BLACK("... 8< -".ljust(80, '-')))
         else:
-            print("(" + _("Command output hidden") + ")")
+            print(self.C.BLACK("(" + _("Command output hidden") + ")"))
 
     def got_program_output(self, stream_name, line):
         if not self.show_cmd_output:
@@ -697,7 +697,7 @@ class RunInvocation(CheckBoxInvocationMixIn):
         """
         Run all jobs according to the run list.
         """
-        print(self.C.header(_("Running All Jobs")))
+        print(self.C.header(_("Running Selected Jobs")))
         self._backtrack_and_run_missing = True
         while self._backtrack_and_run_missing:
             self._backtrack_and_run_missing = False
