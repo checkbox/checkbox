@@ -407,7 +407,17 @@ class IJobRunnerUI(metaclass=ABCMeta):
         Method called only for user-interact and user-interact-verify jobs
         that should instruct the user to read the description (that needs
         to be displayed somehow) and confirm before the test is actually
-        started.
+        started. The user should be one of the few choices listed below:
+
+        quit:
+            save and quit
+        run:
+            run the job
+        skip:
+            skip and continue
+
+        :returns:
+            The action selected by the user.
         """
 
     @abstractmethod
@@ -471,6 +481,19 @@ class IJobRunnerUI(metaclass=ABCMeta):
         """
         Method called at the end of the process, regardless if the job was
         actually started or not
+        """
+
+    @abstractmethod
+    def pick_action_cmd(self, action_list, prompt=None):
+        """
+        Present a list of actions and let the user pick one
+
+        :param action_list:
+            A list of 3-tuples (accel, label, cmd)
+        :prompt:
+            An optional prompt string
+        :returns:
+            cmd of the selected action or None
         """
 
 
@@ -969,4 +992,145 @@ class ISessionStateTransport(metaclass=ABCMeta):
             It is expected that certain keys in the returned dictionary will
             gain special semantics that can be further standardized. As of this
             writing there are no standard keys.
+        """
+
+
+class ITranslator(metaclass=ABCMeta):
+    """
+    Interface for all translators
+    """
+
+    @abstractmethod
+    def gettext(self, msgid):
+        """
+        Translate a message
+
+        :param msgid:
+            Identifier of the message to translate
+        :returns:
+            Translated message or msgid if translation is not available
+        """
+
+    @abstractmethod
+    def ngettext(self, msgid1, msgid2, n):
+        """
+        Translate a message involving plural form
+
+        :param msgid1:
+            Identifier of the singular form of the message to translate
+        :param msgid2:
+            Identifier of the plural form of message to translate
+        :param n:
+            Any integer number
+        :returns:
+            Translated message appropriate for the specified number, if
+            available.  If the translated number is not available one of msgid1
+            and msgid2 are returned, depending on the value of n.
+        """
+
+    # Context aware gettext + ngettext
+
+    @abstractmethod
+    def pgettext(self, msgctxt, msgid):
+        """
+        Translate a message within a context.
+
+        :param msgctxt:
+            Context that specifies which translation of msgid to pick
+        :param msgid:
+            Identifier of the message to translate
+        :returns:
+            Translated message or msgid if translation is not available
+        """
+
+    @abstractmethod
+    def pngettext(self, msgctxt, msgid1, msgid2, n):
+        """
+        Translate a message involving plural form
+
+        :param msgctxt:
+            Context that specifies which translation of msgid1/msgid2 to pick
+        :param msgid1:
+            Identifier of the singular form of the message to translate
+        :param msgid2:
+            Identifier of the plural form of message to translate
+        :param n:
+            Any integer number
+        :returns:
+            Translated message appropriate for the specified number, if
+            available. If the translated number is not available one of msgid1
+            and msgid2 are returned, depending on the value of n.
+        """
+
+    # Explicit domain gettext + ngettext
+
+    @abstractmethod
+    def dgettext(self, domain, msgid):
+        """
+        Translate a message using a specific domain
+
+        :param domain:
+            Name of the domain from which translations are obtained
+        :param msgid:
+            Identifier of the message to translate
+        :returns:
+            Translated message or msgid if translation is not available
+        """
+
+    @abstractmethod
+    def dngettext(self, domain, msgid1, msgid2, n):
+        """
+        Translate a message involving plural form using a specific domain
+
+        :param domain:
+            Name of the domain from which translations are obtained
+        :param msgid1:
+            Identifier of the singular form of the message to translate
+        :param msgid2:
+            Identifier of the plural form of message to translate
+        :param n:
+            Any integer number
+        :returns:
+            Translated message appropriate for the specified number, if
+            available.  If the translated number is not available one of msgid1
+            and msgid2 are returned, depending on the value of n.
+        """
+
+    # Explicit domain and context gettext + ngettext
+
+    @abstractmethod
+    def pdgettext(self, msgctxt, domain, msgid):
+        """
+        Translate a message using a specific context and domain
+
+        :param msgctxt:
+            Context that specifies which translation of msgid to pick
+        :param domain:
+            Name of the domain from which translations are obtained
+        :param msgid:
+            Identifier of the message to translate
+        :returns:
+            Translated message or msgid if translation is not available
+        """
+
+    @abstractmethod
+    def pdngettext(self, msgctxt, domain, msgid1, msgid2, n):
+        """
+        Translate a message involving plural form using a specific context and
+        domain
+
+        :param msgctxt:
+            Context that specifies which translation of msgid1/msgid2 to pick
+        :param domain:
+            Name of the domain from which translations are obtained
+        :param msgid1:
+            Identifier of the singular form of the message to translate
+        :param msgid2:
+            Identifier of the plural form of message to translate
+        :param n:
+            Any integer number
+        :returns:
+            Translated message appropriate for the specified number, if
+            available.  If the translated number is not available one of msgid1
+            and msgid2 are returned, depending on the value of n.
         """

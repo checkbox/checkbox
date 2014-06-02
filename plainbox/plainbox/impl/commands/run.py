@@ -39,6 +39,7 @@ from plainbox.abc import IJobResult
 from plainbox.abc import IJobRunnerUI
 from plainbox.i18n import gettext as _
 from plainbox.i18n import ngettext
+from plainbox.i18n import pgettext as C_
 from plainbox.impl.color import ansi_on, ansi_off
 from plainbox.impl.commands import PlainBoxCommand
 from plainbox.impl.commands.checkbox import CheckBoxCommandMixIn
@@ -127,6 +128,46 @@ class Colorizer:
 Action = collections.namedtuple("Action", "accel label cmd")
 
 
+class ActionUI:
+    """
+    A simple user interface to display a list of actions and let the user to
+    pick one
+    """
+    def __init__(self, action_list, prompt=None, color=None):
+        """
+        :param action_list:
+            A list of 3-tuples (accel, label, cmd)
+        :prompt:
+            An optional prompt string
+        :returns:
+            cmd of the selected action or None
+        """
+        if prompt is None:
+            prompt = _("Pick an action")
+        self.action_list = action_list
+        self.prompt = prompt
+        self.C = Colorizer(color or ansi_off)
+
+    def run(self):
+        long_hint = "\n".join(
+            "  {accel} => {label}".format(
+                accel=self.C.BLUE(action.accel) if action.accel else ' ',
+                label=action.label)
+            for action in self.action_list)
+        short_hint = ''.join(action.accel for action in self.action_list)
+        while True:
+            try:
+                print(self.C.BLUE(self.prompt))
+                print(long_hint)
+                choice = input("[{}]: ".format(self.C.BLUE(short_hint)))
+            except EOFError:
+                return None
+            else:
+                for action in self.action_list:
+                    if choice == action.accel or choice == action.label:
+                        return action.cmd
+
+
 class SilentUI(IJobRunnerUI):
 
     def considering_job(self, job, job_state):
@@ -162,6 +203,9 @@ class SilentUI(IJobRunnerUI):
     def finished(self, job, job_state, job_result):
         pass
 
+    def pick_action_cmd(self, action_list, prompt=None):
+        pass
+
 
 class NormalUI(IJobRunnerUI):
 
@@ -173,15 +217,21 @@ class NormalUI(IJobRunnerUI):
     def __init__(self, color, show_cmd_output=True):
         self.show_cmd_output = show_cmd_output
         self.C = Colorizer(color)
+        self._color = color
 
     def considering_job(self, job, job_state):
-        print(self.C.header(job.id))
+        print(self.C.header(job.tr_summary()))
+        print(_("ID: {0}").format(job.id))
 
     def about_to_start_running(self, job, job_state):
         pass
 
     def wait_for_interaction_prompt(self, job):
-        input(self.C.BLUE(_("Press enter to continue") + '\n'))
+        return self.pick_action_cmd([
+            Action('', _("press ENTER to continue"), 'run'),
+            Action('s', _("skip this job"), 'skip'),
+            Action('q', _("save the session and quit"), 'quit')
+        ])
 
     def started_running(self, job, job_state):
         pass
@@ -211,7 +261,6 @@ class NormalUI(IJobRunnerUI):
         pass
 
     def notify_about_description(self, job):
-        print(_("Please familiarize yourself with the job description"))
         print(self.C.CYAN(job.tr_description()))
 
     def job_cannot_start(self, job, job_state, result):
@@ -224,6 +273,9 @@ class NormalUI(IJobRunnerUI):
 
     def _print_result_outcome(self, result):
         print(_("Outcome") + ": " + self.C.result(result))
+
+    def pick_action_cmd(self, action_list, prompt=None):
+        return ActionUI(action_list, prompt, self._color).run()
 
 
 class ReRunJob(Exception):
@@ -255,13 +307,14 @@ class RunInvocation(CheckBoxInvocationMixIn):
 
     def __init__(self, provider_list, config, ns, use_colors=True):
         super().__init__(provider_list, config)
-        self.C = Colorizer(ansi_on if use_colors else ansi_off)
         self.ns = ns
         self._manager = None
         self._runner = None
         self._exporter = None
         self._transport = None
         self._backtrack_and_run_missing = True
+        self._color = ansi_on if use_colors else ansi_off
+        self.C = Colorizer(self._color)
 
     @property
     def manager(self):
@@ -406,9 +459,9 @@ class RunInvocation(CheckBoxInvocationMixIn):
                 resume_storage.id))
             if cmd == 'resume':
                 pass
-            elif cmd == 'next' or cmd is None:
+            elif cmd == 'next':
                 continue
-            elif cmd == 'create':
+            elif cmd == 'create' or cmd is None:
                 self.create_manager(None)
                 break
             # Skip sessions that cannot be resumed
@@ -694,8 +747,19 @@ class RunInvocation(CheckBoxInvocationMixIn):
                 ui.notify_about_description(job)
             if (self.is_interactive and
                     job.plugin in ('user-interact', 'user-interact-verify')):
-                ui.wait_for_interaction_prompt(job)
-            job_result = self.runner.run_job(job, self.config, ui)
+                cmd = ui.wait_for_interaction_prompt(job)
+                if cmd == 'run' or cmd is None:
+                    job_result = self.runner.run_job(job, self.config, ui)
+                elif cmd == 'skip':
+                    job_result = MemoryJobResult({
+                        'outcome': IJobResult.OUTCOME_SKIP,
+                        'comments': _("Explicitly skipped before execution")
+                    })
+                    break
+                elif cmd == 'quit':
+                    raise SystemExit()
+            else:
+                job_result = self.runner.run_job(job, self.config, ui)
             if (self.is_interactive and
                     job_result.outcome == IJobResult.OUTCOME_UNDECIDED):
                 try:
@@ -737,25 +801,7 @@ class RunInvocation(CheckBoxInvocationMixIn):
             output_file.close()
 
     def _pick_action_cmd(self, action_list, prompt=None):
-        if prompt is None:
-            prompt = _("Pick an action")
-        long_hint = "\n".join(
-            "  {accel} => {label}".format(
-                accel=self.C.BLUE(action.accel) if action.accel else ' ',
-                label=action.label)
-            for action in action_list)
-        short_hint = ''.join(action.accel for action in action_list)
-        while True:
-            try:
-                print(self.C.BLUE(prompt))
-                print(long_hint)
-                choice = input("[{}]: ".format(self.C.BLUE(short_hint)))
-            except EOFError:
-                return None
-            else:
-                for action in action_list:
-                    if choice == action.accel or choice == action.label:
-                        return action.cmd
+        return ActionUI(action_list, prompt, self._color).run()
 
     def _interaction_callback(self, runner, job, result, config,
                               prompt=None, allowed_outcome=None):
@@ -770,13 +816,19 @@ class RunInvocation(CheckBoxInvocationMixIn):
         ]
         if IJobResult.OUTCOME_PASS in allowed_outcome:
             allowed_actions.append(
-                Action('p', _('mark as passed'), 'set-pass'))
+                Action('p', _('set outcome to {0}').format(
+                    self.C.GREEN(C_('set outcome to <pass>', 'pass'))),
+                    'set-pass'))
         if IJobResult.OUTCOME_FAIL in allowed_outcome:
             allowed_actions.append(
-                Action('f', _('mark as failed'), 'set-fail'))
+                Action('f', _('set outcome to {0}').format(
+                    self.C.RED(C_('set outcome to <fail>', 'fail'))),
+                    'set-fail'))
         if IJobResult.OUTCOME_SKIP in allowed_outcome:
             allowed_actions.append(
-                Action('s', _('skip this test'), 'set-skip'))
+                Action('s', _('set outcome to {0}').format(
+                    self.C.YELLOW(C_('set outcome to <skip>', 'skip'))),
+                    'set-skip'))
         if job.command is not None:
             allowed_actions.append(
                 Action('r', _('re-run this job'), 're-run'))
@@ -790,9 +842,10 @@ class RunInvocation(CheckBoxInvocationMixIn):
                     tr_outcome(suggested_outcome)), 'set-suggested'))
         while result.outcome not in allowed_outcome:
             print(_("Please decide what to do next:"))
-            print("  " + _("result") + ": {0}".format(self.C.result(result)))
+            print("  " + _("outcome") + ": {0}".format(self.C.result(result)))
             if result.comments is None:
-                print("  " + _("comments") + ": {0}".format(_("none")))
+                print("  " + _("comments") + ": {0}".format(
+                    C_("none comment", "none")))
             else:
                 print("  " + _("comments") + ": {0}".format(
                     self.C.CYAN(result.comments, bright=False)))

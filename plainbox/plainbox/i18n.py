@@ -30,35 +30,55 @@ import os
 import random
 import re
 
+from plainbox.abc import ITranslator
+
 __all__ = [
     'bindtextdomain',
     'dgettext',
+    'dngettext',
     'gettext',
     'ngettext',
+    'pdgettext',
+    'pdngettext',
+    'pgettext',
+    'pngettext',
     'textdomain',
 ]
 
 _logger = logging.getLogger("plainbox.i18n")
 
-class NoOpTranslator:
 
-    @classmethod
-    def gettext(cls, msgid):
+class NoOpTranslator(ITranslator):
+    """
+    A translator that doesn't translate anything
+    """
+
+    def gettext(self, msgid):
         return msgid
 
-    @classmethod
-    def dgettext(cls, domain, msgid):
-        return msgid
+    def ngettext(self, msgid1, msgid2, n):
+        return msgid1 if n == 1 else msgid2
 
-    @classmethod
-    def ngettext(cls, msgid1, msgid2, n):
-        if n == 1:
-            return msgid1
-        else:
-            return msgid2
+    def pgettext(self, msgctxt, msgid):
+        return self.gettext(msgid)
+
+    def pngettext(self, msgctxt, msgid1, msgid2, n):
+        return self.ngettext(msgid1, msgid2, n)
+
+    def dgettext(self, domain, msgid):
+        return self.gettext(msgid)
+
+    def dngettext(self, domain, msgid1, msgid2, n):
+        return self.ngettext(msgid1, msgid2, n)
+
+    def pdgettext(self, msgctxt, domain, msgid):
+        return self.gettext(msgid)
+
+    def pdngettext(self, msgctxt, domain, msgid1, msgid2, n):
+        return self.ngettext(msgid1, msgid2, n)
 
 
-class LoremIpsumTranslator:
+class LoremIpsumTranslator(NoOpTranslator):
 
     LOREM_IPSUM = {
         "ch": ('', """小經 施消 了稱 能文 安種 之用 無心 友市 景內 語格。坡對
@@ -169,23 +189,28 @@ class LoremIpsumTranslator:
     def gettext(self, msgid):
         return self.dgettext("plainbox", msgid)
 
-    def dgettext(self, domain, msgid):
-        return "<{}: {}>".format(domain, self._get_ipsum(msgid))
-
     def ngettext(self, msgid1, msgid2, n):
         if n == 1:
             return self._get_ipsum(msgid1)
         else:
             return self._get_ipsum(msgid2)
-        pass
+
+    def dgettext(self, domain, msgid):
+        return "<{}: {}>".format(domain, self._get_ipsum(msgid))
 
 
-class GettextTranslator:
+class GettextTranslator(ITranslator):
+    """
+    A translator using native stdlib gettext
 
-    def __init__(self, domain):
+    # NOTE: The gettext API is a bit wrong as it doesn't respect the
+    # textdomain/bindtextdomain calls.
+    """
+
+    def __init__(self, domain, locale_dir=None):
         self._domain = domain
         self._translations = {}
-        self._locale_dir = os.getenv("PLAINBOX_LOCALE_DIR", None)
+        self._locale_dir = locale_dir
 
     def _get_translation(self, domain):
         try:
@@ -199,14 +224,74 @@ class GettextTranslator:
             self._translations[domain] = translation
             return translation
 
-    def dgettext(self, domain, msgid):
-        return self._get_translation(domain).gettext(msgid)
+    def _contextualize(self, ctx, msg):
+        """
+        Contextualize message identifier
+
+        This method combines the context string with the message identifier
+        using the character used by gettext (END OF TRANSMISSION, U+0004)
+        """
+        GETTEXT_CONTEXT_GLUE = "\004"
+        return ctx + GETTEXT_CONTEXT_GLUE + msg
 
     def gettext(self, msgid):
         return self._get_translation(self._domain).gettext(msgid)
 
     def ngettext(self, msgid1, msgid2, n):
         return self._get_translation(self._domain).ngettext(msgid1, msgid2, n)
+
+    def pgettext(self, msgctxt, msgid):
+        effective_msgid = self._contextualize(msgctxt, msgid)
+        msgstr = self.gettext(effective_msgid)
+        # If we got the untranslated version then we want to just return msgid
+        # back, without msgctxt prepended in front.
+        if msgstr == effective_msgid:
+            return msgid
+        else:
+            return msgstr
+
+    def pngettext(self, msgctxt, msgid1, msgid2, n):
+        effective_msgid1 = self._contextualize(msgctxt, msgid1)
+        effective_msgid2 = self._contextualize(msgctxt, msgid2)
+        msgstr = self.ngettext(effective_msgid1, effective_msgid2, n)
+        # If we got the untranslated version then we want to just return msgid1
+        # or msgid2 back, without msgctxt prepended in front.
+        if msgstr == effective_msgid1:
+            return msgid1
+        elif msgstr == effective_msgid2:
+            return msgid2
+        else:
+            return msgstr
+
+    def dgettext(self, domain, msgid):
+        return self._get_translation(domain).gettext(msgid)
+
+    def dngettext(self, domain, msgid1, msgid2, n):
+        return self._get_translation(domain).ngettext(msgid1, msgid2, n)
+
+    def pdgettext(self, msgctxt, domain, msgid):
+        effective_msgid = self._contextualize(msgctxt, msgid)
+        msgstr = self._get_translation(domain).gettext(effective_msgid)
+        # If we got the untranslated version then we want to just return msgid
+        # back, without msgctxt prepended in front.
+        if msgstr == effective_msgid:
+            return msgid
+        else:
+            return msgstr
+
+    def pdngettext(self, msgctxt, domain, msgid1, msgid2, n):
+        effective_msgid1 = self._contextualize(msgctxt, msgid1)
+        effective_msgid2 = self._contextualize(msgctxt, msgid2)
+        msgstr = self._get_translation(domain).ngettext(
+            effective_msgid1, effective_msgid2, n)
+        # If we got the untranslated version then we want to just return msgid1
+        # or msgid2 back, without msgctxt prepended in front.
+        if msgstr == effective_msgid1:
+            return msgid1
+        elif msgstr == effective_msgid2:
+            return msgid2
+        else:
+            return msgstr
 
 
 def docstring(docstring):
@@ -290,8 +375,9 @@ def gettext_noop(msgid):
 # This is the global plainbox-specific translator.
 try:
     _translator = {
-        "gettext": GettextTranslator("plainbox"),
-        "no-op": NoOpTranslator,
+        "gettext": GettextTranslator(
+            "plainbox", os.getenv("PLAINBOX_LOCALE_DIR", None)),
+        "no-op": NoOpTranslator(),
         "lorem-ipsum-ar": LoremIpsumTranslator("ar"),
         "lorem-ipsum-ch": LoremIpsumTranslator("ch"),
         "lorem-ipsum-he": LoremIpsumTranslator("he"),
@@ -307,4 +393,9 @@ except KeyError as exc:
 # This is the public API of this module
 gettext = _translator.gettext
 ngettext = _translator.ngettext
+pgettext = _translator.pgettext
+pngettext = _translator.pngettext
 dgettext = _translator.dgettext
+dngettext = _translator.dngettext
+pdgettext = _translator.pdgettext
+pdngettext = _translator.pdngettext
