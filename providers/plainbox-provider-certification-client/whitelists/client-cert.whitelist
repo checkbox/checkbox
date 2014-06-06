@@ -73,15 +73,6 @@ esata/storage-test
 esata/remove
 __expresscard__
 expresscard/verification
-__firmware__
-firmware/fwts
-firmware/fwts_logs
-firmware/fwts_desktop_diagnosis
-firmware/fwts_desktop_diagnosis_results.log
-firmware/fwts_wakealarm
-firmware/fwts_wakealarm.log
-firmware/fwts_uefirtvariable
-firmware/fwts_uefirtvariable.log
 __firewire__
 firewire/insert
 firewire/storage-test
@@ -319,6 +310,15 @@ power-management/reboot-log-attach
 # Automated Tests
 # The following tests are purely automated and/or lenghty stress tests. They
 # have been moved to the end of the test run to improve the testing process.
+__firmware__
+firmware/fwts
+firmware/fwts_logs
+firmware/fwts_desktop_diagnosis
+firmware/fwts_desktop_diagnosis_results.log
+firmware/fwts_wakealarm
+firmware/fwts_wakealarm.log
+firmware/fwts_uefirtvariable
+firmware/fwts_uefirtvariable.log
 benchmarks/disk/hdparm-read
 benchmarks/disk/hdparm-read_.*
 benchmarks/disk/hdparm-cache-read
