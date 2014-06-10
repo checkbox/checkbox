@@ -420,11 +420,20 @@ int GuiEngine::PrepareJobs(void)
     qDebug("\n\nGuiEngine::PrepareJobs()\n");
     /* First, filter out any jobs we really dont want (i.e. not user-selected)
     *
-    * Note: m_final_run_list is in the order of items shown in the gui,
-    * so we try to preserve that when we give it to UpdateDesiredJobList()
-    * and hopefully it is similar when we get it back from SessionStateRunList()
+    * Note: m_final_run_list is in the order of items shown in the gui
+    *       m_final_ordered_run_list keeps the whitelist ordering
     */
-    QStringList errors = UpdateDesiredJobList(m_session, m_final_run_list);
+
+    QList<QDBusObjectPath> m_final_ordered_run_list;
+    QSet<QDBusObjectPath> wanted = QSet<QDBusObjectPath>::fromList(m_final_run_list);
+
+    for (QList<QDBusObjectPath>::const_iterator iter = m_desired_job_list.constBegin(); iter != m_desired_job_list.constEnd(); ++iter) {
+        const QDBusObjectPath job = *iter;
+        if (wanted.contains(job))
+            m_final_ordered_run_list.append(job);
+    }
+
+    QStringList errors = UpdateDesiredJobList(m_session, m_final_ordered_run_list);
     if (errors.count() != 0) {
         qDebug("UpdateDesiredJobList generated errors:");
         for (int i=0; i<errors.count(); i++) {
