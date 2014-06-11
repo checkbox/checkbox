@@ -309,6 +309,10 @@ class JobDefinition(Unit, IJobDefinition):
         return self.get_record_value('user')
 
     @property
+    def flags(self):
+        return self.get_record_value('flags')
+
+    @property
     def shell(self):
         """
         Shell that is used to interpret the command
@@ -365,6 +369,15 @@ class JobDefinition(Unit, IJobDefinition):
         """
         if self.environ is not None:
             return {variable for variable in re.split('[\s,]+', self.environ)}
+        else:
+            return set()
+
+    def get_flag_set(self):
+        """
+        Return a set of flags associated with this job
+        """
+        if self.flags is not None:
+            return {flag for flag in re.split('[\s,]+', self.flags)}
         else:
             return set()
 
