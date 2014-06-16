@@ -8,7 +8,7 @@
 # password. Something like this works:
 # Cmnd_Alias LXC_COMMANDS = /usr/bin/lxc-create, /usr/bin/lxc-start, \
 # /usr/bin/lxc-destroy, /usr/bin/lxc-attach, /usr/bin/lxc-start-ephemeral, \
-# /usr/bin/lxc-stop, /usr/bin/lxc-ls
+# /usr/bin/lxc-stop, /usr/bin/lxc-ls, /usr/bin/lxc-info, /usr/bin/lxc-wait
 # your-user ALL=NOPASSWD: LXC_COMMANDS
 
 LOG_DIR=lxc-logs
