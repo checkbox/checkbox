@@ -209,19 +209,6 @@ class JobDefinition(Unit, IJobDefinition):
         return "<JobDefinition id:{!r} plugin:{!r}>".format(
             self.id, self.plugin)
 
-    def __eq__(self, other):
-        if not isinstance(other, JobDefinition):
-            return False
-        return self.checksum == other.checksum
-
-    def __ne__(self, other):
-        if not isinstance(other, JobDefinition):
-            return True
-        return self.checksum != other.checksum
-
-    def __hash__(self):
-        return hash(self.checksum)
-
     class fields(SymbolDef):
         """
         Symbols for each field that a JobDefinition can have
@@ -532,6 +519,4 @@ class JobDefinition(Unit, IJobDefinition):
         if not record.origin.source.job is self:
             # TRANSLATORS: don't translate record.origin.source.job
             raise ValueError(_("record.origin.source.job must be this job"))
-        job = self.from_rfc822_record(record)
-        job._provider = self._provider
-        return job
+        return self.from_rfc822_record(record, self.provider)

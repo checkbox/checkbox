@@ -75,6 +75,19 @@ class Unit:
         self._provider = provider
         self._checksum = None
 
+    def __eq__(self, other):
+        if not isinstance(other, Unit):
+            return False
+        return self.checksum == other.checksum
+
+    def __ne__(self, other):
+        if not isinstance(other, Unit):
+            return True
+        return self.checksum != other.checksum
+
+    def __hash__(self):
+        return hash(self.checksum)
+
     @property
     def unit(self):
         """
