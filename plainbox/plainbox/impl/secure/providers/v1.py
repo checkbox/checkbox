@@ -42,7 +42,7 @@ from plainbox.impl.secure.qualifiers import WhiteList
 from plainbox.impl.secure.rfc822 import FileTextSource
 from plainbox.impl.secure.rfc822 import RFC822SyntaxError
 from plainbox.impl.secure.rfc822 import load_rfc822_records
-from plainbox.impl.unit import Unit
+from plainbox.impl.unit import all_units
 from plainbox.impl.unit.job import JobDefinition
 from plainbox.impl.validation import ValidationError
 
@@ -88,13 +88,13 @@ class UnitPlugIn(IPlugIn):
     list of :class:`plainbox.impl.unit.Unit` instances from a file.
     """
 
-    # Dictionary mapping values of 'unit' field to classes that know how to
-    # load that particular unit. Since jobs don't really define the field
-    # 'unit' at all 'job' is also the default value.
-    UNIT_CLS_MAP = {
-        'job': JobDefinition,
-        'unit': Unit,  # This defines plain units
-    }
+    @staticmethod
+    def _get_unit_cls(unit_name):
+        """
+        Get a class that implements the specified unit
+        """
+        all_units.load()
+        return all_units.get_by_name(unit_name).plugin_object
 
     def __init__(self, filename, text, provider, *,
                  validate=True, validation_kwargs=None):
@@ -130,8 +130,9 @@ class UnitPlugIn(IPlugIn):
                     filename, exc))
         for record in records:
             unit_name = record.data.get('unit', 'job')
-            unit_cls = self.UNIT_CLS_MAP.get(unit_name)
-            if unit_cls is None:
+            try:
+                unit_cls = self._get_unit_cls(unit_name)
+            except KeyError:
                 raise PlugInError(
                     _("Unknown unit type: {!r}").format(unit_name))
             try:
@@ -549,9 +550,8 @@ class Provider1(IProvider1, IProviderBackend1):
             exception.
         """
         unit_list, problem_list = self.get_units()
-        unit_list = [
-            unit for unit in unit_list
-            if isinstance(unit, JobDefinition)]
+        unit_list = [unit for unit in unit_list
+                     if unit.unit == 'job']
         unit_list.sort(key=lambda unit: unit.id)
         return unit_list, problem_list
 
