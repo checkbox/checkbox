@@ -179,6 +179,10 @@ echo "export CHECKBOX_NG_LOCALE_DIR=$CHECKBOX_TOP/checkbox-ng/build/mo" >> $CHEC
 # Add CHECKBOX_PROVIDER_LOCALE_DIR to the venv
 echo "export CHECKBOX_PROVIDER_LOCALE_DIR=$CHECKBOX_TOP/providers/plainbox-provider-checkbox/build/mo" >> $CHECKBOX_VENV_PATH/bin/activate
 
+# Add PROVIDERPATH to the venv
+echo "export PROVIDERPATH=$CHECKBOX_VENV_PATH/share/plainbox-providers-1" >> $CHECKBOX_VENV_PATH/bin/activate
+mkdir -p "$CHECKBOX_VENV_PATH/share/plainbox-providers-1"
+
 # Activate the virtualenv 
 . $CHECKBOX_VENV_PATH/bin/activate
 
@@ -193,6 +197,9 @@ $CHECKBOX_TOP/support/install-pip-dependencies
 
 # Develop all the local projects
 $CHECKBOX_TOP/support/develop-projects
+
+# Develop all the local providers 
+$CHECKBOX_TOP/support/develop-providers
 
 # Enable tab-completion.
 # NOTE: This might be totally useless but hey,
