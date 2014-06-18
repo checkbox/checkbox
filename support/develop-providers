@@ -1,0 +1,41 @@
+#!/bin/sh
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+# Helper script to develop all the local providers 
+# ================================================
+
+set -e
+
+# Ensure that CHECKBOX_TOP is not empty
+if [ "$CHECKBOX_TOP" = "" ]; then
+    echo "E: this script requires \$CHECKBOX_TOP"
+    exit 100
+fi
+
+# Ensure that PROVIDERPATH is not empty
+if [ "$PROVIDERPATH" = "" ]; then
+    echo "E: this script requires \$PROVIDERPATH"
+    exit 101
+fi
+
+for provider in $CHECKBOX_TOP/providers/plainbox-provider-*; do
+    provider=$(basename "$provider")
+    echo "I: running 'develop' on $provider"
+    ( cd $CHECKBOX_TOP/providers/$provider && python3 manage.py develop --force --directory=$PROVIDERPATH )
+done
