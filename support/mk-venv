@@ -28,13 +28,30 @@ while [ -n "$1" ]; do
     esac
 done
 
+# Find the top of checkbox tree
+if [ "$CHECKBOX_TOP" = "" ]; then
+    CHECKBOX_TOP="$(git rev-parse --show-toplevel 2>/dev/null)"
+fi
+if [ "$CHECKBOX_TOP" = "" ]; then
+    CHECKBOX_TOP="$(bzr root)"
+fi
+
+# Export it for all the sub-scripts
+export CHECKBOX_TOP
+
+
 # Apply defaults to arguments without values
 if [ -z "$CHECKBOX_VENV_PATH" ]; then
     # Use sensible defaults for vagrant
     if [ "$LOGNAME" = "vagrant" ]; then
         CHECKBOX_VENV_PATH=/tmp/venv
     else
-        CHECKBOX_VENV_PATH=/ramdisk/venv
+        # Use per-branch venv for bzr folks
+        if [ -d "$CHECKBOX_TOP/.bzr" ]; then
+            CHECKBOX_VENV_PATH=/tmp/$(bzr nick)
+        else
+            CHECKBOX_VENV_PATH=/ramdisk/venv
+        fi
     fi
 fi
 
@@ -139,17 +156,6 @@ esac
 # Start setting things up
 CTS="\\x1b["
 /bin/echo -e "I: setting ${CTS}37;1m{Plain,Check}Box${CTS}0m development on ${CTS}${ANSI_COLOR}m${PRETTY_NAME}${CTS}0m..."
-
-# Find the top of checkbox tree
-if [ "$CHECKBOX_TOP" = "" ]; then
-    CHECKBOX_TOP="$(git rev-parse --show-toplevel 2>/dev/null)"
-fi
-if [ "$CHECKBOX_TOP" = "" ]; then
-    CHECKBOX_TOP="$(bzr root)"
-fi
-
-# Export it for all the sub-scripts
-export CHECKBOX_TOP
 
 # Add any necessary PPA repositories and run apt-get update if required
 if $CHECKBOX_TOP/support/install-ppa-dependencies && [ "$(which dpkg 2>/dev/null)" = "" ]; then
