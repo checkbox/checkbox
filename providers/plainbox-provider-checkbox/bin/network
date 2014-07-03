@@ -37,7 +37,8 @@ import subprocess
 from subprocess import (
     CalledProcessError,
     check_call,
-    check_output
+    check_output,
+    STDOUT
 )
 import sys
 import time
@@ -66,6 +67,18 @@ class IPerfPerformanceTest(object):
         self.mbytes = mbytes
 
     def run(self):
+        # if max_speed is 0, assume it's wifi and move on
+        if self.iface.max_speed == 0:
+            logging.warning("No max speed detected, assuming Wireless device "
+                            "and continuing with test.")
+        # Otherwise, no sense in running if we're not running at full speed. 
+        elif self.iface.max_speed > self.iface.link_speed:
+            logging.error("Detected link speed (%s) is lower than "
+                          "detected max speed (%s)" %
+                          (self.iface.link_speed, self.iface.max_speed))
+            logging.error("Please check your device configuration and try again")
+            return 1
+
         cmd = "timeout 180 iperf -c {} -n {}".format(self.target, self.mbytes)
 
         logging.debug(cmd)
@@ -117,7 +130,7 @@ class IPerfPerformanceTest(object):
             print("\nTransfer speed: {} {}b/s".format(throughput, units))
             print("%3.2f%% of " % percent, end="")
             if invalid_speed:
-                # If we have no max_speed (e.g. wireless interfaces don't
+                # If we have no link_speed (e.g. wireless interfaces don't
                 # report this), then we shouldn't penalize them because
                 # the transfer may have been reasonable. So in this case,
                 # we'll exit with a pass-warning.
@@ -367,8 +380,37 @@ class Interface(socket.socket):
         return socket.inet_ntoa(mask_data[20:24])
 
     @property
+    def link_speed(self):
+        return int(self._read_data("speed"))
+
+    @property
     def max_speed(self):
-        return self._read_data("speed")
+        # Parse ethtool data for max speed since /sys/class/net/DEV/speed only
+        # reports link speed.
+        
+        # Search for things that look like 100baseSX, 
+        #40000baseNX, 10000baseT
+        try:
+            ethinfo = check_output(['ethtool','-axf', self.interface],
+                               universal_newlines = True,
+                               stderr=STDOUT).split(' ')
+        except FileNotFoundError:
+            logging.warning('ethtool not found! Unable to get max speed')
+            ethinfo = None
+        except CalledProcessError as e:
+            logging.error('ethtool returned an error!')
+            logging.error(e.output)
+            ethinfo = None
+        finally:
+            expression = '(\\d+)(base)([A-Z]+)'
+            regex = re.compile(expression)
+            speeds = [0]
+            if ethinfo:
+                for i in ethinfo:
+                    hit = regex.search(i)
+                    if hit:
+                        speeds.append(int(hit.group(1)))
+            return max(speeds)
 
     @property
     def macaddress(self):
@@ -630,6 +672,8 @@ Target: 192.168.1.45
         '--all', default=False, action="store_true")
     info_parser.add_argument(
         '--duplex-mode', default=False, action="store_true")
+    info_parser.add_argument(
+        '--link-speed', default=False, action="store_true")
     info_parser.add_argument(
         '--max-speed', default=False, action="store_true")
     info_parser.add_argument(
