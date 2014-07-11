@@ -432,13 +432,22 @@ release_component() {
             echo "I: not branching $origin (will apply changes in-place)"
         fi
         # Apply the new version
-        echo "I: patching setup.py..."
-        sed -i -e "s!$version!$next_version!g" "$target/$component_path/setup.py"
-        echo "I: patching $name/__init__.py..."
-        sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" "$target/$component_path/$component_python_package/__init__.py"
-        echo "I: commiting version bump"
-        # NOTE: no way to bzr commit has no '-d'
-        (cd $target && bzr commit -m "$component_commit_name: increment version to $next_version" --quiet)
+        local commit_required=
+        if [ -e "$target/$component_path/setup.py" ]; then
+            echo "I: patching setup.py..."
+            sed -i -e "s!version=\".*\"!version=\"$next_version\"!g" "$target/$component_path/setup.py"
+            commit_required=1
+        fi
+        if [ -e "$target/$component_path/$component_python_package/__init__.py" ]; then
+            echo "I: patching $name/__init__.py..."
+            sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" "$target/$component_path/$component_python_package/__init__.py"
+            commit_required=1
+        fi
+        if [ $commit_required ]; then
+            echo "I: commiting version bump"
+            # NOTE: no way to bzr commit has no '-d'
+            (cd $target && bzr commit -m "$component_commit_name: increment version to $next_version" --quiet)
+        fi
         # Apply the tag if required
         if [ "$should_tag" = yes ]; then
             echo "I: applying tag: $tag_name"
