@@ -1,0 +1,97 @@
+#!/usr/bin/python
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Brendan Donegan <brendan.j.donegan@gmail.com>
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+Kicks off a recipe build for a branch in Launchpad which has an associated
+recipe.
+Meant to be used as part of a checkbox release to the Hardware Certification
+public PPA and the ~checkbox-dev testing PPA.
+"""
+
+import re
+import sys
+
+from launchpadlib.launchpad import Launchpad
+from lazr.restfulclient.errors import BadRequest
+from argparse import ArgumentParser
+
+
+def main():
+    parser = ArgumentParser('Invoke a recipe build on specified branch')
+    parser.add_argument('branch',
+                        help="Unique name of the branch, "
+                             "with ~owner/project/branch format")
+    parser.add_argument('--recipe', '-r',
+                        help="Recipe name to build with. If there is only one "
+                             "then that will be used by default, if not then "
+                             "this must be specified.")
+    parser.add_argument('--new-version', '-n',
+                        help="New version to use in the recipe "
+                             "(for debian changelog) and bzr tags.")
+    args = parser.parse_args()
+
+    lp = Launchpad.login_with(sys.argv[0], 'production')
+    branch = args.branch.replace("lp:", "")
+    branch = lp.branches.getByUniqueName(unique_name=branch)
+    if not branch:
+        parser.error("{branch} was not found in Launchpad.".format(
+            branch=args.branch))
+
+    if branch.recipes.total_size == 0:
+        parser.error("{branch} does not have any recipes.".format(
+            branch=args.branch))
+    else:
+        build_recipe = None
+
+        if branch.recipes.total_size == 1:
+            build_recipe = branch.recipes[0]
+        elif args.recipe:
+            for recipe in branch.recipes:
+                if recipe.name == args.recipe:
+                    build_recipe = recipe
+        else:
+            all_recipe_names = [recipe.name for recipe in branch.recipes]
+            parser.error(
+                "I don't know which recipe from "
+                "{branch} you want to use, specify "
+                "one of '{recipes}' using --recipe".format(
+                    branch=args.branch,
+                    recipes=', '.join(all_recipe_names)))
+
+        text = build_recipe.recipe_text
+        deb_version = re.sub(r"([abc]\d+)$", "~\g<0>", args.new_version)
+        text = re.sub(r"deb-version .*?~ppa", "deb-version {}~ppa".format(
+            deb_version), text)
+        text = re.sub(r"-v\d\S+", "-v{}".format(args.new_version), text)
+        build_recipe.setRecipeText(recipe_text=text)
+        if build_recipe:
+            for series in build_recipe.distroseries:
+                try:
+                    build_recipe.requestBuild(
+                        pocket="Release",
+                        distroseries=series,
+                        archive=build_recipe.daily_build_archive_link)
+                except BadRequest:
+                    print "An identical build of this recipe is \
+                          already pending"
+        print "Check builds status: " + build_recipe.web_link
+
+if __name__ == "__main__":
+    sys.exit(main())
