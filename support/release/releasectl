@@ -426,7 +426,7 @@ release_component() {
         fi
         if [ "$target" != "$origin" ]; then
             echo "I: branching $origin to ${target}..."
-            assert test ! -e "$target"
+            # assert test ! -e "$target"
             bzr branch "$origin" "$target" --quiet
         else
             echo "I: not branching $origin (will apply changes in-place)"
