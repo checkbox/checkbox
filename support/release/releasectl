@@ -296,6 +296,9 @@ release_component() {
             --commit-name=*)
                 component_commit_name=$value
                 ;;
+            --current-version=*)
+                current_version=$value
+                ;;
             --bump-version=*)
                 bump_version=$value
                 ;;
@@ -318,8 +321,9 @@ release_component() {
 
     echo "I: inspecting component..."
     # Interrogate name/version
-    name=$($origin/$component_path/setup.py --name)
-    version=$($origin/$component_path/setup.py --version)
+    name="$component_path"
+    version="$current_version"
+
     echo "I: component is $name-$version"
 
     # set defaults for various name-like variabls
@@ -448,14 +452,26 @@ release_component() {
 
 
 help() {
-    echo "usage: releasectl (checkbox|checkbox-ng|plainbox) [options]" >&2
+    echo "usage: releasectl (COMPONENT) [options]" >&2
     echo
     echo "This script is indented to run in a directory with lp:checkbox"
     echo "branched (with bzr) as 'trunk'. Every change made is local."
     echo
-    echo "component:"
-    echo "  checkbox-ng     release checkbox-ng"
-    echo "  plainbox        release plainbox"
+    echo "COMPONENT TO RELEASE (one of):"
+    echo "  checkbox-ng"
+    echo "  checkbox-gui"
+    echo "  plainbox"
+    echo "  checkbox-support"
+    echo "  plainbox-provider-canonical-certification"
+    echo "  plainbox-provider-checkbox"
+    echo "  plainbox-provider-resource-generic"
+    echo "  ppa-packaging-checkbox-support"
+    echo "  ppa-packaging-plainbox"
+    echo "  ppa-packaging-plainbox-provider-canonical-certification"
+    echo "  ppa-packaging-plainbox-provider-checkbox"
+    echo "  ppa-packaging-plainbox-provider-resource-generic"
+    echo "  ppa-packaging-checkbox-ng"
+    echo "  ppa-packaging-checkbox-gui"
     echo
     echo "general options"
     echo "  -n|--dry-run"
@@ -474,6 +490,8 @@ help() {
     echo "    increment version component"
     echo "  --major|--minor|--micro"
     echo "    same as --bump-version=..."
+    echo "  --current-version=VERSION"
+    echo "    use this value as the current version string"
     echo
     echo "component release level options"
     echo "  --bump-level={dev,alpha,beta,candidate,final,next-level,next-serial}"
@@ -502,6 +520,7 @@ main() {
     local bump_version=
     local bump_level=
     local dry_run=
+    local tagging_policy=
     # Parse keyword arguments
     while test -n "$1"; do
         if echo "$1" | grep -F -q =; then 
@@ -510,14 +529,47 @@ main() {
             local value=
         fi
         case $1 in
-            checkbox)
-                component=checkbox
-                ;;
             checkbox-ng)
                 component=checkbox-ng
                 ;;
+            checkbox-gui)
+                component=checkbox-gui
+                ;;
             plainbox)
                 component=plainbox
+                ;;
+            checkbox-support)
+                component=checkbox-support
+                ;;
+            plainbox-provider-canonical-certification)
+                component=plainbox-provider-canonical-certification
+                ;;
+            plainbox-provider-checkbox)
+                component=plainbox-provider-checkbox
+                ;;
+            plainbox-provider-resource-generic)
+                component=plainbox-provider-resource-generic
+                ;;
+            ppa-packaging-checkbox-support)
+                component=ppa-packaging-checkbox-support
+                ;;
+            ppa-packaging-plainbox)
+                component=ppa-packaging-plainbox
+                ;;
+            ppa-packaging-plainbox-provider-canonical-certification)
+                component=ppa-packaging-plainbox-provider-canonical-certification
+                ;;
+            ppa-packaging-plainbox-provider-checkbox)
+                component=ppa-packaging-plainbox-provider-checkbox
+                ;;
+            ppa-packaging-plainbox-provider-resource-generic)
+                component=ppa-packaging-plainbox-provider-resource-generic
+                ;;
+            ppa-packaging-checkbox-ng)
+                component=ppa-packaging-checkbox-ng
+                ;;
+            ppa-packaging-checkbox-gui)
+                component=ppa-packaging-checkbox-gui
                 ;;
             -n|--dry-run)
                 dry_run=1
@@ -530,6 +582,12 @@ main() {
                 ;;
             --in-place)
                 in_place=yes
+                ;;
+            --current-version=*)
+                current_version=$value
+                ;;
+            --tagging-policy=*)
+                tagging_policy=$value
                 ;;
             --bump-version=*)
                 case $value in
@@ -615,16 +673,143 @@ main() {
                 --target=$target \
                 --in-place=$in_place \
                 --python-pkg=checkbox_ng \
+                --current-version=$current_version \
                 --bump-version=$bump_version \
-                --bump-level=$bump_level
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
             ;;
         plainbox)
             release_component plainbox \
                 --origin=$origin \
                 --target=$target \
                 --in-place=$in_place \
+                --current-version=$current_version \
                 --bump-version=$bump_version \
-                --bump-level=$bump_level
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        checkbox-support)
+            release_component checkbox-support \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        plainbox-provider-canonical-certification)
+            release_component providers/plainbox-provider-canonical-certification \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --tag-name=plainbox-provider-canonical-certification \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        plainbox-provider-checkbox)
+            release_component providers/plainbox-provider-checkbox \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --tag-name=plainbox-provider-checkbox \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        plainbox-provider-resource-generic)
+            release_component providers/plainbox-provider-resource-generic \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --tag-name=plainbox-provider-resource-generic \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        checkbox-gui)
+            release_component checkbox-gui \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-checkbox-support)
+            release_component ppa-packaging-checkbox-support \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-plainbox)
+            release_component ppa-packaging-plainbox \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-plainbox-provider-canonical-certification)
+            release_component ppa-packaging-plainbox-provider-canonical-certification \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-plainbox-provider-checkbox)
+            release_component ppa-packaging-plainbox-provider-checkbox \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-plainbox-provider-resource-generic)
+            release_component ppa-packaging-plainbox-provider-resource-generic \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-checkbox-ng)
+            release_component ppa-packaging-checkbox-ng \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-checkbox-gui)
+            release_component ppa-packaging-checkbox-gui \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
             ;;
     esac
 }
