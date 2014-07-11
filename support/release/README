@@ -1,0 +1,108 @@
+Prerequisites:
+
+    sudo apt-get install autoconf lptools
+
+Always maintain 3 milestones ahead
+
+    Use the lp-create-milestone script like this:
+
+    ./lp-create-milestone plainbox -n 0.57 -d 2015-11-24
+
+Check bugs in checkbox-project to see if they can be included i nthe release
+to come. Some of them could be "In Progress" but with the fix already merged
+in trunk. Update their statuses and milestones.
+
+Review the current miletones content and postpone to the next one the bugs
+not "Fix Committed".
+
+Cutting the release
+
+Preparation:
+
+Create a dedicated directory that you will keep during all the release (1 week).
+
+    mkdir ~/checkbox_release
+
+Copy all the delivery support scripts to the release directory:
+
+    bzr export /tmp/delivery_tools lp:checkbox
+    cp /tmp/delivery_tools/support/release/* ~/checkbox_release
+
+Move to the release directory
+
+    cd ~/checkbox_release
+
+Cut the release, change all package versions to RC and create/apply bzr tags
+for the release candidate.
+
+    ./checkbox-release.py testing
+
+Follow the on-screen instructions given when the scripts ends as nothing will be
+pushed to lp automatically:
+
+    1. Push all the branches (trunk and ppa-packaging*) to their release branches
+       Copy and launch the proposed commands once you're sure that the branches
+       are ok, check versions and tags (for both trunk and packaging branches)
+    2. Update the bzr build recipes and request builds in the testing ppa (link)
+       Give lp a minute or two before updating the recipes. Again copy and
+       execute the proposed commands.
+
+Special case: Cherry pick a bugfix from trunk after having cut the release:
+
+    A second (or third...) release candidate has to be created for the
+    impacted package:
+    First, cherry pick the bug from trunk, e.g:
+
+    cd ~/checkbox_release/trunk/
+    bzr merge -r3105..3106 lp:checkbox
+    cd  ~/checkbox_release
+
+    Note: 3106 is the revision where the fix was committed
+
+    Create a second RC only for this package (and its packaging branch):
+
+    ./releasectl ppa-packaging-plainbox-provider-resource-generic --origin=trunk --in-place --current-version=0.5c1 --bump-level=next-serial
+    ./releasectl ppa-packaging-plainbox-provider-resource-generic --origin=ppa-packaging-plainbox-provider-resource-generic  --in-place --current-version=0.5c1 --bump-level=next-serial
+
+    Push the branches to lp:
+
+    bzr push -d trunk lp:~checkbox-dev/checkbox/release
+    bzr push -d ppa-packaging-plainbox-provider-resource-generic lp:~checkbox-dev/checkbox/ppa-packaging-plainbox-provider-resource-generic-release
+
+    Finally update the recipe(s) and build again the package(s)
+
+TEST TEST TEST the release candidate(s)
+
+Once testing is done, it's time to release the candidate packages to the stable ppa (link)
+
+change all package versions to final, create/apply the corresponding bzr
+tags and update the debian/changelog (closing the current entry and open the
+next dev version)
+
+Move to the release directory and launch the release script:
+
+    cd ~/checkbox_release && ./checkbox-release.py stable
+
+Follow the on-screen instructions given when the scripts ends as nothing will be
+pushed to lp automatically:
+
+    1. Push all the branches (trunk and ppa-packaging*) to their release branches
+       Copy and launch the proposed commands once you're sure that the branches
+       are ok, check versions and tags (for both trunk and packaging branches)
+    2. Propose to merge the release branches into their non-release branch
+       (e.g lp:checkbox/release has to be merged in trunk)
+       Review the MR, approve and let tarmac do his job.
+    3. Once all release branches are merged, update the bzr build recipes
+       and request builds in the stable ppa (link).
+       Again copy and execute the proposed commands.
+    4. Release all the milestones and their related bugtasks, e.g:
+
+       ./lp-release-milestone plainbox -m 0.57
+
+Create source tarballs, sign and upload them to lp (using lp-project-upload)
+and pypi.
+Note: Revert to the final tag revision to ensure that you're not creating a
+source tarball with ~dev version in setup.py (this will be fixed in a new
+version of the delivery tools)
+
+Release to debian
