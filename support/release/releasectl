@@ -326,7 +326,7 @@ release_component() {
 
     echo "I: component is $name-$version"
 
-    # set defaults for various name-like variabls
+    # set defaults for various name-like variables
     test -z "$component_python_package" && component_python_package="$name"
     test -z "$component_commit_name" && component_commit_name="$name"
     test -z "$component_tag_name" && component_tag_name="$name"
