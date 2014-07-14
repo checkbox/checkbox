@@ -129,7 +129,7 @@ class Package:
             tag, rev = tagline.split()
             if tag != self.last_trunk_tag:
                 continue
-            return rev
+            return re.sub(r'\..*$', '', rev)
 
     @property
     def last_packaging_tag_rev(self):
@@ -137,7 +137,7 @@ class Package:
             tag, rev = tagline.split()
             if tag != self.last_packaging_tag:
                 continue
-            return rev
+            return re.sub(r'\..*$', '', rev)
 
     @property
     def release_required(self):

@@ -1,0 +1,101 @@
+#!/usr/bin/python
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+Script that lists the bugs targetted for the next milestones of the active
+checkbox projects (trunk only)
+"""
+
+import re
+import sys
+
+from launchpadlib.launchpad import Launchpad
+from urllib2 import urlopen
+import bs4 as BeautifulSoup
+
+
+def main():
+    html = urlopen(
+        'https://bugs.launchpad.net/checkbox-project/+bugs?advanced=1').read()
+    soup = BeautifulSoup.BeautifulSoup(html)
+
+    milestones = soup.find_all(attrs={"name": "field.milestone:list"})
+
+    packages = {
+        'checkbox-support': 'Checkbox Support Library',
+        'plainbox': 'PlainBox (Toolkit)',
+        'plainbox-provider-canonical-certification': 'Canonical Certification '
+                                                     'Provider for PlainBox',
+        'plainbox-provider-checkbox': 'Checkbox Provider for PlainBox',
+        'plainbox-provider-resource': 'Resource Provider for PlainBox',
+        'checkbox-ng': 'Next Generation Checkbox (CLI)',
+        'checkbox-gui': 'Next Generation Checkbox (GUI)',
+    }
+
+    lp = Launchpad.login_with(sys.argv[0], "production")
+
+    all_date_targeted = set()
+    milestone_codes = {}
+
+    for p in packages.keys():
+        project = lp.projects[p]
+        trunk = [
+            series for series in project.series if series.name == "trunk"][-1]
+        matching_milestone = [
+            milestone for milestone in trunk.active_milestones
+            if milestone.name != "future"]
+
+        [all_date_targeted.add(m.date_targeted.isoformat())
+            for m in matching_milestone]
+
+        for m in sorted(matching_milestone, key=lambda m: m.date_targeted):
+            if m.date_targeted.isoformat() not in milestone_codes:
+                milestone_codes[m.date_targeted.isoformat()] = ""
+            milestone_codes[m.date_targeted.isoformat()] += \
+                "&field.milestone%3Alist={}".format(
+                    [mi["value"] for mi in milestones if "{} {}".format(
+                        packages[p], m.name) in mi["id"]][-1])
+
+    for date in sorted(all_date_targeted):
+        print "Checkbox release ({}):".format(re.sub(r'T.*', '', date))
+        print (
+            "https://bugs.launchpad.net/checkbox-project/+bugs?"
+            "field.searchtext=&orderby=-importance&field.status%3Alist=NEW"
+            "&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED"
+            "&field.status%3Alist=INPROGRESS&field.status%3Alist=FIXCOMMITTED"
+            "&field.status%3Alist=INCOMPLETE_WITH_RESPONSE"
+            "&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE"
+            "&assignee_option=any&field.assignee=&field.bug_reporter="
+            "&field.bug_commenter=&field.subscriber="
+            "&field.structural_subscriber=" +
+            milestone_codes[date] +
+            "&field.tag=&field.tags_combinator=ANY&field.has_cve.used="
+            "&field.omit_dupes.used=&field.omit_dupes=on"
+            "&field.affects_me.used="
+            "&field.has_patch.used=&field.has_branches.used="
+            "&field.has_branches=on"
+            "&field.has_no_branches.used=&field.has_no_branches=on"
+            "&field.has_blueprints.used=&field.has_blueprints=on"
+            "&field.has_no_blueprints.used=&field.has_no_blueprints=on"
+            "&search=Search")
+        print
+
+
+if __name__ == "__main__":
+    sys.exit(main())
