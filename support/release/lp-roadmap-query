@@ -22,12 +22,22 @@ Script that lists the bugs targetted for the next milestones of the active
 checkbox projects (trunk only)
 """
 
+import json
 import re
+import requests
 import sys
 
 from launchpadlib.launchpad import Launchpad
 from urllib2 import urlopen
 import bs4 as BeautifulSoup
+
+
+def goo_shorten_url(url):
+    post_url = 'https://www.googleapis.com/urlshortener/v1/url'
+    payload = {'longUrl': url}
+    headers = {'content-type': 'application/json'}
+    r = requests.post(post_url, data=json.dumps(payload), headers=headers)
+    return json.loads(r.text)['id']
 
 
 def main():
@@ -74,7 +84,7 @@ def main():
 
     for date in sorted(all_date_targeted):
         print "Checkbox release ({}):".format(re.sub(r'T.*', '', date))
-        print (
+        print goo_shorten_url(
             "https://bugs.launchpad.net/checkbox-project/+bugs?"
             "field.searchtext=&orderby=-importance&field.status%3Alist=NEW"
             "&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED"
