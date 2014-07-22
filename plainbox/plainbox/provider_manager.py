@@ -498,7 +498,7 @@ class DevelopCommand(ManageCommand):
             "-f", "--force", default=False, action="store_true",
             help=_("overwrite existing provider files"))
         parser.add_argument(
-            "-d", "--directory", action="store", 
+            "-d", "--directory", action="store",
             default=get_user_PROVIDERPATH_entry(),
             help=_("directory to use (defaults to user's home provider path"))
 
@@ -1182,6 +1182,7 @@ class ProviderManagerTool(ToolBase):
 
     def create_parser_object(self):
         parser = argparse.ArgumentParser(
+            description=_("Per-provider management script"),
             prog=self.get_exec_name(),
             # TRANSLATORS: please keep 'manage.py', '--help', '--version'
             # untranslated. Translate only '[options]'
@@ -1221,6 +1222,10 @@ class ProviderManagerTool(ToolBase):
 
     def get_locale_dir(self):
         return os.getenv("PLAINBOX_LOCALE_DIR", None)
+
+
+def get_parser_for_sphinx():
+    return ProviderManagerTool(None).construct_parser()
 
 
 def setup(**kwargs):

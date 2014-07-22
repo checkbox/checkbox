@@ -151,6 +151,7 @@ class SessionCommand(PlainBoxCommand):
 
     def register_parser(self, subparsers):
         parser = self.add_subcommand(subparsers)
+        parser.prog = 'plainbox session'
         parser.set_defaults(default_session_cmd='list')
         session_subparsers = parser.add_subparsers(
             title=_('available session subcommands'))
@@ -158,7 +159,7 @@ class SessionCommand(PlainBoxCommand):
             'list', help=_('list available sessions'))
         list_parser.set_defaults(session_cmd='list')
         remove_parser = session_subparsers.add_parser(
-            'remove', help=_('remove a session'))
+            'remove', help=_('remove one more more sessions'))
         remove_parser.add_argument(
             'session_id_list', metavar=_('SESSION-ID'), nargs="+",
             help=_('Identifier of the session to remove'))

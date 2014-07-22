@@ -30,6 +30,7 @@ import logging
 import os
 
 from plainbox import __version__ as plainbox_version
+from plainbox.i18n import gettext as _
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.commands import PlainBoxToolBase
 from plainbox.impl.commands.check_config import CheckConfigCommand
@@ -62,6 +63,13 @@ class PlainBoxTool(PlainBoxToolBase):
         Get the version reported by this executable
         """
         return cls.format_version_tuple(plainbox_version)
+
+    def create_parser_object(self):
+        parser = super().create_parser_object()
+        parser.prog = "plainbox"
+        parser.usage = _("plainbox [--help] [--version] | [options] <command>"
+                         " ...")
+        return parser
 
     def add_subcommands(self, subparsers):
         """
@@ -99,6 +107,10 @@ class PlainBoxTool(PlainBoxToolBase):
 
 def main(argv=None):
     raise SystemExit(PlainBoxTool().main(argv))
+
+
+def get_parser_for_sphinx():
+    return PlainBoxTool().construct_parser()
 
 
 # Setup logging before anything else starts working.
