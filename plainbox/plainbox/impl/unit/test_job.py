@@ -585,6 +585,40 @@ class TestJobDefinition(TestCase):
         # Ensure tr_description() returned its return value
         self.assertEqual(retval, mgntd())
 
+    def test_imports(self):
+        job1 = JobDefinition({})
+        self.assertEqual(job1.imports, None)
+        job2 = JobDefinition({'imports': 'imports'})
+        self.assertEqual(job2.imports, 'imports')
+
+    def test_get_imported_jobs(self):
+        job1 = JobDefinition({})
+        self.assertEqual(list(job1.get_imported_jobs()), [])
+        job2 = JobDefinition({
+            'imports': 'from 2013.com.canonical.certification import package'
+        })
+        self.assertEqual(list(job2.get_imported_jobs()), [
+            ('2013.com.canonical.certification::package', 'package')
+        ])
+        job3 = JobDefinition({
+            'imports': ('from 2013.com.canonical.certification'
+                        ' import package as pkg')
+        })
+        self.assertEqual(list(job3.get_imported_jobs()), [
+            ('2013.com.canonical.certification::package', 'pkg')
+        ])
+
+    def test_get_resource_program_using_imports(self):
+        job = JobDefinition({
+            'imports': ('from 2013.com.canonical.certification'
+                        ' import package as pkg'),
+            'requires': 'pkg.name == "checkbox"',
+        })
+        prog = job.get_resource_program()
+        self.assertEqual(
+            prog.required_resources,
+            {'2013.com.canonical.certification::package'})
+
 
 class TestJobDefinitionStartup(TestCaseWithParameters):
     """

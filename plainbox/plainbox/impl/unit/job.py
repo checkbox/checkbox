@@ -225,6 +225,7 @@ class JobDefinition(Unit, IJobDefinition):
         depends = 'depends'
         requires = 'requires'
         shell = 'shell'
+        imports = 'imports'
 
     class _PluginValues(SymbolDef):
         """
@@ -325,6 +326,10 @@ class JobDefinition(Unit, IJobDefinition):
         return self.get_record_value('shell', 'bash')
 
     @property
+    def imports(self):
+        return self.get_record_value('imports')
+
+    @property
     def estimated_duration(self):
         """
         estimated duration of this job in seconds.
@@ -383,6 +388,54 @@ class JobDefinition(Unit, IJobDefinition):
             return {flag for flag in re.split('[\s,]+', self.flags)}
         else:
             return set()
+
+    def get_imported_jobs(self):
+        """
+        Parse the 'imports' line and compute the imported symbols.
+
+        Return generator for a sequence of pairs (job_id, identifier) that
+        describe the imported job identifiers from arbitrary namespace.
+
+        The syntax of each imports line is:
+
+        IMPORT_STMT ::  "from" <NAMESPACE> "import" <PARTIAL_ID>
+                      | "from" <NAMESPACE> "import" <PARTIAL_ID>
+                         AS <IDENTIFIER>
+        """
+        imports = self.imports or ""
+        # Poor man's parser. Replace this with our own parser once we get one
+        for lineno, line in enumerate(imports.splitlines()):
+            parts = line.split()
+            if len(parts) not in (4, 6):
+                raise ValueError(
+                    _("unable to parse imports statement {0!r}: expected"
+                      " exactly four or six tokens").format(line))
+            if parts[0] != "from":
+                raise ValueError(
+                    _("unable to parse imports statement {0!r}: expected"
+                      " 'from' keyword").format(line))
+            namespace = parts[1]
+            if "::" in namespace:
+                raise ValueError(
+                    _("unable to parse imports statement {0!r}: expected"
+                      "a namespace, not fully qualified job identifier"))
+            if parts[2] != "import":
+                raise ValueError(
+                    _("unable to parse imports statement {0!r}: expected"
+                      " 'import' keyword").format(line))
+            job_id = effective_id = parts[3]
+            if "::" in job_id:
+                raise ValueError(
+                    _("unable to parse imports statement {0!r}: expected"
+                      " a partial job identifier, not a fully qualified job"
+                      " identifier").format(line))
+            if len(parts) == 6:
+                if parts[4] != "as":
+                    raise ValueError(
+                        _("unable to parse imports statement {0!r}: expected"
+                          " 'as' keyword").format(line))
+                effective_id = parts[5]
+            yield ("{}::{}".format(namespace, job_id), effective_id)
 
     @property
     def automated(self):
@@ -443,8 +496,12 @@ class JobDefinition(Unit, IJobDefinition):
                 implicit_namespace = self._provider.namespace
             else:
                 implicit_namespace = None
+            if self.imports is not None:
+                imports = self.get_imported_jobs()
+            else:
+                imports = None
             self._resource_program = ResourceProgram(
-                self.requires, implicit_namespace)
+                self.requires, implicit_namespace, imports)
         return self._resource_program
 
     def get_direct_dependencies(self):
@@ -516,7 +573,7 @@ class JobDefinition(Unit, IJobDefinition):
         if not isinstance(record.origin.source, JobOutputTextSource):
             # TRANSLATORS: don't translate record.origin or JobOutputTextSource
             raise ValueError(_("record.origin must be a JobOutputTextSource"))
-        if not record.origin.source.job is self:
+        if record.origin.source.job is not self:
             # TRANSLATORS: don't translate record.origin.source.job
             raise ValueError(_("record.origin.source.job must be this job"))
         return self.from_rfc822_record(record, self.provider)
