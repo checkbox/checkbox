@@ -59,6 +59,7 @@ from plainbox.impl.secure.providers.v1 import Provider1
 from plainbox.impl.secure.rfc822 import RFC822SyntaxError
 from plainbox.impl.secure.rfc822 import gen_rfc822_records
 from plainbox.impl.session.jobs import JobReadinessInhibitor
+from plainbox.impl.signal import Signal
 from plainbox.impl.validation import ValidationError
 from plainbox.vendor import extcmd
 
@@ -409,10 +410,11 @@ class CheckBoxExecutionController(IExecutionController):
             # of this execution controller
             cmd = self.get_execution_command(job, config, nest_dir)
             env = self.get_execution_environment(job, config, nest_dir)
-            # run the command
-            logger.debug(_("job[%s] executing %r with env %r"),
-                         job.id, cmd, env)
-            return extcmd_popen.call(cmd, env=env)
+            with self.temporary_cwd(job, config) as cwd_dir:
+                # run the command
+                logger.debug(_("job[%s] executing %r with env %r in cwd %r"),
+                             job.id, cmd, env, cwd_dir)
+                return extcmd_popen.call(cmd, env=env, cwd=cwd_dir)
 
     @contextlib.contextmanager
     def configured_filesystem(self, job, config):
@@ -440,8 +442,78 @@ class CheckBoxExecutionController(IExecutionController):
             for provider in self._provider_list:
                 if job.provider.namespace == provider.namespace:
                     nest.add_provider(provider)
-            logger.debug(_("Symlink nest for executables: %s"), nest_dir)
             yield nest_dir
+
+    @contextlib.contextmanager
+    def temporary_cwd(self, job, config):
+        """
+        Context manager for handling temporary current working directory
+        for a particular execution of a job definition command.
+
+        :param job:
+            The JobDefinition to execute
+        :param config:
+            A PlainBoxConfig instance which can be used to load missing
+            environment definitions that apply to all jobs. It is used to
+            provide values for missing environment variables that are required
+            by the job (as expressed by the environ key in the job definition
+            file).
+        :returns:
+            Pathname of the new temporary directory
+        """
+        # Create a nest for all the private executables needed for execution
+        prefix = 'cwd-'
+        suffix = '.{}'.format(job.checksum)
+        with tempfile.TemporaryDirectory(suffix, prefix) as cwd_dir:
+            logger.debug(
+                _("Job temporary current working directory: %s"), cwd_dir)
+            try:
+                yield cwd_dir
+            finally:
+                leftovers = self._find_leftovers(cwd_dir)
+                if leftovers:
+                    self.on_leftover_files(job, config, cwd_dir, leftovers)
+
+    def _find_leftovers(self, cwd_dir):
+        """
+        Find left-over files and directories
+
+        :param cwd_dir:
+            Directory to inspect for leftover files
+        :returns:
+            A list of discovered files and directories (except for the cwd_dir
+            itself)
+        """
+        leftovers = []
+        for dirpath, dirnames, filenames in os.walk(cwd_dir):
+            if dirpath != cwd_dir:
+                leftovers.append(dirpath)
+            leftovers.extend(
+                os.path.join(dirpath, filename)
+                for filename in filenames)
+        return leftovers
+
+    @Signal.define
+    def on_leftover_files(self, job, config, cwd_dir, leftovers):
+        """
+        Handle any files left over by the execution of a job definition.
+
+        :param job:
+            job definition with the command and environment definitions
+        :param config:
+            configuration object (a PlainBoxConfig instance)
+        :param cwd_dir:
+            Temporary directory set as current working directory during job
+            definition command execution. During the time this signal is
+            emitted that directory still exists.
+        :param leftovers:
+            List of absolute pathnames of files and directories that were
+            created in the current working directory (cwd_dir).
+
+        .. note::
+            Anyone listening to this signal does not need to remove any of the
+            files. They are removed automatically after this method returns.
+        """
 
     def get_score(self, job):
         """
