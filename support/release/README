@@ -1,6 +1,7 @@
 Prerequisites:
 
     sudo apt-get install autoconf lptools python-bs4
+    pip install twine
 
 Always maintain 3 milestones ahead
 
@@ -8,7 +9,7 @@ Always maintain 3 milestones ahead
 
     ./lp-create-milestone plainbox -n 0.57 -d 2015-11-24
 
-Check bugs in checkbox-project to see if they can be included i nthe release
+Check bugs in checkbox-project to see if they can be included in the release
 to come. Some of them could be "In Progress" but with the fix already merged
 in trunk. Update their statuses and milestones.
 
@@ -35,7 +36,7 @@ Move to the release directory
 Cut the release, change all package versions to RC and create/apply bzr tags
 for the release candidate.
 
-    ./checkbox-release.py testing
+    ./release_checkbox.py testing
 
 Follow the on-screen instructions given when the scripts ends as nothing will be
 pushed to lp automatically:
@@ -61,7 +62,7 @@ Special case: Cherry pick a bugfix from trunk after having cut the release:
 
     Create a second RC only for this package (and its packaging branch):
 
-    ./releasectl ppa-packaging-plainbox-provider-resource-generic --origin=trunk --in-place --current-version=0.5c1 --bump-level=next-serial
+    ./releasectl plainbox-provider-resource-generic --origin=trunk --in-place --current-version=0.5c1 --bump-level=next-serial
     ./releasectl ppa-packaging-plainbox-provider-resource-generic --origin=ppa-packaging-plainbox-provider-resource-generic  --in-place --current-version=0.5c1 --bump-level=next-serial
 
     Push the branches to lp:
@@ -81,7 +82,7 @@ next dev version)
 
 Move to the release directory and launch the release script:
 
-    cd ~/checkbox_release && ./checkbox-release.py stable
+    cd ~/checkbox_release && ./release_checkbox.py stable
 
 Follow the on-screen instructions given when the scripts ends as nothing will be
 pushed to lp automatically:
@@ -99,10 +100,7 @@ pushed to lp automatically:
 
        ./lp-release-milestone plainbox -m 0.57
 
-Create source tarballs, sign and upload them to lp (using lp-project-upload)
-and pypi.
-Note: Revert to the final tag revision to ensure that you're not creating a
-source tarball with ~dev version in setup.py (this will be fixed in a new
-version of the delivery tools)
+    5. Upload the signed source tarballs to LP (using lp-project-upload).
+    6. Upload the signed source tarballs to PyPI (using twine).
 
 Release to debian

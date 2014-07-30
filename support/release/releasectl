@@ -438,6 +438,13 @@ release_component() {
             sed -i -e "s!version=\".*\"!version=\"$next_version\"!g" "$target/$component_path/setup.py"
             commit_required=1
         fi
+        if [ -e "$target/$component_path/manage.py" ]; then
+            echo "I: patching manage.py..."
+            # provider version only supports digits and dots
+            provider_version="$(echo $next_version | sed -e 's/\.[a-zA-Z].*$//g')"
+            sed -i -e "s!version=\".*\"!version=\"$provider_version\"!g" "$target/$component_path/manage.py"
+            commit_required=1
+        fi
         if [ -e "$target/$component_path/$component_python_package/__init__.py" ]; then
             echo "I: patching $name/__init__.py..."
             sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" "$target/$component_path/$component_python_package/__init__.py"

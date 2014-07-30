@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+import glob
 import os
 import re
 from argparse import ArgumentParser
@@ -81,6 +82,10 @@ class Package:
             return self._name
 
     @property
+    def basedir(self):
+        return os.path.join(self._directory, self.trunk_branch, self.path)
+
+    @property
     def _trunk_tags(self):
         if self._trunk_tags_cache:
             return self._trunk_tags_cache
@@ -92,13 +97,22 @@ class Package:
             return self._trunk_tags_cache
 
     @property
+    def last_stable_trunk_tag(self):
+        tags = sorted([tag for tag in self._trunk_tags.split()
+                      if re.match(self._name, tag)], key=parse_version)
+        tags.reverse()
+        for tag in tags:
+            if not re.search(r'\.\d+c\d+$', tag):
+                return tag
+        # FIXME: Raise a ValueError here
+
+    @property
     def last_trunk_tag(self):
         tags = sorted([tag for tag in self._trunk_tags.split()
                       if re.match(self._name, tag)], key=parse_version)
         tags.reverse()
         for tag in tags:
-            if not re.search(r'\.c\d+$', tag):
-                return tag
+            return tag
         # FIXME: Raise a ValueError here
 
     @property
@@ -113,29 +127,29 @@ class Package:
             return self._packaging_tags_cache
 
     @property
-    def last_packaging_tag(self):
+    def last_stable_packaging_tag(self):
         tags = sorted([tag for tag in self._packaging_tags.split()
                       if re.match(self.ppa_packaging_branch, tag)],
                       key=parse_version)
         tags.reverse()
         for tag in tags:
-            if not re.search(r'\.c\d+$', tag):
+            if not re.search(r'\.\d+c\d+$', tag):
                 return tag
         # FIXME: Raise a ValueError here
 
     @property
-    def last_trunk_tag_rev(self):
+    def last_stable_trunk_tag_rev(self):
         for tagline in self._trunk_tags.split("\n"):
             tag, rev = tagline.split()
-            if tag != self.last_trunk_tag:
+            if tag != self.last_stable_trunk_tag:
                 continue
             return re.sub(r'\..*$', '', rev)
 
     @property
-    def last_packaging_tag_rev(self):
+    def last_stable_packaging_tag_rev(self):
         for tagline in self._packaging_tags.split("\n"):
             tag, rev = tagline.split()
-            if tag != self.last_packaging_tag:
+            if tag != self.last_stable_packaging_tag:
                 continue
             return re.sub(r'\..*$', '', rev)
 
@@ -143,9 +157,7 @@ class Package:
     def release_required(self):
         log = check_output(
             ["bzr log --verbose --include-merged -r{}.. {}".format(
-                self.last_trunk_tag_rev, os.path.join(
-                    self._directory,
-                    self.trunk_branch, self.path))],
+                self.last_stable_trunk_tag_rev, self.basedir)],
             shell=True)
         # Ignore version bump only (__init__.py and setup.py)
         new_rev = [
@@ -159,7 +171,7 @@ class Package:
     def ppa_packaging_release_required(self):
         log = check_output(
             ["bzr log -S -v -r{}.. {}".format(
-                self.last_packaging_tag_rev, os.path.join(
+                self.last_stable_packaging_tag_rev, os.path.join(
                     self._directory, self.ppa_packaging_branch))], shell=True)
         changes = set(re.findall(r"\s+[AMD]  (debian/.*?)\n", log))
         # Ignore debian/changelog modifications only
@@ -169,6 +181,17 @@ class Package:
             return True
         else:
             return False
+
+    @property
+    def sdist_command(self):
+        if self._name == "plainbox-provider-canonical-certification":
+            return None
+        if os.path.exists(os.path.join(self.basedir, "setup.py")):
+            return "./setup.py -q sdist"
+        elif os.path.exists(os.path.join(self.basedir, "manage.py")):
+            return "./manage.py sdist"
+        else:
+            return None
 
 
 if __name__ == "__main__":
@@ -193,6 +216,8 @@ if __name__ == "__main__":
     push_commands = []
     build_commands = []
     merge_commands = []
+    sdist_commands = []
+    twine_commands = []
     release_milestone_commands = []
 
     if args.mode == 'stable':
@@ -235,6 +260,21 @@ if __name__ == "__main__":
                       "--in-place",
                       "--current-version={}".format(pack.current_version),
                       "--final"])
+                if pack.sdist_command:
+                    call('cd {} && {}'.format(pack.basedir,
+                                              pack.sdist_command),
+                         shell=True)
+                    call('cd {} && {}'.format(os.path.join(pack.basedir,
+                                                           'dist'),
+                                              'gpg --armor --sign --detach-sig'
+                                              ' *.tar.gz'),
+                         shell=True)
+                    sdist_commands.append("lp-project-upload {} {} {}".format(
+                                          pack.project, final_version,
+                                          glob.glob("{}/dist/*.tar.gz".format(
+                                              pack.basedir))[-1]))
+                    twine_commands.append("twine upload {}/dist/*".format(
+                                          pack.basedir))
         # TODO: build/upload (to launchpad/pypi) the source tarballs here
         # before the next step where the version is updated to the next ~devel
         # Maybe 3 steps are needed: testing, tarballs, stable?
@@ -301,6 +341,8 @@ if __name__ == "__main__":
         push_commands = set(push_commands)
         build_commands = set(build_commands)
         merge_commands = set(merge_commands)
+        sdist_commands = set(sdist_commands)
+        twine_commands = set(twine_commands)
         release_milestone_commands = set(release_milestone_commands)
         print "".center(80, '#')
         print " 1. Push the following release branch(es) to launchpad:"
@@ -322,6 +364,16 @@ if __name__ == "__main__":
         print "".center(80, '#')
         for command in release_milestone_commands:
             print command
+        print "".center(80, '#')
+        print " 5. Upload the source tarballs to LP:"
+        print "".center(80, '#')
+        for command in sdist_commands:
+            print command
+        print "".center(80, '#')
+        print " 6. Upload the source tarballs to PyPI:"
+        print "".center(80, '#')
+        for command in twine_commands:
+            print command
 
     else:  # testing mode
 
@@ -333,7 +385,7 @@ if __name__ == "__main__":
                 call(["bzr", "branch", "--quiet",
                      BRANCH_PREFIX+pack.ppa_packaging_branch])
             if pack.release_required or pack.ppa_packaging_release_required:
-                current_version = pack.last_trunk_tag.replace(
+                current_version = pack.last_stable_trunk_tag.replace(
                     pack.name+"-v", "")
                 log = check_output(
                     ["./releasectl", pack.name, "--dry-run",

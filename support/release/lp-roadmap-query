@@ -77,10 +77,11 @@ def main():
         for m in sorted(matching_milestone, key=lambda m: m.date_targeted):
             if m.date_targeted.isoformat() not in milestone_codes:
                 milestone_codes[m.date_targeted.isoformat()] = ""
-            milestone_codes[m.date_targeted.isoformat()] += \
-                "&field.milestone%3Alist={}".format(
-                    [mi["value"] for mi in milestones if "{} {}".format(
-                        packages[p], m.name) in mi["id"]][-1])
+            mi_codes = [mi["value"] for mi in milestones if "{} {}".format(
+                    packages[p], m.name) in mi["id"]]
+            if mi_codes:
+                milestone_codes[m.date_targeted.isoformat()] += \
+                    "&field.milestone%3Alist={}".format(mi_codes[-1])
 
     for date in sorted(all_date_targeted):
         print "Checkbox release ({}):".format(re.sub(r'T.*', '', date))
