@@ -92,13 +92,22 @@ class Package:
             return self._trunk_tags_cache
 
     @property
+    def last_stable_trunk_tag(self):
+        tags = sorted([tag for tag in self._trunk_tags.split()
+                      if re.match(self._name, tag)], key=parse_version)
+        tags.reverse()
+        for tag in tags:
+            if not re.search(r'\.\d+c\d+$', tag):
+                return tag
+        # FIXME: Raise a ValueError here
+
+    @property
     def last_trunk_tag(self):
         tags = sorted([tag for tag in self._trunk_tags.split()
                       if re.match(self._name, tag)], key=parse_version)
         tags.reverse()
         for tag in tags:
-            if not re.search(r'\.c\d+$', tag):
-                return tag
+            return tag
         # FIXME: Raise a ValueError here
 
     @property
@@ -113,29 +122,29 @@ class Package:
             return self._packaging_tags_cache
 
     @property
-    def last_packaging_tag(self):
+    def last_stable_packaging_tag(self):
         tags = sorted([tag for tag in self._packaging_tags.split()
                       if re.match(self.ppa_packaging_branch, tag)],
                       key=parse_version)
         tags.reverse()
         for tag in tags:
-            if not re.search(r'\.c\d+$', tag):
+            if not re.search(r'\.\d+c\d+$', tag):
                 return tag
         # FIXME: Raise a ValueError here
 
     @property
-    def last_trunk_tag_rev(self):
+    def last_stable_trunk_tag_rev(self):
         for tagline in self._trunk_tags.split("\n"):
             tag, rev = tagline.split()
-            if tag != self.last_trunk_tag:
+            if tag != self.last_stable_trunk_tag:
                 continue
             return re.sub(r'\..*$', '', rev)
 
     @property
-    def last_packaging_tag_rev(self):
+    def last_stable_packaging_tag_rev(self):
         for tagline in self._packaging_tags.split("\n"):
             tag, rev = tagline.split()
-            if tag != self.last_packaging_tag:
+            if tag != self.last_stable_packaging_tag:
                 continue
             return re.sub(r'\..*$', '', rev)
 
@@ -143,9 +152,7 @@ class Package:
     def release_required(self):
         log = check_output(
             ["bzr log --verbose --include-merged -r{}.. {}".format(
-                self.last_trunk_tag_rev, os.path.join(
-                    self._directory,
-                    self.trunk_branch, self.path))],
+                self.last_stable_trunk_tag_rev, self.basedir)],
             shell=True)
         # Ignore version bump only (__init__.py and setup.py)
         new_rev = [
@@ -159,7 +166,7 @@ class Package:
     def ppa_packaging_release_required(self):
         log = check_output(
             ["bzr log -S -v -r{}.. {}".format(
-                self.last_packaging_tag_rev, os.path.join(
+                self.last_stable_packaging_tag_rev, os.path.join(
                     self._directory, self.ppa_packaging_branch))], shell=True)
         changes = set(re.findall(r"\s+[AMD]  (debian/.*?)\n", log))
         # Ignore debian/changelog modifications only
@@ -333,7 +340,7 @@ if __name__ == "__main__":
                 call(["bzr", "branch", "--quiet",
                      BRANCH_PREFIX+pack.ppa_packaging_branch])
             if pack.release_required or pack.ppa_packaging_release_required:
-                current_version = pack.last_trunk_tag.replace(
+                current_version = pack.last_stable_trunk_tag.replace(
                     pack.name+"-v", "")
                 log = check_output(
                     ["./releasectl", pack.name, "--dry-run",
