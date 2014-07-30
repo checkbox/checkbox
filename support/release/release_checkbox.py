@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
+import glob
 import os
 import re
 from argparse import ArgumentParser
@@ -79,6 +80,10 @@ class Package:
             return os.path.join("providers", self.name)
         else:
             return self._name
+
+    @property
+    def basedir(self):
+        return os.path.join(self._directory, self.trunk_branch, self.path)
 
     @property
     def _trunk_tags(self):
@@ -177,6 +182,17 @@ class Package:
         else:
             return False
 
+    @property
+    def sdist_command(self):
+        if self._name == "plainbox-provider-canonical-certification":
+            return None
+        if os.path.exists(os.path.join(self.basedir, "setup.py")):
+            return "./setup.py -q sdist"
+        elif os.path.exists(os.path.join(self.basedir, "manage.py")):
+            return "./manage.py sdist"
+        else:
+            return None
+
 
 if __name__ == "__main__":
 
@@ -200,6 +216,8 @@ if __name__ == "__main__":
     push_commands = []
     build_commands = []
     merge_commands = []
+    sdist_commands = []
+    twine_commands = []
     release_milestone_commands = []
 
     if args.mode == 'stable':
@@ -242,6 +260,21 @@ if __name__ == "__main__":
                       "--in-place",
                       "--current-version={}".format(pack.current_version),
                       "--final"])
+                if pack.sdist_command:
+                    call('cd {} && {}'.format(pack.basedir,
+                                              pack.sdist_command),
+                         shell=True)
+                    call('cd {} && {}'.format(os.path.join(pack.basedir,
+                                                           'dist'),
+                                              'gpg --armor --sign --detach-sig'
+                                              ' *.tar.gz'),
+                         shell=True)
+                    sdist_commands.append("lp-project-upload {} {} {}".format(
+                                          pack.project, final_version,
+                                          glob.glob("{}/dist/*.tar.gz".format(
+                                              pack.basedir))[-1]))
+                    twine_commands.append("twine upload {}/dist/*".format(
+                                          pack.basedir))
         # TODO: build/upload (to launchpad/pypi) the source tarballs here
         # before the next step where the version is updated to the next ~devel
         # Maybe 3 steps are needed: testing, tarballs, stable?
@@ -308,6 +341,8 @@ if __name__ == "__main__":
         push_commands = set(push_commands)
         build_commands = set(build_commands)
         merge_commands = set(merge_commands)
+        sdist_commands = set(sdist_commands)
+        twine_commands = set(twine_commands)
         release_milestone_commands = set(release_milestone_commands)
         print "".center(80, '#')
         print " 1. Push the following release branch(es) to launchpad:"
@@ -328,6 +363,16 @@ if __name__ == "__main__":
         print " 4. Release the current milestone(s):"
         print "".center(80, '#')
         for command in release_milestone_commands:
+            print command
+        print "".center(80, '#')
+        print " 5. Upload the source tarballs to LP:"
+        print "".center(80, '#')
+        for command in sdist_commands:
+            print command
+        print "".center(80, '#')
+        print " 6. Upload the source tarballs to PyPI:"
+        print "".center(80, '#')
+        for command in twine_commands:
             print command
 
     else:  # testing mode
