@@ -441,7 +441,7 @@ release_component() {
         if [ -e "$target/$component_path/manage.py" ]; then
             echo "I: patching manage.py..."
             # provider version only supports digits and dots
-            provider_version="$(echo $next_version | sed -e 's/\.[a-zA-Z].*$//g')"
+            provider_version="$(echo $next_version | sed -e 's/\.*[a-zA-Z].*$//g')"
             sed -i -e "s!version=\".*\"!version=\"$provider_version\"!g" "$target/$component_path/manage.py"
             commit_required=1
         fi
@@ -474,6 +474,7 @@ help() {
     echo "branched (with bzr) as 'trunk'. Every change made is local."
     echo
     echo "COMPONENT TO RELEASE (one of):"
+    echo "  cdts"
     echo "  checkbox-ng"
     echo "  checkbox-gui"
     echo "  plainbox"
@@ -488,6 +489,7 @@ help() {
     echo "  ppa-packaging-plainbox-provider-resource-generic"
     echo "  ppa-packaging-checkbox-ng"
     echo "  ppa-packaging-checkbox-gui"
+    echo "  ppa-packaging-cdts"
     echo
     echo "general options"
     echo "  -n|--dry-run"
@@ -545,6 +547,9 @@ main() {
             local value=
         fi
         case $1 in
+            cdts)
+                component=plainbox-provider-canonical-driver-test-suite
+                ;;
             checkbox-ng)
                 component=checkbox-ng
                 ;;
@@ -586,6 +591,9 @@ main() {
                 ;;
             ppa-packaging-checkbox-gui)
                 component=ppa-packaging-checkbox-gui
+                ;;
+            ppa-packaging-cdts)
+                component=ppa-packaging-cdts
                 ;;
             -n|--dry-run)
                 dry_run=1
@@ -683,6 +691,17 @@ main() {
         origin=trunk
     fi
     case "$component" in
+        plainbox-provider-canonical-driver-test-suite)
+            release_component plainbox-provider-canonical-driver-test-suite \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --tag-name=cdts \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
         checkbox-ng)
             release_component checkbox-ng \
                 --origin=$origin \
@@ -819,6 +838,16 @@ main() {
             ;;
         ppa-packaging-checkbox-gui)
             release_component ppa-packaging-checkbox-gui \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-cdts)
+            release_component ppa-packaging-cdts \
                 --origin=$origin \
                 --target=$target \
                 --in-place=$in_place \
