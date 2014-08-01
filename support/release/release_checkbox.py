@@ -78,6 +78,8 @@ class Package:
                                 "plainbox-provider-certification-*")
         elif "plainbox-provider-" in self._name:
             return os.path.join("providers", self.name)
+        elif self._name == "cdts":
+            return "plainbox-provider-canonical-driver-test-suite"
         else:
             return self._name
 
@@ -200,6 +202,9 @@ if __name__ == "__main__":
     parser.add_argument(
         'mode', metavar='MODE', choices=['testing', 'stable'],
         help='build a release candidate or the final version')
+    parser.add_argument(
+        '--cdts', action='store_true',
+        help='release Canonical Driver Test Suite only')
 
     args = parser.parse_args()
 
@@ -212,6 +217,10 @@ if __name__ == "__main__":
         Package('checkbox-ng'),
         Package('checkbox-gui'),
     ]
+
+    if args.cdts:
+        BRANCH_PREFIX = "lp:~checkbox-ihv-ng/cdts/"
+        packages = [Package('cdts')]
 
     push_commands = []
     build_commands = []
@@ -369,11 +378,12 @@ if __name__ == "__main__":
         print "".center(80, '#')
         for command in sdist_commands:
             print command
-        print "".center(80, '#')
-        print " 6. Upload the source tarballs to PyPI:"
-        print "".center(80, '#')
-        for command in twine_commands:
-            print command
+        if not args.cdts:
+            print "".center(80, '#')
+            print " 6. Upload the source tarballs to PyPI:"
+            print "".center(80, '#')
+            for command in twine_commands:
+                print command
 
     else:  # testing mode
 
