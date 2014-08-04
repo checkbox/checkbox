@@ -1,0 +1,36 @@
+# Template Demo Provider translations
+# Copyright (C) 2014 Canonical
+# This file is distributed under the same license as the plainbox package.
+# Zygmunt <Krynicki>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: python3-plainbox 0.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-04 17:35+0200\n"
+"PO-Revision-Date: 2014-06-12 07:54+0000\n"
+"Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
+"Language-Team: polski <>\n"
+"Language: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. summary
+#: ../units/resources.txt:6
+msgid "The demo resource"
+msgstr "Demonstracyjny zasób"
+
+#. summary
+#: ../units/templates.txt:10
+msgid "The demo job number {index}"
+msgstr "Demonstracyjne zadanie numer {index}"
+
+#. !/bin/sh
+#: ../bin/demo.sh:2
+msgid "This is a demonstration program invoked by job %s"
+msgstr "To jest demonstracyjny program uruchomiony przez zadanie %s"
+
+#: ../manage.py:19
+msgid "The template demo provider"
+msgstr "Demonstracyjny dostawca z szablonami"
