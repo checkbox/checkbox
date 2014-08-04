@@ -21,12 +21,15 @@
 :mod:`plainbox.impl.session.state` -- session state handling
 ============================================================
 """
+import itertools
 import logging
 
 from plainbox.i18n import gettext as _
+from plainbox.impl import deprecated
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyError
 from plainbox.impl.depmgr import DependencySolver
+from plainbox.impl.resource import Resource
 from plainbox.impl.session.jobs import JobState
 from plainbox.impl.session.jobs import UndesiredJobReadinessInhibitor
 from plainbox.impl.signal import Signal
@@ -428,13 +431,16 @@ class SessionState:
         # to remove a problematic job and re-try. The loop provides a stop
         # condition as we will eventually run out of jobs.
         problems = []
+        # Get additional fake jobs that might be generated if we instantiate
+        # templates later on, from resources we don't yet have.
+        fake_job_list = self.get_fake_job_list()
         while self._desired_job_list:
             # XXX: it might be more efficient to incorporate this 'recovery
             # mode' right into the solver, this way we'd probably save some
             # resources or runtime complexity.
             try:
                 self._run_list = DependencySolver.resolve_dependencies(
-                    self._job_list, self._desired_job_list)
+                    self._job_list + fake_job_list, self._desired_job_list)
             except DependencyError as exc:
                 # When a dependency error is detected remove the affected job
                 # form _desired_job_list and try again.
@@ -445,6 +451,10 @@ class SessionState:
             else:
                 # Don't iterate the loop if there was no exception
                 break
+        # Filter-out fake jobs before we try to show them
+        self._run_list = [
+            job for job in self._run_list
+            if getattr(job, 'is_fake', False) is False]
         # Update all job readiness state
         self._recompute_job_readiness()
         # Return all dependency problems to the caller
@@ -512,6 +522,7 @@ class SessionState:
         job.controller.observe_result(self, job, result)
         self._recompute_job_readiness()
 
+    @deprecated('0.9', 'use the add_unit() method instead')
     def add_job(self, new_job, recompute=True):
         """
         Add a new job to the session
@@ -543,6 +554,55 @@ class SessionState:
 
             This method recomputes job readiness for all jobs
         """
+        return self.add_unit(new_job, recompute)
+
+    def add_unit(self, new_unit, recompute=True):
+        """
+        Add a new unit to the session
+
+        :param new_unit:
+            The unit being added
+        :param recompute:
+            If True, recompute readiness inhibitors for all jobs.
+            You should only set this to False if you're adding
+            a number of jobs and will otherwise ensure that
+            :meth:`_recompute_job_readiness()` gets called before
+            session state users can see the state again.
+        :returns:
+            The unit that was actually added or an existing, identical
+            unit if a perfect clash was silently ignored.
+
+        :raises DependencyDuplicateError:
+            if a duplicate, clashing job definition is detected
+
+        .. note::
+            The following applies only to newly added job units:
+
+            The new_unit  gets added to all the state tracking objects of the
+            session. The job unit is initially not selected to run (it is not
+            in the desired_job_list and has the undesired inhibitor).
+
+            The new_unit job may clash with an existing job with the same id.
+            Unless both jobs are identical this will cause
+            DependencyDuplicateError to be raised. Identical jobs are silently
+            discarded.
+
+        .. note::
+            This method recomputes job readiness for all jobs unless the
+            recompute=False argument is used. Recomputing takes a while so if
+            you want to add a lot of units consider setting that to False and
+            only recompute at the last call.
+        """
+        if new_unit.unit == 'job':
+            return self._add_job_unit(new_unit, recompute)
+        else:
+            return self._add_other_unit(new_unit)
+
+    def _add_other_unit(self, new_unit):
+        self.unit_list.append(new_unit)
+        return new_unit
+
+    def _add_job_unit(self, new_job, recompute):
         # See if we have a job with the same id already
         try:
             existing_job = self.job_state_map[new_job.id].job
@@ -584,6 +644,28 @@ class SessionState:
         list of all jobs re-instantiate this class please.
         """
         return self._job_list
+
+    def get_fake_job_list(self):
+        fake_job_list = []
+        for unit in self.unit_list:
+            if unit.unit != 'template':
+                continue
+            resource_id = unit.resource_id
+            state = self.job_state_map.get(resource_id)
+            if state is not None and state.result.outcome is None:
+                fake_params = Resource({
+                    key: '.*'
+                    for key in set(
+                        itertools.chain(
+                            *unit.get_accessed_parameters(
+                                force=True).values()))
+                })
+                fake_job = unit.instantiate_one(fake_params)
+                fake_job.is_fake = True
+                fake_job.template_resource_id = resource_id
+                logger.debug("Adding fake job: %s", fake_job.id)
+                fake_job_list.append(fake_job)
+        return fake_job_list
 
     @property
     def unit_list(self):

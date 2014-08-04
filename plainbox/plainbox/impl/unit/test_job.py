@@ -351,6 +351,20 @@ class TestJobDefinition(TestCase):
             'id': 'id',
         }, Origin(FileTextSource('file.txt'), 1, 2))
 
+    def test_instantiate_template(self):
+        data = mock.Mock(name='data')
+        raw_data = mock.Mock(name='raw_data')
+        origin = mock.Mock(name='origin')
+        provider = mock.Mock(name='provider')
+        parameters = mock.Mock(name='parameters')
+        unit = JobDefinition.instantiate_template(
+            data, raw_data, origin, provider, parameters)
+        self.assertIs(unit._data, data)
+        self.assertIs(unit._raw_data, raw_data)
+        self.assertIs(unit._origin, origin)
+        self.assertIs(unit._provider, provider)
+        self.assertIs(unit._parameters, parameters)
+
     def test_smoke_full_record(self):
         job = JobDefinition(self._full_record.data)
         self.assertEqual(job.plugin, "plugin")
@@ -558,12 +572,12 @@ class TestJobDefinition(TestCase):
         Verify that Provider1.tr_summary() works as expected
         """
         job = JobDefinition(self._full_record.data)
-        with mock.patch.object(job, "get_normalized_translated_data") as mgntd:
+        with mock.patch.object(job, "get_translated_record_value") as mgtrv:
             retval = job.tr_summary()
-        # Ensure that get_translated_data() was called
-        mgntd.assert_called_once_with(job.summary)
+        # Ensure that get_translated_record_value() was called
+        mgtrv.assert_called_once_with(job.summary, job.partial_id)
         # Ensure tr_summary() returned its return value
-        self.assertEqual(retval, mgntd())
+        self.assertEqual(retval, mgtrv())
 
     def test_tr_summary__falls_back_to_id(self):
         """
@@ -578,12 +592,12 @@ class TestJobDefinition(TestCase):
         Verify that Provider1.tr_description() works as expected
         """
         job = JobDefinition(self._full_record.data)
-        with mock.patch.object(job, "get_normalized_translated_data") as mgntd:
+        with mock.patch.object(job, "get_translated_record_value") as mgtrv:
             retval = job.tr_description()
-        # Ensure that get_translated_data() was called
-        mgntd.assert_called_once_with(job.description)
+        # Ensure that get_translated_record_value() was called
+        mgtrv.assert_called_once_with(job.description)
         # Ensure tr_description() returned its return value
-        self.assertEqual(retval, mgntd())
+        self.assertEqual(retval, mgtrv())
 
     def test_imports(self):
         job1 = JobDefinition({})

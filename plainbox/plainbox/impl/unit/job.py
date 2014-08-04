@@ -35,6 +35,7 @@ from plainbox.impl.symbol import SymbolDef
 from plainbox.impl.unit import Unit
 from plainbox.impl.validation import Problem
 from plainbox.impl.validation import ValidationError
+from plainbox.impl.resource import parse_imports_stmt
 
 
 logger = logging.getLogger("plainbox.unit.job")
@@ -166,7 +167,7 @@ class JobDefinition(Unit, IJobDefinition):
     """
 
     def __init__(self, data, origin=None, provider=None, controller=None,
-                 raw_data=None):
+                 raw_data=None, parameters=None):
         """
         Initialize a new JobDefinition instance.
 
@@ -187,20 +188,48 @@ class JobDefinition(Unit, IJobDefinition):
         :param raw_data:
             An (optional) raw version of data, without whitespace
             normalization. If omitted then raw_data is assumed to be data.
+        :param parameters:
+            An (optional) dictionary of parameters. Parameters allow for unit
+            properties to be altered while maintaining a single definition.
+            This is required to obtain translated summary and description
+            fields, while having a single translated base text and any
+            variation in the available parameters.
 
         .. note::
             You should almost always use :meth:`from_rfc822_record()` instead.
         """
         if origin is None:
             origin = Origin.get_caller_origin()
-        super().__init__(data, raw_data=raw_data, origin=origin)
+        super().__init__(data, raw_data=raw_data, origin=origin,
+                         provider=provider, parameters=parameters)
+        # NOTE: controllers cannot be customized for instantiated templates so
+        # I wonder if we should start hard-coding it in. Nothing seems to be
+        # using custom controller functionality anymore.
         if controller is None:
             # XXX: moved here because of cyclic imports
             from plainbox.impl.ctrl import checkbox_session_state_ctrl
             controller = checkbox_session_state_ctrl
         self._resource_program = None
-        self._provider = provider
         self._controller = controller
+
+    @classmethod
+    def instantiate_template(cls, data, raw_data, origin, provider,
+                             parameters):
+        """
+        Instantiate this unit from a template.
+
+        The point of this method is to have a fixed API, regardless of what the
+        API of a particular unit class ``__init__`` method actually looks like.
+
+        It is easier to standardize on a new method that to patch all of the
+        initializers, code using them and tests to have an uniform initializer.
+        """
+        # This assertion is a low-cost trick to ensure that we override this
+        # method in all of the subclasses to ensure that the initializer is
+        # called with correctly-ordered arguments.
+        assert cls is JobDefinition, \
+            "{}.instantiate_template() not customized".format(cls.__name__)
+        return cls(data, origin, provider, None, raw_data, parameters)
 
     def __str__(self):
         return self.summary
@@ -226,6 +255,48 @@ class JobDefinition(Unit, IJobDefinition):
         requires = 'requires'
         shell = 'shell'
         imports = 'imports'
+
+    class Meta(Unit.Meta):
+
+        template_constraints = {
+            'name': 'vary',
+            'unit': 'const',
+            # The 'id' field should be always variable (depending on at least
+            # resource reference) or clashes are inevitable (they can *still*
+            # occur but this is something we cannot prevent).
+            'id': 'vary',
+            # The summary should never be constant as that would be confusing
+            # to the test operator. If it is defined in the template it should
+            # be customized by at least one resource reference.
+            'summary': 'vary',
+            # The 'plugin' field should be constant as otherwise validation is
+            # very unreliable. There is no current demand for being able to
+            # customize it from a resource record.
+            'plugin': 'const',
+            # The command field should be variable if it is defined. This may
+            # be too strict but there has to be a channel between the resource
+            # object and the command to make the template job valuable so for
+            # now we will require variability here.
+            'command': 'vary',
+            # The description should never be constant as that would be
+            # confusing to the test operator. If it is defined in the template
+            # it should be customized by at least one resource reference.
+            'description': 'vary',
+            # There is no conceivable value in having a variable user field
+            'user': 'const',
+            'environ': 'const',
+            # TODO: what about estimated duration?
+            # 'estimated_duration': '?',
+            # TODO: what about depends and requires?
+            #
+            # If both are const then we can determine test ordering without any
+            # action and the ordering is not perturbed at runtime. This may be
+            # too strong of a limitation though. We'll see.
+            # 'depends': '?',
+            # 'requires': '?',
+            'shell': 'const',
+            'imports': 'const',
+        }
 
     class _PluginValues(SymbolDef):
         """
@@ -361,15 +432,13 @@ class JobDefinition(Unit, IJobDefinition):
         """
         Get the translated version of :meth:`summary`
         """
-        return self.get_normalized_translated_data(
-            self.get_raw_record_value('summary')) or self.partial_id
+        return self.get_translated_record_value('summary', self.partial_id)
 
     def tr_description(self):
         """
         Get the translated version of :meth:`description`
         """
-        return self.get_normalized_translated_data(
-            self.get_raw_record_value('description'))
+        return self.get_translated_record_value('description')
 
     def get_environ_settings(self):
         """
@@ -403,39 +472,7 @@ class JobDefinition(Unit, IJobDefinition):
                          AS <IDENTIFIER>
         """
         imports = self.imports or ""
-        # Poor man's parser. Replace this with our own parser once we get one
-        for lineno, line in enumerate(imports.splitlines()):
-            parts = line.split()
-            if len(parts) not in (4, 6):
-                raise ValueError(
-                    _("unable to parse imports statement {0!r}: expected"
-                      " exactly four or six tokens").format(line))
-            if parts[0] != "from":
-                raise ValueError(
-                    _("unable to parse imports statement {0!r}: expected"
-                      " 'from' keyword").format(line))
-            namespace = parts[1]
-            if "::" in namespace:
-                raise ValueError(
-                    _("unable to parse imports statement {0!r}: expected"
-                      "a namespace, not fully qualified job identifier"))
-            if parts[2] != "import":
-                raise ValueError(
-                    _("unable to parse imports statement {0!r}: expected"
-                      " 'import' keyword").format(line))
-            job_id = effective_id = parts[3]
-            if "::" in job_id:
-                raise ValueError(
-                    _("unable to parse imports statement {0!r}: expected"
-                      " a partial job identifier, not a fully qualified job"
-                      " identifier").format(line))
-            if len(parts) == 6:
-                if parts[4] != "as":
-                    raise ValueError(
-                        _("unable to parse imports statement {0!r}: expected"
-                          " 'as' keyword").format(line))
-                effective_id = parts[5]
-            yield ("{}::{}".format(namespace, job_id), effective_id)
+        return parse_imports_stmt(imports)
 
     @property
     def automated(self):
@@ -560,6 +597,7 @@ class JobDefinition(Unit, IJobDefinition):
         :raises ValidationError:
             If the job has any problems that make it unsuitable for execution.
         """
+        super().validate(**validation_kwargs)
         JobDefinitionValidator.validate(self, **validation_kwargs)
 
     def create_child_job_from_record(self, record):

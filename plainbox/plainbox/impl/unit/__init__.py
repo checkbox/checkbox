@@ -91,6 +91,25 @@ class Unit:
         self._checksum = None
         self._parameters = parameters
 
+    @classmethod
+    def instantiate_template(cls, data, raw_data, origin, provider,
+                             parameters):
+        """
+        Instantiate this unit from a template.
+
+        The point of this method is to have a fixed API, regardless of what the
+        API of a particular unit class ``__init__`` method actually looks like.
+
+        It is easier to standardize on a new method that to patch all of the
+        initializers, code using them and tests to have an uniform initializer.
+        """
+        # This assertion is a low-cost trick to ensure that we override this
+        # method in all of the subclasses to ensure that the initializer is
+        # called with correctly-ordered arguments.
+        assert cls is Unit, \
+            "{}.instantiate_template() not customized".format(cls.__name__)
+        return cls(data, raw_data, origin, provider, parameters)
+
     def __eq__(self, other):
         if not isinstance(other, Unit):
             return False
@@ -158,10 +177,15 @@ class Unit:
         """
         return self._parameters is not None
 
-    def get_accessed_parameters(self):
+    def get_accessed_parameters(self, *, force=False):
         """
         Get a set of attributes accessed from each template attribute
 
+        :param force (keyword-only):
+            If specified then it will operate despite being invoked on a
+            non-parametric unit.  This is only intended to be called by
+            TemplateUnit to inspect what the generated unit looks like in the
+            early validation code.
         :returns:
             A dictionary of sets with names of attributes accessed by each
             template field. Note that for non-parametric Units the return value
@@ -172,7 +196,7 @@ class Unit:
         field (except from fields starting with the string 'template-') to a
         set of all the resource object attributes accessed by that element.
         """
-        if self.is_parametric:
+        if force or self.is_parametric:
             return {
                 key: frozenset(
                     # See: https://docs.python.org/3.4/library/string.html
@@ -227,7 +251,7 @@ class Unit:
         value = self._data.get('_{}'.format(name))
         if value is None:
             value = self._data.get('{}'.format(name), default)
-        if self.is_parametric:
+        if value is not None and self.is_parametric:
             value = string.Formatter().vformat(value, (), self.parameters)
         return value
 
@@ -252,9 +276,61 @@ class Unit:
         value = self._raw_data.get('_{}'.format(name))
         if value is None:
             value = self._raw_data.get('{}'.format(name), default)
-        if self.is_parametric:
+        if value is not None and self.is_parametric:
             value = string.Formatter().vformat(value, (), self.parameters)
         return value
+
+    def get_translated_record_value(self, name, default=None):
+        """
+        Obtain the translated value of the specified record attribute
+
+        :param name:
+            Name of the field/attribute to access
+        :param default:
+            Default value, used if the field is not defined in the unit
+        :returns:
+            The (perhaps) translated value of the field with (perhaps)
+            parameters inserted, or the default value. The idea is to return
+            the best value we can but there are no guarantees on returning a
+            translated value.
+        :raises:
+            KeyError if the field is parametrized but parameters are incorrect
+            This may imply that the unit is invalid but it may also imply that
+            translations are broken. A malicious translation can break
+            formatting and prevent an otherwise valid unit from working.
+        """
+        # Try to access the marked-for-translation record
+        msgid = self._raw_data.get('_{}'.format(name))
+        if msgid is not None:
+            # We now have a translatable message that we can look up in the
+            # provider translation database.
+            msgstr = self.get_translated_data(msgid)
+            assert msgstr is not None
+            # We now have the translation _or_ the untranslated msgid again.
+            # We can now normalize it so that it looks nice:
+            msgstr = normalize_rfc822_value(msgstr)
+            # We can now feed it through the template system to get parameters
+            # inserted.
+            if self.is_parametric:
+                # This should not fail if the unit validates okay but it still
+                # might fail due to broken translations. Perhaps we should
+                # handle exceptions here and hint that this might be the cause
+                # of the problem?
+                msgstr = string.Formatter().vformat(
+                    msgstr, (), self.parameters)
+            return msgstr
+        # If there was no marked-for-translation value then let's just return
+        # the normal (untranslatable) version.
+        msgstr = self._data.get(name)
+        if msgstr is not None:
+            # NOTE: there is no need to normalize anything as we already got
+            # the non-raw value here.
+            if self.is_parametric:
+                msgstr = string.Formatter().vformat(
+                    msgstr, (), self.parameters)
+            return msgstr
+        # If we have nothing better let's just return the default value
+        return default
 
     def validate(self, **validation_kwargs):
         """

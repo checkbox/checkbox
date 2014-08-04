@@ -30,6 +30,7 @@ from unittest import TestCase
 from plainbox.impl.resource import CodeNotAllowed
 from plainbox.impl.resource import ExpressionCannotEvaluateError
 from plainbox.impl.resource import ExpressionFailedError
+from plainbox.impl.resource import FakeResource
 from plainbox.impl.resource import MultipleResourcesReferenced
 from plainbox.impl.resource import NoResourcesReferenced
 from plainbox.impl.resource import Resource
@@ -94,6 +95,12 @@ class ResourceTests(TestCase):
         res = Resource({'attr': 'value'})
         self.assertEqual(getattr(res, 'attr'), 'value')
 
+    def test_getitem(self):
+        res = Resource()
+        self.assertRaises(KeyError, lambda res: res["attr"], res)
+        res = Resource({'attr': 'value'})
+        self.assertEqual(res['attr'], 'value')
+
     def test_setattr(self):
         res = Resource()
         res.attr = 'value'
@@ -101,13 +108,28 @@ class ResourceTests(TestCase):
         res.attr = 'other value'
         self.assertEqual(res.attr, 'other value')
 
+    def test_setitem(self):
+        res = Resource()
+        res['attr'] = 'value'
+        self.assertEqual(res['attr'], 'value')
+        res['attr'] = 'other value'
+        self.assertEqual(res['attr'], 'other value')
+
     def test_delattr(self):
         res = Resource()
-        self.assertRaises(AttributeError, delattr, res, "_attr")
+        self.assertRaises(AttributeError, delattr, res, "attr")
         res = Resource({'attr': 'value'})
         del res.attr
         self.assertRaises(AttributeError, getattr, res, "attr")
         self.assertRaises(AttributeError, lambda res: res.attr, res)
+
+    def test_delitem(self):
+        res = Resource()
+        with self.assertRaises(KeyError):
+            del res["attr"]
+        res = Resource({'attr': 'value'})
+        del res['attr']
+        self.assertRaises(KeyError, lambda res: res['attr'], res)
 
     def test_repr(self):
         self.assertEqual(repr(Resource()), "Resource({})")
@@ -129,6 +151,33 @@ class ResourceTests(TestCase):
 
     def _get_private_data(self, res):
         return object.__getattribute__(res, '_data')
+
+
+class FakeResourceTests(TestCase):
+
+    def test_resource_attributes(self):
+        """
+        Verify that any accessed attribute / item resolves to its name
+        """
+        resource = FakeResource()
+        self.assertEqual(resource.foo, 'foo')
+        self.assertEqual(resource['bar'], 'bar')
+
+    def test_set_membership(self):
+        """
+        Verify that any item is present
+        """
+        self.assertTrue('foo' in FakeResource())
+
+    def test_tracking_support(self):
+        """
+        Verify that each accessed attribute / item is remembered
+        """
+        accessed = set()
+        resource = FakeResource(accessed)
+        self.assertEqual(resource.foo, 'foo')
+        self.assertEqual(resource['bar'], 'bar')
+        self.assertEqual(accessed, {'foo', 'bar'})
 
 
 class ResourceProgramErrorTests(TestCase):
@@ -248,6 +297,23 @@ class ResourceExpressionTests(TestCase):
         self.assertEqual(expr.text, text)
         self.assertEqual(expr.resource_id, "2014.com.canonical::package")
         self.assertEqual(expr.implicit_namespace, "2014.com.canonical")
+
+    def test_imports_support(self):
+        text = "package.name == 'fwts'"
+        expr1 = ResourceExpression(text, "2014.com.example")
+        self.assertEqual(expr1.text, text)
+        self.assertEqual(expr1.resource_id, "2014.com.example::package")
+        self.assertEqual(expr1.implicit_namespace, "2014.com.example")
+        expr2 = ResourceExpression(text, "2014.com.example", imports=())
+        self.assertEqual(expr2.text, text)
+        self.assertEqual(expr2.resource_id, "2014.com.example::package")
+        self.assertEqual(expr2.implicit_namespace, "2014.com.example")
+        expr3 = ResourceExpression(
+            text, "2014.com.example", imports=[
+                ('2014.com.canonical::package', 'package')])
+        self.assertEqual(expr3.text, text)
+        self.assertEqual(expr3.resource_id, "2014.com.canonical::package")
+        self.assertEqual(expr3.implicit_namespace, "2014.com.example")
 
     def test_smoke_bad(self):
         self.assertRaises(SyntaxError, ResourceExpression, "barf'")

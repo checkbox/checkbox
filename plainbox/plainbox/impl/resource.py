@@ -101,14 +101,30 @@ class Resource:
         else:
             raise AttributeError(attr)
 
-    def __getattribute__(self, attr):
-        if attr.startswith("_"):
-            raise AttributeError(attr)
+    def __getattr__(self, attr):
         data = object.__getattribute__(self, '_data')
         if attr in data:
             return data[attr]
         else:
-            raise AttributeError(attr)
+            raise AttributeError(attr, "don't poke at %r" % attr)
+
+    def __getattribute__(self, attr):
+        if attr != "_data":
+            return object.__getattribute__(self, attr)
+        else:
+            raise AttributeError("don't poke at _data")
+
+    def __getitem__(self, item):
+        data = object.__getattribute__(self, '_data')
+        return data[item]
+
+    def __setitem__(self, item, value):
+        data = object.__getattribute__(self, '_data')
+        data[item] = value
+
+    def __delitem__(self, item):
+        data = object.__getattribute__(self, '_data')
+        del data[item]
 
     def __repr__(self):
         data = object.__getattribute__(self, '_data')
@@ -127,6 +143,42 @@ class Resource:
         return (
             object.__getattribute__(self, '_data')
             != object.__getattribute__(other, '_data'))
+
+
+class FakeResource:
+    """
+    A resource that seemingly has any accessed attribute.
+
+    All attributes resolve back to the their name. All accessed attributes are
+    recorded and can be referenced from a set that needs to be passed to the
+    initializer. Knowledge about accessed attributes can be helpful in various
+    forms of static analysis.
+    """
+
+    def __init__(self, accessed_attributes=None):
+        """
+        Initialize a fake resource object.
+
+        :param accessed_attributes:
+            An optional set object that will record all accessed resource
+            attributes.
+        """
+        self._accessed_attributes = accessed_attributes
+
+    def _notice(self, attr):
+        if self._accessed_attributes is not None:
+            self._accessed_attributes.add(attr)
+
+    def __getattr__(self, attr):
+        self._notice(attr)
+        return attr
+
+    def __getitem__(self, item):
+        self._notice(item)
+        return item
+
+    def __contains__(self, item):
+        return True
 
 
 class ResourceProgram:
@@ -441,13 +493,14 @@ class ResourceExpression:
         """
         self._implicit_namespace = implicit_namespace
         self._resource_alias = self._analyze(text)
+        if imports is None:
+            imports = ()
         # Respect any import statements.
         # They always take priority over anything we may know locally
-        if imports is not None:
-            for imported_resource_id, imported_alias in imports:
-                if imported_alias == self._resource_alias:
-                    self._resource_id = imported_resource_id
-                    break
+        for imported_resource_id, imported_alias in imports:
+            if imported_alias == self._resource_alias:
+                self._resource_id = imported_resource_id
+                break
         else:
             self._resource_id = self._resource_alias
         self._text = text
@@ -562,3 +615,51 @@ class ResourceExpression:
             return list(visitor.ids_seen)[0]
         else:
             raise MultipleResourcesReferenced()
+
+
+def parse_imports_stmt(imports):
+    """
+    Parse the 'imports' line and compute the imported symbols.
+
+    Return generator for a sequence of pairs (job_id, identifier) that
+    describe the imported job identifiers from arbitrary namespace.
+
+    The syntax of each imports line is:
+
+    IMPORT_STMT ::  "from" <NAMESPACE> "import" <PARTIAL_ID>
+                  | "from" <NAMESPACE> "import" <PARTIAL_ID>
+                     AS <IDENTIFIER>
+    """
+    # Poor man's parser. Replace this with our own parser once we get one
+    for lineno, line in enumerate(imports.splitlines()):
+        parts = line.split()
+        if len(parts) not in (4, 6):
+            raise ValueError(
+                _("unable to parse imports statement {0!r}: expected"
+                  " exactly four or six tokens").format(line))
+        if parts[0] != "from":
+            raise ValueError(
+                _("unable to parse imports statement {0!r}: expected"
+                  " 'from' keyword").format(line))
+        namespace = parts[1]
+        if "::" in namespace:
+            raise ValueError(
+                _("unable to parse imports statement {0!r}: expected"
+                  " a namespace, not fully qualified job identifier"))
+        if parts[2] != "import":
+            raise ValueError(
+                _("unable to parse imports statement {0!r}: expected"
+                  " 'import' keyword").format(line))
+        job_id = effective_id = parts[3]
+        if "::" in job_id:
+            raise ValueError(
+                _("unable to parse imports statement {0!r}: expected"
+                  " a partial job identifier, not a fully qualified job"
+                  " identifier").format(line))
+        if len(parts) == 6:
+            if parts[4] != "as":
+                raise ValueError(
+                    _("unable to parse imports statement {0!r}: expected"
+                      " 'as' keyword").format(line))
+            effective_id = parts[5]
+        yield ("{}::{}".format(namespace, job_id), effective_id)

@@ -33,6 +33,20 @@ from plainbox.vendor import mock
 
 class TestUnitDefinition(TestCase):
 
+    def test_instantiate_template(self):
+        data = mock.Mock(name='data')
+        raw_data = mock.Mock(name='raw_data')
+        origin = mock.Mock(name='origin')
+        provider = mock.Mock(name='provider')
+        parameters = mock.Mock(name='parameters')
+        unit = Unit.instantiate_template(
+            data, raw_data, origin, provider, parameters)
+        self.assertIs(unit._data, data)
+        self.assertIs(unit._raw_data, raw_data)
+        self.assertIs(unit._origin, origin)
+        self.assertIs(unit._provider, provider)
+        self.assertIs(unit._parameters, parameters)
+
     def test_get_raw_record_value(self):
         """
         Ensure that get_raw_record_value() works okay
@@ -44,11 +58,19 @@ class TestUnitDefinition(TestCase):
         unit4 = Unit({'key': '{missing_param}'},
                      {'key': 'raw-{missing_param}'},
                      parameters={'param': 'value'})
+        unit5 = Unit({})
+        unit6 = Unit({}, parameters={'param': 'value'})
         self.assertEqual(unit1.get_raw_record_value('key'), 'raw-value')
         self.assertEqual(unit2.get_raw_record_value('key'), 'raw-value')
         self.assertEqual(unit3.get_raw_record_value('key'), 'raw-value')
         with self.assertRaises(KeyError):
             unit4.get_raw_record_value('key')
+        self.assertEqual(unit5.get_raw_record_value('key'), None)
+        self.assertEqual(
+            unit5.get_raw_record_value('key', 'default'), 'default')
+        self.assertEqual(unit6.get_raw_record_value('key'), None)
+        self.assertEqual(
+            unit6.get_raw_record_value('key', 'default'), 'default')
 
     def test_get_record_value(self):
         """
@@ -61,11 +83,17 @@ class TestUnitDefinition(TestCase):
         unit4 = Unit({'key': '{missing_param}'},
                      {'key': 'raw-{missing_param}'},
                      parameters={'param': 'value'})
+        unit5 = Unit({})
+        unit6 = Unit({}, parameters={'param': 'value'})
         self.assertEqual(unit1.get_record_value('key'), 'value')
         self.assertEqual(unit2.get_record_value('key'), 'value')
         self.assertEqual(unit3.get_record_value('key'), 'value')
         with self.assertRaises(KeyError):
             unit4.get_record_value('key')
+        self.assertEqual(unit5.get_record_value('key'), None)
+        self.assertEqual(unit5.get_record_value('key', 'default'), 'default')
+        self.assertEqual(unit6.get_record_value('key'), None)
+        self.assertEqual(unit6.get_record_value('key', 'default'), 'default')
 
     def test_validate(self):
         # Empty units are valid, with or without parameters
@@ -231,3 +259,11 @@ class TestUnitDefinition(TestCase):
             Unit({
                 'field': '{param}'}, parameters={'param': 'value'}
             ).get_accessed_parameters(), {'field': frozenset(['param'])})
+        # We can always use force=True to pretend any unit is parametric
+        self.assertEqual(Unit({}).get_accessed_parameters(force=True), {})
+        self.assertEqual(
+            Unit({'field': 'value'}).get_accessed_parameters(force=True),
+            {'field': frozenset()})
+        self.assertEqual(
+            Unit({'field': '{param}'}).get_accessed_parameters(force=True),
+            {'field': frozenset(['param'])})

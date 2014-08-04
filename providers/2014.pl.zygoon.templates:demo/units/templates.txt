@@ -1,0 +1,10 @@
+unit: template
+template-unit: job
+template-resource: resource
+template-filter: resource.instantiate == "yes"
+id: job-{index}
+plugin: shell
+flags: preserve-locale
+command: demo.sh {index}
+estimated_duration: 0.1
+_summary: The demo job number {index}
