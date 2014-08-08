@@ -51,6 +51,7 @@ from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyMissingError
 from plainbox.impl.resource import ExpressionCannotEvaluateError
 from plainbox.impl.resource import ExpressionFailedError
+from plainbox.impl.resource import ResourceProgramError
 from plainbox.impl.resource import Resource
 from plainbox.impl.secure.config import Unset
 from plainbox.impl.secure.origin import JobOutputTextSource
@@ -115,9 +116,15 @@ class CheckBoxSessionStateController(ISessionStateController):
         """
         direct = DependencyMissingError.DEP_TYPE_DIRECT
         resource = DependencyMissingError.DEP_TYPE_RESOURCE
-        return set(itertools.chain(
-            zip(itertools.repeat(direct), job.get_direct_dependencies()),
-            zip(itertools.repeat(resource), job.get_resource_dependencies())))
+        direct_deps = job.get_direct_dependencies()
+        try:
+            resource_deps = job.get_resource_dependencies()
+        except ResourceProgramError:
+            resource_deps = ()
+        result = set(itertools.chain(
+            zip(itertools.repeat(direct), direct_deps),
+            zip(itertools.repeat(resource), resource_deps)))
+        return result
 
     def get_inhibitor_list(self, session_state, job):
         """
@@ -272,10 +279,17 @@ class CheckBoxSessionStateController(ISessionStateController):
             return
         for unit in session_state.unit_list:
             if isinstance(unit, TemplateUnit) and unit.resource_id == job.id:
-                logger.info("Instantiating unit: %s", unit)
+                logger.info(_("Instantiating unit: %s"), unit)
                 for new_unit in unit.instantiate_all(
                         session_state.resource_map[job.id]):
-                    session_state.add_unit(new_unit)
+                    try:
+                        new_unit.validate()
+                    except ValidationError as exc:
+                        logger.error(
+                            _("Ignoring invalid instantiated unit %s: %s"),
+                            new_unit, exc)
+                    else:
+                        session_state.add_unit(new_unit)
 
     def _process_local_result(self, session_state, job, result):
         """
