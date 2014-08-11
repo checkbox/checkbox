@@ -7,10 +7,10 @@ import os
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 
-import checkbox-touch
+import checkbox_touch
 
 
-class MainViewTestCase(checkbox-touch.ClickAppTestCase):
+class MainViewTestCase(checkbox_touch.ClickAppTestCase):
     """Generic tests for the Hello World"""
 
     def test_initial_label(self):
