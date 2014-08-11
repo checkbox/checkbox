@@ -23,33 +23,32 @@ MainView {
     height: units.gu(75)
 
     Page {
-        title: i18n.tr("Simple")
-
+        id: welcomePage
+        title: i18n.tr("System Testing")
         Column {
             spacing: units.gu(1)
+            id: column1
             anchors {
                 margins: units.gu(2)
                 fill: parent
             }
 
-            HelloComponent {
-                id: label
-                objectName: "label"
+            Text {
+                id: welcomeText
 
-                text: i18n.tr("Hello..")
+                text: i18n.tr("Welcome")
+                font.pixelSize: units.gu(4)
             }
 
             Button {
-                objectName: "button"
                 width: parent.width
-
-                text: i18n.tr("Tap me!")
-
-                onClicked: {
-                    label.text = i18n.tr("..world!")
-                }
+                height: gu
+                color: "#009E0F"
+                text: i18n.tr("Start Testing")
+                anchors.verticalCenter: parent.verticalCenter
+                transformOrigin: Item.Center
             }
+
         }
     }
 }
-
