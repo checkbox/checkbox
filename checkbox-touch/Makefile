@@ -18,5 +18,5 @@ check:
 	qmltestrunner -input tests/unit
 
 run:
-	/usr/bin/qmlscene $@ checkbox-touch.qml
+	/usr/bin/qmlscene $@ main.qml
 
