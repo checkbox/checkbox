@@ -70,7 +70,7 @@ MainView {
         }
 
         Component.onCompleted: {
-            console.log("welcome page ready");
+            console.log("Checkbox Touch is now ready");
         }
     }
 }
