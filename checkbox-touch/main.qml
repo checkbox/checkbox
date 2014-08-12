@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "components"
+import io.thp.pyotherside 1.2
+
 
 /*!
     \brief MainView with a Label and Button elements.
@@ -22,6 +24,18 @@ MainView {
     width: units.gu(100)
     height: units.gu(75)
 
+    Python {
+        id: python
+        Component.onCompleted: {
+            console.log("Using pyotherside " + python.pluginVersion());
+            console.log("Using python " + python.pythonVersion());
+            welcomeText.text = i18n.tr("Welcome text (python loaded)");
+        }
+        onError: {
+            console.error("python error: " + traceback)
+        }
+    }
+
     Page {
         id: welcomePage
         title: i18n.tr("System Testing")
@@ -36,8 +50,8 @@ MainView {
             Text {
                 id: welcomeText
                 text: i18n.tr("Welcome text")
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                height: parent.height
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: units.gu(4)
@@ -56,7 +70,7 @@ MainView {
         }
 
         Component.onCompleted: {
-            console.log("welcome page ready");
+            console.log("Checkbox Touch is now ready");
         }
     }
 }
