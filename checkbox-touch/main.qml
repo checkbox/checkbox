@@ -53,7 +53,7 @@ MainView {
             welcomeText.text = i18n.tr("Welcome text (python loaded)");
         }
         onError: {
-            console.error("python error: " + traceback)
+            console.error("python error: " + traceback);
         }
     }
 
