@@ -50,8 +50,8 @@ MainView {
             Text {
                 id: welcomeText
                 text: i18n.tr("Welcome text")
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                height: parent.height
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: units.gu(4)
