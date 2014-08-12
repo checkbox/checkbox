@@ -55,6 +55,9 @@ MainView {
         onError: {
             console.error("python error: " + traceback);
         }
+        onReceived: {
+            console.log("pyotherside.send: " + data);
+        }
     }
 
     Page {
