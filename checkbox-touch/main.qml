@@ -44,10 +44,14 @@ MainView {
             }
         }
         Button {
-            width: parent.width
             color: "green"
             text: i18n.tr("Start Testing")
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(2)
+            anchors.left: parent.left
+            anchors.leftMargin: units.gu(2)
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: units.gu(1)
             transformOrigin: Item.Center
         }
     }
