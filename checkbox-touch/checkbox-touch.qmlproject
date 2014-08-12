@@ -46,6 +46,10 @@ Project {
         directory: "debian"
         filter: "*"
     }
+    Files {
+        directory: "py"
+        filter: "*.py"
+    }
     /* List of plugin directories passed to QML runtime */
     importPaths: [ "." ,"/usr/bin","/usr/lib/x86_64-linux-gnu/qt5/qml" ]
 }
