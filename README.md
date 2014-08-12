@@ -9,6 +9,14 @@ in one big repository (for several technical and historical reasons). The
 top-level directory as at least the following components (in alphabetical
 order).
 
+
+checkbox-touch
+--------------
+
+An Ubuntu SDK application (Python + QML) with a modern touch interface,
+optimized for phablet devices. This application is currently under development,
+eventually it will entirely replace checkbox-gui.
+
 checkbox-gui
 ------------
 
