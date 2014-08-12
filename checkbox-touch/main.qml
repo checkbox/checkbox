@@ -54,5 +54,9 @@ MainView {
             anchors.bottomMargin: units.gu(1)
             transformOrigin: Item.Center
         }
+
+        Component.onCompleted: {
+            console.log("welcome page ready");
+        }
     }
 }
