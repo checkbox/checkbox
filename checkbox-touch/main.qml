@@ -50,6 +50,7 @@ MainView {
             Text {
                 id: welcomeText
                 text: i18n.tr("Welcome text")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
                 height: parent.height
                 verticalAlignment: Text.AlignVCenter
