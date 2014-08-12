@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "components"
+import io.thp.pyotherside 1.2
+
 
 /*!
     \brief MainView with a Label and Button elements.
@@ -21,6 +23,18 @@ MainView {
 
     width: units.gu(100)
     height: units.gu(75)
+
+    Python {
+        id: python
+        Component.onCompleted: {
+            console.log("Using pyotherside " + python.pluginVersion());
+            console.log("Using python " + python.pythonVersion());
+            welcomeText.text = i18n.tr("Welcome text (python loaded)");
+        }
+        onError: {
+            console.error("python error: " + traceback)
+        }
+    }
 
     Page {
         id: welcomePage
