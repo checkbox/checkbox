@@ -50,7 +50,12 @@ MainView {
         Component.onCompleted: {
             console.log("Using pyotherside " + python.pluginVersion());
             console.log("Using python " + python.pythonVersion());
-            welcomeText.text = i18n.tr("Welcome text (python loaded)");
+            addImportPath(Qt.resolvedUrl('py/'));
+            importModule("checkbox_touch", function() {
+                python.call("checkbox_touch.get_welcome_text", [], function(text) {
+                    welcomeText.text = text
+                });
+            });
         }
         onError: {
             console.error("python error: " + traceback);
