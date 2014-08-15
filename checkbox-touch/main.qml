@@ -20,9 +20,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import "components"
-import io.thp.pyotherside 1.2
 
 
 /*!
@@ -45,62 +44,23 @@ MainView {
     width: units.gu(100)
     height: units.gu(75)
 
-    Python {
-        id: python
-        Component.onCompleted: {
-            console.log("Using pyotherside " + python.pluginVersion());
-            console.log("Using python " + python.pythonVersion());
-            addImportPath(Qt.resolvedUrl('py/'));
-            importModule("checkbox_touch", function() {
-                python.call("checkbox_touch.get_welcome_text", [], function(text) {
-                    welcomeText.text = text
-                });
-            });
-        }
-        onError: {
-            console.error("python error: " + traceback);
-        }
-        onReceived: {
-            console.log("pyotherside.send: " + data);
+    useDeprecatedToolbar: false
+
+    // High-level object representing the full checkbox testing stack
+    CheckboxStack {
+        onStackReady: {
+            console.log("Pyotherside version" + pyothersideVersion);
+            console.log("Python version " + pythonVersion);
+            console.log("PlainBox version " + plainboxVersion);
         }
     }
 
-    Page {
-        id: welcomePage
-        title: i18n.tr("System Testing")
-        anchors.bottomMargin: units.gu(1)
-        Column {
-            anchors.margins: units.gu(1)
-            spacing: units.gu(1)
-            id: column1
-            anchors {
-                fill: parent
-            }
-            Text {
-                id: welcomeText
-                text: i18n.tr("Welcome text")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: parent.width
-                height: parent.height
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: units.gu(4)
-            }
-        }
-        Button {
-            color: "green"
-            text: i18n.tr("Start Testing")
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
-            anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: units.gu(1)
-            transformOrigin: Item.Center
-        }
-
+    PageStack {
+        id: pageStack
         Component.onCompleted: {
-            console.log("Checkbox Touch is now ready");
+            push(Qt.resolvedUrl("components/WelcomePage.qml"), {
+                "welcomeText": i18n.tr("This application is under development.\nThere is nothing beyond this screen yet")
+            })
         }
     }
 }
