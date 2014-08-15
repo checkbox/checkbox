@@ -21,23 +21,3 @@
 
 This module contains APIs specific to the implementation of checkbox-touch.
 """
-
-from gettext import gettext as _
-
-try:
-    import pyotherside
-except ImportError:
-    raise SystemExit(
-        ("Please don't try to import or this module directly,"
-         " it only works when imported from QML"))
-
-
-def get_welcome_text():
-    """
-    Get the replacement for the "Welcome text" message
-    """
-    return _("Welcome text (python loaded)")
-
-
-# NOTE: this is just an example, it's not really needed for anything
-pyotherside.send("python-core-loaded")
