@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+# this file is part of checkbox.
+#
+# copyright 2014 canonical ltd.
+# written by:
+#   maciej kisielewski <maciej.kisielewski@canonical.com>
+#
+# checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the gnu general public license version 3,
+# as published by the free software foundation.
+#
+# checkbox is distributed in the hope that it will be useful,
+# but without any warranty; without even the implied warranty of
+# merchantability or fitness for a particular purpose.  see the
+# gnu general public license for more details.
+#
+# you should have received a copy of the gnu general public license
+# along with checkbox.  if not, see <http://www.gnu.org/licenses/>.
+"""
+Download and extract .deb packages necessary to run checkbox-touch
+Extraction is done to specific directories as required by click package
+"""
+
+import os
+import subprocess
+import tempfile
+import urllib.request
+from distutils.dir_util import copy_tree
+
+
+ARCH_LIST = ["i386-linux-gnu", "x86_64-linux-gnu", "armhf-linux-gnu"]
+
+# LIBS_URLS contains list of .deb packages that will be downloaded and
+# extracted. After extraction contents of ./usr/lib are copied to ./lib
+LIBS_URLS = ['http://archive.ubuntu.com/ubuntu/pool/main/p/python3.4/libpython3.4_3.4.1-9_amd64.deb',
+    'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.4/libpython3.4_3.4.1-9_armhf.deb',
+    'http://archive.ubuntu.com/ubuntu/pool/main/p/python3.4/libpython3.4_3.4.1-9_i386.deb'
+]
+
+# QML_PLUGINS_URL contains list of .deb packages that will be downloaded and
+# and extracted. After extraction contents of ./usr/lib/{architecture}/qt5/qml
+# are copied to ./lib/{architecture}. {architecture} may be one of ARCH_LIST
+QML_PLUGINS_URLS = ['http://archive.ubuntu.com/ubuntu/pool/universe/p/pyotherside/pyotherside_1.2.0-1_amd64.deb',
+    'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/pyotherside/pyotherside_1.2.0-1_armhf.deb',
+    'http://archive.ubuntu.com/ubuntu/pool/universe/p/pyotherside/pyotherside_1.2.0-1_i386.deb'
+]
+
+# PYTHON3_LIBS_URLS contains list of .deb packages that will be downloaded and
+# extracted. After extraction contents of ./usr/lib/python3/dist-packages
+# are copied to ./py.
+PYTHON3_LIBS_URLS = ['http://archive.ubuntu.com/ubuntu/pool/main/l/lxml/python3-lxml_3.3.5-1_amd64.deb',
+    'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lxml/python3-lxml_3.3.5-1_armhf.deb',
+    'http://archive.ubuntu.com/ubuntu/pool/main/l/lxml/python3-lxml_3.3.5-1_i386.deb'
+]
+
+
+def get_package_from_url_and_extract(url, target_dir):
+    filename = os.path.join(target_dir, url.split('/')[-1])
+    print('retrieving {0}'.format(url))
+    urllib.request.urlretrieve(url, filename)
+    subprocess.check_call(["dpkg", "-x", filename, target_dir])
+
+
+def main():
+    with tempfile.TemporaryDirectory() as tmp:
+        for lib in LIBS_URLS:
+            get_package_from_url_and_extract(lib, tmp)
+            # TODO: remove unwanted files from the extracted tree (e.g. *.h)
+            copy_tree(os.path.join(tmp, 'usr', 'lib'), 'lib')
+    with tempfile.TemporaryDirectory() as tmp:
+        for pylib in PYTHON3_LIBS_URLS:
+            get_package_from_url_and_extract(pylib, tmp)
+            copy_tree(os.path.join(tmp, 'usr', 'lib', 'python3', 'dist-packages'),
+                      os.path.join('py'))
+    with tempfile.TemporaryDirectory() as tmp:
+        for qml_plugin in QML_PLUGINS_URLS:
+            get_package_from_url_and_extract(qml_plugin, tmp)
+            for arch in ARCH_LIST:
+                src = os.path.join(tmp, 'usr', 'lib', arch, 'qt5', 'qml')
+                dest = os.path.join('lib', arch)
+                if os.path.exists(src) and os.path.isdir(src):
+                    copy_tree(src, dest)
+
+
+if __name__ == "__main__":
+    main()
