@@ -30,33 +30,32 @@ from distutils.dir_util import copy_tree
 
 ARCH_LIST = ["i386-linux-gnu", "x86_64-linux-gnu", "armhf-linux-gnu"]
 
+repo_1 = 'http://archive.ubuntu.com/ubuntu/pool/'
+repo_2 = 'http://ports.ubuntu.com/ubuntu-ports/pool/'
+repo_arch_list = ((repo_1, 'i386'), (repo_1, 'amd64'), (repo_2, 'armhf'),)
+
 # LIBS_URLS contains list of .deb packages that will be downloaded and
 # extracted. After extraction contents of ./usr/lib are copied to ./lib
-archive = 'http://archive.ubuntu.com/ubuntu/pool/'
-ports = 'http://ports.ubuntu.com/ubuntu-ports/pool/'
 LIBS_URLS = [
-    archive + 'main/p/python3.4/libpython3.4_3.4.1-9_amd64.deb',
-    ports + 'main/p/python3.4/libpython3.4_3.4.1-9_armhf.deb',
-    archive + 'main/p/python3.4/libpython3.4_3.4.1-9_i386.deb'
-]
+    '{repo}main/p/python3.4/libpython3.4_3.4.1-9_{arch}.deb'.format(
+        repo=repo, arch=arch)
+    for repo, arch in repo_arch_list]
 
 # QML_PLUGINS_URL contains list of .deb packages that will be downloaded and
 # and extracted. After extraction contents of ./usr/lib/{architecture}/qt5/qml
 # are copied to ./lib/{architecture}. {architecture} may be one of ARCH_LIST
 QML_PLUGINS_URLS = [
-    archive + 'universe/p/pyotherside/pyotherside_1.2.0-1_amd64.deb',
-    ports + 'universe/p/pyotherside/pyotherside_1.2.0-1_armhf.deb',
-    archive + 'universe/p/pyotherside/pyotherside_1.2.0-1_i386.deb'
-]
+    '{repo}universe/p/pyotherside/pyotherside_1.2.0-1_{arch}.deb'.format(
+        repo=repo, arch=arch)
+    for repo, arch in repo_arch_list]
 
 # PYTHON3_LIBS_URLS contains list of .deb packages that will be downloaded and
 # extracted. After extraction contents of ./usr/lib/python3/dist-packages
 # are copied to ./py.
 PYTHON3_LIBS_URLS = [
-    archive + 'main/l/lxml/python3-lxml_3.3.5-1_amd64.deb',
-    ports + 'main/l/lxml/python3-lxml_3.3.5-1_armhf.deb',
-    archive + 'main/l/lxml/python3-lxml_3.3.5-1_i386.deb'
-]
+    '{repo}main/l/lxml/python3-lxml_3.3.5-1_{arch}.deb'.format(
+        repo=repo, arch=arch)
+    for repo, arch in repo_arch_list]
 
 
 def get_package_from_url_and_extract(url, target_dir):
