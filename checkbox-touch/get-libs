@@ -22,6 +22,7 @@ Extraction is done to specific directories as required by click package
 """
 
 import os
+import shutil
 import subprocess
 import tempfile
 import urllib.request
@@ -88,6 +89,10 @@ def main():
                 dest = os.path.join('lib', arch)
                 if os.path.exists(src) and os.path.isdir(src):
                     copy_tree(src, dest, preserve_symlinks=1)
+    # Remove the python3.4 directory
+    # currently it only holds a few config-directories with symlinks
+    # and those are not used by anything from this location
+    shutil.rmtree('lib/python3.4')
 
 
 if __name__ == "__main__":
