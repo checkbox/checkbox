@@ -66,19 +66,18 @@ def get_package_from_url_and_extract(url, target_dir):
 
 
 def main():
-    with tempfile.TemporaryDirectory() as tmp:
-        for lib in LIBS_URLS:
+    for lib in LIBS_URLS:
+        with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(lib, tmp)
             # TODO: remove unwanted files from the extracted tree (e.g. *.h)
             copy_tree(os.path.join(tmp, 'usr', 'lib'), 'lib')
-    with tempfile.TemporaryDirectory() as tmp:
-        for pylib in PYTHON3_LIBS_URLS:
+    for pylib in PYTHON3_LIBS_URLS:
+        with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(pylib, tmp)
             copy_tree(
                 os.path.join(tmp, 'usr', 'lib', 'python3', 'dist-packages'),
-                os.path.join('py'))
-    with tempfile.TemporaryDirectory() as tmp:
-        for qml_plugin in QML_PLUGINS_URLS:
+    for qml_plugin in QML_PLUGINS_URLS:
+        with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(qml_plugin, tmp)
             for arch in ARCH_LIST:
                 src = os.path.join(tmp, 'usr', 'lib', arch, 'qt5', 'qml')
