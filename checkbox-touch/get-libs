@@ -30,7 +30,7 @@ import urllib.request
 from distutils.dir_util import copy_tree
 
 
-ARCH_LIST = ["i386-linux-gnu", "x86_64-linux-gnu", "armhf-linux-gnu"]
+ARCH_LIST = ["i386-linux-gnu", "x86_64-linux-gnu", "arm-linux-gnueabihf"]
 
 repo_1 = 'http://archive.ubuntu.com/ubuntu/pool/'
 repo_2 = 'http://ports.ubuntu.com/ubuntu-ports/pool/'
