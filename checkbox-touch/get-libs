@@ -24,6 +24,7 @@ Extraction is done to specific directories as required by click package
 import os
 import shutil
 import subprocess
+import tarfile
 import tempfile
 import urllib.request
 from distutils.dir_util import copy_tree
@@ -34,6 +35,9 @@ ARCH_LIST = ["i386-linux-gnu", "x86_64-linux-gnu", "armhf-linux-gnu"]
 repo_1 = 'http://archive.ubuntu.com/ubuntu/pool/'
 repo_2 = 'http://ports.ubuntu.com/ubuntu-ports/pool/'
 repo_arch_list = ((repo_1, 'i386'), (repo_1, 'amd64'), (repo_2, 'armhf'),)
+
+plainbox_pypi = ('https://pypi.python.org/packages/source'
+                 '/p/plainbox/plainbox-0.10.tar.gz')
 
 # LIBS_URLS contains list of .deb packages that will be downloaded and
 # extracted. After extraction contents of ./usr/lib are copied to ./lib
@@ -67,6 +71,18 @@ def get_package_from_url_and_extract(url, target_dir):
 
 
 def main():
+    with tempfile.TemporaryDirectory() as tmp:
+        filename = os.path.join(tmp, plainbox_pypi.split('/')[-1])
+        print('retrieving {0}'.format(plainbox_pypi))
+        urllib.request.urlretrieve(plainbox_pypi, filename)
+        tarball = tarfile.open(filename)
+        members = [member for member in tarball.getmembers()
+                   if member.name.startswith("plainbox-0.10/plainbox/")]
+        tarball.extractall(tmp, members=members)
+        copy_tree(
+            os.path.join(tmp, "plainbox-0.10", "plainbox"),
+            os.path.join('lib', 'py', 'plainbox'),
+            preserve_symlinks=1)
     for lib in LIBS_URLS:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(lib, tmp)

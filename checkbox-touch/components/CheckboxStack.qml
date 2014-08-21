@@ -51,6 +51,8 @@ Item {
             stack.pythonVersion = pythonVersion();
             // A bit hacky but that's where the python code is
             addImportPath(Qt.resolvedUrl('../py/'));
+            // Import path for plainbox and potentially other python libraries
+            addImportPath(Qt.resolvedUrl('../lib/py'))
             // Import the checkbox_stack module on startup
             importModule("checkbox_stack", _onCheckboxStackLoaded);
         }
