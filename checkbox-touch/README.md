@@ -18,23 +18,34 @@ the Ubuntu store, once it gets published.
 Building the click package
 --------------------------
 
-The click package is built out of the pure QML/JavaScript/Python code contained
-in the "py" and "components" directories. In addition to that a few external
-libraries (from the Ubuntu repository) are unpacked into the
-"lib/$arch\_triplet" directory so that we can import our python dependencies
-that are not a part of the SDK. Currently this is totally manual but we should
-have a script that automates part of that process soon so it's not going to be
-described here in much detail.
+The click package is built from QML/JavaScript/Python code contained in the
+`py` and `components` directories. It also has `lib` directory that contains
+all necessary libraries needed to run checkbox-touch.
+
+Before building click package make sure you run `./get-libs` to initialize and
+populate `./lib` directory.
+To build the click package run `$ click build path_to_checkbox-touch`.
+
+Deploying on the device
+-----------------------
+
+To run install package on the device/emulator run :
+
+`$ adb push com.canonical.certification.checkbox-touch_0.2_armhf.click`
+`/home/phablet/`
+
+`$ phablet-shell`
+
+`phablet@ubuntu-phablet:$ pkcon install-local`
+`com.canonical.certification.checkbox-touch_0.2_armhf.click`
+
+`phablet@ubuntu-phablet:$ exit`
+
 
 Running on a desktop
 --------------------
 
-To run on a desktop just install:
+To run on a desktop run `qmlscene main.qml`
+Note: Make sure you've ran `./get-libs` first.
 
-1. pyotherside
-2. python3-plainbox (from the ppa:checkbox-dev ppa)
 
-Or create a symlink to plainbox from the py/ directory (to
-../plainbox/plainbox) if you wish to work from "source"
-
-Then you should be able to run 'qmlscene main.qml' and run the app.
