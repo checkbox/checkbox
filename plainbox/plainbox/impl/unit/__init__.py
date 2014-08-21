@@ -41,6 +41,50 @@ __all__ = ['Unit']
 logger = logging.getLogger("plainbox.unit")
 
 
+class UnitValidator:
+    """
+    Validator class for basic Unit type
+    """
+
+    def validate(self, unit, **validation_kwargs):
+        """
+        Validate data stored in the unit
+
+        :param validation_kwargs:
+            Validation parameters (may vary per subclass)
+        :raises ValidationError:
+            If the unit is incorrect somehow.
+
+        Non-parametric units are always valid. Parametric units are valid if
+        they don't violate the parametric constraints encoded in the
+        :class:`Unit.Meta` unit meta-data class'
+        :attr:`Unit.Meta.template_constraints` field.
+        """
+
+        # Non-parametric units are always valid
+        if not unit.is_parametric:
+            return
+        # Parametric units should obey the parametric constraints (encoded in
+        # the helper meta-data class Meta's template_constraints field)
+        for field, param_set in unit.get_accessed_parameters().items():
+            constraint = unit.Meta.template_constraints.get(field)
+            # Fields cannot refer to parameters that we don't have
+            for param_name in param_set:
+                if param_name not in unit.parameters:
+                    raise ValidationError(field, Problem.wrong)
+            # Fields without constraints are otherwise valid.
+            if constraint is None:
+                continue
+            assert constraint in ('vary', 'const')
+            # Fields that need to be variable cannot have a non-parametrized
+            # value
+            if constraint == 'vary' and len(param_set) == 0:
+                raise ValidationError(field, Problem.constant)
+            # Fields that need to be constant cannot have parametrized value
+            elif constraint == 'const' and len(param_set) != 0:
+                raise ValidationError(field, Problem.variable)
+
+
 class Unit:
     """
     Units are representations of data loaded from RFC822 definitions
@@ -346,28 +390,7 @@ class Unit:
         :class:`Unit.Meta` unit meta-data class'
         :attr:`Unit.Meta.template_constraints` field.
         """
-        # Non-parametric units are always valid
-        if not self.is_parametric:
-            return
-        # Parametric units should obey the parametric constraints (encoded in
-        # the helper meta-data class Meta's template_constraints field)
-        for field, param_set in self.get_accessed_parameters().items():
-            constraint = self.Meta.template_constraints.get(field)
-            # Fields cannot refer to parameters that we don't have
-            for param_name in param_set:
-                if param_name not in self.parameters:
-                    raise ValidationError(field, Problem.wrong)
-            # Fields without constraints are otherwise valid.
-            if constraint is None:
-                continue
-            assert constraint in ('vary', 'const')
-            # Fields that need to be variable cannot have a non-parametrized
-            # value
-            if constraint == 'vary' and len(param_set) == 0:
-                raise ValidationError(field, Problem.constant)
-            # Fields that need to be constant cannot have parametrized value
-            elif constraint == 'const' and len(param_set) != 0:
-                raise ValidationError(field, Problem.variable)
+        return UnitValidator().validate(self, **validation_kwargs)
 
     @property
     def checksum(self):
@@ -463,12 +486,86 @@ class Unit:
             ``const`` or variable ``vary``. Fields without a constraint marker
             are not checked.
         """
-
         template_constraints = {
-            'id': 'vary',
             'unit': 'const',
         }
 
 
 # Collection of all unit classes
 all_units = PkgResourcesPlugInCollection('plainbox.unit')
+
+
+class UnitWithIdValidator(UnitValidator):
+    """
+    Validator for :class:`UnitWithId`
+    """
+
+    def validate(self, unit, **validation_kwargs):
+        # Check if the partial_id field is empty
+        if unit.partial_id is None:
+            raise ValidationError("id", Problem.missing)
+        super().validate(unit, **validation_kwargs)
+
+
+class UnitWithId(Unit):
+    """
+    Base class for Units that have unique identifiers
+
+    Unlike the JobDefintion class thepartial_id property has no fallback
+    and is simply tied directly to the "id" field. The id property works
+    in conjunction with a provider associated with the unit and simply adds
+    the namespace part.
+    """
+
+    @property
+    def partial_id(self):
+        """
+        Identifier of this category, without the provider name
+        """
+        return self.get_record_value('id')
+
+    @property
+    def id(self):
+        if self.provider:
+            return "{}::{}".format(self.provider.namespace, self.partial_id)
+        else:
+            return self.partial_id
+
+    def validate(self, **validation_kwargs):
+        """
+        Validate data stored in the unit
+
+        :param validation_kwargs:
+            Validation parameters (may vary per subclass)
+        :raises ValidationError:
+            If the unit is incorrect somehow.
+
+        Non-parametric units are always valid. Parametric units are valid if
+        they don't violate the parametric constraints encoded in the
+        :class:`Unit.Meta` unit meta-data class'
+        :attr:`Unit.Meta.template_constraints` field.
+        """
+        return UnitWithIdValidator().validate(self, **validation_kwargs)
+
+    class Meta(Unit.Meta):
+        """
+        Class containing unit meta-data.
+
+        This class contains meta-data about the particular Unit is belongs to.
+        For now it only supports the ``template_constraints`` field which
+        describes requirements for templates that wish to instantiate units of
+        this type.
+
+        :attr template_constraints:
+            A dictionary mapping field name to parametric constraints. If the
+            unit is parametric then fields may have a constraint to be constant
+            ``const`` or variable ``vary``. Fields without a constraint marker
+            are not checked.
+        """
+        template_constraints = dict(Unit.Meta.template_constraints)
+        template_constraints.update({
+            # The 'id' field should be always variable (depending on at least
+            # resource reference) or clashes are inevitable (they can *still*
+            # occur but this is something we cannot prevent).
+            'id': 'vary',
+        })
