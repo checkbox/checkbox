@@ -46,13 +46,12 @@ class SubmitInvocation:
     time.
     """
 
-    def __init__(self, config, ns):
-        self.config = config
+    def __init__(self, ns):
         self.ns = ns
 
     def run(self):
         options_string = "secure_id={0}".format(self.ns.secure_id)
-        transport = CertificationTransport(self.config.c3_url, options_string)
+        transport = CertificationTransport(self.ns.url, options_string)
 
         try:
             result = transport.send(self.ns.submission)
@@ -91,7 +90,7 @@ class SubmitCommand(PlainBoxCommand):
         self.config = config
 
     def invoked(self, ns):
-        return SubmitInvocation(self.config, ns).run()
+        return SubmitInvocation(ns).run()
 
     def register_parser(self, subparsers):
         parser = subparsers.add_parser("submit", help=_("submit test results to the Canonical certification website"))
@@ -116,3 +115,6 @@ class SubmitCommand(PlainBoxCommand):
         parser.add_argument(
             'submission', type=FileType('r'),
             help=_("The path to the results xml file"))
+        parser.add_argument(
+            '--url', metavar=_("URL"), required=True,
+            help=_("destination to submit to"))
