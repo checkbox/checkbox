@@ -9,8 +9,9 @@ dist
 # Ignore coverage artifacts
 .coverage
 htmlcov
-# Ignore logs created by test-in-vagrant.sh
+# Ignore logs created by test-in-vagrant.sh and test-in-lxc.sh
 vagrant-logs
+lxc-logs
 # Ignore vagrant state file
 .vagrant
 # The list below is riddled with junk created by running the test suite of checkbox
