@@ -33,8 +33,8 @@ audio/alsa_info_collect
 audio/alsa_info_attachment
 audio/list_devices
 audio/playback_headphones
-audio/playback_auto
 audio/alsa_record_playback_external
+audio/playback_auto
 audio/alsa_record_playback_internal
 audio/playback_hdmi
 audio/playback_displayport
@@ -162,9 +162,6 @@ power-management/rtc
 power-management/tickless_idle
 power-management/fwts_wakealarm
 power-management/fwts_wakealarm-log-attach
-power-management/hibernate_advanced
-power-management/hibernate-single-log-check
-power-management/hibernate-single-log-attach
 __touchpad__
 touchpad/horizontal
 touchpad/vertical
@@ -244,6 +241,9 @@ suspend/wireless_connection_after_suspend_open_n
 # The following tests should run BEFORE the automated tests. The reboot and
 # power off tests will also give us a clean system to start the stress run
 # with.
+power-management/hibernate_advanced
+power-management/hibernate-single-log-check
+power-management/hibernate-single-log-attach
 power-management/poweroff
 power-management/poweroff-log-attach
 power-management/reboot
