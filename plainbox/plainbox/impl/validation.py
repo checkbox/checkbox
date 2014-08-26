@@ -48,20 +48,17 @@ class ValidationError(ValueError):
     Exception raised by to report jobs with problematic definitions.
     """
 
-    def __init__(self, field, problem, hint=None):
+    def __init__(self, field, problem, hint=None, origin=None):
         self.field = field
         self.problem = problem
         self.hint = hint
+        self.origin = origin
 
     def __str__(self):
         return _("Problem with field {}: {}").format(self.field, self.problem)
 
     def __repr__(self):
-        if self.hint is None:
-            return "ValidationError(field={!r}, problem={!r})".format(
-                self.field, self.problem)
-        else:
-            return (
-                "ValidationError(field={!r}, problem={!r}, "
-                "hint={!r})"
-            ).format(self.field, self.problem, self.hint)
+        return (
+            "ValidationError(field={!r}, problem={!r}, "
+            "hint={!r}, origin={!r})"
+        ).format(self.field, self.problem, self.hint, self.origin)

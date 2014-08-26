@@ -35,6 +35,10 @@ class Origin:
     """
     Simple class for tracking where something came from
 
+    This class supports "pinpointing" something in a block of text. The block
+    is described by the source attribute. The actual range is described by
+    line_start (inclusive) and line_end (exclusive).
+
     :ivar source:
         something that describes where the text came frome, technically it
         should be a :class:`~plainbox.abc.ITextSource` subclass but that
@@ -60,8 +64,11 @@ class Origin:
             self.source, self.line_start, self.line_end)
 
     def __str__(self):
-        return "{}:{}-{}".format(
-            self.source, self.line_start, self.line_end)
+        if self.line_start == self.line_end:
+            return "{}:{}".format(self.source, self.line_start)
+        else:
+            return "{}:{}-{}".format(
+                self.source, self.line_start, self.line_end)
 
     def relative_to(self, base_dir):
         """
@@ -83,6 +90,28 @@ class Origin:
                 self.line_start, self.line_end)
         else:
             return self
+
+    def with_offset(self, offset):
+        """
+        Create a new Origin by adding a offset of a specific number of lines
+
+        :param offset:
+            Number of lines to add (or substract)
+        :returns:
+            A new Origin object
+        """
+        return Origin(
+            self.source, self.line_start + offset, self.line_end + offset)
+
+    def just_line(self):
+        """
+        Create a new Origin that points to the start line
+
+        :returns:
+            A new Origin with the end_line equal to start_line. This effectively
+            makes the origin describe a single line.
+        """
+        return Origin(self.source, self.line_start, self.line_start)
 
     def __eq__(self, other):
         if isinstance(other, Origin):

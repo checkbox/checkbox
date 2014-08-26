@@ -67,7 +67,7 @@ class RFC822Record:
     file/stream where it was parsed from).
     """
 
-    def __init__(self, data, origin=None, raw_data=None):
+    def __init__(self, data, origin=None, raw_data=None, field_offset_map=None):
         """
         Initialize a new record.
 
@@ -79,6 +79,8 @@ class RFC822Record:
             An optional dictionary with raw record data. If omitted then it
             will default to normalized data (as the same object, without making
             a copy)
+        :param field_offset_map:
+            An optional dictionary with offsets (in line numbers) of each field
         """
         self._data = data
         if raw_data is None:
@@ -87,6 +89,7 @@ class RFC822Record:
         if origin is None:
             origin = Origin.get_caller_origin()
         self._origin = origin
+        self._field_offset_map = field_offset_map
 
     def __repr__(self):
         return "<{} data:{!r} origin:{!r}>".format(
@@ -133,6 +136,18 @@ class RFC822Record:
         The origin of the record.
         """
         return self._origin
+
+    @property
+    def field_offset_map(self):
+        """
+        The field-to-line-number-offset mapping.
+
+        A dictionary mapping field name to offset (in lines) relative to the
+        origin where that field definition commences.
+
+        Note: the return value may be None
+        """
+        return self._field_offset_map
 
     def dump(self, stream):
         """
@@ -247,6 +262,7 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
     key = None
     value_list = None
     origin = None
+    field_offset_map = None
     # If the source was not provided then try constructing a FileTextSource
     # from the name of the stream. If that fails, keep using None.
     if source is None:
@@ -273,11 +289,13 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
         nonlocal value_list
         nonlocal record
         nonlocal origin
+        nonlocal field_offset_map
         key = None
         value_list = None
         if source is not None:
             origin = Origin(source, None, None)
-        record = RFC822Record(data_cls(), origin, data_cls())
+        field_offset_map = {}
+        record = RFC822Record(data_cls(), origin, data_cls(), field_offset_map)
 
     def _commit_key_value_if_needed():
         """
@@ -371,10 +389,19 @@ def gen_rfc822_records(stream, data_cls=dict, source=None):
                 # have so far. Additional multi-line values will just append to
                 # value_list
                 value_list = [value]
+                # Store the offset of the filed in the offset map
+                field_offset_map[key] = lineno - origin.line_start
             else:
                 # The initial line may be empty, in that case the spaces and
                 # newlines there are discarded
                 value_list = []
+                # Store the offset of the filed in the offset map
+                # The +1 is for the fact that value is empty (or just
+                # whitespace) and that is stripped away in the normalized data
+                # part of the RFC822 record. To keep line tracking accurate
+                # we just assume that the field actually starts on the following
+                # line.
+                field_offset_map[key] = lineno - origin.line_start + 1
             # Update the end-line location
             _update_end_lineno()
         # Treat all other lines as syntax errors
