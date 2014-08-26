@@ -43,7 +43,7 @@ Page {
         }
 
         text: i18n.tr("Welcome text")
-        font.pixelSize: units.gu(4)
+        fontSize: "large"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere

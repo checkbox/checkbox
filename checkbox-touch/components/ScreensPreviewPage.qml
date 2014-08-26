@@ -23,20 +23,9 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
 
-/*! \brief Page for Automated Test
-
-    This page shows test name and description of an Automated Test
-    See design document at: http://goo.gl/He06jc
-*/
-
 Page {
-    id: automatedTestPage
-
-    property alias testName: testNameLabel.text
-    property alias testDescription: testDescrptionLabel.text
-
-    title: i18n.tr("Automated test")
-
+    id: screensPreviewPage
+    title: i18n.tr("Screens preview")
     visible: false
 
     ColumnLayout {
@@ -45,42 +34,31 @@ Page {
             top: parent.top
             left: parent.left
             right: parent.right
-            margins: units.gu(3)
+            margins: units.gu(1)
         }
-
         Label {
-            id: testNameLabel
-            fontSize: "large"
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.alignment: Qt.AlignLeft
-        }
-
-        Label {
-            id: testDescrptionLabel
-            text: testDescription
-            fontSize: "medium"
+            fontSize: "x-large"
+            Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: i18n.tr("This is a developer screen that allows you to preview particular part of the app.\nSelect which screen to preview")
         }
-    }
-    ActivityIndicator {
-        id: activity
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-            right: parent.right
-            bottomMargin: units.gu(4)
+        Button {
+            text: i18n.tr("Welcome page")
+            onClicked:{
+                pageStack.push(Qt.resolvedUrl("WelcomePage.qml"), {
+                                   "welcomeText": i18n.tr("This application is under development.\nThere is nothing beyond this screen yet")
+                               })
+            }
         }
-        implicitHeight: units.gu(6)
-        implicitWidth: units.gu(6)
-    }
-    function startActivity() {
-        activity.running = true;
-    }
-    function stopActivity() {
-        activity.running = false;
-    }
-    Component.onCompleted: {
-        startActivity();
+        Button {
+            text: i18n.tr("Automated test page")
+            onClicked:{
+                pageStack.push(Qt.resolvedUrl("AutomatedTestPage.qml"), {
+                                   "testName": "memory/info",
+                                   "testDescription": "This test checks the amount of memory which is reporting in meminfo against the size of the memory modules detected by DMI."
+                               })
+            }
+        }
     }
 }
