@@ -224,7 +224,7 @@ class JobDefinition(Unit, IJobDefinition):
 
     @classmethod
     def instantiate_template(cls, data, raw_data, origin, provider,
-                             parameters):
+                             parameters, field_offset_map):
         """
         Instantiate this unit from a template.
 
@@ -239,7 +239,8 @@ class JobDefinition(Unit, IJobDefinition):
         # called with correctly-ordered arguments.
         assert cls is JobDefinition, \
             "{}.instantiate_template() not customized".format(cls.__name__)
-        return cls(data, origin, provider, None, raw_data, parameters)
+        return cls(data, origin, provider, None, raw_data, parameters,
+                   field_offset_map)
 
     def __str__(self):
         return self.summary
@@ -603,7 +604,8 @@ class JobDefinition(Unit, IJobDefinition):
         # (xgettext strips out those newlines)
         return cls(record.data, record.origin, provider=provider, raw_data={
             key: value.rstrip('\n')
-            for key, value in record.raw_data.items()})
+            for key, value in record.raw_data.items()
+        }, field_offset_map=record.field_offset_map)
 
     def validate(self, **validation_kwargs):
         """

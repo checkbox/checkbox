@@ -131,6 +131,8 @@ class Unit:
             raw_data = data
         if origin is None:
             origin = Origin.get_caller_origin()
+        if field_offset_map is None:
+            field_offset_map = {field: 0 for field in data}
         self._data = data
         self._raw_data = raw_data
         self._origin = origin
@@ -140,8 +142,8 @@ class Unit:
         self._parameters = parameters
 
     @classmethod
-    def instantiate_template(cls, data, raw_data, origin, provider,
-                             parameters):
+    def instantiate_template(cls, data, raw_data, origin, provider, parameters,
+                             field_offset_map):
         """
         Instantiate this unit from a template.
 
@@ -156,7 +158,8 @@ class Unit:
         # called with correctly-ordered arguments.
         assert cls is Unit, \
             "{}.instantiate_template() not customized".format(cls.__name__)
-        return cls(data, raw_data, origin, provider, parameters)
+        return cls(data, raw_data, origin, provider, parameters,
+                   field_offset_map)
 
     def __eq__(self, other):
         if not isinstance(other, Unit):
