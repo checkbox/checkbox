@@ -20,6 +20,7 @@
 import glob
 import os
 import re
+import shutil
 from argparse import ArgumentParser
 from subprocess import check_output, call, STDOUT
 
@@ -92,11 +93,25 @@ class Package:
         if self._trunk_tags_cache:
             return self._trunk_tags_cache
         else:
+            # Asking for time-sorted tags helps with some later manipulations.
             self._trunk_tags_cache = check_output(
-                ["bzr", "tags", "-d", os.path.join(self._directory,
-                                                   self.trunk_branch)]
+                ["bzr", "tags", "--sort=time", "-d",
+                 os.path.join(self._directory, self.trunk_branch)]
                 ).rstrip()
             return self._trunk_tags_cache
+
+    @property
+    def last_stable_tag_in_trunk(self):
+        """Gives the last stable tag for the whole trunk (if no
+        package_name is given). It will effectively return the most recent
+        non-candidate tag added to the branch. Orphan tags (not pointing to any
+        revision) are ignored."""
+        tags_only = [t.split()[0] for t in self._trunk_tags.split("\n") if
+                     "?" not in t.split()[-1] and
+                     not re.search(r'\.\d+c\d+$', t.split()[0])]
+        assert tags_only != []  # because there should be at least one
+        if tags_only:
+            return tags_only[-1]  # Last chronological tag, name only
 
     @property
     def last_stable_trunk_tag(self):
@@ -122,9 +137,10 @@ class Package:
         if self._packaging_tags_cache:
             return self._packaging_tags_cache
         else:
+            # Asking for time-sorted tags helps with some later manipulations.
             self._packaging_tags_cache = check_output(
-                ["bzr", "tags", "-d", os.path.join(self._directory,
-                                                   self.ppa_packaging_branch)]
+                ["bzr", "tags", "--sort=time", "-d",
+                 os.path.join(self._directory, self.ppa_packaging_branch)]
                 ).rstrip()
             return self._packaging_tags_cache
 
@@ -196,6 +212,53 @@ class Package:
             return None
 
 
+def create_logs(packages, trunk_tag, dir="logs"):
+    if check_bzr_cb_format_support():
+        log_format = "--cb"
+    else:
+        # A fallback in case the plugin wasn't copied properly
+        log_format = "--short"
+    if not os.path.isdir(dir):
+        os.makedirs(dir)
+    # Write a log for each packaging branch
+    for pack in packages:
+        command = ["bzr", "log", log_format,
+                   "-r", pack.last_stable_packaging_tag + "..",
+                   pack.ppa_packaging_branch]
+        log_data = check_output(command)
+        with open(os.path.join(dir, pack.name), "wb") as logfile:
+            logfile.write("Command: {}".format(" ".join(command)))
+            logfile.write("\n")
+            logfile.write(log_data)
+    # Finally write a global log to account for all changes in trunk
+    command = ["bzr", "log", log_format,
+              "-r", trunk_tag + "..",
+              pack.trunk_branch]
+    log_data = check_output(command)
+    with open(os.path.join(dir, "trunk"), "wb") as logfile:
+        logfile.write(log_data)
+
+
+def check_bzr_cb_format_support():
+    bzr_log_help_text = check_output(["bzr", "help", "log"])
+    return "--cb" in bzr_log_help_text
+
+
+def copy_bzr_cb_format_plugin():
+    plugin_file = "checkbox_changelog.py"
+    dest_path = os.path.join(os.environ['HOME'], '.bazaar', 'plugins')
+    if os.path.isfile(plugin_file):
+        try:
+            shutil.copy(plugin_file, dest_path)
+            return True
+        except OSError as err:
+            print("W: Unable to copy bazaar log formatter")
+            print("W: {}".format(err))
+            print("I will fall back to standard --short format for the logs")
+            return False
+    return False
+
+
 if __name__ == "__main__":
 
     parser = ArgumentParser(description='Release Management Script')
@@ -229,9 +292,15 @@ if __name__ == "__main__":
     twine_commands = []
     release_milestone_commands = []
 
+    if not check_bzr_cb_format_support():
+        copy_bzr_cb_format_plugin()
+
     if args.mode == 'stable':
 
+        trunk_changelog_start_tag = packages[0].last_stable_tag_in_trunk
         for pack in packages:
+            # In stable mode, build the logs *before* adding new stable tags
+            create_logs(packages, trunk_changelog_start_tag, "logs/")
             if pack.release_required or pack.ppa_packaging_release_required:
                 pack.current_version = pack.last_trunk_tag.replace(
                     pack.name+"-v", "")
@@ -384,7 +453,9 @@ if __name__ == "__main__":
             print "".center(80, '#')
             for command in twine_commands:
                 print command
-
+        print "".center(80, '#')
+        print " 7. Trunk and packaging-branch changelogs are in logs/"
+        print "".center(80, '#')
     else:  # testing mode
 
         for pack in packages:
@@ -394,6 +465,8 @@ if __name__ == "__main__":
             if not os.path.exists(pack.ppa_packaging_branch):
                 call(["bzr", "branch", "--quiet",
                      BRANCH_PREFIX+pack.ppa_packaging_branch])
+            # Cache this now, as it will change as work progresses
+            trunk_changelog_start_tag = packages[0].last_stable_tag_in_trunk
             if pack.release_required or pack.ppa_packaging_release_required:
                 current_version = pack.last_stable_trunk_tag.replace(
                     pack.name+"-v", "")
@@ -443,3 +516,8 @@ if __name__ == "__main__":
         print "".center(80, '#')
         for command in build_commands:
             print command
+        # Try to build logs
+        create_logs(packages, trunk_changelog_start_tag, "logs/")
+        print "".center(80, '#')
+        print " 3. Trunk and packaging-branch changelogs are in logs/"
+        print "".center(80, '#')

@@ -59,6 +59,7 @@ Special case: Cherry pick a bugfix from trunk after having cut the release:
     cd  ~/checkbox_release
 
     Note: 3106 is the revision where the fix was committed
+    (If cherry-picking single revisions, bzr merge -c REVNO also works)
 
     Create a second RC only for this package (and its packaging branch):
 
