@@ -56,7 +56,8 @@ MainView {
     PageStack {
         id: pageStack
         Component.onCompleted: {
-            pageStack.push(Qt.resolvedUrl("components/ScreensPreviewPage.qml"))
+            var newPage = Qt.createComponent(Qt.resolvedUrl("components/ScreensPreviewPage.qml")).createObject();
+            push(newPage);
         }
     }
 }
