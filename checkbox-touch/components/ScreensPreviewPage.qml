@@ -46,18 +46,20 @@ Page {
         Button {
             text: i18n.tr("Welcome page")
             onClicked:{
-                pageStack.push(Qt.resolvedUrl("WelcomePage.qml"), {
-                                   "welcomeText": i18n.tr("This application is under development.\nThere is nothing beyond this screen yet")
-                               })
+                var newPage = Qt.createComponent(Qt.resolvedUrl("WelcomePage.qml")).createObject();
+                newPage.welcomeText = i18n.tr("This application is under development.\nThere is nothing beyond this screen yet");
+                newPage.startTestingTriggered.connect(function() { pageStack.pop() })
+                pageStack.push(newPage);
             }
         }
         Button {
             text: i18n.tr("Automated test page")
             onClicked:{
-                pageStack.push(Qt.resolvedUrl("AutomatedTestPage.qml"), {
-                                   "testName": "memory/info",
-                                   "testDescription": "This test checks the amount of memory which is reporting in meminfo against the size of the memory modules detected by DMI."
-                               })
+                var newPage = Qt.createComponent(Qt.resolvedUrl("AutomatedTestPage.qml")).createObject();
+                newPage.testName = "memory/info";
+                newPage.testDescription = "This test checks the amount of memory which is reporting \
+in meminfo against the size of the memory modules detected by DMI."
+                pageStack.push(newPage);
             }
         }
     }
