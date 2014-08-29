@@ -3,20 +3,9 @@
 ## Please use this whitelist for the Ubuntu Certification self-testing
 ## programme.
 # Resource Jobs
-block_device
-cpuinfo
-device
-dpkg
-efi
-environment
-lsb
-meminfo
-module
-package
-rtc
-sleep
-uname
-virtualization
+# Resource jobs removed as they are no longer necessary in the whitelist
+# Meta-job to include requried resources, please don't remove
+miscellanea/submission-resources
 #Info attachment jobs
 __info__
 cpuinfo_attachment
@@ -49,9 +38,10 @@ __cpu__
 cpu/clocktest
 cpu/scaling_test
 cpu/scaling_test-log-attach
+cpu/maxfreq_test
+cpu/maxfreq_test-log-attach
 cpu/offlining_test
 cpu/topology
-cpu/frequency_governors
 __disk__
 disk/detect
 disk/stats
@@ -71,10 +61,12 @@ memory/info
 memory/check
 __power-management__
 power-management/rtc
-power-management/fwts_wakealarm
-power-management/fwts_wakealarm-log-attach
 power-management/tickless_idle
 __stress__
 stress/cpu_stress_test
+__usb__
+usb/detect
+usb/storage-preinserted
+usb3/storage-preinserted
 __virtualization__
 virtualization/kvm_check_vm
