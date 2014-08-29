@@ -45,7 +45,7 @@ Page {
         }
         Button {
             text: i18n.tr("Welcome page")
-            onClicked:{
+            onClicked: {
                 var newPage = Qt.createComponent(Qt.resolvedUrl("WelcomePage.qml")).createObject();
                 newPage.welcomeText = i18n.tr("This application is under development.\nThere is nothing beyond this screen yet");
                 newPage.startTestingTriggered.connect(function() { pageStack.pop() })
@@ -54,7 +54,7 @@ Page {
         }
         Button {
             text: i18n.tr("Automated test page")
-            onClicked:{
+            onClicked: {
                 var newPage = Qt.createComponent(Qt.resolvedUrl("AutomatedTestPage.qml")).createObject();
                 newPage.testName = "memory/info";
                 newPage.testDescription = "This test checks the amount of memory which is reporting \
@@ -62,5 +62,59 @@ in meminfo against the size of the memory modules detected by DMI."
                 pageStack.push(newPage);
             }
         }
+        Button {
+            text: i18n.tr("User-Interact-Verify introduction page")
+            onClicked: {
+                var newPage = Qt.createComponent(Qt.resolvedUrl("UserInteractVerifyIntroPage.qml")).createObject();
+                newPage.testName = "Headphones playback";
+                newPage.testDescription = "This test will check that headphones connector works correctly.\n\
+STEPS:\n\
+  1. Connect a pair of headphones to your audio device\n\
+  2. Click the Test button to play a sound to your audio device";
+                newPage.testStarted.connect(userInteractVerifyTestStarted);
+                //Triggering of timer should change the state on UIV-intro page
+                userInteractVerifyIntroTimer.triggered.connect(newPage.stopActivity)
+                pageStack.push(newPage);
+            }
+        }
+        Button {
+            id: userInteractVerifyVerificationPageButton
+            text: i18n.tr("User-Interact-Verify verification page")
+            onClicked: {
+                console.log(pageStack.currentPage);
+                var newPage = Qt.createComponent(Qt.resolvedUrl("UserInteractVerifyVerificationPage.qml")).createObject();
+                newPage.testName = "Headphones playback";
+                newPage.verificationDescription = "Did you hear a sound through the headphones and did the sound \
+play without any distortion, clicks or other strange noises from your headphones?";
+                newPage.verificationDone.connect(userInteractVerifyVerificationDone);
+                pageStack.push(newPage);
+            }
+        }
     }
+    /*
+      This timer emulates running test.
+    */
+    Timer {
+        id: userInteractVerifyIntroTimer
+        interval: 2000; running: false; repeat: false
+        onTriggered: {
+            userInteractVerifyVerificationPageButton.clicked();
+        }
+    }
+
+    function userInteractVerifyTestStarted() {
+        userInteractVerifyIntroTimer.start();
+    }
+
+    function userInteractVerifyVerificationDone(result) {
+        /*
+            This unwind pop until we're on screensPreviewPage
+            Ordinary pageStack.pop() would'n work as there might be 1 or 2 pages on stack
+        */
+        while(pageStack.currentPage!=screensPreviewPage) {
+            pageStack.pop();
+        }
+        console.log("userInteractVerifyVerificationDone called with result: "+result);
+    }
+
 }
