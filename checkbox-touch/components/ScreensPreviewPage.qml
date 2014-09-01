@@ -89,6 +89,23 @@ play without any distortion, clicks or other strange noises from your headphones
                 pageStack.push(newPage);
             }
         }
+        Button {
+            text: i18n.tr("Manual test page")
+            onClicked:{
+                var newPage = Qt.createComponent(Qt.resolvedUrl("ManualIntroPage.qml")).createObject();
+                newPage.testName = "Volume Down Key";
+                newPage.testDescription = "PURPOSE:\n    This test will test the volume down key\n\
+STEPS:\n    1. Click the volume down key of your phone"
+                newPage.continueClicked.connect(function() {
+                    var verificationPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
+                    verificationPage.testName = "Volume Down Key"
+                    verificationPage.verificationDescription = "Did the volume go down when you pressed the volume down key?"
+                    verificationPage.verificationDone.connect(verificationDone);
+                    pageStack.push(verificationPage);
+                });
+                pageStack.push(newPage);
+            }
+        }
     }
     /*
       This timer emulates running test.
