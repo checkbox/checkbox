@@ -42,7 +42,7 @@ plainbox_pypi = ('https://pypi.python.org/packages/source'
 # LIBS_URLS contains list of .deb packages that will be downloaded and
 # extracted. After extraction contents of ./usr/lib are copied to ./lib
 LIBS_URLS = [
-    '{repo}main/p/python3.4/libpython3.4_3.4.1-10_{arch}.deb'.format(
+    '{repo}main/p/python3.4/libpython3.4_3.4.1-10ubuntu1_{arch}.deb'.format(
         repo=repo, arch=arch)
     for repo, arch in repo_arch_list]
 
