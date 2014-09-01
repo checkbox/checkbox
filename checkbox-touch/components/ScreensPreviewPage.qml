@@ -65,7 +65,7 @@ in meminfo against the size of the memory modules detected by DMI."
         Button {
             text: i18n.tr("User-Interact-Verify introduction page")
             onClicked: {
-                var newPage = Qt.createComponent(Qt.resolvedUrl("UserInteractVerifyIntroPage.qml")).createObject();
+                var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
                 newPage.testName = "Headphones playback";
                 newPage.testDescription = "This test will check that headphones connector works correctly.\n\
 STEPS:\n\
@@ -73,7 +73,7 @@ STEPS:\n\
   2. Click the Test button to play a sound to your audio device";
                 newPage.testStarted.connect(userInteractVerifyTestStarted);
                 //Triggering of timer should change the state on UIV-intro page
-                userInteractVerifyIntroTimer.triggered.connect(newPage.stopActivity)
+                interactIntroTimer.triggered.connect(newPage.stopActivity)
                 pageStack.push(newPage);
             }
         }
@@ -111,7 +111,7 @@ STEPS:\n    1. Click the volume down key of your phone"
       This timer emulates running test.
     */
     Timer {
-        id: userInteractVerifyIntroTimer
+        id: interactIntroTimer
         interval: 2000; running: false; repeat: false
         onTriggered: {
             verificationPageButton.clicked();
@@ -119,7 +119,7 @@ STEPS:\n    1. Click the volume down key of your phone"
     }
 
     function userInteractVerifyTestStarted() {
-        userInteractVerifyIntroTimer.start();
+        interactIntroTimer.start();
     }
 
     function verificationDone(result) {

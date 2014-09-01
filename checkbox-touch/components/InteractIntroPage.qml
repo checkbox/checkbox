@@ -19,9 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \brief Page for User-Interact-Verify test - introduction step
+/*! \brief Intro page for tests requiring user interation
 
-    This page shows test name and description of an User-Interact-Verify test.
+    This page shows test name and description.
     When the test is run, page displays activity indicator
     See design document at: http://goo.gl/ghR9wL
 */
