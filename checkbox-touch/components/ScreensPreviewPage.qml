@@ -78,15 +78,14 @@ STEPS:\n\
             }
         }
         Button {
-            id: userInteractVerifyVerificationPageButton
-            text: i18n.tr("User-Interact-Verify verification page")
+            id: verificationPageButton
+            text: i18n.tr("Test verification page")
             onClicked: {
-                console.log(pageStack.currentPage);
-                var newPage = Qt.createComponent(Qt.resolvedUrl("UserInteractVerifyVerificationPage.qml")).createObject();
+                var newPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
                 newPage.testName = "Headphones playback";
                 newPage.verificationDescription = "Did you hear a sound through the headphones and did the sound \
 play without any distortion, clicks or other strange noises from your headphones?";
-                newPage.verificationDone.connect(userInteractVerifyVerificationDone);
+                newPage.verificationDone.connect(verificationDone);
                 pageStack.push(newPage);
             }
         }
@@ -98,7 +97,7 @@ play without any distortion, clicks or other strange noises from your headphones
         id: userInteractVerifyIntroTimer
         interval: 2000; running: false; repeat: false
         onTriggered: {
-            userInteractVerifyVerificationPageButton.clicked();
+            verificationPageButton.clicked();
         }
     }
 
@@ -106,7 +105,7 @@ play without any distortion, clicks or other strange noises from your headphones
         userInteractVerifyIntroTimer.start();
     }
 
-    function userInteractVerifyVerificationDone(result) {
+    function verificationDone(result) {
         /*
             This unwind pop until we're on screensPreviewPage
             Ordinary pageStack.pop() would'n work as there might be 1 or 2 pages on stack
@@ -114,7 +113,7 @@ play without any distortion, clicks or other strange noises from your headphones
         while(pageStack.currentPage!=screensPreviewPage) {
             pageStack.pop();
         }
-        console.log("userInteractVerifyVerificationDone called with result: "+result);
+        console.log("verificationDone called with result: " + result);
     }
 
 }

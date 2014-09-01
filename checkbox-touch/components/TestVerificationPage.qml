@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \brief Page for User-Interact-Verify test - validation step
+/*! \brief Test verification page
 
     This page asks user whether the action was completed successfully
     See design document at: http://goo.gl/ghR9wL
