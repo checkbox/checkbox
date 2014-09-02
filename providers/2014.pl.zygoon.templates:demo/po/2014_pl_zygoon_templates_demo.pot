@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 17:35+0200\n"
+"POT-Creation-Date: 2014-09-01 23:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,22 @@ msgstr ""
 msgid "The demo resource"
 msgstr ""
 
+#. description
+#: ../units/resources.txt:7
+msgid ""
+"This resource contains four records (1-4) that control instantiation of a "
+"demo template. Resource record 3 is setup so that no job is instantiated for "
+"it."
+msgstr ""
+
 #. summary
 #: ../units/templates.txt:10
 msgid "The demo job number {index}"
+msgstr ""
+
+#. description
+#: ../units/templates.txt:11
+msgid "This is a description of a demo job {index}"
 msgstr ""
 
 #. !/bin/sh
