@@ -32,8 +32,8 @@ from plainbox.provider_manager import setup, N_
 # (optional)
 
 setup(
-    name='2013.com.canonical.certification:categories',
+    name='2013.com.canonical.plainbox:categories',
     version="1.0",
     description=N_("Common test category definitions"),
-    gettext_domain="2013_com_canonical_certification_categories",
+    gettext_domain="2013_com_canonical_plainbox_categories",
 )
