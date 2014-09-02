@@ -21,6 +21,8 @@ Download and extract .deb packages necessary to run checkbox-touch
 Extraction is done to specific directories as required by click package
 """
 
+import apt
+import apt_pkg
 import os
 import shutil
 import subprocess
@@ -30,37 +32,62 @@ import urllib.request
 from distutils.dir_util import copy_tree
 
 
-ARCH_LIST = ["i386-linux-gnu", "x86_64-linux-gnu", "arm-linux-gnueabihf"]
+def get_package_uri(pkg_name, arch):
+    print('Getting information about {0} package for {1} arch.'.format(
+        pkg_name, arch))
+    repos = {
+        'armhf': 'http://ports.ubuntu.com/ubuntu-ports',
+        'i386': 'http://archive.ubuntu.com/ubuntu',
+        'amd64': 'http://archive.ubuntu.com/ubuntu'
+    }
+    # prepare sources.list for apt
+    with tempfile.TemporaryDirectory() as tmp:
+        new_etc_apt = os.path.join(tmp, 'etc', 'apt')
+        os.makedirs(new_etc_apt)
+        # copy over trusted.gpg
+        shutil.copyfile(os.path.join('/', 'etc', 'apt', 'trusted.gpg'),
+                        os.path.join(new_etc_apt, 'trusted.gpg'))
+        sources_list = open(os.path.join(new_etc_apt, 'sources.list'), "w")
+        sources_list.write(
+            "deb [arch={arch}] {repo} utopic main restricted universe".format(
+                arch=arch, repo=repos[arch]))
+        sources_list.close()
+        apt_pkg.config["Apt::Architecture"] = arch
+        cache = apt.Cache(rootdir=tmp)
+        cache.update()
+        cache.open(None)
+        if pkg_name not in cache or len(cache[pkg_name].versions) < 1:
+            # package not found
+            raise Exception('Package {0} not found for arch {1}'.format(
+                pkg_name, arch))
+        # return first candidate
+        return cache[pkg_name].versions[0].uri
 
-repo_1 = 'http://archive.ubuntu.com/ubuntu/pool/'
-repo_2 = 'http://ports.ubuntu.com/ubuntu-ports/pool/'
-repo_arch_list = ((repo_1, 'i386'), (repo_1, 'amd64'), (repo_2, 'armhf'),)
+# arch_list contains list of architectures for which the packages should be
+# downloaded
+arch_list = ['i386', 'amd64', 'armhf']
+# multiarch_list contains full architecture name as used in the directories
+# in contents of click package
+multiarch_list = ["i386-linux-gnu", "x86_64-linux-gnu", "arm-linux-gnueabihf"]
 
 plainbox_pypi = ('https://pypi.python.org/packages/source'
                  '/p/plainbox/plainbox-0.10.tar.gz')
 
 # LIBS_URLS contains list of .deb packages that will be downloaded and
 # extracted. After extraction contents of ./usr/lib are copied to ./lib
-LIBS_URLS = [
-    '{repo}main/p/python3.4/libpython3.4_3.4.1-10ubuntu1_{arch}.deb'.format(
-        repo=repo, arch=arch)
-    for repo, arch in repo_arch_list]
+LIBS_URLS = [get_package_uri('libpython3.4', arch) for arch in arch_list]
 
 # QML_PLUGINS_URL contains list of .deb packages that will be downloaded and
 # and extracted. After extraction contents of ./usr/lib/{architecture}/qt5/qml
 # are copied to ./lib/{architecture}. {architecture} may be one of ARCH_LIST
 QML_PLUGINS_URLS = [
-    '{repo}universe/p/pyotherside/pyotherside_1.2.0-1_{arch}.deb'.format(
-        repo=repo, arch=arch)
-    for repo, arch in repo_arch_list]
+    get_package_uri('pyotherside', arch) for arch in arch_list]
 
 # PYTHON3_LIBS_URLS contains list of .deb packages that will be downloaded and
 # extracted. After extraction contents of ./usr/lib/python3/dist-packages
 # are copied to ./py.
 PYTHON3_LIBS_URLS = [
-    '{repo}main/l/lxml/python3-lxml_3.3.5-1_{arch}.deb'.format(
-        repo=repo, arch=arch)
-    for repo, arch in repo_arch_list]
+    get_package_uri('python3-lxml', arch) for arch in arch_list]
 
 
 def get_package_from_url_and_extract(url, target_dir):
@@ -100,7 +127,7 @@ def main():
     for qml_plugin in QML_PLUGINS_URLS:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(qml_plugin, tmp)
-            for arch in ARCH_LIST:
+            for arch in multiarch_list:
                 src = os.path.join(tmp, 'usr', 'lib', arch, 'qt5', 'qml')
                 dest = os.path.join('lib', arch)
                 if os.path.exists(src) and os.path.isdir(src):
