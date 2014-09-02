@@ -63,7 +63,7 @@ in meminfo against the size of the memory modules detected by DMI."
             }
         }
         Button {
-            text: i18n.tr("User-Interact-Verify introduction page")
+            text: i18n.tr("User-Interact-Verify test page")
             onClicked: {
                 var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
                 newPage.testName = "Headphones playback";
@@ -72,26 +72,14 @@ STEPS:\n\
   1. Connect a pair of headphones to your audio device\n\
   2. Click the Test button to play a sound to your audio device";
                 newPage.testStarted.connect(userInteractVerifyTestStarted);
-                //Triggering of timer should change the state on UIV-intro page
+                //Triggering of timer should change the state on intro page
                 interactIntroTimer.triggered.connect(newPage.stopActivity)
                 pageStack.push(newPage);
             }
         }
         Button {
-            id: verificationPageButton
-            text: i18n.tr("Test verification page")
-            onClicked: {
-                var newPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
-                newPage.testName = "Headphones playback";
-                newPage.verificationDescription = "Did you hear a sound through the headphones and did the sound \
-play without any distortion, clicks or other strange noises from your headphones?";
-                newPage.verificationDone.connect(verificationDone);
-                pageStack.push(newPage);
-            }
-        }
-        Button {
             text: i18n.tr("Manual test page")
-            onClicked:{
+            onClicked: {
                 var newPage = Qt.createComponent(Qt.resolvedUrl("ManualIntroPage.qml")).createObject();
                 newPage.testName = "Volume Down Key";
                 newPage.testDescription = "PURPOSE:\n    This test will test the volume down key\n\
@@ -106,6 +94,42 @@ STEPS:\n    1. Click the volume down key of your phone"
                 pageStack.push(newPage);
             }
         }
+        Row {
+            spacing: units.gu(3)
+            Button {
+                text: i18n.tr("User-Interact test page")
+                onClicked: {
+                    var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
+                    newPage.testName = "Finger Expand";
+                    newPage.testDescription = "PURPOSE:\n    Check touchscreen expand gesture for zoom\n\
+    STEPS:\n\
+      1. Press the Test button\n\
+      2. Using 2 fingers, resize the blue square until it turns green, then release it.";
+                    newPage.testStarted.connect(userInteractTestStarted);
+                    interactIntroTimer.triggered.connect(newPage.stopActivity)
+                    pageStack.push(newPage);
+                }
+            }
+            Label {
+                text: "Should pass?"
+            }
+
+            Switch {
+                id: userInteractShouldFail
+            }
+        }
+        Button {
+            id: verificationPageButton
+            text: i18n.tr("Test verification page")
+            onClicked: {
+                var newPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
+                newPage.testName = "Headphones playback";
+                newPage.verificationDescription = "Did you hear a sound through the headphones and did the sound \
+play without any distortion, clicks or other strange noises from your headphones?";
+                newPage.verificationDone.connect(verificationDone);
+                pageStack.push(newPage);
+            }
+        }
     }
     /*
       This timer emulates running test.
@@ -113,12 +137,21 @@ STEPS:\n    1. Click the volume down key of your phone"
     Timer {
         id: interactIntroTimer
         interval: 2000; running: false; repeat: false
-        onTriggered: {
-            verificationPageButton.clicked();
-        }
     }
 
     function userInteractVerifyTestStarted() {
+        interactIntroTimer.triggered.connect(verificationPageButton.clicked)
+        interactIntroTimer.start();
+    }
+    function userInteractTestStarted() {
+        interactIntroTimer.triggered.connect(function() {
+            var newPage = Qt.createComponent(Qt.resolvedUrl("UserInteractSummaryPage.qml")).createObject();
+            newPage.testName = "Finger Expand";
+            newPage.passed = userInteractShouldFail.checked
+            newPage.endOfTest.connect(verificationDone);
+            newPage.testSkipped.connect(function() { pageStack.pop() });
+            pageStack.push(newPage);
+        });
         interactIntroTimer.start();
     }
 
