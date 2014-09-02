@@ -95,7 +95,7 @@ def main():
             get_package_from_url_and_extract(pylib, tmp)
             copy_tree(
                 os.path.join(tmp, 'usr', 'lib', 'python3', 'dist-packages'),
-                os.path.join('py'),
+                os.path.join('lib', 'py'),
                 preserve_symlinks=1)
     for qml_plugin in QML_PLUGINS_URLS:
         with tempfile.TemporaryDirectory() as tmp:
