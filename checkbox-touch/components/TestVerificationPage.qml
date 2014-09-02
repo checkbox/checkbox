@@ -52,9 +52,9 @@ Page {
 
     ColumnLayout {
         id: descriptionContent
-        spacing: units.gu(2)
+        spacing: units.gu(3)
         anchors.fill: parent
-        anchors.margins: units.gu(2)
+        anchors.margins: units.gu(3)
 
         Label {
             id: testNameLabel

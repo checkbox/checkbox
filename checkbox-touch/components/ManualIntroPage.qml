@@ -51,7 +51,6 @@ Page {
     }
 
     ColumnLayout {
-        id: descriptionContent
         spacing: units.gu(3)
         anchors.fill: parent
         anchors.margins: units.gu(3)
