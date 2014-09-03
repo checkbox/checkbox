@@ -19,10 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \brief Page for User-Interact-Verify test - introduction step
+/*! \brief Test verification page
 
-    This page shows test name and description of an User-Interact-Verify test.
-    When the test is run, page displays activity indicator
+    This page asks user whether the action was completed successfully
     See design document at: http://goo.gl/ghR9wL
 */
 
@@ -31,23 +30,17 @@ import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
 
 Page {
-    id: userInteractVerifyIntroPage
     property alias testName: testNameLabel.text
-    property alias testDescription: testDescrptionLabel.text
+    property alias verificationDescription: verificationDescriptionLabel.text
 
-    signal testStarted();
+    signal verificationDone(bool result);
     signal testSkipped();
 
-    function stopActivity() {
-        state = "idle"
-        startTestButton.unlatch()
-    }
+    title: i18n.tr("Verification")
 
-    title: i18n.tr("Test Description")
     head {
         actions: [
             Action {
-                id: skipAction
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
@@ -56,20 +49,6 @@ Page {
             }
         ]
     }
-
-    state: "idle"
-    states: [
-         State {
-            name: "idle"
-            PropertyChanges { target: activity; running: false }
-            PropertyChanges { target: skipAction; visible: true }
-         },
-         State {
-            name: "testing"
-            PropertyChanges { target: activity; running: true }
-            PropertyChanges { target: skipAction; visible: false }
-         }
-     ]
 
     ColumnLayout {
         id: descriptionContent
@@ -85,28 +64,28 @@ Page {
         }
 
         Label {
-            id: testDescrptionLabel
+            id: verificationDescriptionLabel
             fontSize: "medium"
             Layout.fillWidth: true
             Layout.fillHeight: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
-        ActivityIndicator {
-            id: activity
-            Layout.alignment: Qt.AlignHCenter
-            implicitHeight: units.gu(6)
-            implicitWidth: units.gu(6)
+        LatchButton {
+            unlatchedColor: UbuntuColors.green
+            Layout.fillWidth: true
+            text: i18n.tr("Yes")
+            onLatchedClicked: {
+                verificationDone(true);
+            }
         }
 
         LatchButton {
-            id: startTestButton
-            unlatchedColor: UbuntuColors.green
+            unlatchedColor: UbuntuColors.red
             Layout.fillWidth: true
-            text: i18n.tr("Test")
+            text: i18n.tr("No")
             onLatchedClicked: {
-                userInteractVerifyIntroPage.state = "testing"
-                testStarted();
+                verificationDone(false);
             }
         }
     }

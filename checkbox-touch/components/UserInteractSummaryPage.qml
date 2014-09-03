@@ -19,10 +19,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \brief Page for User-Interact-Verify test - validation step
+/*! \brief Page for User-Interact test - summary step
 
-    This page asks user whether the action was completed successfully
-    See design document at: http://goo.gl/ghR9wL
+    This page shows result of automated verification of a test.
+    See design document at: http://goo.gl/6pNAFE
 */
 
 import QtQuick 2.0
@@ -31,9 +31,9 @@ import QtQuick.Layouts 1.1
 
 Page {
     property alias testName: testNameLabel.text
-    property alias verificationDescription: verificationDescriptionLabel.text
+    property bool passed
 
-    signal verificationDone(bool result);
+    signal endOfTest(bool result);
     signal testSkipped();
 
     title: i18n.tr("Verification")
@@ -51,10 +51,9 @@ Page {
     }
 
     ColumnLayout {
-        id: descriptionContent
-        spacing: units.gu(2)
+        spacing: units.gu(3)
         anchors.fill: parent
-        anchors.margins: units.gu(2)
+        anchors.margins: units.gu(3)
 
         Label {
             id: testNameLabel
@@ -63,29 +62,48 @@ Page {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
-        Label {
-            id: verificationDescriptionLabel
-            fontSize: "medium"
+        Row {
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        }
+            Label {
+                fontSize: "large"
+                Layout.fillHeight: true
+                text : i18n.tr("This test ")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
 
-        LatchButton {
-            unlatchedColor: UbuntuColors.green
-            Layout.fillWidth: true
-            text: i18n.tr("Yes")
-            onLatchedClicked: {
-                verificationDone(true);
+            Rectangle {
+                height: resultLabel.height
+                width: resultLabel.width + units.gu(1)
+                Layout.alignment: Qt.AlignCenter
+                radius: 2
+                color: passed ? UbuntuColors.green : UbuntuColors.red
+
+                Label {
+                    id: resultLabel
+                    height: paintedHeight
+                    fontSize: "large"
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    color: "white"
+                    text : passed ? i18n.tr("PASSED") : i18n.tr("FAILED")
+                    anchors.centerIn: parent
+                }
             }
         }
 
-        LatchButton {
-            unlatchedColor: UbuntuColors.red
+        Label {
+            fontSize: "large"
+            Layout.fillHeight: true
             Layout.fillWidth: true
-            text: i18n.tr("No")
-            onLatchedClicked: {
-                verificationDone(false);
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text : i18n.tr("You can go back to rerun it or continue to the next test.")
+        }
+
+        Button {
+            color: UbuntuColors.green
+            Layout.fillWidth: true
+            text: i18n.tr("Continue")
+            onClicked: {
+                endOfTest(passed);
             }
         }
     }
