@@ -141,10 +141,14 @@ def main():
                 dest = os.path.join('lib', arch)
                 if os.path.exists(src) and os.path.isdir(src):
                     copy_tree(src, dest, preserve_symlinks=1)
-    # Clone QChart.js into our components/vendor folder
-    subprocess.check_call(
-        ["git", "clone", 'https://github.com/checkbox/qchart.js.git',
-        os.path.join('components', 'vendor', 'qchart_js')])
+    # Copy QChart.js from the git checkbox repo into our components/vendor
+    # folder
+    git_url = 'https://github.com/checkbox/qchart.js/archive/' \
+              '1.0-1ubuntu1.tar.gz'
+    target_dir = 'components/vendor/qchart_js/'
+    os.makedirs('components/vendor/qchart_js/', exist_ok=True)
+    subprocess.check_call('wget {} -q -O - | tar -xz --strip=1 -C {}'.format(
+        git_url, target_dir), shell=True)
     # Remove the python3.4 directory
     # currently it only holds a few config-directories with symlinks
     # and those are not used by anything from this location
