@@ -79,6 +79,27 @@ STEPS:\n\
             }
         }
         Button {
+            text: i18n.tr("Resume session page")
+            onClicked: {
+                var newPage = Qt.createComponent(Qt.resolvedUrl("ResumeSessionPage.qml")).createObject();
+                newPage.resumeText = "Checkbox did not finish completely.\n\n\
+Do you want to rerun the last test, continue to the next test, or restart from the beginning?";
+                newPage.rerunLast.connect(function() {
+                    console.log("Rerun last test selected");
+                    replaceOnPageStack(screensPreviewPage);
+                });
+                newPage.continueSession.connect(function() {
+                    console.log("Continue session selected");
+                    replaceOnPageStack(screensPreviewPage);
+                });
+                newPage.restartSession.connect(function() {
+                    console.log("Restart session selected");
+                    replaceOnPageStack(screensPreviewPage);
+                });
+                replaceOnPageStack(newPage);
+            }
+        }
+        Button {
             text: i18n.tr("Manual test page")
             onClicked: {
                 var newPage = Qt.createComponent(Qt.resolvedUrl("ManualIntroPage.qml")).createObject();
@@ -147,6 +168,10 @@ play without any distortion, clicks or other strange noises from your headphones
     function skipTest() {
         console.log("Test skipped");
         unwindStack();
+    }
+    function replaceOnPageStack(newPage) {
+        pageStack.pop();
+        pageStack.push(newPage);
     }
     function userInteractVerifyTestStarted() {
         interactIntroTimer.triggered.connect(verificationPageButton.clicked);
