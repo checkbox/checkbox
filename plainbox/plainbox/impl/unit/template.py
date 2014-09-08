@@ -20,7 +20,6 @@
 :mod:`plainbox.impl.template` -- template unit
 ==============================================
 """
-
 import itertools
 import logging
 
@@ -30,6 +29,7 @@ from plainbox.impl.resource import Resource
 from plainbox.impl.resource import ResourceProgram
 from plainbox.impl.resource import parse_imports_stmt
 from plainbox.impl.secure.origin import Origin
+from plainbox.impl.symbol import SymbolDef
 from plainbox.impl.unit import all_units
 from plainbox.impl.unit._legacy import TemplateUnitLegacyAPI
 from plainbox.impl.unit._legacy import TemplateUnitValidatorLegacyAPI
@@ -38,7 +38,6 @@ from plainbox.impl.unit.unit import UnitValidator
 from plainbox.impl.unit.validators import CorrectFieldValueValidator
 from plainbox.impl.unit.validators import PresentFieldValidator
 from plainbox.impl.unit.validators import ReferenceConstraint
-from plainbox.impl.unit.validators import TemplateInvariantFieldValidator
 from plainbox.impl.unit.validators import UnitReferenceValidator
 from plainbox.impl.unit.validators import UntranslatableFieldValidator
 from plainbox.impl.validation import Problem
@@ -399,9 +398,9 @@ class TemplateUnit(Unit, TemplateUnitLegacyAPI):
         except ExpressionFailedError:
             return False
 
-    class Meta(Unit.Meta, TemplateUnitLegacyAPI.Meta):
+    class Meta:
 
-        class fields(Unit.Meta.fields):
+        class fields(SymbolDef):
             """
             Symbols for each field that a TemplateUnit can have
             """
@@ -412,9 +411,7 @@ class TemplateUnit(Unit, TemplateUnitLegacyAPI):
 
         validator_cls = TemplateUnitValidator
 
-        field_validators = {}
-        field_validators.update(Unit.Meta.field_validators)
-        field_validators.update({
+        field_validators = {
             fields.template_unit: [
                 UntranslatableFieldValidator,
                 CorrectFieldValueValidator(
@@ -466,6 +463,4 @@ class TemplateUnit(Unit, TemplateUnitLegacyAPI):
                 # TODO: should not refer to deprecated jobs,
                 #       onlyif job itself is not deprecated
             ],
-        })
-
-TemplateUnit.fields = TemplateUnit.Meta.fields
+        }
