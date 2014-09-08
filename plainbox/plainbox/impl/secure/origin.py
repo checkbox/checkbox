@@ -28,6 +28,18 @@ import os
 
 from plainbox.abc import ITextSource
 from plainbox.i18n import gettext as _
+from plainbox.impl.symbol import SymbolDef
+
+
+class OriginMode(SymbolDef):
+    """
+    A symbol definition (which will become an enumeration in the near future)
+    that describes all the possible "modes" an :class:`Origin` can operate in.
+    """
+    # NOTE: this should be an enumeration
+    whole_file = 'whole-file'
+    single_line = 'single-line'
+    line_range = 'line-range'
 
 
 @functools.total_ordering
@@ -40,23 +52,44 @@ class Origin:
     line_start (inclusive) and line_end (exclusive).
 
     :ivar source:
-        something that describes where the text came frome, technically it
+        Something that describes where the text came frome. Technically it
         should be a :class:`~plainbox.abc.ITextSource` subclass but that
         interface defines just the intent, not any concrete API.
 
     :ivar line_start:
-        the number of the line where the record begins
+        The number of the line where the record begins. This can be None
+        when the intent is to cover the whole file. This can also be equal
+        to line_end (when not None) if the intent is to show a single line.
 
     :ivar line_end:
-        the number of the line where the record ends
+        The number of the line where the record ends
     """
 
     __slots__ = ['source', 'line_start', 'line_end']
 
-    def __init__(self, source, line_start, line_end):
+    def __init__(self, source, line_start=None, line_end=None):
         self.source = source
         self.line_start = line_start
         self.line_end = line_end
+
+    def mode(self):
+        """
+        Compute the "mode" of this origin instance.
+
+        :returns:
+            :attr:`OriginMode.whole_file`, :attr:`OriginMode.single_line`
+            or :attr:`OriginMode.line_range`.
+
+        The mode tells if this instance is describing the whole file,
+        a range of lines or just a single line. It is mostly used internally
+        by the implementation.
+        """
+        if self.line_start is None and self.line_end is None:
+            return OriginMode.whole_file
+        elif self.line_start == self.line_end:
+            return OriginMode.single_line
+        else:
+            return OriginMode.line_range
 
     def __repr__(self):
         return "<{} source:{!r} line_start:{} line_end:{}>".format(
@@ -64,11 +97,16 @@ class Origin:
             self.source, self.line_start, self.line_end)
 
     def __str__(self):
-        if self.line_start == self.line_end:
+        mode = self.mode()
+        if mode is OriginMode.whole_file:
+            return str(self.source)
+        elif mode is OriginMode.single_line:
             return "{}:{}".format(self.source, self.line_start)
-        else:
+        elif mode is OriginMode.line_range:
             return "{}:{}-{}".format(
                 self.source, self.line_start, self.line_end)
+        else:
+            raise NotImplementedError
 
     def relative_to(self, base_dir):
         """
@@ -100,8 +138,14 @@ class Origin:
         :returns:
             A new Origin object
         """
-        return Origin(
-            self.source, self.line_start + offset, self.line_end + offset)
+        mode = self.mode()
+        if mode is OriginMode.whole_file:
+            return self
+        elif mode is OriginMode.single_line or mode is OriginMode.line_range:
+            return Origin(self.source,
+                          self.line_start + offset, self.line_end + offset)
+        else:
+            raise NotImplementedError
 
     def just_line(self):
         """
@@ -112,6 +156,15 @@ class Origin:
             makes the origin describe a single line.
         """
         return Origin(self.source, self.line_start, self.line_start)
+
+    def just_file(self):
+        """
+        create a new Origin that points to the whole file
+
+        :returns:
+            A new Origin with line_end and line_start both set to None.
+        """
+        return Origin(self.source)
 
     def __eq__(self, other):
         if isinstance(other, Origin):
