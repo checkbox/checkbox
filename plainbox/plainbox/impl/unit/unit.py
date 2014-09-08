@@ -329,6 +329,11 @@ class UnitType(abc.ABCMeta):
                     'fields', merged_fields_bases, merged_fields_ns)
                 fields.__qualname__ = '{}.Meta.fields'.format(name)
                 new_meta_ns['fields'] = fields
+            # Ensure that Meta.name is explicitly defined
+            if 'name' not in our_meta.__dict__:
+                raise TypeError(_(
+                    "Please define 'name' in {}.Meta"
+                ).format(name))
             ns['Meta'] = type('Meta', new_meta_bases, new_meta_ns)
         ns['fields'] = ns['Meta'].fields
         return super().__new__(mcls, name, bases, ns)
@@ -433,12 +438,13 @@ class Unit(UnitLegacyAPI, metaclass=UnitType):
         """
         return self.get_record_value('unit')
 
-    @property
     def tr_unit(self):
         """
-        Translated (optionally) value of the unit field
+        Translated (optionally) value of the unit field (overridden)
+
+        The return value is always 'self.Meta.name' (translated)
         """
-        return self.get_record_value('unit', _("unit"))
+        return _(self.Meta.name)
 
     @property
     def origin(self):
@@ -774,6 +780,8 @@ class Unit(UnitLegacyAPI, metaclass=UnitType):
         """
         Class containing additional meta-data about this unit.
 
+        :attr name:
+            Name of this unit as it can appear in unit definition files
         :attr fields:
             A :class:`plainbox.impl.symbol.SymbolDef` with a symbol for each of
             the fields used by this unit.
@@ -782,6 +790,8 @@ class Unit(UnitLegacyAPI, metaclass=UnitType):
         :attr field_validators:
             A dictionary mapping each field to a list of field validators
         """
+
+        name = 'unit'
 
         class fields(SymbolDef):
             """

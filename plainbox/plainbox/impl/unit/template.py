@@ -24,6 +24,7 @@ import itertools
 import logging
 
 from plainbox.i18n import gettext as _
+from plainbox.i18n import gettext_noop as N_
 from plainbox.impl.resource import ExpressionFailedError
 from plainbox.impl.resource import Resource
 from plainbox.impl.resource import ResourceProgram
@@ -161,9 +162,6 @@ class TemplateUnit(Unit, TemplateUnitLegacyAPI):
 
     def __str__(self):
         return "{} <~ {}".format(self.id, self.resource_id)
-
-    def tr_unit(self):
-        return _("template")
 
     @property
     def partial_id(self):
@@ -399,6 +397,8 @@ class TemplateUnit(Unit, TemplateUnitLegacyAPI):
             return False
 
     class Meta:
+
+        name = N_('template')
 
         class fields(SymbolDef):
             """

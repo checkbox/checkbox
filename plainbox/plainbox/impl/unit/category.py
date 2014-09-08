@@ -31,6 +31,7 @@ in a compatible way.
 import logging
 
 from plainbox.i18n import gettext as _
+from plainbox.i18n import gettext_noop as N_
 from plainbox.impl.symbol import SymbolDef
 from plainbox.impl.unit._legacy import CategoryUnitLegacyAPI
 from plainbox.impl.unit.unit_with_id import UnitWithId
@@ -83,14 +84,6 @@ class CategoryUnit(UnitWithId, CategoryUnitLegacyAPI):
     def __repr__(self):
         return "<CategoryUnit id:{!r} name:{!r}>".format(self.id, self.name)
 
-    def tr_unit(self):
-        """
-        Translated name of the unit.
-
-        The return value is always 'category' (translated)
-        """
-        return _("category")
-
     @property
     def name(self):
         """
@@ -105,6 +98,8 @@ class CategoryUnit(UnitWithId, CategoryUnitLegacyAPI):
         return self.get_translated_record_value("name")
 
     class Meta:
+
+        name = N_('category')
 
         class fields(SymbolDef):
             """

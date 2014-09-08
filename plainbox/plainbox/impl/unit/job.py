@@ -27,6 +27,7 @@ import re
 
 from plainbox.abc import IJobDefinition
 from plainbox.i18n import gettext as _
+from plainbox.i18n import gettext_noop as N_
 from plainbox.impl.resource import ResourceProgram
 from plainbox.impl.resource import parse_imports_stmt
 from plainbox.impl.secure.origin import JobOutputTextSource
@@ -196,14 +197,6 @@ class JobDefinition(UnitWithId, JobDefinitionLegacyAPI, IJobDefinition):
         The return value is always 'job'
         """
         return 'job'
-
-    def tr_unit(self):
-        """
-        Translated (optionally) value of the unit field (overridden)
-
-        The return value is always 'job' (translated)
-        """
-        return _("job")
 
     @property
     def partial_id(self):
@@ -472,6 +465,8 @@ class JobDefinition(UnitWithId, JobDefinitionLegacyAPI, IJobDefinition):
         return self.from_rfc822_record(record, self.provider)
 
     class Meta:
+
+        name = N_('job')
 
         class fields(SymbolDef):
             """
