@@ -136,6 +136,14 @@ play without any distortion, clicks or other strange noises from your headphones
                 pageStack.push(newPage);
             }
         }
+        Button {
+            text: i18n.tr("Results page")
+            onClicked: {
+                var newPage = Qt.createComponent(Qt.resolvedUrl("ResultsPage.qml")).createObject();
+                newPage.results = {"totalPassed": 15, "totalFailed": 3, "totalSkipped": 5};
+                pageStack.push(newPage);
+            }
+        }
     }
     /*
       This timer emulates running test.
