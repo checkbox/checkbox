@@ -30,6 +30,7 @@ import itertools
 import logging
 import os
 import re
+import functools
 
 from plainbox.abc import IJobQualifier
 from plainbox.impl.secure.origin import FileTextSource
@@ -47,7 +48,7 @@ class SimpleQualifier(IJobQualifier):
     have share some code.
     """
 
-    def __init__(self,  origin: Origin, inclusive: bool=True):
+    def __init__(self,  origin, inclusive=True):
         if origin is not None and not isinstance(origin, Origin):
             raise TypeError(_('argument {!a}, expected {}, got {}').format(
                 'origin', Origin, type(origin)))
@@ -229,6 +230,7 @@ class IMatcher(metaclass=abc.ABCMeta):
         """
 
 
+@functools.total_ordering
 class OperatorMatcher(IMatcher):
     """
     A matcher that applies a binary operator to the value
@@ -238,12 +240,47 @@ class OperatorMatcher(IMatcher):
         self._op = op
         self._value = value
 
+    @property
+    def op(self):
+        """
+        the operator to use
+
+        The operator is typically one of the functions from the ``operator``
+        module. For example. operator.eq corresponds to the == python operator.
+        """
+        return self._op
+
+    @property
+    def value(self):
+        """
+        The right-hand-side value to apply to the operator
+
+        The left-hand-side is the value that is passed to :meth:`match()`
+        """
+        return self._value
+
     def match(self, value):
         return self._op(self._value, value)
 
     def __repr__(self):
         return "{0}({1!r}, {2!r})".format(
             self.__class__.__name__, self._op, self._value)
+
+    def __eq__(self, other):
+        if isinstance(other, OperatorMatcher):
+            return self.op == other.op and self.value == other.value
+        else:
+            return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, OperatorMatcher):
+            if self.op < other.op:
+                return True
+            if self.value < other.value:
+                return True
+            return False
+        else:
+            return NotImplemented
 
 
 class PatternMatcher(IMatcher):
@@ -265,6 +302,18 @@ class PatternMatcher(IMatcher):
     def __repr__(self):
         return "{0}({1!r})".format(
             self.__class__.__name__, self._pattern_text)
+
+    def __eq__(self, other):
+        if isinstance(other, PatternMatcher):
+            return self.pattern_text == other.pattern_text
+        else:
+            return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, PatternMatcher):
+            return self.pattern_text < other.pattern_text
+        else:
+            return NotImplemented
 
 
 class FieldQualifier(SimpleQualifier):
