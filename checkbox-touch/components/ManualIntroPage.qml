@@ -36,6 +36,7 @@ Page {
     signal continueClicked();
     signal testSkipped();
 
+    objectName: "manualIntroPage"
     title: i18n.tr("Test Description")
     head {
         actions: [
@@ -71,6 +72,7 @@ Page {
         }
 
         Button {
+            objectName: "continueButton"
             color: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Continue")

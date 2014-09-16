@@ -35,6 +35,7 @@ Page {
     signal continueSession();
     signal restartSession();
 
+    objectName: "resumeSessionPage"
     title: i18n.tr("Resume session")
     visible: false
 
@@ -52,9 +53,11 @@ Page {
         }
 
         Button {
+            objectName: "rerunButton"
             color: UbuntuColors.warmGrey
             Layout.fillWidth: true
             Label {
+                objectName: "rerunButtonLabel"
                 anchors.centerIn: parent
                 Layout.fillHeight: true
                 Layout.fillWidth: true
@@ -67,9 +70,11 @@ Page {
         }
 
         Button {
+            objectName: "continueButton"
             color: UbuntuColors.warmGrey
             Layout.fillWidth: true
             Label {
+                objectName: "continueButtonLabel"
                 anchors.centerIn: parent
                 Layout.fillHeight: true
                 Layout.fillWidth: true
@@ -82,9 +87,11 @@ Page {
         }
 
         Button {
+            objectName: "restartButton"
             color: UbuntuColors.warmGrey
             Layout.fillWidth: true
             Label {
+                objectName: "restartButtonLabel"
                 anchors.centerIn: parent
                 Layout.fillHeight: true
                 Layout.fillWidth: true

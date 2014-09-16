@@ -36,6 +36,7 @@ Page {
     signal verificationDone(bool result);
     signal testSkipped();
 
+    objectName: "testVerificationPage"
     title: i18n.tr("Verification")
 
     head {
