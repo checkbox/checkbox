@@ -28,11 +28,12 @@ XML exporter for :term:`certification website`
     THIS MODULE DOES NOT HAVE A STABLE PUBLIC API
 """
 
-from base64 import standard_b64decode
+from base64 import standard_b64decode, standard_b64encode
 from collections import OrderedDict
 from datetime import datetime
 from io import BytesIO
 import logging
+import re
 
 from lxml import etree as ET
 from pkg_resources import resource_filename
@@ -77,6 +78,15 @@ class XMLValidator:
         :returns: True, if the document is valid
         """
         return self._validator.validate(element)
+
+
+# Regular expressions that match control characters
+#
+# According to http://unicode.org/glossary/#control_codes
+# control codes are "The 65 characters in the ranges U+0000..U+001F and
+# U+007F..U+009F. Also known as control characters."
+CONTROL_CODE_RE_STR = re.compile("[\u0000-\u001F]|[\u007F-\u009F]")
+CONTROL_CODE_RE_BYTES = re.compile(b"[\x00-\x1F]|[\x7F-\x9F]")
 
 
 class XMLSessionStateExporter(SessionStateExporterBase):
@@ -180,6 +190,37 @@ class XMLSessionStateExporter(SessionStateExporterBase):
         # If a client name was specified as an option, prefer that.
         if self.get_option_value('client-name'):
             self._client_name = self.get_option_value('client-name')
+
+    def _build_attachment_map(self, data, job_id, job_state):
+        """
+        Overridden version of _build_attachment_map() that enforces
+        additional limits on the attachment data.
+
+        This implementation filters out what would become Unicode control
+        characters so that they don't appear in the attachment_map anywhere.
+        """
+        raw_bytes = b''.join(
+            (CONTROL_CODE_RE_BYTES.sub(b'', record[2])
+             for record in job_state.result.get_io_log()
+             if record[1] == 'stdout'))
+        data['attachment_map'][job_id] = standard_b64encode(
+            raw_bytes
+        ).decode('ASCII')
+
+    @classmethod
+    def _flatten_io_log(cls, io_log):
+        """
+        Overridden version of _flatten_io_log() that enforces additional
+        limits on the I/O log data.
+
+        This implementation filters out what would become Unicode control
+        characters so that they don't appear in the session data subset
+        anywhere.
+        """
+        return standard_b64encode(
+            b''.join([CONTROL_CODE_RE_BYTES.sub(b'', record.data)
+                      for record in io_log])
+        ).decode('ASCII')
 
     def dump(self, data, stream):
         """
