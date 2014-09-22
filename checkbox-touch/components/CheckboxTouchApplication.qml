@@ -28,6 +28,25 @@ PythonObjectHandle {
     property string applicationVersion
     // Version of the plainbox library
     property string plainboxVersion
+
+    // The identifier of the default test plan to execute. It will be
+    // stored in the back-end and will be used as the default test
+    // plan for other API calls
+    property var testPlan: "tbd"; // TODO: use a real test plan ID
+
+    // Signal sent when a session becomes ready
+    signal sessionReady();
+
+    // Create a new session
+    //
+    // Starts session in plainbox and runs all necessary setup actions
+    // AppController will signal sessionReady() once it's finished doing setup.
+    function startSession() {
+        invoke("start_session", [app.testPlan], function() {
+            sessionReady();
+        });
+    }
+
     onHandleReady: {
         invoke("get_version_pair", [], function(response) {
             app.applicationVersion = response.application_version;
