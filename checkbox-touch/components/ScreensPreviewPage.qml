@@ -32,15 +32,10 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
         contentWidth: column.width
+        anchors.margins: units.gu(1)
         ColumnLayout {
             id: column
             spacing: units.gu(3)
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-                margins: units.gu(1)
-            }
             Label {
                 fontSize: "x-large"
                 Layout.alignment: Qt.AlignHCenter
