@@ -25,25 +25,30 @@ import io.thp.pyotherside 1.2
 Item {
     id: stack
     // Version of the plainbox core
-    property alias plainboxVersion: plainbox.version
+    property alias plainboxVersion: app.plainboxVersion
+    // Version of the checkbox touch application
+    property alias applicationVersion: app.applicationVersion
     // Version of pyotherside
     property string pyothersideVersion;
     // Version of python runtime
     property string pythonVersion;
+    // Exposed application instance
+    property alias application: app
     // Signal sent when the stack has been fully initialized, plainboxVersion
-    // is available and all PlainBox APIs are ready to use
+    // is available and all PlainBox APIs are ready to use, i.e. when request()
+    // can be used.
     signal stackReady()
 
     // Pyotherside python object that we use to talk to all of plainbox
     Python {
         id: py
-        // callback invoked when PlainBox is created
-        function _onPlainBoxCreated(handle) {
-            plainbox.handle = handle;
+        // callback invoked when the application object is created
+        function _onCheckboxTouchAppCreated(handle) {
+            app.handle = handle;
         }
-        // callback invoked when checkbox_stack module is loaded
-        function _onCheckboxStackLoaded() {
-            call("checkbox_stack.create_plainbox_object", [], _onPlainBoxCreated);
+        // callback invoked when checkbox_touch module is loaded
+        function _onCheckboxTouchLoaded() {
+            call("checkbox_touch.create_app_object", [], _onCheckboxTouchAppCreated);
         }
         function _init() {
             // Store versions of pyotherside and python for reference
@@ -53,21 +58,21 @@ Item {
             addImportPath(Qt.resolvedUrl('../py/'));
             // Import path for plainbox and potentially other python libraries
             addImportPath(Qt.resolvedUrl('../lib/py'))
-            // Import the checkbox_stack module on startup
-            importModule("checkbox_stack", _onCheckboxStackLoaded);
+            // Import the checkbox_touch module on startup
+            importModule("checkbox_touch", _onCheckboxTouchLoaded);
         }
         Component.onCompleted: _init()
         onError: console.error("python error: " + traceback)
         onReceived: console.log("pyotherside.send: " + data)
     }
 
-    // Handle to a PlainBox object.
+    // Handle to a CheckboxTouchApplication object.
     // Using this handle we can inspect the list of providers and sessions.
-    PlainBox {
+    CheckboxTouchApplication {
         py: py
-        id: plainbox
+        id: app
         // Send the stackReady() signal once we get the version string
-        onVersionChanged: {
+        onPlainboxVersionChanged: {
             stack.stackReady()
         }
     }

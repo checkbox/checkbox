@@ -22,10 +22,9 @@
 This module is a part of the implementation of the Checkbox QML Stack. It is
 being imported at startup of all QML applications that are using Checkbox.
 """
+import abc
 import builtins
 import threading
-
-import plainbox
 
 
 class RemoteObjectLifecycleManager:
@@ -45,26 +44,23 @@ class RemoteObjectLifecycleManager:
         """
         Remove a reference represented by the specified handle
         """
-        with self._lock:
-            del self._handle_map[handle]
+        del self._handle_map[handle]
 
     def ref(self, obj: object) -> int:
         """
         Store a reference to an object and return the handle
         """
-        with self._lock:
-            self._count += 1
-            handle = self._count
-            self._handle_map[handle] = obj
-            return handle
+        self._count += 1
+        handle = self._count
+        self._handle_map[handle] = obj
+        return handle
 
     def invoke(self, handle: int, func: str, args):
-        with self._lock:
-            obj = self._handle_map[handle]
-            impl = getattr(obj, func)
-            retval = impl(*args)
-            # print("(py_invoke) returning", retval)
-            return retval
+        obj = self._handle_map[handle]
+        impl = getattr(obj, func)
+        retval = impl(*args)
+        # print("(py_invoke) returning", retval)
+        return retval
 
 
 _manager = RemoteObjectLifecycleManager()
@@ -75,15 +71,13 @@ builtins.py_unref = _manager.unref
 builtins.py_invoke = _manager.invoke
 
 
-class PlainBox:
+class PlainboxApplication(metaclass=abc.ABCMeta):
     """
-    Wrapper around the whole plainbox library
-    """
+    Base class for plainbox-based applications.
 
-    def __init__(self):
-        self.provider_list = []
-        self.session_list = []
-        self.config = None
+    Concrete subclasses of this class should implement get_version_pair() and
+    add any additional methods that they would like to call.
+    """
 
     @classmethod
     def create_and_get_handle(cls):
@@ -95,12 +89,8 @@ class PlainBox:
         """
         return py_ref(cls())
 
-    def get_version(self) -> str:
+    @abc.abstractmethod
+    def get_version_pair(self) -> (str, str):
         """
-        Get the version of the PlainBox library
+        Get core (plainbox) and application version
         """
-        from plainbox.impl.clitools import ToolBase
-        return ToolBase.format_version_tuple(plainbox.__version__)
-
-
-create_plainbox_object = PlainBox.create_and_get_handle

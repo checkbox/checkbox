@@ -49,7 +49,8 @@ MainView {
         onStackReady: {
             console.log("Pyotherside version" + pyothersideVersion);
             console.log("Python version " + pythonVersion);
-            console.log("PlainBox version " + plainboxVersion);
+            console.log("Plainbox version " + plainboxVersion);
+            console.log("Checkbox Touch version " + applicationVersion);
         }
     }
 

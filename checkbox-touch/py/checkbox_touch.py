@@ -21,3 +21,41 @@
 
 This module contains APIs specific to the implementation of checkbox-touch.
 """
+from plainbox.impl.clitools import ToolBase
+import plainbox
+
+from checkbox_stack import PlainboxApplication
+
+
+__version__ = (0, 2, 0, 'dev', 0)
+
+
+class CheckboxTouchApplication(PlainboxApplication):
+    """
+    Class implementing the whole checkbox-touch application logic.
+
+    This class exposes methods that can be called by the javascript embedded
+    into many of the QML views. Each method implements a request / response
+    semantics where the request is the set of data passed to python from
+    javascript and the response is the python dictionary returned and processed
+    back on the javascript side.
+
+    This model follows the similar web development mechanics where the browser
+    can issue asynchronous requests in reaction to user interactions and uses
+    response data to alter the user interface.
+    """
+
+    def get_version_pair(self) -> (str, str):
+        return {
+            'plainbox_version': ToolBase.format_version_tuple(
+                plainbox.__version__),
+            'application_version': ToolBase.format_version_tuple(__version__)
+        }
+
+    def start_session(self, test_plain_id):
+        return {
+
+        }
+
+
+create_app_object = CheckboxTouchApplication.create_and_get_handle

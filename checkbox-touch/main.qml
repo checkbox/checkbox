@@ -48,19 +48,28 @@ MainView {
 
     // High-level object representing the full checkbox testing stack
     CheckboxStack {
+        id: checkboxStack
         onStackReady: {
             console.log("Pyotherside version" + pyothersideVersion);
             console.log("Python version " + pythonVersion);
-            console.log("PlainBox version " + plainboxVersion);
+            console.log("Plainbox version " + plainboxVersion);
+            console.log("Checkbox Touch version " + applicationVersion);
+            // TODO: enable the start testing button on the welcome page
         }
     }
 
     PageStack {
         id: pageStack
         Component.onCompleted: {
-            var newPage = Qt.createComponent(Qt.resolvedUrl("components/WelcomePage.qml")).createObject();
-            newPage.welcomeText = i18n.tr("This application is under development.\nThere is nothing beyond this screen yet");
-            push(newPage);
+            push(welcomePage);
+        }
+    }
+
+    WelcomePage {
+        id: welcomePage;
+        welcomeText: i18n.tr("Welcome to Checkbox Touch");
+        onStartTestingTriggered: {
+            checkboxStack.application.startSession();
         }
     }
 }
