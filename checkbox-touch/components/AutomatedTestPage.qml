@@ -32,8 +32,7 @@ import QtQuick.Layouts 1.1
 Page {
     id: automatedTestPage
 
-    property alias testName: testNameLabel.text
-    property alias testDescription: testDescrptionLabel.text
+    property var test: { "name": "", "description": "" }
 
     title: i18n.tr("Automated test")
 
@@ -49,18 +48,17 @@ Page {
         }
 
         Label {
-            id: testNameLabel
             fontSize: "large"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.alignment: Qt.AlignLeft
+            text: test["name"]
         }
 
         Label {
-            id: testDescrptionLabel
-            text: testDescription
             fontSize: "medium"
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["description"]
         }
     }
     ActivityIndicator {

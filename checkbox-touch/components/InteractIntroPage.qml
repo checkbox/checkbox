@@ -32,8 +32,7 @@ import QtQuick.Layouts 1.1
 
 Page {
     id: userInteractVerifyIntroPage
-    property alias testName: testNameLabel.text
-    property alias testDescription: testDescrptionLabel.text
+    property var test: { "name": "", "description": "" }
 
     signal testStarted();
     signal testSkipped();
@@ -78,18 +77,18 @@ Page {
         anchors.margins: units.gu(3)
 
         Label {
-            id: testNameLabel
             fontSize: "large"
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["name"]
         }
 
         Label {
-            id: testDescrptionLabel
             fontSize: "medium"
             Layout.fillWidth: true
             Layout.fillHeight: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["description"]
         }
 
         ActivityIndicator {

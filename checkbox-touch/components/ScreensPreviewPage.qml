@@ -32,15 +32,10 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
         contentWidth: column.width
+        anchors.margins: units.gu(1)
         ColumnLayout {
             id: column
             spacing: units.gu(3)
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-                margins: units.gu(1)
-            }
             Label {
                 fontSize: "x-large"
                 Layout.alignment: Qt.AlignHCenter
@@ -60,22 +55,28 @@ Page {
             Button {
                 text: i18n.tr("Automated test page")
                 onClicked: {
-                    var newPage = Qt.createComponent(Qt.resolvedUrl("AutomatedTestPage.qml")).createObject();
-                    newPage.testName = "memory/info";
-                    newPage.testDescription = "This test checks the amount of memory which is reporting \
+                    var test = {
+                        "name": "memory/info",
+                        "description": "This test checks the amount of memory which is reporting \
 in meminfo against the size of the memory modules detected by DMI."
+                    };
+                    var newPage = Qt.createComponent(Qt.resolvedUrl("AutomatedTestPage.qml")).createObject();
+                    newPage.test = test;
                     pageStack.push(newPage);
                 }
             }
             Button {
                 text: i18n.tr("User-Interact-Verify test page")
                 onClicked: {
-                    var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
-                    newPage.testName = "Headphones playback";
-                    newPage.testDescription = "This test will check that headphones connector works correctly.\n\
+                    var test = {
+                        "name": "Headphones playback",
+                        "description": "This test will check that headphones connector works correctly.\n\
 STEPS:\n\
   1. Connect a pair of headphones to your audio device\n\
-  2. Click the Test button to play a sound to your audio device";
+  2. Click the Test button to play a sound to your audio device"
+                    };
+                    var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
+                    newPage.test = test;
                     newPage.testStarted.connect(userInteractVerifyTestStarted);
                     newPage.testSkipped.connect(skipTest);
                     //Triggering of timer should change the state on intro page
@@ -109,15 +110,19 @@ Do you want to rerun the last test, continue to the next test, or restart from t
                 objectName: "manualIntroPageButton"
                 text: i18n.tr("Manual test page")
                 onClicked: {
+                    var test = {
+                        "name": "Volume Down Key",
+                        "description": "PURPOSE:\n    This test will test the volume down key\n\
+STEPS:\n    1. Click the volume down key of your phone",
+                        "verificationDescription": "Did the volume go down when you pressed the volume down key?"
+                    };
+
                     var newPage = Qt.createComponent(Qt.resolvedUrl("ManualIntroPage.qml")).createObject();
-                    newPage.testName = "Volume Down Key";
-                    newPage.testDescription = "PURPOSE:\n    This test will test the volume down key\n\
-STEPS:\n    1. Click the volume down key of your phone"
                     newPage.testSkipped.connect(skipTest);
+                    newPage.test = test;
                     newPage.continueClicked.connect(function() {
                         var verificationPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
-                        verificationPage.testName = "Volume Down Key"
-                        verificationPage.verificationDescription = "Did the volume go down when you pressed the volume down key?"
+                        verificationPage.test = test;
                         verificationPage.verificationDone.connect(verificationDone);
                         verificationPage.testSkipped.connect(skipTest);
                         pageStack.push(verificationPage);
@@ -130,12 +135,16 @@ STEPS:\n    1. Click the volume down key of your phone"
                 Button {
                     text: i18n.tr("User-Interact test page")
                     onClicked: {
-                        var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
-                        newPage.testName = "Finger Expand";
-                        newPage.testDescription = "PURPOSE:\n    Check touchscreen expand gesture for zoom\n\
+                        var test = {
+                            "name": "Finger Expand",
+                            "description": "PURPOSE:\n    Check touchscreen expand gesture for zoom\n\
     STEPS:\n\
       1. Press the Test button\n\
-      2. Using 2 fingers, resize the blue square until it turns green, then release it.";
+      2. Using 2 fingers, resize the blue square until it turns green, then release it."
+                        };
+
+                        var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
+                        newPage.test = test;
                         newPage.testSkipped.connect(skipTest);
                         newPage.testStarted.connect(userInteractTestStarted);
                         interactIntroTimer.triggered.connect(newPage.stopActivity)
@@ -154,11 +163,15 @@ STEPS:\n    1. Click the volume down key of your phone"
                 id: verificationPageButton
                 text: i18n.tr("Test verification page")
                 onClicked: {
+                    var test = {
+                        "name": "Headphones playback",
+                        "verificationDescription": "Did you hear a sound through the headphones and did the sound \
+play without any distortion, clicks or other strange noises from your headphones?"
+                    };
+
                     interactIntroTimer.triggered.disconnect(verificationPageButton.clicked);
                     var newPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
-                    newPage.testName = "Headphones playback";
-                    newPage.verificationDescription = "Did you hear a sound through the headphones and did the sound \
-play without any distortion, clicks or other strange noises from your headphones?";
+                    newPage.test = test;
                     newPage.testSkipped.connect(skipTest);
                     newPage.verificationDone.connect(verificationDone);
                     pageStack.push(newPage);
