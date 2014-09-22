@@ -52,5 +52,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             'application_version': ToolBase.format_version_tuple(__version__)
         }
 
+    def start_session(self, test_plain_id):
+        return {
+
+        }
+
 
 create_app_object = CheckboxTouchApplication.create_and_get_handle
