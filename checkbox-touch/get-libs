@@ -89,20 +89,21 @@ def get_package_from_url_and_extract(url, target_dir):
     subprocess.check_call(["dpkg", "-x", filename, target_dir])
 
 
-def get_plainbox():
+def get_plainbox(version='0.10'):
     # plaibox_pypi contains URL from which to download plainbox
     plainbox_pypi = ('https://pypi.python.org/packages/source'
-                     '/p/plainbox/plainbox-0.10.tar.gz')
+                     '/p/plainbox/plainbox-{}.tar.gz'.format(version))
     with tempfile.TemporaryDirectory() as tmp:
         filename = os.path.join(tmp, plainbox_pypi.split('/')[-1])
         print('retrieving {0}'.format(plainbox_pypi))
         urllib.request.urlretrieve(plainbox_pypi, filename)
         tarball = tarfile.open(filename)
         members = [member for member in tarball.getmembers()
-                   if member.name.startswith("plainbox-0.10/plainbox/")]
+                   if member.name.startswith(
+                       "plainbox-{}/plainbox/".format(version))]
         tarball.extractall(tmp, members=members)
         copy_tree(
-            os.path.join(tmp, "plainbox-0.10", "plainbox"),
+            os.path.join(tmp, "plainbox-{}".format(version), "plainbox"),
             os.path.join('lib', 'py', 'plainbox'),
             preserve_symlinks=1)
 
