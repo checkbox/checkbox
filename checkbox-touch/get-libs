@@ -37,9 +37,6 @@ arch_list = ['i386', 'amd64', 'armhf']
 # multiarch_list contains full architecture name as used in the directories
 # in contents of click package
 multiarch_list = ["i386-linux-gnu", "x86_64-linux-gnu", "arm-linux-gnueabihf"]
-# plaibox_pypi contains URL from which to download plainbox
-plainbox_pypi = ('https://pypi.python.org/packages/source'
-                 '/p/plainbox/plainbox-0.10.tar.gz')
 
 
 def prepare_uris():
@@ -92,7 +89,10 @@ def get_package_from_url_and_extract(url, target_dir):
     subprocess.check_call(["dpkg", "-x", filename, target_dir])
 
 
-def main():
+def get_plainbox():
+    # plaibox_pypi contains URL from which to download plainbox
+    plainbox_pypi = ('https://pypi.python.org/packages/source'
+                     '/p/plainbox/plainbox-0.10.tar.gz')
     with tempfile.TemporaryDirectory() as tmp:
         filename = os.path.join(tmp, plainbox_pypi.split('/')[-1])
         print('retrieving {0}'.format(plainbox_pypi))
@@ -105,8 +105,11 @@ def main():
             os.path.join(tmp, "plainbox-0.10", "plainbox"),
             os.path.join('lib', 'py', 'plainbox'),
             preserve_symlinks=1)
-    uris = prepare_uris()
 
+
+def main():
+    get_plainbox()
+    uris = prepare_uris()
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
     libs_urls = [uris['libpython3.4', arch] for arch in arch_list]
