@@ -64,7 +64,10 @@ QtObject {
     function invoke(func, args, callback) {
         if (py !== null && handle > 0) {
             console.log("py_invoke(" + handle + ", " + func + ", " + args + ") ...");
-            py.call("py_invoke", [handle, func, args], callback);
+            py.call("py_invoke", [handle, func, args], function(response) {
+                console.log("py_invoke(" + handle + ", " + func + ", " + args + ") -> " + response);
+                callback(response);
+            });
         } else {
             console.error("unable to py_invoke: " + handle + ", " + func + ", " + args);
             throw "py_invoke called without ready py and handle";
