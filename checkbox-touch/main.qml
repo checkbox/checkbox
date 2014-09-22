@@ -48,11 +48,13 @@ MainView {
 
     // High-level object representing the full checkbox testing stack
     CheckboxStack {
+        id: checkboxStack
         onStackReady: {
             console.log("Pyotherside version" + pyothersideVersion);
             console.log("Python version " + pythonVersion);
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
+            // TODO: enable the start testing button on the welcome page
         }
     }
 
@@ -66,5 +68,8 @@ MainView {
     WelcomePage {
         id: welcomePage;
         welcomeText: i18n.tr("Welcome to Checkbox Touch");
+        onStartTestingTriggered: {
+            checkboxStack.application.startSession();
+        }
     }
 }
