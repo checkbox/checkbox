@@ -44,26 +44,23 @@ class RemoteObjectLifecycleManager:
         """
         Remove a reference represented by the specified handle
         """
-        with self._lock:
-            del self._handle_map[handle]
+        del self._handle_map[handle]
 
     def ref(self, obj: object) -> int:
         """
         Store a reference to an object and return the handle
         """
-        with self._lock:
-            self._count += 1
-            handle = self._count
-            self._handle_map[handle] = obj
-            return handle
+        self._count += 1
+        handle = self._count
+        self._handle_map[handle] = obj
+        return handle
 
     def invoke(self, handle: int, func: str, args):
-        with self._lock:
-            obj = self._handle_map[handle]
-            impl = getattr(obj, func)
-            retval = impl(*args)
-            # print("(py_invoke) returning", retval)
-            return retval
+        obj = self._handle_map[handle]
+        impl = getattr(obj, func)
+        retval = impl(*args)
+        # print("(py_invoke) returning", retval)
+        return retval
 
 
 _manager = RemoteObjectLifecycleManager()
