@@ -59,9 +59,12 @@ MainView {
     PageStack {
         id: pageStack
         Component.onCompleted: {
-            var newPage = Qt.createComponent(Qt.resolvedUrl("components/WelcomePage.qml")).createObject();
-            newPage.welcomeText = i18n.tr("This application is under development.\nThere is nothing beyond this screen yet");
-            push(newPage);
+            push(welcomePage);
         }
+    }
+
+    WelcomePage {
+        id: welcomePage;
+        welcomeText: i18n.tr("Welcome to Checkbox Touch");
     }
 }
