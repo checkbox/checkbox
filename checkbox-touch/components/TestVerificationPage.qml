@@ -30,8 +30,7 @@ import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
 
 Page {
-    property alias testName: testNameLabel.text
-    property alias verificationDescription: verificationDescriptionLabel.text
+    property var test: { "name": "", "verificationDescription": "" }
 
     signal verificationDone(bool result);
     signal testSkipped();
@@ -58,18 +57,18 @@ Page {
         anchors.margins: units.gu(3)
 
         Label {
-            id: testNameLabel
             fontSize: "large"
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["name"]
         }
 
         Label {
-            id: verificationDescriptionLabel
             fontSize: "medium"
             Layout.fillWidth: true
             Layout.fillHeight: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["verificationDescription"]
         }
 
         LatchButton {

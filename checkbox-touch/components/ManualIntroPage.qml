@@ -30,8 +30,7 @@ import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
 
 Page {
-    property alias testName: testNameLabel.text
-    property alias testDescription: testDescrptionLabel.text
+    property var test: { "name": "", "description": "" }
 
     signal continueClicked();
     signal testSkipped();
@@ -57,18 +56,18 @@ Page {
         anchors.margins: units.gu(3)
 
         Label {
-            id: testNameLabel
             fontSize: "large"
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["name"]
         }
 
         Label {
-            id: testDescrptionLabel
             fontSize: "medium"
             Layout.fillWidth: true
             Layout.fillHeight: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["description"]
         }
 
         Button {
