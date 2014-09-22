@@ -22,10 +22,9 @@
 This module is a part of the implementation of the Checkbox QML Stack. It is
 being imported at startup of all QML applications that are using Checkbox.
 """
+import abc
 import builtins
 import threading
-
-import plainbox
 
 
 class RemoteObjectLifecycleManager:
@@ -75,15 +74,13 @@ builtins.py_unref = _manager.unref
 builtins.py_invoke = _manager.invoke
 
 
-class PlainBox:
+class PlainboxApplication(metaclass=abc.ABCMeta):
     """
-    Wrapper around the whole plainbox library
-    """
+    Base class for plainbox-based applications.
 
-    def __init__(self):
-        self.provider_list = []
-        self.session_list = []
-        self.config = None
+    Concrete subclasses of this class should implement get_version_pair() and
+    add any additional methods that they would like to call.
+    """
 
     @classmethod
     def create_and_get_handle(cls):
@@ -95,12 +92,8 @@ class PlainBox:
         """
         return py_ref(cls())
 
-    def get_version(self) -> str:
+    @abc.abstractmethod
+    def get_version_pair(self) -> (str, str):
         """
-        Get the version of the PlainBox library
+        Get core (plainbox) and application version
         """
-        from plainbox.impl.clitools import ToolBase
-        return ToolBase.format_version_tuple(plainbox.__version__)
-
-
-create_plainbox_object = PlainBox.create_and_get_handle

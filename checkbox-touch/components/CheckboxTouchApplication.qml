@@ -23,11 +23,15 @@ import QtQuick 2.0
 
 
 PythonObjectHandle {
-    id: plainbox
-    property string version
+    id: app
+    // Version of the application
+    property string applicationVersion
+    // Version of the plainbox library
+    property string plainboxVersion
     onHandleReady: {
-        invoke("get_version", [], function(version) {
-            plainbox.version = version
+        invoke("get_version_pair", [], function(response) {
+            app.applicationVersion = response.application_version;
+            app.plainboxVersion = response.plainbox_version;
         });
     }
 }
