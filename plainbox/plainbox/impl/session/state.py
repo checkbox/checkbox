@@ -192,11 +192,40 @@ class SessionDeviceContext:
         desired job list
     """
 
-    def __init__(self):
-        self._provider_list = []
-        self._unit_list = []
+    # Cache key that stores the list of execution controllers
+    _CACHE_EXECUTION_CTRL_LIST = 'execution_controller_list'
+
+    def __init__(self, state=None):
+        """
+        Initialize a new SessionDeviceContext
+
+        :param state:
+            An (optinal) state to use
+
+        Note that using an initial state will not cause any of the signals to
+        fire for the initial list of units nor the list of providers (derived
+        from the same list).
+        """
         self._device = None
-        self._state = SessionState(self._unit_list)
+        # Setup an empty computation cache for this context
+        self._shared_cache = {}
+        if state is None:
+            # If we don't have to work with an existing state object
+            # (the preferred mode) then all life is easy as we control both
+            # the unit list and the provider list
+            self._unit_list = []
+            self._provider_list = []
+            self._state = SessionState(self._unit_list)
+        else:
+            if not isinstance(state, SessionState):
+                raise TypeError
+            # If we do have an existing state object then our lists must be
+            # obtained / derived from the state object's data
+            self._unit_list = state.unit_list
+            self._provider_list = list({
+                unit.provider for unit in self._unit_list
+            })
+            self._state = state
         # Connect SessionState's signals to fire our signals. This
         # way all manipulation done through the SessionState object
         # can be observed through the SessionDeviceContext object
@@ -255,12 +284,31 @@ class SessionDeviceContext:
         """
         return self._unit_list
 
-    def add_provider(self, provider):
+    @property
+    def execution_controller_list(self):
+        """
+        A list of execution controllers applicable in this context.
+
+        :returns:
+            A list of IExecutionController objects
+
+        .. note::
+            The return value is different whenever a provider is added to the
+            context. If you have obtained this value in the past it may be
+            no longer accurate.
+        """
+        return self.compute_shared(
+            self._CACHE_EXECUTION_CTRL_LIST, self._compute_execution_ctrl_list)
+
+    def add_provider(self, provider, add_units=True):
         """
         Add a provider to the context
 
         :param provider:
             The :class:`Provider1` to add
+        :param add_units:
+            An optional flag that controls if all of the units from that
+            provider should be added. Defaults to True.
         :raises ValueError:
             If the provider is already in the context
 
@@ -275,8 +323,9 @@ class SessionDeviceContext:
             raise ValueError(_("attempting to add the same provider twice"))
         self._provider_list.append(provider)
         self.on_provider_added(provider)
-        for unit in provider.get_units()[0]:
-            self.add_unit(unit)
+        if add_units:
+            for unit in provider.get_units()[0]:
+                self.add_unit(unit)
 
     def add_unit(self, unit):
         """
@@ -314,26 +363,114 @@ class SessionDeviceContext:
         # NOTE: no need to fire the on_unit_removed() signal becuse the state
         # object and we've connected it to will fire our version.
 
+    def get_ctrl_for_job(self, job):
+        """
+        Get the execution controller most applicable to run this job
+
+        :param job:
+            A job definition to run
+        :returns:
+            An execution controller instance
+        :raises LookupError:
+            if no execution controller capable of running the specified job can
+            be found
+
+        The best controller is the controller that has the highest score
+        (as computed by :meth:`IExecutionController.get_score()) for the
+        job in question.
+        """
+        # Compute the score of each controller
+        ctrl_score = [
+            (ctrl, ctrl.get_score(job))
+            for ctrl in self.execution_controller_list]
+        # Sort scores
+        ctrl_score.sort(key=lambda pair: pair[1])
+        # Get the best score
+        ctrl, score = ctrl_score[-1]
+        # Ensure that the controller is viable
+        if score < 0:
+            raise LookupError(
+                _("No exec controller supports job {}").format(job))
+        logger.debug(
+            _("Selected execution controller %s (score %d) for job %r"),
+            ctrl.__class__.__name__, score, job.id)
+        return ctrl
+
     @Signal.define
     def on_provider_added(self, provider):
         """
         Signal sent whenever a provider is added to the context.
         """
-        logger.info(_("New provider added: %r"), provider)
+        logger.info(_("Provider %s added to context %s"), provider, self)
+        # Invalidate the list of execution controllers as they depend
+        # on the accuracy of provider_list
+        self._invalidate_execution_ctrl_list()
 
     @Signal.define
     def on_unit_added(self, unit):
         """
         Signal sent whenever a unit is added to the context.
         """
-        logger.info(_("Unit added: %r"), unit)
+        logger.debug(_("Unit %s added to context %s"), unit, self)
 
     @Signal.define
     def on_unit_removed(self, unit):
         """
         Signal sent whenever a unit is removed from the context.
         """
-        logger.info(_("Unit removed: %r"), unit)
+        logger.debug(_("Unit %s removed from context %s"), unit, self)
+
+    def compute_shared(self, cache_key, func, *args, **kwargs):
+        """
+        Compute a shared helper.
+
+        :param cache_key:
+            Key to use to lookup the helper value
+        :param func:
+            Function that computes the helper value. The function is called
+            with the context as the only argument
+        :returns:
+            Return value of func(self, *args, **kwargs) (possibly computed
+            earlier).
+
+        Compute something that can be shared by all users of the device context
+        This allows certain expensive computations to be performed only once.
+
+        .. note::
+            The caller is responsible for ensuring that ``args`` and ``kwargs``
+            match the `cache_key` each time this function is called.
+        """
+        if cache_key not in self._shared_cache:
+            self._shared_cache[cache_key] = func(*args, **kwargs)
+        return self._shared_cache[cache_key]
+
+    def invalidate_shared(self, cache_key):
+        if cache_key in self._shared_cache:
+            del self._shared_cache[cache_key]
+
+    def _compute_execution_ctrl_list(self):
+        """
+        Internal method that computes the list of execution controllers
+        """
+        # TODO: tie this with the upcoming device patches
+        from plainbox.impl.ctrl import RootViaPkexecExecutionController
+        from plainbox.impl.ctrl import RootViaPTL1ExecutionController
+        from plainbox.impl.ctrl import RootViaSudoExecutionController
+        from plainbox.impl.ctrl import UserJobExecutionController
+        return [
+            RootViaPTL1ExecutionController(self.provider_list),
+            RootViaPkexecExecutionController(self.provider_list),
+            # XXX: maybe this one should be only used on command line
+            RootViaSudoExecutionController(self.provider_list),
+            UserJobExecutionController(self.provider_list),
+        ]
+
+    def _invalidate_execution_ctrl_list(self, *args, **kwargs):
+        """
+        Internal method that invalidates the 'execution_controller_list' cache
+        key that is used to store the list of execution controllers.
+        """
+        self.invalidate_shared(self._CACHE_EXECUTION_CTRL_LIST)
 
 
 class SessionState:
@@ -449,7 +586,6 @@ class SessionState:
 
         This signal is fired **after** :meth:`on_job_state_map_changed()`
         """
-        logger.info(_("New job defined: %r"), job)
 
     @Signal.define
     def on_job_removed(self, job):
@@ -458,21 +594,18 @@ class SessionState:
 
         This signal is fired **after** :meth:`on_job_state_map_changed()`
         """
-        logger.info(_("Job removed: %r"), job)
 
     @Signal.define
     def on_unit_added(self, unit):
         """
         Signal sent whenever a unit is added to the session.
         """
-        logger.info(_("Unit added: %r"), unit)
 
     @Signal.define
     def on_unit_removed(self, unit):
         """
         Signal sent whenever a unit is removed from the session.
         """
-        logger.info(_("Unit removed: %r"), unit)
 
     def __init__(self, unit_list):
         """
