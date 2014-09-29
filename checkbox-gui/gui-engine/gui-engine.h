@@ -190,7 +190,7 @@ public slots:
         const QString GetIOLog(const QString& job);
 
         // Retrieve all the previous session data
-        void GuiResumeSession(const bool re_run);
+        void GuiResumeSession(const bool re_run, const bool continue_pass = false);
         void GuiCreateSession(void);
 
 public:
