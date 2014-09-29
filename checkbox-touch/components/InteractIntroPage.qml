@@ -35,7 +35,7 @@ Page {
     property var test: { "name": "", "description": "" }
 
     signal testStarted();
-    signal testSkipped();
+    signal testDone(var test);
 
     function stopActivity() {
         state = "idle"
@@ -50,7 +50,8 @@ Page {
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
-                    testSkipped();
+                    test["outcome"] = "skip";
+                    testDone(test);
                 }
             }
         ]

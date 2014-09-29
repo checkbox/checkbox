@@ -47,7 +47,7 @@ MainView {
     // High-level object representing the full checkbox testing stack
     CheckboxStack {
         onStackReady: {
-            console.log("Pyotherside version" + pyothersideVersion);
+            console.log("Pyotherside version " + pyothersideVersion);
             console.log("Python version " + pythonVersion);
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);

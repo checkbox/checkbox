@@ -54,7 +54,7 @@ QtObject {
     /** Dereference this object */
     function _unref() {
         if (py !== null && handle > 0) {
-            console.log("py_unref: " + handle);
+            // console.log("py_unref: " + handle);
             py.call("py_unref", [handle]);
             handle = 0;
         }
@@ -63,13 +63,13 @@ QtObject {
     /** Call a method on this object */
     function invoke(func, args, callback) {
         if (py !== null && handle > 0) {
-            console.log("py_invoke(" + handle + ", " + func + ", " + args + ") ...");
+            console.log("py_invoke(" + handle + ", " + func + ", " + JSON.stringify(args) + ") ...");
             py.call("py_invoke", [handle, func, args], function(response) {
-                console.log("py_invoke(" + handle + ", " + func + ", " + args + ") -> " + response);
+                console.log("py_invoke(" + handle + ", " + func + ", " + JSON.stringify(args) + ") -> " + JSON.stringify(response));
                 callback(response);
             });
         } else {
-            console.error("unable to py_invoke: " + handle + ", " + func + ", " + args);
+            console.error("unable to py_invoke: " + handle + ", " + func + ", " + JSON.stringify(args));
             throw "py_invoke called without ready py and handle";
         }
     }

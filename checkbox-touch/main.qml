@@ -21,6 +21,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+import io.thp.pyotherside 1.2
 import "components"
 
 
@@ -46,30 +47,199 @@ MainView {
 
     useDeprecatedToolbar: false
 
-    // High-level object representing the full checkbox testing stack
-    CheckboxStack {
-        id: checkboxStack
-        onStackReady: {
-            console.log("Pyotherside version" + pyothersideVersion);
-            console.log("Python version " + pythonVersion);
+    Arguments {
+        id: args
+        Argument {
+            name: "testplan"
+            help: "Identifier of the test plan to run"
+            required: true
+            valueNames: ["TESTPLAN"]
+        }
+    }
+
+    // Pyotherside python object that we use to talk to all of plainbox
+    Python {
+        id: py
+        Component.onCompleted: {
+            console.log("Pyotherside version " + pluginVersion());
+            console.log("Python version " + pythonVersion());
+            // A bit hacky but that's where the python code is
+            addImportPath(Qt.resolvedUrl('py/'));
+            // Import path for plainbox and potentially other python libraries
+            addImportPath(Qt.resolvedUrl('lib/py'))
+            // Import the checkbox_touch module on startup then call the
+            // create_app_object() function and assign the resulting handle
+            // back to the application component.
+            py.importModule("checkbox_touch", function() {
+                call("checkbox_touch.create_app_object", [], function(handle) {
+                    app.handle = handle;
+                });
+            });
+        }
+        onError: console.error("python error: " + traceback)
+        onReceived: console.log("pyotherside.send: " + data)
+    }
+
+    // Component representing our application
+    CheckboxTouchApplication {
+        id: app
+        py: py
+        testPlan: args.values.testplan
+        onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
-            // TODO: enable the start testing button on the welcome page
+            startSession();
+        }
+        onSessionReady: {
+            welcomePage.enableButton()
         }
     }
 
     PageStack {
         id: pageStack
-        Component.onCompleted: {
-            push(welcomePage);
-        }
+        Component.onCompleted: push(welcomePage)
     }
 
     WelcomePage {
-        id: welcomePage;
-        welcomeText: i18n.tr("Welcome to Checkbox Touch");
-        onStartTestingTriggered: {
-            checkboxStack.application.startSession();
+        id: welcomePage
+        welcomeText: i18n.tr("Welcome to Checkbox Touch")
+        onStartTestingTriggered: categorySelectionPage.setup()
+    }
+
+    SelectionPage {
+        id: categorySelectionPage
+        title: i18n.tr("Suite Selection")
+
+        function setup() {
+            app.getCategories(function(response) {
+                var category_info_list = response.category_info_list;
+                model.clear();
+                for (var i=0; i<category_info_list.length; i++) {
+                    var category_info = category_info_list[i]; 
+                    model.append(category_info);
+                }
+                pageStack.push(categorySelectionPage);
+            });
+        }
+
+        onSelectionDone: {
+            app.rememberCategorySelection(selected_id_list, function(response) {
+                testSelectionPage.setup();
+            });
+        }
+
+    }
+
+    SelectionPage {
+        id: testSelectionPage
+        title: i18n.tr("Test selection")
+        continueText: i18n.tr("Start Testing")
+        
+        function setup(selected_category_list) {
+            app.getTests(function(response) {
+                model.clear();
+                var test_info_list = response.test_info_list;
+                for (var i=0; i<test_info_list.length; i++) {
+                    model.append(test_info_list[i]);
+                }
+                pageStack.push(testSelectionPage);
+            });
+        }
+        
+        onSelectionDone: {
+            app.rememberTestSelection(selected_id_list, function() {
+                processNextTest();
+            });
         }
     }
+
+    function processNextTest() {
+        app.getNextTest(function(test) {
+            if (test.plugin === undefined) { 
+                return showResultsScreen();
+            }
+            switch (test['plugin']) {
+                case 'manual':
+                    performManualTest(test);
+                    break;
+                case 'user-interact-verify':
+                    performUserInteractVerifyTest(test);
+                    break;
+                case 'shell':
+                    performAutomatedTest(test);
+                    break;
+                case 'user-verify':
+                    performUserInteractTest(test);
+                    break;
+                default:
+                    skipCurrentTest(test);
+            }
+        });
+    }
+
+    function completeTest(test) {
+        pageStack.clear();
+        app.registerTestResult(test, processNextTest);
+    }
+
+    function showResultsScreen() {
+        app.getResults(function(results) {
+            var resultsPage = Qt.createComponent(Qt.resolvedUrl("components/ResultsPage.qml")).createObject();
+            resultsPage.results = results;
+            pageStack.push(resultsPage);
+        });
+    }
+
+    function skipCurrentTest(test) {
+        processNextTest();
+    }
+
+    function performAutomatedTest(test) {
+        var automatedTestPage = Qt.createComponent(Qt.resolvedUrl("components/AutomatedTestPage.qml")).createObject();
+        automatedTestPage.test = test;
+        pageStack.push(automatedTestPage);
+        app.runTestActivity(test, completeTest);
+    }
+
+    function performManualTest(test) {
+        var manualIntroPage = Qt.createComponent(Qt.resolvedUrl("components/ManualIntroPage.qml")).createObject();
+        manualIntroPage.test = test
+        manualIntroPage.testDone.connect(completeTest);
+        manualIntroPage.continueClicked.connect(function() { showVerificationScreen(test); });
+        pageStack.push(manualIntroPage);
+    }
+
+    function performUserInteractVerifyTest(test) {
+        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
+        InteractIntroPage.test = test;
+        InteractIntroPage.testStarted.connect(function() {
+            app.runTestActivity(test, function(test) { showVerificationScreen(test); });
+        });
+        InteractIntroPage.testDone.connect(completeTest);
+        pageStack.push(InteractIntroPage);
+    }
+
+    function performUserInteractTest(test) {
+        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
+        InteractIntroPage.test = test;
+        InteractIntroPage.testDone.connect(completeTest);
+        InteractIntroPage.testStarted.connect(function() {
+            app.runTestActivity(test, function(test) {
+                InteractIntroPage.stopActivity();
+                var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
+                userInteractSummaryPage.test = test;
+                userInteractSummaryPage.testDone.connect(completeTest);
+                pageStack.push(userInteractSummaryPage);
+            });
+        });
+        pageStack.push(InteractIntroPage);
+    }
+
+    function showVerificationScreen(test) {
+        var verificationPage = Qt.createComponent(Qt.resolvedUrl("components/TestVerificationPage.qml")).createObject();
+        verificationPage.test = test
+        verificationPage.testDone.connect(completeTest);
+        pageStack.push(verificationPage);
+    }
+
 }

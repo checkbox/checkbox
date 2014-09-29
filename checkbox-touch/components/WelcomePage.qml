@@ -32,6 +32,10 @@ Page {
     title: i18n.tr("System Testing")
     visible: false
 
+    function enableButton() {
+        state = "loaded";
+    }
+
     Label {
         id: welcomeText
 
@@ -47,6 +51,39 @@ Page {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+    }
+    state: "loading"
+    states: [
+        State {
+            name: "loading"
+            PropertyChanges { target: startTestButton; enabled: false; color: UbuntuColors.warmGrey; text: i18n.tr("Checkbox is loading...") }
+            PropertyChanges { target: loadingSpinner; running: true}
+
+        },
+        State {
+            name: "loaded"
+            PropertyChanges { target: startTestButton; enabled: true; color: UbuntuColors.green; text: i18n.tr("Start Testing")}
+            PropertyChanges { target: loadingSpinner; running: false}
+        }
+    ]
+    transitions: Transition {
+        from: "loading"; to: "loaded"
+        ColorAnimation {
+            duration: 250
+        }
+    }
+
+
+    ActivityIndicator {
+        id: loadingSpinner
+        anchors {
+            bottom: startTestButton.top
+            left: parent.left
+            right: parent.right
+            bottomMargin: units.gu(4)
+        }
+        implicitHeight: units.gu(6)
+        implicitWidth: units.gu(6)
     }
 
     Button {
