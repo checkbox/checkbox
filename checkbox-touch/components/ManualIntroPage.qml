@@ -33,7 +33,7 @@ Page {
     property var test: { "name": "", "description": "" }
 
     signal continueClicked();
-    signal testSkipped();
+    signal testDone(var test);
 
     objectName: "manualIntroPage"
     title: i18n.tr("Test Description")
@@ -44,7 +44,8 @@ Page {
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
-                    testSkipped();
+                    test["outcome"] = "skip";
+                    testDone(test);
                 }
             }
         ]

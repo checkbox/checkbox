@@ -30,11 +30,9 @@ import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
 
 Page {
-    property alias testName: testNameLabel.text
-    property bool passed
+    property var test: { "name": "", "outcome": "pass"}
 
-    signal endOfTest(bool result);
-    signal testSkipped();
+    signal testDone(var test);
 
     title: i18n.tr("Verification")
 
@@ -44,7 +42,8 @@ Page {
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
-                    testSkipped();
+                    test["outcome"] = 'skip';
+                    testDone(test);
                 }
             }
         ]
@@ -56,10 +55,10 @@ Page {
         anchors.margins: units.gu(3)
 
         Label {
-            id: testNameLabel
             fontSize: "large"
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            text: test["name"]
         }
 
         Row {
@@ -76,7 +75,7 @@ Page {
                 width: resultLabel.width + units.gu(1)
                 Layout.alignment: Qt.AlignCenter
                 radius: 2
-                color: passed ? UbuntuColors.green : UbuntuColors.red
+                color: test["outcome"] == "pass" ? UbuntuColors.green : UbuntuColors.red
 
                 Label {
                     id: resultLabel
@@ -84,7 +83,7 @@ Page {
                     fontSize: "large"
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     color: "white"
-                    text : passed ? i18n.tr("PASSED") : i18n.tr("FAILED")
+                    text : test["outcome"] == "pass" ? i18n.tr("PASSED") : i18n.tr("FAILED")
                     anchors.centerIn: parent
                 }
             }
@@ -103,7 +102,7 @@ Page {
             Layout.fillWidth: true
             text: i18n.tr("Continue")
             onClicked: {
-                endOfTest(passed);
+                testDone(test);
             }
         }
     }

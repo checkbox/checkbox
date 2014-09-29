@@ -78,7 +78,7 @@ STEPS:\n\
                     var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
                     newPage.test = test;
                     newPage.testStarted.connect(userInteractVerifyTestStarted);
-                    newPage.testSkipped.connect(skipTest);
+                    newPage.testDone.connect(testDone);
                     //Triggering of timer should change the state on intro page
                     interactIntroTimer.triggered.connect(newPage.stopActivity)
                     pageStack.push(newPage);
@@ -118,13 +118,12 @@ STEPS:\n    1. Click the volume down key of your phone",
                     };
 
                     var newPage = Qt.createComponent(Qt.resolvedUrl("ManualIntroPage.qml")).createObject();
-                    newPage.testSkipped.connect(skipTest);
+                    newPage.testDone.connect(testDone);
                     newPage.test = test;
                     newPage.continueClicked.connect(function() {
                         var verificationPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
                         verificationPage.test = test;
-                        verificationPage.verificationDone.connect(verificationDone);
-                        verificationPage.testSkipped.connect(skipTest);
+                        verificationPage.testDone.connect(testDone);
                         pageStack.push(verificationPage);
                     });
                     pageStack.push(newPage);
@@ -145,7 +144,7 @@ STEPS:\n    1. Click the volume down key of your phone",
 
                         var newPage = Qt.createComponent(Qt.resolvedUrl("InteractIntroPage.qml")).createObject();
                         newPage.test = test;
-                        newPage.testSkipped.connect(skipTest);
+                        newPage.testDone.connect(testDone);
                         newPage.testStarted.connect(userInteractTestStarted);
                         interactIntroTimer.triggered.connect(newPage.stopActivity)
                         pageStack.push(newPage);
@@ -172,8 +171,7 @@ play without any distortion, clicks or other strange noises from your headphones
                     interactIntroTimer.triggered.disconnect(verificationPageButton.clicked);
                     var newPage = Qt.createComponent(Qt.resolvedUrl("TestVerificationPage.qml")).createObject();
                     newPage.test = test;
-                    newPage.testSkipped.connect(skipTest);
-                    newPage.verificationDone.connect(verificationDone);
+                    newPage.testDone.connect(testDone);
                     pageStack.push(newPage);
                 }
             }
@@ -198,10 +196,12 @@ play without any distortion, clicks or other strange noises from your headphones
         id: interactIntroTimer
         interval: 2000; running: false; repeat: false
     }
-    function skipTest() {
-        console.log("Test skipped");
+
+    function testDone(test) {
+        console.log("Test finished with result: " + test["outcome"]);
         unwindStack();
     }
+
     function replaceOnPageStack(newPage) {
         pageStack.pop();
         pageStack.push(newPage);
@@ -213,10 +213,12 @@ play without any distortion, clicks or other strange noises from your headphones
     function showUserInteractSummaryPage() {
         interactIntroTimer.triggered.disconnect(showUserInteractSummaryPage)
         var newPage = Qt.createComponent(Qt.resolvedUrl("UserInteractSummaryPage.qml")).createObject();
-        newPage.testName = "Finger Expand";
-        newPage.passed = userInteractShouldFail.checked;
-        newPage.endOfTest.connect(verificationDone);
-        newPage.testSkipped.connect(skipTest);
+        var test = {
+            "name": "Finger Expand",
+            "outcome": (userInteractShouldFail.checked == true) ? "pass" : "fail"
+        }
+        newPage.test = test
+        newPage.testDone.connect(testDone);
         pageStack.push(newPage);
     }
     function userInteractTestStarted() {
@@ -231,9 +233,5 @@ play without any distortion, clicks or other strange noises from your headphones
         while(pageStack.currentPage!=screensPreviewPage) {
             pageStack.pop();
         }
-    }
-    function verificationDone(result) {
-        console.log("verificationDone called with result: " + result);
-        unwindStack();
     }
 }

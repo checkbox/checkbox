@@ -32,8 +32,7 @@ import QtQuick.Layouts 1.1
 Page {
     property var test: { "name": "", "verificationDescription": "" }
 
-    signal verificationDone(bool result);
-    signal testSkipped();
+    signal testDone(var test);
 
     objectName: "testVerificationPage"
     title: i18n.tr("Verification")
@@ -44,7 +43,8 @@ Page {
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
-                    testSkipped();
+                    test["outcome"] = "skip";
+                    testDone(test);
                 }
             }
         ]
@@ -76,7 +76,8 @@ Page {
             Layout.fillWidth: true
             text: i18n.tr("Yes")
             onLatchedClicked: {
-                verificationDone(true);
+                test["outcome"] = "pass";
+                testDone(test);
             }
         }
 
@@ -85,7 +86,8 @@ Page {
             Layout.fillWidth: true
             text: i18n.tr("No")
             onLatchedClicked: {
-                verificationDone(false);
+                test["outcome"] = "fail";
+                testDone(test);
             }
         }
     }
