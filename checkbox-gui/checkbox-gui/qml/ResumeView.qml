@@ -77,8 +77,26 @@ Page {
         }
 
         Button {
-            id: continueButton
-            text: i18n.tr("Continue")
+            id: continuePassButton
+            text: i18n.tr("Continue (Set previous test status to PASS)")
+            width: buttoncol.buttonWidth
+            color: UbuntuColors.lightAubergine
+            onClicked: {
+
+
+                // Prepare for the run
+                guiEngine.GuiResumeSession(false, true);
+
+                // We need this to show the list of stuff
+                testitemFactory.CreateTestListModel(testListModel);
+
+                mainView.state = "RUNMANAGER"
+            }
+        }
+
+        Button {
+            id: continueFailButton
+            text: i18n.tr("Continue (Set previous test status to FAIL)")
             width: buttoncol.buttonWidth
             color: UbuntuColors.lightAubergine
             onClicked: {

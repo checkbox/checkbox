@@ -589,7 +589,7 @@ void GuiEngine::RunLocalJobs(void)
  * Functions to recover the metadata and other session info
  * Begin the re-construction of the internal state of the gui (several pieces)
 */
- void GuiEngine::GuiResumeSession(const bool re_run)
+ void GuiEngine::GuiResumeSession(const bool re_run, const bool continue_pass)
  {
     qDebug() << "GuiEngine::GuiResumeSession( " << (re_run ? "true":"false") << ") ";
     SessionResume(m_session);
@@ -628,7 +628,7 @@ void GuiEngine::RunLocalJobs(void)
         GetJobResults();
         // Now, we can set the outcome of this test
         QString empty;
-        SetJobOutcome(m_current_job_path, JobResult_OUTCOME_FAIL, empty);
+        SetJobOutcome(m_current_job_path, continue_pass ? JobResult_OUTCOME_PASS:JobResult_OUTCOME_FAIL, empty);
         // Lets skip this one
         m_rerun_list.removeOne(m_current_job_path);
     }
