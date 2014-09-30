@@ -169,7 +169,7 @@ MainView {
                     performAutomatedTest(test);
                     break;
                 case 'user-verify':
-                    performUserInteractTest(test);
+                    performUserVerifyTest(test);
                     break;
                 default:
                     skipCurrentTest(test);
@@ -219,18 +219,12 @@ MainView {
         pageStack.push(InteractIntroPage);
     }
 
-    function performUserInteractTest(test) {
+    function performUserVerifyTest(test) {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
         InteractIntroPage.testDone.connect(completeTest);
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) {
-                InteractIntroPage.stopActivity();
-                var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
-                userInteractSummaryPage.test = test;
-                userInteractSummaryPage.testDone.connect(completeTest);
-                pageStack.push(userInteractSummaryPage);
-            });
+            app.runTestActivity(test, function(test) { showVerificationScreen(test); } );
         });
         pageStack.push(InteractIntroPage);
     }
