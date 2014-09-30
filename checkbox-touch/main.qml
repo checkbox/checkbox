@@ -175,7 +175,8 @@ MainView {
                     performUserInteractTest(test);
                     break;
                 default:
-                    skipCurrentTest(test);
+                    test.outcome = "skip";
+                    completeTest(test);
             }
         });
     }
@@ -191,10 +192,6 @@ MainView {
             resultsPage.results = results;
             pageStack.push(resultsPage);
         });
-    }
-
-    function skipCurrentTest(test) {
-        processNextTest();
     }
 
     function performAutomatedTest(test) {
