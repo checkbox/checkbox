@@ -171,6 +171,9 @@ MainView {
                 case 'user-verify':
                     performUserVerifyTest(test);
                     break;
+                case 'user-interact':
+                    performUserInteractTest(test);
+                    break;
                 default:
                     skipCurrentTest(test);
             }
@@ -214,6 +217,22 @@ MainView {
         InteractIntroPage.test = test;
         InteractIntroPage.testStarted.connect(function() {
             app.runTestActivity(test, function(test) { showVerificationScreen(test); });
+        });
+        InteractIntroPage.testDone.connect(completeTest);
+        pageStack.push(InteractIntroPage);
+    }
+
+    function performUserInteractTest(test) {
+        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
+        InteractIntroPage.test = test;
+        InteractIntroPage.testStarted.connect(function() {
+            app.runTestActivity(test, function(test) {
+                InteractIntroPage.stopActivity();
+                var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
+                userInteractSummaryPage.test = test;
+                userInteractSummaryPage.testDone.connect(completeTest);
+                pageStack.push(userInteractSummaryPage);
+            });
         });
         InteractIntroPage.testDone.connect(completeTest);
         pageStack.push(InteractIntroPage);
