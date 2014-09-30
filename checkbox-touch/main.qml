@@ -169,10 +169,14 @@ MainView {
                     performAutomatedTest(test);
                     break;
                 case 'user-verify':
+                    performUserVerifyTest(test);
+                    break;
+                case 'user-interact':
                     performUserInteractTest(test);
                     break;
                 default:
-                    skipCurrentTest(test);
+                    test.outcome = "skip";
+                    completeTest(test);
             }
         });
     }
@@ -188,10 +192,6 @@ MainView {
             resultsPage.results = results;
             pageStack.push(resultsPage);
         });
-    }
-
-    function skipCurrentTest(test) {
-        processNextTest();
     }
 
     function performAutomatedTest(test) {
@@ -222,7 +222,6 @@ MainView {
     function performUserInteractTest(test) {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
-        InteractIntroPage.testDone.connect(completeTest);
         InteractIntroPage.testStarted.connect(function() {
             app.runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
@@ -231,6 +230,17 @@ MainView {
                 userInteractSummaryPage.testDone.connect(completeTest);
                 pageStack.push(userInteractSummaryPage);
             });
+        });
+        InteractIntroPage.testDone.connect(completeTest);
+        pageStack.push(InteractIntroPage);
+    }
+
+    function performUserVerifyTest(test) {
+        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
+        InteractIntroPage.test = test;
+        InteractIntroPage.testDone.connect(completeTest);
+        InteractIntroPage.testStarted.connect(function() {
+            app.runTestActivity(test, function(test) { showVerificationScreen(test); } );
         });
         pageStack.push(InteractIntroPage);
     }
