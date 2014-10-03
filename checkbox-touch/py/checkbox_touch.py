@@ -470,7 +470,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             result = {
                 "name": job.tr_summary(),
                 "description": job.tr_description(),
-                "verificationDescription": "Verification",
+                "verificationDescription": job.tr_description(),
                 "plugin": job.plugin,
                 "id": job.id,
             }
