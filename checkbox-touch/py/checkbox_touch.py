@@ -391,6 +391,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             id_map[category_id][0]
             for category_id in set(potential_category_map.values())
         )]
+        category_info_list.sort(key=lambda ci: ci['mod_name'])
         return {
             'category_info_list': category_info_list
         }
