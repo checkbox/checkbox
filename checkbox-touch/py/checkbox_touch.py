@@ -383,15 +383,16 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.test_plan.get_effective_category_map, potential_job_list)
         id_map = self.context.compute_shared(
             'id_map', compute_value_map, self.context, 'id')
+        category_info_list = [{
+            "mod_id": category.id,
+            "mod_name": category.name,
+            "mod_selected": True,
+        } for category in (
+            id_map[category_id][0]
+            for category_id in set(potential_category_map.values())
+        )]
         return {
-            'category_info_list': [{
-                "mod_id": category.id,
-                "mod_name": category.name,
-                "mod_selected": True,
-            } for category in (
-                id_map[category_id][0]
-                for category_id in set(potential_category_map.values())
-            )]
+            'category_info_list': category_info_list
         }
 
     @view
