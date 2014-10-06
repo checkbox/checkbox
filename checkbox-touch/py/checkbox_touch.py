@@ -505,6 +505,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         job_id = test['id']
         job = self.context.state.job_state_map[job_id].job
+        self.context.state.running_job_name = job_id
+        self.manager.checkpoint()
         try:
             result = self.runner.run_job(job)
         except OSError as exc:
@@ -512,6 +514,8 @@ class CheckboxTouchApplication(PlainboxApplication):
             result.outcome = 'fail'
             result.comment = str(exc)
         self.context.state.update_job_result(job, result)
+        self.context.state.running_job_name = None
+        self.manager.checkpoint()
         test['outcome'] = result.outcome
         return test
 
