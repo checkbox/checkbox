@@ -36,6 +36,7 @@ import json
 import logging
 import os
 import sys
+import time
 import traceback
 
 from plainbox.abc import IJobResult
@@ -473,6 +474,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "verificationDescription": job.tr_description(),
                 "plugin": job.plugin,
                 "id": job.id,
+                "start_time": time.time()
             }
             self.index += 1
             return result
@@ -490,6 +492,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         job = self.context.state.job_state_map[job_id].job
         result = self.context.state.job_state_map[job_id].result
         result.outcome = outcome
+        result.execution_duration = time.time() - test['start_time']
         self.context.state.update_job_result(job, result)
 
     @view
