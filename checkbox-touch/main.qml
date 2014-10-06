@@ -213,7 +213,10 @@ MainView {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) { showVerificationScreen(test); });
+            app.runTestActivity(test, function(test) {
+                InteractIntroPage.stopActivity();
+                showVerificationScreen(test);
+            });
         });
         InteractIntroPage.testDone.connect(completeTest);
         pageStack.push(InteractIntroPage);
