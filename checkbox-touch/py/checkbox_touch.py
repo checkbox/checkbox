@@ -401,6 +401,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         self.desired_category_ids = frozenset(selected_id_list)
         self.context.invalidate_shared('subset_job_list')
+        self.context.invalidate_shared('effective_category_map')
         _logger.info("Selected categories: %s", self.desired_category_ids)
 
     @view
