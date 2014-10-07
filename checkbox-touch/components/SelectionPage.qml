@@ -36,6 +36,19 @@ Page {
     readonly property alias model: selectionModel
 
     visible: false
+    property var selectedCount : 0
+    state : selectedCount > 0 ? "nonempty selection" : "empty selection"
+
+    // A function that needs to be called after changes are done to the model
+    // to re-count number of selected items on the list
+    function modelUpdated() {
+        selectedCount = 0;
+        for (var i=0; i < selectionModel.count; i++) {
+            if (selectionModel.get(i).mod_selected) {
+                selectedCount++;
+            }
+        }
+    }
 
     head {
         actions: [
@@ -62,6 +75,7 @@ Page {
                     for (var i=0; i<selectionModel.count; i++) {
                         selectionModel.setProperty(i, "mod_selected", true);
                     }
+                    selectedCount = selectionModel.count;
                 }
             },
             Action {
@@ -72,10 +86,22 @@ Page {
                     for (var i=0; i<selectionModel.count; i++) {
                         selectionModel.setProperty(i, "mod_selected", false);
                     }
+                    selectedCount = 0;
                 }
             }
         ]
     }
+
+    states: [
+         State {
+            name: "empty selection"
+            PropertyChanges { target: continueAction; enabled: false }
+         },
+         State {
+            name: "nonempty selection"
+            PropertyChanges { target: continueAction; enabled: true }
+         }
+    ]
 
     UbuntuListView {
         model: ListModel { 
@@ -97,8 +123,10 @@ Page {
                 readonly property bool checked: mod_selected
                 style: Theme.createStyleComponent("CheckBoxStyle.qml", checkBox)
                 // Toggle the mod_selected property
-                onClicked: selectionModel.setProperty(
-                    index, 'mod_selected', !checked);
+                onClicked: {
+                    selectionModel.setProperty(index, 'mod_selected', !checked);
+                    selectedCount += checked ? 1 : -1;
+                }
             }
         }
         section.property: "mod_group" // NOTE: this is a model reference

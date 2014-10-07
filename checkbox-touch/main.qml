@@ -118,6 +118,7 @@ MainView {
                     var category_info = category_info_list[i]; 
                     model.append(category_info);
                 }
+                modelUpdated();
                 pageStack.push(categorySelectionPage);
             });
         }
@@ -142,6 +143,7 @@ MainView {
                 for (var i=0; i<test_info_list.length; i++) {
                     model.append(test_info_list[i]);
                 }
+                modelUpdated();
                 pageStack.push(testSelectionPage);
             });
         }
