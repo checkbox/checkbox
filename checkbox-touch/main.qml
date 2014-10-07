@@ -190,6 +190,11 @@ MainView {
         app.getResults(function(results) {
             var resultsPage = Qt.createComponent(Qt.resolvedUrl("components/ResultsPage.qml")).createObject();
             resultsPage.results = results;
+            resultsPage.endTesting.connect(function() {
+                pageStack.clear();
+                pageStack.push(welcomePage);
+
+            });
             pageStack.push(resultsPage);
         });
     }

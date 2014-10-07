@@ -36,15 +36,15 @@ Page {
     visible: false
 
     property var results: {"totalPassed": 0, "totalFailed": 0, "totalSkipped": 0}
+    signal saveReportClicked()
+    signal endTesting()
 
     head {
         actions: [
             Action {
                 iconName: "window-close"
                 text: i18n.tr("Close")
-                onTriggered: {
-                    pageStack.pop();
-                }
+                onTriggered: endTesting();
             }
         ]
     }
@@ -126,9 +126,7 @@ Page {
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Save detailed report")
-            onLatchedClicked: {
-                pageStack.pop()
-            }
+            onLatchedClicked: saveReportClicked();
         }
     }
 }
