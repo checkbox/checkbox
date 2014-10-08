@@ -61,10 +61,11 @@ class ResumeDiscardQualifierTests(TestCase):
     def setUp(self):
         # The initializer accepts the jobs representation dictionary but uses
         # keys only. Here the values are dummy None objects
-        self.obj = ResumeDiscardQualifier({'foo': None, 'bar': None})
+        self.obj = ResumeDiscardQualifier({'foo': None, 'bar': None}, ['froz'])
 
     def test_init(self):
-        self.assertEqual(self.obj._retain_id_set, frozenset(['foo', 'bar']))
+        self.assertEqual(
+            self.obj._retain_id_set, frozenset(['foo', 'bar', 'froz']))
 
     def test_get_simple_match(self):
         # Direct hits return the IGNORE vote as those jobs are not to be
@@ -75,6 +76,9 @@ class ResumeDiscardQualifierTests(TestCase):
             IJobQualifier.VOTE_IGNORE)
         self.assertEqual(
             self.obj.get_vote(JobDefinition({'id': 'bar'})),
+            IJobQualifier.VOTE_IGNORE)
+        self.assertEqual(
+            self.obj.get_vote(JobDefinition({'id': 'froz'})),
             IJobQualifier.VOTE_IGNORE)
         # Jobs that are in the retain set are NOT designated
         self.assertEqual(
@@ -140,12 +144,22 @@ class SessionResumeHelperTests(TestCase):
         SessionResumeHelper([]).resume(data)
         mocked_helper3.resume_json.assertCalledOnce()
 
-    def test_resume_dispatch_v4(self):
+    @mock.patch('plainbox.impl.session.resume.SessionResumeHelper4')
+    def test_resume_dispatch_v4(self, mocked_helper4):
         data = gzip.compress(
-            b'{"version":4}')
+            b'{"session":{"desired_job_list":[],"jobs":{},"metadata":'
+            b'{"app_blob":null,"app_id":null,"flags":[],'
+            b'"running_job_name":null,"title":null'
+            b'},"results":{}},"version":4}')
+        SessionResumeHelper([]).resume(data)
+        mocked_helper4.resume_json.assertCalledOnce()
+
+    def test_resume_dispatch_v5(self):
+        data = gzip.compress(
+            b'{"version":5}')
         with self.assertRaises(IncompatibleSessionError) as boom:
             SessionResumeHelper([]).resume(data)
-        self.assertEqual(str(boom.exception), "Unsupported version 4")
+        self.assertEqual(str(boom.exception), "Unsupported version 5")
 
 
 class SessionResumeTests(TestCase):
@@ -1710,6 +1724,9 @@ class SessionJobListResumeTests(TestCaseWithParameters):
             'jobs': {
                 job_a.id: job_a.checksum
             },
+            'desired_job_list': [
+                job_a.id
+            ],
             'results': {
                 job_a.id: [],
             }

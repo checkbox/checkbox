@@ -160,6 +160,8 @@ class SessionPeekHelper(EnvelopeUnpackMixIn):
             return SessionPeekHelper2().peek_json(json_repr)
         elif version == 3:
             return SessionPeekHelper3().peek_json(json_repr)
+        elif version == 4:
+            return SessionPeekHelper4().peek_json(json_repr)
         else:
             raise IncompatibleSessionError(
                 _("Unsupported version {}").format(version))
@@ -236,6 +238,9 @@ class SessionResumeHelper(EnvelopeUnpackMixIn):
         elif version == 3:
             return SessionResumeHelper3(
                 self.job_list).resume_json(json_repr, early_cb)
+        elif version == 4:
+            return SessionResumeHelper4(
+                self.job_list).resume_json(json_repr, early_cb)
         else:
             raise IncompatibleSessionError(
                 _("Unsupported version {}").format(version))
@@ -247,11 +252,13 @@ class ResumeDiscardQualifier(SimpleQualifier):
     after doing a session resume.
     """
 
-    def __init__(self, jobs_repr):
+    def __init__(self, jobs_repr, desired_job_list_repr):
         super().__init__(Origin.get_caller_origin())
         # Set of ids of jobs to retain (computed as keys of the
         # dictionary taken from the session resume representation)
-        self._retain_id_set = frozenset(jobs_repr)
+        self._retain_id_set = (
+            frozenset(jobs_repr)
+            | frozenset(desired_job_list_repr))
 
     def get_simple_match(self, job):
         return job.id not in self._retain_id_set
@@ -381,6 +388,19 @@ class SessionPeekHelper2(MetaDataHelper2MixIn, SessionPeekHelper1):
 
 
 class SessionPeekHelper3(MetaDataHelper3MixIn, SessionPeekHelper2):
+    """
+    Helper class for implementing session peek feature
+
+    This class works with data constructed by
+    :class:`~plainbox.impl.session.suspend.SessionSuspendHelper1` which has
+    been pre-processed by :class:`SessionPeekHelper` (to strip the initial
+    envelope).
+
+    The only goal of this class is to reconstruct session state meta-data.
+    """
+
+
+class SessionPeekHelper4(SessionPeekHelper3):
     """
     Helper class for implementing session peek feature
 
@@ -607,10 +627,13 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
         go wrong must have gone wrong before.
         """
 
-        # Representation of all of the job definitions
+        # Representation of all of the important job definitions
         jobs_repr = _validate(session_repr, key='jobs', value_type=dict)
+        # Representation of all the desired job definitions
+        desired_job_list_repr = _validate(
+            session_repr, key='desired_job_list', value_type=list)
         # Qualifier ready to select jobs to remove
-        qualifier = ResumeDiscardQualifier(jobs_repr)
+        qualifier = ResumeDiscardQualifier(jobs_repr, desired_job_list_repr)
         # NOTE: this should never raise ValueError (which signals that we
         # tried to remove a job which is in the run list) because it should
         # only remove jobs that were not in the representation and any job in
@@ -713,6 +736,25 @@ class SessionResumeHelper3(MetaDataHelper3MixIn, SessionResumeHelper2):
 
     This class works with data constructed by
     :class:`~plainbox.impl.session.suspend.SessionSuspendHelper3` which has
+    been pre-processed by :class:`SessionResumeHelper` (to strip the initial
+    envelope).
+
+    Due to the constraints of what can be represented in a suspended session,
+    this class cannot work in isolation. It must operate with a list of know
+    jobs.
+
+    Since (most of the) jobs are being provided externally (as they represent
+    the non-serialized parts of checkbox or other job providers) several
+    failure modes are possible. Those are documented in :meth:`resume()`
+    """
+
+
+class SessionResumeHelper4(SessionResumeHelper3):
+    """
+    Helper class for implementing session resume feature
+
+    This class works with data constructed by
+    :class:`~plainbox.impl.session.suspend.SessionSuspendHelper4` which has
     been pre-processed by :class:`SessionResumeHelper` (to strip the initial
     envelope).
 
