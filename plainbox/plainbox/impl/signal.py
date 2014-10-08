@@ -18,7 +18,8 @@
 :mod:`plainbox.impl.signal` -- signal system
 ============================================
 """
-from collections import defaultdict
+import collections
+import contextlib
 import inspect
 import logging
 
@@ -27,6 +28,30 @@ from plainbox.i18n import gettext as _
 logger = logging.getLogger("plainbox.signal")
 
 __all__ = ['Signal']
+
+
+
+class frozendict(collections.Mapping):
+    def __init__(self, somedict):
+        self._dict = dict(somedict)   # make a copy
+        self._hash = None
+
+    def __getitem__(self, key):
+        return self._dict[key]
+
+    def __len__(self):
+        return len(self._dict)
+
+    def __iter__(self):
+        return iter(self._dict)
+
+    def __hash__(self):
+        if self._hash is None:
+            self._hash = hash(frozenset(self._dict.items()))
+        return self._hash
+
+    def __eq__(self, other):
+        return self._dict == other._dict
 
 
 class Signal:
@@ -51,9 +76,50 @@ class Signal:
         """
         self._listeners = []
         self._signal_name = signal_name
+        self._pending = None
 
     def __repr__(self):
         return "<Signal name:{!r}>".format(self._signal_name)
+
+    @contextlib.contextmanager
+    def buffered(self, squash=False):
+        """
+        Buffer signal notifications until this context manager exits
+
+        :param squash:
+            If selected then all signal notifications "combined" and a signal
+            is only sent once for each combination of signal arguments. Since
+            this is considerably affecting the semantics of the signal this
+            feature is not enabled by default.
+
+        Within the context manager all cases of this singal being fired are
+        muted and instead they are remembered in an internal list. When the
+        context manager exits all signals are replayed in order.
+
+        If squashing is enabled then only the first signal (for a given pair
+        of arguments and keyword arguments) is causing the listeners to be
+        notified.
+
+        .. note::
+            Signals don't emulate python's argument application logic so given
+            a signal foo(a) and two calls, foo(1) and foo(a=1), the signal will
+            be fired twice as the call signatures differ.
+        """
+        if self._pending is not None:
+            raise Exception("signal {} is already buffered".format(self))
+        self._pending = []
+        try:
+            yield
+        finally:
+            if squash:
+                seen = set()
+            for args, kwargs in self._pending:
+                if squash and (args, kwargs) in seen:
+                    continue
+                self._fire(args, kwargs)
+                if squash:
+                    seen.add((args, kwargs))
+            self._pending = None
 
     def connect(self, listener):
         """
@@ -69,7 +135,7 @@ class Signal:
             listener_object = listener.__self__
             # Ensure that the instance has __listeners__ property
             if not hasattr(listener_object, "__listeners__"):
-                listener_object.__listeners__ = defaultdict(list)
+                listener_object.__listeners__ = collections.defaultdict(list)
             # Append the signals a listener is connected to
             listener_object.__listeners__[listener].append(self)
 
@@ -96,6 +162,12 @@ class Signal:
         Typically this is used by using __call__() on this object which is more
         natural as it does all the argument packing/unpacking transparently.
         """
+        if self._pending is not None:
+            self._pending.append((args, frozendict(kwargs)))
+        else:
+            self._fire(args, kwargs)
+
+    def _fire(self, args, kwargs):
         for listener in self._listeners:
             listener(*args, **kwargs)
 
