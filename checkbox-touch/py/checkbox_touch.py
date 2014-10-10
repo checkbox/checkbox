@@ -307,6 +307,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         # NOTE: This may also have "" representing None
         self.desired_category_ids = frozenset()
         self.desired_test_ids = frozenset()
+        self.test_plan_id = ""
 
     def __repr__(self):
         return "app"
@@ -356,10 +357,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.context.state.metadata.app_id = 'checkbox-touch'
             self.context.state.metadata.title = 'Checkbox Touch Session'
             self.context.state.metadata.flags.add('incomplete')
-            self.context.state.metadata.app_blob = json.dumps({
-                'version': 1,
-                'test_plan_id': test_plan_id,
-            }).encode("UTF-8")
+            self.context.state.metadata.app_blob = self._get_app_blob()
             # Checkpoint the session so that we have something to see
             self.manager.checkpoint()
             self.runner = JobRunner(
@@ -533,6 +531,15 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP],
         }
 
+    def _get_app_blob(self):
+        """
+        Get json dump of with app-specific blob
+        """
+        return json.dumps({
+                'version': 1,
+                'test_plan_id': self.test_plan_id,
+                'index_in_run_list': self.index,
+            }).encode("UTF-8")
 
 def bootstrap():
     logging.basicConfig(level=logging.INFO, stream=sys.stderr)
