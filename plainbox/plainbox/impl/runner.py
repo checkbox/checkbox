@@ -33,16 +33,13 @@ import io
 import logging
 import os
 import string
+import sys
 import time
 
 from plainbox.vendor import extcmd
 
 from plainbox.abc import IJobRunner, IJobResult
 from plainbox.i18n import gettext as _
-from plainbox.impl.ctrl import RootViaPTL1ExecutionController
-from plainbox.impl.ctrl import RootViaPkexecExecutionController
-from plainbox.impl.ctrl import RootViaSudoExecutionController
-from plainbox.impl.ctrl import UserJobExecutionController
 from plainbox.impl.result import DiskJobResult
 from plainbox.impl.result import IOLogRecord
 from plainbox.impl.result import IOLogRecordWriter
@@ -272,13 +269,27 @@ class JobRunner(IJobRunner):
         """
         self._session_dir = session_dir
         if execution_ctrl_list is None:
-            execution_ctrl_list = [
-                RootViaPTL1ExecutionController(provider_list),
-                RootViaPkexecExecutionController(provider_list),
-                # XXX: maybe this one should be only used on command line
-                RootViaSudoExecutionController(provider_list),
-                UserJobExecutionController(provider_list),
-            ]
+            logger.warning("execution_ctrl_list not passed to JobRunner")
+            if sys.platform == 'linux' or sys.platform == 'linux2':
+                from plainbox.impl.ctrl import RootViaPkexecExecutionController
+                from plainbox.impl.ctrl import RootViaPTL1ExecutionController
+                from plainbox.impl.ctrl import RootViaSudoExecutionController
+                from plainbox.impl.ctrl import UserJobExecutionController
+                execution_ctrl_list = [
+                    RootViaPTL1ExecutionController(provider_list),
+                    RootViaPkexecExecutionController(provider_list),
+                    # XXX: maybe this one should be only used on command line
+                    RootViaSudoExecutionController(provider_list),
+                    UserJobExecutionController(provider_list),
+                ]
+            elif sys.platform == 'win32':
+                from plainbox.impl.ctrl import UserJobExecutionController
+                execution_ctrl_list = [
+                    UserJobExecutionController(provider_list)
+                ]
+            else:
+                logger.warning("Unsupported platform: %s", sys.platform)
+                execution_ctrl_list = []
         self._jobs_io_log_dir = jobs_io_log_dir
         # NOTE: deprecated
         self._command_io_delegate = command_io_delegate
@@ -321,7 +332,10 @@ class JobRunner(IJobRunner):
         """
         warm_up_list = []
         for job in job_list:
-            ctrl = self._get_ctrl_for_job(job)
+            try:
+                ctrl = self._get_ctrl_for_job(job)
+            except LookupError:
+                continue
             warm_up_func = ctrl.get_warm_up_for_job(job)
             if warm_up_func is not None and warm_up_func not in warm_up_list:
                 warm_up_list.append(warm_up_func)
@@ -660,11 +674,19 @@ class JobRunner(IJobRunner):
         Internal method of JobRunner.
 
         Runs the command embedded in the job and returns the DiskJobResult that
-        describes the result.
+        describes the result. If the command cannot be executed it returns
+        a MemoryJobResult instead.
         """
+        try:
+            ctrl = self._get_ctrl_for_job(job)
+        except LookupError:
+            return MemoryJobResult({
+                'outcome': IJobResult.OUTCOME_NOT_SUPPORTED,
+                'comment': _('No suitable execution controller is available)'),
+            })
         # Run the embedded command
         start_time = time.time()
-        return_code, record_path = self._run_command(job, config)
+        return_code, record_path = self._run_command(job, config, ctrl)
         execution_duration = time.time() - start_time
         # Convert the return of the command to the outcome of the job
         if return_code == 0:
@@ -725,7 +747,7 @@ class JobRunner(IJobRunner):
         # One listener appends each record to an array
         return delegate, io_log_gen
 
-    def _run_command(self, job, config):
+    def _run_command(self, job, config, ctrl):
         """
         Run the shell command associated with the specified job.
 
@@ -759,15 +781,14 @@ class JobRunner(IJobRunner):
                 logger.debug(
                     _("job[%s] starting command: %s"), job.id, job.command)
                 # Run the job command using extcmd
-                return_code = self._run_extcmd(job, config, extcmd_popen)
+                return_code = self._run_extcmd(job, config, extcmd_popen, ctrl)
                 logger.debug(
                     _("job[%s] command return code: %r"), job.id, return_code)
             finally:
                 io_log_gen.on_new_record.disconnect(writer.write_record)
         return return_code, record_path
 
-    def _run_extcmd(self, job, config, extcmd_popen):
-        ctrl = self._get_ctrl_for_job(job)
+    def _run_extcmd(self, job, config, extcmd_popen, ctrl):
         ctrl.on_leftover_files.connect(self.on_leftover_files)
         try:
             return ctrl.execute_job(
