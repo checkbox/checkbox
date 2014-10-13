@@ -20,6 +20,7 @@
  */
 
 import QtQuick 2.0
+import Ubuntu.Components 1.1
 
 
 PythonObjectHandle {
@@ -34,6 +35,12 @@ PythonObjectHandle {
     // calls
     property var testPlan: "tbd"; // TODO: use a real test plan ID
 
+    // Session identifier is stored so session may be resumed if application
+    // is shut down before all tests are finished
+    property string sessionId
+
+    StateSaver.properties: "sessionId"
+
     // Signal sent when the application becomes ready
     signal appReady();
 
@@ -46,10 +53,25 @@ PythonObjectHandle {
     // Calling this function will signal sessionReady() once it's finished
     // doing setup.
     function startSession() {
-        request("start_session", [app.testPlan], function() {
+        request("start_session", [app.testPlan], function(result) {
+            sessionId = result.session_id;
             sessionReady();
         }, function(error) {
             console.error("Unable to start session: " + error);
+        });
+    }
+    function resumeSession(rerunLastTest, continuation) {
+        request("resume_session", [app.testPlan, rerunLastTest], function(result) {
+            sessionReady();
+            continuation();
+        }, function(error) {
+            console.error("Unable to resume session: " + error);
+        });
+    }
+
+    function isSessionResumable(continuation) {
+        request("is_session_resumable", [app.sessionId], continuation, function(error) {
+            console.error("Unable to check session resumability");
         });
     }
 

@@ -32,6 +32,7 @@ sys.path = [item for item in sys.path if not item.startswith('/usr/local')]
 import abc
 import builtins
 import collections
+import itertools
 import json
 import logging
 import os
@@ -50,6 +51,8 @@ from plainbox.impl.secure.qualifiers import FieldQualifier
 from plainbox.impl.secure.qualifiers import OperatorMatcher
 from plainbox.impl.secure.qualifiers import select_jobs
 from plainbox.impl.session import SessionManager
+from plainbox.impl.session import SessionMetaData
+from plainbox.impl.session import SessionPeekHelper
 from plainbox.impl.session.storage import SessionStorageRepository
 from plainbox.impl.unit.job import JobDefinition
 from plainbox.impl.unit.validators import compute_value_map
@@ -308,6 +311,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.desired_category_ids = frozenset()
         self.desired_test_ids = frozenset()
         self.test_plan_id = ""
+        self.resume_candidate_storage = None
 
     def __repr__(self):
         return "app"
@@ -323,8 +327,6 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def start_session(self, test_plan_id):
-        if not isinstance(test_plan_id, str):
-            raise TypeError("test_plan_id must be a string")
         if self.manager is not None:
             _logger.warning("start_session() should not be called twice!")
         else:
@@ -336,30 +338,15 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.manager.add_local_device_context()
             self.context = self.manager.default_device_context
             # Add some all providers into the context
-            all_providers.load()
-            for provider in all_providers.get_all_plugin_objects():
+            for provider in self._get_default_providers():
                 self.context.add_provider(provider)
-            self.context.add_provider(get_stubbox())
-            self.context.add_provider(get_categories())
-            # Look up the test plan with the specified identifier
-            id_map = self.context.compute_shared(
-                'id_map', compute_value_map, self.context, 'id')
-            try:
-                test_plan = id_map[test_plan_id][0]
-            except KeyError:
-                raise ValueError(
-                    "cannot find any unit with id: {!r}".format(test_plan_id))
-            if test_plan.Meta.name != 'test plan':
-                raise ValueError(
-                    "unit {!r} is not a test plan".format(test_plan_id))
-            self.test_plan = test_plan
+            self._init_test_plan_id(test_plan_id)
             # Fill in the meta-data
             self.context.state.metadata.app_id = 'checkbox-touch'
             self.context.state.metadata.title = 'Checkbox Touch Session'
-            self.context.state.metadata.flags.add('incomplete')
-            self.context.state.metadata.app_blob = self._get_app_blob()
+            self.context.state.metadata.flags.add('bootstrapping')
             # Checkpoint the session so that we have something to see
-            self.manager.checkpoint()
+            self._checkpoint()
             self.runner = JobRunner(
                 self.manager.storage.location,
                 self.context.provider_list,
@@ -367,6 +354,58 @@ class CheckboxTouchApplication(PlainboxApplication):
                 os.path.join(self.manager.storage.location, 'io-logs'))
         return {
             'session_id':  self.manager.storage.id
+        }
+
+    @view
+    def resume_session(self, test_plan_id, rerun_last_test):
+        all_units = list(
+            itertools.chain(*[
+                p.get_units()[0] for p in self._get_default_providers()]))
+        self.manager = SessionManager.load_session(
+            all_units, self.resume_candidate_storage)
+        self.context = self.manager.default_device_context
+        self._init_test_plan_id(test_plan_id)
+        metadata = self.context.state.metadata
+        app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
+        self.runner = JobRunner(
+            self.manager.storage.location,
+            self.context.provider_list,
+            os.path.join(self.manager.storage.location, 'io-logs'))
+        self.index = app_blob['index_in_run_list']
+        _logger.error(self.context.state.run_list)
+        _logger.error(self.index)
+        if not rerun_last_test:
+            # Skip current test
+            test = self.get_next_test()['result']
+            test['outcome'] = 'skip'
+            self.register_test_result(test)
+        return {
+            'session_id':  self.manager.storage.id
+        }
+
+    @view
+    def is_session_resumable(self, session_id):
+        """
+        Checks whether given session is resumable
+        """
+        resumable = False
+        ssr = SessionStorageRepository(
+                    os.path.expandvars(
+                        '$XDG_CACHE_HOME/'
+                        'com.canonical.certification.checkbox-touch'))
+        for storage in ssr.get_storage_list():
+            data = storage.load_checkpoint()
+            if len(data) == 0:
+                continue
+            metadata = SessionPeekHelper().peek(data)
+            if (metadata.app_id == 'checkbox-touch'
+                    and storage.id == session_id
+                    and SessionMetaData.FLAG_INCOMPLETE in metadata.flags):
+                self.resume_candidate_storage = storage
+                resumable = True
+
+        return {
+            'resumable': resumable
         }
 
     @view
@@ -460,6 +499,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         _logger.info("Desired job list: %s", desired_job_list)
         self.context.state.update_desired_job_list(desired_job_list)
         _logger.info("Run job list: %s", self.context.state.run_list)
+        self.context.state.metadata.flags.add('incomplete')
+        self._checkpoint()
 
     @view
     def get_next_test(self):
@@ -477,7 +518,6 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "id": job.id,
                 "start_time": time.time()
             }
-            self.index += 1
             return result
         else:
             return {}
@@ -495,6 +535,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         result.outcome = outcome
         result.execution_duration = time.time() - test['start_time']
         self.context.state.update_job_result(job, result)
+        self.index += 1
+        self._checkpoint()
 
     @view
     def run_test_activity(self, test):
@@ -504,7 +546,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         job_id = test['id']
         job = self.context.state.job_state_map[job_id].job
         self.context.state.running_job_name = job_id
-        self.manager.checkpoint()
+        self._checkpoint()
         try:
             result = self.runner.run_job(job)
         except OSError as exc:
@@ -513,7 +555,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             result.comment = str(exc)
         self.context.state.update_job_result(job, result)
         self.context.state.running_job_name = None
-        self.manager.checkpoint()
+        self._checkpoint()
         test['outcome'] = result.outcome
         return test
 
@@ -522,6 +564,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Get results object
         """
+        self.context.state.metadata.flags.remove('incomplete')
+        self._checkpoint()
         stats = collections.defaultdict(int)
         for job_state in self.context.state.job_state_map.values():
             stats[job_state.result.outcome] += 1
@@ -530,6 +574,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP],
         }
+
+    def _checkpoint(self):
+        self.context.state.metadata.app_blob = self._get_app_blob()
+        self.manager.checkpoint()
 
     def _get_app_blob(self):
         """
@@ -540,6 +588,35 @@ class CheckboxTouchApplication(PlainboxApplication):
                 'test_plan_id': self.test_plan_id,
                 'index_in_run_list': self.index,
             }).encode("UTF-8")
+    def _init_test_plan_id(self, test_plan_id):
+        """
+        Validates and stores test_plan_id
+        """
+        if not isinstance(test_plan_id, str):
+            raise TypeError("test_plan_id must be a string")
+        # Look up the test plan with the specified identifier
+        id_map = self.context.compute_shared(
+            'id_map', compute_value_map, self.context, 'id')
+        try:
+            test_plan = id_map[test_plan_id][0]
+        except KeyError:
+            raise ValueError(
+                "cannot find any unit with id: {!r}".format(test_plan_id))
+        if test_plan.Meta.name != 'test plan':
+            raise ValueError(
+                "unit {!r} is not a test plan".format(test_plan_id))
+        self.test_plan = test_plan
+
+    def _init_session_storage_repo(self):
+        self.session_storage_repo = SessionStorageRepository(
+            os.path.expandvars(
+                '$XDG_CACHE_HOME/'
+                'com.canonical.certification.checkbox-touch'))
+
+    def _get_default_providers(self):
+        all_providers.load()
+        return [get_stubbox(), get_categories()]
+
 
 def bootstrap():
     logging.basicConfig(level=logging.INFO, stream=sys.stderr)

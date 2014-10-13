@@ -88,7 +88,7 @@ MainView {
         onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
-            startSession();
+            resumeOrStartSession();
         }
         onSessionReady: {
             welcomePage.enableButton()
@@ -104,6 +104,16 @@ MainView {
         id: welcomePage
         welcomeText: i18n.tr("Welcome to Checkbox Touch")
         onStartTestingTriggered: categorySelectionPage.setup()
+    }
+    ResumeSessionPage {
+        id: resumeSessionPage
+        onRerunLast: app.resumeSession(true, processNextTest)
+        onContinueSession: app.resumeSession(false, processNextTest)
+        onRestartSession: {
+            pageStack.clear();
+            pageStack.push(welcomePage);
+            app.startSession();
+        }
     }
 
     SelectionPage {
@@ -153,6 +163,15 @@ MainView {
                 processNextTest();
             });
         }
+    }
+    function resumeOrStartSession() {
+        app.isSessionResumable(function(result) {
+            if(result.resumable === true) {
+                pageStack.push(resumeSessionPage);
+            } else {
+                app.startSession();
+            }
+        });
     }
 
     function processNextTest() {
