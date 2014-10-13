@@ -579,10 +579,11 @@ class CheckboxTouchApplication(PlainboxApplication):
         Get json dump of with app-specific blob
         """
         return json.dumps({
-                'version': 1,
-                'test_plan_id': self.test_plan_id,
-                'index_in_run_list': self.index,
+            'version': 1,
+            'test_plan_id': self.test_plan_id,
+            'index_in_run_list': self.index,
             }).encode("UTF-8")
+
     def _init_test_plan_id(self, test_plan_id):
         """
         Validates and stores test_plan_id
