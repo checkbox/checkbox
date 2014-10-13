@@ -27,7 +27,7 @@ import os
 from plainbox.impl.clitools import SingleCommandToolMixIn
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.providers.v1 import all_providers
-from plainbox.impl.commands.selftest import SelfTestCommand
+from plainbox.impl.commands.cmd_selftest import SelfTestCommand
 
 from checkbox_ng import __version__ as version
 from checkbox_ng.config import CheckBoxConfig
@@ -114,7 +114,7 @@ class CheckboxTool(CheckboxToolBase):
         from checkbox_ng.commands.service import ServiceCommand
         from checkbox_ng.commands.sru import SRUCommand
         from checkbox_ng.commands.submit import SubmitCommand
-        from plainbox.impl.commands.check_config import CheckConfigCommand
+        from plainbox.impl.commands.cmd_check_config import CheckConfigCommand
         SRUCommand(
             self.provider_list, self.config
         ).register_parser(subparsers)
