@@ -312,6 +312,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.desired_test_ids = frozenset()
         self.test_plan_id = ""
         self.resume_candidate_storage = None
+        self.session_storage_repo = None
 
     def __repr__(self):
         return "app"
@@ -330,11 +331,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         if self.manager is not None:
             _logger.warning("start_session() should not be called twice!")
         else:
-            self.manager = SessionManager.create(
-                SessionStorageRepository(
-                    os.path.expandvars(
-                        '$XDG_CACHE_HOME/'
-                        'com.canonical.certification.checkbox-touch')))
+            self._init_session_storage_repo()
+            self.manager = SessionManager.create(self.session_storage_repo)
             self.manager.add_local_device_context()
             self.context = self.manager.default_device_context
             # Add some all providers into the context
@@ -389,11 +387,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         Checks whether given session is resumable
         """
         resumable = False
-        ssr = SessionStorageRepository(
-                    os.path.expandvars(
-                        '$XDG_CACHE_HOME/'
-                        'com.canonical.certification.checkbox-touch'))
-        for storage in ssr.get_storage_list():
+        self._init_session_storage_repo()
+        for storage in self.session_storage_repo.get_storage_list():
             data = storage.load_checkpoint()
             if len(data) == 0:
                 continue
