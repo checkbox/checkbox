@@ -382,6 +382,17 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
+    def clear_session(self):
+        self.manager = None
+        self.context = None
+        self.runner = None
+        self.index = 0
+        self.desired_category_ids = frozenset()
+        self.desired_test_ids = frozenset()
+        self.resume_candidate_storage = None
+        self.session_storage_repo = None
+
+    @view
     def is_session_resumable(self, session_id):
         """
         Checks whether given session is resumable
