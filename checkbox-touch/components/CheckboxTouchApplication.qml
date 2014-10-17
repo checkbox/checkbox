@@ -68,6 +68,11 @@ PythonObjectHandle {
             console.error("Unable to resume session: " + error);
         });
     }
+    function clearSession(continuation) {
+        request("clear_session", [], continuation, function(error) {
+            console.error("Unable to clear session: " + error);
+        });
+    }
 
     function isSessionResumable(continuation) {
         request("is_session_resumable", [app.sessionId], continuation, function(error) {

@@ -213,8 +213,10 @@ MainView {
             resultsPage.results = results;
             resultsPage.endTesting.connect(function() {
                 pageStack.clear();
-                pageStack.push(welcomePage);
-
+                app.clearSession(function() {
+                    app.startSession();
+                    pageStack.push(welcomePage);
+                });
             });
             pageStack.push(resultsPage);
         });
