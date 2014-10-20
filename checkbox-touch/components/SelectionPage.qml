@@ -49,23 +49,24 @@ Page {
             }
         }
     }
+    function gatherSelection() {
+        var selected_id_list = [];
+        for (var i=0; i<selectionModel.count; ++i) {
+            var model_item = selectionModel.get(i)
+            if (model_item.mod_selected) {
+                selected_id_list.push(model_item.mod_id);
+            }
+        }
+        selectionDone(selected_id_list);
+    }
 
     head {
         actions: [
             Action {
                 id: continueAction
                 iconName: "media-playback-start"
-                text: continueText 
-                onTriggered: {
-                    var selected_id_list = [];
-                    for (var i=0; i<selectionModel.count; ++i) {
-                        var model_item = selectionModel.get(i)
-                        if (model_item.mod_selected) {
-                            selected_id_list.push(model_item.mod_id);
-                        }
-                    }
-                    selectionDone(selected_id_list);
-                }
+                text: continueText
+                onTriggered: gatherSelection()
             },
             Action {
                 id: selectAllAction
@@ -142,8 +143,10 @@ Page {
                 right: parent.right
                 margins: units.gu(2)
             }
+            enabled: continueAction.enabled
+            text: continueText
             color: UbuntuColors.green
-            action: continueAction 
+            onClicked: gatherSelection()
         }
     }
 }
