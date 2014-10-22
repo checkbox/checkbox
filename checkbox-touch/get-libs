@@ -29,6 +29,7 @@ import subprocess
 import tarfile
 import tempfile
 import urllib.request
+import zipfile
 from distutils.dir_util import copy_tree
 
 # arch_list contains list of architectures for which the packages should be
@@ -108,8 +109,22 @@ def get_plainbox(version='0.12'):
             preserve_symlinks=1)
 
 
+def get_qchartjs():
+    print('Getting qchart.js from github')
+    url = "https://github.com/checkbox/qchart.js/archive/master.zip"
+    dest = os.path.join('.', 'components/vendor/qchart_js')
+
+    with tempfile.TemporaryDirectory() as tmp:
+        qchart_zip = os.path.join(tmp, 'qchart_js.zip')
+        urllib.request.urlretrieve(url, qchart_zip)
+        with zipfile.ZipFile(qchart_zip) as zf:
+            zf.extractall(tmp)
+        copy_tree(os.path.join(tmp, 'qchart.js-master'), dest)
+
+
 def main():
     get_plainbox()
+    get_qchartjs()
     uris = prepare_uris()
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
