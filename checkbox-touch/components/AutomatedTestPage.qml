@@ -52,6 +52,7 @@ Page {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.alignment: Qt.AlignLeft
             text: test["name"]
+            font.bold: true
         }
 
         Label {

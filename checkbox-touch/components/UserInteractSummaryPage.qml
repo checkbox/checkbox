@@ -59,6 +59,7 @@ Page {
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             text: test["name"]
+            font.bold: true
         }
 
         Row {
