@@ -23,9 +23,11 @@ Extraction is done to specific directories as required by click package
 
 import apt
 import apt_pkg
+import argparse
 import os
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 import urllib.request
@@ -90,15 +92,9 @@ def get_package_from_url_and_extract(url, target_dir):
     subprocess.check_call(["dpkg", "-x", filename, target_dir])
 
 
-def get_plainbox(version='0.12'):
-    # plaibox_pypi contains URL from which to download plainbox
-    plainbox_pypi = ('https://pypi.python.org/packages/source'
-                     '/p/plainbox/plainbox-{}.tar.gz'.format(version))
+def extract_plainbox(src_tarball, version):
     with tempfile.TemporaryDirectory() as tmp:
-        filename = os.path.join(tmp, plainbox_pypi.split('/')[-1])
-        print('retrieving {0}'.format(plainbox_pypi))
-        urllib.request.urlretrieve(plainbox_pypi, filename)
-        tarball = tarfile.open(filename)
+        tarball = tarfile.open(src_tarball)
         members = [member for member in tarball.getmembers()
                    if member.name.startswith(
                        "plainbox-{}/plainbox/".format(version))]
@@ -122,8 +118,51 @@ def get_qchartjs():
         copy_tree(os.path.join(tmp, 'qchart.js-master'), dest)
 
 
+def get_plainbox_from_pypi(version='0.12'):
+    # plaibox_pypi contains URL from which to download plainbox
+    plainbox_pypi = ('https://pypi.python.org/packages/source'
+                     '/p/plainbox/plainbox-{}.tar.gz'.format(version))
+    with tempfile.TemporaryDirectory() as tmp:
+        filename = os.path.join(tmp, plainbox_pypi.split('/')[-1])
+        print('retrieving {0}'.format(plainbox_pypi))
+        urllib.request.urlretrieve(plainbox_pypi, filename)
+        extract_plainbox(filename, version)
+
+
+def get_local_plainbox():
+    # TODO: user shouldn't specify version of local plainbox
+    plainbox_setup_path = os.path.join(os.getcwd(), '..', 'plainbox',
+                                       'setup.py')
+    plainbox_version = subprocess.check_output([plainbox_setup_path,
+        '--version']).decode(sys.stdout.encoding).strip()
+
+    plainbox_setup_dir = os.path.split(plainbox_setup_path)[0]
+    print('building local plainbox')
+    ret = subprocess.check_call([plainbox_setup_path, '-q', 'sdist'],
+                                cwd=plainbox_setup_dir)
+    if ret != 0:
+        raise Exception(
+            "Could not build plainbox using {}. Check above output"
+            .format(plainbox_setup_path))
+    filename = os.path.join(plainbox_setup_dir, 'dist', 'plainbox-{}.tar.gz'
+                            .format(plainbox_version))
+    extract_plainbox(filename, plainbox_version)
+    copy_tree(
+        os.path.join('..', 'plainbox', 'plainbox.egg-info'),
+        os.path.join('lib', 'py', 'plainbox.egg-info'),
+        preserve_symlinks=1)
+
+
 def main():
-    get_plainbox()
+    parser = argparse.ArgumentParser("Get necessary libs for checkbox-touch")
+    parser.add_argument("--get-local-plainbox",
+                        action='store_true',
+                        help="Use plainbox that's present in ../plainbox/")
+    args = parser.parse_args()
+    if args.get_local_plainbox:
+        get_local_plainbox()
+    else:
+        get_plainbox_from_pypi()
     get_qchartjs()
     uris = prepare_uris()
     # libs_urls contains list of .deb packages that will be downloaded and
