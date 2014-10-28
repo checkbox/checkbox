@@ -65,6 +65,7 @@ Item {
 
             Button {
                 text: i18n.tr("YES")
+                color: UbuntuColors.green
                 onClicked: {
                     answer(true, checkBox.checked);
                     PopupUtils.close(dlg);
@@ -72,6 +73,7 @@ Item {
             }
             Button {
                 text: i18n.tr("NO")
+                color: UbuntuColors.red
                 onClicked: {
                     answer(false, checkBox.checked);
                     PopupUtils.close(dlg);
@@ -87,7 +89,7 @@ Item {
                     text: i18n.tr("Do not ask me this question again")
                     anchors.verticalCenter: parent.verticalCenter
                     MouseArea{
-                        // This MauseArea helps trigger checkbox changes
+                        // This MouseArea helps trigger checkbox changes
                         // when user taps on the label
                         anchors.fill: parent
                         onClicked: {
