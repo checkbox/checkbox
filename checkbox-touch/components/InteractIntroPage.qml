@@ -29,6 +29,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
+import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: userInteractVerifyIntroPage
@@ -50,8 +51,17 @@ Page {
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
-                    test["outcome"] = "skip";
-                    testDone(test);
+                    var confirmationOptions = {
+                        question : i18n.tr("Do you really want to skip this test?"),
+                        remember : true,
+                    }
+                    ConfirmationLogic.confirmRequest(userInteractVerifyIntroPage,
+                        confirmationOptions, function(res) {
+                            if (res) {
+                                test["outcome"] = "skip";
+                                testDone(test);
+                            }
+                    });
                 }
             }
         ]
