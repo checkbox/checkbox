@@ -30,6 +30,8 @@ import "components"
 */
 
 MainView {
+    id: mainView
+
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
 
@@ -46,6 +48,10 @@ MainView {
     height: units.gu(75)
 
     useDeprecatedToolbar: false
+
+    // appSettings serves as application-wide storage for global variables
+    // it has to have at least one entry to be constructed
+    property var appSettings: { "appllicationName" : applicationName }
 
     Arguments {
         id: args
