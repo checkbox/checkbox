@@ -30,11 +30,6 @@ PythonObjectHandle {
     // Version of the plainbox library
     property string plainboxVersion
 
-    // The identifier of the default test plan to execute. It will be stored in
-    // the back-end and will be used as the default test plan for other API
-    // calls
-    property var testPlan: "tbd"; // TODO: use a real test plan ID
-
     // Session identifier is stored so session may be resumed if application
     // is shut down before all tests are finished
     property string sessionId
@@ -53,7 +48,7 @@ PythonObjectHandle {
     // Calling this function will signal sessionReady() once it's finished
     // doing setup.
     function startSession() {
-        request("start_session", [app.testPlan], function(result) {
+        request("start_session", [], function(result) {
             sessionId = result.session_id;
             sessionReady();
         }, function(error) {
@@ -61,7 +56,7 @@ PythonObjectHandle {
         });
     }
     function resumeSession(rerunLastTest, continuation) {
-        request("resume_session", [app.testPlan, rerunLastTest], function(result) {
+        request("resume_session", [rerunLastTest], function(result) {
             sessionReady();
             continuation();
         }, function(error) {
@@ -77,6 +72,17 @@ PythonObjectHandle {
     function isSessionResumable(continuation) {
         request("is_session_resumable", [app.sessionId], continuation, function(error) {
             console.error("Unable to check session resumability");
+        });
+    }
+
+    function getTestplans(continuation) {
+        request("get_testplans", [], continuation, function(error) {
+            console.error("Unable to get testplans");
+        });
+    }
+    function rememberTestplan(testplan, continuation) {
+        request("remember_testplan", [testplan], continuation, function(error) {
+            console.error("Unable to save testplan selection");
         });
     }
 

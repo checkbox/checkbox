@@ -34,6 +34,7 @@ Page {
     signal selectionDone(var selected_id_list)
     property string continueText: i18n.tr("Continue")
     readonly property alias model: selectionModel
+    property bool onlyOneAllowed: false
 
     visible: false
     property var selectedCount : 0
@@ -125,6 +126,10 @@ Page {
                 style: Theme.createStyleComponent("CheckBoxStyle.qml", checkBox)
                 // Toggle the mod_selected property
                 onClicked: {
+                    if (onlyOneAllowed && !checked && selectedCount > 0) {
+                        // clear other selections
+                        deselectAllAction.trigger()
+                    }
                     selectionModel.setProperty(index, 'mod_selected', !checked);
                     selectedCount += checked ? 1 : -1;
                 }

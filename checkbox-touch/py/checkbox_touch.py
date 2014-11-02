@@ -213,10 +213,24 @@ class FakeCheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self, test_plan_id):
+    def start_session(self):
         return {
             'session_id': 'fake'
         }
+
+    @view
+    def get_testplans(self):
+        return {
+            'testplan_info_list': [{
+                "mod_id": "id-{}".format(i),
+                "mod_name": "name-{}".format(i),
+                "mod_selected": True,
+            } for i in range(self.max_categories)]
+        }
+
+    @view
+    def remember_testplan(self):
+        pass
 
     @view
     def get_categories(self):
@@ -327,7 +341,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self, test_plan_id):
+    def start_session(self):
         if self.manager is not None:
             _logger.warning("start_session() should not be called twice!")
         else:
@@ -338,7 +352,6 @@ class CheckboxTouchApplication(PlainboxApplication):
             # Add some all providers into the context
             for provider in self._get_default_providers():
                 self.context.add_provider(provider)
-            self._init_test_plan_id(test_plan_id)
             # Fill in the meta-data
             self.context.state.metadata.app_id = 'checkbox-touch'
             self.context.state.metadata.title = 'Checkbox Touch Session'
@@ -355,14 +368,13 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def resume_session(self, test_plan_id, rerun_last_test):
+    def resume_session(self, rerun_last_test):
         all_units = list(
             itertools.chain(*[
                 p.get_units()[0] for p in self._get_default_providers()]))
         self.manager = SessionManager.load_session(
             all_units, self.resume_candidate_storage)
         self.context = self.manager.default_device_context
-        self._init_test_plan_id(test_plan_id)
         metadata = self.context.state.metadata
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
         self.runner = JobRunner(
@@ -413,6 +425,21 @@ class CheckboxTouchApplication(PlainboxApplication):
         return {
             'resumable': resumable
         }
+
+    @view
+    def get_testplans(self):
+        all_units = self.manager.default_device_context.unit_list
+        return {
+            'testplan_info_list': [{
+                "mod_id": unit.id,
+                "mod_name": unit.name,
+                "mod_selected": False,
+            } for unit in all_units if unit.Meta.name == 'test plan']
+        }
+
+    @view
+    def remember_testplan(self, test_plan_id):
+        self._init_test_plan_id(test_plan_id)
 
     @view
     def get_categories(self):
