@@ -15,7 +15,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 plainbox.impl.test_decorators
 =============================
@@ -46,7 +45,8 @@ class RaisesTests(unittest.TestCase):
         self.assertEqual(
             C.meth.__annotations__['raise'], (ValueError, IOError))
 
-    @unittest.skipIf(sys.version_info[0:2] < (3, 4), "assertLogs not supported")
+    @unittest.skipIf(
+        sys.version_info[0:2] < (3, 4), "assertLogs not supported")
     def test_logs_and_forwards_unknown_exceptions(self):
         @raises(ValueError)
         def func():
@@ -73,3 +73,8 @@ class RaisesTests(unittest.TestCase):
                 This function never fails
                 """
                 raise ValueError
+
+    def test_doesnt_enforce_documentation_for_undocumented_things(self):
+        @raises(ValueError)
+        def func():
+            raise ValueError
