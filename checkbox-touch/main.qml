@@ -241,6 +241,14 @@ MainView {
                     pageStack.push(welcomePage);
                 });
             });
+            resultsPage.saveReportClicked.connect(function() {
+                app.exportResults('html', [], function(uri) {
+                    console.log(uri)
+                });
+                app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"], function(uri) {
+                    console.log(uri)
+                });
+            });
             pageStack.push(resultsPage);
         });
     }
