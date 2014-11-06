@@ -48,12 +48,12 @@ script:
     - python providers/plainbox-provider-checkbox/manage.py i18n
     - python providers/plainbox-provider-certification-server/manage.py build
     - python providers/plainbox-provider-certification-server/manage.py i18n
+    - python providers/plainbox-provider-certification-client/manage.py build
+    - python providers/plainbox-provider-certification-client/manage.py i18n
     # Validate each provider
     - python plainbox/plainbox/impl/providers/categories/manage.py validate -N
     - python plainbox/plainbox/impl/providers/stubbox/manage.py validate -N
     - python providers/plainbox-provider-resource-generic/manage.py validate -N
     - python providers/plainbox-provider-checkbox/manage.py validate -N
     - python providers/plainbox-provider-certification-server/manage.py validate -N
-    # TODO: enable this once this bug is fixed
-    # https://bugs.launchpad.net/plainbox-provider-canonical-certification/+bug/1389253
-    # - python providers/plainbox-provider-certification-client/manage.py validate -N
+    - python providers/plainbox-provider-certification-client/manage.py validate -N
