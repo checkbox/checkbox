@@ -32,16 +32,19 @@ sys.path = [item for item in sys.path if not item.startswith('/usr/local')]
 import abc
 import builtins
 import collections
+import datetime
 import itertools
 import json
 import logging
 import os
+import re
 import sys
 import time
 import traceback
 
 from plainbox.abc import IJobResult
 from plainbox.impl.clitools import ToolBase
+from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.providers.special import get_categories
 from plainbox.impl.providers.special import get_stubbox
 from plainbox.impl.providers.v1 import all_providers
@@ -327,6 +330,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.test_plan_id = ""
         self.resume_candidate_storage = None
         self.session_storage_repo = None
+        self.timestamp = datetime.datetime.utcnow().isoformat()
 
     def __repr__(self):
         return "app"
@@ -399,6 +403,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.context = None
         self.runner = None
         self.index = 0
+        self.timestamp = datetime.datetime.utcnow().isoformat()
         self.desired_category_ids = frozenset()
         self.desired_test_ids = frozenset()
         self.resume_candidate_storage = None
@@ -607,6 +612,37 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP],
         }
+
+    @view
+    def export_results(self, output_format, option_list):
+        """
+        Export results to file
+        """
+        # Export results in the user's Documents directory
+        dirname = self._get_user_directory_documents()
+        filename = ''.join(['submission_', self.timestamp, '.', output_format])
+        output_file = os.path.join(dirname, filename)
+        with open(output_file, 'wb') as stream:
+            self._export_session_to_stream(output_format, option_list, stream)
+        return output_file
+
+    def _get_user_directory_documents(self):
+        xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
+                          os.path.expanduser('~/.config')
+        with open(os.path.join(xdg_config_home, 'user-dirs.dirs')) as f:
+            match = re.search(r'XDG_DOCUMENTS_DIR="(.*)"\n', f.read())
+            if match:
+                return match.group(1)
+            else:
+                return os.path.expanduser('~')
+
+    def _export_session_to_stream(self, output_format, option_list,
+                                  stream):
+        exporter_cls = get_all_exporters()[output_format]
+        exporter = exporter_cls(option_list)
+        data_subset = exporter.get_session_data_subset(
+            self.context.state)
+        exporter.dump(data_subset, stream)
 
     def _checkpoint(self):
         self.context.state.metadata.app_blob = self._get_app_blob()

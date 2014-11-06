@@ -134,6 +134,12 @@ PythonObjectHandle {
         });
     }
 
+    function exportResults(output_format, option_list, continuation) {
+        request("export_results", [output_format, option_list], continuation, function(error) {
+            console.error("Unable to export test results");
+        });
+    }
+
     // A wrapper around invoke() that works with the @view decorator. The fn_ok
     // and fn_err are called on a normal reply and on error, respectively.
     function request(name, args, fn_ok, fn_err) {

@@ -48,7 +48,8 @@ def prepare_uris():
     and builds a dictionary of URLs indexed by (package_name, arch) tuple.
     It returns that dictionary.
     """
-    packages = ['libpython3.4', 'pyotherside', 'python3-lxml']
+    packages = ['libpython3.4', 'pyotherside', 'python3-lxml',
+                'python3-xlsxwriter']
     # uris will serve as a database of uris from which to download packages
     uris = dict()
     repos = {
@@ -178,12 +179,15 @@ def main():
     # python3_libs_urls contains list of .deb packages that will be downloaded
     # and extracted. After extraction contents of
     # ./usr/lib/python3/dist-packages are copied to ./lib/py.
-    python3_libs_urls = [uris['python3-lxml', arch] for arch in arch_list]
+    python3_libs = ['python3-lxml', 'python3-xlsxwriter']
+    python3_libs_urls = [
+        uris[lib, arch] for arch in arch_list for lib in python3_libs]
     for pylib in python3_libs_urls:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(pylib, tmp)
             copy_tree(
-                os.path.join(tmp, 'usr', 'lib', 'python3', 'dist-packages'),
+                os.path.join(tmp, 'usr', 'lib', 'python3',
+                             'dist-packages'),
                 os.path.join('lib', 'py'),
                 preserve_symlinks=1)
     # qml_plugins_url contains list of .deb packages that will be downloaded
