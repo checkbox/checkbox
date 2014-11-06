@@ -26,11 +26,13 @@
     THIS MODULE DOES NOT HAVE STABLE PUBLIC API
 """
 
+from importlib.machinery import SourceFileLoader
 import logging
 import os
 
 from plainbox.i18n import gettext_noop as N_
 from plainbox.impl import get_plainbox_dir
+from plainbox.impl.secure.config import Unset
 from plainbox.impl.secure.providers.v1 import Provider1
 from plainbox.impl.secure.providers.v1 import Provider1Definition
 
@@ -74,3 +76,48 @@ def get_categories_def():
 
 def get_categories():
     return Provider1.from_definition(get_categories_def(), secure=False)
+
+
+def get_embedded_providers_defs(path):
+    """
+    Get a list of Proivder1Definition of all providers present in `path`
+    """
+    providers_defs = []
+
+    # assumption: we don't go recursive in path
+    entries = os.listdir(path)
+    for entry in entries:
+        if os.path.isdir(os.path.join(path, entry)):
+            manage_py = os.path.join(path, entry, 'manage.py')
+            if os.path.exists(manage_py):
+                providers_defs.append(load_provider_from_manage_py(manage_py))
+
+    return providers_defs
+
+
+def get_embedded_providers(path):
+    return [Provider1.from_definition(definition, secure=False)
+            for definition in get_embedded_providers_defs(path)]
+
+
+def load_provider_from_manage_py(manage_py):
+    # override provider_manager.setup() to capture setup's parameters
+    setup_kwargs = []
+
+    def fake_setup(**kwargs):
+        setup_kwargs.append(kwargs)
+
+    from plainbox import provider_manager
+    provider_manager.setup = fake_setup
+
+    loader = SourceFileLoader('manage', manage_py)
+    loader.load_module()
+    location = os.path.dirname(os.path.abspath(manage_py))
+    setup_kwargs = setup_kwargs.pop()
+    definition = Provider1Definition()
+    definition.location = location
+    definition.name = setup_kwargs.get('name', None)
+    definition.version = setup_kwargs.get('version', None)
+    definition.description = setup_kwargs.get('description', None)
+    definition.gettext_domain = setup_kwargs.get('gettext_domain', Unset)
+    return definition
