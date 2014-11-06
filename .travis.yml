@@ -1,5 +1,59 @@
 language: python
 python:
     - "3.2"
-    - "3.3"
-script: cd plainbox && python3 setup.py test
+    # NOTE: no 3.3, it's not used by any Ubuntu release we want to support and
+    # 3.2 is the older sibling that we have to support anyway. This saves us a
+    # lot of testing time.
+    - "3.4"
+env:
+    PROVIDERPATH=providers
+install:
+    # We need some python dependencies for plainbox and checkbox
+    - pip install -U lxml xlsxwriter pyparsing requests urllib3
+    # We need some native dependencies for providers
+    - sudo apt-get install -y autoconf automake libnl-3-200 libnl-3-dev libnl-genl-3-200 libnl-genl-3-dev pkg-config
+    # We want python-distutils-extra for 'setup.py build_i18n', note that it depends on intltool from the archive
+    - sudo apt-get install -y intltool
+    - pip install -U https://launchpad.net/python-distutils-extra/trunk/2.38/+download/python-distutils-extra-2.38.tar.gz
+before_script:
+    # Develop all the python sources
+    - ( cd plainbox && python setup.py develop )
+    - ( cd checkbox-support && python setup.py develop )
+    - ( cd checkbox-ng && python setup.py develop )
+    # Set up $PROVIDERPATH
+    - mkdir -p $PROVIDERPATH
+    # Develop each provider
+    - python providers/plainbox-provider-resource-generic/manage.py develop -d $PROVIDERPATH
+    - python providers/plainbox-provider-checkbox/manage.py develop -d $PROVIDERPATH
+    - python providers/plainbox-provider-certification-server/manage.py develop -d $PROVIDERPATH
+    - python providers/plainbox-provider-certification-client/manage.py develop -d $PROVIDERPATH
+script:
+    # Test all the python sources
+    - python plainbox/setup.py test --quiet
+    - python checkbox-support/setup.py test --quiet
+    # NOTE: MOCK_DBUS=yes fixes checkbox-ng's desire to use DBus ;-)
+    - MOCK_DBUS=yes python checkbox-ng/setup.py test --quiet
+    # Update i18n everywhere
+    - python plainbox/setup.py build_i18n -m
+    - python checkbox-support/setup.py  build_i18n -m
+    - python checkbox-ng/setup.py build_i18n -m
+    # Build and i18n each provider
+    - python plainbox/plainbox/impl/providers/categories/manage.py build
+    - python plainbox/plainbox/impl/providers/categories/manage.py i18n
+    - python plainbox/plainbox/impl/providers/stubbox/manage.py build
+    - python plainbox/plainbox/impl/providers/stubbox/manage.py i18n
+    - python providers/plainbox-provider-resource-generic/manage.py build
+    - python providers/plainbox-provider-resource-generic/manage.py i18n
+    - python providers/plainbox-provider-checkbox/manage.py build
+    - python providers/plainbox-provider-checkbox/manage.py i18n
+    - python providers/plainbox-provider-certification-server/manage.py build
+    - python providers/plainbox-provider-certification-server/manage.py i18n
+    - python providers/plainbox-provider-certification-client/manage.py build
+    - python providers/plainbox-provider-certification-client/manage.py i18n
+    # Validate each provider
+    - python plainbox/plainbox/impl/providers/categories/manage.py validate -N
+    - python plainbox/plainbox/impl/providers/stubbox/manage.py validate -N
+    - python providers/plainbox-provider-resource-generic/manage.py validate -N
+    - python providers/plainbox-provider-checkbox/manage.py validate -N
+    - python providers/plainbox-provider-certification-server/manage.py validate -N
+    - python providers/plainbox-provider-certification-client/manage.py validate -N

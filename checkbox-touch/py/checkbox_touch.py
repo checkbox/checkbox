@@ -32,16 +32,19 @@ sys.path = [item for item in sys.path if not item.startswith('/usr/local')]
 import abc
 import builtins
 import collections
+import datetime
 import itertools
 import json
 import logging
 import os
+import re
 import sys
 import time
 import traceback
 
 from plainbox.abc import IJobResult
 from plainbox.impl.clitools import ToolBase
+from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.providers.special import get_categories
 from plainbox.impl.providers.special import get_stubbox
 from plainbox.impl.providers.v1 import all_providers
@@ -213,10 +216,24 @@ class FakeCheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self, test_plan_id):
+    def start_session(self):
         return {
             'session_id': 'fake'
         }
+
+    @view
+    def get_testplans(self):
+        return {
+            'testplan_info_list': [{
+                "mod_id": "id-{}".format(i),
+                "mod_name": "name-{}".format(i),
+                "mod_selected": True,
+            } for i in range(self.max_categories)]
+        }
+
+    @view
+    def remember_testplan(self):
+        pass
 
     @view
     def get_categories(self):
@@ -313,6 +330,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.test_plan_id = ""
         self.resume_candidate_storage = None
         self.session_storage_repo = None
+        self.timestamp = datetime.datetime.utcnow().isoformat()
 
     def __repr__(self):
         return "app"
@@ -327,7 +345,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self, test_plan_id):
+    def start_session(self):
         if self.manager is not None:
             _logger.warning("start_session() should not be called twice!")
         else:
@@ -338,7 +356,6 @@ class CheckboxTouchApplication(PlainboxApplication):
             # Add some all providers into the context
             for provider in self._get_default_providers():
                 self.context.add_provider(provider)
-            self._init_test_plan_id(test_plan_id)
             # Fill in the meta-data
             self.context.state.metadata.app_id = 'checkbox-touch'
             self.context.state.metadata.title = 'Checkbox Touch Session'
@@ -355,14 +372,13 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def resume_session(self, test_plan_id, rerun_last_test):
+    def resume_session(self, rerun_last_test):
         all_units = list(
             itertools.chain(*[
                 p.get_units()[0] for p in self._get_default_providers()]))
         self.manager = SessionManager.load_session(
             all_units, self.resume_candidate_storage)
         self.context = self.manager.default_device_context
-        self._init_test_plan_id(test_plan_id)
         metadata = self.context.state.metadata
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
         self.runner = JobRunner(
@@ -387,6 +403,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.context = None
         self.runner = None
         self.index = 0
+        self.timestamp = datetime.datetime.utcnow().isoformat()
         self.desired_category_ids = frozenset()
         self.desired_test_ids = frozenset()
         self.resume_candidate_storage = None
@@ -413,6 +430,21 @@ class CheckboxTouchApplication(PlainboxApplication):
         return {
             'resumable': resumable
         }
+
+    @view
+    def get_testplans(self):
+        all_units = self.manager.default_device_context.unit_list
+        return {
+            'testplan_info_list': [{
+                "mod_id": unit.id,
+                "mod_name": unit.name,
+                "mod_selected": False,
+            } for unit in all_units if unit.Meta.name == 'test plan']
+        }
+
+    @view
+    def remember_testplan(self, test_plan_id):
+        self._init_test_plan_id(test_plan_id)
 
     @view
     def get_categories(self):
@@ -580,6 +612,37 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP],
         }
+
+    @view
+    def export_results(self, output_format, option_list):
+        """
+        Export results to file
+        """
+        # Export results in the user's Documents directory
+        dirname = self._get_user_directory_documents()
+        filename = ''.join(['submission_', self.timestamp, '.', output_format])
+        output_file = os.path.join(dirname, filename)
+        with open(output_file, 'wb') as stream:
+            self._export_session_to_stream(output_format, option_list, stream)
+        return output_file
+
+    def _get_user_directory_documents(self):
+        xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
+                          os.path.expanduser('~/.config')
+        with open(os.path.join(xdg_config_home, 'user-dirs.dirs')) as f:
+            match = re.search(r'XDG_DOCUMENTS_DIR="(.*)"\n', f.read())
+            if match:
+                return match.group(1)
+            else:
+                return os.path.expanduser('~')
+
+    def _export_session_to_stream(self, output_format, option_list,
+                                  stream):
+        exporter_cls = get_all_exporters()[output_format]
+        exporter = exporter_cls(option_list)
+        data_subset = exporter.get_session_data_subset(
+            self.context.state)
+        exporter.dump(data_subset, stream)
 
     def _checkpoint(self):
         self.context.state.metadata.app_blob = self._get_app_blob()

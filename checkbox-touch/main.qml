@@ -30,6 +30,8 @@ import "components"
 */
 
 MainView {
+    id: mainView
+
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
 
@@ -46,16 +48,6 @@ MainView {
     height: units.gu(75)
 
     useDeprecatedToolbar: false
-
-    Arguments {
-        id: args
-        Argument {
-            name: "testplan"
-            help: "Identifier of the test plan to run"
-            required: true
-            valueNames: ["TESTPLAN"]
-        }
-    }
 
     // Pyotherside python object that we use to talk to all of plainbox
     Python {
@@ -84,7 +76,6 @@ MainView {
     CheckboxTouchApplication {
         id: app
         py: py
-        testPlan: args.values.testplan
         onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
@@ -103,7 +94,19 @@ MainView {
     WelcomePage {
         id: welcomePage
         welcomeText: i18n.tr("Welcome to Checkbox Touch")
-        onStartTestingTriggered: categorySelectionPage.setup()
+        onStartTestingTriggered: {
+            app.getTestplans(function(response) {
+                var tp_list = response.testplan_info_list;
+                if(tp_list.length < 2) {
+                    app.rememberTestplan(tp_list[0].mod_id, function() {
+                        categorySelectionPage.setup();
+                    });
+                }
+                else {
+                    testplanSelectionPage.setup(tp_list)
+                }
+            });
+        }
     }
     ResumeSessionPage {
         id: resumeSessionPage
@@ -113,6 +116,26 @@ MainView {
             pageStack.clear();
             pageStack.push(welcomePage);
             app.startSession();
+        }
+    }
+
+    SelectionPage {
+        id: testplanSelectionPage
+        title: i18n.tr("Testplan Selection")
+        onlyOneAllowed: true
+        function setup(testplan_info_list) {
+            model.clear();
+            for (var i=0; i<testplan_info_list.length; i++) {
+                var testplan_info = testplan_info_list[i];
+                model.append(testplan_info);
+            }
+            modelUpdated();
+            pageStack.push(testplanSelectionPage);
+        }
+        onSelectionDone: {
+            app.rememberTestplan(selected_id_list[0], function(response) {
+                categorySelectionPage.setup();
+            });
         }
     }
 
@@ -216,6 +239,14 @@ MainView {
                 app.clearSession(function() {
                     app.startSession();
                     pageStack.push(welcomePage);
+                });
+            });
+            resultsPage.saveReportClicked.connect(function() {
+                app.exportResults('html', [], function(uri) {
+                    console.log(uri)
+                });
+                app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"], function(uri) {
+                    console.log(uri)
                 });
             });
             pageStack.push(resultsPage);
