@@ -44,6 +44,7 @@ from plainbox.abc import IJobResult
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.providers.special import get_categories
 from plainbox.impl.providers.special import get_stubbox
+from plainbox.impl.providers.special import get_embedded_providers
 from plainbox.impl.providers.v1 import all_providers
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
@@ -648,8 +649,13 @@ class CheckboxTouchApplication(PlainboxApplication):
                 'com.canonical.certification.checkbox-touch'))
 
     def _get_default_providers(self):
-        all_providers.load()
-        return [get_stubbox(), get_categories()]
+        providers_collection = all_providers.get_all_plugin_objects()
+        # when running on ubuntu-touch device, APP_DIR env var is present
+        # and points to touch application top directory
+        path = os.path.join(os.path.expandvars('$APP_DIR'), 'providers')
+        if os.path.exists(path):
+            providers_collection += get_embedded_providers(path)
+        return providers_collection
 
 
 def bootstrap():
