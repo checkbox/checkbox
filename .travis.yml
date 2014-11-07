@@ -2,4 +2,7 @@ language: python
 python:
     - "3.2"
     - "3.3"
+    - "3.4"
+install:
+    pip install -U lxml xlsxwriter
 script: cd plainbox && python3 setup.py test
