@@ -49,6 +49,32 @@ MainView {
 
     useDeprecatedToolbar: false
 
+    // appSettings serves as application-wide storage for global variables
+    // it has to have at least one entry to be constructed
+    property var appSettings: {
+        "applicationName" : applicationName,
+        "revision": "unknown revision",
+        "testplan": ""
+    }
+
+    Component.onCompleted: {
+        var xhr = new XMLHttpRequest;
+        xhr.open("GET", "settings.json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                try {
+                    appSettings = JSON.parse(xhr.responseText);
+                } catch (x) {
+                    // if we cannot parse settings.json, we should leave
+                    // deafult values of appSettings
+                    console.log("Could not parse settings.json. Using default values")
+                }
+            }
+        }
+        xhr.send();
+    }
+
+
     // Pyotherside python object that we use to talk to all of plainbox
     Python {
         id: py
@@ -93,19 +119,25 @@ MainView {
 
     WelcomePage {
         id: welcomePage
-        welcomeText: i18n.tr("Welcome to Checkbox Touch")
+        welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: " + appSettings.revision)
         onStartTestingTriggered: {
-            app.getTestplans(function(response) {
-                var tp_list = response.testplan_info_list;
-                if(tp_list.length < 2) {
-                    app.rememberTestplan(tp_list[0].mod_id, function() {
-                        categorySelectionPage.setup();
-                    });
-                }
-                else {
-                    testplanSelectionPage.setup(tp_list)
-                }
-            });
+            if (appSettings.testplan != "") {
+                app.rememberTestplan(appSettings.testplan, function() {
+                    categorySelectionPage.setup();
+                });
+            } else {
+                app.getTestplans(function(response) {
+                    var tp_list = response.testplan_info_list;
+                    if (tp_list.length < 2) {
+                        app.rememberTestplan(tp_list[0].mod_id, function() {
+                            categorySelectionPage.setup();
+                        });
+                    }
+                    else {
+                        testplanSelectionPage.setup(tp_list)
+                    }
+                });
+            }
         }
     }
     ResumeSessionPage {
