@@ -112,6 +112,37 @@ Page {
         anchors.fill: parent
         anchors.margins: units.gu(2)
 
+        Component {
+            id: sectionHeading
+            Item {
+                height: units.gu(4)
+                anchors {
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
+                }
+
+                Label {
+                    fontSize: "medium"
+                    font.bold: true
+                    text: section
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(1)
+                    }
+                }
+
+                ListItem.ThinDivider {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+                }
+            }
+        }
+
         UbuntuListView {
             model: ListModel {
                 id: selectionModel
@@ -146,9 +177,7 @@ Page {
             }
             section.property: "mod_group" // NOTE: this is a model reference
             section.criteria: ViewSection.FullString
-            section.delegate: ListItem.Header {
-                text: section
-            }
+            section.delegate: sectionHeading
             snapMode: ListView.SnapToItem
         }
 
