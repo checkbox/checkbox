@@ -20,6 +20,7 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
@@ -37,6 +38,7 @@ Page {
     property bool onlyOneAllowed: false
 
     visible: false
+    flickable: null
     property var selectedCount : 0
     state : selectedCount > 0 ? "nonempty selection" : "empty selection"
 
@@ -105,49 +107,54 @@ Page {
          }
     ]
 
-    UbuntuListView {
-        model: ListModel { 
-            id: selectionModel
-        }
+    ColumnLayout {
+        spacing: units.gu(3)
         anchors.fill: parent
-        delegate: ListItem.Standard {
-            text: mod_name
-            /* Create a checkbox-lookalike that doesn't have the internal onTrigger
-             * signal handler that overrides the binding to the model.mod_selected
-             * property. If we use the normal CheckBox component here then the
-             * state gets desynchronized after every click (which simply does
-             * checked = !checked via javascript, thus erasing the property binding
-             *
-             * TODO: file a bug on this.
-             */
-            control: AbstractButton {
-                id: checkBox
-                readonly property bool checked: mod_selected
-                style: Theme.createStyleComponent("CheckBoxStyle.qml", checkBox)
-                // Toggle the mod_selected property
-                onClicked: {
-                    if (onlyOneAllowed && !checked && selectedCount > 0) {
-                        // clear other selections
-                        deselectAllAction.trigger()
+        anchors.margins: units.gu(2)
+
+        UbuntuListView {
+            model: ListModel {
+                id: selectionModel
+            }
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            clip: true
+            delegate: ListItem.Standard {
+                text: mod_name
+                /* Create a checkbox-lookalike that doesn't have the internal onTrigger
+                 * signal handler that overrides the binding to the model.mod_selected
+                 * property. If we use the normal CheckBox component here then the
+                 * state gets desynchronized after every click (which simply does
+                 * checked = !checked via javascript, thus erasing the property binding
+                 *
+                 * TODO: file a bug on this.
+                 */
+                control: AbstractButton {
+                    id: checkBox
+                    readonly property bool checked: mod_selected
+                    style: Theme.createStyleComponent("CheckBoxStyle.qml", checkBox)
+                    // Toggle the mod_selected property
+                    onClicked: {
+                        if (onlyOneAllowed && !checked && selectedCount > 0) {
+                            // clear other selections
+                            deselectAllAction.trigger()
+                        }
+                        selectionModel.setProperty(index, 'mod_selected', !checked);
+                        selectedCount += checked ? 1 : -1;
                     }
-                    selectionModel.setProperty(index, 'mod_selected', !checked);
-                    selectedCount += checked ? 1 : -1;
                 }
             }
-        }
-        section.property: "mod_group" // NOTE: this is a model reference
-        section.criteria: ViewSection.FullString
-        section.delegate: ListItem.Header {
-            text: section
-        }
-        snapMode: ListView.SnapToItem
-        footer: Button {
-            id: continueButton
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: units.gu(2)
+            section.property: "mod_group" // NOTE: this is a model reference
+            section.criteria: ViewSection.FullString
+            section.delegate: ListItem.Header {
+                text: section
             }
+            snapMode: ListView.SnapToItem
+        }
+
+        Button {
+            id: continueButton
+            Layout.fillWidth: true
             enabled: continueAction.enabled
             text: continueText
             color: UbuntuColors.green
