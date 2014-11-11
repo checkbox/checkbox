@@ -111,15 +111,24 @@ fi
 # package. Debian might be supported once we have JobBox and stuff like Fedora
 # would need a whole new approach but patches are welcome [CLA required] 
 PLATFORM_SUPPORT=none
+NEEDS_PPAS=no
 case "$ID-$VERSION_ID" in
+    ubuntu-15.04)
+        PLATFORM_SUPPORT=full
+        ;;
     ubuntu-14.10)
         PLATFORM_SUPPORT=full
         ;;
-    ubuntu-1[24].04)
+    ubuntu-14.04)
         PLATFORM_SUPPORT=full
         ;;
     ubuntu-12.10|ubuntu-13.04)
         PLATFORM_SUPPORT=partial
+        NEEDS_PPAS=yes
+        ;;
+    ubuntu-12.04)
+        PLATFORM_SUPPORT=full
+        NEEDS_PPAS=yes
         ;;
     ubuntu-*)
         PLATFORM_SUPPORT=partial
@@ -157,10 +166,12 @@ esac
 CTS="\\x1b["
 /bin/echo -e "I: setting ${CTS}37;1m{Plain,Check}Box${CTS}0m development on ${CTS}${ANSI_COLOR}m${PRETTY_NAME}${CTS}0m..."
 
-# Add any necessary PPA repositories and run apt-get update if required
-if $CHECKBOX_TOP/support/install-ppa-dependencies && [ "$(which dpkg 2>/dev/null)" = "" ]; then
-    # we need to update our dependencies
-    sudo apt-get update
+if [ "$NEEDS_PPAS" = yes ]; then
+    # Add any necessary PPA repositories and run apt-get update if required
+    if $CHECKBOX_TOP/support/install-ppa-dependencies && [ "$(which dpkg 2>/dev/null)" = "" ]; then
+        # we need to update our dependencies
+        sudo apt-get update
+    fi
 fi
 
 # Ensure that certain Debian dependencies are *not* installed
