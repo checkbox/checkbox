@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+import argparse
+from distutils.dir_util import copy_tree
+import json
+import os
+import re
+import subprocess
+import sys
+
+
+def get_revision_string(path='.'):
+
+    # Try getting revno from bazaar vcs
+    try:
+        revno = int(subprocess.check_output(
+            ["bzr", "revno", path], stderr=subprocess.STDOUT))
+        return "bzr revision r{}".format(revno)
+    except subprocess.CalledProcessError:
+        # problem encountered when run bzr revno - falling through
+        pass
+
+    # Try getting version from git
+    try:
+        revno = subprocess.check_output(
+            ["git", "-C", path, "show", "-s", "--format=%H", "HEAD"],
+            stderr=subprocess.STDOUT).decode(
+                sys.stdout.encoding).strip()
+        return "git revision {}".format(revno)
+    except subprocess.CalledProcessError:
+        # problem encountered when run git revision - falling through
+        pass
+
+    return "Unknown revision"
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Get necessary libs for checkbox-touch")
+    parser.add_argument("--embedded-providers-path", action='store', type=str,
+                        nargs='*', help="Paths to directories with providers")
+    parser.add_argument("--install",
+                        action='store_true',
+                        help=("Use adb to push and install click package on"
+                              " the device"))
+    parser.add_argument("--testplan",
+                        action='store', default="", type=str,
+                        help="Test plan to set as the default one")
+
+    args = parser.parse_args()
+
+    # generate setting.json
+    settings = {
+        "_comment": "file generated automatically with {0}"
+                    .format(parser.prog),
+        "revision": get_revision_string(),
+        "testplan": args.testplan
+    }
+    settings_file = open('settings.json', 'w')
+    settings_file.write(json.dumps(settings, sort_keys=True, indent=4))
+    settings_file.close()
+
+    if args.embedded_providers_path is not None:
+        for path in args.embedded_providers_path:
+            copy_tree(path, 'providers')
+
+    if not os.path.exists('../build-cbt'):
+        os.makedirs('../build-cbt')
+
+    pkg = build_click()
+    if args.install:
+        install_click(pkg)
+
+
+def build_click():
+    os.chdir('../build-cbt')
+    print('Building click package')
+    click_source_path = '../checkbox-touch'
+    out = subprocess.check_output(['click', 'build', click_source_path])
+    pkg_name = re.search("'\.\/(.*)\.click'", str(out)).group(1) + '.click'
+    return pkg_name
+
+
+def install_click(pkg):
+    print('Pushing to the device')
+    try:
+        subprocess.check_output(['adb', 'push', pkg, '/tmp/'])
+    except subprocess.CalledProcessError:
+        sys.exit('Error ecountered while pushing to the device.')
+    print('Installing click package')
+    path = '/tmp/' + pkg
+    try:
+        subprocess.check_output(['adb', 'shell', ('pkcon install-local'
+                                ' --allow-untrusted -p -y {path}').format(
+                                path=path)])
+    except subprocess.CalledProcessError:
+        sys.exit('Error ecountered while installing click package.')
+
+if __name__ == "__main__":
+    main()
