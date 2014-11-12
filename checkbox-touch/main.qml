@@ -38,6 +38,10 @@ MainView {
     // Note! applicationName needs to match the "name" field of the click manifest
     applicationName: "com.canonical.certification.checkbox-touch"
 
+    // appSettings serves as application-wide storage for global variables
+    // it has to have at least one entry to be constructed
+    property var appSettings: { "appllicationName" : applicationName }
+
     /*
      This property enables the application to change orientation
      when the device is rotated. The default is false.
