@@ -75,12 +75,19 @@ Page {
             font.bold: true
         }
 
-        Label {
-            fontSize: "medium"
+        Flickable {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            text: test["verificationDescription"]
+            contentWidth: childrenRect.width;
+            contentHeight: childrenRect.height
+            flickableDirection: Flickable.VerticalFlick
+            clip: true
+            Label {
+                fontSize: "medium"
+                anchors.fill: parent
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: test["verificationDescription"]
+            }
         }
 
         LatchButton {
