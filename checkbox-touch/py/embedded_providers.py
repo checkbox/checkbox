@@ -39,7 +39,7 @@ class ManagePyProvider1PlugIn(Provider1PlugIn):
     Provider1PlugIn that is built from manage.py file.
     """
 
-    def __init__(self, filename, file_contents, *, validate=None,
+    def __init__(self, filename, file_contents, plugin_load_time, *, validate=None,
                  validation_kwargs=None, check=None, context=None):
         """
         Initialize plug-in and create provider from definition extracted
