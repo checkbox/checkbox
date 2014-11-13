@@ -110,7 +110,7 @@ Page {
     ColumnLayout {
         spacing: units.gu(3)
         anchors.fill: parent
-        anchors.margins: units.gu(2)
+        anchors.margins: units.gu(3)
 
         Component {
             id: sectionHeading
@@ -181,13 +181,13 @@ Page {
             snapMode: ListView.SnapToItem
         }
 
-        Button {
+        LatchButton {
             id: continueButton
             Layout.fillWidth: true
             enabled: continueAction.enabled
             text: continueText
-            color: UbuntuColors.green
-            onClicked: gatherSelection()
+            unlatchedColor: UbuntuColors.green
+            onLatchedClicked: gatherSelection()
         }
     }
 }

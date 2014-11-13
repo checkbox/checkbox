@@ -68,7 +68,7 @@ Page {
 
     ColumnLayout {
         spacing: units.gu(2)
-        anchors.margins: units.gu(2);
+        anchors.margins: units.gu(3);
         anchors.fill: parent
 
         Label {

@@ -86,18 +86,18 @@ Page {
         implicitWidth: units.gu(6)
     }
 
-    Button {
+    LatchButton {
         id: startTestButton
 
         anchors {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            margins: units.gu(2)
+            margins: units.gu(3)
         }
 
-        color: UbuntuColors.green
+        unlatchedColor: UbuntuColors.green
         text: i18n.tr("Start Testing")
-        onClicked: startTestingTriggered();
+        onLatchedClicked: startTestingTriggered();
     }
 }
