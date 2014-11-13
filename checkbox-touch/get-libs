@@ -19,6 +19,9 @@
 """
 Download and extract .deb packages necessary to run checkbox-touch
 Extraction is done to specific directories as required by click package
+
+For typical development iteration, after hacking something in plainbox,
+run ./get-libs --plainbox-only
 """
 
 import apt
@@ -32,7 +35,6 @@ import tarfile
 import tempfile
 import urllib.request
 import zipfile
-from distutils.dir_util import copy_tree
 
 # arch_list contains list of architectures for which the packages should be
 # downloaded
@@ -40,6 +42,18 @@ arch_list = ['i386', 'amd64', 'armhf']
 # multiarch_list contains full architecture name as used in the directories
 # in contents of click package
 multiarch_list = ["i386-linux-gnu", "x86_64-linux-gnu", "arm-linux-gnueabihf"]
+
+def copy_tree(src, dest, preserve_symlinks=False):
+    """
+    copy files from src to dest using rsync
+    """
+    links_option = "-l" if preserve_symlinks else "-L"
+    parent_dir = os.path.split(os.path.abspath(dest))[0]
+    # adding trailing slash if it's not already there
+    src = os.path.join(src, '')
+    if not os.path.exists(parent_dir):
+        os.makedirs(parent_dir)
+    subprocess.check_call(["rsync", "-a", links_option, src, dest])
 
 
 def prepare_uris():
@@ -156,14 +170,19 @@ def get_local_plainbox():
 
 def main():
     parser = argparse.ArgumentParser("Get necessary libs for checkbox-touch")
-    parser.add_argument("--get-local-plainbox",
+    parser.add_argument("--get-pypi-plainbox",
                         action='store_true',
-                        help="Use plainbox that's present in ../plainbox/")
+                        help="Use plainbox downloaded from pypi")
+    parser.add_argument("--plainbox-only", action='store_true',
+                        help="Get plainbox only")
     args = parser.parse_args()
-    if args.get_local_plainbox:
-        get_local_plainbox()
-    else:
+    if args.get_pypi_plainbox:
         get_plainbox_from_pypi()
+    else:
+        get_local_plainbox()
+    if args.plainbox_only:
+        # skip downloading rest of the libs
+        return
     get_qchartjs()
     uris = prepare_uris()
     # libs_urls contains list of .deb packages that will be downloaded and
@@ -214,7 +233,8 @@ def main():
     # Remove the python3.4 directory
     # currently it only holds a few config-directories with symlinks
     # and those are not used by anything from this location
-    shutil.rmtree('lib/python3.4')
+    if os.path.exists('lib/python3.4'):
+        shutil.rmtree('lib/python3.4')
 
 
 if __name__ == "__main__":
