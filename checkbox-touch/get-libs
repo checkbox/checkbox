@@ -19,6 +19,9 @@
 """
 Download and extract .deb packages necessary to run checkbox-touch
 Extraction is done to specific directories as required by click package
+
+For typical development iteration, after hacking something in plainbox,
+run ./get-libs --plainbox-only --get-local-plainbox
 """
 
 import apt
@@ -170,11 +173,16 @@ def main():
     parser.add_argument("--get-local-plainbox",
                         action='store_true',
                         help="Use plainbox that's present in ../plainbox/")
+    parser.add_argument("--plainbox-only", action='store_true',
+                        help="Get plainbox only")
     args = parser.parse_args()
     if args.get_local_plainbox:
         get_local_plainbox()
     else:
         get_plainbox_from_pypi()
+    if args.plainbox_only:
+        # skip downloading rest of the libs
+        return
     get_qchartjs()
     uris = prepare_uris()
     # libs_urls contains list of .deb packages that will be downloaded and
