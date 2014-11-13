@@ -93,7 +93,7 @@ Page {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            margins: units.gu(2)
+            margins: units.gu(3)
         }
 
         color: UbuntuColors.green
