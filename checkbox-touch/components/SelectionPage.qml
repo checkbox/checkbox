@@ -181,13 +181,13 @@ Page {
             snapMode: ListView.SnapToItem
         }
 
-        Button {
+        LatchButton {
             id: continueButton
             Layout.fillWidth: true
             enabled: continueAction.enabled
             text: continueText
-            color: UbuntuColors.green
-            onClicked: gatherSelection()
+            unlatchedColor: UbuntuColors.green
+            onLatchedClicked: gatherSelection()
         }
     }
 }
