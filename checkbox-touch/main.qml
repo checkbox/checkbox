@@ -23,6 +23,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import io.thp.pyotherside 1.2
 import "components"
+import "components/ErrorLogic.js" as ErrorLogic
 
 
 /*!
@@ -94,7 +95,10 @@ MainView {
                 });
             });
         }
-        onError: console.error("python error: " + traceback)
+        onError: {
+            console.error("python error: " + traceback);
+            ErrorLogic.showError(mainView, "python error: " + traceback, Qt.quit);
+        }
         onReceived: console.log("pyotherside.send: " + data)
     }
 
@@ -156,6 +160,10 @@ MainView {
         title: i18n.tr("Testplan Selection")
         onlyOneAllowed: true
         function setup(testplan_info_list) {
+            if (testplan_info_list.length<1) {
+                ErrorLogic.showError(mainView, "Test plan missing", Qt.quit);
+            }
+
             model.clear();
             for (var i=0; i<testplan_info_list.length; i++) {
                 var testplan_info = testplan_info_list[i];
