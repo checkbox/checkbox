@@ -549,7 +549,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         if self.index < len(self.context.state.run_list):
             job = self.context.state.run_list[self.index]
-            result = {
+            job_state = self.context.state.job_state_map[job.id]
+            test = {
                 "name": job.tr_summary(),
                 "description": job.tr_description(),
                 "verificationDescription": job.tr_description(),
@@ -557,7 +558,12 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "id": job.id,
                 "start_time": time.time()
             }
-            return result
+            if not job_state.can_start():
+                test["outcome"] = "skip"
+                test["comments"] = job_state.get_readiness_description()
+                self.register_test_result(test)
+                return self.get_next_test()
+            return test
         else:
             return {}
 
