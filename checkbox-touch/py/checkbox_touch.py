@@ -562,7 +562,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 test["outcome"] = "skip"
                 test["comments"] = job_state.get_readiness_description()
                 self.register_test_result(test)
-                return self.get_next_test()
+                return self.get_next_test()["result"]
             return test
         else:
             return {}
