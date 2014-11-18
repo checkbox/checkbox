@@ -50,6 +50,7 @@ import gzip
 import json
 import logging
 import os
+import re
 
 from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
@@ -439,6 +440,8 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
     failure modes are possible. Those are documented in :meth:`resume()`
     """
 
+    FLAG_REWRITE_LOG_PATHNAMES = 'rewrite-log-pathnames'
+
     def __init__(self, job_list, flags=None, location=None):
         """
         Initialize the helper with a list of known jobs.
@@ -594,7 +597,8 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
             results_repr, key=job_id, value_type=list, value_none=True)
         for result_repr in result_list_repr:
             _validate(result_repr, value_type=dict)
-            result = self._build_JobResult(result_repr)
+            result = self._build_JobResult(
+                result_repr, self.flags, self.location)
             result_list.append(result)
         # Show the _LAST_ result to the session. Currently we only store one
         # result but showing the most recent (last) result should be good
@@ -667,7 +671,7 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
             raise
 
     @classmethod
-    def _build_JobResult(cls, result_repr):
+    def _build_JobResult(cls, result_repr, flags, location):
         """
         Convert the representation of MemoryJobResult or DiskJobResult
         back into an actual instance.
@@ -687,6 +691,13 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
         if 'io_log_filename' in result_repr:
             io_log_filename = _validate(
                 result_repr, key='io_log_filename', value_type=str)
+            if (not os.path.isfile(io_log_filename)
+                    and cls.FLAG_REWRITE_LOG_PATHNAMES in flags):
+                io_log_filename2 = cls._rewrite_pathname(
+                    io_log_filename, location)
+                logger.warning(
+                    "Rewrote %r to %r", io_log_filename, io_log_filename2)
+                io_log_filename = io_log_filename2
             if not os.path.isfile(io_log_filename):
                 raise BrokenReferenceToExternalFile(
                     _("cannot access file: {!r}").format(io_log_filename))
@@ -709,6 +720,11 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
                 'io_log': io_log,
                 'return_code': return_code
             })
+
+    @classmethod
+    def _rewrite_pathname(cls, pathname, location):
+        return re.sub(
+            '.*\/\.cache\/plainbox\/sessions/[^//]+', location, pathname)
 
     @classmethod
     def _build_IOLogRecord(cls, record_repr):
