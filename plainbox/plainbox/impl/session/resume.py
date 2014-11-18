@@ -49,6 +49,7 @@ import binascii
 import gzip
 import json
 import logging
+import os
 
 from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
@@ -91,6 +92,14 @@ class IncompatibleJobError(SessionResumeError):
     """
     Exception raised when :class:`SessionResumeHelper` detects that the set of
     jobs it knows about is incompatible with what was saved before.
+    """
+
+
+class BrokenReferenceToExternalFile(SessionResumeError):
+    """
+    Exception raised when :class:`SessionResumeHelper` detects that a file
+    needed by the session to resume is not present. This is typically used to
+    signal inaccessible log files.
     """
 
 
@@ -675,6 +684,9 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
         if 'io_log_filename' in result_repr:
             io_log_filename = _validate(
                 result_repr, key='io_log_filename', value_type=str)
+            if not os.path.isfile(io_log_filename):
+                raise BrokenReferenceToExternalFile(
+                    _("cannot access file: {!r}").format(io_log_filename))
             return DiskJobResult({
                 'outcome': outcome,
                 'comments': comments,
