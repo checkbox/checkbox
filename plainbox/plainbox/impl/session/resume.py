@@ -441,6 +441,7 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
     """
 
     FLAG_REWRITE_LOG_PATHNAMES = 'rewrite-log-pathnames'
+    FLAG_IGNORE_JOB_CHECKSUMS = 'ignore-job-checksums'
 
     def __init__(self, job_list, flags=None, location=None):
         """
@@ -585,8 +586,11 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
         job = session.job_state_map[job_id].job
         # Check if job definition has not changed
         if job.checksum != checksum:
-            raise IncompatibleJobError(
-                _("Definition of job {!r} has changed").format(job_id))
+            if self.FLAG_IGNORE_JOB_CHECKSUMS in self.flags:
+                logger.warning(_("Ignoring changes to job %r)"), job_id)
+            else:
+                raise IncompatibleJobError(
+                    _("Definition of job {!r} has changed").format(job_id))
         # The result may not be there. This method is called for all the jobs
         # we're supposed to check but not all such jobs need to have results
         if job.id not in results_repr:
