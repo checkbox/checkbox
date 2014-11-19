@@ -22,16 +22,16 @@
 
 This module contains custom providers used by Checkbox-touch
 """
+# NOTE: this is python 3.3 only
 from importlib.machinery import SourceFileLoader
-import logging
 import os
 
-from plainbox.abc import IProvider1, IProviderBackend1
+from plainbox.impl.secure.config import Unset
 from plainbox.impl.secure.plugins import FsPlugInCollection
+from plainbox.impl.secure.plugins import now
 from plainbox.impl.secure.providers.v1 import Provider1
 from plainbox.impl.secure.providers.v1 import Provider1Definition
 from plainbox.impl.secure.providers.v1 import Provider1PlugIn
-from plainbox.impl.secure.config import Unset
 
 
 class ManagePyProvider1PlugIn(Provider1PlugIn):
@@ -39,15 +39,16 @@ class ManagePyProvider1PlugIn(Provider1PlugIn):
     Provider1PlugIn that is built from manage.py file.
     """
 
-    def __init__(self, filename, file_contents, plugin_load_time, *, validate=None,
+    def __init__(self, filename, file_contents, load_time, *, validate=None,
                  validation_kwargs=None, check=None, context=None):
         """
         Initialize plug-in and create provider from definition extracted
         from manage.py pointed by `filename`
         """
-
+        self._load_time = load_time
         # override provider_manager.setup() to capture setup's parameters
         setup_kwargs = []
+        start_time = now()
 
         def fake_setup(**kwargs):
             setup_kwargs.append(kwargs)
@@ -74,6 +75,37 @@ class ManagePyProvider1PlugIn(Provider1PlugIn):
         self._provider = Provider1.from_definition(
             definition, secure=False, validate=validate,
             validation_kwargs=validation_kwargs, check=check, context=context)
+        self._wrap_time = now() - start_time
+
+    @property
+    def plugin_name(self):
+        """
+        plugin name, the namespace of the provider
+        """
+        return self._provider.name
+
+    @property
+    def plugin_object(self):
+        """
+        plugin object, the actual Provider1 instance
+        """
+        return self._provider
+
+    @property
+    def plugin_load_time(self) -> float:
+        """
+        time, in fractional seconds, that was needed to load the provider
+        definition file from the file system
+        """
+        return self._load_time
+
+    @property
+    def plugin_wrap_time(self) -> float:
+        """
+        time, in fractional seconds, that was needed to load the provider from
+        the definition text
+        """
+        return self._wrap_time
 
 
 class EmbeddedProvider1PlugInCollection(FsPlugInCollection):
