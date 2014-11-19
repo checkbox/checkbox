@@ -22,6 +22,7 @@
 ===================================================================
 """
 
+from argparse import SUPPRESS
 from gettext import gettext as _
 import itertools
 import logging
@@ -81,14 +82,18 @@ class LauncherCommand(CheckboxCommand):
         ns.non_interactive = False
         ns.dry_run = False
         ns.dont_suppress_output = launcher.dont_suppress_output
-        return CliInvocation2(self.provider_loader, self.config, ns,
-                              launcher).run()
+        return CliInvocation2(
+            self.provider_loader, lambda: self.config, ns, launcher
+        ).run()
 
     def register_parser(self, subparsers):
         parser = self.add_subcommand(subparsers)
         self.register_arguments(parser)
 
     def register_arguments(self, parser):
+        parser.add_argument(
+            '--no-color', dest='color', action='store_false', help=SUPPRESS)
+        parser.set_defaults(color=None)
         parser.add_argument(
             "launcher", metavar=_("LAUNCHER"),
             help=_("launcher definition file to use"))
