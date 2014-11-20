@@ -72,7 +72,9 @@ def tr_outcome(outcome):
         IJobResult.OUTCOME_NOT_IMPLEMENTED: C_(
             "textual outcome", "job is not implemented"),
         IJobResult.OUTCOME_UNDECIDED: C_(
-            "textual outcome", "job needs verification")
+            "textual outcome", "job needs verification"),
+        IJobResult.OUTCOME_CRASH: C_(
+            "textual outcome", "job has crashed"),
     }[outcome]
 
 
