@@ -699,6 +699,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         if os.path.exists(path):
             embedded_providers = EmbeddedProvider1PlugInCollection(path)
             provider_list += embedded_providers.get_all_plugin_objects()
+        provider_list.append(get_categories())
         return provider_list
 
 
