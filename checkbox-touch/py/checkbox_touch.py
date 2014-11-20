@@ -691,6 +691,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 'com.canonical.certification.checkbox-touch'))
 
     def _get_default_providers(self):
+        all_providers.load()
         provider_list = all_providers.get_all_plugin_objects()
         # when running on ubuntu-touch device, APP_DIR env var is present
         # and points to touch application top directory
