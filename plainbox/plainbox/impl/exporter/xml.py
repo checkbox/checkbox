@@ -136,7 +136,9 @@ class XMLSessionStateExporter(SessionStateExporterBase):
         IJobResult.OUTCOME_SKIP: IJobResult.OUTCOME_SKIP,
         IJobResult.OUTCOME_UNDECIDED: "none",
         IJobResult.OUTCOME_NOT_IMPLEMENTED: IJobResult.OUTCOME_SKIP,
-        IJobResult.OUTCOME_NOT_SUPPORTED: IJobResult.OUTCOME_SKIP}
+        IJobResult.OUTCOME_NOT_SUPPORTED: IJobResult.OUTCOME_SKIP,
+        IJobResult.OUTCOME_CRASH: IJobResult.OUTCOME_CRASH,
+    }
 
     def __init__(self, option_list=None, system_id=None, timestamp=None,
                  client_version=None, client_name='plainbox'):
