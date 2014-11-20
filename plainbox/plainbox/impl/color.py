@@ -143,6 +143,7 @@ class Colorizer:
             IJobResult.OUTCOME_SKIP: "YELLOW",
             IJobResult.OUTCOME_UNDECIDED: "MAGENTA",
             IJobResult.OUTCOME_NOT_SUPPORTED: "YELLOW",
+            IJobResult.OUTCOME_CRASH: "RED",
         }.get(result.outcome, "RESET")
         return self(result.tr_outcome(), outcome_color)
 
