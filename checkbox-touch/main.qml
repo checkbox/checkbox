@@ -132,7 +132,7 @@ MainView {
             } else {
                 app.getTestplans(function(response) {
                     var tp_list = response.testplan_info_list;
-                    if (tp_list.length < 2) {
+                    if (tp_list.length < 2 && tp_list.length > 0) {
                         app.rememberTestplan(tp_list[0].mod_id, function() {
                             categorySelectionPage.setup();
                         });
