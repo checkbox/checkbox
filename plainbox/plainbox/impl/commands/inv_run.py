@@ -190,7 +190,10 @@ class NormalUI(IJobRunnerUI):
 
     def finished_executing_program(self, returncode):
         if self.show_cmd_output:
-            print(self.C.BLACK("- >8 ---".rjust(80, '-')))
+            if returncode < 0:
+                print(self.C.RED("- >8 ---".rjust(80, '-')))
+            else:
+                print(self.C.BLACK("- >8 ---".rjust(80, '-')))
 
     def finished_running(self, job, state, result):
         pass
