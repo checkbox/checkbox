@@ -143,7 +143,14 @@ MainView {
                 });
             }
         }
+        onAboutClicked: pageStack.push(aboutPage)
     }
+
+    AboutPage {
+        id: aboutPage
+        visible: false
+    }
+
     ResumeSessionPage {
         id: resumeSessionPage
         onRerunLast: app.resumeSession(true, processNextTest)
