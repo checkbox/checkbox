@@ -511,7 +511,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             "mod_id": job_id,
             "mod_name": id_map[job_id][0].tr_summary(),
             "mod_group": id_map[category_id][0].tr_name(),
-            "mod_selected": True,
+            "mod_selected": False,
         } for job_id, category_id in effective_category_map.items()]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
         return {

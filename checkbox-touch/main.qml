@@ -208,6 +208,7 @@ MainView {
         id: testSelectionPage
         title: i18n.tr("Test selection")
         continueText: i18n.tr("Start Testing")
+        onlyOneAllowed: true
         
         function setup(selected_category_list) {
             app.getTests(function(response) {
@@ -264,10 +265,33 @@ MainView {
             }
         });
     }
+    function rerunTest(test) {
+        switch (test['plugin']) {
+            case 'manual':
+                performManualTest(test);
+                break;
+            case 'user-interact-verify':
+                performUserInteractVerifyTest(test);
+                break;
+            case 'shell':
+                performAutomatedTest(test);
+                break;
+            case 'user-verify':
+                performUserVerifyTest(test);
+                break;
+            case 'user-interact':
+                performUserInteractTest(test);
+                break;
+            default:
+                test.outcome = "skip";
+                completeTest(test);
+        }
+    }
 
     function completeTest(test) {
         pageStack.clear();
-        app.registerTestResult(test, processNextTest);
+        rerunTest(test);
+
     }
 
     function showResultsScreen() {
