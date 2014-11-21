@@ -27,6 +27,7 @@ Page {
     id: welcomePage
 
     signal startTestingTriggered();
+    signal aboutClicked();
     property alias welcomeText: welcomeText.text
 
     title: i18n.tr("System Testing")
@@ -34,6 +35,16 @@ Page {
 
     function enableButton() {
         state = "loaded";
+    }
+    head {
+        actions: [
+            Action {
+                id: continueAction
+                iconName: "info"
+                text: i18n.tr("About")
+                onTriggered: aboutClicked()
+            }
+        ]
     }
 
     Label {
