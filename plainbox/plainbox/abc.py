@@ -32,6 +32,12 @@ easier to understand (by not being mixed with additional source code).
     available.
 """
 from abc import ABCMeta, abstractproperty, abstractmethod
+from subprocess import CalledProcessError
+
+from plainbox.errors import FileSystemOperationError
+from plainbox.errors import ProcessOperationError
+from plainbox.errors import UnsupportedDeviceAPI
+from plainbox.impl.decorators import raises
 
 
 class ITextSource(metaclass=ABCMeta):
@@ -151,9 +157,10 @@ class IJobDefinition(metaclass=ABCMeta):
         The provider this job definition belongs to
 
         .. note::
-            Technically this still can be None (a provider-less job may exist) but
-            it can only happen in testing. This mode is discouraged and will be eventually
-            forbidden. All job definition units must belong to a provider.
+            Technically this still can be None (a provider-less job may exist)
+            but it can only happen in testing. This mode is discouraged and
+            will be eventually forbidden. All job definition units must belong
+            to a provider.
         """
 
 
@@ -1054,4 +1061,458 @@ class ISessionStateTransport(metaclass=ABCMeta):
             It is expected that certain keys in the returned dictionary will
             gain special semantics that can be further standardized. As of this
             writing there are no standard keys.
+        """
+
+
+class IConnection(metaclass=ABCMeta):
+    """
+    Interface for open / active connections to a device
+
+    Connections participate in a test session. Connections are hidden behind
+    SessionDeviceContext and provide the abstractions required to perform
+    interesting operations. Since not all devices are alike, actually supported
+    features are exposed as additional interfaces via the :meth:`api_map()`
+    property.
+    """
+
+    # Constants related to :meth:`status`.
+    STATUS_DISCONNECTED = 'disconnected'
+    STATUS_CONNECTED = 'connected'
+    STATUS_ERROR = 'error'
+
+    # Constants related to :meth:`api()` and :meth:`api_map`.
+    API_FILE_SYSTEM = 'fs'
+    API_OPERATING_SYSTEM = 'os'
+    API_PROCESS = 'proc'
+    API_PROVIDER_CONSUMER = 'provider'
+
+    @abstractproperty
+    def url(self) -> str:
+        """
+        URL that describes this connection
+        """
+
+    @abstractmethod
+    def close(self) -> None:
+        """
+        Close the connection
+        """
+
+    @abstractproperty
+    def api_set(self) -> frozenset:
+        """
+        set (frozenset) of available APIs
+
+        The resulting frozenset contains the names of the supported APIs.
+        Please use the :meth:`api()` to access a particular API.
+        """
+
+    @abstractmethod
+    @raises(UnsupportedDeviceAPI)
+    def api(self, name: str) -> object:
+        """
+        Access device API with the given name
+
+        :param name:
+            Name of the API to access. At least ``API_FILE_SYSTEM``,
+            ``API_PROCESS``, ``API_OPERATING_SYSTEM`` and ``API_PROVIDER`` may
+            be available. Custom APIs are also possible though those are not
+            documented here.
+        :returns:
+            An object that implements the given API. Refer to
+            :class:`IFileSystemAPI`, :class:`IProcessAPI`,
+            :class:`IOperatingSystemAPI` and :class:`IProviderConsumerAPI` for
+            details.
+        :raises UnsupportedDeviceAPI:
+            If the connection doesn't support the requested API.
+        """
+
+    @abstractmethod
+    def status(self) -> str:
+        """
+        Check the status of the connection
+
+        :returns:
+            A string that describes the status of the connection.
+        """
+
+    @abstractproperty
+    def persist(self) -> bool:
+        """
+        Property that controls connection persistence
+
+        This setting this property to ``True`` will disable any subsequent
+        calls to :meth:`close()` If the communication medium cannot ensure that
+        this will work it may raise a ValueError
+        """
+
+    @abstractmethod
+    def __enter__(self) -> "IConnection":
+        """
+        Context manager enter method
+
+        :returns:
+            The connection object itself
+        """
+
+    @abstractmethod
+    def __exit__(self, *args):
+        """
+        Context manager exit method
+
+        This method ensures that :meth:`close()` is always called
+        """
+
+
+class IConnectionMethod(metaclass=ABCMeta):
+    """
+    Interface for connecting with devices
+
+    Classes that implement this interface can be registered with the
+    'plainbox.connection_method' entry point using the scheme as the registrar
+    name. This allows plainbox to connect to devices using that scheme in the
+    URL.
+    """
+
+    @abstractmethod
+    def connect(self, url: str) -> IConnection:
+        """
+        Open a connection to the specific device
+
+        :param url:
+            URL that describes the device to connect to.
+        :raises ConnectionError:
+            If the connection fails for any reason
+        :returns:
+            The connection object
+        """
+
+    @abstractmethod
+    def peek(self, url: str) -> str:
+        """
+        Peek the status of a connection to the specific device
+
+        :param url:
+            URL that describes the device to connect to.
+        :returns:
+            The status of the connection. Correlate this to IConnection status
+            constants.
+        """
+
+    @abstractmethod
+    def disconnect(self, url: str):
+        """
+        Close the connection to the specific device
+
+        :param url:
+            URL that describes the device to connect to.
+        """
+
+    @abstractmethod
+    def get_hints(self) -> list:
+        """
+        Get a list of URLs that might be "available"
+
+        :returns:
+            A list of strings that represent URLs that can be opened by this
+            connection method and have a higher chance of working
+
+        Some connection methods can "discover" available connections. This is
+        especially true for devices wired directly to the host machine.
+        """
+
+
+class IProcessAPI(metaclass=ABCMeta):
+    """
+    Optional interface supported by devices that can run processes
+
+    This interface is exposed via :meth:`IConnection.api_map` property, under
+    the 'proc' key (if supported). It can be used to run processes on the
+    device almost as if they were running locally.
+    """
+
+    @abstractmethod
+    @raises(ProcessOperationError)
+    def popen(self, *args, **kwargs) -> 'subprocess.Popen':
+        """
+        Run a process on the device.
+
+        :returns:
+            A :class:`subprocess.Popen` instance
+        :raises ProcessOperationError:
+            All methods in this interface may fail by raising this exception.
+
+        .. note::
+            This method has the same signature as subprocess.Popen. The only
+            exception is that it looks up the command from args[0] or
+            kwargs['cmd'] in order to modify it and pass it to the remote
+            connection mechanism.
+        """
+
+    @abstractmethod
+    @raises(ProcessOperationError, CalledProcessError)
+    def check_output(self, *args, **kwargs) -> 'Either[str, bytes]':
+        """
+        Run a process on the device and return stdout as a bytes
+
+        :returns:
+            A bytes object or a string object that contains the stdout, if the
+            process terminated successfully
+        :raises ProcessOperationError:
+            All methods in this interface may fail by raising this exception.
+        :raises CalledProcessError:
+            If the process exits with a non-zero status
+
+        .. note::
+            This method has the same signature as subprocess.check_output()
+        """
+
+    @abstractmethod
+    @raises(ProcessOperationError, CalledProcessError)
+    def check_call(self, *args, **kwargs) -> None:
+        """
+        Run a process on the device
+
+        :raises ProcessOperationError:
+            All methods in this interface may fail by raising this exception.
+        :raises CalledProcessError:
+            If the process exits with a non-zero status
+
+        .. note::
+            This method has the same signature as subprocess.check_call()
+        """
+
+
+class IFileSystemAPI(metaclass=ABCMeta):
+    """
+    Optional interface supported by devices that have an file system
+
+    This interface is exposed via :meth:`IConnection.api_map` property, under
+    the 'fs' key (if supported). It can be used to manipulate files and
+    directories on the corresponding device.
+    """
+
+    TYPE_BLOCK_DEVICE = 'block-device'
+    TYPE_CHARACTER_DEVICE = 'character-device'
+    TYPE_DIRECTORY = 'directory'
+    TYPE_FILE = 'file'
+    TYPE_NAMED_PIPE = 'named-pipe'
+    TYPE_SOCKET = 'socket'
+    TYPE_SYMLINK = 'symlink'
+    TYPE_UNKNOWN = 'unknown'
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def read(self, filename: str) -> bytes:
+        """
+        Read bytes from a file on the device
+
+        :param  filename:
+            Name of the file to read
+        :returns:
+            The bytes read
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+
+        .. note::
+            This method is recommended for small files that fit well into
+            memory. For larger files consider using :meth:`pull()`.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def write(self, filename: str, data: bytes) -> int:
+        """
+        Write bytes to a file on the device
+
+        :param filename:
+            Name of the file to read
+        :param data:
+            The bytes to write
+        :returns:
+            The number of bytes written
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+
+        .. note::
+            This method is recommended for small files that fit well into
+            memory. For larger files consider using :meth:`push()`.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def remove(self, filename: str) -> None:
+        """
+        Remove a file on the device
+
+        :param filename:
+            Name of the file to remove
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def symlink(self, name: str, target: str) -> None:
+        """
+        Create a symbolic link on the device
+
+        :param name:
+            Name of the link.
+        :param target:
+            Name of the link target.
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+
+        This method creates a symbolic link called ``name`` that is pointing to
+        (or referencing) ``target``.
+
+        .. warning:
+            You may find arguments of this method somewhat confusing if you've
+            ever used all the other symlink APIs where their semantics is
+            somewhat swapped (source vs destination), here the names are
+            semantically sane but prior exposure to broken APIs is hard to fix.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def listdir(self, dirname: str) -> "List[Tuple[str, str]]":
+        """
+        List file and directories on the device
+
+        :param dirname:
+            Name of the directory to search
+        :returns:
+            A list of tuples with at least the two fields, ``type`` and
+            ``name`` representing each entry. In the future other fields may be
+            added to this interface. The ``type`` is one of the type constants
+            defined in this class or the constant ``unknown``. The order of
+            returned elements is not deterministic.
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def mkdir(self, dirname: str) -> None:
+        """
+        Create a directory on the device
+
+        :param dirname:
+            Name of the directory to create
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+
+        .. note::
+            This method is does not behave like ``mkdir -p``. It needs some
+            careful programming to operate correctly. It is advised to use a
+            supporting class that imitates the effect of ``mkdir -p`` on top of
+            this class.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def rmdir(self, dirname: str) -> None:
+        """
+        Remove a directory on the device
+
+        :param dirname:
+            Name of the directory to remove
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+
+        .. note::
+            Only empty directories can be removed
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def push(self, local_path: str, remote_path: str) -> None:
+        """
+        Transfer a file from the local file system to the device
+
+        :param local_path:
+            Path of the file on this machine
+        :param remote_path:
+            Path of the file on the device
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+        """
+
+    @abstractmethod
+    @raises(FileSystemOperationError)
+    def pull(self, remote_path: str, local_path: str) -> None:
+        """
+        Transfer a file from the device to the local file system
+
+        :param remote_path:
+            Path of the file on the device
+        :param local_path:
+            Path of the file on this machine
+        :raises FileSystemOperationError:
+            All methods in this interface may fail by raising this exception.
+        """
+
+
+class IOperatingSystemAPI(metaclass=ABCMeta):
+    """
+    Optional interface supported by devices that have an operating system
+
+    This interface is exposed via :meth:`IConnection.api_map` property, under
+    the 'os' key (if supported). It can be used to determine the ABI cookie
+    used by the corresponding device.
+    """
+
+    @property
+    def os_metadata(self) -> dict:
+        """
+        A dictionary that contains some meta-data about the device operating
+        system. At the very least, the 'os' key is aways set to some value.
+        """
+
+    @abstractproperty
+    def abi_cookie(self) -> str:
+        """
+        A string that represents the application binary interface used by the
+        operating system on the device. This cookie serves as a filter to
+        providers that may be used in the given environment.
+        """
+
+
+class IProviderConsumerAPI(metaclass=ABCMeta):
+    """
+    Optional interface supported by devices that can "consume" providers
+
+    This interface is exposed via :meth:`IConnection.api_map` property, under
+    the 'provider' key (if supported). It can be used to get execution
+    controllers applicable for the device and to push providers onto the
+    device.
+    """
+
+    @abstractmethod
+    def push_provider(self, provider: IProvider1) -> None:
+        """
+        Push a provider to a device for further testing
+
+        :param provider:
+            The provider to push
+        :raises ValueError:
+            If the provider is not suitable for the device
+
+        This method pushes a provider to the device so that it can be used for
+        testing. Calling this method invalidates the previous return value of
+        :meth:`get_execution_controller_list()`
+        """
+
+    @abstractmethod
+    def get_execution_controller_list(self) -> 'List[IExecutionController]':
+        """
+        Get a list of execution controllers for running tests on the device
+
+        :returns:
+            A list of execution controllers
+
+        .. note::
+            It is worth noting that it might be required to re-execute this
+            method whenever the list a new provider is pushed to the device.
         """
