@@ -18,7 +18,11 @@ while [ -n "$1" ]; do
             ;;
         *)
             if [ -z "$CHECKBOX_VENV_PATH" ]; then
-                CHECKBOX_VENV_PATH="$1"
+                if echo "$1" | grep -q '^/'; then
+                    CHECKBOX_VENV_PATH="$1"
+                else
+                    CHECKBOX_VENV_PATH="$(pwd)/$1"
+                fi
                 shift
             else
                 echo "Error: too many arguments: '$1'"
