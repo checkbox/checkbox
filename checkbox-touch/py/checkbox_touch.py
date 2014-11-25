@@ -43,6 +43,7 @@ import time
 import traceback
 
 from plainbox.abc import IJobResult
+from plainbox.i18n import gettext as _
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.providers.special import get_categories
@@ -550,10 +551,19 @@ class CheckboxTouchApplication(PlainboxApplication):
         if self.index < len(self.context.state.run_list):
             job = self.context.state.run_list[self.index]
             job_state = self.context.state.job_state_map[job.id]
+            # support for description field splitted into 3 subfields
+            description = ""
+            if job.tr_purpose() is not None:
+                description = _("PURPOSE:\n") + job.tr_purpose()
+                if job.tr_steps() is not None:
+                    description += "\nSTEPS:\n" + job.tr_steps()
+            else:
+                description = job.tr_description()
             test = {
                 "name": job.tr_summary(),
-                "description": job.tr_description(),
-                "verificationDescription": job.tr_description(),
+                "description": description,
+                "verificationDescription": job.tr_verification() if
+                    job.tr_verification() is not None else job.tr_description(),
                 "plugin": job.plugin,
                 "id": job.id,
                 "start_time": time.time()
