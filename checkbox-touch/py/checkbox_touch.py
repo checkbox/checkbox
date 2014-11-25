@@ -554,16 +554,16 @@ class CheckboxTouchApplication(PlainboxApplication):
             # support for description field splitted into 3 subfields
             description = ""
             if job.tr_purpose() is not None:
-                description = _("PURPOSE:\n") + job.tr_purpose()
-                if job.tr_steps() is not None:
-                    description += "\nSTEPS:\n" + job.tr_steps()
-            else:
+                description = job.tr_purpose() + "\n"
+            if job.tr_steps() is not None:
+                    description += job.tr_steps()
+            if not description:
                 description = job.tr_description()
             test = {
                 "name": job.tr_summary(),
                 "description": description,
                 "verificationDescription": job.tr_verification() if
-                    job.tr_verification() is not None else job.tr_description(),
+                job.tr_verification() is not None else description,
                 "plugin": job.plugin,
                 "id": job.id,
                 "start_time": time.time()
@@ -645,7 +645,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
-                          os.path.expanduser('~/.config')
+            os.path.expanduser('~/.config')
         with open(os.path.join(xdg_config_home, 'user-dirs.dirs')) as f:
             match = re.search(r'XDG_DOCUMENTS_DIR="(.*)"\n', f.read())
             if match:
