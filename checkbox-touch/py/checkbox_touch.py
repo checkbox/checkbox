@@ -43,6 +43,7 @@ import time
 import traceback
 
 from plainbox.abc import IJobResult
+from plainbox.i18n import gettext as _
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.providers.special import get_categories
@@ -550,10 +551,19 @@ class CheckboxTouchApplication(PlainboxApplication):
         if self.index < len(self.context.state.run_list):
             job = self.context.state.run_list[self.index]
             job_state = self.context.state.job_state_map[job.id]
+            # support for description field splitted into 3 subfields
+            description = ""
+            if job.tr_purpose() is not None:
+                description = job.tr_purpose() + "\n"
+            if job.tr_steps() is not None:
+                    description += job.tr_steps()
+            if not description:
+                description = job.tr_description()
             test = {
                 "name": job.tr_summary(),
-                "description": job.tr_description(),
-                "verificationDescription": job.tr_description(),
+                "description": description,
+                "verificationDescription": job.tr_verification() if
+                job.tr_verification() is not None else description,
                 "plugin": job.plugin,
                 "id": job.id,
                 "start_time": time.time()
@@ -635,7 +645,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
-                          os.path.expanduser('~/.config')
+            os.path.expanduser('~/.config')
         with open(os.path.join(xdg_config_home, 'user-dirs.dirs')) as f:
             match = re.search(r'XDG_DOCUMENTS_DIR="(.*)"\n', f.read())
             if match:
