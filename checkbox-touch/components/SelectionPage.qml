@@ -62,6 +62,9 @@ Page {
         }
         selectionDone(selected_id_list);
     }
+    function unlatchContinue() {
+        continueButton.unlatch();
+    }
 
     head {
         actions: [
@@ -69,7 +72,9 @@ Page {
                 id: continueAction
                 iconName: "media-playback-start"
                 text: continueText
-                onTriggered: gatherSelection()
+                onTriggered: {
+                    if (!continueButton.isLatched) gatherSelection();
+                }
             },
             Action {
                 id: selectAllAction
