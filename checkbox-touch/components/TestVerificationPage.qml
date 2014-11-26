@@ -53,7 +53,7 @@ Page {
                         confirmationOptions, function(res) {
                             if (res) {
                                 test["outcome"] = "skip";
-                                testDone(test);
+                                latchingTestDone();
                             }
                     });
                 }
@@ -98,23 +98,32 @@ Page {
         }
 
         LatchButton {
+            id: passButton
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Yes")
             onLatchedClicked: {
                 test["outcome"] = "pass";
-                testDone(test);
+                latchingTestDone();
+
             }
         }
 
         LatchButton {
+            id: failButton
             unlatchedColor: UbuntuColors.red
             Layout.fillWidth: true
             text: i18n.tr("No")
             onLatchedClicked: {
                 test["outcome"] = "fail";
-                testDone(test);
+                latchingTestDone();
             }
         }
+    }
+
+    function latchingTestDone() {
+        passButton.state = "latched";
+        failButton.state = "latched";
+        testDone(test);
     }
 }
