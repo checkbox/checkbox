@@ -249,6 +249,7 @@ MainView {
 
     function processNextTest() {
         app.getNextTest(function(test) {
+            pageStack.clear();
             if (test.plugin === undefined) { 
                 return showResultsScreen();
             }
@@ -276,11 +277,11 @@ MainView {
     }
 
     function completeTest(test) {
-        pageStack.clear();
         app.registerTestResult(test, processNextTest);
     }
 
     function showResultsScreen() {
+        pageStack.clear();
         app.getResults(function(results) {
             var resultsPage = Qt.createComponent(Qt.resolvedUrl("components/ResultsPage.qml")).createObject();
             resultsPage.results = results;
