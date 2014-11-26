@@ -32,7 +32,7 @@ import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: manualIntroPage
-    property var test: { "name": "", "description": "" }
+    property var test: { "name": "", "description": "", "test_number": 0, "tests_count": 0}
 
     signal continueClicked();
     signal testDone(var test);

@@ -32,7 +32,7 @@ import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: userInteractSummary
-    property var test: { "name": "", "outcome": "pass"}
+    property var test: { "name": "", "outcome": "pass", "test_number": 0, "tests_count": 0}
 
     signal testDone(var test);
 
