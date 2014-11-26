@@ -566,7 +566,9 @@ class CheckboxTouchApplication(PlainboxApplication):
                 job.tr_verification() is not None else description,
                 "plugin": job.plugin,
                 "id": job.id,
-                "start_time": time.time()
+                "start_time": time.time(),
+                "test_number": self.index,
+                "tests_count": len(self.context.state.run_list)
             }
             if not job_state.can_start():
                 test["outcome"] = "skip"
