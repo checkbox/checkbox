@@ -55,6 +55,11 @@ Button {
      */
     property var latchedColor: UbuntuColors.warmGrey
 
+    /*!
+      Read-only property informing if button is currently latched.
+     */
+    readonly property bool isLatched: state === "latched"
+
     state: "unlatched"
     states: [
          State {
