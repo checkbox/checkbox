@@ -323,6 +323,7 @@ class _JobResultBase(IJobResult):
         """
         return not bool(self._data)
 
+
 class MemoryJobResult(_JobResultBase):
     """
     A :class:`IJobResult` that keeps IO logs in memory.
