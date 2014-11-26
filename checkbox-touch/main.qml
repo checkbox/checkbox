@@ -142,6 +142,7 @@ MainView {
                     }
                 });
             }
+            enableButton();
         }
         onAboutClicked: pageStack.push(aboutPage)
     }
@@ -181,6 +182,7 @@ MainView {
         }
         onSelectionDone: {
             app.rememberTestplan(selected_id_list[0], function(response) {
+                unlatchContinue();
                 categorySelectionPage.setup();
             });
         }
@@ -205,6 +207,7 @@ MainView {
 
         onSelectionDone: {
             app.rememberCategorySelection(selected_id_list, function(response) {
+                unlatchContinue();
                 testSelectionPage.setup();
             });
         }

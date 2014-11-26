@@ -34,6 +34,7 @@ Page {
     visible: false
 
     function enableButton() {
+        startTestButton.unlatch();
         state = "loaded";
     }
     head {
