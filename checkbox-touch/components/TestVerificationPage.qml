@@ -32,7 +32,7 @@ import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: testVerification
-    property var test: { "name": "", "verificationDescription": "" }
+    property var test: { "name": "", "verificationDescription": "", "test_number": 0, "tests_count": 0}
 
     signal testDone(var test);
 

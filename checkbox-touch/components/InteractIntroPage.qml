@@ -33,7 +33,7 @@ import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: userInteractVerifyIntroPage
-    property var test: { "name": "", "description": "" }
+    property var test: { "name": "", "description": "", "test_number": 0, "tests_count": 0}
 
     signal testStarted();
     signal testDone(var test);
