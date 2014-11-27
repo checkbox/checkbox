@@ -1,0 +1,5061 @@
+# This file is part of Checkbox.
+#
+# Copyright (C) 2014 bq (Mundo Reader S.L.).
+# Copyright 2014 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+unit: category
+id: Indicators/Sound indicator
+_name: Indicators/Sound indicator
+
+unit: job
+id: ID-Sound-01
+plugin: manual
+category_id: Indicators/Sound indicator
+_summary: Ensure that sound indicator shows on the menu bar correctly
+_steps:
+ ACTIONS:
+    1. Check if there is a Sound indicator on the menu bar
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does sound indicator show correctly?
+
+unit: job
+id: ID-Sound-02
+plugin: manual
+category_id: Indicators/Sound indicator
+_summary: Ensure that sound indicator menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the sound indicator icon in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push sound indicator menu back
+_verification:
+    1. Did sound indicator menu launch?
+    2. Is there a volume slider?
+
+unit: job
+id: ID-Sound-03
+plugin: manual
+category_id: Indicators/Sound indicator
+_summary: Ensure that volume slider bar can be adjusted
+_steps:
+ SETUP:
+    1. Launch the media player begin playing an audio file
+    2.Tap and pull down the Sound indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap volume slider and move to maximum 
+    2. Tap volume slider and move to minimum
+ .
+ TEARDOWN:
+    Push Sound menu back
+_verification:
+    1. Did the volume level increase?
+    2. Did the volume level decrease?
+
+unit: job
+id: ID-Sound-04
+plugin: manual
+category_id: Indicators/Sound indicator
+_summary: Ensure the sound indicator icon matches volume level
+_steps:
+ SETUP:
+    1. Tap and pull down the Sound indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Move the volume slider
+ .
+ TEARDOWN:
+    Push sound indicator menu back
+_verification:
+    1. Check the sound icon matches the level set on the slider
+
+unit: job
+id: ID-Sound-05
+plugin: manual
+category_id: Indicators/Sound indicator
+_summary: Ensure that sound settings menu can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the Sound indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap sound settings button
+ .
+ TEARDOWN:
+    Push sound indicator menu back
+_verification:
+    1. Did sound settings menu launch?
+
+unit: category
+id: Indicators/Network indicator
+_name: Indicators/Network indicator
+
+unit: job
+id: ID-Network-01
+plugin: manual
+category_id: Indicators/Network indicator
+_summary: Ensure that both wifi indicator and cellular indicator show on the menu bar correctly
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Ensure wifi connected
+ .
+ ACTIONS:
+    1. Check if there is a Wifi indicator on the menu bar
+    2. Check if there is a Cellular indicator on the menu bar
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Do both Wifi and Cellular indicators show correctly?
+
+unit: job
+id: ID-Network-02
+plugin: manual
+category_id: Indicators/Network indicator
+_summary: Ensure that network menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the network indicator icon in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push network indicator menu back
+_verification:
+    1. Did network indicator menu launch?
+    2. Is there have detected AP lists?
+
+unit: job
+id: ID-Network-03
+plugin: manual
+category_id: Indicators/Network indicator
+_summary: Ensure that system can connect to the wifi ap successfully
+_steps:
+ SETUP:
+    1. Tap and pull down the network indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap an AP 
+    2. Input password to connect
+    3. Check network indicator icon
+ .
+ TEARDOWN:
+    Push network indicator menu back
+_verification:
+    1. Did it pop up a window to input password of this AP?
+    2. Did it connect to AP successful?
+    3. Did network icon show correctly as current status
+
+unit: job
+id: ID-Network-04
+plugin: manual
+category_id: Indicators/Network indicator
+_summary: Ensure that flight mode function works
+_steps:
+ SETUP:
+    1. Tap and pull down the network indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Enable flight mode
+_verification:
+    1. Did the Wifi turn off?
+    2. Did the modems turn off?
+
+unit: job
+id: ID-Network-05
+plugin: manual
+category_id: Indicators/Network indicator
+_summary: Ensure that wifi settings menu can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the network indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap Wifi settings button
+ .
+ TEARDOWN:
+    Push network indicator menu back
+_verification:
+    1. Did wifi settings menu launch?
+
+unit: job
+id: ID-Network-06
+plugin: manual
+category_id: Indicators/Network indicator
+_summary: Ensure that cellular settings menu can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the network indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap Cellular settings button
+ .
+ TEARDOWN:
+    Push network indicator menu back
+_verification:
+    1. Did cellular settings menu launch?
+
+unit: category
+id: Indicators/Battery indicator
+_name: Indicators/Battery indicator
+
+unit: job
+id: ID-Battery-01
+plugin: manual
+category_id: Indicators/Battery indicator
+_summary: Ensure that battery indicator shows on the menu bar correctly
+_steps:
+ ACTIONS:
+    1. Check if there is a battery indicator on the menu bar
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does battery indicator show correctly?
+
+unit: job
+id: ID-Battery-02
+plugin: manual
+category_id: Indicators/Battery indicator
+_summary: Ensure that battery indicator menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the battery indicator icon in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push battery indicator menu back
+_verification:
+    1. Did battery indicator menu launch?
+    2. Is there a charging level slider?
+
+unit: job
+id: ID-Battery-03
+plugin: manual
+category_id: Indicators/Battery indicator
+_summary: Ensure that the current charge level is displayed
+_steps:
+ SETUP:
+    1. Tap and pull down the battery indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Check percentage of charge level
+ .
+ TEARDOWN:
+    Push battery indicator menu back
+_verification:
+    1. Does the charge level percentage shown match the current status?
+
+unit: job
+id: ID-Battery-04
+plugin: manual
+category_id: Indicators/Battery indicator
+_summary: Ensure that battery settings menu can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the battery indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap battery settings button
+ .
+ TEARDOWN:
+    Push battery indicator menu back
+_verification:
+    1. Did battery settings menu launch?
+
+unit: category
+id: Indicators/Upcoming indicator
+_name: Indicators/Upcoming indicator
+
+unit: job
+id: ID-Upcoming-01
+plugin: manual
+category_id: Indicators/Upcoming indicator
+_summary: Ensure that there is a time stamp shows on the menu bar correctly
+_steps:
+ ACTIONS:
+    1. Check if there is a time stamp on the menu bar
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does time stamp show correctly?
+
+unit: job
+id: ID-Upcoming-02
+plugin: manual
+category_id: Indicators/Upcoming indicator
+_summary: Ensure that upcoming indicator menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the upcoming indicator icon in the top right of the menu bar
+    2. Check Time&Date in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push upcoming indicator menu back
+_verification:
+    1. Did upcoming indicator menu launch?
+    2. Is there have Time&Date and Clock?
+    3. Did it show the correct Time&Date?
+
+unit: job
+id: ID-Upcoming-03
+plugin: manual
+category_id: Indicators/Upcoming indicator
+_summary: Ensure tha time&date settings menu can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the upcoming indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap Time&Date icon settings button
+ .
+ TEARDOWN:
+    Push upcoming indicator menu back
+_verification:
+    1. Did Time&Date settings menu launch?
+
+unit: job
+id: ID-Upcoming-04
+plugin: manual
+category_id: Indicators/Upcoming indicator
+_summary: Ensure that clock app can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the upcoming indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap clock icon
+ .
+ TEARDOWN:
+    Push upcoming indicator menu back
+_verification:
+    1. Did clock app launch?
+
+unit: category
+id: Indicators/Notification centre indicator
+_name: Indicators/Notification centre indicator
+
+unit: job
+id: ID-Incoming-01
+plugin: manual
+category_id: Indicators/Notification centre indicator
+_summary: Ensure that there is a incoming indicator shows on the menu bar correctly
+_steps:
+ ACTIONS:
+    1. Check if there is a incoming indicator on the menu bar
+    2. Send a message to DUT
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does incoming indicator show correctly?
+    2. Does incoming indicator turn green?
+
+unit: job
+id: ID-Incoming-02
+plugin: manual
+category_id: Indicators/Notification centre indicator
+_summary: Ensure that incoming indicator menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the incoming indicator icon in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push upcoming indicator menu back
+_verification:
+    Did incoming indicator menu launch?
+
+unit: job
+id: ID-Incoming-03
+plugin: manual
+category_id: Indicators/Notification centre indicator
+_summary: Ensure that incoming message shows correctly
+_steps:
+ SETUP:
+    1. Send a message or make a MT call to DUT
+ .
+ ACTIONS:
+    1. Check incoming indicator icon
+    2. Tap and pull down the incoming indicator icon in the top right of the menu bar
+    3. Tap Clear All button
+ .
+ TEARDOWN:
+    Push upcoming indicator menu back
+_verification:
+    1. Does incoming indicator icon turn to blue color?
+    2. Does incoming message call show correctly on the indicator menu?
+    3. Did all the message cleared?
+
+unit: job
+id: ID-Incoming-04
+plugin: manual
+category_id: Indicators/Notification centre indicator
+_summary: Ensure that push notifications show correctly
+_steps:
+ SETUP:
+    1. Configure a Google account in the Online Accounts
+    2. Turn on notifications for new mail
+ .
+ ACTIONS:
+    1. Send an e-maill to the google account
+_verification:
+    1. Verify that an notification of the new e-mail is received
+
+unit: category
+id: Indicators/Location indicator
+_name: Indicators/Location indicator
+
+unit: job
+id: ID-Location-01
+plugin: manual
+category_id: Indicators/Location indicator
+_summary: Ensure that location indicator shows on the menu bar correctly
+_steps:
+ ACTIONS:
+    1. Check if there is a location indicator on the menu bar
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does location indicator show correctly?
+
+unit: job
+id: ID-Location-02
+plugin: manual
+category_id: Indicators/Location indicator
+_summary: Ensure that location menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the location indicator icon in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push location detection indicator menu back
+_verification:
+    1. Did location indicator menu launch?
+    2. Is there have location detection switch and GPS switch?
+
+unit: job
+id: ID-Location-03
+plugin: manual
+category_id: Indicators/Location indicator
+_summary: Ensure that location detection switch can be turned on/off
+_steps:
+ SETUP:
+    1. Tap and pull down the location indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap location detection switch to ON
+    2. Tap location detection switch to OFF
+ .
+ TEARDOWN:
+    Push location detection indicator menu back
+_verification:
+    1. Did location detection turn on?
+    2. Did location detection turn off?
+
+unit: job
+id: ID-Location-04
+plugin: manual
+category_id: Indicators/Location indicator
+_summary: Ensure that gps switch can be turned on/off
+_steps:
+ SETUP:
+    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap GPS switch to ON
+    2. Tap GPS switch to OFF
+ .
+ TEARDOWN:
+    Push location detection indicator menu back
+_verification:
+    1. Did GPS turn on?
+    2. Did GPS turn off?
+
+unit: category
+id: Indicators/Bluetooth indicator
+_name: Indicators/Bluetooth indicator
+
+unit: job
+id: ID-Bluetooth-01
+plugin: manual
+category_id: Indicators/Bluetooth indicator
+_summary: Ensure that bluetooth indicator shows on the menu bar correctly
+_steps:
+ SETUP:
+    Enable bluetooth
+ .
+ ACTIONS:
+    1. Check if there is a bluetooth indicator on the menu bar
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does bluetooth indicator show correctly?
+
+unit: job
+id: ID-Bluetooth-02
+plugin: manual
+category_id: Indicators/Bluetooth indicator
+_summary: Ensure that bluetooth menu can be launched
+_steps:
+ ACTIONS:
+    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+ .
+ TEARDOWN:
+    Push bluetooth indicator menu back
+_verification:
+    1. Did bluetooth indicator menu launch?
+    2. Is there a bluetooth switch?
+
+unit: job
+id: ID-Bluetooth-03
+plugin: manual
+category_id: Indicators/Bluetooth indicator
+_summary: Ensure that bluetooth can turn on/off
+_steps:
+ SETUP:
+    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap bluetooth switch to off
+    2. Navigate to system settings -> bluetooth
+    3. Tap bluetooth switch to off
+ .
+ TEARDOWN:
+    Push bluetooth indicator menu back
+_verification:
+    1. Did bluetooth indicator disappear off the menu bar?
+    2. Did bluetooth indicator show up on the menu bar?
+
+unit: job
+id: ID-Bluetooth-04
+plugin: manual
+category_id: Indicators/Bluetooth indicator
+_summary: Ensure that bluetooth settings menu can be launched
+_steps:
+ SETUP:
+    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+ .
+ ACTIONS:
+    1. Tap bluetooth settings button
+ .
+ TEARDOWN:
+    Push bluetooth indicator menu back
+_verification:
+    1. Did bluetooth settings menu launch?
+
+unit: category
+id: System Settings/General
+_name: System Settings/General
+
+unit: job
+id: Settings-01
+plugin: manual
+category_id: System Settings/General
+_summary: Ensure that the orientation lock works
+_steps:
+ SETUP:
+    1. Open System Settings
+ .
+ ACTIONS:
+    1. Turn the lock off
+    2.  Check the browser and messaging app for rotation
+    3. Turn the lock on
+    4. Check the browser and messaging app for rotation
+_verification:
+    1. Did the apps rotate when the lock was off?
+    2. Did the apps rotate when the lock was on?
+
+unit: category
+id: System Settings/Wifi
+_name: System Settings/Wifi
+
+unit: job
+id: Wifi-01
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that the wifi can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Wifi icon
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did the Wifi page open?
+
+unit: job
+id: Wifi-02
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless is enabled and can list all available access points
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    Ensure it will listed all of the available wireless networks
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Are all available wireless networks listed?
+
+unit: job
+id: Wifi-03
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to an access point
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a wireless network to join
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: Wifi-04
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can be disabled/re-enabled and still works as expected
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1, Disable wireless
+    2. Re-enable wireless, ensure AP's show up
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. DId wireless properly disable?
+    2. Did wireless properly re-enable?
+    3. Does wireless reconnected?
+
+unit: job
+id: WIfi-05
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to an open network
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a wireless network to join with no password
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: WIfi-06
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to a wep network
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a wireless network to join with WEP password
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: WIfi-07
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to a wpa/wpa2 network
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a wireless network to join with WPA/WPA2 password
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: WIfi-08
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to a 802.11b ap
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a 802.11b access point to join
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: WIfi-09
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to a 802.11g ap
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a 802.11g access point to join
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: WIfi-10
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Ensure that wireless can connect to a 802.11ac ap
+_steps:
+ SETUP:
+    1. Tap Wifi icon
+ .
+ ACTIONS:
+    1. Select a 802.11ac access point to join
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is wireless connected?
+
+unit: job
+id: Wifi-11
+plugin: manual
+category_id: System Settings/Wifi
+_summary: Check wifi mac address does not change across reboots
+_steps:
+ SETUP:
+    1. Connect to the phone using phablet-shell
+    2. Note the MAC address using ifconfig or similar
+ .
+ ACTIONS:
+    1. Reboot the phone
+    2. Reconnect phablet-shell
+    3. Check MAC address again
+_verification:
+    1. Verify the MAC address did not change
+
+unit: category
+id: System Settings/Cellular
+_name: System Settings/Cellular
+
+unit: job
+id: Cellular-01
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure that the cellular can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Cellular icon
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did the Cellular page open?
+
+unit: job
+id: Cellular-02
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure cellular data can be enabled
+_steps:
+ SETUP:
+    1. Tap Cellular icon
+ .
+ ACTIONS:
+    1. Tap Cellular data to ON
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is there a 3G icon show on the indicator bar
+    2. Is 3G network connected?
+
+unit: job
+id: Cellular-03
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure cellular data can be disabled
+_steps:
+ SETUP:
+    1. Tap Cellular icon
+ .
+ ACTIONS:
+    1. Tap Cellular data to OFF
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is 3G network disconnected?
+
+unit: job
+id: Cellular-04
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure data roaming can be enabled
+_steps:
+ SETUP:
+    1. Tap Cellular icon
+ .
+ ACTIONS:
+    1. Tap Data roaming to ON
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is there a 3G/Roaming icon show on the indicator bar
+    2. Is 3G network connected?
+
+unit: job
+id: Cellular-05
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure data roaming can be disabled
+_steps:
+ SETUP:
+    1. Tap Cellular icon
+ .
+ ACTIONS:
+    1. Tap Data roaming to ON
+    2. Open web-browser to ensure connection is made
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is Data roaming closed?
+
+unit: job
+id: Cellular-06
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure that choose carrier by auto works
+_steps:
+ SETUP:
+    1. Tap Cellular icon
+ .
+ ACTIONS:
+    1. Ensure defualt Choose Carrier is set to automatically 
+    2. Ensure the connected carrier is correct
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is system connect to carrier automatically?
+    2. Does it connected to correct carrier?
+
+unit: job
+id: Cellular-07
+plugin: manual
+category_id: System Settings/Cellular
+_summary: Ensure that the carrier can be selected by manual
+_steps:
+ SETUP:
+    1. Tap Cellular icon
+ .
+ ACTIONS:
+    1. Tap Manually 
+    2. Tap Carrier
+    3. Tap Refresh button to get the available carrier list
+    4. Tap one of available carrier to connect
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Does it listed all of available carriers?
+    2. Did it connected to selected carrier correctly?
+
+unit: category
+id: System Settings/Bluetooth
+_name: System Settings/Bluetooth
+
+unit: job
+id: Bluetooth-01
+plugin: manual
+category_id: System Settings/Bluetooth
+_summary: Ensure that the bluetooth can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Bluetooth icon
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did the Bluetooth page open?
+
+unit: job
+id: Bluetooth-02
+plugin: manual
+category_id: System Settings/Bluetooth
+_summary: Ensure that it will listed all of detected bt devices
+_steps:
+ SETUP:
+    1. Tap Bluetooth icon
+ .
+ ACTIONS:
+    1. Check switch to enable bluetooth 
+    2. Ensure it will detect and list all the available devices
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Does it listed all of available bt devices?
+
+unit: job
+id: Bluetooth-03
+plugin: manual
+category_id: System Settings/Bluetooth
+_summary: Ensure that it can pair with a bt headset
+_steps:
+ SETUP:
+    1. Tap Bluetooth icon
+ .
+ ACTIONS:
+    1. Select a BT headset
+    2. Input passcode to pair
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Is it paired to bt headset successfully?
+    2. Is there a headset icon show on the menu bar
+
+unit: job
+id: Bluetooth-04
+plugin: manual
+category_id: System Settings/Bluetooth
+_summary: Ensure that bt can be disabled after paired with bt headset
+_steps:
+ SETUP:
+    1. Tap Bluetooth icon
+ .
+ ACTIONS:
+    1. Check switch again to disable Bluetooth
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did bt headset icon disappear from menu bar?
+
+unit: job
+id: Bluetooth-05
+plugin: manual
+category_id: System Settings/Bluetooth
+_summary: Ensure the bt mac address does not change across reboots
+_steps:
+ SETUP:
+    1. Connect to the device using phablet-shell
+    2. Note the BT MAC address using hciconfig or similar
+ .
+ ACTIONS:
+    1. Reboot the phone
+    2. Reconnect phablet-shell
+    3. Check the BT MAC address
+_verification:
+    1. Verify that the MAC address did not change
+
+unit: category
+id: System Settings/Accounts
+_name: System Settings/Accounts
+
+unit: job
+id: Accounts-01
+plugin: manual
+category_id: System Settings/Accounts
+_summary: Ensure that the accounts can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Accounts icon
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did the Accounts page open?
+
+unit: job
+id: Accounts-02
+plugin: manual
+category_id: System Settings/Accounts
+_summary: Ensure that it can login to ubuntuone
+_steps:
+ SETUP:
+    1. Tap Accounts icon
+ .
+ ACTIONS:
+    1. Tap Ubuntuone icon 
+    2. Input ubuntuone account and password to login
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Does it successful to login?
+
+unit: job
+id: Accounts-03
+plugin: manual
+category_id: System Settings/Accounts
+_summary: Ensure that it can install new app from application scope after logged in
+_steps:
+ SETUP:
+    1. Tap Accounts icon
+ .
+ ACTIONS:
+    1. Tap More suggestion to show available apps 
+    2. Tap an app to install
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did install an app work correctly?
+
+unit: category
+id: System Settings/Battery
+_name: System Settings/Battery
+
+unit: job
+id: Battery-01
+plugin: manual
+category_id: System Settings/Battery
+_summary: Ensure that the battery can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Battery icon
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did the Battery page open?
+
+unit: job
+id: Battery-02
+plugin: manual
+category_id: System Settings/Battery
+_summary: Ensure that both charge level and statsu are listed correctly
+_steps:
+ SETUP:
+    1. Tap Battery icon
+ .
+ ACTIONS:
+    1. Observe the charge level and status
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    Are charge level and status both show correctly?
+
+unit: job
+id: Battery-03
+plugin: manual
+category_id: System Settings/Battery
+_summary: Ensure that charing status changes when connect the power cable
+_steps:
+ SETUP:
+    1. Tap Battery icon
+ .
+ ACTIONS:
+    1. Plugin power cable 
+    2. Unplug power cable
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Does the indicator properly update after connect/disconnect power cable?
+    2. Does the charing status change after connect/disconnect power cable?
+
+unit: job
+id: Battery-04
+plugin: manual
+category_id: System Settings/Battery
+_summary: Ensure that display brightness slider can be adjusted
+_steps:
+ SETUP:
+    1. Tap Battery icon
+ .
+ ACTIONS:
+    1. Drag the display brightness slider and move to maximum 
+    2. Drag the display brightness slider and move to minimum
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did screen brightness become lighter?
+    2. Did screen brightness become dark?
+
+unit: job
+id: Battery-05
+plugin: manual
+category_id: System Settings/Battery
+_summary: Ensure that wifi can be turned on/off
+_steps:
+ SETUP:
+    1. Tap Battery icon
+ .
+ ACTIONS:
+    1. Tap Wifi switch to turn it off 
+    2. Tap Wifi switch to turn it on
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Does the wifi indicator properly update?
+    2. Were you able to enable and disable wifi?
+
+unit: job
+id: Battery-06
+plugin: manual
+category_id: System Settings/Battery
+_summary: Ensure that bluetooth can be turned on/off
+_steps:
+ SETUP:
+    1. Tap Battery icon
+ .
+ ACTIONS:
+    1. Tap bluetooth switch to turn it off 
+    2. Tap bluetooth switch to turn it on
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Does the bluetooth indicator properly update?
+    2. Were you able to enable and disable bluetooth?
+
+unit: category
+id: System Settings/Brightness
+_name: System Settings/Brightness
+
+unit: job
+id: Brightness-01
+plugin: manual
+category_id: System Settings/Brightness
+_summary: Ensure that the brightness can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Brightness icon
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did the Brightness page open?
+
+unit: job
+id: Brightness-02
+plugin: manual
+category_id: System Settings/Brightness
+_summary: Ensure that display brightness slider can be adjusted
+_steps:
+ SETUP:
+    1. Tap Brightness icon
+ .
+ ACTIONS:
+    1. Drag the display brightness slider and move to maximum 
+    2. Drag the display brightness slider and move to minimum
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did screen brightness become lighter?
+    2. Did screen brightness become dark?
+
+unit: job
+id: Brightness-03
+plugin: manual
+category_id: System Settings/Brightness
+_summary: Ensure that auto adjust brightness function works correctly
+_steps:
+ SETUP:
+    1. Tap Brightness icon
+ .
+ ACTIONS:
+    1. Check 'Adjust automatically' to enable brightness auto adjusting
+    2. Check  'Adjust automatically' to disable brightness auto adjusting
+ .
+ TEARDOWN:
+    Back to System Settings
+_verification:
+    1. Did brightness auto adjusting work?
+
+unit: category
+id: System Settings/Sound settings
+_name: System Settings/Sound settings
+
+unit: job
+id: Sound-01
+plugin: manual
+category_id: System Settings/Sound settings
+_summary: Make sure that the sound settings can be opened from system settings.
+_steps:
+ SETUP:
+    1. Slide to show launcher
+    2. Tap System Settings
+ .
+ ACTIONS:
+    1. Tap Sound icon
+ .
+ TEARDOWN:
+    1. Close System Settings.
+_verification:
+    1. Did the sound settings page open?
+
+unit: job
+id: Sound-02
+plugin: manual
+category_id: System Settings/Sound settings
+_summary: Make sure that the ringhtone can be previewed
+_steps:
+ SETUP:
+    1. Tap Sound icon
+ .
+ ACTIONS:
+    1. Tap Ringtone
+    2. Tap each ringtone to play
+    3. Ensure all of the ringtone can be previewed
+    4. Ensure click stop playing button can stop play the ringtone
+ .
+ TEARDOWN:
+    1. Close System Settings.
+_verification:
+    1. Can each ringtone be played?
+    2. Can stop playing button works?
+
+unit: job
+id: Sound-03
+plugin: manual
+category_id: System Settings/Sound settings
+_summary: Make sure that setting a ringtone works
+_steps:
+ SETUP:
+    1. Tap Sound icon
+ .
+ ACTIONS:
+    1. Go to Ringtone page
+    2. Select a ringtone
+    3. Make a MT call to DUT
+ .
+ TEARDOWN:
+    1. Close System Settings.
+_verification:
+    1. Did the incoming call ringtone has changed to selected ringtone?
+
+unit: job
+id: Sound-04
+plugin: manual
+category_id: System Settings/Sound settings
+_summary: Make sure the message received notification can be previewed
+_steps:
+ SETUP:
+    1. Tap Sound icon
+ .
+ ACTIONS:
+    1. Tap Message received
+    2. Tap each message sound to play
+    3. Ensure all of the message sound can be previewed
+ .
+ TEARDOWN:
+    1. Close System Settings.
+_verification:
+    1. Can each message sound be played?
+
+unit: job
+id: Sound-05
+plugin: manual
+category_id: System Settings/Sound settings
+_summary: Make sure that setting a message received notification works
+_steps:
+ SETUP:
+    1. Tap Sound icon
+ .
+ ACTIONS:
+    1. Go to Message Received page
+    2. Select a notification sound
+    3. Send a message to DUT
+ .
+ TEARDOWN:
+    1. Close System Settings.
+_verification:
+    1. Did the message sound has changed to selected sound?
+
+unit: category
+id: System Settings/Security & Privacy
+_name: System Settings/Security & Privacy
+
+unit: job
+id: Security-01
+plugin: manual
+category_id: System Settings/Security & Privacy
+_summary: Ensure that the "swipe" lock mechanism works
+_steps:
+ SETUP:
+    1. Open System Settings
+    2. Open Security & Privacy
+    3. Select Phone Locking
+ .
+ ACTIONS:
+    1. Press on Lock security
+    2. Select Swipe (no security)
+    3. Lock phone (press power button)
+_verification:
+    1. Unlock phone
+    2. Did the swipe mechanism work?
+
+unit: job
+id: Security-02
+plugin: manual
+category_id: System Settings/Security & Privacy
+_summary: Ensure that the "4-digit pin code" lock mechanism works
+_steps:
+ SETUP:
+    1. Open System Settings
+    2. Open Security & Privacy
+    3. Select Phone Locking
+ .
+ ACTIONS:
+    1. Press on Lock security
+    2. Select 4-digit PIN code
+    3. Lock phone (press power button)
+_verification:
+    1. Unlock phone
+    2. Did the PIN code mechanism work?
+
+unit: job
+id: Security-03
+plugin: manual
+category_id: System Settings/Security & Privacy
+_summary: Ensure that the "passphrase" lock mechanism works
+_steps:
+ SETUP:
+    1. Open System Settings
+    2. Open Security & Privacy
+    3. Select Phone Locking
+ .
+ ACTIONS:
+    1. Press on Lock security
+    2. Select Passphrase
+    3. Lock phone (press power button)
+_verification:
+    1. Unlock phone
+    2. Did the passphrase mechanism work?
+
+unit: job
+id: Security-04
+plugin: manual
+category_id: System Settings/Security & Privacy
+_summary: Ensure that the idle time before lock can be configured
+_steps:
+ SETUP:
+    1. Open System Settings
+    2. Open Security & Privacy
+    3. Select Phone Locking
+ .
+ ACTIONS:
+    1. Press on Lock when idle
+    2. Select several of the timeout periods and test phone follows the setting
+_verification:
+    1. Leave phone idle
+    2. Did the phone suspend correctly after configured time?
+
+unit: category
+id: System Settings/Reset Phone
+_name: System Settings/Reset Phone
+
+unit: job
+id: Reset-01
+plugin: manual
+category_id: System Settings/Reset Phone
+_summary: Ensure that the launcher can be reset
+_steps:
+ SETUP:
+    1. Pin some applications to the launcher
+    2. Open System Settings
+    3. Select Reset phone
+ .
+ ACTIONS:
+    1. Select Reset Launcher
+_verification:
+    1. Did the launcher reset so only default selection of apps is pinned?
+
+unit: job
+id: Reset-02
+plugin: manual
+category_id: System Settings/Reset Phone
+_summary: Ensure the phone can be factory reset
+_steps:
+ SETUP:
+    1. Make sure some files are present in the users home folder, logs present in dialer, messages
+    2. Open System Settings
+    2. Select Reset phone
+ .
+ ACTIONS:
+    1. Select Erase & Reset Everything
+_verification:
+    1. Was the phone reset to factory defaults?
+    2. Were all files and logs wiped?
+
+unit: category
+id: Telephony/Basic Call (SIM1)
+_name: Telephony/Basic Call (SIM1)
+
+unit: job
+id: Tel-01
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that call out to fixed-line telephone works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a fixed-line telephone number
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-02
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that call out to mobile phone number works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a mobile phone number (ex:0988888888)
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-03
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that call out to mobile phone number with country code works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a mobile phone number (ex:+886988888888)
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-04
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that call out to mobile phone number with 00 code works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a mobile phone number (ex:00886988888888)
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-05
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that receiving a mt call works as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare two DUT
+ .
+ ACTIONS:
+    1. Make a MT call to DUT1 
+    2. Ensure snap decision is shown
+    3. Ensure phone call can be answered
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is snap decision shown?
+    2. Is call answered?
+
+unit: job
+id: Tel-06
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that reject a mt call works as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare two DUT
+ .
+ ACTIONS:
+    1. Make a MT call to DUT1 
+    2. Ensure snap decision is shown
+    3. Ensure phone call can be rejected
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is snap decision shown?
+    2. Did call reject work?
+
+unit: job
+id: Tel-07
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that dtmf feature call work as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare a fixed-line telephone with extension number
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to fixed-line telephone that has extension number to input
+    3. When call connected then enter the extension number
+    3. Verify call is transferred correctly
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected to correct extension?
+
+unit: job
+id: Tel-08
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that preset extension number can work as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare a fixed-line telephone with extension number
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Input phone number with #extension number (ex; 0287296800#123) and then dial 
+    3. Verify call is transferred correctly
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected to correct extension?
+
+unit: job
+id: Tel-09
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that call waiting functions can work as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare three DUT
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Make a MO Call to DUT2
+    3. When call connected, use DUT3 to call DUT1
+    3. Verify call waiting feature can work as expected 
+    4. Verify you call answer/on hold/reject the call
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call waiting feature worked?
+
+unit: job
+id: Tel-10
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that call will be dropped if call waiting disabled
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Disable call waiting
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a phone number 
+    3. When call connected, use another phone to call DUT
+    3. Verify call will be dropped immediately
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call dropped as expected?
+
+unit: job
+id: Tel-11
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that calling voicemail functions as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call voicemail number
+    3. Ensure voicemail mailbox is reached
+    4. Ensure mailbox can be navigated using DTMF
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is voicemail functioning?
+    2. Is navigation working via DTMF?
+
+unit: job
+id: Tel-12
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure placing a call on hold works
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. MT call to DUT
+    2. Toggle hold on
+    3, Make sure hold is turned on on the phone
+    4. Make sure indicator on phone and app shows hold as on
+    5. Turn off hold from the phone
+    6. Make sure indicator on phone and app shows hold is off
+    7. Make sure hold is actually off
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is hold turned on?
+    2. Does phone indicate hold is on?
+    3. Does turning hold off from the phone turn off hold?
+    4. When gold is turned off on phone, does the icon in the app reflect its new status?
+
+unit: job
+id: Tel-13
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure sure that speakerphone toggle on/off works in voicemail
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to voicemail
+    3. Toggle speaker phone on
+    4. Make sure speakerphone is turned on 
+    5. Make sure indicator on phone shows speakerphone as on
+    6. Turn off speakerphone from the phone
+    7. Make sure indicator in app shows speakerphone is off
+    8. Make sure speakerphone is now off
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is speakerphone turned on?
+    2. Does phone indicate speakerphone is on?
+    3. Does turning speakerphone off from the phone turn off speakerphone?
+    4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
+
+unit: job
+id: Tel-14
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that speakerphone toggle on/off works in regular phone call
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Have two DUT
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Toggle speaker phone on
+    3, Make sure speakerphone is turned on on the phone
+    4. Make sure indicator on phone and app shows speakerphone as on
+    5. Turn off speakerphone from the phone
+    6. Make sure indicator on phone and app shows speakerphone is off
+    7. Make sure speakerphone is actually off
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is speakerphone turned on?
+    2. Does phone indicate speakerphone is on?
+    3. Does turning speakerphone off from the phone turn off speakerphone?
+    4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
+
+unit: job
+id: Tel-15
+plugin: manual
+category_id: Telephony/Basic Call (SIM1)
+_summary: Ensure that microphone mute works in call
+_steps:
+_verification:
+
+unit: category
+id: Telephony/Basic Call (SIM2)
+_name: Telephony/Basic Call (SIM2)
+
+unit: job
+id: Tel-16
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that call out to fixed-line telephone works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a fixed-line telephone number
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-17
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that call out to mobile phone number works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a mobile phone number (ex:0988888888)
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-18
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that call out to mobile phone number with country code works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a mobile phone number (ex:+886988888888)
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-19
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that call out to mobile phone number with 00 code works as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a mobile phone number (ex:00886988888888)
+    3. Verify call is connected
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected?
+    2. Is call quality acceptable?
+
+unit: job
+id: Tel-20
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that receiving a mt call works as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare two DUT
+ .
+ ACTIONS:
+    1. Make a MT call to DUT1 
+    2. Ensure snap decision is shown
+    3. Ensure phone call can be answered
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is snap decision shown?
+    2. Is call answered?
+
+unit: job
+id: Tel-21
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that reject a mt call works as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare two DUT
+ .
+ ACTIONS:
+    1. Make a MT call to DUT1 
+    2. Ensure snap decision is shown
+    3. Ensure phone call can be rejected
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is snap decision shown?
+    2. Did call reject work?
+
+unit: job
+id: Tel-23
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that dtmf feature call work as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare a fixed-line telephone with extension number
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to fixed-line telephone that has extension number to input
+    3. When call connected then enter the extension number
+    3. Verify call is transferred correctly
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected to correct extension?
+
+unit: job
+id: Tel-24
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that preset extension number can work as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare a fixed-line telephone with extension number
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Input phone number with #extension number (ex; 0287296800#123) and then dial 
+    3. Verify call is transferred correctly
+    4. Verify audio in/out works
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call connected to correct extension?
+
+unit: job
+id: Tel-25
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that call waiting functions can work as expected
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Prepare three DUT
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Make a MO Call to DUT2
+    3. When call connected, use DUT3 to call DUT1
+    3. Verify call waiting feature can work as expected 
+    4. Verify you call answer/on hold/reject the call
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call waiting feature worked?
+
+unit: job
+id: Tel-26
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that call will be dropped if call waiting disabled
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Disable call waiting
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to a phone number 
+    3. When call connected, use another phone to call DUT
+    3. Verify call will be dropped immediately
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call dropped as expected?
+
+unit: job
+id: Tel-27
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that calling voicemail functions as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call voicemail number
+    3. Ensure voicemail mailbox is reached
+    4. Ensure mailbox can be navigated using DTMF
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is voicemail functioning?
+    2. Is navigation working via DTMF?
+
+unit: job
+id: Tel-28
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure placing a call on hold works
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. MT call to DUT
+    2. Toggle hold on
+    3, Make sure hold is turned on on the phone
+    4. Make sure indicator on phone and app shows hold as on
+    5. Turn off hold from the phone
+    6. Make sure indicator on phone and app shows hold is off
+    7. Make sure hold is actually off
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is hold turned on?
+    2. Does phone indicate hold is on?
+    3. Does turning hold off from the phone turn off hold?
+    4. When gold is turned off on phone, does the icon in the app reflect its new status?
+
+unit: job
+id: Tel-29
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure sure that speakerphone toggle on/off works in voicemail
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Call to voicemail
+    3. Toggle speaker phone on
+    4. Make sure speakerphone is turned on 
+    5. Make sure indicator on phone shows speakerphone as on
+    6. Turn off speakerphone from the phone
+    7. Make sure indicator in app shows speakerphone is off
+    8. Make sure speakerphone is now off
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is speakerphone turned on?
+    2. Does phone indicate speakerphone is on?
+    3. Does turning speakerphone off from the phone turn off speakerphone?
+    4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
+
+unit: job
+id: Tel-30
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that speakerphone toggle on/off works in regular phone call
+_steps:
+ SETUP:
+    1. Ensure SIM is present
+    2. Have two DUT
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Toggle speaker phone on
+    3, Make sure speakerphone is turned on on the phone
+    4. Make sure indicator on phone and app shows speakerphone as on
+    5. Turn off speakerphone from the phone
+    6. Make sure indicator on phone and app shows speakerphone is off
+    7. Make sure speakerphone is actually off
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is speakerphone turned on?
+    2. Does phone indicate speakerphone is on?
+    3. Does turning speakerphone off from the phone turn off speakerphone?
+    4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
+
+unit: job
+id: Tel-31
+plugin: manual
+category_id: Telephony/Basic Call (SIM2)
+_summary: Ensure that microphone mute works in call
+_steps:
+_verification:
+
+unit: category
+id: Telephony/Hardware/Emergency Support (SIM1)
+_name: Telephony/Hardware/Emergency Support (SIM1)
+
+unit: job
+id: Tel-32
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM1)
+_summary: Ensure that an imei number is set
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Enter *#06#
+ .
+ TEARDOWN:
+    1. Close dialer
+_verification:
+    1. Is it pop up the IMEI number?
+
+unit: job
+id: Tel-33
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM1)
+_summary: Ensure that emergency codes are properly set
+_steps:
+ SETUP:
+    remove SIM card
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Dial emergency number (ex: 000)
+    3. Ensure emergency call can be called
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is it emergency call connected?
+
+unit: job
+id: Tel-34
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM1)
+_summary: Ensure that ussd codes function as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Dial USSD number (ex: #123)
+    3. Ensure USSD call can work as expected
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call to USSD number worked?
+
+unit: job
+id: Tel-35
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM1)
+_summary: Ensure that the network indicator shows connection status
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Ensure the network indicator now shows telephony connection signal?
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does the network indicator show telephony connection correctly?
+
+unit: job
+id: Tel-36
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM1)
+_summary: Ensure that no signal shows when no sim card inserted
+_steps:
+ SETUP:
+    Ensure SIM is not inserted
+ .
+ ACTIONS:
+    1. Ensure the network indicator shows no signal
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does the network indicator show no signal correctly?
+
+unit: job
+id: Tel-38
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM1)
+_summary: Ensure that 3g sim card can be supported
+_steps:
+ SETUP:
+    Insert a 3G sim card
+ .
+ ACTIONS:
+    1. Boot up 
+    2. Ensure system can identify the sim card
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does 3G sim card work correctly?
+
+unit: category
+id: Telephony/Hardware/Emergency Support (SIM2)
+_name: Telephony/Hardware/Emergency Support (SIM2)
+
+unit: job
+id: Tel-39
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM2)
+_summary: Ensure that an imei number is set
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Enter *#06#
+ .
+ TEARDOWN:
+    1. Close dialer
+_verification:
+    1. Is it pop up the IMEI number?
+
+unit: job
+id: Tel-40
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM2)
+_summary: Ensure that emergency codes are properly set
+_steps:
+ SETUP:
+    remove SIM card
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Dial emergency number (ex: 000)
+    3. Ensure emergency call can be called
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is it emergency call connected?
+
+unit: job
+id: Tel-41
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM2)
+_summary: Ensure that ussd codes function as expected
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open dialer
+    2. Dial USSD number (ex: #123)
+    3. Ensure USSD call can work as expected
+ .
+ TEARDOWN:
+    1. End call
+    2. Close dialer
+_verification:
+    1. Is call to USSD number worked?
+
+unit: job
+id: Tel-42
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM2)
+_summary: Ensure that the network indicator shows connection status
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Ensure the network indicator now shows telephony connection signal?
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does the network indicator show telephony connection correctly?
+
+unit: job
+id: Tel-43
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM2)
+_summary: Ensure that no signal shows when no sim card inserted
+_steps:
+ SETUP:
+    Ensure SIM is not inserted
+ .
+ ACTIONS:
+    1. Ensure the network indicator shows no signal
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does the network indicator show no signal correctly?
+
+unit: job
+id: Tel-45
+plugin: manual
+category_id: Telephony/Hardware/Emergency Support (SIM2)
+_summary: Ensure that 3g sim card can be supported
+_steps:
+ SETUP:
+    Insert a 3G sim card
+ .
+ ACTIONS:
+    1. Boot up 
+    2. Ensure system can identify the sim card
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does 3G sim card work correctly?
+
+unit: category
+id: Telephony/Data Support (SIM1)
+_name: Telephony/Data Support (SIM1)
+
+unit: job
+id: Tel-46
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that phone can properly use gprs data
+_steps:
+ SETUP:
+    Ensure SIM is present 
+    Ensure wifi is not connected
+ .
+ ACTIONS:
+    1. Ensure that DUT connected to GRPS network
+    2. Open web browser, navigate to ubuntu.com
+ .
+ TEARDOWN:
+    Close browser
+_verification:
+    1. Was Ubuntu.com loaded?
+
+unit: job
+id: Tel-47
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that phone can properly use edge data
+_steps:
+ SETUP:
+    Ensure SIM is present 
+    Ensure wifi is not connected
+ .
+ ACTIONS:
+    1. Ensure that DUT connected to Edge network
+    2. Open web browser, navigate to ubuntu.com
+ .
+ TEARDOWN:
+    Close browser
+_verification:
+    1. Was Ubuntu.com loaded?
+
+unit: job
+id: Tel-48
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that phone can properly use 3g data
+_steps:
+ SETUP:
+    Ensure SIM is present 
+    Ensure wifi is not connected
+ .
+ ACTIONS:
+    1. Ensure that DUT connected to 3G network
+    2. Open web browser, navigate to ubuntu.com
+ .
+ TEARDOWN:
+    Close browser
+_verification:
+    1. Was Ubuntu.com loaded?
+
+unit: job
+id: Tel-49
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that phone can properly use hspa data
+_steps:
+ SETUP:
+    Ensure SIM is present 
+    Ensure wifi is not connected
+ .
+ ACTIONS:
+    1. Ensure that DUT connected to HSPA network
+    2. Open web browser, navigate to ubuntu.com
+ .
+ TEARDOWN:
+    Close browser
+_verification:
+    1. Was Ubuntu.com loaded?
+
+unit: job
+id: Tel-50
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that connection can switch between wifi and gprs
+_steps:
+ SETUP:
+    Ensure SIM is present
+    Ensure wifi connected
+    Ensure DUT connected to GRPS network
+ .
+ ACTIONS:
+    1. Open web browser, navigate to ubuntu.com
+    2. Disable wifi
+    3. Open web browser, navigate to wiki.ubuntu.com
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Was ubuntu.com loaded?
+    2. Was wiki.ubuntu.com loaded?
+
+unit: job
+id: Tel-51
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that connection can switch between wifi and edge
+_steps:
+ SETUP:
+    Ensure SIM is present
+    Ensure wif connected
+    Ensure DUT connected to Edge network
+ .
+ ACTIONS:
+    1. Open web browser, navigate to ubuntu.com
+    2. Disable wifi
+    3. Open web browser, navigate to wiki.ubuntu.com
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Was ubuntu.com loaded?
+    2. Was wiki.ubuntu.com loaded?
+
+unit: job
+id: Tel-52
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that connection can switch between wifi and 3g
+_steps:
+ SETUP:
+    Ensure SIM is present
+    Ensure wif connected
+    Ensure DUT connected to 3G network
+ .
+ ACTIONS:
+    1. Open web browser, navigate to ubuntu.com
+    2. Disable wifi
+    3. Open web browser, navigate to wiki.ubuntu.com
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Was ubuntu.com loaded?
+    2. Was wiki.ubuntu.com loaded?
+
+unit: job
+id: Tel-53
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that connection can switch between wifi and hspa
+_steps:
+ SETUP:
+    Ensure SIM is present
+    Ensure wif connected
+    Ensure DUT connected to HSPA network
+ .
+ ACTIONS:
+    1. Open web browser, navigate to ubuntu.com
+    2. Disable wifi
+    3. Open web browser, navigate to wiki.ubuntu.com
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Was ubuntu.com loaded?
+    2. Was wiki.ubuntu.com loaded?
+
+unit: job
+id: Tel-54
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that call quality is acceptable in 2g
+_steps:
+ SETUP:
+    Prepare 2 DUT and 2 Reference
+    Ensure 2G SIM is present
+ .
+ ACTIONS:
+    1. DUT1 makes a MO call to DUT2
+    2. Ref1 makes a MO call to Ref2 
+    3. Compare the call quality between DUT and Reference
+ .
+ TEARDOWN:
+    End the calls
+_verification:
+    1. Is call quality acceptable?
+
+unit: job
+id: Tel-55
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that call quality is acceptable in 3g
+_steps:
+ SETUP:
+    Prepare 2 DUT and 2 References
+    Ensure 3G SIM is present
+ .
+ ACTIONS:
+    1. DUT1 makes a MO call to DUT2
+    2. Reference1 makes a MO call to Reference2
+    3. Compare the call quality between DUT and Reference
+ .
+ TEARDOWN:
+    End the calls
+_verification:
+    1. Is call quality acceptable?
+
+unit: job
+id: Tel-56
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that data performance is acceptable in gprs
+_steps:
+ SETUP:
+    Prepare 1 DUT and 1 References
+    Ensure DUT connected to GRPS network
+ .
+ ACTIONS:
+    1. From DUT, Open web browser and navigate to www.speedtest.net
+    2. Press test 
+    3. From Ref, Open web browser and navigate to www.speedtest.net
+    4. Compare both DUT and Reference
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Is DUT data performance similar to Reference?
+
+unit: job
+id: Tel-57
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that data performance is acceptable in edge
+_steps:
+ SETUP:
+    Prepare 1 DUT and 1 References
+    Ensure DUT connected to Edge network
+ .
+ ACTIONS:
+    1. From DUT, Open web browser and navigate to www.speedtest.net
+    2. Press test 
+    3. From Ref, Open web browser and navigate to www.speedtest.net
+    4. Compare both DUT and Reference
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Is DUT data performance similar to Reference?
+
+unit: job
+id: Tel-58
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that data performance is acceptable in 3g
+_steps:
+ SETUP:
+    Prepare 1 DUT and 1 References
+    Ensure DUT connected to 3G network
+ .
+ ACTIONS:
+    1. From DUT, Open web browser and navigate to www.speedtest.net
+    2. Press test 
+    3. From Ref, Open web browser and navigate to www.speedtest.net
+    4. Compare both DUT and Reference
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Is DUT data performance similar to Reference?
+
+unit: job
+id: Tel-59
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that data performance is acceptable in hspa
+_steps:
+ SETUP:
+    Prepare 1 DUT and 1 References
+    Ensure DUT connected to HSPA network
+ .
+ ACTIONS:
+    1. From DUT, Open web browser and navigate to www.speedtest.net
+    2. Press test 
+    3. From Ref, Open web browser and navigate to www.speedtest.net
+    4. Compare both DUT and Reference
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Is DUT data performance similar to Reference?
+
+unit: job
+id: Tel-60
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that the failure rate of call drop in poor signal area is acceptable
+_steps:
+ SETUP:
+    Prepare 2 DUT and 2 References
+    Ensure 1 DUT and 1 Reference are in poor signal area
+ .
+ ACTIONS:
+    1. DUT1 makes a MO call to DUT2
+    2. Reference1 makes a MO call to Reference2
+    3. Compare the failure rate of call drop between DUT1 and Reference1
+ .
+ TEARDOWN:
+    End the calls
+_verification:
+    1. Does failure rate of DUT1 similar to Reference1
+
+unit: job
+id: Tel-61
+plugin: manual
+category_id: Telephony/Data Support (SIM1)
+_summary: Ensure that data roaming can work correctly
+_steps:
+ SETUP:
+    Ensure a foreign SIM is present
+ .
+ ACTIONS:
+    1. Ensure that DUT can connect to a roaming 3G network
+    2. Open web browser, navigate to ubuntu.com
+ .
+ TEARDOWN:
+    Close webbrowser
+_verification:
+    1. Does DUt connect to a roaming data network successfully?
+    2. Was ubuntu.com loaded?
+
+unit: category
+id: Telephony/Interruptions
+_name: Telephony/Interruptions
+
+unit: job
+id: Tel-62
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that sms alert sound can be played correctly during music playback
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Launch music player and playback a music file 
+    2. Send a SMS message to DUT  
+    3. Ensure that music playback will be stopped and then play the SMS receiving alert sound
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is music playback stopped? 
+    2. Is SMS alert sound played?  
+    3. Is Message indicator show up?
+
+unit: job
+id: Tel-63
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that mms alert sound can be played correctly during music playback
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Launch music player and playback a music file 
+    2. Send a MMS message to DUT  
+    3. Ensure that music playback will be stopped and then play the MMS receiving alert sound
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is music playback stopped? 
+    2. Is MMS alert sound played?   
+    3. Is Message indicator show up?
+
+unit: job
+id: Tel-64
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that incoming call ringtone can be played correctly during music playback
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Launch music player and playback a music file 
+    2. Make a MO call to DUT    
+    3. Ensure that music playback will be stopped and then play the incoming call ringtone
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is music playback stopped? 
+    2. Is incoming call ringtone played?   
+    3. Is call snap decision show up?
+
+unit: job
+id: Tel-65
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that sms alert sound can be played correctly during video playback
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Launch media player and playback a video file 
+    2. Send a SMS message to DUT  
+    3. Ensure that music playback will be stopped and then play the SMS receiving alert sound
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is video playback stopped? 
+    2. Is SMS alert sound played?  
+    3. Is Message indicator show up?
+
+unit: job
+id: Tel-66
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that mms alert sound can be played correctly during video playback
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Launch media player and playback a video file 
+    2. Send a MMS message to DUT  
+    3. Ensure that music playback will be stopped and then play the MMS receiving alert sound
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is video playback stopped? 
+    2. Is MMS alert sound played?   
+    3. Is Message indicator show up?
+
+unit: job
+id: Tel-67
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that incoming call ringtone can be played correctly during video playback
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Launch media player and playback a video file 
+    2. Make a MO call to DUT    
+    3. Ensure that music playback will be stopped and then play the incoming call ringtone
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is video playback stopped? 
+    2. Is incoming call ringtone played?   
+    3. Is call snap decision show up?
+
+unit: job
+id: Tel-68
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that incoming call ringtone can be played correctly while browsing via gprs data
+_steps:
+ SETUP:
+    1. Ensure SIM is present 
+    2. Connected to GPRS data
+ .
+ ACTIONS:
+    1. Launch web browser and browing to the www.ubuntu.com 
+    2. Make a MO call to DUT    
+    3. Ensure that the incoming call ringtone is played
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is incoming call ringtone played?   
+    2. Is call snap decision show up?
+
+unit: job
+id: Tel-69
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that mo call can be performed correctly while browsing via gprs data
+_steps:
+ SETUP:
+    1. Ensure SIM is present 
+    2. Connected to GPRS data
+ .
+ ACTIONS:
+    1. Launch web browser and browing to the www.ubuntu.com 
+    2. Make a MO call 
+    3. Ensure that the MO call can be performed
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is MO call performed correctly?
+
+unit: job
+id: Tel-70
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that incoming call ringtone can be played correctly while browsing via 3g data
+_steps:
+ SETUP:
+    1. Ensure SIM is present 
+    2. Connected to 3G data
+ .
+ ACTIONS:
+    1. Launch web browser and browing to the www.ubuntu.com 
+    2. Make a MO call to DUT    
+    3. Ensure that the incoming call ringtone is played
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is incoming call ringtone played?   
+    2. Is call snap decision show up?
+
+unit: job
+id: Tel-71
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that mo call can be performed correctly while browsing via 3g data
+_steps:
+ SETUP:
+    1. Ensure SIM is present 
+    2. Connected to 3G data
+ .
+ ACTIONS:
+    1. Launch web browser and browing to the www.ubuntu.com 
+    2. Make a MO call 
+    3. Ensure that the MO call can be performed
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is MO call performed correctly?
+
+unit: job
+id: Tel-72
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that incoming call ringtone can be played correctly while playing streaming video via gprs data
+_steps:
+ SETUP:
+    1. Ensure SIM is present 
+    2. Connected to GPRS data
+ .
+ ACTIONS:
+    1. Launch web browser and browing to the www.youtube.com 
+    2. Play a video clip on youtube
+    2. Make a MO call to DUT    
+    3. Ensure that streaming video is stopped and the incoming call ringtone is played
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is streaming video stopped and then incoming call ringtone played?   
+    2. Is call snap decision show up?
+
+unit: job
+id: Tel-73
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that mo call can be performed correctly while playing streaming video via 3g data
+_steps:
+ SETUP:
+    1. Ensure SIM is present 
+    2. Connected to 3G data
+ .
+ ACTIONS:
+    1. Launch web browser and browing to the www.youtube.com 
+    2. Play a video clip on youtube
+    2. Make a MO call to DUT    
+    3. Ensure that streaming video is stopped and the incoming call ringtone is played
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Is streaming video stopped and then incoming call ringtone played?   
+    2. Is call snap decision show up?
+
+unit: job
+id: Tel-74
+plugin: manual
+category_id: Telephony/Interruptions
+_summary: Ensure that call can be taken on bluetooth headset whilest downloading a large file
+_steps:
+ SETUP:
+    1. Pair a bluetooth headset with the phone
+    2. Begin downloading a large file with the DUT
+ .
+ ACTIONS:
+    1. Make a call to the DUT
+    2. Answer the call
+_verification:
+    1. Verify that call can be taking correctly on the bluetooth headset
+
+unit: category
+id: Message/SMS/MMS (SIM1)
+_name: Message/SMS/MMS (SIM1)
+
+unit: job
+id: Msg-01
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that sms messages can be sent to single contact
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Opens messaging app
+    2. Select a contact and send the text
+    3. Ensure SMS sent correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly?
+
+unit: job
+id: Msg-02
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that sms messages can be sent to multiple contacts
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Opens messaging app
+    2. Select multiple contacts and send the text
+    3. Ensure SMS sent correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent to multiple contacts correctly?
+
+unit: job
+id: Msg-03
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that sms messages can be receieved correctly
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT2 sent SMS to DUT1
+    2. Ensure notification is shown when text is received
+    3. Ensure text is received in messaging app
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS received correctly?
+
+unit: job
+id: Msg-04
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that concatenate sms message can be sent to single contact (more than 160 characters)
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input more than 160 characters and send to DUT2
+    3. Ensure SMS sent to DUT2 ocrrectly
+    4. Ensure DUT2 received two messages
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly? 
+    2. Is DUT2 received two messages?
+
+unit: job
+id: Msg-05
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that concatenate sms message can be sent to multiple contacts (more than 160 characters)
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Opens messaging app
+    2. Input more than 160 characters and send multiple contacts
+    3. Ensure SMS sent to multiple contacts ocrrectly
+    4. Ensure each contact received two messages
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly? 
+    2. Is every contact received two messages?
+
+unit: job
+id: Msg-06
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that sms message with speical characters can be sent correctly (e.g #.$ å)
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input speical characters and send to DUT2
+    3. Ensure SMS sent to DUT2 ocrrectly
+    4. Ensure DUT2 can display speical characters correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly? 
+    2. Is speical characters displayed correctly?
+
+unit: job
+id: Msg-07
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that sms message containing an ampersand (&) in the middle can be displayed correctly
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input some text with an ampersand in the middle
+    3. Send to DUT2
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is message displayed correctly
+
+unit: job
+id: Msg-08
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that sms message containing a url can be displayed correctly
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input some text and a URL
+    3. Send to DUT2
+ .
+ TEARDOWN:
+    1. Close the messaging app
+_verification:
+    1. Is the message displayed correctly
+    2. Can you click on the URL and it open in the browser
+
+unit: job
+id: Msg-09
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that forward sms message to single contact works
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Sent a SMS message to DUT2
+    3. While DUT2 received SMS message then forward back to DUT1
+    4. Ensure DUT2 can forward message to DUT1
+    5. Ensure DUT1 can receive this message
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Did DUT2 forward message work?
+    2. Is DUT1 received this message?
+
+unit: job
+id: Msg-10
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that send sms message to foreign country works
+_steps:
+ SETUP:
+    Prepare two DUT, one with foreign sim
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 send SMS message to DUT2 w/ foreign sim
+    2. Ensure that send SMS message to foreign sim works
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly?
+    2. Is DUT2 received message?
+
+unit: job
+id: Msg-11
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that mms messages can be sent to single contact
+_steps:
+ SETUP:
+    Prepare two DUT and setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Send a MMS message with picture, clip file or music file to DUT2
+    3. Ensure MMS sent correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is MMS sent correctly?
+
+unit: job
+id: Msg-12
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that mms messages can be sent to multiple contacts
+_steps:
+ SETUP:
+    DUT setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open messaging app
+    2. Select multiple contacts and send MMS 
+    3. Ensure MMS sent correctly
+_verification:
+    1. Is MMS sent to mulitple contacts correctly?
+
+unit: job
+id: Msg-13
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that mms messages can be receieved and played correctly
+_steps:
+ SETUP:
+    Prepare two DUT and setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT2 sent MMS to DUT1
+    2. Ensure notification is shown when MMS is received
+    3. Ensure that MMS message can be played correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is MMS received correctly?
+    2. Does MMS play correctly?
+
+unit: job
+id: Msg-14
+plugin: manual
+category_id: Message/SMS/MMS (SIM1)
+_summary: Ensure that forward mms message to single contact works
+_steps:
+ SETUP:
+    Prepare two DUT and setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Sent a MMS message to DUT2
+    3. While DUT2 received MMS message then forware back to DUT1
+    4. Ensure DUT2 can forward message to DUT1
+    5. Ensure DUT1 can receive this message
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Did DUT2 forward message work?
+    2. Is DUT1 received this message?
+
+unit: category
+id: Message/SMS/MMS (SIM2)
+_name: Message/SMS/MMS (SIM2)
+
+unit: job
+id: Msg-15
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that sms messages can be sent to single contact
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Opens messaging app
+    2. Select a contact and send the text
+    3. Ensure SMS sent correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly?
+
+unit: job
+id: Msg-16
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that sms messages can be sent to multiple contacts
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Opens messaging app
+    2. Select multiple contacts and send the text
+    3. Ensure SMS sent correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent to multiple contacts correctly?
+
+unit: job
+id: Msg-17
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that sms messages can be receieved correctly
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT2 sent SMS to DUT1
+    2. Ensure notification is shown when text is received
+    3. Ensure text is received in messaging app
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS received correctly?
+
+unit: job
+id: Msg-18
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that concatenate sms message can be sent to single contact (more than 160 characters)
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input more than 160 characters and send to DUT2
+    3. Ensure SMS sent to DUT2 ocrrectly
+    4. Ensure DUT2 received two messages
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly? 
+    2. Is DUT2 received two messages?
+
+unit: job
+id: Msg-19
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that concatenate sms message can be sent to multiple contacts (more than 160 characters)
+_steps:
+ SETUP:
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Opens messaging app
+    2. Input more than 160 characters and send multiple contacts
+    3. Ensure SMS sent to multiple contacts ocrrectly
+    4. Ensure each contact received two messages
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly? 
+    2. Is every contact received two messages?
+
+unit: job
+id: Msg-20
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that sms message with speical characters can be sent correctly (e.g #.$ å)
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input speical characters and send to DUT2
+    3. Ensure SMS sent to DUT2 ocrrectly
+    4. Ensure DUT2 can display speical characters correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly? 
+    2. Is speical characters displayed correctly?
+
+unit: job
+id: Msg-21
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that sms message containing an ampersand (&) in the middle can be displayed correctly
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input some text with an ampersand in the middle
+    3. Send to DUT2
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is message displayed correctly
+
+unit: job
+id: Msg-22
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that sms message containing a url can be displayed correctly
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Input some text and a URL
+    3. Send to DUT2
+ .
+ TEARDOWN:
+    1. Close the messaging app
+_verification:
+    1. Is the message displayed correctly
+    2. Can you click on the URL and it open in the browser
+
+unit: job
+id: Msg-23
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that forward sms message to single contact works
+_steps:
+ SETUP:
+    Prepare two DUT
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Sent a SMS message to DUT2
+    3. While DUT2 received SMS message then forward back to DUT1
+    4. Ensure DUT2 can forward message to DUT1
+    5. Ensure DUT1 can receive this message
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Did DUT2 forward message work?
+    2. Is DUT1 received this message?
+
+unit: job
+id: Msg-24
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that send sms message to foreign country works
+_steps:
+ SETUP:
+    Prepare two DUT, one with foreign sim
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 send SMS message to DUT2 w/ foreign sim
+    2. Ensure that send SMS message to foreign sim works
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is SMS sent correctly?
+    2. Is DUT2 received message?
+
+unit: job
+id: Msg-25
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that mms messages can be sent to single contact
+_steps:
+ SETUP:
+    Prepare two DUT and setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Send a MMS message with picture, clip file or music file to DUT2
+    3. Ensure MMS sent correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is MMS sent correctly?
+
+unit: job
+id: Msg-26
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that mms messages can be sent to multiple contacts
+_steps:
+ SETUP:
+    DUT setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. Open messaging app
+    2. Select multiple contacts and send MMS 
+    3. Ensure MMS sent correctly
+_verification:
+    1. Is MMS sent to mulitple contacts correctly?
+
+unit: job
+id: Msg-27
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that mms messages can be receieved and played correctly
+_steps:
+ SETUP:
+    Prepare two DUT and setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT2 sent MMS to DUT1
+    2. Ensure notification is shown when MMS is received
+    3. Ensure that MMS message can be played correctly
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Is MMS received correctly?
+    2. Does MMS play correctly?
+
+unit: job
+id: Msg-28
+plugin: manual
+category_id: Message/SMS/MMS (SIM2)
+_summary: Ensure that forward mms message to single contact works
+_steps:
+ SETUP:
+    Prepare two DUT and setup MMS APN
+    Ensure SIM is present
+ .
+ ACTIONS:
+    1. DUT1 opens messaging app
+    2. Sent a MMS message to DUT2
+    3. While DUT2 received MMS message then forware back to DUT1
+    4. Ensure DUT2 can forward message to DUT1
+    5. Ensure DUT1 can receive this message
+ .
+ TEARDOWN:
+    1. Close messaging app
+_verification:
+    1. Did DUT2 forward message work?
+    2. Is DUT1 received this message?
+
+unit: category
+id: Camera/Camera Test
+_name: Camera/Camera Test
+
+unit: job
+id: Camera-01
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that camera app can be launched
+_steps:
+ ACTIONS:
+    1. Tap Camera app from application scope
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Did camera app launch?
+
+unit: job
+id: Camera-02
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that the rear camera preview and zoom works
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Ensure camera image is shown
+    2. Switch camera to rear camera, make sure the view updates
+    3. Zoom in/out, make sure the view updates
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Does the back camera work?
+
+unit: job
+id: Camera-03
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that the front camera preview and zoom works
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Ensure camera image is shown
+    2. Switch camera to Front camera, make sure the view updates
+    3. Zoom in/out make sure the view updates
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Does the front camera work?
+
+unit: job
+id: Camera-04
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that photos can be captured with the rear camera
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a picture with rear camera
+    2. Open gallery app, ensure pictures are shown
+ .
+ TEARDOWN:
+    Close camera app, close gallery app
+_verification:
+    1.Is the picture found in the gallery app?
+
+unit: job
+id: Camera-05
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that photos can be captured with the front camera
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a picture with front camera
+    2. Open gallery app, ensure pictures are shown
+ .
+ TEARDOWN:
+    Close camera app, close gallery app
+_verification:
+    1.Is the picture found in the gallery app?
+
+unit: job
+id: Camera-06
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that video can be captured with the rear camera
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a video with rear camera
+    2. Open gallery app, ensure video clips are shown
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Is the video captured? 
+    2. Can the video clips be viewed?
+
+unit: job
+id: Camera-07
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that video can be captured with the front camera
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a video with front camera
+    2. Open gallery app, ensure video clips are shown
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Is the video captured? 
+    2. Can the video clips be viewed?
+
+unit: job
+id: Camera-08
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure that camera flash led can work as expected
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Switch on flash support to auto
+    2. Take a photo udner low light
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Does flash led work correctly?
+
+unit: job
+id: Camera-09
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Compare front camera photo with reference device
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a picture with front camera of DUT
+    2. Open photo in gallery app
+    3. Capture the same (try to maintain same lighting condtions etc) picture with front camera of reference Android device
+    4. Open photo in gallery app of Android device
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Compare the quality of the photo
+    2. Are the photos of similar quality?
+
+unit: job
+id: Camera-10
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Compare rear camera photo with reference device
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a picture with rear camera of DUT
+    2. Open photo in gallery app
+    3. Capture the same (try to maintain same lighting condtions etc) picture with rear camera of reference Android device
+    4. Open photo in gallery app of Android device
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Compare the quality of the photo
+    2. Are the photos of similar quality?
+
+unit: job
+id: Camera-11
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Compare font camera video with reference device
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a video with front camera of DUT
+    2. Open video in gallery app
+    3. Capture the same (try to maintain same lighting condtions etc) video with front camera of reference Android device
+    4. Open video in gallery app of Android device
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Compare the quality of the video
+    2. Are the videos of similar quality?
+
+unit: job
+id: Camera-12
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Compare rear camera video with reference device
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Capture a video with rear camera of DUT
+    2. Open video in gallery app
+    3. Capture the same (try to maintain same lighting condtions etc) video with rear camera of reference Android device
+    4. Open video in gallery app of Android device
+ .
+ TEARDOWN:
+    Close camera app
+_verification:
+    1. Compare the quality of the video
+    2. Are the videos of similar quality?
+
+unit: job
+id: Camera-13
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure the quality/image size of a photo can be configured for front camera
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Select various image qualities
+    2. Take a photo with the front camera of DUT
+_verification:
+    1. Examine the captured photos over MTP
+    2. Verify that the sizes match the selection in the camera app
+
+unit: job
+id: Camera-14
+plugin: manual
+category_id: Camera/Camera Test
+_summary: Ensure the quality/image size of a photo can be configured for rear camera
+_steps:
+ SETUP:
+    Open camera app
+ .
+ ACTIONS:
+    1. Select various image qualities
+    2. Take a photo with the rear camera of DUT
+_verification:
+    1. Examine the captured photos over MTP
+    2. Verify that the sizes match the selection in the camera app
+
+unit: category
+id: Audio/Audio path
+_name: Audio/Audio path
+
+unit: job
+id: Audio-01
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the internal microphone works as expected
+_steps:
+ SETUP:
+    Have two DUT
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Speak to internal microphone
+    3. Ensure DUT2 can hear voice
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did DUT2 hear voice?
+
+unit: job
+id: Audio-02
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the internal speaker works as expected
+_steps:
+ SETUP:
+    Have two DUT
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Speak to DUT2
+    3. Ensure voice come out from internal speaker
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did you hear voice?
+
+unit: job
+id: Audio-03
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the headset works as expected
+_steps:
+ SETUP:
+    1. Have two DUT
+    2. Plugin a headset
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Speak to headset
+    3. Ensure DUT2 can hear voice 
+    4. Speak to DUT2
+    5. Ensure voice come out from external speaker
+ .
+ TEARDOWN:
+    Unplugin the headset
+_verification:
+    1. Did both speaker and microphone of headset work correctly?
+
+unit: job
+id: Audio-04
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that bt headset works as expected
+_steps:
+ SETUP:
+    1. Have two DUT
+    2. Paired with a BT headset
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Speak to BT headset
+    3. Ensure DUT2 can hear voice 
+    4. Speak to DUT2
+    5. Ensure voice come out from BT headset
+ .
+ TEARDOWN:
+    Unpair BT headset
+_verification:
+    1. Did both speaker and microphone of BT headset work correctly?
+
+unit: job
+id: Audio-05
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the audio can be switched from internal to headset during playing music
+_steps:
+ SETUP:
+    Prepare a headset
+ .
+ ACTIONS:
+    1. Play a music file
+    2. Ensure music come from internal speaker
+    3. Plugin a headset
+    4. Ensure music come from headset
+    5. Unplug the headset
+    6. Ensure music switch back to internal speaker
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did the sound can be heard from internal speaker?           
+    2. Did the sound can be heard from headset? 
+    3. Did the sound can be heard from internal speaker?
+
+unit: job
+id: Audio-06
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the audio can be switched from internal to bt headset during playing music
+_steps:
+ SETUP:
+    Prepare a BT headset
+ .
+ ACTIONS:
+    1. Play a music file
+    2. Ensure music come from internal speaker
+    3. Connect to BT headset
+    4. Ensure music come from BT headset
+    5. Disconnect to BT Headset
+    6. Ensure music switch back to internal speaker
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did the sound can be heard from internal speaker?           
+    2. Did the sound can be heard from BT headset?
+    3. Did the sound can be heard from internal speaker?
+
+unit: job
+id: Audio-07
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the audio can be switched from internal to headset during a call
+_steps:
+ SETUP:
+    1. Have two DUT
+    2. Prepare a headset
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Ensure both output/input audio come from internal speaker and microphone
+    3. Plugin a headset
+    4. Ensure that both output/input audio come from headset
+    5. Unplug the headset
+    6. Ensure that both output/input audio switch back to internal speaker/microphone
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did both output/input audio come from internal speaker?           
+    2. Did both output/input audio come from  headset?
+    3. Did both output/input audio come from internal speaker?
+
+unit: job
+id: Audio-08
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that the audio can be switched from internal to bt headset during a call
+_steps:
+ SETUP:
+    1. Have two DUT
+    2. Prepare a BT headset
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Ensure both output/input audio come from internal speaker and microphone
+    3. Pair to a BT headset
+    4. Ensure that both output/input audio come from BT headset
+    5. Disconnect the BT headset
+    6. Ensure that both output/input audio switch back to internal speaker/microphone
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did both output/input audio come from internal speaker?           
+    2. Did both output/input audio come from  BT headset? 
+    3. Did both output/input audio come from internal speaker?
+
+unit: job
+id: Audio-09
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that streaming audio muted when receiving an incoming call
+_steps:
+ SETUP:
+    Have two DUT
+ .
+ ACTIONS:
+    1. Play a msuic file
+    2. MT call to DUT
+    3. Ensure music will be stopped and ringtone come from internal speaker
+    4. Answer the call 
+    5. Ensure both internal microphone and speaker work as expected
+ .
+ TEARDOWN:
+    Disconnect the call
+_verification:
+    1. Does the streaming music has been stopped and play ringtone from internal speaker?
+    2. Does both internal microphone and speaker work during the call?
+
+unit: job
+id: Audio-10
+plugin: manual
+category_id: Audio/Audio path
+_summary: Ensure that streaming audio muted when make an outgoing call
+_steps:
+ SETUP:
+    Have two DUT
+ .
+ ACTIONS:
+    1. Play a msuic file
+    2. MO call to DUT2
+    3. Ensure music will be paused and ringing from internal speaker
+    4. Pick the call from another phone
+    5. Ensure both internal microphone and speaker work as expected
+ .
+ TEARDOWN:
+    Disconnect the call
+_verification:
+    1. Does the streaming music has been stopped and play ringing sound from internal speaker?
+    2. Does both internal microphone and speaker work during the call?
+
+unit: category
+id: Audio/Volume adjustment
+_name: Audio/Volume adjustment
+
+unit: job
+id: Audio-14
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that volume keys functions work as expected when play music
+_steps:
+ ACTIONS:
+    1. Play a music file
+    2. Increase/Decrease the volume by pressing the volume keys
+    3. Ensure that volume indicator changes accordingly
+    4. Ensure that sound become smaller or louder as expected
+ .
+ TEARDOWN:
+    Resume phone volume to default
+_verification:
+    1. Does the indicator properly update
+    2. Did the volume change?
+
+unit: job
+id: Audio-15
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the volume keys functions work as expected when during a call
+_steps:
+ SETUP:
+    Have two DUT
+ .
+ ACTIONS:
+    1. MO call to DUT2
+    2. Increase/Decrease the volume by pressing the volume keys
+    3. Ensure that volume indicator changes accordingly
+    4. Ensure that sound become smaller or louder as expected
+ .
+ TEARDOWN:
+    Resume phone volume to default
+_verification:
+    1. Does the indicator properly update
+    2. Did the volume change?
+
+unit: job
+id: Audio-16
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the volume keys functions work with headset
+_steps:
+ SETUP:
+    Plugin a headset
+ .
+ ACTIONS:
+    1. Play a music file
+    2. Increase/Decrease the volume by pressing the volume keys
+    3. Ensure that volume indicator changes accordingly
+    4. Ensure that sound become smaller or louder as expected
+ .
+ TEARDOWN:
+    1. Resume phone volume to default
+    2. Unplug the headset
+_verification:
+    1. Does the indicator properly update
+    2. Did the volume change?
+
+unit: job
+id: Audio-17
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the volume keys functions work with headset after phone resume from sleep
+_steps:
+ SETUP:
+    Plugin a headset
+ .
+ ACTIONS:
+    1. Play a music file 
+    2. Press power button to turn device screen off, and wait for few seconds
+    3. Press power button to turn device screen on
+    4. Increase/Decrease the volume by pressing the volume keys
+    5. Ensure that volume indicator changes accordingly
+    6. Ensure that sound become smaller or louder as expected
+ .
+ TEARDOWN:
+    1. Resume phone volume to default
+    2. Unplug the headset
+_verification:
+    1. Does the indicator properly update
+    2. Did the volume change?
+
+unit: job
+id: Audio-18
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the volume keys functions work with bt headset
+_steps:
+ SETUP:
+    Pair with a BT headset
+ .
+ ACTIONS:
+    1. Play a music file
+    2. Increase/Decrease the volume by pressing the volume keys
+    3. Ensure that volume indicator changes accordingly
+    4. Ensure that sound become smaller or louder as expected
+ .
+ TEARDOWN:
+    1. Resume phone volume to default
+    2. Unpair the headset
+_verification:
+    1. Does the indicator properly update
+    2. Did the volume change?
+
+unit: job
+id: Audio-19
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the volume keys functions work with bt headset after phone resume from sleep
+_steps:
+ SETUP:
+    Pair with a BT headset
+ .
+ ACTIONS:
+    1. Play a music file 
+    2. Press power button to turn device screen off, and wait for few seconds
+    3. Press power button to turn device screen on
+    4. Increase/Decrease the volume by pressing the volume keys
+    5. Ensure that volume indicator changes accordingly
+    6. Ensure that sound become smaller or louder as expected
+ .
+ TEARDOWN:
+    1. Resume phone volume to default
+    2. Unpair the headset
+_verification:
+    1. Does the indicator properly update
+    2. Did the volume change?
+
+unit: job
+id: Audio-20
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the phone will be muted after volume set to minimum
+_steps:
+ ACTIONS:
+    1. Play a music file
+    2. Press the volume down key several times until volume down to minimum
+    3. Ensure that volume indicator changes to the mute icon
+    4. Ensure the phone has muted
+ .
+ TEARDOWN:
+    Unmute the phone
+_verification:
+    1. Does the indicator properly update
+    2. Did the phone muted?
+
+unit: job
+id: Audio-21
+plugin: manual
+category_id: Audio/Volume adjustment
+_summary: Ensure that the phone presents a volume warning at near maximum volume
+_steps:
+ SETUP:
+    Set the device to minimum volume
+ .
+ ACTIONS:
+    DON'T PUT THE HEADPHONES IN EARS
+    1. Play a music file
+    2. Press the volume up key until maximum reached
+    3. Check that a volume warning dialog is presented
+ .
+ TEARDOWN:
+    1. Set the volume back to  reasonable level
+_verification:
+    1. Was a volume warning presented to the user?
+
+unit: category
+id: Video/Video output
+_name: Video/Video output
+
+unit: job
+id: Video-01
+plugin: manual
+category_id: Video/Video output
+_summary: Ensure that video playback work smoothly
+_steps:
+ ACTIONS:
+    1. Play a video file
+    2. Ensure that video play smoothly on the screen
+ .
+ TEARDOWN:
+    End the playback
+_verification:
+    1. Does video playback smoothly?
+
+unit: job
+id: Video-02
+plugin: manual
+category_id: Video/Video output
+_summary: Ensure that video output is resumed after wake up from sleep mode
+_steps:
+ SETUP:
+    1. Dock phone/plugin hdmi adapter cable
+ .
+ ACTIONS:
+    1. Ensure that screen is displayed on external monitor
+    2. Press power button to enter sleep mode
+    3. Press power button to resume
+    4. Ensure that screen is still displayed on external monitor
+ .
+ TEARDOWN:
+    Disconnect hdmi cable/dock
+_verification:
+    1. Does HDMI screen still display on external monitor?
+
+unit: category
+id: Sensors/Sensors Testing
+_name: Sensors/Sensors Testing
+
+unit: job
+id: Sensors-01
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure accelerometer is functioning
+_steps:
+ ACTIONS:
+    1. Launch an app
+    2. Change orientation
+    3. Ensure app orientation is changed
+ .
+ TEARDOWN:
+    Close app
+_verification:
+    1. Is accelerometer working?
+
+unit: job
+id: Sensors-02
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure proximity sensor is functioning
+_steps:
+ SETUP:
+    SIM card enabled
+ .
+ ACTIONS:
+    1. Open dialer app
+    2. Make a MO call
+    3. Move phone away from face quickly
+    4. Ensure screen went from off->on
+    5. Put hand near phone
+    6. Ensure screen turns off
+ .
+ TEARDOWN:
+    End call, close app
+_verification:
+    1. Is proximity sensor working?
+
+unit: job
+id: Sensors-03
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure ambient light sensor is working
+_steps:
+ ACTIONS:
+    1. Enable Brightness Adjust automatically from Brightness settings
+    2. Move phone to a low light place 
+    3. Move phone to a very bright place
+ .
+ TEARDOWN:
+    Uncheck brightness adjust automatically
+_verification:
+    1. Is ambient light sensor working?
+
+unit: job
+id: Sensors-04
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure haptics are working
+_steps:
+ ACTIONS:
+    1. Open indicators
+    2. Switch between indicator tabs, ensure vibration occurs
+ .
+ TEARDOWN:
+    Close indicators
+_verification:
+    1. Did vibration occur?
+
+unit: job
+id: Sensors-05
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure gps is working
+_steps:
+ SETUP:
+    Enable GPS and location detection from location indicator
+ .
+ ACTIONS:
+    1. Open a browser and connect to google map
+    2. Tap location detect icon 
+    3. Ensure google map can detect your location
+ .
+ TEARDOWN:
+    Close browser
+_verification:
+    1. Is GPS and location detection working?
+
+unit: job
+id: Sensors-06
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure gyroscope sensor is working
+_steps:
+_verification:
+
+unit: job
+id: Sensors-07
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure compass sensor is working
+_steps:
+_verification:
+
+unit: job
+id: Sensors-08
+plugin: manual
+category_id: Sensors/Sensors Testing
+_summary: Ensure gravity sensor is working
+_steps:
+_verification:
+
+unit: category
+id: Screen/Screen testing
+_name: Screen/Screen testing
+
+unit: job
+id: Screen-01
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that no screen flicker is present
+_steps:
+ ACTIONS:
+    1. Use Unity
+    2. Ensure no screen flicker is present
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is screen flicker present?
+
+unit: job
+id: Screen-02
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that pressing power properly suspends the phone
+_steps:
+ ACTIONS:
+    1. Press power button
+    2. Ensure phone is properly suspended, and backlight is off
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is phone suspended?
+
+unit: job
+id: Screen-03
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that the backlight is off when the phone is suspended
+_steps:
+ ACTIONS:
+    1. Press power button
+    2. Ensure phone is properly suspended, and backlight is off
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is backlight turned off?
+
+unit: job
+id: Screen-04
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that screen brightness can be changed from power inidicator
+_steps:
+ ACTIONS:
+    1. Open Battery indicator
+    2. Swipe brightness level left and right, ensure brightness is changed
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is brightness changed?
+
+unit: job
+id: Screen-05
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that screen brightness can be changed from system settings
+_steps:
+ ACTIONS:
+    1. Open system settings
+    2. Open battery page
+    3. Swipe brightness level left and right, ensure brightness is changed
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is brightness changed?
+
+unit: job
+id: Screen-06
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that mir is being run
+_steps:
+ ACTIONS:
+    1. Use Unity
+    2. Run ps ax | grep surf, ensure no results
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is Mir running?
+
+unit: job
+id: Screen-07
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure the sensitivity of touchscreen
+_steps:
+ ACTIONS:
+    1. Randomly tap the screen, slide the screen 
+    2. Ensure that the the sensitivity of touch screen works as expected
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does the sensitivity of touch screen work as expected?
+
+unit: job
+id: Screen-08
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure the touchscreen accurancy
+_steps:
+ ACTIONS:
+    1. Open Notes app
+    2. Launch virtual keyboard
+    3. Tap each characters 
+    4. Ensure that the accuracy of touch screen is accurate enough
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Doesthe accuracy of touchscreen is accurate enough?
+
+unit: job
+id: Screen-09
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure the sensitivity of touchscreen in each egde
+_steps:
+ ACTIONS:
+    1. Randomly tap the screen, slide the screen that near the edge
+    2. Ensure that the the sensitivity of touch screen works as expected
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does the sensitivity of touch screen in each edge work as expected?
+
+unit: job
+id: Screen-10
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure the touchscreen accurancy in each edge
+_steps:
+ ACTIONS:
+    1. Open Notes app
+    2. Launch virtual keyboard
+    3. Tap each characters 
+    4. Ensure that the accuracy of touch screen is accurate enough in each edge
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Doesthe accuracy of touchscreen is accurate enough in each edge?
+
+unit: job
+id: Screen-11
+plugin: manual
+category_id: Screen/Screen testing
+_summary: Ensure that long press touch screen can work as expected
+_steps:
+ SETUP:
+    Have several apps launched
+ .
+ ACTIONS:
+    1. Long press on running app from Apps scope
+    2. Ensure that it shows a close icon to close this app 
+    3. Long press on an app 
+    4. Ensure that the app will be launch as usual
+ .
+ TEARDOWN:
+    Close apps
+_verification:
+    1. Does long press action work as expected?
+    2. Did app launch after long press?
+
+unit: category
+id: Power Management/Indicator
+_name: Power Management/Indicator
+
+unit: job
+id: PM-01
+plugin: manual
+category_id: Power Management/Indicator
+_summary: Ensure that power indicator accurately shows charging status
+_steps:
+ SETUP:
+    Power charger is plugged
+ .
+ ACTIONS:
+    1. Use Unity
+    2. Ensure power indicator is showing battery charging
+    3. Open system settings -> Battery
+    4. Ensure battery is listed as charging
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is battery shown as charging?
+
+unit: job
+id: PM-02
+plugin: manual
+category_id: Power Management/Indicator
+_summary: Ensure that charging phone functions
+_steps:
+ SETUP:
+    Power charger is plugged
+ .
+ ACTIONS:
+    1. Charge DUT
+    2. Unplug phone after some time
+    3. Ensure battery level actually decreases
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Did battery level decrease?
+
+unit: job
+id: PM-03
+plugin: manual
+category_id: Power Management/Indicator
+_summary: Ensure that unplugging from power will change the power indicator
+_steps:
+ SETUP:
+    Power charger is plugged
+ .
+ ACTIONS:
+    1. Ensure indicator shows battery charging
+    2. Unplug charger
+    3. Ensure indicator now shows battery discharging
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Is battery shown as discharging?
+
+unit: job
+id: PM-04
+plugin: manual
+category_id: Power Management/Indicator
+_summary: Ensure it pops up a low battery message
+_steps:
+ SETUP:
+    Power charger not plugged
+ .
+ ACTIONS:
+    1. Observe the battery until it less than 10% 
+    2. Ensure it pops up low battery message
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does low battery message show correctly?
+
+unit: job
+id: PM-05
+plugin: manual
+category_id: Power Management/Indicator
+_summary: Ensure that the power indicator shows on the screen after dut off
+_steps:
+ SETUP:
+    Power charge is plugged
+ .
+ ACTIONS:
+    1. Turn off DUT
+    2. Ensure that it has a power indicator show up
+ .
+ TEARDOWN:
+    Power on DUT
+_verification:
+    1. Is there a power indicator show on the screen?
+
+unit: category
+id: Power Management/Power consumption
+_name: Power Management/Power consumption
+
+unit: job
+id: PM-08
+plugin: manual
+category_id: Power Management/Power consumption
+_summary: Ensure that phone full charge time not more than 4hrs
+_steps:
+ SETUP:
+    Discharge phone battery to 0%
+ .
+ ACTIONS:
+    1. Plugin power chagre to charge the phone
+    2. Measure the full charge time
+ .
+ TEARDOWN:
+    None
+_verification:
+    1. Does full charge time is less than 4hrs?
+
+unit: job
+id: PM-09
+plugin: manual
+category_id: Power Management/Power consumption
+_summary: Ensure that phone talk time can surpass more than 8hrs
+_steps:
+ SETUP:
+    1. Phone full charged
+    2. Power charge is not plugged
+    3. Have two DUT
+ .
+ ACTIONS:
+    1. Make a MO call to DUT2
+    2. Measure the talk time of phone
+ .
+ TEARDOWN:
+    End the call
+_verification:
+    1. Does talk time surpass than 8hrs?
+
+unit: category
+id: Storage/Internal Storage
+_name: Storage/Internal Storage
+
+unit: job
+id: Internal-01
+plugin: manual
+category_id: Storage/Internal Storage
+_summary: Check for full disk warning
+_steps:
+ SETUP:
+    1. Fill the disk to XX% of capacity
+ .
+ ACTIONS:
+    1. Begin recording a Video
+_verification:
+    1. Check that when the disk becomes XX% full a warning is displayed to the user
+
+unit: category
+id: Storage/MTP File Transfer
+_name: Storage/MTP File Transfer
+
+unit: job
+id: MTP-01
+plugin: manual
+category_id: Storage/MTP File Transfer
+_summary: Dut connected to usb2.0 port - recognized as mtp device
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+ .
+ ACTIONS:
+    1. Connect DUT to a USB2.0 port 
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Navigate to device
+    4. Copy file to DUT 
+    5. Copy file from DUT
+    6. Make sure that copy/remove/modify fucntions work as expected
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Does DUT recognize as MTP device?
+    2. Did copy/remove/modify funtions work?
+
+unit: job
+id: MTP-02
+plugin: manual
+category_id: Storage/MTP File Transfer
+_summary: Dut connected to usb2.0 port - large file transfer over mtp
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+    2. Have a 4GB video file
+ .
+ ACTIONS:
+    1. Connect DUT to a USB2.0 port 
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Copy a 4GB file to DUT
+    4. Make sure that large file can be transfer to DUT
+    5. Play this video file on DUT
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Did large file transfer complete? 
+    2. Can this file be playbacked?
+
+unit: job
+id: MTP-03
+plugin: manual
+category_id: Storage/MTP File Transfer
+_summary: Dut connected to usb2.0 port - over 100 files to dut over mtp
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+    2. Have a folder with 100 files
+ .
+ ACTIONS:
+    1. Connect DUT to a USB2.0 port 
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Copy a folder with 100 files to DUT
+    4. Make sure that all the files can be transfer to DUT
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Did files transfer complete?
+
+unit: job
+id: MTP-04
+plugin: manual
+category_id: Storage/MTP File Transfer
+_summary: Dut connected to usb3.0 port - recognized as mtp device
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+ .
+ ACTIONS:
+    1. Connect DUT to a USB3.0 port 
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Navigate to device
+    4. Copy file to DUT 
+    5. Copy file from DUT
+    6. Make sure that copy/remove/modify fucntions work as expected
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Does DUT recognize as MTP device?
+    2. Did copy/remove/modify funtions work?
+
+unit: job
+id: MTP-05
+plugin: manual
+category_id: Storage/MTP File Transfer
+_summary: Dut connected to usb3.0 port - large file transfer over mtp
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+    2. Have a 4GB video file
+ .
+ ACTIONS:
+    1. Connect DUT to a USB3.0 port 
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Copy a 4GB file to DUT
+    4. Make sure that large file can be transferred to DUT
+    5. Play this video file on DUT
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Did large file transfer complete? 
+    2. Can this file be playbacked?
+
+unit: job
+id: MTP-06
+plugin: manual
+category_id: Storage/MTP File Transfer
+_summary: Dut connected to usb3.0 port - over 100 files to dut over mtp
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+    2. Have a folder with 100 files
+ .
+ ACTIONS:
+    1. Connect DUT to a USB3.0 port 
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Copy a folder with 100 files to DUT
+    4. Make sure that all the files can be transferred to DUT
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Did files transfer complete?
+
+unit: category
+id: Storage/MTP Mediascanner Update
+_name: Storage/MTP Mediascanner Update
+
+unit: job
+id: MU-01
+plugin: manual
+category_id: Storage/MTP Mediascanner Update
+_summary: Make sure that music scope can scan and add music file after mtp transfer to storage
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+    2. Have several music files
+ .
+ ACTIONS:
+    1. Connect DUT to a USB port
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Copy music file to /home/phablet/Music/
+    4. Make sure that music files can be transferred to DUT
+    5. Launch Music scope
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Did music files transfer complete? 
+    2. Does all the music files appear on the Music scope?
+
+unit: job
+id: MU-02
+plugin: manual
+category_id: Storage/MTP Mediascanner Update
+_summary: Make sure that music scope can scan and add music files that under folders after mtp transfer to storage
+_steps:
+ SETUP:
+    1. Prepare a USB cable
+    2. Have several folders and each folder contains sevreal music files
+ .
+ ACTIONS:
+    1. Connect DUT to a USB port
+    2. Make sure the DUT has been recognized as MTP device 
+    3. Copy folders to /home/phablet/Music/
+    4. Make sure that folders can be transferred to DUT
+    5. Launch Music scope
+ .
+ TEARDOWN:
+    1. Disconnect DUT
+_verification:
+    1. Did music files transfer complete? 
+    2. Does music files appear on the Music scope correctly?
+
+unit: category
+id: Storage/SD Card
+_name: Storage/SD Card
+
+unit: job
+id: SD-01
+plugin: manual
+category_id: Storage/SD Card
+_summary: Mounts sd card at boot
+_steps:
+ SETUP:
+    1. Turn off DUT
+ .
+ ACTIONS:
+    1. Place SD Card in DUT
+    2. Turn on DUT
+_verification:
+    1. When boot complete is the SD card mounted?
+
+unit: job
+id: SD-02
+plugin: manual
+category_id: Storage/SD Card
+_summary: Automount sd card while dut is on
+_steps:
+ SETUP:
+    1. Turn off DUT
+    2. Remove SD Card from DUT
+    3. Power on DUT
+ .
+ ACTIONS:
+    1. When DUT is running place SD card in device
+_verification:
+    1. Check that the SD card is detected and notification is displayed
+
+unit: job
+id: SD-03
+plugin: manual
+category_id: Storage/SD Card
+_summary: Contents are visible in file manager
+_steps:
+ SETUP:
+    1. Install the File manager application from the store
+ .
+ ACTIONS:
+    1. Open file manager
+    2. Unlock full access to filesystem
+    3. Browse to /media/phablet/<CARD-LABEL>
+_verification:
+    1. Check that the contents of SD card are visible in the File manager
+
+unit: job
+id: SD-04
+plugin: manual
+category_id: Storage/SD Card
+_summary: Audio files are discovered by mediascanner
+_steps:
+ SETUP:
+    1. Insert SD card containing audio files
+ .
+ ACTIONS:
+    1. Open the My Music scope
+_verification:
+    1. When refreshed check that files on the SD card are listed
+
+unit: job
+id: SD-05
+plugin: manual
+category_id: Storage/SD Card
+_summary: Video files are discovered by mediascanner
+_steps:
+ SETUP:
+    1. Insert SD card containing video files
+ .
+ ACTIONS:
+    1. Open the My Videos scope
+_verification:
+    1. When refreshed check that files on the SD card are listed
+
+unit: job
+id: SD-06
+plugin: manual
+category_id: Storage/SD Card
+_summary: Sd card removal while dut is on
+_steps:
+ SETUP:
+    1. DUT with mounted SD card
+ .
+ ACTIONS:
+    1. Remove SD card while DUT is on
+_verification:
+    1. Card is not corrupted during eject
+
+unit: job
+id: SD-07
+plugin: manual
+category_id: Storage/SD Card
+_summary: Format micro sd card
+_steps:
+ SETUP:
+    1. Place Micro SD card in DUT
+    2. Open the External Drives app
+ .
+ ACTIONS:
+    1. Format the SD card from the app
+_verification:
+    1. Check that card is formatted - all files are deleted etc
+    2. Remove SD card from DUT
+    3. Check the card can be mounted on a Desktop PC
+
+unit: job
+id: SD-08
+plugin: manual
+category_id: Storage/SD Card
+_summary: Copy files from internal storage to sd card using file manager
+_steps:
+ SETUP:
+    1. Open the File Manager app
+    2. Browse a folder in the home directory
+ .
+ ACTIONS:
+    1. Long press on a file and select Copy
+    2. Change directory to a location on the SD Card
+    3. From the actions menu select Paste
+_verification:
+    1. Verify that the file is written to the SD Card
+
+unit: category
+id: Storage/Bluetooth File Transfer
+_name: Storage/Bluetooth File Transfer
+
+unit: job
+id: BTFT-01
+plugin: manual
+category_id: Storage/Bluetooth File Transfer
+_summary: Transfer files to the phone using bluetooth file transfer
+_steps:
+_verification:
+    1. File in present on the DUT
+
+unit: job
+id: BTFT-02
+plugin: manual
+category_id: Storage/Bluetooth File Transfer
+_summary: Transfer files from the phone using bluetooth file transfer
+_steps:
+_verification:
+    1. File is present on the desktop PC
+
+# End of job definitions and categories
+
+unit: test plan
+id: ubuntu-touch
+_name: All Ubuntu Touch Tests
+_description:
+ This test plan selects all the tests required to certify a device with Ubuntu Touch
+include: .*
