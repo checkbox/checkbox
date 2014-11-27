@@ -30,12 +30,6 @@ PythonObjectHandle {
     // Version of the plainbox library
     property string plainboxVersion
 
-    // Session identifier is stored so session may be resumed if application
-    // is shut down before all tests are finished
-    property string sessionId
-
-    StateSaver.properties: "sessionId"
-
     // Signal sent when the application becomes ready
     signal appReady();
 
@@ -49,7 +43,6 @@ PythonObjectHandle {
     // doing setup.
     function startSession() {
         request("start_session", [], function(result) {
-            sessionId = result.session_id;
             sessionReady();
         }, function(error) {
             console.error("Unable to start session: " + error);
@@ -70,7 +63,7 @@ PythonObjectHandle {
     }
 
     function isSessionResumable(continuation) {
-        request("is_session_resumable", [app.sessionId], continuation, function(error) {
+        request("is_session_resumable", [], continuation, function(error) {
             console.error("Unable to check session resumability");
         });
     }
