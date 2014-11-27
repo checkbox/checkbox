@@ -25,4 +25,5 @@ setup(
     version="1.0",
     description=N_("The 2014.com.canonical.certification:certification-touch provider"),
     gettext_domain="2014_com_canonical_certification_certification-touch",
+    strict=False,
 )
