@@ -21,6 +21,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+import "ErrorLogic.js" as ErrorLogic
 
 
 PythonObjectHandle {
@@ -50,8 +51,20 @@ PythonObjectHandle {
     }
     function resumeSession(rerunLastTest, continuation) {
         request("resume_session", [rerunLastTest], function(result) {
-            sessionReady();
-            continuation();
+            if (!result["session_id"]) {
+                pageStack.pop();
+                ErrorLogic.showError(mainView,
+                                     i18n.tr("Could not resume session ") + app.sessionId,
+                                     function() {
+                                         startSession();
+                                         return;
+                                     },
+                                     i18n.tr("Start new session"));
+            } else {
+                sessionReady();
+                continuation();
+            }
+
         }, function(error) {
             console.error("Unable to resume session: " + error);
         });

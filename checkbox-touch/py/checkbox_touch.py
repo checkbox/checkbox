@@ -58,6 +58,7 @@ from plainbox.impl.secure.qualifiers import select_jobs
 from plainbox.impl.session import SessionManager
 from plainbox.impl.session import SessionMetaData
 from plainbox.impl.session import SessionPeekHelper
+from plainbox.impl.session import SessionResumeError
 from plainbox.impl.session.storage import SessionStorageRepository
 from plainbox.impl.unit.job import JobDefinition
 from plainbox.impl.unit.validators import compute_value_map
@@ -382,8 +383,15 @@ class CheckboxTouchApplication(PlainboxApplication):
         all_units = list(
             itertools.chain(*[
                 p.get_units()[0] for p in self._get_default_providers()]))
-        self.manager = SessionManager.load_session(
-            all_units, self.resume_candidate_storage)
+        try:
+            self.manager = SessionManager.load_session(
+                all_units, self.resume_candidate_storage)
+        except IOError as exc:
+            _logger.info("Exception raised when trying to resume"
+                         "session: %s", str(exc))
+            return {
+                'session_id': None
+            }
         self.context = self.manager.default_device_context
         metadata = self.context.state.metadata
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
@@ -433,13 +441,17 @@ class CheckboxTouchApplication(PlainboxApplication):
             data = storage.load_checkpoint()
             if len(data) == 0:
                 continue
-            metadata = SessionPeekHelper().peek(data)
-            if (metadata.app_id == 'checkbox-touch'
-                    and storage.id == session_id
-                    and SessionMetaData.FLAG_INCOMPLETE in metadata.flags):
-                self.resume_candidate_storage = storage
-                resumable = True
-
+            try:
+                metadata = SessionPeekHelper().peek(data)
+                if (metadata.app_id == 'checkbox-touch'
+                        and storage.id == session_id
+                        and SessionMetaData.FLAG_INCOMPLETE in
+                        metadata.flags):
+                    self.resume_candidate_storage = storage
+                    resumable = True
+            except SessionResumeError as exc:
+                _logger.info("Exception raised when trying to resume"
+                             "session: %s", str(exc))
         return {
             'resumable': resumable
         }

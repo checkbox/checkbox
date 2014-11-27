@@ -286,7 +286,13 @@ MainView {
             if(result.resumable === true) {
                 pageStack.push(resumeSessionPage);
             } else {
-                app.startSession();
+                if (app.sessionId) {
+                    ErrorLogic.showError(mainView, i18n.tr("Could not resume session ") + app.sessionId,
+                                         app.startSession(),
+                                         i18n.tr("Start new session"));
+                } else {
+                    app.startSession();
+                }
             }
         });
     }
