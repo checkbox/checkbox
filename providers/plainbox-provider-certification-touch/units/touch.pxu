@@ -1602,7 +1602,7 @@ unit: job
 id: Tel-07
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Esure that dtmf feature call work as expected
+_summary: Ensure that dtmf feature call work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1625,7 +1625,7 @@ unit: job
 id: Tel-08
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Esure that preset extension number can work as expected
+_summary: Ensure that preset extension number can work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1647,7 +1647,7 @@ unit: job
 id: Tel-09
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Esure that call waiting functions can work as expected
+_summary: Ensure that call waiting functions can work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1670,7 +1670,7 @@ unit: job
 id: Tel-10
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Esure that call will be dropped if call waiting disabled
+_summary: Ensure that call will be dropped if call waiting disabled
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1741,7 +1741,7 @@ unit: job
 id: Tel-13
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Esure sure that speakerphone toggle on/off works in voicemail
+_summary: Ensure sure that speakerphone toggle on/off works in voicemail
 _steps:
  SETUP:
     Ensure SIM is present
@@ -1942,7 +1942,7 @@ unit: job
 id: Tel-23
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Esure that dtmf feature call work as expected
+_summary: Ensure that dtmf feature call work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1965,7 +1965,7 @@ unit: job
 id: Tel-24
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Esure that preset extension number can work as expected
+_summary: Ensure that preset extension number can work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1987,7 +1987,7 @@ unit: job
 id: Tel-25
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Esure that call waiting functions can work as expected
+_summary: Ensure that call waiting functions can work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -2010,7 +2010,7 @@ unit: job
 id: Tel-26
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Esure that call will be dropped if call waiting disabled
+_summary: Ensure that call will be dropped if call waiting disabled
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -2081,7 +2081,7 @@ unit: job
 id: Tel-29
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Esure sure that speakerphone toggle on/off works in voicemail
+_summary: Ensure sure that speakerphone toggle on/off works in voicemail
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2241,7 +2241,7 @@ unit: job
 id: Tel-38
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
-_summary: Esure that 3g sim card can be supported
+_summary: Ensure that 3g sim card can be supported
 _steps:
  SETUP:
     Insert a 3G sim card
@@ -2355,7 +2355,7 @@ unit: job
 id: Tel-45
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
-_summary: Esure that 3g sim card can be supported
+_summary: Ensure that 3g sim card can be supported
 _steps:
  SETUP:
     Insert a 3G sim card
@@ -4016,7 +4016,7 @@ _steps:
  ACTIONS:
     1. Play a msuic file
     2. MT call to DUT
-    3. Esure music will be stopped and ringtone come from internal speaker
+    3. Ensure music will be stopped and ringtone come from internal speaker
     4. Answer the call 
     5. Ensure both internal microphone and speaker work as expected
  .
@@ -4038,7 +4038,7 @@ _steps:
  ACTIONS:
     1. Play a msuic file
     2. MO call to DUT2
-    3. Esure music will be paused and ringing from internal speaker
+    3. Ensure music will be paused and ringing from internal speaker
     4. Pick the call from another phone
     5. Ensure both internal microphone and speaker work as expected
  .
