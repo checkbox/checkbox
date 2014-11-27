@@ -697,7 +697,12 @@ class CheckboxTouchApplication(PlainboxApplication):
             return os.path.join(xdg_cache_home, app_id.split('_')[0])
         else:
             path = os.path.join(xdg_cache_home, "checkbox-touch")
-            os.makedirs(path)
+            if not os.path.exists(path):
+                os.makedirs(path)
+            elif not os.path.isdir(path):
+                # as unlikely as it is, situation where path exists and is a
+                # regular file neeeds to be signalled
+                raise IOError("{} exists and is not a directory".format(path))
             return path
 
     def _export_session_to_stream(self, output_format, option_list,
