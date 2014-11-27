@@ -370,6 +370,9 @@ class CheckboxTouchApplication(PlainboxApplication):
                 self.context.provider_list,
                 # TODO: tie this with well-known-dirs helper
                 os.path.join(self.manager.storage.location, 'io-logs'))
+        with open(os.path.join(self._get_app_cache_directory(), 'session_id'),
+                  'w') as f:
+            f.write(self.manager.storage.id)
         return {
             'session_id': self.manager.storage.id
         }
@@ -411,13 +414,20 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.desired_test_ids = frozenset()
         self.resume_candidate_storage = None
         self.session_storage_repo = None
+        os.unlink(os.path.join(self._get_app_cache_directory(), 'session_id'))
 
     @view
-    def is_session_resumable(self, session_id):
+    def is_session_resumable(self):
         """
         Checks whether given session is resumable
         """
         resumable = False
+        try:
+            with open(os.path.join(self._get_app_cache_directory(),
+                      'session_id')) as f:
+                session_id = f.readline().rstrip('\n')
+        except (OSError, IOError) as e:
+            session_id = None
         self._init_session_storage_repo()
         for storage in self.session_storage_repo.get_storage_list():
             data = storage.load_checkpoint()
@@ -655,6 +665,28 @@ class CheckboxTouchApplication(PlainboxApplication):
                 return match.group(1)
             else:
                 return os.path.expanduser('~')
+
+    def _get_app_cache_directory(self):
+        xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
+            os.path.expanduser('~/.cache')
+        app_id = os.environ.get('APP_ID')
+        if app_id:
+            # Applications will always have write access to directories they
+            # own as determined by the XDG base directory specification.
+            # Specifically: XDG_CACHE_HOME/<APP_PKGNAME>
+            #               XDG_RUNTIME_DIR/<APP_PKGNAME>
+            #               XDG_RUNTIME_DIR/confined/<APP_PKGNAME> (for TMPDIR)
+            #               XDG_DATA_HOME/<APP_PKGNAME>
+            #               XDG_CONFIG_HOME/<APP_PKGNAME>
+            # Note that <APP_PKGNAME> is not the APP_ID. In order to easily
+            # handle upgrades and sharing data between executables in the same
+            # app, we use the unversioned app package name for the writable
+            # directories.
+            return os.path.join(xdg_cache_home, app_id.split('_')[0])
+        else:
+            path = os.path.join(xdg_cache_home, "checkbox-touch")
+            os.makedirs(path)
+            return path
 
     def _export_session_to_stream(self, output_format, option_list,
                                   stream):
