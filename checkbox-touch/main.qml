@@ -21,6 +21,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+import QtQuick.Layouts 1.1
 import io.thp.pyotherside 1.2
 import "components"
 import "components/ErrorLogic.js" as ErrorLogic
@@ -150,6 +151,48 @@ MainView {
     AboutPage {
         id: aboutPage
         visible: false
+    }
+
+    Item {
+        id: progressHeader
+        visible: false
+        property alias progressText: _progressText.text
+        property alias value: _progressBar.value
+        property alias maximumValue: _progressBar.maximumValue
+        ColumnLayout{
+            anchors {
+                fill: parent
+                verticalCenter: parent.verticalCenter
+                bottomMargin: units.gu(1.5)
+                rightMargin: units.gu(1)
+            }
+            Label {
+                text: pageStack.currentPage.title
+                fontSize: "x-large"
+                font.weight: Font.Light
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Label {
+                id: _progressText
+                fontSize: "x-small"
+                font.weight: Font.Light
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+            }
+            ProgressBox {
+                id: _progressBar
+                value: 0
+                maximumValue: 1
+                implicitWidth: parent.width
+            }
+        }
+
+        function update(test) {
+            progressHeader.visible = true;
+            progressHeader.progressText = Number(test.test_number / test.tests_count * 100.0).toFixed(0) + "% ("+test.test_number + "/" + test.tests_count + ")";
+            progressHeader.value = test.test_number
+            progressHeader.maximumValue = test.tests_count
+        }
     }
 
     ResumeSessionPage {
@@ -308,6 +351,8 @@ MainView {
     function performAutomatedTest(test) {
         var automatedTestPage = Qt.createComponent(Qt.resolvedUrl("components/AutomatedTestPage.qml")).createObject();
         automatedTestPage.test = test;
+        automatedTestPage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
         pageStack.push(automatedTestPage);
         app.runTestActivity(test, completeTest);
     }
@@ -317,6 +362,8 @@ MainView {
         manualIntroPage.test = test
         manualIntroPage.testDone.connect(completeTest);
         manualIntroPage.continueClicked.connect(function() { showVerificationScreen(test); });
+        manualIntroPage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
         pageStack.push(manualIntroPage);
     }
 
@@ -330,6 +377,8 @@ MainView {
             });
         });
         InteractIntroPage.testDone.connect(completeTest);
+        InteractIntroPage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
 
@@ -342,10 +391,14 @@ MainView {
                 var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
                 userInteractSummaryPage.test = test;
                 userInteractSummaryPage.testDone.connect(completeTest);
+                userInteractSummaryPage.__customHeaderContents = progressHeader;
+                progressHeader.update(test);
                 pageStack.push(userInteractSummaryPage);
             });
         });
         InteractIntroPage.testDone.connect(completeTest);
+        InteractIntroPage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
 
@@ -356,6 +409,8 @@ MainView {
         InteractIntroPage.testStarted.connect(function() {
             app.runTestActivity(test, function(test) { showVerificationScreen(test); } );
         });
+        InteractIntroPage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
 
@@ -363,6 +418,8 @@ MainView {
         var verificationPage = Qt.createComponent(Qt.resolvedUrl("components/TestVerificationPage.qml")).createObject();
         verificationPage.test = test
         verificationPage.testDone.connect(completeTest);
+        verificationPage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
         pageStack.push(verificationPage);
     }
 
