@@ -85,7 +85,6 @@ Page {
         Flickable {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            contentWidth: childrenRect.width;
             contentHeight: childrenRect.height
             flickableDirection: Flickable.VerticalFlick
             clip: true
