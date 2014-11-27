@@ -1,6 +1,6 @@
 .import Ubuntu.Components.Popups 1.0 as Popups
 
-function showError(caller, errorMessage, continuation) {
+function showError(caller, errorMessage, continuation, finalLabel) {
     // stackDepth keeps track of how many popups are stacked on the screen
     // we need this so continuation is called only if the last (the bottom one) popup
     // is closed
@@ -10,7 +10,7 @@ function showError(caller, errorMessage, continuation) {
     if (showError.stackDepth > 1) {
         popup.buttonLabel = i18n.tr("Continue")
     } else {
-        popup.buttonLabel = i18n.tr("Quit")
+        popup.buttonLabel = finalLabel || i18n.tr("Quit")
         popup.done.connect(function() {
             continuation();
         });
