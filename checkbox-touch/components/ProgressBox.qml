@@ -48,21 +48,8 @@ Item {
      */
     property real maximumValue: 100
 
-    /*!
-      Prefix text to show on top of progress bar
-     */
-    property string interlude: ""
-
-    /*!
-      Gets signalled when the user taps/clicks on the component.
-     */
-    signal clicked()
-
-    anchors.right: parent.right
-    anchors.left: parent.left
-    anchors.top: parent.top
-
-    Layout.fillWidth: true
+    implicitWidth: units.gu(38)
+    implicitHeight: units.gu(0.3)
 
 
     StyledItem {
@@ -76,30 +63,5 @@ Item {
         property bool indeterminate: false // for compability with underlaying styling
         style: Theme.createStyleComponent("ProgressBarStyle.qml", progressBar)
 
-    }
-    Label {
-        id: longDescription
-        Layout.fillWidth: true
-        anchors.fill: parent
-        color: "black"
-        text: progressBox.interlude + " " + progressBar.value + " / " + progressBar.maximumValue
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        visible: paintedWidth < width // visible only if full text fits into the progressBox, otherwise use short label
-
-    }
-    Label {
-        id: shortDescription
-        Layout.fillWidth: true
-        anchors.fill: parent
-        text: progressBar.value + " / " + progressBar.maximumValue
-        color: "black"
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        visible: !longDescription.visible // it's always one or the other
-    }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: progressBox.clicked()
     }
 }
