@@ -67,13 +67,6 @@ Page {
         anchors.fill: parent
         anchors.margins: units.gu(3)
 
-        ProgressBox {
-            interlude: i18n.tr("Current job:")
-            value: test.test_number
-            maximumValue: test.tests_count
-            height: units.gu(3)
-        }
-
         Label {
             fontSize: "large"
             Layout.fillWidth: true
