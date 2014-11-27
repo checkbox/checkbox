@@ -233,6 +233,7 @@ MainView {
         
         onSelectionDone: {
             app.rememberTestSelection(selected_id_list, function() {
+                unlatchContinue();
                 processNextTest();
             });
         }
