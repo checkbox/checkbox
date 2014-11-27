@@ -254,11 +254,12 @@ class FakeCheckboxTouchApplication(PlainboxApplication):
     @view
     def get_available_tests(self):
         return {
-            'test_info_list': sorted([{
-                "mod_id": "id-{}".format(i),
-                "mod_name": "name-{}".format(i),
-                "mod_group": "group-{}".format(i % 3),
-                "mod_selected": True,
+            'test_info_list': sorted([
+                {
+                    "mod_id": "id-{}".format(i),
+                    "mod_name": "name-{}".format(i),
+                    "mod_group": "group-{}".format(i % 3),
+                    "mod_selected": True,
                 } for i in range(self.max_tests)],
                 key=lambda item: item['mod_group'])
         }
@@ -370,7 +371,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 # TODO: tie this with well-known-dirs helper
                 os.path.join(self.manager.storage.location, 'io-logs'))
         return {
-            'session_id':  self.manager.storage.id
+            'session_id': self.manager.storage.id
         }
 
     @view
@@ -396,7 +397,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             test['outcome'] = 'skip'
             self.register_test_result(test)
         return {
-            'session_id':  self.manager.storage.id
+            'session_id': self.manager.storage.id
         }
 
     @view
@@ -671,10 +672,11 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Get json dump of with app-specific blob
         """
-        return json.dumps({
-            'version': 1,
-            'test_plan_id': self.test_plan_id,
-            'index_in_run_list': self.index,
+        return json.dumps(
+            {
+                'version': 1,
+                'test_plan_id': self.test_plan_id,
+                'index_in_run_list': self.index,
             }).encode("UTF-8")
 
     def _init_test_plan_id(self, test_plan_id):
