@@ -45,6 +45,10 @@ def main():
     parser.add_argument("--testplan",
                         action='store', default="", type=str,
                         help="Test plan to set as the default one")
+    parser.add_argument("--provider",
+                        action='append', type=str,
+                        help=("Path to a provider that should be included. "
+                              "--provider might be used multiple times."))
 
     args = parser.parse_args()
 
@@ -62,6 +66,11 @@ def main():
     if args.embedded_providers_path is not None:
         for path in args.embedded_providers_path:
             copy_tree(path, 'providers')
+
+    if args.provider is not None:
+        for path in args.provider:
+            target_base_name = os.path.basename(os.path.normpath(path))
+            copy_tree(path, os.path.join('providers', target_base_name))
 
     if not os.path.exists('../build-cbt'):
         os.makedirs('../build-cbt')
