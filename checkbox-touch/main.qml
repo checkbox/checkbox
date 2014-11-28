@@ -286,8 +286,8 @@ MainView {
             if(result.resumable === true) {
                 pageStack.push(resumeSessionPage);
             } else {
-                if (app.sessionId) {
-                    ErrorLogic.showError(mainView, i18n.tr("Could not resume session ") + app.sessionId,
+                if (result.errors_encountered) {
+                    ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
                                          app.startSession(),
                                          i18n.tr("Start new session"));
                 } else {

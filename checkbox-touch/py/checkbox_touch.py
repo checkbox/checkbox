@@ -452,8 +452,13 @@ class CheckboxTouchApplication(PlainboxApplication):
             except SessionResumeError as exc:
                 _logger.info("Exception raised when trying to resume"
                              "session: %s", str(exc))
+                return {
+                    'resumable': False,
+                    'errors_encountered': True
+                }
         return {
-            'resumable': resumable
+            'resumable': resumable,
+            'errors_encountered': False
         }
 
     @view
