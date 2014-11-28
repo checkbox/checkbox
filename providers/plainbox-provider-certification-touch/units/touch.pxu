@@ -110,20 +110,20 @@ unit: job
 id: ID-Network-01
 plugin: manual
 category_id: Indicators/Network indicator
-_summary: Ensure that both wifi indicator and cellular indicator show on the menu bar correctly
+_summary: Ensure that both WiFi indicator and cellular indicator show on the menu bar correctly
 _steps:
  SETUP:
     1. Ensure SIM is present
-    2. Ensure wifi connected
+    2. Ensure WiFi connected
  .
  ACTIONS:
-    1. Check if there is a Wifi indicator on the menu bar
+    1. Check if there is a WiFi indicator on the menu bar
     2. Check if there is a Cellular indicator on the menu bar
  .
  TEARDOWN:
     None
 _verification:
-    1. Do both Wifi and Cellular indicators show correctly?
+    1. Do both WiFi and Cellular indicators show correctly?
 
 unit: job
 id: ID-Network-02
@@ -144,7 +144,7 @@ unit: job
 id: ID-Network-03
 plugin: manual
 category_id: Indicators/Network indicator
-_summary: Ensure that system can connect to the wifi ap successfully
+_summary: Ensure that system can connect to the WiFi AP successfully
 _steps:
  SETUP:
     1. Tap and pull down the network indicator icon in the top right of the menu bar
@@ -173,25 +173,25 @@ _steps:
  ACTIONS:
     1. Enable flight mode
 _verification:
-    1. Did the Wifi turn off?
+    1. Did the WiFi turn off?
     2. Did the modems turn off?
 
 unit: job
 id: ID-Network-05
 plugin: manual
 category_id: Indicators/Network indicator
-_summary: Ensure that wifi settings menu can be launched
+_summary: Ensure that WiFi settings menu can be launched
 _steps:
  SETUP:
     1. Tap and pull down the network indicator icon in the top right of the menu bar
  .
  ACTIONS:
-    1. Tap Wifi settings button
+    1. Tap WiFi settings button
  .
  TEARDOWN:
     Push network indicator menu back
 _verification:
-    1. Did wifi settings menu launch?
+    1. Did WiFi settings menu launch?
 
 unit: job
 id: ID-Network-06
@@ -316,18 +316,18 @@ unit: job
 id: ID-Upcoming-03
 plugin: manual
 category_id: Indicators/Upcoming indicator
-_summary: Ensure tha time&date settings menu can be launched
+_summary: Ensure that Time & Date settings menu can be launched
 _steps:
  SETUP:
     1. Tap and pull down the upcoming indicator icon in the top right of the menu bar
  .
  ACTIONS:
-    1. Tap Time&Date icon settings button
+    1. Tap Time & Date icon settings button
  .
  TEARDOWN:
     Push upcoming indicator menu back
 _verification:
-    1. Did Time&Date settings menu launch?
+    1. Did Time & Date settings menu launch?
 
 unit: job
 id: ID-Upcoming-04
@@ -347,13 +347,13 @@ _verification:
     1. Did clock app launch?
 
 unit: category
-id: Indicators/Notification centre indicator
-_name: Indicators/Notification centre indicator
+id: Indicators/Notification center indicator
+_name: Indicators/Notification center indicator
 
 unit: job
 id: ID-Incoming-01
 plugin: manual
-category_id: Indicators/Notification centre indicator
+category_id: Indicators/Notification center indicator
 _summary: Ensure that there is a incoming indicator shows on the menu bar correctly
 _steps:
  ACTIONS:
@@ -369,7 +369,7 @@ _verification:
 unit: job
 id: ID-Incoming-02
 plugin: manual
-category_id: Indicators/Notification centre indicator
+category_id: Indicators/Notification center indicator
 _summary: Ensure that incoming indicator menu can be launched
 _steps:
  ACTIONS:
@@ -383,7 +383,7 @@ _verification:
 unit: job
 id: ID-Incoming-03
 plugin: manual
-category_id: Indicators/Notification centre indicator
+category_id: Indicators/Notification center indicator
 _summary: Ensure that incoming message shows correctly
 _steps:
  SETUP:
@@ -404,7 +404,7 @@ _verification:
 unit: job
 id: ID-Incoming-04
 plugin: manual
-category_id: Indicators/Notification centre indicator
+category_id: Indicators/Notification center indicator
 _summary: Ensure that push notifications show correctly
 _steps:
  SETUP:
@@ -412,7 +412,7 @@ _steps:
     2. Turn on notifications for new mail
  .
  ACTIONS:
-    1. Send an e-maill to the google account
+    1. Send an e-mail to the Google account
 _verification:
     1. Verify that an notification of the new e-mail is received
 
@@ -472,10 +472,10 @@ unit: job
 id: ID-Location-04
 plugin: manual
 category_id: Indicators/Location indicator
-_summary: Ensure that gps switch can be turned on/off
+_summary: Ensure that GPS switch can be turned on/off
 _steps:
  SETUP:
-    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+    1. Tap and pull down the Bluetooth indicator icon in the top right of the menu bar
  .
  ACTIONS:
     1. Tap GPS switch to ON
@@ -495,70 +495,70 @@ unit: job
 id: ID-Bluetooth-01
 plugin: manual
 category_id: Indicators/Bluetooth indicator
-_summary: Ensure that bluetooth indicator shows on the menu bar correctly
+_summary: Ensure that Bluetooth indicator shows on the menu bar correctly
 _steps:
  SETUP:
-    Enable bluetooth
+    Enable Bluetooth
  .
  ACTIONS:
-    1. Check if there is a bluetooth indicator on the menu bar
+    1. Check if there is a Bluetooth indicator on the menu bar
  .
  TEARDOWN:
     None
 _verification:
-    1. Does bluetooth indicator show correctly?
+    1. Does Bluetooth indicator show correctly?
 
 unit: job
 id: ID-Bluetooth-02
 plugin: manual
 category_id: Indicators/Bluetooth indicator
-_summary: Ensure that bluetooth menu can be launched
+_summary: Ensure that Bluetooth menu can be launched
 _steps:
  ACTIONS:
-    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+    1. Tap and pull down the Bluetooth indicator icon in the top right of the menu bar
  .
  TEARDOWN:
-    Push bluetooth indicator menu back
+    Push Bluetooth indicator menu back
 _verification:
-    1. Did bluetooth indicator menu launch?
-    2. Is there a bluetooth switch?
+    1. Did Bluetooth indicator menu launch?
+    2. Is there a Bluetooth switch?
 
 unit: job
 id: ID-Bluetooth-03
 plugin: manual
 category_id: Indicators/Bluetooth indicator
-_summary: Ensure that bluetooth can turn on/off
+_summary: Ensure that Bluetooth can turn on/off
 _steps:
  SETUP:
-    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+    1. Tap and pull down the Bluetooth indicator icon in the top right of the menu bar
  .
  ACTIONS:
-    1. Tap bluetooth switch to off
-    2. Navigate to system settings -> bluetooth
-    3. Tap bluetooth switch to off
+    1. Tap Bluetooth switch to off
+    2. Navigate to system settings -> Bluetooth
+    3. Tap Bluetooth switch to off
  .
  TEARDOWN:
-    Push bluetooth indicator menu back
+    Push Bluetooth indicator menu back
 _verification:
-    1. Did bluetooth indicator disappear off the menu bar?
-    2. Did bluetooth indicator show up on the menu bar?
+    1. Did Bluetooth indicator disappear off the menu bar?
+    2. Did Bluetooth indicator show up on the menu bar?
 
 unit: job
 id: ID-Bluetooth-04
 plugin: manual
 category_id: Indicators/Bluetooth indicator
-_summary: Ensure that bluetooth settings menu can be launched
+_summary: Ensure that Bluetooth settings menu can be launched
 _steps:
  SETUP:
-    1. Tap and pull down the bluetooth indicator icon in the top right of the menu bar
+    1. Tap and pull down the Bluetooth indicator icon in the top right of the menu bar
  .
  ACTIONS:
-    1. Tap bluetooth settings button
+    1. Tap Bluetooth settings button
  .
  TEARDOWN:
-    Push bluetooth indicator menu back
+    Push Bluetooth indicator menu back
 _verification:
-    1. Did bluetooth settings menu launch?
+    1. Did Bluetooth settings menu launch?
 
 unit: category
 id: System Settings/General
@@ -575,7 +575,7 @@ _steps:
  .
  ACTIONS:
     1. Turn the lock off
-    2.  Check the browser and messaging app for rotation
+    2. Check the browser and messaging app for rotation
     3. Turn the lock on
     4. Check the browser and messaging app for rotation
 _verification:
@@ -583,35 +583,35 @@ _verification:
     2. Did the apps rotate when the lock was on?
 
 unit: category
-id: System Settings/Wifi
-_name: System Settings/Wifi
+id: System Settings/WiFi
+_name: System Settings/WiFi
 
 unit: job
-id: Wifi-01
+id: WiFi-01
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Ensure that the wifi can be opened from system settings.
+category_id: System Settings/WiFi
+_summary: Ensure that the WiFi can be opened from system settings.
 _steps:
  SETUP:
     1. Slide to show launcher
     2. Tap System Settings
  .
  ACTIONS:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Did the Wifi page open?
+    1. Did the WiFi page open?
 
 unit: job
-id: Wifi-02
+id: WiFi-02
 plugin: manual
-category_id: System Settings/Wifi
+category_id: System Settings/WiFi
 _summary: Ensure that wireless is enabled and can list all available access points
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     Ensure it will listed all of the available wireless networks
@@ -622,13 +622,13 @@ _verification:
     1. Are all available wireless networks listed?
 
 unit: job
-id: Wifi-03
+id: WiFi-03
 plugin: manual
-category_id: System Settings/Wifi
+category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to an access point
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a wireless network to join
@@ -640,13 +640,13 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: Wifi-04
+id: WiFi-04
 plugin: manual
-category_id: System Settings/Wifi
+category_id: System Settings/WiFi
 _summary: Ensure that wireless can be disabled/re-enabled and still works as expected
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1, Disable wireless
@@ -655,18 +655,18 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. DId wireless properly disable?
+    1. Did wireless properly disable?
     2. Did wireless properly re-enable?
     3. Does wireless reconnected?
 
 unit: job
-id: WIfi-05
+id: WiFi-05
 plugin: manual
-category_id: System Settings/Wifi
+category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to an open network
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a wireless network to join with no password
@@ -678,13 +678,13 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WIfi-06
+id: WiFi-06
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Ensure that wireless can connect to a wep network
+category_id: System Settings/WiFi
+_summary: Ensure that wireless can connect to a WEP network
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a wireless network to join with WEP password
@@ -696,13 +696,13 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WIfi-07
+id: WiFi-07
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Ensure that wireless can connect to a wpa/wpa2 network
+category_id: System Settings/WiFi
+_summary: Ensure that wireless can connect to a WPA/WPA2 network
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a wireless network to join with WPA/WPA2 password
@@ -714,13 +714,13 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WIfi-08
+id: WiFi-08
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Ensure that wireless can connect to a 802.11b ap
+category_id: System Settings/WiFi
+_summary: Ensure that wireless can connect to a 802.11b AP
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a 802.11b access point to join
@@ -732,13 +732,13 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WIfi-09
+id: WiFi-09
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Ensure that wireless can connect to a 802.11g ap
+category_id: System Settings/WiFi
+_summary: Ensure that wireless can connect to a 802.11g AP
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a 802.11g access point to join
@@ -750,13 +750,13 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WIfi-10
+id: WiFi-10
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Ensure that wireless can connect to a 802.11ac ap
+category_id: System Settings/WiFi
+_summary: Ensure that wireless can connect to a 802.11ac AP
 _steps:
  SETUP:
-    1. Tap Wifi icon
+    1. Tap WiFi icon
  .
  ACTIONS:
     1. Select a 802.11ac access point to join
@@ -768,10 +768,10 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: Wifi-11
+id: WiFi-11
 plugin: manual
-category_id: System Settings/Wifi
-_summary: Check wifi mac address does not change across reboots
+category_id: System Settings/WiFi
+_summary: Check WiFi mac address does not change across reboots
 _steps:
  SETUP:
     1. Connect to the phone using phablet-shell
@@ -890,7 +890,7 @@ _steps:
     1. Tap Cellular icon
  .
  ACTIONS:
-    1. Ensure defualt Choose Carrier is set to automatically 
+    1. Ensure default Choose Carrier is set to automatically 
     2. Ensure the connected carrier is correct
  .
  TEARDOWN:
@@ -928,7 +928,7 @@ unit: job
 id: Bluetooth-01
 plugin: manual
 category_id: System Settings/Bluetooth
-_summary: Ensure that the bluetooth can be opened from system settings.
+_summary: Ensure that the Bluetooth can be opened from system settings.
 _steps:
  SETUP:
     1. Slide to show launcher
@@ -952,38 +952,38 @@ _steps:
     1. Tap Bluetooth icon
  .
  ACTIONS:
-    1. Check switch to enable bluetooth 
+    1. Check switch to enable Bluetooth 
     2. Ensure it will detect and list all the available devices
  .
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Does it listed all of available bt devices?
+    1. Does it listed all of available Bluetooth devices?
 
 unit: job
 id: Bluetooth-03
 plugin: manual
 category_id: System Settings/Bluetooth
-_summary: Ensure that it can pair with a bt headset
+_summary: Ensure that it can pair with a Bluetooth headset
 _steps:
  SETUP:
     1. Tap Bluetooth icon
  .
  ACTIONS:
-    1. Select a BT headset
+    1. Select a Bluetooth headset
     2. Input passcode to pair
  .
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Is it paired to bt headset successfully?
+    1. Is it paired to Bluetooth headset successfully?
     2. Is there a headset icon show on the menu bar
 
 unit: job
 id: Bluetooth-04
 plugin: manual
 category_id: System Settings/Bluetooth
-_summary: Ensure that bt can be disabled after paired with bt headset
+_summary: Ensure that Bluetooth can be disabled after paired with Bluetooth headset
 _steps:
  SETUP:
     1. Tap Bluetooth icon
@@ -994,22 +994,22 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Did bt headset icon disappear from menu bar?
+    1. Did Bluetooth headset icon disappear from menu bar?
 
 unit: job
 id: Bluetooth-05
 plugin: manual
 category_id: System Settings/Bluetooth
-_summary: Ensure the bt mac address does not change across reboots
+_summary: Ensure the Bluetooth mac address does not change across reboots
 _steps:
  SETUP:
     1. Connect to the device using phablet-shell
-    2. Note the BT MAC address using hciconfig or similar
+    2. Note the Bluetooth MAC address using hciconfig or similar
  .
  ACTIONS:
     1. Reboot the phone
     2. Reconnect phablet-shell
-    3. Check the BT MAC address
+    3. Check the Bluetooth MAC address
 _verification:
     1. Verify that the MAC address did not change
 
@@ -1039,14 +1039,14 @@ unit: job
 id: Accounts-02
 plugin: manual
 category_id: System Settings/Accounts
-_summary: Ensure that it can login to ubuntuone
+_summary: Ensure that it can login to Ubuntuone
 _steps:
  SETUP:
     1. Tap Accounts icon
  .
  ACTIONS:
     1. Tap Ubuntuone icon 
-    2. Input ubuntuone account and password to login
+    2. Input Ubuntuone account and password to login
  .
  TEARDOWN:
     Back to System Settings
@@ -1097,7 +1097,7 @@ unit: job
 id: Battery-02
 plugin: manual
 category_id: System Settings/Battery
-_summary: Ensure that both charge level and statsu are listed correctly
+_summary: Ensure that both charge level and status are listed correctly
 _steps:
  SETUP:
     1. Tap Battery icon
@@ -1120,7 +1120,7 @@ _steps:
     1. Tap Battery icon
  .
  ACTIONS:
-    1. Plugin power cable 
+    1. Plug in power cable 
     2. Unplug power cable
  .
  TEARDOWN:
@@ -1152,39 +1152,39 @@ unit: job
 id: Battery-05
 plugin: manual
 category_id: System Settings/Battery
-_summary: Ensure that wifi can be turned on/off
+_summary: Ensure that WiFi can be turned on/off
 _steps:
  SETUP:
     1. Tap Battery icon
  .
  ACTIONS:
-    1. Tap Wifi switch to turn it off 
-    2. Tap Wifi switch to turn it on
+    1. Tap WiFi switch to turn it off 
+    2. Tap WiFi switch to turn it on
  .
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Does the wifi indicator properly update?
-    2. Were you able to enable and disable wifi?
+    1. Does the WiFi indicator properly update?
+    2. Were you able to enable and disable WiFi?
 
 unit: job
 id: Battery-06
 plugin: manual
 category_id: System Settings/Battery
-_summary: Ensure that bluetooth can be turned on/off
+_summary: Ensure that Bluetooth can be turned on/off
 _steps:
  SETUP:
     1. Tap Battery icon
  .
  ACTIONS:
-    1. Tap bluetooth switch to turn it off 
-    2. Tap bluetooth switch to turn it on
+    1. Tap Bluetooth switch to turn it off 
+    2. Tap Bluetooth switch to turn it on
  .
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Does the bluetooth indicator properly update?
-    2. Were you able to enable and disable bluetooth?
+    1. Does the Bluetooth indicator properly update?
+    2. Were you able to enable and disable Bluetooth?
 
 unit: category
 id: System Settings/Brightness
@@ -1271,7 +1271,7 @@ unit: job
 id: Sound-02
 plugin: manual
 category_id: System Settings/Sound settings
-_summary: Make sure that the ringhtone can be previewed
+_summary: Make sure that the ringtone can be previewed
 _steps:
  SETUP:
     1. Tap Sound icon
@@ -1283,7 +1283,7 @@ _steps:
     4. Ensure click stop playing button can stop play the ringtone
  .
  TEARDOWN:
-    1. Close System Settings.
+    1. Close System Settings
 _verification:
     1. Can each ringtone be played?
     2. Can stop playing button works?
@@ -1400,7 +1400,7 @@ _steps:
  .
  ACTIONS:
     1. Press on Lock security
-    2. Select Passphrase
+    2. Select passphrase
     3. Lock phone (press power button)
 _verification:
     1. Unlock phone
@@ -1602,7 +1602,7 @@ unit: job
 id: Tel-07
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Ensure that dtmf feature call work as expected
+_summary: Ensure that DTMF feature call work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1942,7 +1942,7 @@ unit: job
 id: Tel-23
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Ensure that dtmf feature call work as expected
+_summary: Ensure that STMF feature call work as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -2149,7 +2149,7 @@ unit: job
 id: Tel-32
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
-_summary: Ensure that an imei number is set
+_summary: Ensure that an IMEI number is set
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2187,7 +2187,7 @@ unit: job
 id: Tel-34
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
-_summary: Ensure that ussd codes function as expected
+_summary: Ensure that USSD codes function as expected
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2224,7 +2224,7 @@ unit: job
 id: Tel-36
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
-_summary: Ensure that no signal shows when no sim card inserted
+_summary: Ensure that no signal shows when no SIM card inserted
 _steps:
  SETUP:
     Ensure SIM is not inserted
@@ -2241,19 +2241,19 @@ unit: job
 id: Tel-38
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
-_summary: Ensure that 3g sim card can be supported
+_summary: Ensure that 3G SIM card can be supported
 _steps:
  SETUP:
-    Insert a 3G sim card
+    Insert a 3G SIM card
  .
  ACTIONS:
     1. Boot up 
-    2. Ensure system can identify the sim card
+    2. Ensure system can identify the SIM card
  .
  TEARDOWN:
     None
 _verification:
-    1. Does 3G sim card work correctly?
+    1. Does 3G SIM card work correctly?
 
 unit: category
 id: Telephony/Hardware/Emergency Support (SIM2)
@@ -2263,7 +2263,7 @@ unit: job
 id: Tel-39
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
-_summary: Ensure that an imei number is set
+_summary: Ensure that an IMEI number is set
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2301,7 +2301,7 @@ unit: job
 id: Tel-41
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
-_summary: Ensure that ussd codes function as expected
+_summary: Ensure that USSD codes function as expected
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2338,7 +2338,7 @@ unit: job
 id: Tel-43
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
-_summary: Ensure that no signal shows when no sim card inserted
+_summary: Ensure that no signal shows when no SIM card inserted
 _steps:
  SETUP:
     Ensure SIM is not inserted
@@ -2355,19 +2355,19 @@ unit: job
 id: Tel-45
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
-_summary: Ensure that 3g sim card can be supported
+_summary: Ensure that 3G SIM card can be supported
 _steps:
  SETUP:
-    Insert a 3G sim card
+    Insert a 3G SIM card
  .
  ACTIONS:
     1. Boot up 
-    2. Ensure system can identify the sim card
+    2. Ensure system can identify the SIM card
  .
  TEARDOWN:
     None
 _verification:
-    1. Does 3G sim card work correctly?
+    1. Does 3G SIM card work correctly?
 
 unit: category
 id: Telephony/Data Support (SIM1)
@@ -2377,11 +2377,11 @@ unit: job
 id: Tel-46
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that phone can properly use gprs data
+_summary: Ensure that phone can properly use GPRS data
 _steps:
  SETUP:
     Ensure SIM is present 
-    Ensure wifi is not connected
+    Ensure WiFi is not connected
  .
  ACTIONS:
     1. Ensure that DUT connected to GRPS network
@@ -2390,7 +2390,7 @@ _steps:
  TEARDOWN:
     Close browser
 _verification:
-    1. Was Ubuntu.com loaded?
+    1. Was ubuntu.com loaded?
 
 unit: job
 id: Tel-47
@@ -2400,7 +2400,7 @@ _summary: Ensure that phone can properly use edge data
 _steps:
  SETUP:
     Ensure SIM is present 
-    Ensure wifi is not connected
+    Ensure WiFi is not connected
  .
  ACTIONS:
     1. Ensure that DUT connected to Edge network
@@ -2419,7 +2419,7 @@ _summary: Ensure that phone can properly use 3g data
 _steps:
  SETUP:
     Ensure SIM is present 
-    Ensure wifi is not connected
+    Ensure WiFi is not connected
  .
  ACTIONS:
     1. Ensure that DUT connected to 3G network
@@ -2434,11 +2434,11 @@ unit: job
 id: Tel-49
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that phone can properly use hspa data
+_summary: Ensure that phone can properly use HSPA data
 _steps:
  SETUP:
     Ensure SIM is present 
-    Ensure wifi is not connected
+    Ensure WiFi is not connected
  .
  ACTIONS:
     1. Ensure that DUT connected to HSPA network
@@ -2453,16 +2453,16 @@ unit: job
 id: Tel-50
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that connection can switch between wifi and gprs
+_summary: Ensure that connection can switch between WiFi and GPRS
 _steps:
  SETUP:
     Ensure SIM is present
-    Ensure wifi connected
+    Ensure WiFi connected
     Ensure DUT connected to GRPS network
  .
  ACTIONS:
     1. Open web browser, navigate to ubuntu.com
-    2. Disable wifi
+    2. Disable WiFi
     3. Open web browser, navigate to wiki.ubuntu.com
  .
  TEARDOWN:
@@ -2475,16 +2475,16 @@ unit: job
 id: Tel-51
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that connection can switch between wifi and edge
+_summary: Ensure that connection can switch between WiFi and EDGE
 _steps:
  SETUP:
     Ensure SIM is present
-    Ensure wif connected
-    Ensure DUT connected to Edge network
+    Ensure WiFi connected
+    Ensure DUT connected to EDGE network
  .
  ACTIONS:
     1. Open web browser, navigate to ubuntu.com
-    2. Disable wifi
+    2. Disable WiFi
     3. Open web browser, navigate to wiki.ubuntu.com
  .
  TEARDOWN:
@@ -2497,16 +2497,16 @@ unit: job
 id: Tel-52
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that connection can switch between wifi and 3g
+_summary: Ensure that connection can switch between WiFi and 3G
 _steps:
  SETUP:
     Ensure SIM is present
-    Ensure wif connected
+    Ensure WiFi connected
     Ensure DUT connected to 3G network
  .
  ACTIONS:
     1. Open web browser, navigate to ubuntu.com
-    2. Disable wifi
+    2. Disable WiFi
     3. Open web browser, navigate to wiki.ubuntu.com
  .
  TEARDOWN:
@@ -2519,16 +2519,16 @@ unit: job
 id: Tel-53
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that connection can switch between wifi and hspa
+_summary: Ensure that connection can switch between WiFi and HSPA
 _steps:
  SETUP:
     Ensure SIM is present
-    Ensure wif connected
+    Ensure WiFi connected
     Ensure DUT connected to HSPA network
  .
  ACTIONS:
     1. Open web browser, navigate to ubuntu.com
-    2. Disable wifi
+    2. Disable WiFi
     3. Open web browser, navigate to wiki.ubuntu.com
  .
  TEARDOWN:
@@ -2541,7 +2541,7 @@ unit: job
 id: Tel-54
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that call quality is acceptable in 2g
+_summary: Ensure that call quality is acceptable in 2G
 _steps:
  SETUP:
     Prepare 2 DUT and 2 Reference
@@ -2549,7 +2549,7 @@ _steps:
  .
  ACTIONS:
     1. DUT1 makes a MO call to DUT2
-    2. Ref1 makes a MO call to Ref2 
+    2. Reference1 makes a MO call to Reference2 
     3. Compare the call quality between DUT and Reference
  .
  TEARDOWN:
@@ -2561,7 +2561,7 @@ unit: job
 id: Tel-55
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that call quality is acceptable in 3g
+_summary: Ensure that call quality is acceptable in 3G
 _steps:
  SETUP:
     Prepare 2 DUT and 2 References
@@ -2581,11 +2581,11 @@ unit: job
 id: Tel-56
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that data performance is acceptable in gprs
+_summary: Ensure that data performance is acceptable in GPRS
 _steps:
  SETUP:
     Prepare 1 DUT and 1 References
-    Ensure DUT connected to GRPS network
+    Ensure DUT connected to GPRS network
  .
  ACTIONS:
     1. From DUT, Open web browser and navigate to www.speedtest.net
@@ -2644,7 +2644,7 @@ unit: job
 id: Tel-59
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
-_summary: Ensure that data performance is acceptable in hspa
+_summary: Ensure that data performance is acceptable in HSPA
 _steps:
  SETUP:
     Prepare 1 DUT and 1 References
@@ -2697,7 +2697,7 @@ _steps:
  TEARDOWN:
     Close webbrowser
 _verification:
-    1. Does DUt connect to a roaming data network successfully?
+    1. Does DUT connect to a roaming data network successfully?
     2. Was ubuntu.com loaded?
 
 unit: category
@@ -2708,7 +2708,7 @@ unit: job
 id: Tel-62
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that sms alert sound can be played correctly during music playback
+_summary: Ensure that SMS alert sound can be played correctly during music playback
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2729,7 +2729,7 @@ unit: job
 id: Tel-63
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that mms alert sound can be played correctly during music playback
+_summary: Ensure that MMS alert sound can be played correctly during music playback
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2771,7 +2771,7 @@ unit: job
 id: Tel-65
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that sms alert sound can be played correctly during video playback
+_summary: Ensure that SMS alert sound can be played correctly during video playback
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2792,7 +2792,7 @@ unit: job
 id: Tel-66
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that mms alert sound can be played correctly during video playback
+_summary: Ensure that MMS alert sound can be played correctly during video playback
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2834,14 +2834,14 @@ unit: job
 id: Tel-68
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that incoming call ringtone can be played correctly while browsing via gprs data
+_summary: Ensure that incoming call ringtone can be played correctly while browsing via GPRS data
 _steps:
  SETUP:
     1. Ensure SIM is present 
     2. Connected to GPRS data
  .
  ACTIONS:
-    1. Launch web browser and browing to the www.ubuntu.com 
+    1. Launch web browser and browse to the www.ubuntu.com 
     2. Make a MO call to DUT    
     3. Ensure that the incoming call ringtone is played
  .
@@ -2855,14 +2855,14 @@ unit: job
 id: Tel-69
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that mo call can be performed correctly while browsing via gprs data
+_summary: Ensure that mo call can be performed correctly while browsing via GPRS data
 _steps:
  SETUP:
     1. Ensure SIM is present 
     2. Connected to GPRS data
  .
  ACTIONS:
-    1. Launch web browser and browing to the www.ubuntu.com 
+    1. Launch web browser and browse to the www.ubuntu.com 
     2. Make a MO call 
     3. Ensure that the MO call can be performed
  .
@@ -2882,7 +2882,7 @@ _steps:
     2. Connected to 3G data
  .
  ACTIONS:
-    1. Launch web browser and browing to the www.ubuntu.com 
+    1. Launch web browser and browse to the www.ubuntu.com 
     2. Make a MO call to DUT    
     3. Ensure that the incoming call ringtone is played
  .
@@ -2903,7 +2903,7 @@ _steps:
     2. Connected to 3G data
  .
  ACTIONS:
-    1. Launch web browser and browing to the www.ubuntu.com 
+    1. Launch web browser and browse to the www.ubuntu.com 
     2. Make a MO call 
     3. Ensure that the MO call can be performed
  .
@@ -2923,7 +2923,7 @@ _steps:
     2. Connected to GPRS data
  .
  ACTIONS:
-    1. Launch web browser and browing to the www.youtube.com 
+    1. Launch web browser and browse to the www.youtube.com 
     2. Play a video clip on youtube
     2. Make a MO call to DUT    
     3. Ensure that streaming video is stopped and the incoming call ringtone is played
@@ -2945,7 +2945,7 @@ _steps:
     2. Connected to 3G data
  .
  ACTIONS:
-    1. Launch web browser and browing to the www.youtube.com 
+    1. Launch web browser and browse to the www.youtube.com 
     2. Play a video clip on youtube
     2. Make a MO call to DUT    
     3. Ensure that streaming video is stopped and the incoming call ringtone is played
@@ -2960,17 +2960,17 @@ unit: job
 id: Tel-74
 plugin: manual
 category_id: Telephony/Interruptions
-_summary: Ensure that call can be taken on bluetooth headset whilest downloading a large file
+_summary: Ensure that call can be taken on Bluetooth headset while downloading a large file
 _steps:
  SETUP:
-    1. Pair a bluetooth headset with the phone
+    1. Pair a Bluetooth headset with the phone
     2. Begin downloading a large file with the DUT
  .
  ACTIONS:
     1. Make a call to the DUT
     2. Answer the call
 _verification:
-    1. Verify that call can be taking correctly on the bluetooth headset
+    1. Verify that call can be taking correctly on the Bluetooth headset
 
 unit: category
 id: Message/SMS/MMS (SIM1)
@@ -2980,7 +2980,7 @@ unit: job
 id: Msg-01
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that sms messages can be sent to single contact
+_summary: Ensure that SMS messages can be sent to single contact
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2999,7 +2999,7 @@ unit: job
 id: Msg-02
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that sms messages can be sent to multiple contacts
+_summary: Ensure that SMS messages can be sent to multiple contacts
 _steps:
  SETUP:
     Ensure SIM is present
@@ -3018,7 +3018,7 @@ unit: job
 id: Msg-03
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that sms messages can be receieved correctly
+_summary: Ensure that SMS messages can be received correctly
 _steps:
  SETUP:
     Prepare two DUT
@@ -3038,7 +3038,7 @@ unit: job
 id: Msg-04
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that concatenate sms message can be sent to single contact (more than 160 characters)
+_summary: Ensure that concatenate SMS message can be sent to single contact (more than 160 characters)
 _steps:
  SETUP:
     Prepare two DUT
@@ -3047,7 +3047,7 @@ _steps:
  ACTIONS:
     1. DUT1 opens messaging app
     2. Input more than 160 characters and send to DUT2
-    3. Ensure SMS sent to DUT2 ocrrectly
+    3. Ensure SMS sent to DUT2 correctly
     4. Ensure DUT2 received two messages
  .
  TEARDOWN:
@@ -3060,7 +3060,7 @@ unit: job
 id: Msg-05
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that concatenate sms message can be sent to multiple contacts (more than 160 characters)
+_summary: Ensure that concatenate SMS message can be sent to multiple contacts (more than 160 characters)
 _steps:
  SETUP:
     Ensure SIM is present
@@ -3068,7 +3068,7 @@ _steps:
  ACTIONS:
     1. Opens messaging app
     2. Input more than 160 characters and send multiple contacts
-    3. Ensure SMS sent to multiple contacts ocrrectly
+    3. Ensure SMS sent to multiple contacts correctly
     4. Ensure each contact received two messages
  .
  TEARDOWN:
@@ -3081,7 +3081,7 @@ unit: job
 id: Msg-06
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that sms message with speical characters can be sent correctly (e.g #.$ å)
+_summary: Ensure that SMS message with special characters can be sent correctly (e.g #.$ å)
 _steps:
  SETUP:
     Prepare two DUT
@@ -3089,21 +3089,21 @@ _steps:
  .
  ACTIONS:
     1. DUT1 opens messaging app
-    2. Input speical characters and send to DUT2
-    3. Ensure SMS sent to DUT2 ocrrectly
-    4. Ensure DUT2 can display speical characters correctly
+    2. Input special characters and send to DUT2
+    3. Ensure SMS sent to DUT2 correctly
+    4. Ensure DUT2 can display special characters correctly
  .
  TEARDOWN:
     1. Close messaging app
 _verification:
     1. Is SMS sent correctly? 
-    2. Is speical characters displayed correctly?
+    2. Is special characters displayed correctly?
 
 unit: job
 id: Msg-07
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that sms message containing an ampersand (&) in the middle can be displayed correctly
+_summary: Ensure that SMS message containing an ampersand (&) in the middle can be displayed correctly
 _steps:
  SETUP:
     Prepare two DUT
@@ -3123,7 +3123,7 @@ unit: job
 id: Msg-08
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that sms message containing a url can be displayed correctly
+_summary: Ensure that SMS message containing a URL can be displayed correctly
 _steps:
  SETUP:
     Prepare two DUT
@@ -3144,7 +3144,7 @@ unit: job
 id: Msg-09
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that forward sms message to single contact works
+_summary: Ensure that forward SMS message to single contact works
 _steps:
  SETUP:
     Prepare two DUT
@@ -3167,15 +3167,15 @@ unit: job
 id: Msg-10
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that send sms message to foreign country works
+_summary: Ensure that send SMS message to foreign country works
 _steps:
  SETUP:
-    Prepare two DUT, one with foreign sim
+    Prepare two DUT, one with foreign SIM
     Ensure SIM is present
  .
  ACTIONS:
-    1. DUT1 send SMS message to DUT2 w/ foreign sim
-    2. Ensure that send SMS message to foreign sim works
+    1. DUT1 send SMS message to DUT2 w/ foreign SIM
+    2. Ensure that send SMS message to foreign SIM works
  .
  TEARDOWN:
     1. Close messaging app
@@ -3187,7 +3187,7 @@ unit: job
 id: Msg-11
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that mms messages can be sent to single contact
+_summary: Ensure that MMS messages can be sent to single contact
 _steps:
  SETUP:
     Prepare two DUT and setup MMS APN
@@ -3207,7 +3207,7 @@ unit: job
 id: Msg-12
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that mms messages can be sent to multiple contacts
+_summary: Ensure that MMS messages can be sent to multiple contacts
 _steps:
  SETUP:
     DUT setup MMS APN
@@ -3218,13 +3218,13 @@ _steps:
     2. Select multiple contacts and send MMS 
     3. Ensure MMS sent correctly
 _verification:
-    1. Is MMS sent to mulitple contacts correctly?
+    1. Is MMS sent to multiple contacts correctly?
 
 unit: job
 id: Msg-13
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that mms messages can be receieved and played correctly
+_summary: Ensure that MMS messages can be received and played correctly
 _steps:
  SETUP:
     Prepare two DUT and setup MMS APN
@@ -3245,7 +3245,7 @@ unit: job
 id: Msg-14
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
-_summary: Ensure that forward mms message to single contact works
+_summary: Ensure that forward MMS message to single contact works
 _steps:
  SETUP:
     Prepare two DUT and setup MMS APN
@@ -3254,7 +3254,7 @@ _steps:
  ACTIONS:
     1. DUT1 opens messaging app
     2. Sent a MMS message to DUT2
-    3. While DUT2 received MMS message then forware back to DUT1
+    3. While DUT2 received MMS message then forward back to DUT1
     4. Ensure DUT2 can forward message to DUT1
     5. Ensure DUT1 can receive this message
  .
@@ -3272,7 +3272,7 @@ unit: job
 id: Msg-15
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that sms messages can be sent to single contact
+_summary: Ensure that SMS messages can be sent to single contact
 _steps:
  SETUP:
     Ensure SIM is present
@@ -3291,7 +3291,7 @@ unit: job
 id: Msg-16
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that sms messages can be sent to multiple contacts
+_summary: Ensure that SMS messages can be sent to multiple contacts
 _steps:
  SETUP:
     Ensure SIM is present
@@ -3310,7 +3310,7 @@ unit: job
 id: Msg-17
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that sms messages can be receieved correctly
+_summary: Ensure that SMS messages can be received correctly
 _steps:
  SETUP:
     Prepare two DUT
@@ -3330,7 +3330,7 @@ unit: job
 id: Msg-18
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that concatenate sms message can be sent to single contact (more than 160 characters)
+_summary: Ensure that concatenate SMS message can be sent to single contact (more than 160 characters)
 _steps:
  SETUP:
     Prepare two DUT
@@ -3339,7 +3339,7 @@ _steps:
  ACTIONS:
     1. DUT1 opens messaging app
     2. Input more than 160 characters and send to DUT2
-    3. Ensure SMS sent to DUT2 ocrrectly
+    3. Ensure SMS sent to DUT2 correctly
     4. Ensure DUT2 received two messages
  .
  TEARDOWN:
@@ -3352,7 +3352,7 @@ unit: job
 id: Msg-19
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that concatenate sms message can be sent to multiple contacts (more than 160 characters)
+_summary: Ensure that concatenate SMS message can be sent to multiple contacts (more than 160 characters)
 _steps:
  SETUP:
     Ensure SIM is present
@@ -3360,7 +3360,7 @@ _steps:
  ACTIONS:
     1. Opens messaging app
     2. Input more than 160 characters and send multiple contacts
-    3. Ensure SMS sent to multiple contacts ocrrectly
+    3. Ensure SMS sent to multiple contacts correctly
     4. Ensure each contact received two messages
  .
  TEARDOWN:
@@ -3373,7 +3373,7 @@ unit: job
 id: Msg-20
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that sms message with speical characters can be sent correctly (e.g #.$ å)
+_summary: Ensure that SMS message with special characters can be sent correctly (e.g #.$ å)
 _steps:
  SETUP:
     Prepare two DUT
@@ -3381,21 +3381,21 @@ _steps:
  .
  ACTIONS:
     1. DUT1 opens messaging app
-    2. Input speical characters and send to DUT2
-    3. Ensure SMS sent to DUT2 ocrrectly
-    4. Ensure DUT2 can display speical characters correctly
+    2. Input special characters and send to DUT2
+    3. Ensure SMS sent to DUT2 correctly
+    4. Ensure DUT2 can display special characters correctly
  .
  TEARDOWN:
     1. Close messaging app
 _verification:
     1. Is SMS sent correctly? 
-    2. Is speical characters displayed correctly?
+    2. Is special characters displayed correctly?
 
 unit: job
 id: Msg-21
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that sms message containing an ampersand (&) in the middle can be displayed correctly
+_summary: Ensure that SMS message containing an ampersand (&) in the middle can be displayed correctly
 _steps:
  SETUP:
     Prepare two DUT
@@ -3415,7 +3415,7 @@ unit: job
 id: Msg-22
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that sms message containing a url can be displayed correctly
+_summary: Ensure that SMS message containing a URL can be displayed correctly
 _steps:
  SETUP:
     Prepare two DUT
@@ -3436,7 +3436,7 @@ unit: job
 id: Msg-23
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that forward sms message to single contact works
+_summary: Ensure that forward SMS message to single contact works
 _steps:
  SETUP:
     Prepare two DUT
@@ -3459,15 +3459,15 @@ unit: job
 id: Msg-24
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that send sms message to foreign country works
+_summary: Ensure that send SMS message to foreign country works
 _steps:
  SETUP:
-    Prepare two DUT, one with foreign sim
+    Prepare two DUT, one with foreign SIM
     Ensure SIM is present
  .
  ACTIONS:
-    1. DUT1 send SMS message to DUT2 w/ foreign sim
-    2. Ensure that send SMS message to foreign sim works
+    1. DUT1 send SMS message to DUT2 with foreign SIM
+    2. Ensure that send SMS message to foreign SIM works
  .
  TEARDOWN:
     1. Close messaging app
@@ -3479,7 +3479,7 @@ unit: job
 id: Msg-25
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that mms messages can be sent to single contact
+_summary: Ensure that MMS messages can be sent to single contact
 _steps:
  SETUP:
     Prepare two DUT and setup MMS APN
@@ -3499,7 +3499,7 @@ unit: job
 id: Msg-26
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that mms messages can be sent to multiple contacts
+_summary: Ensure that MMS messages can be sent to multiple contacts
 _steps:
  SETUP:
     DUT setup MMS APN
@@ -3510,13 +3510,13 @@ _steps:
     2. Select multiple contacts and send MMS 
     3. Ensure MMS sent correctly
 _verification:
-    1. Is MMS sent to mulitple contacts correctly?
+    1. Is MMS sent to multiple contacts correctly?
 
 unit: job
 id: Msg-27
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that mms messages can be receieved and played correctly
+_summary: Ensure that MMS messages can be received and played correctly
 _steps:
  SETUP:
     Prepare two DUT and setup MMS APN
@@ -3537,7 +3537,7 @@ unit: job
 id: Msg-28
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
-_summary: Ensure that forward mms message to single contact works
+_summary: Ensure that forward MMS message to single contact works
 _steps:
  SETUP:
     Prepare two DUT and setup MMS APN
@@ -3546,7 +3546,7 @@ _steps:
  ACTIONS:
     1. DUT1 opens messaging app
     2. Sent a MMS message to DUT2
-    3. While DUT2 received MMS message then forware back to DUT1
+    3. While DUT2 received MMS message then forward back to DUT1
     4. Ensure DUT2 can forward message to DUT1
     5. Ensure DUT1 can receive this message
  .
@@ -3697,7 +3697,7 @@ _steps:
  .
  ACTIONS:
     1. Switch on flash support to auto
-    2. Take a photo udner low light
+    2. Take a photo under low light
  .
  TEARDOWN:
     Close camera app
@@ -3716,7 +3716,7 @@ _steps:
  ACTIONS:
     1. Capture a picture with front camera of DUT
     2. Open photo in gallery app
-    3. Capture the same (try to maintain same lighting condtions etc) picture with front camera of reference Android device
+    3. Capture the same (try to maintain same lighting conditions) picture with front camera of reference Android device
     4. Open photo in gallery app of Android device
  .
  TEARDOWN:
@@ -3737,7 +3737,7 @@ _steps:
  ACTIONS:
     1. Capture a picture with rear camera of DUT
     2. Open photo in gallery app
-    3. Capture the same (try to maintain same lighting condtions etc) picture with rear camera of reference Android device
+    3. Capture the same (try to maintain same lighting conditions) picture with rear camera of reference Android device
     4. Open photo in gallery app of Android device
  .
  TEARDOWN:
@@ -3758,7 +3758,7 @@ _steps:
  ACTIONS:
     1. Capture a video with front camera of DUT
     2. Open video in gallery app
-    3. Capture the same (try to maintain same lighting condtions etc) video with front camera of reference Android device
+    3. Capture the same (try to maintain same lighting conditions) video with front camera of reference Android device
     4. Open video in gallery app of Android device
  .
  TEARDOWN:
@@ -3779,7 +3779,7 @@ _steps:
  ACTIONS:
     1. Capture a video with rear camera of DUT
     2. Open video in gallery app
-    3. Capture the same (try to maintain same lighting condtions etc) video with rear camera of reference Android device
+    3. Capture the same (try to maintain same lighting conditions) video with rear camera of reference Android device
     4. Open video in gallery app of Android device
  .
  TEARDOWN:
@@ -3870,7 +3870,7 @@ _summary: Ensure that the headset works as expected
 _steps:
  SETUP:
     1. Have two DUT
-    2. Plugin a headset
+    2. Plug in a headset
  .
  ACTIONS:
     1. MO call to DUT2
@@ -3880,7 +3880,7 @@ _steps:
     5. Ensure voice come out from external speaker
  .
  TEARDOWN:
-    Unplugin the headset
+    Unplug the headset
 _verification:
     1. Did both speaker and microphone of headset work correctly?
 
@@ -3888,23 +3888,23 @@ unit: job
 id: Audio-04
 plugin: manual
 category_id: Audio/Audio path
-_summary: Ensure that bt headset works as expected
+_summary: Ensure that Bluetooth headset works as expected
 _steps:
  SETUP:
     1. Have two DUT
-    2. Paired with a BT headset
+    2. Paired with a Bluetooth headset
  .
  ACTIONS:
     1. MO call to DUT2
-    2. Speak to BT headset
+    2. Speak to Bluetooth headset
     3. Ensure DUT2 can hear voice 
     4. Speak to DUT2
-    5. Ensure voice come out from BT headset
+    5. Ensure voice come out from Bluetooth headset
  .
  TEARDOWN:
-    Unpair BT headset
+    Unpair Bluetooth headset
 _verification:
-    1. Did both speaker and microphone of BT headset work correctly?
+    1. Did both speaker and microphone of Bluetooth headset work correctly?
 
 unit: job
 id: Audio-05
@@ -3918,7 +3918,7 @@ _steps:
  ACTIONS:
     1. Play a music file
     2. Ensure music come from internal speaker
-    3. Plugin a headset
+    3. Plug in a headset
     4. Ensure music come from headset
     5. Unplug the headset
     6. Ensure music switch back to internal speaker
@@ -3926,7 +3926,7 @@ _steps:
  TEARDOWN:
     None
 _verification:
-    1. Did the sound can be heard from internal speaker?           
+    1. Did the sound can be heard from internal speaker?
     2. Did the sound can be heard from headset? 
     3. Did the sound can be heard from internal speaker?
 
@@ -3934,24 +3934,24 @@ unit: job
 id: Audio-06
 plugin: manual
 category_id: Audio/Audio path
-_summary: Ensure that the audio can be switched from internal to bt headset during playing music
+_summary: Ensure that the audio can be switched from internal to Bluetooth headset during playing music
 _steps:
  SETUP:
-    Prepare a BT headset
+    Prepare a Bluetooth headset
  .
  ACTIONS:
     1. Play a music file
     2. Ensure music come from internal speaker
-    3. Connect to BT headset
-    4. Ensure music come from BT headset
-    5. Disconnect to BT Headset
+    3. Connect to Bluetooth headset
+    4. Ensure music come from Bluetooth headset
+    5. Disconnect to Bluetooth Headset
     6. Ensure music switch back to internal speaker
  .
  TEARDOWN:
     None
 _verification:
-    1. Did the sound can be heard from internal speaker?           
-    2. Did the sound can be heard from BT headset?
+    1. Did the sound can be heard from internal speaker?
+    2. Did the sound can be heard from Bluetooth headset?
     3. Did the sound can be heard from internal speaker?
 
 unit: job
@@ -3967,7 +3967,7 @@ _steps:
  ACTIONS:
     1. MO call to DUT2
     2. Ensure both output/input audio come from internal speaker and microphone
-    3. Plugin a headset
+    3. Plug in a headset
     4. Ensure that both output/input audio come from headset
     5. Unplug the headset
     6. Ensure that both output/input audio switch back to internal speaker/microphone
@@ -3975,33 +3975,33 @@ _steps:
  TEARDOWN:
     None
 _verification:
-    1. Did both output/input audio come from internal speaker?           
-    2. Did both output/input audio come from  headset?
+    1. Did both output/input audio come from internal speaker?
+    2. Did both output/input audio come from headset?
     3. Did both output/input audio come from internal speaker?
 
 unit: job
 id: Audio-08
 plugin: manual
 category_id: Audio/Audio path
-_summary: Ensure that the audio can be switched from internal to bt headset during a call
+_summary: Ensure that the audio can be switched from internal to Bluetooth headset during a call
 _steps:
  SETUP:
     1. Have two DUT
-    2. Prepare a BT headset
+    2. Prepare a Bluetooth headset
  .
  ACTIONS:
     1. MO call to DUT2
     2. Ensure both output/input audio come from internal speaker and microphone
-    3. Pair to a BT headset
-    4. Ensure that both output/input audio come from BT headset
-    5. Disconnect the BT headset
+    3. Pair to a Bluetooth headset
+    4. Ensure that both output/input audio come from Bluetooth headset
+    5. Disconnect the Bluetooth headset
     6. Ensure that both output/input audio switch back to internal speaker/microphone
  .
  TEARDOWN:
     None
 _verification:
-    1. Did both output/input audio come from internal speaker?           
-    2. Did both output/input audio come from  BT headset? 
+    1. Did both output/input audio come from internal speaker?
+    2. Did both output/input audio come from Bluetooth headset? 
     3. Did both output/input audio come from internal speaker?
 
 unit: job
@@ -4014,7 +4014,7 @@ _steps:
     Have two DUT
  .
  ACTIONS:
-    1. Play a msuic file
+    1. Play a music file
     2. MT call to DUT
     3. Ensure music will be stopped and ringtone come from internal speaker
     4. Answer the call 
@@ -4036,7 +4036,7 @@ _steps:
     Have two DUT
  .
  ACTIONS:
-    1. Play a msuic file
+    1. Play a music file
     2. MO call to DUT2
     3. Ensure music will be paused and ringing from internal speaker
     4. Pick the call from another phone
@@ -4098,7 +4098,7 @@ category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work with headset
 _steps:
  SETUP:
-    Plugin a headset
+    Plug in a headset
  .
  ACTIONS:
     1. Play a music file
@@ -4120,7 +4120,7 @@ category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work with headset after phone resume from sleep
 _steps:
  SETUP:
-    Plugin a headset
+    Plug in a headset
  .
  ACTIONS:
     1. Play a music file 
@@ -4141,10 +4141,10 @@ unit: job
 id: Audio-18
 plugin: manual
 category_id: Audio/Volume adjustment
-_summary: Ensure that the volume keys functions work with bt headset
+_summary: Ensure that the volume keys functions work with Bluetooth headset
 _steps:
  SETUP:
-    Pair with a BT headset
+    Pair with a Bluetooth headset
  .
  ACTIONS:
     1. Play a music file
@@ -4163,10 +4163,10 @@ unit: job
 id: Audio-19
 plugin: manual
 category_id: Audio/Volume adjustment
-_summary: Ensure that the volume keys functions work with bt headset after phone resume from sleep
+_summary: Ensure that the volume keys functions work with Bluetooth headset after phone resume from sleep
 _steps:
  SETUP:
-    Pair with a BT headset
+    Pair with a Bluetooth headset
  .
  ACTIONS:
     1. Play a music file 
@@ -4211,7 +4211,7 @@ _steps:
     Set the device to minimum volume
  .
  ACTIONS:
-    DON'T PUT THE HEADPHONES IN EARS
+    WARNING: DON'T PUT THE HEADPHONES IN EARS
     1. Play a music file
     2. Press the volume up key until maximum reached
     3. Check that a volume warning dialog is presented
@@ -4247,7 +4247,7 @@ category_id: Video/Video output
 _summary: Ensure that video output is resumed after wake up from sleep mode
 _steps:
  SETUP:
-    1. Dock phone/plugin hdmi adapter cable
+    1. Dock phone/plugin HDMI adapter cable
  .
  ACTIONS:
     1. Ensure that screen is displayed on external monitor
@@ -4256,7 +4256,7 @@ _steps:
     4. Ensure that screen is still displayed on external monitor
  .
  TEARDOWN:
-    Disconnect hdmi cable/dock
+    Disconnect HDMI cable/dock
 _verification:
     1. Does HDMI screen still display on external monitor?
 
@@ -4337,15 +4337,15 @@ unit: job
 id: Sensors-05
 plugin: manual
 category_id: Sensors/Sensors Testing
-_summary: Ensure gps is working
+_summary: Ensure GPS is working
 _steps:
  SETUP:
     Enable GPS and location detection from location indicator
  .
  ACTIONS:
-    1. Open a browser and connect to google map
+    1. Open a browser and connect to Google Map
     2. Tap location detect icon 
-    3. Ensure google map can detect your location
+    3. Ensure Google Map can detect your location
  .
  TEARDOWN:
     Close browser
@@ -4429,7 +4429,7 @@ unit: job
 id: Screen-04
 plugin: manual
 category_id: Screen/Screen testing
-_summary: Ensure that screen brightness can be changed from power inidicator
+_summary: Ensure that screen brightness can be changed from power indicator
 _steps:
  ACTIONS:
     1. Open Battery indicator
@@ -4460,16 +4460,16 @@ unit: job
 id: Screen-06
 plugin: manual
 category_id: Screen/Screen testing
-_summary: Ensure that mir is being run
+_summary: Ensure that MIR is being run
 _steps:
  ACTIONS:
     1. Use Unity
-    2. Run ps ax | grep surf, ensure no results
+    2. Run 'ps ax | grep surf', ensure no results
  .
  TEARDOWN:
     None
 _verification:
-    1. Is Mir running?
+    1. Is MIR running?
 
 unit: job
 id: Screen-07
@@ -4490,7 +4490,7 @@ unit: job
 id: Screen-08
 plugin: manual
 category_id: Screen/Screen testing
-_summary: Ensure the touchscreen accurancy
+_summary: Ensure the touchscreen accuracy
 _steps:
  ACTIONS:
     1. Open Notes app
@@ -4501,13 +4501,13 @@ _steps:
  TEARDOWN:
     None
 _verification:
-    1. Doesthe accuracy of touchscreen is accurate enough?
+    1. Does the accuracy of touchscreen is accurate enough?
 
 unit: job
 id: Screen-09
 plugin: manual
 category_id: Screen/Screen testing
-_summary: Ensure the sensitivity of touchscreen in each egde
+_summary: Ensure the sensitivity of touchscreen in each edge
 _steps:
  ACTIONS:
     1. Randomly tap the screen, slide the screen that near the edge
@@ -4522,7 +4522,7 @@ unit: job
 id: Screen-10
 plugin: manual
 category_id: Screen/Screen testing
-_summary: Ensure the touchscreen accurancy in each edge
+_summary: Ensure the touchscreen accuracy in each edge
 _steps:
  ACTIONS:
     1. Open Notes app
@@ -4533,7 +4533,7 @@ _steps:
  TEARDOWN:
     None
 _verification:
-    1. Doesthe accuracy of touchscreen is accurate enough in each edge?
+    1. Does the accuracy of touchscreen is accurate enough in each edge?
 
 unit: job
 id: Screen-11
@@ -4668,7 +4668,7 @@ _steps:
     Discharge phone battery to 0%
  .
  ACTIONS:
-    1. Plugin power chagre to charge the phone
+    1. Plug in power charger to charge the phone
     2. Measure the full charge time
  .
  TEARDOWN:
@@ -4722,37 +4722,37 @@ unit: job
 id: MTP-01
 plugin: manual
 category_id: Storage/MTP File Transfer
-_summary: Dut connected to usb2.0 port - recognized as mtp device
+_summary: DUT connected to USB 2.0 port - recognized as MTP device
 _steps:
  SETUP:
     1. Prepare a USB cable
  .
  ACTIONS:
-    1. Connect DUT to a USB2.0 port 
+    1. Connect DUT to a USB 2.0 port 
     2. Make sure the DUT has been recognized as MTP device 
     3. Navigate to device
     4. Copy file to DUT 
     5. Copy file from DUT
-    6. Make sure that copy/remove/modify fucntions work as expected
+    6. Make sure that copy/remove/modify functions work as expected
  .
  TEARDOWN:
     1. Disconnect DUT
 _verification:
     1. Does DUT recognize as MTP device?
-    2. Did copy/remove/modify funtions work?
+    2. Did copy/remove/modify functions work?
 
 unit: job
 id: MTP-02
 plugin: manual
 category_id: Storage/MTP File Transfer
-_summary: Dut connected to usb2.0 port - large file transfer over mtp
+_summary: DUT connected to USB 2.0 port - large file transfer over MTP
 _steps:
  SETUP:
     1. Prepare a USB cable
     2. Have a 4GB video file
  .
  ACTIONS:
-    1. Connect DUT to a USB2.0 port 
+    1. Connect DUT to a USB 2.0 port 
     2. Make sure the DUT has been recognized as MTP device 
     3. Copy a 4GB file to DUT
     4. Make sure that large file can be transfer to DUT
@@ -4768,14 +4768,14 @@ unit: job
 id: MTP-03
 plugin: manual
 category_id: Storage/MTP File Transfer
-_summary: Dut connected to usb2.0 port - over 100 files to dut over mtp
+_summary: DUT connected to USB 2.0 port - over 100 files to DUT over MTP
 _steps:
  SETUP:
     1. Prepare a USB cable
     2. Have a folder with 100 files
  .
  ACTIONS:
-    1. Connect DUT to a USB2.0 port 
+    1. Connect DUT to a USB 2.0 port 
     2. Make sure the DUT has been recognized as MTP device 
     3. Copy a folder with 100 files to DUT
     4. Make sure that all the files can be transfer to DUT
@@ -4789,37 +4789,37 @@ unit: job
 id: MTP-04
 plugin: manual
 category_id: Storage/MTP File Transfer
-_summary: Dut connected to usb3.0 port - recognized as mtp device
+_summary: DUT connected to USB 3.0 port - recognized as MTP device
 _steps:
  SETUP:
     1. Prepare a USB cable
  .
  ACTIONS:
-    1. Connect DUT to a USB3.0 port 
+    1. Connect DUT to a USB 3.0 port 
     2. Make sure the DUT has been recognized as MTP device 
     3. Navigate to device
     4. Copy file to DUT 
     5. Copy file from DUT
-    6. Make sure that copy/remove/modify fucntions work as expected
+    6. Make sure that copy/remove/modify functions work as expected
  .
  TEARDOWN:
     1. Disconnect DUT
 _verification:
     1. Does DUT recognize as MTP device?
-    2. Did copy/remove/modify funtions work?
+    2. Did copy/remove/modify functions work?
 
 unit: job
 id: MTP-05
 plugin: manual
 category_id: Storage/MTP File Transfer
-_summary: Dut connected to usb3.0 port - large file transfer over mtp
+_summary: DUT connected to USB 3.0 port - large file transfer over MTP
 _steps:
  SETUP:
     1. Prepare a USB cable
     2. Have a 4GB video file
  .
  ACTIONS:
-    1. Connect DUT to a USB3.0 port 
+    1. Connect DUT to a USB 3.0 port 
     2. Make sure the DUT has been recognized as MTP device 
     3. Copy a 4GB file to DUT
     4. Make sure that large file can be transferred to DUT
@@ -4835,14 +4835,14 @@ unit: job
 id: MTP-06
 plugin: manual
 category_id: Storage/MTP File Transfer
-_summary: Dut connected to usb3.0 port - over 100 files to dut over mtp
+_summary: DUT connected to USB 3.0 port - over 100 files to DUT over MTP
 _steps:
  SETUP:
     1. Prepare a USB cable
     2. Have a folder with 100 files
  .
  ACTIONS:
-    1. Connect DUT to a USB3.0 port 
+    1. Connect DUT to a USB 3.0 port 
     2. Make sure the DUT has been recognized as MTP device 
     3. Copy a folder with 100 files to DUT
     4. Make sure that all the files can be transferred to DUT
@@ -4887,7 +4887,7 @@ _summary: Make sure that music scope can scan and add music files that under fol
 _steps:
  SETUP:
     1. Prepare a USB cable
-    2. Have several folders and each folder contains sevreal music files
+    2. Have several folders and each folder contains several music files
  .
  ACTIONS:
     1. Connect DUT to a USB port
@@ -4910,7 +4910,7 @@ unit: job
 id: SD-01
 plugin: manual
 category_id: Storage/SD Card
-_summary: Mounts sd card at boot
+_summary: Mounts SD card at boot
 _steps:
  SETUP:
     1. Turn off DUT
@@ -4925,7 +4925,7 @@ unit: job
 id: SD-02
 plugin: manual
 category_id: Storage/SD Card
-_summary: Automount sd card while dut is on
+_summary: Automount SD card while DUT is on
 _steps:
  SETUP:
     1. Turn off DUT
@@ -4985,7 +4985,7 @@ unit: job
 id: SD-06
 plugin: manual
 category_id: Storage/SD Card
-_summary: Sd card removal while dut is on
+_summary: SD card removal while DUT is on
 _steps:
  SETUP:
     1. DUT with mounted SD card
@@ -4999,7 +4999,7 @@ unit: job
 id: SD-07
 plugin: manual
 category_id: Storage/SD Card
-_summary: Format micro sd card
+_summary: Format micro SD card
 _steps:
  SETUP:
     1. Place Micro SD card in DUT
@@ -5037,7 +5037,7 @@ unit: job
 id: BTFT-01
 plugin: manual
 category_id: Storage/Bluetooth File Transfer
-_summary: Transfer files to the phone using bluetooth file transfer
+_summary: Transfer files to the phone using Bluetooth file transfer
 _steps:
 _verification:
     1. File in present on the DUT
@@ -5046,7 +5046,7 @@ unit: job
 id: BTFT-02
 plugin: manual
 category_id: Storage/Bluetooth File Transfer
-_summary: Transfer files from the phone using bluetooth file transfer
+_summary: Transfer files from the phone using Bluetooth file transfer
 _steps:
 _verification:
     1. File is present on the desktop PC
