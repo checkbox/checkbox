@@ -534,6 +534,9 @@ class CheckboxTouchApplication(PlainboxApplication):
         effective_category_map = self.context.compute_shared(
             'effective_category_map',
             self.test_plan.get_effective_category_map, subset_job_list)
+        for job_id, effective_category_id in effective_category_map.items():
+            job_state = self.context.state.job_state_map[job_id]
+            job_state.effective_category_id = effective_category_id
         id_map = self.context.compute_shared(
             'id_map', compute_value_map, self.context, 'id')
         test_info_list = [{
