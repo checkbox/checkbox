@@ -674,7 +674,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         with open(os.path.join(xdg_config_home, 'user-dirs.dirs')) as f:
             match = re.search(r'XDG_DOCUMENTS_DIR="(.*)"\n', f.read())
             if match:
-                return match.group(1)
+                return match.group(1).replace("$HOME", os.getenv("HOME"))
             else:
                 return os.path.expanduser('~')
 
