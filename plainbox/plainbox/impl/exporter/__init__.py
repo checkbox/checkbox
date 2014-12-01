@@ -83,6 +83,7 @@ class SessionStateExporterBase(ISessionStateExporter):
     OPTION_WITH_COMMENTS = 'with-comments'
     OPTION_WITH_JOB_VIA = 'with-job-via'
     OPTION_WITH_JOB_HASH = 'with-job-hash'
+    OPTION_WITH_CATEGORY_MAP = 'with-category-map'
 
     SUPPORTED_OPTION_LIST = (
         OPTION_WITH_IO_LOG,
@@ -96,6 +97,7 @@ class SessionStateExporterBase(ISessionStateExporter):
         OPTION_WITH_COMMENTS,
         OPTION_WITH_JOB_VIA,
         OPTION_WITH_JOB_HASH,
+        OPTION_WITH_CATEGORY_MAP,
     )
 
     def __init__(self, option_list=None):
@@ -193,13 +195,29 @@ class SessionStateExporterBase(ISessionStateExporter):
             }
         if self.OPTION_WITH_ATTACHMENTS in self._option_list:
             data['attachment_map'] = {}
+        if self.OPTION_WITH_CATEGORY_MAP in self._option_list:
+            wanted_category_ids = frozenset({
+                job_state.effective_category_id
+                for job_state in session.job_state_map.values()
+            })
+            data['category_map'] = {
+                unit.id: unit.tr_name()
+                for unit in session.unit_list
+                if unit.Meta.name == 'category'
+                and unit.id in wanted_category_ids
+            }
+            # Inject the special, built-in 'uncategorized' category, if any
+            # job needs it
+            UNCATEGORISED = '2013.com.canonical.plainbox::uncategorised'
+            if UNCATEGORISED in wanted_category_ids:
+                data['category_map'][UNCATEGORISED] = _("Uncategorised")
         for job_id, job_state in session.job_state_map.items():
             if job_state.result.outcome is None:
                 continue
             data['result_map'][job_id] = OrderedDict()
-            data['result_map'][job_id]['summary'] = job_state.job.summary
+            data['result_map'][job_id]['summary'] = job_state.job.tr_summary()
             data['result_map'][job_id]['category_id'] = \
-                job_state.job.partial_category_id
+                job_state.effective_category_id
             data['result_map'][job_id]['outcome'] = job_state.result.outcome
             if job_state.result.execution_duration:
                 data['result_map'][job_id]['execution_duration'] = \

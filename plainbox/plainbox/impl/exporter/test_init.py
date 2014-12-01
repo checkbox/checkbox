@@ -38,6 +38,7 @@ from plainbox.impl.job import JobDefinition
 from plainbox.impl.result import MemoryJobResult, IOLogRecord
 from plainbox.impl.session import SessionState
 from plainbox.impl.testing_utils import make_job, make_job_result
+from plainbox.impl.unit.category import CategoryUnit
 
 
 class ClassPropertyTests(TestCase):
@@ -99,14 +100,15 @@ class SessionStateExporterBaseTests(TestCase):
         # exporter actually thinks it has
         exporter = self.TestSessionStateExporter(
             self.TestSessionStateExporter.supported_option_list)
-        self.assertEqual(exporter._option_list,
-                sorted(self.TestSessionStateExporter.supported_option_list))
+        self.assertEqual(
+            exporter._option_list,
+            sorted(self.TestSessionStateExporter.supported_option_list))
 
     def test_option_list_init_non_boolean(self):
         option = SessionStateExporterBase.OPTION_WITH_COMMENTS
-        exporter = self.TestSessionStateExporter(["{}=detailed".format(option)])
-        self.assertEqual(exporter.get_option_value(option),
-                "detailed")
+        exporter = self.TestSessionStateExporter(
+            ["{}=detailed".format(option)])
+        self.assertEqual(exporter.get_option_value(option), "detailed")
 
     def test_option_list_non_duplicated_options(self):
         # Setting the same option twice makes no sense, check it gets squashed
@@ -117,12 +119,12 @@ class SessionStateExporterBaseTests(TestCase):
 
     def test_option_list_setting_api(self):
         exporter = self.TestSessionStateExporter(
-                [SessionStateExporterBase.OPTION_WITH_IO_LOG])
+            [SessionStateExporterBase.OPTION_WITH_IO_LOG])
         exporter.set_option_value("with-comments")
         self.assertEqual(exporter.get_option_value('with-comments'), True)
         exporter.set_option_value("with-comments", "detailed")
         self.assertEqual(exporter.get_option_value('with-comments'),
-                "detailed")
+                         "detailed")
 
     def test_defaults(self):
         # Test all defaults, with all options unset
@@ -133,12 +135,14 @@ class SessionStateExporterBaseTests(TestCase):
             'result_map': {
                 'job_a': OrderedDict([
                     ('summary', 'job_a'),
-                    ('category_id', 'uncategorised'),
+                    ('category_id', ('2013.com.canonical.plainbox::'
+                                     'uncategorised')),
                     ('outcome', 'pass')
                 ]),
                 'job_b': OrderedDict([
                     ('summary', 'job_b'),
-                    ('category_id', 'uncategorised'),
+                    ('category_id', ('2013.com.canonical.plainbox::'
+                                     'uncategorised')),
                     ('outcome', 'fail')
                 ])
             }
@@ -200,10 +204,14 @@ class SessionStateExporterBaseTests(TestCase):
                     'ready': 'yes'
                 }]
             },
+            'category_map': {
+                '2013.com.canonical.plainbox::uncategorised': 'Uncategorised'
+            },
             'result_map': {
                 'job_a': OrderedDict([
                     ('summary', 'This is job A'),
-                    ('category_id', 'uncategorised'),
+                    ('category_id', ('2013.com.canonical.plainbox::'
+                                     'uncategorised')),
                     ('outcome', 'pass'),
                     ('comments', None),
                     ('via', None),
@@ -216,7 +224,8 @@ class SessionStateExporterBaseTests(TestCase):
                 ]),
                 'job_b': OrderedDict([
                     ('summary', 'This is job B'),
-                    ('category_id', 'uncategorised'),
+                    ('category_id', ('2013.com.canonical.plainbox::'
+                                     'uncategorised')),
                     ('outcome', 'pass'),
                     ('comments', 'foo'),
                     ('via', None),
@@ -258,6 +267,59 @@ class SessionStateExporterBaseTests(TestCase):
                 (0, 'stdout', 'Zm9vCg=='),
                 (1, 'stderr', 'YmFyCg=='),
                 (2, 'stdout', 'cXV4eAo=')])
+
+    def test_category_map(self):
+        """
+        Ensure that passing OPTION_WITH_CATEGORY_MAP causes a category id ->
+        tr_name mapping to show up.
+        """
+        exporter = self.TestSessionStateExporter([
+            SessionStateExporterBase.OPTION_WITH_CATEGORY_MAP
+        ])
+        # Create three untis, two categories (foo, bar) and two jobs (froz,
+        # bot) so that froz.category_id == foo
+        cat_foo = CategoryUnit({
+            'id': 'foo',
+            'name': 'The foo category',
+        })
+        cat_bar = CategoryUnit({
+            'id': 'bar',
+            'name': 'The bar category',
+        })
+        job_froz = JobDefinition({
+            'plugin': 'shell',
+            'id': 'froz',
+            'category_id': 'foo'
+        })
+        # Create and export a session with the three units
+        state = SessionState([cat_foo, cat_bar, job_froz])
+        data = exporter.get_session_data_subset(state)
+        # Ensure that only the foo category was used, and the bar category was
+        # discarded as nothing was referencing it
+        self.assertEqual(data['category_map'], {
+            'foo': 'The foo category',
+        })
+
+    def test_category_map_and_uncategorised(self):
+        """
+        Ensure that OPTION_WITH_CATEGORY_MAP synthetizes the special
+        'uncategorised' category.
+        """
+        exporter = self.TestSessionStateExporter([
+            SessionStateExporterBase.OPTION_WITH_CATEGORY_MAP
+        ])
+        # Create a job without a specific category
+        job = JobDefinition({
+            'plugin': 'shell',
+            'id': 'id',
+        })
+        # Create and export a session with that one job
+        state = SessionState([job])
+        data = exporter.get_session_data_subset(state)
+        # Ensure that the special 'uncategorized' category is used
+        self.assertEqual(data['category_map'], {
+            '2013.com.canonical.plainbox::uncategorised': 'Uncategorised',
+        })
 
 
 class ByteStringStreamTranslatorTests(TestCase):

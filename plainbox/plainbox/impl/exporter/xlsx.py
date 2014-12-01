@@ -91,7 +91,9 @@ class XLSXSessionStateExporter(SessionStateExporterBase):
             SessionStateExporterBase.OPTION_WITH_JOB_VIA,
             SessionStateExporterBase.OPTION_WITH_JOB_HASH,
             SessionStateExporterBase.OPTION_WITH_RESOURCE_MAP,
-            SessionStateExporterBase.OPTION_WITH_ATTACHMENTS)
+            SessionStateExporterBase.OPTION_WITH_ATTACHMENTS,
+            SessionStateExporterBase.OPTION_WITH_CATEGORY_MAP,
+        )
         self._option_list += tuple(option_list)
         self.total_pass = 0
         self.total_fail = 0
@@ -423,7 +425,7 @@ class XLSXSessionStateExporter(SessionStateExporterBase):
             ):
                 result_map[parent]['category_status'] = IJobResult.OUTCOME_SKIP
 
-    def _tree(self, result_map):
+    def _tree(self, result_map, category_map):
         res = {}
         tmp_result_map = {}
         for job_name in result_map:
@@ -431,7 +433,7 @@ class XLSXSessionStateExporter(SessionStateExporterBase):
                     'resource|attachment',
                     result_map[job_name]['plugin']):
                 continue
-            category = result_map[job_name]['category_id']
+            category = category_map[result_map[job_name]['category_id']]
             if category not in res:
                 tmp_result_map[category] = {}
                 tmp_result_map[category]['category_status'] = None
@@ -497,19 +499,19 @@ class XLSXSessionStateExporter(SessionStateExporterBase):
                     IJobResult.OUTCOME_PASS
                 ):
                     self.worksheet3.write(
-                        self._lineno, max_level + 2, 'PASS', self.format10)
+                        self._lineno, max_level + 2, _('PASS'), self.format10)
                 elif (
                     result_map[job]['category_status'] ==
                     IJobResult.OUTCOME_FAIL
                 ):
                     self.worksheet3.write(
-                        self._lineno, max_level + 2, 'FAIL', self.format11)
+                        self._lineno, max_level + 2, _('FAIL'), self.format11)
                 elif (
                     result_map[job]['category_status'] ==
                     IJobResult.OUTCOME_SKIP
                 ):
                     self.worksheet3.write(
-                        self._lineno, max_level + 2, 'skip', self.format12)
+                        self._lineno, max_level + 2, _('skip'), self.format12)
                 if self.OPTION_WITH_DESCRIPTION in self._option_list:
                     self.worksheet4.write(
                         self._lineno, level + 1,
@@ -614,7 +616,8 @@ class XLSXSessionStateExporter(SessionStateExporterBase):
 
     def write_results(self, data):
         if [k for k, v in data['result_map'].items() if 'category_id' in v]:
-            tree, max_level = self._tree(data['result_map'])
+            tree, max_level = self._tree(
+                data['result_map'], data['category_map'])
         else:
             tree, max_level = self._legacy_tree(data['result_map'])
         self.worksheet3.write(3, 1, _('Tests Performed'), self.format03)
