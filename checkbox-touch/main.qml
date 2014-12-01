@@ -346,7 +346,7 @@ MainView {
                 app.exportResults('html', [], function(uri) {
                     console.log(uri)
                 });
-                app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"], function(uri) {
+                app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
                     console.log(uri)
                 });
             });
