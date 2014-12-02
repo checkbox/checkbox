@@ -40,9 +40,16 @@ Page {
     visible: false
 
     ColumnLayout {
+        id: columnLayout
         spacing: units.gu(3)
         anchors.fill: parent
         anchors.margins: units.gu(3)
+
+        function latchGroup() {
+            rerunButton.state = "latched";
+            continueButton.state = "latched";
+            restartButton.state = "latched";
+        }
 
         Label {
             id: resumeLabel
@@ -52,9 +59,10 @@ Page {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
-        Button {
+        LatchButton {
+            id: rerunButton
             objectName: "rerunButton"
-            color: UbuntuColors.warmGrey
+            unlatchedColor: UbuntuColors.warmGrey
             Layout.fillWidth: true
             Label {
                 objectName: "rerunButtonLabel"
@@ -64,14 +72,16 @@ Page {
                 color: "white"
                 text: i18n.tr("Rerun last")
             }
-            onClicked: {
+            onLatchedClicked: {
                 rerunLast();
+                columnLayout.latchGroup();
             }
         }
 
-        Button {
+        LatchButton {
+            id: continueButton
             objectName: "continueButton"
-            color: UbuntuColors.warmGrey
+            unlatchedColor: UbuntuColors.warmGrey
             Layout.fillWidth: true
             Label {
                 objectName: "continueButtonLabel"
@@ -81,14 +91,16 @@ Page {
                 color: "white"
                 text: i18n.tr("Continue")
             }
-            onClicked: {
+            onLatchedClicked: {
                 continueSession();
+                columnLayout.latchGroup();
             }
         }
 
-        Button {
+        LatchButton {
+            id: restartButton
             objectName: "restartButton"
-            color: UbuntuColors.warmGrey
+            unlatchedColor: UbuntuColors.warmGrey
             Layout.fillWidth: true
             Label {
                 objectName: "restartButtonLabel"
@@ -98,8 +110,9 @@ Page {
                 color: "white"
                 text: i18n.tr("Restart")
             }
-            onClicked: {
+            onLatchedClicked: {
                 restartSession();
+                columnLayout.latchGroup();
             }
         }
     }
