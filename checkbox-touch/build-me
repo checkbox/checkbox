@@ -49,7 +49,9 @@ def main():
                         action='append', type=str,
                         help=("Path to a provider that should be included. "
                               "--provider might be used multiple times."))
-
+    parser.add_argument("-s", action='store', type=str,
+                        help=("Serial number of the device to use when using "
+                              "adb. Overrides ANDROID_SERIAL"))
     args = parser.parse_args()
 
     # generate setting.json
@@ -76,8 +78,12 @@ def main():
         os.makedirs('../build-cbt')
 
     pkg = build_click()
-    if args.install:
-        install_click(pkg)
+    if args.install is not None:
+        adb_options = []
+        if args.s:
+            adb_options = ['-s', args.s]
+        print(adb_options)
+        install_click(pkg, adb_options)
 
 
 def build_click():
@@ -89,16 +95,17 @@ def build_click():
     return pkg_name
 
 
-def install_click(pkg):
+def install_click(pkg, adb_options=[]):
     print('Pushing to the device')
+    adb_base = ['adb'] + adb_options
     try:
-        subprocess.check_output(['adb', 'push', pkg, '/tmp/'])
+        subprocess.check_output(adb_base + ['push', pkg, '/tmp'])
     except subprocess.CalledProcessError:
         sys.exit('Error ecountered while pushing to the device.')
     print('Installing click package')
     path = '/tmp/' + pkg
     try:
-        subprocess.check_output(['adb', 'shell', ('pkcon install-local'
+        subprocess.check_output(adb_base + ['shell', ('pkcon install-local'
                                 ' --allow-untrusted -p -y {path}').format(
                                 path=path)])
     except subprocess.CalledProcessError:
