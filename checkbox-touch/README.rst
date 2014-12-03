@@ -1,9 +1,9 @@
-The Checkbox Touch
-==================
+The (Converging) Checkbox
+=========================
 
-This directory contains the implementation of Checkbox Touch. The Ubuntu-SDK
-based touch application that initially, will target the phone form factor (but
-will work on all the form factors).
+This directory contains the implementation of Checkbox. The Ubuntu-SDK based
+touch application that initially, will target the phone form factor (but will
+work on all the form factors).
 
 It is implemented according to a design document (http://goo.gl/2agB51),
 that describes a minimum viable product for v1.0
@@ -32,7 +32,7 @@ Getting dependencies
 
 The click package is built from QML/JavaScript/Python code contained in the
 `py` and `components` directories. It also has `lib` directory that contains
-all necessary libraries needed to run checkbox-touch.
+all necessary libraries needed to run checkbox.
 
 Before building click package make sure you run `./get-libs` to initialize and
 populate `./lib` directory. Use --get-local-plainbox to embed plainbox code
@@ -91,7 +91,7 @@ Altough not required, you may edit this file to suit your needs.
 Further assistance
 ------------------
 
-For further assistance on packaging Checkbox-Touch, run:
+For further assistance on packaging Checkbox, run:
 
 .. code-block:: bash
 

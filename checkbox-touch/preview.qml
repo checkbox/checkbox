@@ -31,7 +31,7 @@ MainView {
     objectName: "mainView"
 
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "com.canonical.certification.checkbox-touch"
+    applicationName: "com.ubuntu.checkbox"
 
     /*
      This property enables the application to change orientation
@@ -50,7 +50,7 @@ MainView {
             console.log("Pyotherside version " + pyothersideVersion);
             console.log("Python version " + pythonVersion);
             console.log("Plainbox version " + plainboxVersion);
-            console.log("Checkbox Touch version " + applicationVersion);
+            console.log("Checkbox version " + applicationVersion);
         }
     }
 
