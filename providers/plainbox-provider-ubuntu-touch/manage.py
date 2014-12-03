@@ -22,7 +22,7 @@ from plainbox.provider_manager import setup, N_
 
 setup(
     name='2014.com.ubuntu:ubuntu-touch',
-    version="1.0",
+    version="1.1",
     description=N_("The Ubuntu Touch for Plainbox"),
     gettext_domain="plainbox-provider-ubuntu-touch",
     strict=False,
