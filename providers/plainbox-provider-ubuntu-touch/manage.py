@@ -21,9 +21,9 @@
 from plainbox.provider_manager import setup, N_
 
 setup(
-    name='2014.com.canonical.certification:certification-touch',
+    name='2014.com.ubuntu:ubuntu-touch',
     version="1.0",
-    description=N_("The 2014.com.canonical.certification:certification-touch provider"),
-    gettext_domain="2014_com_canonical_certification_certification-touch",
+    description=N_("The Ubuntu Touch for Plainbox"),
+    gettext_domain="plainbox-provider-ubuntu-touch",
     strict=False,
 )
