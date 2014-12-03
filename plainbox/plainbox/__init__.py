@@ -1,13 +1,12 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012 Canonical Ltd.
+# Copyright 2012-2014 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3,
 # as published by the Free Software Foundation.
-
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,7 +15,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 :mod:`plainbox` -- main package
 ===============================
@@ -35,4 +33,4 @@ if sys.version_info[0:2] < (3, 2):
 # PEP386 compliant version declaration.
 #
 # This is used by @public decorator to enforce our public API guarantees.
-__version__ = (0, 17, 0, "dev", 0)
+__version__ = (0, 17, 0, "final", 0)
