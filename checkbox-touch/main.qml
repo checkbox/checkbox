@@ -110,6 +110,10 @@ MainView {
         onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
+            aboutPage.versionInfo = {
+                "checkbox_touch" : applicationVersion,
+                "plainbox" : plainboxVersion
+            };
             resumeOrStartSession();
         }
         onSessionReady: {

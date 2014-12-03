@@ -19,19 +19,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \brief Page with copyright information
+/*! \brief Page with version and copyright information
 
-    This page shows contents of AUTHORS file located in top chekckbox-touch directory
+    This page shows version information and contents of AUTHORS file located in top chekckbox-touch directory
 */
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
+
 Page {
+    id: aboutPage
+    property var versionInfo : {
+        "checkbox_touch" : "0.0",
+        "plainbox" : "0.0"
+    }
+
+    onVersionInfoChanged: body.generateVersionText()
 
     title: i18n.tr("About")
 
     ColumnLayout {
-
         spacing: units.gu(3)
         anchors.fill: parent
         anchors.margins: units.gu(3)
@@ -52,6 +59,16 @@ Page {
                 width: flickable.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 textFormat: Text.RichText
+                text: versionString + copyrightString
+
+                //custom codde for generating body content
+                property string versionString: "";
+                property string copyrightString: "";
+                function generateVersionText() {
+                    body.versionString = "<center><h1><b>Checkbox Touch</b></h1><p>" +
+                        i18n.tr("version: ") + aboutPage.versionInfo["checkbox_touch"] + "<br/>" +
+                        i18n.tr("Plainbox version: ") + aboutPage.versionInfo["plainbox"] + "<br/></center>";
+                }
             }
         }
 
@@ -68,10 +85,11 @@ Page {
         request.open('GET', '../AUTHORS')
         request.onreadystatechange = function(event) {
             if (request.readyState == XMLHttpRequest.DONE) {
-                body.text = request.responseText;
+                body.copyrightString = request.responseText;
             }
         }
         request.send()
+        body.generateVersionText();
     }
 }
 
