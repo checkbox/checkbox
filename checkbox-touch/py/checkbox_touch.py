@@ -704,7 +704,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             # directories.
             return os.path.join(xdg_cache_home, app_id.split('_')[0])
         else:
-            path = os.path.join(xdg_cache_home, "checkbox-touch")
+            path = os.path.join(xdg_cache_home, "com.ubuntu.checkbox")
             if not os.path.exists(path):
                 os.makedirs(path)
             elif not os.path.isdir(path):
