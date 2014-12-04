@@ -707,7 +707,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             # directories.
             return os.path.join(xdg_cache_home, app_id.split('_')[0])
         else:
-            path = os.path.join(xdg_cache_home, "checkbox-touch")
+            path = os.path.join(xdg_cache_home, "com.ubuntu.checkbox")
             if not os.path.exists(path):
                 os.makedirs(path)
             elif not os.path.isdir(path):
@@ -760,9 +760,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     def _init_session_storage_repo(self):
         self.session_storage_repo = SessionStorageRepository(
-            os.path.expandvars(
-                '$XDG_CACHE_HOME/'
-                'com.canonical.certification.checkbox-touch'))
+            os.path.expandvars('$XDG_CACHE_HOME/com.ubuntu.checkbox'))
 
     def _get_default_providers(self):
         all_providers.load()
