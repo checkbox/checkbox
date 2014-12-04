@@ -195,7 +195,7 @@ def not_contains(a, b):
 
 class FakeCheckboxTouchApplication(PlainboxApplication):
 
-    __version__ = (1, 0, 1, 'final', 0)
+    __version__ = (1, 0, 2, 'final', 0)
 
     def __init__(self):
         if plainbox.__version__ < (0, 17):
@@ -317,7 +317,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     response data to alter the user interface.
     """
 
-    __version__ = (1, 0, 1, 'final', 0)
+    __version__ = (1, 0, 2, 'final', 0)
 
     def __init__(self):
         if plainbox.__version__ < (0, 17):
