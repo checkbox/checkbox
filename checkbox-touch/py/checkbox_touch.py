@@ -371,7 +371,10 @@ class CheckboxTouchApplication(PlainboxApplication):
                 self.context.provider_list,
                 # TODO: tie this with well-known-dirs helper
                 os.path.join(self.manager.storage.location, 'io-logs'))
-        with open(os.path.join(self._get_app_cache_directory(), 'session_id'),
+        app_cache_dir = self._get_app_cache_directory()
+        if not os.path.exists(app_cache_dir):
+            os.makedirs(app_cache_dir)
+        with open(os.path.join(app_cache_dir, 'session_id'),
                   'w') as f:
             f.write(self.manager.storage.id)
         return {
