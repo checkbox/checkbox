@@ -80,6 +80,7 @@ Page {
                 id: selectAllAction
                 iconName: "select"
                 text: i18n.tr("Select All")
+                visible: !onlyOneAllowed
                 onTriggered: {
                     for (var i=0; i<selectionModel.count; i++) {
                         selectionModel.setProperty(i, "mod_selected", true);
@@ -91,6 +92,7 @@ Page {
                 id: deselectAllAction
                 iconName: "clear-search"
                 text: i18n.tr("Deselect All")
+                visible: !onlyOneAllowed
                 onTriggered: {
                     for (var i=0; i<selectionModel.count; i++) {
                         selectionModel.setProperty(i, "mod_selected", false);
