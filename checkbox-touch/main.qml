@@ -288,6 +288,7 @@ MainView {
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
             if(result.resumable === true) {
+                pageStack.clear();
                 pageStack.push(resumeSessionPage);
             } else {
                 if (result.errors_encountered) {
