@@ -26,6 +26,7 @@ Test definitions for plainbox.impl.color
 
 from unittest import TestCase
 
+from plainbox.impl.color import Colorizer
 from plainbox.impl.color import ansi_on, ansi_off
 
 
@@ -38,3 +39,23 @@ class ColorTests(TestCase):
         self.assertEqual(ansi_off.b.RED, "")
         self.assertEqual(ansi_on.s.BRIGHT, "\033[1m")
         self.assertEqual(ansi_off.s.BRIGHT, "")
+
+
+class ColorizerTests(TestCase):
+
+    def test_is_enabled(self):
+        """
+        Ensure that .is_enabled reflects the actual colors
+        """
+        self.assertTrue(Colorizer(True).is_enabled)
+        self.assertFalse(Colorizer(False).is_enabled)
+
+    def test_custom(self):
+        """
+        Ensure that .custom(_) works and obeys color settings
+        """
+        self.assertEqual(
+            Colorizer(False).custom("<text>", "<ansi-code>"), "<text>")
+        self.assertEqual(
+            Colorizer(True).custom("<text>", "<ansi-code>"),
+            "<ansi-code><text>\x1b[0m")
