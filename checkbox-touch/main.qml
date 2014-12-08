@@ -203,6 +203,8 @@ MainView {
         id: resumeSessionPage
         onRerunLast: app.resumeSession(true, processNextTest)
         onContinueSession: app.resumeSession(false, processNextTest)
+        resumeText: i18n.tr("Checkbox did not finish completely.\nDo you want \
+ to rerun last test, continue to the next test, or restart from the beginning?")
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);

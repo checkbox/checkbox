@@ -53,9 +53,10 @@ Page {
 
         Label {
             id: resumeLabel
-            fontSize: "large"
+            fontSize: "x-large"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
