@@ -8,6 +8,24 @@ import subprocess
 import sys
 
 
+def check_libs_present():
+    """
+    Check if paths listed in NECESSARY_PATHS are present.
+    This is a simple heuristic to check if get-libs prior to building
+    click package.
+    """
+    NECESSARY_PATHS = [
+        "lib/arm-linux-gnueabihf/io/thp/pyotherside/libpyothersideplugin.so",
+        "lib/arm-linux-gnueabihf/libpython3.4m.so.1",
+        "lib/py/lxml",
+        "lib/py/plainbox",
+        "lib/py/plainbox.egg-info",
+        "lib/py/xlsxwriter"]
+    for path in NECESSARY_PATHS:
+        if not os.path.exists(path):
+            raise EnvironmentError("{} not found!".format(path))
+
+
 def get_revision_string(path='.'):
 
     # Try getting revno from bazaar vcs
@@ -53,6 +71,8 @@ def main():
                         help=("Serial number of the device to use when using "
                               "adb. Overrides ANDROID_SERIAL"))
     args = parser.parse_args()
+
+    check_libs_present()
 
     # generate setting.json
     settings = {
