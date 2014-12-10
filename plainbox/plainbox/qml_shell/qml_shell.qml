@@ -41,7 +41,8 @@ MainView {
 
     // information and functionality passed to qml job component
     property var testingShell: {
-        "name": "Standalone testing shell"
+        "name": "Standalone testing shell",
+        "pageStack": pageStack
     }
 
     Arguments {
@@ -56,6 +57,11 @@ MainView {
 
     Loader {
         id: loader
+        anchors.fill: parent
+        onLoaded: loader.item.testDone.connect(testDone)
+    }
+    PageStack {
+        id: pageStack
     }
 
     function testDone(res) {
@@ -64,8 +70,6 @@ MainView {
     }
 
     Component.onCompleted: {
-        loader.source = args.values.job;
-        loader.item.testDone.connect(testDone);
-        loader.item.testingShell = testingShell;
+        loader.setSource(args.values.job, {'testingShell': testingShell});
     }
 }
