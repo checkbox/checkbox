@@ -327,6 +327,9 @@ MainView {
                 case 'user-interact':
                     performUserInteractTest(test);
                     break;
+                case 'qml':
+                    performQmlTest(test);
+                    break;
                 default:
                     test.outcome = "skip";
                     completeTest(test);
@@ -428,6 +431,17 @@ MainView {
         InteractIntroPage.__customHeaderContents = progressHeader;
         progressHeader.update(test);
         pageStack.push(InteractIntroPage);
+    }
+
+    function performQmlTest(test) {
+        var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlNativePage.qml"))
+        console.log(comp.errorString());
+        var qmlNativePage = comp.createObject();
+        qmlNativePage.test = test
+        qmlNativePage.testDone.connect(completeTest);
+        qmlNativePage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
+        pageStack.push(qmlNativePage);
     }
 
     function showVerificationScreen(test) {
