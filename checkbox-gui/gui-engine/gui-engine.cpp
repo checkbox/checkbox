@@ -797,7 +797,6 @@ void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
              << "\nflags           : " << flags \
              << "\nrunning_job_name: " << running_job_name \
              << "\ntitle           : " << title \
-             << "\napp_blob        : " << app_blob \
              << "\napp_id          : " << app_id;
     QMap<QString,QVariant> metadata;
     // flags contains an array of strings in a variant
@@ -2062,7 +2061,7 @@ int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
             break;
         }
     }
-    qDebug() << "Real outcome " << outcome;
+    qDebug() << "Real outcome " << JobNameFromObjectPath(opath) << outcome;
     // convert outcome string into a result number
     if (outcome.compare(JobResult_OUTCOME_PASS) == 0 ) {
         return PBTreeNode::PBJobResult_Pass;
