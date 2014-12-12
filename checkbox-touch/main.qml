@@ -25,6 +25,7 @@ import QtQuick.Layouts 1.1
 import io.thp.pyotherside 1.2
 import "components"
 import "components/ErrorLogic.js" as ErrorLogic
+import "components/CbtDialogLogic.js" as CbtDialogLogic
 
 
 /*!
@@ -352,9 +353,11 @@ MainView {
             resultsPage.saveReportClicked.connect(function() {
                 app.exportResults('html', [], function(uri) {
                     console.log(uri)
-                });
-                app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
-                    console.log(uri)
+                    app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+                        console.log(uri)
+                        CbtDialogLogic.showDialog(resultsPage, i18n.tr("Reports have been saved to your Documents folder"),
+                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                    });
                 });
             });
             pageStack.push(resultsPage);
