@@ -492,7 +492,13 @@ void GuiEngine::RunJobs(void)
     * but this will not necessarily be true for re-runs, hence why
     * we need to call NextRunJobIndex() and not just assume 0.
     */
-    m_current_job_index = NextRunJobIndex(-1);
+    //m_current_job_index = NextRunJobIndex(-1);
+    for(int i=0; i<m_run_list.count(); i++) {
+        if (m_current_job_path.path() == m_run_list.at(i).path()) {
+            m_current_job_index = i;
+            break;
+        }
+    }
     qDebug("computed next job");
     if (m_current_job_index >= m_run_list.count()) {
         // nothing should be left for re-run
@@ -797,7 +803,6 @@ void GuiEngine::SetSessionStateMetadata(const QDBusObjectPath session, \
              << "\nflags           : " << flags \
              << "\nrunning_job_name: " << running_job_name \
              << "\ntitle           : " << title \
-             << "\napp_blob        : " << app_blob \
              << "\napp_id          : " << app_id;
     QMap<QString,QVariant> metadata;
     // flags contains an array of strings in a variant
@@ -2062,7 +2067,7 @@ int GuiEngine::GetOutcomeFromJobPath(const QDBusObjectPath &opath)
             break;
         }
     }
-    qDebug() << "Real outcome " << outcome;
+    qDebug() << "Real outcome " << JobNameFromObjectPath(opath) << outcome;
     // convert outcome string into a result number
     if (outcome.compare(JobResult_OUTCOME_PASS) == 0 ) {
         return PBTreeNode::PBJobResult_Pass;
