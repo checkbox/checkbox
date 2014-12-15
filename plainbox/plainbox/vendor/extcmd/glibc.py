@@ -34,9 +34,9 @@ from plainbox.vendor.glibc import CLD_EXITED
 from plainbox.vendor.glibc import CLD_KILLED
 from plainbox.vendor.glibc import O_CLOEXEC
 from plainbox.vendor.glibc import O_NONBLOCK
-from plainbox.vendor.glibc import PIPE_BUF
 from plainbox.vendor.glibc import SFD_CLOEXEC
 from plainbox.vendor.glibc import SFD_NONBLOCK
+from plainbox.vendor.glibc import F_GETPIPE_SZ
 from plainbox.vendor.glibc import dup3
 from plainbox.vendor.pyglibc import pipe2
 from plainbox.vendor.pyglibc import pthread_sigmask
@@ -127,6 +127,8 @@ class GlibcExternalCommandWithDelegate(ExternalCommand):
             self._delegate.on_begin(None, None)
             pid = os.fork()
             if pid == 0:
+                # Undo signal blocking as those are inherited
+                sigmask.unblock()
                 # Close stdout and stderr, this will also flush the buffers
                 sys.stdout.close()
                 sys.stderr.close()
@@ -196,12 +198,10 @@ class GlibcExternalCommandWithDelegate(ExternalCommand):
         if waitid_result.si_code == CLD_EXITED:
             returncode = waitid_result.si_status
             _logger.debug("Saw CLD_EXITED with return code: %r", returncode)
-            self._delegate.on_end(returncode)
             return returncode
         elif waitid_result.si_code == CLD_KILLED:
             signal_num = waitid_result.si_status
             _logger.debug("Saw CLD_KILLED with signal: %r", signal_num)
-            self._delegate.on_abnormal_end(signal_num)
             return -signal_num
         else:
             _bug_logger.error(
@@ -215,10 +215,13 @@ class GlibcExternalCommandWithDelegate(ExternalCommand):
         _logger.debug("Sending SIGQUIT to process %d", pid)
         os.kill(pid, signal.SIGQUIT)
 
-    def _read_pipe(self, fd, name, buffer_map):
+    def _read_pipe(self, fd, name, buffer_map, force_last):
         assert name in ('stdout', 'stderr')
-        data = os.read(fd, PIPE_BUF)
-        done_reading = len(data) == 0
+        pipe_size = fcntl.fcntl(fd, F_GETPIPE_SZ)
+        _logger.debug("Reading at most %d bytes of data from %s pipe",
+                      pipe_size, name)
+        data = os.read(fd, pipe_size)
+        done_reading = force_last or len(data) == 0
         _logger.debug("Read %d bytes of data from %s", len(data), name)
         buf = buffer_map[name]
         if buf is not None:
@@ -270,11 +273,7 @@ class GlibcExternalCommandWithDelegate(ExternalCommand):
                             if fdsi.ssi_signo == signal.SIGCHLD:
                                 return_code = self._handle_SIGCHLD(pid)
                                 if return_code is not None:
-                                    # We're done, the child is gone, let's not
-                                    # wait for anything anymore. This prevents
-                                    # us from hanging on our pipes that may
-                                    # still be alive forever.
-                                    waiting_for.clear()
+                                    waiting_for.remove('proc')
                             elif fdsi.ssi_signo == signal.SIGINT:
                                 self._handle_SIGINT(pid)
                             elif fdsi.ssi_signo == signal.SIGQUIT:
@@ -287,7 +286,13 @@ class GlibcExternalCommandWithDelegate(ExternalCommand):
                             "Unexpected event mask for signalfd: %d", events)
                 else:
                     if events & EVENT_READ:
-                        if self._read_pipe(key.fd, key.data, buffer_map):
+                        # Don't drain the pipe more than once if the process
+                        # has terminated. This way we see everythng the process
+                        # could have written and don't wait forever if the pipe
+                        # has leaked.
+                        force_last = 'proc' not in waiting_for
+                        if self._read_pipe(key.fd, key.data, buffer_map,
+                                           force_last):
                             _logger.debug(
                                 "pipe %s depleted, unregistering and closing",
                                 key.data)
@@ -300,5 +305,17 @@ class GlibcExternalCommandWithDelegate(ExternalCommand):
                     else:
                         _bug_logger.error(
                             "Unexpected event mask for pipe: %d", events)
+        if return_code is None:
+            _bug_logger.error(
+                "We don't know the real status of the child, faking failure")
+            return_code = 1
+        # NOTE: we should defer on_end() / on_abnormal_end() until we deplete
+        # I/O as delegates might close their files and we still can call
+        # on_line() after that happens.
+        if return_code >= 0:
+            self._delegate.on_end(return_code)
+        else:
+            signal_num = -return_code
+            self._delegate.on_abnormal_end(signal_num)
         _logger.debug("Returning from extcmd: %d", return_code)
         return return_code
