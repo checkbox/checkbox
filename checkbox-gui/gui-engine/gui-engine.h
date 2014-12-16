@@ -424,6 +424,9 @@ private:
         bool m_running;
         bool m_waiting_result;
 
+        // Are we resuming a session?
+        bool m_resuming;
+
         // Used to preserve interim data from Manual Interaction event
         QDBusObjectPath m_runner;
 
