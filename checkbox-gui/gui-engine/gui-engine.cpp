@@ -60,6 +60,7 @@ GuiEngine::GuiEngine( QObject*parent ) :
     job_tree(NULL),
     m_current_job_index(-1),    // -1 ensures correct NextRunJobIndex from clean
     m_running(true),
+    m_resuming(false),
     m_waiting_result(false),
     m_running_manual_job(false),
     m_submitted(false),
@@ -492,14 +493,18 @@ void GuiEngine::RunJobs(void)
     * but this will not necessarily be true for re-runs, hence why
     * we need to call NextRunJobIndex() and not just assume 0.
     */
-    //m_current_job_index = NextRunJobIndex(-1);
-    for(int i=0; i<m_run_list.count(); i++) {
-        if (m_current_job_path.path() == m_run_list.at(i).path()) {
-            m_current_job_index = i;
-            break;
+    if (m_resuming) {
+        m_resuming = false;
+        for(int i=0; i<m_run_list.count(); i++) {
+            if (m_current_job_path.path() == m_run_list.at(i).path()) {
+                m_current_job_index = i;
+                break;
+            }
         }
+    } else {
+        m_current_job_index = NextRunJobIndex(-1);
     }
-    qDebug("computed next job");
+    qDebug() << "computed next job" << m_current_job_index;
     if (m_current_job_index >= m_run_list.count()) {
         // nothing should be left for re-run
         m_rerun_list.clear();
@@ -598,6 +603,7 @@ void GuiEngine::RunLocalJobs(void)
  void GuiEngine::GuiResumeSession(const bool re_run, const bool continue_pass)
  {
     qDebug() << "GuiEngine::GuiResumeSession( " << (re_run ? "true":"false") << ") ";
+    m_resuming = true;
     SessionResume(m_session);
     qDebug() << m_session.path() ;
     /* Get the Session State properties
