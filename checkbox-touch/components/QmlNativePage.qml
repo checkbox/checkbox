@@ -40,9 +40,15 @@ Page {
         id: testingShell
         property string name: "Checkbox-touch qml shell"
 
+        property alias pageStack: innerPageStack
+
         function getTest() {
             return test;
         }
+    }
+
+    PageStack {
+        id: innerPageStack
     }
 
     head {
@@ -102,20 +108,22 @@ Page {
             Layout.fillWidth: true
             text: i18n.tr("Continue")
             onClicked: {
-                body.visible = false;
-                header.hide();
                 loader.source = test['qml_file'];
+                pageStack.pop();
+                pageStack.push(innerPageStack);
                 loader.item.testDone.connect(function(testResult) {
                     test['outcome'] = testResult['outcome'];
                     test['result'] = testResult;
                     testDone(test);
                 });
                 loader.item.testingShell = testingShell;
+                innerPageStack.push(loader.item);
             }
         }
     }
 
     Loader {
         id: loader
+        visible: false
     }
 }
