@@ -40,6 +40,7 @@ try:
 except ImportError:
     grp = None
 import itertools
+import json
 import logging
 import os
 try:
@@ -54,6 +55,7 @@ from plainbox.abc import IExecutionController
 from plainbox.abc import IJobResult
 from plainbox.abc import ISessionStateController
 from plainbox.i18n import gettext as _
+from plainbox.impl import get_plainbox_dir
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyMissingError
 from plainbox.impl.resource import ExpressionCannotEvaluateError
@@ -804,6 +806,112 @@ class UserJobExecutionController(CheckBoxExecutionController):
                 else:
                     return -1
             return 1
+
+
+class QmlJobExecutionController(CheckBoxExecutionController):
+    """
+    An execution controller that is able to run jobs in QML shell.
+    """
+    def get_execution_command(self, job, config, session_dir, nest_dir,
+                              qml_fd):
+        """
+        Get the command to execute the specified job
+
+        :param job:
+            job definition with the command and environment definitions
+        :param config:
+            A PlainBoxConfig instance which can be used to load missing
+            environment definitions that apply to all jobs. Ignored.
+        :param session_dir:
+            Base directory of the session this job will execute in.
+            This directory is used to co-locate some data that is unique to
+            this execution as well as data that is shared by all executions.
+            Ignored.
+        :param nest_dir:
+            A directory with a nest of symlinks to all executables required to
+            execute the specified job. Ingored.
+        :param qml_fd:
+            File descriptor number which is used to pipe through result object
+            from the qml shell to plainbox.
+        :returns:
+            List of command arguments
+
+        """
+        qml_shell = os.path.join(get_plainbox_dir(), 'data', 'qml-shell',
+                                 'plainbox_qml_shell.qml')
+        cmd = ['qmlscene', '--job', job.qml_file, '--fd', qml_fd, qml_shell]
+        return cmd
+
+    def get_checkbox_score(self, job):
+        """
+        Compute how applicable this controller is for the specified job.
+
+        :returns:
+            4 if the job is a qml job or -1 otherwise
+        """
+        if job.plugin == 'qml':
+            return 4
+        else:
+            return -1
+
+    def execute_job(self, job, config, session_dir, extcmd_popen):
+        """
+        Execute the specified job using the specified subprocess-like object,
+        passing fd with opened pipe for qml-shell->plainbox communication.
+
+        :param job:
+            The JobDefinition to execute
+        :param config:
+            A PlainBoxConfig instance which can be used to load missing
+            environment definitions that apply to all jobs. It is used to
+            provide values for missing environment variables that are required
+            by the job (as expressed by the environ key in the job definition
+            file).
+        :param session_dir:
+            Base directory of the session this job will execute in.
+            This directory is used to co-locate some data that is unique to
+            this execution as well as data that is shared by all executions.
+        :param extcmd_popen:
+            A subprocess.Popen like object
+        :returns:
+            The return code of the command, as returned by subprocess.call()
+        """
+        # CHECKBOX_DATA is where jobs can share output.
+        # It has to be an directory that scripts can assume exists.
+        if not os.path.isdir(self.get_CHECKBOX_DATA(session_dir)):
+            os.makedirs(self.get_CHECKBOX_DATA(session_dir))
+        # Setup the executable nest directory
+        with self.configured_filesystem(job, config) as nest_dir:
+
+            # make pipe to communicate with the qml shell
+            r, w = os.pipe()
+            # Get the command and the environment.
+            # of this execution controller
+            cmd = self.get_execution_command(
+                job, config, session_dir, nest_dir, str(w))
+            env = self.get_execution_environment(
+                job, config, session_dir, nest_dir)
+            with self.temporary_cwd(job, config) as cwd_dir:
+                # run the command
+                logger.debug(_("job[%s] executing %r with env %r in cwd %r"),
+                             job.id, cmd, env, cwd_dir)
+                ret = extcmd_popen.call(cmd, env=env, cwd=cwd_dir,
+                                        pass_fds=[r, w])
+                f = os.fdopen(r)
+                os.close(w)
+                res_object_json_string = f.read()
+                os.close(r)
+                if ret != 0:
+                    return ret
+                try:
+                    result = json.loads(res_object_json_string)
+                    if result['outcome'] == "pass":
+                        return 0
+                    else:
+                        return 1
+                except ValueError:
+                    # qml-job did not print proper json object
+                    return 1
 
 
 class CheckBoxDifferentialExecutionController(CheckBoxExecutionController):
