@@ -51,12 +51,9 @@ Dialog {
 
     TextArea{
         id: instructions
-        text: testItem.description//"This is where we put our instructions\n2- This is 1\n3 -This is where we put our instructions\n4- This is where we put our instructions\n5 -where we put our instructions\n"
-        Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
+        text: testItem.description
         color: "black"
         readOnly: true
-        activeFocusOnPress: false
-        highlighted: true
         selectionColor: "black"
         selectedTextColor: "white"
         height: units.gu(24)
@@ -241,5 +238,9 @@ Dialog {
         onCloseManualInteractionDialog: {
             PopupUtils.close(dialog)
         }
+    }
+    Component.onCompleted:
+    {
+        instructions.focus = true
     }
 }
