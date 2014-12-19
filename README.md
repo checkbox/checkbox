@@ -10,6 +10,13 @@ top-level directory as at least the following components (in alphabetical
 order).
 
 
+cep
+---
+
+All of Checkbox Enhancement Proposal documents. All bigger changes to the stack
+have an associated document that explains the change, its implementation and
+impact.
+
 checkbox-touch
 --------------
 
