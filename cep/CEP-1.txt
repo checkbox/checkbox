@@ -1,0 +1,122 @@
+Checkbox Enhancement Proposal 1: Template Jobs
+
+Summary
+=======
+
+I'd like to propose that we design and implement template jobs and replace all
+occurrences of local jobs with equivalent template jobs.
+
+Rationale
+=========
+
+Local jobs are very problematic for applications and the core alike. They
+prevent us from having access to a complete set of jobs all times. That, in
+turn, prevent us from having simple application execution semantics and
+severely limits our possibility of catching bugs in job definitions.
+
+The mechanism of template jobs is currently used to generate new jobs at
+runtime, typically to do one test for each of some device or other entity). The
+code that generates such values is very arcane and goes back deep into old
+checkbox support scripts. Such essential task should be handled by the library
+as first-class object, with proper definition, semantics and implementation
+quality.
+
+As a side feature, local jobs are abused to generate "categories". This
+proposal does not touch that aspect, except in "future work" section below 
+
+Overview of template jobs
+=========================
+
+Template jobs are just like local jobs in expressiveness, with the limitation
+that the set of generated jobs (defined as a collection of their attributes,
+including their name) are constrained and known statically without executing
+any code provided by the job definition.
+
+Instead, of parsing output of arbitrary shell commands, the job definition is
+given explicitly. As a new feature, each attribute of a template job can be
+parametrized. The list of parameters is known statically (cannot be generated).
+This allows us to enumerate possible patterns and instantiate jobs when
+necessary.
+
+Each parameter is bound to an attribute of a resource. This creates a
+dependency on a specific resource job from any local job. In addition, to
+implement a common theme used by local jobs, the set of resource records can be
+filtered by a restricted python expression. This is similar in spirit to
+existing requirements system.
+
+For this proposal, each template job must use exactly one resource. In future
+this requirement may be lifted, if required.
+
+Example
+=======
+
+The following example converts an existing local job, optical/read, to a template job. This is the
+(abbreviated) text of the original definition.
+
+    plugin: local
+    name: optical/read
+    requires:
+     device.category == 'CDROM'
+    _description: Optical read test.
+    command:
+     cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+     plugin: user-interact-verify
+     name: optical/read_`ls /sys$path/block`
+     requires: device.path == "$path"
+     user: root
+     command: optical_read_test /dev/`ls /sys$path/block`
+     description: (removed)
+     EOF
+
+This is the (equivalent template job). The actual "local" job fragment of the
+previous text is now gone. Any attribute may now use python formatting
+language. This language is safe and can be parsed and analyzed if required.
+
+Two new attributes are present. The template-resource attribute contains a list
+of jobs (which must be resource jobs) that instantiate concrete job definitions
+from this template. The template-filter attribute applies filtering, to select
+a subset of records from each resource. As mentioned earlier, exactly one
+resource is allowed at this time. In the future we _may_ offer two or more but
+with additional join semantics that seems unnecessary at this stage.
+
+    template-resource: device
+    template-filter: device.category == "CDROM"
+    plugin: user-interact-verify
+    name: optical/read_{device.full_path}
+    user: root
+    command: optical_read_test {device.dev_path}
+    description: (removed)
+
+The previous definition used some additional shell-outs to compute the
+pathnames of block devices. This feature is now removed, leading to
+easier-to-understand code. The device local job would need to be amended to
+generate all required attributes.
+
+Impact
+======
+
+PlainBox would need to understand templates. That includes additional job for
+job validator, dependency resolver / test planner, etc. The new API would need
+to include an explicit transformation from a set of known definitions into a
+set of actual instantiated jobs. Applications would need to use this API
+similarly to how they currently handle "early jobs" to run all of the local
+jobs, but with less required error handling.
+
+A set of additional commands would be added to help developers how their
+template jobs transform into actual instances. This is an optional but, in my
+opinion, useful addition. It would allow developers to understand why something
+fails (how their template definition is expanded into an actual job
+definition).
+
+Local jobs would be unchanged and would remain supported as they are now.
+
+Future Work
+===========
+
+As we convert local jobs to template jobs, we could add an additional
+requirement that local jobs may only generate existing jobs, to implement the
+illy-defined "category" system, before that is deprecated and replaced.
+
+Eventually we could bump job definition version to 2, making local jobs
+unsupported. This will allow applications to drop complexity related such jobs.
+This can happen at any time in the future though.

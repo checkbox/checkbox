@@ -1,0 +1,133 @@
+======================
+PlainBox Target Device
+======================
+
+This proposal describes a method for executing jobs remotely, on one device
+(target), while running python3 and all of plainbox, on another device (host)
+
+Rationale
+=========
+
+During the development of first external PlainBox provider for Ubuntu Touch, we
+found that shipping python3, plainbox and a lot of data onto the phone and
+table target is challenging. Not only is the root filesystem read only,
+traditional package management is not available outside of non-standard
+builds. For the purpose of testing systems as similar to production systems as
+possible, making the root filesystem writable was rejected as an option.
+Another possibility, that was initially pursued, was to wrap everything related
+to plainbox and a set of providers into a big click package. While that
+approach worked it was too not without challenges. In the end the process was
+deemed to heavyweight and that idea was abandoned. This lead to the idea of
+running plainbox locally, one a typical Ubuntu environment and using adb or ssh
+to connect to the remote test target.
+
+An experimental provider, using plainbox 0.4, used adb push and adb shell, to
+copy the data and execute commands remotely. This approach was successful. This
+proposal aims to implement that functionality across the framework, taking it
+into account where appropriate.
+
+Changes
+=======
+
+Unless otherwise noted, everything remains local. This specifically includes
+session storage, which holds the bulk of the filesystem visible artifacts of a
+running session. This keeps the existing workflow, result retrieval and tooling
+identical in the remote and local use-cases.
+
+PLAINBOX_SESSION_SHARE
+----------------------
+
+The primary difference is that PLAINBOX_SESSION_SHARE would no longer be
+something that you can access locally. This is a temporary, per-session
+directory where jobs can exchange data of any kind. This change would allow all
+jobs to run the same, so no jobs would need to be modified for this setup to
+work and all the existing local jobs would run remotely, producing the same
+results.
+
+(This is also known as CHECKBOX_DATA but this name is deprecated)
+
+Execution controllers
+---------------------
+
+Execution controllers that prepare the environment for each job would
+necessarily change. Existing set of controllers can run jobs as the regular
+user, as a root user via sudo or as a root user via
+plainbox-trusted-launcher-1.
+
+In addition to user handing, those controllers handle the task of configuring
+the filesystem for a specific job. The new remote controller would need to
+ensure that provider data associated with the job that is to be executed is
+copied (using rsync, adb push or other similar command).
+
+Handling of root jobs would vary, depending on the capabilities of the remote
+target. For the first version of this proposal we don't have sufficient data or
+experience to draw conclusions as to how that should work exactly. The existing
+mechanisms that allow execution controllers to bid on the execution of a
+particular job is sufficient for specialized solutions to be accommodated,
+though.
+
+The act of running a job would need minor changes, specifically to transition
+all of the required environment across to the target device. Existing sudo and
+plainbox-trusted-launcher-1 execution controllers already offer that
+functionality. Actual new execution controllers (here, presumably for ssh and
+adb) would just prefix the command with the appropriate connection string and
+rely on system-level configuration for making a successful connection. This
+approach is flexible and could allow us to connect to a variety of targets,
+including phones and tables (using adb), remote servers in the cloud (using
+ssh) or development boards (using serial connections).
+
+Session State Meta Data
+-----------------------
+
+Session state meta data should be expanded to accurately store connection
+information as well as location of the temporary session storage directory.
+
+This will necessitate another version increase in the on-disk persistent
+storage used by plainbox but the necessary infrastructure, both for code and
+testing, was developed a while ago, while we introduced the app_data field.
+
+Command Line Interface
+----------------------
+
+PlainBox would grow a number of new command line arguments and options. The
+precise set is not clear yet, and largely depends on how execution targets are
+implemented. At the very least we'd like to provider a --target string, that
+uses a pseudo-URL syntax for defining the target connection string and the
+scheme to pick the target controller.
+
+A simple session might look like:
+
+    $ plainbox --target adb:some-serial-number run -i stub/true
+
+Unresolved Issues
+-----------------
+
+The following issues are not resolved as of this time. We believe that by
+implementing this proposal we will gain critical understanding and insight that
+may allow us to explore those problems and come up with further enhancement.
+
+1. Handling jobs that terminate host connection.
+
+   Certain jobs may terminate the host connection by issuing reboots, suspends,
+   or performing purposeful network reconfiguration. Such jobs will likely
+   cause the execution controller to time out and abort the connection.
+
+2. Handling sandboxing and general remote user constraints.
+
+   Remote execution targets may differ widely, compared to our traditional
+   environments. It is uncertain if our current abstractions are sufficient for
+   handling user identity changes and general privilege elevation tasks.
+
+3. Local and remote interaction.
+
+   Implementation of this proposal will open up interesting possibilities,
+   including interactions of jobs executed locally and remotely within a single
+   session.
+
+   This task is mentioned but not explored, as we are unsure about the exact
+   requirements as this time. Such interactions may include:
+
+   * having jobs that execute locally to verify presence, access and
+     configuration of a remote target
+   * having jobs that provision and tear down the remote target
+   * having multiple remote targets cooperate during a single execution session
