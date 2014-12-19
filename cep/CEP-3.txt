@@ -1,0 +1,34 @@
+
+Rationale
+=========
+
+Current efforts to make plainbox, checkbox and various job providers
+translatable are affected by the fact that we abuse JobDefinition.name as both
+english-like constant identifier and user-visible name. I would like to
+decouple those roles.
+
+Proposal
+========
+
+1. I would like to propose that the on-disk format field ``name`` be deprecated
+   and not used anymore.
+2. If the field ``name`` is used, it will be transparently mapped to ``id`` and
+   used to define the new job attribute ``JobDefinition.id``. All uses of
+   ``name`` will cause warnings to be logged. After a while we can remove that
+   feature and rejects the ``name`` field (for another period, after which we
+   could reuse it).
+3. A new field ``summary`` is defined and mandatory for all jobs. The summary
+   field must be one line, short (capped to some reasonable amount) and should
+   be derived from the current name field in a meaningful way (manually, one
+   time transition process).
+4. The ``summary`` field will be translatable
+5. PlainBox will resort to ``JobDefinition.summary`` instead of ``.id``
+   whenever the job needs to be displayed or converted to a string.
+
+Impact
+======
+
+This proposal would need to see forked job definitions *or* add support for
+``summary`` in the old checkbox. The level of required support is minimal, only
+to the point where current functionality does not regress
+

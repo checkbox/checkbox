@@ -1,0 +1,111 @@
+=============================
+Checkbox Enhancement Proposal
+=============================
+
+This proposal describes the new release process for internal Canonical
+customers of Checkbox. 
+
+Advantages
+==========
+
+* There is a tag associated with every release
+* We can eventually generate source tarballs
+* Tags from multiple components stored in lp:checkbox don't collide
+* There is a way to iterate on release candidates if important issues are found
+* All changes made in the release branch (including tags) end up in trunk
+* The current CI system is involved to catch mistakes
+
+New Process
+===========
+
+The new process is expressed as a series of shell commands and assumptions.
+
+Assumptions
+-----------
+
+* We have lp:checkbox as ~/trunk and lp:checkbox/release as ~/release
+* The process was followed before. This implies that lp:checkbox/release has
+  no patches that are not already in lp:checkbox
+* A number of new commands (not implemented) are available in the support
+  directory as well as sub-commands of setup.py. Those are easy to emulate
+  manually but should be implemented to fully automate the process.
+
+Cutting the release
+-------------------
+
+Off-line steps, you can do them as many times as you like:
+
+    ~$ bzr push -d trunk release
+    # TODO: pick version of packaging branck to go along with this
+    # do a test build, iterate if it fails
+    ~$ cd release
+    ~/release$ ./checkbox-old/setup.py bump-version-status --to=rc1
+    ~/release$ bzr tag $(./checkbox-old/setup.py --name)-v$(./checkbox-old/setup.py --version)
+
+On-line steps:
+
+    ~/release$ bzr push lp:checkbox/release
+    ~/release$ ./support/trigger-builds-in ppa:~checkbox-dev/testing
+
+Alternatively, instead of bzr push, propose the merge to launchpad,
+auto-approve it and have tarmac do test package builds using the packaging
+branch reference in support/packaging-revision
+
+Fixing issues found in release candidates
+-----------------------------------------
+
+Off-line steps::
+
+    ~/release$ while ./tree-broken; do
+    > (cd bzr && vim .)
+    > # Hack, cherry pick from trunk, fix locally, whatever
+    > (cd release && bzr commit)
+    > done
+    ~/release$ ./checkbox-old/setup.py bump-version-status --to=next-rc
+    ~/release$ bzr tag $(./checkbox-old/setup.py --name)-v$(./checkbox-old/setup.py --version)
+
+On-line steps::
+
+    ~/release$ bzr push lp:checkbox/release
+    ~/release$ ./support/trigger-builds-in ppa:~checkbox-dev/testing
+    ~/release$ ./support/send-email --to=... --topic "Checkboc Release Candidate Available" <<EOM
+    > The release candidate for the next checkbox release is available for
+    > testing, please check and file bugs ... and target them to milestone ...
+    > 
+    > And we should improve this message one day
+    > EOM
+
+Alternatively, instead of bzr push, propose the merge to launchpad,
+auto-approve it and have tarmac do test package builds using the packaging
+branch reference in support/packaging-revision
+
+Finalizing the release
+----------------------
+
+Off-line steps::
+
+    ~/release$ ./checkbox-old/setup.py bump-version-status --to=final
+    ~/release$ bzr tag $(./checkbox-old/setup.py --name)-v$(./checkbox-old/setup.py --version)
+
+On-line steps::
+
+    ~/release$ bzr push lp:checkbox/release
+    ~/release$ ./support/trigger-builds-in ppa:~checkbox-dev/testing
+    ~/release$ ./support/ppa-copy \
+    >   --from=ppa:~checkbox-dev/testing \
+    >   --to=ppa:~checkbox-dev/stable \
+    >   --packages=...
+    ~/release$ ./support/send-email --to=... --topic "Next checkbox release" <<EOM
+    > This is the next checkbox release.\
+    > It has been published to the stable PPA.
+    > 
+    > And we should really improve this message one day
+    > EOM
+    ~/release$ bzr lp-propose-merge lp:checkbox -m "post-release merge back to trunk" --approve
+
+Impact
+======
+
+If the new process is implemented correctly impact to our customers should be
+minimal. We need to communicate the purpose of the release candidate releases
+but apart from that the new process mirrors the effect of our current process
