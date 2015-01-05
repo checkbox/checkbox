@@ -61,6 +61,7 @@ GuiEngine::GuiEngine( QObject*parent ) :
     m_current_job_index(-1),    // -1 ensures correct NextRunJobIndex from clean
     m_running(true),
     m_resuming(false),
+    m_resuming_force_result(false),
     m_waiting_result(false),
     m_running_manual_job(false),
     m_submitted(false),
@@ -501,6 +502,10 @@ void GuiEngine::RunJobs(void)
                 break;
             }
         }
+        if (m_resuming_force_result) {
+            m_current_job_index++;
+            m_resuming_force_result = false;
+        }
     } else {
         m_current_job_index = NextRunJobIndex(-1);
     }
@@ -643,6 +648,7 @@ void GuiEngine::RunLocalJobs(void)
         SetJobOutcome(m_current_job_path, continue_pass ? JobResult_OUTCOME_PASS:JobResult_OUTCOME_FAIL, empty);
         // Lets skip this one
         m_rerun_list.removeOne(m_current_job_path);
+        m_resuming_force_result = true;
     }
     qDebug() << "GuiEngine::GuiResumeSession() - Done";
  }
