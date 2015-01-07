@@ -637,11 +637,12 @@ class CheckboxTouchApplication(PlainboxApplication):
         Run command associated with given test
         """
         job_id = test['id']
-        job = self.context.state.job_state_map[job_id].job
+        job_state = self.context.state.job_state_map[job_id]
+        job = job_state.job
         self.context.state.running_job_name = job_id
         self._checkpoint()
         try:
-            result = self.runner.run_job(job)
+            result = self.runner.run_job(job, job_state)
         except OSError as exc:
             result = self.context.state.job_state_map[job_id].result
             result.outcome = 'fail'
