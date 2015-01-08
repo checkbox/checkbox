@@ -56,6 +56,10 @@ MainView {
 
     Loader {
         id: loader
+        visible: false
+    }
+    PageStack {
+        id: pageStack
     }
 
     function testDone(res) {
@@ -67,5 +71,6 @@ MainView {
         loader.source = args.values.job;
         loader.item.testDone.connect(testDone);
         loader.item.testingShell = testingShell;
+        pageStack.push(loader.item);
     }
 }
