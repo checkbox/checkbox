@@ -164,7 +164,7 @@ class CliInvocation(CheckBoxInvocationMixIn):
                     for warm_up_func in warm_up_list:
                         warm_up_func()
                 tree = SelectableJobTreeNode.create_tree(
-                    manager.state.run_list)
+                    manager.state, manager.state.run_list)
                 title = _('Choose tests to run on your system:')
                 if self.display is None:
                     self.display = get_display()
@@ -399,7 +399,7 @@ class CliInvocation(CheckBoxInvocationMixIn):
             manager.checkpoint()
             # TODO: get a confirmation from the user for certain types of
             # job.plugin
-            job_result = runner.run_job(job, self.config)
+            job_result = runner.run_job(job, job_state, self.config)
             if (job_result.outcome == IJobResult.OUTCOME_UNDECIDED
                     and self.is_interactive):
                 job_result = self._interaction_callback(
