@@ -1,0 +1,12 @@
+
+unit: test plan
+id: qml-tests
+_name: QML-native tests
+include: .*
+
+id: qml-camera
+plugin: qml
+_description: Camera test
+qml_file: camera-test.qml
+estimated_duration: 20
+environ: DISPLAY
