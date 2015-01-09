@@ -427,6 +427,9 @@ private:
         // Are we resuming a session?
         bool m_resuming;
 
+        // Are we resuming a session and forcing the previous test result?
+        bool m_resuming_force_result;
+
         // Used to preserve interim data from Manual Interaction event
         QDBusObjectPath m_runner;
 
