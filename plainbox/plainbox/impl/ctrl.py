@@ -854,6 +854,19 @@ class QmlJobExecutionController(CheckBoxExecutionController):
         else:
             return -1
 
+    def gen_job_repr(self, job):
+        """
+        Generate simplified job representation for use in qml shell
+        :returns:
+            dictionary with simplified job representation
+        """
+        logger.debug(_("Generating job repr for job: %r"), job)
+        return {
+            "id": job.id,
+            "summary": job.tr_summary(),
+            "description": job.tr_description(),
+        }
+
     def execute_job(self, job, config, session_dir, extcmd_popen):
         """
         Execute the specified job using the specified subprocess-like object,
