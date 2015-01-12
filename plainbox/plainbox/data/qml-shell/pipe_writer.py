@@ -26,3 +26,13 @@ def write_and_close(s, fd):
     f = os.fdopen(int(fd), 'w')
     f.write(s)
     f.close()
+
+def read_and_close(fd):
+    """
+    Read from ``fd`` file descriptor and close ``fd`` afterwards.
+    returns read string
+    """
+    f = os.fdopen(int(fd), 'rt')
+    s = f.read()
+    f.close()
+    return s
