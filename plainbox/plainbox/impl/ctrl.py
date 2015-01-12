@@ -812,6 +812,10 @@ class QmlJobExecutionController(CheckBoxExecutionController):
     """
     An execution controller that is able to run jobs in QML shell.
     """
+
+    QML_SHELL_PATH = os.path.join(get_plainbox_dir(), 'data', 'qml-shell',
+                                  'plainbox_qml_shell.qml')
+
     def get_execution_command(self, job, config, session_dir, nest_dir,
                               shell_out_fd, shell_in_fd):
         """
@@ -840,10 +844,8 @@ class QmlJobExecutionController(CheckBoxExecutionController):
             List of command arguments
 
         """
-        qml_shell = os.path.join(get_plainbox_dir(), 'data', 'qml-shell',
-                                 'plainbox_qml_shell.qml')
         cmd = ['qmlscene', '--job', job.qml_file, '--fd-out', shell_out_fd,
-               '--fd-in', shell_in_fd, qml_shell]
+               '--fd-in', shell_in_fd, self.QML_SHELL_PATH]
         return cmd
 
     def get_checkbox_score(self, job):
