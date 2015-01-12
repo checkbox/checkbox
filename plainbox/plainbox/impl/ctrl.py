@@ -796,7 +796,7 @@ class QmlJobExecutionController(CheckBoxExecutionController):
     An execution controller that is able to run jobs in QML shell.
     """
     def get_execution_command(self, job, config, session_dir, nest_dir,
-                              qml_fd):
+                              shell_out_fd, shell_in_fd):
         """
         Get the command to execute the specified job
 
@@ -813,16 +813,20 @@ class QmlJobExecutionController(CheckBoxExecutionController):
         :param nest_dir:
             A directory with a nest of symlinks to all executables required to
             execute the specified job. Ingored.
-        :param qml_fd:
+        :param shell_out_fd:
             File descriptor number which is used to pipe through result object
             from the qml shell to plainbox.
+        :param shell_in_fd:
+            File descriptor number which is used to pipe through test meta
+            information from plainbox to qml shell.
         :returns:
             List of command arguments
 
         """
         qml_shell = os.path.join(get_plainbox_dir(), 'data', 'qml-shell',
                                  'plainbox_qml_shell.qml')
-        cmd = ['qmlscene', '--job', job.qml_file, '--fd', qml_fd, qml_shell]
+        cmd = ['qmlscene', '--job', job.qml_file, '--fd-out', shell_out_fd,
+               '--fd-in', shell_in_fd, qml_shell]
         return cmd
 
     def get_checkbox_score(self, job):
@@ -879,24 +883,32 @@ class QmlJobExecutionController(CheckBoxExecutionController):
         # Setup the executable nest directory
         with self.configured_filesystem(job, config) as nest_dir:
 
-            # make pipe to communicate with the qml shell
-            r, w = os.pipe()
+            # make pipe for qml shell output
+            plainbox_read, shell_write = os.pipe()
+            # make pipe for qml shell input
+            shell_read, plainbox_write = os.pipe()
             # Get the command and the environment.
             # of this execution controller
             cmd = self.get_execution_command(
-                job, config, session_dir, nest_dir, str(w))
+                job, config, session_dir, nest_dir, str(shell_write),
+                str(shell_read))
             env = self.get_execution_environment(
                 job, config, session_dir, nest_dir)
             with self.temporary_cwd(job, config) as cwd_dir:
+                job_json = json.dumps(self.gen_job_repr(job))
+                pipe_out = os.fdopen(plainbox_write, 'wt')
+                pipe_out.write(job_json)
+                pipe_out.close()
                 # run the command
                 logger.debug(_("job[%s] executing %r with env %r in cwd %r"),
                              job.id, cmd, env, cwd_dir)
                 ret = extcmd_popen.call(cmd, env=env, cwd=cwd_dir,
-                                        pass_fds=[r, w])
-                f = os.fdopen(r)
-                os.close(w)
-                res_object_json_string = f.read()
-                os.close(r)
+                                        pass_fds=[shell_write, shell_read])
+                os.close(shell_read)
+                os.close(shell_write)
+                pipe_in = os.fdopen(plainbox_read)
+                res_object_json_string = pipe_in.read()
+                pipe_in.close()
                 if ret != 0:
                     return ret
                 try:
