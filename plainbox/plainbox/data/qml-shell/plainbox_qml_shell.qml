@@ -49,6 +49,9 @@ MainView {
             });
         }
 
+        onError: console.error("python error: " + traceback)
+        onReceived: console.log("pyotherside.send: " + data)
+
         function writeAndClose(str, fd, continuation) {
             py.call('pipe_writer.write_and_close', [str, fd], continuation);
         }
