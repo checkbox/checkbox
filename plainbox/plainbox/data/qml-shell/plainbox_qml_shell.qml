@@ -44,8 +44,8 @@ MainView {
         id: py
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('.'));
-            py.importModule('pipe_writer', function() {
-                console.log('pipe_writer.py imported');
+            py.importModule('pipe_handler', function() {
+                console.log('pipe_handler.py imported');
                 py.readAndClose(args.values['fd-in'], function(job_repr) {
                     testingShell.getTest = function() {
                         return JSON.parse(job_repr);
@@ -60,10 +60,10 @@ MainView {
         onReceived: console.log("pyotherside.send: " + data)
 
         function writeAndClose(str, fd, continuation) {
-            py.call('pipe_writer.write_and_close', [str, fd], continuation);
+            py.call('pipe_handler.write_and_close', [str, fd], continuation);
         }
         function readAndClose(fd, continuation) {
-            py.call('pipe_writer.read_and_close', [fd], continuation);
+            py.call('pipe_handler.read_and_close', [fd], continuation);
         }
     }
 
