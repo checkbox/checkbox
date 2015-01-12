@@ -46,6 +46,13 @@ MainView {
             addImportPath(Qt.resolvedUrl('.'));
             py.importModule('pipe_writer', function() {
                 console.log('pipe_writer.py imported');
+                py.readAndClose(args.values['fd-in'], function(job_repr) {
+                    testingShell.getTest = function() {
+                        return JSON.parse(job_repr);
+                    }
+                    loader.setSource(args.values.job,
+                                     {'testingShell': testingShell});
+                });
             });
         }
 
@@ -54,6 +61,9 @@ MainView {
 
         function writeAndClose(str, fd, continuation) {
             py.call('pipe_writer.write_and_close', [str, fd], continuation);
+        }
+        function readAndClose(fd, continuation) {
+            py.call('pipe_writer.read_and_close', [fd], continuation);
         }
     }
 
@@ -72,8 +82,14 @@ MainView {
             valueNames: ["PATH"]
         }
         Argument {
-            name: "fd"
-            help: "Descriptor number to pipe to write to"
+            name: "fd-out"
+            help: "Descriptor number of pipe to write to"
+            required: false
+            valueNames: ["N"]
+        }
+        Argument {
+            name: "fd-in"
+            help: "Descriptor number of pipe to read from"
             required: false
             valueNames: ["N"]
         }
@@ -82,19 +98,17 @@ MainView {
     Loader {
         id: loader
         visible: false
+        onLoaded: {
+            loader.item.testDone.connect(testDone);
+            pageStack.push(loader.item);
+        }
     }
 
     function testDone(res) {
-        py.writeAndClose(JSON.stringify(res), args.values.fd, Qt.quit);
+        py.writeAndClose(JSON.stringify(res), args.values['fd-out'], Qt.quit);
     }
     PageStack {
         id: pageStack
     }
 
-    Component.onCompleted: {
-        loader.source = args.values.job;
-        loader.item.testDone.connect(testDone);
-        loader.item.testingShell = testingShell;
-        pageStack.push(loader.item);
-    }
 }
