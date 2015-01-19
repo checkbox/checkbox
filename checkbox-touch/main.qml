@@ -172,7 +172,7 @@ MainView {
                 rightMargin: units.gu(1)
             }
             Label {
-                text: pageStack.currentPage.title
+                text: pageStack.currentPage ? pageStack.currentPage.title : ""
                 fontSize: "x-large"
                 font.weight: Font.Light
                 anchors.verticalCenter: parent.verticalCenter
