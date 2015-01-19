@@ -39,16 +39,10 @@ Page {
     Object {
         id: testingShell
         property string name: "Checkbox-touch qml shell"
-
-        property alias pageStack: innerPageStack
-
+        property alias pageStack: qmlNativePage.pageStack
         function getTest() {
             return test;
         }
-    }
-
-    PageStack {
-        id: innerPageStack
     }
 
     head {
@@ -102,28 +96,39 @@ Page {
             }
         }
 
-        Button {
+        LatchButton {
             objectName: "continueButton"
             color: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Continue")
             onClicked: {
-                loader.source = test['qml_file'];
-                pageStack.pop();
-                pageStack.push(innerPageStack);
-                loader.item.testDone.connect(function(testResult) {
+                pageStack.pop(); // pop the description page
+                // altough there shouldn't be anything on the page stack
+                // dump it to savedStack and clear page stack,
+                // to let qml job use fresh playground
+                var savedStack = [];
+                while(pageStack.depth) {
+                    savedStack.push(pageStack.currentPage);
+                    pageStack.pop();
+                }
+                // prepare page with the test
+                var testPageComponent = Qt.createComponent(Qt.resolvedUrl(test['qml_file']));
+                if (testPageComponent.status == Component.Error) {
+                    console.log("Error creating testPageComponent:", testPageComponent.errorString());
+                }
+                var testPage = testPageComponent.createObject();
+                testPage.testDone.connect(function(testResult) {
                     test['outcome'] = testResult['outcome'];
                     test['result'] = testResult;
+                    pageStack.clear(); // clean test's left-overs from the stack
+                    while(savedStack.length) {
+                        pageStack.push(savedStack.pop());
+                    }
                     testDone(test);
                 });
-                loader.item.testingShell = testingShell;
-                innerPageStack.push(loader.item);
+                testPage.testingShell = testingShell;
+                pageStack.push(testPage);
             }
         }
-    }
-
-    Loader {
-        id: loader
-        visible: false
     }
 }
