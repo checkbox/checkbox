@@ -52,11 +52,11 @@ import logging
 import os
 import re
 
-from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
 from plainbox.impl.result import DiskJobResult
 from plainbox.impl.result import IOLogRecord
 from plainbox.impl.result import MemoryJobResult
+from plainbox.impl.result import OUTCOME_METADATA_MAP
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.qualifiers import SimpleQualifier
 from plainbox.impl.session.state import SessionMetaData
@@ -711,7 +711,10 @@ class SessionResumeHelper1(MetaDataHelper1MixIn):
         # Load all common attributes...
         outcome = _validate(
             result_repr, key='outcome', value_type=str,
-            value_choice=IJobResult.ALL_OUTCOME_LIST, value_none=True)
+            value_choice=sorted(
+                OUTCOME_METADATA_MAP.keys(),
+                key=lambda outcome: outcome or "none"
+            ), value_none=True)
         comments = _validate(
             result_repr, key='comments', value_type=str, value_none=True)
         return_code = _validate(
