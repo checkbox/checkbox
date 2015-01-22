@@ -432,6 +432,7 @@ MainView {
         progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
+
     function performQmlTest(test) {
         var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlNativePage.qml"))
         console.log(comp.errorString());
