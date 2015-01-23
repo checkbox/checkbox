@@ -1131,7 +1131,7 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
 
     @mock.patch('os.path.isdir')
     @mock.patch('os.fdopen')
-    @mock.patch('os.pipe', return_value=(mock.MagicMock, mock.MagicMock))
+    @mock.patch('os.pipe')
     @mock.patch('os.write')
     @mock.patch('os.close')
     def test_execute_job(self, mock_os_close, mock_os_write, mock_os_pipe,
@@ -1139,6 +1139,8 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
         """
         Test if qml exec. ctrl. correctly runs piping
         """
+        mock_os_pipe.side_effect = [("pipe0_r", "pipe0_w"),
+                                    ("pipe1_r", "pipe1_w")]
         with mock.patch.object(self.ctrl, 'get_execution_command'), \
                 mock.patch.object(self.ctrl, 'get_execution_environment'), \
                 mock.patch.object(self.ctrl, 'configured_filesystem'), \
@@ -1160,7 +1162,7 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
                 env=self.ctrl.get_execution_environment(
                     self.job, self.config, self.SESSION_DIR, nest_dir),
                 cwd=cwd_dir,
-                pass_fds=list(mock_os_pipe.return_value))
+                pass_fds=["pipe0_w", "pipe1_r"])
         # Ensure that execute_job() returns the return value of call()
         self.assertEqual(retval, self.extcmd_popen.call())
         # Ensure that presence of CHECKBOX_DATA directory was checked for
