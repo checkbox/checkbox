@@ -19,20 +19,24 @@
 import os
 
 
-def write_and_close(s, fd):
+def write_and_close(s, fd: str) -> None:
     """
     Write ``s`` to file descriptor ``fd`` and close ``fd`` afterwards.
-    """
-    f = os.fdopen(int(fd), 'w')
-    f.write(s)
-    f.close()
 
-def read_and_close(fd):
+    fd is of type str because calling code is written in javascript that
+    doesn't support notion of ints.
+    """
+    with os.fdopen(int(fd), 'wt') as stream:
+        stream.write(s)
+
+
+def read_and_close(fd: str) -> str:
     """
     Read from ``fd`` file descriptor and close ``fd`` afterwards.
     returns read string
+
+    fd is of type str because calling code is written in javascript that
+    doesn't support notion of ints.
     """
-    f = os.fdopen(int(fd), 'rt')
-    s = f.read()
-    f.close()
-    return s
+    with os.fdopen(int(fd), 'rt') as stream:
+        return stream.read()
