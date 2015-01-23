@@ -698,7 +698,6 @@ class JobRunner(IJobRunner):
             QML jobs are fully manual jobs with graphical user interface
             implemented in QML. They implement proposal described in CEP-5.
         """
-
         if job.plugin != "qml":
             # TRANSLATORS: please keep 'plugin' untranslated
             raise ValueError(_("bad job plugin value"))
