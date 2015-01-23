@@ -682,7 +682,7 @@ class JobRunner(IJobRunner):
         result_cmd.outcome = IJobResult.OUTCOME_UNDECIDED
         return result_cmd
 
-    def run_qml_job(self, job, config):
+    def run_qml_job(self, job, job_state, config):
         """
         Method called to run a job with plugin field equal to 'qml'
 
@@ -734,7 +734,8 @@ class JobRunner(IJobRunner):
                 logger.debug(
                     _("job[%s] starting qml shell: %s"), job.id, job.qml_file)
                 # Run the job command using extcmd
-                return_code = self._run_extcmd(job, config, extcmd_popen, ctrl)
+                return_code = self._run_extcmd(job, job_state, config,
+                                               extcmd_popen, ctrl)
                 logger.debug(
                     _("job[%s] shell return code: %r"), job.id, return_code)
             finally:
