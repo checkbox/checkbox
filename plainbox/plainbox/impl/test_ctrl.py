@@ -1168,7 +1168,7 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
             self.ctrl.get_CHECKBOX_DATA(self.SESSION_DIR))
         self.assertEqual(mock_os_pipe.call_count, 2)
         self.assertEqual(mock_os_fdopen.call_count, 2)
-        self.assertEqual(mock_os_close.call_count, 2)
+        self.assertEqual(mock_os_close.call_count, 6)
 
     def test_get_checkbox_score_for_qml_job(self):
         self.job.plugin = 'qml'

@@ -897,50 +897,69 @@ class QmlJobExecutionController(CheckBoxExecutionController):
         :returns:
             The return code of the command, as returned by subprocess.call()
         """
+
+        class DuplexPipe:
+            """
+            Helper context creating two pipes, ensuring they are closed
+            properly
+            """
+            def __enter__(self):
+                self.a_read, self.b_write = os.pipe()
+                self.b_read, self.a_write = os.pipe()
+                return self.a_read, self.b_write, self.b_read, self.a_write
+
+            def __exit__(self, *args):
+                for pipe in (self.a_read, self.b_write,
+                             self.b_read, self.a_write):
+                    # typically those pipes are already closed; trying to
+                    # re-close them causes OSError (errno == 9) to be raised
+                    try:
+                        os.close(pipe)
+                    except OSError as exc:
+                        if exc.errno != 9:
+                            raise
         # CHECKBOX_DATA is where jobs can share output.
         # It has to be an directory that scripts can assume exists.
         if not os.path.isdir(self.get_CHECKBOX_DATA(session_dir)):
             os.makedirs(self.get_CHECKBOX_DATA(session_dir))
         # Setup the executable nest directory
         with self.configured_filesystem(job, config) as nest_dir:
-
-            # make pipe for qml shell output
-            plainbox_read, shell_write = os.pipe()
-            # make pipe for qml shell input
-            shell_read, plainbox_write = os.pipe()
-            # Get the command and the environment.
-            # of this execution controller
-            cmd = self.get_execution_command(
-                job, job_state, config, session_dir, nest_dir,
-                str(shell_write), str(shell_read))
-            env = self.get_execution_environment(
-                job, job_state, config, session_dir, nest_dir)
-            with self.temporary_cwd(job, config) as cwd_dir:
-                job_json = json.dumps(self.gen_job_repr(job))
-                pipe_out = os.fdopen(plainbox_write, 'wt')
-                pipe_out.write(job_json)
-                pipe_out.close()
-                # run the command
-                logger.debug(_("job[%s] executing %r with env %r in cwd %r"),
-                             job.id, cmd, env, cwd_dir)
-                ret = extcmd_popen.call(cmd, env=env, cwd=cwd_dir,
-                                        pass_fds=[shell_write, shell_read])
-                os.close(shell_read)
-                os.close(shell_write)
-                pipe_in = os.fdopen(plainbox_read)
-                res_object_json_string = pipe_in.read()
-                pipe_in.close()
-                if ret != 0:
-                    return ret
-                try:
-                    result = json.loads(res_object_json_string)
-                    if result['outcome'] == "pass":
-                        return 0
-                    else:
+            with DuplexPipe() as (plainbox_read, shell_write,
+                                  shell_read, plainbox_write):
+                # Get the command and the environment.
+                # of this execution controller
+                cmd = self.get_execution_command(
+                    job, job_state, config, session_dir, nest_dir,
+                    str(shell_write), str(shell_read))
+                env = self.get_execution_environment(
+                    job, job_state, config, session_dir, nest_dir)
+                with self.temporary_cwd(job, config) as cwd_dir:
+                    job_json = json.dumps(self.gen_job_repr(job))
+                    pipe_out = os.fdopen(plainbox_write, 'wt')
+                    pipe_out.write(job_json)
+                    pipe_out.close()
+                    # run the command
+                    logger.debug(_("job[%s] executing %r with"
+                                   "env %r in cwd %r"),
+                                 job.id, cmd, env, cwd_dir)
+                    ret = extcmd_popen.call(cmd, env=env, cwd=cwd_dir,
+                                            pass_fds=[shell_write, shell_read])
+                    os.close(shell_read)
+                    os.close(shell_write)
+                    pipe_in = os.fdopen(plainbox_read)
+                    res_object_json_string = pipe_in.read()
+                    pipe_in.close()
+                    if ret != 0:
+                        return ret
+                    try:
+                        result = json.loads(res_object_json_string)
+                        if result['outcome'] == "pass":
+                            return 0
+                        else:
+                            return 1
+                    except ValueError:
+                        # qml-job did not print proper json object
                         return 1
-                except ValueError:
-                    # qml-job did not print proper json object
-                    return 1
 
 
 class CheckBoxDifferentialExecutionController(CheckBoxExecutionController):
