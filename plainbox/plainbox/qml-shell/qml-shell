@@ -32,9 +32,9 @@ def main():
     test_result_object_prefix = "qml: __test_result_object:"
     test_res = None
     p = subprocess.Popen(['qmlscene', '--job', args.job, 'qml_shell.qml'],
-                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    for line in iter(p.stdout.readline, ''):
-        line = line.decode(sys.stdout.encoding)
+                         stderr=subprocess.PIPE)
+    for line in iter(p.stderr.readline, ''):
+        line = line.decode(sys.stderr.encoding)
         if not line:
             break
         if line.startswith(test_result_object_prefix):
