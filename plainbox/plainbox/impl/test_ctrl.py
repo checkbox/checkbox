@@ -1123,8 +1123,8 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
         """
         self.assertEqual(
             self.ctrl.get_execution_command(
-                self.job, self.config, self.SESSION_DIR, self.NEST_DIR,
-                self.SHELL_OUT_FD, self.SHELL_IN_FD),
+                self.job, self.job_state, self.config, self.SESSION_DIR,
+                self.NEST_DIR, self.SHELL_OUT_FD, self.SHELL_IN_FD),
             ['qmlscene', '--job', self.job.qml_file, '--fd-out',
              self.SHELL_OUT_FD, '--fd-in', self.SHELL_IN_FD,
              self.ctrl.QML_SHELL_PATH])
@@ -1145,7 +1145,8 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
                 mock.patch.object(self.ctrl, 'temporary_cwd'), \
                 mock.patch.object(self.ctrl, 'gen_job_repr', return_value={}):
             retval = self.ctrl.execute_job(
-                self.job, self.config, self.SESSION_DIR, self.extcmd_popen)
+                self.job, self.job_state, self.config, self.SESSION_DIR,
+                self.extcmd_popen)
             # Ensure that call was invoked with command end environment (passed
             # as keyword argument). Extract the return value of
             # configured_filesystem() as nest_dir so that we can pass it to

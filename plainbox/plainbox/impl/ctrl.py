@@ -816,13 +816,15 @@ class QmlJobExecutionController(CheckBoxExecutionController):
     QML_SHELL_PATH = os.path.join(get_plainbox_dir(), 'data', 'qml-shell',
                                   'plainbox_qml_shell.qml')
 
-    def get_execution_command(self, job, config, session_dir, nest_dir,
-                              shell_out_fd, shell_in_fd):
+    def get_execution_command(self, job, job_state, config, session_dir,
+                              nest_dir, shell_out_fd, shell_in_fd):
         """
         Get the command to execute the specified job
 
         :param job:
             job definition with the command and environment definitions
+        :param job_state:
+            The JobState associated to the job to execute.
         :param config:
             A PlainBoxConfig instance which can be used to load missing
             environment definitions that apply to all jobs. Ignored.
@@ -873,7 +875,7 @@ class QmlJobExecutionController(CheckBoxExecutionController):
             "description": job.tr_description(),
         }
 
-    def execute_job(self, job, config, session_dir, extcmd_popen):
+    def execute_job(self, job, job_state, config, session_dir, extcmd_popen):
         """
         Execute the specified job using the specified subprocess-like object,
         passing fd with opened pipe for qml-shell->plainbox communication.
@@ -909,10 +911,10 @@ class QmlJobExecutionController(CheckBoxExecutionController):
             # Get the command and the environment.
             # of this execution controller
             cmd = self.get_execution_command(
-                job, config, session_dir, nest_dir, str(shell_write),
-                str(shell_read))
+                job, job_state, config, session_dir, nest_dir,
+                str(shell_write), str(shell_read))
             env = self.get_execution_environment(
-                job, config, session_dir, nest_dir)
+                job, job_state, config, session_dir, nest_dir)
             with self.temporary_cwd(job, config) as cwd_dir:
                 job_json = json.dumps(self.gen_job_repr(job))
                 pipe_out = os.fdopen(plainbox_write, 'wt')
