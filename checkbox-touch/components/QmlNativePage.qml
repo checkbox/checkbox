@@ -112,12 +112,13 @@ Page {
                     pageStack.pop();
                 }
                 // prepare page with the test
-                var testPageComponent = Qt.createComponent(Qt.resolvedUrl(test['qml_file']));
-                if (testPageComponent.status == Component.Error) {
+                var testItemComponent = Qt.createComponent(Qt.resolvedUrl(test['qml_file']));
+                if (testItemComponent.status == Component.Error) {
                     console.log("Error creating testPageComponent:", testPageComponent.errorString());
                 }
-                var testPage = testPageComponent.createObject();
-                testPage.testDone.connect(function(testResult) {
+
+                var testItem = testItemComponent.createObject(null, {"testingShell": testingShell});
+                testItem.testDone.connect(function(testResult) {
                     test['outcome'] = testResult['outcome'];
                     test['result'] = testResult;
                     pageStack.clear(); // clean test's left-overs from the stack
@@ -126,8 +127,6 @@ Page {
                     }
                     testDone(test);
                 });
-                testPage.testingShell = testingShell;
-                pageStack.push(testPage);
             }
         }
     }
