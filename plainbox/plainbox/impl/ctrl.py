@@ -35,6 +35,7 @@ circumstances.
 
 import abc
 import contextlib
+import errno
 try:
     import grp
 except ImportError:
@@ -916,7 +917,7 @@ class QmlJobExecutionController(CheckBoxExecutionController):
                     try:
                         os.close(pipe)
                     except OSError as exc:
-                        if exc.errno != 9:
+                        if exc.errno != errno.EBADF:
                             raise
         # CHECKBOX_DATA is where jobs can share output.
         # It has to be an directory that scripts can assume exists.
