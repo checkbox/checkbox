@@ -1172,6 +1172,36 @@ class QmlJobExecutionControllerTests(CheckBoxExecutionControllerTestsMixIn,
         self.assertEqual(mock_os_fdopen.call_count, 2)
         self.assertEqual(mock_os_close.call_count, 6)
 
+    @mock.patch('os.path.isdir')
+    @mock.patch('os.fdopen')
+    @mock.patch('os.pipe')
+    @mock.patch('os.write')
+    @mock.patch('os.close')
+    def test_pipes_closed_when_cmd_raises(
+            self, mock_os_close, mock_os_write, mock_os_pipe, mock_os_fdopen,
+            mock_os_path_isdir):
+        """
+        Test if all pipes used by execute_job() are properly closed if
+        exception is raised during execution of command
+        """
+        mock_os_pipe.side_effect = [("pipe0_r", "pipe0_w"),
+                                    ("pipe1_r", "pipe1_w")]
+        with mock.patch.object(self.ctrl, 'get_execution_command'), \
+                mock.patch.object(self.ctrl, 'get_execution_environment'), \
+                mock.patch.object(self.ctrl, 'configured_filesystem'), \
+                mock.patch.object(self.ctrl, 'temporary_cwd'), \
+                mock.patch.object(self.ctrl, 'gen_job_repr', return_value={}), \
+                mock.patch.object(self.extcmd_popen, 'call',
+                                  side_effect=Exception('Boom')):
+            with self.assertRaises(Exception):
+                self.ctrl.execute_job(
+                    self.job, self.job_state, self.config, self.SESSION_DIR,
+                    self.extcmd_popen)
+        os.close.assert_any_call('pipe0_r')
+        os.close.assert_any_call('pipe1_r')
+        os.close.assert_any_call('pipe0_w')
+        os.close.assert_any_call('pipe1_w')
+
     def test_get_checkbox_score_for_qml_job(self):
         self.job.plugin = 'qml'
         self.assertEqual(self.ctrl.get_checkbox_score(self.job), 4)
