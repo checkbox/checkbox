@@ -98,10 +98,7 @@ MainView {
     Loader {
         id: loader
         visible: false
-        onLoaded: {
-            loader.item.testDone.connect(testDone);
-            pageStack.push(loader.item);
-        }
+        onLoaded: loader.item.testDone.connect(testDone)
     }
 
     function testDone(res) {
