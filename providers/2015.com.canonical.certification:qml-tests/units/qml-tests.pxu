@@ -1,0 +1,14 @@
+
+unit: test plan
+_description:
+ Test plan containing tests in form of QML programs
+id: qml-tests
+_name: QML-native tests
+estimated_duration: 20
+include: .*
+
+id: qml-camera
+plugin: qml
+_description: Camera test
+qml_file: camera-test.qml
+estimated_duration: 20

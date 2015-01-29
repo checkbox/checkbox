@@ -1,0 +1,87 @@
+Summary
+=======
+
+Checkbox stack lacks facilities for running GUI driven tests natively.
+This CEP describes a new type of checkbox job, the 'QML job'.
+
+Rationale
+=========
+
+Some of the tests require some form of graphical user interface. Current way of
+handling that is to run some binary (like qmlscene) driving the GUI. This
+approach is acceptable on window-driven environments like Ubuntu Desktop, but
+unfeasible on Ubuntu Touch. Moreover, Checkbox front-end for Ubuntu Touch is
+already driven by qmlscene, so GUI jobs might be as well defined as a
+component resembling native parts of Checkbox Touch.
+
+What qml native test should be able to do (aka Requirements)
+============================================================
+
+1. Determine its own outcome and propagate it to the shell
+2. Run full screen (without system bar, headers, etc.)
+3. Run its own internal page flow mechanism (like PageStack, tabs)
+4. Use all QML APIs that a normal app would use
+5. Get job meta-info (i.e. job id, job name, etc.)
+6. Be fully translatable
+7. Print out ``console.log()``
+
+Constraints
+===========
+
+All that consitutes the job (qml files, translations, images, media files,
+etc.) must be contained within ``data`` directory of the provider.
+
+The API
+=======
+
+Test definition
+---------------
+From testing shell perspective, the test is a root ``Item { }`` of the file
+located in path specified by ``qml_file`` field of the job definition.
+
+When creating the test component, testing environment will initiate
+``testingShell`` property with a hook to the testing shell object (satisfying
+requirement no 5.), and connect to ``testDone(test)`` signal. ``test`` object
+has to have ``outcome`` field, in order to satisfy requirement no 1.
+
+Test boilerplate
+----------------
+
+.. code-block:: guess
+
+    // boilerplate.qml
+    import QtQuick 2.0
+    Item {
+        property var testingShell;
+        signal testDone(test);
+    }
+
+
+Testing Shell object API:
+=========================
+
+``function getTest()`` - get test meta-information object
+
+``string name`` - name of the testing shell
+
+``var pageStack`` - pageStack object to use when implementing internal test
+navigation. This page stack is independent from the page stack used by outside
+application (the one containing testing shell).
+
+Full screen and page stacks
+===========================
+
+Test shell is responsible for clearing current screen, i.e. hiding toolbars,
+headers, etc., and for providing clear page stack to work on.
+This internal page stack is implicitly cleared and destroyed when testDone is
+signalled.
+
+
+Impact
+======
+Introduction of new job type requires changes in plainbox backend (new value of
+plugin field in job definition) and all checkbox front-ends. For front-ends to
+display qml job, shell that runs the job has to be present. For Checkbox Touch
+this shell will be native to the application, for other front-ends auxiliary
+qmlscene has to be run.  All changes required by this CEP should not impact
+exisiting tests.
