@@ -763,8 +763,11 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.test_plan = test_plan
 
     def _init_session_storage_repo(self):
+        """
+        Init storage repository.
+        """
         self.session_storage_repo = SessionStorageRepository(
-            os.path.expandvars('$XDG_CACHE_HOME/com.ubuntu.checkbox'))
+            self._get_app_cache_directory())
 
     def _get_default_providers(self):
         all_providers.load()
