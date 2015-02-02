@@ -290,7 +290,6 @@ class PlugInCollectionBase(IPlugInCollection):
         self._wrapper_kwargs = wrapper_kwargs
         self._plugins = collections.OrderedDict()  # str -> IPlugIn instance
         self._loaded = False
-        self._mocked_objects = None
         self._problem_list = []
         self._discovery_time = 0
         if load:
@@ -369,8 +368,8 @@ class PlugInCollectionBase(IPlugInCollection):
         self._loaded = True
         self._plugins = collections.OrderedDict([
             (plugin.plugin_name, plugin)
-            for plugin in sorted(
-                plugins, key=lambda plugin: plugin.plugin_name)])
+            for plugin in plugins
+        ])
         if problem_list is None:
             problem_list = []
         self._problem_list = problem_list
@@ -627,9 +626,10 @@ class LazyPlugInCollection(PlugInCollectionBase):
         callbacks.
 
         :param callback_args_map:
-            any mapping from from any string (the plugin name) to a
-            tuple ("module:obj", *args) that if imported and called
-            ``obj(*args)`` produces the plugin object.
+            any mapping from from any string (the plugin name) to a tuple
+            ("module:obj", *args) that if imported and called ``obj(*args)``
+            produces the plugin object, alternatively, a mapping from the same
+            string to a string that is imported but *not* called.
         :param load:
             if true, load all of the plug-ins now
         :param wrapper:
@@ -680,7 +680,7 @@ class LazyPlugInCollection(PlugInCollectionBase):
             args = discovery_data[1:]
         else:
             callable_obj = discovery_data
-            args = ()
+            args = None
         if isinstance(callable_obj, str):
             logger.debug(_("Importing %s"),  callable_obj)
             callable_obj = getattr(
@@ -688,7 +688,10 @@ class LazyPlugInCollection(PlugInCollectionBase):
                     callable_obj.split(':', 1)[0], fromlist=[1]),
                 callable_obj.split(':', 1)[1])
         logger.debug(_("Calling %r with %r"), callable_obj, args)
-        return callable_obj(*args)
+        if args is None:
+            return callable_obj
+        else:
+            return callable_obj(*args)
 
     def get_all_names(self):
         """
@@ -697,7 +700,10 @@ class LazyPlugInCollection(PlugInCollectionBase):
         :returns:
             a list of plugin names
         """
-        return list(self._mapping.keys())
+        if self._loaded:
+            return super().get_all_names()
+        else:
+            return list(self._mapping.keys())
 
     def get_by_name(self, name):
         """
@@ -710,7 +716,9 @@ class LazyPlugInCollection(PlugInCollectionBase):
         :raises KeyError:
             if the specified name cannot be found
         """
-        if not self._loaded and name not in self._plugins:
+        if self._loaded:
+            return super().get_by_name(name)
+        if name not in self._plugins:
             discovery_data = self._mapping[name]
             self.load_one(name, discovery_data)
         return self._plugins[name]
@@ -730,3 +738,13 @@ class LazyPlugInCollection(PlugInCollectionBase):
             returns zero.
         """
         return self._discovery_time
+
+    @contextlib.contextmanager
+    def fake_plugins(self, plugins, problem_list=None):
+        old_mapping = self._mapping
+        self._mapping = {}  # fake the mapping
+        try:
+            with super().fake_plugins(plugins, problem_list):
+                yield
+        finally:
+            self._mapping = old_mapping
