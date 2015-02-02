@@ -1,5 +1,7 @@
 # Ignore all python3 bytecode data
-__pycache__
+__pycache__/
+# As well as all python2 bytecode data
+*.pyc
 # Ignore setuptools artifacts
 build
 dist
@@ -7,8 +9,9 @@ dist
 # Ignore coverage artifacts
 .coverage
 htmlcov
-# Ignore logs created by test-in-vagrant.sh
+# Ignore logs created by test-in-vagrant.sh and test-in-lxc.sh
 vagrant-logs
+lxc-logs
 # Ignore vagrant state file
 .vagrant
 # The list below is riddled with junk created by running the test suite of checkbox
@@ -39,3 +42,12 @@ checkbox-gui/lib
 checkbox-gui/share
 # Ignore any patches that may lay around
 *.patch
+# Ignore SDK per-user files
+*.qmlproject.user
+# Ignore SDK builds
+build-checkbox-touch-*
+# Ignore c9.io state files
+.c9
+# Ignore any virtualenvs
+venv
+venv.*
