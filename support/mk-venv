@@ -54,7 +54,7 @@ if [ -z "$CHECKBOX_VENV_PATH" ]; then
         if [ -d "$CHECKBOX_TOP/.bzr" ]; then
             CHECKBOX_VENV_PATH=/tmp/$(bzr nick)
         else
-            CHECKBOX_VENV_PATH=/ramdisk/venv
+            CHECKBOX_VENV_PATH=venv.$(hostname)
         fi
     fi
 fi
