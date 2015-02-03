@@ -30,13 +30,54 @@ import logging
 from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
 from plainbox.impl import pod
+from plainbox.impl.resource import ResourceExpression
 from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.unit.job import JobDefinition
+from plainbox.vendor.enum import IntEnum
 
 logger = logging.getLogger("plainbox.session.jobs")
 
 
-class JobReadinessInhibitor:
+class InhibitionCause(IntEnum):
+    """
+    There are four possible not-ready causes:
+
+        UNDESIRED:
+            This job was not selected to run in this session
+
+        PENDING_DEP:
+           This job depends on another job which was not started yet
+
+        FAILED_DEP:
+            This job depends on another job which was started and failed
+
+        PENDING_RESOURCE:
+            This job has a resource requirement expression that uses a resource
+            produced by another job which was not started yet
+
+        FAILED_RESOURCE:
+            This job has a resource requirement that evaluated to a false value
+    """
+    UNDESIRED = 0
+    PENDING_DEP = 1
+    FAILED_DEP = 2
+    PENDING_RESOURCE = 3
+    FAILED_RESOURCE = 4
+
+
+def cause_convert_assign_filter(
+        instance: pod.POD, field: pod.Field, old: "Any", new: "Any") -> "Any":
+    """
+    Custom assign filter for the JobReadinessInhibitor.cause field that
+    produces a very specific error message.
+    """
+    try:
+        return pod.type_convert_assign_filter(instance, field, old, new)
+    except ValueError:
+        raise ValueError(_("unsupported value for cause"))
+
+
+class JobReadinessInhibitor(pod.POD):
     """
     Class representing the cause of a job not being ready to execute.
 
@@ -70,7 +111,8 @@ class JobReadinessInhibitor:
     There are three attributes that can be accessed:
 
         cause:
-            Encodes the reason why a job is not ready, see above.
+            Encodes the reason why a job is not ready, see
+            :class:`InhibitionCause`.
 
         related_job:
             Provides additional context for the problem. This is not the job
@@ -91,16 +133,22 @@ class JobReadinessInhibitor:
     # is used to represent a resource expression that evaluated to a non-True
     # value
 
-    UNDESIRED, PENDING_DEP, FAILED_DEP, PENDING_RESOURCE, FAILED_RESOURCE \
-        = range(5)
+    cause = pod.Field(
+        doc="cause (constant) of the inhibitor",
+        type=InhibitionCause,
+        initial=pod.MANDATORY,
+        assign_filter_list=[cause_convert_assign_filter,
+                            pod.read_only_assign_filter])
 
-    _cause_display = {
-        UNDESIRED: "UNDESIRED",
-        PENDING_DEP: "PENDING_DEP",
-        FAILED_DEP: "FAILED_DEP",
-        PENDING_RESOURCE: "PENDING_RESOURCE",
-        FAILED_RESOURCE: "FAILED_RESOURCE"
-    }
+    related_job = pod.Field(
+        doc="an (optional) job reference",
+        type=JobDefinition,
+        assign_filter_list=[pod.read_only_assign_filter])
+
+    related_expression = pod.Field(
+        doc="an (optional) resource expression reference",
+        type=ResourceExpression,
+        assign_filter_list=[pod.read_only_assign_filter])
 
     def __init__(self, cause, related_job=None, related_expression=None):
         """
@@ -110,63 +158,45 @@ class JobReadinessInhibitor:
         is either PENDING_RESOURCE or FAILED_RESOURCE related_expression is
         necessary as well. A ValueError is raised when this is violated.
         """
-        if cause not in self._cause_display:
-            raise ValueError(_("unsupported value for cause"))
-        if cause != self.UNDESIRED and related_job is None:
+        super().__init__(cause, related_job, related_expression)
+        if (self.cause != InhibitionCause.UNDESIRED
+                and self.related_job is None):
             raise ValueError(
                 # TRANSLATORS: please don't translate related_job, None and
                 # cause
                 _("related_job must not be None when cause is {}").format(
-                    self._cause_display[cause]))
-        if cause in (self.PENDING_RESOURCE, self.FAILED_RESOURCE) \
-                and related_expression is None:
+                    self.cause.name))
+        if (self.cause in (InhibitionCause.PENDING_RESOURCE,
+                           InhibitionCause.FAILED_RESOURCE)
+                and self.related_expression is None):
             raise ValueError(_(
                 # TRANSLATORS: please don't translate related_expression, None
                 # and cause.
                 "related_expression must not be None when cause is {}"
-            ).format(self._cause_display[cause]))
-        self.cause = cause
-        self.related_job = related_job
-        self.related_expression = related_expression
-
-    def __eq__(self, other):
-        if isinstance(other, JobReadinessInhibitor):
-            return ((self.cause, self.related_job, self.related_expression)
-                    == (self.cause, self.related_job, self.related_expression))
-        return NotImplemented
-
-    def __ne__(self, other):
-        if isinstance(other, JobReadinessInhibitor):
-            return ((self.cause, self.related_job, self.related_expression)
-                    != (self.cause, self.related_job, self.related_expression))
-        return NotImplemented
-
-    @property
-    def cause_name(self):
-        return self._cause_display[self.cause]
+            ).format(self.cause.name))
 
     def __repr__(self):
         return "<{} cause:{} related_job:{!r} related_expression:{!r}>".format(
-            self.__class__.__name__, self._cause_display[self.cause],
-            self.related_job, self.related_expression)
+            self.__class__.__name__, self.cause.name, self.related_job,
+            self.related_expression)
 
     def __str__(self):
-        if self.cause == self.UNDESIRED:
+        if self.cause == InhibitionCause.UNDESIRED:
             # TRANSLATORS: as in undesired job
             return _("undesired")
-        elif self.cause == self.PENDING_DEP:
+        elif self.cause == InhibitionCause.PENDING_DEP:
             return _("required dependency {!r} did not run yet").format(
                 self.related_job.id)
-        elif self.cause == self.FAILED_DEP:
+        elif self.cause == InhibitionCause.FAILED_DEP:
             return _("required dependency {!r} has failed").format(
                 self.related_job.id)
-        elif self.cause == self.PENDING_RESOURCE:
+        elif self.cause == InhibitionCause.PENDING_RESOURCE:
             return _(
                 "resource expression {!r} could not be evaluated because"
                 " the resource it depends on did not run yet"
             ).format(self.related_expression.text)
         else:
-            assert self.cause == self.FAILED_RESOURCE
+            assert self.cause == InhibitionCause.FAILED_RESOURCE
             return _("resource expression {!r} evaluates to false").format(
                 self.related_expression.text)
 
@@ -174,7 +204,7 @@ class JobReadinessInhibitor:
 # A global instance of :class:`JobReadinessInhibitor` with the UNDESIRED cause.
 # This is used a lot and it makes no sense to instantiate all the time.
 UndesiredJobReadinessInhibitor = JobReadinessInhibitor(
-    JobReadinessInhibitor.UNDESIRED)
+    InhibitionCause.UNDESIRED)
 
 
 JOB_VALUE = object()
