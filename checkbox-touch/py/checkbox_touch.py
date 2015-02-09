@@ -383,9 +383,8 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def resume_session(self, rerun_last_test):
-        all_units = list(
-            itertools.chain(*[
-                p.get_units()[0] for p in self._get_default_providers()]))
+        all_units = list(itertools.chain(
+            *[p.unit_list for p in self._get_default_providers()]))
         try:
             self.manager = SessionManager.load_session(
                 all_units, self.resume_candidate_storage)
