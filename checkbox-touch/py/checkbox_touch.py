@@ -799,5 +799,9 @@ def bootstrap():
     return manager
 
 
+def get_qml_logger():
+    return _manager.ref(logging.getLogger('checkbox.touch.qml'))
+
+
 create_app_object = CheckboxTouchApplication.create_and_get_handle
 _manager = bootstrap()

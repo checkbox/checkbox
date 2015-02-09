@@ -122,6 +122,20 @@ MainView {
         }
     }
 
+    PythonLogger {
+        id: logger
+        py: py
+        Component.onCompleted: {
+            py.Component.onCompleted.connect(function() {
+                py.importModule("checkbox_touch", function() {
+                    py.call("checkbox_touch.get_qml_logger", [], function(handle) {
+                        logger.handle = handle;
+                    });
+                });
+            });
+        }
+    }
+
     PageStack {
         id: pageStack
         Component.onCompleted: push(welcomePage)
