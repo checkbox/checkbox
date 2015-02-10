@@ -72,7 +72,7 @@ class InstallCommandExt(InstallCommand):
         shutil.copy(src_file, destdir)
 
     def _copy_all_executables(self, root, prefix, layout, provider):
-        if provider.get_all_executables():
+        if provider.executable_list:
             super()._copy_all_executables(root, prefix, layout, provider)
 
 
