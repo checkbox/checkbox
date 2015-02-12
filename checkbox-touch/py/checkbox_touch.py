@@ -44,6 +44,7 @@ import traceback
 
 from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
+from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.providers.special import get_categories
@@ -335,6 +336,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.resume_candidate_storage = None
         self.session_storage_repo = None
         self.timestamp = datetime.datetime.utcnow().isoformat()
+        self.config = None
 
     def __repr__(self):
         return "app"
@@ -366,6 +368,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.context.state.metadata.flags.add('bootstrapping')
             # Checkpoint the session so that we have something to see
             self._checkpoint()
+            self.config = PlainBoxConfig()
             self.runner = JobRunner(
                 self.manager.storage.location,
                 self.context.provider_list,
@@ -642,7 +645,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.context.state.running_job_name = job_id
         self._checkpoint()
         try:
-            result = self.runner.run_job(job, job_state)
+            result = self.runner.run_job(job, job_state, self.config)
         except OSError as exc:
             result = self.context.state.job_state_map[job_id].result
             result.outcome = 'fail'
