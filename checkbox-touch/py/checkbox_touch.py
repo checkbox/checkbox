@@ -351,7 +351,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self):
+    def start_session(self, providers_dir):
         if self.manager is not None:
             _logger.warning("start_session() should not be called twice!")
         else:
@@ -360,7 +360,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.manager.add_local_device_context()
             self.context = self.manager.default_device_context
             # Add some all providers into the context
-            for provider in self._get_default_providers():
+            for provider in self._get_default_providers(providers_dir):
                 self.context.add_provider(provider)
             # Fill in the meta-data
             self.context.state.metadata.app_id = 'checkbox-touch'
@@ -385,9 +385,10 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def resume_session(self, rerun_last_test):
+    def resume_session(self, rerun_last_test, providers_dir):
         all_units = list(itertools.chain(
-            *[p.unit_list for p in self._get_default_providers()]))
+            *[p.unit_list for p in self._get_default_providers(
+                providers_dir)]))
         try:
             self.manager = SessionManager.load_session(
                 all_units, self.resume_candidate_storage)
@@ -771,12 +772,22 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.session_storage_repo = SessionStorageRepository(
             self._get_app_cache_directory())
 
-    def _get_default_providers(self):
+    def _get_default_providers(self, providers_dir):
+        """
+        Get providers
+
+        :param providers_dir:
+            Path within application tree from which to load providers
+        :returns:
+            list of loaded providers
+        """
         all_providers.load()
         provider_list = all_providers.get_all_plugin_objects()
         # when running on ubuntu-touch device, APP_DIR env var is present
         # and points to touch application top directory
-        path = os.path.join(os.path.expandvars('$APP_DIR'), 'providers')
+        path = os.path.join(os.path.expandvars('$APP_DIR'),
+                            os.path.normpath(providers_dir))
+        _logger.info("Loading all providers from %s", path)
         if os.path.exists(path):
             embedded_providers = EmbeddedProvider1PlugInCollection(path)
             provider_list += embedded_providers.get_all_plugin_objects()

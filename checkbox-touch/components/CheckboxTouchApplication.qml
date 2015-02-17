@@ -42,15 +42,15 @@ PythonObjectHandle {
     // Starts session in plainbox and runs all necessary setup actions.
     // Calling this function will signal sessionReady() once it's finished
     // doing setup.
-    function startSession() {
-        request("start_session", [], function(result) {
+    function startSession(providersDir) {
+        request("start_session", [providersDir], function(result) {
             sessionReady();
         }, function(error) {
             console.error("Unable to start session: " + error);
         });
     }
-    function resumeSession(rerunLastTest, continuation) {
-        request("resume_session", [rerunLastTest], function(result) {
+    function resumeSession(rerunLastTest, providersDir, continuation) {
+        request("resume_session", [rerunLastTest, providersDir], function(result) {
             if (!result["session_id"]) {
                 pageStack.pop();
                 ErrorLogic.showError(mainView,

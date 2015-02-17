@@ -115,7 +115,7 @@ MainView {
                 "checkbox_touch" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
-            resumeOrStartSession();
+            resumeOrStartSession(appSettings["providersDir"]);
         }
         onSessionReady: {
             welcomePage.enableButton()
@@ -223,7 +223,7 @@ MainView {
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
-            app.startSession();
+            app.startSession(appSettings["providersDir"]);
         }
     }
 
@@ -310,10 +310,10 @@ MainView {
             } else {
                 if (result.errors_encountered) {
                     ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
-                                         app.startSession(),
+                                         app.startSession(appSettings["providersDir"]),
                                          i18n.tr("Start new session"));
                 } else {
-                    app.startSession();
+                    app.startSession(appSettings["providersDir"]);
                 }
             }
         });
@@ -363,7 +363,7 @@ MainView {
             resultsPage.endTesting.connect(function() {
                 pageStack.clear();
                 app.clearSession(function() {
-                    app.startSession();
+                    app.startSession(appSettings["providersDir"]);
                     pageStack.push(welcomePage);
                 });
             });
