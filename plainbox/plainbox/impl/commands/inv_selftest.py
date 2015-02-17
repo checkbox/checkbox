@@ -21,8 +21,8 @@
 """
 import os
 import sys
-import unittest
-import unittest.runner
+from unittest.loader import defaultTestLoader
+from unittest.runner import TextTestRunner
 
 
 class SelfTestInvocation:
@@ -34,11 +34,13 @@ class SelfTestInvocation:
         # If asked to, re-execute without locale
         if ns.reexec and sys.platform != 'win32':
             self._reexec_without_locale()
-        suite = self.loader()
+        if isinstance(self.loader, str):
+            suite = defaultTestLoader.loadTestsFromName(self.loader)
+        else:
+            suite = self.loader()
         # Use standard unittest runner, it has somewhat annoying way of
         # displaying test progress but is well-known and will do for now.
-        runner = unittest.runner.TextTestRunner(
-            verbosity=ns.verbosity, failfast=ns.fail_fast)
+        runner = TextTestRunner(verbosity=ns.verbosity, failfast=ns.fail_fast)
         result = runner.run(suite)
         # Forward the successfulness of the test suite as the exit code
         return 0 if result.wasSuccessful() else 1
@@ -47,5 +49,6 @@ class SelfTestInvocation:
         os.environ['LANG'] = ''
         os.environ['LANGUAGE'] = ''
         os.environ['LC_ALL'] = 'C.UTF-8'
-        sys.argv.insert(2, '--after-reexec')
+        self_test_index = sys.argv.index('self-test')
+        sys.argv.insert(self_test_index + 1, '--after-reexec')
         os.execvpe(sys.argv[0], sys.argv, os.environ)
