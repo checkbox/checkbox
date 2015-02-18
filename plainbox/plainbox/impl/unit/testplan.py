@@ -24,7 +24,6 @@
 import logging
 import operator
 import re
-import shlex
 import sre_constants
 import sre_parse
 
@@ -38,17 +37,12 @@ from plainbox.impl.unit._legacy import TestPlanUnitLegacyAPI
 from plainbox.impl.unit.unit_with_id import UnitWithId
 from plainbox.impl.unit.validators import compute_value_map
 from plainbox.impl.unit.validators import CorrectFieldValueValidator
-from plainbox.impl.unit.validators import DeprecatedFieldValidator
 from plainbox.impl.unit.validators import FieldValidatorBase
 from plainbox.impl.unit.validators import PresentFieldValidator
-from plainbox.impl.unit.validators import ReferenceConstraint
-from plainbox.impl.unit.validators import ShellProgramValidator
 from plainbox.impl.unit.validators import TemplateInvariantFieldValidator
 from plainbox.impl.unit.validators import TemplateVariantFieldValidator
 from plainbox.impl.unit.validators import TranslatableFieldValidator
-from plainbox.impl.unit.validators import UnitReferenceValidator
 from plainbox.impl.unit.validators import UntranslatableFieldValidator
-from plainbox.impl.unit.validators import UselessFieldValidator
 from plainbox.impl.validation import Problem
 from plainbox.impl.validation import Severity
 
@@ -298,42 +292,38 @@ class TestPlanUnit(UnitWithId, TestPlanUnitLegacyAPI):
         :param text:
             string of text, including newlines and comments, to parse
         :returns:
-            A list of pairs (lineno_offset, category_id, pattern) where
+            A list of tuples (lineno_offset, category_id, pattern) where
             lineno_offset is the line number offset from the start of the text,
-            category_id is the desired category identifier and pattern
-            is the actual regular expression text (which may be invalid).
+            category_id is the desired category identifier and pattern is the
+            actual regular expression text (which may be invalid).
         :raises ValueError:
             if there are any issues with the override declarations
         """
-        override_list = []
-        # Load the file
-        for lineno_offset, line in enumerate(text.splitlines()):
-            # Strip shell-style comments if there are any
-            try:
-                index = line.index("#")
-            except ValueError:
-                pass
-            else:
-                line = line[:index]
-            # Strip whitespace
-            line = line.strip()
-            # Skip empty lines (especially after stripping comments)
-            if line == "":
-                continue
-            tokens = shlex.split(line)
-            if len(tokens) != 4:
-                raise ValueError(_(
-                    "line {!r} is broken, expected four tokens"
-                ).format(line))
-            if tokens[0] != "apply" or tokens[2] != "to":
-                raise ValueError(_(
-                    "line {!r} is broken, expected <apply> ... <to> ..."
-                ).format(line))
-            category_id = self.qualify_id(tokens[1])
-            regexp_pattern = r"^{}$".format(self.qualify_id(tokens[3]))
-            # Accumulate patterns into the list
-            override_list.append((lineno_offset, category_id, regexp_pattern))
-        return override_list
+        from plainbox.impl.xparsers import Error
+        from plainbox.impl.xparsers import FieldOverride
+        from plainbox.impl.xparsers import OverrideFieldList
+        from plainbox.impl.xparsers import Visitor
+
+        outer_self = self
+
+        class OverrideListVisitor(Visitor):
+
+            def __init__(self):
+                self.override_list = []
+
+            def visit_FieldOverride_node(self, node: FieldOverride):
+                category_id = outer_self.qualify_id(node.value.text)
+                regexp_pattern = r"^{}$".format(
+                    outer_self.qualify_id(node.pattern.text))
+                self.override_list.append(
+                    (node.lineno, category_id, regexp_pattern))
+
+            def visit_Error_node(self, node: Error):
+                raise ValueError(node.msg)
+
+        visitor = OverrideListVisitor()
+        visitor.visit(OverrideFieldList.parse(text, 0, 0))
+        return visitor.override_list
 
     def get_effective_category_map(self, job_list):
         """

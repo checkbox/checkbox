@@ -302,3 +302,8 @@ class TestTestPlan(TestCase):
             unit.parse_category_overrides(
                 'apply "first::wireless" to "second::wireless/.*"'),
             [(0, "first::wireless", "^second::wireless/.*$")])
+
+    def test_parse_category_overrides__errors(self):
+        unit = TestPlanUnit({}, provider=self.provider)
+        with self.assertRaisesRegex(ValueError, "expected override value"):
+            unit.parse_category_overrides('apply')
