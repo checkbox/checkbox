@@ -79,7 +79,8 @@ def main():
         "_comment": "file generated automatically with {0}"
                     .format(parser.prog),
         "revision": get_revision_string(),
-        "testplan": args.testplan
+        "testplan": args.testplan,
+        "providersDir": "providers"
     }
     settings_file = open('settings.json', 'w')
     settings_file.write(json.dumps(settings, sort_keys=True, indent=4))
