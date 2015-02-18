@@ -57,24 +57,41 @@ MainView {
     property var appSettings: {
         "applicationName" : applicationName,
         "revision": "unknown revision",
-        "testplan": ""
+        "testplan": "",
+        "providersDir": "providers"
+    }
+
+    Arguments {
+        id: args
+        Argument {
+            name: "autopilot"
+            help: i18n.tr("Run Checkbox-Touch in autopilot-testing mode")
+            required: false
+        }
     }
 
     Component.onCompleted: {
-        var xhr = new XMLHttpRequest;
-        xhr.open("GET", "settings.json");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                try {
-                    appSettings = JSON.parse(xhr.responseText);
-                } catch (x) {
-                    // if we cannot parse settings.json, we should leave
-                    // deafult values of appSettings
-                    console.log("Could not parse settings.json. Using default values")
+        if (args.values["autopilot"]) {
+            // autopilot-testing mode
+            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot"
+            appSettings["providersDir"] = "tests/autopilot/autopilot-provider"
+        } else {
+            // normal execution - load settings.json file
+            var xhr = new XMLHttpRequest;
+            xhr.open("GET", "settings.json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    try {
+                        appSettings = JSON.parse(xhr.responseText);
+                    } catch (x) {
+                        // if we cannot parse settings.json, we should leave
+                        // deafult values of appSettings
+                        console.log("Could not parse settings.json. Using default values")
+                    }
                 }
             }
+            xhr.send();
         }
-        xhr.send();
     }
 
 
