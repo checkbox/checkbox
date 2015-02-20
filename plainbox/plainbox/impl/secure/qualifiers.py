@@ -35,6 +35,7 @@ import re
 
 from plainbox.abc import IJobQualifier
 from plainbox.i18n import gettext as _
+from plainbox.impl import pod
 from plainbox.impl.secure.origin import FileTextSource
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.origin import UnknownTextSource
@@ -369,21 +370,20 @@ class FieldQualifier(SimpleQualifier):
             self._inclusive)
 
 
-class CompositeQualifier(IJobQualifier):
+class CompositeQualifier(pod.POD):
     """
     A JobQualifier that has qualifies jobs matching any inclusive qualifiers
     while not matching all of the exclusive qualifiers
     """
 
-    def __init__(self, qualifier_list):
-        self.qualifier_list = qualifier_list
+    qualifier_list = pod.Field("qualifier_list", list, pod.MANDATORY)
 
     @property
     def is_primitive(self):
         return False
 
     def designates(self, job):
-        return self.get_vote(job) == self.VOTE_INCLUDE
+        return self.get_vote(job) == IJobQualifier.VOTE_INCLUDE
 
     def get_vote(self, job):
         """
@@ -405,7 +405,7 @@ class CompositeQualifier(IJobQualifier):
                 qualifier.get_vote(job)
                 for qualifier in self.qualifier_list])
         else:
-            return self.VOTE_IGNORE
+            return IJobQualifier.VOTE_IGNORE
 
     def get_primitive_qualifiers(self):
         return get_flat_primitive_qualifier_list(self.qualifier_list)
@@ -413,6 +413,9 @@ class CompositeQualifier(IJobQualifier):
     @property
     def origin(self):
         raise NonPrimitiveQualifierOrigin
+
+
+IJobQualifier.register(CompositeQualifier)
 
 
 class NonPrimitiveQualifierOrigin(Exception):

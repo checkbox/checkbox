@@ -20,12 +20,10 @@
 :mod:`plainbox.impl.unit.job` -- job unit
 =========================================
 """
-
+import collections
 import logging
 import operator
 import re
-import sre_constants
-import sre_parse
 
 from plainbox.i18n import gettext as _
 from plainbox.impl.secure.qualifiers import CompositeQualifier
@@ -35,7 +33,6 @@ from plainbox.impl.secure.qualifiers import PatternMatcher
 from plainbox.impl.symbol import SymbolDef
 from plainbox.impl.unit._legacy import TestPlanUnitLegacyAPI
 from plainbox.impl.unit.unit_with_id import UnitWithId
-from plainbox.impl.unit.validators import compute_value_map
 from plainbox.impl.unit.validators import CorrectFieldValueValidator
 from plainbox.impl.unit.validators import FieldValidatorBase
 from plainbox.impl.unit.validators import PresentFieldValidator
@@ -43,8 +40,16 @@ from plainbox.impl.unit.validators import TemplateInvariantFieldValidator
 from plainbox.impl.unit.validators import TemplateVariantFieldValidator
 from plainbox.impl.unit.validators import TranslatableFieldValidator
 from plainbox.impl.unit.validators import UntranslatableFieldValidator
+from plainbox.impl.unit.validators import compute_value_map
 from plainbox.impl.validation import Problem
 from plainbox.impl.validation import Severity
+from plainbox.impl.xparsers import FieldOverride
+from plainbox.impl.xparsers import IncludeStmt
+from plainbox.impl.xparsers import IncludeStmtList
+from plainbox.impl.xparsers import OverrideFieldList
+from plainbox.impl.xparsers import ReFixed
+from plainbox.impl.xparsers import RePattern
+from plainbox.impl.xparsers import Visitor
 
 
 logger = logging.getLogger("plainbox.unit.testplan")
@@ -158,6 +163,10 @@ class TestPlanUnit(UnitWithId, TestPlanUnitLegacyAPI):
         return self.get_record_value('category-overrides')
 
     @property
+    def certification_status_overrides(self):
+        return self.get_record_value('certification-status-overrides')
+
+    @property
     def estimated_duration(self):
         """
         estimated duration of this test plan in seconds.
@@ -234,56 +243,56 @@ class TestPlanUnit(UnitWithId, TestPlanUnitLegacyAPI):
             expressions. The matcher uses the operator.eq operator (equality)
             and stores the expected job identifier as the right-hand-side value
         """
-        for lineno_offset, line in enumerate(text.splitlines()):
-            # Strip shell-style comments if there are any
-            try:
-                index = line.index("#")
-            except ValueError:
-                pass
-            else:
-                line = line[:index]
-            # Strip whitespace
-            line = line.strip()
-            # Skip empty lines (especially after stripping comments)
-            if line == "":
-                continue
-            # TODO: add a way to define custom fields
-            # with a syntax like: FIELD: PATTERN
-            # eg: category_id: 2013\.com\.canonical\.plainbox::audio
-            field = 'id'
-            value = line
-            try:
-                re_ast = sre_parse.parse(value)
-            except sre_constants.error as exc:
-                error = exc
-                matcher = None
-            else:
-                error = None
-                # check if the AST of this regular expression is composed
-                # of just a flat list of 'literal' nodes. In other words,
-                # check if it is a simple string match in disguise
-                if all(t == 'literal' for t, rest in re_ast):
-                    target_id = self.qualify_id(value)
+        from plainbox.impl.xparsers import Error
+        from plainbox.impl.xparsers import ReErr, ReFixed, RePattern
+        from plainbox.impl.xparsers import IncludeStmt
+        from plainbox.impl.xparsers import IncludeStmtList
+        from plainbox.impl.xparsers import Visitor
+
+        outer_self = self
+
+        class IncludeStmtVisitor(Visitor):
+
+            def __init__(self):
+                self.results = []  # (lineno_offset, field, matcher, error)
+
+            def visit_IncludeStmt_node(self, node: IncludeStmt):
+                if isinstance(node.pattern, ReErr):
+                    matcher = None
+                    error = node.pattern.exc
+                elif isinstance(node.pattern, ReFixed):
+                    target_id = outer_self.qualify_id(node.pattern.text)
                     matcher = OperatorMatcher(operator.eq, target_id)
-                else:
+                    error = None
+                elif isinstance(node.pattern, RePattern):
+                    text = node.pattern.text
                     # Ensure that pattern is surrounded by ^ and $
-                    if value.startswith('^') and value.endswith('$'):
+                    if text.startswith('^') and text.endswith('$'):
                         target_id_pattern = '^{}$'.format(
-                            self.qualify_id(value[1:-1]))
-                    elif value.startswith('^'):
+                            outer_self.qualify_id(text[1:-1]))
+                    elif text.startswith('^'):
                         target_id_pattern = '^{}$'.format(
-                            self.qualify_id(value[1:]))
-                    elif value.endswith('$'):
+                            outer_self.qualify_id(text[1:]))
+                    elif text.endswith('$'):
                         target_id_pattern = '^{}$'.format(
-                            self.qualify_id(value[:-1]))
+                            outer_self.qualify_id(text[:-1]))
                     else:
                         target_id_pattern = '^{}$'.format(
-                            self.qualify_id(value))
-                    # NOTE: this cannot fail as we have parsed the expression
-                    # already and our transformations above should *not* harm
-                    # it in any way.
+                            outer_self.qualify_id(text))
                     matcher = PatternMatcher(target_id_pattern)
-            yield (lineno_offset, field, matcher, error)
+                    error = None
+                result = (node.lineno, 'id', matcher, error)
+                self.results.append(result)
+
+            def visit_Error_node(self, node: Error):
+                # we're just faking an exception object here
+                error = ValueError(node.msg)
+                result = (node.lineno, 'id', None, error)
+                self.results.append(result)
+
+        visitor = IncludeStmtVisitor()
+        visitor.visit(IncludeStmtList.parse(text, 0, 0))
+        return visitor.results
 
     def parse_category_overrides(self, text):
         """
@@ -363,6 +372,17 @@ class TestPlanUnit(UnitWithId, TestPlanUnitLegacyAPI):
                     return category_id
         return job.category_id
 
+    def qualify_pattern(self, pattern):
+        """ qualify bare pattern (without ^ and $) """
+        if pattern.startswith('^') and pattern.endswith('$'):
+            return '^{}$'.format(self.qualify_id(pattern[1:-1]))
+        elif pattern.startswith('^'):
+            return '^{}$'.format(self.qualify_id(pattern[1:]))
+        elif pattern.endswith('$'):
+            return '^{}$'.format(self.qualify_id(pattern[:-1]))
+        else:
+            return '^{}$'.format(self.qualify_id(pattern))
+
     class Meta:
 
         name = 'test plan'
@@ -434,3 +454,236 @@ class TestPlanUnit(UnitWithId, TestPlanUnitLegacyAPI):
                 # referring to categories correctly
             ],
         }
+
+
+class TestPlanUnitSupport:
+    """
+    Helper class that distills test plan data into more usable form
+
+    This class serves to offload some of the code from :class:`TestPlanUnit`
+    branch. It takes a single test plan unit and extracts all the interesting
+    information out of it. Subsequently it exposes that data so that some
+    methods on the test plan unit class itself can be implemented in an easier
+    way.
+
+    The key data to handle are obviously the ``include`` and ``exclude``
+    fields. Those are used to come up with a qualifier object suitable for
+    selecting jobs.
+
+    The second key piece of data is obtained from the ``include`` field and
+    from the ``category-overrides`` and ``certification-status-overrides``
+    fields. From those fields we come up with a data structure that can be
+    applied to a list of jobs to compute their override values.
+
+    Some examples of how that works, given this test plan:
+        >>> testplan = TestPlanUnit({
+        ...     'include': '''
+        ...         job-a certification-status=blocker, category-id=example
+        ...         job-b certification-status=non-blocker
+        ...         job-c
+        ...     ''',
+        ...     'exclude': '''
+        ...         job-[x-z]
+        ...     ''',
+        ...     'category-overrides': '''
+        ...         apply other-example to job-[bc]
+        ...     ''',
+        ...     'certification-status-overrides': '''
+        ...         apply not-part-of-certification to job-c
+        ...     ''',
+        ...     })
+        >>> support = TestPlanUnitSupport(testplan)
+
+    We can look at the override list:
+
+        >>> support.override_list
+        ... # doctest: +NORMALIZE_WHITESPACE
+        [('^job-[bc]$', [('category_id', 'other-example')]),
+         ('^job-a$', [('certification_status', 'blocker'),
+                      ('category_id', 'example')]),
+         ('^job-b$', [('certification_status', 'non-blocker')]),
+         ('^job-c$', [('certification_status', 'not-part-of-certification')])]
+
+    And the qualifiers:
+
+        >>> support.qualifier  # doctest: +NORMALIZE_WHITESPACE
+        CompositeQualifier(qualifier_list=[FieldQualifier('id', OperatorMatcher(<built-in function eq>, 'job-a'), inclusive=True),
+                                           FieldQualifier('id', OperatorMatcher(<built-in function eq>, 'job-b'), inclusive=True),
+                                           FieldQualifier('id', OperatorMatcher(<built-in function eq>, 'job-c'), inclusive=True),
+                                           FieldQualifier('id', PatternMatcher('^job-[x-z]$'), inclusive=False)])
+    """
+
+    def __init__(self, testplan):
+        self.override_list = self._get_override_list(testplan)
+        self.qualifier = self._get_qualifier(testplan)
+
+    def _get_qualifier(self, testplan):
+        qual_list = []
+        qual_list.extend(
+            self._get_qualifier_for(testplan, 'include', True))
+        qual_list.extend(
+            self._get_qualifier_for(testplan, 'exclude', False))
+        return CompositeQualifier(qual_list)
+
+    def _get_qualifier_for(self, testplan, field_name, inclusive):
+        field_value = getattr(testplan, field_name)
+        if field_value is None:
+            return []
+        field_origin = testplan.origin.just_line().with_offset(
+            testplan.field_offset_map[field_name])
+        matchers_gen = self._get_matchers(testplan, field_value)
+        results = []
+        for lineno_offset, matcher_field, matcher in matchers_gen:
+            offset = field_origin.with_offset(lineno_offset)
+            results.append(
+                FieldQualifier(matcher_field, matcher, offset, inclusive))
+        return results
+
+    def _get_matchers(self, testplan, text):
+        """
+        Parse the specified text and create a list of matchers
+
+        :param text:
+            string of text, including newlines and comments, to parse
+        :returns:
+            A generator returning quads (lineno_offset, field, matcher, error)
+            where ``lineno_offset`` is the offset of a line number from the
+            start of the text, ``field`` is the name of the field in a job
+            definition unit that the matcher should be applied,
+            ``matcher`` can be None (then ``error`` is relevant) or one of
+            the ``IMatcher`` subclasses discussed below.
+
+        Supported matcher objects include:
+
+        PatternMatcher:
+            This matcher is created for lines of text that **are** regular
+            expressions. The pattern is automatically expanded to include
+            ^...$ (if missing) so that it cannot silently match a portion of
+            a job definition
+
+        OperatorMatcher:
+            This matcher is created for lines of text that **are not** regular
+            expressions. The matcher uses the operator.eq operator (equality)
+            and stores the expected job identifier as the right-hand-side value
+        """
+        results = []
+
+        class V(Visitor):
+
+            def visit_IncludeStmt_node(self, node: IncludeStmt):
+                if isinstance(node.pattern, ReFixed):
+                    target_id = testplan.qualify_id(node.pattern.text)
+                    matcher = OperatorMatcher(operator.eq, target_id)
+                elif isinstance(node.pattern, RePattern):
+                    pattern = testplan.qualify_pattern(node.pattern.text)
+                    matcher = PatternMatcher(pattern)
+                result = (node.lineno, 'id', matcher)
+                results.append(result)
+
+        V().visit(IncludeStmtList.parse(text, 0))
+        return results
+
+    def _get_override_list(
+        self, testplan: TestPlanUnit
+    ) -> "List[Tuple[str, List[Tuple[str, str]]]]":
+        """
+        Look at a test plan and compute the full (overall) override list.  The
+        list contains information about each job selection pattern (fully
+        qualified pattern) to a list of pairs ``(field, value)`` that ought to
+        be applied to a :class:`JobState` object.
+
+        The code below ensures that each ``field`` is an existing attribute of
+        the job state object.
+
+        .. note::
+            The code below in *not* resilient to errors so make sure to
+            validate the unit before starting with the helper.
+        """
+        override_map = collections.defaultdict(list)
+        # ^^ Dict[str, Tuple[str, str]]
+        for pattern, field_value_list in self._get_inline_overrides(testplan):
+            override_map[pattern].extend(field_value_list)
+        for pattern, field, value in self._get_category_overrides(testplan):
+            override_map[pattern].append((field, value))
+        for pattern, field, value in self._get_blocker_status_overrides(
+                testplan):
+            override_map[pattern].append((field, value))
+        return sorted((key, field_value_list)
+                      for key, field_value_list in override_map.items())
+
+    def _get_category_overrides(
+            self, testplan: TestPlanUnit
+    ) -> "List[Tuple[str, str, str]]]":
+        """
+        Look at the category overrides and collect refined data about what
+        overrides to apply. The result is represented as a list of tuples
+        ``(pattern, field, value)`` where ``pattern`` is the string that
+        describes the pattern, ``field`` is the field to which an override must
+        be applied (but without the ``effective_`` prefix) and ``value`` is the
+        overridden value.
+        """
+        override_list = []
+
+        class V(Visitor):
+
+            def visit_FieldOverride_node(self, node: FieldOverride):
+                category_id = testplan.qualify_id(node.value.text)
+                pattern = r"^{}$".format(
+                    testplan.qualify_id(node.pattern.text))
+                override_list.append((pattern, 'category_id', category_id))
+
+        V().visit(OverrideFieldList.parse(testplan.category_overrides))
+        return override_list
+
+    def _get_blocker_status_overrides(
+            self, testplan: TestPlanUnit
+    ) -> "List[Tuple[str, str, str]]]":
+        """
+        Look at the certification blocker status overrides and collect refined
+        data about what overrides to apply. The result is represented as a list
+        of tuples ``(pattern, field, value)`` where ``pattern`` is the string
+        that describes the pattern, ``field`` is the field to which an override
+        must be applied (but without the ``effective_`` prefix) and ``value``
+        is the overridden value.
+        """
+        override_list = []
+
+        class V(Visitor):
+
+            def visit_FieldOverride_node(self, node: FieldOverride):
+                blocker_status = node.value.text
+                pattern = r"^{}$".format(
+                    testplan.qualify_id(node.pattern.text))
+                override_list.append(
+                    (pattern, 'certification_status', blocker_status))
+
+        V().visit(OverrideFieldList.parse(
+            testplan.certification_status_overrides))
+        return override_list
+
+    def _get_inline_overrides(
+            self, testplan: TestPlanUnit
+    ) -> "List[Tuple[str, List[Tuple[str, str]]]]":
+        """
+        Look at the include field of a test plan and collect all of the in-line
+        overrides. For an include statement that has any overrides they are
+        collected into a list of tuples ``(field, value)`` and this list is
+        subsequently packed into a tuple ``(pattern, field_value_list)``.
+        """
+        override_list = []
+
+        class V(Visitor):
+
+            def visit_IncludeStmt_node(self, node: IncludeStmt):
+                if not node.overrides:
+                    return
+                pattern = r"^{}$".format(
+                    testplan.qualify_id(node.pattern.text))
+                field_value_list = [
+                    (override_exp.field.text.replace('-', '_'),
+                     override_exp.value.text)
+                    for override_exp in node.overrides]
+                override_list.append((pattern, field_value_list))
+
+        V().visit(IncludeStmtList.parse(testplan.include))
+        return override_list
