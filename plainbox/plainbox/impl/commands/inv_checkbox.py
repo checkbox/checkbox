@@ -123,9 +123,9 @@ class CheckBoxInvocationMixIn:
                 for unit in provider.id_map[ns.test_plan]:
                     if unit.Meta.name == 'test plan':
                         qualifier_list.append(unit.get_qualifier())
-                        break
-            else:
-                logger.error(_("There is no test plan: %s"), ns.test_plan)
+        if not qualifier_list:
+            logger.error(_("There is no test plan: %s"), ns.test_plan)
+
         # Add whitelists
         for whitelist_file in ns.whitelist:
             qualifier = self.get_whitelist_from_file(
