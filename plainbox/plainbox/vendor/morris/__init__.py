@@ -525,12 +525,6 @@ class signal(object):
             instance.__signals__[self._name] = signal
         return instance.__signals__[self._name]
 
-    def __set__(self, instance, value):
-        raise AttributeError("You cannot overwrite signals")
-
-    def __delete__(self, instance):
-        raise AttributeError("You cannot delete signals")
-
     @property
     def name(self):
         """
