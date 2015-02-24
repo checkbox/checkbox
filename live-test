@@ -1,0 +1,3 @@
+#!/bin/sh
+. venv.$(hostname)/bin/activate
+find -name '*.py' | entr -r -c ./setup.py test --quiet
