@@ -686,13 +686,10 @@ class RunInvocation(CheckBoxInvocationMixIn):
         if self.ns.test_plan is not None:
             # TODO: add high-level unit lookup functions
             for provider in self.provider_list:
-                try:
-                    unit = provider.id_map[self.ns.test_plan]
-                except KeyError:
-                    continue
-                if unit.Meta.name == 'test plan':
-                    self.manager.test_plans = (unit,)
-                    break
+                for unit in provider.id_map.get(self.ns.test_plan, ()):
+                    if unit.Meta.name == 'test plan':
+                        self.manager.test_plans = (unit,)
+                        break
 
     def maybe_warm_up_authentication(self):
         """
