@@ -1550,6 +1550,7 @@ QString GuiEngine::GuiExportSessionAsXML(void)
     qDebug("GuiEngine::GuiExportSessionAsXML");
     QString output_format = "xml";
     QStringList options;    // No options
+    options << QString("with-certification-status");
     return ExportSession(m_session,output_format,options);
 }
 
@@ -1558,6 +1559,7 @@ QString GuiEngine::GuiExportSessionAsHTML(void)
     qDebug("GuiEngine::GuiExportSessionAsHTML");
     QString output_format = "html";
     QStringList options;    // No options
+    options << QString("with-certification-status");
     return ExportSession(m_session,output_format,options);
 }
 
