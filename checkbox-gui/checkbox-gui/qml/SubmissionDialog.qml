@@ -136,7 +136,7 @@ Dialog {
         text: i18n.tr("Save Report")
         color: UbuntuColors.lightAubergine
         onClicked: {
-            var option_list = new Array("client-name=" + client_name);
+            var option_list = new Array("client-name=" + client_name, "with-certification-status");
             var success = false;
             if (reportTypeSelect.selectedIndex == 0) {
                 var path = guiEngine.GetSaveFileName('submission.xml',
@@ -163,7 +163,7 @@ Dialog {
         onClicked: {
             onClicked:{
                 var mysavepath = '/tmp/report.html';
-                var option_list = new Array("client-name=" + client_name);
+                var option_list = new Array("client-name=" + client_name, "with-certification-status");
                 runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath,
                                                                                       option_list);
                 Qt.openUrlExternally(mysavepath);
