@@ -358,12 +358,12 @@ QMap<QDBusObjectPath,QString> GuiEngine::GetWhiteListPathsAndNames(void)
         if (introspect_iface.isValid()) {
             QDBusReply<QVariant> reply  = introspect_iface.call("Get", \
                        "com.canonical.certification.PlainBox.WhiteList1", \
-                       "name");
+                       "partial_id");
             QVariant var(reply);
-            QString name(var.toString());
-            qDebug() << name;
+            QString partial_id(var.toString());
+            qDebug() << partial_id;
             // Only show the user whitelists with the desired prefix.
-            paths_and_names.insert(child->object_path,name);
+            paths_and_names.insert(child->object_path, partial_id);
             // First time round, fill in our whitelist member
             if (!initialised) {
                 whitelist.insert(child->object_path, false);
