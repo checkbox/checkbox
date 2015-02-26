@@ -58,6 +58,7 @@ from collections import OrderedDict
 from collections import namedtuple
 from functools import total_ordering
 from logging import getLogger
+from textwrap import dedent
 
 from plainbox.i18n import gettext as _
 from plainbox.vendor.morris import signal
@@ -140,6 +141,10 @@ class Field:
         If True, a on_{name}_changed
         A flag controlling if notification events are sent for each
         modification of POD data through field.
+    :attr notify_fn:
+        An (optional) function to use as the first responder to the change
+        notification signal. This field is only used if the ``notify``
+        attribute is set to ``True``.
     :attr assign_filter_list:
         An (optional) list of assignment filter functions.
 
@@ -161,6 +166,13 @@ class Field:
     newly-assigned value compares *unequal* to the value currently stored in
     the POD.
 
+    The ``notify_fn`` is an optional function that is used instead of the
+    default (internal) :meth:`on_changed()` method of the Field class itself.
+    If specified it must have the same three-argument signature. It will be
+    called whenever the value of the field changes. Note that it will also be
+    called on the initial assignment, when the ``old`` argumement it receives
+    will be set to the special ``UNSET`` object.
+
     Lastly a docstring and type hint can be provided for documentation. The
     type check is not enforced.
 
@@ -179,12 +191,13 @@ class Field:
     """
 
     def __init__(self, doc=None, type=None, initial=None, initial_fn=None,
-                 notify=False, assign_filter_list=None):
-        self.__doc__ = doc
+                 notify=False, notify_fn=None, assign_filter_list=None):
+        self.__doc__ = dedent(doc) if doc is not None else None
         self.type = type
         self.initial = initial
         self.initial_fn = initial_fn
         self.notify = notify
+        self.notify_fn = notify_fn
         self.assign_filter_list = assign_filter_list
         self.name = None  # Set via :meth:`gain_name()`
         self.instance_attr = None  # ditto
@@ -239,7 +252,7 @@ class Field:
         assert self.signal_name is not None
         if not hasattr(cls, self.signal_name):
             signal_def = signal(
-                self.on_changed,
+                self.notify_fn if self.notify_fn is not None else self.on_changed,
                 signal_name='{}.{}'.format(cls.__name__, self.signal_name))
             setattr(cls, self.signal_name, signal_def)
 
@@ -701,3 +714,32 @@ class sequence_type_check_assign_filter:
 
 
 typed.sequence = sequence_type_check_assign_filter
+
+
+@modify_field_docstring("unique elements (sequence elements cannot repeat)")
+def unique_elements_assign_filter(
+        instance: POD, field: Field, old: "Any", new: "Any") -> "Any":
+    """
+    An assign filter that ensures a sequence has non-repeating items.
+
+    :param instance:
+        A subclass of :class:`POD` that contains ``field``
+    :param field:
+        The :class:`Field` being assigned to
+    :param old:
+        The current value of the field
+    :param new:
+        The proposed value of the field
+    :returns:
+        ``new``, as-is
+    :raises ValueError:
+        if ``new`` contains any duplicates
+    """
+    seen = set()
+    for item in new:
+        if new in seen:
+            raise ValueError("Duplicate element: {!r}".format(item))
+        seen.add(item)
+    return new
+
+unique = unique_elements_assign_filter
