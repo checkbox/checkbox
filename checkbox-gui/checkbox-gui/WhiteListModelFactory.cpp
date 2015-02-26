@@ -58,10 +58,22 @@ ListModel* WhiteListModelFactory::CreateWhiteListModel(ListModel *model, const Q
     while(iter != paths_and_names.end() ) {
         if (rx.exactMatch(iter.value())) {
             qDebug() << iter.key().path();
-            qDebug() << " Name: " << iter.value();
-            model->appendRow(new WhiteListItem(iter.value(), \
-                                               iter.key().path(), \
-                                               model));
+            // Connect to the introspectable interface
+            QDBusInterface introspect_iface(PBBusName, \
+                                 iter.key().path(), \
+                                 "org.freedesktop.DBus.Properties", \
+                                 QDBusConnection::sessionBus());
+            if (introspect_iface.isValid()) {
+                QDBusReply<QVariant> reply  = introspect_iface.call("Get", \
+                           "com.canonical.certification.PlainBox.WhiteList1", \
+                           "name");
+                QVariant var(reply);
+                QString name(var.toString());
+                qDebug() << " Name: " << name;
+                model->appendRow(new WhiteListItem(name, \
+                                                   iter.key().path(), \
+                                                   model));
+            }
         }
         iter++;
     }

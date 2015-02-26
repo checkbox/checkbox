@@ -420,9 +420,7 @@ class TestPlanWrapper(PlainBoxObjectWrapper):
     # Some internal helpers
 
     def _get_preferred_object_path(self):
-        # TODO: this clashes with providers, maybe use a random ID instead
-        return "/plainbox/whitelist/{}".format(
-            mangle_object_path(self.native.name))
+        return "/plainbox/whitelist/{}".format(self.native.checksum)
 
     # Value added
 
@@ -432,6 +430,13 @@ class TestPlanWrapper(PlainBoxObjectWrapper):
         name of this testplan
         """
         return self.native.name or ""
+
+    @dbus.service.property(dbus_interface=WHITELIST_IFACE, signature="s")
+    def partial_id(self):
+        """
+        partial_id of this testplan
+        """
+        return self.native.partial_id or ""
 
 
 class JobResultWrapper(PlainBoxObjectWrapper):
