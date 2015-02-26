@@ -69,11 +69,11 @@ ListModel* WhiteListModelFactory::CreateWhiteListModel(ListModel *model, const Q
                            "name");
                 QVariant var(reply);
                 QString name(var.toString());
+                qDebug() << " Name: " << name;
+                model->appendRow(new WhiteListItem(name, \
+                                                   iter.key().path(), \
+                                                   model));
             }
-            qDebug() << " Name: " << iter.value();
-            model->appendRow(new WhiteListItem(iter.value(), \
-                                               iter.key().path(), \
-                                               model));
         }
         iter++;
     }
