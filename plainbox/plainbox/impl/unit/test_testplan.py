@@ -23,8 +23,9 @@ plainbox.impl.unit.test_testplan
 Test definitions for plainbox.impl.unit.testplan module
 """
 
-import operator
 from unittest import TestCase
+import doctest
+import operator
 
 from plainbox.abc import IProvider1
 from plainbox.abc import ITextSource
@@ -34,6 +35,12 @@ from plainbox.impl.secure.qualifiers import PatternMatcher
 from plainbox.impl.unit.testplan import TestPlanUnit
 from plainbox.vendor import mock
 
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(
+        doctest.DocTestSuite('plainbox.impl.unit.testplan',
+                             optionflags=doctest.REPORT_NDIFF))
+    return tests
 
 class TestTestPlan(TestCase):
 
@@ -302,3 +309,8 @@ class TestTestPlan(TestCase):
             unit.parse_category_overrides(
                 'apply "first::wireless" to "second::wireless/.*"'),
             [(0, "first::wireless", "^second::wireless/.*$")])
+
+    def test_parse_category_overrides__errors(self):
+        unit = TestPlanUnit({}, provider=self.provider)
+        with self.assertRaisesRegex(ValueError, "expected override value"):
+            unit.parse_category_overrides('apply')

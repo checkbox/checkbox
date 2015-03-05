@@ -1,13 +1,12 @@
 # This file is part of Checkbox.
 #
-# Copyright 2012, 2013 Canonical Ltd.
+# Copyright 2012-2015 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3,
 # as published by the Free Software Foundation.
-
 #
 # Checkbox is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,14 +15,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 plainbox.impl.test_session
 ==========================
 
 Test definitions for plainbox.impl.session module
 """
-
+from doctest import DocTestSuite
+from doctest import REPORT_NDIFF
 from unittest import TestCase
 
 from plainbox.abc import IExecutionController
@@ -45,6 +44,12 @@ from plainbox.impl.unit.job import JobDefinition
 from plainbox.impl.unit.unit import Unit
 from plainbox.vendor import mock
 from plainbox.vendor.morris import SignalTestCase
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(DocTestSuite(
+        'plainbox.impl.session.state', optionflags=REPORT_NDIFF))
+    return tests
 
 
 class SessionStateSmokeTests(TestCase):

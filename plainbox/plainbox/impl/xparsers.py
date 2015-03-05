@@ -57,12 +57,15 @@ expressions with optional comments. The root class is :class:`WhiteList` who's
 :class:`Comment` or a subclass of :class:`Re`.
 """
 import abc
+import itertools
 import re
 import sre_constants
 import sre_parse
 
+from plainbox.i18n import gettext as _
 from plainbox.impl import pod
 from plainbox.impl.censoREd import PatternProxy
+from plainbox.impl.xscanners import WordScanner
 
 __all__ = [
     'Comment',
@@ -111,6 +114,14 @@ class Node(pod.POD):
     col_offset = pod.Field(
         "Column offset (0-based)", int, 0,
         assign_filter_list=[pod.typed, not_negative, pod.const])
+
+    def __repr__(self):
+        return "{}({})".format(
+            self.__class__.__name__,
+            ', '.join([
+                '{}={!r}'.format(field.name, getattr(self, field.name))
+                for field in self.__class__.field_list
+                if field.name not in ('lineno', 'col_offset')]))
 
     def visit(self, visitor: 'Visitor'):
         """
@@ -208,16 +219,14 @@ class Re(Node):
         Examples:
 
         >>> Re.parse("text")
-        ReFixed(lineno=0, col_offset=0, text='text')
+        ReFixed(text='text')
 
-        >>> Re.parse("pa[tT]ern") # doctest: +NORMALIZE_WHITESPACE
-        RePattern(lineno=0, col_offset=0, text='pa[tT]ern',
-                  re=re.compile('pa[tT]ern'))
+        >>> Re.parse("pa[tT]ern")
+        RePattern(text='pa[tT]ern', re=re.compile('pa[tT]ern'))
 
         >>> from sre_constants import error
-        >>> Re.parse("+")  # doctest: +NORMALIZE_WHITESPACE
-        ReErr(lineno=0, col_offset=0, text='+',
-              exc=error('nothing to repeat',))
+        >>> Re.parse("+")
+        ReErr(text='+', exc=error('nothing to repeat',))
         """
         try:
             pyre_ast = sre_parse.parse(text)
@@ -305,14 +314,14 @@ class WhiteList(Node):
         Empty string is still a valid (though empty) whitelist
 
         >>> WhiteList.parse("")
-        WhiteList(lineno=1, col_offset=0, entries=[])
+        WhiteList(entries=[])
 
         White space is irrelevant and gets ignored if it's not of any
         semantic value. Since whitespace was never a part of the de-facto
         allowed pattern syntax one cannot create a job with " ".
 
         >>> WhiteList.parse("   ")
-        WhiteList(lineno=1, col_offset=0, entries=[])
+        WhiteList(entries=[])
 
         As soon as there's something interesting though, it starts to have
         meaning. Note that we differentiate the raw text ' a ' from the
@@ -320,31 +329,23 @@ class WhiteList(Node):
         when we parse the text this contextual, semantic information is not
         available and is not a part of the AST.
 
-        >>> WhiteList.parse(" data ") # doctest: +NORMALIZE_WHITESPACE
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[ReFixed(lineno=1, col_offset=0, text=' data ')])
+        >>> WhiteList.parse(" data ")
+        WhiteList(entries=[ReFixed(text=' data ')])
 
         Data gets separated into line-based records.  Any number of lines
         may exist in a single whitelist.
 
-        >>> WhiteList.parse("line") # doctest: +NORMALIZE_WHITESPACE
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[ReFixed(lineno=1, col_offset=0, text='line')])
+        >>> WhiteList.parse("line")
+        WhiteList(entries=[ReFixed(text='line')])
 
         >>> WhiteList.parse("line 1\\nline 2\\n")
-        ... # doctest: +NORMALIZE_WHITESPACE
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[ReFixed(lineno=1, col_offset=0, text='line 1'),
-                           ReFixed(lineno=2, col_offset=0, text='line 2')])
+        WhiteList(entries=[ReFixed(text='line 1'), ReFixed(text='line 2')])
 
         Empty lines are just ignored. You can re-create them by observing lack
         of continuity in the values of the ``lineno`` field.
 
         >>> WhiteList.parse("line 1\\n\\nline 3\\n")
-        ... # doctest: +NORMALIZE_WHITESPACE
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[ReFixed(lineno=1, col_offset=0, text='line 1'),
-                           ReFixed(lineno=3, col_offset=0, text='line 3')])
+        WhiteList(entries=[ReFixed(text='line 1'), ReFixed(text='line 3')])
 
         Data can be mixed with comments. Note that col_offset is finally
         non-zero here as the comments starts on the fourth character into the
@@ -352,27 +353,20 @@ class WhiteList(Node):
 
         >>> WhiteList.parse("foo # pick foo")
         ... # doctest: +NORMALIZE_WHITESPACE
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[ReFixed(lineno=1, col_offset=0, text='foo '),
-                           Comment(lineno=1, col_offset=4,
-                                   comment='# pick foo')])
+        WhiteList(entries=[ReFixed(text='foo '),
+                           Comment(comment='# pick foo')])
 
         Comments can also exist without any data:
 
         >>> WhiteList.parse("# this is a comment")
-        ... # doctest: +NORMALIZE_WHITESPACE, +ELLIPSIS
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[Comment(lineno=1, col_offset=0,
-                                   comment='# this ...')])
+        WhiteList(entries=[Comment(comment='# this is a comment')])
 
         Lastly, there are no *exceptions* at this stage, broken patterns are
         represented as such but no exceptions are ever raised:
 
         >>> WhiteList.parse("[]")
-        ... # doctest: +NORMALIZE_WHITESPACE, +ELLIPSIS
-        WhiteList(lineno=1, col_offset=0,
-                  entries=[ReErr(lineno=1, col_offset=0, text='[]',
-                                 exc=error('un...',))])
+        ... # doctest: +ELLIPSIS
+        WhiteList(entries=[ReErr(text='[]', exc=error('un...',))])
         """
         entries = []
         initial_lineno = lineno
@@ -393,3 +387,344 @@ class WhiteList(Node):
             if comment:
                 entries.append(Comment(lineno, col_offset + cindex, comment))
         return WhiteList(initial_lineno, col_offset, entries)
+
+
+class Error(Node):
+    """ node representing a syntax error """
+    msg = F("message", str)
+
+
+class Text(Node):
+    """ node representing a bit of text """
+    text = F("text", str)
+
+
+class FieldOverride(Node):
+    """ node representing a single override statement """
+
+    value = F("value to apply (override value)", Text)
+    pattern = F("pattern that selects things to override", Re)
+
+    @staticmethod
+    def parse(
+        text: str, lineno: int=1, col_offset: int=0
+    ) -> "Union[FieldOverride, Error]":
+        """
+        Parse a single test plan field override line
+
+        Using correct syntax will result in a FieldOverride node with
+        appropriate data in the ``value`` and ``pattern`` fields. Note that
+        ``pattern`` may be either a :class:`RePattern` or a :class:`ReFixed` or
+        :class:`ReErr` which is not a valid pattern and cannot be used.
+
+            >>> FieldOverride.parse("apply new-value to pattern")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            FieldOverride(value=Text(text='new-value'),
+                          pattern=ReFixed(text='pattern'))
+            >>> FieldOverride.parse("apply blocker to .*")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            FieldOverride(value=Text(text='blocker'),
+                          pattern=RePattern(text='.*', re=re.compile('.*')))
+
+        Using incorrect syntax will result in a single Error node being
+        returned. The message (``msg``) field contains useful information on
+        the cause of the problem, as depicted below:
+
+            >>> FieldOverride.parse("")
+            Error(msg="expected 'apply' near ''")
+            >>> FieldOverride.parse("apply")
+            Error(msg='expected override value')
+            >>> FieldOverride.parse("apply value")
+            Error(msg="expected 'to' near ''")
+            >>> FieldOverride.parse("apply value to")
+            Error(msg='expected override pattern')
+            >>> FieldOverride.parse("apply value to pattern junk")
+            Error(msg="unexpected garbage: 'junk'")
+
+        Lastly, shell-style comments are supported. They are discarded by the
+        scanner code though.
+
+            >>> FieldOverride.parse("apply value to pattern # comment")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            FieldOverride(value=Text(text='value'),
+                          pattern=ReFixed(text='pattern'))
+
+        """
+        # XXX  Until our home-grown scanner is ready col_offset values below
+        # are all dummy. This is not strictly critical but should be improved
+        # upon later.
+        scanner = WordScanner(text)
+        # 'APPLY' ...
+        token, lexeme = scanner.get_token()
+        if token != scanner.TokenEnum.WORD or lexeme != 'apply':
+            return Error(lineno, col_offset,
+                         _("expected {!a} near {!r}").format('apply', lexeme))
+        # 'APPLY' VALUE ...
+        token, lexeme = scanner.get_token()
+        if token != scanner.TokenEnum.WORD:
+            return Error(lineno, col_offset, _("expected override value"))
+        value = Text(lineno, col_offset, lexeme)
+        # 'APPLY' VALUE 'TO' ...
+        token, lexeme = scanner.get_token()
+        if token != scanner.TokenEnum.WORD or lexeme != 'to':
+            return Error(lineno, col_offset,
+                         _("expected {!a} near {!r}").format('to', lexeme))
+        # 'APPLY' VALUE 'TO' PATTERN...
+        token, lexeme = scanner.get_token()
+        if token != scanner.TokenEnum.WORD:
+            return Error(lineno, col_offset, _("expected override pattern"))
+        pattern = Re.parse(lexeme, lineno, col_offset)
+        # 'APPLY' VALUE 'TO' PATTERN <EOF>
+        token, lexeme = scanner.get_token()
+        if token != scanner.TokenEnum.EOF:
+            return Error(lineno, col_offset,
+                         _("unexpected garbage: {!r}").format(lexeme))
+        return FieldOverride(lineno, col_offset, value, pattern)
+
+
+class OverrideFieldList(Node):
+    """ node representing a whole plainbox field override list"""
+
+    entries = pod.Field("a list of comments and patterns", list,
+                        initial_fn=list, assign_filter_list=[
+                            pod.typed, pod.typed.sequence(Node), pod.const])
+
+    @staticmethod
+    def parse(
+        text: str, lineno: int=1, col_offset: int=0
+    ) -> "OverrideFieldList":
+        entries = []
+        initial_lineno = lineno
+        # NOTE: lineno is consciously shadowed below
+        for lineno, line in enumerate(text.splitlines(), lineno):
+            entries.append(FieldOverride.parse(line, lineno, col_offset))
+        return OverrideFieldList(initial_lineno, col_offset, entries)
+
+
+class OverrideExpression(Node):
+    """ node representing a single override statement """
+
+    field = F("field to override", Text)
+    value = F("value to apply", Text)
+
+
+class IncludeStmt(Node):
+    """ node representing a single include statement """
+
+    pattern = F("the pattern used for selecting jobs", Re)
+    overrides = pod.Field("list of overrides to apply", list, initial_fn=list,
+                          assign_filter_list=[
+                              pod.typed,
+                              pod.typed.sequence(OverrideExpression),
+                              pod.const])
+
+    @staticmethod
+    def parse(
+        text: str, lineno: int=1, col_offset: int=0
+    ) -> "Union[IncludeStmt, Error]":
+        """
+        Parse a single test plan include line
+
+        Using correct syntax will result in a IncludeStmt node with
+        appropriate data in the ``pattern`` and ``overrides`` fields. Note that
+        ``pattern`` may be either a :class:`RePattern` or a :class:`ReFixed` or
+        :class:`ReErr` which is not a valid pattern and cannot be used.
+        Overrides are a list of :class:`OverrideExpression`. The list may
+        contain incorrect, or duplicate values but that's up to higher-level
+        analysis to check for.
+
+        The whole overrides section is optional so a single pattern is a good
+        include statement:
+
+            >>> IncludeStmt.parse("usb.*")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            IncludeStmt(pattern=RePattern(text='usb.*',
+                                          re=re.compile('usb.*')),
+                        overrides=[])
+
+        Any number of key=value override pairs can be used using commas in
+        between each pair:
+
+            >>> IncludeStmt.parse("usb.* f1=o1")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            IncludeStmt(pattern=RePattern(text='usb.*',
+                                          re=re.compile('usb.*')),
+                        overrides=[OverrideExpression(field=Text(text='f1'),
+                                                      value=Text(text='o1'))])
+            >>> IncludeStmt.parse("usb.* f1=o1, f2=o2")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            IncludeStmt(pattern=RePattern(text='usb.*',
+                                          re=re.compile('usb.*')),
+                        overrides=[OverrideExpression(field=Text(text='f1'),
+                                                      value=Text(text='o1')),
+                                   OverrideExpression(field=Text(text='f2'),
+                                                      value=Text(text='o2'))])
+            >>> IncludeStmt.parse("usb.* f1=o1, f2=o2, f3=o3")
+            ... # doctest: +NORMALIZE_WHITESPACE
+            IncludeStmt(pattern=RePattern(text='usb.*',
+                                          re=re.compile('usb.*')),
+                        overrides=[OverrideExpression(field=Text(text='f1'),
+                                                      value=Text(text='o1')),
+                                   OverrideExpression(field=Text(text='f2'),
+                                                      value=Text(text='o2')),
+                                   OverrideExpression(field=Text(text='f3'),
+                                                      value=Text(text='o3'))])
+
+        Obviously some things can fail, the following examples show various
+        error states that are possible. In each state an Error node is returned
+        instead of the whole statement.
+
+            >>> IncludeStmt.parse("")
+            Error(msg='expected pattern')
+            >>> IncludeStmt.parse("pattern field")
+            Error(msg="expected '='")
+            >>> IncludeStmt.parse("pattern field=")
+            Error(msg='expected override value')
+            >>> IncludeStmt.parse("pattern field=override junk")
+            Error(msg="expected ','")
+            >>> IncludeStmt.parse("pattern field=override, ")
+            Error(msg='expected override field')
+        """
+        scanner = WordScanner(text)
+        # PATTERN ...
+        token, lexeme = scanner.get_token()
+        if token != scanner.TokenEnum.WORD:
+            return Error(lineno, col_offset, _("expected pattern"))
+        pattern = Re.parse(lexeme, lineno, col_offset)
+        overrides = []
+        for i in itertools.count():
+            # PATTERN FIELD ...
+            token, lexeme = scanner.get_token()
+            if token == scanner.TokenEnum.EOF and i == 0:
+                # The whole override section is optional so the sequence may
+                # end with EOF on the first iteration of the loop.
+                break
+            elif token != scanner.TokenEnum.WORD:
+                return Error(lineno, col_offset, _("expected override field"))
+            field = Text(lineno, col_offset, lexeme)
+            # PATTERN FIELD = ...
+            token, lexeme = scanner.get_token()
+            if token != scanner.TokenEnum.EQUALS:
+                return Error(lineno, col_offset, _("expected '='"))
+            # PATTERN FIELD = VALUE ...
+            token, lexeme = scanner.get_token()
+            if token != scanner.TokenEnum.WORD:
+                return Error(lineno, col_offset, _("expected override value"))
+            value = Text(lineno, col_offset, lexeme)
+            expr = OverrideExpression(lineno, col_offset, field, value)
+            overrides.append(expr)
+            # is there any more?
+            # PATTERN FIELD = VALUE , ...
+            token, lexeme = scanner.get_token()
+            if token == scanner.TokenEnum.COMMA:
+                # (and again)
+                continue
+            elif token == scanner.TokenEnum.EOF:
+                break
+            else:
+                return Error(lineno, col_offset, _("expected ','"))
+        return IncludeStmt(lineno, col_offset, pattern, overrides)
+
+
+class IncludeStmtList(Node):
+    """ node representing a list of include statements"""
+
+    entries = pod.Field("a list of include statements", list,
+                        initial_fn=list, assign_filter_list=[
+                            pod.typed, pod.typed.sequence(Node), pod.const])
+
+    @staticmethod
+    def parse(
+        text: str, lineno: int=1, col_offset: int=0
+    ) -> "IncludeStmtList":
+        """
+        Parse a multi-line ``include`` field.
+
+        This field is a simple list of :class:`IncludeStmt` with the added
+        twist that empty lines (including lines containing just irrelevant
+        white-space or comments) are silently ignored.
+
+
+        Example:
+            >>> IncludeStmtList.parse('''
+            ...                       foo
+            ...                       # comment
+            ...                       bar''')
+            ... # doctest: +NORMALIZE_WHITESPACE
+            IncludeStmtList(entries=[IncludeStmt(pattern=ReFixed(text='foo'),
+                                                 overrides=[]),
+                                     IncludeStmt(pattern=ReFixed(text='bar'),
+                                                 overrides=[])])
+        """
+        entries = []
+        initial_lineno = lineno
+        # NOTE: lineno is consciously shadowed below
+        for lineno, line in enumerate(text.splitlines(), lineno):
+            if WordScanner(line).get_token()[0] == WordScanner.TOKEN_EOF:
+                # XXX: hack to work around the fact that each line is scanned
+                # separately so there is no way to naturally progress to the
+                # next line yet.
+                continue
+            entries.append(IncludeStmt.parse(line, lineno, col_offset))
+        return IncludeStmtList(initial_lineno, col_offset, entries)
+
+
+class WordList(Node):
+    """ node representing a list of words"""
+
+    entries = pod.Field("a list of words", list, initial_fn=list,
+                        assign_filter_list=[pod.typed,
+                                            pod.typed.sequence(Node),
+                                            pod.const])
+
+    @staticmethod
+    def parse(
+        text: str, lineno: int=1, col_offset: int=0
+    ) -> "WordList":
+        """
+        Parse a list of words.
+
+        Words are naturally separated by whitespace. Words can be quoted using
+        double quotes. Words can be optionally separated with commas although
+        those are discarded and entirely optional.
+
+        Some basic examples:
+
+            >>> WordList.parse("foo, bar")
+            WordList(entries=[Text(text='foo'), Text(text='bar')])
+            >>> WordList.parse("foo,bar")
+            WordList(entries=[Text(text='foo'), Text(text='bar')])
+            >>> WordList.parse("foo,,,,bar")
+            WordList(entries=[Text(text='foo'), Text(text='bar')])
+            >>> WordList.parse("foo,,,,bar,,")
+            WordList(entries=[Text(text='foo'), Text(text='bar')])
+
+        Words can be quoted, this allows us to include all kinds of characters
+        inside:
+
+            >>> WordList.parse('"foo bar"')
+            WordList(entries=[Text(text='foo bar')])
+
+        One word of caution, since we use one (and not a very smart one at
+        that) scanner, the equals sign is recognized and rejected as incorrect
+        input.
+
+            >>> WordList.parse("=")
+            WordList(entries=[Error(msg="Unexpected input: '='")])
+
+        """
+        entries = []
+        scanner = WordScanner(text)
+        while True:
+            token, lexeme = scanner.get_token()
+            if token == scanner.TOKEN_EOF:
+                break
+            elif token == scanner.TokenEnum.COMMA:
+                continue
+            elif token == scanner.TokenEnum.WORD:
+                entries.append(Text(lineno, col_offset, lexeme))
+            else:
+                entries.append(
+                    Error(lineno, col_offset,
+                          "Unexpected input: {!r}".format(lexeme)))
+        return WordList(lineno, col_offset, entries)

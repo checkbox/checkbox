@@ -25,7 +25,6 @@ Test definitions for plainbox.impl.session.manager module
 """
 
 from unittest import expectedFailure
-from unittest import TestCase
 
 from plainbox.abc import IJobDefinition
 from plainbox.impl.session import SessionManager
@@ -113,7 +112,10 @@ class SessionManagerTests(SignalTestCase):
             resumed_state = mock.Mock(spec_set=SessionState)
             resumed_state.unit_list = unit_list
             helper_cls().resume.return_value = resumed_state
-            manager = SessionManager.load_session(unit_list, self.storage)
+            # NOTE: mock away _propagate_test_plans() so that we don't get
+            # unwanted side effects we're not testing here.
+            with mock.patch.object(SessionManager, '_propagate_test_plans'):
+                manager = SessionManager.load_session(unit_list, self.storage)
         # Ensure that the storage object was used to load the session snapshot
         self.storage.load_checkpoint.assert_called_with()
         # Ensure that the helper was instantiated with the unit list, flags and
@@ -136,6 +138,8 @@ class SessionManagerTests(SignalTestCase):
         verify that SessionManager.create() correctly sets up
         storage repository and creates session directories
         """
+        mocks['SessionStorage'].create.return_value = mock.MagicMock(
+            spec_set=SessionStorage)
         # Create the new manager
         manager = SessionManager.create()
         # Ensure that a default repository was created
@@ -164,6 +168,8 @@ class SessionManagerTests(SignalTestCase):
         verify that SessionManager.create_with_unit_list() correctly sets up
         storage repository and creates session directories
         """
+        mocks['SessionStorage'].create.return_value = mock.MagicMock(
+            spec_set=SessionStorage)
         # Mock unit list
         unit_list = mock.Mock(name='unit_list')
         # Create the new manager
@@ -191,12 +197,15 @@ class SessionManagerTests(SignalTestCase):
         SessionStorageRepository=mock.DEFAULT,
         SessionState=mock.DEFAULT,
         SessionStorage=mock.DEFAULT,
+        SessionDeviceContext=mock.DEFAULT,
         WellKnownDirsHelper=mock.DEFAULT)
     def test_create_with_state(self, **mocks):
         """
         verify that SessionManager.create_with_state() correctly sets up
         storage repository and creates session directories
         """
+        mocks['SessionStorage'].create.return_value = mock.MagicMock(
+            spec_set=SessionStorage)
         # Mock an empty list of units in teh session state object
         self.state.unit_list = []
         # Create the new manager
@@ -212,8 +221,12 @@ class SessionManagerTests(SignalTestCase):
         mocks['WellKnownDirsHelper'].assert_called_with(storage)
         helper = mocks['WellKnownDirsHelper']()
         helper.populate.assert_called_with()
+        # Ensure that the device context was created with the right state object
+        mocks['SessionDeviceContext'].assert_called_with(self.state)
         # Ensure that the resulting manager has correct data inside
-        self.assertEqual(manager.state, self.state)
+        self.assertEqual(
+            manager.device_context_list, [mocks['SessionDeviceContext']()])
+        # self.assertEqual(manager.state, self.state)
         self.assertEqual(manager.storage, storage)
 
     def test_add_device_context(self):

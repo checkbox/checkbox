@@ -420,9 +420,7 @@ class TestPlanWrapper(PlainBoxObjectWrapper):
     # Some internal helpers
 
     def _get_preferred_object_path(self):
-        # TODO: this clashes with providers, maybe use a random ID instead
-        return "/plainbox/whitelist/{}".format(
-            mangle_object_path(self.native.name))
+        return "/plainbox/whitelist/{}".format(self.native.checksum)
 
     # Value added
 
@@ -432,6 +430,13 @@ class TestPlanWrapper(PlainBoxObjectWrapper):
         name of this testplan
         """
         return self.native.name or ""
+
+    @dbus.service.property(dbus_interface=WHITELIST_IFACE, signature="s")
+    def partial_id(self):
+        """
+        partial_id of this testplan
+        """
+        return self.native.partial_id or ""
 
 
 class JobResultWrapper(PlainBoxObjectWrapper):
@@ -1311,7 +1316,19 @@ class ServiceWrapper(PlainBoxObjectWrapper):
             A list of jobs that were selected.
         """
         if len(self.native.session_list) > 0:
-            job_list = self.native.session_list[0].job_list
+            legacy_session = self.native.session_list[0]
+            job_list = legacy_session.job_list
+            # NOTE: this is a bit magic so an explanation is in order.
+            # Each time SelectJobs is called by checkbox-gui we use it
+            # as a hack to teach the SessionManager hidden inside
+            # the SessionStateLegacyAPICompatImpl object (which is just
+            # a legacy SessionState class implemented on top of the new
+            # API) about test plans that this application is using.
+            #
+            # This results in a low-cost way to have overrides working
+            # in checkbox-gui without touching the C++ side of it.
+            if legacy_session._manager is not None:
+                legacy_session._manager.test_plans = tuple(whitelist_list)
         else:
             job_list = list(itertools.chain(*[
                 p.job_list for p in self.native.provider_list]))

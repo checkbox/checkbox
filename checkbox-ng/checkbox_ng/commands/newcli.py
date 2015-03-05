@@ -30,27 +30,27 @@ from gettext import gettext as _
 from logging import getLogger
 from shutil import copyfileobj
 import io
-import json
 import operator
 import os
 import re
 import sys
 
-from plainbox.impl.applogic import get_whitelist_by_name
 from plainbox.impl.commands.inv_run import RunInvocation
 from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.exporter.html import HTMLSessionStateExporter
 from plainbox.impl.exporter.xml import XMLSessionStateExporter
 from plainbox.impl.secure.config import Unset, ValidationError
+from plainbox.impl.secure.origin import CommandLineTextSource
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.qualifiers import FieldQualifier
 from plainbox.impl.secure.qualifiers import OperatorMatcher
+from plainbox.impl.secure.qualifiers import RegExpJobQualifier
 from plainbox.impl.secure.qualifiers import select_jobs
-from plainbox.impl.secure.qualifiers import WhiteList
 from plainbox.impl.session import SessionMetaData
 from plainbox.impl.transport import get_all_transports
 from plainbox.impl.transport import TransportError
+from plainbox.impl.unit.testplan import TestPlanUnit
 from plainbox.vendor.textland import get_display
 
 from checkbox_ng.misc import SelectableJobTreeNode
@@ -72,8 +72,8 @@ class CliInvocation2(RunInvocation):
         launcher specific to 'checkbox cli'
     :ivar _display:
         A textland display object
-    :ivar _whitelists:
-        A list of whitelists to look at
+    :ivar _qualifier_list:
+        A list of job qualifiers used to build the session desired_job_list
     """
 
     def __init__(self, provider_loader, config_loader, ns, launcher,
@@ -83,8 +83,8 @@ class CliInvocation2(RunInvocation):
             display = get_display()
         self._launcher = launcher
         self._display = display
-        self._whitelists = []
-        self.select_whitelist()
+        self._qualifier_list = []
+        self.select_qualifier_list()
 
     @property
     def launcher(self):
@@ -100,15 +100,50 @@ class CliInvocation2(RunInvocation):
         """
         return self._display
 
-    def select_whitelist(self):
+    def select_qualifier_list(self):
+        # Add whitelists
         if 'whitelist' in self.ns and self.ns.whitelist:
-            for whitelist in self.ns.whitelist:
-                self._whitelists.append(WhiteList.from_file(whitelist.name))
-        elif self.config.whitelist is not Unset:
-            self._whitelists.append(WhiteList.from_file(self.config.whitelist))
-        elif ('include_pattern_list' in self.ns and
-              self.ns.include_pattern_list):
-            self._whitelists.append(WhiteList(self.ns.include_pattern_list))
+            for whitelist_file in self.ns.whitelist:
+                qualifier = self.get_whitelist_from_file(
+                    whitelist_file.name, whitelist_file)
+                if qualifier is not None:
+                    self._qualifier_list.append(qualifier)
+        # Add all the --include jobs
+        for pattern in self.ns.include_pattern_list:
+            origin = Origin(CommandLineTextSource('-i', pattern), None, None)
+            try:
+                qualifier = RegExpJobQualifier(
+                    '^{}$'.format(pattern), origin, inclusive=True)
+            except Exception as exc:
+                logger.warning(
+                    _("Incorrect pattern %r: %s"), pattern, exc)
+            else:
+                self._qualifier_list.append(qualifier)
+        # Add all the --exclude jobs
+        for pattern in self.ns.exclude_pattern_list:
+            origin = Origin(CommandLineTextSource('-x', pattern), None, None)
+            try:
+                qualifier = RegExpJobQualifier(
+                    '^{}$'.format(pattern), origin, inclusive=False)
+            except Exception as exc:
+                logger.warning(
+                    _("Incorrect pattern %r: %s"), pattern, exc)
+            else:
+                self._qualifier_list.append(qualifier)
+        if self.config.whitelist is not Unset:
+            self._qualifier_list.append(
+                self.get_whitelist_from_file(self.config.whitelist))
+
+    def select_testplan(self):
+        # Add the test plan
+        if self.ns.test_plan is not None:
+            for provider in self.provider_list:
+                for unit in provider.id_map[self.ns.test_plan]:
+                    if unit.Meta.name == 'test plan':
+                        self._qualifier_list.append(unit.get_qualifier())
+                        return
+            else:
+                logger.error(_("There is no test plan: %s"), self.ns.test_plan)
 
     def run(self):
         return self.do_normal_sequence()
@@ -142,8 +177,15 @@ class CliInvocation2(RunInvocation):
         if not resumed:
             # Show the welcome message
             self.show_welcome_screen()
+            # Process testplan command line options
+            self.select_testplan()
             # Maybe allow the user to do a manual whitelist selection
-            self.maybe_interactively_select_whitelists()
+            if not self._qualifier_list:
+                self.maybe_interactively_select_testplans()
+            testplans = [t for t in self._qualifier_list
+                         if isinstance(t, TestPlanUnit)]
+            if testplans:
+                self.manager.test_plans = tuple(testplans)
             # Store the application-identifying meta-data and checkpoint the
             # session.
             self.store_application_metadata()
@@ -151,11 +193,10 @@ class CliInvocation2(RunInvocation):
             self.manager.checkpoint()
             # Run all the local jobs. We need to do this to see all the things
             # the user may select
-            self.select_local_jobs()
-            self.run_all_selected_jobs()
+            if self.is_interactive:
+                self.select_local_jobs()
+                self.run_all_selected_jobs()
             self.interactively_pick_jobs_to_run()
-        else:
-            self.load_app_blob()
         # Maybe ask the secure launcher to prompt for the password now. This is
         # imperfect as we are going to run local jobs and we cannot see if they
         # might need root or not. This cannot be fixed before template jobs are
@@ -173,68 +214,59 @@ class CliInvocation2(RunInvocation):
 
     def store_application_metadata(self):
         super().store_application_metadata()
-        self.metadata.app_blob = json.dumps([
-            whitelist.origin.source.filename
-            for whitelist in self._whitelists
-        ]).encode("UTF-8")
-        logger.info("Saved whitelist mask: %r", self._whitelists)
-
-    def load_app_blob(self):
-        whitelist_filename_list = json.loads(
-            self.metadata.app_blob.decode("UTF-8"))
-        whitelist_list = [
-            WhiteList.from_file(filename)
-            for filename in whitelist_filename_list]
-        self._whitelists = whitelist_list
-        logger.info("Loaded whitelist mask: %r", self._whitelists)
+        self.metadata.app_blob = b''
 
     def show_welcome_screen(self):
         text = self.launcher.text
         if self.is_interactive and text:
             self.display.run(ShowWelcome(text))
 
-    def maybe_interactively_select_whitelists(self):
+    def maybe_interactively_select_testplans(self):
         if self.launcher.skip_whitelist_selection:
-            self._whitelists.extend(self.get_default_whitelists())
-        elif self.is_interactive and not self._whitelists:
-            self._whitelists.extend(self.get_interactively_picked_whitelists())
-        else:
-            self._whitelists.extend(self.get_default_whitelists())
-        logger.info(_("Selected whitelists: %r"), self._whitelists)
+            self._qualifier_list.extend(self.get_default_testplans())
+        elif self.is_interactive:
+            self._qualifier_list.extend(
+                self.get_interactively_picked_testplans())
+        elif self.launcher.whitelist_selection:
+            self._qualifier_list.extend(self.get_default_testplans())
+        logger.info(_("Selected testplans: %r"), self._qualifier_list)
 
-    def get_interactively_picked_whitelists(self):
+    def get_interactively_picked_testplans(self):
         """
         Show an interactive dialog that allows the user to pick a list of
-        whitelists. The set of whitelists is limited to those offered by the
+        testplans. The set of testplans is limited to those offered by the
         'default_providers' setting.
 
         :returns:
-            A list of selected whitelists
+            A list of selected testplans
         """
-        whitelist_name_list = whitelist_selection = []
+        testplans = []
+        testplan_selection = []
         for provider in self.provider_list:
-            whitelist_name_list.extend([
-                whitelist.name for whitelist in provider.whitelist_list
-                if re.search(self.launcher.whitelist_filter, whitelist.name)])
-        whitelist_selection = [
-            whitelist_name_list.index(w) for w in whitelist_name_list if
-            re.search(self.launcher.whitelist_selection, w)]
+            testplans.extend(
+                [unit for unit in provider.unit_list if
+                 unit.Meta.name == 'test plan' and
+                 re.search(self.launcher.whitelist_filter, unit.partial_id)])
+        testplan_name_list = [testplan.tr_name() for testplan in testplans]
+        testplan_selection = [
+            testplans.index(t) for t in testplans if
+            re.search(self.launcher.whitelist_selection, t.partial_id)]
         selected_list = self.display.run(
-            ShowMenu(_("Suite selection"), whitelist_name_list,
-                     whitelist_selection))
+            ShowMenu(_("Suite selection"), testplan_name_list,
+                     testplan_selection))
         if not selected_list:
-            raise SystemExit(_("No whitelists selected, aborting"))
-        return [get_whitelist_by_name(
-            self.provider_list, whitelist_name_list[selected_index])
-            for selected_index in selected_list]
+            raise SystemExit(_("No testplan selected, aborting"))
+        return [testplans[selected_index].get_qualifier() for selected_index
+                in selected_list]
 
-    def get_default_whitelists(self):
-        whitelist_name_list = []
+    def get_default_testplans(self):
+        testplans = []
         for provider in self.provider_list:
-            whitelist_name_list.extend([
-                w for w in provider.whitelist_list if re.search(
-                    self.launcher.whitelist_selection, w.name)])
-        return whitelist_name_list
+            testplans.extend([
+                unit.get_qualifier() for unit in provider.unit_list if
+                unit.Meta.name == 'test plan' and re.search(
+                    self.launcher.whitelist_selection, unit.partial_id)])
+        return testplans
 
     def create_exporter(self):
         """
@@ -268,7 +300,7 @@ class CliInvocation2(RunInvocation):
         # within, we only need to and an exclusive qualifier that deselects
         # non-local jobs and we're done.
         qualifier_list = []
-        qualifier_list.extend(self._whitelists)
+        qualifier_list.extend(self._qualifier_list)
         origin = Origin.get_caller_origin()
         qualifier_list.append(FieldQualifier(
             'plugin', OperatorMatcher(operator.ne, 'local'), origin,
@@ -280,8 +312,8 @@ class CliInvocation2(RunInvocation):
     def interactively_pick_jobs_to_run(self):
         print(self.C.header(_("Selecting Jobs For Execution")))
         self._update_desired_job_list(select_jobs(
-            self.manager.state.job_list, self._whitelists))
-        if self.launcher.skip_test_selection:
+            self.manager.state.job_list, self._qualifier_list))
+        if self.launcher.skip_test_selection or not self.is_interactive:
             return
         tree = SelectableJobTreeNode.create_tree(
             self.manager.state, self.manager.state.run_list)
@@ -323,7 +355,7 @@ class CliInvocation2(RunInvocation):
             exporter_list.append(XLSXSessionStateExporter)
         # We'd like these options for our reports.
         exp_options = ['with-sys-info', 'with-summary', 'with-job-description',
-                       'with-text-attachments']
+                       'with-text-attachments', 'with-certification-status']
         for exporter_cls in exporter_list:
             # Exporters may support different sets of options, ensure we don't
             # pass an unsupported one (which would cause a crash)
@@ -363,6 +395,10 @@ class CliInvocation2(RunInvocation):
                 # override launcher (which is not)
                 if not self.config.secure_id:
                     self.config.secure_id = self.launcher.secure_id
+                # Override the secure_id configuration with the one provided
+                # by the command-line option
+                if self.ns.secure_id:
+                    self.config.secure_id = self.ns.secure_id
                 if self.config.secure_id is Unset:
                     again = True
                     if not self.is_interactive:

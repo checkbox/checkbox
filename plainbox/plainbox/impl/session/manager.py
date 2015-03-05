@@ -35,6 +35,7 @@ import logging
 import os
 
 from plainbox.i18n import gettext as _, ngettext
+from plainbox.impl import pod
 from plainbox.impl.session.resume import SessionResumeHelper
 from plainbox.impl.session.state import SessionDeviceContext
 from plainbox.impl.session.state import SessionState
@@ -42,12 +43,13 @@ from plainbox.impl.session.storage import LockedStorageError
 from plainbox.impl.session.storage import SessionStorage
 from plainbox.impl.session.storage import SessionStorageRepository
 from plainbox.impl.session.suspend import SessionSuspendHelper
+from plainbox.impl.unit.testplan import TestPlanUnit
 from plainbox.vendor.morris import signal
 
 logger = logging.getLogger("plainbox.session.manager")
 
 
-class WellKnownDirsHelper:
+class WellKnownDirsHelper(pod.POD):
     """
     Helper class that knows about well known directories for SessionStorage.
 
@@ -56,17 +58,11 @@ class WellKnownDirsHelper:
     method :meth:`populate()` to create all of those directories, if needed.
     """
 
-    def __init__(self, storage):
-        # assert isinstance(storage, SessionStorage)
-        self._storage = storage
-
-    @property
-    def storage(self):
-        """
-        :class:`~plainbox.impl.session.storage.SessionStorage` associated with
-        this helper
-        """
-        return self._storage
+    storage = pod.Field(
+        doc="SessionStorage associated with this helper",
+        type=SessionStorage,
+        initial=pod.MANDATORY,
+        assign_filter_list=[pod.const, pod.typed])
 
     def populate(self):
         """
@@ -92,7 +88,18 @@ class WellKnownDirsHelper:
         return os.path.join(self.storage.location, "io-logs")
 
 
-class SessionManager:
+def at_most_one_context_filter(
+    instance: pod.POD, field: pod.Field, old: "Any", new: "Any"
+):
+    if len(new) > 1:
+        raise ValueError(_(
+            "session manager currently doesn't support sessions"
+            " involving multiple devices (a.k.a multi-node testing)"
+        ))
+    return new
+
+
+class SessionManager(pod.POD):
     """
     Manager class for coupling SessionStorage with SessionState.
 
@@ -102,43 +109,52 @@ class SessionManager:
     associated with each :class:`SessionManager`.
     """
 
-    def __init__(self, device_context_list, storage):
-        """
-        Initialize a manager with a list of session device context objects and
-        a storage object that will be used for managing storage for all testing
-        related to those objects.
-
-        :param device_context_list:
-            A list of SessionDeviceContext instances. Currently at most one
-            object may exist in that list but this restriction will be lifted
-            later on without changing the interface.
-        :param storage:
-            A SessionStorage instance.
-        """
-        if len(device_context_list) > 1:
-            self._too_many_device_context_objects()
-        self._device_context_list = device_context_list
-        self._storage = storage
-        logger.debug(
-            # TRANSLATORS: please don't translate 'SessionManager'
-            # and 'device_context_list'
-            _("Created SessionManager with device_context_list:%r"
-              " and storage:%r"), device_context_list, storage)
-
-    @property
-    def device_context_list(self):
-        """
+    device_context_list = pod.Field(
+        doc="""
         A list of session device context objects
 
         .. note::
-            You must not modify the return value.
+            You must not modify this field directly.
 
             This is not enforced but please use the
             :meth:`add_device_context()` or :meth:`remove_device_context()` if
             you want to manipulate the list.  Currently you cannot reorder the
             list of context objects.
-        """
-        return self._device_context_list
+        """,
+        type=list,
+        initial=pod.MANDATORY,
+        assign_filter_list=[
+            pod.typed, pod.typed.sequence(SessionDeviceContext),
+            pod.const, at_most_one_context_filter])
+
+    storage = pod.Field(
+        doc="A SesssionStorage instance",
+        type=SessionStorage,
+        initial=pod.MANDATORY,
+        assign_filter_list=[pod.typed, pod.const])
+
+    def _on_test_plans_changed(self, old: "Any", new: "Any") -> None:
+        self._propagate_test_plans()
+
+    test_plans = pod.Field(
+        doc="""
+        Test plans that this session is processing.
+
+        This field contains a tuple of test plans that are active in the
+        session. Any changes here are propagated to each device context
+        participating in the session. This in turn makes all of the overrides
+        defined by those test plans effective.
+
+        .. note::
+            Currently there is no facitly that would allow to use this field to
+            drive test execution. Such facility is likely to be added later.
+        """,
+        type=tuple,
+        initial=(),
+        notify=True,
+        notify_fn=_on_test_plans_changed,
+        assign_filter_list=[
+            pod.typed, pod.typed.sequence(TestPlanUnit), pod.unique])
 
     @property
     def default_device_context(self):
@@ -154,8 +170,8 @@ class SessionManager:
             present in the session. This is never the case for applications
             using the single-device APIs.
         """
-        return (self._device_context_list[0]
-                if len(self._device_context_list) > 0 else None)
+        return (self.device_context_list[0]
+                if len(self.device_context_list) > 0 else None)
 
     @property
     def state(self):
@@ -165,14 +181,6 @@ class SessionManager:
         """
         if self.default_device_context is not None:
             return self.default_device_context.state
-
-    @property
-    def storage(self):
-        """
-        :class:`~plainbox.impl.session.storage.SessionStorage` associated with
-        this manager
-        """
-        return self._storage
 
     @classmethod
     def create(cls, repo=None, legacy_mode=False):
@@ -383,14 +391,14 @@ class SessionManager:
         This method fires the :meth:`on_device_context_added()` signal
         """
         if any(other_context.device == context.device
-               for other_context in self._device_context_list):
+               for other_context in self.device_context_list):
             raise ValueError(
                 _("attmpting to add a context for device {} which is"
                   " already represented in this session"
                   " manager").format(context.device))
-        if len(self._device_context_list) > 0:
+        if len(self.device_context_list) > 0:
             self._too_many_device_context_objects()
-        self._device_context_list.append(context)
+        self.device_context_list.append(context)
         self.on_device_context_added(context)
 
     def add_local_device_context(self):
@@ -412,11 +420,11 @@ class SessionManager:
 
         This method fires the :meth:`on_device_context_removed()` signal
         """
-        if context not in self._device_context_list:
+        if context not in self.device_context_list:
             raise ValueError(_(
                 "attempting to remove a device context not present in this"
                 " session manager"))
-        self._device_context_list.remove(context)
+        self.device_context_list.remove(context)
         self.on_device_context_removed(context)
 
     @signal
@@ -427,6 +435,7 @@ class SessionManager:
         logger.debug(
             _("Device context %s added to session manager %s"),
             context, self)
+        self._propagate_test_plans()
 
     @signal
     def on_device_context_removed(self, context):
@@ -436,9 +445,16 @@ class SessionManager:
         logger.debug(
             _("Device context %s removed from session manager %s"),
             context, self)
+        self._propagate_test_plans()
 
     def _too_many_device_context_objects(self):
         raise ValueError(_(
             "session manager currently doesn't support sessions"
             " involving multiple devices (a.k.a multi-node testing)"
         ))
+
+    def _propagate_test_plans(self):
+        logger.debug(_("Propagating test plans to all devices"))
+        test_plans = self.test_plans
+        for context in self.device_context_list:
+            context.set_test_plan_list(test_plans)
