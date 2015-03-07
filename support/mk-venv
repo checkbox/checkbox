@@ -59,6 +59,11 @@ if [ -z "$CHECKBOX_VENV_PATH" ]; then
     fi
 fi
 
+# Ensure that CHECKBOX_VENV_PATH is an absolute path
+if ! echo "$CHECKBOX_VENV_PATH" | grep -q '^/'; then
+    CHECKBOX_VENV_PATH="$(pwd)/$CHECKBOX_VENV_PATH"
+fi
+
 # Check if we can create a virtualenv
 if [ ! -d $(dirname $CHECKBOX_VENV_PATH) ]; then
     echo "E: This script requires $(dirname $CHECKBOX_VENV_PATH) directory to exist"
