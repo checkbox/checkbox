@@ -604,6 +604,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 job.tr_verification() is not None else description,
                 "plugin": job.plugin,
                 "id": job.id,
+                "user": job.user,
                 "qml_file": job.qml_file,
                 "start_time": time.time(),
                 "test_number": self.index,
