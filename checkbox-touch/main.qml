@@ -21,6 +21,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
 import io.thp.pyotherside 1.2
 import "components"
@@ -302,6 +303,11 @@ MainView {
             });
         }
     }
+
+    PasswordDialog {
+        id: passwordDialog
+    }
+
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
             if(result.resumable === true) {
@@ -324,6 +330,25 @@ MainView {
             pageStack.clear();
             if (test.plugin === undefined) { 
                 return showResultsScreen();
+            }
+            if (test.user) {
+                // running this test will require to be run as a different
+                // user (therefore requiring user to enter sudo password)
+                if (!appSettings.sudoPasswordProvided) {
+                    // ask user for password
+                    passwordDialog.passwordEntered.connect(function(pass) {
+                        app.rememberPassword(pass, function(){
+                            appSettings.sudoPasswordProvided = true;
+                            performTest(test);
+                        });
+                    });
+                    passwordDialog.dialogCancelled.connect(function() {
+                        test.outcome = "skip";
+                        completeTest(test);
+                    });
+                    PopupUtils.open(passwordDialog.dialogComponent);
+                    return;
+                }
             }
             performTest(test);
         });
