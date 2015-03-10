@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2014 Canonical Ltd.
+# Copyright 2014-2015 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #   Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -337,6 +337,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.session_storage_repo = None
         self.timestamp = datetime.datetime.utcnow().isoformat()
         self.config = None
+        self._password = None
 
     def __repr__(self):
         return "app"
@@ -783,6 +784,21 @@ class CheckboxTouchApplication(PlainboxApplication):
             provider_list += embedded_providers.get_all_plugin_objects()
         provider_list.append(get_categories())
         return provider_list
+
+    def _password_provider(self):
+        if self._password is None:
+            raise RuntimeError("execute_job called without providing password"
+                               " first")
+        return self._password
+
+    def remember_password(self, password):
+        """
+        Save password in app instance
+
+        It deliberately doesn't use view decorator to omit all logging that
+        might happen
+        """
+        self._password = password
 
 
 def bootstrap():
