@@ -325,30 +325,34 @@ MainView {
             if (test.plugin === undefined) { 
                 return showResultsScreen();
             }
-            switch (test['plugin']) {
-                case 'manual':
-                    performManualTest(test);
-                    break;
-                case 'user-interact-verify':
-                    performUserInteractVerifyTest(test);
-                    break;
-                case 'shell':
-                    performAutomatedTest(test);
-                    break;
-                case 'user-verify':
-                    performUserVerifyTest(test);
-                    break;
-                case 'user-interact':
-                    performUserInteractTest(test);
-                    break;
-                case 'qml':
-                    performQmlTest(test);
-                    break;
-                default:
-                    test.outcome = "skip";
-                    completeTest(test);
-            }
+            performTest(test);
         });
+    }
+
+    function performTest(test) {
+        switch (test['plugin']) {
+            case 'manual':
+                performManualTest(test);
+                break;
+            case 'user-interact-verify':
+                performUserInteractVerifyTest(test);
+                break;
+            case 'shell':
+                performAutomatedTest(test);
+                break;
+            case 'user-verify':
+                performUserVerifyTest(test);
+                break;
+            case 'user-interact':
+                performUserInteractTest(test);
+                break;
+            case 'qml':
+                performQmlTest(test);
+                break;
+            default:
+                test.outcome = "skip";
+                completeTest(test);
+        }
     }
 
     function completeTest(test) {
