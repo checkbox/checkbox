@@ -370,11 +370,22 @@ class CheckboxTouchApplication(PlainboxApplication):
             # Checkpoint the session so that we have something to see
             self._checkpoint()
             self.config = PlainBoxConfig()
+
+            # Prepare custom execution controller list
+            from plainbox.impl.ctrl import UserJobExecutionController
+            from sudo_with_pass_ctrl import \
+                RootViaSudoWithPassExecutionController
+            controllers = [
+                RootViaSudoWithPassExecutionController(
+                    self.context.provider_list, self._password_provider),
+                UserJobExecutionController(self.context.provider_list),
+            ]
             self.runner = JobRunner(
                 self.manager.storage.location,
                 self.context.provider_list,
                 # TODO: tie this with well-known-dirs helper
-                os.path.join(self.manager.storage.location, 'io-logs'))
+                os.path.join(self.manager.storage.location, 'io-logs'),
+                execution_ctrl_list=controllers)
         app_cache_dir = self._get_app_cache_directory()
         if not os.path.exists(app_cache_dir):
             os.makedirs(app_cache_dir)
