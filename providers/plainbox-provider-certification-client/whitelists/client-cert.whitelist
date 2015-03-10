@@ -266,6 +266,7 @@ suspend/audio_after_suspend
 suspend/cpu_after_suspend
 suspend/memory_after_suspend
 suspend/generator_display_after_suspend
+suspend/generator_suspend_after_switch_to_card
 # Test card 2 first, if present, since it's the one we will be using
 # after coming back from suspend if the system has hybrid graphics.
 suspend/2_display_after_suspend.*
