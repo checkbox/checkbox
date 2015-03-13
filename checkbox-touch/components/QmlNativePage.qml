@@ -115,7 +115,10 @@ Page {
                 // prepare page with the test
                 var testItemComponent = Qt.createComponent(Qt.resolvedUrl(test['qml_file']));
                 if (testItemComponent.status == Component.Error) {
-                    console.log("Error creating testPageComponent:", testPageComponent.errorString());
+                    console.error("Error creating testItemComponent. Possible cause: Problem with job's qml file. Error:", testItemComponent.errorString());
+                    test['outcome'] = 'fail';
+                    testDone(test);
+                    return;
                 }
 
                 var testItem = testItemComponent.createObject(null, {"testingShell": testingShell});
