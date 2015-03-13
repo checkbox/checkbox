@@ -267,14 +267,15 @@ suspend/cpu_after_suspend
 suspend/memory_after_suspend
 suspend/generator_display_after_suspend
 suspend/generator_suspend_after_switch_to_card
+suspend/generator_cycle_resolutions_after_suspend
 # Test card 2 first, if present, since it's the one we will be using
 # after coming back from suspend if the system has hybrid graphics.
-suspend/2_display_after_suspend.*
+suspend/2_display_after_suspend_.*
+suspend/2_cycle_resolutions_after_suspend_.*
 suspend/bluetooth_detect_after_suspend
 suspend/bluetooth_obex_send_after_suspend
 suspend/bluetooth_obex_browse_after_suspend
 suspend/bluetooth_obex_get_after_suspend
-suspend/cycle_resolutions_after_suspend
 suspend/xrandr_screens_after_suspend.tar.gz
 suspend/record_playback_after_suspend
 suspend/pointing-after-suspend
@@ -305,7 +306,8 @@ suspend/wireless_connection_after_suspend_open_ac
 # tell the user to just do nothing.
 graphics/1_switch_card_.*
 suspend/1_suspend_after_switch_to_card_.*
-suspend/1_display_after_suspend.*
+suspend/1_display_after_suspend_.*
+suspend/1_cycle_resolutions_after_suspend_.*
 power-management/hibernate_advanced
 power-management/hibernate-single-log-attach
 keys/hibernate
