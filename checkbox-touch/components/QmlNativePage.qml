@@ -121,7 +121,7 @@ Page {
                     return;
                 }
 
-                var testItem = testItemComponent.createObject(null, {"testingShell": testingShell});
+                var testItem = testItemComponent.createObject(mainView, {"testingShell": testingShell});
                 testItem.testDone.connect(function(testResult) {
                     test['outcome'] = testResult['outcome'];
                     test['result'] = testResult;
@@ -129,6 +129,7 @@ Page {
                     while(savedStack.length) {
                         pageStack.push(savedStack.pop());
                     }
+                    testItem.destroy();
                     testDone(test);
                 });
             }
