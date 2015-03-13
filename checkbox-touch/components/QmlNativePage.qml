@@ -40,6 +40,7 @@ Page {
         id: testingShell
         property string name: "Checkbox-touch qml shell"
         property alias pageStack: qmlNativePage.pageStack
+        property string sessionDir: app.sessionDir
         function getTest() {
             return test;
         }
