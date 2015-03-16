@@ -272,11 +272,11 @@ suspend/generator_cycle_resolutions_after_suspend
 # after coming back from suspend if the system has hybrid graphics.
 suspend/2_display_after_suspend_.*
 suspend/2_cycle_resolutions_after_suspend_.*
+suspend/2_xrandr_screens_after_suspend_.*.tar.gz
 suspend/bluetooth_detect_after_suspend
 suspend/bluetooth_obex_send_after_suspend
 suspend/bluetooth_obex_browse_after_suspend
 suspend/bluetooth_obex_get_after_suspend
-suspend/xrandr_screens_after_suspend.tar.gz
 suspend/record_playback_after_suspend
 suspend/pointing-after-suspend
 suspend/pointing-after-suspend_.*
@@ -308,6 +308,7 @@ graphics/1_switch_card_.*
 suspend/1_suspend_after_switch_to_card_.*
 suspend/1_display_after_suspend_.*
 suspend/1_cycle_resolutions_after_suspend_.*
+suspend/1_xrandr_screens_after_suspend_.*.tar.gz
 power-management/hibernate_advanced
 power-management/hibernate-single-log-attach
 keys/hibernate
