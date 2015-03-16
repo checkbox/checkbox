@@ -381,7 +381,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                   'w') as f:
             f.write(self.manager.storage.id)
         return {
-            'session_id': self.manager.storage.id
+            'session_id': self.manager.storage.id,
+            'session_dir': self.manager.storage.location
         }
 
     @view

@@ -30,6 +30,8 @@ PythonObjectHandle {
     property string applicationVersion
     // Version of the plainbox library
     property string plainboxVersion
+    // path to session storage directory
+    property string sessionDir
 
     // Signal sent when the application becomes ready
     signal appReady();
@@ -44,6 +46,7 @@ PythonObjectHandle {
     // doing setup.
     function startSession() {
         request("start_session", [], function(result) {
+            sessionDir = result['session_dir'];
             sessionReady();
         }, function(error) {
             console.error("Unable to start session: " + error);

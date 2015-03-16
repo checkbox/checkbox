@@ -40,6 +40,7 @@ Page {
         id: testingShell
         property string name: "Checkbox-touch qml shell"
         property alias pageStack: qmlNativePage.pageStack
+        property string sessionDir: app.sessionDir
         function getTest() {
             return test;
         }
@@ -114,10 +115,13 @@ Page {
                 // prepare page with the test
                 var testItemComponent = Qt.createComponent(Qt.resolvedUrl(test['qml_file']));
                 if (testItemComponent.status == Component.Error) {
-                    console.log("Error creating testPageComponent:", testPageComponent.errorString());
+                    console.error("Error creating testItemComponent. Possible cause: Problem with job's qml file. Error:", testItemComponent.errorString());
+                    test['outcome'] = 'fail';
+                    testDone(test);
+                    return;
                 }
 
-                var testItem = testItemComponent.createObject(null, {"testingShell": testingShell});
+                var testItem = testItemComponent.createObject(mainView, {"testingShell": testingShell});
                 testItem.testDone.connect(function(testResult) {
                     test['outcome'] = testResult['outcome'];
                     test['result'] = testResult;
@@ -125,6 +129,7 @@ Page {
                     while(savedStack.length) {
                         pageStack.push(savedStack.pop());
                     }
+                    testItem.destroy();
                     testDone(test);
                 });
             }
