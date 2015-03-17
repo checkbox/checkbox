@@ -18,3 +18,11 @@ plugin: qml
 _description: Camera test 06 - Record a video then play it back
 qml_file: camera-06.qml
 estimated_duration: 20
+
+id: sensors-01
+plugin: qml
+_sumamry: Sensors test 01 - Ensure accelerometer is functioning
+_description:
+ This test is a mini-game where accelerometer is used to guide a big dot to a goal marked on the screen.
+qml_file: sensors-01.qml
+estimated_duration: 20
