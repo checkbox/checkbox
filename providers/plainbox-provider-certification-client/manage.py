@@ -81,4 +81,6 @@ setup(
     version="1.0",
     description=N_("Client Certification provider"),
     gettext_domain="2013_com_canonical_certification_certification-client",
+    deprecated=False,
+    strict=False
 )
