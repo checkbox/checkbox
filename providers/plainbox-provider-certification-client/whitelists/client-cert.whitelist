@@ -244,8 +244,7 @@ wireless/wireless_connection_open_n
 wireless/wireless_connection_wpa_ac
 wireless/wireless_connection_open_ac
 __suspend__
-suspend/generator_resolution_before_suspend
-suspend/generator_resolution_after_suspend
+suspend/generator_.*
 suspend/network_before_suspend
 suspend/2_resolution_before_suspend_.*
 suspend/audio_before_suspend
@@ -266,10 +265,6 @@ suspend/network_after_suspend
 suspend/audio_after_suspend
 suspend/cpu_after_suspend
 suspend/memory_after_suspend
-suspend/generator_display_after_suspend
-suspend/generator_suspend_after_switch_to_card
-suspend/generator_cycle_resolutions_after_suspend
-suspend/generator_xrandr_screens_after_suspend.tar.gz
 # Test card 2 first, if present, since it's the one we will be using
 # after coming back from suspend if the system has hybrid graphics.
 suspend/2_resolution_after_suspend_.*
