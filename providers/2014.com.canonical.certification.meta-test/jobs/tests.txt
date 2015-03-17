@@ -16,6 +16,7 @@ command:
     . $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
     coverage run --append --branch \
         --module plainbox self-test --after-reexec --quiet --unit-tests
+flags: preserve-locale
 
 id: plainbox/integration-tests
 _summary: PlainBox Integration Tests
@@ -38,3 +39,4 @@ depends:
     coverage/erase
 plugin: shell
 estimated_duration: 1.0
+flags: preserve-locale

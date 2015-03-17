@@ -8,6 +8,7 @@ estimated_duration: 0.1
 command:
     . $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
     coverage erase
+flags: preserve-locale
 
 id: coverage/report
 _summary: Generate code coverage report
@@ -21,3 +22,4 @@ estimated_duration: 1.0
 command:
     . $PLAINBOX_SESSION_SHARE/virtualenv/bin/activate
     coverage report
+flags: preserve-locale
