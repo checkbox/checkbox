@@ -242,8 +242,9 @@ include:
     wireless/wireless_connection_wpa_ac                    certification-status=blocker
     wireless/wireless_connection_open_ac                   certification-status=blocker
     __suspend__
+    suspend/generator_.*
     suspend/network_before_suspend                         certification-status=blocker
-    suspend/resolution_before_suspend                      certification-status=blocker
+    suspend/2_resolution_before_suspend_.*                 certification-status=blocker
     suspend/audio_before_suspend                           certification-status=blocker
     suspend/cpu_before_suspend                             certification-status=blocker
     suspend/memory_before_suspend                          certification-status=blocker
@@ -259,21 +260,19 @@ include:
     led/power-blink-suspend                                certification-status=blocker
     led/suspend                                            certification-status=blocker
     suspend/network_after_suspend                          certification-status=blocker
-    suspend/resolution_after_suspend                       certification-status=blocker
     suspend/audio_after_suspend                            certification-status=blocker
     suspend/cpu_after_suspend                              certification-status=blocker
     suspend/memory_after_suspend                           certification-status=blocker
-    suspend/generator_display_after_suspend
-    suspend/generator_suspend_after_switch_to_card
     # Test card 2 first, if present, since it's the one we will be using
     # after coming back from suspend if the system has hybrid graphics.
-    suspend/2_display_after_suspend.*                      certification-status=blocker
+    suspend/2_resolution_after_suspend_.*                  certification-status=blocker
+    suspend/2_display_after_suspend_.*                     certification-status=blocker
+    suspend/2_cycle_resolutions_after_suspend_.*           certification-status=blocker
+    suspend/2_xrandr_screens_after_suspend_.*.tar.gz
     suspend/bluetooth_detect_after_suspend                 certification-status=blocker
     suspend/bluetooth_obex_send_after_suspend              certification-status=blocker
     suspend/bluetooth_obex_browse_after_suspend            certification-status=blocker
     suspend/bluetooth_obex_get_after_suspend               certification-status=blocker
-    suspend/cycle_resolutions_after_suspend                certification-status=blocker
-    suspend/xrandr_screens_after_suspend.tar.gz
     suspend/record_playback_after_suspend                  certification-status=blocker
     suspend/pointing-after-suspend
     suspend/pointing-after-suspend_.*                      certification-status=blocker
@@ -302,8 +301,12 @@ include:
     # of checkbox. If the system only has one card, the test instructions
     # should tell the user to just do nothing.
     graphics/1_switch_card_.*                              certification-status=blocker
+    suspend/1_resolution_before_suspend_.*                 certification-status=blocker
     suspend/1_suspend_after_switch_to_card_.*              certification-status=blocker
-    suspend/1_display_after_suspend.*                      certification-status=blocker
+    suspend/1_display_after_suspend_.*                     certification-status=blocker
+    suspend/1_resolution_after_suspend_.*                  certification-status=blocker
+    suspend/1_cycle_resolutions_after_suspend_.*           certification-status=blocker
+    suspend/1_xrandr_screens_after_suspend_.*.tar.gz
     power-management/hibernate_advanced                    certification-status=non-blocker
     power-management/hibernate-single-log-attach
     keys/hibernate                                         certification-status=blocker
