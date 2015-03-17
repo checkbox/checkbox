@@ -6,6 +6,7 @@ _description:
     temporary directory unique to each testing session.
 plugin: shell
 estimated_duration: 14.0
-environ: CHECKBOX_TOP
-command: $CHECKBOX_TOP/mk-venv $PLAINBOX_SESSION_SHARE/virtualenv
+command:
+    export CHECKBOX_TOP=$PLAINBOX_PROVIDER_UNITS/../../..
+    $CHECKBOX_TOP/mk-venv $PLAINBOX_SESSION_SHARE/virtualenv
 flags: preserve-locale
