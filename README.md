@@ -51,13 +51,6 @@ A python3 library that contains support code for various providers inherited
 from checkbox-old (now removed). This is a dependency of many (but not all)
 providers that are in providers/
 
-plainbox-client
----------------
-
-Unfinished python3 interface for the DBus API implemented in checkbox-ng. May
-go away, may become important and mature. We'll see. It only depends on python3
-and python3-gi (for GDBus).
-
 plainbox
 --------
 
