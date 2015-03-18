@@ -1,0 +1,8 @@
+unit: test plan
+id: default
+_name: Tests and test coverage
+_description:
+ This test plan runs all of the unit tests and computes test coverage.
+include:
+ .*/unit-tests
+ coverage/report
