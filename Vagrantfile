@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby sw=2 ts=2 :
+Vagrant.require_version ">= 1.7.2"
+Vagrant.configure("2") do |config|
 
-Vagrant::Config.run do |config|
-
-  config.ssh.timeout = 60
+  config.vm.provider "virtualbox"
 
   # Define a Ubuntu Server image (cloud) for the 12.04 release (precise)
   config.vm.define :precise do |precise_config|
