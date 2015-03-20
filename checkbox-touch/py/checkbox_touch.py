@@ -786,7 +786,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         provider_list = all_providers.get_all_plugin_objects()
         # when running on ubuntu-touch device, APP_DIR env var is present
         # and points to touch application top directory
-        path = os.path.join(os.path.expandvars('$APP_DIR'),
+        path = os.path.join(os.path.normpath(os.getenv('APP_DIR', '.')),
                             os.path.normpath(providers_dir))
         _logger.info("Loading all providers from %s", path)
         if os.path.exists(path):
