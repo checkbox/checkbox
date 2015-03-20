@@ -11,6 +11,7 @@
 all:
 
 autopilot:
+	./get-libs
 	chmod +x tests/autopilot/run
 	tests/autopilot/run
 
