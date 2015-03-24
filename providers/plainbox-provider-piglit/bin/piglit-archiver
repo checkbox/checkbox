@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+""" Tool for archiving piglit report.  """
+import argparse
+import gettext
+import logging
+import os
+import shutil
+import sys
+
+_ = gettext.gettext
+
+_logger = logging.getLogger("piglit-combiner")
+
+
+def main():
+    """ Main function. """
+    gettext.textdomain('plainbox-provider-piglit')
+    gettext.bindtextdomain('plainbox-provider-piglit',
+                           os.getenv('PLAINBOX_PROVIDER_LOCALE_DIR'))
+    parser = argparse.ArgumentParser(
+        description=_("Tool for archiving piglit report"))
+    parser.add_argument(
+        '-n', '--base-name', required=True,
+        help=_("base name of the archive"))
+    parser.add_argument(
+        '-f', '--format', choices=['zip', 'tar', 'gztar', 'bztar'],
+        default='gztar', help=_("format of the archive to create"))
+    parser.add_argument(
+        '-r', '--root-dir', required=True,
+        help=_("root directory of the archive"))
+    parser.add_argument(
+        '-b', '--base-dir', required=True,
+        help=_("root directory of the archive"))
+    parser.add_argument(
+        "--verbose", "-v",
+        action='store_true',
+        help=_("be more verbose"))
+    ns = parser.parse_args()
+    logging.basicConfig(
+        level=logging.INFO if ns.verbose else logging.WARNING,
+        format="{name}:{levelname}: {message}", style='{')
+    ns = parser.parse_args()
+    name = shutil.make_archive(
+        ns.base_name, ns.format, ns.root_dir, ns.base_dir, ns.verbose,
+        logger=_logger)
+    print(_("Archive with summary of piglit results is available in"))
+    print(name)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,196 @@
+#!/usr/bin/python3
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+"""
+Tool for running piglit tests.
+
+This script is designed to wrap ``piglit run`` to provide consistent outcome
+and testing experience for plainbox.
+
+.. warning::
+    This script was written to work with ``piglit-0~git20150312-530724b-1`` and
+    may not work with older or more recent version.
+"""
+import argparse
+import collections
+import gettext
+import json
+import logging
+import os
+import subprocess
+import sys
+import tempfile
+
+_ = gettext.gettext
+
+_logger = logging.getLogger("piglit-wrapper")
+
+
+class PiglitWrapper:
+
+    """ Wrapper around the piglit tool. """
+
+    OUTCOME_CRASH = 'crash'
+    OUTCOME_FAIL = 'fail'
+    OUTCOME_PASS = 'pass'
+    OUTCOME_SKIP = 'skip'
+
+    def __init__(self, tests):
+        """
+        Initialize the wrapper around piglit.
+
+        :param tests:
+            List of patterns to match tests against.
+            Only tests matching any of the patterns will be started.
+        """
+        self._tests = tests
+        self._is_supported = None  # Optional[bool]
+        self._outcome_stats = collections.defaultdict(int)  # Dict[str, int]
+        # Dict[str, List[str]]
+        self._outcome_list = collections.defaultdict(list)
+        self._test_count = None  # Optional[int]
+
+    @property
+    def is_supported(self):
+        """ Flag indicating if this version if piglit is supported. """
+        return bool(self._is_supported)
+
+    @property
+    def outcome_stats(self):
+        """ Mapping from test outcome to number of occurrences. """
+        return self._outcome_stats
+
+    @property
+    def outcome_list(self):
+        """ Mapping from test outcome to a list of tests. """
+        return self._outcome_list
+
+    @property
+    def test_count(self):
+        """ Total number of tests. """
+        return self._test_count
+
+    @property
+    def is_successful(self):
+        """ Flag indicating if the run was successful. """
+        return (self._outcome_stats[self.OUTCOME_FAIL] == 0 and
+                self._outcome_stats[self.OUTCOME_CRASH] == 0)
+
+    def run(self, dirname=None):
+        """ Run piglit and all the desired tests. """
+        if dirname is not None:
+            self._run_in_directory(dirname)
+        else:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                _logger.info(_("Created temporary directory: %s"), tmpdir)
+                self._run_in_directory(tmpdir)
+
+    def _run_in_directory(self, dirname):
+        """ Run piglit and all the desired tests in a specific directory. """
+        cmd = [
+            # Run piglit
+            "piglit", "run",
+            # Using the json backend that we understand
+            "--backend=json"]
+        for test in self._tests:
+            # Include tests that we've been asked to run.
+            cmd.extend(["-t", test])
+        # Out of all the tests in general.
+        cmd.append("all")
+        # Save results to a hard-coded file in this directory
+        cmd.append(dirname)
+        _logger.info(_("Starting program: %r"), cmd)
+        subprocess.call(
+            # redirect stdout to /dev/null as we don't care about the
+            # spinner that piglit prints
+            cmd, stdout=subprocess.DEVNULL)
+        # NOTE: the "results.json" filename is hard-coded into piglit
+        result_filename = os.path.join(dirname, "results.json")
+        self._analyze_results(result_filename)
+
+    def _analyze_results(self, result_filename):
+        """ Analyze raw piglit json data. """
+        if not os.path.isfile(result_filename):
+            self._is_supported = False
+            _logger.errr(_("Piglit didn't create the test result file?"))
+            return
+        _logger.info(_("Analyzing piglit test results from %s"),
+                     result_filename)
+        with open(result_filename, 'rt', encoding='UTF-8') as stream:
+            result_json = json.load(stream)
+        version = result_json.get('results_version')
+        if version == 4:
+            self._is_supported = True
+            self._analyze_v4(result_json)
+        else:
+            self._is_supported = False
+            _logger.errr(_("Unsupported piglit result format (%r)"), version)
+
+    def _analyze_v4(self, result_json):
+        """ Analyze raw piglit json data (format 4). """
+        _logger.info(_("Analyzing piglit test results (format 4)"))
+        self._test_count = len(result_json['tests'])
+        for test_id, test_result in result_json['tests'].items():
+            outcome = test_result['result']
+            self._outcome_stats[outcome] += 1
+            self._outcome_list[outcome].append(test_id)
+
+
+def main():
+    """ Main function. """
+    gettext.textdomain('plainbox-provider-piglit')
+    gettext.bindtextdomain('plainbox-provider-piglit',
+                           os.getenv('PLAINBOX_PROVIDER_LOCALE_DIR'))
+    parser = argparse.ArgumentParser(
+        description=_("Tool for running piglit tests"))
+    parser.add_argument(
+        '-d', '--dirname', metavar=_("DIR"), default=None,
+        help=_("save piglit results to DIR"))
+    parser.add_argument(
+        "--test", "-t", metavar=_("PATTERN"), required=True, action='append',
+        help=_("run piglit tests matching given PATTERN"))
+    parser.add_argument(
+        "--verbose", "-v",
+        action='store_true',
+        help=_("be more verbose during testing"))
+    ns = parser.parse_args()
+    logging.basicConfig(
+        level=logging.INFO if ns.verbose else logging.WARNING,
+        format="{name}:{levelname}: {message}", style='{')
+    piglit = PiglitWrapper(ns.test)
+    piglit.run(ns.dirname)
+    if not piglit.is_supported:
+        print(_("This version of piglit is not supported"))
+        return 2
+    stats = piglit.outcome_stats
+    print(_("Summary of results (by outcome)"))
+    for outcome in sorted(stats.keys()):
+        print(" - {}: {}".format(outcome, stats[outcome]))
+        if ns.verbose:
+            for test_id in sorted(piglit.outcome_list[outcome]):
+                print("   * {}".format(test_id))
+    if piglit.is_successful:
+        print(_("Tests successful"))
+        return 0
+    else:
+        print(_("Tests unsuccessful"))
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

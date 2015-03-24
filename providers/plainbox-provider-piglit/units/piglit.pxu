@@ -1,0 +1,184 @@
+unit: job
+id: piglit/test/fbo
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for Frame Buffer Object (FBO) operations
+_description:
+ This job runs piglit tests for checking support for frame buffer object
+ operations, depth buffer and stencil buffer.
+plugin: shell
+command:
+ piglit-wrapper \
+     --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/fbo \
+     --test=^spec/EXT_framebuffer_object \
+     --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 13
+flags: preserve-locale
+
+unit: job
+id: piglit/test/gl-2.1
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for OpenGL 2.1
+_description:
+ This job runs piglit tests for checking OpenGL 2.1 support.
+plugin: shell
+command:
+ piglit-wrapper \
+    --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/gl-2.1 \
+    --test=^spec/'!OpenGL 2.1'/ \
+    --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 4
+flags: preserve-locale
+
+unit: job
+id: piglit/test/vbo
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for Vertex Buffer Object (VBO) operations
+_description:
+ This job runs piglit tests for checking support for vertex buffer object
+ operations.
+plugin: shell
+command:
+ piglit-wrapper \
+    --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/vbo \
+    --test=^spec/ARB_vertex_buffer_object/ \
+    --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 6
+flags: preserve-locale
+
+unit: job
+id: piglit/test/glsl-fragment-shader
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for GLSL fragment shader operations
+_description:
+ This job runs piglit tests for checking support for GLSL fragment shader
+ operations.
+plugin: shell
+command:
+ piglit-wrapper \
+    --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/glsl-fragment-shader \
+    --test=^shaders/glsl-arb-fragment \
+    --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 4
+flags: preserve-locale
+
+unit: job
+id: piglit/test/glsl-vertex-shader
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for GLSL vertex shader operations
+_description:
+ This job runs piglit tests for checking support for GLSL vertex shader
+ operations.
+plugin: shell
+command:
+ piglit-wrapper \
+    --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/glsl-vertex-shader \
+    --test=^shaders/glsl-clamp-vertex-color \
+    --test=^shaders/glsl-max-vertex-attrib \
+    --test=^shaders/glsl-novertexdata \
+    --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 4
+flags: preserve-locale
+
+unit: job
+id: piglit/test/glx-tfp
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for texture-from-pixmap extension
+_description:
+ This job runs piglit tests for checking support for texture from pixmap.
+plugin: shell
+command:
+ piglit-wrapper \
+    --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/glx-tfp \
+    --test=glx-tfp \
+    --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 4
+flags: preserve-locale
+
+unit: job
+id: piglit/test/stencil_buffer
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Run piglit tests for stencil buffer operations
+_description:
+ This job runs piglit tests for checking support for stencil buffer operations.
+plugin: shell
+command:
+ piglit-wrapper \
+    --dirname=$PLAINBOX_SESSION_SHARE/piglit-results.parts/stencil_buffer \
+    --test=glx-visuals-stencil \
+    --test=readpixels-24_8 \
+    --verbose
+requires: executable.name == 'piglit'
+estimated_duration: 12
+flags: preserve-locale
+
+unit: job
+id: piglit/support/combine_results
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Combine all piglit test results into one
+_description:
+ This job combines all of the prior piglit results into one result file so that
+ they can be analyzed together. It is required to use piglit's built-in report
+ generator.
+plugin: shell
+command:
+ piglit-combiner \
+    --input-dir=$PLAINBOX_SESSION_SHARE/piglit-results.parts \
+    --output-dir=$PLAINBOX_SESSION_SHARE/piglit-results.combined \
+    --verbose
+estimated_duration: 1
+flags: preserve-locale
+
+unit: job
+id: piglit/support/summarize_results
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Create a HTML summary of all the piglit test results
+_description:
+ This job runs the piglit HTML report generator on the combination of
+ all the past results.
+plugin: shell
+command:
+ set -e
+ piglit summary html \
+    $PLAINBOX_SESSION_SHARE/piglit-summary \
+    $PLAINBOX_SESSION_SHARE/piglit-results.combined
+ echo "$PLAINBOX_SESSION_SHARE/piglit-summary/index.html"
+estimated_duration: 1
+depends: piglit/support/combine_results
+requires: executable.name == 'piglit'
+flags: preserve-locale
+
+unit: job
+id: piglit/support/tarball
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Archive HTML summary of all piglit test results
+_description:
+ This job archives the HTML summary of all the piglit results for convenient
+ access. The result is not added as an attachment but can be loaded from the
+ session directory.
+plugin: shell
+command:
+ piglit-archiver \
+  --base-name="$PLAINBOX_SESSION_SHARE/piglit-summary" \
+  --format=gztar \
+  --root-dir="$PLAINBOX_SESSION_SHARE/" \
+  --base-dir=piglit-summary
+depends: piglit/support/summarize_results
+estimated_duration: 1
+flags: preserve-locale
+
+unit: test plan
+id: piglit
+_name: All piglit tests (tarball)
+_description:
+ This test plan runs all of the piglit jobs, summarizes them and creates an
+ archive for easy inspection and sharing.
+include:
+ piglit/test/.*
+ piglit/support/tarball
+estimated_duration: 46

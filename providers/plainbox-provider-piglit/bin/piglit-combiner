@@ -1,0 +1,199 @@
+#!/usr/bin/python3
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+"""
+Tool for combining results of multiple runs of piglit.
+
+This script is designed to discover and load any ``results.json`` file that
+piglit typically creates and combining them into one result that can be
+subsequently fed to the ``piglit summary ...`` command.
+
+.. warning::
+    This script was written to work with ``piglit-0~git20150312-530724b-1`` and
+    may not work with older or more recent version.
+"""
+import argparse
+import gettext
+import json
+import logging
+import os
+import sys
+
+_ = gettext.gettext
+
+_logger = logging.getLogger("piglit-combiner")
+
+
+def find_piglit_results(root):
+    """Locate all results in a given directory (recursively)."""
+    _logger.info(_("Discovering all results in directory: %r"), root)
+    for dirname, dirnames, filenames in os.walk(root):
+        for filename in filenames:
+            if filename == 'results.json':
+                yield os.path.join(dirname, filename)
+
+
+def load_piglit_results(filename):
+    """Load results from given filename."""
+    _logger.info(_("Loading results from: %r"), filename)
+    with open(filename, 'rt', encoding='UTF-8') as stream:
+        return json.load(stream)
+
+
+def save_piglit_results(filename, results):
+    """Save results to a given file."""
+    _logger.info(_("Saving results to: %r"), filename)
+    with open(filename, 'wt', encoding='UTF-8') as stream:
+        json.dump(results, stream, sort_keys=True)
+
+
+def combine_piglit_results(input_dir, output_dir):
+    """Combine all from one directory and save them to another."""
+    combiner = PiglitCombiner()
+    count = 0
+    for filename in find_piglit_results(input_dir):
+        results = load_piglit_results(filename)
+        combiner.combine_results(results)
+        count += 1
+    os.makedirs(output_dir, exist_ok=True)
+    save_piglit_results(
+        os.path.join(output_dir, 'results.json'), combiner.combined_results)
+    return count
+
+
+class CombinationError(ValueError):
+
+    """ Exception raised when combination fails. """
+
+
+class PiglitCombiner:
+
+    """Class for combining multiple results into one."""
+
+    def __init__(self):
+        """ Initialize the combiner. """
+        self._combined = {}
+
+    @property
+    def combined_results(self):
+        """ Get the current combined results. """
+        return self._combined
+
+    def combine_results(self, results):
+        """
+        Add more results to the combination.
+
+        :param results:
+            Results to combine
+        :raises CombinationError:
+            When the result cannot be combined
+        """
+        for key in results.keys():
+            if key not in self._combined:
+                self._combined[key] = results[key]
+            else:
+                old_value = self._combined[key]
+                new_value = results[key]
+                try:
+                    combiner = getattr(self, '_combine_{}'.format(key))
+                except AttributeError:
+                    raise CombinationError(
+                        _("No combination function for: {!r}").format(key))
+                try:
+                    combined_value = combiner(old_value, new_value)
+                except ValueError:
+                    raise CombinationError(
+                        _("Combination function failed for: {!r}").format(key))
+                else:
+                    self._combined[key] = combined_value
+
+    def _combine_results_version(self, old_value, new_value):
+        if old_value != new_value:
+            raise ValueError
+        return old_value
+
+    def _combine_uname(self, old_value, new_value):
+        if old_value != new_value:
+            raise ValueError
+        return old_value
+
+    def _combine_time_elapsed(self, old_value, new_value):
+        return old_value + new_value
+
+    def _combine_tests(self, old_value, new_value):
+        old_value.update(new_value)
+        return old_value
+
+    def _combine_name(self, old_value, new_value):
+        return '{}+{}'.format(old_value, new_value)
+
+    def _combine_lspci(self, old_value, new_value):
+        if old_value != new_value:
+            raise ValueError
+        return old_value
+
+    def _combine_glxinfo(self, old_value, new_value):
+        if old_value != new_value:
+            raise ValueError
+        return old_value
+
+    def _combine_options(self, old_value, new_value):
+        # NOTE: this method just implements the bare minimum required and
+        # assumes none of the other options had changed.
+        old_value['filter'].append(new_value['filter'])
+        return old_value
+
+
+def main():
+    """ Main function. """
+    gettext.textdomain('plainbox-provider-piglit')
+    gettext.bindtextdomain('plainbox-provider-piglit',
+                           os.getenv('PLAINBOX_PROVIDER_LOCALE_DIR'))
+    parser = argparse.ArgumentParser(
+        description=_(
+            "Tool for combining results of multiple runs of piglit"
+        ))
+    parser.add_argument(
+        '-i', '--input-dir', metavar=_("DIR"), required=True,
+        help=_("directory with results to load (recursively)"))
+    parser.add_argument(
+        "-o", "--output-dir", metavar=_("DIR"), required=True,
+        help=_("directory to save results to"))
+    parser.add_argument(
+        "--verbose", "-v",
+        action='store_true',
+        help=_("be more verbose"))
+    ns = parser.parse_args()
+    logging.basicConfig(
+        level=logging.INFO if ns.verbose else logging.WARNING,
+        format="{name}:{levelname}: {message}", style='{')
+    try:
+        count = combine_piglit_results(ns.input_dir, ns.output_dir)
+    except CombinationError as exc:
+        _logger.error(_("Unable to combine results: %s"), exc)
+        return 1
+    else:
+        _logger.info(gettext.ngettext(
+            "Combined %d result", "Combined %d results", count), count)
+        if count == 0:
+            _logger.warning(_("No results were really combined!"))
+            return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
