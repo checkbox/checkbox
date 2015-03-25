@@ -80,7 +80,8 @@ def main():
         "_comment": "file generated automatically with {0}"
                     .format(parser.prog),
         "revision": get_revision_string(),
-        "testplan": args.testplan
+        "testplan": args.testplan,
+        "providersDir": "providers"
     }
     settings_file = open('settings.json', 'w')
     settings_file.write(json.dumps(settings, sort_keys=True, indent=4))
@@ -115,7 +116,7 @@ def generate_desktop_file():
     [Desktop Entry]
     Name=Checkbox
     Comment=System testing utility for Ubuntu
-    Exec=qmlscene {import_options} $@ main.qml
+    Exec=qmlscene {import_options} $@ checkbox-touch.qml
     Icon=checkbox-touch.svg
     Terminal=false
     Type=Application

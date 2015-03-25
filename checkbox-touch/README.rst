@@ -56,7 +56,7 @@ to build and install the package run:
 Running Checkbox-Touch on a desktop
 -----------------------------------
 
-To run on a desktop run `qmlscene main.qml`
+To run on a desktop run `qmlscene checkbox-touch.qml`
 Note: Make sure you've ran `./get-libs` first.
 
 
