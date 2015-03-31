@@ -32,17 +32,18 @@ import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: manualIntroPage
+    objectName: "manualIntroPage"
     property var test: { "name": "", "description": "", "test_number": 0, "tests_count": 0}
 
     signal continueClicked();
     signal testDone(var test);
 
-    objectName: "manualIntroPage"
     title: i18n.tr("Test Description")
     head {
         actions: [
             Action {
                 id: skipAction
+                objectName: "skip"
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {

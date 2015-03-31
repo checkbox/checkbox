@@ -32,6 +32,7 @@ import "ConfirmationLogic.js" as ConfirmationLogic
 
 Page {
     id: userInteractSummary
+    objectName: "userInteractSummary"
     property var test: { "name": "", "outcome": "pass", "test_number": 0, "tests_count": 0}
 
     signal testDone(var test);
@@ -111,6 +112,7 @@ Page {
 
         Button {
             color: UbuntuColors.green
+            objectName: "continueButton"
             Layout.fillWidth: true
             text: i18n.tr("Continue")
             onClicked: {

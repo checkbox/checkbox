@@ -100,7 +100,7 @@ Page {
 
     LatchButton {
         id: startTestButton
-
+        objectName: "startTestButton"
         anchors {
             left: parent.left
             right: parent.right

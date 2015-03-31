@@ -190,6 +190,7 @@ Page {
 
         LatchButton {
             id: continueButton
+            objectName: "continueButton"
             Layout.fillWidth: true
             enabled: continueAction.enabled
             text: continueText

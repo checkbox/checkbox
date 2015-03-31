@@ -271,6 +271,7 @@ MainView {
 
     SelectionPage {
         id: categorySelectionPage
+        objectName: "categorySelectionPage"
         title: i18n.tr("Suite Selection")
 
         function setup() {
@@ -297,6 +298,7 @@ MainView {
 
     SelectionPage {
         id: testSelectionPage
+        objectName: "testSelectionPage"
         title: i18n.tr("Test selection")
         continueText: i18n.tr("Start Testing")
         
