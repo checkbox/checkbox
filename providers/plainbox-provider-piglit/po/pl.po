@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plainbox-provider-piglit 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-23 19:37+0100\n"
+"POT-Creation-Date: 2015-03-31 15:28+0200\n"
 "PO-Revision-Date: 2015-03-31 01:06+0000\n"
 "Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
 "Language-Team: polski <>\n"
+"Language: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,96 +19,95 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Launchpad-Export-Date: 2015-03-31 05:09+0000\n"
 "X-Generator: Launchpad (build 17413)\n"
-"Language: Polish\n"
 
 #. summary
-#: ../units/piglit.pxu:3
+#: ../units/piglit.pxu:4
 msgid "Run piglit tests for Frame Buffer Object (FBO) operations"
 msgstr "Uruchom testy piglita dla operacji na buforach ramki (FBO)"
 
 #. description
-#: ../units/piglit.pxu:4
+#: ../units/piglit.pxu:5
 msgid ""
 "This job runs piglit tests for checking support for frame buffer object "
 "operations, depth buffer and stencil buffer."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:19
+#: ../units/piglit.pxu:21
 msgid "Run piglit tests for OpenGL 2.1"
 msgstr "Uruchom testy piglita dla OpenGL 2.1"
 
 #. description
-#: ../units/piglit.pxu:20
+#: ../units/piglit.pxu:22
 msgid "This job runs piglit tests for checking OpenGL 2.1 support."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:34
+#: ../units/piglit.pxu:37
 msgid "Run piglit tests for Vertex Buffer Object (VBO) operations"
 msgstr "Uruchom testy piglita dla operacji na buforach geometrii (VBO)"
 
 #. description
-#: ../units/piglit.pxu:35
+#: ../units/piglit.pxu:38
 msgid ""
 "This job runs piglit tests for checking support for vertex buffer object "
 "operations."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:50
+#: ../units/piglit.pxu:54
 msgid "Run piglit tests for GLSL fragment shader operations"
 msgstr "Uruchom testy piglita dla operacji GLSL cieniowania pikseli"
 
 #. description
-#: ../units/piglit.pxu:51
+#: ../units/piglit.pxu:55
 msgid ""
 "This job runs piglit tests for checking support for GLSL fragment shader "
 "operations."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:66
+#: ../units/piglit.pxu:71
 msgid "Run piglit tests for GLSL vertex shader operations"
 msgstr "Uruchom testy piglita dla operacji GLSL cieniowania wierzchołków"
 
 #. description
-#: ../units/piglit.pxu:67
+#: ../units/piglit.pxu:72
 msgid ""
 "This job runs piglit tests for checking support for GLSL vertex shader "
 "operations."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:84
+#: ../units/piglit.pxu:90
 msgid "Run piglit tests for texture-from-pixmap extension"
 msgstr "Uruchom testy piglita dla rozszerzenia tekstura-z-piksmapy"
 
 #. description
-#: ../units/piglit.pxu:85
+#: ../units/piglit.pxu:91
 msgid ""
 "This job runs piglit tests for checking support for texture from pixmap."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:99
+#: ../units/piglit.pxu:106
 msgid "Run piglit tests for stencil buffer operations"
 msgstr "Uruchom testy piglita dla operacji na buforach szablonowych"
 
 #. description
-#: ../units/piglit.pxu:100
+#: ../units/piglit.pxu:107
 msgid ""
 "This job runs piglit tests for checking support for stencil buffer "
 "operations."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:115
+#: ../units/piglit.pxu:123
 msgid "Combine all piglit test results into one"
 msgstr "Połącz wszystkie wyniki testów piglita w jeden"
 
 #. description
-#: ../units/piglit.pxu:116
+#: ../units/piglit.pxu:124
 msgid ""
 "This job combines all of the prior piglit results into one result file so "
 "that they can be analyzed together. It is required to use piglit's built-in "
@@ -115,24 +115,24 @@ msgid ""
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:131
+#: ../units/piglit.pxu:140
 msgid "Create a HTML summary of all the piglit test results"
-msgstr "Utwórz HTML'owe podsumowanie wyników testów piglita"
+msgstr "Utwórz HTML'owe podsumowanie wyników testów programu piglit"
 
 #. description
-#: ../units/piglit.pxu:132
+#: ../units/piglit.pxu:141
 msgid ""
 "This job runs the piglit HTML report generator on the combination of all the "
 "past results."
 msgstr ""
 
 #. summary
-#: ../units/piglit.pxu:147
+#: ../units/piglit.pxu:159
 msgid "Archive HTML summary of all piglit test results"
-msgstr "Zarchiwizuj HTML'owe podsumowanie wyników testów piglita"
+msgstr "Zarchiwizuj HTML'owe podsumowanie wyników testów programu piglit"
 
 #. description
-#: ../units/piglit.pxu:148
+#: ../units/piglit.pxu:160
 msgid ""
 "This job archives the HTML summary of all the piglit results for convenient "
 "access. The result is not added as an attachment but can be loaded from the "
@@ -140,18 +140,23 @@ msgid ""
 msgstr ""
 
 #. name
-#: ../units/piglit.pxu:165
+#: ../units/piglit.pxu:177
 msgid "All piglit tests (tarball)"
-msgstr "Wszystkie testy piglita (tarball)"
+msgstr "Wszystkie testy programu piglit (tarball)"
 
 #. description
-#: ../units/piglit.pxu:166
+#: ../units/piglit.pxu:178
 msgid ""
 "This test plan runs all of the piglit jobs, summarizes them and creates an "
 "archive for easy inspection and sharing."
 msgstr ""
 "Ten plan testów wykonuje wszystkie zadania piglita, tworzy podsumowanie oraz "
 "archiwum które ułatwia analizę oraz współdzielenie danych."
+
+#. description
+#: ../units/piglit.pxu:190
+msgid "Piglit Tests"
+msgstr "Testy programu Piglit"
 
 #: ../bin/piglit-wrapper:100
 #, c-format
@@ -164,7 +169,7 @@ msgstr "Uruchamianie programu: %r"
 
 #: ../bin/piglit-wrapper:130
 msgid "Piglit didn't create the test result file?"
-msgstr "Czy piglit nie utworzył katalogu z wynikami testów?"
+msgstr "Czyżby piglit nie utworzył katalogu z wynikami testów?"
 
 #: ../bin/piglit-wrapper:132
 #, c-format
@@ -259,7 +264,7 @@ msgstr "bądź bardziej wymowny"
 #: ../bin/piglit-combiner:188
 #, c-format
 msgid "Unable to combine results: %s"
-msgstr ""
+msgstr "Nie można złączyć wyników: %s"
 
 #: ../bin/piglit-combiner:192
 #, c-format

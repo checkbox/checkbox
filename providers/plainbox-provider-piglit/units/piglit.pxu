@@ -182,3 +182,15 @@ include:
  piglit/test/.*
  piglit/support/tarball
 estimated_duration: 46
+
+unit: job
+id: __piglit__
+category_id: 2013.com.canonical.plainbox::graphics
+_summary: Piglit Tests
+_description: Piglit Tests
+plugin: local
+command:
+  shopt -s extglob
+  cat $PLAINBOX_PROVIDER_UNITS/piglit.pxu
+estimated_duration: 1
+flags: preserve-locale

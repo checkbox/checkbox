@@ -21,7 +21,7 @@ from plainbox.provider_manager import N_
 
 setup(
     name='2013.com.canonical.certification:piglit',
-    version="0.1",
+    version="0.2",
     description=N_("Piglit (OpenGL/OpenCL) Test Provider"),
     gettext_domain='plainbox-provider-piglit',
 )
