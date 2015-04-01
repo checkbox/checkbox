@@ -37,3 +37,74 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
     def test_launches(self):
         main_view = self.app.select_single(objectName='mainView')
         self.assertThat(main_view.visible, Eventually(Equals(True)))
+
+    def test_full_run(self):
+        """
+        Test whether typical, full run of checkbox-touch works.
+
+        This test launches checkbox-touch and runs all tests present in the
+        autopilot provider. Tests that let user decide the outcome are served
+        in three instances; one that user is supposed to pass, one that
+        user should skip and the one that user should fail.
+        The tests that have outcome determined automatically should come
+        in two flavours; one that passes and one that fails.
+        """
+        self.skipResumeIfShown()
+        start_btn = self.app.select_single(objectName='startTestButton')
+        self.assertThat(start_btn.text, Eventually(Equals("Start Testing")))
+        self.pointing_device.click_object(start_btn)
+        category_page = self.app.wait_select_single(
+            objectName='categorySelectionPage', visible=True)
+        continue_btn = category_page.wait_select_single(
+            objectName='continueButton')
+        self.pointing_device.click_object(continue_btn)
+        tests_selection_page = self.app.wait_select_single(
+            objectName='testSelectionPage', visible=True)
+        continue_btn = tests_selection_page.wait_select_single(
+            objectName='continueButton')
+        self.pointing_device.click_object(continue_btn)
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'passButton'),
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'failButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test()
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'failButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test()
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'failButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test()
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('userInteractSummary', 'continueButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('userInteractSummary', 'continueButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test()
+        # we should see results screen now
+        results = {'passed': '5', 'failed': '5', 'skipped': '4'}
+        results_page = self.app.wait_select_single(objectName='resultsPage')
+        lbl_passed = results_page.wait_select_single(objectName='passedLabel')
+        self.assertThat(lbl_passed.text.startswith(results['passed']),
+                        Equals(True))
+        lbl_failed = results_page.wait_select_single(objectName='failedLabel')
+        self.assertThat(lbl_failed.text.startswith(results['failed']),
+                        Equals(True))
+        lbl_skipped = results_page.wait_select_single(
+            objectName='skippedLabel')
+        self.assertThat(lbl_skipped.text.startswith(results['skipped']),
+                        Equals(True))
