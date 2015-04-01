@@ -1,9 +1,0 @@
-unit: job
-id: resource
-plugin: resource
-command: cat $PLAINBOX_PROVIDER_DATA/resource
-estimated_duration: 0.1
-_summary: The demo resource
-_description:
- This resource contains four records (1-4) that control instantiation of a demo
- template. Resource record 3 is setup so that no job is instantiated for it.
