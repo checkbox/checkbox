@@ -233,8 +233,8 @@ MainView {
 
     ResumeSessionPage {
         id: resumeSessionPage
-        onRerunLast: app.resumeSession(true, processNextTest)
-        onContinueSession: app.resumeSession(false, processNextTest)
+        onRerunLast: app.resumeSession(true, appSettings["providersDir"], processNextTest)
+        onContinueSession: app.resumeSession(false, appSettings["providersDir"], processNextTest)
         resumeText: i18n.tr("Checkbox did not finish completely.\nDo you want \
  to rerun last test, continue to the next test, or restart from the beginning?")
         onRestartSession: {
