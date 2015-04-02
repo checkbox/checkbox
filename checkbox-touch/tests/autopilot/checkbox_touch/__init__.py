@@ -6,6 +6,7 @@ import os
 import subprocess
 
 from autopilot import input, platform
+from autopilot.introspection.dbus import StateNotFoundError
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 from ubuntuuitoolkit import base, emulators
@@ -31,8 +32,17 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         super(ClickAppTestCase, self).setUp()
         self.pointing_device = input.Pointer(self.input_device_class.create())
         self.launch_application()
-
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+
+    def skipResumeIfShown(self):
+        try:
+            resume_page = self.app.select_single(objectName='resumeSessionPage')
+        except StateNotFoundError:
+            pass
+        else:
+            restart_btn = resume_page.select_single(objectName='restartButton')
+            self.pointing_device.click_object(restart_btn)
+
 
     def launch_application(self):
         if platform.model() == 'Desktop':

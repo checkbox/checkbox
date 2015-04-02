@@ -42,6 +42,7 @@ Page {
     head {
         actions: [
             Action {
+                objectName: "skip"
                 iconName: "media-seek-forward"
                 text: i18n.tr("Skip")
                 onTriggered: {
@@ -91,6 +92,7 @@ Page {
 
         LatchButton {
             id: passButton
+            objectName: "passButton"
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Yes")
@@ -103,6 +105,7 @@ Page {
 
         LatchButton {
             id: failButton
+            objectName: "failButton"
             unlatchedColor: UbuntuColors.red
             Layout.fillWidth: true
             text: i18n.tr("No")
