@@ -36,11 +36,11 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
 
     def skipResumeIfShown(self):
         try:
-            resume_page = self.app.select_single(objectName='resumeSessionPage')
+            resume_page = self.app.wait_select_single(objectName='resumeSessionPage')
         except StateNotFoundError:
             pass
         else:
-            restart_btn = resume_page.select_single(objectName='restartButton')
+            restart_btn = resume_page.wait_select_single(objectName='restartButton')
             self.pointing_device.click_object(restart_btn)
 
 
