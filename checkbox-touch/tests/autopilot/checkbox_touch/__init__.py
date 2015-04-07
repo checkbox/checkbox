@@ -50,6 +50,17 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         else:
             self._launch_application_from_phablet()
 
+    def long_wait_select_single(self, target, *args, **kwargs):
+        """Try multiple times to do wait_select_single on target."""
+        retries = 5
+        while retries > 0:
+            try:
+                return getattr(target, 'wait_select_single')(*args, **kwargs)
+            except StateNotFoundError:
+                retries -= 1
+                continue
+        raise StateNotFoundError(*args, **kwargs)
+
     def _launch_application_from_desktop(self):
         app_qml_source_location = self._get_app_qml_source_path()
         if os.path.exists(app_qml_source_location):
