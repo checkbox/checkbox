@@ -35,13 +35,27 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
 
     def skipResumeIfShown(self):
-        try:
-            resume_page = self.app.wait_select_single(objectName='resumeSessionPage')
-        except StateNotFoundError:
-            pass
-        else:
-            restart_btn = resume_page.wait_select_single(objectName='restartButton')
-            self.pointing_device.click_object(restart_btn)
+        """Skip restart screen if presented."""
+        # this doesn't use 'long wait' helper, because a 'welcome page' may be
+        # displayed and autopilot would take 5*timeout to figure it out
+        retries = 5
+        while retries > 0:
+            try:
+                resume_page = self.app.wait_select_single(
+                    objectName='resumeSessionPage', visible=True)
+                restart_btn = resume_page.wait_select_single(
+                    objectName='restartButton', visible=True)
+                self.pointing_device.click_object(restart_btn)
+                return
+            except StateNotFoundError:
+                pass
+            try:
+                welcome_page = self.app.wait_select_single(
+                    objectName='welcomePage', visible=True)
+                return
+            except StateNotFoundError:
+                pass
+
 
 
     def launch_application(self):
