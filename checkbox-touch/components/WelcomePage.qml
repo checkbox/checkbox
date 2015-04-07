@@ -26,6 +26,8 @@ import Ubuntu.Components 1.1
 Page {
     id: welcomePage
 
+    objectName: "welcomePage"
+
     signal startTestingTriggered();
     signal aboutClicked();
     property alias welcomeText: welcomeText.text

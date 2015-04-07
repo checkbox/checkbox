@@ -90,6 +90,7 @@ Page {
         anchors.margins: units.gu(3)
 
         Label {
+            objectName: "testNameLabel"
             fontSize: "large"
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
