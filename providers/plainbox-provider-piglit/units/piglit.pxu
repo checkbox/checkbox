@@ -159,8 +159,8 @@ category_id: 2013.com.canonical.plainbox::graphics
 _summary: Archive HTML summary of all piglit test results
 _description:
  This job archives the HTML summary of all the piglit results for convenient
- access. The result is not added as an attachment but can be loaded from the
- session directory.
+ access. The result is not added as plainbox system attachment attachment but
+ can be loaded from the session directory.
 plugin: shell
 command:
  piglit-archiver \
@@ -174,10 +174,10 @@ flags: preserve-locale
 
 unit: test plan
 id: piglit
-_name: All piglit tests (tarball)
+_name: Select piglit tests
 _description:
- This test plan runs all of the piglit jobs, summarizes them and creates an
- archive for easy inspection and sharing.
+ This test plan runs a selection of piglit tests, summarizes them and creates
+ an archive for easy inspection and sharing.
 include:
  piglit/test/.*
  piglit/support/tarball
