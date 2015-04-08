@@ -9,7 +9,7 @@ env:
     PROVIDERPATH=providers
 install:
     # We need some python dependencies for plainbox and checkbox
-    - pip install -U lxml xlsxwriter pyparsing requests urllib3
+    - pip install -U lxml xlsxwriter pyparsing requests urllib3 jinja2==2.7.3
     # We need some native dependencies for providers
     - sudo apt-get install -y autoconf automake libnl-3-200 libnl-3-dev libnl-genl-3-200 libnl-genl-3-dev pkg-config
     # We want python-distutils-extra for 'setup.py build_i18n', note that it depends on intltool from the archive
