@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+"""
+Tool for building i18n catalogs.
+
+This script builds all of the i18n catalogs without corrupting the build tree.
+In other words it does not change the .pot and .po files during the process.
+"""
+import argparse
+import os
+import subprocess
+
+
+class NoPoDirectory(Exception):
+
+    """ Exception raised when the po directory cannot be found. """
+
+
+class NoTranslationTemplate(Exception):
+
+    """ Exception raised when there are no .pot files. """
+
+
+class BuildFailure(Exception):
+
+    """ Exception raised when compiling translations fails. """
+
+
+class Builder:
+
+    """
+    A simple i18n builder based on msgfmt.
+
+    :attr domain:
+        Name of the gettext domain
+    :attr directory:
+        Location of the ``po/`` directory
+    """
+
+    def __init__(self, domain=None, directory=None):
+        """
+        Initialize the builder with the given domain.
+
+        :param domain:
+            Name of the gettext domain
+        :param directory:
+            Location of the ``po/`` directory
+        :raises NoTranslationTemplate:
+            If ``domain`` is not defined and auto-detection fails
+        :raises NoPoDirectory:
+            If ``directory`` is not defined and auto-detection fails
+
+        .. note::
+            By default everything is auto-detected based on the existence of
+            the ``po/`` directory or the ``POTFILES.in`` file.
+        """
+        if directory is None:
+            directory = self.guess_directory()
+        if domain is None:
+            domain = self.guess_domain(directory)
+        self.directory = directory
+        self.domain = domain
+
+    @property
+    def mo_dir(self):
+        """ Destination directory for the build process. """
+        return os.path.normpath(os.path.join(self.directory, '../build/mo'))
+
+    def get_languages(self):
+        """ Get a sorted list of language codes of existing translations. """
+        languages = []
+        for item in os.listdir(self.directory):
+            base, ext = os.path.splitext(item)
+            if ext == '.po':
+                languages.append(base)
+        languages.sort()
+        return languages
+
+    def print_info(self):
+        """ Print a few paragraphs of information about the source. """
+        print("Location of po/ directory: {}".format(self.directory))
+        print("Gettext Domain: {}".format(self.domain))
+        print("Existing translations for the following languages:")
+        for lang in self.get_languages():
+            print("- {}".format(lang))
+
+    def build_all(self):
+        """ Build binary translation catalog for all the languages. """
+        print("Building all translation catalogs")
+        for lang in self.get_languages():
+            self.build_lang(lang)
+        print("All catalogs built to: {}".format(self.mo_dir))
+
+    def build_lang(self, lang):
+        """ Build a binary translation catalog for the given language. """
+        print("Building translation catalog for: {}".format(lang))
+        dest_dir = os.path.join(self.mo_dir, lang, 'LC_MESSAGES')
+        os.makedirs(dest_dir, exist_ok=True)
+        retval = subprocess.call([
+            'msgfmt', '--check',
+            '{}.po'.format(os.path.join(self.directory, lang)),
+            '-o', '{}/{}.mo'.format(dest_dir, self.domain)])
+        if retval != 0:
+            raise BuildFailure(lang)
+
+    @classmethod
+    def guess_directory(cls):
+        """ Guess the appropriate location of the po/ directory. """
+        if os.path.isdir('po'):
+            return 'po'
+        if os.path.isfile('POTFILES.in'):
+            return '.'
+
+    @classmethod
+    def guess_domain(cls, directory):
+        """ Guess the domain used based on the first seen .pot file. """
+        for item in os.listdir(directory):
+            base, ext = os.path.splitext(item)
+            if ext == '.pot':
+                return base
+        raise NoTranslationTemplate
+
+
+def main():
+    """ The main function. """
+    parser = argparse.ArgumentParser(
+        description='Tool for building i18n catalogs.',
+        epilog="""This script builds all of the i18n catalogs without
+        corrupting the build tree.  In other words it does not change the .pot
+        and .po files during the process.""")
+    parser.add_argument(
+        '-g', '--gettext-domain', metavar='DOMAIN', default=None,
+        help='Use this gettext domain instead of guessing')
+    parser.add_argument(
+        '-d', '--po-directory', metavar='DIR', default=None,
+        help='Use this po/ directory instead of guessing')
+    args = parser.parse_args()
+    try:
+        builder = Builder(args.gettext_domain, args.po_directory)
+    except NoPoDirectory:
+        raise SystemExit("Unable to find the po/ directory")
+    except NoTranslationTemplate:
+        raise SystemExit("Unable to find the translation template")
+    builder.print_info()
+    try:
+        builder.build_all()
+    except BuildFailure as exc:
+        raise SystemExit("Unable to build translations for: {}".format(
+            exc.args[0]))
+
+
+if __name__ == '__main__':
+    main()
