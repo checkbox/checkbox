@@ -25,6 +25,7 @@ import collections
 import logging
 import re
 
+from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
 from plainbox.impl import deprecated
 from plainbox.impl.depmgr import DependencyDuplicateError
@@ -1134,6 +1135,40 @@ class SessionState:
         """
         stats = collections.defaultdict(int)
         for job_id, job_state in self.job_state_map.items():
+            if not job_state.result.outcome:
+                continue
+            stats[job_state.result.outcome] += 1
+        return stats
+
+    def get_certification_status_map(self,
+                                     outcome_filter=(IJobResult.OUTCOME_FAIL,),
+                                     certification_status_filter=('blocker',)):
+        """
+        Filter the Job state map to only return items with given outcomes and
+        certification statuses.
+
+        :param outcome_filter:
+            Only consider job results with those outcome values
+        :param certification_status_filter:
+            Only consider jobs with those certification status values
+        :returns:
+            a Job state map only containing job with a given outcome and
+            certification status value.
+        """
+        return {
+            job_id: job_state for job_id, job_state in
+            self.job_state_map.items()
+            if job_state.result.outcome in outcome_filter
+            and job_state.effective_certification_status
+            in certification_status_filter}
+
+    def get_outcome_stats(self, plugin_blacklist=("resource",
+                                                  "local",
+                                                  "attachment")):
+        stats = collections.defaultdict(int)
+        for job_id, job_state in self.job_state_map.items():
+            if job_state.job.plugin in plugin_blacklist:
+                continue
             if not job_state.result.outcome:
                 continue
             stats[job_state.result.outcome] += 1
