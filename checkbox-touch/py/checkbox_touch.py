@@ -728,7 +728,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                                   stream):
         exporter_cls = get_all_exporters()[output_format]
         exporter = exporter_cls(option_list)
-        export.dump_from_session_manager(self.manager, stream)
+        exporter.dump_from_session_manager(self.manager, stream)
 
     def _checkpoint(self):
         self.context.state.metadata.app_blob = self._get_app_blob()
