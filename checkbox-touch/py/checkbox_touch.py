@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2014 Canonical Ltd.
+# Copyright 2014-2015 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #   Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -47,10 +47,6 @@ from plainbox.i18n import gettext as _
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.exporter import get_all_exporters
-from plainbox.impl.providers.special import get_categories
-from plainbox.impl.providers.special import get_stubbox
-from plainbox.impl.providers.v1 import all_providers
-from embedded_providers import EmbeddedProvider1PlugInCollection
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.qualifiers import FieldQualifier
@@ -63,7 +59,10 @@ from plainbox.impl.session import SessionResumeError
 from plainbox.impl.session.storage import SessionStorageRepository
 from plainbox.impl.unit.job import JobDefinition
 from plainbox.impl.unit.validators import compute_value_map
+from plainbox.public import get_providers
 import plainbox
+
+from embedded_providers import EmbeddedProvider1PlugInCollection
 
 _logger = logging.getLogger('checkbox.touch')
 _manager = None
@@ -780,8 +779,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         :returns:
             list of loaded providers
         """
-        all_providers.load()
-        provider_list = all_providers.get_all_plugin_objects()
+        provider_list = get_providers()
         # when running on ubuntu-touch device, APP_DIR env var is present
         # and points to touch application top directory
         app_root_dir = os.path.normpath(os.getenv(
@@ -792,7 +790,6 @@ class CheckboxTouchApplication(PlainboxApplication):
         if os.path.exists(path):
             embedded_providers = EmbeddedProvider1PlugInCollection(path)
             provider_list += embedded_providers.get_all_plugin_objects()
-        provider_list.append(get_categories())
         return provider_list
 
 
