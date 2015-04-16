@@ -118,7 +118,7 @@ start_lxc_for(){
         echo "[$target] Unable to provision requirements in container!"
         echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.provision.log)"
         echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.provision.err)"
-        echo "[$target] NOTE: unable to execute tests, marked as failed"
+        fix_permissions
         echo "[$target] Destroying failed container to reclaim resources"
         sudo $LXC_DESTROY -f -n $target_container
         return 1
@@ -126,6 +126,21 @@ start_lxc_for(){
     cat $TIMING | sed -e "s/^/[$target] (timing) /"
 }
 
+fix_permissions(){
+    # Fix permissions.
+    # provision-testing-environment runs as root and creates a series of
+    # root-owned files in the branch directory. Later, tarmac will want
+    # to delete these files, so after provisioning we change everything
+    # under the branch directory to be owned by the unprivileged user,
+    # so stuff can be deleted correctly later.
+    echo "[$target] Fixing file permissions in source directory"
+    if ! sudo $LXC_ATTACH --keep-env -n $target_container -- bash -c "chown -R --reference=test-in-lxc.sh $PWD" >$LOG_DIR/$target.fix-perms.log 2>$LOG_DIR/$target.fix-perms.err; then
+        echo "[$target] Unable to fix permissions!"
+        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.fix-perms.log)"
+        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.fix-perms.err)"
+        echo "[$target] Some files owned by root may have been left around, fix them manually with chown."
+    fi
+}
 
 if [ "$1" = "" ]; then
     # Releases we actually want to test should be included in target_list below.
@@ -182,18 +197,7 @@ for target_release in $target_list; do
         cat $TIMING | sed -e "s/^/[$target] (timing) /"
     done
 
-    # Fix permissions.
-    # provision-testing-environment runs as root and creates a series of
-    # root-owned files in the branch directory. Later, tarmac will want
-    # to delete these files, so after provisioning we change everything
-    # under the branch directory to be owned by the unprivileged user,
-    # so stuff can be deleted correctly later.
-    if ! sudo $LXC_ATTACH --keep-env -n $target_container -- bash -c "chown -R --reference=test-in-lxc.sh $PWD" >$LOG_DIR/$target.fix-perms.log 2>$LOG_DIR/$target.fix-perms.err; then
-        echo "[$target] Unable to fix permissions!"
-        echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.fix-perms.log)"
-        echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.fix-perms.err)"
-        echo "[$target] Some files owned by root may have been left around, fix them manually with chown."
-    fi
+    fix_permissions
 
     echo "[$target] Destroying container"
     # Stop the container first
