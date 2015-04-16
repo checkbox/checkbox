@@ -33,6 +33,7 @@ usb
 xinput
 # Tests grouped by categories. Categories start with '__'
 __audio__
+audio/generator_.*
 audio/alsa_info_collect
 audio/alsa_info_attachment
 audio/speaker-headphone-plug-detection
@@ -42,9 +43,8 @@ audio/alsa_record_playback_internal
 audio/list_devices
 audio/playback_auto
 audio/playback_headphones
-audio/playback_hdmi
-audio/playback_displayport
 audio/alsa_record_playback_automated
+# See Monitor / Graphic test section for hybrid-graphic monitor audio tests
 __benchmarks__
 # See Automated Tests section at the end of this file
 __bluetooth__
@@ -79,6 +79,20 @@ firewire/storage-test
 firewire/remove
 __firmware__
 # See Automated Tests section at the end of this file
+__monitor__
+monitor/generator_.*
+monitor/1_powersaving_.*
+monitor/1_dim_brightness_.*
+monitor/1_displayport_.*
+audio/1_playback_displayport_.*
+monitor/1_dvi_.*
+monitor/1_hdmi_.*
+audio/1_playback_hdmi_.*
+monitor/1_rca_.*
+monitor/1_svideo_.*
+monitor/1_vga_.*
+monitor/1_multi-head_.*
+# See Graphic Tests section for monitor test on second graphic card
 __graphics__
 graphics/generator_.*
 graphics/1_maximum_resolution_.*
@@ -102,6 +116,17 @@ graphics/2_rotation_.*
 graphics/2_display_.*
 graphics/2_minimum_resolution_.*
 graphics/2_cycle_resolution_.*
+monitor/2_powersaving_.*
+monitor/2_dim_brightness_.*
+monitor/2_displayport_.*
+audio/2_playback_displayport_.*
+monitor/2_dvi_.*
+monitor/2_hdmi_.*
+audio/2_playback_hdmi_.*
+monitor/2_rca_.*
+monitor/2_svideo_.*
+monitor/2_vga_.*
+monitor/2_multi-head_.*
 __hibernate__
 #See below, power-management/hibernate_advanced
 __input__
@@ -159,16 +184,6 @@ __miscellanea__
 miscellanea/oops
 miscellanea/oops_results.log
 # See Automated Tests section at the end of this file
-__monitor__
-monitor/powersaving
-monitor/dim_brightness
-monitor/displayport
-monitor/dvi
-monitor/hdmi
-monitor/rca
-monitor/svideo
-monitor/vga
-monitor/multi-head
 __mobilebroadband__
 mobilebroadband/gsm_connection
 mobilebroadband/cdma_connection
