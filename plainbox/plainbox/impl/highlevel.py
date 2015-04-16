@@ -221,6 +221,7 @@ class Explorer:
         return service_obj
 
     def _unit_to_obj(self, unit):
+        # Yes, this should be moved to member methods
         if unit.Meta.name == 'test plan':
             return self._test_plan_to_obj(unit)
         elif unit.Meta.name == 'job':
@@ -231,6 +232,10 @@ class Explorer:
             return self._file_to_obj(unit)
         elif unit.Meta.name == 'template':
             return self._template_to_obj(unit)
+        elif unit.Meta.name == 'manifest entry':
+            return self._manifest_entry_to_obj(unit)
+        elif unit.Meta.name == 'packaging meta-data':
+            return self._packaging_meta_data_to_obj(unit)
         else:
             raise NotImplementedError(unit.Meta.name)
 
@@ -309,6 +314,26 @@ class Explorer:
                 ('origin', str(unit.origin)),
             )))
 
+    def _manifest_entry_to_obj(self, unit):
+        return PlainBoxObject(
+            unit, group=unit.Meta.name, name=unit.id, attrs=OrderedDict((
+                ('id', unit.id),
+                ('name', unit.name),
+                ('tr_name', unit.tr_name()),
+                ('value_type', unit.value_type),
+                ('value_unit', unit.value_unit),
+                ('resource_key', unit.resource_key),
+                ('origin', str(unit.origin)),
+            )))
+
+    def _packaging_meta_data_to_obj(self, unit):
+        return PlainBoxObject(
+            unit, group=unit.Meta.name, name=unit.os_id, attrs=OrderedDict((
+                ('os_id', unit.os_id),
+                ('os_version_id', unit.os_version_id),
+                ('origin', str(unit.origin)),
+            )))
+
 
 class Service:
 
@@ -365,8 +390,7 @@ class Service:
                                   stream):
         exporter_cls = get_all_exporters()[output_format]
         exporter = exporter_cls(option_list)
-        data_subset = exporter.get_session_data_subset(session)
-        exporter.dump(data_subset, stream)
+        exporter.dump_from_session_manager(session.manager, stream)
 
     def get_all_transports(self):
         return [transport for transport in get_all_transports()]

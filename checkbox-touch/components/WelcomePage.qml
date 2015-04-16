@@ -26,6 +26,8 @@ import Ubuntu.Components 1.1
 Page {
     id: welcomePage
 
+    objectName: "welcomePage"
+
     signal startTestingTriggered();
     signal aboutClicked();
     property alias welcomeText: welcomeText.text
@@ -100,7 +102,7 @@ Page {
 
     LatchButton {
         id: startTestButton
-
+        objectName: "startTestButton"
         anchors {
             left: parent.left
             right: parent.right

@@ -197,8 +197,8 @@ class NormalUI(IJobRunnerUI):
             'stdout': sys.stdout,
             'stderr': sys.stderr
         }[stream_name]
-        print(self.C.BLACK(line.decode("UTF-8", "ignore").rstrip('\n')),
-              file=stream)
+        print(self.C.BLACK(line.decode("UTF-8", "ignore")),
+              end='', flush=True, file=stream)
 
     def finished_executing_program(self, returncode):
         if self.show_cmd_output:
@@ -808,8 +808,7 @@ class RunInvocation(CheckBoxInvocationMixIn):
     def export_and_send_results(self):
         # Get a stream with exported session data.
         exported_stream = io.BytesIO()
-        data_subset = self.exporter.get_session_data_subset(self.state)
-        self.exporter.dump(data_subset, exported_stream)
+        self.exporter.dump_from_session_manager(self.manager, exported_stream)
         exported_stream.seek(0)  # Need to rewind the file, puagh
         # Write the stream to file if requested
         self._save_results(self.ns.output_file, exported_stream)

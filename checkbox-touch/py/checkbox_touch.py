@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2014 Canonical Ltd.
+# Copyright 2014-2015 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #   Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -47,10 +47,6 @@ from plainbox.i18n import gettext as _
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.exporter import get_all_exporters
-from plainbox.impl.providers.special import get_categories
-from plainbox.impl.providers.special import get_stubbox
-from plainbox.impl.providers.v1 import all_providers
-from embedded_providers import EmbeddedProvider1PlugInCollection
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.qualifiers import FieldQualifier
@@ -63,7 +59,10 @@ from plainbox.impl.session import SessionResumeError
 from plainbox.impl.session.storage import SessionStorageRepository
 from plainbox.impl.unit.job import JobDefinition
 from plainbox.impl.unit.validators import compute_value_map
+from plainbox.public import get_providers
 import plainbox
+
+from embedded_providers import EmbeddedProvider1PlugInCollection
 
 _logger = logging.getLogger('checkbox.touch')
 _manager = None
@@ -351,7 +350,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self):
+    def start_session(self, providers_dir):
         if self.manager is not None:
             _logger.warning("start_session() should not be called twice!")
         else:
@@ -360,7 +359,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.manager.add_local_device_context()
             self.context = self.manager.default_device_context
             # Add some all providers into the context
-            for provider in self._get_default_providers():
+            for provider in self._get_default_providers(providers_dir):
                 self.context.add_provider(provider)
             # Fill in the meta-data
             self.context.state.metadata.app_id = 'checkbox-touch'
@@ -381,13 +380,15 @@ class CheckboxTouchApplication(PlainboxApplication):
                   'w') as f:
             f.write(self.manager.storage.id)
         return {
-            'session_id': self.manager.storage.id
+            'session_id': self.manager.storage.id,
+            'session_dir': self.manager.storage.location
         }
 
     @view
-    def resume_session(self, rerun_last_test):
+    def resume_session(self, rerun_last_test, providers_dir):
         all_units = list(itertools.chain(
-            *[p.unit_list for p in self._get_default_providers()]))
+            *[p.unit_list for p in self._get_default_providers(
+                providers_dir)]))
         try:
             self.manager = SessionManager.load_session(
                 all_units, self.resume_candidate_storage)
@@ -726,9 +727,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                                   stream):
         exporter_cls = get_all_exporters()[output_format]
         exporter = exporter_cls(option_list)
-        data_subset = exporter.get_session_data_subset(
-            self.context.state)
-        exporter.dump(data_subset, stream)
+        exporter.dump_from_session_manager(self.manager, stream)
 
     def _checkpoint(self):
         self.context.state.metadata.app_blob = self._get_app_blob()
@@ -771,16 +770,26 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.session_storage_repo = SessionStorageRepository(
             self._get_app_cache_directory())
 
-    def _get_default_providers(self):
-        all_providers.load()
-        provider_list = all_providers.get_all_plugin_objects()
+    def _get_default_providers(self, providers_dir):
+        """
+        Get providers
+
+        :param providers_dir:
+            Path within application tree from which to load providers
+        :returns:
+            list of loaded providers
+        """
+        provider_list = get_providers()
         # when running on ubuntu-touch device, APP_DIR env var is present
         # and points to touch application top directory
-        path = os.path.join(os.path.expandvars('$APP_DIR'), 'providers')
+        app_root_dir = os.path.normpath(os.getenv(
+            'APP_DIR', os.path.join(os.path.dirname(__file__), '..')))
+        path = os.path.join(app_root_dir,
+                            os.path.normpath(providers_dir))
+        _logger.info("Loading all providers from %s", path)
         if os.path.exists(path):
             embedded_providers = EmbeddedProvider1PlugInCollection(path)
             provider_list += embedded_providers.get_all_plugin_objects()
-        provider_list.append(get_categories())
         return provider_list
 
 

@@ -1,0 +1,307 @@
+# This is for all the Python scripts
+unit: packaging meta-data
+os-id: debian
+Depends: python3 (>= 3.2)
+
+# This is for bin/efi_resource, bin/cpuinfo_resource, bin/gconf_resource,
+# bin/gconf_resource, bin/meminfo_resource, bin/udev_resource
+# and bin/xinput_resource
+unit: packaging meta-data
+os-id: debian
+Depends: python3-checkbox-support (>= 0.2)
+
+# This is for bin/display_resource
+unit: packaging meta-data
+os-id: debian
+# NOTE: This is not a hard dependency so that
+# plainbox-provider-resource-generic has minimalistic dependencies.
+Suggests: x11-server-utils
+
+# This is for bin/dmi_resource
+unit: packaging meta-data
+os-id: debian
+Depends: dmidecode
+
+# This is for bin/dpkg_resource
+unit: packaging meta-data
+os-id: debian
+Depends: dpkg (>= 1.13),
+
+# This is for bin/gconf_resource
+unit: packaging meta-data
+os-id: debian
+# NOTE: This is not a hard dependency so that
+# plainbox-provider-resource-generic has minimalistic dependencies.
+Suggests: gconf2
+
+# This is for bin/lsb_resource
+unit: packaging meta-data
+os-id: debian
+Depends: lsb-release
+
+# This is for bin/mobilebroadband_resource
+unit: packaging meta-data
+os-id: debian
+Depends: network-manager
+
+# This is for bin/optical_resource and bin/udev_resource
+unit: packaging meta-data
+os-id: debian
+Depends: udev
+
+# This is for bin/xinput_resource
+unit: packaging meta-data
+os-id: debian
+# NOTE: This is not a hard dependency so that
+# plainbox-provider-resource-generic has minimalistic dependencies.
+Suggests: xinput
+
+# This is for 'usb'
+unit: packaging meta-data
+os-id: debian
+Depends: usbutils
+
+id: cpuinfo
+estimated_duration: 0.37
+plugin: resource
+command: cpuinfo_resource
+_description: Gets CPU resource info from /proc/cpuinfo
+
+id: cdimage
+estimated_duration: 0.61
+plugin: resource
+user: root
+command: cdimage_resource
+_description: Gets installation info from casper.log and media-info
+
+id: dpkg
+estimated_duration: 0.19
+plugin: resource
+command: dpkg_resource
+requires: package.name == "dpkg"
+_description: Gets info on the version of dpkg installed
+
+id: gconf
+estimated_duration: 0.42
+plugin: resource
+command: gconf_resource | filter_templates -w 'name=.*proxy.*'
+requires: package.name == "gconf2"
+_description: Generates resource info from gconf settings
+
+id: lsb
+estimated_duration: 1.63
+plugin: resource
+command: lsb_resource
+requires: package.name == "lsb-release"
+_description: Generates release info based on /etc/lsb-release
+
+id: meminfo
+estimated_duration: 0.1
+plugin: resource
+command: meminfo_resource
+_description: Generates resource info based on /proc/meminfo
+
+id: module
+estimated_duration: 0.13
+plugin: resource
+command: module_resource
+_description: Generates resources info on running kernel modules
+
+id: package
+estimated_duration: 1.16
+plugin: resource
+command: dpkg-query -W -f='name: ${Package}\nversion: ${Version}\n\n'
+_description: Generates a list of packages
+
+id: executable
+estimated_duration: 0.78
+plugin: resource
+_summary: Enumerate available system executables
+_description: Generates a resource for all available executables
+command:
+    export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+    find -H $(echo "$PATH" | sed -e 's/:/ /g') -maxdepth 1 -type f -executable -printf "name: %f\n\n"
+
+id: device
+estimated_duration: 0.48
+plugin: resource
+command: udev_resource
+requires: package.name == "udev"
+_description: Creates resource info from udev
+
+id: staging/udev
+estimated_duration: 1.1
+plugin: resource
+shell: /bin/sh
+requires: package.name == "udev"
+command: udevadm info --export-db | udev2resource
+_summary: Collect unfiltered udev data
+_description:
+ This job collects the udev database in mostly raw format. The only
+ transformations applied are basic changes to make the format compatible with
+ RFC822 syntax required by PlainBox.
+
+id: dmi
+estimated_duration: 0.59
+plugin: resource
+user: root
+requires: package.name == "dmidecode"
+command: dmi_resource
+
+id: efi
+estimated_duration: 0.56
+plugin: resource
+user: root
+command: efi_resource
+
+id: uname
+estimated_duration: 0.09
+plugin: resource
+command: uname_resource
+_description: Creates resource info from uname output
+
+id: sleep
+estimated_duration: 0.03
+plugin: resource
+command: for state in `cat /sys/power/state`; do echo "$state: supported"; done
+_description: Create resource info for supported sleep states
+
+plugin: local
+id: optical_drive
+estimated_duration: 0.39
+requires: device.category == 'CDROM'
+_description: Create resource info for supported optical actions
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ id: optical_drive_`ls /sys$path/block`
+ plugin: resource
+ command: optical_resource /dev/`ls /sys/$path/block`
+ estimated_duration: 0.5
+ _description: Create resource info for supported optical actions
+ EOF
+
+id: block_device
+estimated_duration: 0.08
+plugin: resource
+command: block_device_resource
+_description: Create resource info for removable block devices
+
+id: display
+estimated_duration: 0.43
+plugin: resource
+command: display_resource
+requires: package.name == "x11-xserver-utils"
+_description: Creates display resource info from xrandr output
+
+id: usb
+estimated_duration: 0.33
+plugin: resource
+_description: Creates resource info for supported USB versions
+command: 
+ for version in 2 3; do 
+     echo -n "usb$version: "
+     lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
+ done
+
+id: xinput
+estimated_duration: 0.19
+plugin: resource
+command: xinput_resource
+requires: package.name == "xinput"
+_description: Creates resource info from xinput output.
+
+id: environment
+estimated_duration: 0.11
+plugin: resource
+_description: Create resource info for environment variables
+command:
+ IFS=$'\n'
+ for e in `env | sed 's/=/:/g'`; do
+     echo $e | awk -F':' '{print $1 ": " $2}'
+ done
+
+id: mobilebroadband
+estimated_duration: 0.38
+plugin: resource
+_description: Create resource for mobile broadband devices
+command: mobilebroadband_resource
+
+id: virtualization
+estimated_duration: 0.13
+plugin: resource
+requires: package.name == "cpu-checker"
+_description: Resource for hardware virtualization
+command:
+ if kvm-ok > /dev/null
+ then
+     echo "kvm: supported"
+ else
+     echo "kvm: unsupported"
+ fi
+
+id: IEEE_80211
+estimated_duration: 0.08
+plugin: resource
+command: 80211_resource
+_description: Creates resource info for wifi supported protocols/interfaces
+
+id: rtc
+estimated_duration: 0.02
+plugin: resource
+command: 
+  if [ -e /sys/class/rtc ]
+  then
+      echo "state: supported"
+  else
+      echo "state: unsupported"
+  fi
+_description: Creates resource info for RTC
+
+id: requirements
+estimated_duration: 0.01
+plugin: resource
+command:
+ if [ -f $PLAINBOX_SESSION_SHARE/requirements_docs.txt ];then
+    cat $PLAINBOX_SESSION_SHARE/requirements_docs.txt
+ else
+    true
+ fi
+_description:
+ Provide links to requirements documents.
+ .
+ The requirement document should contain sets of name/link pairs.
+ .
+ Each requirement should have two keys with their respective
+ values:
+ name: (to be used as the anchor text)
+ link: (the actual URL)
+ .
+ Each set should be separated from the previous one by a new line.
+ .
+ Example:
+ .
+ name: Requirement 1
+ link: http://example.com/requirement1
+ .
+ name: requirement 2
+ link: http://example.com/requirement2
+ .
+ Providers wishing to use this feature need to:
+ 1- Write a job that places a suitably-formatted file in $PLAINBOX_SESSION_SHARE
+ 2- Update their whitelists to run that job *before* miscellanea/submission-resources
+    or the "requirements" resource job.
+
+id: graphics_card
+estimated_duration: 0.05
+plugin: resource
+_description:
+ Generate an entry for each graphics card present in the system.
+command: graphics_card_resource
+
+id: __resource__
+plugin: local
+_description: Resources to gather system information
+_summary: Resources
+command:
+  shopt -s extglob
+  cat $PLAINBOX_PROVIDER_DATA/../jobs/resource.pxu

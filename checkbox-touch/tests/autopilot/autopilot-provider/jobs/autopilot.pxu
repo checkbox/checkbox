@@ -1,0 +1,208 @@
+unit: test plan
+_description:
+ Test plan that should be default one run by autopilot.
+id: checkbox-touch-autopilot
+_name: Checkbox-Touch autpoilot self-test
+estimated_duration: 60
+include: autopilot/.*
+
+unit: category
+id: normal
+_name: Tests not requiring sudo
+
+id: autopilot/automated-test-that-fails
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test should be failed automatically.
+plugin: shell
+command: true
+estimated_duration: 0.1
+flags: preserve-locale
+category_id: normal
+
+id: autopilot/automated-test-that-passes
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test should be passed automatically.
+plugin: shell
+command: false
+estimated_duration: 0.1
+flags: preserve-locale
+category_id: normal
+
+# Next three tests aid Autopilot in testing manual jobs. There are 3 instances
+# of what may seem like the same job, but they exist so Autopilot can pass one
+# of them, fail second one, and skip the last one.
+id: autopilot/manual-1
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should pass this test.
+_steps:
+ This manual test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+_verification:
+ This manual test should be operated by Autopilot.
+ On this screen Autopilot should select an option that passes the test.
+plugin: manual
+estimated_duration: 2
+flags: preserve-locale
+category_id: normal
+
+id: autopilot/manual-2
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should fail this test.
+_steps:
+ This manual test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+_verification:
+ This manual test should be operated by Autopilot.
+ On this screen Autopilot should select an option that fails the test.
+plugin: manual
+estimated_duration: 2
+flags: preserve-locale
+category_id: normal
+
+id: autopilot/manual-3
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should skip this test.
+_steps:
+ This manual test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+_verification:
+ This manual test should be operated by Autopilot.
+ On this screen Autopilot should select an option that skips the test.
+plugin: manual
+estimated_duration: 2
+flags: preserve-locale
+category_id: normal
+
+# Next three tests aid Autopilot in testing user-interact-verify jobs.
+# There are 3 instances of what may seem like the same job, but they exist so
+# Autopilot can pass one of them, fail second one, and skip the last one.
+id: autopilot/user-interact-verify-1
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should pass this test.
+_steps:
+ This user-interact-verify test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+_verification:
+ On this screen Autopilot should select an option that passes the test.
+plugin: user-interact-verify
+estimated_duration: 2
+category_id: normal
+flags: preserve-locale
+command: true
+
+id: autopilot/user-interact-verify-2
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should fail this test.
+_steps:
+ This user-interact-verify test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+_verification:
+ On this screen Autopilot should select an option that fail the test.
+plugin: user-interact-verify
+estimated_duration: 2
+category_id: normal
+flags: preserve-locale
+command: false
+
+id: autopilot/user-interact-verify-3
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should skip this test.
+_steps:
+ This user-interact-verify test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+_verification:
+ On this screen Autopilot should select an option that skips the test.
+plugin: user-interact-verify
+estimated_duration: 2
+category_id: normal
+flags: preserve-locale
+command: true
+
+# Next three tests aid Autopilot in testing user-verify jobs.
+# There are 3 instances of what may seem like the same job, but they exist so
+# Autopilot can pass one of them, fail second one, and skip the last one.
+id: autopilot/user-verify-1
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should pass this test.
+_verification:
+ On this screen Autopilot should select an option that passes the test.
+plugin: user-verify
+estimated_duration: 1.5
+category_id: normal
+flags: preserve-locale
+command: true
+
+id: autopilot/user-verify-2
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should fail this test.
+_verification:
+ On this screen Autopilot should select an option that fails the test.
+plugin: user-verify
+estimated_duration: 1.5
+category_id: normal
+flags: preserve-locale
+command: false
+
+id: autopilot/user-verify-3
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Autopilot should skip this test.
+_verification:
+ On this screen Autopilot should select an option that skips the test.
+plugin: user-verify
+estimated_duration: 1.5
+category_id: normal
+flags: preserve-locale
+command: true
+
+# Next three tests aid Autopilot in testing user-interact jobs.
+# There are 3 jobs to test. One that fails and two that should pass, and one
+# from the latter group should be skipped by Autopilot test.
+id: autopilot/user-interact-1
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test should be passed automatically.
+_steps:
+ This user-interact test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+plugin: user-interact
+estimated_duration: 1.5
+category_id: normal
+flags: preserve-locale
+command: true
+
+id: autopilot/user-interact-2
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test should be failed automatically.
+_steps:
+ This user-interact test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+plugin: user-interact
+estimated_duration: 1.5
+category_id: normal
+flags: preserve-locale
+command: false
+
+id: autopilot/user-interact-3
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test should be skipped before command starts to run.
+_steps:
+ This user-interact test should be operated by Autopilot.
+ Here, steps that test requires to take should be presented.
+plugin: user-interact
+estimated_duration: 1.5
+category_id: normal
+flags: preserve-locale
+command: true

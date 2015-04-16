@@ -70,6 +70,7 @@ Page {
         actions: [
             Action {
                 id: continueAction
+                objectName: "continueAction"
                 iconName: "media-playback-start"
                 text: continueText
                 onTriggered: {
@@ -78,6 +79,7 @@ Page {
             },
             Action {
                 id: selectAllAction
+                objectName: "selectAllAction"
                 iconName: "select"
                 text: i18n.tr("Select All")
                 visible: !onlyOneAllowed
@@ -90,6 +92,7 @@ Page {
             },
             Action {
                 id: deselectAllAction
+                objectName: "deselectAllAction"
                 iconName: "clear-search"
                 text: i18n.tr("Deselect All")
                 visible: !onlyOneAllowed
@@ -158,7 +161,9 @@ Page {
             Layout.fillHeight: true
             clip: true
             delegate: ListItem.Standard {
+                objectName: "listItem"
                 text: mod_name
+                property var item_mod_id: mod_id
                 /* Create a checkbox-lookalike that doesn't have the internal onTrigger
                  * signal handler that overrides the binding to the model.mod_selected
                  * property. If we use the normal CheckBox component here then the
@@ -190,6 +195,7 @@ Page {
 
         LatchButton {
             id: continueButton
+            objectName: "continueButton"
             Layout.fillWidth: true
             enabled: continueAction.enabled
             text: continueText

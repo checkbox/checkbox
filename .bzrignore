@@ -46,6 +46,12 @@ checkbox-gui/share
 *.qmlproject.user
 # Ignore SDK builds
 build-checkbox-touch-*
+# Ignore checkbox-touch generated or copied over artifacts
+checkbox-touch/checkbox-touch.desktop
+checkbox-touch/components/vendor/
+checkbox-touch/lib
+checkbox-touch/providers
+checkbox-touch/settings.json
 # Ignore c9.io state files
 .c9
 # Ignore any virtualenvs

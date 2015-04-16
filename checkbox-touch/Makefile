@@ -11,6 +11,7 @@
 all:
 
 autopilot:
+	./get-libs
 	chmod +x tests/autopilot/run
 	tests/autopilot/run
 
@@ -18,5 +19,5 @@ check:
 	qmltestrunner -input tests/unit
 
 run:
-	/usr/bin/qmlscene $@ main.qml
+	/usr/bin/qmlscene $@ checkbox-touch.qml
 

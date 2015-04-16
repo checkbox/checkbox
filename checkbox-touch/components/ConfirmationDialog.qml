@@ -32,6 +32,7 @@ import Ubuntu.Components.Popups 0.1
 
 Item {
     id: confirmationDialog
+    objectName: "confirmationDialog"
 
     /*!
         Gets signalled user selects an option
@@ -60,11 +61,13 @@ Item {
 
         Dialog {
             id: dlg
+            objectName: "dialog"
             modal: true // Screen behind the dialog will be greyed-out
             title: question
 
             Button {
                 text: i18n.tr("YES")
+                objectName: "yesButton"
                 color: UbuntuColors.green
                 onClicked: {
                     answer(true, checkBox.checked);
@@ -73,6 +76,7 @@ Item {
             }
             Button {
                 text: i18n.tr("NO")
+                objectName: "noButton"
                 color: UbuntuColors.red
                 onClicked: {
                     answer(false, checkBox.checked);

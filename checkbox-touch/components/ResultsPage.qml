@@ -35,6 +35,7 @@ Page {
     title: i18n.tr("Test Results")
     visible: false
 
+    objectName: "resultsPage"
     property var results: {"totalPassed": 0, "totalFailed": 0, "totalSkipped": 0}
     signal saveReportClicked()
     signal endTesting()
@@ -116,6 +117,7 @@ Page {
                     color:"#6AA84F"
                 }
                 Text {
+                    objectName: "passedLabel"
                     text: results.totalPassed + " tests passed"
                 }
             }
@@ -126,6 +128,7 @@ Page {
                     color:"#DC3912"
                 }
                 Text {
+                    objectName: "failedLabel"
                     text: results.totalFailed + " tests failed"
                 }
             }
@@ -136,6 +139,7 @@ Page {
                     color:"#FF9900"
                 }
                 Text {
+                    objectName: "skippedLabel"
                     text: results.totalSkipped + " tests skipped"
                 }
             }

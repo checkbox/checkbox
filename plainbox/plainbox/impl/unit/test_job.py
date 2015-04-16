@@ -27,10 +27,12 @@ Test definitions for plainbox.impl.unit.job module
 from unittest import TestCase
 import warnings
 
+from plainbox.impl.providers.v1 import Provider1
 from plainbox.impl.secure.origin import FileTextSource
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.rfc822 import RFC822Record
 from plainbox.impl.unit.job import JobDefinition
+from plainbox.impl.unit.job import propertywithsymbols
 from plainbox.impl.unit.test_unit_with_id import UnitWithIdFieldValidationTests
 from plainbox.impl.unit.unit_with_id import UnitWithId
 from plainbox.impl.unit.validators import UnitValidationContext
@@ -39,7 +41,6 @@ from plainbox.impl.validation import Severity
 from plainbox.impl.validation import ValidationError
 from plainbox.testing_utils.testcases import TestCaseWithParameters
 from plainbox.vendor import mock
-from plainbox.impl.unit.job import propertywithsymbols
 
 
 class DecoratorTests(TestCase):
@@ -346,13 +347,6 @@ class JobDefinitionFieldValidationTests(UnitWithIdFieldValidationTests):
         }, provider=self.provider).check()
         self.assertIssueFound(issue_list, self.unit_cls.Meta.fields.command,
                               Problem.unexpected_i18n, Severity.warning)
-
-    def test_command__template_variant(self):
-        issue_list = self.unit_cls({
-            'command': 'command'
-        }, parameters={}, provider=self.provider).check()
-        self.assertIssueFound(issue_list, self.unit_cls.Meta.fields.command,
-                              Problem.constant, Severity.error)
 
     def test_command__present__on_non_manual(self):
         for plugin in self.unit_cls.plugin.symbols.get_all_symbols():
@@ -1345,3 +1339,23 @@ class JobParsingTests(TestCaseWithParameters):
         expected = set({'foo', 'bar', 'froz'})
         observed = job.get_direct_dependencies()
         self.assertEqual(expected, observed)
+
+
+class RegressionTests(TestCase):
+
+    """ Regression tests. """
+
+    def test_1444242(self):
+        """ Regression test for http://pad.lv/1444242/. """
+        provider = mock.Mock(spec_set=Provider1, name='provider')
+        provider.namespace = '2013.com.canonical.certification'
+        job = JobDefinition({
+            'id': 'audio/playback_thunderbolt',
+            'imports': 'from 2013.com.canonical.plainbox import manifest',
+            'requires': (
+                "device.category == 'AUDIO'\n"
+                "manifest.has_thunderbolt == 'True'\n"),
+        }, provider=provider)
+        prog = job.get_resource_program()
+        self.assertEqual(prog.expression_list[-1].resource_id,
+                         '2013.com.canonical.plainbox::manifest')

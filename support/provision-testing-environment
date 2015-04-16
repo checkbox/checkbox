@@ -84,6 +84,10 @@ export PIP=/usr/local/bin/pip-3.*
 $CHECKBOX_TOP/support/install-pip-dependencies
 $CHECKBOX_TOP/support/develop-projects
 
+export PROVIDERPATH=/usr/local/share/plainbox-providers-1
+mkdir -p "$PROVIDERPATH"
+$CHECKBOX_TOP/support/develop-providers
+
 # Create a cool symlink so that everyone knows where to go to.
 #
 # Vagrant runs the provision script as root, but we want the symlink to /vagrant,

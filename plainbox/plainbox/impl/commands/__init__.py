@@ -28,6 +28,7 @@ import logging
 
 from plainbox.impl.clitools import CommandBase
 from plainbox.impl.clitools import ToolBase
+from plainbox.public import get_providers
 
 
 logger = logging.getLogger("plainbox.commands")
@@ -83,10 +84,7 @@ class PlainBoxToolBase(ToolBase):
 
     def _load_providers(self):
         logger.info("Loading all providers...")
-        # Load all normal providers
-        from plainbox.impl.providers.v1 import all_providers
-        all_providers.load()
-        return all_providers.get_all_plugin_objects()
+        return get_providers()
 
 
 class PlainBoxCommand(CommandBase):

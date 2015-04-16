@@ -29,6 +29,7 @@ from plainbox.abc import IExecutionController
 from plainbox.abc import IJobResult
 from plainbox.impl.depmgr import DependencyDuplicateError
 from plainbox.impl.depmgr import DependencyMissingError
+from plainbox.impl.depmgr import DependencyUnknownError
 from plainbox.impl.resource import Resource
 from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.secure.origin import Origin
@@ -80,6 +81,14 @@ class SessionStateSmokeTests(TestCase):
 class RegressionTests(TestCase):
     # Tests for bugfixes
 
+    def test_crash_on_missing_job(self):
+        """ http://pad.lv/1334296 """
+        A = make_job("A")
+        state = SessionState([])
+        problems = state.update_desired_job_list([A])
+        self.assertEqual(problems, [DependencyUnknownError(A)])
+        self.assertEqual(state.desired_job_list, [])
+
     def test_crash_in_update_desired_job_list(self):
         # This checks if a DependencyError can cause crash
         # update_desired_job_list() with a ValueError, in certain conditions.
@@ -114,6 +123,19 @@ class RegressionTests(TestCase):
             self.assertIs(call.exception.job, A)
             self.assertIs(call.exception.duplicate_job, different_A)
             self.assertIs(call.exception.affected_job, different_A)
+
+    def test_dont_remove_missing_jobs(self):
+        """ http://pad.lv/1444126 """
+        A = make_job("A", depends="B")
+        B = make_job("B", depends="C")
+        state = SessionState([A, B])
+        problems = state.update_desired_job_list([A, B])
+        self.assertEqual(problems, [
+            DependencyMissingError(B, 'C', 'direct'),
+            DependencyMissingError(A, 'B', 'direct'),
+        ])
+        self.assertEqual(state.desired_job_list, [])
+        self.assertEqual(state.run_list, [])
 
 
 class SessionStateAPITests(TestCase):
@@ -642,6 +664,46 @@ class SessionStateReactionToJobResultTests(TestCase):
         # It should be linked to the job L via the via_job state attribute
         self.assertIs(
             self.session.job_state_map[job_foo.id].via_job, self.job_L)
+
+    def test_get_outcome_stats(self):
+        result_A = MemoryJobResult({'outcome': IJobResult.OUTCOME_PASS})
+        result_L = MemoryJobResult(
+            {'outcome': IJobResult.OUTCOME_NOT_SUPPORTED})
+        result_R = MemoryJobResult({'outcome': IJobResult.OUTCOME_FAIL})
+        result_Y = MemoryJobResult({'outcome': IJobResult.OUTCOME_FAIL})
+        self.session.update_job_result(self.job_A, result_A)
+        self.session.update_job_result(self.job_L, result_L)
+        self.session.update_job_result(self.job_R, result_R)
+        self.session.update_job_result(self.job_Y, result_Y)
+        self.assertEqual(self.session.get_outcome_stats(),
+                         {IJobResult.OUTCOME_PASS: 1,
+                          IJobResult.OUTCOME_NOT_SUPPORTED: 1,
+                          IJobResult.OUTCOME_FAIL: 2})
+
+    def test_get_certification_status_map(self):
+        result_A = MemoryJobResult({'outcome': IJobResult.OUTCOME_PASS})
+        self.session.update_job_result(self.job_A, result_A)
+        self.session.job_state_map[
+            self.job_A.id].effective_certification_status = 'foo'
+        self.assertEqual(self.session.get_certification_status_map(), {})
+        self.assertEqual(self.session.get_certification_status_map(
+            outcome_filter=(IJobResult.OUTCOME_PASS,),
+            certification_status_filter=('foo',)),
+            {self.job_A.id: self.session.job_state_map[self.job_A.id]})
+        result_Y = MemoryJobResult({'outcome': IJobResult.OUTCOME_FAIL})
+        self.session.job_state_map[
+            self.job_Y.id].effective_certification_status = 'bar'
+        self.assertEqual(self.session.get_certification_status_map(), {})
+        self.assertEqual(self.session.get_certification_status_map(
+            outcome_filter=(IJobResult.OUTCOME_PASS, IJobResult.OUTCOME_FAIL),
+            certification_status_filter=('foo', 'bar')),
+            {self.job_A.id: self.session.job_state_map[self.job_A.id]})
+        self.session.update_job_result(self.job_Y, result_Y)
+        self.assertEqual(self.session.get_certification_status_map(
+            outcome_filter=(IJobResult.OUTCOME_PASS, IJobResult.OUTCOME_FAIL),
+            certification_status_filter=('foo', 'bar')),
+            {self.job_A.id: self.session.job_state_map[self.job_A.id],
+             self.job_Y.id: self.session.job_state_map[self.job_Y.id]})
 
 
 class SessionMetadataTests(TestCase):

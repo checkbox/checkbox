@@ -1,3 +1,5 @@
+## _name: Client Certification (Development)
+##
 ## This whitelist is intended for use inside Canonical's test labs.  The tests
 ## conained in this list are the same as those contained in the
 ## client-selftest.whitelist file that OEMs may use. The difference here is that
@@ -8,6 +10,7 @@
 miscellanea/submission-resources
 # Resource Jobs
 __resource__
+2013.com.canonical.plainbox::collect-manifest
 IEEE_80211
 block_device
 cdimage
@@ -77,6 +80,11 @@ __firewire__
 firewire/insert
 firewire/storage-test
 firewire/remove
+__thunderbolt__
+thunderbolt/insert
+thunderbolt/storage-test
+thunderbolt/remove
+# See the Thunderbolt monitor test for the daisy-chain test
 __firmware__
 # See Automated Tests section at the end of this file
 __monitor__
@@ -88,6 +96,8 @@ audio/1_playback_displayport_.*
 monitor/1_dvi_.*
 monitor/1_hdmi_.*
 audio/1_playback_hdmi_.*
+
+audio/1_playback_thunderbolt_.*
 monitor/1_rca_.*
 monitor/1_svideo_.*
 monitor/1_vga_.*

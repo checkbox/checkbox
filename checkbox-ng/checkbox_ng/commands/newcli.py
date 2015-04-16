@@ -35,6 +35,7 @@ import os
 import re
 import sys
 
+from plainbox.abc import IJobResult
 from plainbox.impl.commands.inv_run import RunInvocation
 from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.exporter import get_all_exporters
@@ -55,6 +56,7 @@ from plainbox.vendor.textland import get_display
 from checkbox_ng.misc import SelectableJobTreeNode
 from checkbox_ng.ui import ScrollableTreeNode
 from checkbox_ng.ui import ShowMenu
+from checkbox_ng.ui import ShowRerun
 from checkbox_ng.ui import ShowWelcome
 
 
@@ -204,6 +206,7 @@ class CliInvocation2(RunInvocation):
         self.maybe_warm_up_authentication()
         self.print_estimated_duration()
         self.run_all_selected_jobs()
+        self.maybe_rerun_jobs()
         self.export_and_send_results()
         if SessionMetaData.FLAG_INCOMPLETE in self.metadata.flags:
             print(self.C.header("Session Complete!", "GREEN"))
@@ -333,8 +336,7 @@ class CliInvocation2(RunInvocation):
             print(self.C.header(_("Results")))
             exporter = get_all_exporters()['text']()
             exported_stream = io.BytesIO()
-            data_subset = exporter.get_session_data_subset(self.manager.state)
-            exporter.dump(data_subset, exported_stream)
+            exporter.dump_from_session_manager(self.manager, exported_stream)
             exported_stream.seek(0)  # Need to rewind the file, puagh
             # This requires a bit more finesse, as exporters output bytes
             # and stdout needs a string.
@@ -363,7 +365,6 @@ class CliInvocation2(RunInvocation):
             actual_options = [opt for opt in exp_options
                               if opt in exporter_cls.supported_option_list]
             exporter = exporter_cls(actual_options)
-            data_subset = exporter.get_session_data_subset(self.manager.state)
             results_path = results_file
             if exporter_cls is XMLSessionStateExporter:
                 results_path = submission_file
@@ -372,7 +373,7 @@ class CliInvocation2(RunInvocation):
                 if exporter_cls is XLSXSessionStateExporter:
                     results_path = results_path.replace('html', 'xlsx')
             with open(results_path, "wb") as stream:
-                exporter.dump(data_subset, stream)
+                exporter.dump_from_session_manager(self.manager, stream)
         print()
         print(_("Saving submission file to {}").format(submission_file))
         self.submission_file = submission_file
@@ -503,3 +504,33 @@ class CliInvocation2(RunInvocation):
                             ": {0}").format(result))
             except TransportError as exc:
                 print(str(exc))
+
+    def maybe_rerun_jobs(self):
+        def rerun_predicate(job_state):
+            return job_state.result.outcome in (
+                IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH)
+        # create a list of jobs that qualify for rerunning
+        rerun_candidates = []
+        for job in self.manager.state.run_list:
+            if rerun_predicate(self.manager.state.job_state_map[job.id]):
+                rerun_candidates.append(job)
+        # bail-out early if no job qualifies for rerunning
+        if not rerun_candidates:
+            return
+        self._update_desired_job_list(rerun_candidates)
+        tree = SelectableJobTreeNode.create_tree(
+            self.manager.state, self.manager.state.run_list)
+        # deselect all by default
+        tree.set_descendants_state(False)
+        self.display.run(ShowRerun(tree, _("Select jobs to re-run")))
+        wanted_set = frozenset(tree.selection)
+        if not wanted_set:
+            # nothing selected - nothing to run
+            return
+        rerun_job_list = [job for job in self.manager.state.run_list
+                          if job in wanted_set]
+        # reset outcome of jobs that are selected for re-running
+        for job in wanted_set:
+            self.manager.state.job_state_map[job.id].result.outcome = None
+        self._update_desired_job_list(rerun_job_list)
+        self.run_all_selected_jobs()

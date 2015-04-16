@@ -2,11 +2,13 @@
 
 if [[ -z `which autopilot` ]]; then
   echo "Autopilot is not installed. Skip"
-  exit
+  exit 1
 fi
 
 SCRIPTPATH=`dirname $0`
 pushd ${SCRIPTPATH}
 autopilot run checkbox_touch
+ret=$?
 popd
+exit $ret
 
