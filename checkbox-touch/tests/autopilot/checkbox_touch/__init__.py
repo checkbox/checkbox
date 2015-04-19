@@ -3,7 +3,6 @@
 """Ubuntu Touch App autopilot tests."""
 
 import os
-import subprocess
 
 from autopilot import input, platform
 from autopilot.introspection.dbus import StateNotFoundError
@@ -50,12 +49,11 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             except StateNotFoundError:
                 pass
             try:
-                welcome_page = self.app.wait_select_single(
+                self.app.wait_select_single(
                     objectName='welcomePage', visible=True)
                 return
             except StateNotFoundError:
                 pass
-
 
     def start_and_select_tests(self, category_id, job_ids):
         self.skipResumeIfShown()
@@ -132,4 +130,3 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     @property
     def main_view(self):
         return self.app.select_single(emulators.MainView)
-
