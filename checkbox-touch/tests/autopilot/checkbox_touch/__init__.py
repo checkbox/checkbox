@@ -59,8 +59,10 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
 
     def start_and_select_tests(self, category_id, job_ids):
         self.skipResumeIfShown()
-        start_btn = self.app.select_single(objectName='startTestButton')
-        self.assertThat(start_btn.text, Eventually(Equals("Start Testing")))
+        welcome_page = self.long_wait_select_single(
+            self.app, objectName='welcomePage', state='loaded')
+        start_btn = welcome_page.wait_select_single(
+            objectName='startTestButton')
         self.pointing_device.click_object(start_btn)
         self.main_view.get_header().click_action_button('deselectAllAction')
         category_page = self.app.wait_select_single(
