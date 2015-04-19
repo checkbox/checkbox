@@ -108,3 +108,62 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             objectName='skippedLabel')
         self.assertThat(lbl_skipped.text.startswith(results['skipped']),
                         Equals(True))
+
+
+class SessionResumeTests(checkbox_touch.ClickAppTestCase):
+    def select_two_tests_and_quit(self):
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [
+                '2015.com.canonical.certification::autopilot/user-verify-1',
+                '2015.com.canonical.certification::autopilot/user-verify-2'])
+        # make sure that test is shown (therefore session has been started)
+        self.app.wait_select_single(
+            objectName='userInteractVerifyIntroPage', visible=True)
+        self.app.process.terminate()
+
+    def test_rerun_after_resume(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+        # not doing long-wait, as the app was recently launched and it
+        # *shouldn't* take long to relaunch it
+        resume_page = self.app.wait_select_single(
+            objectName='resumeSessionPage', visible=True)
+        rerun_btn = resume_page.wait_select_single(
+            objectName='rerunButton', visible=True)
+        self.pointing_device.click_object(rerun_btn)
+        intro_page = self.app.wait_select_single(
+            objectName='userInteractVerifyIntroPage', visible=True)
+        test_name_label = intro_page.wait_select_single(
+            objectName='testNameLabel', visible=True)
+        self.assertThat(test_name_label.text,
+                        Eventually(Equals('autopilot/user-verify-1')))
+
+    def test_continue_after_resume(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+        resume_page = self.app.wait_select_single(
+            objectName='resumeSessionPage', visible=True)
+        continue_btn = resume_page.wait_select_single(
+            objectName='continueButton')
+        self.pointing_device.click_object(continue_btn)
+        intro_page = self.app.wait_select_single(
+            objectName='userInteractVerifyIntroPage', visible=True)
+        test_name_label = intro_page.wait_select_single(
+            objectName='testNameLabel', visible=True)
+        self.assertThat(test_name_label.text,
+                        Eventually(Equals('autopilot/user-verify-2')))
+
+    def test_restart_after_resume(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+        resume_page = self.app.wait_select_single(
+            objectName='resumeSessionPage', visible=True)
+        restart_btn = resume_page.wait_select_single(
+            objectName='restartButton')
+        self.pointing_device.click_object(restart_btn)
+        welcome_page = self.app.wait_select_single(
+            objectName='welcomePage')
+        self.assertThat(welcome_page.visible, Eventually(Equals(True)))
