@@ -15,7 +15,7 @@ _purpose:
  Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
  This test should be failed automatically.
 plugin: shell
-command: true
+command: false
 estimated_duration: 0.1
 flags: preserve-locale
 category_id: normal
@@ -25,7 +25,7 @@ _purpose:
  Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
  This test should be passed automatically.
 plugin: shell
-command: false
+command: true
 estimated_duration: 0.1
 flags: preserve-locale
 category_id: normal
