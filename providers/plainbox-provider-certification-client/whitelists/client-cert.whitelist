@@ -284,7 +284,7 @@ suspend/bluetooth_obex_get_before_suspend
 # Test card 2 first, if present, since it's the one we will be using
 # after coming back from suspend if the system has hybrid graphics.
 suspend/2_resolution_before_suspend_.*
-suspend/suspend_advanced
+suspend/2_suspend_after_switch_to_card_.*
 suspend/2_suspend-time-check_.*
 suspend/2_suspend-single-log-attach_.*
 suspend/2_hybrid_sleep_.*
@@ -293,6 +293,21 @@ suspend/2_resolution_after_suspend_.*
 suspend/2_display_after_suspend_.*
 suspend/2_cycle_resolutions_after_suspend_.*
 suspend/2_xrandr_screens_after_suspend.tar.gz
+power-management/2_hibernate_advanced_.*
+power-management/2_hibernate-single-log-attach_.*
+# Now we ask to switch to the first graphics card. This requires a restart
+# of checkbox.
+graphics/1_switch_card_.*
+suspend/1_resolution_before_suspend_.*
+suspend/suspend_advanced
+suspend/suspend-time-check
+suspend/suspend-single-log-attach
+suspend/1_hybrid_sleep_.*
+suspend/1_hybrid-sleep-single-log-attach_.*
+suspend/resolution_after_suspend
+suspend/display_after_suspend
+suspend/cycle_resolutions_after_suspend
+suspend/xrandr_screens_after_suspend.tar.gz
 keys/sleep
 led/power-blink-suspend
 led/suspend
@@ -328,24 +343,8 @@ suspend/wireless_connection_after_suspend_wpa_n
 suspend/wireless_connection_after_suspend_open_n
 suspend/wireless_connection_after_suspend_wpa_ac
 suspend/wireless_connection_after_suspend_open_ac
-power-management/2_hibernate_advanced_.*
-power-management/2_hibernate-single-log-attach_.*
-# Now we ask to switch to the first graphics card. This requires a restart
-# of checkbox. If the system only has one card, the test instructions should
-# tell the user to just do nothing.
-graphics/1_switch_card_.*
-suspend/1_resolution_before_suspend_.*
-suspend/1_suspend_after_switch_to_card_.*
-suspend/1_suspend-time-check_.*
-suspend/1_suspend-single-log-attach_.*
-suspend/1_hybrid_sleep_.*
-suspend/1_hybrid-sleep-single-log-attach_.*
-suspend/1_display_after_suspend_.*
-suspend/1_resolution_after_suspend_.*
-suspend/1_cycle_resolutions_after_suspend_.*
-suspend/1_xrandr_screens_after_suspend.tar.gz
-power-management/1_hibernate_advanced_.*
-power-management/1_hibernate-single-log-attach_.*
+power-management/hibernate_advanced
+power-management/hibernate-single-log-attach
 keys/hibernate
 # The following tests should run BEFORE the automated tests. The reboot and
 # power off tests will also give us a clean system to start the stress run
