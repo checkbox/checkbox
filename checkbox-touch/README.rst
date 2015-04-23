@@ -98,3 +98,19 @@ For further assistance on packaging Checkbox, run:
     $ ./build-me --help
 
 
+The Release Process
+===================
+
+The release process is quite simple. It's also informal as we only did it once or twice
+
+- Tag the tree using the $PRODUCT-v$VERSION scheme (checkbox-touch-v0.1).
+- Build a new click package as outlined above.
+- Test it on some devices to ensure that's it's not horribly broken.
+- Create a release on an appropriate Launchpad milestone on the checkbox-touch
+  project (https://launchpad.net/checkbox-touch). Write a changelog and upload
+  the click package.
+- Join ``#ubuntu-app-devel`` on freenode and figure out who can upload core-dev
+  applications. Ask them to upload the new version. There is a list of people
+  that do this but it seems to be informal at this stage.
+- Do some post-release changes (bump the version in the sources). Commit that
+  and propose a merge (along with the released tag) back to ``lp:checkbox``.
