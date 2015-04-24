@@ -27,6 +27,7 @@ run ./get-libs --plainbox-only
 import apt
 import apt_pkg
 import argparse
+import collections
 import os
 import shutil
 import subprocess
@@ -66,11 +67,15 @@ def prepare_uris():
                 'python3-xlsxwriter']
     # uris will serve as a database of uris from which to download packages
     uris = dict()
-    repos = {
-        'armhf': 'http://ports.ubuntu.com/ubuntu-ports',
-        'i386': 'http://archive.ubuntu.com/ubuntu',
-        'amd64': 'http://archive.ubuntu.com/ubuntu'
-        }
+    Source = collections.namedtuple('Source', ['uri', 'repositories'])
+    sources = {
+        'armhf': [Source('http://ports.ubuntu.com/ubuntu-ports',
+                         'main restricted universe')],
+        'i386': [Source('http://archive.ubuntu.com/ubuntu',
+                        'main restricted universe')],
+        'amd64': [Source('http://archive.ubuntu.com/ubuntu',
+                         'main restricted universe')],
+    }
     for arch in arch_list:
         print('Getting information about packages for {0} arch.'.format(arch))
         # prepare sources.list for apt
@@ -85,9 +90,11 @@ def prepare_uris():
                 shutil.copytree('/etc/apt/trusted.gpg.d',
                                 os.path.join(new_etc_apt, 'trusted.gpg.d'))
             sources_list = open(os.path.join(new_etc_apt, 'sources.list'), "w")
-            sources_list.write(
-                "deb [arch={arch}] {repo} utopic main restricted universe"
-                .format(arch=arch, repo=repos[arch]))
+            for source in sources[arch]:
+                sources_list.write(
+                    "deb [arch={arch}] {uri} utopic {repositories}\n"
+                    .format(arch=arch, uri=source.uri,
+                            repositories=source.repositories))
             sources_list.close()
             apt_pkg.config["Apt::Architecture"] = arch
             cache = apt.Cache(rootdir=tmp)
