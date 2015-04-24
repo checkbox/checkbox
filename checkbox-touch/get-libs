@@ -80,6 +80,10 @@ def prepare_uris():
             # copy over trusted.gpg
             shutil.copyfile('/etc/apt/trusted.gpg',
                             os.path.join(new_etc_apt, 'trusted.gpg'))
+            # copy over additional keyrings
+            if os.path.exists('/etc/apt/trusted.gpg.d'):
+                shutil.copytree('/etc/apt/trusted.gpg.d',
+                                os.path.join(new_etc_apt, 'trusted.gpg.d'))
             sources_list = open(os.path.join(new_etc_apt, 'sources.list'), "w")
             sources_list.write(
                 "deb [arch={arch}] {repo} utopic main restricted universe"
