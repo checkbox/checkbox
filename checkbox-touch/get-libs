@@ -70,7 +70,9 @@ def prepare_uris():
     Source = collections.namedtuple('Source', ['uri', 'repositories'])
     sources = {
         'armhf': [Source('http://ports.ubuntu.com/ubuntu-ports',
-                         'main restricted universe')],
+                         'main restricted universe'),
+                  Source('http://ppa.launchpad.net/checkbox-dev/ppa/ubuntu',
+                         'main')],
         'i386': [Source('http://archive.ubuntu.com/ubuntu',
                         'main restricted universe')],
         'amd64': [Source('http://archive.ubuntu.com/ubuntu',
