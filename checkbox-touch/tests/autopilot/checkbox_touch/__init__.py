@@ -3,8 +3,6 @@
 """Ubuntu Touch App autopilot tests."""
 
 import os
-import subprocess
-import time
 
 from autopilot import input, platform
 from autopilot.introspection.dbus import StateNotFoundError
@@ -51,41 +49,39 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             except StateNotFoundError:
                 pass
             try:
-                welcome_page = self.app.wait_select_single(
+                self.app.wait_select_single(
                     objectName='welcomePage', visible=True)
                 return
             except StateNotFoundError:
                 pass
 
-
     def start_and_select_tests(self, category_id, job_ids):
         self.skipResumeIfShown()
-        start_btn = self.app.select_single(objectName='startTestButton')
-        self.assertThat(start_btn.text, Eventually(Equals("Start Testing")))
+        welcome_page = self.long_wait_select_single(
+            self.app, objectName='welcomePage', state='loaded')
+        start_btn = welcome_page.wait_select_single(
+            objectName='startTestButton')
         self.pointing_device.click_object(start_btn)
-        time.sleep(1)
         self.main_view.get_header().click_action_button('deselectAllAction')
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage')
-        list_item = category_page.select_single(
+        list_item = category_page.wait_select_single(
             objectName='listItem', item_mod_id=category_id)
         self.pointing_device.click_object(list_item)
         continue_btn = category_page.wait_select_single(
-            objectName='continueButton')
+            objectName='continueButton', visible=True)
         self.pointing_device.click_object(continue_btn)
-        time.sleep(1)
         self.main_view.get_header().click_action_button('deselectAllAction')
         test_selection_page = self.app.wait_select_single(
             objectName='testSelectionPage')
         for job_id in job_ids:
-            list_item = test_selection_page.select_single(
+            list_item = test_selection_page.wait_select_single(
                 objectName='listItem', item_mod_id=job_id)
             list_item.swipe_into_view()
             self.pointing_device.click_object(list_item)
         continue_btn = test_selection_page.wait_select_single(
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
-        time.sleep(1)
 
     def launch_application(self):
         if platform.model() == 'Desktop':
@@ -134,4 +130,3 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     @property
     def main_view(self):
         return self.app.select_single(emulators.MainView)
-

@@ -24,6 +24,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <errno.h>
 #include <stdbool.h>
 
@@ -37,6 +40,13 @@
 struct nl80211_state {
 	struct nl_sock *nl_sock;
 	int nl80211_id;
+};
+
+struct wireless_capabilities {
+  unsigned int ac_support : 1;
+  unsigned int n_support : 1;
+  unsigned int bg_support : 1;
+  unsigned int band_5GHz_support : 1;
 };
 
 static const char *ifmodes[] = {
@@ -107,6 +117,28 @@ static int finish_handler(struct nl_msg *msg, void *arg)
 	return NL_SKIP;
 }
 
+/* Search for a specific pattern inside the given file handle.
+ * @arg fp         a FILE pointer
+ * @arg pattern    the search pattern
+ *
+ * @return 0 on success 1 otherwise.
+ */
+static int heuristic_test(FILE *fp, const char *pattern)
+{
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    char *p;
+
+    while ((read = getline(&line, &len, fp)) != -1) {
+        if ((p = strstr(line, pattern)) != NULL) {
+            return 0;
+        }
+    }
+    free(line);
+    return 1;
+}
+
 static int print_phy_handler(struct nl_msg *msg, void *arg)
 {
 	struct nlattr *tb_msg[NL80211_ATTR_MAX + 1];
@@ -116,11 +148,8 @@ static int print_phy_handler(struct nl_msg *msg, void *arg)
 	struct nlattr *nl_band;
 	struct nlattr *nl_freq;
 	struct nlattr *nl_mode;
+	struct wireless_capabilities *cap = arg;
 	int rem_band, rem_freq, rem_mode;
-    bool ac_support = false;
-    bool n_support = false;
-    bool bg_support = false;
-    bool band_5GHz_support = false;
 
 	nla_parse(tb_msg, NL80211_ATTR_MAX, genlmsg_attrdata(gnlh, 0),
 		  genlmsg_attrlen(gnlh, 0), NULL);
@@ -133,15 +162,15 @@ static int print_phy_handler(struct nl_msg *msg, void *arg)
 #if HAVE_NL80211_BAND_ATTR_VHT_CAPA && HAVE_NL80211_BAND_ATTR_VHT_MCS_SET
             if (tb_band[NL80211_BAND_ATTR_VHT_CAPA] &&
 			    tb_band[NL80211_BAND_ATTR_VHT_MCS_SET])
-				ac_support = true;
+				cap->ac_support = true;
 #endif
 #if HAVE_NL80211_BAND_ATTR_HT_CAPA
             /* 802.11n can use a new set of rates designed specifically for high throughput (HT) */
             if (tb_band[NL80211_BAND_ATTR_HT_CAPA])
-				n_support = true;
+				cap->n_support = true;
 #endif
             /* Always assume 802.11b/g support */
-            bg_support = true;
+            cap->bg_support = true;
 
 			if (tb_band[NL80211_BAND_ATTR_FREQS]) {
 				nla_for_each_nested(nl_freq, tb_band[NL80211_BAND_ATTR_FREQS], rem_freq) {
@@ -156,7 +185,7 @@ static int print_phy_handler(struct nl_msg *msg, void *arg)
 					freq = nla_get_u32(tb_freq[NL80211_FREQUENCY_ATTR_FREQ]);
                     /* http://en.wikipedia.org/wiki/List_of_WLAN_channels */
                     if (freq >= 4915 && freq <= 5825) 
-                        band_5GHz_support = true;
+						cap->band_5GHz_support = true;
 				}
 			}
 		}
@@ -170,22 +199,15 @@ static int print_phy_handler(struct nl_msg *msg, void *arg)
         }
 	}
 
-    if (ac_support)
-        printf("ac: supported\n");
-    if (n_support)
-        printf("n: supported\n");
-    if (bg_support)
-        printf("bg: supported\n");
-    if (band_5GHz_support) 
-        printf("band_5GHz: supported\n");
-
     return 0;
 }
 
 int main(int argc, char **argv)
 {
 	struct nl80211_state nlstate;
+	struct wireless_capabilities cap;
 	int err;
+	FILE *pci_fp;
 
 	err = nl80211_init(&nlstate);
 	if (err)
@@ -219,10 +241,14 @@ int main(int argc, char **argv)
 		goto out;
 
 	err = 1;
+	cap.ac_support = 0;
+	cap.n_support = 0;
+	cap.bg_support = 0;
+	cap.band_5GHz_support = 0;
 
 	nl_cb_err(cb, NL_CB_CUSTOM, error_handler, &err);
 	nl_cb_set(cb, NL_CB_FINISH, NL_CB_CUSTOM, finish_handler, &err);
-    nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, print_phy_handler, &err);
+    nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, print_phy_handler, &cap);
 
 	while (err > 0)
 		nl_recvmsgs(nlstate.nl_sock, cb);
@@ -235,6 +261,27 @@ int main(int argc, char **argv)
 		fprintf(stderr, "command failed: %s (%d)\n", strerror(-err), err);
 
 	nl80211_cleanup(&nlstate);
+
+    /* Try to guess the ac capabilities using heuristics (sometimes required
+       as some drivers don't expose all their wireless properties to libnl */
+    if (!cap.ac_support) {
+        pci_fp = popen("lspci -nnv", "r");
+        if (!pci_fp) {
+            perror("Something is wrong with lspci");
+            exit(1);
+        }
+        if (heuristic_test(pci_fp, "802.11ac") == 0)
+            cap.ac_support = true;
+        pclose(pci_fp);
+    }
+    if (cap.ac_support)
+        printf("ac: supported\n");
+    if (cap.n_support)
+        printf("n: supported\n");
+    if (cap.bg_support)
+        printf("bg: supported\n");
+    if (cap.band_5GHz_support)
+        printf("band_5GHz: supported\n");
 
 	return err;
 }
