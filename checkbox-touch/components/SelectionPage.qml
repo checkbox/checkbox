@@ -186,6 +186,7 @@ Page {
                         selectedCount += checked ? 1 : -1;
                     }
                 }
+                onClicked: checkBox.clicked()
             }
             section.property: "mod_group" // NOTE: this is a model reference
             section.criteria: ViewSection.FullString
