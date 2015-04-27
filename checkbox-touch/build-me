@@ -111,7 +111,6 @@ def main():
         adb_options = []
         if args.s:
             adb_options = ['-s', args.s]
-        print(adb_options)
         install_click(pkg, adb_options)
 
 
