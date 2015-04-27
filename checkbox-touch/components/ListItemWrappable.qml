@@ -42,6 +42,11 @@ Empty {
     __acceptEvents: false
 
     height: (label.contentHeight < control.height ? control.height : label.contentHeight) + units.gu(2)
+    __contents.anchors.topMargin: units.gu(1)
+    __contents.anchors.bottomMargin: units.gu(1)
+    __contentsMargins: 0
+    divider.anchors.leftMargin: 0
+    divider.anchors.rightMargin: 0
 
     property bool __controlAreaPressed: false
     Rectangle {
