@@ -1,4 +1,5 @@
-# This file contains the definition of the Shakedown Testplan
+# This file contains the definition of the Shakedown Testplan and definitions
+# of jobs custom to that testplan
 
 unit: test plan
 id: shakedown
@@ -55,3 +56,96 @@ include:
  2014.com.ubuntu::Tel-52
  2014.com.ubuntu::Tel-53
  2014.com.ubuntu::Wifi-11
+ shakedown/.*
+
+unit: category
+id: shakedown-custom
+_name: Custom shakedown tests
+
+unit: job
+id: shakedown/screenshot
+plugin: manual
+category_id: shakedown-custom
+_summary: Ensure that DUT can take and store screenshots
+_purpose:
+ Purpose of this test is to check whether the device can take and store
+ screenshots
+_steps:
+ 1. Make sure screen is active
+ 2. Press volume up and volume down buttons simultaneously
+_verification:
+ 1. Open gallery app
+ 2. Is the screenshot present?
+
+id: shakedown/sd-card-full-warning
+plugin: manual
+category_id: shakedown-custom
+_summary: Check if DUT warns when SD cards is full
+_purpose:
+ Purpose of this test is to check whether the device warns the user about SD
+ card being full.
+_steps:
+ 1. Prepare SD card with no free space on it.
+ 2. Insert into sd card slot.
+_verification:
+ 1. Does warning about SD card being full show up?
+
+id: shakedown/battery-consumption-rate
+plugin: manual
+category_id: shakedown-custom
+_summary: Check if battery depletion rate is normal
+_purpose:
+ Purpose of this test is to make sure that device's battery depletes in a
+ normal rate
+_steps:
+ 1. Make sure the battery is fully charged.
+ 2. Open System Settings
+ 3. Open Security & Privacy
+ 4. Select Phone Locking
+ 5. Select lock interval `never`
+ 6. Leave the device on idle for 30 minutes
+_verification:
+ 1. Check charge level
+ 2. Is it above or equal to 95%?
+
+id: shakedown/sim-information
+plugin: manual
+category_id: shakedown-custom
+_summary: Ensure that sim information can be read
+_steps:
+ 1. Ensure SIM is present
+ 2. Open System Settings
+ 3. Open About this phone
+_verification:
+ 1. Is SIM present under Phone number?
+
+id: shakedown/apn-information
+plugin: manual
+category_id: shakedown-custom
+_summary: Ensure that DUT can gather APN information
+_purpose:
+ Purpose of this test is to check if the device can gather APN information
+_steps:
+ 1. Ensure SIM is present
+ 2. Open System Settings
+ 3. Select Cellular
+ 4. Select Carrier
+ 5. Open APN menu
+_verification:
+ 1. Is operator's APN shown in the menu?
+
+id: shakedown/apn-login
+plugin:manual
+category_id: shakedown-custom
+_summary: Ensure that DUT can login into APN
+_purpose:
+ Purpose of this test is to check if the device can login into APN
+_steps:
+ 1. Ensure SIM is present
+ 2. Open System Settings
+ 3. Select Cellular
+ 4. Select Carrier
+ 5. Open APN menu
+ 6. Select one of the operator's APNs
+_verification:
+ 1. Is checkmark visible on the right of selected APN's name?
