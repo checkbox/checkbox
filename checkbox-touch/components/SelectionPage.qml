@@ -160,7 +160,7 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
-            delegate: ListItem.Standard {
+            delegate: ListItemWrappable {
                 objectName: "listItem"
                 text: mod_name
                 property var item_mod_id: mod_id
