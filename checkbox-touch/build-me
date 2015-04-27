@@ -24,7 +24,8 @@ def check_libs_present():
         "lib/py/xlsxwriter"]
     for path in NECESSARY_PATHS:
         if not os.path.exists(path):
-            raise EnvironmentError("{} not found!".format(path))
+            raise EnvironmentError(
+                "{} not found!\nHave you run get-libs?".format(path))
 
 
 def get_revision_string(path='.'):
