@@ -263,8 +263,7 @@ MainView {
         }
         onSelectionDone: {
             app.rememberTestplan(selected_id_list[0], function(response) {
-                unlatchContinue();
-                categorySelectionPage.setup();
+                categorySelectionPage.setup(unlatchContinue);
             });
         }
     }
@@ -274,7 +273,7 @@ MainView {
         objectName: "categorySelectionPage"
         title: i18n.tr("Suite Selection")
 
-        function setup() {
+        function setup(continuation) {
             app.getCategories(function(response) {
                 var category_info_list = response.category_info_list;
                 model.clear();
@@ -284,13 +283,14 @@ MainView {
                 }
                 modelUpdated();
                 pageStack.push(categorySelectionPage);
+                // if called from welcome page, no continuation is given
+                if (continuation) continuation();
             });
         }
 
         onSelectionDone: {
             app.rememberCategorySelection(selected_id_list, function(response) {
-                unlatchContinue();
-                testSelectionPage.setup();
+                testSelectionPage.setup(unlatchContinue);
             });
         }
 
@@ -302,7 +302,7 @@ MainView {
         title: i18n.tr("Test selection")
         continueText: i18n.tr("Start Testing")
         
-        function setup(selected_category_list) {
+        function setup(continuation) {
             app.getTests(function(response) {
                 model.clear();
                 var test_info_list = response.test_info_list;
@@ -311,13 +311,14 @@ MainView {
                 }
                 modelUpdated();
                 pageStack.push(testSelectionPage);
+                continuation();
             });
         }
         
         onSelectionDone: {
             app.rememberTestSelection(selected_id_list, function() {
-                unlatchContinue();
                 processNextTest();
+                unlatchContinue();
             });
         }
     }
