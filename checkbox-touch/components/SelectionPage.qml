@@ -69,15 +69,6 @@ Page {
     head {
         actions: [
             Action {
-                id: continueAction
-                objectName: "continueAction"
-                iconName: "media-playback-start"
-                text: continueText
-                onTriggered: {
-                    if (!continueButton.isLatched) gatherSelection();
-                }
-            },
-            Action {
                 id: selectAllAction
                 objectName: "selectAllAction"
                 iconName: "select"
@@ -109,11 +100,11 @@ Page {
     states: [
          State {
             name: "empty selection"
-            PropertyChanges { target: continueAction; enabled: false }
+            PropertyChanges { target: continueButton; enabled: false }
          },
          State {
             name: "nonempty selection"
-            PropertyChanges { target: continueAction; enabled: true }
+            PropertyChanges { target: continueButton; enabled: true }
          }
     ]
 
@@ -198,7 +189,6 @@ Page {
             id: continueButton
             objectName: "continueButton"
             Layout.fillWidth: true
-            enabled: continueAction.enabled
             text: continueText
             unlatchedColor: UbuntuColors.green
             onLatchedClicked: gatherSelection()
