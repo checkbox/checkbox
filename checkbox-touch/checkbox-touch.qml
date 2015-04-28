@@ -160,7 +160,8 @@ MainView {
 
     WelcomePage {
         id: welcomePage
-        welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: " + appSettings.revision)
+        welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: %1\n(%2 %3)")
+            .arg(app.applicationVersion).arg(appSettings.revision).arg(appSettings.clickBuildDate)
         onStartTestingTriggered: {
             if (appSettings.testplan != "") {
                 app.rememberTestplan(appSettings.testplan, function() {
