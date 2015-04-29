@@ -6,13 +6,23 @@ _name: QML-native tests
 estimated_duration: 20
 include: .*
 
+unit: category
+id: Camera
+_name: Camera Testing
+
 id: qml-camera-06
+category_id: Camera
 plugin: qml
 _summary: Ensure that video can be captured with the rear camera
 qml_file: camera-06.qml
 estimated_duration: 20
 
+unit: category
+id: Sensors
+_name: Sensors Testing
+
 id: sensors-01
+category_id: Sensors
 plugin: qml
 _summary: Ensure accelerometer is functioning
 _description:
