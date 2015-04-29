@@ -6,13 +6,23 @@ _name: QML-native tests
 estimated_duration: 20
 include: .*
 
+unit: category
+id: Camera
+_name: Camera Testing
+
 id: qml-camera-06
+category_id: Camera
 plugin: qml
 _description: Camera test 06 - Record a video then play it back
 qml_file: camera-06.qml
 estimated_duration: 20
 
+unit: category
+id: Sensors
+_name: Sensors Testing
+
 id: sensors-01
+category_id: Sensors
 plugin: qml
 _sumamry: Sensors test 01 - Ensure accelerometer is functioning
 _description:
