@@ -7,12 +7,6 @@ _name: QML-native tests
 estimated_duration: 20
 include: .*
 
-id: qml-camera
-plugin: qml
-_description: Camera test
-qml_file: camera-test.qml
-estimated_duration: 20
-
 id: qml-camera-06
 plugin: qml
 _description: Camera test 06 - Record a video then play it back
