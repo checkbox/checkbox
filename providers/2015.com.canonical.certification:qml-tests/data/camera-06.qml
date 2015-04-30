@@ -94,6 +94,7 @@ Item {
         source: cam
         anchors.fill: parent
         orientation: (Screen.primaryOrientation === Qt.PortraitOrientation) ? 270 : 0;
+        fillMode: Image.PreserveAspectCrop
     }
 
     Timer {
@@ -160,6 +161,7 @@ Item {
             anchors.fill: parent
             source: mediaplayer
             orientation: (Screen.primaryOrientation === Qt.PortraitOrientation) ? 270 : 0;
+            fillMode: Image.PreserveAspectCrop
         }
     }
     Page {
