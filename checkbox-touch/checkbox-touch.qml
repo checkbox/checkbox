@@ -202,6 +202,10 @@ MainView {
                 verticalCenter: parent.verticalCenter
                 bottomMargin: units.gu(1.5)
                 rightMargin: units.gu(1)
+                // leftMargin should compensate for potential 'back' action that might appear on next page
+                // so the whole progressHeader stays in the same spot on the screen throughout the session
+                leftMargin:  pageStack.depth == 1 ? units.gu(5) : units.gu(1)
+
             }
             Label {
                 text: pageStack.currentPage ? pageStack.currentPage.title : ""
