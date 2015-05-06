@@ -108,9 +108,11 @@ The release process is quite simple. It's also informal as we only did it once o
 - Test it on some devices to ensure that's it's not horribly broken.
 - Create a release on an appropriate Launchpad milestone on the checkbox-touch
   project (https://launchpad.net/checkbox-touch). Write a changelog and upload
-  the click package.
+  the click package. The changelog should contain link to the version milestone
+  on Launchpad, e.g. https://launchpad.net/checkbox-touch/+milestone/1.1.2
 - Join ``#ubuntu-app-devel`` on freenode and figure out who can upload core-dev
-  applications. Ask them to upload the new version. There is a list of people
+  applications. Ask them to upload the new version. Popey declared to do the
+  uploads, so start by asking him.
   that do this but it seems to be informal at this stage.
 - Do some post-release changes (bump the version in the sources). Commit that
   and propose a merge (along with the released tag) back to ``lp:checkbox``.
