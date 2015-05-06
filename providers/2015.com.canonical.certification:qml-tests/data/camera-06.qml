@@ -151,6 +151,8 @@ Item {
 
         MediaPlayer {
             id: mediaplayer
+            autoLoad: false
+            autoPlay: false
             onStopped: {
                 showSummary(i18n.tr("Was the recording OK?"));
             }
