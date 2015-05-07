@@ -63,7 +63,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             objectName='startTestButton')
         self.pointing_device.click_object(start_btn)
         category_page = self.app.wait_select_single(
-            objectName='categorySelectionPage')
+            objectName='categorySelectionPage', visible=True)
         self.main_view.get_header().click_action_button('deselectAllAction')
         list_item = category_page.wait_select_single(
             objectName='listItem', item_mod_id=category_id)
@@ -72,7 +72,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             objectName='continueButton', visible=True)
         self.pointing_device.click_object(continue_btn)
         test_selection_page = self.app.wait_select_single(
-            objectName='testSelectionPage')
+            objectName='testSelectionPage', visible=True)
         self.main_view.get_header().click_action_button('deselectAllAction')
         for job_id in job_ids:
             list_item = test_selection_page.wait_select_single(
