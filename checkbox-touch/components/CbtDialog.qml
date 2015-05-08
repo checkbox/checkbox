@@ -49,9 +49,8 @@ Item {
 
         Dialog {
             id: dlg
-            width: dialog.width
-            height: dialog.height
             title: i18n.tr("")
+            modal: true
 
             ColumnLayout {
                 id: layout
