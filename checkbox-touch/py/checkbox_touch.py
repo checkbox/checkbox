@@ -694,7 +694,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             if match:
                 return match.group(1).replace("$HOME", os.getenv("HOME"))
             else:
-                return os.path.expanduser('~')
+                return os.path.expanduser('~/Documents')
 
     def _get_app_cache_directory(self):
         xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
