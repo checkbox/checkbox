@@ -44,6 +44,7 @@ from checkbox_support.parsers.efi import EfiParser
 from checkbox_support.parsers.meminfo import MeminfoParser
 from checkbox_support.parsers.udevadm import UdevadmParser
 from checkbox_support.parsers.modprobe import ModprobeParser
+from checkbox_support.parsers.kernel_cmdline import KernelCmdlineParser
 
 
 logger = logging.getLogger("checkbox_support.parsers.submission")
@@ -65,6 +66,47 @@ class DeferredParser(object):
 # from apps/uploads/checkbox_parser.py licensed internally by Canonical under
 # the license of the Chcekbox project.
 class TestRun(object):
+    """
+    The TestRun class is responsible for acting upon information from a
+    submission. It decouples the storage and processing of that information
+    from the parsing process. A TestRun class is passed to the SubmissionParser
+    at run time::
+
+        # stream is the file or submission data
+        parser = SubmissionParser(stream)
+        parser.run(TestRun, <other arguments>)
+
+    The parser will create a TestRun instance and, as it finds elements
+    in the submission, will call methods in the TestRun instance passing them
+    the chunks it has parsed. The TestRun instance can do things like print
+    the data, save it into a list or dict for later use, dump it
+    directly to a database, or anything else.
+
+    The interface that TestRun-compliant classes must implement is not really
+    formalized anywhere; perhaps *this* class is the most authoritative
+    reference of which methods/events may be called.
+
+    This particular TestRun implementation uses "messages" as its storage
+    convention, for historical reasons: it's initialized with an empty
+    list and it will populate it with the data stored in dictionaries of
+    the form::
+
+        { type: "set-$something",
+          "foo": "data-1",
+          "baz": "data-2"}
+
+    The only required key is "type": the rest are dependent on which data
+    item is processed.
+
+    There are a few conventions in naming the "callback" methods:
+
+    - Methods that will be called only once to set a single item are
+      named set\* (example setArchitecture).
+    - Methods that can be called many times due to processing of several
+      similar items (packages, devices) are named add\*
+      (example addDeviceState). Look at the existing methods to see how they
+      append to an existing element of the messages list.
+    """
 
     project = "certification"
 
@@ -95,6 +137,12 @@ class TestRun(object):
         message["modprobe-infos"].append({
             "module": module,
             "options": options})
+
+    def setKernelCmdline(self, kernel_cmdline):
+        self.messages.append({
+            "type": "set-kernel-cmdline",
+            "kernel_cmdline": kernel_cmdline})
+        logger.debug("Setting Kernel Commandline: %s", kernel_cmdline)
 
     def setDistribution(self, **distribution):
         self.messages.append({
@@ -499,6 +547,9 @@ class SubmissionResult(object):
             ("cpuinfo", "machine", "cpuinfo_result",),
             self.setCpuinfo, count=1)
         register(
+            ("test_run", "kernel_cmdline",),
+            self.setKernelCmdline, count=1)
+        register(
             ("meminfo", "meminfo_result",),
             self.setMeminfo, count=1)
         register(
@@ -542,6 +593,7 @@ class SubmissionResult(object):
             r"udevadm": self.parseUdevadm,
             r"efi(?!rtvariable)": EfiParser,
             r"modprobe_attachment": self.parseModprobe,
+            r"kernel_cmdline": self.parseKernelCmdline,
             }
         for context, parser in context_parsers.items():
             if re.search(context, command):
@@ -656,6 +708,10 @@ class SubmissionResult(object):
         elif name == "kernel-release":
             self.dispatcher.publishEvent("kernel", value)
 
+    def parseKernelCmdline(self, cmdline):
+        self.dispatcher.publishEvent("kernel_cmdline", cmdline)
+        return DeferredParser(self.dispatcher, "kernel_cmdline_result")
+
     def parseCpuinfo(self, cpuinfo):
         self.dispatcher.publishEvent("cpuinfo", cpuinfo)
         return DeferredParser(self.dispatcher, "cpuinfo_result")
@@ -679,6 +735,10 @@ class SubmissionResult(object):
 
     def setKernelState(self, test_run, kernel):
         test_run.setKernelState(kernel)
+
+    def setKernelCmdline(self, test_run, kernel_cmdline):
+        parser = KernelCmdlineParser(kernel_cmdline)
+        parser.run(test_run)
 
     def setCpuinfo(self, cpuinfo, machine, cpuinfo_result):
         parser = CpuinfoParser(cpuinfo, machine)
@@ -1002,6 +1062,18 @@ class SubmissionParser(object):
                     "Unsupported tag <%s> in <system>" % child.tag)
 
     def run(self, test_run_factory, **kwargs):
+        """
+        Entry point to start parsing the stream with which the parser
+        was initialized.
+
+        :param test_run_factory: A class from which to instantiate a
+        "test_run" object whose add\*/set\* methods will be called as elements
+        are found in the stream
+
+        :returns: a SubmissionResult instance. This is not really used
+        and seems redundant, as the data will be processed and stored by
+        the TestRun instance (which is, however, also not returned anywhere).
+        """
         parser = etree.XMLParser()
 
         tree = etree.parse(self.file, parser=parser)
