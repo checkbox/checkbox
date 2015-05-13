@@ -64,7 +64,7 @@ def prepare_uris():
     It returns that dictionary.
     """
     packages = ['libpython3.4', 'pyotherside', 'python3-lxml',
-                'python3-xlsxwriter']
+                'python3-xlsxwriter', 'python3-jinja2', 'python3-markupsafe']
     # uris will serve as a database of uris from which to download packages
     uris = dict()
     Source = collections.namedtuple('Source', ['uri', 'repositories'])
@@ -154,7 +154,7 @@ def get_qchartjs():
         copy_tree(os.path.join(tmp, 'qchart.js-master'), dest)
 
 
-def get_plainbox_from_pypi(version='0.21'):
+def get_plainbox_from_pypi(version='0.21.2'):
     # plaibox_pypi contains URL from which to download plainbox
     plainbox_pypi = ('https://pypi.python.org/packages/source'
                      '/p/plainbox/plainbox-{}.tar.gz'.format(version))
@@ -215,7 +215,8 @@ def main():
     # python3_libs_urls contains list of .deb packages that will be downloaded
     # and extracted. After extraction contents of
     # ./usr/lib/python3/dist-packages are copied to ./lib/py.
-    python3_libs = ['python3-lxml', 'python3-xlsxwriter']
+    python3_libs = ['python3-lxml', 'python3-xlsxwriter',
+                    'python3-jinja2', 'python3-markupsafe']
     python3_libs_urls = [
         uris[lib, arch] for arch in arch_list for lib in python3_libs]
     for pylib in python3_libs_urls:
