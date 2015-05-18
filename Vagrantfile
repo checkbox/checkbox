@@ -17,7 +17,10 @@ Vagrant.configure("2") do |config|
   # Define a Ubuntu Server image (cloud) for the 14.04 release (trusty)
   config.vm.define :trusty do |trusty_config|
     trusty_config.vm.box = "trusty-cloud-i386"
-    trusty_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
+    trusty_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/20150516/trusty-server-cloudimg-i386-vagrant-disk1.box"
+    trusty_config.vm.box_check_update = false
+    trusty_config.vm.box_download_checksum_type = "sha256"
+    trusty_config.vm.box_download_checksum = "6e50aef0cf14beb450d0202bc4bbb4ba1be7dd4486ca3dac8ef272e0923e9096"
   end
 
   # For debugging and later future GUI testing
