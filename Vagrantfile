@@ -8,7 +8,10 @@ Vagrant.configure("2") do |config|
   # Define a Ubuntu Server image (cloud) for the 12.04 release (precise)
   config.vm.define :precise do |precise_config|
     precise_config.vm.box = "precise-cloud-i386"
-    precise_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-i386-vagrant-disk1.box"
+    precise_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/20150512/precise-server-cloudimg-i386-vagrant-disk1.box"
+    precise_config.vm.box_check_update = false
+    precise_config.vm.box_download_checksum_type = "sha256"
+    precise_config.vm.box_download_checksum = "0d27527a58db8efefddd5df50872b75768d0ef74e2e4185f7456e942923f339a"
   end
 
   # Define a Ubuntu Server image (cloud) for the 14.04 release (trusty)
