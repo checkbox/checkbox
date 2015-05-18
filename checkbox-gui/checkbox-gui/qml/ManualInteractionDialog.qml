@@ -27,7 +27,7 @@ import Ubuntu.Components.Popups 0.1
 /* TODO - Default Yes/No/Skip based on plainbox interpretation of result
  * which the user can then change if they wish.
  */
-Dialog {
+DarkDialog {
     id: dialog
 
     property var testItem;
@@ -52,10 +52,6 @@ Dialog {
     TextArea{
         id: instructions
         text: testItem.description
-        color: "black"
-        readOnly: true
-        selectionColor: "black"
-        selectedTextColor: "white"
         height: units.gu(24)
         cursorVisible: false
         cursorDelegate: Item { id: emptycursor }

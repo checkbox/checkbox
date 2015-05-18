@@ -221,7 +221,7 @@ Page {
     }
     Component {
         id: stats_dialog
-        Dialog{
+        DarkDialog{
             id: dialog
             title: i18n.tr("Selection Stats")
             property var total_duration: guiEngine.GetEstimatedDuration();

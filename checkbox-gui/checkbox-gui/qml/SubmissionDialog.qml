@@ -25,7 +25,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import "."
 
-Dialog {
+DarkDialog {
     id: dialog
 
     title: i18n.tr("Report")
