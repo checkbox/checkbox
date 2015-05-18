@@ -335,7 +335,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.resume_candidate_storage = None
         self.session_storage_repo = None
         self.timestamp = datetime.datetime.utcnow().isoformat()
-        self.config = None
+        self.config = PlainBoxConfig()
         self._password = None
 
     def __repr__(self):
@@ -368,7 +368,6 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.context.state.metadata.flags.add('bootstrapping')
             # Checkpoint the session so that we have something to see
             self._checkpoint()
-            self.config = PlainBoxConfig()
 
             # Prepare custom execution controller list
             from plainbox.impl.ctrl import UserJobExecutionController
