@@ -116,6 +116,14 @@ Item {
             interval: 20
             running: true
             onTriggered: {
+                // check if acquisition is possible
+                if (!accelerometer.active ||
+                    !accelerometer.connectedToBackend){
+                    outcomeLabel.text = i18n.tr("Hardware failure")
+                    outcomeLabel.showResult(false);
+                    return;
+                }
+
                 posX-=accelerometer.reading.x;
                 posY+=accelerometer.reading.y;
 
