@@ -113,6 +113,17 @@ Page {
             implicitWidth: units.gu(6)
         }
 
+        Button {
+            id: showOutputButton
+            visible: ((test["command"]) ? true : false) && (userInteractVerifyIntroPage.state == "testing")
+            color: "white"
+            Layout.fillWidth: true
+            text: "Output"
+            onClicked: {
+                pageStack.push(commandOutputPage);
+            }
+        }
+
         LatchButton {
             id: startTestButton
             objectName: "startTestButton"

@@ -73,6 +73,16 @@ Page {
         implicitHeight: units.gu(6)
         implicitWidth: units.gu(6)
     }
+    Button {
+        id: showOutputButton
+        visible: ((test["command"]) ? true : false) && activity.running
+        color: "white"
+        Layout.fillWidth: true
+        text: "Output"
+        onClicked: {
+            pageStack.push(commandOutputPage);
+        }
+    }
     function startActivity() {
         activity.running = true;
     }
