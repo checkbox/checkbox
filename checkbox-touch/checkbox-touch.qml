@@ -457,7 +457,7 @@ MainView {
         automatedTestPage.__customHeaderContents = progressHeader;
         progressHeader.update(test);
         pageStack.push(automatedTestPage);
-        app.runTestActivity(test, completeTest);
+        runTestActivity(test, completeTest);
     }
 
     function performManualTest(test) {
@@ -474,7 +474,7 @@ MainView {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) {
+            runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
                 showVerificationScreen(test);
             });
@@ -489,7 +489,7 @@ MainView {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) {
+            runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
                 var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
                 userInteractSummaryPage.test = test;
@@ -510,7 +510,7 @@ MainView {
         InteractIntroPage.test = test;
         InteractIntroPage.testDone.connect(completeTest);
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) { showVerificationScreen(test); } );
+            runTestActivity(test, function(test) { showVerificationScreen(test); } );
         });
         InteractIntroPage.__customHeaderContents = progressHeader;
         progressHeader.update(test);
