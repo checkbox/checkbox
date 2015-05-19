@@ -37,6 +37,7 @@ import itertools
 import json
 import logging
 import os
+import pyotherside
 import re
 import sys
 import time
@@ -46,6 +47,7 @@ from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
+from plainbox.impl.commands.inv_run import SilentUI
 from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
@@ -128,6 +130,18 @@ class RemoteObjectLifecycleManager(VerboseLifecycle):
         impl = getattr(obj, func)
         retval = impl(*args)
         return retval
+
+
+class CheckboxTouchUI(SilentUI):
+    """
+    Class that connects checkbox-touch with plainbox.
+
+    This class inherits SilentUI as most of the events happening in plainbox
+    back-end are handled elsewhere.
+    """
+
+    def got_program_output(self, stream_name, line):
+        pyotherside.send("command_output", line)
 
 
 class PlainboxApplication(VerboseLifecycle, metaclass=abc.ABCMeta):
@@ -338,6 +352,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.timestamp = datetime.datetime.utcnow().isoformat()
         self.config = PlainBoxConfig()
         self._password = None
+        self.ui = CheckboxTouchUI()
+        self.config = None
 
     def __repr__(self):
         return "app"
@@ -660,7 +676,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.context.state.running_job_name = job_id
         self._checkpoint()
         try:
-            result = self.runner.run_job(job, job_state, self.config)
+            result = self.runner.run_job(job, job_state, self.config, self.ui)
         except OSError as exc:
             result = self.context.state.job_state_map[job_id].result
             result.outcome = 'fail'
