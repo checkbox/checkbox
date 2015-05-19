@@ -114,6 +114,7 @@ MainView {
                     app.handle = handle;
                 });
             });
+            setHandler('command_output', commandOutputPage.addText);
         }
         onError: {
             console.error("python error: " + traceback);
