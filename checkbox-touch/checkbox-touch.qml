@@ -419,6 +419,12 @@ MainView {
         app.registerTestResult(test, processNextTest);
     }
 
+    function runTestActivity(test, continuation) {
+        commandOutputPage.clear();
+        app.runTestActivity(test, continuation);
+
+    }
+
     function showResultsScreen() {
         pageStack.clear();
         app.getResults(function(results) {
