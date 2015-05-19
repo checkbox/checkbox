@@ -274,8 +274,12 @@ include:
     suspend/2_suspend-single-log-attach_.*
     suspend/2_hybrid_sleep_.*                              certification-status=non-blocker
     suspend/2_hybrid-sleep-single-log-attach_.*
+    suspend/2_compiz_check_after_suspend_.*                certification-status=blocker
+    suspend/2_driver_version_after_suspend_.*              certification-status=blocker
     suspend/2_resolution_after_suspend_.*                  certification-status=blocker
     suspend/2_display_after_suspend_.*                     certification-status=blocker
+    suspend/2_glxgears_after_suspend_.*                    certification-status=blocker
+    suspend/2_video_after_suspend_.*                       certification-status=blocker
     suspend/2_cycle_resolutions_after_suspend_.*
     suspend/2_xrandr_screens_after_suspend_.*.tar.gz
     power-management/2_hibernate_advanced_.*               certification-status=non-blocker
@@ -289,8 +293,12 @@ include:
     suspend/suspend-single-log-attach
     suspend/1_hybrid_sleep_.*                              certification-status=non-blocker
     suspend/1_hybrid-sleep-single-log-attach_.*
+    suspend/compiz_check_after_suspend                     certification-status=blocker
+    suspend/driver_version_after_suspend                   certification-status=blocker
     suspend/resolution_after_suspend                       certification-status=blocker
     suspend/display_after_suspend                          certification-status=blocker
+    suspend/glxgears_after_suspend                         certification-status=blocker
+    suspend/video_after_suspend                            certification-status=blocker
     suspend/cycle_resolutions_after_suspend
     suspend/xrandr_screens_after_suspend.tar.gz
     keys/sleep                                             certification-status=blocker
