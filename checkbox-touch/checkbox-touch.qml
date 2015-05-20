@@ -252,7 +252,7 @@ MainView {
 
     SelectionPage {
         id: testplanSelectionPage
-        title: i18n.tr("Testplan Selection")
+        title: i18n.tr("Select test plan")
         onlyOneAllowed: true
         function setup(testplan_info_list) {
             if (testplan_info_list.length<1) {
@@ -277,7 +277,7 @@ MainView {
     SelectionPage {
         id: categorySelectionPage
         objectName: "categorySelectionPage"
-        title: i18n.tr("Suite Selection")
+        title: i18n.tr("Select categories")
 
         function setup(continuation) {
             app.getCategories(function(response) {
@@ -305,7 +305,7 @@ MainView {
     SelectionPage {
         id: testSelectionPage
         objectName: "testSelectionPage"
-        title: i18n.tr("Test selection")
+        title: i18n.tr("Select tests")
         continueText: i18n.tr("Start Testing")
         
         function setup(continuation) {
