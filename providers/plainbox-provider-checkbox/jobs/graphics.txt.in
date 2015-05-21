@@ -221,20 +221,28 @@ command:
  _summary: Test graphic memory info for $product.
  EOF
 
-plugin: user-interact-verify
-id: graphics/display
-requires:
- package.name == 'xorg'
- package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
-command: gst_pipeline_test -t 2 'videotestsrc ! videoconvert ! autovideosink' || gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! autovideosink' 
-_summary: Test that video can be displayed
-_description:
- PURPOSE:
-     This test will test the default display
- STEPS:
-     1. Click "Test" to display a video test.
- VERIFICATION:
-     Do you see color bars and static?
+id: graphics/generator_video
+requires: device.category == 'VIDEO'
+_description: Display video test
+_summary: Display video test
+plugin: local
+command:
+ cat <<'EOF' | run_templates -t -s 'graphics_card_resource'
+ id: graphics/`echo ${index}`_video_`echo "${product}" | sed 's/ /_/g;s/[^_a-zA-Z0-9-]//g'`
+ plugin: user-interact-verify
+ requires:
+  package.name == 'xorg'
+  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+ command: gst_pipeline_test -t 2 'videotestsrc ! videoconvert ! autovideosink' || gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! autovideosink'
+ _summary: Test that video can be displayed with ${product}
+ _description:
+  PURPOSE:
+      This test will test the default display with a sample video
+  STEPS:
+      1. Click "Test" to display a video test.
+  VERIFICATION:
+      Do you see color bars and static?
+ EOF
 
 plugin: shell
 id: graphics/VESA_drivers_not_in_use
@@ -299,7 +307,7 @@ command:
  plugin: shell
  id: graphics/`echo ${index}`_compiz_check_`echo "${product}" | sed 's/ /_/g;s/[^_a-zA-Z0-9-]//g'`
  requires: package.name == 'nux-tools'
- command: ! /usr/lib/nux/unity_support_test -c -p 2&>1 | ansi_parser | grep -e ":\(\s\+\)no$" -ie "error"
+ command: ! /usr/lib/nux/unity_support_test -c -p 2>&1 | ansi_parser | grep -e ":\(\s\+\)no$" -ie "error"
  estimated_duration: 0.130
  _description: Check that $product hardware is able to run compiz
  _summary: Test Compiz support for $product
@@ -315,7 +323,7 @@ command:
  plugin: shell
  id: graphics/`echo ${index}`_unity_support_`echo "${product}" | sed 's/ /_/g;s/[^_a-zA-Z0-9-]//g'`
  requires: package.name == 'nux-tools'
- command: ! /usr/lib/nux/unity_support_test -p 2&>1 | ansi_parser | grep -e ":\(\s\+\)no$" -ie "error"
+ command: ! /usr/lib/nux/unity_support_test -p 2>&1 | ansi_parser | grep -e ":\(\s\+\)no$" -ie "error"
  estimated_duration: 0.131
  _description: Check that $product hardware is able to run Unity 3D
  _summary: Test Unity 3D support for $product

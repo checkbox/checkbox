@@ -21,6 +21,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
 import io.thp.pyotherside 1.2
 import "components"
@@ -160,7 +161,8 @@ MainView {
 
     WelcomePage {
         id: welcomePage
-        welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: " + appSettings.revision)
+        welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: %1\n(%2 %3)")
+            .arg(app.applicationVersion).arg(appSettings.revision).arg(appSettings.clickBuildDate)
         onStartTestingTriggered: {
             if (appSettings.testplan != "") {
                 app.rememberTestplan(appSettings.testplan, function() {
@@ -201,6 +203,10 @@ MainView {
                 verticalCenter: parent.verticalCenter
                 bottomMargin: units.gu(1.5)
                 rightMargin: units.gu(1)
+                // leftMargin should compensate for potential 'back' action that might appear on next page
+                // so the whole progressHeader stays in the same spot on the screen throughout the session
+                leftMargin:  pageStack.depth == 1 ? units.gu(5) : units.gu(1)
+
             }
             Label {
                 text: pageStack.currentPage ? pageStack.currentPage.title : ""
@@ -246,7 +252,7 @@ MainView {
 
     SelectionPage {
         id: testplanSelectionPage
-        title: i18n.tr("Testplan Selection")
+        title: i18n.tr("Select test plan")
         onlyOneAllowed: true
         function setup(testplan_info_list) {
             if (testplan_info_list.length<1) {
@@ -263,8 +269,7 @@ MainView {
         }
         onSelectionDone: {
             app.rememberTestplan(selected_id_list[0], function(response) {
-                unlatchContinue();
-                categorySelectionPage.setup();
+                categorySelectionPage.setup(unlatchContinue);
             });
         }
     }
@@ -272,9 +277,9 @@ MainView {
     SelectionPage {
         id: categorySelectionPage
         objectName: "categorySelectionPage"
-        title: i18n.tr("Suite Selection")
+        title: i18n.tr("Select categories")
 
-        function setup() {
+        function setup(continuation) {
             app.getCategories(function(response) {
                 var category_info_list = response.category_info_list;
                 model.clear();
@@ -284,13 +289,14 @@ MainView {
                 }
                 modelUpdated();
                 pageStack.push(categorySelectionPage);
+                // if called from welcome page, no continuation is given
+                if (continuation) continuation();
             });
         }
 
         onSelectionDone: {
             app.rememberCategorySelection(selected_id_list, function(response) {
-                unlatchContinue();
-                testSelectionPage.setup();
+                testSelectionPage.setup(unlatchContinue);
             });
         }
 
@@ -299,10 +305,10 @@ MainView {
     SelectionPage {
         id: testSelectionPage
         objectName: "testSelectionPage"
-        title: i18n.tr("Test selection")
+        title: i18n.tr("Select tests")
         continueText: i18n.tr("Start Testing")
         
-        function setup(selected_category_list) {
+        function setup(continuation) {
             app.getTests(function(response) {
                 model.clear();
                 var test_info_list = response.test_info_list;
@@ -311,16 +317,22 @@ MainView {
                 }
                 modelUpdated();
                 pageStack.push(testSelectionPage);
+                continuation();
             });
         }
         
         onSelectionDone: {
             app.rememberTestSelection(selected_id_list, function() {
-                unlatchContinue();
                 processNextTest();
+                unlatchContinue();
             });
         }
     }
+
+    PasswordDialog {
+        id: passwordDialog
+    }
+
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
             if(result.resumable === true) {
@@ -344,30 +356,53 @@ MainView {
             if (test.plugin === undefined) { 
                 return showResultsScreen();
             }
-            switch (test['plugin']) {
-                case 'manual':
-                    performManualTest(test);
-                    break;
-                case 'user-interact-verify':
-                    performUserInteractVerifyTest(test);
-                    break;
-                case 'shell':
-                    performAutomatedTest(test);
-                    break;
-                case 'user-verify':
-                    performUserVerifyTest(test);
-                    break;
-                case 'user-interact':
-                    performUserInteractTest(test);
-                    break;
-                case 'qml':
-                    performQmlTest(test);
-                    break;
-                default:
-                    test.outcome = "skip";
-                    completeTest(test);
+            if (test.user) {
+                // running this test will require to be run as a different
+                // user (therefore requiring user to enter sudo password)
+                if (!appSettings.sudoPasswordProvided) {
+                    // ask user for password
+                    passwordDialog.passwordEntered.connect(function(pass) {
+                        app.rememberPassword(pass, function(){
+                            appSettings.sudoPasswordProvided = true;
+                            performTest(test);
+                        });
+                    });
+                    passwordDialog.dialogCancelled.connect(function() {
+                        test.outcome = "skip";
+                        completeTest(test);
+                    });
+                    PopupUtils.open(passwordDialog.dialogComponent);
+                    return;
+                }
             }
+            performTest(test);
         });
+    }
+
+    function performTest(test) {
+        switch (test['plugin']) {
+            case 'manual':
+                performManualTest(test);
+                break;
+            case 'user-interact-verify':
+                performUserInteractVerifyTest(test);
+                break;
+            case 'shell':
+                performAutomatedTest(test);
+                break;
+            case 'user-verify':
+                performUserVerifyTest(test);
+                break;
+            case 'user-interact':
+                performUserInteractTest(test);
+                break;
+            case 'qml':
+                performQmlTest(test);
+                break;
+            default:
+                test.outcome = "skip";
+                completeTest(test);
+        }
     }
 
     function completeTest(test) {

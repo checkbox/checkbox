@@ -103,6 +103,9 @@ elif [ "$container" = "lxc" ]; then
     # default), so we need to create the home dir ourselves.
     [ ! -d $HOME ] && mkdir -p $HOME
     ln --no-dereference --force --symbolic $CHECKBOX_TOP $HOME/src
+fi
+
+# Patch pkg-resources to fix https://bugs.launchpad.net/plainbox/+bug/1456560
 if patch -p0 /usr/lib/python3/dist-packages/pkg_resources.py << EOF
 --- pkg_resources.py.orig	2014-05-15 19:39:38.365807720 +0000
 +++ pkg_resources.py	2014-05-15 19:44:50.449807720 +0000
@@ -135,8 +138,3 @@ else
 	echo "Patching pkg_resources.py failed"
 	echo "This is not necessarily bad, this is only needed on precise"
 fi
-
-fi
-
-
-

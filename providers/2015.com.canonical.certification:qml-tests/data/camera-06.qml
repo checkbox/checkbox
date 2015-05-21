@@ -94,6 +94,7 @@ Item {
         source: cam
         anchors.fill: parent
         orientation: (Screen.primaryOrientation === Qt.PortraitOrientation) ? 270 : 0;
+        fillMode: Image.PreserveAspectCrop
     }
 
     Timer {
@@ -150,6 +151,8 @@ Item {
 
         MediaPlayer {
             id: mediaplayer
+            autoLoad: false
+            autoPlay: false
             onStopped: {
                 showSummary(i18n.tr("Was the recording OK?"));
             }
@@ -160,6 +163,7 @@ Item {
             anchors.fill: parent
             source: mediaplayer
             orientation: (Screen.primaryOrientation === Qt.PortraitOrientation) ? 270 : 0;
+            fillMode: Image.PreserveAspectCrop
         }
     }
     Page {

@@ -149,6 +149,11 @@ PythonObjectHandle {
         });
     }
 
+    function rememberPassword(password, continuation) {
+        // using low-level py.call() to 'silently' pass password string through pyotherside
+        py.call("py_invoke", [handle, "remember_password", [password]], continuation);
+    }
+
     // A wrapper around invoke() that works with the @view decorator. The fn_ok
     // and fn_err are called on a normal reply and on error, respectively.
     function request(name, args, fn_ok, fn_err) {

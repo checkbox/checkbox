@@ -22,6 +22,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from collections import defaultdict
 from io import open
 from unittest import TestCase
 import os
@@ -43,11 +44,29 @@ class SubmissionRun(object):
     def setDistribution(self, **distribution):
         self.result["distribution"] = distribution
 
+    def setPciSubsystemId(self, pci_subsys_id):
+        self.result["pci_subsystem_id"] = pci_subsys_id
+
     def setMemoryState(self, **memory_state):
         self.result["memory_state"] = memory_state
 
     def setProcessorState(self, **processor_state):
         self.result["processor_state"] = processor_state
+
+    def addModprobeInfo(self, module, options):
+        self.result.setdefault('module_options', {})
+        self.result['module_options'][module] = options
+
+    def addModuleInfo(self, module, data):
+        self.result.setdefault('modinfo', {})
+        self.result['modinfo'][module] = data
+
+    def setKernelCmdline(self, kernel_cmdline):
+        self.result['kernel_cmdline'] = kernel_cmdline
+
+    def addDkmsInfo(self, pkg, details):
+        self.result.setdefault('dkms_info', {})
+        self.result['dkms_info'][pkg] = details
 
     def addAttachment(self, **attachment):
         self.result.setdefault("attachments", [])
@@ -168,6 +187,27 @@ class TestSubmissionParser(TestCase):
         self.assertTrue("device_states" in result)
         self.assertEqual(len(result["device_states"]), 80)
 
+    def test_modprobe(self):
+        """modprobe_attachment info element can contain options for drivers."""
+        result = self.getResult("submission_info_modprobe.xml")
+        self.assertTrue('module_options' in result)
+        self.assertIn('snd-hda-intel', result['module_options'])
+        # This driver has 3 options which were set in different lines
+        # so we're testing option aggregation and correct collection.
+        self.assertIn("jackpoll_ms=500",
+                      result['module_options']['snd-hda-intel'])
+        self.assertIn("beep_mode=1",
+                      result['module_options']['snd-hda-intel'])
+        self.assertIn("single_cmd=1",
+                      result['module_options']['snd-hda-intel'])
+
+    def test_kernel_cmdline(self):
+        """a kernel commandline can be in a kernel_cmdline info element."""
+        result = self.getResult("submission_info_kernel_cmdline.xml")
+        self.assertTrue("kernel_cmdline" in result)
+        self.assertIn("ro quiet splash video.use_native_backlight=1",
+                      result["kernel_cmdline"])
+
     def test_device_dmidecode(self):
         """Device states can be in a dmidecode info element."""
         result = self.getResult("submission_info_dmidecode.xml")
@@ -183,6 +223,125 @@ class TestSubmissionParser(TestCase):
         package_version = result["package_versions"][0]
         self.assertEqual(package_version["name"], "accountsservice")
         self.assertEqual(package_version["version"], "0.6.21-6ubuntu2")
+
+    def test_package_modaliases(self):
+        """
+        Modaliases information is in the packages element if a package
+        contains it.
+        """
+        result = self.getResult("submission_packages_modaliases.xml")
+        self.assertTrue("package_versions" in result)
+        self.assertEqual(len(result["package_versions"]), 2)
+
+        package = result["package_versions"][0]
+        self.assertEqual(package["name"], "accountsservice")
+        self.assertNotIn("modalias", package)
+
+        package = result["package_versions"][1]
+        self.assertEqual(package["name"], "a_package_with_modaliases")
+        self.assertEqual(package["modalias"], "nvidia_340(pci:v000010DEd000005E7sv*sd00000595bc03sc*i*)")
+        self.assertEqual(package["version"], "1.0-1-ubuntu1~bogus")
+
+    def test_dkms_info(self):
+        """
+        DKMS (and packages with modalias) shown if dkms_info attachment
+        exists.
+        """
+        result = self.getResult("submission_info_dkms.xml")
+        self.assertTrue("dkms_info" in result)
+        self.assertEqual(len(result["dkms_info"]), 8)
+        self.maxDiff = None
+        self.assertDictEqual(
+            result["dkms_info"]['stella-keymaps'],
+            {"dkms-status": "non-dkms",
+             "architecture": "all",
+             "depends": "stella-base-config",
+             "description": "Keymaps on stella project\n This ",
+             "installed-size": "41",
+             "maintainer": "Franz Hsieh (Franz) <franz.hsieh@canonical.com>",
+             "match_patterns": [
+                 "oemalias:*"
+             ],
+             "modaliases": "stella_include(oemalias:*)",
+             "package": "stella-keymaps",
+             "priority": "optional",
+             "section": "misc",
+             "status": "install ok installed",
+             "version": "0.1stella1"})
+        self.assertDictEqual(
+            result['dkms_info']['oem-audio-hda-daily-dkms'],
+            {"arch": "x86_64",
+             "dkms-status": "dkms",
+             "dkms_name": "oem-audio-hda-daily",
+             "dkms_ver": "0.201503121632~ubuntu14.04.1",
+             "install_mods": {
+                 "snd_hda_codec": [],
+                 "snd_hda_codec_generic": [],
+                 "snd_hda_codec_realtek": [],
+                 "snd_hda_controller": [],
+                 "snd_hda_intel": [
+                     "pci:v00008086d*sv*sd*bc04sc03i00*",
+                     "pci:v00008086d00009C20sv*sd*bc*sc*i*"
+                 ]
+             },
+             "kernel_ver": "3.13.0-48-generic",
+             "mods": [
+                 "snd_hda_codec_analog",
+                 "snd_hda_codec_idt",
+                 "snd_hda_codec_cirrus",
+                 "snd_hda_codec_generic",
+                 "snd_hda_codec_via",
+                 "snd_hda_codec_realtek",
+                 "snd_hda_codec_ca0132",
+                 "snd_hda_codec_hdmi",
+                 "snd_hda_codec_ca0110",
+                 "snd_hda_codec_si3054",
+                 "snd_hda_intel",
+                 "snd_hda_codec_conexant",
+                 "snd_hda_codec",
+                 "snd_hda_codec_cmedia",
+                 "snd_hda_controller"
+             ],
+             "pkg": {
+                 "architecture": "all",
+                 "depends": "dkms (>= 1.95)",
+                 "description": "HDA driver in DKMS format.",
+                 "homepage": "https://code.launchpad.net/~ubuntu-audio-dev",
+                 "installed-size": "1512",
+                 "maintainer": "David H <david.h@canonical.com>",
+                 "modaliases": "hwe(pci:v00001022d*sv*sd*bc04sc03i00*)",
+                 "package": "oem-audio-hda-daily-dkms",
+                 "priority": "extra",
+                 "section": "devel",
+                 "status": "install ok installed",
+                 "version": "0.201503121632~ubuntu14.04.1"
+             },
+             "pkg_name": "oem-audio-hda-daily-dkms"})
+
+    def test_pci_subsystem_id(self):
+        """
+        PCI subsystem ID for the first device can be extracted from
+        an lspci_standard_config attachment
+        """
+        result = self.getResult("submission_info_lspci_standard_config.xml")
+        self.assertTrue("pci_subsystem_id" in result)
+        self.assertEqual(result["pci_subsystem_id"], "060a")
+
+    def test_modinfo(self):
+        """
+        Modinfo information is in the modinfo element if
+        there was an attachment with output from modinfo_attachment job.
+        """
+        result = self.getResult("submission_info_modinfo.xml")
+        self.assertTrue("modinfo" in result)
+        self.assertEqual(len(result['modinfo']), 2)
+
+        self.assertIn("bbswitch", result['modinfo'])
+        self.assertEqual('0.7', result['modinfo']['bbswitch']['version'])
+
+        self.assertIn("ctr", result['modinfo'])
+        self.assertEqual(['crypto-ctr', 'ctr', 'crypto-rfc3686', 'rfc3686'],
+                         result['modinfo']['ctr']['alias'])
 
     def test_test_results(self):
         """Test results are in the questions element."""

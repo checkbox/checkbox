@@ -1,3 +1,8 @@
+# The dkms_info script requires python3-debian package
+unit: packaging meta-data
+os-id: debian
+Depends: python3-debian
+
 id: codecs_attachment
 plugin: attachment
 requires: device.driver == 'snd_hda_intel'
@@ -57,6 +62,15 @@ command: lspci -vvnnQ | iconv -t 'utf-8' -c
 estimated_duration: 1.322
 _description: Attaches very verbose lspci output (with central database Query).
 
+id: lspci_standard_config_attachment
+_summary: Attach PCI configuration space hex dump
+plugin: attachment
+command: lspci -x
+estimated_duration: 0.1
+_description:
+    Attaches a hex dump of the standard part of the PCI configuration
+    space for all PCI devices.
+
 id: lsusb_attachment
 plugin: attachment
 requires: package.name == 'usbutils'
@@ -75,6 +89,20 @@ plugin: attachment
 command: find /etc/modprobe.* -name \*.conf | xargs cat
 estimated_duration: 0.015
 _description: Attaches the contents of the various modprobe conf files.
+
+id: modinfo_attachment
+plugin: attachment
+_summary: Attach modinfo information
+command:
+    for mod in $(lsmod | cut -f 1 -d " ")
+    do
+        printf "%-16s%s\n" "name:" "$mod"
+        modinfo $mod
+        echo
+    done
+estimated_duration: 1.5
+_description: Attaches modinfo information for all currently loaded modules
+
 
 id: modules_attachment
 plugin: attachment
@@ -123,6 +151,12 @@ plugin: attachment
 command: lsmod_info
 estimated_duration: 0.5
 _description: Attaches a list of the currently running kernel modules.
+
+id: dkms_info_attachment
+plugin: attachment
+command: dkms_info  --format json
+_description: Attaches json dumps of installed dkms package information.
+_summary: Attaches json dumps of installed dkms package information.
 
 plugin: attachment
 id: acpi_sleep_attachment
@@ -241,6 +275,55 @@ estimated_duration: 0.1
 _description: Attaches the buildstamp identifier for the preinstalled OS
 _summary: Attach /etc/buildstamp
 command: [ -s /etc/buildstamp ] && cat /etc/buildstamp
+
+plugin: shell
+id: info/detect_recovery
+requires: package.name == 'dell-recovery' or package.name == 'ubuntu-recovery'
+user: root
+estimated_duration: 0.2
+_summary: Check existence of recovery partition
+_description: Check existence of recovery partition
+command: recovery_info
+
+plugin: shell
+id: info/detect_dell_recovery
+depends: info/detect_recovery
+requires: package.name == 'dell-recovery'
+user: root
+estimated_duration: 0.2
+_summary: Check the recovery type is dell or not
+_description: Check the recovery type is dell or not
+command: recovery_info checktype DELL
+
+plugin: attachment
+id: recovery_info_attachment
+depends: info/detect_recovery
+requires: package.name == 'dell-recovery' or package.name == 'ubuntu-recovery'
+user: root
+estimated_duration: 0.2
+_summary: Attach the recovery partition versions
+_description:
+ Attach the recovery partition version
+ image_version is the preinstalled OS image version
+ bto_version is only for dell_recovery
+ Example:
+ image_version: somerville-trusty-amd64-20140620-0
+ bto_version: A00_dell-bto-trusty-houston-15-A11-iso-20141203-0.iso
+command: recovery_info version
+
+plugin: attachment
+id: dell_bto_xml_attachment
+depends: info/detect_dell_recovery
+requires: package.name == 'dell-recovery'
+user: root
+estimated_duration: 0.5
+_summary: Attach the bto.xml in Dell recovery partition
+_description:
+ bto.xml is basically a Fish manifest
+ The information include:
+  - fish packages
+  - dell recovery stage 2 boot log
+command: recovery_info file bto.xml
 
 plugin: attachment
 id: info/kvm_output

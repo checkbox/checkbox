@@ -1,7 +1,7 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * Authors:
  * - Sylvain Pineau <sylvain.pineau@canonical.com>
@@ -28,6 +28,7 @@ PopupBase {
     // See Dialog.qml
     default property alias contents: contentsColumn.data
     property alias title: foreground.title
+    property alias text: foreground.text
     property bool modal: true
     // Cannot override FINAL property, so alias names have to be different
     property alias dialogWidth: foreground.width
@@ -38,42 +39,55 @@ PopupBase {
     __dimBackground: modal
     fadingAnimation: UbuntuNumberAnimation { duration: UbuntuAnimation.SnapDuration }
 
-    StyledItem {
+    FocusScope {
         id: foreground
         // Default settings, the Dialog will take the full MainView size
         width: parent.width
         height: parent.height
         anchors.centerIn: parent
 
-        // used by the style
         property string title
+        property string text
         property real margins: units.gu(2)
         property Item dismissArea: dialog.dismissArea
 
-        Item {
-            id: contentsColumn
-            anchors {
-                fill: parent
-                margins: foreground.margins
-            }
-            onWidthChanged: updateChildrenWidths();
+        UbuntuShape {
+            id: background
+            anchors.fill: parent
+            color: Qt.rgba(0, 0, 0, 0.7)
 
-            Label {
-                horizontalAlignment: Text.AlignHCenter
-                text: dialog.title
-                fontSize: "large"
-                color: Qt.rgba(1, 1, 1, 0.9)
-            }
+            Column {
+                id: contentsColumn
+                anchors {
+                    fill: parent
+                    margins: foreground.margins
+                }
+                onWidthChanged: updateChildrenWidths();
 
-            onChildrenChanged: updateChildrenWidths()
+                Label {
+                    horizontalAlignment: Text.AlignHCenter
+                    text: dialog.title
+                    fontSize: "large"
+                    color: Qt.rgba(1, 1, 1, 0.9)
+                }
 
-            function updateChildrenWidths() {
-                for (var i = 0; i < children.length; i++) {
-                    children[i].width = contentsColumn.width;
+                Label {
+                    horizontalAlignment: Text.AlignHCenter
+                    text: dialog.text
+                    fontSize: "medium"
+                    color: Qt.rgba(1, 1, 1, 0.6)
+                    wrapMode: Text.Wrap
+                    visible: (text !== "")
+                }
+
+                onChildrenChanged: updateChildrenWidths()
+
+                function updateChildrenWidths() {
+                    for (var i = 0; i < children.length; i++) {
+                        children[i].width = contentsColumn.width;
+                    }
                 }
             }
         }
-
-        style: Theme.createStyleComponent("DialogForegroundStyle.qml", foreground)
     }
 }

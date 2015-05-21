@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 from distutils.dir_util import copy_tree
+from datetime import datetime
 import json
 import os
 import re
@@ -24,7 +25,8 @@ def check_libs_present():
         "lib/py/xlsxwriter"]
     for path in NECESSARY_PATHS:
         if not os.path.exists(path):
-            raise EnvironmentError("{} not found!".format(path))
+            raise EnvironmentError(
+                "{} not found!\nHave you run get-libs?".format(path))
 
 
 def get_revision_string(path='.'):
@@ -33,7 +35,7 @@ def get_revision_string(path='.'):
     try:
         revno = int(subprocess.check_output(
             ["bzr", "revno", path], stderr=subprocess.STDOUT))
-        return "bzr revision r{}".format(revno)
+        return "bzr r{}".format(revno)
     except subprocess.CalledProcessError:
         # problem encountered when run bzr revno - falling through
         pass
@@ -41,10 +43,10 @@ def get_revision_string(path='.'):
     # Try getting version from git
     try:
         revno = subprocess.check_output(
-            ["git", "-C", path, "show", "-s", "--format=%H", "HEAD"],
+            ["git", "-C", path, "show", "-s", "--format=%h", "HEAD"],
             stderr=subprocess.STDOUT).decode(
                 sys.stdout.encoding).strip()
-        return "git revision {}".format(revno)
+        return "git {}".format(revno)
     except subprocess.CalledProcessError:
         # problem encountered when run git revision - falling through
         pass
@@ -80,6 +82,7 @@ def main():
         "_comment": "file generated automatically with {0}"
                     .format(parser.prog),
         "revision": get_revision_string(),
+        "clickBuildDate": str(datetime.now().date()),
         "testplan": args.testplan,
         "providersDir": "providers"
     }
@@ -96,6 +99,10 @@ def main():
             target_base_name = os.path.basename(os.path.normpath(path))
             copy_tree(path, os.path.join('providers', target_base_name))
 
+    # if there's no provider, warn and bail out
+    if not os.path.exists('providers') or os.listdir('providers') == []:
+        sys.exit(
+            "No provider present in the 'providers' directory! Aborting!")
     generate_desktop_file()
 
     if not os.path.exists('../build-cbt'):
@@ -106,7 +113,6 @@ def main():
         adb_options = []
         if args.s:
             adb_options = ['-s', args.s]
-        print(adb_options)
         install_click(pkg, adb_options)
 
 

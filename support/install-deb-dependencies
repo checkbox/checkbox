@@ -54,3 +54,6 @@ if [ -n "$dpkgs_to_install_list" ]; then
         apt-get install --quiet --quiet --yes $dpkgs_to_install_list
     fi
 fi
+
+# Update to latest packages, this is a bit annoying but this is what it takes
+sudo apt-get dist-upgrade --yes

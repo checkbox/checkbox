@@ -1,4 +1,3 @@
-
 unit: test plan
 _description:
  Test plan containing tests in form of QML programs
@@ -7,22 +6,35 @@ _name: QML-native tests
 estimated_duration: 20
 include: .*
 
-id: qml-camera
-plugin: qml
-_description: Camera test
-qml_file: camera-test.qml
-estimated_duration: 20
+unit: category
+id: Camera
+_name: Camera Testing
 
 id: qml-camera-06
+category_id: Camera
 plugin: qml
-_description: Camera test 06 - Record a video then play it back
+_summary: Ensure that video can be captured with the rear camera
 qml_file: camera-06.qml
 estimated_duration: 20
 
+unit: category
+id: Sensors
+_name: Sensors Testing
+
 id: sensors-01
+category_id: Sensors
 plugin: qml
-_sumamry: Sensors test 01 - Ensure accelerometer is functioning
+_summary: Ensure accelerometer is functioning
 _description:
  This test is a mini-game where accelerometer is used to guide a big dot to a goal marked on the screen.
 qml_file: sensors-01.qml
+estimated_duration: 20
+
+id: sensors-04
+category_id: Sensors
+plugin: qml
+_summary: Ensure haptics are working
+_description:
+ This test allows the operator to activate the haptics (vibration) actuator to verify that it works.
+qml_file: sensors-04.qml
 estimated_duration: 20

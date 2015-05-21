@@ -376,7 +376,7 @@ Page {
             id: submission_warning_dialog
             WarningDialog{
                 // TRANSLATORS: Be careful not to translate the \n (newline) characters
-                text: i18n.tr("You are about to exit this test run without saving your results report. \n\nAre you sure? \n\n(Press Continue to Quit)");
+                text: i18n.tr("You are about to exit this test run\nwithout saving your results report.\n\nAre you sure?\n\n(Press Continue to Quit)");
 
                 showOK: false
                 showContinue: true
@@ -393,7 +393,7 @@ Page {
         Component {
             id: incomplete_warning_dialog
             WarningDialog{
-                text: i18n.tr("You are about to cancel an active test run.  Your system might be left in an unstable state.  Are you sure you want to exit?");
+                text: i18n.tr("You are about to cancel an active test run.\nYour system might be left\nin an unstable state.\n\nAre you sure you want to exit?");
                 showOK: true
                 showCancel: true
                 showContinue: false

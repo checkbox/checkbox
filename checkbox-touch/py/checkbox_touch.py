@@ -195,11 +195,11 @@ def not_contains(a, b):
 
 class FakeCheckboxTouchApplication(PlainboxApplication):
 
-    __version__ = (1, 0, 2, 'final', 0)
+    __version__ = (1, 1, 3, 'final', 0)
 
     def __init__(self):
-        if plainbox.__version__ < (0, 17):
-            raise SystemExit("plainbox 0.17 required, you have {}".format(
+        if plainbox.__version__ < (0, 21):
+            raise SystemExit("plainbox 0.21 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
         # adjust_logging(logging.INFO, ['checkbox.touch'], True)
         self.index = 0
@@ -317,11 +317,11 @@ class CheckboxTouchApplication(PlainboxApplication):
     response data to alter the user interface.
     """
 
-    __version__ = (1, 0, 2, 'final', 0)
+    __version__ = (1, 1, 3, 'final', 0)
 
     def __init__(self):
-        if plainbox.__version__ < (0, 17):
-            raise SystemExit("plainbox 0.17 required, you have {}".format(
+        if plainbox.__version__ < (0, 21):
+            raise SystemExit("plainbox 0.21 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
         # adjust_logging(logging.INFO, ['checkbox.touch'], True)
         self.manager = None
@@ -335,7 +335,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.resume_candidate_storage = None
         self.session_storage_repo = None
         self.timestamp = datetime.datetime.utcnow().isoformat()
-        self.config = None
+        self.config = PlainBoxConfig()
+        self._password = None
 
     def __repr__(self):
         return "app"
@@ -367,12 +368,22 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.context.state.metadata.flags.add('bootstrapping')
             # Checkpoint the session so that we have something to see
             self._checkpoint()
-            self.config = PlainBoxConfig()
+
+            # Prepare custom execution controller list
+            from plainbox.impl.ctrl import UserJobExecutionController
+            from sudo_with_pass_ctrl import \
+                RootViaSudoWithPassExecutionController
+            controllers = [
+                RootViaSudoWithPassExecutionController(
+                    self.context.provider_list, self._password_provider),
+                UserJobExecutionController(self.context.provider_list),
+            ]
             self.runner = JobRunner(
                 self.manager.storage.location,
                 self.context.provider_list,
                 # TODO: tie this with well-known-dirs helper
-                os.path.join(self.manager.storage.location, 'io-logs'))
+                os.path.join(self.manager.storage.location, 'io-logs'),
+                execution_ctrl_list=controllers)
         app_cache_dir = self._get_app_cache_directory()
         if not os.path.exists(app_cache_dir):
             os.makedirs(app_cache_dir)
@@ -605,6 +616,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 job.tr_verification() is not None else description,
                 "plugin": job.plugin,
                 "id": job.id,
+                "user": job.user,
                 "qml_file": job.qml_file,
                 "start_time": time.time(),
                 "test_number": self.index,
@@ -694,7 +706,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             if match:
                 return match.group(1).replace("$HOME", os.getenv("HOME"))
             else:
-                return os.path.expanduser('~')
+                return os.path.expanduser('~/Documents')
 
     def _get_app_cache_directory(self):
         xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
@@ -791,6 +803,21 @@ class CheckboxTouchApplication(PlainboxApplication):
             embedded_providers = EmbeddedProvider1PlugInCollection(path)
             provider_list += embedded_providers.get_all_plugin_objects()
         return provider_list
+
+    def _password_provider(self):
+        if self._password is None:
+            raise RuntimeError("execute_job called without providing password"
+                               " first")
+        return self._password
+
+    def remember_password(self, password):
+        """
+        Save password in app instance
+
+        It deliberately doesn't use view decorator to omit all logging that
+        might happen
+        """
+        self._password = password
 
 
 def bootstrap():

@@ -17,13 +17,18 @@ dmi_attachment
 dmidecode_attachment
 efi_attachment
 lspci_attachment
+lspci_standard_config_attachment
 meminfo_attachment
+modinfo_attachment
 modprobe_attachment
 modules_attachment
 sysctl_attachment
 sysfs_attachment
 udev_attachment
+recovery_info_attachment
+dell_bto_xml_attachment
 lsmod_attachment
+dkms_info_attachment
 #Automated Test-verification Jobs
 __audio__
 audio/alsa_record_playback_automated

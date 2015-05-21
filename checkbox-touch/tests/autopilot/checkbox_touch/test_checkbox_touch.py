@@ -8,8 +8,16 @@ import checkbox_touch
 
 class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
 
-    def skip_test(self):
-        """Skip current test using header action."""
+    def skip_test(self, selectable_object_name=None):
+        """Skip current test using header action.
+
+        :param selectable_object_name:
+             the objectName of component that has to be visible and selecable
+             before the action is clicked.
+        """
+        if selectable_object_name is not None:
+            self.app.wait_select_single(
+                objectName=selectable_object_name, visible=True)
         self.main_view.get_header().click_action_button('skip')
         dialog = self.app.wait_select_single(objectName='dialog')
         yes_btn = dialog.select_single(objectName='yesButton')
@@ -72,7 +80,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'failButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test()
+        self.skip_test('manualIntroPage')
         next_steps = [
             ('userInteractVerifyIntroPage', 'startTestButton'),
             ('testVerificationPage', 'passButton'),
@@ -80,7 +88,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'failButton')
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test()
+        self.skip_test('userInteractVerifyIntroPage')
         next_steps = [
             ('userInteractVerifyIntroPage', 'startTestButton'),
             ('testVerificationPage', 'passButton'),
@@ -88,7 +96,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'failButton')
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test()
+        self.skip_test('userInteractVerifyIntroPage')
         next_steps = [
             ('userInteractVerifyIntroPage', 'startTestButton'),
             ('userInteractSummary', 'continueButton'),
@@ -96,7 +104,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('userInteractSummary', 'continueButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test()
+        self.skip_test('userInteractVerifyIntroPage')
         # we should see results screen now
         results = {'passed': '5', 'failed': '5', 'skipped': '4'}
         results_page = self.app.wait_select_single(objectName='resultsPage')
