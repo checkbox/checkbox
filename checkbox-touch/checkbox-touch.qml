@@ -23,7 +23,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
-import io.thp.pyotherside 1.2
+import io.thp.pyotherside 1.4
 import "components"
 import "components/ErrorLogic.js" as ErrorLogic
 import "components/CbtDialogLogic.js" as CbtDialogLogic
