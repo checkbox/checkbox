@@ -1571,6 +1571,14 @@ QString GuiEngine::GuiExportSessionAsXLSX(void)
     return ExportSession(m_session,output_format,options);
 }
 
+QString GuiEngine::GuiExportSessionAsJSON(void)
+{
+    qDebug("GuiEngine::GuiExportSessionAsJSON");
+    QString output_format = "json";
+    QStringList options;    // No options
+    return ExportSession(m_session,output_format,options);
+}
+
 
 const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
                                        const QString &output_format, \
@@ -1633,6 +1641,19 @@ bool GuiEngine::GuiExportSessionToFileAsXLSX(const QString& output_file,
                                              const QStringList& option_list)
 {
     QString output_format = "xlsx";
+    // very basic argument checking
+    if (output_file.isEmpty()) {
+        return false;
+    }
+    // FIXME - When we get a useful success/failure code here, return to caller
+    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
+    return true;
+}
+
+bool GuiEngine::GuiExportSessionToFileAsJSON(const QString& output_file,
+                                             const QStringList& option_list)
+{
+    QString output_format = "json";
     // very basic argument checking
     if (output_file.isEmpty()) {
         return false;

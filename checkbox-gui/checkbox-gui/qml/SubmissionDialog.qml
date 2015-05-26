@@ -112,6 +112,7 @@ DarkDialog {
         function initialize() {
             reportTypeModel.append({"type": "xml", "name": i18n.tr("XML Report (*.xml)")})
             reportTypeModel.append({"type": "xlsx", "name": i18n.tr("XLSX Report (*.xlsx)")})
+            reportTypeModel.append({"type": "json", "name": i18n.tr("JSON Report (*.json)")})
         }
 
         id: reportTypeModel
@@ -148,6 +149,11 @@ DarkDialog {
                 var path = guiEngine.GetSaveFileName('submission.xlsx',
                     i18n.tr("XLSX files (*.xlsx)"))
                 success = guiEngine.GuiExportSessionToFileAsXLSX(path, ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"]);
+            }
+            else if (reportTypeSelect.selectedIndex == 2) {
+                var path = guiEngine.GetSaveFileName('submission.json',
+                    i18n.tr("JSON files (*.json)"))
+                success = guiEngine.GuiExportSessionToFileAsJSON(path, ["with-certification-status", "with-job-defs", "with-io-log", "with-comments"]);
             }
 
             if (success) {

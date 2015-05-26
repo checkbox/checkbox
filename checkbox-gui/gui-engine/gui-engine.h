@@ -163,6 +163,7 @@ public slots:
         QString GuiExportSessionAsXML(void);
         QString GuiExportSessionAsHTML(void);
         QString GuiExportSessionAsXLSX(void);
+        QString GuiExportSessionAsJSON(void);
 
         bool GuiExportSessionToFileAsXML(const QString& output_file,
                                          const QStringList& option_list);
@@ -170,7 +171,9 @@ public slots:
                                           const QStringList& option_list);
         bool GuiExportSessionToFileAsXLSX(const QString& output_file,
                                           const QStringList& option_list);
-        
+        bool GuiExportSessionToFileAsJSON(const QString& output_file,
+                                          const QStringList& option_list);
+
         const QString SendSubmissionViaCertificationTransport( \
                                      const QString &submission_path,
                                      const QString &secure_id,
