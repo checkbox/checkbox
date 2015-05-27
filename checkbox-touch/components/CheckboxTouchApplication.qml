@@ -1,10 +1,11 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2014 Canonical Ltd.
+ * Copyright 2014-2015 Canonical Ltd.
  *
  * Authors:
  * - Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+ * - Maciej Kisielewski <maciej.kisielewski@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +25,7 @@ import Ubuntu.Components 1.1
 import "ErrorLogic.js" as ErrorLogic
 
 
-PythonObjectHandle {
+PythonObjectRef {
     id: app
     // Version of the application
     property string applicationVersion
@@ -37,7 +38,7 @@ PythonObjectHandle {
     signal appReady();
 
     // Signal sent when a session becomes ready
-    signal sessionReady();
+    signal sessionReady()
 
     // Create a new session
     //
@@ -168,7 +169,7 @@ PythonObjectHandle {
 
     // Internal handler that triggers a call to python to query for runtime and
     // application versions.
-    onHandleReady: {
+    onObjectReady: {
         request("get_version_pair", [], function(result) {
             app.applicationVersion = result.application_version;
             app.plainboxVersion = result.plainbox_version;

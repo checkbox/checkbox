@@ -65,72 +65,9 @@ import plainbox
 from embedded_providers import EmbeddedProvider1PlugInCollection
 
 _logger = logging.getLogger('checkbox.touch')
-_manager = None
 
 
-class VerboseLifecycle:
-    """
-    Mix-in class for verbose lifecycle reporting
-    """
-
-    def __new__(cls, *args, **kwargs):
-        self = super().__new__(cls, *args, **kwargs)
-        _logger.debug("new %s %x", cls.__name__, id(self))
-        return self
-
-    def __del__(self):
-        _logger.debug("del %s %x", self.__class__.__name__, id(self))
-
-
-class RemoteObjectLifecycleManager(VerboseLifecycle):
-    """
-    Remote object life-cycle manager
-
-    This class aids in handling non-trivial objects that are referenced from
-    QML (via pyotherside) but really stored on the python side.
-    """
-
-    def __init__(self):
-        self._count = 0
-        self._handle_map = {}
-
-    def unref(self, handle: int):
-        """
-        Remove a reference represented by the specified handle
-        """
-        _logger.debug("unref %s", handle)
-        del self._handle_map[handle]
-
-    def ref(self, obj: object) -> int:
-        """
-        Store a reference to an object and return the handle
-        """
-        self._count += 1
-        handle = self._count
-        self._handle_map[handle] = obj
-        _logger.debug("ref %r -> %s", obj, handle)
-        return handle
-
-    def invoke(self, handle: int, func: str, args):
-        """
-        Call a method on a object represented by the handle
-
-        :param handle:
-            A (numeric) handle to the objecet
-        :param func:
-            The (name of the) function to call
-        :param args:
-            A list of positional arguments to pass
-        :returns:
-            The value returned by the called method
-        """
-        obj = self._handle_map[handle]
-        impl = getattr(obj, func)
-        retval = impl(*args)
-        return retval
-
-
-class PlainboxApplication(VerboseLifecycle, metaclass=abc.ABCMeta):
+class PlainboxApplication(metaclass=abc.ABCMeta):
     """
     Base class for plainbox-based applications.
 
@@ -140,16 +77,6 @@ class PlainboxApplication(VerboseLifecycle, metaclass=abc.ABCMeta):
 
     def __repr__(self):
         return "<{}>".format(self.__class__.__name__)
-
-    @classmethod
-    def create_and_get_handle(cls):
-        """
-        Create an instance of the high-level PlainBox object
-
-        :returns:
-            A handle to a fresh instance of :class:`PlainBox`
-        """
-        return _manager.ref(cls())
 
     @abc.abstractmethod
     def get_version_pair(self):
@@ -820,27 +747,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         self._password = password
 
 
-def bootstrap():
-    logging.basicConfig(level=logging.INFO, stream=sys.stderr)
-    logging.info("environ: %r", os.environ)
-    logging.info("path: %r", sys.path)
-    # from plainbox.impl.logging import adjust_logging
-    # from plainbox.impl.logging import setup_logging
-    # Setup logging
-    # setup_logging()
-    # adjust_logging(logging.DEBUG, ['checkbox.stack'], True)
-    # Create the Javascript <=> Python remote object lifecycle manager
-    manager = RemoteObjectLifecycleManager()
-    # Expose top-level functions for pyotherside's simplicity
-    builtins.py_ref = manager.ref
-    builtins.py_unref = manager.unref
-    builtins.py_invoke = manager.invoke
-    return manager
-
-
 def get_qml_logger():
-    return _manager.ref(logging.getLogger('checkbox.touch.qml'))
+    return logging.getLogger('checkbox.touch.qml')
 
 
-create_app_object = CheckboxTouchApplication.create_and_get_handle
-_manager = bootstrap()
+create_app_object = CheckboxTouchApplication

@@ -23,7 +23,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
-import io.thp.pyotherside 1.2
+import io.thp.pyotherside 1.4
 import "components"
 import "components/ErrorLogic.js" as ErrorLogic
 import "components/CbtDialogLogic.js" as CbtDialogLogic
@@ -110,9 +110,7 @@ MainView {
             // create_app_object() function and assign the resulting handle
             // back to the application component.
             py.importModule("checkbox_touch", function() {
-                call("checkbox_touch.create_app_object", [], function(handle) {
-                    app.handle = handle;
-                });
+                app.construct("checkbox_touch.create_app_object", [])
             });
         }
         onError: {
@@ -146,9 +144,7 @@ MainView {
         Component.onCompleted: {
             py.Component.onCompleted.connect(function() {
                 py.importModule("checkbox_touch", function() {
-                    py.call("checkbox_touch.get_qml_logger", [], function(handle) {
-                        logger.handle = handle;
-                    });
+                    construct("checkbox_touch.get_qml_logger", []);
                 });
             });
         }
