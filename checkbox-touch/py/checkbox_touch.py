@@ -844,3 +844,4 @@ def get_qml_logger():
 
 create_app_object = CheckboxTouchApplication.create_and_get_handle
 _manager = bootstrap()
+create_app_object = CheckboxTouchApplication

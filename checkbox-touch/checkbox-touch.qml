@@ -110,9 +110,7 @@ MainView {
             // create_app_object() function and assign the resulting handle
             // back to the application component.
             py.importModule("checkbox_touch", function() {
-                call("checkbox_touch.create_app_object", [], function(handle) {
-                    app.handle = handle;
-                });
+                app.construct("checkbox_touch.create_app_object", [])
             });
         }
         onError: {
