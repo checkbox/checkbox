@@ -20,7 +20,7 @@
  */
 
 /*! \brief Python-driven logger
-    \inherits PythonObjectHandle
+    \inherits PythonObjectRef
 
     This component uses pyotherside to forward logging events to python.
     It monkey-patches console.log and console.error to capture their calls
@@ -28,7 +28,8 @@
 */
 import QtQuick 2.0
 
-PythonObjectHandle {
+PythonObjectRef {
+    id: pythonLogger
 
     function debug(msg) {
         invoke('debug', [msg], function() {});
@@ -63,13 +64,18 @@ PythonObjectHandle {
 
     /** Overridden invoke that doesn't log invoke calls */
     function invoke(func, args, callback) {
-        if (py !== null && handle > 0) {
-            py.call("py_invoke", [handle, func, args], function(response) {
+        if (py !== null && object !== null) {
+            var callable = py.getattr(object, func);
+            if (!callable) {
+                console.error("Unable to invoke " + func + " on python logger");
+                throw "trying to invoke not existing method"
+            }
+            py.call(callable, args, function(response) {
                 callback(response);
             });
         } else {
-            _original_console_error("unable to py_invoke: " + handle + ", " + func + ", " + JSON.stringify(args));
-            throw "py_invoke called without ready py and handle";
+            _original_console_error("unable to invoke " + func + " on python logger");
+            throw "invoke called without py initiated and/or object constructed";
         }
     }
 
@@ -79,7 +85,7 @@ PythonObjectHandle {
         _original_console_error = console.error;
     }
 
-    onHandleReady: {
+    onObjectReady: {
         /* monkey-patch console.log and console.error */
         console.log = function() { debug(_argsToString(arguments)); };
         console.error = function() { error(_argsToString(arguments)); };

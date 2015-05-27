@@ -144,9 +144,7 @@ MainView {
         Component.onCompleted: {
             py.Component.onCompleted.connect(function() {
                 py.importModule("checkbox_touch", function() {
-                    py.call("checkbox_touch.get_qml_logger", [], function(handle) {
-                        logger.handle = handle;
-                    });
+                    construct("checkbox_touch.get_qml_logger", []);
                 });
             });
         }
