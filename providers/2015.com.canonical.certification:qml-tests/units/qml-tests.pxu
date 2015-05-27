@@ -38,3 +38,16 @@ _description:
  This test allows the operator to activate the haptics (vibration) actuator to verify that it works.
 qml_file: sensors-04.qml
 estimated_duration: 20
+
+unit: category
+id: Screen
+_name: Screen Testing
+
+id: screen-09
+category_id: Screen
+plugin: qml
+_summary: Ensure the sensitivity of touchscreen in each egde
+_description:
+ This test helps the operator to check whether touch-screen works correctly near all edges.
+qml_file: screen-09.qml
+estimated_duration: 40
