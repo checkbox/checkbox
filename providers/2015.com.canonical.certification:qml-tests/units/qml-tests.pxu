@@ -51,3 +51,12 @@ _description:
  This test helps the operator to check whether touch-screen works correctly near all edges.
 qml_file: screen-09.qml
 estimated_duration: 40
+
+id: screen-10
+category_id: Screen
+plugin: qml
+_summary: Ensure virtual keyboard accuracy
+_description:
+ This test helps the operator to check whether touch-screen's accuracy is OK by simulating keyboard typing
+qml_file: screen-10.qml
+estimated_duration: 40
