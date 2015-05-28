@@ -26,7 +26,7 @@ from plainbox.impl.exporter.hexr import CERTIFICATION_NS
 from plainbox.impl.exporter.hexr import HEXRExporter
 from plainbox.impl.providers.special import get_stubbox
 from plainbox.impl.resource import Resource
-from plainbox.impl.result import MemoryJobResult
+from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.session import SessionManager
 from plainbox.impl.unit.job import JobDefinition
 
@@ -61,24 +61,25 @@ class HexrExporterTests(TestCase):
             state.add_unit(job)
             result = self._make_result_for(job)
             state.update_job_result(job, result)
+            last_job = job
+            last_result = result
         # Add a comment to one job (the last one)
-        result.comments = 'COMMENTS'
+        state.update_job_result(
+            last_job, last_result.get_builder(
+                comments='COMMENTS').get_result())
 
     def _make_result_for(self, job):
-        data = {
-            'outcome': 'pass',
-            'comments': None
-        }
+        builder = JobResultBuilder(outcome='pass')
         if job.plugin == 'local':
             pass
         elif job.plugin == 'resource':
             pass
         else:
-            data['io_log'] = (
+            builder.io_log = [
                 (0, 'stdout', b'IO-LOG-STDOUT\n'),
                 (1, 'stderr', b'IO-LOG-STDERR\n')
-            )
-        return MemoryJobResult(data)
+            ]
+        return builder.get_result()
 
     def _make_cert_resources(self):
         # Create some specific resources that this exporter relies on. The
@@ -126,13 +127,12 @@ class HexrExporterTests(TestCase):
                 'id': CERTIFICATION_NS + partial_id,
                 'plugin': 'attachment'
             })
-            result = MemoryJobResult({
-                'io_log': (
-                    (0, 'stdout', 'STDOUT-{}\n'.format(
-                        partial_id).encode('utf-8')),
-                    (1, 'stderr', 'STDERR-{}\n'.format(
-                        partial_id).encode('utf-8'))),
-            })
+            result = JobResultBuilder(io_log=[
+                (0, 'stdout', 'STDOUT-{}\n'.format(
+                    partial_id).encode('utf-8')),
+                (1, 'stderr', 'STDERR-{}\n'.format(
+                    partial_id).encode('utf-8'))]
+            ).get_result()
             state.add_unit(job)
             state.update_job_result(job, result)
 
@@ -162,11 +162,10 @@ class HexrExporterTests(TestCase):
                 evil_id = '{}-{}-{}'.format(evil, index, job_state.job.plugin)
             # NOTE: using private API
             job_state.job._data['id'] = evil_id
-            job_state.result.comments = evil
-            # NOTE: using private API
-            job_state.result._data['_io_log'] = (
-                (0, 'stdout', evil.encode("UTF-8")),
-            )
+            job_state.result = job_state.result.get_builder(
+                comments=evil,
+                io_log=[(0, 'stdout', evil.encode("UTF-8"))],
+            ).get_result()
             new_job_state_map[evil_id] = job_state
         # NOTE: using private API
         state._job_state_map = new_job_state_map
@@ -397,30 +396,20 @@ _evil_expected = """\
 <?xml version="1.0"?>
 <system version="1.0">
   <context>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-10-user-interact-verify">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-11-user-verify">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-3-attachment">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-4-local"></info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-5-manual">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-6-qml">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-7-resource"></info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-8-shell">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-9-user-interact">IO-LOG-STDOUT
-</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-10-user-interact-verify">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-11-user-verify">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-3-attachment">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-4-local">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-5-manual">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-6-qml">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-7-resource">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-8-shell">&#34;&#39;&lt;&amp;&gt;</info>
+    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-9-user-interact">&#34;&#39;&lt;&amp;&gt;</info>
   </context>
   <hardware>
-    <dmi>STDOUT-dmi_attachment
-</dmi>
-    <sysfs-attributes>STDOUT-sysfs_attachment
-</sysfs-attributes>
-    <udev>STDOUT-udev_attachment
-</udev>
+    <dmi>&#34;&#39;&lt;&amp;&gt;</dmi>
+    <sysfs-attributes>&#34;&#39;&lt;&amp;&gt;</sysfs-attributes>
+    <udev>&#34;&#39;&lt;&amp;&gt;</udev>
     <processors>
       <processor id="0" name="0">
         <property name="count" type="str">2</property>

@@ -33,6 +33,7 @@ from plainbox.impl.result import DiskJobResult
 from plainbox.impl.result import IOLogRecord
 from plainbox.impl.result import IOLogRecordReader
 from plainbox.impl.result import IOLogRecordWriter
+from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.result import MemoryJobResult
 from plainbox.impl.testing_utils import make_io_log
 
@@ -49,10 +50,6 @@ class CommonTestsMixIn:
     def test_append_comments(self):
         result = self.result_cls({})
         self.assertIsNone(result.comments)
-        result.append_comments("first")
-        self.assertEqual(result.comments, "first")
-        result.append_comments("second")
-        self.assertEqual(result.comments, "first\nsecond")
 
 
 class DiskJobResultTests(TestCase, CommonTestsMixIn):
@@ -150,6 +147,7 @@ class MemoryJobResultTests(TestCase, CommonTestsMixIn):
         })
         self.assertEqual(result.io_log_as_text_attachment, 'foo')
 
+
 class IOLogRecordWriterTests(TestCase):
 
     _RECORD = IOLogRecord(0.123, 'stdout', b'some\ndata')
@@ -180,3 +178,62 @@ class IOLogRecordWriterTests(TestCase):
         reader = IOLogRecordReader(stream)
         record_list = list(reader)
         self.assertEqual(record_list, [self._RECORD])
+
+
+class JobResultBuildeTests(TestCase):
+
+    def test_smoke_hollow(self):
+        self.assertTrue(JobResultBuilder().get_result().is_hollow)
+
+    def test_smoke_memory(self):
+        builder = JobResultBuilder()
+        builder.comments = 'it works'
+        builder.execution_duration = 0.1
+        builder.io_log = [(0, 'stdout', b'ok\n')]
+        builder.outcome = 'pass'
+        builder.return_code = 0
+        result = builder.get_result()
+        self.assertEqual(result.comments, "it works")
+        self.assertEqual(result.execution_duration, 0.1)
+        self.assertEqual(result.io_log, (
+            IOLogRecord(delay=0, stream_name='stdout', data=b'ok\n'),))
+        self.assertEqual(result.outcome, "pass")
+        self.assertEqual(result.return_code, 0)
+        # Sanity check: the builder we can re-create is identical
+        builder2 = result.get_builder()
+        self.assertEqual(builder, builder2)
+
+    def test_smoke_disk(self):
+        builder = JobResultBuilder()
+        builder.comments = 'it works'
+        builder.execution_duration = 0.1
+        builder.io_log_filename = 'log'
+        builder.outcome = 'pass'
+        builder.return_code = 0
+        result = builder.get_result()
+        self.assertEqual(result.comments, "it works")
+        self.assertEqual(result.execution_duration, 0.1)
+        self.assertEqual(result.io_log_filename, 'log')
+        self.assertEqual(result.outcome, "pass")
+        self.assertEqual(result.return_code, 0)
+        # Sanity check: the builder we can re-create is identical
+        builder2 = result.get_builder()
+        self.assertEqual(builder, builder2)
+
+    def test_io_log_clash(self):
+        builder = JobResultBuilder()
+        builder.io_log = [(0, 'stout', b'hi')]
+        builder.io_log_filename = 'log'
+        with self.assertRaises(ValueError):
+            builder.get_result()
+
+    def test_add_comment(self):
+        builder = JobResultBuilder()
+        builder.add_comment('first comment')  # ;-)
+        self.assertEqual(builder.comments, 'first comment')
+        builder.add_comment('second comment')
+        self.assertEqual(builder.comments, 'first comment\nsecond comment')
+
+    def test_get_builder_kwargs(self):
+        result = JobResultBuilder(outcome='pass').get_result()
+        self.assertEqual(result.get_builder(outcome='fail').outcome, 'fail')

@@ -37,7 +37,7 @@ except ImportError:
         raise SystemExit(_("DBus parts require 'funcsigs' from pypi."))
 from plainbox.abc import IJobResult
 from plainbox.impl.job import JobDefinition
-from plainbox.impl.result import MemoryJobResult
+from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.secure.qualifiers import select_jobs
 from plainbox.impl.session import JobState
 from plainbox.vendor import extcmd
@@ -453,14 +453,12 @@ class JobResultWrapper(PlainBoxObjectWrapper):
         OBJECT_MANAGER_IFACE,
     ])
 
-    def __shared_initialize__(self, **kwargs):
-        self.native.on_outcome_changed.connect(self._outcome_changed)
-        self.native.on_comments_changed.connect(self._comments_changed)
-
-    def __del__(self):
-        super(JobResultWrapper, self).__del__()
-        self.native.on_comments_changed.disconnect(self._comments_changed)
-        self.native.on_outcome_changed.disconnect(self._outcome_changed)
+    def _get_preferred_object_path(self):
+        """
+        Return the preferred object path of this object on DBus
+        """
+        # NOTE: not self.native!
+        return "/plainbox/result/{}".format(id(self))
 
     # Value added
 
@@ -482,7 +480,7 @@ class JobResultWrapper(PlainBoxObjectWrapper):
         # XXX: it would be nice if we could not do this remapping.
         if new_value == "none":
             new_value = None
-        self.native.outcome = new_value
+        self.native = self.native.get_builder(outcome=new_value).get_result()
 
     def _outcome_changed(self, old, new):
         """
@@ -534,7 +532,7 @@ class JobResultWrapper(PlainBoxObjectWrapper):
         """
         set comments to a new value
         """
-        self.native.comments = value
+        self.native = self.native.get_builder(comments=new_value).get_result()
 
     def _comments_changed(self, old, new):
         """
@@ -661,7 +659,13 @@ class JobStateWrapper(PlainBoxObjectWrapper):
             self.__class__.result._dbus_property: result_wrapper
         }, [])
         # Remove the old result object
-        self._session_wrapper.remove_result(old)
+        try:
+            self._session_wrapper.remove_result(old)
+        except KeyError:
+            # NOTE: the result may have been self-removed on earlier
+            # assignment to outcome. In that case this is a non-fatal
+            # problem and we can just carry on.
+            pass
 
     @dbus.service.property(dbus_interface=JOB_STATE_IFACE, signature='a(isss)')
     def readiness_inhibitor_list(self):
@@ -1372,6 +1376,7 @@ class PrimedJobWrapper(PlainBoxObjectWrapper):
         # A result object we got from running the command OR the result this
         # job used to have before. It should be always published on the bus.
         self._result = None
+        self._result_builder = None
         # A future for the result each time we're waiting for the command to
         # finish. Gets reset to None after the command is done executing.
         self._result_future = None
@@ -1447,16 +1452,20 @@ class PrimedJobWrapper(PlainBoxObjectWrapper):
                     _("But the job is not manual, it is %s"),
                     self.native.job.plugin)
             # Create a new result object
-            self._result = MemoryJobResult({
-                'outcome': outcome,
-                'comments': comments
-            })
+            self._result_builder = JobResultBuilder()
+            self._result_builder.outcome = outcome
+            self._result_builder.comments = comments
+            self._result = self._result_builder.get_result()
             # Add the new result object to the bus
             self._session_wrapper.add_result(self._result)
         else:
+            assert self._result_builder is not None
             # Set the values as requested
-            self._result.outcome = outcome
-            self._result.comments = comments
+            self._result_builder.outcome = outcome
+            self._result_builder.comments = comments
+            self._result = self._result_builder.get_result()
+            # Add the new result object to the bus
+            self._session_wrapper.add_result(self._result)
         # Notify the application that the result is ready. This has to be
         # done unconditionally each time this method called.
         self.JobResultAvailable(
@@ -1545,9 +1554,16 @@ class PrimedJobWrapper(PlainBoxObjectWrapper):
         if self._result is not None:
             # NOTE: I'm not sure how this would behave if someone were to
             # already assign the old result to any state objects.
-            self._session_wrapper.remove_result(self._result)
+            try:
+                self._session_wrapper.remove_result(self._result)
+            except KeyError:
+                # NOTE: the result may have been self-removed on earlier
+                # assignment to outcome. In that case this is a non-fatal
+                # problem and we can just carry on.
+                pass
         # Unpack the result from the future
         self._result = result_future.result()
+        self._result_builder = self._result.get_builder()
         # Add the new result object to the session wrapper (and to the bus)
         self._session_wrapper.add_result(self._result)
         # Reset the future so that RunCommand() can run the job again

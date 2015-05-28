@@ -44,9 +44,11 @@ import traceback
 
 from plainbox.abc import IJobResult
 from plainbox.i18n import gettext as _
+from plainbox.impl import pod
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.exporter import get_all_exporters
+from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.qualifiers import FieldQualifier
@@ -565,11 +567,12 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         _logger.info("Storing test result: %s", test)
         job_id = test['id']
-        outcome = test['outcome']
         job = self.context.state.job_state_map[job_id].job
-        result = self.context.state.job_state_map[job_id].result
-        result.outcome = outcome
-        result.execution_duration = time.time() - test['start_time']
+        result = JobResultBuilder(
+            outcome=test['outcome'],
+            comments=test.get('comments', pod.UNSET),
+            execution_duration=time.time() - test['start_time']
+        ).get_result()
         self.context.state.update_job_result(job, result)
         self.index += 1
         self._checkpoint()
@@ -587,9 +590,10 @@ class CheckboxTouchApplication(PlainboxApplication):
         try:
             result = self.runner.run_job(job, job_state, self.config)
         except OSError as exc:
-            result = self.context.state.job_state_map[job_id].result
-            result.outcome = 'fail'
-            result.comment = str(exc)
+            result = JobResultBuilder(
+                outcome='fail',
+                comment=str(exc),
+            ).get_result()
         self.context.state.update_job_result(job, result)
         self.context.state.running_job_name = None
         self._checkpoint()
