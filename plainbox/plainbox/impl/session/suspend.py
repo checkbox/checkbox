@@ -238,7 +238,7 @@ class SessionSuspendHelper1:
         }
 
     def _repr_JobResult(self, obj, session_dir):
-        """ Compute the representation of one of IJobResult subclasses.  """
+        """Compute the representation of one of IJobResult subclasses."""
         if isinstance(obj, DiskJobResult):
             return self._repr_DiskJobResult(obj, session_dir)
         elif isinstance(obj, MemoryJobResult):
@@ -510,11 +510,10 @@ class SessionSuspendHelper4(SessionSuspendHelper3):
                 if not state.result.is_hollow or state.job.id in id_run_list
             },
             "results": {
-                # Currently we store only one result but we may store
-                # more than that in a later version.
-                state.job.id: [self._repr_JobResult(state.result, session_dir)]
+                state.job.id: [self._repr_JobResult(result, session_dir)
+                               for result in state.result_history]
                 for state in obj.job_state_map.values()
-                if not state.result.is_hollow
+                if len(state.result_history) > 0
             },
             "desired_job_list": [
                 job.id for job in obj.desired_job_list
