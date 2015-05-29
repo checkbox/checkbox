@@ -112,6 +112,7 @@ MainView {
             py.importModule("checkbox_touch", function() {
                 app.construct("checkbox_touch.create_app_object", [])
             });
+            setHandler('command_output', commandOutputPage.addText);
         }
         onError: {
             console.error("python error: " + traceback);
@@ -329,6 +330,15 @@ MainView {
         id: passwordDialog
     }
 
+    CommandOutputPage {
+        id: commandOutputPage
+        visible: false
+        __customHeaderContents: progressHeader;
+        Component.onCompleted: {
+            progressHeader.update();
+        }
+    }
+
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
             if(result.resumable === true) {
@@ -405,6 +415,12 @@ MainView {
         app.registerTestResult(test, processNextTest);
     }
 
+    function runTestActivity(test, continuation) {
+        commandOutputPage.clear();
+        app.runTestActivity(test, continuation);
+
+    }
+
     function showResultsScreen() {
         pageStack.clear();
         app.getResults(function(results) {
@@ -437,7 +453,7 @@ MainView {
         automatedTestPage.__customHeaderContents = progressHeader;
         progressHeader.update(test);
         pageStack.push(automatedTestPage);
-        app.runTestActivity(test, completeTest);
+        runTestActivity(test, completeTest);
     }
 
     function performManualTest(test) {
@@ -454,7 +470,7 @@ MainView {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) {
+            runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
                 showVerificationScreen(test);
             });
@@ -469,7 +485,7 @@ MainView {
         var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
         InteractIntroPage.test = test;
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) {
+            runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
                 var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
                 userInteractSummaryPage.test = test;
@@ -490,7 +506,7 @@ MainView {
         InteractIntroPage.test = test;
         InteractIntroPage.testDone.connect(completeTest);
         InteractIntroPage.testStarted.connect(function() {
-            app.runTestActivity(test, function(test) { showVerificationScreen(test); } );
+            runTestActivity(test, function(test) { showVerificationScreen(test); } );
         });
         InteractIntroPage.__customHeaderContents = progressHeader;
         progressHeader.update(test);

@@ -32,6 +32,8 @@ import QtQuick.Layouts 1.1
 Page {
     id: automatedTestPage
 
+    objectName: "automatedTestPage"
+
     property var test: { "name": "", "description": "", "test_number": 0, "tests_count": 0}
 
     title: i18n.tr("Automated test")
@@ -62,16 +64,30 @@ Page {
             text: test["description"]
         }
     }
-    ActivityIndicator {
-        id: activity
+    ColumnLayout {
         anchors {
             bottom: parent.bottom
             left: parent.left
             right: parent.right
             bottomMargin: units.gu(4)
         }
-        implicitHeight: units.gu(6)
-        implicitWidth: units.gu(6)
+        ActivityIndicator {
+            Layout.alignment: Qt.AlignHCenter
+            id: activity
+            implicitHeight: units.gu(6)
+            implicitWidth: units.gu(6)
+        }
+        Button {
+            id: showOutputButton
+            objectName: "showOutputButton"
+            visible: ((test["command"]) ? true : false) && activity.running
+            color: "white"
+            Layout.fillWidth: true
+            text: "Output"
+            onClicked: {
+                pageStack.push(commandOutputPage);
+            }
+        }
     }
     function startActivity() {
         activity.running = true;

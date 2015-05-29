@@ -105,9 +105,16 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
         self.skip_test('userInteractVerifyIntroPage')
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        results = {'passed': '7', 'failed': '5', 'skipped': '4'}
+        # now we use long_wait because we have a long test to wait for (>10s)
+        results_page = self.long_wait_select_single(
+            self.app, objectName='resultsPage', visible=True)
         # we should see results screen now
-        results = {'passed': '5', 'failed': '5', 'skipped': '4'}
-        results_page = self.app.wait_select_single(objectName='resultsPage')
         lbl_passed = results_page.wait_select_single(objectName='passedLabel')
         self.assertThat(lbl_passed.text.startswith(results['passed']),
                         Equals(True))
@@ -177,3 +184,40 @@ class SessionResumeTests(checkbox_touch.ClickAppTestCase):
         welcome_page = self.app.wait_select_single(
             objectName='welcomePage')
         self.assertThat(welcome_page.visible, Eventually(Equals(True)))
+
+
+class CommandOutputTests(checkbox_touch.ClickAppTestCase):
+    def test_output_visible_while_automated_test_is_running(self):
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [
+                '2015.com.canonical.certification::autopilot/print-and-sleep'])
+        page = self.app.wait_select_single(
+            objectName='automatedTestPage', visible=True)
+        button = page.wait_select_single(
+            objectName='showOutputButton', visible=True)
+        self.pointing_device.click_object(button)
+        output_page = self.app.wait_select_single(
+            objectName='commandOutputPage', visible=True)
+        text_area = output_page.wait_select_single(
+            objectName='textArea', visible=True)
+        self.assertThat(text_area.text, Eventually(Equals("foobar\n")))
+
+    def test_output_visible_on_verification(self):
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal',
+            ['2015.com.canonical.certification::autopilot/print-and-verify'])
+        intro_page = self.app.wait_select_single(
+            objectName='userInteractVerifyIntroPage', visible=True)
+        start_button = intro_page.wait_select_single(
+            objectName='startTestButton', visible=True)
+        self.pointing_device.click_object(start_button)
+        verification_page = self.app.wait_select_single(
+            objectName='testVerificationPage', visible=True)
+        show_output_button = verification_page.wait_select_single(
+            objectName='showOutputButton', visible=True)
+        self.pointing_device.click_object(show_output_button)
+        output_page = self.app.wait_select_single(
+            objectName='commandOutputPage', visible=True)
+        text_area = output_page.wait_select_single(
+            objectName='textArea', visible=True)
+        self.assertThat(text_area.text, Eventually(Equals("foobar\n")))

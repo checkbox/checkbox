@@ -90,6 +90,18 @@ Page {
             }
         }
 
+        Button {
+            id: showOutputButton
+            objectName: "showOutputButton"
+            visible: ((test["command"]) ? true : false)
+            color: "white"
+            Layout.fillWidth: true
+            text: "Output"
+            onClicked: {
+                pageStack.push(commandOutputPage);
+            }
+        }
+
         LatchButton {
             id: passButton
             objectName: "passButton"
