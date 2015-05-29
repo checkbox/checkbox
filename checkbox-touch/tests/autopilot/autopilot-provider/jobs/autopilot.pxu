@@ -206,3 +206,24 @@ estimated_duration: 1.5
 category_id: normal
 flags: preserve-locale
 command: true
+
+id: autopilot/print-and-verify
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test will print "foobar" on stdout and outopilot should verify if it was
+ printed.
+plugin: user-verify
+command: echo "foobar"
+estimated_duration: 2
+flags: preserve-locale
+category_id: normal
+
+id: autopilot/print-and-sleep
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test will print "foobar" on stdout and sleep for 10 seconds.
+plugin: shell
+command: echo "foobar" && sleep 10
+estimated_duration: 10
+flags: preserve-locale
+category_id: normal
