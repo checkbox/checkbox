@@ -206,7 +206,8 @@ class FakeCheckboxTouchApplication(PlainboxApplication):
                 "name": 'name-{}'.format(self.index),
                 "description": 'description-{}'.format(self.index),
                 "verificationDescription": "Verification",
-                "plugin": "manual"
+                "plugin": "manual",
+                "command": "command"
             }
             self.index += 1
             return result
@@ -549,7 +550,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "qml_file": job.qml_file,
                 "start_time": time.time(),
                 "test_number": self.index,
-                "tests_count": len(self.context.state.run_list)
+                "tests_count": len(self.context.state.run_list),
+                "command": job.command
             }
             if not job_state.can_start():
                 test["outcome"] = "skip"
