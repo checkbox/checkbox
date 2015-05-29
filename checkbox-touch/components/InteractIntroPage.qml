@@ -115,6 +115,7 @@ Page {
 
         Button {
             id: showOutputButton
+            objectName: "showOutputButton"
             visible: ((test["command"]) ? true : false) && (userInteractVerifyIntroPage.state == "testing")
             color: "white"
             Layout.fillWidth: true

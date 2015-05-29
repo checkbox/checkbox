@@ -92,6 +92,7 @@ Page {
 
         Button {
             id: showOutputButton
+            objectName: "showOutputButton"
             visible: ((test["command"]) ? true : false)
             color: "white"
             Layout.fillWidth: true

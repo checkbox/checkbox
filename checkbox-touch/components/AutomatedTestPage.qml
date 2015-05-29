@@ -32,6 +32,8 @@ import QtQuick.Layouts 1.1
 Page {
     id: automatedTestPage
 
+    objectName: "automatedTestPage"
+
     property var test: { "name": "", "description": "", "test_number": 0, "tests_count": 0}
 
     title: i18n.tr("Automated test")

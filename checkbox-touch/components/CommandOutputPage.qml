@@ -49,6 +49,7 @@ Page {
         anchors.margins: units.gu(3)
         TextArea {
             id: textArea
+            objectName: "textArea"
             Layout.fillHeight: true
             Layout.fillWidth: true
             readOnly: true
