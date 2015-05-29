@@ -62,16 +62,30 @@ Page {
             text: test["description"]
         }
     }
-    ActivityIndicator {
-        id: activity
+    ColumnLayout {
         anchors {
             bottom: parent.bottom
             left: parent.left
             right: parent.right
             bottomMargin: units.gu(4)
         }
-        implicitHeight: units.gu(6)
-        implicitWidth: units.gu(6)
+        ActivityIndicator {
+            Layout.alignment: Qt.AlignHCenter
+            id: activity
+            implicitHeight: units.gu(6)
+            implicitWidth: units.gu(6)
+        }
+        Button {
+            id: showOutputButton
+            objectName: "showOutputButton"
+            visible: ((test["command"]) ? true : false) && activity.running
+            color: "white"
+            Layout.fillWidth: true
+            text: "Output"
+            onClicked: {
+                pageStack.push(commandOutputPage);
+            }
+        }
     }
     function startActivity() {
         activity.running = true;
