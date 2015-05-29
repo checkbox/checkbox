@@ -112,6 +112,7 @@ MainView {
             py.importModule("checkbox_touch", function() {
                 app.construct("checkbox_touch.create_app_object", [])
             });
+            setHandler('command_output', commandOutputPage.addText);
         }
         onError: {
             console.error("python error: " + traceback);
