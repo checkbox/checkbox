@@ -329,6 +329,15 @@ MainView {
         id: passwordDialog
     }
 
+    CommandOutputPage {
+        id: commandOutputPage
+        visible: false
+        __customHeaderContents: progressHeader;
+        Component.onCompleted: {
+            progressHeader.update();
+        }
+    }
+
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
             if(result.resumable === true) {
