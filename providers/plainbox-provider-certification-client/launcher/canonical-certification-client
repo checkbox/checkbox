@@ -10,7 +10,7 @@ text = "<p>Welcome to System Certification!</p><p></p><p>This application will
  please see here: <a href=\"https://certification.canonical.com\">certification.canonical.com</a></p><p></p>"
 
 [suite]
-whitelist_filter = "^client-(cert|selftest).*"
+whitelist_filter = "^client-(cert|selftest|hwe-sru).*"
 
 [submission]
 input_type = "regex"
