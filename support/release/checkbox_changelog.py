@@ -55,9 +55,9 @@ class CbFormatter(bzrlib.log.LogFormatter):
         self.supports_merge_revisions = True
 
     def log_revision(self, lr):
-        if not "automatic merge by tarmac" in lr.rev.message:
+        if "automatic merge by tarmac" not in lr.rev.message:
             message = lr.rev.message
-            message = re.sub(r'Signed-off-by: .+ <.+>','', message)
+            message = re.sub(r'Signed-off-by: .+ <.+>', '', message)
             self.my_revisions.append(message)
             for author in lr.rev.get_apparent_authors():
                 self.my_authors.add(author)
@@ -73,14 +73,15 @@ class CbFormatter(bzrlib.log.LogFormatter):
             print("  [ %s ]" % re.sub(r'<.+>', '', author).strip())
             for rev in self.author_rev_map[author]:
                 change_text = rev.splitlines()
-                change_text = [line.lstrip("*").strip() for line in change_text]
+                change_text = [line.lstrip("*").strip()
+                               for line in change_text]
                 change_text = " ".join(change_text)
-                change_text = re.sub(r' +',' ', change_text)
+                change_text = re.sub(r' +', ' ', change_text)
                 wrapper = textwrap.TextWrapper(initial_indent="  * ",
                                                subsequent_indent=" " * 4,
                                                width=70,
                                                replace_whitespace=True)
-                change_text = change_text.replace("#changelog","")
+                change_text = change_text.replace("#changelog", "")
                 change_text = wrapper.fill(change_text)
                 print(change_text.encode('UTF-8'))
             print("")
