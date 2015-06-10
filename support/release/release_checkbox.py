@@ -232,8 +232,8 @@ def create_logs(packages, trunk_tag, dir="logs"):
             logfile.write(log_data)
     # Finally write a global log to account for all changes in trunk
     command = ["bzr", "log", log_format,
-              "-r", trunk_tag + "..",
-              pack.trunk_branch]
+               "-r", trunk_tag + "..",
+               pack.trunk_branch]
     log_data = check_output(command)
     with open(os.path.join(dir, "trunk"), "wb") as logfile:
         logfile.write(log_data)
@@ -312,10 +312,10 @@ if __name__ == "__main__":
                      "--final"], stderr=STDOUT)
                 final_version = re.search(
                     r'I: next version is (.*)', log).group(1)
-                print "".center(80, '#')
-                print " {}: (current version: {}) ".format(
-                    pack.name, pack.current_version).center(80, '#')
-                print "".center(80, '#')
+                print("".center(80, '#'))
+                print(" {}: (current version: {}) ".format(
+                    pack.name, pack.current_version).center(80, '#'))
+                print("".center(80, '#'))
                 call("perl -pi -e 's/~dev//g' {}/debian/changelog".format(
                     pack.ppa_packaging_branch), shell=True)
                 call('dch "New upstream release" --distribution UNRELEASED '
@@ -374,10 +374,10 @@ if __name__ == "__main__":
                      "--minor", "--final"], stderr=STDOUT)
                 next_version = re.search(
                     r'I: next version is (.*)', log).group(1)
-                print "".center(80, '@')
-                print " {}: (next version: {}) ".format(
-                    pack.name, next_version).center(80, '@')
-                print "".center(80, '@')
+                print("".center(80, '@'))
+                print(" {}: (next version: {}) ".format(
+                    pack.name, next_version).center(80, '@'))
+                print("".center(80, '@'))
                 call("perl -pi -e 's/\) UNRELEASED;/\) unstable;/g' "
                      "{}/debian/changelog".format(pack.ppa_packaging_branch),
                      shell=True)
@@ -422,40 +422,40 @@ if __name__ == "__main__":
         sdist_commands = set(sdist_commands)
         twine_commands = set(twine_commands)
         release_milestone_commands = set(release_milestone_commands)
-        print "".center(80, '#')
-        print " 1. Push the following release branch(es) to launchpad:"
-        print "".center(80, '#')
+        print("".center(80, '#'))
+        print(" 1. Push the following release branch(es) to launchpad:")
+        print("".center(80, '#'))
         for command in push_commands:
-            print command
-        print "".center(80, '#')
-        print " 2. Propose to merge back into trunk the release branch(es):"
-        print "".center(80, '#')
+            print(command)
+        print("".center(80, '#'))
+        print(" 2. Propose to merge back into trunk the release branch(es):")
+        print("".center(80, '#'))
         for command in merge_commands:
-            print command
-        print "".center(80, '#')
-        print " 3. Kick off the PPA stable builds:"
-        print "".center(80, '#')
+            print(command)
+        print("".center(80, '#'))
+        print(" 3. Kick off the PPA stable builds:")
+        print("".center(80, '#'))
         for command in build_commands:
-            print command
-        print "".center(80, '#')
-        print " 4. Release the current milestone(s):"
-        print "".center(80, '#')
+            print(command)
+        print("".center(80, '#'))
+        print(" 4. Release the current milestone(s):")
+        print("".center(80, '#'))
         for command in release_milestone_commands:
-            print command
-        print "".center(80, '#')
-        print " 5. Upload the source tarballs to LP:"
-        print "".center(80, '#')
+            print(command)
+        print("".center(80, '#'))
+        print(" 5. Upload the source tarballs to LP:")
+        print("".center(80, '#'))
         for command in sdist_commands:
-            print command
+            print(command)
         if not args.cdts:
-            print "".center(80, '#')
-            print " 6. Upload the source tarballs to PyPI:"
-            print "".center(80, '#')
+            print("".center(80, '#'))
+            print(" 6. Upload the source tarballs to PyPI:")
+            print("".center(80, '#'))
             for command in twine_commands:
-                print command
-        print "".center(80, '#')
-        print " 7. Trunk and packaging-branch changelogs are in logs/"
-        print "".center(80, '#')
+                print(command)
+        print("".center(80, '#'))
+        print(" 7. Trunk and packaging-branch changelogs are in logs/")
+        print("".center(80, '#'))
     else:  # testing mode
 
         for pack in packages:
@@ -477,10 +477,10 @@ if __name__ == "__main__":
                      "--minor", "--candidate"], stderr=STDOUT)
                 next_candidate = re.search(
                     r'I: next version is (.*)', log).group(1)
-                print "".center(80, '#')
-                print " {}: (current version: {}) ".format(
-                    pack.name, current_version).center(80, '#')
-                print "".center(80, '#')
+                print("".center(80, '#'))
+                print(" {}: (current version: {}) ".format(
+                    pack.name, current_version).center(80, '#'))
+                print("".center(80, '#'))
                 call(["./releasectl", pack.name,
                       "--origin={}".format(pack.trunk_branch),
                       "--in-place",
@@ -506,18 +506,18 @@ if __name__ == "__main__":
                         next_candidate))
         push_commands = set(push_commands)
         build_commands = set(build_commands)
-        print "".center(80, '#')
-        print " 1. Push the following release branch(es) to launchpad:"
-        print "".center(80, '#')
+        print("".center(80, '#'))
+        print(" 1. Push the following release branch(es) to launchpad:")
+        print("".center(80, '#'))
         for command in push_commands:
-            print command
-        print "".center(80, '#')
-        print " 2. Kick off the PPA testing builds:"
-        print "".center(80, '#')
+            print(command)
+        print("".center(80, '#'))
+        print(" 2. Kick off the PPA testing builds:")
+        print("".center(80, '#'))
         for command in build_commands:
-            print command
+            print(command)
         # Try to build logs
         create_logs(packages, trunk_changelog_start_tag, "logs/")
-        print "".center(80, '#')
-        print " 3. Trunk and packaging-branch changelogs are in logs/"
-        print "".center(80, '#')
+        print("".center(80, '#'))
+        print(" 3. Trunk and packaging-branch changelogs are in logs/")
+        print("".center(80, '#'))
