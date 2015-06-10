@@ -30,7 +30,6 @@ import sys
 sys.path = [item for item in sys.path if not item.startswith('/usr/local')]
 
 import abc
-import builtins
 import collections
 import datetime
 import itertools
@@ -39,12 +38,10 @@ import logging
 import os
 import pyotherside
 import re
-import sys
 import time
 import traceback
 
 from plainbox.abc import IJobResult
-from plainbox.i18n import gettext as _
 from plainbox.impl import pod
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
@@ -396,7 +393,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             with open(os.path.join(self._get_app_cache_directory(),
                       'session_id')) as f:
                 session_id = f.readline().rstrip('\n')
-        except (OSError, IOError) as e:
+        except (OSError, IOError):
             session_id = None
         self._init_session_storage_repo()
         for storage in self.session_storage_repo.get_storage_list():
