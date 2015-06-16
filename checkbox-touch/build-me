@@ -109,7 +109,7 @@ def main():
         os.makedirs('../build-cbt')
 
     pkg = build_click()
-    if args.install is not None:
+    if args.install:
         adb_options = []
         if args.s:
             adb_options = ['-s', args.s]
