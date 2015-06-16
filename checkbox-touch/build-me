@@ -9,6 +9,10 @@ import subprocess
 import sys
 import textwrap
 
+DEFAULT_PROVIDERS = [
+    "2015.com.canonical.certification:qml-tests",
+    "plainbox-provider-ubuntu-touch",
+]
 
 def check_libs_present():
     """
@@ -99,10 +103,15 @@ def main():
             target_base_name = os.path.basename(os.path.normpath(path))
             copy_tree(path, os.path.join('providers', target_base_name))
 
-    # if there's no provider, warn and bail out
-    if not os.path.exists('providers') or os.listdir('providers') == []:
-        sys.exit(
-            "No provider present in the 'providers' directory! Aborting!")
+    if args.provider is None and args.embedded_providers_path is None:
+        # no user specified providers
+        if not os.path.exists('providers') or os.listdir('providers') == []:
+            print("No providers specified; using default providers")
+            for provider in DEFAULT_PROVIDERS:
+                path = os.path.join(os.getcwd(), '..', 'providers', provider)
+                target_base_name = os.path.basename(os.path.normpath(path))
+                copy_tree(path, os.path.join('providers', target_base_name))
+
     generate_desktop_file()
 
     if not os.path.exists('../build-cbt'):
