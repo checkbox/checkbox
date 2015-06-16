@@ -9,6 +9,10 @@ import subprocess
 import sys
 import textwrap
 
+# DEFAULT_PROVIDERS is a list of providers directory names as listed in
+# ../providers. NOTE: those are directory names, not provider names as reported
+# by manage.py info
+
 DEFAULT_PROVIDERS = [
     "2015.com.canonical.certification:qml-tests",
     "plainbox-provider-ubuntu-touch",
@@ -35,7 +39,6 @@ def check_libs_present():
 
 
 def get_revision_string(path='.'):
-
     # Try getting revno from bazaar vcs
     try:
         revno = int(subprocess.check_output(
@@ -119,6 +122,7 @@ def main():
         os.makedirs('../build-cbt')
 
     pkg = build_click()
+
     if args.install:
         adb_options = []
         if args.s:
