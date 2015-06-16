@@ -138,11 +138,16 @@ def generate_desktop_file():
 
 
 def build_click():
-    os.chdir('../build-cbt')
     print('Building click package')
-    click_source_path = '../checkbox-touch'
-    out = subprocess.check_output(['click', 'build', click_source_path])
-    pkg_name = re.search("'\.\/(.*)\.click'", str(out)).group(1) + '.click'
+    base_path = os.path.normpath(os.path.join(os.getcwd(), '..'))
+    click_source_path = os.path.join(base_path, 'checkbox-touch')
+    out = subprocess.check_output(
+        ['click', 'build', click_source_path],
+        cwd=os.path.join(base_path, 'build-cbt'))
+    pkg_name = os.path.join(
+        base_path, 'build-cbt', re.search(
+            "'\.\/(.*)\.click'", str(out)).group(1) + '.click')
+    print('Your click package is available here: {0}'.format(pkg_name))
     return pkg_name
 
 
