@@ -24,11 +24,27 @@ from xml.etree import ElementTree
 
 from plainbox.impl.exporter.hexr import CERTIFICATION_NS
 from plainbox.impl.exporter.hexr import HEXRExporter
+from plainbox.impl.exporter.hexr import do_strip_ns
 from plainbox.impl.providers.special import get_stubbox
 from plainbox.impl.resource import Resource
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.session import SessionManager
 from plainbox.impl.unit.job import JobDefinition
+from plainbox.vendor import mock
+
+
+class FilterTests(TestCase):
+
+    """Tests for additional filters."""
+
+    def test_do_strip_ns(self):
+        env = mock.Mock()
+        self.assertEqual(do_strip_ns(env, "ns::id", "ns::"), "id")
+
+    def test_do_strip_ns__defaults(self):
+        env = mock.Mock()
+        self.assertEqual(
+            do_strip_ns(env, "2013.com.canonical.certification::id"), "id")
 
 
 class HexrExporterTests(TestCase):
@@ -214,20 +230,6 @@ _smoke_expected = """\
   <context>
     <info command="2013.com.canonical.plainbox::representative/plugin/attachment">IO-LOG-STDOUT
 </info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/local"></info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/manual">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/qml">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/resource"></info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/shell">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/user-interact">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/user-interact-verify">IO-LOG-STDOUT
-</info>
-    <info command="2013.com.canonical.plainbox::representative/plugin/user-verify">IO-LOG-STDOUT
-</info>
   </context>
   <hardware>
     <dmi>STDOUT-dmi_attachment
@@ -396,15 +398,7 @@ _evil_expected = """\
 <?xml version="1.0"?>
 <system version="1.0">
   <context>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-10-user-interact-verify">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-11-user-verify">&#34;&#39;&lt;&amp;&gt;</info>
     <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-3-attachment">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-4-local">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-5-manual">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-6-qml">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-7-resource">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-8-shell">&#34;&#39;&lt;&amp;&gt;</info>
-    <info command="2013.com.canonical.plainbox::&#34;&#39;&lt;&amp;&gt;-9-user-interact">&#34;&#39;&lt;&amp;&gt;</info>
   </context>
   <hardware>
     <dmi>&#34;&#39;&lt;&amp;&gt;</dmi>
