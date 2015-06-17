@@ -173,7 +173,7 @@ def install_click(pkg, adb_options=[]):
     except subprocess.CalledProcessError:
         sys.exit('Error ecountered while pushing to the device.')
     print('Installing click package')
-    path = '/tmp/' + pkg
+    path = '/tmp/' + os.path.basename(pkg)
     try:
         subprocess.check_output(adb_base + ['shell', ('pkcon install-local'
                                 ' --allow-untrusted -p -y {path}').format(
