@@ -60,3 +60,13 @@ _description:
  This test helps the operator to check whether touch-screen's accuracy is OK by simulating keyboard typing
 qml_file: screen-10.qml
 estimated_duration: 40
+
+id: screen-11
+category_id: Screen
+plugin: qml
+_summary: Ensure that a long press gestures are detected
+_description:
+ This test verifies that long press gestures on the touch screen are correctly
+ triggered by the platform
+qml_file: screen-11.qml
+estimated_duration: 10
