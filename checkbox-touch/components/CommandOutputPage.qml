@@ -42,6 +42,18 @@ Page {
     }
 
     title: i18n.tr("Command output")
+    head {
+        actions: [
+            Action {
+                id: skipAction
+                objectName: "copyOutputAction"
+                iconName: "edit-copy"
+                text: i18n.tr("Copy")
+                onTriggered: Clipboard.push(mimeData)
+            }
+        ]
+    }
+
 
     ColumnLayout {
         spacing: units.gu(1)
@@ -60,44 +72,6 @@ Page {
             MimeData {
                 id: mimeData
                 text: textArea.text
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: Clipboard.push(mimeData);
-            }
-
-            Rectangle {
-                id: popUp
-                anchors.centerIn: parent
-                opacity: 0.9
-                radius: 10
-                color: UbuntuColors.lightGrey
-                height: label.height * 3
-                width: label.width * 1.5
-                Label {
-                    id: label
-                    anchors.centerIn: parent
-                    text: i18n.tr("Tap on the text to copy it to clipboard")
-                    color: "white"
-                    fontSize: "large"
-                }
-
-                Timer {
-                    id: fadeOutDelay
-                    interval: 3000
-                    onTriggered: animateOpacity.start();
-                    running: false
-                }
-
-                NumberAnimation {
-                    id: animateOpacity
-                    target: popUp
-                    properties: "opacity"
-                    from: 0.9
-                    to: 0
-                    easing {type: Easing.InQuad; overshoot: 500}
-                }
             }
 
             onTextChanged: {
