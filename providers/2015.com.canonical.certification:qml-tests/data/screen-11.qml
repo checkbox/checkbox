@@ -36,36 +36,41 @@ Item {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: units.gu(2)
 
             Label {
+                id: titleText
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+
                 text: i18n.tr("Attempt to perform a"
                                 + " long press on the green button below")
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                Layout.fillWidth: true
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 fontSize: "x-large"
             }
 
-            RowLayout {
-                id: statusRow
-                Layout.fillWidth: true
+            ActivityIndicator {
+                id: pressedActivity
+
+                Layout.alignment: Qt.AlignHCenter | Qt.Top
+
+                visible: true
+                running: false
+            }
+
+            Label {
+                id: activityLabel
+
+                Layout.preferredWidth: units.gu(30)
+                Layout.minimumHeight: units.gu(10)
                 Layout.alignment: Qt.AlignHCenter
 
-                Label {
-                    id: activityLabel
-                    text: i18n.tr("Waiting for press...")
-                    Layout.alignment: Qt.AlignHCenter
-                    fontSize: "large"
-                }
-
-                ActivityIndicator {
-                    id: pressedActivity
-                    visible: true
-                    running: false
-                    Layout.alignment: Qt.AlignHCenter
-                }
+                text: i18n.tr("Waiting for press...")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                horizontalAlignment: Text.AlignHCenter
+                fontSize: "large"
             }
 
             Button {
@@ -109,7 +114,7 @@ Item {
                 Button {
                     id: skipButton
                     text: i18n.tr("Skip the test")
-                    Layout.preferredWidth: units.gu(20)
+                    Layout.preferredWidth: units.gu(15)
                     Layout.preferredHeight: units.gu(5)
                     Layout.alignment: Qt.AlignHCenter
                     color: "#FF9900"
@@ -120,7 +125,7 @@ Item {
                 Button {
                     id: failButton
                     text: i18n.tr("Fail the test")
-                    Layout.preferredWidth: units.gu(20)
+                    Layout.preferredWidth: units.gu(15)
                     Layout.preferredHeight: units.gu(5)
                     Layout.alignment: Qt.AlignHCenter
                     color: UbuntuColors.red
