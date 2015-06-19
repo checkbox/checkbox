@@ -57,11 +57,6 @@ Page {
 
             wrapMode: TextEdit.WrapAnywhere
 
-            Scrollbar {
-                flickableItem: textArea
-                align: Qt.AlignTrailing
-            }
-
             MimeData {
                 id: mimeData
                 text: textArea.text
