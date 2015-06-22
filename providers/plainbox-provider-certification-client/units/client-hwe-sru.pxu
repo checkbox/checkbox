@@ -20,7 +20,6 @@ include:
     dmidecode_attachment
     efi_attachment
     lspci_attachment
-    lspci_network_attachment
     lsusb_attachment
     meminfo_attachment
     modprobe_attachment
@@ -29,7 +28,6 @@ include:
     sysfs_attachment
     udev_attachment
     udev_resource_attachment
-    gcov_attachment
     lsmod_attachment
     acpi_sleep_attachment
     info/buildstamp
@@ -43,10 +41,7 @@ include:
     __benchmarks__
     __graphics__
     __monitor__
-    2013.com.canonical.certification::__piglit__
     __power-management__
-    __rendercheck__
-    __stress__
     __suspend__
     # Automated requisite tests for the manual ones
     graphics/xorg-version                                  certification-status=blocker
@@ -74,18 +69,6 @@ include:
     graphics/1_video_.*                                    certification-status=blocker
     graphics/1_minimum_resolution_.*
     graphics/1_cycle_resolution_.*
-    graphics/1_unity_support_.*
-    graphics/1_color_depth_.*
-    graphics/1_modes_.*
-    graphics/1_graphic_memory_.*
-    graphics/1_resolution_.*
-    graphics/1_screen_resolution_.*
-    graphics/1_fresh_rate_.*
-    graphics/1_resolution-change_.*
-    graphics/1_3d_window_open_close_.*
-    graphics/1_3d_window_suspend_resume_.*
-    graphics/1_multi_3d_windows_open_close_.*
-    graphics/1_3d_window_move_.*
     graphics/1_screen-capture-internal_.*
     graphics/1_screen-capture-internal_.*png
     graphics/1_screenshot_.*
@@ -109,40 +92,8 @@ include:
     graphics/2_video_.*                                    certification-status=blocker
     graphics/2_minimum_resolution_.*
     graphics/2_cycle_resolution_.*
-    graphics/2_unity_support_.*
-    graphics/2_color_depth_.*
-    graphics/2_modes_.*
-    graphics/2_graphic_memory_.*
-    graphics/2_resolution_.*
-    graphics/2_screen_resolution_.*
-    graphics/2_fresh_rate_.*
-    graphics/2_resolution-change_.*
-    graphics/2_3d_window_open_close_.*
-    graphics/2_3d_window_suspend_resume_.*
-    graphics/2_multi_3d_windows_open_close_.*
-    graphics/2_3d_window_move_.*
     graphics/2_screen-capture-internal_.*
     graphics/2_screen-capture-internal_.*png
-    benchmarks/graphics/gtkperf
-    benchmarks/graphics/render-bench
-    benchmarks/graphics/qgears2-Xrender-gearsfancy
-    benchmarks/graphics/qgears2-Xrender-compo
-    benchmarks/graphics/qgears2-gl-gearsfancy
-    benchmarks/graphics/qgears2-gl-compo
-    benchmarks/graphics/glmark2-es2
-    benchmarks/graphics/glmark2
-    rendercheck/tests
-    rendercheck/tarball
-    2013.com.canonical.certification::piglit/test/fbo
-    2013.com.canonical.certification::piglit/test/gl-2.1
-    2013.com.canonical.certification::piglit/test/vbo
-    2013.com.canonical.certification::piglit/test/glsl-fragment-shader
-    2013.com.canonical.certification::piglit/test/glsl-vertex-shader
-    2013.com.canonical.certification::piglit/test/glx-tfp
-    2013.com.canonical.certification::piglit/test/stencil_buffer
-    2013.com.canonical.certification::piglit/support/combine_results
-    2013.com.canonical.certification::piglit/support/summarize_results
-    2013.com.canonical.certification::piglit/support/tarball
     power-management/rtc                                   certification-status=blocker
     # Test card 2 first, if present, since it's the one we will be using
     # after coming back from suspend if the system has hybrid graphics.
@@ -161,6 +112,3 @@ include:
     suspend/resolution_after_suspend                       certification-status=blocker
     suspend/display_after_suspend                          certification-status=blocker
     suspend/cycle_resolutions_after_suspend                certification-status=blocker
-    __stress__
-    stress/graphics
-    stress/graphics-tarball
