@@ -334,9 +334,6 @@ MainView {
         id: commandOutputPage
         visible: false
         __customHeaderContents: progressHeader;
-        Component.onCompleted: {
-            progressHeader.update();
-        }
     }
 
     function resumeOrStartSession() {
