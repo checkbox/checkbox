@@ -766,6 +766,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
 
 def get_qml_logger():
+    logging.basicConfig(level=logging.INFO, stream=sys.stderr)
     return logging.getLogger('checkbox.touch.qml')
 
 

@@ -87,7 +87,7 @@ PythonObjectRef {
 
     onObjectReady: {
         /* monkey-patch console.log and console.error */
-        console.log = function() { debug(_argsToString(arguments)); };
+        console.log = function() { info(_argsToString(arguments)); };
         console.error = function() { error(_argsToString(arguments)); };
         debug("Python logger ready");
     }
