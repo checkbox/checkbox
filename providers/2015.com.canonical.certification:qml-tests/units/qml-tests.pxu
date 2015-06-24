@@ -70,3 +70,17 @@ _description:
  triggered by the platform
 qml_file: screen-11.qml
 estimated_duration: 10
+
+unit: category
+id: Battery
+_name: Battery Testing
+
+id: battery-01
+category_id: Battery
+plugin: qml
+_summary: Ensure battery discharge is normal
+_description:
+ This test will monitor battery percentage.
+ It will fail if more than 5% of total capacity is lost in 30m.
+qml_file: battery-01.qml
+estimated_duration: 1800
