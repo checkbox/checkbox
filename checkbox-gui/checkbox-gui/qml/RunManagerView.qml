@@ -84,10 +84,12 @@ Page {
 
                 // update ui
                 var option_list = new Array("client-name=" + client_name);
+                var exporter_unit = settings.value("exporter/XML", "2013.com.canonical.plainbox::hexr")
                 var export_path = settings.value("exporter/xml_export_path", "/tmp/submission.xml")
 
                 updater.success = guiEngine.GuiExportSessionToFileAsXML(export_path,
-                                                                    option_list);
+                                                                        option_list,
+                                                                        exporter_unit);
                 runbuttons.resultsButtonEnabled = true;
                 progress.title = i18n.tr("Completed") + "  (" + utils.formatElapsedTime((new Date() - updater.startTime)) + ")";
                 progress.enabled = false;

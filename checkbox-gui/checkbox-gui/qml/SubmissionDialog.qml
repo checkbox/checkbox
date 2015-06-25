@@ -140,20 +140,24 @@ DarkDialog {
             var option_list = new Array("client-name=" + client_name, "with-certification-status");
             var success = false;
             if (reportTypeSelect.selectedIndex == 0) {
+                var exporter_unit = settings.value("exporter/XML", "2013.com.canonical.plainbox::hexr")
                 var path = guiEngine.GetSaveFileName('submission.xml',
                     i18n.tr("XML files (*.xml)"))
                 success = guiEngine.GuiExportSessionToFileAsXML(path,
-                                                                option_list);
+                                                                option_list,
+                                                                exporter_unit);
             }
             else if (reportTypeSelect.selectedIndex == 1) {
+                var exporter_unit = settings.value("exporter/XLSX", "2013.com.canonical.plainbox::xlsx")
                 var path = guiEngine.GetSaveFileName('submission.xlsx',
                     i18n.tr("XLSX files (*.xlsx)"))
-                success = guiEngine.GuiExportSessionToFileAsXLSX(path, ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"]);
+                success = guiEngine.GuiExportSessionToFileAsXLSX(path, ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments"], exporter_unit);
             }
             else if (reportTypeSelect.selectedIndex == 2) {
+                var exporter_unit = settings.value("exporter/JSON", "2013.com.canonical.plainbox::json")
                 var path = guiEngine.GetSaveFileName('submission.json',
                     i18n.tr("JSON files (*.json)"))
-                success = guiEngine.GuiExportSessionToFileAsJSON(path, ["with-certification-status", "with-job-defs", "with-io-log", "with-comments"]);
+                success = guiEngine.GuiExportSessionToFileAsJSON(path, ["with-certification-status", "with-job-defs", "with-io-log", "with-comments"], exporter_unit);
             }
 
             if (success) {
@@ -169,9 +173,11 @@ DarkDialog {
         onClicked: {
             onClicked:{
                 var mysavepath = '/tmp/report.html';
+                var exporter_unit = settings.value("exporter/HTML", "2013.com.canonical.plainbox::html")
                 var option_list = new Array("client-name=" + client_name, "with-certification-status");
                 runmanagerview.reportIsSaved = guiEngine.GuiExportSessionToFileAsHTML(mysavepath,
-                                                                                      option_list);
+                                                                                      option_list,
+                                                                                      exporter_unit);
                 Qt.openUrlExternally(mysavepath);
             }
         }
