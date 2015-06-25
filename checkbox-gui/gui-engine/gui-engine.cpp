@@ -1612,7 +1612,8 @@ const QString GuiEngine::ExportSession(const QDBusObjectPath session, \
 }
 
 bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file,
-                                            const QStringList& option_list)
+                                            const QStringList& option_list,
+                                            const QString& exporter_unit)
 {
     QString output_format = "xml";
     // very basic argument checking
@@ -1620,12 +1621,13 @@ bool GuiEngine::GuiExportSessionToFileAsXML(const QString& output_file,
         return false;
     }
     // FIXME - When we get a useful success/failure code here, return to caller
-    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
+    QString done = ExportSessionToFile(m_session,output_format,option_list,exporter_unit,output_file);
     return true;
 }
 
 bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file,
-                                             const QStringList& option_list)
+                                             const QStringList& option_list,
+                                             const QString& exporter_unit)
 {
     QString output_format = "html";
     // very basic argument checking
@@ -1633,12 +1635,13 @@ bool GuiEngine::GuiExportSessionToFileAsHTML(const QString& output_file,
         return false;
     }
     // FIXME - When we get a useful success/failure code here, return to caller
-    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
+    QString done = ExportSessionToFile(m_session,output_format,option_list,exporter_unit,output_file);
     return true;
 }
 
 bool GuiEngine::GuiExportSessionToFileAsXLSX(const QString& output_file,
-                                             const QStringList& option_list)
+                                             const QStringList& option_list,
+                                             const QString& exporter_unit)
 {
     QString output_format = "xlsx";
     // very basic argument checking
@@ -1646,12 +1649,13 @@ bool GuiEngine::GuiExportSessionToFileAsXLSX(const QString& output_file,
         return false;
     }
     // FIXME - When we get a useful success/failure code here, return to caller
-    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
+    QString done = ExportSessionToFile(m_session,output_format,option_list,exporter_unit,output_file);
     return true;
 }
 
 bool GuiEngine::GuiExportSessionToFileAsJSON(const QString& output_file,
-                                             const QStringList& option_list)
+                                             const QStringList& option_list,
+                                             const QString& exporter_unit)
 {
     QString output_format = "json";
     // very basic argument checking
@@ -1659,13 +1663,14 @@ bool GuiEngine::GuiExportSessionToFileAsJSON(const QString& output_file,
         return false;
     }
     // FIXME - When we get a useful success/failure code here, return to caller
-    QString done = ExportSessionToFile(m_session,output_format,option_list,output_file);
+    QString done = ExportSessionToFile(m_session,output_format,option_list,exporter_unit,output_file);
     return true;
 }
 
 const QString GuiEngine::ExportSessionToFile(const QDBusObjectPath session, \
                                              const QString &output_format, \
                                              const QStringList &option_list, \
+                                             const QString &exporter_unit, \
                                              const QString &output_file)
 {
     QString empty;
@@ -1688,6 +1693,7 @@ const QString GuiEngine::ExportSessionToFile(const QDBusObjectPath session, \
                        QVariant::fromValue<QString>(session.path()), \
                        QVariant::fromValue<QString>(output_format), \
                        varlist, \
+                       QVariant::fromValue<QString>(exporter_unit),
                        QVariant::fromValue<QString>(output_file));
     if (!reply.isValid()) {
         qDebug() << "Error: " << reply.error();

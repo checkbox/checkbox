@@ -75,7 +75,6 @@ setup(
     ],
     extras_require={
         'XLSX': 'XlsxWriter >= 0.3',
-        'XML': 'lxml >= 2.3',
     },
     entry_points={
         'console_scripts': [
@@ -90,9 +89,7 @@ setup(
             'json=plainbox.impl.exporter.json:JSONSessionStateExporter',
             'rfc822=plainbox.impl.exporter.rfc822:RFC822SessionStateExporter',
             'xlsx=plainbox.impl.exporter.xlsx:XLSXSessionStateExporter [XLSX]',
-            'xml=plainbox.impl.exporter.hexr:HEXRExporter',
-            'html=plainbox.impl.exporter.html:HTMLSessionStateExporter [XML]',
-            'hexr=plainbox.impl.exporter.hexr:HEXRExporter',
+            'jinja2=plainbox.impl.exporter.jinja2:Jinja2SessionStateExporter',
         ],
         'plainbox.buildsystem': [
             'make=plainbox.impl.buildsystems:MakefileBuildSystem',
@@ -108,6 +105,7 @@ setup(
             'manifest entry=plainbox.impl.unit.manifest:ManifestEntryUnit',
             ('packaging meta-data='
              'plainbox.impl.unit.packaging:PackagingMetaDataUnit'),
+            'exporter=plainbox.impl.unit.exporter:ExporterUnit',
         ],
         'plainbox.parsers': [
             'pxu=plainbox.impl.secure.rfc822:load_rfc822_records',

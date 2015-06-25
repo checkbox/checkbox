@@ -431,9 +431,9 @@ MainView {
                 });
             });
             resultsPage.saveReportClicked.connect(function() {
-                app.exportResults('html', [], function(uri) {
+                app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
                     console.log(uri)
-                    app.exportResults('xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+                    app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
                         console.log(uri)
                         CbtDialogLogic.showDialog(resultsPage, i18n.tr("Reports have been saved to your Documents folder"),
                                                   [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}]);

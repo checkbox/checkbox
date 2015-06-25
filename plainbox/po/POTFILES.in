@@ -61,7 +61,6 @@
 ./plainbox/impl/depmgr.py
 ./plainbox/impl/device.py
 ./plainbox/impl/exporter/__init__.py
-./plainbox/impl/exporter/html.py
 ./plainbox/impl/exporter/json.py
 ./plainbox/impl/exporter/rfc822.py
 ./plainbox/impl/exporter/test_html.py
@@ -69,10 +68,8 @@
 ./plainbox/impl/exporter/test_json.py
 ./plainbox/impl/exporter/test_rfc822.py
 ./plainbox/impl/exporter/test_text.py
-./plainbox/impl/exporter/test_xml.py
 ./plainbox/impl/exporter/text.py
 ./plainbox/impl/exporter/xlsx.py
-./plainbox/impl/exporter/xml.py
 ./plainbox/impl/highlevel.py
 ./plainbox/impl/integration_tests.py
 ./plainbox/impl/job.py
@@ -140,6 +137,7 @@
 ./plainbox/impl/unit/__init__.py
 ./plainbox/impl/unit/_legacy.py
 ./plainbox/impl/unit/category.py
+./plainbox/impl/unit/exporter.py
 ./plainbox/impl/unit/file.py
 ./plainbox/impl/unit/job.py
 ./plainbox/impl/unit/packaging.py

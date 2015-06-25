@@ -166,13 +166,17 @@ public slots:
         QString GuiExportSessionAsJSON(void);
 
         bool GuiExportSessionToFileAsXML(const QString& output_file,
-                                         const QStringList& option_list);
+                                         const QStringList& option_list,
+                                         const QString& exporter_unit);
         bool GuiExportSessionToFileAsHTML(const QString& output_file,
-                                          const QStringList& option_list);
+                                          const QStringList& option_list,
+                                          const QString& exporter_unit);
         bool GuiExportSessionToFileAsXLSX(const QString& output_file,
-                                          const QStringList& option_list);
+                                          const QStringList& option_list,
+                                          const QString& exporter_unit);
         bool GuiExportSessionToFileAsJSON(const QString& output_file,
-                                          const QStringList& option_list);
+                                          const QStringList& option_list,
+                                          const QString& exporter_unit);
 
         const QString SendSubmissionViaCertificationTransport( \
                                      const QString &submission_path,
@@ -212,6 +216,7 @@ public:
         const QString ExportSessionToFile(const QDBusObjectPath session, \
                                     const QString& output_format, \
                                     const QStringList& option_list,
+                                    const QString& exporter_unit, \
                                     const QString& output_file);
         
         QString SendDataViaTransport(const QDBusObjectPath session, \
