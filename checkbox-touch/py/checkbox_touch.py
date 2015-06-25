@@ -527,7 +527,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         # Export results in the user's Documents directory
         dirname = self._get_user_directory_documents()
-        filename = ''.join(['submission_', self.timestamp, '.', output_format])
+        extension = self.manager.exporter_map[output_format].file_extension
+        filename = ''.join(['submission_', self.timestamp, '.', extension])
         output_file = os.path.join(dirname, filename)
         with open(output_file, 'wb') as stream:
             self._export_session_to_stream(output_format, option_list, stream)
@@ -572,8 +573,9 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     def _export_session_to_stream(self, output_format, option_list,
                                   stream):
-        exporter_cls = get_all_exporters()[output_format]
-        exporter = exporter_cls(option_list)
+        exporter_unit = self.manager.exporter_map[output_format]
+        exporter = exporter_unit.exporter_cls(option_list,
+                                              exporter_unit=exporter_unit)
         exporter.dump_from_session_manager(self.manager, stream)
 
     def _checkpoint(self):
