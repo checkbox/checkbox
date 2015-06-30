@@ -152,7 +152,14 @@ PythonObjectRef {
 
     function rememberPassword(password, continuation) {
         // using low-level py.call() to 'silently' pass password string through pyotherside
-        py.call("py_invoke", [handle, "remember_password", [password]], continuation);
+        var callable = py.getattr(object, "remember_password");
+        if (!callable) {
+            console.error("Unable to invoke remember_password!");
+            throw "trying to invoke not existing method";
+        }
+        py.call(callable, [password], function(response) {
+            continuation(response);
+        });
     }
 
     // A wrapper around invoke() that works with the @view decorator. The fn_ok
