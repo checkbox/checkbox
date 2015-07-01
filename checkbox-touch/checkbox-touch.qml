@@ -99,7 +99,8 @@ MainView {
     // Pyotherside python object that we use to talk to all of plainbox
     Python {
         id: py
-        Component.onCompleted: {
+
+        function init() {
             console.log("Pyotherside version " + pluginVersion());
             console.log("Python version " + pythonVersion());
             // A bit hacky but that's where the python code is
@@ -113,6 +114,9 @@ MainView {
                 app.construct("checkbox_touch.create_app_object", [])
             });
             setHandler('command_output', commandOutputPage.addText);
+        }
+        Component.onCompleted: {
+            init();
         }
         onError: {
             console.error("python error: " + traceback);
