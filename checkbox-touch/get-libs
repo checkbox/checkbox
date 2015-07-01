@@ -63,6 +63,9 @@ def prepare_uris(get_autopilot):
     and builds a dictionary of URLs indexed by (package_name, arch) tuple.
     It returns that dictionary.
     """
+
+    # additional packages needed to support autopilot tests.  these were obtained by
+    # running apt-cache depends on python3-autopilot
     ap_packages = ['python3-autopilot', 'python3-psutil', 'python3-testtools', 'python3-pil',
                 'libjs-jquery', 'libjs-underscore', 'libwebp5', 'libwebpmux1', 'python3-decorator',
                 'python3-testscenarios', 'python3-subunit', 'python3-fixtures', 'python3-junitxml',
@@ -226,6 +229,9 @@ def main():
     # ./usr/lib/python3/dist-packages are copied to ./lib/py.
     python3_libs = ['python3-lxml', 'python3-xlsxwriter',
                     'python3-jinja2', 'python3-markupsafe']
+
+    # additional libs needed to support autopilot tests.  these were obtained by
+    # running apt-cache depends on python3-autopilot
     python3_ap_libs = ['python3-autopilot', 'python3-psutil',
                        'python3-pil', 'python3-decorator', 'python3-testtools',
                        'python3-subunit', 'python3-testscenarios', 'python3-junitxml', 'python3-fixtures',
