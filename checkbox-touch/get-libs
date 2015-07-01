@@ -57,14 +57,20 @@ def copy_tree(src, dest, preserve_symlinks=False):
     subprocess.check_call(["rsync", "-a", links_option, src, dest])
 
 
-def prepare_uris():
+def prepare_uris(get_autopilot):
     """
     prepare_uris function builds caches for architectures defined in arch_list
     and builds a dictionary of URLs indexed by (package_name, arch) tuple.
     It returns that dictionary.
     """
+    ap_packages = ['python3-autopilot', 'python3-psutil', 'python3-testtools', 'python3-pil',
+                'libjs-jquery', 'libjs-underscore', 'libwebp5', 'libwebpmux1', 'python3-decorator',
+                'python3-testscenarios', 'python3-subunit', 'python3-fixtures', 'python3-junitxml',
+                'python3-extras', 'python3-evdev']
     packages = ['libpython3.4', 'pyotherside', 'python3-lxml',
                 'python3-xlsxwriter', 'python3-jinja2', 'python3-markupsafe']
+    if get_autopilot:
+        packages += ap_packages
     # uris will serve as a database of uris from which to download packages
     uris = dict()
     Source = collections.namedtuple('Source', ['uri', 'repositories'])
@@ -192,6 +198,9 @@ def main():
                         help="Use plainbox downloaded from pypi")
     parser.add_argument("--plainbox-only", action='store_true',
                         help="Get plainbox only")
+    parser.add_argument("--get-autopilot",
+                        action='store_true',
+                        help="Download libs for autopilot")
     args = parser.parse_args()
     if args.get_pypi_plainbox:
         get_plainbox_from_pypi()
@@ -201,7 +210,7 @@ def main():
         # skip downloading rest of the libs
         return
     get_qchartjs()
-    uris = prepare_uris()
+    uris = prepare_uris(args.get_autopilot)
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
     libs_urls = [uris['libpython3.4', arch] for arch in arch_list]
@@ -217,6 +226,12 @@ def main():
     # ./usr/lib/python3/dist-packages are copied to ./lib/py.
     python3_libs = ['python3-lxml', 'python3-xlsxwriter',
                     'python3-jinja2', 'python3-markupsafe']
+    python3_ap_libs = ['python3-autopilot', 'python3-psutil',
+                       'python3-pil', 'python3-decorator', 'python3-testtools',
+                       'python3-subunit', 'python3-testscenarios', 'python3-junitxml', 'python3-fixtures',
+                       'python3-extras', 'python3-evdev']
+    if args.get_autopilot:
+        python3_libs += python3_ap_libs
     python3_libs_urls = [
         uris[lib, arch] for arch in arch_list for lib in python3_libs]
     for pylib in python3_libs_urls:
