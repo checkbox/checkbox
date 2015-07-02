@@ -79,9 +79,9 @@ MainView {
     Component.onCompleted: {
         if (args.values["autopilot"]) {
             // autopilot-testing mode
-            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot"
-            appSettings["providersDir"] = "tests/autopilot/autopilot-provider"
-            appSettings["log-level"] = "warning"
+            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";
+            appSettings["providersDir"] = "tests/autopilot/autopilot-provider";
+            appSettings["log-level"] = "warning";
         } else {
             // normal execution - load settings.json file
             var xhr = new XMLHttpRequest;
@@ -93,7 +93,7 @@ MainView {
                     } catch (x) {
                         // if we cannot parse settings.json, we should leave
                         // deafult values of appSettings
-                        console.error("Could not parse settings.json. Using default values")
+                        console.error("Could not parse settings.json. Using default values");
                     }
                     // overwrite/add appSettings' attributes that got loaded
                     for (var attr in newAppSettings) {
