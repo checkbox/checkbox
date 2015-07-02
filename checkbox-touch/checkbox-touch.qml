@@ -83,11 +83,15 @@ MainView {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     try {
-                        appSettings = JSON.parse(xhr.responseText);
+                        var newAppSettings = JSON.parse(xhr.responseText);
                     } catch (x) {
                         // if we cannot parse settings.json, we should leave
                         // deafult values of appSettings
-                        console.log("Could not parse settings.json. Using default values")
+                        console.error("Could not parse settings.json. Using default values")
+                    }
+                    // overwrite/add appSettings' attributes that got loaded
+                    for (var attr in newAppSettings) {
+                        appSettings[attr] = newAppSettings[attr];
                     }
                 }
             }
