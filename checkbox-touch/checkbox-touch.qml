@@ -69,6 +69,11 @@ MainView {
             help: i18n.tr("Run Checkbox-Touch in autopilot-testing mode")
             required: false
         }
+        Argument {
+            name: "quiet"
+            help: i18n.tr("Write only warnings and errors to standard error")
+            required: false
+        }
     }
 
     Component.onCompleted: {
@@ -96,6 +101,12 @@ MainView {
                 }
             }
             xhr.send();
+        }
+        if (args.values["quiet"]) {
+            // monkey-patch console.log and console.info to do nothing
+            console.log = function() {};
+            console.info = function() {};
+            appSettings["log-level"] = "warning";
         }
         py.init()
     }
