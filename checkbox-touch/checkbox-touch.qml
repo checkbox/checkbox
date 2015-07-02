@@ -114,7 +114,12 @@ MainView {
                 app.construct("checkbox_touch.create_app_object", [])
             });
             setHandler('command_output', commandOutputPage.addText);
+            initiated();
         }
+
+        // gets triggered when python object is ready to be used
+        signal initiated
+
         Component.onCompleted: {
             init();
         }
