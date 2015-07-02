@@ -657,8 +657,15 @@ class CheckboxTouchApplication(PlainboxApplication):
         self._password = password
 
 
-def get_qml_logger():
-    logging.basicConfig(level=logging.INFO, stream=sys.stderr)
+def get_qml_logger(default_level):
+    logging_level = collections.defaultdict(lambda:logging.INFO, {
+        "debug": logging.DEBUG,
+        "warning": logging.WARNING,
+        "warn": logging.WARN,
+        "error": logging.ERROR,
+        "critical": logging.CRITICAL,
+        "fatal": logging.FATAL})[default_level.lower()]
+    logging.basicConfig(level=logging_level, stream=sys.stderr)
     return logging.getLogger('checkbox.touch.qml')
 
 

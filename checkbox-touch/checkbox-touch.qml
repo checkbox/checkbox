@@ -157,7 +157,8 @@ MainView {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
                 py.importModule("checkbox_touch", function() {
-                    construct("checkbox_touch.get_qml_logger", []);
+                    construct("checkbox_touch.get_qml_logger",
+                             [appSettings["log-level"] || "info"]);
                 });
             });
         }
