@@ -107,12 +107,6 @@ MainView {
             addImportPath(Qt.resolvedUrl('py/'));
             // Import path for plainbox and potentially other python libraries
             addImportPath(Qt.resolvedUrl('lib/py'))
-            // Import the checkbox_touch module on startup then call the
-            // create_app_object() function and assign the resulting handle
-            // back to the application component.
-            py.importModule("checkbox_touch", function() {
-                app.construct("checkbox_touch.create_app_object", [])
-            });
             setHandler('command_output', commandOutputPage.addText);
             initiated();
         }
@@ -146,13 +140,20 @@ MainView {
         onSessionReady: {
             welcomePage.enableButton()
         }
+        Component.onCompleted: {
+            // register to py.initiated signal
+            py.onInitiated.connect(function() {
+                construct("checkbox_touch.create_app_object", []);
+            });
+        }
     }
 
     PythonLogger {
         id: logger
         py: py
         Component.onCompleted: {
-            py.Component.onCompleted.connect(function() {
+            // register to py.initiated signal
+            py.onInitiated.connect(function() {
                 py.importModule("checkbox_touch", function() {
                     construct("checkbox_touch.get_qml_logger", []);
                 });
