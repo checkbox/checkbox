@@ -81,6 +81,7 @@ MainView {
             // autopilot-testing mode
             appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot"
             appSettings["providersDir"] = "tests/autopilot/autopilot-provider"
+            appSettings["log-level"] = "warning"
         } else {
             // normal execution - load settings.json file
             var xhr = new XMLHttpRequest;
