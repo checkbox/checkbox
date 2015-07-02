@@ -93,6 +93,7 @@ MainView {
             }
             xhr.send();
         }
+        py.init()
     }
 
 
@@ -114,9 +115,6 @@ MainView {
         // gets triggered when python object is ready to be used
         signal initiated
 
-        Component.onCompleted: {
-            init();
-        }
         onError: {
             console.error("python error: " + traceback);
             ErrorLogic.showError(mainView, "python error: " + traceback, Qt.quit);
