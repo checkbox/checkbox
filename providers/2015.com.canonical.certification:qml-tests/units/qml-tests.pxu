@@ -84,3 +84,16 @@ _description:
  It will fail if more than 5% of total capacity is lost in 30m.
 qml_file: battery-01.qml
 estimated_duration: 1800
+
+unit: category
+id: Messaging
+_name: Messaging Testing
+
+id: msg-01
+category_id: Messaging
+plugin: qml
+_summary: Send an SMS
+_description:
+ This test verifies that you can send an SMS
+qml_file: msg-01.qml
+estimated_duration: 20
