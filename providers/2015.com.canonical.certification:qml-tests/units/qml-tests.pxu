@@ -106,3 +106,12 @@ _description:
  This test verifies that you can send an SMS containing special characters
 qml_file: msg-06.qml
 estimated_duration: 20
+
+id: msg-07
+category_id: Messaging
+plugin: qml
+_summary: Send an SMS containing an &
+_description:
+ This test verifies that you can send an SMS containing an & (ampersand) and that it is displayed correctly
+qml_file: msg-07.qml
+estimated_duration: 20
