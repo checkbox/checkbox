@@ -69,13 +69,19 @@ MainView {
             help: i18n.tr("Run Checkbox-Touch in autopilot-testing mode")
             required: false
         }
+        Argument {
+            name: "quiet"
+            help: i18n.tr("Write only warnings and errors to standard error")
+            required: false
+        }
     }
 
     Component.onCompleted: {
         if (args.values["autopilot"]) {
             // autopilot-testing mode
-            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot"
-            appSettings["providersDir"] = "tests/autopilot/autopilot-provider"
+            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";
+            appSettings["providersDir"] = "tests/autopilot/autopilot-provider";
+            appSettings["log-level"] = "warning";
         } else {
             // normal execution - load settings.json file
             var xhr = new XMLHttpRequest;
@@ -83,37 +89,48 @@ MainView {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     try {
-                        appSettings = JSON.parse(xhr.responseText);
+                        var newAppSettings = JSON.parse(xhr.responseText);
                     } catch (x) {
                         // if we cannot parse settings.json, we should leave
                         // deafult values of appSettings
-                        console.log("Could not parse settings.json. Using default values")
+                        console.error("Could not parse settings.json. Using default values");
+                    }
+                    // overwrite/add appSettings' attributes that got loaded
+                    for (var attr in newAppSettings) {
+                        appSettings[attr] = newAppSettings[attr];
                     }
                 }
             }
             xhr.send();
         }
+        if (args.values["quiet"]) {
+            // monkey-patch console.log and console.info to do nothing
+            console.log = function() {};
+            console.info = function() {};
+            appSettings["log-level"] = "warning";
+        }
+        py.init()
     }
 
 
     // Pyotherside python object that we use to talk to all of plainbox
     Python {
         id: py
-        Component.onCompleted: {
+
+        function init() {
             console.log("Pyotherside version " + pluginVersion());
             console.log("Python version " + pythonVersion());
             // A bit hacky but that's where the python code is
             addImportPath(Qt.resolvedUrl('py/'));
             // Import path for plainbox and potentially other python libraries
             addImportPath(Qt.resolvedUrl('lib/py'))
-            // Import the checkbox_touch module on startup then call the
-            // create_app_object() function and assign the resulting handle
-            // back to the application component.
-            py.importModule("checkbox_touch", function() {
-                app.construct("checkbox_touch.create_app_object", [])
-            });
             setHandler('command_output', commandOutputPage.addText);
+            initiated();
         }
+
+        // gets triggered when python object is ready to be used
+        signal initiated
+
         onError: {
             console.error("python error: " + traceback);
             ErrorLogic.showError(mainView, "python error: " + traceback, Qt.quit);
@@ -137,15 +154,23 @@ MainView {
         onSessionReady: {
             welcomePage.enableButton()
         }
+        Component.onCompleted: {
+            // register to py.initiated signal
+            py.onInitiated.connect(function() {
+                construct("checkbox_touch.create_app_object", []);
+            });
+        }
     }
 
     PythonLogger {
         id: logger
         py: py
         Component.onCompleted: {
-            py.Component.onCompleted.connect(function() {
+            // register to py.initiated signal
+            py.onInitiated.connect(function() {
                 py.importModule("checkbox_touch", function() {
-                    construct("checkbox_touch.get_qml_logger", []);
+                    construct("checkbox_touch.get_qml_logger",
+                             [appSettings["log-level"] || "info"]);
                 });
             });
         }
