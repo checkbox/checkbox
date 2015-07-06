@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-import dbus
 import logging
+
+import dbus
 import pyotherside
 
 _logger = logging.getLogger('checkbox.touch')

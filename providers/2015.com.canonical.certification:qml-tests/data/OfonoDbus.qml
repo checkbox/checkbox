@@ -29,27 +29,20 @@ Python {
 
         addImportPath(Qt.resolvedUrl('.'));
         importModule('telephony_helper', function(success) {
-                                        console.assert(success)});
+            console.assert(success)
+        });
         console.debug("telephony_helper import")
     }
-
-    /*function got_modems_callback(result) {
-        for (var i=0; i<result.length; i++) {
-            console.debug('Got result: ' + result[i].pathName);
-            modemList.append(result[i]);
-        }
-    }*/
 
     signal gotModemList(var resultsList)
 
     function th_get_modem_list(list) {
         console.debug("th_get_modems")
-        call('telephony_helper.get_modems', []) // got_modems_callback);
+        call('telephony_helper.get_modems', [])
     }
-
 
     function th_send_sms(path, number, text) {
         console.debug("th_send_sms")
-        call('telephony_helper.send_sms',[path,number,text])
+        call('telephony_helper.send_sms', [path, number, text])
     }
 }

@@ -44,7 +44,7 @@ PageStack {
         OfonoDbus {
             id: ofonoDbus
         }
-        
+
         Flickable {
             id: sampleFlickable
 
@@ -55,7 +55,7 @@ PageStack {
                 left: parent.left
                 right: parent.right
                 bottom: parent.bottom
-                
+
                 bottomMargin: units.gu(2)
             }
 
@@ -85,17 +85,16 @@ PageStack {
                 TextField {
                     id: telNumField
                     placeholderText: i18n.tr("Enter number")
-                    
+
                     width: parent.width
                     Layout.alignment: Qt.AlignHCenter
-                    
+
                     inputMethodHints: Qt.ImhDialableCharactersOnly
                 }
 
                 TextArea {
                     id: contentsArea
-                    
-                    //text: genericSmsTest.predefinedText
+
                     placeholderText: i18n.tr("SMS Content")
 
                     width: parent.width
@@ -107,18 +106,16 @@ PageStack {
                     id: sendButton
 
                     text: i18n.tr("Send SMS")
-                    
+
                     width: parent.width
                     height: units.gu(12)
                     Layout.alignment: Qt.AlignHCenter
-                    
+
                     color: UbuntuColors.green
 
                     onClicked: {
                         ofonoDbus.th_send_sms("/ril_0", telNumField.text,
-                                                    contentsArea.text)
-                        //genericSmsTest.visible = false;
-                        //genericSGummaryPage.visible = true;
+                                                contentsArea.text)
                         pageStack.push(genericSummaryPage)
                     }
                 }
