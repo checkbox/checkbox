@@ -31,11 +31,12 @@ Item {
         id: testPages
 
         Component.onCompleted: {
-            testPages.setTestActionText("Send an SMS containing a URL and"
-                + " confirm it is displayed correctly...")
+            testPages.setTestActionText(i18n.tr("Send an SMS containing a URL"
+                + " and confirm it is displayed correctly..."))
 
-            testPages.setPredefinedContent("The message contains both text"
-                + " & a URL www.ubuntu.com Does it look good?")
+            // TRANSLATORS please maintain the & in translated strings
+            testPages.setPredefinedContent(i18n.tr("The message contains both"
+                + " text & a URL www.ubuntu.com Does it look good?"))
         }
     }
 }

@@ -31,12 +31,12 @@ Item {
         id: testPages
 
         Component.onCompleted: {
-            testPages.setTestActionText("Send an SMS message to a"
-                                        + " single contact...")
+            testPages.setTestActionText(i18n.tr("Send an SMS message to a"
+                                                + " single contact..."))
 
-            testPages.setPredefinedContent("The aim of art is to represent not"
-                    + " the outward appearance of things, but their inward"
-                    + " significance. Aristotle")
+            testPages.setPredefinedContent(i18n.tr("The aim of art is to"
+                    + " represent not the outward appearance of things, but"
+                    + " their inward significance. Aristotle"))
         }
     }
 }

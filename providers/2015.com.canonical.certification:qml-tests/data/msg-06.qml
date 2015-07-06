@@ -31,8 +31,8 @@ Item {
         id: testPages
 
         Component.onCompleted: {
-            testPages.setTestActionText("Send an SMS Message to a contact"
-                + " containing special characters...")
+            testPages.setTestActionText(i18n.tr("Send an SMS Message to a"
+                + " contact containing special characters..."))
 
             testPages.setPredefinedContent("!\"£$%😆^&*()😁")
         }
