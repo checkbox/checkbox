@@ -142,7 +142,7 @@ def generate_desktop_file():
     Type=Application
     X-Ubuntu-Touch=true
     """)
-    import_opts = []
+    import_opts = ['-I lib/py/plainbox/data/plainbox-qml-modules']
     for provider in os.listdir('providers'):
         provider_data_dir = os.path.join('providers', provider, 'data')
         if os.path.exists(provider_data_dir):
