@@ -74,6 +74,12 @@ MainView {
             help: i18n.tr("Write only warnings and errors to standard error")
             required: false
         }
+        Argument {
+            name: "settings"
+            valueNames: "PATH_TO_SETTINGS"
+            help: i18n.tr("Path to a file containing checkbox-touch settings")
+            required: true
+        }
     }
 
     Component.onCompleted: {
@@ -85,7 +91,7 @@ MainView {
         } else {
             // normal execution - load settings.json file
             var xhr = new XMLHttpRequest;
-            xhr.open("GET", "settings.json");
+            xhr.open("GET", args.values["settings"]);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     try {
