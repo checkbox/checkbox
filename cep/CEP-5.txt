@@ -36,8 +36,8 @@ The API
 
 Test definition
 ---------------
-From testing shell perspective, the test is a root ``Item { }`` of the file
-located in path specified by ``qml_file`` field of the job definition.
+The base of all QML-native jobs should be QmlJob component located in Plainbox
+module.
 
 When creating the test component, testing environment will initiate
 ``testingShell`` property with a hook to the testing shell object (satisfying
@@ -51,9 +51,8 @@ Test boilerplate
 
     // boilerplate.qml
     import QtQuick 2.0
-    Item {
-        property var testingShell;
-        signal testDone(test);
+    import Plainbox 0.1
+    QmlJob {
     }
 
 
