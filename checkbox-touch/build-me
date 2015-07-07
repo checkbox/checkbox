@@ -136,7 +136,7 @@ def generate_desktop_file():
     [Desktop Entry]
     Name=Checkbox
     Comment=System testing utility for Ubuntu
-    Exec=qmlscene {import_options} $@ checkbox-touch.qml
+    Exec=qmlscene --settings=settings.json {import_options} $@ checkbox-touch.qml
     Icon=checkbox-touch.svg
     Terminal=false
     Type=Application
