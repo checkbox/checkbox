@@ -110,7 +110,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'passButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        results = {'passed': '7', 'failed': '5', 'skipped': '4'}
+        results = {'passed': '9', 'failed': '5', 'skipped': '5'}
         # now we use long_wait because we have a long test to wait for (>10s)
         results_page = self.long_wait_select_single(
             self.app, objectName='resultsPage', visible=True)
