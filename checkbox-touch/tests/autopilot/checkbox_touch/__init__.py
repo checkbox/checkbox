@@ -108,6 +108,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 '-I' + _get_module_include_path(),
                 app_qml_source_location,
                 '--autopilot',
+                '--settings=""',
                 app_type='qt',
                 emulator_base=emulators.UbuntuUIToolkitEmulatorBase)
         else:
