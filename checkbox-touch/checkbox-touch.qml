@@ -422,6 +422,7 @@ MainView {
                 performUserInteractVerifyTest(test);
                 break;
             case 'shell':
+            case 'resource':
                 performAutomatedTest(test);
                 break;
             case 'user-verify':
