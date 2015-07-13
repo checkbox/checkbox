@@ -74,6 +74,12 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         test_selection_page = self.app.wait_select_single(
             objectName='testSelectionPage', visible=True)
         self.main_view.get_header().click_action_button('deselectAllAction')
+        # lists are built dynamically, so there is a chance that proxies for
+        # qml objects for list items that are down below are not yet present.
+        # To make sure everything is loaded and ready, scroll to the bottom
+        list_view = self.app.wait_select_single(
+            objectName='listView', visible=True)
+        list_view.swipe_to_bottom()
         for job_id in job_ids:
             list_item = test_selection_page.wait_select_single(
                 objectName='listItem', item_mod_id=job_id)

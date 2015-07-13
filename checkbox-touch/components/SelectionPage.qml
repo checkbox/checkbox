@@ -148,6 +148,7 @@ Page {
             model: ListModel {
                 id: selectionModel
             }
+            objectName: "listView"
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
