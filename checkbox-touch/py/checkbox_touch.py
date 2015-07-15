@@ -46,7 +46,6 @@ from plainbox.impl import pod
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
-from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
