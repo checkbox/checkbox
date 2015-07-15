@@ -111,7 +111,8 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         if os.path.exists(app_qml_source_location):
             self.app = self.launch_test_application(
                 base.get_qmlscene_launch_command(),
-                '-I' + _get_module_include_path(),
+                '-I', _get_module_include_path(),
+                '-I', self._get_plainbox_qml_modules_path(),
                 app_qml_source_location,
                 '--autopilot',
                 '--settings=""',
@@ -128,6 +129,14 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
 
     def _get_path_to_app_source(self):
         return os.path.join(get_path_to_source_root(), self.app_name)
+
+    def _get_plainbox_qml_modules_path(self):
+        try:
+            from plainbox.impl import get_plainbox_dir
+            return os.path.join(get_plainbox_dir(), 'data', 'plainbox-qml-modules')
+        except ImportError:
+            return os.path.join(self._get_path_to_app_source(), 'lib', 'py',
+                                'plainbox', 'data', 'plainbox-qml-modules')
 
     def _launch_application_from_phablet(self):
         # On phablet, we only run the tests against the installed click
