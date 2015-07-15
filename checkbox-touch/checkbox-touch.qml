@@ -473,7 +473,7 @@ MainView {
                                                   [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
                                                       var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
                                                       webviewer.uri = htmlReportUrl;
-                    							      pageStack.push(webviewer);
+                                                      pageStack.push(webviewer);
                                                   }}]);
                     });
                 });
