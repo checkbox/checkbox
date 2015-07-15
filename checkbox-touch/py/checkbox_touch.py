@@ -577,11 +577,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                 raise IOError("{} exists and is not a directory".format(path))
             return path
 
-    def _export_session_to_stream(self, output_format, option_list,
-                                  stream):
-        exporter_unit = self.manager.exporter_map[output_format]
-        exporter = exporter_unit.exporter_cls(option_list,
-                                              exporter_unit=exporter_unit)
+    def _export_session_to_stream(self, output_format, option_list, stream):
+        exporter = self.manager.create_exporter(output_format, option_list)
         exporter.dump_from_session_manager(self.manager, stream)
 
     def _checkpoint(self):
