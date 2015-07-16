@@ -1,7 +1,7 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2014 Canonical Ltd.
+ * Copyright 2015 Canonical Ltd.
  *
  * Authors:
  * - Chris Wayne <cwayne@ubuntu.com>

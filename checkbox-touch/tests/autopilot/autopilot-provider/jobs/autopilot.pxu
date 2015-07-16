@@ -264,3 +264,13 @@ requires: res_gen.non_existent_resource == "SHOULDNT_BE_THERE"
 estimated_duration: 1
 flags: preserve-locale
 category_id: normal
+
+id: autopilot/qml-job
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test runs qml-native job.
+plugin: qml
+qml_file: qml-job.qml
+flags: preserve-locale
+category_id: normal
+estimated_duration: 5

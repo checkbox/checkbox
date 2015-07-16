@@ -110,11 +110,18 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'passButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        results = {'passed': '9', 'failed': '5', 'skipped': '5'}
         # now we use long_wait because we have a long test to wait for (>10s)
-        results_page = self.long_wait_select_single(
-            self.app, objectName='resultsPage', visible=True)
+        self.long_wait_select_single(
+            self.app, objectName='qmlNativePage', visible=True)
+        next_steps = [
+            ('qmlNativePage', 'continueButton'),
+            ('qmlTestPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
         # we should see results screen now
+        results_page = self.app.wait_select_single(
+            objectName='resultsPage', visible=True)
+        results = {'passed': '10', 'failed': '5', 'skipped': '5'}
         lbl_passed = results_page.wait_select_single(objectName='passedLabel')
         self.assertThat(lbl_passed.text.startswith(results['passed']),
                         Equals(True))
