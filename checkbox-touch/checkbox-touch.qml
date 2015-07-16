@@ -465,10 +465,15 @@ MainView {
             resultsPage.saveReportClicked.connect(function() {
                 app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
                     console.log(uri)
+                    var htmlReportUrl = uri;
                     app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
                         console.log(uri)
                         CbtDialogLogic.showDialog(resultsPage, i18n.tr("Reports have been saved to your Documents folder"),
-                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
+                                                      var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
+                                                      webviewer.uri = htmlReportUrl;
+                                                      pageStack.push(webviewer);
+                                                  }}]);
                     });
                 });
             });
