@@ -124,7 +124,7 @@ Page {
                 var testItem = testItemComponent.createObject(mainView, {"testingShell": testingShell});
                 testItem.testDone.connect(function(testResult) {
                     test['outcome'] = testResult['outcome'];
-                    test['result'] = testResult;
+                    test['qmlResult'] = testResult;
                     pageStack.clear(); // clean test's left-overs from the stack
                     while(savedStack.length) {
                         pageStack.push(savedStack.pop());
