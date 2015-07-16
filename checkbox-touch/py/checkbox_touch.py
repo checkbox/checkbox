@@ -46,7 +46,6 @@ from plainbox.impl import pod
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
-from plainbox.impl.exporter import get_all_exporters
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.secure.origin import Origin
@@ -527,11 +526,12 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         # Export results in the user's Documents directory
         dirname = self._get_user_directory_documents()
-        extension = self.manager.exporter_map[output_format].file_extension
+        exporter = self.manager.create_exporter(output_format, option_list)
+        extension = exporter.unit.file_extension
         filename = ''.join(['submission_', self.timestamp, '.', extension])
         output_file = os.path.join(dirname, filename)
         with open(output_file, 'wb') as stream:
-            self._export_session_to_stream(output_format, option_list, stream)
+            exporter.dump_from_session_manager(self.manager, stream)
         return output_file
 
     def _get_user_directory_documents(self):
@@ -571,12 +571,6 @@ class CheckboxTouchApplication(PlainboxApplication):
                 raise IOError("{} exists and is not a directory".format(path))
             return path
 
-    def _export_session_to_stream(self, output_format, option_list,
-                                  stream):
-        exporter_unit = self.manager.exporter_map[output_format]
-        exporter = exporter_unit.exporter_cls(option_list,
-                                              exporter_unit=exporter_unit)
-        exporter.dump_from_session_manager(self.manager, stream)
 
     def _checkpoint(self):
         self.context.state.metadata.app_blob = self._get_app_blob()
