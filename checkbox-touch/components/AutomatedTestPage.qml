@@ -46,7 +46,10 @@ Page {
             top: parent.top
             left: parent.left
             right: parent.right
-            margins: units.gu(3)
+            topMargin: units.gu(3)
+            bottomMargin: units.gu(3)
+            leftMargin: units.gu(1)
+            rightMargin: units.gu(1)
         }
 
         Label {

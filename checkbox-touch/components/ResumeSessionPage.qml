@@ -42,8 +42,13 @@ Page {
     ColumnLayout {
         id: columnLayout
         spacing: units.gu(3)
-        anchors.fill: parent
-        anchors.margins: units.gu(3)
+        anchors {
+            fill: parent
+            topMargin: units.gu(3)
+            bottomMargin: units.gu(3)
+            leftMargin: units.gu(1)
+            rightMargin: units.gu(1)
+        }
 
         function latchGroup() {
             rerunButton.state = "latched";
