@@ -70,8 +70,9 @@ def prepare_uris(get_autopilot):
                 'libjs-jquery', 'libjs-underscore', 'libwebp5', 'libwebpmux1', 'python3-decorator',
                 'python3-testscenarios', 'python3-subunit', 'python3-fixtures', 'python3-junitxml',
                 'python3-extras', 'python3-evdev']
-    packages = ['libpython3.4', 'pyotherside', 'python3-lxml',
-                'python3-xlsxwriter', 'python3-jinja2', 'python3-markupsafe']
+    packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
+                'python3-jinja2', 'python3-markupsafe',
+                'qml-module-qtquick-qchartjs']
     if get_autopilot:
         packages += ap_packages
     # uris will serve as a database of uris from which to download packages
@@ -83,9 +84,13 @@ def prepare_uris(get_autopilot):
                   Source('http://ppa.launchpad.net/checkbox-dev/ppa/ubuntu',
                          'main')],
         'i386': [Source('http://archive.ubuntu.com/ubuntu',
-                        'main restricted universe')],
+                        'main restricted universe'),
+                 Source('http://ppa.launchpad.net/checkbox-dev/ppa/ubuntu',
+                         'main')],
         'amd64': [Source('http://archive.ubuntu.com/ubuntu',
-                         'main restricted universe')],
+                         'main restricted universe'),
+                  Source('http://ppa.launchpad.net/checkbox-dev/ppa/ubuntu',
+                         'main')],
     }
     for arch in arch_list:
         print('Getting information about packages for {0} arch.'.format(arch))
@@ -150,19 +155,6 @@ def extract_plainbox(src_tarball, version):
             preserve_symlinks=1)
 
 
-def get_qchartjs():
-    print('Getting qchart.js from github')
-    url = "https://github.com/checkbox/qchart.js/archive/master.zip"
-    dest = os.path.join('.', 'components/vendor/qchart_js')
-
-    with tempfile.TemporaryDirectory() as tmp:
-        qchart_zip = os.path.join(tmp, 'qchart_js.zip')
-        urllib.request.urlretrieve(url, qchart_zip)
-        with zipfile.ZipFile(qchart_zip) as zf:
-            zf.extractall(tmp)
-        copy_tree(os.path.join(tmp, 'qchart.js-master'), dest)
-
-
 def get_plainbox_from_pypi(version='0.21.2'):
     # plaibox_pypi contains URL from which to download plainbox
     plainbox_pypi = ('https://pypi.python.org/packages/source'
@@ -212,7 +204,6 @@ def main():
     if args.plainbox_only:
         # skip downloading rest of the libs
         return
-    get_qchartjs()
     uris = prepare_uris(args.get_autopilot)
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
@@ -227,8 +218,8 @@ def main():
     # python3_libs_urls contains list of .deb packages that will be downloaded
     # and extracted. After extraction contents of
     # ./usr/lib/python3/dist-packages are copied to ./lib/py.
-    python3_libs = ['python3-lxml', 'python3-xlsxwriter',
-                    'python3-jinja2', 'python3-markupsafe']
+    python3_libs = ['python3-xlsxwriter', 'python3-jinja2',
+                    'python3-markupsafe']
 
     # additional libs needed to support autopilot tests.  these were obtained by
     # running apt-cache depends on python3-autopilot
@@ -253,6 +244,7 @@ def main():
     # ./usr/lib/{architecture}/qt5/qmlare copied to ./lib/{architecture}.
     # {architecture} may be one of multiarch_list
     qml_plugins_urls = [uris['pyotherside', arch] for arch in arch_list]
+    qml_plugins_urls += [uris['qml-module-qtquick-qchartjs', arch] for arch in arch_list]
     for qml_plugin in qml_plugins_urls:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(qml_plugin, tmp)
@@ -261,14 +253,6 @@ def main():
                 dest = os.path.join('lib', arch)
                 if os.path.exists(src) and os.path.isdir(src):
                     copy_tree(src, dest, preserve_symlinks=1)
-    # Copy QChart.js from the git checkbox repo into our components/vendor
-    # folder
-    git_url = 'https://github.com/checkbox/qchart.js/archive/' \
-              '1.0-1ubuntu1.tar.gz'
-    target_dir = 'components/vendor/qchart_js/'
-    os.makedirs('components/vendor/qchart_js/', exist_ok=True)
-    subprocess.check_call('wget {} -q -O - | tar -xz --strip=1 -C {}'.format(
-        git_url, target_dir), shell=True)
     # Remove the python3.4 directory
     # currently it only holds a few config-directories with symlinks
     # and those are not used by anything from this location

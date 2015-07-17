@@ -28,8 +28,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
-import "vendor/qchart_js"
-import "vendor/qchart_js/QChart.js" as Charts
+import jbQuick.Charts 1.0
 
 Page {
     title: i18n.tr("Test Results")
