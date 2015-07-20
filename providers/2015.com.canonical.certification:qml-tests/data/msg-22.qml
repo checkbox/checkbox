@@ -17,32 +17,31 @@
  * You should have received a copy of the GNU General Public License
  * along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
  */
+import QtQuick 2.2
 
-import QtQuick 2.0
-import io.thp.pyotherside 1.2
+Item {
+    id: smsTest
 
-Python {
-    id: ofonoDbus
+    anchors.fill: parent
 
-    Component.onCompleted: {
-        setHandler('got-modem-list', gotModemList)
+    property var testingShell
+    signal testDone(var test)
 
-        addImportPath(Qt.resolvedUrl('.'));
-        importModule('telephony_shim', function(success) {
-            console.assert(success)
-        });
-        console.debug("telephony_shim import")
-    }
+    GenericSmsTest {
+        id: testPages
 
-    signal gotModemList(var resultsList)
+        Component.onCompleted: {
+            testPages.modemPath = "/ril_1"
 
-    function ts_get_modem_list(list) {
-        console.debug("ts_get_modems")
-        call('telephony_shim.get_modems', [])
-    }
+            testPages.setTestActionText(i18n.tr("Send an SMS containing a URL"
+                + " and confirm it is displayed correctly..."))
 
-    function ts_send_sms(path, number, text) {
-        console.debug("ts_send_sms")
-        call('telephony_shim.send_sms', [path, number, text])
+            // TRANSLATORS please maintain the & in translated strings
+            testPages.setPredefinedContent(i18n.tr("The message contains both"
+                + " text & a URL www.ubuntu.com Does it look good?"))
+        }
     }
 }
+
+
+

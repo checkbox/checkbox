@@ -31,6 +31,8 @@ Item {
         id: testPages
 
         Component.onCompleted: {
+            testPages.modemPath = "/ril_0"
+
             // TRANSLATORS please maintain the & in translated strings
             testPages.setTestActionText(i18n.tr("Send an SMS message containing"
                 + " a & to a contact and confirm it is displayed correctly"))

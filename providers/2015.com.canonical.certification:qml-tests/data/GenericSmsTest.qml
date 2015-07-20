@@ -35,6 +35,8 @@ PageStack {
         contentsArea.text = textString
     }
 
+    property var modemPath
+
     Page {
         id: genericSmsTest
 
@@ -114,7 +116,7 @@ PageStack {
                     color: UbuntuColors.green
 
                     onClicked: {
-                        ofonoDbus.th_send_sms("/ril_0", telNumField.text,
+                        ofonoDbus.ts_send_sms(modemPath, telNumField.text,
                                                 contentsArea.text)
                         pageStack.push(genericSummaryPage)
                     }

@@ -31,6 +31,8 @@ Item {
         id: testPages
 
         Component.onCompleted: {
+            testPages.modemPath = "/ril_0"
+
             testPages.setTestActionText(i18n.tr("Send an SMS containing a URL"
                 + " and confirm it is displayed correctly..."))
 
