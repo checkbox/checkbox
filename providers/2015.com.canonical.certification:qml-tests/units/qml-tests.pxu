@@ -107,7 +107,7 @@ _description:
 qml_file: msg-01.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem0_simPresent == "True"
+requires: modem.ril0_simPresent == "True"
 
 id: msg-15
 category_id: Messaging
@@ -118,7 +118,7 @@ _description:
 qml_file: msg-15.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem1_simPresent == "True"
+requires: modem.ril1_simPresent == "True"
 
 id: msg-06
 category_id: Messaging
@@ -129,7 +129,7 @@ _description:
 qml_file: msg-06.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem0_simPresent == "True"
+requires: modem.ril0_simPresent == "True"
 
 id: msg-20
 category_id: Messaging
@@ -140,7 +140,7 @@ _description:
 qml_file: msg-20.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem1_simPresent == "True"
+requires: modem.ril1_simPresent == "True"
 
 id: msg-07
 category_id: Messaging
@@ -151,7 +151,7 @@ _description:
 qml_file: msg-07.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem0_simPresent == "True"
+requires: modem.ril0_simPresent == "True"
 
 id: msg-21
 category_id: Messaging
@@ -162,7 +162,7 @@ _description:
 qml_file: msg-21.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem1_simPresent == "True"
+requires: modem.ril1_simPresent == "True"
 
 id: msg-08
 category_id: Messaging
@@ -173,7 +173,7 @@ _description:
 qml_file: msg-08.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem0_simPresent == "True"
+requires: modem.ril0_simPresent == "True"
 
 id: msg-22
 category_id: Messaging
@@ -184,4 +184,4 @@ _description:
 qml_file: msg-22.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
-requires: modem.modem1_simPresent == "True"
+requires: modem.ril1_simPresent == "True"

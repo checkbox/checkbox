@@ -34,20 +34,13 @@ def main():
 
     modems = ofonoIf.get_modems()
 
-    modemCount = 0
     for modem in modems:
-        prefix = "modem" + str(modemCount)
-
         for key, value in modem.items():
-            print("%s_%s: %s" % (prefix, key, value))
             modem_path = value
+        prefix = modem_path.replace('/', "").replace('_', '')
+        print("%s_%s: %s" % (prefix, key, value))
 
         print("%s_IMEI: %s" % (prefix, ofonoIf.get_imei(modem_path)))
-
-        print("%s_rats: " % prefix, end="")
-        for rat in ofonoIf.get_rats(modem_path):
-            print(rat, end=" ")
-        print()
 
         simPresent = ofonoIf.is_sim_present(modem_path)
         print("%s_simPresent: %s" % (prefix, simPresent))
@@ -55,21 +48,11 @@ def main():
         if (simPresent):
             print("%s_IMSI: %s" % (prefix, ofonoIf.get_imsi(modem_path)))
 
-            numbers = ofonoIf.get_numbers(modem_path)
-            if len(numbers) == 0:
-                print("%s_numbers: Unknown" % prefix)
-            else:
-                for number in numbers:
-                    if number is not None:
-                        print("%s_numbers: %s" % (prefix, number))
-
             print("%s_pinLocked: %s" %
                  (prefix, ofonoIf.is_pin_locked(modem_path)))
 
             print("%s_network: %s" %
                  (prefix, ofonoIf.get_network_name(modem_path)))
-
-        modemCount += 1
         print()
 
     return 0
