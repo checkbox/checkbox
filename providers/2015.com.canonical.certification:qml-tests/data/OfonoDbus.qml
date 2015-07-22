@@ -45,4 +45,8 @@ Python {
         console.debug("ts_send_sms")
         call('telephony_shim.send_sms', [path, number, text])
     }
+
+    onError: {
+        console.error("python error: " + traceback);
+    }
 }
