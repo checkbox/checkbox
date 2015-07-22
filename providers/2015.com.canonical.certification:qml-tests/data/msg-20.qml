@@ -31,7 +31,7 @@ Item {
         id: testPages
 
         Component.onCompleted: {
-            testPages.modemPath = "/ril_0"
+            testPages.modemPath = "/ril_1"
 
             testPages.setTestActionText(i18n.tr("Send an SMS Message to a"
                 + " contact containing special characters..."))

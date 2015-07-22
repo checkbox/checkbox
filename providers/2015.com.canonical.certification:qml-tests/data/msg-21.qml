@@ -26,20 +26,21 @@ Item {
 
     property var testingShell
     signal testDone(var test)
-    
+
     GenericSmsTest {
         id: testPages
 
         Component.onCompleted: {
-            testPages.modemPath = "/ril_0"
+            testPages.modemPath = "/ril_1"
 
-            testPages.setTestActionText(i18n.tr("Send an SMS Message to a"
-                + " contact containing special characters..."))
+            // TRANSLATORS please maintain the & in translated strings
+            testPages.setTestActionText(i18n.tr("Send an SMS message containing"
+                + " a & to a contact and confirm it is displayed correctly"))
 
-            testPages.setPredefinedContent("!\"£$%😆^&*()😁")
+            // TRANSLATORS please maintain the & in translated strings
+            testPages.setPredefinedContent(i18n.tr("I like sending SMSs &"
+                + " getting replies! Especially if they are about kittens &"
+                + " puppies."))
         }
     }
 }
-
-
-

@@ -28,21 +28,25 @@ Python {
         setHandler('got-modem-list', gotModemList)
 
         addImportPath(Qt.resolvedUrl('.'));
-        importModule('telephony_helper', function(success) {
+        importModule('telephony_shim', function(success) {
             console.assert(success)
         });
-        console.debug("telephony_helper import")
+        console.debug("telephony_shim import")
     }
 
     signal gotModemList(var resultsList)
 
-    function th_get_modem_list(list) {
-        console.debug("th_get_modems")
-        call('telephony_helper.get_modems', [])
+    function ts_get_modem_list(list) {
+        console.debug("ts_get_modems")
+        call('telephony_shim.get_modems', [])
     }
 
-    function th_send_sms(path, number, text) {
-        console.debug("th_send_sms")
-        call('telephony_helper.send_sms', [path, number, text])
+    function ts_send_sms(path, number, text) {
+        console.debug("ts_send_sms")
+        call('telephony_shim.send_sms', [path, number, text])
+    }
+
+    onError: {
+        console.error("python error: " + traceback);
     }
 }

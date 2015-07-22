@@ -26,17 +26,19 @@ Item {
 
     property var testingShell
     signal testDone(var test)
-    
+
     GenericSmsTest {
         id: testPages
 
         Component.onCompleted: {
-            testPages.modemPath = "/ril_0"
+            testPages.modemPath = "/ril_1"
 
-            testPages.setTestActionText(i18n.tr("Send an SMS Message to a"
-                + " contact containing special characters..."))
+            testPages.setTestActionText(i18n.tr("Send an SMS message to a"
+                                                + " single contact..."))
 
-            testPages.setPredefinedContent("!\"£$%😆^&*()😁")
+            testPages.setPredefinedContent(i18n.tr("The aim of art is to"
+                    + " represent not the outward appearance of things, but"
+                    + " their inward significance. Aristotle"))
         }
     }
 }

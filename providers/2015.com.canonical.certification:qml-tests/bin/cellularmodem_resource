@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+#
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Jonathan Cave <jonathan.cave@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
+import os
+import sys
+
+if os.getenv('PLAINBOX_PROVIDER_DATA'):
+    sys.path.append(os.getenv('PLAINBOX_PROVIDER_DATA'))
+import telephony_helper
+
+
+def main():
+    try:
+        ofonoIf = telephony_helper.OfonoIf()
+    except Exception:
+        return 0
+
+    modems = ofonoIf.get_modems()
+
+    for modem in modems:
+        for key, value in modem.items():
+            modem_path = value
+        prefix = modem_path.replace('/', "").replace('_', '')
+        print("%s_%s: %s" % (prefix, key, value))
+
+        print("%s_IMEI: %s" % (prefix, ofonoIf.get_imei(modem_path)))
+
+        simPresent = ofonoIf.is_sim_present(modem_path)
+        print("%s_simPresent: %s" % (prefix, simPresent))
+
+        if (simPresent):
+            print("%s_IMSI: %s" % (prefix, ofonoIf.get_imsi(modem_path)))
+
+            print("%s_pinLocked: %s" %
+                 (prefix, ofonoIf.is_pin_locked(modem_path)))
+
+            print("%s_network: %s" %
+                 (prefix, ofonoIf.get_network_name(modem_path)))
+        print()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

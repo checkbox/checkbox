@@ -89,38 +89,99 @@ unit: category
 id: Messaging
 _name: Messaging Testing
 
+id: cellularmodem
+category_id: Messaging
+estimated_duration: 0.59
+plugin: resource
+_summary: Resource for cellular modem devices
+_description: Collects information about cellular modem devices to be used for
+ telephony testing
+command: cellularmodem_resource
+
 id: msg-01
 category_id: Messaging
 plugin: qml
-_summary: Send an SMS
+_summary: Send an SMS on slot 1
 _description:
  This test verifies that you can send an SMS
 qml_file: msg-01.qml
 estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril0_simPresent == "True"
+
+id: msg-15
+category_id: Messaging
+plugin: qml
+_summary: Send an SMS on slot 2
+_description:
+ This test verifies that you can send an SMS
+qml_file: msg-15.qml
+estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril1_simPresent == "True"
 
 id: msg-06
 category_id: Messaging
 plugin: qml
-_summary: Send an SMS containing special characters
+_summary: Send an SMS containing special characters on slot 1
 _description:
  This test verifies that you can send an SMS containing special characters
 qml_file: msg-06.qml
 estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril0_simPresent == "True"
+
+id: msg-20
+category_id: Messaging
+plugin: qml
+_summary: Send an SMS containing special characters on slot 2
+_description:
+ This test verifies that you can send an SMS containing special characters
+qml_file: msg-20.qml
+estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril1_simPresent == "True"
 
 id: msg-07
 category_id: Messaging
 plugin: qml
-_summary: Send an SMS containing an &
+_summary: Send an SMS containing an & on slot 1
 _description:
  This test verifies that you can send an SMS containing an & (ampersand) and that it is displayed correctly
 qml_file: msg-07.qml
 estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril0_simPresent == "True"
+
+id: msg-21
+category_id: Messaging
+plugin: qml
+_summary: Send an SMS containing an & on slot 2
+_description:
+ This test verifies that you can send an SMS containing an & (ampersand) and that it is displayed correctly
+qml_file: msg-21.qml
+estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril1_simPresent == "True"
 
 id: msg-08
 category_id: Messaging
 plugin: qml
-_summary: Send an SMS containing a URL
+_summary: Send an SMS containing a URL on slot 1
 _description:
  This test verifies that you can send an SMS containing a URL and some other text and that it is displayed correctly
 qml_file: msg-08.qml
 estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril0_simPresent == "True"
+
+id: msg-22
+category_id: Messaging
+plugin: qml
+_summary: Send an SMS containing a URL on slot 2
+_description:
+ This test verifies that you can send an SMS containing a URL and some other text and that it is displayed correctly
+qml_file: msg-22.qml
+estimated_duration: 20
+imports: from 2015.com.canonical.certification import cellularmodem as modem
+requires: modem.ril1_simPresent == "True"
