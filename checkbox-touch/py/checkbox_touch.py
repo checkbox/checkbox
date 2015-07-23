@@ -400,6 +400,24 @@ class CheckboxTouchApplication(PlainboxApplication):
         return {
             'test_info_list': test_info_list
         }
+    @view
+    def get_rerun_candidates(self):
+        def rerun_predicate(job_state):
+            return job_state.result.outcome in (
+                IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH)
+        id_map = self.context.compute_shared(
+            'id_map', compute_value_map, self.context, 'id')
+        rerun_candidates = []
+        for job in self.manager.state.run_list:
+            if rerun_predicate(self.manager.state.job_state_map[job.id]):
+                rerun_candidates.append({
+                    "mod_id": job.id,
+                    "mod_name": job.tr_summary(),
+                    "mod_group": id_map[job.category_id][0].tr_name(),
+                    "mod_selected": False
+
+                    })
+        return rerun_candidates
 
     @view
     def remember_tests(self, selected_id_list):
