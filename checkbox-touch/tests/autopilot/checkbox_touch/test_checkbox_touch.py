@@ -199,3 +199,71 @@ class CommandOutputTests(checkbox_touch.ClickAppTestCase):
         text_area = output_page.wait_select_single(
             objectName='textArea', visible=True)
         self.assertThat(text_area.text, Eventually(Equals("foobar\n")))
+
+
+class RerunTests(checkbox_touch.ClickAppTestCase):
+    def test_rerun_after_rerun(self):
+        test_id = '2015.com.canonical.certification::autopilot/manual-2'
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [test_id])
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'failButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # we now should see a re-run screen; let's select the only test
+        rerun_page = self.app.wait_select_single(
+            objectName='rerunSelectionPage', visible=True)
+        list_item = rerun_page.wait_select_single(
+            objectName='listItem', item_mod_id=test_id)
+        self.pointing_device.click_object(list_item)
+        continue_btn = rerun_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
+        # run the same steps as before
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # we should see the re-run screen again
+        rerun_page = self.app.wait_select_single(
+            objectName='rerunSelectionPage', visible=True)
+        continue_btn = rerun_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
+        self.check_results({'passed': '0', 'failed': '1', 'skipped': '0'})
+
+    def test_rerun_after_fail(self):
+        test_id = '2015.com.canonical.certification::autopilot/manual-2'
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [test_id])
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'failButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # we now should see a re-run screen; let's select the only test
+        rerun_page = self.app.wait_select_single(
+            objectName='rerunSelectionPage', visible=True)
+        list_item = rerun_page.wait_select_single(
+            objectName='listItem', item_mod_id=test_id)
+        self.pointing_device.click_object(list_item)
+        continue_btn = rerun_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # now set the outcome to 'pass'; we should be on results screen now
+        self.check_results({'passed': '1', 'failed': '0', 'skipped': '0'})
+
+    def test_no_rerun_after_pass(self):
+        test_id = '2015.com.canonical.certification::autopilot/manual-1'
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [test_id])
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # there should be no re-run screen, just results
+        self.check_results({'passed': '1', 'failed': '0', 'skipped': '0'})
