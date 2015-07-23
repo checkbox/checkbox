@@ -557,6 +557,17 @@ MainView {
         progressHeader.update(test);
         pageStack.push(qmlNativePage);
     }
+    function performConfinedQmlTest(test) {
+        var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlConfinedPage.qml"))
+        console.log(comp.errorString());
+        var qmlNativePage = comp.createObject();
+        qmlNativePage.test = test
+        qmlNativePage.applicationVersion = app.applicationVersion;
+        qmlNativePage.testDone.connect(completeTest);
+        qmlNativePage.__customHeaderContents = progressHeader;
+        progressHeader.update(test);
+        pageStack.push(qmlNativePage);
+    }
 
     function showVerificationScreen(test) {
         var verificationPage = Qt.createComponent(Qt.resolvedUrl("components/TestVerificationPage.qml")).createObject();
