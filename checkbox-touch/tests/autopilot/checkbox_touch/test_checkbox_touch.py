@@ -23,25 +23,6 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         yes_btn = dialog.select_single(objectName='yesButton')
         self.pointing_device.click_object(yes_btn)
 
-    def process_sequence_of_clicks_on_pages(self, steps):
-        """
-        Do a sequence of clicks on simple page->component hierarchies.
-
-        :param steps:
-            sequence of (page-objectName, component-objectName) pairs to go
-            through.
-
-        Typical run of checkbox-touch requires user to go through a sequence of
-        pages that have pass/fail buttons on them. This function helps go
-        through a sequence like that.
-        """
-        for parent, component in steps:
-            self.app.wait_select_single(
-                objectName=parent, visible=True)
-            clickable = self.main_view.wait_select_single(
-                objectName=component, visible=True)
-            self.pointing_device.click_object(clickable)
-
     def test_launches(self):
         main_view = self.app.select_single(objectName='mainView')
         self.assertThat(main_view.visible, Eventually(Equals(True)))
@@ -116,22 +97,12 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         next_steps = [
             ('qmlNativePage', 'continueButton'),
             ('qmlTestPage', 'passButton'),
+            ('rerunSelectionPage', 'continueButton')
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
         # we should see results screen now
-        results_page = self.app.wait_select_single(
-            objectName='resultsPage', visible=True)
         results = {'passed': '10', 'failed': '5', 'skipped': '5'}
-        lbl_passed = results_page.wait_select_single(objectName='passedLabel')
-        self.assertThat(lbl_passed.text.startswith(results['passed']),
-                        Equals(True))
-        lbl_failed = results_page.wait_select_single(objectName='failedLabel')
-        self.assertThat(lbl_failed.text.startswith(results['failed']),
-                        Equals(True))
-        lbl_skipped = results_page.wait_select_single(
-            objectName='skippedLabel')
-        self.assertThat(lbl_skipped.text.startswith(results['skipped']),
-                        Equals(True))
+        self.check_results(results)
 
 
 class SessionResumeTests(checkbox_touch.ClickAppTestCase):
@@ -228,3 +199,71 @@ class CommandOutputTests(checkbox_touch.ClickAppTestCase):
         text_area = output_page.wait_select_single(
             objectName='textArea', visible=True)
         self.assertThat(text_area.text, Eventually(Equals("foobar\n")))
+
+
+class RerunTests(checkbox_touch.ClickAppTestCase):
+    def test_rerun_after_rerun(self):
+        test_id = '2015.com.canonical.certification::autopilot/manual-2'
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [test_id])
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'failButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # we now should see a re-run screen; let's select the only test
+        rerun_page = self.app.wait_select_single(
+            objectName='rerunSelectionPage', visible=True)
+        list_item = rerun_page.wait_select_single(
+            objectName='listItem', item_mod_id=test_id)
+        self.pointing_device.click_object(list_item)
+        continue_btn = rerun_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
+        # run the same steps as before
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # we should see the re-run screen again
+        rerun_page = self.app.wait_select_single(
+            objectName='rerunSelectionPage', visible=True)
+        continue_btn = rerun_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
+        self.check_results({'passed': '0', 'failed': '1', 'skipped': '0'})
+
+    def test_rerun_after_fail(self):
+        test_id = '2015.com.canonical.certification::autopilot/manual-2'
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [test_id])
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'failButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # we now should see a re-run screen; let's select the only test
+        rerun_page = self.app.wait_select_single(
+            objectName='rerunSelectionPage', visible=True)
+        list_item = rerun_page.wait_select_single(
+            objectName='listItem', item_mod_id=test_id)
+        self.pointing_device.click_object(list_item)
+        continue_btn = rerun_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # now set the outcome to 'pass'; we should be on results screen now
+        self.check_results({'passed': '1', 'failed': '0', 'skipped': '0'})
+
+    def test_no_rerun_after_pass(self):
+        test_id = '2015.com.canonical.certification::autopilot/manual-1'
+        self.start_and_select_tests(
+            '2015.com.canonical.certification::normal', [test_id])
+        next_steps = [
+            ('manualIntroPage', 'continueButton'),
+            ('testVerificationPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        # there should be no re-run screen, just results
+        self.check_results({'passed': '1', 'failed': '0', 'skipped': '0'})

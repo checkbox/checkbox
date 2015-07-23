@@ -138,6 +138,12 @@ PythonObjectRef {
         });
     }
 
+    function getRerunCandidates(continuation) {
+        request("get_rerun_candidates", [], continuation, function(error) {
+            console.error("Unable to get rerun candidates");
+        });
+    }
+
     function getResults(continuation) {
         request("get_results", [], continuation, function(error) {
             console.error("Unable to get test results");

@@ -248,6 +248,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.context.provider_list,
             os.path.join(self.manager.storage.location, 'io-logs'))
         self.index = app_blob['index_in_run_list']
+        self._init_test_plan_id(app_blob['test_plan_id'])
         _logger.error(self.context.state.run_list)
         _logger.error(self.index)
         if not rerun_last_test:
@@ -399,6 +400,24 @@ class CheckboxTouchApplication(PlainboxApplication):
         return {
             'test_info_list': test_info_list
         }
+    @view
+    def get_rerun_candidates(self):
+        def rerun_predicate(job_state):
+            return job_state.result.outcome in (
+                IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH)
+        id_map = self.context.compute_shared(
+            'id_map', compute_value_map, self.context, 'id')
+        rerun_candidates = []
+        for job in self.manager.state.run_list:
+            if rerun_predicate(self.manager.state.job_state_map[job.id]):
+                rerun_candidates.append({
+                    "mod_id": job.id,
+                    "mod_name": job.tr_summary(),
+                    "mod_group": id_map[job.category_id][0].tr_name(),
+                    "mod_selected": False
+
+                    })
+        return rerun_candidates
 
     @view
     def remember_tests(self, selected_id_list):
@@ -407,6 +426,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         self.desired_test_ids = frozenset(selected_id_list)
         _logger.info("Selected tests: %s", self.desired_test_ids)
+        self.index = 0
+        self.context.invalidate_shared('desired_job_list')
         desired_job_list = self.context.compute_shared(
             'desired_job_list', select_jobs,
             self.context.state.job_list, [
@@ -611,6 +632,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         if test_plan.Meta.name != 'test plan':
             raise ValueError(
                 "unit {!r} is not a test plan".format(test_plan_id))
+        self.test_plan_id = test_plan_id
         self.test_plan = test_plan
 
     def _init_session_storage_repo(self):
