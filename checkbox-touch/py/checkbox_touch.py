@@ -248,6 +248,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.context.provider_list,
             os.path.join(self.manager.storage.location, 'io-logs'))
         self.index = app_blob['index_in_run_list']
+        self._init_test_plan_id(app_blob['test_plan_id'])
         _logger.error(self.context.state.run_list)
         _logger.error(self.index)
         if not rerun_last_test:
