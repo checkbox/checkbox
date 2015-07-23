@@ -426,6 +426,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         self.desired_test_ids = frozenset(selected_id_list)
         _logger.info("Selected tests: %s", self.desired_test_ids)
+        self.index = 0
+        self.context.invalidate_shared('desired_job_list')
         desired_job_list = self.context.compute_shared(
             'desired_job_list', select_jobs,
             self.context.state.job_list, [
