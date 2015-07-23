@@ -412,7 +412,7 @@ MainView {
         app.getNextTest(function(test) {
             pageStack.clear();
             if (test.plugin === undefined) { 
-                return showResultsScreen();
+                return maybeShowRerunScreen();
             }
             if (test.user) {
                 // running this test will require to be run as a different
