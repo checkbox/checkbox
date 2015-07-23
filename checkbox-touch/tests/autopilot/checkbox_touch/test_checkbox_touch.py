@@ -97,22 +97,12 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         next_steps = [
             ('qmlNativePage', 'continueButton'),
             ('qmlTestPage', 'passButton'),
+            ('rerunSelectionPage', 'continueButton')
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
         # we should see results screen now
-        results_page = self.app.wait_select_single(
-            objectName='resultsPage', visible=True)
         results = {'passed': '10', 'failed': '5', 'skipped': '5'}
-        lbl_passed = results_page.wait_select_single(objectName='passedLabel')
-        self.assertThat(lbl_passed.text.startswith(results['passed']),
-                        Equals(True))
-        lbl_failed = results_page.wait_select_single(objectName='failedLabel')
-        self.assertThat(lbl_failed.text.startswith(results['failed']),
-                        Equals(True))
-        lbl_skipped = results_page.wait_select_single(
-            objectName='skippedLabel')
-        self.assertThat(lbl_skipped.text.startswith(results['skipped']),
-                        Equals(True))
+        self.check_results(results)
 
 
 class SessionResumeTests(checkbox_touch.ClickAppTestCase):

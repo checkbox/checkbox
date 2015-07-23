@@ -108,6 +108,20 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 objectName=component, visible=True)
             self.pointing_device.click_object(clickable)
 
+    def check_results(self, results):
+        results_page = self.app.wait_select_single(
+            objectName='resultsPage', visible=True)
+        lbl_passed = results_page.wait_select_single(objectName='passedLabel')
+        self.assertThat(lbl_passed.text.startswith(results['passed']),
+                        Equals(True))
+        lbl_failed = results_page.wait_select_single(objectName='failedLabel')
+        self.assertThat(lbl_failed.text.startswith(results['failed']),
+                        Equals(True))
+        lbl_skipped = results_page.wait_select_single(
+            objectName='skippedLabel')
+        self.assertThat(lbl_skipped.text.startswith(results['skipped']),
+                        Equals(True))
+
     def launch_application(self):
         if platform.model() == 'Desktop':
             self._launch_application_from_desktop()
