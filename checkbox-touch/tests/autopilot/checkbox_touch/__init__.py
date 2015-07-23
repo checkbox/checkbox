@@ -89,6 +89,25 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
 
+    def process_sequence_of_clicks_on_pages(self, steps):
+        """
+        Do a sequence of clicks on simple page->component hierarchies.
+
+        :param steps:
+            sequence of (page-objectName, component-objectName) pairs to go
+            through.
+
+        Typical run of checkbox-touch requires user to go through a sequence of
+        pages that have pass/fail buttons on them. This function helps go
+        through a sequence like that.
+        """
+        for parent, component in steps:
+            self.app.wait_select_single(
+                objectName=parent, visible=True)
+            clickable = self.main_view.wait_select_single(
+                objectName=component, visible=True)
+            self.pointing_device.click_object(clickable)
+
     def launch_application(self):
         if platform.model() == 'Desktop':
             self._launch_application_from_desktop()
