@@ -36,6 +36,7 @@ Page {
     property string continueText: i18n.tr("Continue")
     readonly property alias model: selectionModel
     property bool onlyOneAllowed: false
+    property bool emptyAllowed: false
 
     visible: false
     flickable: null
@@ -100,7 +101,8 @@ Page {
     states: [
          State {
             name: "empty selection"
-            PropertyChanges { target: continueButton; enabled: false }
+            PropertyChanges { target: continueButton;
+                              enabled: false || emptyAllowed }
          },
          State {
             name: "nonempty selection"
