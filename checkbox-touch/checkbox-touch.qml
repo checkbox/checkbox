@@ -357,6 +357,30 @@ MainView {
         }
     }
 
+    SelectionPage {
+        id: rerunSelectionPage
+        objectName: "rerunSelectionPage"
+        title: i18n.tr("Select tests to re-run")
+        continueText: state == "empty selection" ?
+            i18n.tr("Finish") : i18n.tr("Re-run")
+        emptyAllowed: true
+
+        function setup(rerunCandidates, continuation) {
+            model.clear();
+            for (var i=0; i<rerunCandidates.length; i++) {
+                model.append(rerunCandidates[i]);
+            }
+            modelUpdated();
+            pageStack.push(rerunSelectionPage)
+        }
+        onSelectionDone: {
+            app.rememberTestSelection(selected_id_list, function() {
+                processNextTest();
+                unlatchContinue();
+            });
+        }
+    }
+
     PasswordDialog {
         id: passwordDialog
     }
@@ -448,6 +472,15 @@ MainView {
         commandOutputPage.clear();
         app.runTestActivity(test, continuation);
 
+    }
+    function maybeShowRerunScreen() {
+        app.getRerunCandidates(function(result) {
+            if (result == false) {
+                 showResultsScreen();
+                 return;
+            }
+            rerunSelectionPage.setup(result);
+        });
     }
 
     function showResultsScreen() {
