@@ -611,6 +611,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         if test_plan.Meta.name != 'test plan':
             raise ValueError(
                 "unit {!r} is not a test plan".format(test_plan_id))
+        self.test_plan_id = test_plan_id
         self.test_plan = test_plan
 
     def _init_session_storage_repo(self):
