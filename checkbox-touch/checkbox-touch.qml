@@ -432,7 +432,10 @@ MainView {
                 performUserInteractTest(test);
                 break;
             case 'qml':
-                performQmlTest(test);
+                if (test.flags.indexOf("confined") > -1)
+                    performConfinedQmlTest(test);
+                else
+                    performQmlTest(test);
                 break;
             default:
                 test.outcome = "skip";
