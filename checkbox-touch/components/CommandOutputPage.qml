@@ -88,6 +88,5 @@ Page {
     }
     onVisibleChanged: {
         // Pop-over should be displayed only when page becomes visible (in practice - when it's pushed to the pageStack)
-        if (visible == true) fadeOutDelay.start();
     }
 }
