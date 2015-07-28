@@ -32,12 +32,14 @@ Page {
     id: commandOutputPage
 
     objectName: "commandOutputPage"
+    property string bufferedIO;
 
     function addText(text) {
-        textArea.text += text;
+        bufferedIO += text
     }
 
     function clear() {
+        bufferedIO = "";
         textArea.text = "";
     }
 
@@ -54,6 +56,16 @@ Page {
         ]
     }
 
+    Timer {
+        id: timer
+        interval: 300
+        running: false
+        repeat: true
+        onTriggered: {
+            textArea.text += bufferedIO
+            bufferedIO = ""
+        }
+    }
 
     ColumnLayout {
         spacing: units.gu(1)
@@ -88,6 +100,11 @@ Page {
     }
     onVisibleChanged: {
         // Pop-over should be displayed only when page becomes visible (in practice - when it's pushed to the pageStack)
-        if (visible == true) fadeOutDelay.start();
+        if (visible == true) {
+            timer.running = true;
+        }
+        else {
+            timer.running = false;
+        }
     }
 }
