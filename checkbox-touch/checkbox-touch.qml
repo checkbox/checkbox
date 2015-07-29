@@ -282,6 +282,8 @@ MainView {
         id: testplanSelectionPage
         title: i18n.tr("Select test plan")
         onlyOneAllowed: true
+        largeBuffer: args.values["autopilot"]
+
         function setup(testplan_info_list) {
             if (testplan_info_list.length<1) {
                 ErrorLogic.showError(mainView, "Test plan missing", Qt.quit);
@@ -306,6 +308,7 @@ MainView {
         id: categorySelectionPage
         objectName: "categorySelectionPage"
         title: i18n.tr("Select categories")
+        largeBuffer: args.values["autopilot"]
 
         function setup(continuation) {
             app.getCategories(function(response) {
@@ -335,7 +338,8 @@ MainView {
         objectName: "testSelectionPage"
         title: i18n.tr("Select tests")
         continueText: i18n.tr("Start Testing")
-        
+        largeBuffer: args.values["autopilot"]
+
         function setup(continuation) {
             app.getTests(function(response) {
                 model.clear();
@@ -364,6 +368,7 @@ MainView {
         continueText: state == "empty selection" ?
             i18n.tr("Finish") : i18n.tr("Re-run")
         emptyAllowed: true
+        largeBuffer: args.values["autopilot"]
 
         function setup(rerunCandidates, continuation) {
             model.clear();
