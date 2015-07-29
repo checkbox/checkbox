@@ -115,6 +115,9 @@ def main():
                 target_base_name = os.path.basename(os.path.normpath(path))
                 copy_tree(path, os.path.join('providers', target_base_name))
 
+    if not validate_providers():
+        sys.exit('Provider validation failed.')
+
     generate_desktop_file()
 
     if not os.path.exists('../build-cbt'):
@@ -127,6 +130,32 @@ def main():
         if args.s:
             adb_options = ['-s', args.s]
         install_click(pkg, adb_options)
+
+
+def validate_providers():
+    print("Validating providers")
+    providers_valid = True
+    for provider_dir in os.listdir('providers'):
+        try:
+            subprocess.check_output(
+                [os.path.join('providers', provider_dir, 'manage.py'),
+                 'validate'], stderr=subprocess.STDOUT)
+        except OSError as e:
+            print(e.strerror)
+            providers_valid = False
+        except subprocess.CalledProcessError as e:
+            output_lines = e.output.decode(sys.stdout.encoding).split('\n')
+            if (len(output_lines) > 0 and
+                    "ImportError: No module named 'plainbox'" in output_lines):
+                    print('Plainbox not found. Install plainbox or run the'
+                          'command from the virtual env.')
+                    return False
+            else:
+                print(("Problem encountered when validating '{}'."
+                       " Output:\n{}").format(provider_dir, e.output.decode(
+                           sys.stdout.encoding)))
+                providers_valid = False
+    return providers_valid
 
 
 def generate_desktop_file():
