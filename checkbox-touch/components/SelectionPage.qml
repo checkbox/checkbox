@@ -37,6 +37,7 @@ Page {
     readonly property alias model: selectionModel
     property bool onlyOneAllowed: false
     property bool emptyAllowed: false
+    property bool largeBuffer: false
 
     visible: false
     flickable: null
@@ -159,6 +160,7 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
+            cacheBuffer: (largeBuffer) ? cacheBuffer * 10 : cacheBuffer
             delegate: ListItemWrappable {
                 objectName: "listItem"
                 text: mod_name
