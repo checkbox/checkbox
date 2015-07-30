@@ -19,38 +19,31 @@ INTERACTIVE_TESTS = ['ac_adapter',
                      'brightness',
                      'lid']
 # These are usually performed on normal certification runs
-CERT_TESTS = ['acpidump',
+CERT_TESTS = ['acpitests',
+              'acpidump',
               'acpitables',
               'apicedge',
               'apicinstance',
               'aspm',
               'bios32',
-              'checksum',
-              'cstates',
-              'dmar',
+              'dmicheck',
               'ebda',
-              'fadt',
-              'hpet_check',
               'klog',
-              'mcfg',
-              'method',
               'mpcheck',
               'msr',
               'mtrr',
               'nx',
               'oops',
+              'uefibootpath',
               'uefirtvariable',
               'version',
-              'virt',
-              'wmi']
+              'virt']
 # These are advanced tests that shouldn't affect certification status
-NON_CERT_TESTS = ['acpiinfo',
-                  'bios_info',
+NON_CERT_TESTS = ['bios_info',
                   'cmosdump',
                   'crs',
                   'crsdump',
                   'csm',
-                  'dmicheck',
                   'ebdadump',
                   'fan',
                   'gpedump',
@@ -62,7 +55,6 @@ NON_CERT_TESTS = ['acpiinfo',
                   'mpdump',
                   'os2gap',
                   'osilinux',
-                  'pcc',
                   'pciirq',
                   'plddump',
                   'pnp',
@@ -77,6 +69,13 @@ NON_CERT_TESTS = ['acpiinfo',
                   ]
 TESTS = sorted(CERT_TESTS + NON_CERT_TESTS)
 
+# The following tests will record logs in a separate file for the HWE team
+HWE_TESTS = ['mtrr',
+             'virt',
+             'apicedge',
+             'klog',
+             'oops',
+             'uefibootpath']
 
 def get_sleep_times(start_marker, end_marker, sleep_time, resume_time):
     logfile = '/var/log/syslog'
@@ -380,8 +379,14 @@ def main():
                     results['sleep'] = 'FAILED_CRITICAL'
     else:
         for test in tests:
+            # ACPI tests can now be run with --acpitests (fwts >= 15.07.00)
+            log = args.log
+            if test in HWE_TESTS:
+                log = log.replace('.log', '_hwe.log')
+            if test == 'acpitests':
+                test = '--acpitests'
             command = ('fwts -q --stdout-summary -r %s %s'
-                       % (args.log, test))
+                       % (log, test))
             results[test] = (Popen(command, stdout=PIPE, shell=True)
                              .communicate()[0].strip()).decode()
 
