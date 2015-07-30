@@ -58,8 +58,6 @@ Item {
 
         Dialog {
             id: dlg
-            width: errorDialog.width
-            height: errorDialog.height
             title: i18n.tr("Error encountered")
 
             Label {

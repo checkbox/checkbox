@@ -42,9 +42,15 @@ QtObject {
         } else {
             console.info("Getting reference to python object via " + creationMethodName);
             py.call(creationMethodName, args, function(result) {
-                object = result;
-                pythonObjectRef.creationMethodName = creationMethodName;
-                objectReady();
+                if (!result) {
+                    var msg = "Object construction failed. " + creationMethodName + " did not return a valid object";
+                    console.error(msg);
+                    throw msg;
+                } else {
+                    object = result;
+                    pythonObjectRef.creationMethodName = creationMethodName;
+                    objectReady();
+                }
             });
         }
     }
