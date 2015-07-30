@@ -63,9 +63,10 @@ int main(int argc, char *argv[])
     guiengine.Initialise();
 
     Settings* settings;
-    settings = new Settings();
     if (app.arguments().size() > 1) {
         settings = new Settings(app.arguments().at(1));
+    } else {
+        settings = new Settings();
     }
     viewer.rootContext()->setContextProperty("settings", settings);
 
