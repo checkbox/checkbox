@@ -155,7 +155,7 @@ def extract_plainbox(src_tarball, version):
             preserve_symlinks=1)
 
 
-def get_plainbox_from_pypi(version='0.21.2'):
+def get_plainbox_from_pypi(version='0.22.2'):
     # plaibox_pypi contains URL from which to download plainbox
     plainbox_pypi = ('https://pypi.python.org/packages/source'
                      '/p/plainbox/plainbox-{}.tar.gz'.format(version))
