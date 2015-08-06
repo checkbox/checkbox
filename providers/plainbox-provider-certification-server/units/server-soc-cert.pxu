@@ -1,11 +1,10 @@
-id: virtual-machine-full-14.04
-_name: Virtual Machine Full 14.04 (For Hypervisors)
+id: server-soco-cert
+_name: System On Chip Certification (For SoC Testing)
 unit: test plan
 _description:
-    This whitelist is intended to be used for testing Ubuntu Guests on 
-    hypervisors. The tests contained here should work in any test lab 
-    envrionement. Please use this whitelist for the Ubuntu Certification 
-    self-testing programme.
+    This whitelist is intended to be used for testing Server SoCs.  The tests
+    contained here should work in any test lab envrionement. Please use this 
+    whitelist for the Ubuntu Certification self-testing programme.
 include:
     # Meta-job to include required resources, please don't remove
     miscellanea/submission-resources
@@ -13,8 +12,6 @@ include:
     __info__
     cpuinfo_attachment
     dmesg_attachment
-    dmi_attachment
-    dmidecode_attachment
     efi_attachment
     lspci_attachment
     lshw_attachment
@@ -34,6 +31,9 @@ include:
     miscellanea/get_make_and_model
     miscellanea/get_maas_version
     miscellanea/boot_mode
+    miscellanea/dmitest_server
+    miscellanea/fwts_test
+    miscellanea/fwts_results.log
     __benchmarks__
     benchmarks/disk/hdparm-read
     benchmarks/disk/hdparm-read_.*
@@ -53,6 +53,8 @@ include:
     disk/stats_.*
     disk/read_performance
     disk/read_performance_.*
+    disk/smart
+    disk/smart_.*
     disk/storage_devices
     disk/storage_device_.*
     __ethernet__
@@ -69,3 +71,10 @@ include:
     power-management/rtc
     __stress__
     stress/cpu_stress_test
+    __usb__
+    usb/detect
+    usb/storage-preinserted
+    usb3/storage-preinserted
+    __virtualization__
+    virtualization/kvm_check_vm
+    info/kvm_output
