@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+
+"""Canonical Hardware Collection Script."""
+
+import gettext
+import logging
+import time
+
+# TODO: use public APIs here
+from plainbox.impl.color import CanonicalColors
+from plainbox.impl.ingredients import CanonicalCommand
+
+_ = gettext.gettext
+
+_logger = logging.getLogger("canonical-hw-collection")
+
+
+class canonical_hw_collection(CanonicalCommand):
+
+    """
+    Tool for collecting hardware information and sending it to Canonical.
+
+    This tool collects various information about the hardware it is running on
+    and sends it to a server operated by Canonical. The tool can operate in two
+    modes that differ just on the destination of the data. See below for
+    details.
+
+    Note that unless you are a Canonical employee, or you've been asked to use
+    this tool by a Canonical employee, you will not have much use of the tool.
+    None of the data is not publicly available.
+
+    @EPILOG@
+
+    If a hardware tracking number (secure ID) is provided, the data is uploaded
+    to the Certification website. Otherwise, the data is uploaded to HEXR.
+    """
+
+    app_id = 'canonical-hw-collection'
+
+    def register_arguments(self, parser):
+        """Method called to register command line arguments."""
+        parser.add_argument(
+            'secure_id', metavar=_("SECURE-ID"), nargs="?",
+            help=_("Canonical hardware identifier (optional)"))
+        parser.add_argument(
+            '--timeout', metavar=_("SECONDS"), type=int, default=5,
+            help=_("Delay before starting automated hardware collection"))
+        parser.add_argument(
+            '--staging', action='store_true', default=False,
+            help=_("Send the data to non-production test server"))
+
+    def invoked(self, ctx):
+        """Method called when the command is invoked."""
+        self.transport = self._create_transport(
+            ctx.sa, ctx.args.secure_id, ctx.args.staging)
+        self.ctx = ctx
+        ctx.sa.provider_selected.connect(self._on_provider_selected)
+        ctx.sa.session_available.connect(self._on_session_available)
+        try:
+            self._show_intro(ctx.rc, ctx.args.timeout)
+            self._collect_info(ctx.rc, ctx.sa)
+        except KeyboardInterrupt:
+            print()
+            return self._abort_collect(ctx.rc)
+        try:
+            self._send_results(
+                ctx.rc, ctx.sa, ctx.args.secure_id, ctx.args.staging)
+        except KeyboardInterrupt:
+            print()
+            return self._abort_send(ctx.rc)
+
+    def _on_provider_selected(self, provider, auto):
+        self.ctx.rc.reset()
+        self.ctx.rc.bg = CanonicalColors.white
+        self.ctx.rc.fg = CanonicalColors.text_grey
+        self.ctx.rc.padding = (0, 0, 0, 4)
+        self.ctx.rc.para(_(
+            "Using provider: {0}"
+        ).format(provider.name))
+
+    def _on_session_available(self, session_id):
+        self.ctx.rc.reset()
+        self.ctx.rc.bg = CanonicalColors.white
+        self.ctx.rc.fg = CanonicalColors.text_grey
+        self.ctx.rc.bold = 1
+        self.ctx.rc.padding = (1, 4, 0, 4)
+        self.ctx.rc.para(_(
+            "Identifier of the testing session: {0}"
+        ).format(session_id))
+
+    def _send_results(self, rc, sa, secure_id, staging):
+        rc.reset()
+        rc.fg = CanonicalColors.white
+        rc.bg = CanonicalColors.dark_aubergine
+        rc.padding = (1, 1, 0, 1)
+        if secure_id:
+            rc.para(_("Sending hardware report to Canonical Certification"))
+        else:
+            rc.para(_("Sending hardware report to Canonical HEXR"))
+        rc.para(_("Server URL is: {0}").format(self.transport.url))
+        result = sa.export_to_transport(
+            "2013.com.canonical.plainbox::hexr", self.transport)
+        if 'url' in result:
+            rc.para(result['url'])
+        rc.padding = (0, 1, 1, 1)
+        rc.bg = CanonicalColors.ubuntu_orange
+        rc.fg = CanonicalColors.white
+        rc.para("All done, thank you!")
+
+    def _create_transport(self, sa, secure_id, staging):
+        if secure_id:
+            return sa.get_canonical_certification_transport(
+                secure_id, staging=staging)
+        else:
+            return sa.get_canonical_hexr_transport(staging=staging)
+
+    def _show_intro(self, rc, timeout):
+        rc.fg = CanonicalColors.white
+        rc.bg = CanonicalColors.mid_aubergine
+        rc.padding = (1, 1, 0, 1)
+        rc.align = 'right'
+        rc.bold = 1
+        rc.para(_("Canonical Hardware Collection Tool"))
+        rc.bold = 0
+        rc.padding = (0, 1, 1, 1)
+        rc.fg = CanonicalColors.ubuntu_orange
+        rc.para(_("version 0.1"))
+        rc.bg = CanonicalColors.dark_aubergine
+        rc.padding = (1, 4, 1, 4)
+        rc.fg = CanonicalColors.white
+        rc.align = 'left'
+        rc.para(_(
+            "This tool introspects the system it is started on and sends "
+            "a composite report to a service operated by Canonical Ltd."))
+        rc.padding = (0, 4, 1, 4)
+        rc.para(_(
+            "If this is not what you intended then exit this program now by"
+            " pressing CTRL-C."))
+        rc.fg = CanonicalColors.warm_grey
+        rc.bold = 1
+        rc.para(gettext.ngettext(
+            "The process will commence in {0} second.",
+            "The process will commence in {0} seconds.", timeout
+        ).format(timeout))
+        time.sleep(timeout)
+
+    def _collect_info(self, rc, sa):
+        rc.reset()
+        rc.bg = CanonicalColors.white
+        rc.fg = CanonicalColors.text_grey
+        rc.bold = 1
+        rc.padding = (1, 4, 1, 4)
+        rc.para(_("Preparing..."))
+        rc.padding = (0, 4, 1, 4)
+        # TODO: load the new standalone provider instead
+        sa.select_providers(
+            "2013.com.canonical.certification:checkbox",
+            "2013.com.canonical.certification:plainbox-resources")
+        sa.start_new_session(_("Hardware Collection Session"))
+        # TODO: use the new standalone test plan instead
+        sa.select_test_plan(
+            "2013.com.canonical.certification::hwsubmit")
+        sa.bootstrap()
+        rc.para(_("Collecting Hardware Information"))
+        rc.bold = 0
+        rc.padding = (0, 2, 0, 2)
+        for job_id in sa.get_static_todo_list():
+            job = sa.get_job(job_id)
+            rc.para("- {0}".format(job.tr_summary()))
+            builder = sa.run_job(job_id, 'silent')
+            result = builder.get_result()
+            sa.use_job_result(job_id, result)
+
+    def _abort_collect(self, rc):
+        rc.reset()
+        rc.fg = CanonicalColors.cool_grey
+        rc.bg = CanonicalColors.white
+        rc.padding = (1, 1, 1, 1)
+        rc.para(_("Hardware collection was interrupted"))
+        rc.bold = 1
+        rc.para(_("No data was sent to any server"))
+        return 1
+
+    def _abort_send(self, rc):
+        rc.reset()
+        rc.fg = CanonicalColors.cool_grey
+        rc.bg = CanonicalColors.white
+        rc.padding = (1, 1, 1, 1)
+        rc.para(_("Hardware collection was interrupted"))
+        rc.bold = 1
+        rc.para(_("Some data may have been sent to the server"))
+        rc.para(_("This will be retained by Canonical but unless the"
+                  " submission was complete it will not be processed."))
+        return 1
+
+
+if __name__ == '__main__':
+    canonical_hw_collection().main()
