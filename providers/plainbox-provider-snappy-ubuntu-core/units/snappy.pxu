@@ -365,6 +365,15 @@ plugin: manual
 category_id: snappy
 estimated_duration: 10
 
+id: snappy_wifi
+plugin: resource
+category_id: snappy
+_summary: Resource job to identify Wi-Fi devices
+_description: Job to scan for the presence of Wi-Fi network adapters which
+ should then have the following collection of tests run against them.
+command: snappy_wifi_resource
+estimated_duration: 0.5
+
 id: snappy/wireless/wireless_scanning
 _summary: Scan for wireless APs.
 command:
@@ -393,6 +402,8 @@ category_id: snappy
 estimated_duration: 6
 _description:
  Wireless scanning test. It scans and reports on discovered APs.
+requires:
+ snappy_wifi.wlan0 == "Present"
 
 id: snappy/wireless/wireless_connection_open_ac	
 _purpose:

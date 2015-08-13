@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+#
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+#    Authors: Jonathan Cave <jonathan.cave@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+Script to list presence of 802.11 compatible adapters.
+
+This script is inteded be used as part of a plainbox provider. It is expected
+to find Wi-Fi adapters connected the system and print them as reesource
+expressions.
+
+Example output of the script:
+
+wlan0: Present
+wlan1: Present
+"""
+
+import sys
+import subprocess
+
+# Expressly shouldn't be screen scraping this, but want to go for
+# most trivial solution for now
+try:
+    ps = subprocess.Popen(['iw', 'dev'], stdout=subprocess.PIPE,
+                      stderr=subprocess.PIPE)
+    output = subprocess.check_output(['grep', 'Interface'], stdin=ps.stdout)
+    ps.wait()
+except subprocess.CalledProcessError:
+    sys.exit(0)
+
+devs = output.decode('ascii', 'ignore').split('\n')
+for dev in devs:
+    if dev != '':
+        print("{}: Present".format(dev.split()[1]))
