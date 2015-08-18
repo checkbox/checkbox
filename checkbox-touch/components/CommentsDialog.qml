@@ -30,8 +30,21 @@ import Ubuntu.Components.Popups 0.1
 
 Item {
     id: commentsDialog
+    /*!
+      `dialogComponent` alias shortens the code that launches this dialog
+     */
     property alias dialogComponent: component
+
+    /*!
+      Use this property to populate the textArea that the user will write in.
+      It's useful when the comment is only updated - you can use the previous
+      input.
+     */
     property var commentDefaultText: ""
+
+    /*!
+      Gets signalled when user taps 'done'
+     */
     signal commentAdded(string comment)
 
     Component {
