@@ -24,6 +24,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
 import "ConfirmationLogic.js" as ConfirmationLogic
 import Ubuntu.Content 1.1
@@ -75,6 +76,17 @@ Page {
 
     head {
         actions: [
+            Action {
+                id: addCommentAction
+                iconName: "document-new-symbolic"
+                text: i18n.tr("Add comment")
+                onTriggered: {
+                    commentsDialog.commentAdded.connect(function(comment) {
+                        test["comments"] = comment;
+                    });
+                    PopupUtils.open(commentsDialog.dialogComponent);
+                }
+            },
             Action {
                 id: skipAction
                 iconName: "media-seek-forward"
