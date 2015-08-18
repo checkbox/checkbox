@@ -385,6 +385,9 @@ MainView {
             });
         }
     }
+    CommentsDialog {
+        id: commentsDialog
+    }
 
     PasswordDialog {
         id: passwordDialog
