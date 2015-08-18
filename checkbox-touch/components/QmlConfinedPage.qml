@@ -81,6 +81,7 @@ Page {
                 iconName: "document-new-symbolic"
                 text: i18n.tr("Add comment")
                 onTriggered: {
+                    commentsDialog.commentDefaultText = test["comments"] || "";
                     commentsDialog.commentAdded.connect(function(comment) {
                         test["comments"] = comment;
                     });

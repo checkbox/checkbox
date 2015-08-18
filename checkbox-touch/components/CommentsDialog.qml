@@ -31,6 +31,7 @@ import Ubuntu.Components.Popups 0.1
 Item {
     id: commentsDialog
     property alias dialogComponent: component
+    property var commentDefaultText: ""
     signal commentAdded(string comment)
 
     Component {
@@ -57,6 +58,8 @@ Item {
             }
 
             Component.onCompleted: {
+                commentText.text = commentDefaultText
+                commentText.cursorPosition = commentText.text.length;
                 commentText.forceActiveFocus();
             }
         }
