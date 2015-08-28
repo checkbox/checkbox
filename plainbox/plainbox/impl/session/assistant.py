@@ -3,6 +3,7 @@
 # Copyright 2012-2015 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#   Maciej Kisielewski <maciej.kisielewski@canonical.com>
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3,
@@ -18,8 +19,11 @@
 
 """Session Assistant."""
 
+import collections
+import datetime
 import fnmatch
 import io
+import itertools
 import logging
 import os
 import time
@@ -35,8 +39,11 @@ from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.runner import JobRunner
 from plainbox.impl.runner import JobRunnerUIDelegate
 from plainbox.impl.secure.qualifiers import select_jobs
+from plainbox.impl.session import SessionPeekHelper
+from plainbox.impl.session import SessionResumeError
 from plainbox.impl.session.jobs import InhibitionCause
 from plainbox.impl.session.manager import SessionManager
+from plainbox.impl.session import SessionMetaData
 from plainbox.impl.session.storage import SessionStorageRepository
 from plainbox.impl.transport import CertificationTransport
 from plainbox.impl.transport import TransportError
@@ -47,6 +54,8 @@ _logger = logging.getLogger("plainbox.session.assistant")
 
 
 __all__ = ('SessionAssistant', )
+
+ResumeCandidate = collections.namedtuple('ResumeCandidate', ['id', 'metadata'])
 
 
 class SessionAssistant:
@@ -150,7 +159,7 @@ class SessionAssistant:
         a bug. Plainbox should integrate with all the platforms correctly out
         of the box.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         self._repo = SessionStorageRepository(pathname)
         _logger.debug("Using alternate repository: %r", pathname)
         # NOTE: We expect applications to call this at most once.
@@ -174,7 +183,7 @@ class SessionAssistant:
             Please check the source code to understand which values to pass
             here. This method is currently experimental.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         self._config = config
         # NOTE: We expect applications to call this at most once.
         del UsageExpectation.of(self).allowed_calls[
@@ -204,14 +213,16 @@ class SessionAssistant:
             Please check the source code to understand which values to pass
             here. This method is currently experimental.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         self._ctrl_list = ctrl_list
         # NOTE: We expect applications to call this at most once.
         del UsageExpectation.of(self).allowed_calls[
             self.use_alternate_execution_controllers]
 
     @raises(ValueError, UnexpectedMethodCall)
-    def select_providers(self, *patterns):
+    def select_providers(
+        self, *patterns, additional_providers: 'Iterable[Provider1]'=()
+    ) -> 'List[Provider1]':
         """
         Load plainbox providers.
 
@@ -228,6 +239,9 @@ class SessionAssistant:
             part, e.g. ``2013.com.canonical.certification::*`` will load all of
             providers made by the Canonical certification team.  To load
             everything just pass ``*``.
+        :param additional_providers:
+            A list of providers that were loaded by other means (usually in
+            some app-custom way).
         :returns:
             The list of loaded providers (including plainbox providers)
         :raises ValueError:
@@ -254,7 +268,7 @@ class SessionAssistant:
             Delegate correctness checking to a mediator class that also
             implements some useful, default behavior for this.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         # NOTE: providers are actually enumerated here, they are only loaded
         # and validated on demand so this is is not going to expose any
         # problems from utterly broken providers we don't care about.
@@ -262,11 +276,11 @@ class SessionAssistant:
         # NOTE: copy the list as we don't want to mutate the object returned by
         # get_providers().  This helps unit tests that actually return a fixed
         # list here.
-        provider_list = provider_list[:]
+        provider_list = provider_list[:] + list(additional_providers)
         # Select all of the plainbox providers in a separate iteration. This
         # way they get loaded unconditionally, regardless of what patterns are
         # passed to the function (including not passing *any* patterns).
-        for provider in provider_list[:]:
+        for provider in provider_list:
             if provider.namespace == "2013.com.canonical.plainbox":
                 provider_list.remove(provider)
                 self._selected_providers.append(provider)
@@ -292,6 +306,8 @@ class SessionAssistant:
         del allowed_calls[self.select_providers]
         allowed_calls[self.start_new_session] = (
             "create a new session from scratch")
+        allowed_calls[self.get_resumable_sessions] = (
+            "get resume candidates")
         return self._selected_providers
 
     @morris.signal
@@ -334,8 +350,8 @@ class SessionAssistant:
         intends to use session resuming functionality it should use other
         methods to see if session should be resumed instead.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
-        self._manager = SessionManager.create()
+        UsageExpectation.of(self).enforce()
+        self._manager = SessionManager.create(self._repo)
         self._context = self._manager.add_local_device_context()
         for provider in self._selected_providers:
             self._context.add_provider(provider)
@@ -357,6 +373,81 @@ class SessionAssistant:
         UsageExpectation.of(self).allowed_calls = {
             self.select_test_plan: "select the test plan to execute"
         }
+
+    @raises(KeyError, UnexpectedMethodCall)
+    def resume_session(self, session_id: str) -> 'SessionMetaData':
+        UsageExpectation.of(self).enforce()
+        all_units = list(itertools.chain(
+            *[p.unit_list for p in self._selected_providers]))
+        self._manager = SessionManager.load_session(
+            all_units, self._resume_candidates[session_id][0])
+        self._context = self._manager.default_device_context
+        self._metadata = self._context.state.metadata
+        self._command_io_delegate = JobRunnerUIDelegate(_SilentUI())
+        self._runner = JobRunner(
+            self._manager.storage.location,
+            self._context.provider_list,
+            jobs_io_log_dir=os.path.join(
+                self._manager.storage.location, 'io-logs'),
+            command_io_delegate=self._command_io_delegate,
+            execution_ctrl_list=self._execution_ctrl_list)
+        self.session_available(self._manager.storage.id)
+        _logger.debug("Session resumed: %s", session_id)
+        UsageExpectation.of(self).allowed_calls = (
+            self._get_allowed_calls_in_normal_state())
+        return self._resume_candidates[session_id][1]
+
+    @raises(UnexpectedMethodCall)
+    def get_resumable_sessions(self) -> 'Tuple[str, SessionMetaData]':
+        """
+        Check repository for sessions that could be resumed.
+
+        :returns:
+            A generator that yields namedtuples with (id, metadata) of
+            subsequent resumable sessions, starting from the youngest one.
+        :raises UnexpectedMethodCall:
+            If the call is made at an unexpected time. Do not catch this error.
+            It is a bug in your program. The error message will indicate what
+            is the likely cause.
+
+        This method iterates through incomplete sessions saved in the storage
+        repository and looks for the ones that were created using the same
+        app_id as the one currently used.
+
+        Applications can use sessions' metadata (and the app_blob contained
+        in them) to decide which session is the best one to propose resuming.
+        """
+        UsageExpectation.of(self).enforce()
+        # let's keep resume_candidates, so we don't have to load data again
+        self._resume_candidates = {}
+        for storage in self._repo.get_storage_list():
+            data = storage.load_checkpoint()
+            if len(data) == 0:
+                continue
+            try:
+                metadata = SessionPeekHelper().peek(data)
+            except SessionResumeError:
+                _logger.info("Exception raised when trying to resume"
+                             "session: %s", str(storage.id))
+            else:
+                if (metadata.app_id == self._app_id and
+                        SessionMetaData.FLAG_INCOMPLETE in metadata.flags):
+                    candidate = ResumeCandidate(storage.id, metadata)
+                    self._resume_candidates[storage.id] = (storage, metadata)
+                    UsageExpectation.of(self).allowed_calls[
+                        self.resume_session] = "resume session"
+                    yield candidate
+
+    def update_app_blob(self, app_blob: bytes) -> None:
+        """
+        Update custom app data and save the session in the session storage.
+
+        :param app_blob:
+            Bytes sequence containing JSON-ised app_blob object.
+
+        """
+        self._context.state.metadata.app_blob = app_blob
+        self._manager.checkpoint()
 
     @morris.signal
     def session_available(self, session_id):
@@ -402,7 +493,7 @@ class SessionAssistant:
         that session without the need to search and analyze all of the sessions
         in the repository.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         return self._manager.storage.id
 
     @raises(UnexpectedMethodCall)
@@ -425,7 +516,7 @@ class SessionAssistant:
             complete archive (backup) of the directory. This is guaranteed to
             work.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         return self._manager.storage.location
 
     @raises(UnexpectedMethodCall)
@@ -445,7 +536,7 @@ class SessionAssistant:
         This set does not include bootstrap jobs as they must be executed prior
         to actually allowing the user to know what jobs are available.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         return [unit.id for unit in self._context.unit_list
                 if unit.Meta.name == 'test plan']
 
@@ -470,7 +561,7 @@ class SessionAssistant:
         Upon making the selection the application can inspect the execution
         plan which is expressed as a list of jobs to execute.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         test_plan = self._context.get_unit(test_plan_id, 'test plan')
         self._manager.test_plans = (test_plan, )
         if False:
@@ -513,7 +604,7 @@ class SessionAssistant:
             This method will not return until the bootstrap process is
             finished. This can take any amount of time (easily over one minute)
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         # NOTE: there is next-to-none UI here as bootstrap jobs are limited to
         # just resource and local jobs (including their dependencies) so there
         # should be very little UI required.
@@ -530,22 +621,10 @@ class SessionAssistant:
         self._context.state.update_desired_job_list(desired_job_list)
         # Set subsequent usage expectations i.e. all of the runtime parts are
         # available now.
-        UsageExpectation.of(self).allowed_calls = {
-            self.get_job_state: "to access the state of any job",
-            self.get_job: "to access the definition of any job",
-            self.get_test_plan: "to access the definition of any test plan",
-            self.get_category: "to access the definition of ant category",
-            self.get_participating_categories: (
-                "to access participating categories"),
-            self.get_static_todo_list: "to see what is meant to be executed",
-            self.get_dynamic_todo_list: "to see what is yet to be executed",
-            self.run_job: "to run a given job",
-            self.use_alternate_selection: "to change the selection",
-            self.use_job_result: "to feed job result back to the session",
-            # XXX: should this be available right off the bat or should we wait
-            # until all of the mandatory jobs have been executed.
-            self.export_to_transport: "to export the results and send them",
-        }
+        UsageExpectation.of(self).allowed_calls = (
+            self._get_allowed_calls_in_normal_state())
+        self._metadata.flags = {'incomplete'}
+        self._manager.checkpoint()
 
     @raises(KeyError, UnexpectedMethodCall)
     def use_alternate_selection(self, selection: 'Iterable[str]'):
@@ -572,11 +651,37 @@ class SessionAssistant:
             Calling this method will alter the result of
             :meth:`get_static_todo_list()` and :meth:`get_dynamic_todo_list()`.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         desired_job_list = [
             self._context.get_unit(job_id, 'job') for job_id in selection]
-        self._context.state.update_dresired_job_list(desired_job_list)
+        self._context.state.update_desired_job_list(desired_job_list)
 
+    @raises(UnexpectedMethodCall)
+    def filter_jobs_by_categories(self, categories: 'Iterable[str]'):
+        """
+        Filter out jobs with categories that don't match given ones.
+
+        :param categories:
+            A sequence of category identifiers of jobs that should stay in the
+            todo list.
+        :raises UnexpectedMethodCall:
+            If the call is made at an unexpected time. Do not catch this error.
+            It is a bug in your program. The error message will indicate what
+            is the likely cause.
+
+        This method can be called at any time to unselect jobs that belong to
+        a category not present in `categories`.
+
+        .. note::
+            Calling this method will alter the result of
+            :meth:`get_static_todo_list()` and :meth:`get_dynamic_todo_list()`.
+        """
+        selection = [job.id for job in [
+            self.get_job(job_id) for job_id in self.get_static_todo_list()] if
+            job.category_id in categories]
+        self.use_alternate_selection(selection)
+
+    @raises(KeyError, UnexpectedMethodCall)
     def get_job_state(self, job_id: str) -> 'JobState':
         """
         Get the mutable state of the job with the given identifier.
@@ -595,7 +700,7 @@ class SessionAssistant:
             public api stability promise. Refer to the documentation of the
             JobState class for details.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         # XXX: job_state_map is a bit low level, can we avoid that?
         return self._context.state.job_state_map[job_id]
 
@@ -618,7 +723,11 @@ class SessionAssistant:
             public api stability promise. Refer to the documentation of the
             JobDefinition class for details.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
+        # we may want to decide early about the result of the job, without
+        # running it (e.g. when skipping the job)
+        allowed_calls = UsageExpectation.of(self).allowed_calls
+        allowed_calls[self.use_job_result] = "remember the result of this job"
         return self._context.get_unit(job_id, 'job')
 
     @raises(KeyError, UnexpectedMethodCall)
@@ -640,7 +749,7 @@ class SessionAssistant:
             public api stability promise. Refer to the documentation of the
             TestPlanUnit class for details.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         return self._context.get_unit(test_plan_id, 'test plan')
 
     @raises(KeyError, UnexpectedMethodCall)
@@ -662,7 +771,7 @@ class SessionAssistant:
             public api stability promise. Refer to the documentation of the
             CategoryUnit class for details.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         return self._context.get_unit(category_id, 'category')
 
     @raises(UnexpectedMethodCall)
@@ -682,12 +791,12 @@ class SessionAssistant:
         This set does not include boostrap jobs as they must be executed prior
         to actually allowing the user to know what jobs are available.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         test_plan = self._manager.test_plans[0]
         potential_job_list = select_jobs(
             self._context.state.job_list, [test_plan.get_qualifier()])
         return list(set(
-            test_plan.get_effective_category_map(potential_job_list)))
+            test_plan.get_effective_category_map(potential_job_list).values()))
 
     @raises(UnexpectedMethodCall)
     def get_static_todo_list(self) -> 'Iterable[str]':
@@ -711,7 +820,7 @@ class SessionAssistant:
         explicitly requested by the user. Examples of such mechanisms include
         job dependencies, resource dependencies or mandatory jobs.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         return [job.id for job in self._context.state.run_list]
 
     @raises(UnexpectedMethodCall)
@@ -747,17 +856,18 @@ class SessionAssistant:
             generating jobs is hidden and handled by the :meth:`boostrap()`
             method.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         # XXX: job_state_map is a bit low level, can we avoid that?
         jsm = self._context.state.job_state_map
         return [
             job.id for job in self._context.state.run_list
-            if jsm[job.id].result is not job.OUTCOME_NONE]
+            if jsm[job.id].result is not jsm[job.id].result.OUTCOME_NONE]
 
     @raises(ValueError, TypeError, UnexpectedMethodCall)
     def run_job(
-        self, job_id: str, ui: 'Union[str, IJobRunnerUI]'
-    ) -> 'ResultBuilder':
+        self, job_id: str, ui: 'Union[str, IJobRunnerUI]',
+        native: bool
+    ) -> 'JobResultBuilder':
         """
         Run a job with the specific identifier.
 
@@ -767,6 +877,9 @@ class SessionAssistant:
             The user interface delegate to use. As a special case it can be a
             well-known name of a stock user interface. Currently only the
             'silent' user interface is available.
+        :param native:
+            Flag indicating that the job will be run natively by the
+            application. Normal runner won't be used to execute the job
         :raises KeyError:
             If no such job exists
         :raises ValueError:
@@ -777,6 +890,8 @@ class SessionAssistant:
             If the call is made at an unexpected time. Do not catch this error.
             It is a bug in your program. The error message will indicate what
             is the likely cause.
+        :returns:
+            JobResultBuilder instance.
 
         This method can be used to run any job available in the session (not
         only those jobs that are selected, or on the todo list). The result is
@@ -789,7 +904,7 @@ class SessionAssistant:
         with interactive jobs and let the application do anything it needs to
         to accomplish that.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         if isinstance(ui, IJobRunnerUI):
             pass
         elif isinstance(ui, str):
@@ -809,9 +924,14 @@ class SessionAssistant:
             self._context.state.metadata.running_job_name = job.id
             self._manager.checkpoint()
             ui.started_running(job, job_state)
-            builder = self._runner.run_job(
-                job, job_state, self._config, ui
-            ).get_builder()
+            if not native:
+                builder = self._runner.run_job(
+                    job, job_state, self._config, ui
+                ).get_builder()
+            else:
+                builder = JobResultBuilder(
+                    outcome=IJobResult.OUTCOME_UNDECIDED,
+                )
             builder.execution_duration = time.time() - start_time
             self._context.state.metadata.running_job_name = None
             self._manager.checkpoint()
@@ -869,7 +989,7 @@ class SessionAssistant:
         depends on another job will not be able to run if any of its
         dependencies did not complete successfully.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         job = self._context.get_unit(job_id, 'job')
         self._context.state.update_job_result(job, result)
         # Set up expectations so that run_job() and use_job_result() must be
@@ -878,6 +998,24 @@ class SessionAssistant:
         allowed_calls = UsageExpectation.of(self).allowed_calls
         del allowed_calls[self.use_job_result]
         allowed_calls[self.run_job] = "run another job"
+
+    def get_summary(self) -> 'defaultdict':
+        """
+        Get a grand total statistic for the jobs that ran.
+
+        :returns:
+            A defaultdict mapping the number of jobs that have a given outcome
+            to the kind of outcome. E.g. {IJobResult.OUTCOME_PASS: 6, (...)}.
+        """
+        stats = collections.defaultdict(int)
+        for job_state in self._context.state.job_state_map.values():
+            if not job_state.result.outcome:
+                # job not considered for runnning - let's not pollute summary
+                # with data from those jobs
+                continue
+            stats[job_state.result.outcome] += 1
+
+        return stats
 
     @raises(KeyError, TransportError, UnexpectedMethodCall)
     def export_to_transport(
@@ -907,12 +1045,46 @@ class SessionAssistant:
             It is a bug in your program. The error message will indicate what
             is the likely cause.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         exporter = self._manager.create_exporter(exporter_id)
         exported_stream = io.BytesIO()
         exporter.dump_from_session_manager(self._manager, exported_stream)
         exported_stream.seek(0)
         return transport.send(exported_stream)
+
+    @raises(KeyError, OSError)
+    def export_to_file(
+        self, exporter_id: str, option_list: 'list[str]', dir_path: str
+    ) -> str:
+        """
+        Export the session to file using given exporter ID.
+
+        :param exporter_id:
+            The identifier of the exporter unit to use. This must have been
+            loaded into the session from an existing provider. Many users will
+            want to load the ``2013.com.canonical.palainbox:exporter`` provider
+            (via :meth:`load_providers()`.
+        :param option_list:
+            List of options customary to the exporter that is being created.
+        :param dir_path:
+            Path to the directory where session file should be written to.
+            Note that the file name is automatically generated, based on
+            creation time and type of exporter.
+        :returns:
+            Path to the written file.
+        :raises KeyError:
+            When the exporter unit cannot be found.
+        :raises OSError:
+            When there is a problem when writing the output.
+        """
+        UsageExpectation.of(self).enforce()
+        exporter = self._manager.create_exporter(exporter_id, option_list)
+        timestamp = datetime.datetime.utcnow().isoformat()
+        path = os.path.join(dir_path, ''.join(
+            ['submission_', timestamp, '.', exporter.unit.file_extension]))
+        with open(path, 'wb') as stream:
+            exporter.dump_from_session_manager(self._manager, stream)
+        return path
 
     @raises(ValueError, UnexpectedMethodCall)
     def get_canonical_certification_transport(
@@ -941,7 +1113,7 @@ class SessionAssistant:
         This transport, same as the hexr transport, expects the data created by
         the ``"hexr"`` exporter.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         if staging:
             url = ('https://certification.staging.canonical.com/'
                    'submissions/submit/')
@@ -971,13 +1143,31 @@ class SessionAssistant:
         This transport, same as the certification transport, expects the data
         created by the ``"hexr"`` exporter.
         """
-        UsageExpectation.of(self).enforce(back=2)  # 2 is due to @raises
+        UsageExpectation.of(self).enforce()
         if staging:
             url = 'https://hexr.staging.canonical.com/checkbox/submit/'
         else:
             url = 'https://hexr.canonical.com/checkbox/submit/'
         options = "submit_to_hexr=1"
         return CertificationTransport(url, options)
+
+    def _get_allowed_calls_in_normal_state(self) -> dict:
+        return {
+            self.get_job_state: "to access the state of any job",
+            self.get_job: "to access the definition of any job",
+            self.get_test_plan: "to access the definition of any test plan",
+            self.get_category: "to access the definition of ant category",
+            self.get_participating_categories: (
+                "to access participating categories"),
+            self.get_static_todo_list: "to see what is meant to be executed",
+            self.get_dynamic_todo_list: "to see what is yet to be executed",
+            self.run_job: "to run a given job",
+            self.use_alternate_selection: "to change the selection",
+            self.use_job_result: "to feed job result back to the session",
+            # XXX: should this be available right off the bat or should we wait
+            # until all of the mandatory jobs have been executed.
+            self.export_to_transport: "to export the results and send them",
+        }
 
 
 class _SilentUI(IJobRunnerUI):
