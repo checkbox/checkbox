@@ -243,13 +243,14 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def get_testplans(self):
-        all_units = self.manager.default_device_context.unit_list
+        test_plan_units = [self.assistant.get_test_plan(tp_id) for tp_id in
+            self.assistant.get_test_plans()]
         return {
             'testplan_info_list': [{
-                "mod_id": unit.id,
-                "mod_name": unit.name,
+                "mod_id": tp.id,
+                "mod_name": tp.name,
                 "mod_selected": False,
-            } for unit in all_units if unit.Meta.name == 'test plan']
+            } for tp in test_plan_units]
         }
 
     @view
