@@ -218,7 +218,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def get_testplans(self):
         test_plan_units = [self.assistant.get_test_plan(tp_id) for tp_id in
-            self.assistant.get_test_plans()]
+                           self.assistant.get_test_plans()]
         return {
             'testplan_info_list': [{
                 "mod_id": tp.id,
@@ -265,10 +265,10 @@ class CheckboxTouchApplication(PlainboxApplication):
         previously set list. Tests are sorted by (category, name)
         """
         category_names = {
-            cat_id : self.assistant.get_category(cat_id).tr_name() for
-                cat_id in self.assistant.get_participating_categories()}
+            cat_id: self.assistant.get_category(cat_id).tr_name() for
+            cat_id in self.assistant.get_participating_categories()}
         job_units = [self.assistant.get_job(job_id) for job_id in
-            self.assistant.get_static_todo_list()]
+                     self.assistant.get_static_todo_list()]
         test_info_list = [{
             "mod_id": job.id,
             "mod_name": job.tr_summary(),
@@ -276,7 +276,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             "mod_selected": True,
         } for job in job_units]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
-        return { 'test_info_list': test_info_list }
+        return {'test_info_list': test_info_list}
 
     @view
     def get_rerun_candidates(self):
@@ -286,9 +286,9 @@ class CheckboxTouchApplication(PlainboxApplication):
         rerun_candidates = []
         todo_list = self.assistant.get_static_todo_list()
         job_units = {job_id: self.assistant.get_job(job_id) for job_id
-            in todo_list}
+                     in todo_list}
         job_states = {job_id: self.assistant.get_job_state(job_id) for job_id
-            in todo_list}
+                      in todo_list}
         category_names = {
             cat_id: self.assistant.get_category(cat_id).tr_name() for cat_id
             in self.assistant.get_participating_categories()}
@@ -396,7 +396,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP] +
-                stats[IJobResult.OUTCOME_NOT_SUPPORTED]
+            stats[IJobResult.OUTCOME_NOT_SUPPORTED]
         }
 
     @view
@@ -446,7 +446,6 @@ class CheckboxTouchApplication(PlainboxApplication):
                 raise IOError("{} exists and is not a directory".format(path))
             return path
 
-
     def _get_app_blob(self):
         """
         Get json dump of with app-specific blob
@@ -495,7 +494,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
 
 def get_qml_logger(default_level):
-    logging_level = collections.defaultdict(lambda:logging.INFO, {
+    logging_level = collections.defaultdict(lambda: logging.INFO, {
         "debug": logging.DEBUG,
         "warning": logging.WARNING,
         "warn": logging.WARN,
