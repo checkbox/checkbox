@@ -413,6 +413,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Get results object
         """
+        self.assistant.finalize_session()
         stats = self.assistant.get_summary()
         return {
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
