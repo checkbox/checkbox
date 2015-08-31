@@ -52,6 +52,7 @@ from plainbox.impl.secure.origin import Origin
 from plainbox.impl.secure.qualifiers import FieldQualifier
 from plainbox.impl.secure.qualifiers import OperatorMatcher
 from plainbox.impl.secure.qualifiers import select_jobs
+from plainbox.impl.session.assistant import SessionAssistant
 from plainbox.impl.session import SessionManager
 from plainbox.impl.session import SessionMetaData
 from plainbox.impl.session import SessionPeekHelper
@@ -153,21 +154,15 @@ class CheckboxTouchApplication(PlainboxApplication):
         if plainbox.__version__ < (0, 22):
             raise SystemExit("plainbox 0.22 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
-        # adjust_logging(logging.INFO, ['checkbox.touch'], True)
-        self.manager = None
-        self.context = None
-        self.runner = None
-        self.index = 0  # NOTE: next test index
-        # NOTE: This may also have "" representing None
-        self.desired_category_ids = frozenset()
-        self.desired_test_ids = frozenset()
-        self.test_plan_id = ""
-        self.resume_candidate_storage = None
-        self.session_storage_repo = None
-        self.timestamp = datetime.datetime.utcnow().isoformat()
-        self.config = PlainBoxConfig()
-        self._password = None
+        self.assistant = SessionAssistant('checkbox-converged')
         self.ui = CheckboxTouchUI()
+        self.index = 0
+        self._password = None
+        self._timestamp = None
+        self._latest_session = None
+        self.resume_candidate_storage = None
+        self.assistant.use_alternate_repository(
+            self._get_app_cache_directory())
 
     def __repr__(self):
         return "app"
