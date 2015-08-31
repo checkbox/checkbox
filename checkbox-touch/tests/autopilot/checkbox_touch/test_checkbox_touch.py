@@ -62,41 +62,44 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
         self.skip_test('manualIntroPage')
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'passButton'),
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'failButton')
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test('userInteractVerifyIntroPage')
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'passButton'),
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'failButton')
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test('userInteractVerifyIntroPage')
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('userInteractSummary', 'continueButton'),
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('userInteractSummary', 'continueButton'),
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test('userInteractVerifyIntroPage')
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'passButton'),
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
         # now we use long_wait because we have a long test to wait for (>10s)
         self.long_wait_select_single(
-            self.app, objectName='qmlNativePage', visible=True)
+            self.app, objectName='userInteractVerifyIntroPage', visible=True)
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
         next_steps = [
             ('qmlNativePage', 'continueButton'),
             ('qmlTestPage', 'passButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('userInteractSummary', 'continueButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('userInteractSummary', 'continueButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test('userInteractVerifyIntroPage')
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'failButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test('userInteractVerifyIntroPage')
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'failButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test('userInteractVerifyIntroPage')
+        next_steps = [
             ('rerunSelectionPage', 'continueButton')
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
