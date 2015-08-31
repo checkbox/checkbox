@@ -535,13 +535,15 @@ MainView {
     }
 
     function performManualTest(test) {
-        var manualIntroPage = Qt.createComponent(Qt.resolvedUrl("components/ManualIntroPage.qml")).createObject();
-        manualIntroPage.test = test
-        manualIntroPage.testDone.connect(completeTest);
-        manualIntroPage.continueClicked.connect(function() { showVerificationScreen(test); });
-        manualIntroPage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
-        pageStack.push(manualIntroPage);
+        runTestActivity(test, function(test) {
+            var manualIntroPage = Qt.createComponent(Qt.resolvedUrl("components/ManualIntroPage.qml")).createObject();
+            manualIntroPage.test = test
+            manualIntroPage.testDone.connect(completeTest);
+            manualIntroPage.continueClicked.connect(function() { showVerificationScreen(test); });
+            manualIntroPage.__customHeaderContents = progressHeader;
+            progressHeader.update(test);
+            pageStack.push(manualIntroPage);
+        });
     }
 
     function performUserInteractVerifyTest(test) {
@@ -592,25 +594,29 @@ MainView {
     }
 
     function performQmlTest(test) {
-        var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlNativePage.qml"))
-        console.log(comp.errorString());
-        var qmlNativePage = comp.createObject();
-        qmlNativePage.test = test
-        qmlNativePage.testDone.connect(completeTest);
-        qmlNativePage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
-        pageStack.push(qmlNativePage);
+        runTestActivity(test, function(test) {
+            var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlNativePage.qml"))
+            console.log(comp.errorString());
+            var qmlNativePage = comp.createObject();
+            qmlNativePage.test = test
+            qmlNativePage.testDone.connect(completeTest);
+            qmlNativePage.__customHeaderContents = progressHeader;
+            progressHeader.update(test);
+            pageStack.push(qmlNativePage);
+        });
     }
     function performConfinedQmlTest(test) {
-        var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlConfinedPage.qml"))
-        console.log(comp.errorString());
-        var qmlNativePage = comp.createObject();
-        qmlNativePage.test = test
-        qmlNativePage.applicationVersion = app.applicationVersion;
-        qmlNativePage.testDone.connect(completeTest);
-        qmlNativePage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
-        pageStack.push(qmlNativePage);
+        runTestActivity(test, function(test) {
+            var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlConfinedPage.qml"))
+            console.log(comp.errorString());
+            var qmlNativePage = comp.createObject();
+            qmlNativePage.test = test
+            qmlNativePage.applicationVersion = app.applicationVersion;
+            qmlNativePage.testDone.connect(completeTest);
+            qmlNativePage.__customHeaderContents = progressHeader;
+            progressHeader.update(test);
+            pageStack.push(qmlNativePage);
+        });
     }
 
     function showVerificationScreen(test) {
