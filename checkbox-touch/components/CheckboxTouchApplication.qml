@@ -45,8 +45,8 @@ PythonObjectRef {
     // Starts session in plainbox and runs all necessary setup actions.
     // Calling this function will signal sessionReady() once it's finished
     // doing setup.
-    function startSession(providersDir) {
-        request("start_session", [providersDir], function(result) {
+    function startSession() {
+        request("start_session", [], function(result) {
             sessionDir = result['session_dir'];
             sessionReady();
         }, function(error) {
@@ -57,8 +57,8 @@ PythonObjectRef {
                                  i18n.tr("Quit"));
         });
     }
-    function resumeSession(rerunLastTest, providersDir, continuation) {
-        request("resume_session", [rerunLastTest, providersDir], function(result) {
+    function resumeSession(rerunLastTest, continuation) {
+        request("resume_session", [rerunLastTest], function(result) {
             if (!result["session_id"]) {
                 pageStack.pop();
                 ErrorLogic.showError(mainView,

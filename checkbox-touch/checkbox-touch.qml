@@ -155,7 +155,7 @@ MainView {
                 "checkbox_touch" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
-            resumeOrStartSession(appSettings["providersDir"]);
+            resumeOrStartSession();
         }
         onSessionReady: {
             welcomePage.enableButton()
@@ -163,7 +163,8 @@ MainView {
         Component.onCompleted: {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
-                construct("checkbox_touch.create_app_object", []);
+                construct("checkbox_touch.create_app_object", [
+                    appSettings["providersDir"]]);
             });
         }
     }
@@ -267,14 +268,14 @@ MainView {
 
     ResumeSessionPage {
         id: resumeSessionPage
-        onRerunLast: app.resumeSession(true, appSettings["providersDir"], processNextTest)
-        onContinueSession: app.resumeSession(false, appSettings["providersDir"], processNextTest)
+        onRerunLast: app.resumeSession(true, processNextTest)
+        onContinueSession: app.resumeSession(false, processNextTest)
         resumeText: i18n.tr("Checkbox did not finish completely.\nDo you want \
  to rerun last test, continue to the next test, or restart from the beginning?")
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
-            app.startSession(appSettings["providersDir"]);
+            app.startSession();
         }
     }
 
@@ -407,10 +408,10 @@ MainView {
             } else {
                 if (result.errors_encountered) {
                     ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
-                                         app.startSession(appSettings["providersDir"]),
+                                         app.startSession(),
                                          i18n.tr("Start new session"));
                 } else {
-                    app.startSession(appSettings["providersDir"]);
+                    app.startSession();
                 }
             }
         });
@@ -502,7 +503,7 @@ MainView {
             resultsPage.endTesting.connect(function() {
                 pageStack.clear();
                 app.clearSession(function() {
-                    app.startSession(appSettings["providersDir"]);
+                    app.startSession();
                     pageStack.push(welcomePage);
                 });
             });

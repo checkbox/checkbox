@@ -150,7 +150,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     __version__ = (1, 2, 1, 'final', 0)
 
-    def __init__(self):
+    def __init__(self, providers_dir):
         if plainbox.__version__ < (0, 22):
             raise SystemExit("plainbox 0.22 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
@@ -163,6 +163,9 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.resume_candidate_storage = None
         self.assistant.use_alternate_repository(
             self._get_app_cache_directory())
+        self.assistant.select_providers(
+            '*',
+            additional_providers=self._get_embedded_providers(providers_dir))
 
     def __repr__(self):
         return "app"
@@ -177,10 +180,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def start_session(self, providers_dir):
-        self.assistant.select_providers(
-            '*',
-            additional_providers=self._get_embedded_providers(providers_dir))
+    def start_session(self):
         self.assistant.start_new_session('Checkbox Converged session')
         self._timestamp = datetime.datetime.utcnow().isoformat()
         return {
@@ -189,10 +189,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def resume_session(self, rerun_last_test, providers_dir):
-        self.assistant.select_providers(
-            '*',
-            additional_providers=self._get_embedded_providers(providers_dir))
+    def resume_session(self, rerun_last_test):
         metadata = self.assistant.resume_session(self._latest_session)
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
         self.index = app_blob['index_in_run_list']
