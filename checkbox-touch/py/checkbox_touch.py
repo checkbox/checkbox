@@ -309,17 +309,22 @@ class CheckboxTouchApplication(PlainboxApplication):
         def rerun_predicate(job_state):
             return job_state.result.outcome in (
                 IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH)
-        id_map = self.context.compute_shared(
-            'id_map', compute_value_map, self.context, 'id')
         rerun_candidates = []
-        for job in self.manager.state.run_list:
-            if rerun_predicate(self.manager.state.job_state_map[job.id]):
+        todo_list = self.assistant.get_static_todo_list()
+        job_units = {job_id: self.assistant.get_job(job_id) for job_id
+            in todo_list}
+        job_states = {job_id: self.assistant.get_job_state(job_id) for job_id
+            in todo_list}
+        category_names = {
+            cat_id: self.assistant.get_category(cat_id).tr_name() for cat_id
+            in self.assistant.get_participating_categories()}
+        for job_id, job_state in job_states.items():
+            if rerun_predicate(job_state):
                 rerun_candidates.append({
-                    "mod_id": job.id,
-                    "mod_name": job.tr_summary(),
-                    "mod_group": id_map[job.category_id][0].tr_name(),
+                    "mod_id": job_id,
+                    "mod_name": job_units[job_id].tr_summary(),
+                    "mod_group": category_names[job_units[job_id].category_id],
                     "mod_selected": False
-
                     })
         return rerun_candidates
 
