@@ -416,15 +416,12 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Get results object
         """
-        self.context.state.metadata.flags.remove('incomplete')
-        self._checkpoint()
-        stats = collections.defaultdict(int)
-        for job_state in self.context.state.job_state_map.values():
-            stats[job_state.result.outcome] += 1
+        stats = self.assistant.get_summary()
         return {
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
-            'totalSkipped': stats[IJobResult.OUTCOME_SKIP],
+            'totalSkipped': stats[IJobResult.OUTCOME_SKIP] +
+                stats[IJobResult.OUTCOME_NOT_SUPPORTED]
         }
 
     @view
