@@ -227,37 +227,19 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Checks whether given session is resumable
         """
-        resumable = False
-        try:
-            with open(os.path.join(self._get_app_cache_directory(),
-                      'session_id')) as f:
-                session_id = f.readline().rstrip('\n')
-        except (OSError, IOError):
-            session_id = None
-        self._init_session_storage_repo()
-        for storage in self.session_storage_repo.get_storage_list():
-            data = storage.load_checkpoint()
-            if len(data) == 0:
-                continue
-            try:
-                metadata = SessionPeekHelper().peek(data)
-                if (metadata.app_id == 'checkbox-touch'
-                        and storage.id == session_id
-                        and SessionMetaData.FLAG_INCOMPLETE in
-                        metadata.flags):
-                    self.resume_candidate_storage = storage
-                    resumable = True
-            except SessionResumeError as exc:
-                _logger.info("Exception raised when trying to resume"
-                             "session: %s", str(exc))
-                return {
-                    'resumable': False,
-                    'errors_encountered': True
-                }
-        return {
-            'resumable': resumable,
-            'errors_encountered': False
-        }
+        for session_id, session_md in self.assistant.get_resumable_sessions():
+            # we're interested in the latest session only, this is why we
+            # return early
+            self._latest_session = session_id
+            return {
+                'resumable': True,
+                'error_encountered': False,
+            }
+        else:
+            return {
+                'resumable': False,
+                'error_encountered': False,
+            }
 
     @view
     def get_testplans(self):
