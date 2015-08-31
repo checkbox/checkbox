@@ -208,16 +208,8 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def clear_session(self):
-        self.manager = None
-        self.context = None
-        self.runner = None
         self.index = 0
-        self.timestamp = datetime.datetime.utcnow().isoformat()
-        self.desired_category_ids = frozenset()
-        self.desired_test_ids = frozenset()
-        self.resume_candidate_storage = None
-        self.session_storage_repo = None
-        os.unlink(os.path.join(self._get_app_cache_directory(), 'session_id'))
+        self._timestamp = datetime.datetime.utcnow().isoformat()
 
     @view
     def is_session_resumable(self):
