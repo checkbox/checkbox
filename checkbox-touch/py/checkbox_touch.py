@@ -333,25 +333,11 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Save test selection
         """
-        self.desired_test_ids = frozenset(selected_id_list)
-        _logger.info("Selected tests: %s", self.desired_test_ids)
         self.index = 0
-        self.context.invalidate_shared('desired_job_list')
-        desired_job_list = self.context.compute_shared(
-            'desired_job_list', select_jobs,
-            self.context.state.job_list, [
-                # Select everything the test plan selected
-                self.test_plan.get_qualifier(),
-                # Except all the jobs that weren't marked by the user
-                FieldQualifier(
-                    JobDefinition.Meta.fields.id,
-                    OperatorMatcher(not_contains, self.desired_test_ids),
-                    Origin.get_caller_origin(), inclusive=False)])
-        _logger.info("Desired job list: %s", desired_job_list)
-        self.context.state.update_desired_job_list(desired_job_list)
-        _logger.info("Run job list: %s", self.context.state.run_list)
-        self.context.state.metadata.flags.add('incomplete')
-        self._checkpoint()
+        self.assistant.use_alternate_selection(selected_id_list)
+        self.assistant.update_app_blob(self._get_app_blob())
+        _logger.info("Selected tests: %s", selected_id_list)
+        return
 
     @view
     def get_next_test(self):
