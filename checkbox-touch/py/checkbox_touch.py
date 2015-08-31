@@ -279,10 +279,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Save category selection
         """
-        self.desired_category_ids = frozenset(selected_id_list)
-        self.context.invalidate_shared('subset_job_list')
-        self.context.invalidate_shared('effective_category_map')
-        _logger.info("Selected categories: %s", self.desired_category_ids)
+        _logger.info("Selected categories: %s", selected_id_list)
+        self.assistant.filter_jobs_by_categories(selected_id_list)
 
     @view
     def get_available_tests(self):
