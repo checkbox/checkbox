@@ -7,7 +7,7 @@ fi
 
 SCRIPTPATH=`dirname $0`
 pushd ${SCRIPTPATH}
-autopilot run --timeout-profile=long checkbox_touch
+python3 `which autopilot3` run --timeout-profile=long checkbox_touch
 ret=$?
 popd
 exit $ret
