@@ -474,33 +474,6 @@ class CheckboxTouchApplication(PlainboxApplication):
                 'session_timestamp': self._timestamp,
             }).encode("UTF-8")
 
-    def _init_test_plan_id(self, test_plan_id):
-        """
-        Validates and stores test_plan_id
-        """
-        if not isinstance(test_plan_id, str):
-            raise TypeError("test_plan_id must be a string")
-        # Look up the test plan with the specified identifier
-        id_map = self.context.compute_shared(
-            'id_map', compute_value_map, self.context, 'id')
-        try:
-            test_plan = id_map[test_plan_id][0]
-        except KeyError:
-            raise ValueError(
-                "cannot find any unit with id: {!r}".format(test_plan_id))
-        if test_plan.Meta.name != 'test plan':
-            raise ValueError(
-                "unit {!r} is not a test plan".format(test_plan_id))
-        self.test_plan_id = test_plan_id
-        self.test_plan = test_plan
-
-    def _init_session_storage_repo(self):
-        """
-        Init storage repository.
-        """
-        self.session_storage_repo = SessionStorageRepository(
-            self._get_app_cache_directory())
-
     def _get_embedded_providers(self, providers_dir):
         """
         Get providers included with the app
@@ -514,28 +487,6 @@ class CheckboxTouchApplication(PlainboxApplication):
         app_root_dir = os.path.normpath(os.getenv(
             'APP_DIR', os.path.join(os.path.dirname(__file__), '..')))
         path = os.path.join(app_root_dir, os.path.normpath(providers_dir))
-        _logger.info("Loading all providers from %s", path)
-        if os.path.exists(path):
-            embedded_providers = EmbeddedProvider1PlugInCollection(path)
-            provider_list += embedded_providers.get_all_plugin_objects()
-        return provider_list
-
-    def _get_default_providers(self, providers_dir):
-        """
-        Get providers
-
-        :param providers_dir:
-            Path within application tree from which to load providers
-        :returns:
-            list of loaded providers
-        """
-        provider_list = get_providers()
-        # when running on ubuntu-touch device, APP_DIR env var is present
-        # and points to touch application top directory
-        app_root_dir = os.path.normpath(os.getenv(
-            'APP_DIR', os.path.join(os.path.dirname(__file__), '..')))
-        path = os.path.join(app_root_dir,
-                            os.path.normpath(providers_dir))
         _logger.info("Loading all providers from %s", path)
         if os.path.exists(path):
             embedded_providers = EmbeddedProvider1PlugInCollection(path)
