@@ -472,10 +472,6 @@ class CheckboxTouchApplication(PlainboxApplication):
             return path
 
 
-    def _checkpoint(self):
-        self.context.state.metadata.app_blob = self._get_app_blob()
-        self.manager.checkpoint()
-
     def _get_app_blob(self):
         """
         Get json dump of with app-specific blob
