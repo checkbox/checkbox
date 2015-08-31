@@ -485,6 +485,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 'version': 1,
                 'test_plan_id': self.test_plan_id,
                 'index_in_run_list': self.index,
+                'session_timestamp': self._timestamp,
             }).encode("UTF-8")
 
     def _init_test_plan_id(self, test_plan_id):
