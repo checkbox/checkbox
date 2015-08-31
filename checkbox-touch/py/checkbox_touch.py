@@ -345,10 +345,9 @@ class CheckboxTouchApplication(PlainboxApplication):
         Get next text that is scheduled to run
         Returns test object or None if all tests are completed
         """
-        if self.index < len(self.context.state.run_list):
-            job = self.context.state.run_list[self.index]
-            job_state = self.context.state.job_state_map[job.id]
-            # support for description field splitted into 3 subfields
+        todo_list = self.assistant.get_static_todo_list()
+        if self.index < len(todo_list):
+            job = self.assistant.get_job(todo_list[self.index])
             description = ""
             if job.tr_purpose() is not None:
                 description = job.tr_purpose() + "\n"
@@ -367,16 +366,11 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "user": job.user,
                 "qml_file": job.qml_file,
                 "start_time": time.time(),
-                "test_number": self.index,
-                "tests_count": len(self.context.state.run_list),
+                "test_number": todo_list.index(job.id),
+                "tests_count": len(todo_list),
                 "command": job.command,
                 "flags": job.get_flag_set()
             }
-            if not job_state.can_start():
-                test["outcome"] = "skip"
-                test["comments"] = job_state.get_readiness_description()
-                self.register_test_result(test)
-                return self.get_next_test()["result"]
             return test
         else:
             return {}
