@@ -264,26 +264,15 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Get categories selection data.
         """
-        potential_job_list = self.context.compute_shared(
-            'potential_job_list', select_jobs,
-            self.context.state.job_list, [self.test_plan.get_qualifier()])
-        potential_category_map = self.context.compute_shared(
-            'potential_category_map',
-            self.test_plan.get_effective_category_map, potential_job_list)
-        id_map = self.context.compute_shared(
-            'id_map', compute_value_map, self.context, 'id')
         category_info_list = [{
             "mod_id": category.id,
             "mod_name": category.name,
             "mod_selected": True,
         } for category in (
-            id_map[category_id][0]
-            for category_id in set(potential_category_map.values())
+            self.assistant.get_category(category_id)
+            for category_id in self.assistant.get_participating_categories()
         )]
-        category_info_list.sort(key=lambda ci: ci['mod_name'])
-        return {
-            'category_info_list': category_info_list
-        }
+        return {'category_info_list': category_info_list}
 
     @view
     def remember_categories(self, selected_id_list):
