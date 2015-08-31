@@ -511,6 +511,25 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.session_storage_repo = SessionStorageRepository(
             self._get_app_cache_directory())
 
+    def _get_embedded_providers(self, providers_dir):
+        """
+        Get providers included with the app
+
+        :param providers_dir:
+            Path within application tree from which to load providers
+        :returns:
+            list of loaded providers
+        """
+        provider_list = []
+        app_root_dir = os.path.normpath(os.getenv(
+            'APP_DIR', os.path.join(os.path.dirname(__file__), '..')))
+        path = os.path.join(app_root_dir, os.path.normpath(providers_dir))
+        _logger.info("Loading all providers from %s", path)
+        if os.path.exists(path):
+            embedded_providers = EmbeddedProvider1PlugInCollection(path)
+            provider_list += embedded_providers.get_all_plugin_objects()
+        return provider_list
+
     def _get_default_providers(self, providers_dir):
         """
         Get providers
