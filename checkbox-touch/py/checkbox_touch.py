@@ -166,6 +166,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def start_session(self):
+        """Start a new session."""
         self.assistant.start_new_session('Checkbox Converged session')
         self._timestamp = datetime.datetime.utcnow().isoformat()
         return {
@@ -175,6 +176,13 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def resume_session(self, rerun_last_test):
+        """
+        Resume latest sesssion.
+
+        :param rerun_last_test:
+            A bool stating whether runtime should repeat the test, that the app
+            was executing when it was interrupted.
+        """
         metadata = self.assistant.resume_session(self._latest_session)
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
         self.index = app_blob['index_in_run_list']
@@ -193,14 +201,13 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def clear_session(self):
+        """Reset app-custom state info about the session."""
         self.index = 0
         self._timestamp = datetime.datetime.utcnow().isoformat()
 
     @view
     def is_session_resumable(self):
-        """
-        Checks whether given session is resumable
-        """
+        """Check whether there is a session that can be resumed."""
         for session_id, session_md in self.assistant.get_resumable_sessions():
             # we're interested in the latest session only, this is why we
             # return early
@@ -217,6 +224,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def get_testplans(self):
+        """Get the list of available test plans."""
         test_plan_units = [self.assistant.get_test_plan(tp_id) for tp_id in
                            self.assistant.get_test_plans()]
         return {
@@ -229,15 +237,14 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def remember_testplan(self, test_plan_id):
+        """Pick the test plan as the one in force."""
         self.test_plan_id = test_plan_id
         self.assistant.select_test_plan(test_plan_id)
         self.assistant.bootstrap()
 
     @view
     def get_categories(self):
-        """
-        Get categories selection data.
-        """
+        """Get categories selection data."""
         category_info_list = [{
             "mod_id": category.id,
             "mod_name": category.name,
@@ -250,9 +257,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def remember_categories(self, selected_id_list):
-        """
-        Save category selection
-        """
+        """Save category selection."""
         _logger.info("Selected categories: %s", selected_id_list)
         self.assistant.filter_jobs_by_categories(selected_id_list)
 
@@ -280,6 +285,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def get_rerun_candidates(self):
+        """Get all the tests that might be selected for rerunning."""
         def rerun_predicate(job_state):
             return job_state.result.outcome in (
                 IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH)
@@ -304,9 +310,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def remember_tests(self, selected_id_list):
-        """
-        Save test selection
-        """
+        """Save test selection."""
         self.index = 0
         self.assistant.use_alternate_selection(selected_id_list)
         self.assistant.update_app_blob(self._get_app_blob())
@@ -316,8 +320,10 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def get_next_test(self):
         """
-        Get next text that is scheduled to run
-        Returns test object or None if all tests are completed
+        Get next text that is scheduled to run.
+
+        :returns:
+        Dictionary resembling JobDefinition or None if all tests are completed
         """
         todo_list = self.assistant.get_static_todo_list()
         if self.index < len(todo_list):
@@ -351,9 +357,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def register_test_result(self, test):
-        """
-        Registers outcome of a test
-        """
+        """Registers outcome of a test."""
         _logger.info("Storing test result: %s", test)
         job_id = test['id']
         builder_kwargs = {
@@ -375,9 +379,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def run_test_activity(self, test):
-        """
-        Run command associated with given test
-        """
+        """Run command associated with given test."""
         plugins_handled_natively = ['qml']
         res_builder = self.assistant.run_job(
             test['id'], self.ui, test['plugin'] in plugins_handled_natively)
@@ -387,9 +389,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def get_results(self):
-        """
-        Get results object
-        """
+        """Get results object."""
         self.assistant.finalize_session()
         stats = self.assistant.get_summary()
         return {
@@ -401,10 +401,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def export_results(self, output_format, option_list):
-        """
-        Export results to file
-        """
-        # Export results in the user's Documents directory
+        """Export results to file(s) in the user's 'Documents' directory.."""
         dirname = self._get_user_directory_documents()
         return self.assistant.export_to_file(
             output_format, option_list, dirname)
