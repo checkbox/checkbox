@@ -431,13 +431,8 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         # Export results in the user's Documents directory
         dirname = self._get_user_directory_documents()
-        exporter = self.manager.create_exporter(output_format, option_list)
-        extension = exporter.unit.file_extension
-        filename = ''.join(['submission_', self.timestamp, '.', extension])
-        output_file = os.path.join(dirname, filename)
-        with open(output_file, 'wb') as stream:
-            exporter.dump_from_session_manager(self.manager, stream)
-        return output_file
+        return self.assistant.export_to_file(
+            output_format, option_list, dirname)
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
