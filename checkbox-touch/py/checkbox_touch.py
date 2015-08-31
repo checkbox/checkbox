@@ -178,81 +178,35 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def start_session(self, providers_dir):
-        if self.manager is not None:
-            _logger.warning("start_session() should not be called twice!")
-        else:
-            self._init_session_storage_repo()
-            self.manager = SessionManager.create(self.session_storage_repo)
-            self.manager.add_local_device_context()
-            self.context = self.manager.default_device_context
-            # Add some all providers into the context
-            for provider in self._get_default_providers(providers_dir):
-                self.context.add_provider(provider)
-            # Fill in the meta-data
-            self.context.state.metadata.app_id = 'checkbox-touch'
-            self.context.state.metadata.title = 'Checkbox Touch Session'
-            self.context.state.metadata.flags.add('bootstrapping')
-            # Checkpoint the session so that we have something to see
-            self._checkpoint()
-
-            # Prepare custom execution controller list
-            from plainbox.impl.ctrl import UserJobExecutionController
-            from sudo_with_pass_ctrl import \
-                RootViaSudoWithPassExecutionController
-            controllers = [
-                RootViaSudoWithPassExecutionController(
-                    self.context.provider_list, self._password_provider),
-                UserJobExecutionController(self.context.provider_list),
-            ]
-            self.runner = JobRunner(
-                self.manager.storage.location,
-                self.context.provider_list,
-                # TODO: tie this with well-known-dirs helper
-                os.path.join(self.manager.storage.location, 'io-logs'),
-                execution_ctrl_list=controllers)
-        app_cache_dir = self._get_app_cache_directory()
-        if not os.path.exists(app_cache_dir):
-            os.makedirs(app_cache_dir)
-        with open(os.path.join(app_cache_dir, 'session_id'),
-                  'w') as f:
-            f.write(self.manager.storage.id)
+        self.assistant.select_providers(
+            '*',
+            additional_providers=self._get_embedded_providers(providers_dir))
+        self.assistant.start_new_session('Checkbox Converged session')
+        self._timestamp = datetime.datetime.utcnow().isoformat()
         return {
-            'session_id': self.manager.storage.id,
-            'session_dir': self.manager.storage.location
+            'session_id': self.assistant.get_session_id(),
+            'session_dir': self.assistant.get_session_dir()
         }
 
     @view
     def resume_session(self, rerun_last_test, providers_dir):
-        all_units = list(itertools.chain(
-            *[p.unit_list for p in self._get_default_providers(
-                providers_dir)]))
-        try:
-            self.manager = SessionManager.load_session(
-                all_units, self.resume_candidate_storage)
-        except IOError as exc:
-            _logger.info("Exception raised when trying to resume"
-                         "session: %s", str(exc))
-            return {
-                'session_id': None
-            }
-        self.context = self.manager.default_device_context
-        metadata = self.context.state.metadata
+        self.assistant.select_providers(
+            '*',
+            additional_providers=self._get_embedded_providers(providers_dir))
+        metadata = self.assistant.resume_session(self._latest_session)
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
-        self.runner = JobRunner(
-            self.manager.storage.location,
-            self.context.provider_list,
-            os.path.join(self.manager.storage.location, 'io-logs'))
         self.index = app_blob['index_in_run_list']
-        self._init_test_plan_id(app_blob['test_plan_id'])
-        _logger.error(self.context.state.run_list)
-        _logger.error(self.index)
+        self.test_plan_id = app_blob['test_plan_id']
+        self.assistant.select_test_plan(self.test_plan_id)
+        self.assistant.bootstrap()
+
         if not rerun_last_test:
             # Skip current test
             test = self.get_next_test()['result']
             test['outcome'] = 'skip'
             self.register_test_result(test)
         return {
-            'session_id': self.manager.storage.id
+            'session_id': self._latest_session
         }
 
     @view
