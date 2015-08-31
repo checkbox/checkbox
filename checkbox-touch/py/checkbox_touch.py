@@ -32,7 +32,6 @@ sys.path = [item for item in sys.path if not item.startswith('/usr/local')]
 import abc
 import collections
 import datetime
-import itertools
 import json
 import logging
 import os
@@ -43,24 +42,10 @@ import traceback
 
 from plainbox.abc import IJobResult
 from plainbox.impl import pod
-from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
 from plainbox.impl.result import JobResultBuilder
-from plainbox.impl.runner import JobRunner
-from plainbox.impl.secure.origin import Origin
-from plainbox.impl.secure.qualifiers import FieldQualifier
-from plainbox.impl.secure.qualifiers import OperatorMatcher
-from plainbox.impl.secure.qualifiers import select_jobs
 from plainbox.impl.session.assistant import SessionAssistant
-from plainbox.impl.session import SessionManager
-from plainbox.impl.session import SessionMetaData
-from plainbox.impl.session import SessionPeekHelper
-from plainbox.impl.session import SessionResumeError
-from plainbox.impl.session.storage import SessionStorageRepository
-from plainbox.impl.unit.job import JobDefinition
-from plainbox.impl.unit.validators import compute_value_map
-from plainbox.public import get_providers
 import plainbox
 
 from embedded_providers import EmbeddedProvider1PlugInCollection
