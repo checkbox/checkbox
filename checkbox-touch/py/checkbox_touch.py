@@ -290,35 +290,20 @@ class CheckboxTouchApplication(PlainboxApplication):
         The response object will contain only tests with category matching
         previously set list. Tests are sorted by (category, name)
         """
-        subset_job_list = self.context.compute_shared(
-            'subset_job_list', select_jobs,
-            self.context.state.job_list, [
-                # Select everything the test plan selected
-                self.test_plan.get_qualifier(),
-                # Except jobs not matching the selected group of categories
-                FieldQualifier(
-                    JobDefinition.Meta.fields.category_id,
-                    OperatorMatcher(not_contains, self.desired_category_ids),
-                    Origin.get_caller_origin(), inclusive=False),
-            ])
-        effective_category_map = self.context.compute_shared(
-            'effective_category_map',
-            self.test_plan.get_effective_category_map, subset_job_list)
-        for job_id, effective_category_id in effective_category_map.items():
-            job_state = self.context.state.job_state_map[job_id]
-            job_state.effective_category_id = effective_category_id
-        id_map = self.context.compute_shared(
-            'id_map', compute_value_map, self.context, 'id')
+        category_names = {
+            cat_id : self.assistant.get_category(cat_id).tr_name() for
+                cat_id in self.assistant.get_participating_categories()}
+        job_units = [self.assistant.get_job(job_id) for job_id in
+            self.assistant.get_static_todo_list()]
         test_info_list = [{
-            "mod_id": job_id,
-            "mod_name": id_map[job_id][0].tr_summary(),
-            "mod_group": id_map[category_id][0].tr_name(),
+            "mod_id": job.id,
+            "mod_name": job.tr_summary(),
+            "mod_group": category_names[job.category_id],
             "mod_selected": True,
-        } for job_id, category_id in effective_category_map.items()]
+        } for job in job_units]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
-        return {
-            'test_info_list': test_info_list
-        }
+        return { 'test_info_list': test_info_list }
+
     @view
     def get_rerun_candidates(self):
         def rerun_predicate(job_state):
