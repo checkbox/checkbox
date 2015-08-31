@@ -404,22 +404,11 @@ class CheckboxTouchApplication(PlainboxApplication):
         """
         Run command associated with given test
         """
-        job_id = test['id']
-        job_state = self.context.state.job_state_map[job_id]
-        job = job_state.job
-        self.context.state.running_job_name = job_id
-        self._checkpoint()
-        try:
-            result = self.runner.run_job(job, job_state, self.config, self.ui)
-        except OSError as exc:
-            result = JobResultBuilder(
-                outcome='fail',
-                comment=str(exc),
-            ).get_result()
-        self.context.state.running_job_name = None
-        self._checkpoint()
-        test['outcome'] = result.outcome
-        test['result'] = result
+        plugins_handled_natively = ['qml']
+        res_builder = self.assistant.run_job(
+            test['id'], self.ui, test['plugin'] in plugins_handled_natively)
+        test['outcome'] = res_builder.outcome
+        test['result'] = res_builder
         return test
 
     @view
