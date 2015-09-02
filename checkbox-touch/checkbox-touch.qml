@@ -632,5 +632,32 @@ MainView {
         progressHeader.update(test);
         pageStack.push(verificationPage);
     }
+    function getSubmissionInput(continuation) {
+        if (!appSettings.submission.input) {
+            // no input to process
+            continuation();
+            return;
+        }
+        var input_vars = appSettings.submission.input.slice(); //copy array
+
+        // Because of the asynchronous nature of qml we cannot just launch
+        // N number of popups each asking for one submission variable
+        var process_input = function() {
+            if (input_vars.length > 0) {
+                var input = input_vars.shift();
+                var dlg_cmp = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml"));
+                var dlg = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml")).createObject(mainView);
+                dlg.prompt = i18n.tr("Input submission parameter " + input);
+                dlg.textEntered.connect(function(text) {
+                    appSettings.submission[input] = text;
+                    process_input();
+                });
+                PopupUtils.open(dlg.dialogComponent);
+                return;
+            }
+            continuation();
+        }
+        process_input();
+    }
 
 }
