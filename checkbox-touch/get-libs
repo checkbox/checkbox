@@ -71,8 +71,9 @@ def prepare_uris(get_autopilot):
                 'python3-testscenarios', 'python3-subunit', 'python3-fixtures', 'python3-junitxml',
                 'python3-extras', 'python3-evdev']
     packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
-                'python3-jinja2', 'python3-markupsafe',
-                'qml-module-qtquick-qchartjs']
+                'python3-jinja2', 'python3-markupsafe', 'python3-padme',
+                'qml-module-qtquick-qchartjs', 'python3-requests',
+                'python3-urllib3']
     if get_autopilot:
         packages += ap_packages
     # uris will serve as a database of uris from which to download packages
@@ -219,7 +220,8 @@ def main():
     # and extracted. After extraction contents of
     # ./usr/lib/python3/dist-packages are copied to ./lib/py.
     python3_libs = ['python3-xlsxwriter', 'python3-jinja2',
-                    'python3-markupsafe']
+                    'python3-markupsafe', 'python3-padme', 'python3-requests',
+                    'python3-urllib3']
 
     # additional libs needed to support autopilot tests.  these were obtained by
     # running apt-cache depends on python3-autopilot
