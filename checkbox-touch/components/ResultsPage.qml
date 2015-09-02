@@ -36,7 +36,9 @@ Page {
 
     objectName: "resultsPage"
     property var results: {"totalPassed": 0, "totalFailed": 0, "totalSkipped": 0}
+    property string submissionName: ""
     signal saveReportClicked()
+    signal submitReportClicked()
     signal endTesting()
 
     head {
@@ -155,6 +157,14 @@ Page {
             Layout.fillWidth: true
             text: i18n.tr("Save detailed report")
             onLatchedClicked: saveReportClicked();
+        }
+        LatchButton {
+            id: submitResultsButton
+            unlatchedColor: UbuntuColors.green
+            visible: submissionName
+            Layout.fillWidth: true
+            text: i18n.tr("Submit results to " + submissionName)
+            onLatchedClicked: submitReportClicked();
         }
     }
 }
