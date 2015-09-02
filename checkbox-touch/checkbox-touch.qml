@@ -59,7 +59,8 @@ MainView {
         "applicationName" : applicationName,
         "revision": "unknown revision",
         "testplan": "",
-        "providersDir": "providers"
+        "providersDir": "providers",
+        "submission": null
     }
 
     Arguments {
@@ -500,6 +501,9 @@ MainView {
         app.getResults(function(results) {
             var resultsPage = Qt.createComponent(Qt.resolvedUrl("components/ResultsPage.qml")).createObject();
             resultsPage.results = results;
+            if (appSettings["submission"]) {
+                resultsPage.submissionName = appSettings["submission"].name;
+            }
             resultsPage.endTesting.connect(function() {
                 pageStack.clear();
                 app.clearSession(function() {
