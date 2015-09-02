@@ -159,6 +159,15 @@ PythonObjectRef {
             console.error("Unable to export test results");
         });
     }
+    function submitResults(config, continuation) {
+        request("submit_results", [config], continuation, function(error) {
+            console.error("Unable to submit test results");
+            ErrorLogic.showError(mainView,
+                                 i18n.tr("Could not submit results. Reason:\n" + error),
+                                 function(){},
+                                 i18n.tr("OK"));
+        });
+    }
 
     function rememberPassword(password, continuation) {
         // using low-level py.call() to 'silently' pass password string through pyotherside
