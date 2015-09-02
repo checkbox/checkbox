@@ -526,6 +526,21 @@ MainView {
                     });
                 });
             });
+            resultsPage.submitReportClicked.connect(function() {
+                getSubmissionInput(function() {
+                    app.submitResults(appSettings["submission"], function(reply) {
+                        // pretty-stringify reply
+                        var s = ""
+                        for (var i in reply) {
+                            s += i + ': ' + reply[i] + '\n';
+                        }
+                        CbtDialogLogic.showDialog(
+                            resultsPage,
+                            i18n.tr("Report has been submited.\n" + s),
+                            [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                    })
+                });
+            });
             pageStack.push(resultsPage);
         });
     }
