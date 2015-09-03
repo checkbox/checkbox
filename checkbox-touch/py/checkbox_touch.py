@@ -406,6 +406,27 @@ class CheckboxTouchApplication(PlainboxApplication):
         return self.assistant.export_to_file(
             output_format, option_list, dirname)
 
+    @view
+    def submit_results(self, config):
+        """Submit results to a service configured by config."""
+
+        transport = {
+            'hexr': self.assistant.get_canonical_hexr_transport,
+            'hexr-staging': (
+                lambda: self.assistant.get_canonical_hexr_transport(
+                    staging=True)),
+            'c3': (
+                lambda: self.assistant.get_canonical_certification_transport(
+                    config['secure_id'])),
+            'c3-staging': (
+                lambda: self.assistant.get_canonical_certification_transport(
+                    config['secure_id'], staging=True)),
+        }[config['type']]()
+        # CertificationTransport expects xml submission format, 'hexr' exporter
+        # provides compliant one
+        return self.assistant.export_to_transport(
+            '2013.com.canonical.plainbox::hexr', transport)
+
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
             os.path.expanduser('~/.config')

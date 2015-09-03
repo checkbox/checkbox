@@ -59,7 +59,8 @@ MainView {
         "applicationName" : applicationName,
         "revision": "unknown revision",
         "testplan": "",
-        "providersDir": "providers"
+        "providersDir": "providers",
+        "submission": null
     }
 
     Arguments {
@@ -500,6 +501,9 @@ MainView {
         app.getResults(function(results) {
             var resultsPage = Qt.createComponent(Qt.resolvedUrl("components/ResultsPage.qml")).createObject();
             resultsPage.results = results;
+            if (appSettings["submission"]) {
+                resultsPage.submissionName = appSettings["submission"].name;
+            }
             resultsPage.endTesting.connect(function() {
                 pageStack.clear();
                 app.clearSession(function() {
@@ -520,6 +524,21 @@ MainView {
                                                       pageStack.push(webviewer);
                                                   }}]);
                     });
+                });
+            });
+            resultsPage.submitReportClicked.connect(function() {
+                getSubmissionInput(function() {
+                    app.submitResults(appSettings["submission"], function(reply) {
+                        // pretty-stringify reply
+                        var s = ""
+                        for (var i in reply) {
+                            s += i + ': ' + reply[i] + '\n';
+                        }
+                        CbtDialogLogic.showDialog(
+                            resultsPage,
+                            i18n.tr("Report has been submited.\n" + s),
+                            [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                    })
                 });
             });
             pageStack.push(resultsPage);
@@ -627,6 +646,33 @@ MainView {
         verificationPage.__customHeaderContents = progressHeader;
         progressHeader.update(test);
         pageStack.push(verificationPage);
+    }
+    function getSubmissionInput(continuation) {
+        if (!appSettings.submission.input) {
+            // no input to process
+            continuation();
+            return;
+        }
+        var input_vars = appSettings.submission.input.slice(); //copy array
+
+        // Because of the asynchronous nature of qml we cannot just launch
+        // N number of popups each asking for one submission variable
+        var process_input = function() {
+            if (input_vars.length > 0) {
+                var input = input_vars.shift();
+                var dlg_cmp = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml"));
+                var dlg = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml")).createObject(mainView);
+                dlg.prompt = i18n.tr("Input submission parameter " + input);
+                dlg.textEntered.connect(function(text) {
+                    appSettings.submission[input] = text;
+                    process_input();
+                });
+                PopupUtils.open(dlg.dialogComponent);
+                return;
+            }
+            continuation();
+        }
+        process_input();
     }
 
 }
