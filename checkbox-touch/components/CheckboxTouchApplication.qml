@@ -159,13 +159,10 @@ PythonObjectRef {
             console.error("Unable to export test results");
         });
     }
-    function submitResults(config, continuation) {
+    function submitResults(config, continuation, continuation_error) {
         request("submit_results", [config], continuation, function(error) {
             console.error("Unable to submit test results");
-            ErrorLogic.showError(mainView,
-                                 i18n.tr("Could not submit results. Reason:\n" + error),
-                                 function(){},
-                                 i18n.tr("OK"));
+            continuation_error(error);
         });
     }
 

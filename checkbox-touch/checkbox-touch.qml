@@ -538,6 +538,12 @@ MainView {
                             resultsPage,
                             i18n.tr("Report has been submited.\n" + s),
                             [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                    },
+                    function(error) {
+                        ErrorLogic.showError(mainView,
+                                             i18n.tr("Could not submit results. Reason:\n" + error),
+                                             function(){},
+                                             i18n.tr("OK"));
                     })
                 });
             });
