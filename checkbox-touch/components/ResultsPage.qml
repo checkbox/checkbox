@@ -41,6 +41,10 @@ Page {
     signal submitReportClicked()
     signal endTesting()
 
+    function unlatchSubmission() {
+        submitResultsButton.unlatch();
+    }
+
     head {
         actions: [
             Action {
