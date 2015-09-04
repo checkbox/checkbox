@@ -544,6 +544,7 @@ MainView {
                                              i18n.tr("Could not submit results. Reason:\n" + error),
                                              function(){},
                                              i18n.tr("OK"));
+                        resultsPage.unlatchSubmission();
                     })
                 });
             });
