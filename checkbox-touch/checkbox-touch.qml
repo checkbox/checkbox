@@ -456,6 +456,7 @@ MainView {
                 performUserInteractVerifyTest(test);
                 break;
             case 'shell':
+            case 'attachment':
             case 'resource':
                 performAutomatedTest(test);
                 break;
@@ -538,7 +539,17 @@ MainView {
                             resultsPage,
                             i18n.tr("Report has been submited.\n" + s),
                             [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                    },
+                    function(error) {
+                        ErrorLogic.showError(mainView,
+                                             i18n.tr("Could not submit results. Reason:\n" + error),
+                                             function(){},
+                                             i18n.tr("OK"));
+                        resultsPage.unlatchSubmission();
                     })
+                },
+                function() {
+                    resultsPage.unlatchSubmission();
                 });
             });
             pageStack.push(resultsPage);
@@ -647,7 +658,7 @@ MainView {
         progressHeader.update(test);
         pageStack.push(verificationPage);
     }
-    function getSubmissionInput(continuation) {
+    function getSubmissionInput(continuation, cancelContinuation) {
         if (!appSettings.submission.input) {
             // no input to process
             continuation();
@@ -662,10 +673,14 @@ MainView {
                 var input = input_vars.shift();
                 var dlg_cmp = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml"));
                 var dlg = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml")).createObject(mainView);
-                dlg.prompt = i18n.tr("Input submission parameter " + input);
+                dlg.prompt = input.prompt;
                 dlg.textEntered.connect(function(text) {
-                    appSettings.submission[input] = text;
+                    appSettings.submission[input.paramName] = text;
                     process_input();
+                });
+                dlg.cancelClicked.connect(function() {
+                    cancelContinuation();
+                    return;
                 });
                 PopupUtils.open(dlg.dialogComponent);
                 return;
