@@ -35,13 +35,13 @@ Button {
     /*!
         Gets signalled when button is clicked while in 'unlatched' state
      */
-    signal latchedClicked();
+    signal latchedClicked
 
     /*!
         Call this method to change the state to 'unlatched'
      */
     function unlatch() {
-        state="unlatched"
+        state = "unlatched"
     }
 
 
@@ -64,19 +64,19 @@ Button {
     states: [
          State {
             name: "unlatched"
-            PropertyChanges{ target: root; color: unlatchedColor }
-            PropertyChanges{ target: root; enabled: true }
+            PropertyChanges { target: root; color: unlatchedColor }
+            PropertyChanges { target: root; enabled: true }
          },
          State {
             name: "latched"
-            PropertyChanges{ target: root; color: latchedColor}
-            PropertyChanges{ target: root; enabled: false }
+            PropertyChanges { target: root; color: latchedColor }
+            PropertyChanges { target: root; enabled: false }
          }
      ]
 
     onClicked: {
-        if (state=="unlatched"){
-            state="latched"
+        if (state == "unlatched") {
+            state = "latched"
             latchedClicked();
         }
     }
