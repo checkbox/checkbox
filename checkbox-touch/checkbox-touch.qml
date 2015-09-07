@@ -546,6 +546,9 @@ MainView {
                                              i18n.tr("OK"));
                         resultsPage.unlatchSubmission();
                     })
+                },
+                function() {
+                    resultsPage.unlatchSubmission();
                 });
             });
             pageStack.push(resultsPage);
@@ -654,7 +657,7 @@ MainView {
         progressHeader.update(test);
         pageStack.push(verificationPage);
     }
-    function getSubmissionInput(continuation) {
+    function getSubmissionInput(continuation, cancelContinuation) {
         if (!appSettings.submission.input) {
             // no input to process
             continuation();
@@ -673,6 +676,10 @@ MainView {
                 dlg.textEntered.connect(function(text) {
                     appSettings.submission[input.paramName] = text;
                     process_input();
+                });
+                dlg.cancelClicked.connect(function() {
+                    cancelContinuation();
+                    return;
                 });
                 PopupUtils.open(dlg.dialogComponent);
                 return;
