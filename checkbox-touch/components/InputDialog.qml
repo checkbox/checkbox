@@ -37,6 +37,7 @@ Item {
     property string prompt: ""
 
     signal textEntered(string text)
+    signal cancelClicked()
 
     Component {
         id: component
@@ -69,7 +70,7 @@ Item {
                 onClicked: {
                     textBox.text = "";
                     PopupUtils.close(dialog);
-                    textEntered(textBox.text);
+                    cancelClicked();
                 }
             }
 
