@@ -1,7 +1,7 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2014 Canonical Ltd.
+ * Copyright 2014, 2015 Canonical Ltd.
  *
  * Authors:
  * - Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -65,10 +65,12 @@ Button {
          State {
             name: "unlatched"
             PropertyChanges{ target: root; color: unlatchedColor }
+            PropertyChanges{ target: root; enabled: true }
          },
          State {
             name: "latched"
             PropertyChanges{ target: root; color: latchedColor}
+            PropertyChanges{ target: root; enabled: false }
          }
      ]
 
