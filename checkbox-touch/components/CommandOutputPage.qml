@@ -32,7 +32,7 @@ Page {
     id: commandOutputPage
 
     objectName: "commandOutputPage"
-    property string bufferedIO;
+    property var bufferedIO;
 
     function addText(text) {
         bufferedIO += text
