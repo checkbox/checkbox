@@ -456,6 +456,7 @@ MainView {
                 performUserInteractVerifyTest(test);
                 break;
             case 'shell':
+            case 'attachment':
             case 'resource':
                 performAutomatedTest(test);
                 break;
