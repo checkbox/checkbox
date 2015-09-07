@@ -669,9 +669,9 @@ MainView {
                 var input = input_vars.shift();
                 var dlg_cmp = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml"));
                 var dlg = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml")).createObject(mainView);
-                dlg.prompt = i18n.tr("Input submission parameter " + input);
+                dlg.prompt = input.prompt;
                 dlg.textEntered.connect(function(text) {
-                    appSettings.submission[input] = text;
+                    appSettings.submission[input.paramName] = text;
                     process_input();
                 });
                 PopupUtils.open(dlg.dialogComponent);
