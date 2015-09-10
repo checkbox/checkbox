@@ -455,6 +455,7 @@ MainView {
             case 'user-interact-verify':
                 performUserInteractVerifyTest(test);
                 break;
+            case 'local':
             case 'shell':
             case 'attachment':
             case 'resource':
