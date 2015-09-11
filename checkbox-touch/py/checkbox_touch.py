@@ -259,6 +259,8 @@ class CheckboxTouchApplication(PlainboxApplication):
     def remember_categories(self, selected_id_list):
         """Save category selection."""
         _logger.info("Selected categories: %s", selected_id_list)
+        # Remove previously set filters
+        self.assistant.remove_all_filters()
         self.assistant.filter_jobs_by_categories(selected_id_list)
 
     @view
