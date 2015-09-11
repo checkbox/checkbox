@@ -78,7 +78,7 @@ Page {
         actions: [
             Action {
                 id: addCommentAction
-                iconName: "document-new-symbolic"
+                iconName: "note-new"
                 text: i18n.tr("Add comment")
                 onTriggered: {
                     commentsDialog.commentDefaultText = test["comments"] || "";
