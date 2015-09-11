@@ -125,7 +125,7 @@ Page {
             objectName: "passButton"
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
-            text: i18n.tr("Yes")
+            text: i18n.tr("Pass")
             onLatchedClicked: {
                 test["outcome"] = "pass";
                 latchingTestDone();
@@ -138,7 +138,7 @@ Page {
             objectName: "failButton"
             unlatchedColor: UbuntuColors.red
             Layout.fillWidth: true
-            text: i18n.tr("No")
+            text: i18n.tr("Fail")
             onLatchedClicked: {
                 test["outcome"] = "fail";
                 latchingTestDone();
