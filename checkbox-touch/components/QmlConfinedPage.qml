@@ -161,7 +161,7 @@ Page {
             objectName: "continueButton"
             color: UbuntuColors.green
             Layout.fillWidth: true
-            text: i18n.tr("Continue")
+            text: i18n.tr("Start the test")
             onClicked: {
                 busyIndicatorGroup.visible = true;
                 var appName = "com.ubuntu.checkbox_" + test["partial_id"] + "_" + applicationVersion + ".desktop";

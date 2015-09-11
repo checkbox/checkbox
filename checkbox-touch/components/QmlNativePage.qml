@@ -119,7 +119,7 @@ Page {
             objectName: "continueButton"
             color: UbuntuColors.green
             Layout.fillWidth: true
-            text: i18n.tr("Continue")
+            text: i18n.tr("Start the test")
             onClicked: {
                 pageStack.pop(); // pop the description page
                 // altough there shouldn't be anything on the page stack
