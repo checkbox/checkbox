@@ -26,7 +26,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
-import "ConfirmationLogic.js" as ConfirmationLogic
+import "actions"
 
 Page {
     id: qmlNativePage
@@ -49,36 +49,8 @@ Page {
 
     head {
         actions: [
-            Action {
-                id: addCommentAction
-                iconName: "note-new"
-                text: i18n.tr("Add comment")
-                onTriggered: {
-                    commentsDialog.commentDefaultText = test["comments"] || "";
-                    commentsDialog.commentAdded.connect(function(comment) {
-                        test["comments"] = comment;
-                    });
-                    PopupUtils.open(commentsDialog.dialogComponent);
-                }
-            },
-            Action {
-                id: skipAction
-                iconName: "media-seek-forward"
-                text: i18n.tr("Skip")
-                onTriggered: {
-                    var confirmationOptions = {
-                        question : i18n.tr("Do you really want to skip this test?"),
-                        remember : true,
-                    }
-                    ConfirmationLogic.confirmRequest(qmlNativePage,
-                        confirmationOptions, function(res) {
-                            if (res) {
-                                test["outcome"] = "skip";
-                                testDone(test);
-                            }
-                    });
-                }
-            }
+            AddCommentAction {},
+            SkipAction {}
         ]
     }
 
