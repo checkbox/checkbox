@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -z `which autopilot` ]]; then
+if [[ -z `which autopilot3` ]]; then
   echo "Autopilot is not installed. Skip"
   exit 1
 fi
