@@ -672,7 +672,6 @@ MainView {
         var process_input = function() {
             if (input_vars.length > 0) {
                 var input = input_vars.shift();
-                var dlg_cmp = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml"));
                 var dlg = Qt.createComponent(Qt.resolvedUrl("components/InputDialog.qml")).createObject(mainView);
                 dlg.prompt = input.prompt;
                 dlg.textEntered.connect(function(text) {
