@@ -522,7 +522,7 @@ MainView {
     function showResultsScreen() {
         pageStack.clear();
         app.getResults(function(results) {
-            var resultsPage = Qt.createComponent(Qt.resolvedUrl("components/ResultsPage.qml")).createObject();
+            var resultsPage = createPage("components/ResultsPage.qml");
             resultsPage.results = results;
             if (appSettings["submission"]) {
                 resultsPage.submissionName = appSettings["submission"].name;
@@ -579,29 +579,22 @@ MainView {
     }
 
     function performAutomatedTest(test) {
-        var automatedTestPage = Qt.createComponent(Qt.resolvedUrl("components/AutomatedTestPage.qml")).createObject();
-        automatedTestPage.test = test;
-        automatedTestPage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
+        var automatedTestPage = createPage("components/AutomatedTestPage.qml", test);
         pageStack.push(automatedTestPage);
         runTestActivity(test, completeTest);
     }
 
     function performManualTest(test) {
         runTestActivity(test, function(test) {
-            var manualIntroPage = Qt.createComponent(Qt.resolvedUrl("components/ManualIntroPage.qml")).createObject();
-            manualIntroPage.test = test
+            var manualIntroPage = createPage("components/ManualIntroPage.qml", test);
             manualIntroPage.testDone.connect(completeTest);
             manualIntroPage.continueClicked.connect(function() { showVerificationScreen(test); });
-            manualIntroPage.__customHeaderContents = progressHeader;
-            progressHeader.update(test);
             pageStack.push(manualIntroPage);
         });
     }
 
     function performUserInteractVerifyTest(test) {
-        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
-        InteractIntroPage.test = test;
+        var InteractIntroPage = createPage("components/InteractIntroPage.qml", test);
         InteractIntroPage.testStarted.connect(function() {
             runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
@@ -609,75 +602,51 @@ MainView {
             });
         });
         InteractIntroPage.testDone.connect(completeTest);
-        InteractIntroPage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
 
     function performUserInteractTest(test) {
-        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
-        InteractIntroPage.test = test;
+        var InteractIntroPage = createPage("components/InteractIntroPage.qml", test);
         InteractIntroPage.testStarted.connect(function() {
             runTestActivity(test, function(test) {
                 InteractIntroPage.stopActivity();
-                var userInteractSummaryPage = Qt.createComponent(Qt.resolvedUrl("components/UserInteractSummaryPage.qml")).createObject();
-                userInteractSummaryPage.test = test;
+                var userInteractSummaryPage = createPage("components/UserInteractSummaryPage.qml", test);
                 userInteractSummaryPage.testDone.connect(completeTest);
-                userInteractSummaryPage.__customHeaderContents = progressHeader;
-                progressHeader.update(test);
                 pageStack.push(userInteractSummaryPage);
             });
         });
         InteractIntroPage.testDone.connect(completeTest);
-        InteractIntroPage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
 
     function performUserVerifyTest(test) {
-        var InteractIntroPage = Qt.createComponent(Qt.resolvedUrl("components/InteractIntroPage.qml")).createObject();
-        InteractIntroPage.test = test;
+        var InteractIntroPage = createPage("components/InteractIntroPage.qml", test);
         InteractIntroPage.testDone.connect(completeTest);
         InteractIntroPage.testStarted.connect(function() {
             runTestActivity(test, function(test) { showVerificationScreen(test); } );
         });
-        InteractIntroPage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
         pageStack.push(InteractIntroPage);
     }
 
     function performQmlTest(test) {
         runTestActivity(test, function(test) {
-            var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlNativePage.qml"))
-            console.log(comp.errorString());
-            var qmlNativePage = comp.createObject();
-            qmlNativePage.test = test
+            var qmlNativePage = createPage("components/QmlNativePage.qml", test);
             qmlNativePage.testDone.connect(completeTest);
-            qmlNativePage.__customHeaderContents = progressHeader;
-            progressHeader.update(test);
             pageStack.push(qmlNativePage);
         });
     }
     function performConfinedQmlTest(test) {
         runTestActivity(test, function(test) {
-            var comp = Qt.createComponent(Qt.resolvedUrl("components/QmlConfinedPage.qml"))
-            console.log(comp.errorString());
-            var qmlNativePage = comp.createObject();
-            qmlNativePage.test = test
+            var qmlNativePage = createPage("components/QmlConfinedPage.qm;");
             qmlNativePage.applicationVersion = app.applicationVersion;
             qmlNativePage.testDone.connect(completeTest);
-            qmlNativePage.__customHeaderContents = progressHeader;
-            progressHeader.update(test);
             pageStack.push(qmlNativePage);
         });
     }
 
     function showVerificationScreen(test) {
-        var verificationPage = Qt.createComponent(Qt.resolvedUrl("components/TestVerificationPage.qml")).createObject();
-        verificationPage.test = test
+        var verificationPage = createPage("components/TestVerificationPage.qml", test);
         verificationPage.testDone.connect(completeTest);
-        verificationPage.__customHeaderContents = progressHeader;
-        progressHeader.update(test);
         pageStack.push(verificationPage);
     }
     function getSubmissionInput(continuation, cancelContinuation) {
