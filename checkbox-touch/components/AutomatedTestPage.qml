@@ -1,7 +1,7 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2014 Canonical Ltd.
+ * Copyright 2014, 2015 Canonical Ltd.
  *
  * Authors:
  * - Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -40,32 +40,9 @@ Page {
 
     visible: false
 
-    ColumnLayout {
-        spacing: units.gu(3)
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            topMargin: units.gu(3)
-            bottomMargin: units.gu(3)
-            leftMargin: units.gu(1)
-            rightMargin: units.gu(1)
-        }
-
-        Label {
-            fontSize: "large"
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.alignment: Qt.AlignLeft
-            text: test["name"]
-            font.bold: true
-        }
-
-        Label {
-            fontSize: "medium"
-            Layout.fillWidth: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            text: test["description"]
-        }
+    TestPageBody {
+        header: test["name"]
+        body: test["description"]
     }
     ColumnLayout {
         anchors {
