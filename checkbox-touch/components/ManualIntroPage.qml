@@ -1,7 +1,7 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2014 Canonical Ltd.
+ * Copyright 2014, 2015 Canonical Ltd.
  *
  * Authors:
  * - Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -47,38 +47,9 @@ Page {
         ]
     }
 
-    ColumnLayout {
-        spacing: units.gu(3)
-        anchors {
-            fill: parent
-            topMargin: units.gu(3)
-            bottomMargin: units.gu(3)
-            leftMargin: units.gu(1)
-            rightMargin: units.gu(1)
-        }
-
-        Label {
-            fontSize: "large"
-            Layout.fillWidth: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            text: test["name"]
-            font.bold: true
-        }
-
-        Flickable {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            contentHeight: childrenRect.height
-            flickableDirection: Flickable.VerticalFlick
-            clip: true
-            Label {
-                fontSize: "medium"
-                anchors.fill: parent
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: test["description"]
-            }
-        }
-
+    TestPageBody {
+        header: test["name"]
+        body: test["description"]
         Button {
             objectName: "continueButton"
             color: UbuntuColors.green
