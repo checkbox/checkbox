@@ -1,7 +1,7 @@
 /*
  * This file is part of Checkbox
  *
- * Copyright 2014 Canonical Ltd.
+ * Copyright 2014, 2015 Canonical Ltd.
  *
  * Authors:
  * - Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
@@ -399,6 +399,27 @@ MainView {
         id: commandOutputPage
         visible: false
         __customHeaderContents: progressHeader;
+    }
+    /*
+     * Create a page from a Component defined in `url` with a common
+     * progress header if `test` is supplied.
+     * If Component definition has errors, display a proper popup.
+     */
+    function createPage(url, test) {
+        var pageComponent = Qt.createComponent(Qt.resolvedUrl(url));
+        if (pageComponent.status == Component.Error) {
+            var msg = i18n.tr("Could not create component '") + url + "'\n" + pageComponent.errorString();
+            console.error(msg);
+            ErrorLogic.showError(mainView, msg, Qt.quit, i18n.tr("Quit"));
+        } else {
+            var pageObject = pageComponent.createObject();
+            if (test) {
+                pageObject.test = test;
+                pageObject.__customHeaderContents = progressHeader;
+                progressHeader.update(test)
+            }
+            return pageObject;
+        }
     }
 
     function resumeOrStartSession() {
