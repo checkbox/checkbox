@@ -133,7 +133,7 @@ class SessionResumeTests(checkbox_touch.ClickAppTestCase):
         intro_page = self.app.wait_select_single(
             objectName='userInteractVerifyIntroPage', visible=True)
         test_name_label = intro_page.wait_select_single(
-            objectName='testNameLabel', visible=True)
+            objectName='headerLabel', visible=True)
         self.assertThat(test_name_label.text,
                         Eventually(Equals('autopilot/user-verify-1')))
 
@@ -149,7 +149,7 @@ class SessionResumeTests(checkbox_touch.ClickAppTestCase):
         intro_page = self.app.wait_select_single(
             objectName='userInteractVerifyIntroPage', visible=True)
         test_name_label = intro_page.wait_select_single(
-            objectName='testNameLabel', visible=True)
+            objectName='headerLabel', visible=True)
         self.assertThat(test_name_label.text,
                         Eventually(Equals('autopilot/user-verify-2')))
 
