@@ -64,10 +64,11 @@ ColumnLayout {
     Flickable {
         Layout.fillWidth: true
         Layout.fillHeight: fullHeightBody
-        contentHeight: childrenRect.height
+        contentHeight: bodyLabel.contentHeight
         flickableDirection: Flickable.VerticalFlick
         clip: true
         Label {
+            id: bodyLabel
             fontSize: "medium"
             anchors.fill: parent
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
