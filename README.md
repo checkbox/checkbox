@@ -21,18 +21,7 @@ checkbox-touch
 --------------
 
 An Ubuntu SDK application (Python + QML) with a modern touch interface,
-optimized for phablet devices. This application is currently under development,
-eventually it will entirely replace checkbox-gui.
-
-checkbox-gui
-------------
-
-An Ubuntu SDK application (C++/QML) with a modern touch interface for testing.
-No actual test definitions exist there.
-
-This project depends on the checkbox-ng project (for the DBus API) and on a
-number of test providers (that all live or shall live in the providers/
-top-level directory)
+optimized for phablet devices.
 
 checkbox-ng
 -----------
@@ -42,7 +31,7 @@ notably checkbox and a collection of derivative canonical-\* executables) that
 run a part of checkbox-ng.
 
 This project depends on plainbox (for all of the core logic) and on a number of
-test providers, similarly to checkbox-gui.
+test providers.
 
 checkbox-support
 ----------------
