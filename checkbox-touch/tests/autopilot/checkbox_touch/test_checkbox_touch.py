@@ -2,6 +2,7 @@
 
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
+from autopilot.input import Keyboard
 
 import checkbox_touch
 
@@ -22,6 +23,12 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         dialog = self.app.wait_select_single(objectName='dialog')
         yes_btn = dialog.select_single(objectName='yesButton')
         self.pointing_device.click_object(yes_btn)
+        keyboard = Keyboard.create('X11')
+        comment_text = self.app.select_single(objectName='commentText')
+        with keyboard.focused_type(comment_text) as kb:
+            kb.type("Skipped by autopilot!")
+        done_btn = self.app.select_single(objectName='doneButton')
+        self.pointing_device.click_object(done_btn)
 
     def test_launches(self):
         main_view = self.app.select_single(objectName='mainView')
