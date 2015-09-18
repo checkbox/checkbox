@@ -67,33 +67,35 @@ Page {
     function unlatchContinue() {
         continueButton.unlatch();
     }
+    function deselectAll() {
+        for (var i=0; i<selectionModel.count; i++) {
+            selectionModel.setProperty(i, "mod_selected", false);
+        }
+        selectedCount = 0;
+    }
+    function selectAll() {
+        for (var i=0; i<selectionModel.count; i++) {
+            selectionModel.setProperty(i, "mod_selected", true);
+        }
+        selectedCount = selectionModel.count;
+    }
 
     head {
         actions: [
             Action {
-                id: selectAllAction
-                objectName: "selectAllAction"
+                id: toggleSelection
+                objectName: "toggleSelectionAction"
                 iconName: "select"
-                text: i18n.tr("Select All")
-                visible: !onlyOneAllowed && (state === "empty selection")
+                text: i18n.tr("Toggle selection")
+                visible: !onlyOneAllowed
                 onTriggered: {
-                    for (var i=0; i<selectionModel.count; i++) {
-                        selectionModel.setProperty(i, "mod_selected", true);
+                    if (state === "empty selection") {
+                        selectAll();
                     }
-                    selectedCount = selectionModel.count;
-                }
-            },
-            Action {
-                id: deselectAllAction
-                objectName: "deselectAllAction"
-                iconName: "clear-search"
-                text: i18n.tr("Deselect All")
-                visible: !onlyOneAllowed && (state === "nonempty selection")
-                onTriggered: {
-                    for (var i=0; i<selectionModel.count; i++) {
-                        selectionModel.setProperty(i, "mod_selected", false);
+                    else if (state === "nonempty selection") {
+                        deselectAll();
                     }
-                    selectedCount = 0;
+
                 }
             }
         ]
@@ -181,7 +183,7 @@ Page {
                     onClicked: {
                         if (onlyOneAllowed && !checked && selectedCount > 0) {
                             // clear other selections
-                            deselectAllAction.trigger()
+                            deselectAll();
                         }
                         selectionModel.setProperty(index, 'mod_selected', !checked);
                         selectedCount += checked ? 1 : -1;

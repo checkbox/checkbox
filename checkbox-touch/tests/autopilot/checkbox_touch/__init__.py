@@ -64,7 +64,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         self.pointing_device.click_object(start_btn)
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage', visible=True)
-        self.main_view.get_header().click_action_button('deselectAllAction')
+        self.main_view.get_header().click_action_button('toggleSelectionAction')
         list_item = category_page.wait_select_single(
             objectName='listItem', item_mod_id=category_id)
         self.pointing_device.click_object(list_item)
@@ -73,7 +73,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         self.pointing_device.click_object(continue_btn)
         test_selection_page = self.app.wait_select_single(
             objectName='testSelectionPage', visible=True)
-        self.main_view.get_header().click_action_button('deselectAllAction')
+        self.main_view.get_header().click_action_button('toggleSelectionAction')
         # lists are built dynamically, so there is a chance that proxies for
         # qml objects for list items that are down below are not yet present.
         # To make sure everything is loaded and ready, scroll to the bottom
