@@ -16,7 +16,7 @@ autopilot:
 	tests/autopilot/run
 
 check:
-	qmltestrunner -input tests/unit
+	qmltestrunner -qt=5 -input tests/unit
 
 run:
 	/usr/bin/qmlscene $@ checkbox-touch.qml
