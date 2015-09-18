@@ -38,9 +38,17 @@ Action {
         }
         ConfirmationLogic.confirmRequest(mainView,
             confirmationOptions, function(res) {
+                var currentTest = test;
                 if (res) {
-                    test["outcome"] = "skip";
-                    testDone(test);
+                    commentsDialog.commentDefaultText = test["comments"] || "";
+                    var handler = function(comment) {
+                        currentTest["comments"] = comment;
+                        currentTest["outcome"] = "skip";
+                        commentsDialog.commentAdded.disconnect(handler);
+                        testDone(currentTest);
+                    };
+                    commentsDialog.commentAdded.connect(handler);
+                    PopupUtils.open(commentsDialog.dialogComponent);
                 }
         });
     }
