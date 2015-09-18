@@ -57,10 +57,12 @@ Item {
 
             TextArea {
                 id: commentText
+                objectName: "commentText"
             }
 
             Button {
                 id: doneButton
+                objectName: "doneButton"
                 text: i18n.tr("Done")
                 color: UbuntuColors.green
                 onClicked: {
