@@ -1,0 +1,460 @@
+# TPM provider translations
+# Copyright (C) 2015 Canonical
+# This file is distributed under the same license as the plainbox-provider-tpm package.
+# Zygmunt <Krynicki>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plainbox-provider-tpm 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-23 18:23+0200\n"
+"PO-Revision-Date: 2015-09-23 09:35+0200\n"
+"Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
+"Language-Team: polski <>\n"
+"Language: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../manage.py:29
+msgid "Plainbox Provider for TPM (trusted platform module)"
+msgstr ""
+
+#. name
+#: ../units/category.pxu:21
+msgid "TPM (Trusted Platform Module)"
+msgstr "TPM (Trusted Platform Module)"
+
+#. summary
+#: ../units/lenovo.pxu:23
+msgid "Clear ownership of TPM chip (Lenovo)"
+msgstr "Wyczyść dane właściciela układu TPM (Lenovo)"
+
+#. purpose
+#: ../units/lenovo.pxu:24
+msgid ""
+"Some Lenovo laptops lock out physical presence attribute before BIOS hands "
+"off control to the operating system. In order to perform subsequent tests "
+"you will need to clear the TPM (Trusted Platform Module) chip on the DUT "
+"(Device Under Test)."
+msgstr ""
+"Niektóre laptopy firmy Lenovo blokują atrybut physical presence zanim BIOS "
+"przekaże kontrole systemowi operacyjnemu. Aby wykonać kolejne testy należy "
+"wyczyścić układ TPM (Trusted Platform Module) urządzenia poddanego testom."
+
+#. purpose
+#: ../units/lenovo.pxu:24
+msgid ""
+"CAUTION: Do not clear the TPM chip on production machine where it may\n"
+"         hold encryption keys to your valuable data! Doing so will render "
+"this\n"
+"         data inaccessible."
+msgstr ""
+
+#. purpose
+#: ../units/lenovo.pxu:24
+msgid "Please only perform this step if:"
+msgstr ""
+
+#. purpose
+#: ../units/lenovo.pxu:24
+msgid ""
+" - You DO NOT know the owner password of the TPM chip\n"
+" - You intend to execute this TPM test suite\n"
+" - There is no valuable data that may be encrypted with the aid of the TPM "
+"chip"
+msgstr ""
+
+#. steps
+#: ../units/lenovo.pxu:39
+msgid ""
+"To clear the TPM chip now, write down the following instructions and exit "
+"the testing application."
+msgstr ""
+
+#. steps
+#: ../units/lenovo.pxu:39 ../units/tpm.pxu:97
+msgid "INSTRUCTIONS FOR CLEARING THE TPM CHIP:"
+msgstr ""
+
+#. steps
+#: ../units/lenovo.pxu:39
+msgid ""
+" - Commence the test to power the machine off.\n"
+" - Press and hold the F1 key on your keyboard.\n"
+" - Power the machine on.\n"
+" - Wait for the system to enter BIOS.\n"
+" - Navigate to TPM menu, the precise location may depend on your BIOS "
+"version\n"
+"   and the make and model of your DUT. On some models it is under the\n"
+"   following menu: Security / Clear Security Chip. This menu is *NOT* "
+"present\n"
+"   under normal conditions.\n"
+" - Ensure that the Clear Security Chip option is present and enabled.\n"
+" - Save BIOS settings and restart the machine\n"
+" - Let the machine boot\n"
+" - Restart the testing application"
+msgstr ""
+
+#. name
+#: ../units/manifest.pxu:21
+msgid "TPM chip"
+msgstr "Układ TPM"
+
+#. summary
+#: ../units/sysfs.pxu:23
+msgid "Count the number of visible TPM chips in sysfs"
+msgstr ""
+
+#. description
+#: ../units/sysfs.pxu:24
+msgid ""
+"This job just counts the number of visible TPM chips in as reported by tpm-"
+"sysfs-resource tool. The only resource attribute is 'count'"
+msgstr ""
+
+#. summary
+#: ../units/sysfs.pxu:35
+msgid "Collect TPM information from sysfs"
+msgstr "Zbierz informacje na temat układ TPM z sysfs"
+
+#. description
+#: ../units/sysfs.pxu:36
+msgid ""
+"This job collects all the available TPM information from /sys/class/tpm/*/"
+"device/*."
+msgstr ""
+
+#. summary
+#: ../units/sysfs.pxu:53
+msgid "Collect TPM information from sysfs (after taking ownership)"
+msgstr "Zbierz informacje na temat układ TPM z sysfs (po przejęciu własności)"
+
+#. summary
+#: ../units/sysfs.pxu:70
+msgid "Collect TPM information from sysfs (after clearing ownership)"
+msgstr ""
+"Zbierz informacje na temat układ TPM z sysfs (po zresetowaniu własności)"
+
+#. description
+#: ../units/sysfs.pxu:71
+msgid ""
+"This job collects all the available TPM information from /sys/class/tpm/*/"
+"device/*. Distinct files present there are converted to attributes of "
+"resource records."
+msgstr ""
+
+#. summary
+#: ../units/sysfs.pxu:86
+msgid "Collect DMI information from sysfs"
+msgstr "Zbierz informacje o tabelach DMI z sysfs"
+
+#. description
+#: ../units/sysfs.pxu:87
+msgid ""
+"This job collects all the available DMI information from /sys/class/dmi/id/"
+"*. The main purpose of including this job is to allow the provider to "
+"include vendor-specific quirks by looking at the sysfs_dmi.bios_vendor "
+"attribute."
+msgstr ""
+
+#. name
+#: ../units/test-plan.pxu:21
+msgid "TPM (Trusted Platform Module) Smoke Tests"
+msgstr ""
+
+#. description
+#: ../units/test-plan.pxu:22
+msgid ""
+"This test plan contains simple tests for the TPM chip. The tests will ensure "
+"that the TPM chip is present, is visible by the OS and that ownership over "
+"the chip can be taken."
+msgstr ""
+
+#. description
+#: ../units/test-plan.pxu:22
+msgid "After testing, a number of logs are collected for additional analysis."
+msgstr ""
+
+#. name
+#: ../units/test-plan.pxu:55
+#, fuzzy
+msgid "Collect TPM (Trusted Platform Module) Information"
+msgstr "TPM (Trusted Platform Module)"
+
+#. description
+#: ../units/test-plan.pxu:56
+msgid ""
+"This test plan contains a selection of jobs that collect various bits of "
+"information about a TPM chip. They are designed to run with an owned TPM "
+"chip that uses well-known (20 zero bytes) owner key."
+msgstr ""
+
+#. description
+#: ../units/test-plan.pxu:56
+msgid ""
+"This test plan is not interactive, apart from the manifest collection step."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:22
+msgid "Use BIOS to activate a disabled TPM chip"
+msgstr "Aktywuj wyłączony układ TPM za pomocą BIOS'u"
+
+#. summary
+#: ../units/tpm.pxu:55
+msgid "Use BIOS to activate an inactive TPM chip"
+msgstr "Aktywuj nieaktywny układ TPM za pomocą BIOS'u"
+
+#. purpose
+#: ../units/tpm.pxu:56
+msgid "This job will reconfigure the TPM chip to be in the Active state."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:88
+msgid "Clear ownership of the TPM chip"
+msgstr "Wyczyść dane właściciela układu TPM"
+
+#. purpose
+#: ../units/tpm.pxu:89
+msgid ""
+"This job tries to automatically clear the ownership of an owned TPM chip. It "
+"uses well-known owner secret (20 bytes of zeros)."
+msgstr ""
+
+#. purpose
+#: ../units/tpm.pxu:89
+msgid ""
+"NOTE: The actual TPM chip will be cleared after the machine reboots.  After "
+"reboot the TPM will be in the default state: unowned, disabled and inactive. "
+"Subsequent jobs will instruct test operator to enter BIOS and re-enable the "
+"chip."
+msgstr ""
+
+#. steps
+#: ../units/tpm.pxu:97
+msgid ""
+" - Commence the test to reboot the machine\n"
+" - Let the machine boot\n"
+" - Restart the testing application"
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:113
+#, fuzzy
+msgid "Re-enable TPM chip in BIOS (after clearing ownership)"
+msgstr ""
+"Zbierz informacje na temat układ TPM z sysfs (po zresetowaniu własności)"
+
+#. purpose
+#: ../units/tpm.pxu:114
+msgid ""
+"This job will re-enable the TPM chip in the BIOS after having cleared the "
+"ownership."
+msgstr ""
+
+#. steps
+#: ../units/tpm.pxu:116
+msgid ""
+"To enable the TPM chip in the BIOS, write down the following instructions "
+"and exit the testing application."
+msgstr ""
+
+#. steps
+#: ../units/tpm.pxu:116
+msgid "INSTRUCTIONS FOR ENABLING THE TPM CHIP:"
+msgstr "INSTRUKCJE WŁĄCZENIA UKŁADU TPM:"
+
+#. steps
+#: ../units/tpm.pxu:116
+msgid ""
+" - Commence the test to restart the machine\n"
+" - Enter BIOS using machine-specific hot-key (typically F1, F2, or delete)\n"
+" - Navigate to TPM menu, the precise location may depend on your BIOS "
+"version\n"
+"   and the make and model of your DUT. On some models it is under the\n"
+"   following menu: Security / Security Chip.\n"
+" - Change the current setting to Active\n"
+" - Save BIOS settings\n"
+" - Power the machine off (NOTE: a reboot may not be sufficient)\n"
+" - Power the machine back on again\n"
+" - Let the machine boot\n"
+" - Restart the testing application"
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:143
+msgid "Take ownership of the TPM chip"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:144
+msgid ""
+"This job tries to automatically take the ownership of an unowned TPM chip. "
+"It uses well-known owner and SRK secretes (20 bytes of zeros)."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:158
+msgid "Collect the output of tpm_version"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:159
+msgid ""
+"This job collects the output of \"tpm_version\" for inspection by a "
+"Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:170
+msgid "Collect the output of tpm_selftest"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:171
+msgid ""
+"This job collects the output of \"tpm_selftest\" for inspection by the "
+"Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:182
+msgid "Collect the output of tpm_setactive --status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:183
+msgid ""
+"This simply collects the output of \"tpm_setactive --status --well-known\" "
+"for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:194
+msgid "Collect the output of tpm_nvinfo"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:195
+msgid ""
+"This simply collects the output of \"tpm_nvinfo\" for inspection by a "
+"Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:205
+msgid "Collect the output of tpm_restrictpubek --status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:206
+msgid ""
+"This simply collects the output of \"tpm_restrictpubek --status --well-known"
+"\" for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:216
+msgid "Collect the output of tpm_restrictsrk --status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:217
+msgid ""
+"This simply collects the output of \"tpm_restrictsrk --status --well-known\" "
+"for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:227
+msgid "Collect the output of tpm_setclearable--status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:228
+msgid ""
+"This simply collects the output of \"tpm_setclearable --status --well-known"
+"\" for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:238
+msgid "Collect the output of tpm_setenable --status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:239
+msgid ""
+"This simply collects the output of \"tpm_setenable --status --well-known\" "
+"for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:249
+msgid "Collect the output of tpm_setownable --status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:250
+msgid ""
+"This simply collects the output of \"tpm_setownable --status --well-known\" "
+"for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:260
+msgid "Collect the output of tpm_setpresence --status --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:261
+msgid ""
+"This simply collects the output of \"tpm_setpresence --status --well-known\" "
+"for inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/tpm.pxu:271
+msgid "Collect the output of tpm_getpubek --well-known"
+msgstr ""
+
+#. description
+#: ../units/tpm.pxu:272
+msgid ""
+"This simply collects the output of \"tpm_getpubek --well-known\" for "
+"inspection by a Certification engineer."
+msgstr ""
+
+#. summary
+#: ../units/unused.pxu:5
+msgid "Detect presence of TPM chip"
+msgstr ""
+
+#. description
+#: ../units/unused.pxu:6
+msgid ""
+"BIOS configuration may be preventing the OS from detecting and interacting "
+"with the TPM chip. TPM chips can be in one of three BIOS states: - Active "
+"(functional) - Inactive (visible but not functional) - Disabled (not visible "
+"and not functional)"
+msgstr ""
+
+#. description
+#: ../units/unused.pxu:6
+msgid ""
+"This resource job describes the BIOS setting of the TPM chip. The output is "
+"always a resource with one record. The record contains only one key:"
+msgstr ""
+
+#. description
+#: ../units/unused.pxu:6
+msgid "setting: Active|Inactive|Disabled"
+msgstr ""
+
+#~ msgid "Enable TPM chip in BIOS"
+#~ msgstr "Włącz układ TPM w BIOSie"
+
+#~ msgid "TPM chip is present in this system"
+#~ msgstr "System posiada układ TPM"

@@ -1,0 +1,279 @@
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+unit: job
+id: setup/enable-disabled-tpm
+category_id: tpm
+_summary: Use BIOS to activate a disabled TPM chip
+_purpose:
+ This job will reconfigure the TPM chip to be in the Active state.
+_steps:
+ To enable the TPM chip in the BIOS, write down the following instructions and
+ exit the testing application.
+ .
+ INSTRUCTIONS FOR ENABLING THE TPM CHIP:
+ .
+  - Commence the test to restart the machine
+  - Enter BIOS using machine-specific hot-key (typically F1, F2, or delete)
+  - Navigate to TPM menu, the precise location may depend on your BIOS version
+    and the make and model of your DUT. On some models it is under the
+    following menu: Security / Security Chip.
+  - Change the current setting to Active
+  - Save BIOS settings
+  - Power the machine off (NOTE: a reboot may not be sufficient)
+  - Power the machine back on again
+  - Let the machine boot
+  - Restart the testing application
+plugin: user-interact
+user: root
+command: reboot
+estimated_duration: 3m
+flags: preserve-locale noreturn
+# NOTE: This job will only run if we know we have a TPM chip (according to the
+# manifest) but we don't see one in sysfs (because it's disabled).
+requires: sysfs_tpm_count.count == "0" and manifest.has_tpm_chip
+imports: from 2013.com.canonical.plainbox import manifest
+
+unit: job
+id: setup/enable-inactive-tpm
+category_id: tpm
+_summary: Use BIOS to activate an inactive TPM chip
+_purpose:
+ This job will reconfigure the TPM chip to be in the Active state.
+_steps:
+ To enable the TPM chip in the BIOS, write down the following instructions and
+ exit the testing application.
+ .
+ INSTRUCTIONS FOR ENABLING THE TPM CHIP:
+ .
+  - Commence the test to restart the machine
+  - Enter BIOS using machine-specific hot-key (typically F1, F2, or delete)
+  - Navigate to TPM menu, the precise location may depend on your BIOS version
+    and the make and model of your DUT. On some models it is under the
+    following menu: Security / Security Chip.
+  - Change the current setting to Active
+  - Save BIOS settings
+  - Power the machine off (NOTE: a reboot may not be sufficient)
+  - Power the machine back on again
+  - Let the machine boot
+  - Restart the testing application
+plugin: user-interact
+user: root
+command: reboot
+# NOTE: This job will only run if we know we have a TPM chip (according to the
+# manifest, again) but sysfs claims it's temporarily deactivated (which is the
+# confusing way to say it's inactive)
+requires: sysfs_tpm_count.count != "0" and sysfs_tpm.temp_deactivated == "1"
+estimated_duration: 3m
+flags: preserve-locale noreturn
+
+unit: job
+id: action/clear-ownership
+category_id: tpm
+_summary: Clear ownership of the TPM chip
+_purpose:
+ This job tries to automatically clear the ownership of an owned TPM chip. It
+ uses well-known owner secret (20 bytes of zeros).
+ .
+ NOTE: The actual TPM chip will be cleared after the machine reboots.  After
+ reboot the TPM will be in the default state: unowned, disabled and inactive.
+ Subsequent jobs will instruct test operator to enter BIOS and re-enable the
+ chip.
+_steps:
+ INSTRUCTIONS FOR CLEARING THE TPM CHIP:
+ .
+  - Commence the test to reboot the machine
+  - Let the machine boot
+  - Restart the testing application
+plugin: user-interact
+command:
+ tpm_clear --log debug --well-known && reboot
+requires: sysfs_tpm.owned == "1" and sysfs_tpm.enabled == "1" and sysfs_tpm.active == "1" and sysfs_tpm.temp_deactivated == "0"
+estimated_duration: 5s
+flags: preserve-locale
+
+unit: job
+id: action/re-enable-tpm
+category_id: tpm
+_summary: Re-enable TPM chip in BIOS (after clearing ownership)
+_purpose:
+ This job will re-enable the TPM chip in the BIOS after having cleared the ownership.
+_steps:
+ To enable the TPM chip in the BIOS, write down the following instructions and
+ exit the testing application.
+ .
+ INSTRUCTIONS FOR ENABLING THE TPM CHIP:
+ .
+  - Commence the test to restart the machine
+  - Enter BIOS using machine-specific hot-key (typically F1, F2, or delete)
+  - Navigate to TPM menu, the precise location may depend on your BIOS version
+    and the make and model of your DUT. On some models it is under the
+    following menu: Security / Security Chip.
+  - Change the current setting to Active. If it is already in the active state
+    then set it to Disabled and then back to Active. This might be a bug in the BIOS.
+  - Save BIOS settings
+  - Power the machine off (NOTE: a reboot may not be sufficient)
+  - Power the machine back on again
+  - Let the machine boot
+  - Restart the testing application
+plugin: user-interact
+user: root
+command: reboot
+requires: sysfs_tpm_after_clearing_ownership.owned == "0" and sysfs_tpm_after_clearing_ownership.enabled == "0" and sysfs_tpm_after_clearing_ownership.active == "0" and sysfs_tpm_after_clearing_ownership.temp_deactivated == "1"
+estimated_duration: 3m
+flags: preserve-locale noreturn
+
+unit: job
+id: action/take-ownership
+category_id: tpm
+_summary: Take ownership of the TPM chip
+_description:
+ This job tries to automatically take the ownership of an unowned TPM chip. It
+ uses well-known owner and SRK secretes (20 bytes of zeros).
+plugin: shell
+command: tpm_takeownership --log debug --owner-well-known --srk-well-known
+requires: sysfs_tpm.owned == "0" and sysfs_tpm.enabled == "1" and sysfs_tpm.active == "1" and sysfs_tpm.temp_deactivated == "0"
+estimated_duration: 5s
+flags: preserve-locale
+
+# A bunch of unattended attachment jobs that run various TPM commands
+
+unit: job
+id: query/tpm_version
+category_id: tpm
+_summary: Collect the output of tpm_version
+_description:
+ This job collects the output of "tpm_version" for inspection by a
+ Certification engineer.
+plugin: attachment
+command: tpm_version 2>&1
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_selftest
+category_id: tpm
+_summary: Collect the output of tpm_selftest
+_description:
+ This job collects the output of "tpm_selftest" for inspection by the
+ Certification engineer.
+plugin: attachment
+command: tpm_selftest 2>&1
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_setactive-status
+category_id: tpm
+_summary: Collect the output of tpm_setactive --status --well-known
+_description:
+ This simply collects the output of "tpm_setactive --status --well-known" for
+ inspection by a Certification engineer.
+plugin: attachment
+command: tpm_setactive --status --well-known 2>&1
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_nvinfo
+category_id: tpm
+_summary: Collect the output of tpm_nvinfo
+_description:
+ This simply collects the output of "tpm_nvinfo" for inspection by a
+ Certification engineer.
+plugin: attachment
+command: tpm_nvinfo
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_restrictpubek-status
+_summary: Collect the output of tpm_restrictpubek --status --well-known
+_description:
+ This simply collects the output of "tpm_restrictpubek --status --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_restrictpubek --status --well-known
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_restrictsrk-status
+_summary: Collect the output of tpm_restrictsrk --status --well-known
+_description:
+ This simply collects the output of "tpm_restrictsrk --status --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_restrictsrk --status --well-known
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_setclearable-status
+_summary: Collect the output of tpm_setclearable--status --well-known
+_description:
+ This simply collects the output of "tpm_setclearable --status --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_setclearable --status --well-known
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_setenable-status
+_summary: Collect the output of tpm_setenable --status --well-known
+_description:
+ This simply collects the output of "tpm_setenable --status --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_setenable --status --well-known
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_setownable-status
+_summary: Collect the output of tpm_setownable --status --well-known
+_description:
+ This simply collects the output of "tpm_setownable --status --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_setownable --status --well-known
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_setpresence -status
+_summary: Collect the output of tpm_setpresence --status --well-known
+_description:
+ This simply collects the output of "tpm_setpresence --status --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_setpresence --status --well-known
+estimated_duration: 1s
+flags: preserve-locale
+
+unit: job
+id: query/tpm_getpubek
+_summary: Collect the output of tpm_getpubek --well-known
+_description:
+ This simply collects the output of "tpm_getpubek --well-known"
+ for inspection by a Certification engineer.
+plugin: attachment
+command: tpm_getpubek --well-known
+estimated_duration: 1s
+flags: preserve-locale

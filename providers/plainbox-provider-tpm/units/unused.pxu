@@ -1,0 +1,28 @@
+unit: job
+id: bios
+category_id: tpm
+plugin: resource
+_summary: Detect presence of TPM chip
+_description:
+ BIOS configuration may be preventing the OS from detecting and interacting
+ with the TPM chip. TPM chips can be in one of three BIOS states:
+ - Active (functional)
+ - Inactive (visible but not functional)
+ - Disabled (not visible and not functional)
+ .
+ This resource job describes the BIOS setting of the TPM chip. The output is
+ always a resource with one record. The record contains only one key:
+ .
+ setting: Active|Inactive|Disabled
+command:
+ if tpm_version >/dev/null; then
+    if tpm_setenable --status --well-known | grep -q -F 'code=0006 (6)'; then
+        echo "setting: Inactive"
+    else
+        echo "setting: Active"
+    fi
+ else
+    echo "setting: Disabled"
+ fi
+flags: preserve-locale
+estimated_duration: 3s
