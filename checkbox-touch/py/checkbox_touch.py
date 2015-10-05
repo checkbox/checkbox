@@ -145,6 +145,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self._password = None
         self._timestamp = None
         self._latest_session = None
+        self.test_plan_id = None
         self.resume_candidate_storage = None
         self.assistant.use_alternate_repository(
             self._get_app_cache_directory())
@@ -238,9 +239,21 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def remember_testplan(self, test_plan_id):
         """Pick the test plan as the one in force."""
+        if self.test_plan_id:
+            # test plan has been previously selected. User changed mind, we
+            # have to abandon the session
+            self.assistant.finalize_session()
+            self.assistant.start_new_session('Checkbox Converged session')
+            self._timestamp = datetime.datetime.utcnow().isoformat()
         self.test_plan_id = test_plan_id
         self.assistant.select_test_plan(test_plan_id)
         self.assistant.bootstrap()
+        # because session id (and storage) might have changed, let's share this
+        # info with the qml side
+        return {
+            'session_id': self.assistant.get_session_id(),
+            'session_dir': self.assistant.get_session_dir()
+        }
 
     @view
     def get_categories(self):
