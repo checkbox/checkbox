@@ -95,7 +95,11 @@ PythonObjectRef {
         });
     }
     function rememberTestplan(testplan, continuation) {
-        request("remember_testplan", [testplan], continuation, function(error) {
+        var handleResult = function(result) {
+            sessionDir = result['session_dir'];
+            continuation();
+        }
+        request("remember_testplan", [testplan], handleResult, function(error) {
             console.error("Unable to save testplan selection");
         });
     }
