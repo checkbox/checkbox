@@ -184,7 +184,7 @@ class canonical_hw_collection(CanonicalCommand):
         for job_id in sa.get_static_todo_list():
             job = sa.get_job(job_id)
             rc.para("- {0}".format(job.tr_summary()))
-            builder = sa.run_job(job_id, 'silent')
+            builder = sa.run_job(job_id, 'silent', native=False)
             result = builder.get_result()
             sa.use_job_result(job_id, result)
 
