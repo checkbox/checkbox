@@ -589,13 +589,6 @@ class SessionAssistant:
         UsageExpectation.of(self).enforce()
         test_plan = self._context.get_unit(test_plan_id, 'test plan')
         self._manager.test_plans = (test_plan, )
-        if False:
-            """
-            desired_job_list = select_jobs(
-                self._context.state.job_list, [unit.get_qualifier()])
-            self._context.state.update_desired_job_list(desired_job_list)
-            self._metadata.flags = {'incomplete'}
-            """
         self._manager.checkpoint()
         UsageExpectation.of(self).allowed_calls = {
             self.bootstrap: "to run the bootstrap process"
@@ -730,7 +723,6 @@ class SessionAssistant:
             self._context.state.job_list,
             [plan.get_qualifier() for plan in self._manager.test_plans])
         self._context.state.update_desired_job_list(desired_job_list)
-
 
     @raises(KeyError, UnexpectedMethodCall)
     def get_job_state(self, job_id: str) -> 'JobState':
@@ -1240,8 +1232,8 @@ class SessionAssistant:
             self.get_category: "to access the definition of ant category",
             self.get_participating_categories: (
                 "to access participating categories"),
-            self.filter_jobs_by_categories: ("to select the jobs that match"
-                "particular category"),
+            self.filter_jobs_by_categories: (
+                "to select the jobs that match particular category"),
             self.remove_all_filters: "to remove all filters",
             self.get_static_todo_list: "to see what is meant to be executed",
             self.get_dynamic_todo_list: "to see what is yet to be executed",
@@ -1253,6 +1245,9 @@ class SessionAssistant:
             self.export_to_transport: "to export the results and send them",
             self.export_to_file: "to export the results to a file",
             self.finalize_session: "to mark the session as complete",
+            self.get_session_id: "to get the id of currently running session",
+            self.get_session_dir: ("to get the path where current session is"
+                                   "stored"),
         }
 
 
