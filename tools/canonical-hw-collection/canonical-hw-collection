@@ -38,28 +38,21 @@ class canonical_hw_collection(CanonicalCommand):
     Tool for collecting hardware information and sending it to Canonical.
 
     This tool collects various information about the hardware it is running on
-    and sends it to a server operated by Canonical. The tool can operate in two
-    modes that differ just on the destination of the data. See below for
-    details.
+    and sends it to a server operated by Canonical (Certification website).
 
     Note that unless you are a Canonical employee, or you've been asked to use
-    this tool by a Canonical employee, you will not have much use of the tool.
-    None of the data is not publicly available.
-
-    @EPILOG@
-
-    If a hardware tracking number (secure ID) is provided, the data is uploaded
-    to the Certification website. Otherwise, the data is uploaded to HEXR.
+    this tool by a Canonical employee, you will not have much use of the tool,
+    as none of the data is publicly available.
     """
 
     app_id = 'canonical-hw-collection'
-    version = '1.0'
+    version = '1.1'
 
     def register_arguments(self, parser):
         """Method called to register command line arguments."""
         parser.add_argument(
-            'secure_id', metavar=_("SECURE-ID"), nargs="?",
-            help=_("Canonical hardware identifier (optional)"))
+            'secure_id', metavar=_("SECURE-ID"),
+            help=_("Canonical hardware identifier"))
         parser.add_argument(
             '--timeout', metavar=_("SECONDS"), type=int, default=5,
             help=_("Delay before starting automated hardware collection"))
@@ -111,10 +104,7 @@ class canonical_hw_collection(CanonicalCommand):
         rc.fg = CanonicalColors.white
         rc.bg = CanonicalColors.dark_aubergine
         rc.padding = (1, 1, 0, 1)
-        if secure_id:
-            rc.para(_("Sending hardware report to Canonical Certification"))
-        else:
-            rc.para(_("Sending hardware report to Canonical HEXR"))
+        rc.para(_("Sending hardware report to Canonical Certification"))
         rc.para(_("Server URL is: {0}").format(self.transport.url))
         result = sa.export_to_transport(
             "2013.com.canonical.plainbox::hexr", self.transport)
@@ -126,11 +116,8 @@ class canonical_hw_collection(CanonicalCommand):
         rc.para("All done, thank you!")
 
     def _create_transport(self, sa, secure_id, staging):
-        if secure_id:
-            return sa.get_canonical_certification_transport(
+        return sa.get_canonical_certification_transport(
                 secure_id, staging=staging)
-        else:
-            return sa.get_canonical_hexr_transport(staging=staging)
 
     def _show_intro(self, rc, timeout):
         rc.fg = CanonicalColors.white
