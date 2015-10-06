@@ -53,6 +53,7 @@ class canonical_hw_collection(CanonicalCommand):
     """
 
     app_id = 'canonical-hw-collection'
+    version = '1.0'
 
     def register_arguments(self, parser):
         """Method called to register command line arguments."""
@@ -141,7 +142,7 @@ class canonical_hw_collection(CanonicalCommand):
         rc.bold = 0
         rc.padding = (0, 1, 1, 1)
         rc.fg = CanonicalColors.ubuntu_orange
-        rc.para(_("version 0.1"))
+        rc.para(_("version {}").format(self.get_cmd_version()))
         rc.bg = CanonicalColors.dark_aubergine
         rc.padding = (1, 4, 1, 4)
         rc.fg = CanonicalColors.white
