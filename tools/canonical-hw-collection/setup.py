@@ -21,7 +21,7 @@ from setuptools import setup
 
 setup(
     name="canonical-hw-collection",
-    version="1.0",
+    version="1.1",
     url="https://launchpad.net/checkbox/",
     author="Zygmunt Krynicki",
     author_email="zygmunt.krynicki@canonical.com",
