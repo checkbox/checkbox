@@ -50,6 +50,7 @@ Page {
                 id: skipAction
                 objectName: "copyOutputAction"
                 iconName: "edit-copy"
+                // TRANSLATORS: a verb (call to action)
                 text: i18n.tr("Copy")
                 onTriggered: Clipboard.push(mimeData)
             }
@@ -93,6 +94,7 @@ Page {
 
         Button {
             Layout.fillWidth: true
+            // TRANSLATORS: This is a label on the button that goes back a page
             text: i18n.tr("Back")
             onClicked: pageStack.pop()
         }

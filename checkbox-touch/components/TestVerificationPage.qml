@@ -68,6 +68,7 @@ Page {
             objectName: "passButton"
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
+            // TRANSLATORS: this string is on a button that marks the given test as passed
             text: i18n.tr("Pass")
             onLatchedClicked: {
                 test["outcome"] = "pass";
@@ -81,6 +82,7 @@ Page {
             objectName: "failButton"
             unlatchedColor: UbuntuColors.red
             Layout.fillWidth: true
+            // TRANSLATORS: this string is on a button that marks the given test as failed
             text: i18n.tr("Fail")
             onLatchedClicked: {
                 test["outcome"] = "fail";

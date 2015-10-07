@@ -191,6 +191,9 @@ MainView {
 
     WelcomePage {
         id: welcomePage
+        // TRANSLATORS: %1 means program version, %2 repository revision and %3
+        // date when the package was built
+        // TRANSLATORS: keep the '\n' characters at the end of each line
         welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: %1\n(%2 %3)")
             .arg(app.applicationVersion).arg(appSettings.revision).arg(appSettings.clickBuildDate)
         onStartTestingTriggered: {

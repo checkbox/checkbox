@@ -56,6 +56,7 @@ Page {
             Label {
                 fontSize: "large"
                 Layout.fillHeight: true
+                // TRANSLATORS: this string will be followed by either "PASSED" or "FAILED"
                 text : i18n.tr("This test ")
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
