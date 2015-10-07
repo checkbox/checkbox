@@ -274,8 +274,8 @@ MainView {
         id: resumeSessionPage
         onRerunLast: app.resumeSession(true, processNextTest)
         onContinueSession: app.resumeSession(false, processNextTest)
-        resumeText: i18n.tr("Checkbox did not finish completely.\nDo you want \
- to rerun last test, continue to the next test, or restart from the beginning?")
+        resumeText: i18n.tr("Previous session did not finish completely.\nDo you want \
+ to rerun last test, continue to the next test, or start a new session?")
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
@@ -342,7 +342,7 @@ MainView {
         id: testSelectionPage
         objectName: "testSelectionPage"
         title: i18n.tr("Select tests")
-        continueText: i18n.tr("Start Testing")
+        continueText: i18n.tr("Start testing")
         largeBuffer: args.values["autopilot"]
 
         function setup(continuation) {
@@ -544,7 +544,7 @@ MainView {
                     app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
                         console.log(uri)
                         CbtDialogLogic.showDialog(resultsPage, i18n.tr("Reports have been saved to your Documents folder"),
-                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
+                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View report"), "color": UbuntuColors.green, "onClicked": function(uri) {
                                                       var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
                                                       webviewer.uri = htmlReportUrl;
                                                       pageStack.push(webviewer);
@@ -567,7 +567,7 @@ MainView {
                     },
                     function(error) {
                         ErrorLogic.showError(mainView,
-                                             i18n.tr("Could not submit results. Reason:\n" + error),
+                                             i18n.tr("Could not submit report. Reason:\n" + error),
                                              function(){},
                                              i18n.tr("OK"));
                         resultsPage.unlatchSubmission();

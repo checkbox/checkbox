@@ -114,7 +114,7 @@ Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 color: "white"
-                text: i18n.tr("Restart")
+                text: i18n.tr("Start new session")
             }
             onLatchedClicked: {
                 restartSession();

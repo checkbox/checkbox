@@ -85,7 +85,7 @@ Page {
             Layout.fillHeight: true
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            text : i18n.tr("You can go back to rerun it or continue to the next test.")
+            text : i18n.tr("You can go back to rerun the test or continue to the next test.")
         }
 
         Button {

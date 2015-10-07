@@ -96,7 +96,7 @@ Page {
             objectName: "startTestButton"
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
-            text: i18n.tr("Test")
+            text: i18n.tr("Start the test")
             onLatchedClicked: {
                 userInteractVerifyIntroPage.state = "testing"
                 testStarted();

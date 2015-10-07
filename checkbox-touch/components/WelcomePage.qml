@@ -60,7 +60,7 @@ Page {
             bottom: startTestButton.top
         }
 
-        text: i18n.tr("Welcome text")
+        text: ""
         fontSize: "large"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
@@ -76,7 +76,7 @@ Page {
         },
         State {
             name: "loaded"
-            PropertyChanges { target: startTestButton; enabled: true; color: UbuntuColors.green; text: i18n.tr("Start Testing")}
+            PropertyChanges { target: startTestButton; enabled: true; color: UbuntuColors.green; text: i18n.tr("Start testing")}
             PropertyChanges { target: loadingSpinner; running: false}
         }
     ]
@@ -114,7 +114,7 @@ Page {
         }
 
         unlatchedColor: UbuntuColors.green
-        text: i18n.tr("Start Testing")
+        text: i18n.tr("Start testing")
         onLatchedClicked: startTestingTriggered();
     }
 }
