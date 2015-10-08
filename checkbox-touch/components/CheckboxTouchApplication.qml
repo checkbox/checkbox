@@ -62,7 +62,7 @@ PythonObjectRef {
             if (!result["session_id"]) {
                 pageStack.pop();
                 ErrorLogic.showError(mainView,
-                                     i18n.tr("Could not resume session "),
+                                     i18n.tr("Could not resume session"),
                                      function() {
                                          startSession();
                                          return;

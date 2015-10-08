@@ -167,6 +167,7 @@ Page {
             unlatchedColor: UbuntuColors.green
             visible: submissionName
             Layout.fillWidth: true
+            // TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
             text: i18n.tr("Submit results to " + submissionName)
             onLatchedClicked: submitReportClicked();
         }

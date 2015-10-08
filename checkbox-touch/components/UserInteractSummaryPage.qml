@@ -56,6 +56,7 @@ Page {
             Label {
                 fontSize: "large"
                 Layout.fillHeight: true
+                // TRANSLATORS: this string will be followed by either "PASSED" or "FAILED"
                 text : i18n.tr("This test ")
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
@@ -84,7 +85,7 @@ Page {
             Layout.fillHeight: true
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            text : i18n.tr("You can go back to rerun it or continue to the next test.")
+            text : i18n.tr("You can go back to rerun the test or continue to the next test.")
         }
 
         Button {

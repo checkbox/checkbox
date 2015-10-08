@@ -94,7 +94,7 @@ MainView {
         anchors.fill: parent
         Label {
             anchors.fill: parent
-            text: i18n.tr("sending results - you should not see this page :-)")
+            text: i18n.tr("Sending report - you should not see this page :-)")
         }
     }
     ContentPeer {
