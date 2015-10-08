@@ -70,7 +70,7 @@ start_lxc_for(){
     if ! sudo $LXC_LS |grep -q $pristine_container; then
         step="[$target] creating pristine container"
         echo $step
-        if ! /usr/bin/time -o $TIMING sudo $LXC_CREATE  -n $pristine_container -t ubuntu -- -r $target --user=$CONTAINER_USER --packages=python-software-properties,software-properties-common >$LOG_DIR/$target.pristine.log 2>$LOG_DIR/$target.pristine.err; then
+        if ! /usr/bin/time -o $TIMING sudo $LXC_CREATE  -n $pristine_container -t ubuntu -- -r $target --user=$CONTAINER_USER --packages=python-software-properties,software-properties-common,python3-dev >$LOG_DIR/$target.pristine.log 2>$LOG_DIR/$target.pristine.err; then
             outcome=1
             echo "[$target] Unable to create pristine container!"
             echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.pristine.log)"
