@@ -8,28 +8,30 @@ msgstr ""
 "Project-Id-Version: checkbox-touch 0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 17:43+0200\n"
-"PO-Revision-Date: 2014-08-12 11:10+0000\n"
-"Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
+"PO-Revision-Date: 2015-10-12 17:16+0000\n"
+"Last-Translator: Małgorzata Mularz <malgorzata.mularz@gmail.com>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-09 05:11+0000\n"
-"X-Generator: Launchpad (build 17802)\n"
+"X-Launchpad-Export-Date: 2015-10-13 05:10+0000\n"
+"X-Generator: Launchpad (build 17812)\n"
 "Language: Polish\n"
 "X-Language: pl_PL\n"
 
 #: checkbox-touch.qml:70
 msgid "Run Checkbox-Touch in autopilot-testing mode"
-msgstr ""
+msgstr "Uruchom Checkbox-Touch w trybie testów autopilota"
 
 #: checkbox-touch.qml:75
 msgid "Write only warnings and errors to standard error"
 msgstr ""
+"Wypisz wyłącznie ostrzeżenia i komunikaty o błędach do standardowego wyjścia "
+"błędu"
 
 #: checkbox-touch.qml:81
 msgid "Path to a file containing checkbox-touch settings"
-msgstr ""
+msgstr "Ścieżka do pliku z ustawieniami checkbox-touch"
 
 #. TRANSLATORS: %1 means program version, %2 repository revision and %3
 #. date when the package was built
@@ -41,6 +43,9 @@ msgid ""
 "Version: %1\n"
 "(%2 %3)"
 msgstr ""
+"Witaj w aplikacji Checkbox Touch\n"
+"Wersja: %1\n"
+"(%2 %3)"
 
 #: checkbox-touch.qml:277
 msgid ""
@@ -48,267 +53,271 @@ msgid ""
 "Do you want  to rerun last test, continue to the next test, or start a new "
 "session?"
 msgstr ""
+"Poprzednia sesja nie została zakończona.\n"
+"Czy chcesz ponownie uruchomić poprzedni test, przejść do następnego testu "
+"lub rozpocząć nową sesję?"
 
 #: checkbox-touch.qml:288
 msgid "Select test plan"
-msgstr ""
+msgstr "Wybierz plan testów"
 
 #: checkbox-touch.qml:315
 msgid "Select categories"
-msgstr ""
+msgstr "Wybierz kategorie"
 
 #: checkbox-touch.qml:344
 msgid "Select tests"
-msgstr ""
+msgstr "Wybierz testy"
 
 #: checkbox-touch.qml:345 components/WelcomePage.qml:79
 #: components/WelcomePage.qml:117
 msgid "Start testing"
-msgstr ""
+msgstr "Rozpocznij test"
 
 #: checkbox-touch.qml:372
 msgid "Select tests to re-run"
-msgstr ""
+msgstr "Wybierz testy do ponownego uruchomienia"
 
 #: checkbox-touch.qml:374
 msgid "Finish"
-msgstr ""
+msgstr "Zakończ"
 
 #: checkbox-touch.qml:374
 msgid "Re-run"
-msgstr ""
+msgstr "Uruchom ponownie"
 
 #: checkbox-touch.qml:414
 msgid "Could not create component '"
-msgstr ""
+msgstr "Nie udało się utworzyć komponentu '"
 
 #: checkbox-touch.qml:416 components/ErrorLogic.js:13
 #: components/CheckboxTouchApplication.qml:57
 msgid "Quit"
-msgstr ""
+msgstr "Wyjdź"
 
 #: checkbox-touch.qml:435
 msgid "Could not resume session."
-msgstr ""
+msgstr "Nie udało się wznowić sesji"
 
 #: checkbox-touch.qml:437 components/ResumeSessionPage.qml:117
 #: components/CheckboxTouchApplication.qml:70
 msgid "Start new session"
-msgstr ""
+msgstr "Rozpocznij nową sesję"
 
 #: checkbox-touch.qml:546
 msgid "Reports have been saved to your Documents folder"
-msgstr ""
+msgstr "Raporty zostały zapisane w folderze Dokumenty"
 
 #: checkbox-touch.qml:547 checkbox-touch.qml:566 checkbox-touch.qml:572
 #: components/CbtDialogLogic.js:5 components/PasswordDialog.qml:60
 #: components/InputDialog.qml:58
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: checkbox-touch.qml:547
 msgid "View report"
-msgstr ""
+msgstr "Wyświetl raport"
 
 #: checkbox-touch.qml:565
 msgid "Report has been submited.\n"
-msgstr ""
+msgstr "Raport wysłany.\n"
 
 #: checkbox-touch.qml:570
 msgid "Could not submit report. Reason:\n"
-msgstr ""
+msgstr "Nie udało się wysłać raportu. Powód:\n"
 
 #: confinement/plainbox-confined-shell.qml:97
 msgid "Sending report - you should not see this page :-)"
-msgstr ""
+msgstr "Wysyłanie raportu - nie powinieneś widzieć tej strony :-)"
 
 #: components/WelcomePage.qml:35
 msgid "System Testing"
-msgstr ""
+msgstr "Testowanie systemu"
 
 #: components/WelcomePage.qml:47 components/AboutPage.qml:39
 msgid "About"
-msgstr ""
+msgstr "O aplikacji"
 
 #: components/WelcomePage.qml:73
 msgid "Checkbox is loading..."
-msgstr ""
+msgstr "Ładowanie Checkboksa"
 
 #: components/QmlConfinedPage.qml:40 components/InteractIntroPage.qml:48
 #: components/QmlNativePage.qml:38 components/ManualIntroPage.qml:42
 msgid "Test Description"
-msgstr ""
+msgstr "Opis testu"
 
 #: components/QmlConfinedPage.qml:98
 msgid "Waiting for the test to finish"
-msgstr ""
+msgstr "Oczekiwanie na zakończenie testu"
 
 #: components/QmlConfinedPage.qml:107 components/InteractIntroPage.qml:99
 #: components/QmlNativePage.qml:65 components/ManualIntroPage.qml:57
 msgid "Start the test"
-msgstr ""
+msgstr "Rozpocznij test"
 
 #: components/ResumeSessionPage.qml:39
 msgid "Resume session"
-msgstr ""
+msgstr "Wznów sesję"
 
 #: components/ResumeSessionPage.qml:79
 msgid "Rerun last"
-msgstr ""
+msgstr "Uruchom ponownie"
 
 #: components/ResumeSessionPage.qml:98 components/SelectionPage.qml:36
 #: components/ErrorLogic.js:11 components/UserInteractSummaryPage.qml:95
 msgid "Continue"
-msgstr ""
+msgstr "Przejdź do następnego"
 
 #: components/TestVerificationPage.qml:41
 #: components/UserInteractSummaryPage.qml:41
 msgid "Verification"
-msgstr ""
+msgstr "Weryfikacja"
 
 #. TRANSLATORS: this string is on a button that marks the given test as passed
 #: components/TestVerificationPage.qml:72
 msgid "Pass"
-msgstr ""
+msgstr "Powodzenie"
 
 #. TRANSLATORS: this string is on a button that marks the given test as failed
 #: components/TestVerificationPage.qml:86
 msgid "Fail"
-msgstr ""
+msgstr "Niepowodzenie"
 
 #: components/CommandOutputPage.qml:46
 msgid "Command output"
-msgstr ""
+msgstr "Wyjście polecenia"
 
 #. TRANSLATORS: a verb (call to action)
 #: components/CommandOutputPage.qml:54
 msgid "Copy"
-msgstr ""
+msgstr "Kopiuj"
 
 #. TRANSLATORS: This is a label on the button that goes back a page
 #: components/CommandOutputPage.qml:98
 msgid "Back"
-msgstr ""
+msgstr "Wstecz"
 
 #: components/PasswordDialog.qml:47
 msgid "Enter password"
-msgstr ""
+msgstr "Wpisz hasło"
 
 #: components/PasswordDialog.qml:53
 msgid "password"
-msgstr ""
+msgstr "hasło"
 
 #: components/PasswordDialog.qml:72 components/InputDialog.qml:68
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: components/SelectionPage.qml:77
 msgid "Select All"
-msgstr ""
+msgstr "Zaznacz wszystko"
 
 #: components/SelectionPage.qml:90
 msgid "Deselect All"
-msgstr ""
+msgstr "Odznacz wszystko"
 
 #: components/WebViewer.qml:28
 msgid "Test Report"
-msgstr ""
+msgstr "Raport testów"
 
 #: components/AutomatedTestPage.qml:39
 msgid "Automated test"
-msgstr ""
+msgstr "Automatyczny test"
 
 #. TRANSLATORS: this string will be followed by either "PASSED" or "FAILED"
 #: components/UserInteractSummaryPage.qml:60
 msgid "This test "
-msgstr ""
+msgstr "Ten test "
 
 #: components/UserInteractSummaryPage.qml:77
 msgid "PASSED"
-msgstr ""
+msgstr "POWIÓDŁ SIĘ"
 
 #: components/UserInteractSummaryPage.qml:77
 msgid "FAILED"
-msgstr ""
+msgstr "NIE POWIÓDŁ SIĘ"
 
 #: components/UserInteractSummaryPage.qml:88
 msgid "You can go back to rerun the test or continue to the next test."
 msgstr ""
+"Możesz wrócić i ponownie uruchomić test lub przejść do następnego testu."
 
 #: components/actions/SkipAction.qml:33
 msgid "Skip"
-msgstr ""
+msgstr "Pomiń"
 
 #: components/actions/SkipAction.qml:36
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Czy na pewno chcesz pominąć ten test?"
 
 #: components/actions/AddCommentAction.qml:31 components/CommentsDialog.qml:54
 msgid "Add comment"
-msgstr ""
+msgstr "Dodaj komentarz"
 
 #: components/CommentsDialog.qml:64
 msgid "Done"
-msgstr ""
+msgstr "Gotowe"
 
 #: components/ConfirmationDialog.qml:50
 msgid "Are you sure?"
-msgstr ""
+msgstr "Na pewno?"
 
 #: components/ConfirmationDialog.qml:69
 msgid "YES"
-msgstr ""
+msgstr "TAK"
 
 #: components/ConfirmationDialog.qml:78
 msgid "NO"
-msgstr ""
+msgstr "NIE"
 
 #: components/ConfirmationDialog.qml:93
 msgid "Do not ask me this question again"
-msgstr ""
+msgstr "Nie pytaj o to ponownie"
 
 #: components/ResultsPage.qml:34
 msgid "Test Results"
-msgstr ""
+msgstr "Wyniki testów"
 
 #: components/ResultsPage.qml:52 components/AboutPage.qml:81
 msgid "Close"
-msgstr ""
+msgstr "Zamknij"
 
 #: components/ResultsPage.qml:162
 msgid "Save detailed report"
-msgstr ""
+msgstr "Zapisz szczegółowy raport"
 
 #. TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
 #: components/ResultsPage.qml:171
 msgid "Submit results to "
-msgstr ""
+msgstr "Wyślij wyniki do: "
 
 #: components/AboutPage.qml:74
 msgid "version: "
-msgstr ""
+msgstr "wersja: "
 
 #: components/AboutPage.qml:75
 msgid "Plainbox version: "
-msgstr ""
+msgstr "Wersja Plainboksa: "
 
 #: components/ErrorDialog.qml:43
 msgid "Um, OK"
-msgstr ""
+msgstr "Yyy, OK"
 
 #: components/ErrorDialog.qml:53 components/ErrorDialog.qml:61
 msgid "Error encountered"
-msgstr ""
+msgstr "Wystąpił błąd"
 
 #: components/CheckboxTouchApplication.qml:55
 msgid "Could not start a session.  Reason:\n"
-msgstr ""
+msgstr "Nie udało się rozpocząć sesji. Powód:\n"
 
 #: components/CheckboxTouchApplication.qml:65
 msgid "Could not resume session"
-msgstr ""
+msgstr "Nie udało się wznowić sesji"
 
 #: py/sudo_with_pass_ctrl.py:160
 #, python-format
 msgid "job[%s] executing %r with env %r in cwd %r"
-msgstr ""
+msgstr "zadanie[%s] wykonywane %r w środowisku %r w katalogu %r"
