@@ -118,6 +118,8 @@ def main():
     if not validate_providers():
         sys.exit('Provider validation failed.')
 
+    build_i18n()
+
     generate_desktop_file()
 
     if not os.path.exists('../build-cbt'):
@@ -156,6 +158,19 @@ def validate_providers():
                            sys.stdout.encoding)))
                 providers_valid = False
     return providers_valid
+
+
+def build_i18n():
+    print("Building i18n")
+    for provider_dir in os.listdir('providers'):
+        try:
+            subprocess.check_output(
+                [os.path.join('providers', provider_dir, 'manage.py'),
+                 'i18n'], stderr=subprocess.STDOUT)
+        except (OSError, subprocess.CalledProcessError) as e:
+            print("Problem encountered while building translations for ",
+                  "provider '{}'.".format(provider_dir))
+            raise e
 
 
 def generate_desktop_file():
