@@ -84,6 +84,7 @@ MainView {
     }
 
     Component.onCompleted: {
+        i18n.domain = "com.ubuntu.checkbox";
         if (args.values["autopilot"]) {
             // autopilot-testing mode
             appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";

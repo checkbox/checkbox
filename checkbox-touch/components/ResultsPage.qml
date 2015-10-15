@@ -84,7 +84,7 @@ Page {
 
         Label {
             fontSize: "x-large"
-            text: "Summary"
+            text: i18n.tr("Summary")
         }
 
         MouseArea {
@@ -128,7 +128,7 @@ Page {
                 }
                 Text {
                     objectName: "passedLabel"
-                    text: results.totalPassed + " tests passed"
+                    text: results.totalPassed + " " + i18n.tr("tests passed")
                 }
             }
             Row {
@@ -139,7 +139,7 @@ Page {
                 }
                 Text {
                     objectName: "failedLabel"
-                    text: results.totalFailed + " tests failed"
+                    text: results.totalFailed + " " + i18n.tr("tests failed")
                 }
             }
             Row {
@@ -150,7 +150,7 @@ Page {
                 }
                 Text {
                     objectName: "skippedLabel"
-                    text: results.totalSkipped + " tests skipped"
+                    text: results.totalSkipped + " " + i18n.tr("tests skipped")
                 }
             }
         }
