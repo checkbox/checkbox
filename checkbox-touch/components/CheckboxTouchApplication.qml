@@ -208,6 +208,7 @@ PythonObjectRef {
 
         }, function(error) {
                 console.error("Unable to load providers: " + error);
+                ErrorLogic.showError(mainView, i18n.tr("No providers available!"), Qt.quit);
         });
     }
 }
