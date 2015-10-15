@@ -242,7 +242,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         if self.test_plan_id:
             # test plan has been previously selected. User changed mind, we
             # have to abandon the session
-            self.assistant.finalize_session()
+            self._finalize_session()
             self.assistant.start_new_session('Checkbox Converged session')
             self._timestamp = datetime.datetime.utcnow().isoformat()
         self.test_plan_id = test_plan_id
@@ -406,7 +406,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def get_results(self):
         """Get results object."""
-        self.assistant.finalize_session()
+        self._finalize_session()
         stats = self.assistant.get_summary()
         return {
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
@@ -516,6 +516,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             raise RuntimeError("execute_job called without providing password"
                                " first")
         return self._password
+
+    def _finalize_session(self):
+        self.test_plan_id = ""
+        self.assistant.finalize_session()
 
     def remember_password(self, password):
         """
