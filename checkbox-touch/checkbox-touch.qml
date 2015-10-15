@@ -164,8 +164,7 @@ MainView {
         Component.onCompleted: {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
-                construct("checkbox_touch.create_app_object", [
-                    appSettings["providersDir"]]);
+                construct("checkbox_touch.create_app_object", []);
             });
         }
     }

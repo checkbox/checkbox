@@ -135,7 +135,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     __version__ = (1, 2, 1, 'final', 0)
 
-    def __init__(self, providers_dir):
+    def __init__(self):
         if plainbox.__version__ < (0, 22):
             raise SystemExit("plainbox 0.22 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
@@ -149,12 +149,16 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.resume_candidate_storage = None
         self.assistant.use_alternate_repository(
             self._get_app_cache_directory())
-        self.assistant.select_providers(
-            '*',
-            additional_providers=self._get_embedded_providers(providers_dir))
 
     def __repr__(self):
         return "app"
+
+
+    @view
+    def load_providers(self, providers_dir):
+        self.assistant.select_providers(
+            '*',
+            additional_providers=self._get_embedded_providers(providers_dir))
 
     @view
     def get_version_pair(self):
