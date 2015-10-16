@@ -1,0 +1,298 @@
+# Chinese (Traditional) translation for checkbox
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the checkbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: checkbox\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-04-08 19:15+0200\n"
+"PO-Revision-Date: 2015-10-15 13:09+0000\n"
+"Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2015-10-16 05:11+0000\n"
+"X-Generator: Launchpad (build 17812)\n"
+
+#. summary
+#: ../units/piglit.pxu:4
+msgid "Run piglit tests for Frame Buffer Object (FBO) operations"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:5
+msgid ""
+"This job runs piglit tests for checking support for frame buffer object "
+"operations, depth buffer and stencil buffer."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:21
+msgid "Run piglit tests for OpenGL 2.1"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:22
+msgid "This job runs piglit tests for checking OpenGL 2.1 support."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:37
+msgid "Run piglit tests for Vertex Buffer Object (VBO) operations"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:38
+msgid ""
+"This job runs piglit tests for checking support for vertex buffer object "
+"operations."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:54
+msgid "Run piglit tests for GLSL fragment shader operations"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:55
+msgid ""
+"This job runs piglit tests for checking support for GLSL fragment shader "
+"operations."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:71
+msgid "Run piglit tests for GLSL vertex shader operations"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:72
+msgid ""
+"This job runs piglit tests for checking support for GLSL vertex shader "
+"operations."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:90
+msgid "Run piglit tests for texture-from-pixmap extension"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:91
+msgid ""
+"This job runs piglit tests for checking support for texture from pixmap."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:106
+msgid "Run piglit tests for stencil buffer operations"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:107
+msgid ""
+"This job runs piglit tests for checking support for stencil buffer "
+"operations."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:123
+msgid "Combine all piglit test results into one"
+msgstr "合併所有 piglit 測試結果"
+
+#. description
+#: ../units/piglit.pxu:124
+msgid ""
+"This job combines all of the prior piglit results into one result file so "
+"that they can be analyzed together. It is required to use piglit's built-in "
+"report generator."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:140
+msgid "Create a HTML summary of all the piglit test results"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:141
+msgid ""
+"This job runs the piglit HTML report generator on the combination of all the "
+"past results."
+msgstr ""
+
+#. summary
+#: ../units/piglit.pxu:159
+msgid "Archive HTML summary of all piglit test results"
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:160
+msgid ""
+"This job archives the HTML summary of all the piglit results for convenient "
+"access. The result is not added as plainbox system attachment attachment but "
+"can be loaded from the session directory."
+msgstr ""
+
+#. name
+#: ../units/piglit.pxu:177
+msgid "Select piglit tests"
+msgstr "選擇 piglit 測試項目"
+
+#. description
+#: ../units/piglit.pxu:178
+msgid ""
+"This test plan runs a selection of piglit tests, summarizes them and creates "
+"an archive for easy inspection and sharing."
+msgstr ""
+
+#. description
+#: ../units/piglit.pxu:190
+msgid "Piglit Tests"
+msgstr "Piglit 測試項目"
+
+#: ../bin/piglit-wrapper:100
+#, c-format
+msgid "Created temporary directory: %s"
+msgstr "已於：%s 建立暫存資料夾"
+
+#: ../bin/piglit-wrapper:117
+msgid "Starting program: %r"
+msgstr ""
+
+#: ../bin/piglit-wrapper:130
+msgid "Piglit didn't create the test result file?"
+msgstr ""
+
+#: ../bin/piglit-wrapper:132
+#, c-format
+msgid "Analyzing piglit test results from %s"
+msgstr ""
+
+#: ../bin/piglit-wrapper:142
+msgid "Unsupported piglit result format (%r)"
+msgstr ""
+
+#: ../bin/piglit-wrapper:146
+msgid "Analyzing piglit test results (format 4)"
+msgstr ""
+
+#: ../bin/piglit-wrapper:160
+msgid "Tool for running piglit tests"
+msgstr ""
+
+#: ../bin/piglit-wrapper:162 ../bin/piglit-combiner:172
+#: ../bin/piglit-combiner:175
+msgid "DIR"
+msgstr ""
+
+#: ../bin/piglit-wrapper:163
+msgid "save piglit results to DIR"
+msgstr ""
+
+#: ../bin/piglit-wrapper:165
+msgid "PATTERN"
+msgstr ""
+
+#: ../bin/piglit-wrapper:166
+msgid "run piglit tests matching given PATTERN"
+msgstr ""
+
+#: ../bin/piglit-wrapper:170
+msgid "be more verbose during testing"
+msgstr ""
+
+#: ../bin/piglit-wrapper:178
+msgid "This version of piglit is not supported"
+msgstr ""
+
+#: ../bin/piglit-wrapper:181
+msgid "Summary of results (by outcome)"
+msgstr ""
+
+#: ../bin/piglit-wrapper:188
+msgid "Tests successful"
+msgstr ""
+
+#: ../bin/piglit-wrapper:191
+msgid "Tests unsuccessful"
+msgstr ""
+
+#: ../bin/piglit-combiner:44
+msgid "Discovering all results in directory: %r"
+msgstr ""
+
+#: ../bin/piglit-combiner:53
+msgid "Loading results from: %r"
+msgstr ""
+
+#: ../bin/piglit-combiner:60
+msgid "Saving results to: %r"
+msgstr "將結果儲存至：%r"
+
+#: ../bin/piglit-combiner:116
+msgid "No combination function for: {!r}"
+msgstr ""
+
+#: ../bin/piglit-combiner:121
+msgid "Combination function failed for: {!r}"
+msgstr ""
+
+#: ../bin/piglit-combiner:169
+msgid "Tool for combining results of multiple runs of piglit"
+msgstr ""
+
+#: ../bin/piglit-combiner:173
+msgid "directory with results to load (recursively)"
+msgstr ""
+
+#: ../bin/piglit-combiner:176
+msgid "directory to save results to"
+msgstr ""
+
+#: ../bin/piglit-combiner:180 ../bin/piglit-archiver:54
+msgid "be more verbose"
+msgstr ""
+
+#: ../bin/piglit-combiner:188
+#, c-format
+msgid "Unable to combine results: %s"
+msgstr ""
+
+#: ../bin/piglit-combiner:192
+#, c-format
+msgid "Combined %d result"
+msgid_plural "Combined %d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../bin/piglit-combiner:194
+msgid "No results were really combined!"
+msgstr ""
+
+#: ../bin/piglit-archiver:38
+msgid "Tool for archiving piglit report"
+msgstr ""
+
+#: ../bin/piglit-archiver:41
+msgid "base name of the archive"
+msgstr ""
+
+#: ../bin/piglit-archiver:44
+msgid "format of the archive to create"
+msgstr ""
+
+#: ../bin/piglit-archiver:47 ../bin/piglit-archiver:50
+msgid "root directory of the archive"
+msgstr ""
+
+#: ../bin/piglit-archiver:63
+msgid "Archive with summary of piglit results is available in"
+msgstr ""
+
+#: ../manage.py:25
+msgid "Piglit (OpenGL/OpenCL) Test Provider"
+msgstr ""

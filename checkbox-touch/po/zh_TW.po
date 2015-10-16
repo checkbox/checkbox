@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-10-07 17:43+0200\n"
+"POT-Creation-Date: 2015-10-15 12:23+0200\n"
 "PO-Revision-Date: 2015-10-14 03:56+0000\n"
 "Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-15 05:12+0000\n"
+"X-Launchpad-Export-Date: 2015-10-16 05:11+0000\n"
 "X-Generator: Launchpad (build 17812)\n"
 
 #: checkbox-touch.qml:70
@@ -32,7 +32,7 @@ msgstr ""
 #. TRANSLATORS: %1 means program version, %2 repository revision and %3
 #. date when the package was built
 #. TRANSLATORS: keep the '\n' characters at the end of each line
-#: checkbox-touch.qml:197
+#: checkbox-touch.qml:198
 #, qt-format
 msgid ""
 "Welcome to Checkbox Touch\n"
@@ -43,79 +43,79 @@ msgstr ""
 "版本： %1\n"
 "(%2 %3)"
 
-#: checkbox-touch.qml:277
+#: checkbox-touch.qml:278
 msgid ""
 "Previous session did not finish completely.\n"
 "Do you want  to rerun last test, continue to the next test, or start a new "
 "session?"
 msgstr ""
 
-#: checkbox-touch.qml:288
+#: checkbox-touch.qml:289
 msgid "Select test plan"
 msgstr ""
 
-#: checkbox-touch.qml:315
+#: checkbox-touch.qml:316
 msgid "Select categories"
 msgstr "選擇測試類別"
 
-#: checkbox-touch.qml:344
+#: checkbox-touch.qml:345
 msgid "Select tests"
 msgstr "選擇測試項目"
 
-#: checkbox-touch.qml:345 components/WelcomePage.qml:79
+#: checkbox-touch.qml:346 components/WelcomePage.qml:79
 #: components/WelcomePage.qml:117
 msgid "Start testing"
 msgstr "開始測試"
 
-#: checkbox-touch.qml:372
+#: checkbox-touch.qml:373
 msgid "Select tests to re-run"
 msgstr "選擇需要重新測試的項目"
 
-#: checkbox-touch.qml:374
+#: checkbox-touch.qml:375
 msgid "Finish"
 msgstr ""
 
-#: checkbox-touch.qml:374
+#: checkbox-touch.qml:375
 msgid "Re-run"
 msgstr ""
 
-#: checkbox-touch.qml:414
+#: checkbox-touch.qml:415
 msgid "Could not create component '"
 msgstr ""
 
-#: checkbox-touch.qml:416 components/ErrorLogic.js:13
+#: checkbox-touch.qml:417 components/ErrorLogic.js:13
 #: components/CheckboxTouchApplication.qml:57
 msgid "Quit"
 msgstr ""
 
-#: checkbox-touch.qml:435
+#: checkbox-touch.qml:436
 msgid "Could not resume session."
 msgstr ""
 
-#: checkbox-touch.qml:437 components/ResumeSessionPage.qml:117
+#: checkbox-touch.qml:438 components/ResumeSessionPage.qml:117
 #: components/CheckboxTouchApplication.qml:70
 msgid "Start new session"
 msgstr ""
 
-#: checkbox-touch.qml:546
+#: checkbox-touch.qml:547
 msgid "Reports have been saved to your Documents folder"
 msgstr ""
 
-#: checkbox-touch.qml:547 checkbox-touch.qml:566 checkbox-touch.qml:572
+#: checkbox-touch.qml:548 checkbox-touch.qml:567 checkbox-touch.qml:573
 #: components/CbtDialogLogic.js:5 components/PasswordDialog.qml:60
 #: components/InputDialog.qml:58
 msgid "OK"
 msgstr "OK"
 
-#: checkbox-touch.qml:547
+#: checkbox-touch.qml:548
 msgid "View report"
 msgstr "檢視報告"
 
-#: checkbox-touch.qml:565
+#: checkbox-touch.qml:566
 msgid "Report has been submited.\n"
 msgstr "報告已上傳完畢。\n"
 
-#: checkbox-touch.qml:570
+#: checkbox-touch.qml:571
 msgid "Could not submit report. Reason:\n"
 msgstr "無法傳送報告。原因：\n"
 
@@ -203,13 +203,9 @@ msgstr "密碼"
 msgid "Cancel"
 msgstr "取消"
 
-#: components/SelectionPage.qml:77
-msgid "Select All"
-msgstr "全選"
-
-#: components/SelectionPage.qml:90
-msgid "Deselect All"
-msgstr "全不選"
+#: components/SelectionPage.qml:89
+msgid "Toggle selection"
+msgstr ""
 
 #: components/WebViewer.qml:28
 msgid "Test Report"
@@ -248,7 +244,7 @@ msgstr "您真的想略過本測試嗎？"
 msgid "Add comment"
 msgstr ""
 
-#: components/CommentsDialog.qml:64
+#: components/CommentsDialog.qml:66
 msgid "Done"
 msgstr ""
 
@@ -274,6 +270,22 @@ msgstr "測試結果"
 
 #: components/ResultsPage.qml:52 components/AboutPage.qml:81
 msgid "Close"
+msgstr ""
+
+#: components/ResultsPage.qml:87
+msgid "Summary"
+msgstr ""
+
+#: components/ResultsPage.qml:131
+msgid "tests passed"
+msgstr ""
+
+#: components/ResultsPage.qml:142
+msgid "tests failed"
+msgstr ""
+
+#: components/ResultsPage.qml:153
+msgid "tests skipped"
 msgstr ""
 
 #: components/ResultsPage.qml:162
