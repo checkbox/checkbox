@@ -61,6 +61,10 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         continue_btn = tests_selection_page.wait_select_single(
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
+        # TWO automatic jobs should pass by:
+        # autopilot/automated-test-that-fails
+        # autopilot/automated-test-that-passes
+        # now it's time for three manual jobs - autopilot/manual-{1,2,3}
         next_steps = [
             ('manualIntroPage', 'continueButton'),
             ('testVerificationPage', 'passButton'),
@@ -69,43 +73,51 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
         self.skip_test('manualIntroPage')
-        # now we use long_wait because we have a long test to wait for (>10s)
-        self.long_wait_select_single(
-            self.app, objectName='userInteractVerifyIntroPage', visible=True)
+        # Now it's time for three UIV tests -
+        #  autopilot/user-interact-verify-{1,2,3}
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'failButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test('userInteractVerifyIntroPage')
+        # Next come 3 user-verify tests - autopilot/user-verify-{1,2,3}
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'failButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test('userInteractVerifyIntroPage')
+        # Now the user-interact tests - autopilot/user-interact-{1,2,3}
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('userInteractSummary', 'continueButton'),
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('userInteractSummary', 'continueButton'),
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        self.skip_test('userInteractVerifyIntroPage')
+        # Next is autopilot/print-and-verify
         next_steps = [
             ('userInteractVerifyIntroPage', 'startTestButton'),
             ('testVerificationPage', 'passButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
+        # Next is a shell job that takes >10s to complete -
+        # autopilot/print-and-verify
+        # We have to use long_wait because wait_select_single would time-out.
+        self.long_wait_select_single(
+            self.app, objectName='qmlNativePage', visible=True)
+        # Now, qml-native job already started. autpopilot/qml-job
         next_steps = [
             ('qmlNativePage', 'continueButton'),
             ('qmlTestPage', 'passButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('userInteractSummary', 'continueButton'),
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('userInteractSummary', 'continueButton'),
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test('userInteractVerifyIntroPage')
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'passButton'),
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'failButton')
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test('userInteractVerifyIntroPage')
-        next_steps = [
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'passButton'),
-            ('userInteractVerifyIntroPage', 'startTestButton'),
-            ('testVerificationPage', 'failButton')
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
-        self.skip_test('userInteractVerifyIntroPage')
         next_steps = [
             ('rerunSelectionPage', 'continueButton')
         ]
