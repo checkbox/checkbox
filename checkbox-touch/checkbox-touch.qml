@@ -563,7 +563,7 @@ MainView {
                         }
                         CbtDialogLogic.showDialog(
                             resultsPage,
-                            i18n.tr("Report has been submited.\n" + s),
+                            i18n.tr("Report has been submitted.\n" + s),
                             [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
                     },
                     function(error) {

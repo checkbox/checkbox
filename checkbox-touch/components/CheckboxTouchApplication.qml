@@ -164,9 +164,18 @@ PythonObjectRef {
         });
     }
     function submitResults(config, continuation, continuation_error) {
-        request("submit_results", [config], continuation, function(error) {
-            console.error("Unable to submit test results");
-            continuation_error(error);
+        // Use low-level call as the config may contain sensitive information.
+        var callable = py.getattr(object, "submit_results");
+        if (!callable) {
+            console.error("Unable to invoke submit_results!");
+            throw "trying to invoke not existing method";
+        }
+        py.call(callable, [config], function(response) {
+            if(response.code == 200) {
+                continuation(response.result);
+            } else {
+                continuation_error(response.error)
+            }
         });
     }
 
