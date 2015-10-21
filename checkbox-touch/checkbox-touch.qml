@@ -657,15 +657,22 @@ MainView {
         if (appSettings.submission.inputForm) {
             var dlg_cmp = Qt.createComponent(Qt.resolvedUrl(appSettings.submission.inputForm));
             var dlg = dlg_cmp.createObject(mainView);
+
+            dlg.cancelClicked.connect(function() {
+                cancelContinuation();
+                return;
+            });
+
             dlg.submissionDetailsFilled.connect(function(submissionDetails) {
-                for (var attr in submission_details) {
+                for (var attr in submissionDetails) {
                     appSettings.submission[attr] = submissionDetails[attr];
-                    continuation();
                 }
+                continuation();
             });
             PopupUtils.open(dlg.dialogComponent);
             return; // inputForm gets precedence over input
         }
+
         if (!appSettings.submission.input) {
             // no input to process
             continuation();
