@@ -385,6 +385,10 @@ MainView {
             pageStack.push(rerunSelectionPage)
         }
         onSelectionDone: {
+            if (!selected_id_list.length) {
+                showResultsScreen();
+                return;
+            }
             app.rememberTestSelection(selected_id_list, function() {
                 processNextTest();
                 unlatchContinue();
