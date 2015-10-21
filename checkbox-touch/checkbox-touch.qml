@@ -318,14 +318,20 @@ MainView {
 
         function setup(continuation) {
             app.getCategories(function(response) {
-                var category_info_list = response.category_info_list;
-                model.clear();
-                for (var i=0; i<category_info_list.length; i++) {
-                    var category_info = category_info_list[i]; 
-                    model.append(category_info);
+                var uncategorised_id = "2013.com.canonical.plainbox::uncategorised"
+                if (response.category_info_list.length === 1 &&
+                    response.category_info_list[0].mod_id == uncategorised_id) {
+                    selectionDone(uncategorised_id);
+                } else {
+                    var category_info_list = response.category_info_list;
+                    model.clear();
+                    for (var i=0; i<category_info_list.length; i++) {
+                        var category_info = category_info_list[i];
+                        model.append(category_info);
+                    }
+                    modelUpdated();
+                    pageStack.push(categorySelectionPage);
                 }
-                modelUpdated();
-                pageStack.push(categorySelectionPage);
                 // if called from welcome page, no continuation is given
                 if (continuation) continuation();
             });
