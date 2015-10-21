@@ -437,6 +437,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             'c3-staging': (
                 lambda: self.assistant.get_canonical_certification_transport(
                     config['secure_id'], staging=True)),
+            'oauth': lambda: self.assistant.get_oauth_transport(config),
         }[config['type']]()
         # CertificationTransport expects xml submission format, 'hexr' exporter
         # provides compliant one
