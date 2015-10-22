@@ -197,12 +197,18 @@ PythonObjectRef {
     // Internal handler that triggers a call to python to query for runtime and
     // application versions.
     onObjectReady: {
-        request("get_version_pair", [], function(result) {
-            app.applicationVersion = result.application_version;
-            app.plainboxVersion = result.plainbox_version;
-            appReady();
+        request("load_providers", [appSettings["providersDir"]], function(result) {
+            request("get_version_pair", [], function(result) {
+                app.applicationVersion = result.application_version;
+                app.plainboxVersion = result.plainbox_version;
+                appReady();
+            }, function(error) {
+                console.error("Unable to query for version: " + error);
+            });
+
         }, function(error) {
-            console.error("Unable to query for version: " + error);
+                console.error("Unable to load providers: " + error);
+                ErrorLogic.showError(mainView, i18n.tr("No providers available!"), Qt.quit);
         });
     }
 }
