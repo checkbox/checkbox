@@ -48,7 +48,7 @@ Page {
     head {
         actions: [
             Action {
-                iconName: "window-close"
+                iconName: "close"
                 text: i18n.tr("Close")
                 onTriggered: endTesting();
             }
