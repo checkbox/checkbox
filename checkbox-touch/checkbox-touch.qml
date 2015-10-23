@@ -200,6 +200,7 @@ MainView {
             if (appSettings.testplan != "") {
                 app.rememberTestplan(appSettings.testplan, function() {
                     categorySelectionPage.setup();
+                    enableButton();
                 });
             } else {
                 app.getTestplans(function(response) {
@@ -212,9 +213,9 @@ MainView {
                     else {
                         testplanSelectionPage.setup(tp_list)
                     }
+                    enableButton();
                 });
             }
-            enableButton();
         }
         onAboutClicked: pageStack.push(aboutPage)
     }
