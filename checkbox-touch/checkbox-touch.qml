@@ -464,16 +464,20 @@ MainView {
                 // user (therefore requiring user to enter sudo password)
                 if (!appSettings.sudoPasswordProvided) {
                     // ask user for password
-                    passwordDialog.passwordEntered.connect(function(pass) {
+                    var rememberContinuation = function(pass) {
+                        passwordDialog.passwordEntered.disconnect(rememberContinuation);
                         app.rememberPassword(pass, function(){
                             appSettings.sudoPasswordProvided = true;
                             performTest(test);
                         });
-                    });
-                    passwordDialog.dialogCancelled.connect(function() {
+                    }
+                    var cancelContinuation = function() {
+                        passwordDialog.dialogCancelled.disconnect(cancelContinuation);
                         test.outcome = "skip";
                         completeTest(test);
-                    });
+                    };
+                    passwordDialog.passwordEntered.connect(rememberContinuation);
+                    passwordDialog.dialogCancelled.connect(cancelContinuation);
                     PopupUtils.open(passwordDialog.dialogComponent);
                     return;
                 }
