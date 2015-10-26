@@ -162,7 +162,6 @@ class CheckboxTouchApplication(PlainboxApplication):
     def __repr__(self):
         return "app"
 
-
     @view
     def load_providers(self, providers_dir):
         self.assistant.select_providers(
