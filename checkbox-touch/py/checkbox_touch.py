@@ -150,6 +150,15 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.assistant.use_alternate_repository(
             self._get_app_cache_directory())
 
+        # Prepare custom execution controller list
+        from plainbox.impl.ctrl import UserJobExecutionController
+        from sudo_with_pass_ctrl import RootViaSudoWithPassExecutionController
+        ctrl_setup_list = [(RootViaSudoWithPassExecutionController,
+                           [self._password_provider], {}),
+                           (UserJobExecutionController, [], {}),
+                           ]
+        self.assistant.use_alternate_execution_controllers(ctrl_setup_list)
+
     def __repr__(self):
         return "app"
 
