@@ -111,6 +111,7 @@ class SessionAssistant:
         self._repo = SessionStorageRepository()
         self._config = PlainBoxConfig().get()
         self._execution_ctrl_list = None  # None is "default"
+        self._ctrl_setup_list = []
         # List of providers that were selected. This is buffered until a
         # session is created or resumed.
         self._selected_providers = []
@@ -191,13 +192,16 @@ class SessionAssistant:
 
     @raises(UnexpectedMethodCall)
     def use_alternate_execution_controllers(
-        self, ctrl_list: 'List[IExecutionController]'
+        self, ctrl_setup_list:
+            'Iterable[Tuple[IExecutionController, Tuple[Any], Dict[Any]]]'
     ) -> None:
         """
         Use alternate execution controllers.
 
-        :param ctrl_list:
-            The list of execution controllers to use.
+        :param ctrl_setup_list:
+            An iterable with tuples, where each tuple represents a class of
+            controller to instantiate, together with *args and **kwargs to use
+            when calling its __init__.
         :raises UnexpectedMethodCall:
             If the call is made at an unexpected time. Do not catch this error.
             It is a bug in your program. The error message will indicate what
@@ -214,7 +218,7 @@ class SessionAssistant:
             here. This method is currently experimental.
         """
         UsageExpectation.of(self).enforce()
-        self._ctrl_list = ctrl_list
+        self._ctrl_setup_list = ctrl_setup_list
         # NOTE: We expect applications to call this at most once.
         del UsageExpectation.of(self).allowed_calls[
             self.use_alternate_execution_controllers]
@@ -361,13 +365,7 @@ class SessionAssistant:
         self._metadata.flags = {'bootstrapping'}
         self._manager.checkpoint()
         self._command_io_delegate = JobRunnerUIDelegate(_SilentUI())
-        self._runner = JobRunner(
-            self._manager.storage.location,
-            self._context.provider_list,
-            jobs_io_log_dir=os.path.join(
-                self._manager.storage.location, 'io-logs'),
-            command_io_delegate=self._command_io_delegate,
-            execution_ctrl_list=self._execution_ctrl_list)
+        self._init_runner()
         self.session_available(self._manager.storage.id)
         _logger.debug("New session created: %s", title)
         UsageExpectation.of(self).allowed_calls = {
@@ -408,13 +406,7 @@ class SessionAssistant:
         self._context = self._manager.default_device_context
         self._metadata = self._context.state.metadata
         self._command_io_delegate = JobRunnerUIDelegate(_SilentUI())
-        self._runner = JobRunner(
-            self._manager.storage.location,
-            self._context.provider_list,
-            jobs_io_log_dir=os.path.join(
-                self._manager.storage.location, 'io-logs'),
-            command_io_delegate=self._command_io_delegate,
-            execution_ctrl_list=self._execution_ctrl_list)
+        self._init_runner()
         self.session_available(self._manager.storage.id)
         _logger.debug("Session resumed: %s", session_id)
         UsageExpectation.of(self).allowed_calls = {
@@ -1250,6 +1242,20 @@ class SessionAssistant:
             self.get_session_dir: ("to get the path where current session is"
                                    "stored"),
         }
+
+    def _init_runner(self):
+        self._execution_ctrl_list = []
+        for ctrl_cls, args, kwargs in self._ctrl_setup_list:
+            self._execution_ctrl_list.append(
+                ctrl_cls(self._context.provider_list, *args, **kwargs))
+        self._runner = JobRunner(
+            self._manager.storage.location,
+            self._context.provider_list,
+            jobs_io_log_dir=os.path.join(
+                self._manager.storage.location, 'io-logs'),
+            command_io_delegate=self._command_io_delegate,
+            execution_ctrl_list=self._execution_ctrl_list or None)
+        return
 
 
 class _SilentUI(IJobRunnerUI):
