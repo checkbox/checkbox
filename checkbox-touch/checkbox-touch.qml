@@ -457,7 +457,7 @@ MainView {
         app.getNextTest(function(test) {
             pageStack.clear();
             if (test.plugin === undefined) { 
-                return maybeShowRerunScreen();
+                return showResultsScreen();
             }
             if (test.user) {
                 // running this test will require to be run as a different
@@ -527,15 +527,6 @@ MainView {
         app.runTestActivity(test, continuation);
 
     }
-    function maybeShowRerunScreen() {
-        app.getRerunCandidates(function(result) {
-            if (result == false) {
-                 showResultsScreen();
-                 return;
-            }
-            rerunSelectionPage.setup(result);
-        });
-    }
 
     function showResultsScreen() {
         var endTesting = function() {
@@ -586,16 +577,24 @@ MainView {
         };
 
         pageStack.clear();
-        app.getResults(function(results) {
-            var resultsPage = createPage("components/ResultsPage.qml");
-            resultsPage.results = results;
-            if (appSettings["submission"]) {
-                resultsPage.submissionName = appSettings["submission"].name;
-            }
-            resultsPage.endTesting.connect(endTesting);
-            resultsPage.saveReportClicked.connect(saveReport);
-            resultsPage.submitReportClicked.connect(function() {submitReport(resultsPage);});
-            pageStack.push(resultsPage);
+        app.getRerunCandidates(function(rerunCandidates) {
+            app.getResults(function(results) {
+                var resultsPage = createPage("components/ResultsPage.qml");
+                resultsPage.results = results;
+                if (appSettings["submission"]) {
+                    resultsPage.submissionName = appSettings["submission"].name;
+                }
+                resultsPage.endTesting.connect(endTesting);
+                resultsPage.saveReportClicked.connect(saveReport);
+                resultsPage.submitReportClicked.connect(function() {submitReport(resultsPage);});
+                if (rerunCandidates.length>0) {
+                    resultsPage.rerunEnabled = true;
+                    resultsPage.rerunTests.connect(function() {
+                        rerunSelectionPage.setup(rerunCandidates);
+                    });
+                }
+                pageStack.push(resultsPage);
+            });
         });
     }
 
