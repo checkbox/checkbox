@@ -131,7 +131,7 @@ class canonical_hw_collection(CanonicalCommand):
 
     def _create_transport(self, sa, secure_id, staging):
         return sa.get_canonical_certification_transport(
-                secure_id, staging=staging)
+            secure_id, staging=staging)
 
     def _show_intro(self, rc, timeout):
         rc.fg = CanonicalColors.white
