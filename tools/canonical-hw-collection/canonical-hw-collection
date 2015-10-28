@@ -21,6 +21,7 @@
 
 import gettext
 import logging
+import re
 import time
 
 # TODO: use public APIs here
@@ -30,6 +31,19 @@ from plainbox.impl.ingredients import CanonicalCommand
 _ = gettext.gettext
 
 _logger = logging.getLogger("canonical-hw-collection")
+
+
+class SecureID(str):
+
+    """A Canonical-specific identifier of a particular device."""
+
+    SECURE_ID_PATTERN = r"^[a-zA-Z0-9]{15}$|^[a-zA-Z0-9]{18}$"
+
+    def __new__(cls, value):
+        if not re.match(cls.SECURE_ID_PATTERN, value):
+            raise ValueError(
+                _("secure_id must be 15 or 18-character alphanumeric string"))
+        return super().__new__(cls, value)
 
 
 class canonical_hw_collection(CanonicalCommand):
@@ -52,7 +66,7 @@ class canonical_hw_collection(CanonicalCommand):
         """Method called to register command line arguments."""
         parser.add_argument(
             'secure_id', metavar=_("SECURE-ID"),
-            help=_("Canonical hardware identifier"))
+            help=_("Canonical hardware identifier"), type=SecureID)
         parser.add_argument(
             '--timeout', metavar=_("SECONDS"), type=int, default=5,
             help=_("Delay before starting automated hardware collection"))
@@ -117,7 +131,7 @@ class canonical_hw_collection(CanonicalCommand):
 
     def _create_transport(self, sa, secure_id, staging):
         return sa.get_canonical_certification_transport(
-                secure_id, staging=staging)
+            secure_id, staging=staging)
 
     def _show_intro(self, rc, timeout):
         rc.fg = CanonicalColors.white
