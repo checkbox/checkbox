@@ -217,6 +217,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         """Reset app-custom state info about the session."""
         self.index = 0
         self._timestamp = datetime.datetime.utcnow().isoformat()
+        self._finalize_session()
 
     @view
     def is_session_resumable(self):
