@@ -274,3 +274,18 @@ qml_file: qml-job.qml
 flags: preserve-locale
 category_id: normal
 estimated_duration: 5
+
+unit: category
+id: sudo
+_name: Tests run as root
+
+id: autopilot/sudo-right
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test runs echo command as root.
+plugin: shell
+user: root
+flags: preserve-locale
+command: echo "foobar"
+category_id: sudo
+estimated_duration: 5
