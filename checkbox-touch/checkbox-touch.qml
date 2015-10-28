@@ -538,6 +538,53 @@ MainView {
     }
 
     function showResultsScreen() {
+        var endTesting = function() {
+            pageStack.clear();
+            app.clearSession(function() {
+                app.startSession();
+                pageStack.push(welcomePage);
+            });
+        };
+        var saveReport = function() {
+            app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
+                var htmlReportUrl = uri;
+                app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+                    CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
+                                              [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
+                                                  var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
+                                                  webviewer.uri = htmlReportUrl;
+                                                  pageStack.push(webviewer);
+                                              }}]);
+                });
+            });
+        };
+        var submitReport = function(resultsPage) {
+            // resultsPage param is for having control over unlatching
+            getSubmissionInput(function() {
+                app.submitResults(appSettings["submission"], function(reply) {
+                    // pretty-stringify reply
+                    var s = ""
+                    for (var i in reply) {
+                        s += i + ': ' + reply[i] + '\n';
+                    }
+                    CbtDialogLogic.showDialog(
+                        resultsPage,
+                        i18n.tr("Report has been submited.\n" + s),
+                        [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                },
+                function(error) {
+                    ErrorLogic.showError(mainView,
+                                         i18n.tr("Could not submit results. Reason:\n" + error),
+                                         function(){},
+                                         i18n.tr("OK"));
+                    resultsPage.unlatchSubmission();
+                })
+            },
+            function() {
+                resultsPage.unlatchSubmission();
+            });
+        };
+
         pageStack.clear();
         app.getResults(function(results) {
             var resultsPage = createPage("components/ResultsPage.qml");
@@ -545,53 +592,9 @@ MainView {
             if (appSettings["submission"]) {
                 resultsPage.submissionName = appSettings["submission"].name;
             }
-            resultsPage.endTesting.connect(function() {
-                pageStack.clear();
-                app.clearSession(function() {
-                    app.startSession();
-                    pageStack.push(welcomePage);
-                });
-            });
-            resultsPage.saveReportClicked.connect(function() {
-                app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
-                    console.log(uri)
-                    var htmlReportUrl = uri;
-                    app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
-                        console.log(uri)
-                        CbtDialogLogic.showDialog(resultsPage, i18n.tr("Reports have been saved to your Documents folder"),
-                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View report"), "color": UbuntuColors.green, "onClicked": function(uri) {
-                                                      var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
-                                                      webviewer.uri = htmlReportUrl;
-                                                      pageStack.push(webviewer);
-                                                  }}]);
-                    });
-                });
-            });
-            resultsPage.submitReportClicked.connect(function() {
-                getSubmissionInput(function() {
-                    app.submitResults(appSettings["submission"], function(reply) {
-                        // pretty-stringify reply
-                        var s = ""
-                        for (var i in reply) {
-                            s += i + ': ' + reply[i] + '\n';
-                        }
-                        CbtDialogLogic.showDialog(
-                            resultsPage,
-                            i18n.tr("Report has been submited.\n" + s),
-                            [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
-                    },
-                    function(error) {
-                        ErrorLogic.showError(mainView,
-                                             i18n.tr("Could not submit report. Reason:\n" + error),
-                                             function(){},
-                                             i18n.tr("OK"));
-                        resultsPage.unlatchSubmission();
-                    })
-                },
-                function() {
-                    resultsPage.unlatchSubmission();
-                });
-            });
+            resultsPage.endTesting.connect(endTesting);
+            resultsPage.saveReportClicked.connect(saveReport);
+            resultsPage.submitReportClicked.connect(function() {submitReport(resultsPage);});
             pageStack.push(resultsPage);
         });
     }
