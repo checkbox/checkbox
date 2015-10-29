@@ -171,7 +171,7 @@ PythonObjectRef {
             throw "trying to invoke not existing method";
         }
         py.call(callable, [config], function(response) {
-            if(response.code == 200) {
+            if (response.code == 200) {
                 continuation(response.result);
             } else {
                 continuation_error(response.error)

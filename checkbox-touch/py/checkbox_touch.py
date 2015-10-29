@@ -437,7 +437,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             'c3-staging': (
                 lambda: self.assistant.get_canonical_certification_transport(
                     config['secure_id'], staging=True)),
-            'oauth': lambda: self.assistant.get_oauth_transport(config),
+            'oauth': lambda: self.assistant.get_ubuntu_sso_oauth_transport(config),
         }[config['type']]()
         # Default to 'hexr' exporter as it provides xml submission format
         # (CertificationTransport expects xml format for instance.)
