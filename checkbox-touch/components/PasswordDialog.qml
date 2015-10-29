@@ -50,6 +50,7 @@ Item {
 
             TextField {
                 id: passwordBox
+                objectName: "passwordBox"
                 placeholderText: i18n.tr("password")
                 echoMode: TextInput.Password
                 onAccepted: okButton.clicked(text)
@@ -57,6 +58,7 @@ Item {
 
             Button {
                 id: okButton
+                objectName: "okButton"
                 text: i18n.tr("OK")
                 color: UbuntuColors.green
                 onClicked: {
@@ -69,6 +71,7 @@ Item {
             }
 
             Button {
+                objectName: "cancelButton"
                 text: i18n.tr("Cancel")
                 color: UbuntuColors.red
                 onClicked: {

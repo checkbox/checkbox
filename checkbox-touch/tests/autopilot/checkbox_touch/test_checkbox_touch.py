@@ -53,6 +53,11 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         self.pointing_device.click_object(start_btn)
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage', visible=True)
+        self.main_view.get_header().click_action_button('toggleSelectionAction')
+        category_id = '2015.com.canonical.certification::normal'
+        list_item = category_page.wait_select_single(
+            objectName='listItem', item_mod_id=category_id)
+        self.pointing_device.click_object(list_item)
         continue_btn = category_page.wait_select_single(
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
