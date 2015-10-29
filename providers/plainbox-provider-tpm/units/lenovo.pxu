@@ -1,0 +1,61 @@
+# This file is part of Checkbox.
+#
+# Copyright 2015 Canonical Ltd.
+# Written by:
+#   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+unit: job
+id: recovery/lenovo/clear-tpm-chip
+category_id: tpm
+plugin: user-interact
+_summary: Clear ownership of TPM chip (Lenovo)
+_purpose:
+ Some Lenovo laptops lock out physical presence attribute before BIOS hands off
+ control to the operating system. In order to perform subsequent tests you will
+ need to clear the TPM (Trusted Platform Module) chip on the DUT (Device Under
+ Test).
+ .
+ CAUTION: Do not clear the TPM chip on production machine where it may
+          hold encryption keys to your valuable data! Doing so will render this
+          data inaccessible.
+ .
+ Please only perform this step if:
+ .
+  - You DO NOT know the owner password of the TPM chip
+  - You intend to execute this TPM test suite
+  - There is no valuable data that may be encrypted with the aid of the TPM chip
+_steps:
+ To clear the TPM chip now, write down the following instructions and exit the
+ testing application.
+ .
+ INSTRUCTIONS FOR CLEARING THE TPM CHIP:
+ .
+  - Commence the test to power the machine off.
+  - Press and hold the F1 key on your keyboard.
+  - Power the machine on.
+  - Wait for the system to enter BIOS.
+  - Navigate to TPM menu, the precise location may depend on your BIOS version
+    and the make and model of your DUT. On some models it is under the
+    following menu: Security / Clear Security Chip. This menu is *NOT* present
+    under normal conditions.
+  - Ensure that the Clear Security Chip option is present and enabled.
+  - Save BIOS settings and restart the machine
+  - Let the machine boot
+  - Restart the testing application
+command: poweroff
+user: root
+flags: preserve-locale noreturn
+requires: sysfs_dmi.bios_vendor == "LENOVO" and sysfs_tpm.owned == "1"
+estimated_duration: 5m
