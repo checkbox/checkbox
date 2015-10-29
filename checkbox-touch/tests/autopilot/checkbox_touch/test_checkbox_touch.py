@@ -123,10 +123,6 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             ('qmlTestPage', 'passButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        next_steps = [
-            ('rerunSelectionPage', 'continueButton')
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
         # we should see results screen now
         results = {'passed': '10', 'failed': '5', 'skipped': '5'}
         self.check_results(results)
@@ -238,6 +234,9 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'failButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
+        results_page = self.app.wait_select_single(
+            objectName='resultsPage', visible=True)
+        self.main_view.get_header().click_action_button('rerunAction')
         # we now should see a re-run screen; let's select the only test
         rerun_page = self.app.wait_select_single(
             objectName='rerunSelectionPage', visible=True)
@@ -249,6 +248,9 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
         self.pointing_device.click_object(continue_btn)
         # run the same steps as before
         self.process_sequence_of_clicks_on_pages(next_steps)
+        results_page = self.app.wait_select_single(
+            objectName='resultsPage', visible=True)
+        self.main_view.get_header().click_action_button('rerunAction')
         # we should see the re-run screen again
         rerun_page = self.app.wait_select_single(
             objectName='rerunSelectionPage', visible=True)
@@ -266,6 +268,9 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'failButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
+        results_page = self.app.wait_select_single(
+            objectName='resultsPage', visible=True)
+        self.main_view.get_header().click_action_button('rerunAction')
         # we now should see a re-run screen; let's select the only test
         rerun_page = self.app.wait_select_single(
             objectName='rerunSelectionPage', visible=True)
@@ -292,5 +297,4 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
             ('testVerificationPage', 'passButton'),
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
-        # there should be no re-run screen, just results
         self.check_results({'passed': '1', 'failed': '0', 'skipped': '0'})

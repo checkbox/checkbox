@@ -217,6 +217,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         """Reset app-custom state info about the session."""
         self.index = 0
         self._timestamp = datetime.datetime.utcnow().isoformat()
+        self._finalize_session()
 
     @view
     def is_session_resumable(self):
@@ -418,7 +419,6 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def get_results(self):
         """Get results object."""
-        self._finalize_session()
         stats = self.assistant.get_summary()
         return {
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
@@ -430,6 +430,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def export_results(self, output_format, option_list):
         """Export results to file(s) in the user's 'Documents' directory.."""
+        self.assistant.finalize_session()
         dirname = self._get_user_directory_documents()
         return self.assistant.export_to_file(
             output_format, option_list, dirname)
@@ -438,6 +439,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     def submit_results(self, config):
         """Submit results to a service configured by config."""
 
+        self.assistant.finalize_session()
         transport = {
             'hexr': self.assistant.get_canonical_hexr_transport,
             'hexr-staging': (

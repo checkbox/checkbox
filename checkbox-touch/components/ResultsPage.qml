@@ -37,9 +37,11 @@ Page {
     objectName: "resultsPage"
     property var results: {"totalPassed": 0, "totalFailed": 0, "totalSkipped": 0}
     property string submissionName: ""
+    property var rerunEnabled: false
     signal saveReportClicked()
     signal submitReportClicked()
     signal endTesting()
+    signal rerunTests()
 
     function unlatchSubmission() {
         submitResultsButton.unlatch();
@@ -47,6 +49,14 @@ Page {
 
     head {
         actions: [
+            Action {
+                id: rerunAction
+                objectName: "rerunAction"
+                iconName: "view-refresh"
+                text: i18n.tr("Rerun")
+                onTriggered: rerunTests();
+                visible: rerunEnabled
+            },
             Action {
                 iconName: "close"
                 text: i18n.tr("Close")
@@ -160,7 +170,10 @@ Page {
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Save detailed report")
-            onLatchedClicked: saveReportClicked();
+            onLatchedClicked: {
+                rerunAction.enabled = false;
+                saveReportClicked();
+            }
         }
         LatchButton {
             id: submitResultsButton
@@ -169,7 +182,10 @@ Page {
             Layout.fillWidth: true
             // TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
             text: i18n.tr("Submit results to " + submissionName)
-            onLatchedClicked: submitReportClicked();
+            onLatchedClicked: {
+                rerunAction.enabled = false;
+                submitReportClicked();
+            }
         }
     }
 }
