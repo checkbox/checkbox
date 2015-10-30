@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: plainbox-provider-tpm 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-23 18:23+0200\n"
-"PO-Revision-Date: 2015-09-23 09:35+0200\n"
+"PO-Revision-Date: 2015-10-29 22:01+0000\n"
 "Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
 "Language-Team: polski <>\n"
-"Language: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-10-30 05:07+0000\n"
+"X-Generator: Launchpad (build 17838)\n"
+"Language: Polish\n"
 
 #: ../manage.py:29
 msgid "Plainbox Provider for TPM (trusted platform module)"
@@ -121,14 +123,15 @@ msgstr "Zbierz informacje na temat układ TPM z sysfs"
 #. description
 #: ../units/sysfs.pxu:36
 msgid ""
-"This job collects all the available TPM information from /sys/class/tpm/*/"
-"device/*."
+"This job collects all the available TPM information from "
+"/sys/class/tpm/*/device/*."
 msgstr ""
 
 #. summary
 #: ../units/sysfs.pxu:53
 msgid "Collect TPM information from sysfs (after taking ownership)"
-msgstr "Zbierz informacje na temat układ TPM z sysfs (po przejęciu własności)"
+msgstr ""
+"Zbierz informacje na temat układ TPM z sysfs (po przejęciu własności)"
 
 #. summary
 #: ../units/sysfs.pxu:70
@@ -139,9 +142,9 @@ msgstr ""
 #. description
 #: ../units/sysfs.pxu:71
 msgid ""
-"This job collects all the available TPM information from /sys/class/tpm/*/"
-"device/*. Distinct files present there are converted to attributes of "
-"resource records."
+"This job collects all the available TPM information from "
+"/sys/class/tpm/*/device/*. Distinct files present there are converted to "
+"attributes of resource records."
 msgstr ""
 
 #. summary
@@ -152,10 +155,10 @@ msgstr "Zbierz informacje o tabelach DMI z sysfs"
 #. description
 #: ../units/sysfs.pxu:87
 msgid ""
-"This job collects all the available DMI information from /sys/class/dmi/id/"
-"*. The main purpose of including this job is to allow the provider to "
-"include vendor-specific quirks by looking at the sysfs_dmi.bios_vendor "
-"attribute."
+"This job collects all the available DMI information from "
+"/sys/class/dmi/id/*. The main purpose of including this job is to allow the "
+"provider to include vendor-specific quirks by looking at the "
+"sysfs_dmi.bios_vendor attribute."
 msgstr ""
 
 #. name
@@ -173,14 +176,14 @@ msgstr ""
 
 #. description
 #: ../units/test-plan.pxu:22
-msgid "After testing, a number of logs are collected for additional analysis."
+msgid ""
+"After testing, a number of logs are collected for additional analysis."
 msgstr ""
 
 #. name
 #: ../units/test-plan.pxu:55
-#, fuzzy
 msgid "Collect TPM (Trusted Platform Module) Information"
-msgstr "TPM (Trusted Platform Module)"
+msgstr ""
 
 #. description
 #: ../units/test-plan.pxu:56
@@ -242,10 +245,8 @@ msgstr ""
 
 #. summary
 #: ../units/tpm.pxu:113
-#, fuzzy
 msgid "Re-enable TPM chip in BIOS (after clearing ownership)"
 msgstr ""
-"Zbierz informacje na temat układ TPM z sysfs (po zresetowaniu własności)"
 
 #. purpose
 #: ../units/tpm.pxu:114
@@ -351,8 +352,8 @@ msgstr ""
 #. description
 #: ../units/tpm.pxu:206
 msgid ""
-"This simply collects the output of \"tpm_restrictpubek --status --well-known"
-"\" for inspection by a Certification engineer."
+"This simply collects the output of \"tpm_restrictpubek --status --well-"
+"known\" for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
@@ -375,8 +376,8 @@ msgstr ""
 #. description
 #: ../units/tpm.pxu:228
 msgid ""
-"This simply collects the output of \"tpm_setclearable --status --well-known"
-"\" for inspection by a Certification engineer."
+"This simply collects the output of \"tpm_setclearable --status --well-"
+"known\" for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
@@ -452,9 +453,3 @@ msgstr ""
 #: ../units/unused.pxu:6
 msgid "setting: Active|Inactive|Disabled"
 msgstr ""
-
-#~ msgid "Enable TPM chip in BIOS"
-#~ msgstr "Włącz układ TPM w BIOSie"
-
-#~ msgid "TPM chip is present in this system"
-#~ msgstr "System posiada układ TPM"
