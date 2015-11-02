@@ -73,10 +73,6 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             kb.type("wrong")
         ok_btn = self.app.wait_select_single(objectName='okButton')
         self.pointing_device.click_object(ok_btn)
-        next_steps = [
-            ('rerunSelectionPage', 'continueButton')
-        ]
-        self.process_sequence_of_clicks_on_pages(next_steps)
         results = {'passed': '0', 'failed': '1', 'skipped': '0'}
         self.check_results(results)
 
