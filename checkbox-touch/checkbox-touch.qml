@@ -393,6 +393,7 @@ MainView {
         onSelectionDone: {
             if (!selected_id_list.length) {
                 showResultsScreen();
+                unlatchContinue();
                 return;
             }
             app.rememberTestSelection(selected_id_list, function() {
