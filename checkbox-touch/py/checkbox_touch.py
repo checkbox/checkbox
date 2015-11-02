@@ -223,6 +223,8 @@ class CheckboxTouchApplication(PlainboxApplication):
     def is_session_resumable(self):
         """Check whether there is a session that can be resumed."""
         for session_id, session_md in self.assistant.get_resumable_sessions():
+            if session_md.app_blob is None:
+                continue
             # we're interested in the latest session only, this is why we
             # return early
             self._latest_session = session_id
