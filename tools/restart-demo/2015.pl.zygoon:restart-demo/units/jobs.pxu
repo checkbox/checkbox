@@ -1,0 +1,18 @@
+id: fake-reboot
+plugin: shell
+_summary: Reboot the operating system
+_description: This job simply reboots the operating system
+command:
+ echo "I would reboot now but I'll kill the testing tool instead";
+ kill $PPID;
+estimated_duration: 1m
+flags: preserve-locale noreturn autorestart
+
+id: reboot
+plugin: shell
+_summary: Reboot the operating system
+_description: This job simply reboots the operating system
+command: reboot
+user: root
+estimated_duration: 1m
+flags: preserve-locale noreturn autorestart
