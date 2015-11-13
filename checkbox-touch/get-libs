@@ -72,8 +72,7 @@ def prepare_uris(get_autopilot):
                 'python3-extras', 'python3-evdev']
     packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
                 'python3-jinja2', 'python3-markupsafe', 'python3-padme',
-                'qml-module-qtquick-qchartjs', 'python3-requests',
-                'python3-urllib3', 'python3-guacamole']
+                'python3-requests', 'python3-urllib3', 'python3-guacamole']
     if get_autopilot:
         packages += ap_packages
     # uris will serve as a database of uris from which to download packages
@@ -246,7 +245,6 @@ def main():
     # ./usr/lib/{architecture}/qt5/qmlare copied to ./lib/{architecture}.
     # {architecture} may be one of multiarch_list
     qml_plugins_urls = [uris['pyotherside', arch] for arch in arch_list]
-    qml_plugins_urls += [uris['qml-module-qtquick-qchartjs', arch] for arch in arch_list]
     for qml_plugin in qml_plugins_urls:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(qml_plugin, tmp)
