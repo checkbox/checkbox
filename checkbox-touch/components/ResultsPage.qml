@@ -28,7 +28,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
-import jbQuick.Charts 1.0
 
 Page {
     title: i18n.tr("Test Results")
@@ -102,14 +101,9 @@ Page {
             Layout.fillWidth: true
             property var easter: 0
 
-            Chart {
+            PieChart {
                 id: chart_pie;
                 anchors.fill: parent
-                chartAnimated: true;
-                chartAnimationEasing: Easing.Linear;
-                chartAnimationDuration: 1000;
-                chartType: Charts.ChartType.PIE;
-                chartOptions: {"segmentStrokeColor": "#ECECEC"};
             }
             Image {
                 id: img
