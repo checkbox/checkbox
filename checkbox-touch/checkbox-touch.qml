@@ -275,7 +275,7 @@ MainView {
         id: resumeSessionPage
         onRerunLast: app.resumeSession(true, processNextTest)
         onContinueSession: app.resumeSession(false, processNextTest)
-        resumeText: i18n.tr("Previous session did not finish completely.\nDo you want \
+        resumeText: i18n.tr("Checkbox session got suspended.\nDo you want \
  to rerun last test, continue to the next test, or start a new session?")
         onRestartSession: {
             pageStack.clear();
