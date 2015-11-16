@@ -319,7 +319,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         def rerun_predicate(job_state):
             return job_state.result.outcome in (
                 IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH,
-                IJobResult.OUTCOME_NOT_SUPPORTED)
+                IJobResult.OUTCOME_NOT_SUPPORTED, IJobResult.OUTCOME_SKIP)
         rerun_candidates = []
         todo_list = self.assistant.get_static_todo_list()
         job_units = {job_id: self.assistant.get_job(job_id) for job_id
