@@ -46,6 +46,7 @@ Page {
         property string name: "Checkbox-touch qml confined shell"
         property alias pageStack: qmlNativePage.pageStack
         property string sessionDir: app.sessionDir
+        property var python: app.py
         function getTest() {
             return test;
         }
