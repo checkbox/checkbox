@@ -43,6 +43,15 @@ unit: category
 id: Screen
 _name: Screen Testing
 
+id: screen-08
+category_id: Screen
+plugin: qml
+_summary: Ensure the touchscreen accuracy
+_description:
+ This test helps the operator to check whether touch-screen works as expected.
+qml_file: screen-08.qml
+estimated_duration: 60
+
 id: screen-09
 category_id: Screen
 plugin: qml
