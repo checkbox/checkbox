@@ -667,7 +667,20 @@ MainView {
 
     function showVerificationScreen(test) {
         var verificationPage = createPage("components/TestVerificationPage.qml", test);
-        verificationPage.testDone.connect(completeTest);
+        var maybeCommentVerification = function(test) {
+            if (test.outcome == 'fail' &&
+                test.flags.indexOf('explicit-fail') > -1) {
+                commentsDialog.commentDefaultText = test["comments"] || "";
+                commentsDialog.commentAdded.connect(function(comment) {
+                    test["comments"] = comment;
+                    completeTest(test);
+                });
+                PopupUtils.open(commentsDialog.dialogComponent);
+            } else {
+                completeTest(test);
+            }
+        }
+        verificationPage.testDone.connect(maybeCommentVerification);
         pageStack.push(verificationPage);
     }
     function getSubmissionInput(continuation, cancelContinuation) {
