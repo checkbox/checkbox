@@ -53,9 +53,9 @@ Item {
     function stopRecording() {
         cam.videoRecorder.stop()
         cam.stop();
-        state = "playback"
         mediaplayer.source = recordingPath
         mediaplayer.play();
+        state = "playback"
     }
 
     function showSummary(prompt) {
