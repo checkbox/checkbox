@@ -169,6 +169,12 @@ PythonObjectRef {
             continuation_error(error);
         });
     }
+    function dropPermissions(appId, services, continuation, continuation_error) {
+        request("drop_permissions", [appId, services], continuation, function(error) {
+            console.error("Unable to remove permissions");
+            if (continuation_error) continuation_error(error);
+        });
+    }
 
     function rememberPassword(password, continuation) {
         // using low-level py.call() to 'silently' pass password string through pyotherside

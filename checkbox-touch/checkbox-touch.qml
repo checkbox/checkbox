@@ -658,7 +658,7 @@ MainView {
     }
     function performConfinedQmlTest(test) {
         runTestActivity(test, function(test) {
-            var qmlNativePage = createPage("components/QmlConfinedPage.qml");
+            var qmlNativePage = createPage("components/QmlConfinedPage.qml", test);
             qmlNativePage.applicationVersion = app.applicationVersion;
             qmlNativePage.testDone.connect(completeTest);
             pageStack.push(qmlNativePage);

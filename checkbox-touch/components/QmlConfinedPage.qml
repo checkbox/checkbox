@@ -107,11 +107,35 @@ Page {
             Layout.fillWidth: true
             text: i18n.tr("Start the test")
             onClicked: {
-                busyIndicatorGroup.visible = true;
-                var appName = "com.ubuntu.checkbox_" + test["partial_id"] + "_" + applicationVersion + ".desktop";
-                console.log("Launching " + appName);
-                Qt.openUrlExternally("application:///" + appName);
+                var appName = "com.ubuntu.checkbox_" + test["partial_id"];
+                // load the test qml file to check which permissions should be cleared
+                var testItemComponent = Qt.createComponent(Qt.resolvedUrl(test['qml_file']));
+                if (testItemComponent.status == Component.Error) {
+                    console.error("Error creating testItemComponent. Possible cause: Problem with job's qml file. Error:", testItemComponent.errorString());
+                    test['outcome'] = 'fail';
+                    testDone(test);
+                    return;
+                }
+                var testItem = testItemComponent.createObject(dummyContainer, {"testingShell": testingShell});
+                var clearedPermissions = testItem.clearedPermissions;
+                testItem.destroy();
+                var runConfinedTestApp = function() {
+                    busyIndicatorGroup.visible = true;
+                    Qt.openUrlExternally("application:///" + appName + "_" + applicationVersion+ ".desktop");
+                }
+                if (clearedPermissions) {
+                    app.dropPermissions(appName, clearedPermissions, function() {
+                        runConfinedTestApp();
+                    });
+                } else {
+                    runConfinedTestApp();
+                }
+
             }
+        }
+        Item {
+            id: dummyContainer
+            visible: false
         }
     }
 }

@@ -36,6 +36,7 @@ import json
 import logging
 import os
 import pyotherside
+import sqlite3
 import re
 import time
 import traceback
@@ -133,7 +134,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     response data to alter the user interface.
     """
 
-    __version__ = (1, 2, 1, 'final', 0)
+    __version__ = (1, 3, 0, 'dev', 0)
 
     def __init__(self):
         if plainbox.__version__ < (0, 22):
@@ -458,6 +459,28 @@ class CheckboxTouchApplication(PlainboxApplication):
         # provides compliant one
         return self.assistant.export_to_transport(
             '2013.com.canonical.plainbox::hexr', transport)
+
+    @view
+    def drop_permissions(self, app_id, services):
+        # TODO: use XDG once available
+        trust_dbs = {
+            'camera': '~/.local/share/CameraService/trust.db',
+            'audio': '~/.local/share/PulseAudio/trust.db',
+            'location': '~/.local/share/UbuntuLocationServices/trust.db',
+        }
+        sql = 'delete from requests where ApplicationId = (?);'
+
+        for service in services:
+            conn = None
+            try:
+                conn = sqlite3.connect(
+                    os.path.expanduser(trust_dbs[service]),
+                    isolation_level='EXCLUSIVE')
+                conn.execute(sql, (app_id,))
+                conn.commit()
+            finally:
+                if conn:
+                    conn.close()
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
