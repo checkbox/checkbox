@@ -78,8 +78,6 @@ def generate_confinement(provider_name, partial_id, full_checkbox_name, qml_file
     template = string.Template(DESKTOP)
     with open(desktop_path, "wt") as f:
         f.write(template.substitute(partial_id=partial_id, provider_name=provider_name, full_checkbox_name=full_checkbox_name, qml_file=qml_file))
-
-def generate_hook(provider_name, partial_id):
     return string.Template(HOOK).substitute(
         provider_name=provider_name, partial_id=partial_id)
 
@@ -100,8 +98,7 @@ def main():
 
     hooks = ''
     for job in args.job_ids:
-        generate_confinement(provider_name, job, checkbox_name, job + '.qml')
-        hooks += generate_hook(provider_name, job)
+        hooks += generate_confinement(provider_name, job, checkbox_name, job + '.qml')
 
     print("Add following hooks to your checkbox-touch.manifest:")
     print(hooks)
