@@ -36,6 +36,7 @@ import json
 import logging
 import os
 import pyotherside
+import sqlite3
 import re
 import time
 import traceback
@@ -458,6 +459,21 @@ class CheckboxTouchApplication(PlainboxApplication):
         # provides compliant one
         return self.assistant.export_to_transport(
             '2013.com.canonical.plainbox::hexr', transport)
+
+    @view
+    def drop_permissions(self, app_id, services):
+        trust_dbs = {
+            'camera': '~/.local/share/CameraService/trust.db',
+            'audio': '~/.local/share/PulseAudio/trust.db',
+            'location': '~/.local/share/UbuntuLocationServices/trust.db',
+        }
+        sql = 'delete from requests where ApplicationId = "%s";' % app_id
+        for service in services:
+            conn = sqlite3.connect(os.path.expanduser(trust_dbs[service]))
+            conn.execute(sql.format())
+            conn.commit()
+            conn.close()
+
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
