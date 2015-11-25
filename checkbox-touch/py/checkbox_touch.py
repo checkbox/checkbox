@@ -462,18 +462,25 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def drop_permissions(self, app_id, services):
+        # TODO: use XDG once available
         trust_dbs = {
             'camera': '~/.local/share/CameraService/trust.db',
             'audio': '~/.local/share/PulseAudio/trust.db',
             'location': '~/.local/share/UbuntuLocationServices/trust.db',
         }
-        sql = 'delete from requests where ApplicationId = "%s";' % app_id
-        for service in services:
-            conn = sqlite3.connect(os.path.expanduser(trust_dbs[service]))
-            conn.execute(sql.format())
-            conn.commit()
-            conn.close()
+        sql = 'delete from requests where ApplicationId = (?);'
 
+        for service in services:
+            conn = None
+            try:
+                conn = sqlite3.connect(
+                    os.path.expanduser(trust_dbs[service]),
+                    isolation_level='EXCLUSIVE')
+                conn.execute(sql, (app_id,))
+                conn.commit()
+            finally:
+                if conn:
+                    conn.close()
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
