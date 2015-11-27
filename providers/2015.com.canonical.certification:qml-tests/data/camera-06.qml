@@ -36,6 +36,7 @@ Item {
     signal testDone(var test)
 
     function start() {
+        mediaplayer.source ='';
         state = 'intro';
         cam.start();
     }
