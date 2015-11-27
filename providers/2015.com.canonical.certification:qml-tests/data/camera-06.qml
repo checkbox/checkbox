@@ -153,8 +153,15 @@ Item {
             id: mediaplayer
             autoLoad: false
             autoPlay: false
-            onStopped: {
-                showSummary(i18n.tr("Was the recording OK?"));
+            onStatusChanged: {
+                if (status == 3) { // loaded
+                    var handleStop = function() {
+                        if (playbackState == 0 && root.state == "playback") {
+                            showSummary(i18n.tr("Was the recording OK?"));
+                        }
+                    }
+                    onPlaybackStateChanged.connect(handleStop);
+                }
             }
             onError: die("Error with playback: " + errorString)
         }
