@@ -85,7 +85,7 @@ def main():
 
     for date in sorted(all_date_targeted):
         print "Checkbox release ({}):".format(re.sub(r'T.*', '', date))
-        print goo_shorten_url(
+        print (
             "https://bugs.launchpad.net/checkbox-project/+bugs?"
             "field.searchtext=&orderby=-importance&field.status%3Alist=NEW"
             "&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED"
