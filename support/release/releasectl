@@ -120,7 +120,7 @@ pep386_unparse() {
             if [ "$serial" -ne 0 ]; then
                 version="${version}.dev.${serial}"
             else
-                version="${version}.dev"
+                version="${version}.dev0"
             fi
             ;;
         alpha)
@@ -322,6 +322,9 @@ release_component() {
     echo "I: inspecting component..."
     # Interrogate name/version
     name="$component_path"
+    if [ "$component_path" = "checkbox-converged" ]; then
+        component_path="checkbox-touch"
+    fi
     version="$current_version"
 
     echo "I: component is $name-$version"
@@ -363,6 +366,8 @@ release_component() {
             ;;
         candidate)
             canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=candidate --serial=1)
+            # Uncomment for a second RC based on a new trunk revision
+            #canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=candidate --serial=2)
             ;;
         final)
             canonical_next_version=$(pep386_attr "$canonical_next_version" --releaselevel=final --serial=0)
@@ -450,6 +455,12 @@ release_component() {
             sed -i -e "s!__version__ = \(.*\)!__version__ = $(pep386_as_tuple $canonical_next_version)!g" "$target/$component_path/$component_python_package/__init__.py"
             commit_required=1
         fi
+        if [ -e "$target/$component_path/manifest.json" ]; then
+            echo "I: patching manifest.json..."
+            sed -i -e "s!\"version\": \".*\"!\"version\": \"$next_version\"!g" "$target/$component_path/manifest.json"
+            sed -i -e "s!\"checkbox-touch-v.*\"!\"$component_path-v$next_version\"!g" "$target/$component_path/manifest.json"
+            commit_required=1
+        fi
         if [ $commit_required ]; then
             echo "I: commiting version bump"
             # NOTE: no way to bzr commit has no '-d'
@@ -476,7 +487,7 @@ help() {
     echo "COMPONENT TO RELEASE (one of):"
     echo "  cdts"
     echo "  checkbox-ng"
-    echo "  checkbox-gui"
+    echo "  checkbox-converged"
     echo "  plainbox"
     echo "  checkbox-support"
     echo "  plainbox-provider-canonical-certification"
@@ -488,7 +499,8 @@ help() {
     echo "  ppa-packaging-plainbox-provider-checkbox"
     echo "  ppa-packaging-plainbox-provider-resource-generic"
     echo "  ppa-packaging-checkbox-ng"
-    echo "  ppa-packaging-checkbox-gui"
+    echo "  ppa-packaging-checkbox-converged"
+    echo "  ppa-packaging-checkbox-converged-trusty"
     echo "  ppa-packaging-cdts"
     echo
     echo "general options"
@@ -553,8 +565,8 @@ main() {
             checkbox-ng)
                 component=checkbox-ng
                 ;;
-            checkbox-gui)
-                component=checkbox-gui
+            checkbox-converged)
+                component=checkbox-converged
                 ;;
             plainbox)
                 component=plainbox
@@ -589,8 +601,11 @@ main() {
             ppa-packaging-checkbox-ng)
                 component=ppa-packaging-checkbox-ng
                 ;;
-            ppa-packaging-checkbox-gui)
-                component=ppa-packaging-checkbox-gui
+            ppa-packaging-checkbox-converged)
+                component=ppa-packaging-checkbox-converged
+                ;;
+            ppa-packaging-checkbox-converged-trusty)
+                component=ppa-packaging-checkbox-converged-trusty
                 ;;
             ppa-packaging-cdts)
                 component=ppa-packaging-cdts
@@ -766,8 +781,8 @@ main() {
                 --bump-level=$bump_level \
                 --tagging-policy=$tagging_policy
             ;;
-        checkbox-gui)
-            release_component checkbox-gui \
+        checkbox-converged)
+            release_component checkbox-converged \
                 --origin=$origin \
                 --target=$target \
                 --in-place=$in_place \
@@ -836,8 +851,18 @@ main() {
                 --bump-level=$bump_level \
                 --tagging-policy=$tagging_policy
             ;;
-        ppa-packaging-checkbox-gui)
-            release_component ppa-packaging-checkbox-gui \
+        ppa-packaging-checkbox-converged)
+            release_component ppa-packaging-checkbox-converged \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-checkbox-converged-trusty)
+            release_component ppa-packaging-checkbox-converged-trusty \
                 --origin=$origin \
                 --target=$target \
                 --in-place=$in_place \
