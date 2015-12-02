@@ -14,7 +14,7 @@ Check bugs in checkbox-project to see if they can be included in the release
 to come. Some of them could be "In Progress" but with the fix already merged
 in trunk. Update their statuses and milestones.
 
-Review the current miletones content and postpone to the next one the bugs
+Review the current milestones content and postpone to the next one the bugs
 not "Fix Committed".
 
 Cutting the release
@@ -48,6 +48,71 @@ pushed to lp automatically:
     2. Update the bzr build recipes and request builds in the testing ppa (link)
        Give lp a minute or two before updating the recipes. Again copy and
        execute the proposed commands.
+
+Special case: Canonical certification provider for Plainbox
+
+The `plainbox-provider-canonical-certification` project has to be handled
+separately, as it is in a separate Git repository.
+
+1. Clone the Git repository:
+
+    git clone git+ssh://<lp-username>@git.launchpad.net/plainbox-provider-canonical-certification
+
+By default, you will be working on the `master-client` branch. We will deal with
+the `master-server` branch at a later stage.
+
+2. Bump version in manage.py and commit.
+3. Tag the version and push the changes:
+
+    git tag -a plainbox-provider-certification-client-v0.21 -m 'Release plainbox-provider-certification-client v0.21' -s
+    git push git+ssh://git.launchpad.net/plainbox-provider-canonical-certification master-client --tags
+    git push git+ssh://git.launchpad.net/plainbox-provider-canonical-certification master-client
+
+4. Prepare the upstream tarball and send it over to Launchpad:
+
+    ./manage.py sdist
+    cd dist/
+    gpg --armor --sign --detach-sig certification-client-0.20.1.tar.gz
+    lp-project-upload plainbox-provider-canonical-certification 0.20 certification-client-0.20.1.tar.gz
+
+5. Copy the source tarball with a debian compliant name:
+
+    cp certification-client-0.21.tar.gz ../../plainbox-provider-certification-client_0.21.orig.tar.gz
+
+We'll now use git-dpm in the packaging repository to handle the Debian packages creation.
+
+6. Clone the packaging client repository:
+
+    git clone git+ssh://pierre-equoy@git.launchpad.net/~checkbox-dev/plainbox-provider-canonical-certification/+git/packaging-client
+
+7. Do the git-dpm dance!
+
+    cd packaging-client
+    git-dpm import-new-upstream ../../plainbox-provider-certification-client_0.21.orig.tar.gz
+    pristine-tar commit ../../plainbox-provider-certification-client_0.21.orig.tar.gz 7b3825dd8ec07b3fd8bc30d7747f1e66d4a12f40
+    git-dpm prepare
+    git-dpm dch -- -v 0.21-1 -D precise "new upstream version"
+    git-dpm tag
+
+8. Push the changes to the client packaging repository:
+
+    git push git+ssh://<lp-username>@git.launchpad.net/~checkbox-dev/plainbox-provider-canonical-certification/+git/packaging-client --tags
+    git push git+ssh://<lp-username>@git.launchpad.net/~checkbox-dev/plainbox-provider-canonical-certification/+git/packaging-client
+
+9. Create a source package and upload it to the testing ppa:
+
+    dpkg-buildpackage -S
+    dput ppa:checkbox-dev/testing ../plainbox-provider-certification-client_0.21-1_source.changes
+
+Now, repeat steps 2 to 9 for the `master-server` branch.
+You will first have to create it locally:
+
+    git checkout -b master-server remotes/origin/master-server
+
+Once all of this is done, you should have the `plainbox-provider-certification-client`
+and `plainbox-provider-certification-server` packages available for precise in
+https://launchpad.net/~checkbox-dev/+archive/ubuntu/testing
+You will have to copy these packages over to the other series (trusty, ...).
 
 Special case: Cherry pick a bugfix from trunk after having cut the release:
 
@@ -104,5 +169,16 @@ pushed to lp automatically:
 
     5. Upload the signed source tarballs to LP (using lp-project-upload).
     6. Upload the signed source tarballs to PyPI (using twine).
+
+Special case: Canonical certification provider for Plainbox
+
+You should have the `plainbox-provider-certification-client` and
+`plainbox-provider-certification-server` packages available for the different
+series in https://launchpad.net/~checkbox-dev/+archive/ubuntu/testing.
+You will have to copy these packages over to the stable PPA.
+
+Finally release the milestone with:
+
+    ./lp-release-milestone plainbox-provider-canonical-certification -m 0.21
 
 Release to debian
