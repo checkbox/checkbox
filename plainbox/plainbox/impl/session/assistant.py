@@ -551,6 +551,8 @@ class SessionAssistant:
                     io_log_filename=self._runner.get_record_path_for_job(job),
                 ).get_result()
                 self._context.state.update_job_result(job, result)
+                self._metadata.running_job_name = None
+                self._manager.checkpoint()
         if self._restart_strategy is not None:
             self._restart_strategy.diffuse_application_restart(self._app_id)
         self.session_available(self._manager.storage.id)
@@ -558,7 +560,7 @@ class SessionAssistant:
         UsageExpectation.of(self).allowed_calls = {
             self.select_test_plan: "to save test plan selection",
         }
-        return self._resume_candidates[session_id].metadata
+        return self._metadata
 
     @raises(UnexpectedMethodCall)
     def get_resumable_sessions(self) -> 'Tuple[str, SessionMetaData]':
@@ -1187,6 +1189,7 @@ class SessionAssistant:
         UsageExpectation.of(self).enforce()
         job = self._context.get_unit(job_id, 'job')
         self._context.state.update_job_result(job, result)
+        self._manager.checkpoint()
         # Set up expectations so that run_job() and use_job_result() must be
         # called in pairs and applications cannot just forget and call
         # run_job() all the time.
@@ -1284,7 +1287,11 @@ class SessionAssistant:
         exported_stream = io.BytesIO()
         exporter.dump_from_session_manager(self._manager, exported_stream)
         exported_stream.seek(0)
-        return transport.send(exported_stream)
+        result = transport.send(exported_stream)
+        if SessionMetaData.FLAG_SUBMITTED not in self._metadata.flags:
+            self._metadata.flags.add(SessionMetaData.FLAG_SUBMITTED)
+            self._manager.checkpoint()
+        return result
 
     @raises(KeyError, OSError)
     def export_to_file(
@@ -1312,7 +1319,8 @@ class SessionAssistant:
             When there is a problem when writing the output.
         """
         UsageExpectation.of(self).enforce()
-        exporter = self._manager.create_exporter(exporter_id, option_list)
+        exporter = self._manager.create_exporter(exporter_id, option_list,
+                                                 strict=False)
         timestamp = datetime.datetime.utcnow().isoformat()
         path = os.path.join(dir_path, ''.join(
             ['submission_', timestamp, '.', exporter.unit.file_extension]))
