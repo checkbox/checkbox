@@ -36,6 +36,7 @@ Item {
     signal testDone(var test)
 
     function start() {
+        mediaplayer.source ='';
         state = 'intro';
         cam.start();
     }
@@ -53,9 +54,9 @@ Item {
     function stopRecording() {
         cam.videoRecorder.stop()
         cam.stop();
-        state = "playback"
         mediaplayer.source = recordingPath
         mediaplayer.play();
+        state = "playback"
     }
 
     function showSummary(prompt) {
@@ -153,8 +154,15 @@ Item {
             id: mediaplayer
             autoLoad: false
             autoPlay: false
-            onStopped: {
-                showSummary(i18n.tr("Was the recording OK?"));
+            onStatusChanged: {
+                if (status == 3) { // loaded
+                    var handleStop = function() {
+                        if (playbackState == 0 && root.state == "playback") {
+                            showSummary(i18n.tr("Was the recording OK?"));
+                        }
+                    }
+                    onPlaybackStateChanged.connect(handleStop);
+                }
             }
             onError: die("Error with playback: " + errorString)
         }

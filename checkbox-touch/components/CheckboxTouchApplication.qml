@@ -69,6 +69,7 @@ PythonObjectRef {
                                      },
                                      i18n.tr("Start new session"));
             } else {
+                sessionDir = result['session_dir'];
                 sessionReady();
                 continuation();
             }

@@ -210,7 +210,8 @@ class CheckboxTouchApplication(PlainboxApplication):
             test['outcome'] = 'skip'
             self.register_test_result(test)
         return {
-            'session_id': self._latest_session
+            'session_id': self._latest_session,
+            'session_dir': self.assistant.get_session_dir()
         }
 
     @view
