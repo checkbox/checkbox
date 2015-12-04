@@ -42,15 +42,22 @@ Page {
     visible: false
     flickable: null
     property var selectedCount : 0
-    state : selectedCount > 0 ? "nonempty selection" : "empty selection"
+    property var disabledSelectedCount: 0
+    state : selectedCount > 0 ? "nonempty selection" :
+        (disabledSelectedCount > 0 ? "disabled only selection" : "empty selection")
 
     // A function that needs to be called after changes are done to the model
     // to re-count number of selected items on the list
     function modelUpdated() {
         selectedCount = 0;
+        disabledSelectedCount = 0;
         for (var i=0; i < selectionModel.count; i++) {
             if (selectionModel.get(i).mod_selected) {
-                selectedCount++;
+                if (selectionModel.get(i).mod_disabled) {
+                    disabledSelectedCount++;
+                } else {
+                    selectedCount++;
+                }
             }
         }
     }
@@ -68,16 +75,31 @@ Page {
         continueButton.unlatch();
     }
     function deselectAll() {
-        for (var i=0; i<selectionModel.count; i++) {
-            selectionModel.setProperty(i, "mod_selected", false);
-        }
         selectedCount = 0;
+        disabledSelectedCount = 0;
+        for (var i=0; i<selectionModel.count; i++) {
+            if (!selectionModel.get(i)["mod_disabled"]) {
+                selectionModel.setProperty(i, "mod_selected", false);
+            } else {
+                if (selectionModel.get(i).mod_selected) {
+                    disabledSelectedCount++;
+                }
+            }
+        }
     }
     function selectAll() {
+        selectedCount = 0;
+        disabledSelectedCount = 0;
         for (var i=0; i<selectionModel.count; i++) {
-            selectionModel.setProperty(i, "mod_selected", true);
+            if (!selectionModel.get(i)["mod_disabled"]) {
+                selectionModel.setProperty(i, "mod_selected", true);
+                selectedCount++;
+            } else {
+                if (selectionModel.get(i).mod_selected) {
+                    disabledSelectedCount++;
+                }
+            }
         }
-        selectedCount = selectionModel.count;
     }
 
     head {
@@ -89,7 +111,7 @@ Page {
                 text: i18n.tr("Toggle selection")
                 visible: !onlyOneAllowed
                 onTriggered: {
-                    if (state === "empty selection") {
+                    if (state === "empty selection" || state == "disabled only selection") {
                         selectAll();
                     }
                     else if (state === "nonempty selection") {
@@ -109,6 +131,10 @@ Page {
          },
          State {
             name: "nonempty selection"
+            PropertyChanges { target: continueButton; enabled: true }
+         },
+         State {
+            name: "disabled only selection"
             PropertyChanges { target: continueButton; enabled: true }
          }
     ]
@@ -166,6 +192,7 @@ Page {
             delegate: ListItemWrappable {
                 objectName: "listItem"
                 text: mod_name
+                enabled: !mod_disabled
                 property var item_mod_id: mod_id
                 /* Create a checkbox-lookalike that doesn't have the internal onTrigger
                  * signal handler that overrides the binding to the model.mod_selected
