@@ -250,6 +250,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "mod_id": tp.id,
                 "mod_name": tp.name,
                 "mod_selected": False,
+                "mod_disabled": False,
             } for tp in test_plan_units]
         }
 
@@ -279,6 +280,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             "mod_id": category.id,
             "mod_name": category.name,
             "mod_selected": True,
+            "mod_disabled": False,
         } for category in (
             self.assistant.get_category(category_id)
             for category_id in self.assistant.get_participating_categories()
@@ -306,11 +308,13 @@ class CheckboxTouchApplication(PlainboxApplication):
             cat_id in self.assistant.get_participating_categories()}
         job_units = [self.assistant.get_job(job_id) for job_id in
                      self.assistant.get_static_todo_list()]
+        mandatory_jobs = self.assistant.get_mandatory_jobs()
         test_info_list = [{
             "mod_id": job.id,
             "mod_name": job.tr_summary(),
             "mod_group": category_names[job.category_id],
             "mod_selected": True,
+            "mod_disabled": job.id in mandatory_jobs,
         } for job in job_units]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
         return {'test_info_list': test_info_list}
