@@ -60,7 +60,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             kb.type("autopilot")
         ok_btn = self.app.wait_select_single(objectName='okButton')
         self.pointing_device.click_object(ok_btn)
-        results = {'passed': '1', 'failed': '0', 'skipped': '0'}
+        results = {'passed': '2', 'failed': '0', 'skipped': '0'}
         self.check_results(results)
 
     def test_wrong_password(self):
@@ -73,7 +73,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             kb.type("wrong")
         ok_btn = self.app.wait_select_single(objectName='okButton')
         self.pointing_device.click_object(ok_btn)
-        results = {'passed': '0', 'failed': '1', 'skipped': '0'}
+        results = {'passed': '1', 'failed': '1', 'skipped': '0'}
         self.check_results(results)
 
     def test_password_cancelled(self):
@@ -82,5 +82,5 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             '2015.com.canonical.certification::sudo', [test_id])
         cancel_btn = self.app.wait_select_single(objectName='cancelButton')
         self.pointing_device.click_object(cancel_btn)
-        results = {'passed': '0', 'failed': '0', 'skipped': '1'}
+        results = {'passed': '1', 'failed': '0', 'skipped': '1'}
         self.check_results(results)
