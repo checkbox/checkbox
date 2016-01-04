@@ -873,7 +873,7 @@ _steps:
  .
  ACTIONS:
     1. Tap Data roaming to OFF
-    2. Open web-browser to ensure connection is made
+    2. Open web-browser to ensure connection is disabled
  .
  TEARDOWN:
     Back to System Settings
@@ -2679,7 +2679,7 @@ _steps:
  TEARDOWN:
     End the calls
 _verification:
-    1. Does failure rate of DUT1 is similar to Reference1?
+    1. Is failure rate of DUT1 similar to Reference1?
 
 unit: job
 id: Tel-61
@@ -3054,7 +3054,7 @@ _steps:
     1. Close messaging app
 _verification:
     1. Is SMS sent correctly? 
-    2. Did DUT2 received two messages?
+    2. Did DUT2 receive two messages?
 
 unit: job
 id: Msg-05
