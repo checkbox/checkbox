@@ -55,8 +55,8 @@ category_id: Indicators/Sound indicator
 _summary: Ensure that volume slider bar can be adjusted
 _steps:
  SETUP:
-    1. Launch the media player begin playing an audio file
-    2.Tap and pull down the Sound indicator icon in the top right of the menu bar
+    1. Launch the media player and begin playing an audio file
+    2. Tap and pull down the Sound indicator icon in the top right of the menu bar
  .
  ACTIONS:
     1. Tap volume slider and move to maximum 
@@ -414,7 +414,7 @@ _steps:
  ACTIONS:
     1. Send an e-mail to the Google account
 _verification:
-    1. Verify that an notification of the new e-mail is received
+    1. Verify that a notification of the new e-mail is received
 
 unit: category
 id: Indicators/Location indicator
@@ -535,7 +535,7 @@ _steps:
  ACTIONS:
     1. Tap Bluetooth switch to off
     2. Navigate to system settings -> Bluetooth
-    3. Tap Bluetooth switch to off
+    3. Tap Bluetooth switch to on
  .
  TEARDOWN:
     Push Bluetooth indicator menu back
@@ -614,7 +614,7 @@ _steps:
     1. Tap WiFi icon
  .
  ACTIONS:
-    Ensure it will listed all of the available wireless networks
+    Ensure it will list all of the available wireless networks
  .
  TEARDOWN:
     Back to System Settings
@@ -649,7 +649,7 @@ _steps:
     1. Tap WiFi icon
  .
  ACTIONS:
-    1, Disable wireless
+    1. Disable wireless
     2. Re-enable wireless, ensure AP's show up
  .
  TEARDOWN:
@@ -822,7 +822,7 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Is there a 3G icon show on the indicator bar
+    1. Is there a 3G icon show on the indicator bar?
     2. Is 3G network connected?
 
 unit: job
@@ -859,7 +859,7 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Is there a 3G/Roaming icon show on the indicator bar
+    1. Is there a 3G/Roaming icon show on the indicator bar?
     2. Is 3G network connected?
 
 unit: job
@@ -872,7 +872,7 @@ _steps:
     1. Tap Cellular icon
  .
  ACTIONS:
-    1. Tap Data roaming to ON
+    1. Tap Data roaming to OFF
     2. Open web-browser to ensure connection is made
  .
  TEARDOWN:
@@ -946,7 +946,7 @@ unit: job
 id: Bluetooth-02
 plugin: manual
 category_id: System Settings/Bluetooth
-_summary: Ensure that it will listed all of detected bt devices
+_summary: Ensure that it will list all of detected bt devices
 _steps:
  SETUP:
     1. Tap Bluetooth icon
@@ -977,7 +977,7 @@ _steps:
     Back to System Settings
 _verification:
     1. Is it paired to Bluetooth headset successfully?
-    2. Is there a headset icon show on the menu bar
+    2. Is there a headset icon show on the menu bar?
 
 unit: job
 id: Bluetooth-04
@@ -1039,14 +1039,14 @@ unit: job
 id: Accounts-02
 plugin: manual
 category_id: System Settings/Accounts
-_summary: Ensure that it can login to Ubuntuone
+_summary: Ensure that it can login to UbuntuOne
 _steps:
  SETUP:
     1. Tap Accounts icon
  .
  ACTIONS:
-    1. Tap Ubuntuone icon 
-    2. Input Ubuntuone account and password to login
+    1. Tap UbuntuOne icon 
+    2. Input UbuntuOne account and password to login
  .
  TEARDOWN:
     Back to System Settings
@@ -1114,7 +1114,7 @@ unit: job
 id: Battery-03
 plugin: manual
 category_id: System Settings/Battery
-_summary: Ensure that charing status changes when connect the power cable
+_summary: Ensure that charging status changes when connect the power cable
 _steps:
  SETUP:
     1. Tap Battery icon
@@ -1127,7 +1127,7 @@ _steps:
     Back to System Settings
 _verification:
     1. Does the indicator properly update after connect/disconnect power cable?
-    2. Does the charing status change after connect/disconnect power cable?
+    2. Does the charging status change after connect/disconnect power cable?
 
 unit: job
 id: Battery-04
@@ -1602,7 +1602,7 @@ unit: job
 id: Tel-07
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Ensure that DTMF feature call work as expected
+_summary: Ensure that DTMF feature call works as expected
 _steps:
  SETUP:
     1. Ensure SIM is present
@@ -1658,7 +1658,7 @@ _steps:
     2. Make a MO Call to DUT2
     3. When call connected, use DUT3 to call DUT1
     3. Verify call waiting feature can work as expected 
-    4. Verify you call answer/on hold/reject the call
+    4. Verify you can answer/on hold/reject the call
  .
  TEARDOWN:
     1. End call
@@ -1722,7 +1722,7 @@ _steps:
  ACTIONS:
     1. MT call to DUT
     2. Toggle hold on
-    3, Make sure hold is turned on on the phone
+    3. Make sure hold is turned on on the phone
     4. Make sure indicator on phone and app shows hold as on
     5. Turn off hold from the phone
     6. Make sure indicator on phone and app shows hold is off
@@ -1735,13 +1735,13 @@ _verification:
     1. Is hold turned on?
     2. Does phone indicate hold is on?
     3. Does turning hold off from the phone turn off hold?
-    4. When gold is turned off on phone, does the icon in the app reflect its new status?
+    4. When hold is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
 id: Tel-13
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
-_summary: Ensure sure that speakerphone toggle on/off works in voicemail
+_summary: Ensure that speakerphone toggle on/off works in voicemail
 _steps:
  SETUP:
     Ensure SIM is present
@@ -1778,7 +1778,7 @@ _steps:
  ACTIONS:
     1. MO call to DUT2
     2. Toggle speaker phone on
-    3, Make sure speakerphone is turned on on the phone
+    3. Make sure speakerphone is turned on on the phone
     4. Make sure indicator on phone and app shows speakerphone as on
     5. Turn off speakerphone from the phone
     6. Make sure indicator on phone and app shows speakerphone is off
@@ -1998,7 +1998,7 @@ _steps:
     2. Make a MO Call to DUT2
     3. When call connected, use DUT3 to call DUT1
     3. Verify call waiting feature can work as expected 
-    4. Verify you call answer/on hold/reject the call
+    4. Verify you can answer/on hold/reject the call
  .
  TEARDOWN:
     1. End call
@@ -2062,7 +2062,7 @@ _steps:
  ACTIONS:
     1. MT call to DUT
     2. Toggle hold on
-    3, Make sure hold is turned on on the phone
+    3. Make sure hold is turned on on the phone
     4. Make sure indicator on phone and app shows hold as on
     5. Turn off hold from the phone
     6. Make sure indicator on phone and app shows hold is off
@@ -2075,13 +2075,13 @@ _verification:
     1. Is hold turned on?
     2. Does phone indicate hold is on?
     3. Does turning hold off from the phone turn off hold?
-    4. When gold is turned off on phone, does the icon in the app reflect its new status?
+    4. When hold is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
 id: Tel-29
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
-_summary: Ensure sure that speakerphone toggle on/off works in voicemail
+_summary: Ensure that speakerphone toggle on/off works in voicemail
 _steps:
  SETUP:
     Ensure SIM is present
@@ -2118,7 +2118,7 @@ _steps:
  ACTIONS:
     1. MO call to DUT2
     2. Toggle speaker phone on
-    3, Make sure speakerphone is turned on on the phone
+    3. Make sure speakerphone is turned on on the phone
     4. Make sure indicator on phone and app shows speakerphone as on
     5. Turn off speakerphone from the phone
     6. Make sure indicator on phone and app shows speakerphone is off
@@ -2213,7 +2213,7 @@ _steps:
     Ensure SIM is present
  .
  ACTIONS:
-    1. Ensure the network indicator now shows telephony connection signal?
+    1. Ensure the network indicator now shows telephony connection signal
  .
  TEARDOWN:
     None
@@ -2409,7 +2409,7 @@ _steps:
  TEARDOWN:
     Close browser
 _verification:
-    1. Was Ubuntu.com loaded?
+    1. Was ubuntu.com loaded?
 
 unit: job
 id: Tel-48
@@ -2428,7 +2428,7 @@ _steps:
  TEARDOWN:
     Close browser
 _verification:
-    1. Was Ubuntu.com loaded?
+    1. Was ubuntu.com loaded?
 
 unit: job
 id: Tel-49
@@ -2447,7 +2447,7 @@ _steps:
  TEARDOWN:
     Close browser
 _verification:
-    1. Was Ubuntu.com loaded?
+    1. Was ubuntu.com loaded?
 
 unit: job
 id: Tel-50
@@ -2679,7 +2679,7 @@ _steps:
  TEARDOWN:
     End the calls
 _verification:
-    1. Does failure rate of DUT1 similar to Reference1
+    1. Does failure rate of DUT1 is similar to Reference1?
 
 unit: job
 id: Tel-61
@@ -2970,7 +2970,7 @@ _steps:
     1. Make a call to the DUT
     2. Answer the call
 _verification:
-    1. Verify that call can be taking correctly on the Bluetooth headset
+    1. Verify that call can be taken correctly on the Bluetooth headset
 
 unit: category
 id: Message/SMS/MMS (SIM1)
@@ -2986,7 +2986,7 @@ _steps:
     Ensure SIM is present
  .
  ACTIONS:
-    1. Opens messaging app
+    1. Open messaging app
     2. Select a contact and send the text
     3. Ensure SMS sent correctly
  .
@@ -3005,7 +3005,7 @@ _steps:
     Ensure SIM is present
  .
  ACTIONS:
-    1. Opens messaging app
+    1. Open messaging app
     2. Select multiple contacts and send the text
     3. Ensure SMS sent correctly
  .
@@ -3054,7 +3054,7 @@ _steps:
     1. Close messaging app
 _verification:
     1. Is SMS sent correctly? 
-    2. Is DUT2 received two messages?
+    2. Did DUT2 received two messages?
 
 unit: job
 id: Msg-05
@@ -3075,7 +3075,7 @@ _steps:
     1. Close messaging app
 _verification:
     1. Is SMS sent correctly? 
-    2. Is every contact received two messages?
+    2. Has every contact received two messages?
 
 unit: job
 id: Msg-06
@@ -3117,7 +3117,7 @@ _steps:
  TEARDOWN:
     1. Close messaging app
 _verification:
-    1. Is message displayed correctly
+    1. Is the message displayed correctly?
 
 unit: job
 id: Msg-08
@@ -3137,8 +3137,8 @@ _steps:
  TEARDOWN:
     1. Close the messaging app
 _verification:
-    1. Is the message displayed correctly
-    2. Can you click on the URL and it open in the browser
+    1. Is the message displayed correctly?
+    2. Can you click on the URL and open it in the browser?
 
 unit: job
 id: Msg-09
@@ -3409,7 +3409,7 @@ _steps:
  TEARDOWN:
     1. Close messaging app
 _verification:
-    1. Is message displayed correctly
+    1. Is the message displayed correctly?
 
 unit: job
 id: Msg-22
@@ -3429,8 +3429,8 @@ _steps:
  TEARDOWN:
     1. Close the messaging app
 _verification:
-    1. Is the message displayed correctly
-    2. Can you click on the URL and it open in the browser
+    1. Is the message displayed correctly?
+    2. Can you click on the URL and open it in the browser?
 
 unit: job
 id: Msg-23
@@ -4067,7 +4067,7 @@ _steps:
  TEARDOWN:
     Resume phone volume to default
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the volume change?
 
 unit: job
@@ -4088,7 +4088,7 @@ _steps:
  TEARDOWN:
     Resume phone volume to default
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the volume change?
 
 unit: job
@@ -4110,7 +4110,7 @@ _steps:
     1. Resume phone volume to default
     2. Unplug the headset
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the volume change?
 
 unit: job
@@ -4134,7 +4134,7 @@ _steps:
     1. Resume phone volume to default
     2. Unplug the headset
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the volume change?
 
 unit: job
@@ -4156,7 +4156,7 @@ _steps:
     1. Resume phone volume to default
     2. Unpair the headset
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the volume change?
 
 unit: job
@@ -4180,7 +4180,7 @@ _steps:
     1. Resume phone volume to default
     2. Unpair the headset
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the volume change?
 
 unit: job
@@ -4198,7 +4198,7 @@ _steps:
  TEARDOWN:
     Unmute the phone
 _verification:
-    1. Does the indicator properly update
+    1. Does the indicator properly update?
     2. Did the phone muted?
 
 unit: job
@@ -4640,7 +4640,7 @@ unit: job
 id: PM-05
 plugin: manual
 category_id: Power Management/Indicator
-_summary: Ensure that the power indicator shows on the screen after dut off
+_summary: Ensure that the power indicator shows on the screen after DUT off
 _steps:
  SETUP:
     Power charge is plugged
@@ -4860,7 +4860,7 @@ unit: job
 id: MU-01
 plugin: manual
 category_id: Storage/MTP Mediascanner Update
-_summary: Make sure that music scope can scan and add music file after mtp transfer to storage
+_summary: Make sure that music scope can scan and add music file after MTP transfer to storage
 _steps:
  SETUP:
     1. Prepare a USB cable
@@ -4883,7 +4883,7 @@ unit: job
 id: MU-02
 plugin: manual
 category_id: Storage/MTP Mediascanner Update
-_summary: Make sure that music scope can scan and add music files that under folders after mtp transfer to storage
+_summary: Make sure that music scope can scan and add music files that are under folders after MTP transfer to storage
 _steps:
  SETUP:
     1. Prepare a USB cable
@@ -5040,7 +5040,7 @@ category_id: Storage/Bluetooth File Transfer
 _summary: Transfer files to the phone using Bluetooth file transfer
 _steps:
 _verification:
-    1. File in present on the DUT
+    1. File is present on the DUT
 
 unit: job
 id: BTFT-02
