@@ -822,7 +822,7 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Is there a 3G icon show on the indicator bar?
+    1. Is there a 3G icon shown on the indicator bar?
     2. Is 3G network connected?
 
 unit: job
@@ -859,7 +859,7 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Is there a 3G/Roaming icon show on the indicator bar?
+    1. Is there a 3G/Roaming icon shown on the indicator bar?
     2. Is 3G network connected?
 
 unit: job
@@ -946,7 +946,7 @@ unit: job
 id: Bluetooth-02
 plugin: manual
 category_id: System Settings/Bluetooth
-_summary: Ensure that it will list all of detected bt devices
+_summary: Ensure that all detected Bluetooth devices are listed
 _steps:
  SETUP:
     1. Tap Bluetooth icon
@@ -977,7 +977,7 @@ _steps:
     Back to System Settings
 _verification:
     1. Is it paired to Bluetooth headset successfully?
-    2. Is there a headset icon show on the menu bar?
+    2. Is there a headset icon shown on the menu bar?
 
 unit: job
 id: Bluetooth-04
@@ -1039,7 +1039,7 @@ unit: job
 id: Accounts-02
 plugin: manual
 category_id: System Settings/Accounts
-_summary: Ensure that it can login to UbuntuOne
+_summary: Ensure that you can login to UbuntuOne
 _steps:
  SETUP:
     1. Tap Accounts icon
@@ -1114,7 +1114,7 @@ unit: job
 id: Battery-03
 plugin: manual
 category_id: System Settings/Battery
-_summary: Ensure that charging status changes when connect the power cable
+_summary: Ensure that charging status changes with the power cable is connected
 _steps:
  SETUP:
     1. Tap Battery icon
@@ -1126,8 +1126,8 @@ _steps:
  TEARDOWN:
     Back to System Settings
 _verification:
-    1. Does the indicator properly update after connect/disconnect power cable?
-    2. Does the charging status change after connect/disconnect power cable?
+    1. Does the indicator properly update after connecting/disconnecting the power cable?
+    2. Does the charging status change after connecting/disconnecting the power cable?
 
 unit: job
 id: Battery-04
@@ -4652,7 +4652,7 @@ _steps:
  TEARDOWN:
     Power on DUT
 _verification:
-    1. Is there a power indicator show on the screen?
+    1. Is there a power indicator shown on the screen?
 
 unit: category
 id: Power Management/Power consumption
