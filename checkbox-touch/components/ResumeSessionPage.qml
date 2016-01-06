@@ -31,9 +31,11 @@ import QtQuick.Layouts 1.1
 
 Page {
     property alias resumeText: resumeLabel.text
+    property var incompleteSessionCount: 0
     signal rerunLast();
     signal continueSession();
     signal restartSession();
+    signal deleteIncomplete();
 
     objectName: "resumeSessionPage"
     title: i18n.tr("Resume session")
@@ -63,6 +65,19 @@ Page {
             Layout.fillHeight: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        }
+
+        LatchButton {
+            id: deleteIncompleteButton
+            objectName: "deleteIncompleteButton"
+            visible: incompleteSessionCount > 0
+            text: i18n.tr("Delete incomplete sessions (%0)".arg(incompleteSessionCount))
+            unlatchedColor: UbuntuColors.red
+            Layout.fillWidth: true
+            onLatchedClicked: {
+                deleteIncomplete();
+                columnLayout.latchGroup();
+            }
         }
 
         LatchButton {
