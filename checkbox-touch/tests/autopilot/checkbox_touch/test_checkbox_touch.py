@@ -129,16 +129,6 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
 
 
 class SessionResumeTests(checkbox_touch.ClickAppTestCase):
-    def select_two_tests_and_quit(self):
-        self.start_and_select_tests(
-            '2015.com.canonical.certification::normal', [
-                '2015.com.canonical.certification::autopilot/user-verify-1',
-                '2015.com.canonical.certification::autopilot/user-verify-2'])
-        # make sure that test is shown (therefore session has been started)
-        self.app.wait_select_single(
-            objectName='userInteractVerifyIntroPage', visible=True)
-        self.app.process.terminate()
-
     def test_rerun_after_resume(self):
         self.select_two_tests_and_quit()
         self.launch_application()
