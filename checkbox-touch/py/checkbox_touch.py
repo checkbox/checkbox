@@ -487,6 +487,31 @@ class CheckboxTouchApplication(PlainboxApplication):
                 if conn:
                     conn.close()
 
+    @view
+    def get_incomplete_sessions(self):
+        """Get ids of sessions with an 'incomplete' flag."""
+        self._incomplete_sessions = [
+            s[0] for s in self.assistant.get_old_sessions(
+                flags={'incomplete'}, allow_not_flagged=False)]
+        return self._incomplete_sessions
+
+    @view
+    def delete_old_sessions(self, additional_sessions):
+        """
+        Delete session storages.
+
+        :param additional_sessions:
+            List of ids of sessions that should be removed.
+
+        This function removes all complete sessions (i.e. the ones that session
+        assistant returns when get_old_sessions is run with the default params)
+        with the addition of the ones specified in the ``additional_sessions``
+        param.
+        """
+        garbage = [s[0] for s in self.assistant.get_old_sessions()]
+        garbage += additional_sessions
+        self.assistant.delete_sessions(garbage)
+
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
             os.path.expanduser('~/.config')
