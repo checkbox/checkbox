@@ -285,7 +285,7 @@ MainView {
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
-            app.startSession();
+            gcAndStartSession();
         }
         onDeleteIncomplete: {
             app.deleteOldSessions(app.incompleteSessions, function() {
@@ -457,10 +457,10 @@ MainView {
             } else {
                 if (result.errors_encountered) {
                     ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
-                                         app.startSession(),
+                                         gcAndStartSession(),
                                          i18n.tr("Start new session"));
                 } else {
-                    app.startSession();
+                    gcAndStartSession();
                 }
             }
         });
@@ -545,7 +545,7 @@ MainView {
         var endTesting = function() {
             pageStack.clear();
             app.clearSession(function() {
-                app.startSession();
+                gcAndStartSession();
                 pageStack.push(welcomePage);
             });
         };
