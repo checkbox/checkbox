@@ -288,3 +288,45 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
         ]
         self.process_sequence_of_clicks_on_pages(next_steps)
         self.check_results({'passed': '2', 'failed': '0', 'skipped': '0'})
+
+class GarbageCollectionTests(checkbox_touch.ClickAppTestCase):
+    def test_garbage_collection_popup_shown(self):
+        """Ensure popup is shown when there are candidates for removal."""
+        # start a session, then quit the app, to create dangling incomplete
+        # session
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        # check if the button from session garbage collect popup is visible
+        self.app.wait_select_single(
+            objectName="deleteIncompleteButton", visible=True)
+
+    def test_restart_doesnt_remove(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        resume_page = self.app.wait_select_single(
+            objectName='resumeSessionPage', visible=True)
+        restart_btn = resume_page.wait_select_single(
+            objectName='restartButton')
+        self.pointing_device.click_object(restart_btn)
+        # quit the app
+        self.app.process.terminate()
+        self.launch_application()
+        # make sure the app still wants to garbage collect some sessions
+        # check if the button from session garbage collect popup is visible
+        self.app.wait_select_single(
+            objectName="deleteIncompleteButton", visible=True)
+
+    def test_remove_all_removes(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        delete_btn = self.app.wait_select_single(
+            objectName="deleteIncompleteButton", visible=True)
+        self.pointing_device.click_object(delete_btn)
+        # make sure the app behaves normally afterwards
+        self.skipResumeIfShown()
+        # quit the app
+        self.app.process.terminate()
+        self.launch_application()
+        # make sure that app doens't show garbage collection dialog
+        self.app.wait_select_single(
+        objectName='startTestButton', enabled=True)
