@@ -150,6 +150,7 @@ MainView {
     CheckboxTouchApplication {
         id: app
         py: py
+        property var incompleteSessions: []
         onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
@@ -157,6 +158,10 @@ MainView {
                 "checkbox_touch" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
+            getIncompleteSessions(function(sessions) {
+                incompleteSessions = sessions;
+                resumeSessionPage.incompleteSessionCount = sessions.length;
+            });
             resumeOrStartSession();
         }
         onSessionReady: {
@@ -281,6 +286,13 @@ MainView {
             pageStack.clear();
             pageStack.push(welcomePage);
             app.startSession();
+        }
+        onDeleteIncomplete: {
+            app.deleteOldSessions(app.incompleteSessions, function() {
+                pageStack.clear();
+                pageStack.push(welcomePage);
+                app.startSession();
+            });
         }
     }
 
