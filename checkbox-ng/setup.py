@@ -55,7 +55,7 @@ else:
 
 setup(
     name="checkbox-ng",
-    version="0.22.dev0",
+    version="0.24.dev0",
     url="https://launchpad.net/checkbox-ng/",
     packages=find_packages(),
     author="Zygmunt Krynicki",
@@ -65,7 +65,7 @@ setup(
     description="Checkbox - Command Line Test Runner",
     long_description=long_description,
     install_requires=install_requires,
-    scripts = ['launchers/checkbox-cli'],
+    scripts = ['launchers/checkbox-cli', 'launchers/checkbox-cli2'],
     entry_points={
         'console_scripts': [
             'checkbox=checkbox_ng.main:main',

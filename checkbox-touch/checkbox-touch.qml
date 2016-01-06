@@ -165,8 +165,7 @@ MainView {
         Component.onCompleted: {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
-                construct("checkbox_touch.create_app_object", [
-                    appSettings["providersDir"]]);
+                construct("checkbox_touch.create_app_object", []);
             });
         }
     }
@@ -201,6 +200,7 @@ MainView {
             if (appSettings.testplan != "") {
                 app.rememberTestplan(appSettings.testplan, function() {
                     categorySelectionPage.setup();
+                    enableButton();
                 });
             } else {
                 app.getTestplans(function(response) {
@@ -213,9 +213,9 @@ MainView {
                     else {
                         testplanSelectionPage.setup(tp_list)
                     }
+                    enableButton();
                 });
             }
-            enableButton();
         }
         onAboutClicked: pageStack.push(aboutPage)
     }
@@ -275,7 +275,7 @@ MainView {
         id: resumeSessionPage
         onRerunLast: app.resumeSession(true, processNextTest)
         onContinueSession: app.resumeSession(false, processNextTest)
-        resumeText: i18n.tr("Previous session did not finish completely.\nDo you want \
+        resumeText: i18n.tr("Checkbox session got suspended.\nDo you want \
  to rerun last test, continue to the next test, or start a new session?")
         onRestartSession: {
             pageStack.clear();
@@ -318,14 +318,20 @@ MainView {
 
         function setup(continuation) {
             app.getCategories(function(response) {
-                var category_info_list = response.category_info_list;
-                model.clear();
-                for (var i=0; i<category_info_list.length; i++) {
-                    var category_info = category_info_list[i]; 
-                    model.append(category_info);
+                var uncategorised_id = "2013.com.canonical.plainbox::uncategorised"
+                if (response.category_info_list.length === 1 &&
+                    response.category_info_list[0].mod_id == uncategorised_id) {
+                    selectionDone(uncategorised_id);
+                } else {
+                    var category_info_list = response.category_info_list;
+                    model.clear();
+                    for (var i=0; i<category_info_list.length; i++) {
+                        var category_info = category_info_list[i];
+                        model.append(category_info);
+                    }
+                    modelUpdated();
+                    pageStack.push(categorySelectionPage);
                 }
-                modelUpdated();
-                pageStack.push(categorySelectionPage);
                 // if called from welcome page, no continuation is given
                 if (continuation) continuation();
             });
@@ -385,6 +391,11 @@ MainView {
             pageStack.push(rerunSelectionPage)
         }
         onSelectionDone: {
+            if (!selected_id_list.length) {
+                showResultsScreen();
+                unlatchContinue();
+                return;
+            }
             app.rememberTestSelection(selected_id_list, function() {
                 processNextTest();
                 unlatchContinue();
@@ -447,23 +458,27 @@ MainView {
         app.getNextTest(function(test) {
             pageStack.clear();
             if (test.plugin === undefined) { 
-                return maybeShowRerunScreen();
+                return showResultsScreen();
             }
             if (test.user) {
                 // running this test will require to be run as a different
                 // user (therefore requiring user to enter sudo password)
                 if (!appSettings.sudoPasswordProvided) {
                     // ask user for password
-                    passwordDialog.passwordEntered.connect(function(pass) {
+                    var rememberContinuation = function(pass) {
+                        passwordDialog.passwordEntered.disconnect(rememberContinuation);
                         app.rememberPassword(pass, function(){
                             appSettings.sudoPasswordProvided = true;
                             performTest(test);
                         });
-                    });
-                    passwordDialog.dialogCancelled.connect(function() {
+                    }
+                    var cancelContinuation = function() {
+                        passwordDialog.dialogCancelled.disconnect(cancelContinuation);
                         test.outcome = "skip";
                         completeTest(test);
-                    });
+                    };
+                    passwordDialog.passwordEntered.connect(rememberContinuation);
+                    passwordDialog.dialogCancelled.connect(cancelContinuation);
                     PopupUtils.open(passwordDialog.dialogComponent);
                     return;
                 }
@@ -513,71 +528,74 @@ MainView {
         app.runTestActivity(test, continuation);
 
     }
-    function maybeShowRerunScreen() {
-        app.getRerunCandidates(function(result) {
-            if (result == false) {
-                 showResultsScreen();
-                 return;
-            }
-            rerunSelectionPage.setup(result);
-        });
-    }
 
     function showResultsScreen() {
-        pageStack.clear();
-        app.getResults(function(results) {
-            var resultsPage = createPage("components/ResultsPage.qml");
-            resultsPage.results = results;
-            if (appSettings["submission"]) {
-                resultsPage.submissionName = appSettings["submission"].name;
-            }
-            resultsPage.endTesting.connect(function() {
-                pageStack.clear();
-                app.clearSession(function() {
-                    app.startSession();
-                    pageStack.push(welcomePage);
+        var endTesting = function() {
+            pageStack.clear();
+            app.clearSession(function() {
+                app.startSession();
+                pageStack.push(welcomePage);
+            });
+        };
+        var saveReport = function() {
+            app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
+                var htmlReportUrl = uri;
+                app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+                    CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
+                                              [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
+                                                  var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
+                                                  webviewer.uri = htmlReportUrl;
+                                                  pageStack.push(webviewer);
+                                              }}]);
                 });
             });
-            resultsPage.saveReportClicked.connect(function() {
-                app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
-                    var htmlReportUrl = uri;
-                    app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
-                        console.log(uri)
-                        CbtDialogLogic.showDialog(resultsPage, i18n.tr("Reports have been saved to your Documents folder"),
-                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View report"), "color": UbuntuColors.green, "onClicked": function(uri) {
-                                                      var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
-                                                      webviewer.uri = htmlReportUrl;
-                                                      pageStack.push(webviewer);
-                                                  }}]);
-                    });
-                });
-            });
-            resultsPage.submitReportClicked.connect(function() {
-                getSubmissionInput(function() {
-                    app.submitResults(appSettings["submission"], function(reply) {
-                        // pretty-stringify reply
-                        var s = ""
-                        for (var i in reply) {
-                            s += i + ': ' + reply[i] + '\n';
-                        }
-                        CbtDialogLogic.showDialog(
-                            resultsPage,
-                            i18n.tr("Report has been submited.\n" + s),
-                            [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
-                    },
-                    function(error) {
-                        ErrorLogic.showError(mainView,
-                                             i18n.tr("Could not submit report. Reason:\n" + error),
-                                             function(){},
-                                             i18n.tr("OK"));
-                        resultsPage.unlatchSubmission();
-                    })
+        };
+        var submitReport = function(resultsPage) {
+            // resultsPage param is for having control over unlatching
+            getSubmissionInput(function() {
+                app.submitResults(appSettings["submission"], function(reply) {
+                    // pretty-stringify reply
+                    var s = ""
+                    for (var i in reply) {
+                        s += i + ': ' + reply[i] + '\n';
+                    }
+                    CbtDialogLogic.showDialog(
+                        resultsPage,
+                        i18n.tr("Report has been submited.\n" + s),
+                        [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
                 },
-                function() {
+                function(error) {
+                    ErrorLogic.showError(mainView,
+                                         i18n.tr("Could not submit results. Reason:\n" + error),
+                                         function(){},
+                                         i18n.tr("OK"));
                     resultsPage.unlatchSubmission();
-                });
+                })
+            },
+            function() {
+                resultsPage.unlatchSubmission();
             });
-            pageStack.push(resultsPage);
+        };
+
+        pageStack.clear();
+        app.getRerunCandidates(function(rerunCandidates) {
+            app.getResults(function(results) {
+                var resultsPage = createPage("components/ResultsPage.qml");
+                resultsPage.results = results;
+                if (appSettings["submission"]) {
+                    resultsPage.submissionName = appSettings["submission"].name;
+                }
+                resultsPage.endTesting.connect(endTesting);
+                resultsPage.saveReportClicked.connect(saveReport);
+                resultsPage.submitReportClicked.connect(function() {submitReport(resultsPage);});
+                if (rerunCandidates.length>0) {
+                    resultsPage.rerunEnabled = true;
+                    resultsPage.rerunTests.connect(function() {
+                        rerunSelectionPage.setup(rerunCandidates);
+                    });
+                }
+                pageStack.push(resultsPage);
+            });
         });
     }
 
@@ -640,7 +658,7 @@ MainView {
     }
     function performConfinedQmlTest(test) {
         runTestActivity(test, function(test) {
-            var qmlNativePage = createPage("components/QmlConfinedPage.qml");
+            var qmlNativePage = createPage("components/QmlConfinedPage.qml", test);
             qmlNativePage.applicationVersion = app.applicationVersion;
             qmlNativePage.testDone.connect(completeTest);
             pageStack.push(qmlNativePage);
@@ -649,7 +667,20 @@ MainView {
 
     function showVerificationScreen(test) {
         var verificationPage = createPage("components/TestVerificationPage.qml", test);
-        verificationPage.testDone.connect(completeTest);
+        var maybeCommentVerification = function(test) {
+            if (test.outcome == 'fail' &&
+                test.flags.indexOf('explicit-fail') > -1) {
+                commentsDialog.commentDefaultText = test["comments"] || "";
+                commentsDialog.commentAdded.connect(function(comment) {
+                    test["comments"] = comment;
+                    completeTest(test);
+                });
+                PopupUtils.open(commentsDialog.dialogComponent);
+            } else {
+                completeTest(test);
+            }
+        }
+        verificationPage.testDone.connect(maybeCommentVerification);
         pageStack.push(verificationPage);
     }
     function getSubmissionInput(continuation, cancelContinuation) {

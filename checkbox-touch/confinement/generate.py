@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 import argparse
+import json
 import os
 import string
 import sys
@@ -49,15 +50,9 @@ Type=Application
 X-Ubuntu-Touch=true
 """
 
-HOOK = """
-"${partial_id}": {
-      "apparmor": "providers/${provider_name}/data/confined/${partial_id}.apparmor",
-      "desktop": "providers/${provider_name}/data/confined/${partial_id}.desktop",
-      "content-hub": "providers/${provider_name}/data/confined/${partial_id}-ch.json"
-}
-"""
 
-def generate_confinement(provider_name, partial_id, full_checkbox_name, qml_file):
+def generate_confinement(provider_name, partial_id, full_checkbox_name,
+                         qml_file):
     # generate content-hub file
     target_dir = os.path.join('data', 'confined')
     if not os.path.exists(target_dir):
@@ -72,17 +67,24 @@ def generate_confinement(provider_name, partial_id, full_checkbox_name, qml_file
     with open(apparmor_path, "wt") as f:
         f.write(APPARMOR)
 
- 
     # generate desktop file
     desktop_path = os.path.join(target_dir, partial_id + '.desktop')
     template = string.Template(DESKTOP)
     with open(desktop_path, "wt") as f:
-        f.write(template.substitute(partial_id=partial_id, provider_name=provider_name, full_checkbox_name=full_checkbox_name, qml_file=qml_file))
+        f.write(template.substitute(
+            partial_id=partial_id, provider_name=provider_name,
+            full_checkbox_name=full_checkbox_name, qml_file=qml_file))
 
-def generate_hook(provider_name, partial_id):
-    return string.Template(HOOK).substitute(
+    base = 'providers/{provider_name}/data/confined/{partial_id}'.format(
         provider_name=provider_name, partial_id=partial_id)
-
+    hook = {
+        partial_id: {
+            'apparmor': base + '.apparmor',
+            'desktop': base + '.desktop',
+            'content-hub': base + '-ch.json',
+        }
+    }
+    return hook
 
 
 def main():
@@ -91,7 +93,8 @@ def main():
     parser.add_argument('--checkbox_version', action='store', type=str)
     parser.add_argument('job_ids', nargs='+')
     args = parser.parse_args()
-    checkbox_name = "com.ubuntu.checkbox_checkbox-touch_" + args.checkbox_version
+    checkbox_name = ("com.ubuntu.checkbox_checkbox-touch_" +
+                     args.checkbox_version)
 
     # check if current dir looks like a provider - very dumb heuristic
     if not os.path.exists('manage.py'):
@@ -100,8 +103,9 @@ def main():
 
     hooks = ''
     for job in args.job_ids:
-        generate_confinement(provider_name, job, checkbox_name, job + '.qml')
-        hooks += generate_hook(provider_name, job)
+        hook = generate_confinement(
+            provider_name, job, checkbox_name, job + '.qml')
+        hooks += json.dumps(hook, sort_keys=True, indent=4)[1:-1]
 
     print("Add following hooks to your checkbox-touch.manifest:")
     print(hooks)

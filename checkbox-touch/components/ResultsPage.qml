@@ -28,7 +28,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import QtQuick.Layouts 1.1
-import jbQuick.Charts 1.0
 
 Page {
     title: i18n.tr("Test Results")
@@ -37,9 +36,11 @@ Page {
     objectName: "resultsPage"
     property var results: {"totalPassed": 0, "totalFailed": 0, "totalSkipped": 0}
     property string submissionName: ""
+    property var rerunEnabled: false
     signal saveReportClicked()
     signal submitReportClicked()
     signal endTesting()
+    signal rerunTests()
 
     function unlatchSubmission() {
         submitResultsButton.unlatch();
@@ -48,7 +49,15 @@ Page {
     head {
         actions: [
             Action {
-                iconName: "window-close"
+                id: rerunAction
+                objectName: "rerunAction"
+                iconName: "view-refresh"
+                text: i18n.tr("Rerun")
+                onTriggered: rerunTests();
+                visible: rerunEnabled
+            },
+            Action {
+                iconName: "close"
                 text: i18n.tr("Close")
                 onTriggered: endTesting();
             }
@@ -92,14 +101,9 @@ Page {
             Layout.fillWidth: true
             property var easter: 0
 
-            Chart {
+            PieChart {
                 id: chart_pie;
                 anchors.fill: parent
-                chartAnimated: true;
-                chartAnimationEasing: Easing.Linear;
-                chartAnimationDuration: 1000;
-                chartType: Charts.ChartType.PIE;
-                chartOptions: {"segmentStrokeColor": "#ECECEC"};
             }
             Image {
                 id: img
@@ -160,7 +164,10 @@ Page {
             unlatchedColor: UbuntuColors.green
             Layout.fillWidth: true
             text: i18n.tr("Save detailed report")
-            onLatchedClicked: saveReportClicked();
+            onLatchedClicked: {
+                rerunAction.enabled = false;
+                saveReportClicked();
+            }
         }
         LatchButton {
             id: submitResultsButton
@@ -169,7 +176,10 @@ Page {
             Layout.fillWidth: true
             // TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
             text: i18n.tr("Submit results to " + submissionName)
-            onLatchedClicked: submitReportClicked();
+            onLatchedClicked: {
+                rerunAction.enabled = false;
+                submitReportClicked();
+            }
         }
     }
 }

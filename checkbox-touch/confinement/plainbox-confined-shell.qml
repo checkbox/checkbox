@@ -33,7 +33,8 @@ MainView {
     // information and functionality passed to qml job component
     property var testingShell: {
         "name": "Checkbox-touch qml confined shell",
-        "pageStack": pageStack
+        "pageStack": pageStack,
+        "python": py
     }
     property var activeTransfer;
 

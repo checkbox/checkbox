@@ -436,7 +436,7 @@ class CliInvocation2(RunInvocation):
             self.config.email_address)
         transport = transport_cls(self.config.lp_url, options_string)
         # TRANSLATORS: Do not translate the {} format markers.
-        print(_("Submitting results to {0} for email_address {1})").format(
+        print(_("Submitting results to {0} for email_address {1}").format(
             self.config.lp_url, self.config.email_address))
         with open(self.submission_file, encoding='utf-8') as stream:
             try:
@@ -461,7 +461,7 @@ class CliInvocation2(RunInvocation):
         from checkbox_ng.certification import InvalidSecureIDError
         transport_cls = get_all_transports().get('certification')
         # TRANSLATORS: Do not translate the {} format markers.
-        print(_("Submitting results to {0} for secure_id {1})").format(
+        print(_("Submitting results to {0} for secure_id {1}").format(
             self.config.c3_url, self.config.secure_id))
         option_chunks = []
         option_chunks.append("secure_id={0}".format(self.config.secure_id))
@@ -506,8 +506,8 @@ class CliInvocation2(RunInvocation):
             return False
         tree = SelectableJobTreeNode.create_tree(
             self.manager.state, rerun_candidates)
-        # nothing to select - bailing out
-        if not tree.jobs:
+        # nothing to select in root node and categories - bailing out
+        if not tree.jobs and not tree._categories:
             return False
         # deselect all by default
         tree.set_descendants_state(False)

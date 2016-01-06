@@ -1,3 +1,8 @@
+unit: manifest entry
+id: has_touchscreen
+_name: Touchscreen
+value-type: bool
+
 plugin: shell
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/nontouch-automated
@@ -34,7 +39,8 @@ _description:
 plugin: manual
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/tap-detect
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -47,7 +53,8 @@ _description:
 plugin: manual
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/drag-n-drop
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -62,14 +69,15 @@ plugin: user-interact-verify
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/multitouch-zoom
 _summary: Check touchscreen pinch gesture for zoom
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 command: qmlscene -qt5 $PLAINBOX_PROVIDER_DATA/touch_zoom_test.qml 2>&1 |grep -o PASS
 estimated_duration: 120.0
 _description:
  PURPOSE:
      Check touchscreen pinch gesture for zoom
  STEPS:
-     1. Press the Test button
+     1. Commence the test
      2. Using 2 fingers, resize the blue square until it turns green, then release it.
  VERIFICATION:
      Did the blue square change size following the gesture?
@@ -78,14 +86,15 @@ plugin: user-interact-verify
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/multitouch-rotate
 _summary: Check touchscreen pinch gesture for rotate
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 command: qmlscene -qt5 $PLAINBOX_PROVIDER_DATA/touch_rotate_test.qml 2>&1 |grep -o PASS
 estimated_duration: 120.0
 _description:
  PURPOSE:
      Check touchscreen pinch gesture for rotate
  STEPS:
-     1. Press the Test button
+     1. Commence the test
      2. Using 2 fingers, rotate the blue square until it turns green, then release it.
  VERIFICATION:
      Did the blue square rotate following the gesture?
@@ -93,7 +102,8 @@ _description:
 plugin: manual
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/multitouch-window-move
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -107,7 +117,8 @@ _description:
 plugin: manual
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/multitouch-dash
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 estimated_duration: 120.0
 _description:
  PURPOSE:
@@ -120,14 +131,16 @@ _description:
 plugin: user-interact-verify
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/3-touch-tap
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 estimated_duration: 15.0
 _description:
  PURPOSE:
      Validate that 3-touch tap is operating as expected
  STEPS:
-     1. Tap the screen with 3 fingers simultaneously.
-     2. Once 3 fingers are on the screen you should see the indicator they are recognized.
+     1. Commence the test
+     2. Tap the screen within the test area with 3 fingers simultaneously.
+     3. Once 3 fingers are on the screen you should see the indicator they are recognized.
  VERIFICATION:
      Did you see the green circles around the three fingers?
 command:
@@ -141,14 +154,16 @@ command:
 plugin: user-interact-verify
 category_id: 2013.com.canonical.plainbox::touchscreen
 id: touchscreen/4-touch-tap
-depends: touchscreen/multitouch-automated
+imports: from 2013.com.canonical.plainbox import manifest
+requires: manifest.has_touchscreen == 'True'
 estimated_duration: 15.0
 _description:
  PURPOSE:
      Validate that 4-touch tap is operating as expected
  STEPS:
-     1. Tap the screen with 4 fingers simultaneously.
-     2. Once 4 fingers are on the screen you should see the indicator they are recognized.
+     1. Commence the test
+     2. Tap the screen within the test area with 4 fingers simultaneously.
+     3. Once 4 fingers are on the screen you should see the indicator they are recognized.
  VERIFICATION:
      Did you see the green circles around the four fingers?
 command:

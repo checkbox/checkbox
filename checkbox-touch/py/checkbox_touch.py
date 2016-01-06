@@ -36,6 +36,7 @@ import json
 import logging
 import os
 import pyotherside
+import sqlite3
 import re
 import time
 import traceback
@@ -133,9 +134,9 @@ class CheckboxTouchApplication(PlainboxApplication):
     response data to alter the user interface.
     """
 
-    __version__ = (1, 2, 1, 'final', 0)
+    __version__ = (1, 3, 0, 'dev', 0)
 
-    def __init__(self, providers_dir):
+    def __init__(self):
         if plainbox.__version__ < (0, 22):
             raise SystemExit("plainbox 0.22 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
@@ -149,12 +150,24 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.resume_candidate_storage = None
         self.assistant.use_alternate_repository(
             self._get_app_cache_directory())
-        self.assistant.select_providers(
-            '*',
-            additional_providers=self._get_embedded_providers(providers_dir))
+
+        # Prepare custom execution controller list
+        from plainbox.impl.ctrl import UserJobExecutionController
+        from sudo_with_pass_ctrl import RootViaSudoWithPassExecutionController
+        ctrl_setup_list = [(RootViaSudoWithPassExecutionController,
+                           [self._password_provider], {}),
+                           (UserJobExecutionController, [], {}),
+                           ]
+        self.assistant.use_alternate_execution_controllers(ctrl_setup_list)
 
     def __repr__(self):
         return "app"
+
+    @view
+    def load_providers(self, providers_dir):
+        self.assistant.select_providers(
+            '*',
+            additional_providers=self._get_embedded_providers(providers_dir))
 
     @view
     def get_version_pair(self):
@@ -197,7 +210,8 @@ class CheckboxTouchApplication(PlainboxApplication):
             test['outcome'] = 'skip'
             self.register_test_result(test)
         return {
-            'session_id': self._latest_session
+            'session_id': self._latest_session,
+            'session_dir': self.assistant.get_session_dir()
         }
 
     @view
@@ -205,11 +219,14 @@ class CheckboxTouchApplication(PlainboxApplication):
         """Reset app-custom state info about the session."""
         self.index = 0
         self._timestamp = datetime.datetime.utcnow().isoformat()
+        self._finalize_session()
 
     @view
     def is_session_resumable(self):
         """Check whether there is a session that can be resumed."""
         for session_id, session_md in self.assistant.get_resumable_sessions():
+            if session_md.app_blob is None:
+                continue
             # we're interested in the latest session only, this is why we
             # return early
             self._latest_session = session_id
@@ -233,6 +250,7 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "mod_id": tp.id,
                 "mod_name": tp.name,
                 "mod_selected": False,
+                "mod_disabled": False,
             } for tp in test_plan_units]
         }
 
@@ -242,7 +260,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         if self.test_plan_id:
             # test plan has been previously selected. User changed mind, we
             # have to abandon the session
-            self.assistant.finalize_session()
+            self._finalize_session()
             self.assistant.start_new_session('Checkbox Converged session')
             self._timestamp = datetime.datetime.utcnow().isoformat()
         self.test_plan_id = test_plan_id
@@ -262,6 +280,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             "mod_id": category.id,
             "mod_name": category.name,
             "mod_selected": True,
+            "mod_disabled": False,
         } for category in (
             self.assistant.get_category(category_id)
             for category_id in self.assistant.get_participating_categories()
@@ -289,11 +308,13 @@ class CheckboxTouchApplication(PlainboxApplication):
             cat_id in self.assistant.get_participating_categories()}
         job_units = [self.assistant.get_job(job_id) for job_id in
                      self.assistant.get_static_todo_list()]
+        mandatory_jobs = self.assistant.get_mandatory_jobs()
         test_info_list = [{
             "mod_id": job.id,
             "mod_name": job.tr_summary(),
             "mod_group": category_names[job.category_id],
             "mod_selected": True,
+            "mod_disabled": job.id in mandatory_jobs,
         } for job in job_units]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
         return {'test_info_list': test_info_list}
@@ -304,7 +325,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         def rerun_predicate(job_state):
             return job_state.result.outcome in (
                 IJobResult.OUTCOME_FAIL, IJobResult.OUTCOME_CRASH,
-                IJobResult.OUTCOME_NOT_SUPPORTED)
+                IJobResult.OUTCOME_NOT_SUPPORTED, IJobResult.OUTCOME_SKIP)
         rerun_candidates = []
         todo_list = self.assistant.get_static_todo_list()
         job_units = {job_id: self.assistant.get_job(job_id) for job_id
@@ -406,7 +427,6 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def get_results(self):
         """Get results object."""
-        self.assistant.finalize_session()
         stats = self.assistant.get_summary()
         return {
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
@@ -418,6 +438,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def export_results(self, output_format, option_list):
         """Export results to file(s) in the user's 'Documents' directory.."""
+        self.assistant.finalize_session()
         dirname = self._get_user_directory_documents()
         return self.assistant.export_to_file(
             output_format, option_list, dirname)
@@ -426,6 +447,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     def submit_results(self, config):
         """Submit results to a service configured by config."""
 
+        self.assistant.finalize_session()
         transport = {
             'hexr': self.assistant.get_canonical_hexr_transport,
             'hexr-staging': (
@@ -451,6 +473,28 @@ class CheckboxTouchApplication(PlainboxApplication):
             transport,
             submission_options
         )
+
+    @view
+    def drop_permissions(self, app_id, services):
+        # TODO: use XDG once available
+        trust_dbs = {
+            'camera': '~/.local/share/CameraService/trust.db',
+            'audio': '~/.local/share/PulseAudio/trust.db',
+            'location': '~/.local/share/UbuntuLocationServices/trust.db',
+        }
+        sql = 'delete from requests where ApplicationId = (?);'
+
+        for service in services:
+            conn = None
+            try:
+                conn = sqlite3.connect(
+                    os.path.expanduser(trust_dbs[service]),
+                    isolation_level='EXCLUSIVE')
+                conn.execute(sql, (app_id,))
+                conn.commit()
+            finally:
+                if conn:
+                    conn.close()
 
     def _get_user_directory_documents(self):
         xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
@@ -525,6 +569,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             raise RuntimeError("execute_job called without providing password"
                                " first")
         return self._password
+
+    def _finalize_session(self):
+        self.test_plan_id = ""
+        self.assistant.finalize_session()
 
     def remember_password(self, password):
         """

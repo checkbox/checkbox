@@ -1,0 +1,324 @@
+# Uyghur translation for checkbox
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the checkbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: checkbox\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-10-15 12:23+0200\n"
+"PO-Revision-Date: 2015-10-28 14:31+0000\n"
+"Last-Translator: Eltikin <eltikinuyghur@hotmail.com>\n"
+"Language-Team: Uyghur <ug@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-12-15 05:08+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
+
+#: checkbox-touch.qml:70
+msgid "Run Checkbox-Touch in autopilot-testing mode"
+msgstr ""
+
+#: checkbox-touch.qml:75
+msgid "Write only warnings and errors to standard error"
+msgstr ""
+
+#: checkbox-touch.qml:81
+msgid "Path to a file containing checkbox-touch settings"
+msgstr ""
+
+#. TRANSLATORS: %1 means program version, %2 repository revision and %3
+#. date when the package was built
+#. TRANSLATORS: keep the '\n' characters at the end of each line
+#: checkbox-touch.qml:198
+#, qt-format
+msgid ""
+"Welcome to Checkbox Touch\n"
+"Version: %1\n"
+"(%2 %3)"
+msgstr ""
+
+#: checkbox-touch.qml:278
+msgid ""
+"Previous session did not finish completely.\n"
+"Do you want  to rerun last test, continue to the next test, or start a new "
+"session?"
+msgstr ""
+
+#: checkbox-touch.qml:289
+msgid "Select test plan"
+msgstr ""
+
+#: checkbox-touch.qml:316
+msgid "Select categories"
+msgstr ""
+
+#: checkbox-touch.qml:345
+msgid "Select tests"
+msgstr ""
+
+#: checkbox-touch.qml:346 components/WelcomePage.qml:79
+#: components/WelcomePage.qml:117
+msgid "Start testing"
+msgstr ""
+
+#: checkbox-touch.qml:373
+msgid "Select tests to re-run"
+msgstr ""
+
+#: checkbox-touch.qml:375
+msgid "Finish"
+msgstr "تامام"
+
+#: checkbox-touch.qml:375
+msgid "Re-run"
+msgstr ""
+
+#: checkbox-touch.qml:415
+msgid "Could not create component '"
+msgstr ""
+
+#: checkbox-touch.qml:417 components/ErrorLogic.js:13
+#: components/CheckboxTouchApplication.qml:57
+msgid "Quit"
+msgstr "چېكىن"
+
+#: checkbox-touch.qml:436
+msgid "Could not resume session."
+msgstr ""
+
+#: checkbox-touch.qml:438 components/ResumeSessionPage.qml:117
+#: components/CheckboxTouchApplication.qml:70
+msgid "Start new session"
+msgstr ""
+
+#: checkbox-touch.qml:547
+msgid "Reports have been saved to your Documents folder"
+msgstr ""
+
+#: checkbox-touch.qml:548 checkbox-touch.qml:567 checkbox-touch.qml:573
+#: components/CbtDialogLogic.js:5 components/PasswordDialog.qml:60
+#: components/InputDialog.qml:58
+msgid "OK"
+msgstr "تامام"
+
+#: checkbox-touch.qml:548
+msgid "View report"
+msgstr ""
+
+#: checkbox-touch.qml:566
+msgid "Report has been submited.\n"
+msgstr ""
+
+#: checkbox-touch.qml:571
+msgid "Could not submit report. Reason:\n"
+msgstr ""
+
+#: confinement/plainbox-confined-shell.qml:97
+msgid "Sending report - you should not see this page :-)"
+msgstr ""
+
+#: components/WelcomePage.qml:35
+msgid "System Testing"
+msgstr "سىستېمىنى سىناش"
+
+#: components/WelcomePage.qml:47 components/AboutPage.qml:39
+msgid "About"
+msgstr "ھەققىدە"
+
+#: components/WelcomePage.qml:73
+msgid "Checkbox is loading..."
+msgstr ""
+
+#: components/QmlConfinedPage.qml:40 components/InteractIntroPage.qml:48
+#: components/QmlNativePage.qml:38 components/ManualIntroPage.qml:42
+msgid "Test Description"
+msgstr ""
+
+#: components/QmlConfinedPage.qml:98
+msgid "Waiting for the test to finish"
+msgstr ""
+
+#: components/QmlConfinedPage.qml:107 components/InteractIntroPage.qml:99
+#: components/QmlNativePage.qml:65 components/ManualIntroPage.qml:57
+msgid "Start the test"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:39
+msgid "Resume session"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:79
+msgid "Rerun last"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:98 components/SelectionPage.qml:36
+#: components/ErrorLogic.js:11 components/UserInteractSummaryPage.qml:95
+msgid "Continue"
+msgstr "داۋاملاشتۇر"
+
+#: components/TestVerificationPage.qml:41
+#: components/UserInteractSummaryPage.qml:41
+msgid "Verification"
+msgstr "ئىسپاتلاش"
+
+#. TRANSLATORS: this string is on a button that marks the given test as passed
+#: components/TestVerificationPage.qml:72
+msgid "Pass"
+msgstr ""
+
+#. TRANSLATORS: this string is on a button that marks the given test as failed
+#: components/TestVerificationPage.qml:86
+msgid "Fail"
+msgstr ""
+
+#: components/CommandOutputPage.qml:46
+msgid "Command output"
+msgstr "بۇيرۇق چىقىرىلمىسى"
+
+#. TRANSLATORS: a verb (call to action)
+#: components/CommandOutputPage.qml:54
+msgid "Copy"
+msgstr "كۆچۈرۈش"
+
+#. TRANSLATORS: This is a label on the button that goes back a page
+#: components/CommandOutputPage.qml:98
+msgid "Back"
+msgstr "كەينى"
+
+#: components/PasswordDialog.qml:47
+msgid "Enter password"
+msgstr "ئىم كىرگۈزۈڭ"
+
+#: components/PasswordDialog.qml:53
+msgid "password"
+msgstr "ئىم"
+
+#: components/PasswordDialog.qml:72 components/InputDialog.qml:68
+msgid "Cancel"
+msgstr "بولدىلا"
+
+#: components/SelectionPage.qml:89
+msgid "Toggle selection"
+msgstr ""
+
+#: components/WebViewer.qml:28
+msgid "Test Report"
+msgstr ""
+
+#: components/AutomatedTestPage.qml:39
+msgid "Automated test"
+msgstr ""
+
+#. TRANSLATORS: this string will be followed by either "PASSED" or "FAILED"
+#: components/UserInteractSummaryPage.qml:60
+msgid "This test "
+msgstr ""
+
+#: components/UserInteractSummaryPage.qml:77
+msgid "PASSED"
+msgstr ""
+
+#: components/UserInteractSummaryPage.qml:77
+msgid "FAILED"
+msgstr "بۇزۇق"
+
+#: components/UserInteractSummaryPage.qml:88
+msgid "You can go back to rerun the test or continue to the next test."
+msgstr ""
+
+#: components/actions/SkipAction.qml:33
+msgid "Skip"
+msgstr "ئاتلا"
+
+#: components/actions/SkipAction.qml:36
+msgid "Do you really want to skip this test?"
+msgstr "راستلا بۇ سىناقنى ئۆتكۈزۈۋاتامسىز؟"
+
+#: components/actions/AddCommentAction.qml:31 components/CommentsDialog.qml:54
+msgid "Add comment"
+msgstr ""
+
+#: components/CommentsDialog.qml:66
+msgid "Done"
+msgstr "تامام"
+
+#: components/ConfirmationDialog.qml:50
+msgid "Are you sure?"
+msgstr "راستمۇ؟"
+
+#: components/ConfirmationDialog.qml:69
+msgid "YES"
+msgstr "ھەئە"
+
+#: components/ConfirmationDialog.qml:78
+msgid "NO"
+msgstr "ياق"
+
+#: components/ConfirmationDialog.qml:93
+msgid "Do not ask me this question again"
+msgstr ""
+
+#: components/ResultsPage.qml:34
+msgid "Test Results"
+msgstr ""
+
+#: components/ResultsPage.qml:52 components/AboutPage.qml:81
+msgid "Close"
+msgstr "ياپ"
+
+#: components/ResultsPage.qml:87
+msgid "Summary"
+msgstr "قىسقىچە مەزمۇنى"
+
+#: components/ResultsPage.qml:131
+msgid "tests passed"
+msgstr ""
+
+#: components/ResultsPage.qml:142
+msgid "tests failed"
+msgstr ""
+
+#: components/ResultsPage.qml:153
+msgid "tests skipped"
+msgstr ""
+
+#: components/ResultsPage.qml:162
+msgid "Save detailed report"
+msgstr ""
+
+#. TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
+#: components/ResultsPage.qml:171
+msgid "Submit results to "
+msgstr ""
+
+#: components/AboutPage.qml:74
+msgid "version: "
+msgstr ""
+
+#: components/AboutPage.qml:75
+msgid "Plainbox version: "
+msgstr ""
+
+#: components/ErrorDialog.qml:43
+msgid "Um, OK"
+msgstr ""
+
+#: components/ErrorDialog.qml:53 components/ErrorDialog.qml:61
+msgid "Error encountered"
+msgstr ""
+
+#: components/CheckboxTouchApplication.qml:55
+msgid "Could not start a session.  Reason:\n"
+msgstr ""
+
+#: components/CheckboxTouchApplication.qml:65
+msgid "Could not resume session"
+msgstr ""
+
+#: py/sudo_with_pass_ctrl.py:160
+#, python-format
+msgid "job[%s] executing %r with env %r in cwd %r"
+msgstr ""

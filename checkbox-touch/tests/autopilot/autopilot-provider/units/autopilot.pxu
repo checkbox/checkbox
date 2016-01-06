@@ -5,6 +5,7 @@ id: checkbox-touch-autopilot
 _name: Checkbox-Touch autpoilot self-test
 estimated_duration: 60
 include: autopilot/.*
+mandatory_include: autopilot/mandatory-job
 
 unit: category
 id: normal
@@ -273,4 +274,30 @@ plugin: qml
 qml_file: qml-job.qml
 flags: preserve-locale
 category_id: normal
+estimated_duration: 5
+
+id: autopilot/mandatory-job
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test should always run.
+plugin: shell
+command: true
+flags: preserve-locale
+category_id: normal
+estimated_duration: 0.1
+
+
+unit: category
+id: sudo
+_name: Tests run as root
+
+id: autopilot/sudo-right
+_purpose:
+ Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ This test runs echo command as root.
+plugin: shell
+user: root
+flags: preserve-locale
+command: echo "foobar"
+category_id: sudo
 estimated_duration: 5

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+from contextlib import contextmanager
 from distutils.dir_util import copy_tree
 from datetime import datetime
 import json
@@ -9,6 +10,9 @@ import subprocess
 import sys
 import textwrap
 
+from confinement.generate import generate_confinement
+from py.embedded_providers import EmbeddedProvider1PlugInCollection
+
 # DEFAULT_PROVIDERS is a list of providers directory names as listed in
 # ../providers. NOTE: those are directory names, not provider names as reported
 # by manage.py info
@@ -17,6 +21,24 @@ DEFAULT_PROVIDERS = [
     "2015.com.canonical.certification:qml-tests",
     "plainbox-provider-ubuntu-touch",
 ]
+
+
+@contextmanager
+def chdir(path):
+    previous_path = os.getcwd()
+    os.chdir(path)
+    yield
+    os.chdir(previous_path)
+
+
+def get_confined_jobs(path):
+    collection = EmbeddedProvider1PlugInCollection(path)
+    # this should be run within provider's directory, so there should be
+    # only one provider loaded
+    provider = collection.get_all_plugin_objects()[0]
+    for job in provider.job_list:
+        if job.plugin == 'qml' and 'confined' in job.get_flag_set():
+            yield job
 
 
 def check_libs_present():
@@ -117,6 +139,16 @@ def main():
     if not validate_providers():
         sys.exit('Provider validation failed.')
 
+    current_manifest = json.loads(open('manifest.json', 'rt').read())
+    hooks = {
+        'checkbox-touch': current_manifest['hooks']['checkbox-touch']
+    }
+    for hook in build_confinement(current_manifest['version']):
+        hooks.update(hook)
+    new_manifest = current_manifest.copy()
+    new_manifest['hooks'] = hooks
+    with open('manifest.json', 'wt') as f:
+        f.write(json.dumps(new_manifest, sort_keys=True, indent=4))
     build_i18n()
 
     generate_desktop_file()
@@ -157,6 +189,21 @@ def validate_providers():
                     provider_dir, e.output.decode(sys.stdout.encoding)))
                 providers_valid = False
     return providers_valid
+
+
+def build_confinement(checkbox_version):
+    print("Generating confinement")
+    checkbox_name = "com.ubuntu.checkbox_checkbox-touch_" + checkbox_version
+    new_hooks = []
+    for provider_dir in os.listdir('providers'):
+        with chdir(os.path.join('providers', provider_dir)):
+            for job in get_confined_jobs('.'):
+                print(" job: {}".format(job.id))
+                qml_file = os.path.relpath(
+                    job.qml_file, 'data')
+                new_hooks.append(generate_confinement(
+                    provider_dir, job.partial_id, checkbox_name, qml_file))
+    return new_hooks
 
 
 def build_i18n():

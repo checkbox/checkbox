@@ -7,8 +7,9 @@ requires:
 user: root
 command: num_vm=$(awk '/MemTotal/ {x=$2/262144; print ((x == int(x)) ? x : int(x) +1)}' /proc/meminfo); vm_bytes=$(($(awk '/MemTotal/ {print int($2/1024)}' /proc/meminfo)/$num_vm/4))M; stress --cpu `cpuinfo_resource | awk '/count:/ {print $2}'` --vm $num_vm --vm-bytes $vm_bytes --timeout 7200s
 _description:
- PURPOSE:
-     Create jobs that use the CPU as much as possible for two hours. The test is considered passed if the system does not freeze.
+ Simulate high system load using the 'stress' tool to exercise the CPU for
+ several hours. The test is considered passed if the system does not freeze or
+ abend.
 
 plugin: shell
 category_id: 2013.com.canonical.plainbox::stress
@@ -52,13 +53,13 @@ _description:
 plugin: shell
 category_id: 2013.com.canonical.plainbox::stress
 id: power-management/suspend_30_cycles_with_reboots
-estimated_duration: 7200
+estimated_duration: 5400.0
 depends:
  power-management/rtc
  suspend/suspend_advanced
 user: root
 command:
- pm_test reboot --log-level=debug --log-dir=$PLAINBOX_SESSION_SHARE --suspends-before-reboot=30 -r 3
+ pm_test reboot --fwts --log-level=debug --log-dir=$PLAINBOX_SESSION_SHARE --suspends-before-reboot=30 -r 3
 _description:
  This is an automated stress test that will run a sequence of '30 suspend/resume cycles and one reboot' 3 times.
 

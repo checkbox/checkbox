@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # This file is part of Checkbox.
 #
 # Copyright 2014 Canonical Ltd.
@@ -32,8 +32,9 @@ BRANCH_PREFIX = "lp:~checkbox-dev/checkbox/"
 
 class Package:
 
-    def __init__(self, name, directory="."):
+    def __init__(self, name, directory=".", packaging_release=None):
         self._name = name
+        self._packaging_release = packaging_release
         self._trunk_tags_cache = None
         self._packaging_tags_cache = None
         self._directory = os.path.expanduser(directory)
@@ -50,10 +51,16 @@ class Package:
 
     @property
     def ppa_packaging_branch(self):
+        if self._packaging_release:
+            return "ppa-packaging-{}-{}".format(self._name,
+                                                self._packaging_release)
         return "ppa-packaging-{}".format(self._name)
 
     @property
     def ppa_packaging_release_branch(self):
+        if self._packaging_release:
+            return "ppa-packaging-{}-{}-release".format(self._name,
+                                                     self._packaging_release)
         return "ppa-packaging-{}-release".format(self._name)
 
     @property
@@ -66,10 +73,14 @@ class Package:
 
     @property
     def testing_recipe(self):
+        if self._packaging_release:
+            return "{}-{}-testing".format(self._name, self._packaging_release)
         return "{}-testing".format(self._name)
 
     @property
     def stable_recipe(self):
+        if self._packaging_release:
+            return "{}-{}-stable".format(self._name, self._packaging_release)
         return "{}-stable".format(self._name)
 
     @property
@@ -81,6 +92,8 @@ class Package:
             return os.path.join("providers", self.name)
         elif self._name == "cdts":
             return "plainbox-provider-canonical-driver-test-suite"
+        elif self._name == "checkbox-converged":
+            return "checkbox-touch"
         else:
             return self._name
 
@@ -96,7 +109,8 @@ class Package:
             # Asking for time-sorted tags helps with some later manipulations.
             self._trunk_tags_cache = check_output(
                 ["bzr", "tags", "--sort=time", "-d",
-                 os.path.join(self._directory, self.trunk_branch)]
+                 os.path.join(self._directory, self.trunk_branch)],
+                universal_newlines=True
                 ).rstrip()
             return self._trunk_tags_cache
 
@@ -115,8 +129,9 @@ class Package:
 
     @property
     def last_stable_trunk_tag(self):
+        name = self._name
         tags = sorted([tag for tag in self._trunk_tags.split()
-                      if re.match(self._name, tag)], key=parse_version)
+                      if re.match(name, tag)], key=parse_version)
         tags.reverse()
         for tag in tags:
             if not re.search(r'\.\d+c\d+$', tag):
@@ -140,7 +155,8 @@ class Package:
             # Asking for time-sorted tags helps with some later manipulations.
             self._packaging_tags_cache = check_output(
                 ["bzr", "tags", "--sort=time", "-d",
-                 os.path.join(self._directory, self.ppa_packaging_branch)]
+                 os.path.join(self._directory, self.ppa_packaging_branch)],
+                universal_newlines=True
                 ).rstrip()
             return self._packaging_tags_cache
 
@@ -173,6 +189,7 @@ class Package:
 
     @property
     def release_required(self):
+        return True
         log = check_output(
             ["bzr log --verbose --include-merged -r{}.. {}".format(
                 self.last_stable_trunk_tag_rev, self.basedir)],
@@ -187,6 +204,7 @@ class Package:
 
     @property
     def ppa_packaging_release_required(self):
+        return True
         log = check_output(
             ["bzr log -S -v -r{}.. {}".format(
                 self.last_stable_packaging_tag_rev, os.path.join(
@@ -213,6 +231,7 @@ class Package:
 
 
 def create_logs(packages, trunk_tag, dir="logs"):
+    return
     if check_bzr_cb_format_support():
         log_format = "--cb"
     else:
@@ -225,8 +244,8 @@ def create_logs(packages, trunk_tag, dir="logs"):
         command = ["bzr", "log", log_format,
                    "-r", pack.last_stable_packaging_tag + "..",
                    pack.ppa_packaging_branch]
-        log_data = check_output(command)
-        with open(os.path.join(dir, pack.name), "wb") as logfile:
+        log_data = check_output(command, universal_newlines=True)
+        with open(os.path.join(dir, pack.name), "w") as logfile:
             logfile.write("Command: {}".format(" ".join(command)))
             logfile.write("\n")
             logfile.write(log_data)
@@ -240,8 +259,9 @@ def create_logs(packages, trunk_tag, dir="logs"):
 
 
 def check_bzr_cb_format_support():
-    bzr_log_help_text = check_output(["bzr", "help", "log"])
-    return "--cb" in bzr_log_help_text
+    bzr_log_help_text = check_output(["bzr", "help", "log"],
+                                     universal_newlines=True)
+    return "--cb" in str(bzr_log_help_text)
 
 
 def copy_bzr_cb_format_plugin():
@@ -274,11 +294,12 @@ if __name__ == "__main__":
     packages = [
         Package('checkbox-support'),
         Package('plainbox'),
-        Package('plainbox-provider-canonical-certification'),
+        #Package('plainbox-provider-canonical-certification'),
         Package('plainbox-provider-checkbox'),
-        Package('plainbox-provider-resource-generic'),
         Package('checkbox-ng'),
-        Package('checkbox-gui'),
+        Package('plainbox-provider-resource-generic'),
+        Package('checkbox-converged'),
+        Package('checkbox-converged', packaging_release='trusty'),
     ]
 
     if args.cdts:
@@ -309,7 +330,7 @@ if __name__ == "__main__":
                      "--origin={}".format(pack.trunk_branch),
                      "--in-place",
                      "--current-version={}".format(pack.current_version),
-                     "--final"], stderr=STDOUT)
+                     "--final"], stderr=STDOUT, universal_newlines=True)
                 final_version = re.search(
                     r'I: next version is (.*)', log).group(1)
                 print("".center(80, '#'))
@@ -318,7 +339,7 @@ if __name__ == "__main__":
                 print("".center(80, '#'))
                 call("perl -pi -e 's/~dev//g' {}/debian/changelog".format(
                     pack.ppa_packaging_branch), shell=True)
-                call('dch "New upstream release" --distribution UNRELEASED '
+                call('dch "New upstream release" -b --distribution UNRELEASED '
                      '-v {} -c {}/debian/changelog'.format(
                          final_version,
                          pack.ppa_packaging_branch), shell=True)
@@ -363,7 +384,7 @@ if __name__ == "__main__":
                      "--origin={}".format(pack.trunk_branch),
                      "--in-place",
                      "--current-version={}".format(pack.current_version),
-                     "--final"], stderr=STDOUT)
+                     "--final"], stderr=STDOUT, universal_newlines=True)
                 final_version = re.search(
                     r'I: next version is (.*)', log).group(1)
                 log = check_output(
@@ -371,7 +392,8 @@ if __name__ == "__main__":
                      "--dry-run", "--origin={}".format(pack.trunk_branch),
                      "--in-place",
                      "--current-version={}".format(pack.current_version),
-                     "--minor", "--final"], stderr=STDOUT)
+                     "--minor", "--final"], stderr=STDOUT,
+                    universal_newlines=True)
                 next_version = re.search(
                     r'I: next version is (.*)', log).group(1)
                 print("".center(80, '@'))
@@ -382,7 +404,7 @@ if __name__ == "__main__":
                      "{}/debian/changelog".format(pack.ppa_packaging_branch),
                      shell=True)
                 call('dch "Open for development (remove this message before '
-                     'releasing)" -v {} -c {}/debian/changelog'.format(
+                     'releasing)" -b -v {} -c {}/debian/changelog'.format(
                          next_version, pack.ppa_packaging_branch), shell=True)
                 call('cd {} && bzr commit -m "Open {} for development" '
                      '--quiet'.format(pack.ppa_packaging_branch, next_version),
@@ -468,13 +490,18 @@ if __name__ == "__main__":
             # Cache this now, as it will change as work progresses
             trunk_changelog_start_tag = packages[0].last_stable_tag_in_trunk
             if pack.release_required or pack.ppa_packaging_release_required:
+                name = pack.name
+                bump = "--minor"
+                if name == 'checkbox-converged':
+                    bump = "--micro"
                 current_version = pack.last_stable_trunk_tag.replace(
-                    pack.name+"-v", "")
+                    name+"-v", "")
                 log = check_output(
                     ["./releasectl", pack.name, "--dry-run",
                      "--origin={}".format(pack.trunk_branch), "--in-place",
                      "--current-version={}".format(current_version),
-                     "--minor", "--candidate"], stderr=STDOUT)
+                     bump, "--candidate"], stderr=STDOUT,
+                    universal_newlines=True)
                 next_candidate = re.search(
                     r'I: next version is (.*)', log).group(1)
                 print("".center(80, '#'))
@@ -485,12 +512,12 @@ if __name__ == "__main__":
                       "--origin={}".format(pack.trunk_branch),
                       "--in-place",
                       "--current-version={}".format(current_version),
-                      "--minor", "--candidate"])
+                      bump, "--candidate"])
                 call(["./releasectl", pack.ppa_packaging_branch,
                       "--origin={}".format(pack.ppa_packaging_branch),
                       "--in-place",
                       "--current-version={}".format(current_version),
-                      "--minor", "--candidate"])
+                      bump, "--candidate"])
                 push_commands.append(
                     "bzr push -d {} {}".format(
                         pack.trunk_branch,
