@@ -540,7 +540,6 @@ MainView {
             });
             resultsPage.saveReportClicked.connect(function() {
                 app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
-                    console.log(uri)
                     var htmlReportUrl = uri;
                     app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
                         console.log(uri)
@@ -563,7 +562,7 @@ MainView {
                         }
                         CbtDialogLogic.showDialog(
                             resultsPage,
-                            i18n.tr("Report has been submitted.\n" + s),
+                            i18n.tr("Report has been submited.\n" + s),
                             [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
                     },
                     function(error) {
