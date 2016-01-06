@@ -725,5 +725,12 @@ MainView {
         }
         process_input();
     }
+    function gcAndStartSession() {
+        // delete sessions that won't be resumed (NOT incomplete sessions)
+        // and start a new session
+        app.deleteOldSessions([], function() {
+            app.startSession();
+        });
+    }
 
 }
