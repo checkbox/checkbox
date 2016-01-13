@@ -459,11 +459,20 @@ class CheckboxTouchApplication(PlainboxApplication):
             'c3-staging': (
                 lambda: self.assistant.get_canonical_certification_transport(
                     config['secure_id'], staging=True)),
+            'oauth': lambda: self.assistant.get_ubuntu_sso_oauth_transport(config),
         }[config['type']]()
-        # CertificationTransport expects xml submission format, 'hexr' exporter
-        # provides compliant one
+        # Default to 'hexr' exporter as it provides xml submission format
+        # (CertificationTransport expects xml format for instance.)
+        submission_format = config.get(
+            'submission_format',
+            '2013.com.canonical.plainbox::hexr'
+        )
+        submission_options = config.get('submission_options', [])
         return self.assistant.export_to_transport(
-            '2013.com.canonical.plainbox::hexr', transport)
+            submission_format,
+            transport,
+            submission_options
+        )
 
     @view
     def drop_permissions(self, app_id, services):
