@@ -492,11 +492,13 @@ help() {
     echo "  checkbox-support"
     echo "  plainbox-provider-canonical-certification"
     echo "  plainbox-provider-checkbox"
+    echo "  plainbox-provider-sru"
     echo "  plainbox-provider-resource-generic"
     echo "  ppa-packaging-checkbox-support"
     echo "  ppa-packaging-plainbox"
     echo "  ppa-packaging-plainbox-provider-canonical-certification"
     echo "  ppa-packaging-plainbox-provider-checkbox"
+    echo "  ppa-packaging-plainbox-provider-sru"
     echo "  ppa-packaging-plainbox-provider-resource-generic"
     echo "  ppa-packaging-checkbox-ng"
     echo "  ppa-packaging-checkbox-converged"
@@ -580,6 +582,9 @@ main() {
             plainbox-provider-checkbox)
                 component=plainbox-provider-checkbox
                 ;;
+            plainbox-provider-sru)
+                component=plainbox-provider-sru
+                ;;
             plainbox-provider-resource-generic)
                 component=plainbox-provider-resource-generic
                 ;;
@@ -594,6 +599,9 @@ main() {
                 ;;
             ppa-packaging-plainbox-provider-checkbox)
                 component=ppa-packaging-plainbox-provider-checkbox
+                ;;
+            ppa-packaging-plainbox-provider-sru)
+                component=ppa-packaging-plainbox-provider-sru
                 ;;
             ppa-packaging-plainbox-provider-resource-generic)
                 component=ppa-packaging-plainbox-provider-resource-generic
@@ -770,6 +778,17 @@ main() {
                 --bump-level=$bump_level \
                 --tagging-policy=$tagging_policy
             ;;
+        plainbox-provider-sru)
+            release_component providers/plainbox-provider-sru \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --tag-name=plainbox-provider-sru \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
         plainbox-provider-resource-generic)
             release_component providers/plainbox-provider-resource-generic \
                 --origin=$origin \
@@ -823,6 +842,16 @@ main() {
             ;;
         ppa-packaging-plainbox-provider-checkbox)
             release_component ppa-packaging-plainbox-provider-checkbox \
+                --origin=$origin \
+                --target=$target \
+                --in-place=$in_place \
+                --current-version=$current_version \
+                --bump-version=$bump_version \
+                --bump-level=$bump_level \
+                --tagging-policy=$tagging_policy
+            ;;
+        ppa-packaging-plainbox-provider-sru)
+            release_component ppa-packaging-plainbox-provider-sru \
                 --origin=$origin \
                 --target=$target \
                 --in-place=$in_place \
