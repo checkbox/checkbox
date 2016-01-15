@@ -296,6 +296,7 @@ if __name__ == "__main__":
         Package('plainbox'),
         #Package('plainbox-provider-canonical-certification'),
         Package('plainbox-provider-checkbox'),
+        Package('plainbox-provider-sru'),
         Package('checkbox-ng'),
         Package('plainbox-provider-resource-generic'),
         Package('checkbox-converged'),
