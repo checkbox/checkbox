@@ -60,7 +60,7 @@ class canonical_hw_collection(CanonicalCommand):
     """
 
     app_id = 'canonical-hw-collection'
-    version = '1.1'
+    version = '1.2'
 
     def register_arguments(self, parser):
         """Method called to register command line arguments."""
@@ -173,8 +173,8 @@ class canonical_hw_collection(CanonicalCommand):
         rc.padding = (0, 4, 1, 4)
         # TODO: load the new standalone provider instead
         sa.select_providers(
-            "2013.com.canonical.certification:checkbox",
-            "2013.com.canonical.certification:plainbox-resources")
+            "plainbox-provider-checkbox",
+            "plainbox-provider-resource-generic")
         sa.start_new_session(_("Hardware Collection Session"))
         # TODO: use the new standalone test plan instead
         sa.select_test_plan(
