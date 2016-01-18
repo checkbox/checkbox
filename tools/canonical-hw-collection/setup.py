@@ -21,7 +21,7 @@ from setuptools import setup
 
 setup(
     name="canonical-hw-collection",
-    version="1.1",
+    version="1.2",
     url="https://launchpad.net/checkbox/",
     author="Zygmunt Krynicki",
     author_email="zygmunt.krynicki@canonical.com",
@@ -57,7 +57,7 @@ None of the data is not publicly available.""",
         'Topic :: Utilities',
     ],
     install_requires=[
-        'plainbox >= 0.23',
+        'plainbox >= 0.23.dev0',
         'guacamole >= 0.9',
     ],
     scripts=[
