@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-12-03 14:01+0100\n"
-"PO-Revision-Date: 2016-01-30 16:18+0000\n"
+"PO-Revision-Date: 2016-01-31 19:56+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-01-31 05:08+0000\n"
+"X-Launchpad-Export-Date: 2016-02-01 05:09+0000\n"
 "X-Generator: Launchpad (build 17908)\n"
 
 #. name
@@ -1384,6 +1384,10 @@ msgid ""
 "   1. Ensure default Choose Carrier is set to automatically\n"
 "   2. Ensure the connected carrier is correct"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que le choix de l'opérateur par défaut est défini "
+"automatiquement\n"
+"   2. Assurez-vous que l'opérateur connecté est le bon"
 
 #. verification
 #: ../units/touch.pxu:898
@@ -1391,11 +1395,14 @@ msgid ""
 "   1. Is system connect to carrier automatically?\n"
 "   2. Does it connected to correct carrier?"
 msgstr ""
+"   1. La connexion du système à l'opérateur s'est-elle faite "
+"automatiquement ?\n"
+"   2. S'est-il connecté au bon opérateur ?"
 
 #. summary
 #: ../units/touch.pxu:906
 msgid "Ensure that the carrier can be selected by manual"
-msgstr ""
+msgstr "Assurez-vous que l'opérateur peut être sélectionné manuellement"
 
 #. steps
 #: ../units/touch.pxu:907
@@ -1403,6 +1410,8 @@ msgid ""
 "SETUP:\n"
 "   1. Tap Cellular icon"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appuyez sur l'icône du réseau cellulaire"
 
 #. steps
 #: ../units/touch.pxu:907
@@ -1413,6 +1422,12 @@ msgid ""
 "   3. Tap Refresh button to get the available carrier list\n"
 "   4. Tap one of available carrier to connect"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Manuellement\n"
+"   2. Appuyez sur Opérateur\n"
+"   3. Appuyez sur le bouton Actualiser pour obtenir la liste des opérateurs "
+"disponibles\n"
+"   4. Appuyez sur l'un des opérateurs disponibles pour vous connecter"
 
 #. verification
 #: ../units/touch.pxu:919
@@ -1420,16 +1435,20 @@ msgid ""
 "   1. Does it listed all of available carriers?\n"
 "   2. Did it connected to selected carrier correctly?"
 msgstr ""
+"   1. A-t-il listé tous les opérateurs disponibles ?\n"
+"   2. S'est-il connecté correctement à l'opérateur sélectionné ?"
 
 #. name
 #: ../units/touch.pxu:925
 msgid "System Settings/Bluetooth"
-msgstr ""
+msgstr "Paramètres système/Bluetooth"
 
 #. summary
 #: ../units/touch.pxu:931
 msgid "Ensure that the Bluetooth can be opened from system settings."
 msgstr ""
+"Assurez-vous que le Bluetooth peut être ouvert à partir des paramètres du "
+"système."
 
 #. steps
 #: ../units/touch.pxu:932
@@ -1437,16 +1456,20 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Bluetooth icon"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'icône du Bluetooth"
 
 #. verification
 #: ../units/touch.pxu:942
 msgid "   1. Did the Bluetooth page open?"
-msgstr ""
+msgstr "   1. La page relative au Bluetooth s'est-elle ouverte ?"
 
 #. summary
 #: ../units/touch.pxu:949
 msgid "Ensure that it will listed all of detected bt devices"
 msgstr ""
+"Assurez-vous que tous les appareils disposant du Bluetooth sont détectés et "
+"listés"
 
 #. steps
 #: ../units/touch.pxu:950
@@ -1455,16 +1478,21 @@ msgid ""
 "   1. Check switch to enable Bluetooth\n"
 "   2. Ensure it will detect and list all the available devices"
 msgstr ""
+"ACTIONS :\n"
+"   1. Utilisez le commutateur pour activer le Bluetooth\n"
+"   2. Assurez-vous qu'il détecte et liste tous les appareils disponibles"
 
 #. verification
 #: ../units/touch.pxu:960
 msgid "   1. Does it listed all of available Bluetooth devices?"
 msgstr ""
+"   1. Tous les appareils disponibles et disposant du Bluetooth ont-ils été "
+"listés ?"
 
 #. summary
 #: ../units/touch.pxu:967
 msgid "Ensure that it can pair with a Bluetooth headset"
-msgstr ""
+msgstr "Assurez-vous qu'il peut s'appairer avec un casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:968
@@ -1473,6 +1501,9 @@ msgid ""
 "   1. Select a Bluetooth headset\n"
 "   2. Input passcode to pair"
 msgstr ""
+"ACTIONS :\n"
+"   1. Sélectionnez un casque Bluetooth\n"
+"   2. Saisissez un mot de passe pour l'appairer"
 
 #. verification
 #: ../units/touch.pxu:978
@@ -1480,12 +1511,16 @@ msgid ""
 "   1. Is it paired to Bluetooth headset successfully?\n"
 "   2. Is there a headset icon show on the menu bar"
 msgstr ""
+"   1. S'est-il appairé au casque Bluetooth avec succès ?\n"
+"   2. Une icône de casque s'affiche-t-elle dans la barre de menu ?"
 
 #. summary
 #: ../units/touch.pxu:986
 msgid ""
 "Ensure that Bluetooth can be disabled after paired with Bluetooth headset"
 msgstr ""
+"Assurez-vous que le Bluetooth peut être désactivé après un appairage avec un "
+"casque Blootooth"
 
 #. steps
 #: ../units/touch.pxu:987
@@ -1493,6 +1528,8 @@ msgid ""
 "SETUP:\n"
 "   1. Tap Bluetooth icon"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appuyez sur l'icône du Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:987
@@ -1500,16 +1537,21 @@ msgid ""
 "ACTIONS:\n"
 "   1. Check switch again to disable Bluetooth"
 msgstr ""
+"ACTIONS :\n"
+"   1. utilisez de nouveau le commutateur pour désactiver le Bluetooth"
 
 #. verification
 #: ../units/touch.pxu:996
 msgid "   1. Did Bluetooth headset icon disappear from menu bar?"
 msgstr ""
+"   1. L'icône du casque Bluetooth a-t-elle disparu de la barre de menu ?"
 
 #. summary
 #: ../units/touch.pxu:1003
 msgid "Ensure the Bluetooth mac address does not change across reboots"
 msgstr ""
+"Assurez-vous que l'adresse MAC du Bluetooth ne change pas suite à des "
+"redémarrages"
 
 #. steps
 #: ../units/touch.pxu:1004
@@ -1518,6 +1560,10 @@ msgid ""
 "   1. Connect to the device using phablet-shell\n"
 "   2. Note the Bluetooth MAC address using hciconfig or similar"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Connectez l'appareil en utilisant phablet-shell\n"
+"   2. Notez l'adresse MAC du Bluetooth en utilisant hciconfig ou une méthode "
+"similaire"
 
 #. steps
 #: ../units/touch.pxu:1004
@@ -1527,21 +1573,27 @@ msgid ""
 "   2. Reconnect phablet-shell\n"
 "   3. Check the Bluetooth MAC address"
 msgstr ""
+"ACTIONS :\n"
+"   1. Redémarrez le téléphone\n"
+"   2. Reconnectez phablet-shell\n"
+"   3. Vérifiez l'adresse MAC du Bluetooth"
 
 #. verification
 #: ../units/touch.pxu:1013
 msgid "   1. Verify that the MAC address did not change"
-msgstr ""
+msgstr "   1. Vérifiez que l'adresse MAC n'a pas changé"
 
 #. name
 #: ../units/touch.pxu:1018
 msgid "System Settings/Accounts"
-msgstr ""
+msgstr "Paramètres système/Comptes"
 
 #. summary
 #: ../units/touch.pxu:1024
 msgid "Ensure that the accounts can be opened from system settings."
 msgstr ""
+"Assurez-vous que les comptes peuvent être ouverts à partir des paramètres du "
+"système."
 
 #. steps
 #: ../units/touch.pxu:1025
@@ -1549,16 +1601,18 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Accounts icon"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'icône des Comptes"
 
 #. verification
 #: ../units/touch.pxu:1035
 msgid "   1. Did the Accounts page open?"
-msgstr ""
+msgstr "   1. La page des Comptes s'est-elle ouverte ?"
 
 #. summary
 #: ../units/touch.pxu:1042
 msgid "Ensure that it can login to Ubuntuone"
-msgstr ""
+msgstr "Assurez-vous qu'il peut se connecter à Ubuntuone"
 
 #. steps
 #: ../units/touch.pxu:1043
@@ -1567,17 +1621,23 @@ msgid ""
 "   1. Tap Ubuntuone icon\n"
 "   2. Input Ubuntuone account and password to login"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'icône d'Ubuntuone\n"
+"   2. Saisissez l'identifiant et le mot de passe du compte Ubuntuone pour "
+"vous connecter"
 
 #. verification
 #: ../units/touch.pxu:1053
 msgid "   1. Does it successful to login?"
-msgstr ""
+msgstr "   1. S'est-il connecté avec succès ?"
 
 #. summary
 #: ../units/touch.pxu:1060
 msgid ""
 "Ensure that it can install new app from application scope after logged in"
 msgstr ""
+"Assurez-vous qu'il peut installer une nouvelle application à partir du "
+"moteur de recherche des applications après connexion"
 
 #. steps
 #: ../units/touch.pxu:1061
@@ -1585,6 +1645,8 @@ msgid ""
 "SETUP:\n"
 "   1. Tap Accounts icon"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appuyez sur l'icône des Comptes"
 
 #. steps
 #: ../units/touch.pxu:1061
@@ -1593,21 +1655,28 @@ msgid ""
 "   1. Tap More suggestion to show available apps\n"
 "   2. Tap an app to install"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Plus de suggestions pour afficher les applications "
+"disponibles\n"
+"   2. Appuyez sur une application à installer"
 
 #. verification
 #: ../units/touch.pxu:1071
 msgid "   1. Did install an app work correctly?"
 msgstr ""
+"   1. L'installation d'une application a-t-elle fonctionné correctement ?"
 
 #. name
 #: ../units/touch.pxu:1076
 msgid "System Settings/Battery"
-msgstr ""
+msgstr "Paramètres système/Batterie"
 
 #. summary
 #: ../units/touch.pxu:1082
 msgid "Ensure that the battery can be opened from system settings."
 msgstr ""
+"Assurez-vous que la batterie peut être ouverte à partir des paramètres du "
+"système."
 
 #. steps
 #: ../units/touch.pxu:1083
@@ -1615,16 +1684,19 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Battery icon"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'icône de la Batterie"
 
 #. verification
 #: ../units/touch.pxu:1093
 msgid "   1. Did the Battery page open?"
-msgstr ""
+msgstr "   1. La page de la Batterie s'est-elle ouverte ?"
 
 #. summary
 #: ../units/touch.pxu:1100
 msgid "Ensure that both charge level and status are listed correctly"
 msgstr ""
+"Assurez-vous que le niveau de charge et le statut sont correctement listés"
 
 #. steps
 #: ../units/touch.pxu:1101
@@ -1632,16 +1704,20 @@ msgid ""
 "ACTIONS:\n"
 "   1. Observe the charge level and status"
 msgstr ""
+"ACTIONS :\n"
+"   1. Observez le niveau de charge et le statut"
 
 #. verification
 #: ../units/touch.pxu:1110
 msgid "   Are charge level and status both show correctly?"
-msgstr ""
+msgstr "   Le niveau de charge et le statut s'affichent-ils correctement ?"
 
 #. summary
 #: ../units/touch.pxu:1117
 msgid "Ensure that charing status changes when connect the power cable"
 msgstr ""
+"Assurez-vous que le statut de charge change lors de la connexion du câble "
+"d'alimentation"
 
 #. steps
 #: ../units/touch.pxu:1118
@@ -1650,6 +1726,9 @@ msgid ""
 "   1. Plug in power cable\n"
 "   2. Unplug power cable"
 msgstr ""
+"ACTIONS :\n"
+"   1. Branchez le câble d'alimentation\n"
+"   2. Débranchez le câble d'alimentation"
 
 #. verification
 #: ../units/touch.pxu:1128
@@ -1658,11 +1737,15 @@ msgid ""
 "cable?\n"
 "   2. Does the charing status change after connect/disconnect power cable?"
 msgstr ""
+"   1. L'indicateur s'est-il correctement mis à jour après le branchement / "
+"débranchement du câble d'alimentation ?\n"
+"   2. Le statut de charge a-t-il changé après le branchement / débranchement "
+"du câble d'alimentation ?"
 
 #. summary
 #: ../units/touch.pxu:1155
 msgid "Ensure that WiFi can be turned on/off"
-msgstr ""
+msgstr "Assurez-vous que le Wi-Fi peut être activé / désactivé"
 
 #. steps
 #: ../units/touch.pxu:1156
@@ -1671,6 +1754,9 @@ msgid ""
 "   1. Tap WiFi switch to turn it off\n"
 "   2. Tap WiFi switch to turn it on"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur le commutateur de Wi-Fi pour le désactiver\n"
+"   2. Appuyez sur le commutateur de Wi-Fi pour l'activer"
 
 #. verification
 #: ../units/touch.pxu:1166
@@ -1678,11 +1764,13 @@ msgid ""
 "   1. Does the WiFi indicator properly update?\n"
 "   2. Were you able to enable and disable WiFi?"
 msgstr ""
+"   1. L'indicateur de Wi-Fi s'est-il convenablement mis à jour ?\n"
+"   2. Avez-vous été en mesure d'activer et de désactiver le Wi-Fi ?"
 
 #. summary
 #: ../units/touch.pxu:1174
 msgid "Ensure that Bluetooth can be turned on/off"
-msgstr ""
+msgstr "Assurez-vous que le Bluetooth peut être activé / désactivé"
 
 #. steps
 #: ../units/touch.pxu:1175
@@ -1690,6 +1778,8 @@ msgid ""
 "SETUP:\n"
 "   1. Tap Battery icon"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appuyez sur l'icône de la batterie"
 
 #. steps
 #: ../units/touch.pxu:1175
@@ -1698,6 +1788,9 @@ msgid ""
 "   1. Tap Bluetooth switch to turn it off\n"
 "   2. Tap Bluetooth switch to turn it on"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur le commutateur de Bluetooth pour le désactiver\n"
+"   2. Appuyez sur le commutateur de Bluetooth pour l'activer"
 
 #. verification
 #: ../units/touch.pxu:1185
@@ -1705,16 +1798,20 @@ msgid ""
 "   1. Does the Bluetooth indicator properly update?\n"
 "   2. Were you able to enable and disable Bluetooth?"
 msgstr ""
+"   1. L'indicateur de Bluetooth s'est-il convenablement mis à jour ?\n"
+"   2. Avez-vous été en mesure d'activer et de désactiver le Bluetooth ?"
 
 #. name
 #: ../units/touch.pxu:1191
 msgid "System Settings/Brightness"
-msgstr ""
+msgstr "Paramètres système/Luminosité"
 
 #. summary
 #: ../units/touch.pxu:1197
 msgid "Ensure that the brightness can be opened from system settings."
 msgstr ""
+"Assurez-vous que la page relative à la luminosité peut être ouverte à partir "
+"des préférences du système."
 
 #. steps
 #: ../units/touch.pxu:1198
@@ -1722,16 +1819,19 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Brightness icon"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'icône de la luminosité"
 
 #. verification
 #: ../units/touch.pxu:1208
 msgid "   1. Did the Brightness page open?"
-msgstr ""
+msgstr "   1. La page relative à la luminosité s'est-elle ouverte ?"
 
 #. summary
 #: ../units/touch.pxu:1215
 msgid "Ensure that display brightness slider can be adjusted"
 msgstr ""
+"Assurez-vous que le curseur de luminosité d'affichage peut être ajusté"
 
 #. steps
 #: ../units/touch.pxu:1216
@@ -1740,6 +1840,9 @@ msgid ""
 "   1. Drag the display brightness slider and move to maximum\n"
 "   2. Drag the display brightness slider and move to minimum"
 msgstr ""
+"ACTIONS :\n"
+"   1. Tirez le curseur de luminosité d'affichage et déplacez-le au maximum\n"
+"   2. Tirez le curseur de luminosité d'affichage et déplacez-le au minimum"
 
 #. verification
 #: ../units/touch.pxu:1226
@@ -1747,11 +1850,15 @@ msgid ""
 "   1. Did screen brightness become lighter?\n"
 "   2. Did screen brightness become dark?"
 msgstr ""
+"   1. L'écran s'est-il éclairé ?\n"
+"   2. L'écran s'est-il assombri ?"
 
 #. summary
 #: ../units/touch.pxu:1234
 msgid "Ensure that auto adjust brightness function works correctly"
 msgstr ""
+"Assurez-vous que l'ajustement automatique de la luminosité fonctionne "
+"correctement"
 
 #. steps
 #: ../units/touch.pxu:1235
@@ -1759,6 +1866,8 @@ msgid ""
 "SETUP:\n"
 "   1. Tap Brightness icon"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appuyez sur l'icône de la luminosité"
 
 #. steps
 #: ../units/touch.pxu:1235
@@ -1767,6 +1876,11 @@ msgid ""
 "   1. Check 'Adjust automatically' to enable brightness auto adjusting\n"
 "   2. Check  'Adjust automatically' to disable brightness auto adjusting"
 msgstr ""
+"ACTIONS :\n"
+"   1. Cochez la case « Ajuster automatiquement » pour activer l'ajustement "
+"automatique de la luminosité\n"
+"   2. Cochez de nouveau la case « Ajuster automatiquement » pour désactiver "
+"l'ajustement automatique de la luminosité"
 
 #. steps
 #: ../units/touch.pxu:1235
@@ -1774,21 +1888,25 @@ msgid ""
 "TEARDOWN:\n"
 "   Back to System Settings"
 msgstr ""
+"FIN :\n"
+"   Revenez aux Paramètres système"
 
 #. verification
 #: ../units/touch.pxu:1245
 msgid "   1. Did brightness auto adjusting work?"
-msgstr ""
+msgstr "   1. L'ajustement automatique de la luminosité a-t-il fonctionné ?"
 
 #. name
 #: ../units/touch.pxu:1250
 msgid "System Settings/Sound settings"
-msgstr ""
+msgstr "Paramètres système/Paramètres du son"
 
 #. summary
 #: ../units/touch.pxu:1256
 msgid "Make sure that the sound settings can be opened from system settings."
 msgstr ""
+"Assurez-vous que les paramètres du son peuvent être ouverts à partir des "
+"préférences du système."
 
 #. steps
 #: ../units/touch.pxu:1257
@@ -1797,6 +1915,10 @@ msgid ""
 "   1. Slide to show launcher\n"
 "   2. Tap System Settings"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Faites glisser votre doigt à partir du bord gauche et vers la droite "
+"pour faire apparaître le lanceur\n"
+"   2. Appuyez sur Paramètres système"
 
 #. steps
 #: ../units/touch.pxu:1257
@@ -1804,16 +1926,18 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Sound icon"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'icône du son"
 
 #. verification
 #: ../units/touch.pxu:1267
 msgid "   1. Did the sound settings page open?"
-msgstr ""
+msgstr "   1. La page relative aux paramètres du son s'est-elle ouverte ?"
 
 #. summary
 #: ../units/touch.pxu:1274
 msgid "Make sure that the ringtone can be previewed"
-msgstr ""
+msgstr "Assurez-vous qu'il est possible d'obtenir un aperçu de la sonnerie"
 
 #. steps
 #: ../units/touch.pxu:1275
@@ -1824,6 +1948,13 @@ msgid ""
 "   3. Ensure all of the ringtone can be previewed\n"
 "   4. Ensure click stop playing button can stop play the ringtone"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Sonnerie\n"
+"   2. Appuyez sur chaque sonnerie à lire\n"
+"   3. Assurez-vous qu'il est possible d'obtenir un aperçu de toutes les "
+"sonneries\n"
+"   4. Assurez-vous que le fait de cliquer sur le bouton d'arrêt de la "
+"lecture arrête effectivement la lecture de la sonnerie"
 
 #. steps
 #: ../units/touch.pxu:1275
@@ -1831,6 +1962,8 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Close System Settings"
 msgstr ""
+"FIN :\n"
+"   1. Fermez les Paramètres système"
 
 #. verification
 #: ../units/touch.pxu:1287
@@ -1838,6 +1971,8 @@ msgid ""
 "   1. Can each ringtone be played?\n"
 "   2. Can stop playing button works?"
 msgstr ""
+"   1. Chaque sonnerie peut-elle être lue ?\n"
+"   2. Le bouton d'arrêt de la lecture fonctionne-t-il  ?"
 
 #. summary
 #: ../units/touch.pxu:1295
@@ -1862,11 +1997,14 @@ msgstr ""
 msgid ""
 "   1. Did the incoming call ringtone has changed to selected ringtone?"
 msgstr ""
+"   1. La sonnerie de l'appel entrant a-t-elle bien été modifiée pour obtenir "
+"la sonnerie sélectionnée ?"
 
 #. summary
 #: ../units/touch.pxu:1314
 msgid "Make sure the message received notification can be previewed"
 msgstr ""
+"Assurez-vous que la notification de message reçu peut être prévisualisée"
 
 #. steps
 #: ../units/touch.pxu:1315
@@ -1876,16 +2014,21 @@ msgid ""
 "   2. Tap each message sound to play\n"
 "   3. Ensure all of the message sound can be previewed"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Message reçu\n"
+"   2. Appuyez sur chaque son de message à lire\n"
+"   3. Assurez-vous que tout le son de message peut être prévisualisé"
 
 #. verification
 #: ../units/touch.pxu:1326
 msgid "   1. Can each message sound be played?"
-msgstr ""
+msgstr "   1. Chaque son de message peut-il être lu ?"
 
 #. summary
 #: ../units/touch.pxu:1333
 msgid "Make sure that setting a message received notification works"
 msgstr ""
+"Assurez-vous que le réglage d'une notification de message reçu fonctionne"
 
 #. steps
 #: ../units/touch.pxu:1334
@@ -1893,6 +2036,8 @@ msgid ""
 "SETUP:\n"
 "   1. Tap Sound icon"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appuyez sur l'icône de son"
 
 #. steps
 #: ../units/touch.pxu:1334
@@ -1902,6 +2047,10 @@ msgid ""
 "   2. Select a notification sound\n"
 "   3. Send a message to DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Allez sur la page Message reçu\n"
+"   2. Sélectionnez un son de notification\n"
+"   3. Envoyez un message à l'appareil à tester"
 
 #. steps
 #: ../units/touch.pxu:1334
@@ -1909,21 +2058,25 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Close System Settings."
 msgstr ""
+"FIN :\n"
+"   1. Fermez les Paramètres système."
 
 #. verification
 #: ../units/touch.pxu:1345
 msgid "   1. Did the message sound has changed to selected sound?"
 msgstr ""
+"   1. Le son du message a-t-il été modifié pour obtenir le son sélectionné ?"
 
 #. name
 #: ../units/touch.pxu:1350
 msgid "System Settings/Security & Privacy"
-msgstr ""
+msgstr "Paramètres système/Sécurité & Vie privée"
 
 #. summary
 #: ../units/touch.pxu:1356
 msgid "Ensure that the \"swipe\" lock mechanism works"
 msgstr ""
+"Assurez-vous que le mécanisme de verrouillage par « glissement » fonctionne."
 
 #. steps
 #: ../units/touch.pxu:1357
@@ -1933,6 +2086,10 @@ msgid ""
 "   2. Select Swipe (no security)\n"
 "   3. Lock phone (press power button)"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Sécurité de verrouillage\n"
+"   2. Sélectionnez Glissement (aucune sécurité)\n"
+"   3. Verrouillez le téléphone (appuyez sur le bouton d'arrêt)"
 
 #. verification
 #: ../units/touch.pxu:1367
@@ -1940,11 +2097,15 @@ msgid ""
 "   1. Unlock phone\n"
 "   2. Did the swipe mechanism work?"
 msgstr ""
+"   1. Déverrouillez le téléphone\n"
+"   2. Le mécanisme par glissement a-t-il fonctionné ?"
 
 #. summary
 #: ../units/touch.pxu:1375
 msgid "Ensure that the \"4-digit pin code\" lock mechanism works"
 msgstr ""
+"Assurez-vous que le mécanisme de verrouillage par « code PIN à 4 chiffres » "
+"fonctionne"
 
 #. steps
 #: ../units/touch.pxu:1376
@@ -1954,6 +2115,10 @@ msgid ""
 "   2. Select 4-digit PIN code\n"
 "   3. Lock phone (press power button)"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Sécurité de verrouillage\n"
+"   2. Sélectionnez Code PIN à 4 chiffres\n"
+"   3. Verrouillez le téléphone (appuyez sur le bouton d'arrêt)"
 
 #. verification
 #: ../units/touch.pxu:1386
@@ -1961,11 +2126,15 @@ msgid ""
 "   1. Unlock phone\n"
 "   2. Did the PIN code mechanism work?"
 msgstr ""
+"   1. Déverrouillez le téléphone\n"
+"   2. Le mécanisme par code PIN a-t-il fonctionné ?"
 
 #. summary
 #: ../units/touch.pxu:1394
 msgid "Ensure that the \"passphrase\" lock mechanism works"
 msgstr ""
+"Assurez-vous que le mécanisme de verrouillage par « phrase de passe » "
+"fonctionne"
 
 #. steps
 #: ../units/touch.pxu:1395
@@ -1975,6 +2144,10 @@ msgid ""
 "   2. Select passphrase\n"
 "   3. Lock phone (press power button)"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Sécurité de verrouillage\n"
+"   2. Sélectionnez Phrase de passe\n"
+"   3. Verrouillez le téléphone (appuyez sur le bouton d'arrêt)"
 
 #. verification
 #: ../units/touch.pxu:1405
@@ -1982,11 +2155,15 @@ msgid ""
 "   1. Unlock phone\n"
 "   2. Did the passphrase mechanism work?"
 msgstr ""
+"   1. Déverrouillez le téléphone\n"
+"   2. Le mécanisme par phrase de passe a-t-il fonctionné ?"
 
 #. summary
 #: ../units/touch.pxu:1413
 msgid "Ensure that the idle time before lock can be configured"
 msgstr ""
+"Assurez vous que la période d'inactivité avant verrouillage peut être "
+"configurée"
 
 #. steps
 #: ../units/touch.pxu:1414
@@ -1996,6 +2173,10 @@ msgid ""
 "   2. Open Security & Privacy\n"
 "   3. Select Phone Locking"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Ouvrez les Paramètres système\n"
+"   2. Ouvrez Sécurité & Vie privée\n"
+"   3. Sélectionnez Verrouillage du téléphone"
 
 #. steps
 #: ../units/touch.pxu:1414
@@ -2005,6 +2186,10 @@ msgid ""
 "   2. Select several of the timeout periods and test phone follows the "
 "setting"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur Verrouiller en cas d'inactivité\n"
+"   2. Sélectionnez plusieurs délais et testez le téléphone en fonction du "
+"paramétrage"
 
 #. verification
 #: ../units/touch.pxu:1423
@@ -2012,16 +2197,19 @@ msgid ""
 "   1. Leave phone idle\n"
 "   2. Did the phone suspend correctly after configured time?"
 msgstr ""
+"   1. Laissez le téléphone inactif\n"
+"   2. Le téléphone a-t-il suspendu son activité correctement après le délai "
+"configuré ?"
 
 #. name
 #: ../units/touch.pxu:1429
 msgid "System Settings/Reset Phone"
-msgstr ""
+msgstr "Paramètres système/Réinitialisation du téléphone"
 
 #. summary
 #: ../units/touch.pxu:1435
 msgid "Ensure that the launcher can be reset"
-msgstr ""
+msgstr "Assurez-vous que le lanceur peut être réinitialisé"
 
 #. steps
 #: ../units/touch.pxu:1436
@@ -2031,6 +2219,10 @@ msgid ""
 "   2. Open System Settings\n"
 "   3. Select Reset phone"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Épinglez quelques applications au lanceur\n"
+"   2. Ouvrez les Paramètres système\n"
+"   3. Sélectionnez Réinitialiser le téléphone"
 
 #. steps
 #: ../units/touch.pxu:1436
@@ -2046,6 +2238,8 @@ msgstr ""
 msgid ""
 "   1. Did the launcher reset so only default selection of apps is pinned?"
 msgstr ""
+"   1. Le lanceur s'est-il réinitialisé de manière à ce que seule la "
+"sélection d'applications par défaut soit épinglée ?"
 
 #. summary
 #: ../units/touch.pxu:1451
@@ -2062,6 +2256,12 @@ msgid ""
 "   2. Open System Settings\n"
 "   2. Select Reset phone"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous que quelques fichiers sont présents dans le dossier "
+"personnel et que l'historique des appels est présent dans le composeur et la "
+"messagerie\n"
+"   2. Ouvrez les Paramètres système\n"
+"   2. Sélectionnez Réinitialiser le téléphone"
 
 #. steps
 #: ../units/touch.pxu:1452
@@ -2115,11 +2315,18 @@ msgid ""
 "   3. Verify call is connected\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez un numéro de téléphone fixe\n"
+"   3. Vérifiez que l'appel est connecté\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. summary
 #: ../units/touch.pxu:1834
 msgid "Ensure that call out to mobile phone number works as expected"
 msgstr ""
+"Assurez-vous que les appels sortants vers  un numéro de téléphone mobile "
+"fonctionnent correctement"
 
 #. steps
 #: ../units/touch.pxu:1835
@@ -2130,6 +2337,11 @@ msgid ""
 "   3. Verify call is connected\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez un numéro de téléphone mobile (ex : 06XXXXXXXX)\n"
+"   3. Vérifiez que l'appel est connecté\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. summary
 #: ../units/touch.pxu:1856
@@ -2137,6 +2349,8 @@ msgid ""
 "Ensure that call out to mobile phone number with country code works as "
 "expected"
 msgstr ""
+"Assurez-vous que les appels sortants vers un numéro de téléphone mobile avec "
+"un indicatif national fonctionnent correctement"
 
 #. steps
 #: ../units/touch.pxu:1857
@@ -2147,12 +2361,19 @@ msgid ""
 "   3. Verify call is connected\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez un numéro de téléphone mobile (ex : +336XXXXXXXX)\n"
+"   3. Vérifiez que l'appel est connecté\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. summary
 #: ../units/touch.pxu:1878
 msgid ""
 "Ensure that call out to mobile phone number with 00 code works as expected"
 msgstr ""
+"Assurez-vous que les appels sortants vers un numéro de téléphone mobile avec "
+"un code 00 fonctionnent correctement"
 
 #. steps
 #: ../units/touch.pxu:1879
@@ -2163,6 +2384,11 @@ msgid ""
 "   3. Verify call is connected\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez un numéro de téléphone mobile (ex : 00336XXXXXXXX)\n"
+"   3. Vérifiez que l'appel est connecté\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. verification
 #: ../units/touch.pxu:1892
@@ -2170,11 +2396,13 @@ msgid ""
 "   1. Is call connected?\n"
 "   2. Is call quality acceptable?"
 msgstr ""
+"   1. L'appel est-il connecté ?\n"
+"   2. La qualité de l'appel est-elle acceptable ?"
 
 #. summary
 #: ../units/touch.pxu:1900
 msgid "Ensure that receiving a mt call works as expected"
-msgstr ""
+msgstr "Assurez-vous que la réception d'un appel fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:1901
@@ -2185,6 +2413,11 @@ msgid ""
 "   3. Ensure phone call can be answered\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel au premier appareil à tester\n"
+"   2. Assurez-vous que les options de réponse sont affichées\n"
+"   3. Assurez-vous que vous pouvez répondre à l'appel téléphonique\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. verification
 #: ../units/touch.pxu:1915
@@ -2192,11 +2425,13 @@ msgid ""
 "   1. Is snap decision shown?\n"
 "   2. Is call answered?"
 msgstr ""
+"   1. Les options de réponse sont-elles affichées ?\n"
+"   2. Est-il possible de répondre à l'appel ?"
 
 #. summary
 #: ../units/touch.pxu:1923
 msgid "Ensure that reject a mt call works as expected"
-msgstr ""
+msgstr "Assurez-vous que le refus d'un appel fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:1924
@@ -2205,6 +2440,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Prepare two DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous que la carte SIM est présente\n"
+"   2. Préparez deux appareils à tester"
 
 #. steps
 #: ../units/touch.pxu:1924
@@ -2214,6 +2452,10 @@ msgid ""
 "   2. Ensure snap decision is shown\n"
 "   3. Ensure phone call can be rejected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel au premier appareil à tester\n"
+"   2. Assurez-vous que les options de réponses sont affichées\n"
+"   3. Assurez-vous que l'appel téléphonique peut être refusé"
 
 #. verification
 #: ../units/touch.pxu:1937
@@ -2221,11 +2463,14 @@ msgid ""
 "   1. Is snap decision shown?\n"
 "   2. Did call reject work?"
 msgstr ""
+"   1. Les options de réponse sont-elles affichées ?\n"
+"   2. Le refus de l'appel fonctionne-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:1945
 msgid "Ensure that STMF feature call work as expected"
 msgstr ""
+"Assurez-vous que la fonctionnalité d'appel par STMF fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:1946
@@ -2237,11 +2482,17 @@ msgid ""
 "   3. Verify call is transferred correctly\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez une ligne fixe qui possède un numéro de poste à saisir\n"
+"   3. Lorsque l'appel est connecté, saisissez le numéro de poste\n"
+"   3. Vérifiez que l'appel est transféré correctement\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. summary
 #: ../units/touch.pxu:1968
 msgid "Ensure that preset extension number can work as expected"
-msgstr ""
+msgstr "Assurez-vous qu'un numéro de poste prédéfini fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:1969
@@ -2250,6 +2501,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Prepare a fixed-line telephone with extension number"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous que la carte SIM est présente\n"
+"   2. Préparez une ligne téléphonique fixe avec un numéro de poste"
 
 #. steps
 #: ../units/touch.pxu:1969
@@ -2261,16 +2515,24 @@ msgid ""
 "   3. Verify call is transferred correctly\n"
 "   4. Verify audio in/out works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Saisissez le numéro de téléphone suivi de la touche dièse et du numéro "
+"de poste (ex : 0287296800#123) puis appelez\n"
+"   3. Vérifiez que l'appel est transféré correctement\n"
+"   4. Vérifiez que l'entrée/sortie audio fonctionne"
 
 #. verification
 #: ../units/touch.pxu:1983
 msgid "   1. Is call connected to correct extension?"
-msgstr ""
+msgstr "   1. L'appel est-il connecté au bon poste ?"
 
 #. summary
 #: ../units/touch.pxu:1990
 msgid "Ensure that call waiting functions can work as expected"
 msgstr ""
+"Assurez-vous que les fonctions de mise en attente lors des appels "
+"fonctionnent correctement"
 
 #. steps
 #: ../units/touch.pxu:1991
@@ -2279,6 +2541,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Prepare three DUT"
 msgstr ""
+"PRÉRÉGLAGES :\n"
+"   1. Assurez-vous que la carte SIM est présente\n"
+"   2. Préparez trois appareils à tester"
 
 #. steps
 #: ../units/touch.pxu:1991
@@ -2290,16 +2555,25 @@ msgid ""
 "   3. Verify call waiting feature can work as expected\n"
 "   4. Verify you call answer/on hold/reject the call"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Passez un appel au deuxième appareil à tester\n"
+"   3. Une fois connecté, utilisez le troisième appareil à tester pour "
+"appeler le premier\n"
+"   3. Vérifiez que la fonctionnalité de mise en attente fonctionne "
+"correctement\n"
+"   4. Vérifiez que vous pouvez répondre, mettre en attente ou refuser l'appel"
 
 #. verification
 #: ../units/touch.pxu:2006
 msgid "   1. Is call waiting feature worked?"
-msgstr ""
+msgstr "   1. La fonctionnalité de mise en attente fonctionne-t-elle ?"
 
 #. summary
 #: ../units/touch.pxu:2013
 msgid "Ensure that call will be dropped if call waiting disabled"
 msgstr ""
+"Assurez-vous que l'appel sera coupé si la mise en attente est désactivée"
 
 #. steps
 #: ../units/touch.pxu:2014
@@ -2308,6 +2582,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Disable call waiting"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous que la carte SIM est présente\n"
+"   2. Désactivez la mise en attente lors des appels"
 
 #. steps
 #: ../units/touch.pxu:2014
@@ -2318,16 +2595,22 @@ msgid ""
 "   3. When call connected, use another phone to call DUT\n"
 "   3. Verify call will be dropped immediately"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez un numéro de téléphone\n"
+"   3. Lorsque l'appel est connecté, utilisez un autre téléphone pour appeler "
+"l'appareil à tester\n"
+"   3. Vérifiez que l'appel sera immédiatement coupé"
 
 #. verification
 #: ../units/touch.pxu:2028
 msgid "   1. Is call dropped as expected?"
-msgstr ""
+msgstr "   1. L'appel est-il correctement coupé ?"
 
 #. summary
 #: ../units/touch.pxu:2035
 msgid "Ensure that calling voicemail functions as expected"
-msgstr ""
+msgstr "Assurez-vous que la messagerie vocale fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:2036
@@ -2338,6 +2621,12 @@ msgid ""
 "   3. Ensure voicemail mailbox is reached\n"
 "   4. Ensure mailbox can be navigated using DTMF"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez un numéro de messagerie vocale\n"
+"   3. Assurez-vous que la messagerie vocal est jointe\n"
+"   4. Assurez-vous que la messagerie peut être parcourue en utilisant le "
+"code DTMF"
 
 #. verification
 #: ../units/touch.pxu:2049
@@ -2345,11 +2634,13 @@ msgid ""
 "   1. Is voicemail functioning?\n"
 "   2. Is navigation working via DTMF?"
 msgstr ""
+"   1. La messagerie vocale fonctionne-t-elle ?\n"
+"   2. La navigation par code DTMF fonctionne-t-elle ?"
 
 #. summary
 #: ../units/touch.pxu:2057
 msgid "Ensure placing a call on hold works"
-msgstr ""
+msgstr "Assurez-vous que la mise en pause de l'appel fonctionne"
 
 #. steps
 #: ../units/touch.pxu:2058
@@ -2363,6 +2654,16 @@ msgid ""
 "   6. Make sure indicator on phone and app shows hold is off\n"
 "   7. Make sure hold is actually off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez l'appareil à tester\n"
+"   2. Basculez l'appel en pause\n"
+"   3. Assurez-vous que la pause est activée sur le téléphone\n"
+"   4. Assurez-vous que l'indicateur du téléphone et de l'application "
+"affichent que la pause est activée\n"
+"   5. Rebasculez l'appel en actif\n"
+"   6. Assurez-vous que l'indicateur du téléphone et de l'application "
+"affichent que la pause est désactivée\n"
+"   7. Assurez-vous que la pause est réellement désactivée"
 
 #. verification
 #: ../units/touch.pxu:2074
@@ -2373,11 +2674,19 @@ msgid ""
 "   4. When gold is turned off on phone, does the icon in the app reflect its "
 "new status?"
 msgstr ""
+"   1. La pause s'est-elle déclenchée ?\n"
+"   2. Le téléphone indique-t-il que la pause est active ?\n"
+"   3. La désactivation de la pause sur le téléphone a-t-elle réellement "
+"désactivé la pause ?\n"
+"   4. Lorsque la pause est désactivée sur le téléphone, l'icône de "
+"l'application reflète-t-elle ce nouveau statut ?"
 
 #. summary
 #: ../units/touch.pxu:2084
 msgid "Ensure sure that speakerphone toggle on/off works in voicemail"
 msgstr ""
+"Assurez-vous que l'activation / la désactivation du haut-parleur du "
+"téléphone fonctionne avec la messagerie vocale"
 
 #. steps
 #: ../units/touch.pxu:2085
@@ -2392,11 +2701,24 @@ msgid ""
 "   7. Make sure indicator in app shows speakerphone is off\n"
 "   8. Make sure speakerphone is now off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez votre messagerie vocale\n"
+"   3. Activez le haut-parleur de votre téléphone\n"
+"   4. Assurez-vous que le haut-parleur est activé\n"
+"   5. Assurez-vous qu'un indicateur sur le téléphone affiche que le haut-"
+"parleur est activé\n"
+"   6. Désactivez le haut-parleur à partir du téléphone\n"
+"   7. Assurez-vous que l'indicateur dans l'application affiche que le haut-"
+"parleur est désactivé\n"
+"   8. Assurez-vous que le haut-parleur est désormais désactivé"
 
 #. summary
 #: ../units/touch.pxu:2112
 msgid "Ensure that speakerphone toggle on/off works in regular phone call"
 msgstr ""
+"Assurez-vous que l'activation / la désactivation du haut-parleur du "
+"téléphone fonctionne lors des appels téléphoniques classiques"
 
 #. steps
 #: ../units/touch.pxu:2113
@@ -2405,6 +2727,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Have two DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous qu'une carte SIM est présente\n"
+"   2. Procurez-vous deux appareils à tester"
 
 #. steps
 #: ../units/touch.pxu:2113
@@ -2418,6 +2743,17 @@ msgid ""
 "   6. Make sure indicator on phone and app shows speakerphone is off\n"
 "   7. Make sure speakerphone is actually off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel au deuxième appareil à tester\n"
+"   2. Activez le haut-parleur du téléphone\n"
+"   3, Assurez-vous que le haut-parleur du téléphone est activé sur le "
+"téléphone\n"
+"   4. Assurez-vous que l'indicateur sur le téléphone et dans l'application "
+"affichent que le haut-parleur est activé\n"
+"   5. Désactivez le haut-parleur à partir du téléphone\n"
+"   6. Assurez-vous que l'indicateur sur le téléphone et dans l'application "
+"affichent que le haut-parleur est désactivé\n"
+"   7. Assurez-vous que le haut-parleur du téléphone est bien désactivé"
 
 #. verification
 #: ../units/touch.pxu:2130
@@ -2428,26 +2764,32 @@ msgid ""
 "   4. When speakerphone is turned off on phone, does the icon in the app "
 "reflect its new status?"
 msgstr ""
+"   1. Le haut-parleur du téléphone est-il activé ?\n"
+"   2. Le téléphone indique-t-il que le haut-parleur est activé ?\n"
+"   3. La désactivation du haut-parleur à partir du téléphone désactive-t-"
+"elle bien le haut-parleur ?\n"
+"   4. Lorsque le haut-parleur est désactivé sur le téléphone, l'icône de "
+"l'application reflète-t-elle son nouveau statut ?"
 
 #. summary
 #: ../units/touch.pxu:2140
 msgid "Ensure that microphone mute works in call"
-msgstr ""
+msgstr "Assurez-vous que la coupure du microphone fonctionne lors des appels"
 
 #. name
 #: ../units/touch.pxu:2146
 msgid "Telephony/Hardware/Emergency Support (SIM1)"
-msgstr ""
+msgstr "Téléphonie/Matériel/Appels d'urgence (SIM1)"
 
 #. name
 #: ../units/touch.pxu:2260
 msgid "Telephony/Hardware/Emergency Support (SIM2)"
-msgstr ""
+msgstr "Téléphonie/Matériel/Appels d'urgence (SIM2)"
 
 #. summary
 #: ../units/touch.pxu:2266
 msgid "Ensure that an IMEI number is set"
-msgstr ""
+msgstr "Assurez-vous qu'un numéro d'IIEM est défini"
 
 #. steps
 #: ../units/touch.pxu:2267
@@ -2456,6 +2798,9 @@ msgid ""
 "   1. Open dialer\n"
 "   2. Enter *#06#"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Saisissez *#06#"
 
 #. steps
 #: ../units/touch.pxu:2267
@@ -2463,16 +2808,18 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Close dialer"
 msgstr ""
+"FIN :\n"
+"   1. Fermez le composeur"
 
 #. verification
 #: ../units/touch.pxu:2277
 msgid "   1. Is it pop up the IMEI number?"
-msgstr ""
+msgstr "   1. Le numéro d'IIEM s'affiche-t-il dans une fenêtre ?"
 
 #. summary
 #: ../units/touch.pxu:2284
 msgid "Ensure that emergency codes are properly set"
-msgstr ""
+msgstr "Assurez-vous que les codes d'urgence sont correctement définis"
 
 #. steps
 #: ../units/touch.pxu:2285
@@ -2480,6 +2827,8 @@ msgid ""
 "SETUP:\n"
 "   remove SIM card"
 msgstr ""
+"PRÉALABLES :\n"
+"   Retirez la carte SIM"
 
 #. steps
 #: ../units/touch.pxu:2285
@@ -2489,16 +2838,20 @@ msgid ""
 "   2. Dial emergency number (ex: 000)\n"
 "   3. Ensure emergency call can be called"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Composez un numéro d'urgence (ex : 112)\n"
+"   3. Assurez-vous que l'appel d'urgence ne peut pas être passé"
 
 #. verification
 #: ../units/touch.pxu:2297
 msgid "   1. Is it emergency call connected?"
-msgstr ""
+msgstr "   1. L'appel d'urgence est-il connecté ?"
 
 #. summary
 #: ../units/touch.pxu:2304
 msgid "Ensure that USSD codes function as expected"
-msgstr ""
+msgstr "Assurez-vous que les codes SSDN fonctionnent correctement"
 
 #. steps
 #: ../units/touch.pxu:2305
@@ -2508,6 +2861,10 @@ msgid ""
 "   2. Dial USSD number (ex: #123)\n"
 "   3. Ensure USSD call can work as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Composez un numéro de SSDN (ex : #123)\n"
+"   3. Assurez-vous qu'un appel en SSDN fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:2305
@@ -2516,16 +2873,20 @@ msgid ""
 "   1. End call\n"
 "   2. Close dialer"
 msgstr ""
+"FIN :\n"
+"   1. Terminez l'appel\n"
+"   2. Fermez le composeur"
 
 #. verification
 #: ../units/touch.pxu:2317
 msgid "   1. Is call to USSD number worked?"
-msgstr ""
+msgstr "   1. L'appel vers le numéro de SSDN a-t-il fonctionné ?"
 
 #. summary
 #: ../units/touch.pxu:2324
 msgid "Ensure that the network indicator shows connection status"
 msgstr ""
+"Assurez-vous que l'indicateur de réseau affiche les statuts de connexion"
 
 #. steps
 #: ../units/touch.pxu:2325
@@ -2533,16 +2894,23 @@ msgid ""
 "ACTIONS:\n"
 "   1. Ensure the network indicator now shows telephony connection signal?"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'indicateur de réseau affiche désormais le signal de "
+"connexion téléphonique"
 
 #. verification
 #: ../units/touch.pxu:2334
 msgid "   1. Does the network indicator show telephony connection correctly?"
 msgstr ""
+"   1. L'indicateur de réseau affiche-t-il correctement la connexion "
+"téléphonique ?"
 
 #. summary
 #: ../units/touch.pxu:2341
 msgid "Ensure that no signal shows when no SIM card inserted"
 msgstr ""
+"Assurez-vous qu'aucun signal ne s'affiche lorsqu'aucune carte SIM n'est "
+"insérée"
 
 #. steps
 #: ../units/touch.pxu:2342
@@ -2550,6 +2918,8 @@ msgid ""
 "SETUP:\n"
 "   Ensure SIM is not inserted"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'aucune carte SIM n'est insérée"
 
 #. steps
 #: ../units/touch.pxu:2342
@@ -2557,16 +2927,19 @@ msgid ""
 "ACTIONS:\n"
 "   1. Ensure the network indicator shows no signal"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'indicateur de réseau n'affiche aucun signal"
 
 #. verification
 #: ../units/touch.pxu:2351
 msgid "   1. Does the network indicator show no signal correctly?"
 msgstr ""
+"   1. L'indicateur de réseau n'affiche-t-il aucun signal comme prévu ?"
 
 #. summary
 #: ../units/touch.pxu:2358
 msgid "Ensure that 3G SIM card can be supported"
-msgstr ""
+msgstr "Assurez-vous que les cartes SIM 3G sont prises en charge"
 
 #. steps
 #: ../units/touch.pxu:2359
@@ -2574,6 +2947,8 @@ msgid ""
 "SETUP:\n"
 "   Insert a 3G SIM card"
 msgstr ""
+"PRÉALABLES :\n"
+"   Insérez une carte SIM 3G"
 
 #. steps
 #: ../units/touch.pxu:2359
@@ -2582,21 +2957,25 @@ msgid ""
 "   1. Boot up\n"
 "   2. Ensure system can identify the SIM card"
 msgstr ""
+"ACTIONS :\n"
+"   1. Démarrez l'appareil\n"
+"   2. Assurez-vous que le système peut identifier la carte SIM"
 
 #. verification
 #: ../units/touch.pxu:2369
 msgid "   1. Does 3G SIM card work correctly?"
-msgstr ""
+msgstr "   1. La carte SIM 3G fonctionne-t-elle correctement ?"
 
 #. name
 #: ../units/touch.pxu:2374
 msgid "Telephony/Data Support (SIM1)"
-msgstr ""
+msgstr "Téléphonie/Prise en charge des données (SIM1)"
 
 #. summary
 #: ../units/touch.pxu:2380
 msgid "Ensure that phone can properly use GPRS data"
 msgstr ""
+"Assurez-vous que le téléphone peut correctement utiliser les données GPRS"
 
 #. steps
 #: ../units/touch.pxu:2381
@@ -2605,16 +2984,21 @@ msgid ""
 "   1. Ensure that DUT connected to GRPS network\n"
 "   2. Open web browser, navigate to ubuntu.com"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'appareil à tester s'est connecté au réseau GPRS\n"
+"   2. Ouvrez un navigateur Internet et allez sur ubuntu.com"
 
 #. verification
 #: ../units/touch.pxu:2392
 msgid "   1. Was ubuntu.com loaded?"
-msgstr ""
+msgstr "   1. La page ubuntu.com s'est-elle chargée ?"
 
 #. summary
 #: ../units/touch.pxu:2399
 msgid "Ensure that phone can properly use edge data"
 msgstr ""
+"Assurez-vous que le téléphone peut correctement utiliser les données en mode "
+"EDGE"
 
 #. steps
 #: ../units/touch.pxu:2400
@@ -2623,11 +3007,16 @@ msgid ""
 "   1. Ensure that DUT connected to Edge network\n"
 "   2. Open web browser, navigate to ubuntu.com"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'appareil à tester s'est connecté au réseau en mode "
+"EDGE\n"
+"   2. Ouvrez un navigateur Internet et allez sur ubuntu.com"
 
 #. summary
 #: ../units/touch.pxu:2418
 msgid "Ensure that phone can properly use 3g data"
 msgstr ""
+"Assurez-vous que le téléphone peut utiliser correctement les données en 3G"
 
 #. steps
 #: ../units/touch.pxu:2419
@@ -2636,11 +3025,15 @@ msgid ""
 "   1. Ensure that DUT connected to 3G network\n"
 "   2. Open web browser, navigate to ubuntu.com"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'appareil à tester s'est connecté au réseau en 3G\n"
+"   2. Ouvrez le navigateur Internet et allez sur ubuntu.com"
 
 #. summary
 #: ../units/touch.pxu:2437
 msgid "Ensure that phone can properly use HSPA data"
 msgstr ""
+"Assurez-vous que le téléphone peut correctement utiliser les données en 3G+"
 
 #. steps
 #: ../units/touch.pxu:2438
@@ -2649,6 +3042,9 @@ msgid ""
 "   Ensure SIM is present\n"
 "   Ensure WiFi is not connected"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'une carte SIM est présente\n"
+"   Assurez-vous que le Wi-Fi n'est pas connecté"
 
 #. steps
 #: ../units/touch.pxu:2438
@@ -2657,6 +3053,9 @@ msgid ""
 "   1. Ensure that DUT connected to HSPA network\n"
 "   2. Open web browser, navigate to ubuntu.com"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'appareil à tester s'est connecté au réseau 3G+\n"
+"   2. Ouvrez le navigateur Internet et allez sur ubuntu.com"
 
 #. verification
 #: ../units/touch.pxu:2449
