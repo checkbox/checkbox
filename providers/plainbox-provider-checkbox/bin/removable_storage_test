@@ -6,6 +6,8 @@ import dbus
 import hashlib
 import logging
 import os
+import re
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -26,6 +28,7 @@ from checkbox_support.helpers.human_readable_bytes import HumanReadableBytes
 from checkbox_support.parsers.udevadm import CARD_READER_RE
 from checkbox_support.parsers.udevadm import GENERIC_RE
 from checkbox_support.parsers.udevadm import FLASH_RE
+from checkbox_support.parsers.udevadm import find_pkname_is_root_mountpoint
 from checkbox_support.udev import get_interconnect_speed
 from checkbox_support.udev import get_udev_block_devices
 from checkbox_support.udev import get_udev_xhci_devices
@@ -97,7 +100,7 @@ def md5_hash_file(path):
 class DiskTest():
     ''' Class to contain various methods for testing removable disks '''
 
-    def __init__(self, device, memorycard):
+    def __init__(self, device, memorycard, lsblkcommand):
         self.rem_disks = {}     # mounted before the script running
         self.rem_disks_nm = {}  # not mounted before the script running
         self.rem_disks_memory_cards = {}
@@ -106,8 +109,10 @@ class DiskTest():
         # LP: #1313581, TODO: extend to be rem_disks_driver
         self.rem_disks_xhci = {}
         self.data = ''
+        self.lsblk = ''
         self.device = device
         self.memorycard = memorycard
+        self._run_lsblk(lsblkcommand)
         self._probe_disks()
 
     def read_file(self, source):
@@ -144,6 +149,24 @@ class DiskTest():
         except OSError as exc:
             logging.error("Unable to remove tempfile %s", target)
             logging.error("  %s", exc)
+
+    def _find_parent(self, device):
+        if self.lsblk:
+            pattern = re.compile('KNAME="(?P<KNAME>.*)" '
+                                 'TYPE="(?P<TYPE>.*)" '
+                                 'MOUNTPOINT="(?P<MOUNTPOINT>.*)"')
+            for line in self.lsblk.splitlines():
+                m = pattern.match(line)
+                if m and device.startswith(m.group('KNAME')):
+                    return m.group('KNAME')
+        return False
+
+    def _run_lsblk(self, lsblkcommand):
+        try:
+            self.lsblk = subprocess.check_output(shlex.split(lsblkcommand),
+                                                 universal_newlines=True)
+        except subprocess.CalledProcessError as exc:
+            raise SystemExit(exc)
 
     def _probe_disks(self):
         """
@@ -223,6 +246,9 @@ class DiskTest():
             # Get the block device pathname,
             # to avoid the confusion, this is something like /dev/sdbX
             dev_file = udev_device.get_device_file()
+            parent = self._find_parent(dev_file.replace('/dev/', ''))
+            if parent and find_pkname_is_root_mountpoint(parent, self.lsblk):
+                continue
             # Get the list of mount points of this block device
             mount_points = (
                 udisks2_object[UDISKS2_FILESYSTEM_INTERFACE]['MountPoints'])
@@ -280,15 +306,15 @@ class DiskTest():
                         parent_vendor = parent_props.Get(udisks, "DriveVendor")
                         parent_media = parent_props.Get(udisks, "DriveMedia")
                     if self.memorycard:
-                        if (dev_bus != 'sdio'
-                                and not FLASH_RE.search(parent_media)
-                                and not CARD_READER_RE.search(parent_model)
-                                and not GENERIC_RE.search(parent_vendor)):
+                        if (dev_bus != 'sdio' and not
+                                FLASH_RE.search(parent_media) and not
+                                CARD_READER_RE.search(parent_model) and not
+                                GENERIC_RE.search(parent_vendor)):
                             continue
                     else:
-                        if (FLASH_RE.search(parent_media)
-                                or CARD_READER_RE.search(parent_model)
-                                or GENERIC_RE.search(parent_vendor)):
+                        if (FLASH_RE.search(parent_media) or
+                                CARD_READER_RE.search(parent_model) or
+                                GENERIC_RE.search(parent_vendor)):
                             continue
                     dev_file = str(device_props.Get(udisks, "DeviceFile"))
                     dev_speed = str(device_props.Get(udisks,
@@ -376,9 +402,11 @@ class DiskTest():
         # then compare this pci slot name to the other
         dl = devpath.split('/')
         s = set([x for x in dl if dl.count(x) > 1])
-        if ((pci_slot_name in dl)
-             and (dl.index(pci_slot_name) < dl.index('block'))
-             and (not(pci_slot_name in s))):
+        if (
+            (pci_slot_name in dl) and
+            (dl.index(pci_slot_name) < dl.index('block')) and
+            (not(pci_slot_name in s))
+        ):
             # 1. there is such pci_slot_name
             # 2. sysfs topology looks like
             #    DEVPATH = ....../pci_slot_name/....../block/......
@@ -451,10 +479,14 @@ def main():
                         choices=['xhci_hcd'],
                         help=("Detect the driver of the host controller."
                               "Only xhci_hcd for usb3 is supported so far."))
+    parser.add_argument("--lsblkcommand", action='store', type=str,
+                        default="lsblk -i -n -P -o KNAME,TYPE,MOUNTPOINT",
+                        help=("Command to execute to get lsblk information. "
+                              "Only change it if you know what you're doing."))
 
     args = parser.parse_args()
 
-    test = DiskTest(args.device, args.memorycard)
+    test = DiskTest(args.device, args.memorycard, args.lsblkcommand)
 
     errors = 0
     # If we do have removable drives attached and mounted
@@ -505,8 +537,8 @@ def main():
                           % errors_mount)
                     errors += errors_mount
 
-                disks_all = dict(list(test.rem_disks.items())
-                                 + list(test.rem_disks_nm.items()))
+                disks_all = dict(list(test.rem_disks.items()) +
+                                 list(test.rem_disks_nm.items()))
 
             if len(disks_all) > 0:
                 print("Found the following mounted %s partitions:"
@@ -528,8 +560,8 @@ def main():
 
                 disks_eligible = {disk: disks_all[disk] for disk in disks_all
                                   if not args.min_speed or
-                                  int(test.rem_disks_speed[disk])
-                                  >= int(args.min_speed)}
+                                  int(test.rem_disks_speed[disk]) >=
+                                  int(args.min_speed)}
                 if len(disks_eligible) == 0:
                     logging.error(
                         "No %s disks with speed higher than %s bits/s",
@@ -542,21 +574,24 @@ def main():
                     stat = os.statvfs(path)
                     disks_freespace[disk] = stat.f_bfree * stat.f_bsize
                 smallest_freespace = min(disks_freespace.values())
+                smallest_partition = [d for d, v in disks_freespace.items() if
+                                      v == smallest_freespace][0]
                 desired_size = args.size
                 if desired_size > smallest_freespace:
                     if args.auto_reduce_size:
                         min_space = HumanReadableBytes("1MiB")
                         if smallest_freespace < min_space:
-                            raise IOError("Not enough space. {} is required"
-                                          .format(min_space))
-                        new_size = HumanReadableBytes(int(0.8 * smallest_freespace))
+                            sys.exit("Not enough space. {} is required on {}"
+                                     .format(min_space, smallest_partition))
+                        new_size = HumanReadableBytes(
+                            int(0.8 * smallest_freespace))
                         logging.warning("Automatically reducing test data size"
                                         ". {} requested. Reducing to {}."
                                         .format(desired_size, new_size))
                         desired_size = new_size
                     else:
-                        raise IOError("Not enough space. {} is required"
-                                      .format(desired_size))
+                        sys.exit("Not enough space. {} is required on {}"
+                                 .format(desired_size, smallest_partition))
                 # Generate our data file(s)
                 for count in range(args.count):
                     test_files[count] = RandomData(desired_size)
@@ -611,8 +646,8 @@ def main():
                             # avg_write_time = total_write_time / args.count
                             try:
                                 avg_write_speed = ((
-                                    total_write_size / total_write_time)
-                                    / 1024 / 1024)
+                                    total_write_size / total_write_time) /
+                                    1024 / 1024)
                             except ZeroDivisionError:
                                 avg_write_speed = 0.00
                             finally:
