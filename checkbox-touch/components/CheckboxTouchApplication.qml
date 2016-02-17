@@ -185,6 +185,16 @@ PythonObjectRef {
             if (continuation_error) continuation_error(error);
         });
     }
+    function getIncompleteSessions(continuation) {
+        request("get_incomplete_sessions", [], continuation, function(error) {
+            console.error("Unable to get incomplete sessions")
+        });
+    }
+    function deleteOldSessions(sessionIds, continuation) {
+        request("delete_old_sessions", [sessionIds], continuation, function(error) {
+            console.error("Unable to remove old sessions")
+        });
+    }
 
     function rememberPassword(password, continuation) {
         // using low-level py.call() to 'silently' pass password string through pyotherside

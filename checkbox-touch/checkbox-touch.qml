@@ -150,6 +150,7 @@ MainView {
     CheckboxTouchApplication {
         id: app
         py: py
+        property var incompleteSessions: []
         onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
@@ -157,6 +158,10 @@ MainView {
                 "checkbox_touch" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
+            getIncompleteSessions(function(sessions) {
+                incompleteSessions = sessions;
+                resumeSessionPage.incompleteSessionCount = sessions.length;
+            });
             resumeOrStartSession();
         }
         onSessionReady: {
@@ -280,7 +285,14 @@ MainView {
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
-            app.startSession();
+            gcAndStartSession();
+        }
+        onDeleteIncomplete: {
+            app.deleteOldSessions(app.incompleteSessions, function() {
+                pageStack.clear();
+                pageStack.push(welcomePage);
+                app.startSession();
+            });
         }
     }
 
@@ -445,10 +457,10 @@ MainView {
             } else {
                 if (result.errors_encountered) {
                     ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
-                                         app.startSession(),
+                                         gcAndStartSession(),
                                          i18n.tr("Start new session"));
                 } else {
-                    app.startSession();
+                    gcAndStartSession();
                 }
             }
         });
@@ -533,7 +545,7 @@ MainView {
         var endTesting = function() {
             pageStack.clear();
             app.clearSession(function() {
-                app.startSession();
+                gcAndStartSession();
                 pageStack.push(welcomePage);
             });
         };
@@ -731,6 +743,13 @@ MainView {
             continuation();
         }
         process_input();
+    }
+    function gcAndStartSession() {
+        // delete sessions that won't be resumed (NOT incomplete sessions)
+        // and start a new session
+        app.deleteOldSessions([], function() {
+            app.startSession();
+        });
     }
 
 }
