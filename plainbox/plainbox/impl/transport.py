@@ -32,9 +32,12 @@ from collections import OrderedDict
 from logging import getLogger
 import pkg_resources
 import re
+from shutil import copyfileobj
+import sys
 
 from plainbox.abc import ISessionStateTransport
 from plainbox.i18n import gettext as _
+from plainbox.impl.exporter import ByteStringStreamTranslator
 from plainbox.impl.secure.config import Unset
 
 import requests
@@ -314,6 +317,64 @@ class _OAuthTransport(TransportBase):
                 raise TransportError(str(exc))
 
         return dict(message='Upload successful.', status=response.status_code)
+
+
+class StreamTransport(TransportBase):
+    """Transport for printing data to a stream (stdout or stderr)."""
+    def __init__(self, stream, options=None):
+        url, self._stream = {
+            'stdout': ('python://stdout', sys.stdout),
+            'stderr': ('python://stderr', sys.stderr)
+        }[stream]
+        super().__init__(url, options)
+
+    def send(self, data, config=None, session_state=None):
+        """
+        Write data to the specified stream.
+
+        :param data:
+            Data to be written to the stream.This can be either bytes or a
+            file-like object (BytesIO works fine too).  If this is a file-like
+            object, it will be read and streamed "on the fly".
+        :param config:
+             Optional PlainBoxConfig object.
+        :param session_state:
+            The session for which this transport is associated with
+            the data being sent (optional)
+        :returns:
+            None
+        """
+        translating_stream = ByteStringStreamTranslator(
+            self._stream, self._stream.encoding)
+        copyfileobj(data, translating_stream)
+
+
+class FileTransport(TransportBase):
+    def __init__(self, where, options=None):
+        super().__init__(where, options)
+        self._path = where
+
+    def send(self, data, config=None, session_state=None):
+        """
+        Write data to the specified file.
+
+        :param data:
+            Data to be written to the stream.This can be either bytes or a
+            file-like object (BytesIO works fine too).  If this is a file-like
+            object, it will be read and streamed "on the fly".
+        :param config:
+             Optional PlainBoxConfig object.
+        :param session_state:
+            The session for which this transport is associated with
+            the data being sent (optional)
+        :returns:
+            None
+        :raises OSError:
+            When there was IO related error.
+        """
+        with open(self._path, 'wt') as f:
+            translating_stream = ByteStringStreamTranslator(f, 'utf-8')
+            copyfileobj(data, translating_stream)
 
 
 if oauth_available():

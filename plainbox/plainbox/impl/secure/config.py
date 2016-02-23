@@ -31,6 +31,7 @@ import collections
 import configparser
 import logging
 import re
+import shlex
 
 from plainbox.i18n import gettext as _
 
@@ -75,6 +76,7 @@ class ConfigMetaData:
     """
     variable_list = []
     section_list = []
+    parametric_section_list = []
     filename_list = []
 
 
@@ -115,7 +117,7 @@ class Variable(INameTracking):
     Variable that can be used in a configuration systems
     """
 
-    _KIND_CHOICE = (bool, int, float, str)
+    _KIND_CHOICE = (bool, int, float, str, list)
 
     def __init__(self, name=None, *, section='DEFAULT', kind=str,
                  default=Unset, validator_list=None, help_text=None):
@@ -187,6 +189,14 @@ class Variable(INameTracking):
         return self._name
 
     @property
+    def mangled_name(self):
+        """
+        name prefixed by the name of the section name and '__' to resolve
+        conflicts between same name  variables living in different sections
+        """
+        return "{}__{}".format(self._section, self._name)
+
+    @property
     def section(self):
         """
         name of the section this variable belongs to (in a configuration file)
@@ -234,7 +244,7 @@ class Variable(INameTracking):
         if instance is None:
             return self
         try:
-            return instance._get_variable(self._name)
+            return instance._get_variable(self.mangled_name)
         except KeyError:
             return self.default
 
@@ -247,13 +257,13 @@ class Variable(INameTracking):
         # Check it against all validators
         self.validate(new_value)
         # Assign it to the backing store of the instance
-        instance._set_variable(self.name, new_value)
+        instance._set_variable(self.mangled_name, new_value)
 
     def __delete__(self, instance):
         # NOTE: this is quite confusing, this method is a companion to __get__
         # and __set__ but __del__ is entirely unrelated (object garbage
         # collected, do final cleanup) so don't think this is a mistake
-        instance._del_variable(self._name)
+        instance._del_variable(self.mangled_name)
 
 
 class Section(INameTracking):
@@ -303,6 +313,33 @@ class Section(INameTracking):
         instance._del_section(self.name)
 
 
+class ParametricSection(Section):
+    """
+    A parametrized section of a configuration file.
+
+    This is similar to :class:`Section`, but instead looks for an arbitrary
+    number of sections beginning with ``name:``. E.g.:
+
+    .. code-block:: none
+
+        [foo:bar]
+            somevar = someval
+        [foo:baz]
+            othervar = otherval
+
+    yields a following list of dictionaries:
+
+    .. code-block:: python
+
+        [
+            {'bar': {'somevar': 'someval'}},
+            {'baz': {'othervar': 'otherval'}}
+        ]
+    """
+    def __init__(self, name=None, *, help_text=None):
+        super().__init__(name, help_text=help_text)
+
+
 class ConfigMeta(type):
     """
     Meta class for all configuration classes.
@@ -318,11 +355,15 @@ class ConfigMeta(type):
         # Keep track of variables and sections from base class
         variable_list = []
         section_list = []
+        parametric_section_list = []
         if 'Meta' in namespace:
             if hasattr(namespace['Meta'], 'variable_list'):
                 variable_list = namespace['Meta'].variable_list[:]
             if hasattr(namespace['Meta'], 'section_list'):
                 section_list = namespace['Meta'].section_list[:]
+            if hasattr(namespace['Meta'], 'parametric_section_list'):
+                parametric_section_list = (
+                    namespace['Meta'].parametric_section_list[:])
         # Discover all Variable and Section instances
         # defined in the class namespace
         for attr_name, attr_value in namespace.items():
@@ -330,6 +371,8 @@ class ConfigMeta(type):
                 attr_value._set_tracked_name(attr_name)
             if isinstance(attr_value, Variable):
                 variable_list.append(attr_value)
+            elif isinstance(attr_value, ParametricSection):
+                parametric_section_list.append(attr_value)
             elif isinstance(attr_value, Section):
                 section_list.append(attr_value)
         # Get or create the class of the 'Meta' object.
@@ -340,7 +383,8 @@ class ConfigMeta(type):
         Meta_bases = (ConfigMetaData,)
         Meta_ns = {
             'variable_list': variable_list,
-            'section_list': section_list
+            'section_list': section_list,
+            'parametric_section_list': parametric_section_list
         }
         if 'Meta' in namespace:
             user_Meta_cls = namespace['Meta']
@@ -364,6 +408,7 @@ class PlainBoxConfigParser(configparser.ConfigParser):
 
     - option names are not lower-cased
     - write() has deterministic ordering (sorted by name)
+    - parsing list capability
     """
 
     def optionxform(self, option):
@@ -392,6 +437,17 @@ class PlainBoxConfigParser(configparser.ConfigParser):
         for section in self._sections:
             self._write_section(
                 fp, section, sorted(self._sections[section].items()), d)
+
+    def getlist(self, section, option, *, raw=False, vars=None,
+                fallback=configparser._UNSET, **kwargs):
+        return self._get(section, self._convert_to_list, option,  **kwargs)
+
+    def _convert_to_list(self, value):
+        """Return list extracted from value.
+
+        The ``value`` is split using ',' and ' ' as delimiters.
+        """
+        return shlex.split(value.replace(',', ' '))
 
 
 class Config(metaclass=ConfigMeta):
@@ -465,12 +521,14 @@ class Config(metaclass=ConfigMeta):
         parser = PlainBoxConfigParser(allow_no_value=True, delimiters=('='))
         # Write all variables that we know about
         for variable in self.Meta.variable_list:
-            if (not parser.has_section(variable.section)
-                    and variable.section != "DEFAULT"):
+            if (not parser.has_section(variable.section) and
+                    variable.section != "DEFAULT"):
                 parser.add_section(variable.section)
             value = variable.__get__(self, self.__class__)
             # Except Unset, we don't want that to convert to 'unset'
             if value is not Unset:
+                if variable.kind == list:
+                    value = ', '.join(value)
                 parser.set(variable.section, variable.name, str(value))
         # Write all sections that we know about
         for section in self.Meta.section_list:
@@ -478,6 +536,13 @@ class Config(metaclass=ConfigMeta):
                 parser.add_section(section.name)
             for name, value in section.__get__(self, self.__class__).items():
                 parser.set(section.name, name, str(value))
+        for psection in self.Meta.parametric_section_list:
+            for name, sec in psection.__get__(self, self.__class__).items():
+                section_name = '{}:{}'.format(psection.name, name)
+                if not parser.has_section(section_name):
+                    parser.add_section(section_name)
+                for k, v in sec.items():
+                    parser.set(section_name, k, str(v))
         return parser
 
     def read_string(self, string):
@@ -585,7 +650,8 @@ class Config(metaclass=ConfigMeta):
             str: parser.get,
             bool: parser.getboolean,
             int: parser.getint,
-            float: parser.getfloat
+            float: parser.getfloat,
+            list: parser.getlist
         }
         # Load all variables that we know about
         for variable in self.Meta.variable_list:
@@ -609,6 +675,16 @@ class Config(metaclass=ConfigMeta):
                 continue
             # Assign it
             section.__set__(self, value)
+        # Load all parametric sections
+        for parametric_section in self.Meta.parametric_section_list:
+            matching_keys = [k for k in parser.keys() if k.startswith(
+                parametric_section.name + ':')]
+            value = dict()
+            for key in matching_keys:
+                param = key[len(parametric_section.name) + 1:]
+                value[param] = dict(parser.items(key))
+            parametric_section.__set__(self, value)
+
         # Validate the whole configuration object
         self.validate_whole()
 
@@ -700,6 +776,7 @@ def KindValidator(variable, new_value):
             int: _("expected an integer"),
             float: _("expected a floating point number"),
             str: _("expected a string"),
+            list: _("expected a list of strings")
         }[variable.kind]
 
 

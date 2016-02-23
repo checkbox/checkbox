@@ -33,6 +33,7 @@ from plainbox.impl.secure.config import KindValidator
 from plainbox.impl.secure.config import NotEmptyValidator
 from plainbox.impl.secure.config import NotUnsetValidator
 from plainbox.impl.secure.config import PatternValidator
+from plainbox.impl.secure.config import ParametricSection
 from plainbox.impl.secure.config import PlainBoxConfigParser, Config
 from plainbox.impl.secure.config import ValidationError
 from plainbox.impl.secure.config import Variable, Section, Unset
@@ -98,8 +99,10 @@ class VariableTests(TestCase):
         self.assertIs(v4.kind, str)
         v5 = Variable()
         self.assertIs(v5.kind, str)
+        v6 = Variable(kind=list)
+        self.assertIs(v6.kind, list)
         with self.assertRaises(ValueError):
-            Variable(kind=list)
+            Variable(kind=dict)
 
     def test_validator_list__default(self):
         """
@@ -190,8 +193,10 @@ class ConfigTests(TestCase):
             v_bool = Variable(section="type_section", kind=bool)
             v_int = Variable(section="type_section", kind=int)
             v_float = Variable(section="type_section", kind=float)
+            v_list = Variable(section="type_section", kind=list)
             v_str = Variable(section="type_section", kind=str)
             s = Section()
+            ps = ParametricSection()
         conf = TestConfig()
         # assign value to each variable, except v3_unset
         conf.v1 = "v1 value"
@@ -201,8 +206,10 @@ class ConfigTests(TestCase):
         conf.v_int = -7
         conf.v_float = 1.5
         conf.v_str = "hi"
+        conf.v_list = ['foo', 'bar']
         # assign value to the section
         conf.s = {"a": 1, "b": 2}
+        conf.ps = {"foo": {"c": 3, "d": 4}}
         return conf
 
     def test_get_parser_obj(self):
@@ -231,6 +238,9 @@ class ConfigTests(TestCase):
         # verify that section work okay
         self.assertEqual(parser.get("s", "a"), "1")
         self.assertEqual(parser.get("s", "b"), "2")
+        # verify that parametric section works okay
+        self.assertEqual(parser.get("ps:foo", "c"), "3")
+        self.assertEqual(parser.get("ps:foo", "d"), "4")
 
     def test_write(self):
         """
@@ -251,11 +261,16 @@ class ConfigTests(TestCase):
                 "v_bool = True\n"
                 "v_float = 1.5\n"
                 "v_int = -7\n"
+                "v_list = foo, bar\n"
                 "v_str = hi\n"
                 "\n"
                 "[s]\n"
                 "a = 1\n"
                 "b = 2\n"
+                "\n"
+                "[ps:foo]\n"
+                "c = 3\n"
+                "d = 4\n"
                 "\n"))
 
     def test_section_smoke(self):
@@ -280,6 +295,30 @@ class ConfigTests(TestCase):
             "[DEFAULT]\n"
             "v = 1")
         self.assertEqual(conf.v, "1")
+        self.assertEqual(len(conf.problem_list), 0)
+
+    def test_read_list_with_spaces(self):
+        class TestConfig(Config):
+            l = Variable(kind=list)
+        conf = TestConfig()
+        conf.read_string('[DEFAULT]\nl = foo bar')
+        self.assertEqual(conf.l, ['foo', 'bar'])
+        self.assertEqual(len(conf.problem_list), 0)
+
+    def test_read_list_with_commas(self):
+        class TestConfig(Config):
+            l = Variable(kind=list)
+        conf = TestConfig()
+        conf.read_string('[DEFAULT]\nl = foo,bar')
+        self.assertEqual(conf.l, ['foo', 'bar'])
+        self.assertEqual(len(conf.problem_list), 0)
+
+    def test_read_list_quoted_strings(self):
+        class TestConfig(Config):
+            l = Variable(kind=list)
+        conf = TestConfig()
+        conf.read_string('[DEFAULT]\nl = foo "bar baz"')
+        self.assertEqual(conf.l, ['foo', 'bar baz'])
         self.assertEqual(len(conf.problem_list), 0)
 
     def test_read_string_calls_validate_whole(self):
@@ -358,6 +397,9 @@ class ConfigMetaDataTests(TestCase):
     def test_section_list(self):
         self.assertEqual(ConfigMetaData.section_list, [])
 
+    def test_parametric_section_list(self):
+        self.assertEqual(ConfigMetaData.parametric_section_list, [])
+
 
 class PlainBoxConfigParserTest(TestCase):
 
@@ -371,6 +413,16 @@ class PlainBoxConfigParserTest(TestCase):
         self.assertTrue('lower' in all_keys)
         self.assertTrue('UPPER' in all_keys)
         self.assertFalse('upper' in all_keys)
+
+    def test_parametric_sections_parsing(self):
+        class TestConfig(Config):
+            ps = ParametricSection()
+        conf_str = "[ps:foo]\nval = baz\n[ps:bar]\nvar = biz"
+        config = TestConfig()
+        config.read_string(conf_str)
+        self.assertEqual(
+            config.ps,
+            {'foo': {'val': 'baz'}, 'bar': {'var': 'biz'}})
 
 
 class KindValidatorTests(TestCase):
