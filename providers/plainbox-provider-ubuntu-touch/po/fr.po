@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-12-03 14:01+0100\n"
-"PO-Revision-Date: 2016-02-07 16:02+0000\n"
+"PO-Revision-Date: 2016-02-20 19:40+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-02-08 05:11+0000\n"
-"X-Generator: Launchpad (build 17908)\n"
+"X-Launchpad-Export-Date: 2016-02-21 05:13+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 
 #. name
 #: ../units/touch.pxu:20
@@ -491,7 +491,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:295
 msgid "   1. Does time stamp show correctly?"
-msgstr ""
+msgstr "   1. L'horodatage s'affiche-t-il correctement ?"
 
 #. summary
 #: ../units/touch.pxu:302
@@ -3065,7 +3065,7 @@ msgstr "   1. La page ubuntu.com s'est-elle chargée ?"
 #. summary
 #: ../units/touch.pxu:2456
 msgid "Ensure that connection can switch between WiFi and GPRS"
-msgstr ""
+msgstr "Assurez-vous que la connexion peut être basculée entre Wi-Fi et GPRS"
 
 #. steps
 #: ../units/touch.pxu:2457
@@ -3075,11 +3075,15 @@ msgid ""
 "   Ensure WiFi connected\n"
 "   Ensure DUT connected to GRPS network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'une carte SIM est présente\n"
+"   Assurez-vous que vous êtes connecté en Wi-Fi\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en GRPS"
 
 #. summary
 #: ../units/touch.pxu:2478
 msgid "Ensure that connection can switch between WiFi and EDGE"
-msgstr ""
+msgstr "Assurez-vous que la connexion peut être basculée entre Wi-Fi et EDGE"
 
 #. steps
 #: ../units/touch.pxu:2479
@@ -3089,11 +3093,15 @@ msgid ""
 "   Ensure WiFi connected\n"
 "   Ensure DUT connected to EDGE network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'une carte SIM est présente\n"
+"   Assurez-vous êtes connecté en Wi-Fi\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en EDGE"
 
 #. summary
 #: ../units/touch.pxu:2500
 msgid "Ensure that connection can switch between WiFi and 3G"
-msgstr ""
+msgstr "Assurez-vous que la connexion peut être basculée entre Wi-Fi et 3G"
 
 #. steps
 #: ../units/touch.pxu:2501
@@ -3103,11 +3111,15 @@ msgid ""
 "   Ensure WiFi connected\n"
 "   Ensure DUT connected to 3G network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'une carte SIM est présente\n"
+"   Assurez-vous que vous êtes connecté en Wi-Fi\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en 3G"
 
 #. summary
 #: ../units/touch.pxu:2522
 msgid "Ensure that connection can switch between WiFi and HSPA"
-msgstr ""
+msgstr "Assurez-vous que la connexion peut être basculée entre Wi-Fi et 3G+"
 
 #. steps
 #: ../units/touch.pxu:2523
@@ -3117,6 +3129,10 @@ msgid ""
 "   Ensure WiFi connected\n"
 "   Ensure DUT connected to HSPA network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'une carte SIM est présente\n"
+"   Assurez-vous que vous êtes connecté en Wi-Fi\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en 3G+"
 
 #. steps
 #: ../units/touch.pxu:2523
@@ -3143,7 +3159,7 @@ msgstr ""
 #. summary
 #: ../units/touch.pxu:2544
 msgid "Ensure that call quality is acceptable in 2G"
-msgstr ""
+msgstr "Assurez-vous que la qualité des appels est acceptable en 2G"
 
 #. steps
 #: ../units/touch.pxu:2545
@@ -3152,11 +3168,14 @@ msgid ""
 "   Prepare 2 DUT and 2 Reference\n"
 "   Ensure 2G SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez deux appareils à tester et deux références\n"
+"   Assurez-vous qu'une carte SIM 2G est présente"
 
 #. summary
 #: ../units/touch.pxu:2564
 msgid "Ensure that call quality is acceptable in 3G"
-msgstr ""
+msgstr "Assurez-vous que la qualité des appels est acceptable en 3G"
 
 #. steps
 #: ../units/touch.pxu:2565
@@ -3165,6 +3184,9 @@ msgid ""
 "   Prepare 2 DUT and 2 References\n"
 "   Ensure 3G SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez deux appareils à tester et deux références\n"
+"   Assurez-vous qu'une carte SIM 3G est présente"
 
 #. steps
 #: ../units/touch.pxu:2565
@@ -3174,6 +3196,11 @@ msgid ""
 "   2. Reference1 makes a MO call to Reference2\n"
 "   3. Compare the call quality between DUT and Reference"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel du premier appareil à tester vers le second\n"
+"   2. Passez un appel du premier appareil de référence vers le second\n"
+"   3. Comparez la qualité des appels entre les appareils à tester et les "
+"références"
 
 #. verification
 #: ../units/touch.pxu:2577
@@ -3183,7 +3210,7 @@ msgstr "   1. La qualité de l'appel est-elle acceptable ?"
 #. summary
 #: ../units/touch.pxu:2584
 msgid "Ensure that data performance is acceptable in GPRS"
-msgstr ""
+msgstr "Assurez-vous que la réception des données est acceptable en GPRS"
 
 #. steps
 #: ../units/touch.pxu:2585
@@ -3192,11 +3219,14 @@ msgid ""
 "   Prepare 1 DUT and 1 References\n"
 "   Ensure DUT connected to GPRS network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez un appareil à tester et un de référence\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en GPRS"
 
 #. summary
 #: ../units/touch.pxu:2605
 msgid "Ensure that data performance is acceptable in edge"
-msgstr ""
+msgstr "Assurez-vous que la réception des données est acceptable en EDGE"
 
 #. steps
 #: ../units/touch.pxu:2606
@@ -3205,11 +3235,14 @@ msgid ""
 "   Prepare 1 DUT and 1 References\n"
 "   Ensure DUT connected to Edge network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez un appareil à tester et un de référence\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en EDGE"
 
 #. summary
 #: ../units/touch.pxu:2626
 msgid "Ensure that data performance is acceptable in 3g"
-msgstr ""
+msgstr "Assurez-vous que la réception des données est acceptable en 3G"
 
 #. steps
 #: ../units/touch.pxu:2627
@@ -3218,11 +3251,14 @@ msgid ""
 "   Prepare 1 DUT and 1 References\n"
 "   Ensure DUT connected to 3G network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez un appareil à tester et un de référence\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en 3G"
 
 #. summary
 #: ../units/touch.pxu:2647
 msgid "Ensure that data performance is acceptable in HSPA"
-msgstr ""
+msgstr "Assurez-vous que la réception des données est acceptable en 3G+"
 
 #. steps
 #: ../units/touch.pxu:2648
@@ -3231,6 +3267,9 @@ msgid ""
 "   Prepare 1 DUT and 1 References\n"
 "   Ensure DUT connected to HSPA network"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez un appareil à tester et un de référence\n"
+"   Assurez-vous que l'appareil à tester est connecté au réseau en 3G+"
 
 #. steps
 #: ../units/touch.pxu:2648
@@ -3241,17 +3280,29 @@ msgid ""
 "   3. From Ref, Open web browser and navigate to www.speedtest.net\n"
 "   4. Compare both DUT and Reference"
 msgstr ""
+"ACTIONS :\n"
+"   1. À partir de l'appareil à tester, ouvrez le navigateur Internet et "
+"allez sur www.speedtest.net\n"
+"   2. Appuyez sur « Test »\n"
+"   3. À partir de la référence, ouvrez le navigateur Internet et allez sur "
+"www.speedtest.net\n"
+"   4. Appuyez sur « Test »\n"
+"   5. Comparez l'appareil à tester et la référence"
 
 #. verification
 #: ../units/touch.pxu:2661
 msgid "   1. Is DUT data performance similar to Reference?"
 msgstr ""
+"   1. La réception des données de l'appareil à tester est-elle similaire à "
+"celle de la référence ?"
 
 #. summary
 #: ../units/touch.pxu:2668
 msgid ""
 "Ensure that the failure rate of call drop in poor signal area is acceptable"
 msgstr ""
+"Assurez-vous que le taux d'échec lié à une interruption d'appel dans une "
+"zone à faible signal est acceptable"
 
 #. steps
 #: ../units/touch.pxu:2669
@@ -3260,6 +3311,10 @@ msgid ""
 "   Prepare 2 DUT and 2 References\n"
 "   Ensure 1 DUT and 1 Reference are in poor signal area"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez deux appareils à tester et deux de références\n"
+"   Assurez-vous qu'un appareil à tester et qu'un de référence sont dans des "
+"zones de faible signal"
 
 #. steps
 #: ../units/touch.pxu:2669
@@ -3269,6 +3324,11 @@ msgid ""
 "   2. Reference1 makes a MO call to Reference2\n"
 "   3. Compare the failure rate of call drop between DUT1 and Reference1"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel du premier appareil à tester vers le second\n"
+"   2. Passez un appel du premier appareil de référence vers le second\n"
+"   3. Comparez le taux d'échec lié à une interruption d'appel entre le "
+"premier appareil à tester et le premier appareil de référence"
 
 #. steps
 #: ../units/touch.pxu:2669
@@ -3276,16 +3336,20 @@ msgid ""
 "TEARDOWN:\n"
 "   End the calls"
 msgstr ""
+"FIN :\n"
+"   Terminez les appels"
 
 #. verification
 #: ../units/touch.pxu:2681
 msgid "   1. Does failure rate of DUT1 similar to Reference1"
 msgstr ""
+"   1. Le taux d'échec lié à une interruption d'appel est-il similaire entre "
+"le premier appareil à tester et le premier appareil de référence ?"
 
 #. summary
 #: ../units/touch.pxu:2688
 msgid "Ensure that data roaming can work correctly"
-msgstr ""
+msgstr "Assurez-vous que l'intinérance de données fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:2689
@@ -3293,6 +3357,8 @@ msgid ""
 "SETUP:\n"
 "   Ensure a foreign SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous qu'une carte SIM étrangère est présente"
 
 #. steps
 #: ../units/touch.pxu:2689
@@ -3301,6 +3367,10 @@ msgid ""
 "   1. Ensure that DUT can connect to a roaming 3G network\n"
 "   2. Open web browser, navigate to ubuntu.com"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'appareil à tester peut se connecter à un réseau 3G "
+"en itinérance\n"
+"   2. Ouvrez un navigateur Internet et allez sur ubuntu.com"
 
 #. steps
 #: ../units/touch.pxu:2689
@@ -3308,6 +3378,8 @@ msgid ""
 "TEARDOWN:\n"
 "   Close webbrowser"
 msgstr ""
+"FIN :\n"
+"   Fermez le navigateur Internet"
 
 #. verification
 #: ../units/touch.pxu:2699
@@ -3315,17 +3387,22 @@ msgid ""
 "   1. Does DUT connect to a roaming data network successfully?\n"
 "   2. Was ubuntu.com loaded?"
 msgstr ""
+"   1. L'appareil à tester s'est-il connecté avec succès à un réseau de "
+"données en itinérance ?\n"
+"   2. La page ubuntu.com s'est-elle chargée ?"
 
 #. name
 #: ../units/touch.pxu:2705
 msgid "Telephony/Interruptions"
-msgstr ""
+msgstr "Téléphonie/Interruptions"
 
 #. summary
 #: ../units/touch.pxu:2711
 msgid ""
 "Ensure that SMS alert sound can be played correctly during music playback"
 msgstr ""
+"Assurez-vous que le son des alertes des SMS peut être lu correctement lors "
+"de la lecture de musique"
 
 #. steps
 #: ../units/touch.pxu:2712
@@ -3336,6 +3413,11 @@ msgid ""
 "   3. Ensure that music playback will be stopped and then play the SMS "
 "receiving alert sound"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le lecteur de musique et écoutez un fichier musical\n"
+"   2. Envoyez un SMS à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la musique sera interrompue avant de "
+"lire le son d'alerte de réception du SMS"
 
 #. verification
 #: ../units/touch.pxu:2723
@@ -3344,12 +3426,17 @@ msgid ""
 "   2. Is SMS alert sound played?\n"
 "   3. Is Message indicator show up?"
 msgstr ""
+"   1. La lecture de la musique est-elle interrompue ?\n"
+"   2. Le son d'alerte de réception du SMS est-il lu ?\n"
+"   3. L'indicateur de message s'affiche-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:2732
 msgid ""
 "Ensure that MMS alert sound can be played correctly during music playback"
 msgstr ""
+"Assurez-vous que le son d'alerte des MMS peut être lu correctement lors de "
+"la lecture de musique"
 
 #. steps
 #: ../units/touch.pxu:2733
@@ -3360,6 +3447,11 @@ msgid ""
 "   3. Ensure that music playback will be stopped and then play the MMS "
 "receiving alert sound"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le lecteur de musique et écoutez un fichier musical\n"
+"   2. Envoyez un MMS à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la musique sera interrompue avant de "
+"lire le son d'alerte de réception du MMS"
 
 #. verification
 #: ../units/touch.pxu:2744
@@ -3368,6 +3460,9 @@ msgid ""
 "   2. Is MMS alert sound played?\n"
 "   3. Is Message indicator show up?"
 msgstr ""
+"   1. La lecture de la musique est-elle interrompue ?\n"
+"   2. Le son d'alerte de réception du MMS est-il lu ?\n"
+"   3. L'indicateur de message s'affiche-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:2753
@@ -3375,6 +3470,8 @@ msgid ""
 "Ensure that incoming call ringtone can be played correctly during music "
 "playback"
 msgstr ""
+"Assurez-vous que la sonnerie des appels entrants peut être lue correctement "
+"lors de la lecture de musique"
 
 #. steps
 #: ../units/touch.pxu:2754
@@ -3385,6 +3482,11 @@ msgid ""
 "   3. Ensure that music playback will be stopped and then play the incoming "
 "call ringtone"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le lecteur de musique et écoutez un fichier musical\n"
+"   2. Passez un appel à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la musique sera interrompue avant de "
+"lire la sonnerie des appels entrants"
 
 #. verification
 #: ../units/touch.pxu:2765
@@ -3393,12 +3495,17 @@ msgid ""
 "   2. Is incoming call ringtone played?\n"
 "   3. Is call snap decision show up?"
 msgstr ""
+"   1. La lecture de la musique est-elle interrompue ?\n"
+"   2. La sonnerie des appels entrants est-elle lue ?\n"
+"   3. Le choix de répondre/refuser est-il affiché ?"
 
 #. summary
 #: ../units/touch.pxu:2774
 msgid ""
 "Ensure that SMS alert sound can be played correctly during video playback"
 msgstr ""
+"Assurez-vous que le son des alertes des SMS peut être lu correctement lors "
+"de la lecture de vidéos"
 
 #. steps
 #: ../units/touch.pxu:2775
@@ -3409,6 +3516,11 @@ msgid ""
 "   3. Ensure that music playback will be stopped and then play the SMS "
 "receiving alert sound"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le lecteur multimédia et lisez un fichier vidéo\n"
+"   2. Envoyez un SMS à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la musique sera interrompue avant de "
+"lire le son d'alerte de réception du SMS"
 
 #. verification
 #: ../units/touch.pxu:2786
@@ -3417,12 +3529,17 @@ msgid ""
 "   2. Is SMS alert sound played?\n"
 "   3. Is Message indicator show up?"
 msgstr ""
+"   1. La lecture de la vidéo est-elle interrompue ?\n"
+"   2. Le son d'alerte de réception du SMS est-il lu ?\n"
+"   3. L'indicateur de message s'affiche-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:2795
 msgid ""
 "Ensure that MMS alert sound can be played correctly during video playback"
 msgstr ""
+"Assurez-vous que le son d'alerte des MMS peut être lu correctement lors de "
+"la lecture de vidéos"
 
 #. steps
 #: ../units/touch.pxu:2796
@@ -3433,6 +3550,11 @@ msgid ""
 "   3. Ensure that music playback will be stopped and then play the MMS "
 "receiving alert sound"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le lecteur multimédia et lisez un fichier vidéo\n"
+"   2. Envoyez un MMS à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la musique sera interrompue avant de "
+"lire le son d'alerte de réception du MMS"
 
 #. verification
 #: ../units/touch.pxu:2807
@@ -3441,6 +3563,9 @@ msgid ""
 "   2. Is MMS alert sound played?\n"
 "   3. Is Message indicator show up?"
 msgstr ""
+"   1. La lecture de la vidéo est-elle interrompue ?\n"
+"   2. Le son d'alerte de réception du MMS est-il lu ?\n"
+"   3. L'indicateur de message s'affiche-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:2816
@@ -3448,6 +3573,8 @@ msgid ""
 "Ensure that incoming call ringtone can be played correctly during video "
 "playback"
 msgstr ""
+"Assurez-vous que la sonnerie des appels entrants peut être lue correctement "
+"lors de la lecture de vidéos"
 
 #. steps
 #: ../units/touch.pxu:2817
@@ -3458,6 +3585,11 @@ msgid ""
 "   3. Ensure that music playback will be stopped and then play the incoming "
 "call ringtone"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le lecteur multimédia et lisez un fichier vidéo\n"
+"   2. Passez un appel à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la musique sera interrompue avant de "
+"lire la sonnerie des appels entrants"
 
 #. verification
 #: ../units/touch.pxu:2828
@@ -3466,6 +3598,9 @@ msgid ""
 "   2. Is incoming call ringtone played?\n"
 "   3. Is call snap decision show up?"
 msgstr ""
+"   1. La lecture de la vidéo est-elle interrompue ?\n"
+"   2. La sonnerie des appels entrants est-elle lue ?\n"
+"   3. Le choix de répondre/refuser est-il affiché ?"
 
 #. summary
 #: ../units/touch.pxu:2837
@@ -3473,12 +3608,16 @@ msgid ""
 "Ensure that incoming call ringtone can be played correctly while browsing "
 "via GPRS data"
 msgstr ""
+"Assurez-vous que la sonnerie des appels entrants peut être lue correctement "
+"lors de la navigation à l'aide des données en GPRS"
 
 #. summary
 #: ../units/touch.pxu:2858
 msgid ""
 "Ensure that mo call can be performed correctly while browsing via GPRS data"
 msgstr ""
+"Assurez-vous que les appels peuvent être passés correctement lors de la "
+"navigation à l'aide des données en GPRS"
 
 #. summary
 #: ../units/touch.pxu:2878
@@ -3486,6 +3625,8 @@ msgid ""
 "Ensure that incoming call ringtone can be played correctly while browsing "
 "via 3g data"
 msgstr ""
+"Assurez-vous que la sonnerie des appels entrants peut être lue correctement "
+"lors de la navigation à l'aide de données en 3G"
 
 #. steps
 #: ../units/touch.pxu:2879
@@ -3495,6 +3636,10 @@ msgid ""
 "   2. Make a MO call to DUT\n"
 "   3. Ensure that the incoming call ringtone is played"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le navigateur Internet et allez sur www.ubuntu.com\n"
+"   2. Passez un appel à l'appareil à tester\n"
+"   3. Assurez-vous que la sonnerie de l'appel entrant est lue"
 
 #. verification
 #: ../units/touch.pxu:2891
@@ -3502,12 +3647,16 @@ msgid ""
 "   1. Is incoming call ringtone played?\n"
 "   2. Is call snap decision show up?"
 msgstr ""
+"   1. La sonnerie de l'appel entrant est-elle lue ?\n"
+"   2. Le choix de répondre/refuser est-il affiché ?"
 
 #. summary
 #: ../units/touch.pxu:2899
 msgid ""
 "Ensure that mo call can be performed correctly while browsing via 3g data"
 msgstr ""
+"Assurez-cous que les appels peuvent être passés correctement lors de la "
+"navigation à l'aide de données en 3G"
 
 #. steps
 #: ../units/touch.pxu:2900
@@ -3517,11 +3666,15 @@ msgid ""
 "   2. Make a MO call\n"
 "   3. Ensure that the MO call can be performed"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le navigateur Internet et allez sur www.ubuntu.com\n"
+"   2. Passez un appel\n"
+"   3. Assurez-vous que l'appel peut être passé"
 
 #. verification
 #: ../units/touch.pxu:2912
 msgid "   1. Is MO call performed correctly?"
-msgstr ""
+msgstr "   1. L'appel est-il correctement passé ?"
 
 #. summary
 #: ../units/touch.pxu:2919
@@ -3529,6 +3682,8 @@ msgid ""
 "Ensure that incoming call ringtone can be played correctly while playing "
 "streaming video via gprs data"
 msgstr ""
+"Assurez-vous que la sonnerie des appels entrants peut être lue correctement "
+"lors de la lecture de vidéos en streaming à l'aide des données en GPRS"
 
 #. steps
 #: ../units/touch.pxu:2920
@@ -3537,6 +3692,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Connected to GPRS data"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous que la carte SIM est présente\n"
+"   2. Assurez-vous que vous êtes connecté aux données en GPRS"
 
 #. summary
 #: ../units/touch.pxu:2941
@@ -3544,6 +3702,8 @@ msgid ""
 "Ensure that mo call can be performed correctly while playing streaming video "
 "via 3g data"
 msgstr ""
+"Assurez-vous que les appels peuvent être passés correctement lors de la "
+"lecture de vidéos en streaming à l'aide des données en 3G"
 
 #. steps
 #: ../units/touch.pxu:2942
@@ -3552,6 +3712,9 @@ msgid ""
 "   1. Ensure SIM is present\n"
 "   2. Connected to 3G data"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Assurez-vous que la carte SIM est présente\n"
+"   2. Assurez-vous que vous êtes connecté aux données en 3G"
 
 #. steps
 #: ../units/touch.pxu:2942
@@ -3563,6 +3726,12 @@ msgid ""
 "   3. Ensure that streaming video is stopped and the incoming call ringtone "
 "is played"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez le navigateur Internet et allez sur www.youtube.com\n"
+"   2. Lisez un clip vidéo sur YouTube\n"
+"   2. Passez un appel à l'appareil à tester\n"
+"   3. Assurez-vous que la lecture de la vidéo en streaming est interrompue "
+"avant que la sonnerie de l'appel entrant ne soit lue"
 
 #. verification
 #: ../units/touch.pxu:2955
@@ -3570,6 +3739,9 @@ msgid ""
 "   1. Is streaming video stopped and then incoming call ringtone played?\n"
 "   2. Is call snap decision show up?"
 msgstr ""
+"   1. Le streaming de la vidéo est-il interrompu avant que la sonnerie de "
+"l'appel entrant ne soit lue ?\n"
+"   2. Le choix de répondre/refuser est-il affiché ?"
 
 #. summary
 #: ../units/touch.pxu:2963
@@ -3577,6 +3749,8 @@ msgid ""
 "Ensure that call can be taken on Bluetooth headset while downloading a large "
 "file"
 msgstr ""
+"Assurez-vous que les appels peuvent être passés avec un casque Bluetooth "
+"lors du téléchargement d'un fichier volumineux"
 
 #. steps
 #: ../units/touch.pxu:2964
@@ -3585,6 +3759,10 @@ msgid ""
 "   1. Pair a Bluetooth headset with the phone\n"
 "   2. Begin downloading a large file with the DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Appairez un casque Bluetooth avec le téléphone\n"
+"   2. Commencez le téléchargement d'un fichier volumineux avec l'appareil à "
+"tester"
 
 #. steps
 #: ../units/touch.pxu:2964
@@ -3593,17 +3771,22 @@ msgid ""
 "   1. Make a call to the DUT\n"
 "   2. Answer the call"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel à l'appareil à tester\n"
+"   2. Répondez à l'appel"
 
 #. verification
 #: ../units/touch.pxu:2972
 msgid ""
 "   1. Verify that call can be taking correctly on the Bluetooth headset"
 msgstr ""
+"   1. Vérifiez que l'appel peut être correctement passé avec le casque "
+"Bluetooth"
 
 #. name
 #: ../units/touch.pxu:2977
 msgid "Message/SMS/MMS (SIM1)"
-msgstr ""
+msgstr "Message/SMS/MMS (SIM1)"
 
 #. steps
 #: ../units/touch.pxu:3171
@@ -3612,16 +3795,20 @@ msgid ""
 "   1. DUT1 send SMS message to DUT2 w/ foreign SIM\n"
 "   2. Ensure that send SMS message to foreign SIM works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Envoyez un SMS du premier appareil à tester au second équipé d'une "
+"carte SIM étrangère\n"
+"   2. Assurez-vous que l'envoi d'un SMS à une carte SIM étrangère fonctionne"
 
 #. name
 #: ../units/touch.pxu:3269
 msgid "Message/SMS/MMS (SIM2)"
-msgstr ""
+msgstr "Message/SMS/MMS (SIM2)"
 
 #. summary
 #: ../units/touch.pxu:3275
 msgid "Ensure that SMS messages can be sent to single contact"
-msgstr ""
+msgstr "Assurez-vous que les SMS peuvent être envoyés à un contact unique"
 
 #. steps
 #: ../units/touch.pxu:3276
@@ -3631,16 +3818,20 @@ msgid ""
 "   2. Select a contact and send the text\n"
 "   3. Ensure SMS sent correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie\n"
+"   2. Sélectionnez un contact et envoyez un texte\n"
+"   3. Assurez-vous que le SMS a été correctement envoyé"
 
 #. verification
 #: ../units/touch.pxu:3287
 msgid "   1. Is SMS sent correctly?"
-msgstr ""
+msgstr "   1. Le SMS a-t-il été envoyé correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3294
 msgid "Ensure that SMS messages can be sent to multiple contacts"
-msgstr ""
+msgstr "Assurez-vous que les SMS peuvent être envoyés à plusieurs contacts"
 
 #. steps
 #: ../units/touch.pxu:3295
@@ -3650,16 +3841,20 @@ msgid ""
 "   2. Select multiple contacts and send the text\n"
 "   3. Ensure SMS sent correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie\n"
+"   2. Sélectionnez plusieurs contacts et envoyez-leur un texte\n"
+"   3. Assurez-vous que le SMS est correctement envoyé"
 
 #. verification
 #: ../units/touch.pxu:3306
 msgid "   1. Is SMS sent to multiple contacts correctly?"
-msgstr ""
+msgstr "   1. Le SMS est-il correctement envoyé à plusieurs contacts ?"
 
 #. summary
 #: ../units/touch.pxu:3313
 msgid "Ensure that SMS messages can be received correctly"
-msgstr ""
+msgstr "Assurez-vous que les SMS peuvent être correctement reçus"
 
 #. steps
 #: ../units/touch.pxu:3314
@@ -3669,11 +3864,16 @@ msgid ""
 "   2. Ensure notification is shown when text is received\n"
 "   3. Ensure text is received in messaging app"
 msgstr ""
+"ACTIONS :\n"
+"   1. Envoyez un SMS du deuxième appareil à tester au premier\n"
+"   2. Assurez-vous qu'une notification est affichée lorsque le message est "
+"reçu\n"
+"   3. Assurez-vous que le texte est reçu dans l'application de messagerie"
 
 #. verification
 #: ../units/touch.pxu:3326
 msgid "   1. Is SMS received correctly?"
-msgstr ""
+msgstr "   1. Le SMS est-il correctement reçu ?"
 
 #. summary
 #: ../units/touch.pxu:3333
@@ -3681,6 +3881,8 @@ msgid ""
 "Ensure that concatenate SMS message can be sent to single contact (more than "
 "160 characters)"
 msgstr ""
+"Assurez-vous que les SMS concaténés (de plus de 160 caractères) peuvent être "
+"envoyés à un contact unique"
 
 #. steps
 #: ../units/touch.pxu:3334
@@ -3691,6 +3893,13 @@ msgid ""
 "   3. Ensure SMS sent to DUT2 correctly\n"
 "   4. Ensure DUT2 received two messages"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Saisissez un SMS de plus de 160 caractères et envoyez-le au deuxième "
+"appareil à tester\n"
+"   3. Assurez-vous que le SMS est correctement envoyé au deuxième appareil à "
+"tester\n"
+"   4. Assurez-vous que le deuxième appareil à tester reçoit deux messages"
 
 #. verification
 #: ../units/touch.pxu:3347
@@ -3698,6 +3907,8 @@ msgid ""
 "   1. Is SMS sent correctly?\n"
 "   2. Is DUT2 received two messages?"
 msgstr ""
+"   1. Le SMS est-il correctement envoyé ?\n"
+"   2. Le deuxième appareil à tester a-t-il reçu deux messages ?"
 
 #. summary
 #: ../units/touch.pxu:3355
@@ -3705,6 +3916,8 @@ msgid ""
 "Ensure that concatenate SMS message can be sent to multiple contacts (more "
 "than 160 characters)"
 msgstr ""
+"Assurez-vous que les SMS concaténés (de plus de 160 caractères) peuvent être "
+"envoyés à plusieurs contacts"
 
 #. steps
 #: ../units/touch.pxu:3356
@@ -3712,6 +3925,8 @@ msgid ""
 "SETUP:\n"
 "   Ensure SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Assurez-vous que la carte SIM est présente"
 
 #. steps
 #: ../units/touch.pxu:3356
@@ -3722,6 +3937,13 @@ msgid ""
 "   3. Ensure SMS sent to multiple contacts correctly\n"
 "   4. Ensure each contact received two messages"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie\n"
+"   2. Saisissez un SMS de plus de 160 caractères et envoyez-le à plusieurs "
+"contacts\n"
+"   3. Assurez-vous que le SMS est correctement envoyé aux différents "
+"contacts\n"
+"   4. Assurez-vous que chaque contact a reçu deux messages"
 
 #. verification
 #: ../units/touch.pxu:3368
@@ -3729,6 +3951,8 @@ msgid ""
 "   1. Is SMS sent correctly?\n"
 "   2. Is every contact received two messages?"
 msgstr ""
+"   1. Le SMS est-il envoyé correctement ?\n"
+"   2. Chaque contact a-t-il reçu deux messages ?"
 
 #. summary
 #: ../units/touch.pxu:3376
@@ -3736,6 +3960,8 @@ msgid ""
 "Ensure that SMS message with special characters can be sent correctly (e.g "
 "#.$ å)"
 msgstr ""
+"Assurez-vous que les SMS contenant des caractères spéciaux ( par exemple #, "
+"$, å) peuvent être correctement envoyés"
 
 #. steps
 #: ../units/touch.pxu:3377
@@ -3746,6 +3972,14 @@ msgid ""
 "   3. Ensure SMS sent to DUT2 correctly\n"
 "   4. Ensure DUT2 can display special characters correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Saisissez des caractères spéciaux et envoyez-les au deuxième appareil "
+"à tester\n"
+"   3. Assurez-vous que le SMS est correctement envoyé au deuxième appareil à "
+"tester\n"
+"   4. Assurez-vous que le deuxième appareil à tester peut afficher "
+"correctement des caractères spéciaux"
 
 #. verification
 #: ../units/touch.pxu:3390
@@ -3753,6 +3987,8 @@ msgid ""
 "   1. Is SMS sent correctly?\n"
 "   2. Is special characters displayed correctly?"
 msgstr ""
+"   1. Le SMS est-il correctement envoyé ?\n"
+"   2. Les caractères spéciaux sont-il affichés correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3398
@@ -3760,6 +3996,8 @@ msgid ""
 "Ensure that SMS message containing an ampersand (&) in the middle can be "
 "displayed correctly"
 msgstr ""
+"Assurez-vous que les SMS contenant une esperluette (&) dans leur corps "
+"peuvent être correctement affichés"
 
 #. steps
 #: ../units/touch.pxu:3399
@@ -3769,16 +4007,21 @@ msgid ""
 "   2. Input some text with an ampersand in the middle\n"
 "   3. Send to DUT2"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Saisissez du texte avec une esperluette en plein milieu\n"
+"   3. Envoyez le message au deuxième appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:3411
 msgid "   1. Is message displayed correctly"
-msgstr ""
+msgstr "   1. Le message est-il correctement affiché ?"
 
 #. summary
 #: ../units/touch.pxu:3418
 msgid "Ensure that SMS message containing a URL can be displayed correctly"
 msgstr ""
+"Assurez-vous qu'un message contenant un URL peut être correctement affiché"
 
 #. steps
 #: ../units/touch.pxu:3419
@@ -3788,6 +4031,10 @@ msgid ""
 "   2. Input some text and a URL\n"
 "   3. Send to DUT2"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Saisissez du texte et un URL\n"
+"   3. Envoyez le message au deuxième appareil à tester"
 
 #. steps
 #: ../units/touch.pxu:3419
@@ -3795,6 +4042,8 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Close the messaging app"
 msgstr ""
+"FIN :\n"
+"   1. Fermez l'application de messagerie"
 
 #. verification
 #: ../units/touch.pxu:3431
@@ -3802,11 +4051,14 @@ msgid ""
 "   1. Is the message displayed correctly\n"
 "   2. Can you click on the URL and it open in the browser"
 msgstr ""
+"   1. Le message est-il affiché correctement ?\n"
+"   2. Pouvez-vous cliquer sur l'URL et ouvrir le lien dans le navigateur ?"
 
 #. summary
 #: ../units/touch.pxu:3439
 msgid "Ensure that forward SMS message to single contact works"
 msgstr ""
+"Assurez-vous que le transfert d'un SMS à un contact unique fonctionne"
 
 #. steps
 #: ../units/touch.pxu:3440
@@ -3815,6 +4067,9 @@ msgid ""
 "   Prepare two DUT\n"
 "   Ensure SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez deux appareils à tester\n"
+"   Assurez-vous que la carte SIM est présente"
 
 #. steps
 #: ../units/touch.pxu:3440
@@ -3826,11 +4081,20 @@ msgid ""
 "   4. Ensure DUT2 can forward message to DUT1\n"
 "   5. Ensure DUT1 can receive this message"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Envoyez un SMS au deuxième appareil à tester\n"
+"   3. Une fois que le deuxième appareil à tester a reçu le SMS, transférez-"
+"le au premier appareil à tester\n"
+"   4. Assurez-vous que le deuxième appareil à tester peut faire suivre le "
+"message au premier\n"
+"   5. Assurez-vous que le premier appareil à tester peut recevoir ce message"
 
 #. summary
 #: ../units/touch.pxu:3462
 msgid "Ensure that send SMS message to foreign country works"
 msgstr ""
+"Assurez-vous que l'envoi de SMS vers un pays étranger fonctionctionne"
 
 #. steps
 #: ../units/touch.pxu:3463
@@ -3839,6 +4103,9 @@ msgid ""
 "   Prepare two DUT, one with foreign SIM\n"
 "   Ensure SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez deux appareils à tester, dont un avec une carte SIM étrangère\n"
+"   Assurez-vous que la carte SIM est présente"
 
 #. steps
 #: ../units/touch.pxu:3463
@@ -3847,6 +4114,10 @@ msgid ""
 "   1. DUT1 send SMS message to DUT2 with foreign SIM\n"
 "   2. Ensure that send SMS message to foreign SIM works"
 msgstr ""
+"ACTIONS :\n"
+"   1. Envoyez un SMS du premier appareil à tester au second possédant une "
+"carte SIM étrangère\n"
+"   2. Assurez-vous que l'envoi de SMS à la carte SIM étrangère fonctionne"
 
 #. verification
 #: ../units/touch.pxu:3474
@@ -3854,11 +4125,13 @@ msgid ""
 "   1. Is SMS sent correctly?\n"
 "   2. Is DUT2 received message?"
 msgstr ""
+"   1. Le SMS est-il correctement envoyé ?\n"
+"   2. Le deuxième appareil à tester a-t-il reçu le message ?"
 
 #. summary
 #: ../units/touch.pxu:3482
 msgid "Ensure that MMS messages can be sent to single contact"
-msgstr ""
+msgstr "Assurez-vous que les MMS peuvent être envoyés à un contact unique"
 
 #. steps
 #: ../units/touch.pxu:3483
@@ -3868,16 +4141,21 @@ msgid ""
 "   2. Send a MMS message with picture, clip file or music file to DUT2\n"
 "   3. Ensure MMS sent correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Envoyez un MMS avec une image, un clip vidéo ou un morceau de musique "
+"au deuxième appareil à tester\n"
+"   3. Assurez-vous que le MMS est correctement envoyé"
 
 #. verification
 #: ../units/touch.pxu:3495
 msgid "   1. Is MMS sent correctly?"
-msgstr ""
+msgstr "   1. Le MMS est-il correctement envoyé ?"
 
 #. summary
 #: ../units/touch.pxu:3502
 msgid "Ensure that MMS messages can be sent to multiple contacts"
-msgstr ""
+msgstr "Assurez-vous que les MMS peuvent être envoyés à plusieurs contacts"
 
 #. steps
 #: ../units/touch.pxu:3503
@@ -3886,6 +4164,9 @@ msgid ""
 "   DUT setup MMS APN\n"
 "   Ensure SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Configurez le nom du point d'accès aux MMS de l'appareil à tester\n"
+"   Assurez-vous que la carte SIM est présente"
 
 #. steps
 #: ../units/touch.pxu:3503
@@ -3895,16 +4176,20 @@ msgid ""
 "   2. Select multiple contacts and send MMS\n"
 "   3. Ensure MMS sent correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie\n"
+"   2. Sélectionnez plusieurs contacts et envoyez-leur un MMS\n"
+"   3. Assurez-vous que le MMS est correctement envoyé"
 
 #. verification
 #: ../units/touch.pxu:3512
 msgid "   1. Is MMS sent to multiple contacts correctly?"
-msgstr ""
+msgstr "   1. Le MMS est-il envoyé correctement à plusieurs contacts ?"
 
 #. summary
 #: ../units/touch.pxu:3519
 msgid "Ensure that MMS messages can be received and played correctly"
-msgstr ""
+msgstr "Assurez-vous que les MMS peuvent être reçus et lus correctement"
 
 #. steps
 #: ../units/touch.pxu:3520
@@ -3914,6 +4199,10 @@ msgid ""
 "   2. Ensure notification is shown when MMS is received\n"
 "   3. Ensure that MMS message can be played correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Envoyez un MMS du deuxième appareil à tester au premier\n"
+"   2. Assurez-vous que la notification est affichée lorsque le MMS est reçu\n"
+"   3. Assurez-vous que le MMS peut être lu correctement"
 
 #. verification
 #: ../units/touch.pxu:3532
@@ -3921,11 +4210,14 @@ msgid ""
 "   1. Is MMS received correctly?\n"
 "   2. Does MMS play correctly?"
 msgstr ""
+"   1. Le MMS est-il correctement reçu ?\n"
+"   2. Le MMS se lit-il correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3540
 msgid "Ensure that forward MMS message to single contact works"
 msgstr ""
+"Assurez-vous que le transfert d'un MMS vers un contact unique fonctionne"
 
 #. steps
 #: ../units/touch.pxu:3541
@@ -3934,6 +4226,10 @@ msgid ""
 "   Prepare two DUT and setup MMS APN\n"
 "   Ensure SIM is present"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez deux appareils à tester et configurez le nom du point d'accès "
+"aux MMS \n"
+"   Assurez-vous que la carte SIM est présente"
 
 #. steps
 #: ../units/touch.pxu:3541
@@ -3945,6 +4241,14 @@ msgid ""
 "   4. Ensure DUT2 can forward message to DUT1\n"
 "   5. Ensure DUT1 can receive this message"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application de messagerie avec le premier appareil à tester\n"
+"   2. Envoyez un MMS au deuxième appareil à tester\n"
+"   3. Une fois que le deuxième appareil à tester a reçu le MMS, retransférez-"
+"le vers le premier appareil à tester\n"
+"   4. Assurez-vous que le deuxième appareil à tester peut transférer le "
+"message au premier\n"
+"   5. Assurez-vous que le premier appareil à tester peut recevoir ce message"
 
 #. steps
 #: ../units/touch.pxu:3541
@@ -3952,6 +4256,8 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Close messaging app"
 msgstr ""
+"FIN :\n"
+"   1. Fermez l'application de messagerie"
 
 #. verification
 #: ../units/touch.pxu:3555
@@ -3959,16 +4265,19 @@ msgid ""
 "   1. Did DUT2 forward message work?\n"
 "   2. Is DUT1 received this message?"
 msgstr ""
+"   1. Le transfert du message à partir du deuxième appareil à tester a-t-il "
+"fonctionné ?\n"
+"   2. Le premier appareil à tester a-t-il reçu ce message ?"
 
 #. name
 #: ../units/touch.pxu:3561
 msgid "Camera/Camera Test"
-msgstr ""
+msgstr "Caméra/Test de la caméra"
 
 #. summary
 #: ../units/touch.pxu:3567
 msgid "Ensure that camera app can be launched"
-msgstr ""
+msgstr "Assurez-vous que l'application Caméra peut être lancée"
 
 #. steps
 #: ../units/touch.pxu:3568
@@ -3976,16 +4285,20 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Camera app from application scope"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur l'application Caméra dans le moteur de recherche des "
+"applications"
 
 #. verification
 #: ../units/touch.pxu:3574
 msgid "   1. Did camera app launch?"
-msgstr ""
+msgstr "   1. L'application Caméra s'est-elle lancée ?"
 
 #. summary
 #: ../units/touch.pxu:3581
 msgid "Ensure that the rear camera preview and zoom works"
 msgstr ""
+"Assurez-vous que l'aperçu et le zoom de la caméra arrière fonctionnent"
 
 #. steps
 #: ../units/touch.pxu:3582
@@ -3995,16 +4308,21 @@ msgid ""
 "   2. Switch camera to rear camera, make sure the view updates\n"
 "   3. Zoom in/out, make sure the view updates"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'image prise par la caméra est affichée\n"
+"   2. Basculez la caméra en caméra arrière, assurez-vous que l'affichage se "
+"met à jour\n"
+"   3. Zoomez/dézoomez, assurez-vous que l'affichage se met à jour"
 
 #. verification
 #: ../units/touch.pxu:3593
 msgid "   1. Does the back camera work?"
-msgstr ""
+msgstr "   1. La caméra arrière fonctionne-t-elle ?"
 
 #. summary
 #: ../units/touch.pxu:3600
 msgid "Ensure that the front camera preview and zoom works"
-msgstr ""
+msgstr "Assurez-vous que l'aperçu et le zoom de la caméra avant fonctionnent"
 
 #. steps
 #: ../units/touch.pxu:3601
@@ -4014,16 +4332,22 @@ msgid ""
 "   2. Switch camera to Front camera, make sure the view updates\n"
 "   3. Zoom in/out make sure the view updates"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'image prise par la caméra est affichée\n"
+"   2. Basculez la caméra en caméra avant, assurez-vous que l'affichage se "
+"met à jour\n"
+"   3. Zoomez/dézoomez, assurez-vous que l'affichage se met à jour"
 
 #. verification
 #: ../units/touch.pxu:3612
 msgid "   1. Does the front camera work?"
-msgstr ""
+msgstr "   1. La caméra avant fonctionne-t-elle ?"
 
 #. summary
 #: ../units/touch.pxu:3619
 msgid "Ensure that photos can be captured with the rear camera"
 msgstr ""
+"Assurez-vous que des photos peuvent être prises avec la caméra arrière"
 
 #. steps
 #: ../units/touch.pxu:3620
@@ -4032,11 +4356,14 @@ msgid ""
 "   1. Capture a picture with rear camera\n"
 "   2. Open gallery app, ensure pictures are shown"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une photo avec la caméra arrière\n"
+"   2. Ouvrez l'application Galerie, assurez-vous que les images s'affichent"
 
 #. summary
 #: ../units/touch.pxu:3637
 msgid "Ensure that photos can be captured with the front camera"
-msgstr ""
+msgstr "Assurez-vous que les photos peuvent être prises avec la caméra avant"
 
 #. steps
 #: ../units/touch.pxu:3638
@@ -4045,6 +4372,9 @@ msgid ""
 "   1. Capture a picture with front camera\n"
 "   2. Open gallery app, ensure pictures are shown"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une photo avec la caméra avant\n"
+"   2. Ouvrez l'application Galerie, assurez-vous que les images s'affichent"
 
 #. steps
 #: ../units/touch.pxu:3638
@@ -4052,16 +4382,19 @@ msgid ""
 "TEARDOWN:\n"
 "   Close camera app, close gallery app"
 msgstr ""
+"FIN :\n"
+"   Fermez l'application Caméra, fermez l'application Galerie"
 
 #. verification
 #: ../units/touch.pxu:3648
 msgid "   1.Is the picture found in the gallery app?"
-msgstr ""
+msgstr "   1. Avez-vous retrouvé l'image dans l'application Galerie ?"
 
 #. summary
 #: ../units/touch.pxu:3655
 msgid "Ensure that video can be captured with the rear camera"
 msgstr ""
+"Assurez-vous que des vidéos peuvent être prises avec la caméra arrière"
 
 #. steps
 #: ../units/touch.pxu:3656
@@ -4070,11 +4403,15 @@ msgid ""
 "   1. Capture a video with rear camera\n"
 "   2. Open gallery app, ensure video clips are shown"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une vidéo avec la caméra arrière\n"
+"   2. Ouvrez l'application Galerie, assurez-vous que les clips vidéos sont "
+"affichés"
 
 #. summary
 #: ../units/touch.pxu:3674
 msgid "Ensure that video can be captured with the front camera"
-msgstr ""
+msgstr "Assurez-vous que des vidéos peuvent être prises avec la caméra avant"
 
 #. steps
 #: ../units/touch.pxu:3675
@@ -4083,6 +4420,10 @@ msgid ""
 "   1. Capture a video with front camera\n"
 "   2. Open gallery app, ensure video clips are shown"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une vidéo avec la caméra avant\n"
+"   2. Ouvrez l'application Galerie, assurez-vous que les clips vidéos sont "
+"affichés"
 
 #. verification
 #: ../units/touch.pxu:3685
@@ -4090,11 +4431,13 @@ msgid ""
 "   1. Is the video captured?\n"
 "   2. Can the video clips be viewed?"
 msgstr ""
+"   1. La vidéo a-t-elle été enregistrée ?\n"
+"   2. Les clips vidéos peuvent-ils être lus ?"
 
 #. summary
 #: ../units/touch.pxu:3693
 msgid "Ensure that camera flash led can work as expected"
-msgstr ""
+msgstr "Assurez-vous que le flash de la caméra fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:3694
@@ -4103,16 +4446,20 @@ msgid ""
 "   1. Switch on flash support to auto\n"
 "   2. Take a photo under low light"
 msgstr ""
+"ACTIONS :\n"
+"   1. Faites basculer le flash en mode automatique\n"
+"   2. Prenez une photo avec une faible luminosité"
 
 #. verification
 #: ../units/touch.pxu:3704
 msgid "   1. Does flash led work correctly?"
-msgstr ""
+msgstr "   1. Le flash fonctionne-t-il correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3711
 msgid "Compare front camera photo with reference device"
 msgstr ""
+"Comparez une photo prise par la caméra avant avec un appareil de référence"
 
 #. steps
 #: ../units/touch.pxu:3712
@@ -4124,11 +4471,18 @@ msgid ""
 "with front camera of reference Android device\n"
 "   4. Open photo in gallery app of Android device"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une photo avec la caméra avant de l'appareil à tester\n"
+"   2. Ouvrez la photo dans l'application Galerie\n"
+"   3. Prenez la même photo (essayez de conserver les mêmes conditions "
+"d'éclairage) avec la caméra avant d'un appareil de référence sous Android\n"
+"   4. Ouvrez la photo dans l'application Galerie de l'appareil sous Android"
 
 #. summary
 #: ../units/touch.pxu:3732
 msgid "Compare rear camera photo with reference device"
 msgstr ""
+"Comparez une photo prise par la caméra arrière avec un appareil de référence"
 
 #. steps
 #: ../units/touch.pxu:3733
@@ -4140,6 +4494,12 @@ msgid ""
 "with rear camera of reference Android device\n"
 "   4. Open photo in gallery app of Android device"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une photo avec la caméra arrière de l'appareil à tester\n"
+"   2. Ouvrez la photo dans l'application Galerie\n"
+"   3. Prenez la même photo (essayez de conserver les mêmes conditions "
+"d'éclairage) avec la caméra arrière d'un appareil de référence sous Android\n"
+"   4. Ouvrez la photo dans l'application Galerie de l'appareil sous Android"
 
 #. verification
 #: ../units/touch.pxu:3745
@@ -4147,11 +4507,14 @@ msgid ""
 "   1. Compare the quality of the photo\n"
 "   2. Are the photos of similar quality?"
 msgstr ""
+"   1. Comparez la qualité des photos\n"
+"   2. Les photos sont-elle de qualité similaire ?"
 
 #. summary
 #: ../units/touch.pxu:3753
 msgid "Compare font camera video with reference device"
 msgstr ""
+"Comparez les vidéos prises par la caméra avant avec un appareil de référence"
 
 #. steps
 #: ../units/touch.pxu:3754
@@ -4163,11 +4526,19 @@ msgid ""
 "front camera of reference Android device\n"
 "   4. Open video in gallery app of Android device"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une vidéo avec la caméra avant de l'appareil à tester\n"
+"   2. Ouvrez la vidéo dans l'application Galerie\n"
+"   3. Prenez la même vidéo (essayez de conserver les mêmes conditions "
+"d'éclairage) avec la caméra avant de l'appareil de référence sous Android\n"
+"   4. Ouvrez la vidéo dans l'application Galerie de l'appareil sous Android"
 
 #. summary
 #: ../units/touch.pxu:3774
 msgid "Compare rear camera video with reference device"
 msgstr ""
+"Comparez les vidéos prises par la caméra arrière avec un appareil de "
+"référence"
 
 #. steps
 #: ../units/touch.pxu:3775
@@ -4179,6 +4550,12 @@ msgid ""
 "rear camera of reference Android device\n"
 "   4. Open video in gallery app of Android device"
 msgstr ""
+"ACTIONS :\n"
+"   1. Prenez une vidéo avec la caméra arrière de l'appareil à tester\n"
+"   2. Ouvrez la vidéo dans l'application Galerie\n"
+"   3. Prenez la même vidéo (essayez de conserver les mêmes conditions "
+"d'éclairage) avec la caméra arrière de l'appareil de référence sous Android\n"
+"   4. Ouvrez la vidéo dans l'application Galerie de l'appareil sous Android"
 
 #. steps
 #: ../units/touch.pxu:3775
@@ -4186,6 +4563,8 @@ msgid ""
 "TEARDOWN:\n"
 "   Close camera app"
 msgstr ""
+"FIN :\n"
+"   Fermez l'application Caméra"
 
 #. verification
 #: ../units/touch.pxu:3787
@@ -4193,12 +4572,16 @@ msgid ""
 "   1. Compare the quality of the video\n"
 "   2. Are the videos of similar quality?"
 msgstr ""
+"   1. Comparez la qualité des vidéos\n"
+"   2. Les vidéos sont-elles de qualité similaire ?"
 
 #. summary
 #: ../units/touch.pxu:3795
 msgid ""
 "Ensure the quality/image size of a photo can be configured for front camera"
 msgstr ""
+"Assurez-vous que le rapport entre le niveau de qualité et la taille d'une "
+"photo peuvent être configurés pour la caméra avant"
 
 #. steps
 #: ../units/touch.pxu:3796
@@ -4207,12 +4590,17 @@ msgid ""
 "   1. Select various image qualities\n"
 "   2. Take a photo with the front camera of DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Sélectionnez plusieurs qualités d'image\n"
+"   2. Prenez une photo avec la caméra avant de l'appareil à tester"
 
 #. summary
 #: ../units/touch.pxu:3811
 msgid ""
 "Ensure the quality/image size of a photo can be configured for rear camera"
 msgstr ""
+"Assurez-vous que le rapport entre le niveau de qualité et la taille d'une "
+"photo peuvent être configurés pour la caméra arrière"
 
 #. steps
 #: ../units/touch.pxu:3812
@@ -4220,6 +4608,8 @@ msgid ""
 "SETUP:\n"
 "   Open camera app"
 msgstr ""
+"PRÉALABLES :\n"
+"   Ouvrez l'application Caméra"
 
 #. steps
 #: ../units/touch.pxu:3812
@@ -4228,6 +4618,9 @@ msgid ""
 "   1. Select various image qualities\n"
 "   2. Take a photo with the rear camera of DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Sélectionnez plusieurs qualités d'image\n"
+"   2. Prenez une photo avec la caméra arrière de l'appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:3819
@@ -4235,16 +4628,19 @@ msgid ""
 "   1. Examine the captured photos over MTP\n"
 "   2. Verify that the sizes match the selection in the camera app"
 msgstr ""
+"   1. Examinez les photos prises via le gestionnaire de fichiers\n"
+"   2. Vérifiez que les tailles correspondent à la sélection dans "
+"l'application Caméra"
 
 #. name
 #: ../units/touch.pxu:3825
 msgid "Audio/Audio path"
-msgstr ""
+msgstr "Audio/Chemin audio"
 
 #. summary
 #: ../units/touch.pxu:3831
 msgid "Ensure that the internal microphone works as expected"
-msgstr ""
+msgstr "Assurez-vous que le microphone interne fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:3832
@@ -4254,16 +4650,20 @@ msgid ""
 "   2. Speak to internal microphone\n"
 "   3. Ensure DUT2 can hear voice"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Parlez dans le microphone interne\n"
+"   3. Assurez-vous que le deuxième appareil à tester peut entendre la voix"
 
 #. verification
 #: ../units/touch.pxu:3843
 msgid "   1. Did DUT2 hear voice?"
-msgstr ""
+msgstr "   1. Le deuxième appareil à tester a-t-il entendu la voix ?"
 
 #. summary
 #: ../units/touch.pxu:3850
 msgid "Ensure that the internal speaker works as expected"
-msgstr ""
+msgstr "Assurez-vous que le haut-parleur interne fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:3851
@@ -4273,16 +4673,20 @@ msgid ""
 "   2. Speak to DUT2\n"
 "   3. Ensure voice come out from internal speaker"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Parlez au deuxième appareil à tester\n"
+"   3. Assurez-vous que la voix sort du haut-parleur interne"
 
 #. verification
 #: ../units/touch.pxu:3862
 msgid "   1. Did you hear voice?"
-msgstr ""
+msgstr "   1. Avez-vous entendu la voix ?"
 
 #. summary
 #: ../units/touch.pxu:3869
 msgid "Ensure that the headset works as expected"
-msgstr ""
+msgstr "Assurez-vous que le casque fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:3870
@@ -4291,6 +4695,9 @@ msgid ""
 "   1. Have two DUT\n"
 "   2. Plug in a headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Ayez deux appareils à tester\n"
+"   2. Branchez un casque"
 
 #. steps
 #: ../units/touch.pxu:3870
@@ -4302,6 +4709,12 @@ msgid ""
 "   4. Speak to DUT2\n"
 "   5. Ensure voice come out from external speaker"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Parlez dans le casque\n"
+"   3. Assurez-vous que le deuxième appareil à tester peut entendre la voix\n"
+"   4. Parlez au deuxième appareil à tester\n"
+"   5. Assurez-vous que la voix sort du haut-parleur externe"
 
 #. steps
 #: ../units/touch.pxu:3870
@@ -4309,16 +4722,20 @@ msgid ""
 "TEARDOWN:\n"
 "   Unplug the headset"
 msgstr ""
+"FIN :\n"
+"   Débranchez le casque"
 
 #. verification
 #: ../units/touch.pxu:3884
 msgid "   1. Did both speaker and microphone of headset work correctly?"
 msgstr ""
+"   1. Le  haut-parleur et le microphone du casque fonctionnent-ils "
+"correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3891
 msgid "Ensure that Bluetooth headset works as expected"
-msgstr ""
+msgstr "Assurez-vous que le casque Bluetooth fonctionne correctement"
 
 #. steps
 #: ../units/touch.pxu:3892
@@ -4327,6 +4744,9 @@ msgid ""
 "   1. Have two DUT\n"
 "   2. Paired with a Bluetooth headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Ayez deux appareils à tester\n"
+"   2. Appairez-les avec un casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:3892
@@ -4338,6 +4758,12 @@ msgid ""
 "   4. Speak to DUT2\n"
 "   5. Ensure voice come out from Bluetooth headset"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Parlez dans le casque Bluetooth\n"
+"   3. Assurez-vous que le deuxième appareil à tester peut entendre la voix\n"
+"   4. Parlez au deuxième appareil à tester\n"
+"   5. Assurez-vous que la voix sort du casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:3892
@@ -4345,12 +4771,16 @@ msgid ""
 "TEARDOWN:\n"
 "   Unpair Bluetooth headset"
 msgstr ""
+"FIN :\n"
+"   Désappairez le casque Bluetooth"
 
 #. verification
 #: ../units/touch.pxu:3906
 msgid ""
 "   1. Did both speaker and microphone of Bluetooth headset work correctly?"
 msgstr ""
+"   1. Le haut-parleur et le microphone du casque Bluetooth fonctionnent-ils "
+"correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3913
@@ -4358,6 +4788,8 @@ msgid ""
 "Ensure that the audio can be switched from internal to headset during "
 "playing music"
 msgstr ""
+"Assurez-vous que le son peut être basculé du haut-parleur interne à celui du "
+"casque lors de la lecture de musique"
 
 #. steps
 #: ../units/touch.pxu:3914
@@ -4365,6 +4797,8 @@ msgid ""
 "SETUP:\n"
 "   Prepare a headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez un casque"
 
 #. steps
 #: ../units/touch.pxu:3914
@@ -4377,6 +4811,13 @@ msgid ""
 "   5. Unplug the headset\n"
 "   6. Ensure music switch back to internal speaker"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Assurez-vous que la musique sort du haut-parleur interne\n"
+"   3. Branchez un casque\n"
+"   4. Assurez-vous que la musique provient du casque\n"
+"   5. Débranchez le casque\n"
+"   6. Assurez-vous que la musique a rebasculé vers le haut-parleur interne"
 
 #. verification
 #: ../units/touch.pxu:3928
@@ -4385,6 +4826,9 @@ msgid ""
 "   2. Did the sound can be heard from headset?\n"
 "   3. Did the sound can be heard from internal speaker?"
 msgstr ""
+"   1. Le son peut-il être entendu depuis le haut-parleur interne ?\n"
+"   2. Le son peut-il être entendu depuis le casque ?\n"
+"   3. Le son peut-il être entendu depuis le haut-parleur interne ?"
 
 #. summary
 #: ../units/touch.pxu:3937
@@ -4392,6 +4836,8 @@ msgid ""
 "Ensure that the audio can be switched from internal to Bluetooth headset "
 "during playing music"
 msgstr ""
+"Assurez-vous que le son peut être basculé du haut-parleur interne à celui du "
+"casque Bluetooth lors de la lecture de musique"
 
 #. steps
 #: ../units/touch.pxu:3938
@@ -4399,6 +4845,8 @@ msgid ""
 "SETUP:\n"
 "   Prepare a Bluetooth headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   Préparez un casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:3938
@@ -4411,6 +4859,13 @@ msgid ""
 "   5. Disconnect to Bluetooth Headset\n"
 "   6. Ensure music switch back to internal speaker"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Assurez-vous que la musique provient du haut-parleur interne\n"
+"   3. Connectez le casque Bluetooth\n"
+"   4. Assurez-vous que la musique provient du casque Bluetooth\n"
+"   5. Déconnectez le casque Bluetooth\n"
+"   6. Assurez-vous que la musique rebascule vers le haut-parleur interne"
 
 #. verification
 #: ../units/touch.pxu:3952
@@ -4419,12 +4874,17 @@ msgid ""
 "   2. Did the sound can be heard from Bluetooth headset?\n"
 "   3. Did the sound can be heard from internal speaker?"
 msgstr ""
+"   1. Le son peut-il être entendu depuis le haut-parleur interne ?\n"
+"   2. Le son peut-il être entendu depuis le casque Bluetooth ?\n"
+"   3. Le son peut-il être entendu depuis le haut-parleur interne ?"
 
 #. summary
 #: ../units/touch.pxu:3961
 msgid ""
 "Ensure that the audio can be switched from internal to headset during a call"
 msgstr ""
+"Assurez-vous que le son peut être basculé du haut-parleur vers un casque "
+"durant un appel"
 
 #. steps
 #: ../units/touch.pxu:3962
@@ -4433,6 +4893,9 @@ msgid ""
 "   1. Have two DUT\n"
 "   2. Prepare a headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Ayez deux appareils à tester\n"
+"   2. Préparez un casque"
 
 #. steps
 #: ../units/touch.pxu:3962
@@ -4447,6 +4910,15 @@ msgid ""
 "   6. Ensure that both output/input audio switch back to internal "
 "speaker/microphone"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Assurez-vous que l'entrée et la sortie audio proviennent du haut-"
+"parleur interne et du microphone\n"
+"   3. Branchez un casque\n"
+"   4. Assurez-vous que l'entrée et la sortie audio proviennent du casque\n"
+"   5. Débranchez le casque\n"
+"   6. Assurez-vous que l'entrée et la sortie audio ont rebasculé vers le "
+"haut-parleur et le microphone internes"
 
 #. verification
 #: ../units/touch.pxu:3977
@@ -4455,6 +4927,10 @@ msgid ""
 "   2. Did both output/input audio come from headset?\n"
 "   3. Did both output/input audio come from internal speaker?"
 msgstr ""
+"   1. L'entrée et la sortie audio proviennent-elles du haut-parleur "
+"interne ?\n"
+"   2. L'entrée et la sortie audio proviennent-elles du casque ?\n"
+"   3. L'entrée et la sortie audio proviennent-elles du haut-parleur interne ?"
 
 #. summary
 #: ../units/touch.pxu:3986
@@ -4462,6 +4938,8 @@ msgid ""
 "Ensure that the audio can be switched from internal to Bluetooth headset "
 "during a call"
 msgstr ""
+"Assurez-vous que le son peut être basculé du haut-parleur interne vers un "
+"casque Bluetooth durant un appel"
 
 #. steps
 #: ../units/touch.pxu:3987
@@ -4470,6 +4948,9 @@ msgid ""
 "   1. Have two DUT\n"
 "   2. Prepare a Bluetooth headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Ayez deux appareils à tester\n"
+"   2. Préparez un casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:3987
@@ -4484,6 +4965,16 @@ msgid ""
 "   6. Ensure that both output/input audio switch back to internal "
 "speaker/microphone"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Assurez-vous que l'entrée et la sortie audio proviennent du haut-"
+"parleur interne et du microphone\n"
+"   3. Appairez un casque Bluetooth\n"
+"   4. Assurez-vous que l'entrée et la sortie audio proviennent du casque "
+"Bluetooth\n"
+"   5. Déconnectez le casque Bluetooth\n"
+"   6. Assurez-vous que l'entrée et la sortie audio ont rebasculé vers le "
+"haut-parleur et le microphone internes"
 
 #. verification
 #: ../units/touch.pxu:4002
@@ -4492,11 +4983,17 @@ msgid ""
 "   2. Did both output/input audio come from Bluetooth headset?\n"
 "   3. Did both output/input audio come from internal speaker?"
 msgstr ""
+"   1. L'entrée et la sortie audio proviennent-elles du haut-parleur "
+"interne ?\n"
+"   2. L'entrée et la sortie audio proviennent-elles du casque Bluetooth ?\n"
+"   3. L'entrée et la sortie audio proviennent-elles du haut-parleur interne ?"
 
 #. summary
 #: ../units/touch.pxu:4011
 msgid "Ensure that streaming audio muted when receiving an incoming call"
 msgstr ""
+"Assurez-vous que la lecture de son en streaming se coupe lors de la "
+"réception d'un appel entrant"
 
 #. steps
 #: ../units/touch.pxu:4012
@@ -4508,6 +5005,14 @@ msgid ""
 "   4. Answer the call\n"
 "   5. Ensure both internal microphone and speaker work as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Passez un appel à l'appareil à tester\n"
+"   3. Assurez-vous que la musique s'arrête et que la sonnerie provient du "
+"haut-parleur interne\n"
+"   4. Répondez à l'appel\n"
+"   5. Assurez-vous que le microphone et le haut-parleur internes "
+"fonctionnent correctement"
 
 #. verification
 #: ../units/touch.pxu:4025
@@ -4516,11 +5021,17 @@ msgid ""
 "internal speaker?\n"
 "   2. Does both internal microphone and speaker work during the call?"
 msgstr ""
+"   1. La musique en streaming a-t-elle été arrêtée et la sonnerie a-t-elle "
+"été lue à partir du haut-parleur interne ?\n"
+"   2. Le microphone interne et le haut-parleur ont-ils fonctionné durant "
+"l'appel ?"
 
 #. summary
 #: ../units/touch.pxu:4033
 msgid "Ensure that streaming audio muted when make an outgoing call"
 msgstr ""
+"Assurez-vous que la lecture de son en streaming se coupe lors d'un appel "
+"sortant"
 
 #. steps
 #: ../units/touch.pxu:4034
@@ -4532,6 +5043,14 @@ msgid ""
 "   4. Pick the call from another phone\n"
 "   5. Ensure both internal microphone and speaker work as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Appelez le deuxième appareil à tester\n"
+"   3. Assurez-vous que la musique sera mise en pause et que vous entendrez "
+"la sonnerie à partir du haut-parleur interne\n"
+"   4. Prenez l'appel à partir d'un autre téléphone\n"
+"   5. Assurez-vous que le microphone et le haut-parleur internes "
+"fonctionnent correctement"
 
 #. steps
 #: ../units/touch.pxu:4034
@@ -4539,6 +5058,8 @@ msgid ""
 "TEARDOWN:\n"
 "   Disconnect the call"
 msgstr ""
+"FIN :\n"
+"   Déconnectez l'appel"
 
 #. verification
 #: ../units/touch.pxu:4047
@@ -4547,22 +5068,30 @@ msgid ""
 "internal speaker?\n"
 "   2. Does both internal microphone and speaker work during the call?"
 msgstr ""
+"   1. La musique en streaming a-t-elle été arrêtée et la sonnerie a-t-elle "
+"été entendue à partir du haut-parleur interne ?\n"
+"   2. Le microphone et le haut-parleur internes ont-ils correctement "
+"fonctionné durant l'appel ?"
 
 #. name
 #: ../units/touch.pxu:4053
 msgid "Audio/Volume adjustment"
-msgstr ""
+msgstr "Audio/Ajustement du volume"
 
 #. summary
 #: ../units/touch.pxu:4059
 msgid "Ensure that volume keys functions work as expected when play music"
 msgstr ""
+"Assurez-vous que les touches de contrôle du volume fonctionnent correctement "
+"lors de la lecture de musique"
 
 #. summary
 #: ../units/touch.pxu:4077
 msgid ""
 "Ensure that the volume keys functions work as expected when during a call"
 msgstr ""
+"Assurez-vous que les touches de contrôle du volume fonctionnent correctement "
+"lors d'un appel"
 
 #. steps
 #: ../units/touch.pxu:4078
@@ -4570,6 +5099,8 @@ msgid ""
 "SETUP:\n"
 "   Have two DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   Ayez deux appareils à tester"
 
 #. steps
 #: ../units/touch.pxu:4078
@@ -4580,6 +5111,12 @@ msgid ""
 "   3. Ensure that volume indicator changes accordingly\n"
 "   4. Ensure that sound become smaller or louder as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Augmentez/diminuez le volume en appuyant sur les touches de contrôle "
+"du volume\n"
+"   3. Assurez-vous que l'indicateur de volume change de manière appropriée\n"
+"   4. Assurez-vous que le son diminue ou augmente correctement"
 
 #. steps
 #: ../units/touch.pxu:4078
@@ -4587,11 +5124,15 @@ msgid ""
 "TEARDOWN:\n"
 "   Resume phone volume to default"
 msgstr ""
+"FIN :\n"
+"   Réinitialisez le volume du téléphone à sa valeur par défaut"
 
 #. summary
 #: ../units/touch.pxu:4098
 msgid "Ensure that the volume keys functions work with headset"
 msgstr ""
+"Assurez-vous que les touches de contrôle du volume fonctionnent avec un "
+"casque"
 
 #. summary
 #: ../units/touch.pxu:4120
@@ -4599,6 +5140,8 @@ msgid ""
 "Ensure that the volume keys functions work with headset after phone resume "
 "from sleep"
 msgstr ""
+"Assurez-vous que les touches de contrôle du volume fonctionnent avec un "
+"casque lorsque le téléphone sort de veille"
 
 #. steps
 #: ../units/touch.pxu:4121
@@ -4606,6 +5149,8 @@ msgid ""
 "SETUP:\n"
 "   Plug in a headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   Branchez un casque"
 
 #. steps
 #: ../units/touch.pxu:4121
@@ -4614,11 +5159,16 @@ msgid ""
 "   1. Resume phone volume to default\n"
 "   2. Unplug the headset"
 msgstr ""
+"FIN :\n"
+"   1. Réinitialisez le volume du téléphone à sa valeur par défaut\n"
+"   2. Débranchez le casque"
 
 #. summary
 #: ../units/touch.pxu:4144
 msgid "Ensure that the volume keys functions work with Bluetooth headset"
 msgstr ""
+"Assurez-vous que les touches de contrôle du volume fonctionnent avec un "
+"casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:4145
@@ -4629,6 +5179,12 @@ msgid ""
 "   3. Ensure that volume indicator changes accordingly\n"
 "   4. Ensure that sound become smaller or louder as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Augmentez/diminuez le volume en appuyant sur les touches de contrôle "
+"du volume\n"
+"   3. Assurez-vous que l'indicateur de volume change en conséquence\n"
+"   4. Assurez-vous que le son diminue ou augmente correctement"
 
 #. summary
 #: ../units/touch.pxu:4166
@@ -4636,6 +5192,8 @@ msgid ""
 "Ensure that the volume keys functions work with Bluetooth headset after "
 "phone resume from sleep"
 msgstr ""
+"Assurez-vous que les touches du contrôle du volume fonctionnent avec un "
+"casque Bluetooth lorsque le téléphone sort de veille"
 
 #. steps
 #: ../units/touch.pxu:4167
@@ -4643,6 +5201,8 @@ msgid ""
 "SETUP:\n"
 "   Pair with a Bluetooth headset"
 msgstr ""
+"PRÉALABLES :\n"
+"   Appairez l'appareil à tester avec un casque Bluetooth"
 
 #. steps
 #: ../units/touch.pxu:4167
@@ -4656,6 +5216,15 @@ msgid ""
 "   5. Ensure that volume indicator changes accordingly\n"
 "   6. Ensure that sound become smaller or louder as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Appuyez sur le bouton d'allumage pour éteindre l'écran du téléphone et "
+"patientez quelques secondes\n"
+"   3. Appuyez sur le bouton d'allumage pour allumer l'écran de l'appareil\n"
+"   4. Augmentez/diminuez le volume en appuyant sur les touches du contrôle "
+"du volume du téléphone\n"
+"   5. Assurez-vous que l'indicateur de volume change en conséquence\n"
+"   6. Assurez-vous que le son diminue ou augmente correctement"
 
 #. steps
 #: ../units/touch.pxu:4167
@@ -4664,6 +5233,9 @@ msgid ""
 "   1. Resume phone volume to default\n"
 "   2. Unpair the headset"
 msgstr ""
+"FIN :\n"
+"   1. Réinitialisez le volume du téléphone à sa valeur par défaut\n"
+"   2. Désappairez le casque"
 
 #. verification
 #: ../units/touch.pxu:4182
@@ -4671,11 +5243,15 @@ msgid ""
 "   1. Does the indicator properly update\n"
 "   2. Did the volume change?"
 msgstr ""
+"   1. L'indicateur se met-il correctement à jour ?\n"
+"   2. Le volume change-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:4190
 msgid "Ensure that the phone will be muted after volume set to minimum"
 msgstr ""
+"Assurez-vous que le son du téléphone est coupé lorsque le volume est réglé "
+"au minimum"
 
 #. steps
 #: ../units/touch.pxu:4191
@@ -4686,6 +5262,13 @@ msgid ""
 "   3. Ensure that volume indicator changes to the mute icon\n"
 "   4. Ensure the phone has muted"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier musical\n"
+"   2. Appuyez sur la touche de réduction du volume plusieurs fois jusqu'à ce "
+"que celui-ci soit au minimum\n"
+"   3. Assurez-vous que l'indicateur de volume se transforme en icône de "
+"coupure du son\n"
+"   4. Assurez-vous que le son du téléphone a été coupé"
 
 #. steps
 #: ../units/touch.pxu:4191
@@ -4693,6 +5276,8 @@ msgid ""
 "TEARDOWN:\n"
 "   Unmute the phone"
 msgstr ""
+"FIN :\n"
+"   Réactivez le son sur le téléphone"
 
 #. verification
 #: ../units/touch.pxu:4200
@@ -4700,12 +5285,16 @@ msgid ""
 "   1. Does the indicator properly update\n"
 "   2. Did the phone muted?"
 msgstr ""
+"   1. L'indicateur se met-il correctement à jour ?\n"
+"   2. Le son du téléphone s'est-il coupé ?"
 
 #. summary
 #: ../units/touch.pxu:4208
 msgid ""
 "Ensure that the phone presents a volume warning at near maximum volume"
 msgstr ""
+"Assurez-vous que le téléphone affiche un avertissement concernant le volume "
+"lorsque celui-ci se rapproche de son maximum"
 
 #. steps
 #: ../units/touch.pxu:4209
@@ -4713,6 +5302,8 @@ msgid ""
 "SETUP:\n"
 "   Set the device to minimum volume"
 msgstr ""
+"PRÉALABLES :\n"
+"   Réglez le volume de l'appareil au minimum"
 
 #. steps
 #: ../units/touch.pxu:4209
@@ -4723,6 +5314,12 @@ msgid ""
 "   2. Press the volume up key until maximum reached\n"
 "   3. Check that a volume warning dialog is presented"
 msgstr ""
+"ACTIONS :\n"
+"   ATTENTION : NE METTEZ PAS LES ÉCOUTEURS DANS VOS OREILLES\n"
+"   1. Lisez un fichier musical\n"
+"   2. Appuyez sur le bouton d'augmentation du volume jusqu'à ce que le "
+"maximum soit atteint\n"
+"   3. Vérifiez qu'un message d'avertissement concernant le volume est affiché"
 
 #. steps
 #: ../units/touch.pxu:4209
@@ -4730,21 +5327,25 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Set the volume back to  reasonable level"
 msgstr ""
+"FIN :\n"
+"   1. Réglez de nouveau le volume à un niveau raisonnable"
 
 #. verification
 #: ../units/touch.pxu:4221
 msgid "   1. Was a volume warning presented to the user?"
 msgstr ""
+"   1. Un avertissement concernant le volume a-t-il été présenté à "
+"l'utilisateur ?"
 
 #. name
 #: ../units/touch.pxu:4226
 msgid "Video/Video output"
-msgstr ""
+msgstr "Vidéo/Sortie vidéo"
 
 #. summary
 #: ../units/touch.pxu:4232
 msgid "Ensure that video playback work smoothly"
-msgstr ""
+msgstr "Assurez-vous que la lecture de vidéos fonctionne sans à-coups"
 
 #. steps
 #: ../units/touch.pxu:4233
@@ -4753,6 +5354,9 @@ msgid ""
 "   1. Play a video file\n"
 "   2. Ensure that video play smoothly on the screen"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lisez un fichier vidéo\n"
+"   2. Assurez-vous que la vidéo se lit sans à-coups à l'écran"
 
 #. steps
 #: ../units/touch.pxu:4233
@@ -4760,16 +5364,19 @@ msgid ""
 "TEARDOWN:\n"
 "   End the playback"
 msgstr ""
+"FIN :\n"
+"   Terminez la lecture"
 
 #. verification
 #: ../units/touch.pxu:4240
 msgid "   1. Does video playback smoothly?"
-msgstr ""
+msgstr "   1. La lecture de la vidéo se fait-elle sans à-coups ?"
 
 #. summary
 #: ../units/touch.pxu:4247
 msgid "Ensure that video output is resumed after wake up from sleep mode"
 msgstr ""
+"Assurez-vous que la sortie vidéo est reprise après un retour du mode veille"
 
 #. steps
 #: ../units/touch.pxu:4248
@@ -4777,6 +5384,9 @@ msgid ""
 "SETUP:\n"
 "   1. Dock phone/plugin HDMI adapter cable"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Connectez le téléphone à une station d'accueil ou branchez-le à un "
+"câble avec un adaptateur HDMI"
 
 #. steps
 #: ../units/touch.pxu:4248
@@ -4787,6 +5397,11 @@ msgid ""
 "   3. Press power button to resume\n"
 "   4. Ensure that screen is still displayed on external monitor"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'écran est affiché sur un moniteur externe\n"
+"   2. Appuyez sur le bouton d'allumage pour entrer en mode veille\n"
+"   3. Appuyez sur le bouton d'allumage pour en sortir\n"
+"   4. Assurez-vous que l'écran est toujours affiché sur le moniteur externe"
 
 #. steps
 #: ../units/touch.pxu:4248
@@ -4794,21 +5409,23 @@ msgid ""
 "TEARDOWN:\n"
 "   Disconnect HDMI cable/dock"
 msgstr ""
+"FIN :\n"
+"   Déconnectez le câble HDMI ou la station d'accueil"
 
 #. verification
 #: ../units/touch.pxu:4260
 msgid "   1. Does HDMI screen still display on external monitor?"
-msgstr ""
+msgstr "   1. L'écran HDMI s'affiche-t-il toujours sur le moniteur externe ?"
 
 #. name
 #: ../units/touch.pxu:4265
 msgid "Sensors/Sensors Testing"
-msgstr ""
+msgstr "Capteurs/Test des capteurs"
 
 #. summary
 #: ../units/touch.pxu:4271
 msgid "Ensure accelerometer is functioning"
-msgstr ""
+msgstr "Assurez-vous que l'accéléromètre fonctionne"
 
 #. steps
 #: ../units/touch.pxu:4272
@@ -4818,6 +5435,10 @@ msgid ""
 "   2. Change orientation\n"
 "   3. Ensure app orientation is changed"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lancez une application\n"
+"   2. Changez l'orientation de l'appareil\n"
+"   3. Assurez-vous que l'orientation de l'application change"
 
 #. steps
 #: ../units/touch.pxu:4272
@@ -4825,16 +5446,18 @@ msgid ""
 "TEARDOWN:\n"
 "   Close app"
 msgstr ""
+"FIN :\n"
+"   Fermez l'application"
 
 #. verification
 #: ../units/touch.pxu:4280
 msgid "   1. Is accelerometer working?"
-msgstr ""
+msgstr "   1. L'accéléromètre fonctionne-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:4287
 msgid "Ensure proximity sensor is functioning"
-msgstr ""
+msgstr "Assurez-vous que le capteur de proximité fonctionne"
 
 #. steps
 #: ../units/touch.pxu:4288
@@ -4842,6 +5465,8 @@ msgid ""
 "SETUP:\n"
 "   SIM card enabled"
 msgstr ""
+"PRÉALABLES :\n"
+"   Activez la carte SIM"
 
 #. steps
 #: ../units/touch.pxu:4288
@@ -4854,6 +5479,13 @@ msgid ""
 "   5. Put hand near phone\n"
 "   6. Ensure screen turns off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application composeur\n"
+"   2. Passez un appel\n"
+"   3. Éloignez rapidement le téléphone de votre visage\n"
+"   4. Assurez-vous que l'écran passe d'éteint à allumé\n"
+"   5. Placez votre main près du téléphone\n"
+"   6. Assurez-vous que l'écran s'éteint"
 
 #. steps
 #: ../units/touch.pxu:4288
@@ -4861,16 +5493,18 @@ msgid ""
 "TEARDOWN:\n"
 "   End call, close app"
 msgstr ""
+"FIN :\n"
+"   Terminez l'appel et fermez l'application"
 
 #. verification
 #: ../units/touch.pxu:4302
 msgid "   1. Is proximity sensor working?"
-msgstr ""
+msgstr "   1. Le capteur de proximité fonctionne-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:4309
 msgid "Ensure ambient light sensor is working"
-msgstr ""
+msgstr "Assurez-vous que le capteur de lumière ambiante fonctionne"
 
 #. steps
 #: ../units/touch.pxu:4310
@@ -4880,6 +5514,11 @@ msgid ""
 "   2. Move phone to a low light place\n"
 "   3. Move phone to a very bright place"
 msgstr ""
+"ACTIONS :\n"
+"   1. Activez l'ajustement automatique de la luminosité à partir des "
+"paramètres de luminosité\n"
+"   2. Déplacez le téléphone dans un endroit à faible luminosité\n"
+"   3. Déplacez le téléphone dans un endroit à forte luminosité"
 
 #. steps
 #: ../units/touch.pxu:4310
@@ -4887,16 +5526,18 @@ msgid ""
 "TEARDOWN:\n"
 "   Uncheck brightness adjust automatically"
 msgstr ""
+"FIN :\n"
+"   Décochez l'option d'ajustement automatique de la luminosité"
 
 #. verification
 #: ../units/touch.pxu:4318
 msgid "   1. Is ambient light sensor working?"
-msgstr ""
+msgstr "   1. Le capteur de lumière ambiante fonctionne-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:4325
 msgid "Ensure haptics are working"
-msgstr ""
+msgstr "Assurez-vous que le retour tactile fonctionne"
 
 #. steps
 #: ../units/touch.pxu:4326
@@ -4905,6 +5546,10 @@ msgid ""
 "   1. Open indicators\n"
 "   2. Switch between indicator tabs, ensure vibration occurs"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez les indicateurs\n"
+"   2. Naviguez entre les onglets des indicateurs et assurez-vous que des "
+"vibrations se produisent"
 
 #. steps
 #: ../units/touch.pxu:4326
@@ -4912,16 +5557,18 @@ msgid ""
 "TEARDOWN:\n"
 "   Close indicators"
 msgstr ""
+"FIN :\n"
+"   Fermez les indicateurs"
 
 #. verification
 #: ../units/touch.pxu:4333
 msgid "   1. Did vibration occur?"
-msgstr ""
+msgstr "   1. Des vibrations se sont-elles produites ?"
 
 #. summary
 #: ../units/touch.pxu:4340
 msgid "Ensure GPS is working"
-msgstr ""
+msgstr "Assurez-vous que le GPS fonctionne"
 
 #. steps
 #: ../units/touch.pxu:4341
@@ -4929,6 +5576,9 @@ msgid ""
 "SETUP:\n"
 "   Enable GPS and location detection from location indicator"
 msgstr ""
+"PRÉALABLES :\n"
+"   Activez le GPS et la détection de la localisation à partir de "
+"l'indicateur de localisation"
 
 #. steps
 #: ../units/touch.pxu:4341
@@ -4938,6 +5588,10 @@ msgid ""
 "   2. Tap location detect icon\n"
 "   3. Ensure Google Map can detect your location"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez un navigateur et connectez-vous à Google Map\n"
+"   2. Appuyez sur l'icône de détection de la localisation\n"
+"   3. Assurez-vous que Google Map puisse détecter votre localisation"
 
 #. steps
 #: ../units/touch.pxu:4341
@@ -4945,36 +5599,38 @@ msgid ""
 "TEARDOWN:\n"
 "   Close browser"
 msgstr ""
+"FIN :\n"
+"   Fermez le navigateur"
 
 #. verification
 #: ../units/touch.pxu:4352
 msgid "   1. Is GPS and location detection working?"
-msgstr ""
+msgstr "   1. Le GPS et la détection de la localisation fonctionnent-ils ?"
 
 #. summary
 #: ../units/touch.pxu:4359
 msgid "Ensure gyroscope sensor is working"
-msgstr ""
+msgstr "Assurez-vous que le capteur gyroscopique fonctionne"
 
 #. summary
 #: ../units/touch.pxu:4367
 msgid "Ensure compass sensor is working"
-msgstr ""
+msgstr "Assurez-vous que le capteur magnétique fonctionne"
 
 #. summary
 #: ../units/touch.pxu:4375
 msgid "Ensure gravity sensor is working"
-msgstr ""
+msgstr "Assurez-vous que le capteur de gravité fonctionne"
 
 #. name
 #: ../units/touch.pxu:4381
 msgid "Screen/Screen testing"
-msgstr ""
+msgstr "Écran/Test de l'écran"
 
 #. summary
 #: ../units/touch.pxu:4387
 msgid "Ensure that no screen flicker is present"
-msgstr ""
+msgstr "Assurez-vous qu'aucun scintillement de l'écran n’apparaît"
 
 #. steps
 #: ../units/touch.pxu:4388
@@ -4983,26 +5639,33 @@ msgid ""
 "   1. Use Unity\n"
 "   2. Ensure no screen flicker is present"
 msgstr ""
+"ACTIONS :\n"
+"   1. Utilisez l'interface utilisateur Unity\n"
+"   2. Assurez-vous qu'aucun scintillement de l'écran n’apparaît"
 
 #. verification
 #: ../units/touch.pxu:4395
 msgid "   1. Is screen flicker present?"
-msgstr ""
+msgstr "   1. Des scintillements de l'écran apparaissent-ils ?"
 
 #. summary
 #: ../units/touch.pxu:4402
 msgid "Ensure that pressing power properly suspends the phone"
 msgstr ""
+"Assurez-vous que l'appui sur le bouton d'allumage met correctement le "
+"téléphone en veille"
 
 #. verification
 #: ../units/touch.pxu:4410
 msgid "   1. Is phone suspended?"
-msgstr ""
+msgstr "   1. Le téléphone s'est-il mis en veille ?"
 
 #. summary
 #: ../units/touch.pxu:4417
 msgid "Ensure that the backlight is off when the phone is suspended"
 msgstr ""
+"Assurez-vous que le rétroéclairage est désactivé lorsque le téléphone est "
+"mis en veille"
 
 #. steps
 #: ../units/touch.pxu:4418
@@ -5011,16 +5674,22 @@ msgid ""
 "   1. Press power button\n"
 "   2. Ensure phone is properly suspended, and backlight is off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez sur le bouton d'allumage\n"
+"   2. Assurez-vous que le téléphone est correctement mis en veille et que le "
+"rétroéclairage est désactivé"
 
 #. verification
 #: ../units/touch.pxu:4425
 msgid "   1. Is backlight turned off?"
-msgstr ""
+msgstr "   1. Le rétroéclairage est-il désactivé ?"
 
 #. summary
 #: ../units/touch.pxu:4432
 msgid "Ensure that screen brightness can be changed from power indicator"
 msgstr ""
+"Assurez-vous que la luminosité de l'écran peut être modifiée à partir de "
+"l'indicateur d'alimentation"
 
 #. steps
 #: ../units/touch.pxu:4433
@@ -5029,11 +5698,17 @@ msgid ""
 "   1. Open Battery indicator\n"
 "   2. Swipe brightness level left and right, ensure brightness is changed"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'indicateur de batterie\n"
+"   2. Faites glisser le curseur de luminosité à gauche et à droite et "
+"assurez-vous que la luminosité est modifiée"
 
 #. summary
 #: ../units/touch.pxu:4447
 msgid "Ensure that screen brightness can be changed from system settings"
 msgstr ""
+"Assurez-vous que la luminosité de l'écran peut être modifiée à partir des "
+"paramètres du système"
 
 #. steps
 #: ../units/touch.pxu:4448
@@ -5043,16 +5718,21 @@ msgid ""
 "   2. Open battery page\n"
 "   3. Swipe brightness level left and right, ensure brightness is changed"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez les paramètres du système\n"
+"   2. Ouvrez la page relative à la batterie\n"
+"   3. Faites glisser le curseur de luminosité à gauche et à droite et "
+"assurez-vous que la luminosité est modifiée"
 
 #. verification
 #: ../units/touch.pxu:4456
 msgid "   1. Is brightness changed?"
-msgstr ""
+msgstr "   1. La luminosité est-elle modifiée ?"
 
 #. summary
 #: ../units/touch.pxu:4463
 msgid "Ensure that MIR is being run"
-msgstr ""
+msgstr "Assurez-vous que le serveur d'affichage MIR est exécuté"
 
 #. steps
 #: ../units/touch.pxu:4464
@@ -5061,16 +5741,20 @@ msgid ""
 "   1. Use Unity\n"
 "   2. Run 'ps ax | grep surf', ensure no results"
 msgstr ""
+"ACTIONS :\n"
+"   1. Utilisez l'interface utilisateur Unity\n"
+"   2. Exécutez la commande « ps ax | grep surf », assurez-vous qu'elle ne "
+"renvoie aucun résultat"
 
 #. verification
 #: ../units/touch.pxu:4471
 msgid "   1. Is MIR running?"
-msgstr ""
+msgstr "   1. MIR fonctionne-t-il ?"
 
 #. summary
 #: ../units/touch.pxu:4478
 msgid "Ensure the sensitivity of touchscreen"
-msgstr ""
+msgstr "Assurez-vous de la sensibilité de l'écran tactile"
 
 #. steps
 #: ../units/touch.pxu:4479
@@ -5079,16 +5763,21 @@ msgid ""
 "   1. Randomly tap the screen, slide the screen\n"
 "   2. Ensure that the the sensitivity of touch screen works as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez et faites glisser votre doigt aléatoirement sur l'écran\n"
+"   2. Assurez-vous que la sensibilité de l'écran tactile fonctionne "
+"correctement"
 
 #. verification
 #: ../units/touch.pxu:4486
 msgid "   1. Does the sensitivity of touch screen work as expected?"
 msgstr ""
+"   1. Le sensitivité de l'écran tactile fonctionne-t-elle correctement ?"
 
 #. summary
 #: ../units/touch.pxu:4493
 msgid "Ensure the touchscreen accuracy"
-msgstr ""
+msgstr "Assurez-vous de la précision de l'écran tactile"
 
 #. steps
 #: ../units/touch.pxu:4494
@@ -5099,16 +5788,21 @@ msgid ""
 "   3. Tap each characters\n"
 "   4. Ensure that the accuracy of touch screen is accurate enough"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application Notes\n"
+"   2. Lancez le clavier virtuel\n"
+"   3. Appuyez sur chacun des caractères\n"
+"   4. Assurez-vous que la précision de l'écran tactile est suffisamment bonne"
 
 #. verification
 #: ../units/touch.pxu:4503
 msgid "   1. Does the accuracy of touchscreen is accurate enough?"
-msgstr ""
+msgstr "   1. La précision de l'écran tactile est-elle suffisante ?"
 
 #. summary
 #: ../units/touch.pxu:4510
 msgid "Ensure the sensitivity of touchscreen in each edge"
-msgstr ""
+msgstr "Assurez-vous de la sensibilité de l'écran tactile sur chaque bord"
 
 #. steps
 #: ../units/touch.pxu:4511
@@ -5117,17 +5811,24 @@ msgid ""
 "   1. Randomly tap the screen, slide the screen that near the edge\n"
 "   2. Ensure that the the sensitivity of touch screen works as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appuyez aléatoirement sur l'écran et faites glisser votre doigt sur "
+"l'écran près des bords\n"
+"   2. Assurez-vous que la sensibilité de l'écran tactile fonctionne "
+"correctement"
 
 #. verification
 #: ../units/touch.pxu:4518
 msgid ""
 "   1. Does the sensitivity of touch screen in each edge work as expected?"
 msgstr ""
+"   1. La sensibilité de l'écran tactile près de chaque bord fonctionne-t-"
+"elle correctement ?"
 
 #. summary
 #: ../units/touch.pxu:4525
 msgid "Ensure the touchscreen accuracy in each edge"
-msgstr ""
+msgstr "Assurez-vous de la précision de l'écran tactile sur chaque bord"
 
 #. steps
 #: ../units/touch.pxu:4526
@@ -5139,17 +5840,26 @@ msgid ""
 "   4. Ensure that the accuracy of touch screen is accurate enough in each "
 "edge"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application Notes\n"
+"   2. Lancez le clavier virtuel\n"
+"   3. Appuyez sur chacun des caractères\n"
+"   4. Assurez-vous que la précision de l'écran tactile est suffisante près "
+"de chaque bord"
 
 #. verification
 #: ../units/touch.pxu:4535
 msgid ""
 "   1. Does the accuracy of touchscreen is accurate enough in each edge?"
 msgstr ""
+"   1. La précision de l'écran tactile est-elle suffisante sur chaque bord ?"
 
 #. summary
 #: ../units/touch.pxu:4542
 msgid "Ensure that long press touch screen can work as expected"
 msgstr ""
+"Assurez-vous que les appuis longs sur l'écran tactile fonctionnent "
+"correctement"
 
 #. steps
 #: ../units/touch.pxu:4543
@@ -5157,6 +5867,8 @@ msgid ""
 "SETUP:\n"
 "   Have several apps launched"
 msgstr ""
+"PRÉALABLES :\n"
+"   Lancez plusieurs applications"
 
 #. steps
 #: ../units/touch.pxu:4543
@@ -5167,6 +5879,13 @@ msgid ""
 "   3. Long press on an app\n"
 "   4. Ensure that the app will be launch as usual"
 msgstr ""
+"ACTIONS :\n"
+"   1. Faites un appui long sur une application en cours d'exécution à partir "
+"du moteur de recherche des applications\n"
+"   2. Assurez-vous qu'une icône de fermeture s'affiche pour fermer cette "
+"application\n"
+"   3. Faites un appui long sur une application\n"
+"   4. Assurez-vous que l'application sera lancée comme d'habitude"
 
 #. steps
 #: ../units/touch.pxu:4543
@@ -5174,6 +5893,8 @@ msgid ""
 "TEARDOWN:\n"
 "   Close apps"
 msgstr ""
+"FIN :\n"
+"   Fermez les applications"
 
 #. verification
 #: ../units/touch.pxu:4555
@@ -5181,16 +5902,20 @@ msgid ""
 "   1. Does long press action work as expected?\n"
 "   2. Did app launch after long press?"
 msgstr ""
+"   1. L'appui long a-t-il fonctionné correctement ?\n"
+"   2. Une application s'est-elle lancée après un appui long ?"
 
 #. name
 #: ../units/touch.pxu:4561
 msgid "Power Management/Indicator"
-msgstr ""
+msgstr "Gestion de l'alimentation/Indicateur"
 
 #. summary
 #: ../units/touch.pxu:4567
 msgid "Ensure that power indicator accurately shows charging status"
 msgstr ""
+"Assurez-vous que l'indicateur d'alimentation montre précisément l'état de "
+"charge"
 
 #. steps
 #: ../units/touch.pxu:4568
@@ -5201,16 +5926,22 @@ msgid ""
 "   3. Open system settings -> Battery\n"
 "   4. Ensure battery is listed as charging"
 msgstr ""
+"ACTIONS :\n"
+"   1. Utilisez l'interface utilisateur Unity\n"
+"   2. Assurez-vous que l'indicateur d'alimentation montre le chargement de "
+"la batterie\n"
+"   3. Ouvrez les Paramètres système -> Batterie\n"
+"   4. Assurez-vous que la batterie est affichée comme étant en charge"
 
 #. verification
 #: ../units/touch.pxu:4580
 msgid "   1. Is battery shown as charging?"
-msgstr ""
+msgstr "   1. La batterie est-elle affichée comme étant en charge ?"
 
 #. summary
 #: ../units/touch.pxu:4587
 msgid "Ensure that charging phone functions"
-msgstr ""
+msgstr "Assurez-vous que le chargement du téléphone fonctionne"
 
 #. steps
 #: ../units/touch.pxu:4588
@@ -5220,16 +5951,22 @@ msgid ""
 "   2. Unplug phone after some time\n"
 "   3. Ensure battery level actually decreases"
 msgstr ""
+"ACTIONS :\n"
+"   1. Chargez l'appareil à tester\n"
+"   2. Débranchez le téléphone après un certain temps\n"
+"   3. Assurez-vous que le niveau de batterie diminue bien"
 
 #. verification
 #: ../units/touch.pxu:4599
 msgid "   1. Did battery level decrease?"
-msgstr ""
+msgstr "   1. Le niveau de la batterie a-t-il diminué ?"
 
 #. summary
 #: ../units/touch.pxu:4606
 msgid "Ensure that unplugging from power will change the power indicator"
 msgstr ""
+"Assurez-vous que le débranchement de l'alimentation modifie l'indicateur "
+"d'alimentation"
 
 #. steps
 #: ../units/touch.pxu:4607
@@ -5237,6 +5974,8 @@ msgid ""
 "SETUP:\n"
 "   Power charger is plugged"
 msgstr ""
+"PRÉALABLES :\n"
+"   Le chargeur d'alimentation est branché"
 
 #. steps
 #: ../units/touch.pxu:4607
@@ -5246,16 +5985,21 @@ msgid ""
 "   2. Unplug charger\n"
 "   3. Ensure indicator now shows battery discharging"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'indicateur montre que la batterie est en charge\n"
+"   2. Débranchez le chargeur\n"
+"   3. Assurez-vous que l'indicateur montre désormais que la batterie se "
+"décharge"
 
 #. verification
 #: ../units/touch.pxu:4618
 msgid "   1. Is battery shown as discharging?"
-msgstr ""
+msgstr "   1. Le batterie est-elle affichée comme se déchargeant ?"
 
 #. summary
 #: ../units/touch.pxu:4625
 msgid "Ensure it pops up a low battery message"
-msgstr ""
+msgstr "Assurez-vous qu'un message de niveau de batterie faible s'affiche"
 
 #. steps
 #: ../units/touch.pxu:4626
@@ -5263,6 +6007,8 @@ msgid ""
 "SETUP:\n"
 "   Power charger not plugged"
 msgstr ""
+"PRÉALABLES :\n"
+"   Le chargeur d'alimentation n'est pas branché"
 
 #. steps
 #: ../units/touch.pxu:4626
@@ -5272,16 +6018,23 @@ msgid ""
 "   1. Observe the battery until it less than 10%\n"
 "   2. Ensure it pops up low battery message"
 msgstr ""
+"ACTIONS :\n"
+"   1. Observez le niveau de la batterie jusqu'à ce que celle-ci soit en-"
+"dessous de 10%\n"
+"   2. Assurez-vous qu'un message de niveau de batterie faible s'affiche"
 
 #. verification
 #: ../units/touch.pxu:4636
 msgid "   1. Does low battery message show correctly?"
 msgstr ""
+"   1. Un message de niveau de batterie faible s'est-il correctement affiché ?"
 
 #. summary
 #: ../units/touch.pxu:4643
 msgid "Ensure that the power indicator shows on the screen after dut off"
 msgstr ""
+"Assurez-vous que l'indicateur d'alimentation s'affiche à l'écran lorsque "
+"l'appareil à tester est éteint"
 
 #. steps
 #: ../units/touch.pxu:4644
@@ -5289,6 +6042,8 @@ msgid ""
 "SETUP:\n"
 "   Power charge is plugged"
 msgstr ""
+"PRÉALABLES :\n"
+"   Le chargeur d'alimentation est branché"
 
 #. steps
 #: ../units/touch.pxu:4644
@@ -5297,6 +6052,9 @@ msgid ""
 "   1. Turn off DUT\n"
 "   2. Ensure that it has a power indicator show up"
 msgstr ""
+"ACTIONS :\n"
+"   1. Éteignez l'appareil à tester\n"
+"   2. Assurez-vous que l'indicateur d'alimentation s'affiche"
 
 #. steps
 #: ../units/touch.pxu:4644
@@ -5304,21 +6062,25 @@ msgid ""
 "TEARDOWN:\n"
 "   Power on DUT"
 msgstr ""
+"FIN :\n"
+"   Allumez l'appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:4654
 msgid "   1. Is there a power indicator show on the screen?"
-msgstr ""
+msgstr "   1. Un indicateur d'alimentation s'affiche-t-il à l'écran ?"
 
 #. name
 #: ../units/touch.pxu:4659
 msgid "Power Management/Power consumption"
-msgstr ""
+msgstr "Gestion de l'alimentation/Consommation d'énergie"
 
 #. summary
 #: ../units/touch.pxu:4665
 msgid "Ensure that phone full charge time not more than 4hrs"
 msgstr ""
+"Assurez-vous que le temps de chargement complet du téléphone ne dépasse pas "
+"4 heures"
 
 #. steps
 #: ../units/touch.pxu:4666
@@ -5327,6 +6089,8 @@ msgid ""
 "SETUP:\n"
 "   Discharge phone battery to 0%"
 msgstr ""
+"PRÉALABLES :\n"
+"   Déchargez complètement la batterie du téléphone"
 
 #. steps
 #: ../units/touch.pxu:4666
@@ -5335,6 +6099,9 @@ msgid ""
 "   1. Plug in power charger to charge the phone\n"
 "   2. Measure the full charge time"
 msgstr ""
+"ACTIONS :\n"
+"   1. Branchez un chargeur d'alimentation pour recharger le téléphone\n"
+"   2. Mesurez le temps de charge complet"
 
 #. steps
 #: ../units/touch.pxu:4666
@@ -5342,16 +6109,20 @@ msgid ""
 "TEARDOWN:\n"
 "   None"
 msgstr ""
+"FIN :\n"
+"   Néant"
 
 #. verification
 #: ../units/touch.pxu:4676
 msgid "   1. Does full charge time is less than 4hrs?"
-msgstr ""
+msgstr "   1. Le temps de chargement complet est-il inférieur à 4 heures ?"
 
 #. summary
 #: ../units/touch.pxu:4683
 msgid "Ensure that phone talk time can surpass more than 8hrs"
 msgstr ""
+"Assurez-vous que le temps de parole au téléphone peut dépasser plus de 8 "
+"heures"
 
 #. steps
 #: ../units/touch.pxu:4684
@@ -5361,6 +6132,10 @@ msgid ""
 "   2. Power charge is not plugged\n"
 "   3. Have two DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Le téléphone est complètement chargé\n"
+"   2. Le chargeur d'alimentation n'est pas branché\n"
+"   3. Ayez deux appareils à tester"
 
 #. steps
 #: ../units/touch.pxu:4684
@@ -5369,6 +6144,9 @@ msgid ""
 "   1. Make a MO call to DUT2\n"
 "   2. Measure the talk time of phone"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel au deuxième appareil à tester\n"
+"   2. Mesurer le temps de parole du téléphone"
 
 #. steps
 #: ../units/touch.pxu:4684
@@ -5376,21 +6154,23 @@ msgid ""
 "TEARDOWN:\n"
 "   End the call"
 msgstr ""
+"FIN :\n"
+"   Terminez l'appel"
 
 #. verification
 #: ../units/touch.pxu:4696
 msgid "   1. Does talk time surpass than 8hrs?"
-msgstr ""
+msgstr "   1. Le temps de parole dépasse-t-il 8 heures ?"
 
 #. name
 #: ../units/touch.pxu:4701
 msgid "Storage/Internal Storage"
-msgstr ""
+msgstr "Stockage/Stockage interne"
 
 #. summary
 #: ../units/touch.pxu:4707
 msgid "Check for full disk warning"
-msgstr ""
+msgstr "Vérifiez qu'un avertissement s'affiche en cas de disque plein"
 
 #. steps
 #: ../units/touch.pxu:4708
@@ -5399,6 +6179,8 @@ msgid ""
 "SETUP:\n"
 "   1. Fill the disk to XX% of capacity"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Remplissez le disque à XX% de sa capacité"
 
 #. steps
 #: ../units/touch.pxu:4708
@@ -5406,6 +6188,8 @@ msgid ""
 "ACTIONS:\n"
 "   1. Begin recording a Video"
 msgstr ""
+"ACTIONS :\n"
+"   1. Commencez à enregistrer une vidéo"
 
 #. verification
 #: ../units/touch.pxu:4714
@@ -5414,16 +6198,19 @@ msgid ""
 "   1. Check that when the disk becomes XX% full a warning is displayed to "
 "the user"
 msgstr ""
+"   1. Vérifiez que lorsque le disque est rempli à XX% un message "
+"d'avertissement est affiché à l'utilisateur"
 
 #. name
 #: ../units/touch.pxu:4719
 msgid "Storage/MTP File Transfer"
-msgstr ""
+msgstr "Stockage/Transfert de fichier via MTP"
 
 #. summary
 #: ../units/touch.pxu:4725
 msgid "DUT connected to USB 2.0 port - recognized as MTP device"
 msgstr ""
+"Appareil à tester connecté à un port USB 2.0 - reconnu comme un appareil MTP"
 
 #. steps
 #: ../units/touch.pxu:4726
@@ -5436,11 +6223,22 @@ msgid ""
 "   5. Copy file from DUT\n"
 "   6. Make sure that copy/remove/modify functions work as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB 2.0\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Naviguez dans l'appareil\n"
+"   4. Copiez un fichier dans l'appareil à tester\n"
+"   5. Copiez un fichier à partir de l'appareil à tester\n"
+"   6. Assurez-vous que le fonctions copie/suppression/modification marchent "
+"correctement"
 
 #. summary
 #: ../units/touch.pxu:4748
 msgid "DUT connected to USB 2.0 port - large file transfer over MTP"
 msgstr ""
+"Appareil à tester connecté à un port USB 2.0 - transfert de fichier "
+"volumineux par MTP"
 
 #. steps
 #: ../units/touch.pxu:4749
@@ -5452,11 +6250,21 @@ msgid ""
 "   4. Make sure that large file can be transfer to DUT\n"
 "   5. Play this video file on DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB 2.0\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Copiez un fichier de 4Go vers l'appareil à tester\n"
+"   4. Assurez-vous que ce fichier volumineux peut être transféré vers "
+"l'appareil à tester\n"
+"   5. Lisez ce fichier vidéo sur l'appareil à tester"
 
 #. summary
 #: ../units/touch.pxu:4771
 msgid "DUT connected to USB 2.0 port - over 100 files to DUT over MTP"
 msgstr ""
+"Appareil connecté à un port USB 2.0 - transfert de plus de 100 fichiers vers "
+"l'appareil à tester via MTP"
 
 #. steps
 #: ../units/touch.pxu:4772
@@ -5467,11 +6275,19 @@ msgid ""
 "   3. Copy a folder with 100 files to DUT\n"
 "   4. Make sure that all the files can be transfer to DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB 2.0\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Copiez un dossier contenant 100 fichiers vers l'appareil à tester\n"
+"   4. Assurez-vous que tous les fichiers peuvent être transférés vers "
+"l'appareil à tester"
 
 #. summary
 #: ../units/touch.pxu:4792
 msgid "DUT connected to USB 3.0 port - recognized as MTP device"
 msgstr ""
+"Appareil à tester connecté à un port USB 3.0 - reconnu comme un appareil MTP"
 
 #. steps
 #: ../units/touch.pxu:4793
@@ -5479,6 +6295,8 @@ msgid ""
 "SETUP:\n"
 "   1. Prepare a USB cable"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Préparez un câble USB"
 
 #. steps
 #: ../units/touch.pxu:4793
@@ -5491,6 +6309,15 @@ msgid ""
 "   5. Copy file from DUT\n"
 "   6. Make sure that copy/remove/modify functions work as expected"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB 3.0\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Naviguez dans l'appareil\n"
+"   4. Copiez des fichiers dans l'appareil à tester\n"
+"   5. Copiez des fichiers vers l'appareil à tester\n"
+"   6. Assurez-vous que les fonctions copie/suppression/modification marchent "
+"correctement"
 
 #. verification
 #: ../units/touch.pxu:4807
@@ -5498,11 +6325,16 @@ msgid ""
 "   1. Does DUT recognize as MTP device?\n"
 "   2. Did copy/remove/modify functions work?"
 msgstr ""
+"   1. L'appareil à tester est-il reconnu comme un appareil MTP ?\n"
+"   2. Les fonctions copie/suppression/modification marchent-elles "
+"correctement ?"
 
 #. summary
 #: ../units/touch.pxu:4815
 msgid "DUT connected to USB 3.0 port - large file transfer over MTP"
 msgstr ""
+"Appareil à tester connecté à un port USB 3.0 - transfert de fichier "
+"volumineux par MTP"
 
 #. steps
 #: ../units/touch.pxu:4816
@@ -5511,6 +6343,9 @@ msgid ""
 "   1. Prepare a USB cable\n"
 "   2. Have a 4GB video file"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Préparez un câble USB\n"
+"   2. Ayez un fichier vidéo de 4Go"
 
 #. steps
 #: ../units/touch.pxu:4816
@@ -5522,6 +6357,14 @@ msgid ""
 "   4. Make sure that large file can be transferred to DUT\n"
 "   5. Play this video file on DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB 3.0\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Copiez un fichier de 4Go vers l'appareil à tester\n"
+"   4. Assurez-vous que ce fichier volumineux peut être transféré vers "
+"l'appareil à tester\n"
+"   5. Lisez ce fichier vidéo sur l'appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:4830
@@ -5529,11 +6372,15 @@ msgid ""
 "   1. Did large file transfer complete?\n"
 "   2. Can this file be playbacked?"
 msgstr ""
+"   1. Le transfert d'un fichier volumineux s'est-il terminé ?\n"
+"   2. Ce fichier peut-il être lu ?"
 
 #. summary
 #: ../units/touch.pxu:4838
 msgid "DUT connected to USB 3.0 port - over 100 files to DUT over MTP"
 msgstr ""
+"Appareil connecté à un port USB 3.0 - transfert de plus de 100 fichiers vers "
+"l'appareil à tester via MTP"
 
 #. steps
 #: ../units/touch.pxu:4839
@@ -5542,6 +6389,9 @@ msgid ""
 "   1. Prepare a USB cable\n"
 "   2. Have a folder with 100 files"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Préparez un câble USB\n"
+"   2. Ayez un dossier comprenant plus de 100 fichiers"
 
 #. steps
 #: ../units/touch.pxu:4839
@@ -5552,16 +6402,24 @@ msgid ""
 "   3. Copy a folder with 100 files to DUT\n"
 "   4. Make sure that all the files can be transferred to DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB 3.0\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Copiez un dossier contenant 100 fichiers vers l'appareil à tester\n"
+"   4. Assurez-vous que tous les fichiers peuvent être transférés vers "
+"l'appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:4852
 msgid "   1. Did files transfer complete?"
-msgstr ""
+msgstr "   1. Le transfert des fichiers s'est-il terminé ?"
 
 #. name
 #: ../units/touch.pxu:4857
 msgid "Storage/MTP Mediascanner Update"
 msgstr ""
+"Stockage/Mise à jour de l'analyseur de médias après transfert via MTP"
 
 #. summary
 #: ../units/touch.pxu:4863
@@ -5569,6 +6427,8 @@ msgid ""
 "Make sure that music scope can scan and add music file after mtp transfer to "
 "storage"
 msgstr ""
+"Assurez-vous que le moteur de recherche de musique peut balayer et ajouter "
+"des fichiers musicaux après un transfert via MTP sur l'espace de stockage"
 
 #. steps
 #: ../units/touch.pxu:4864
@@ -5577,6 +6437,9 @@ msgid ""
 "   1. Prepare a USB cable\n"
 "   2. Have several music files"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Préparez un câble USB\n"
+"   2. Ayez plusieurs fichiers musicaux"
 
 #. steps
 #: ../units/touch.pxu:4864
@@ -5588,6 +6451,15 @@ msgid ""
 "   4. Make sure that music files can be transferred to DUT\n"
 "   5. Launch Music scope"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB\n"
+"   2. Assurez-vous que l'appareil à tester a été reconnu comme un appareil "
+"MTP\n"
+"   3. Copiez des fichiers musicaux dans le dossier /dossier "
+"personnel/phablet/Musique/\n"
+"   4. Assurez-vous que ces fichiers musicaux peuvent être transférés vers "
+"l'appareil à tester\n"
+"   5. Lancez le moteur de recherche de musique"
 
 #. verification
 #: ../units/touch.pxu:4878
@@ -5595,6 +6467,8 @@ msgid ""
 "   1. Did music files transfer complete?\n"
 "   2. Does all the music files appear on the Music scope?"
 msgstr ""
+"   1. Le transfert des fichiers musicaux s'est-il terminé ?\n"
+"   2. Toute la musique apparaît-elle dans le moteur de recherche de musique ?"
 
 #. summary
 #: ../units/touch.pxu:4886
@@ -5602,6 +6476,9 @@ msgid ""
 "Make sure that music scope can scan and add music files that under folders "
 "after mtp transfer to storage"
 msgstr ""
+"Assurez-vous que le moteur de recherche de musique peut balayer et ajouter "
+"des fichiers musicaux qui sont sous des dossiers après un transfert via MTP "
+"vers l'espace de stockage"
 
 #. steps
 #: ../units/touch.pxu:4887
@@ -5610,6 +6487,9 @@ msgid ""
 "   1. Prepare a USB cable\n"
 "   2. Have several folders and each folder contains several music files"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Préparez un câble USB\n"
+"   2. Ayez plusieurs dossiers, chacun contenant plusieurs fichiers musicaux"
 
 #. steps
 #: ../units/touch.pxu:4887
@@ -5621,6 +6501,15 @@ msgid ""
 "   4. Make sure that folders can be transferred to DUT\n"
 "   5. Launch Music scope"
 msgstr ""
+"ACTIONS :\n"
+"   1. Connectez l'appareil à tester à un port USB\n"
+"   2. Assurez-vous que l'appareil à tester à été reconnu comme un appareil "
+"MTP\n"
+"   3. Copiez des dossiers dans le dossier /dossier "
+"personnel/phablet/Musique/\n"
+"   4. Assurez-vous que le dossiers peuvent être transférés vers l'appareil à "
+"tester\n"
+"   5. Lancez le moteur de recherche de musique"
 
 #. steps
 #: ../units/touch.pxu:4887
@@ -5628,6 +6517,8 @@ msgid ""
 "TEARDOWN:\n"
 "   1. Disconnect DUT"
 msgstr ""
+"FIN :\n"
+"   1. Déconnectez l'appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:4901
@@ -5635,6 +6526,9 @@ msgid ""
 "   1. Did music files transfer complete?\n"
 "   2. Does music files appear on the Music scope correctly?"
 msgstr ""
+"   1. Le transfert des fichiers musicaux s'est-il terminé ?\n"
+"   2. Les fichiers musicaux apparaissent-ils correctement dans le moteur de "
+"recherche de musique ?"
 
 #. name
 #: ../units/touch.pxu:4907
@@ -5652,6 +6546,8 @@ msgid ""
 "SETUP:\n"
 "   1. Turn off DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Éteignez l'appareil à tester"
 
 #. steps
 #: ../units/touch.pxu:4914
@@ -5660,11 +6556,15 @@ msgid ""
 "   1. Place SD Card in DUT\n"
 "   2. Turn on DUT"
 msgstr ""
+"ACTIONS :\n"
+"   1. Placez une carte mémoire dans l'appareil à tester\n"
+"   2. Allumez l'appareil à tester"
 
 #. verification
 #: ../units/touch.pxu:4921
 msgid "   1. When boot complete is the SD card mounted?"
 msgstr ""
+"   1. Lorsque le démarrage est terminé, la carte mémoire est-elle montée ?"
 
 #. summary
 #: ../units/touch.pxu:4928
@@ -5681,6 +6581,10 @@ msgid ""
 "   2. Remove SD Card from DUT\n"
 "   3. Power on DUT"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Éteignez l'appareil à tester\n"
+"   2. Retirez la carte mémoire de l'appareil à tester\n"
+"   3. Allumez l'appareil à tester"
 
 #. steps
 #: ../units/touch.pxu:4929
@@ -5688,17 +6592,22 @@ msgid ""
 "ACTIONS:\n"
 "   1. When DUT is running place SD card in device"
 msgstr ""
+"ACTIONS :\n"
+"   1. Lorsque l'appareil à tester est allumé, placez une carte mémoire dans "
+"l'appareil"
 
 #. verification
 #: ../units/touch.pxu:4937
 msgid ""
 "   1. Check that the SD card is detected and notification is displayed"
 msgstr ""
+"   1. Vérifiez que la carte mémoire est détectée et qu'une notification est "
+"affichée"
 
 #. summary
 #: ../units/touch.pxu:4944
 msgid "Contents are visible in file manager"
-msgstr ""
+msgstr "Les contenus sont visibles dans le gestionnaire de fichiers"
 
 #. steps
 #: ../units/touch.pxu:4945
@@ -5706,6 +6615,9 @@ msgid ""
 "SETUP:\n"
 "   1. Install the File manager application from the store"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Installez l'application de gestion des fichiers à partir de la "
+"logithèque"
 
 #. steps
 #: ../units/touch.pxu:4945
@@ -5715,12 +6627,18 @@ msgid ""
 "   2. Unlock full access to filesystem\n"
 "   3. Browse to /media/phablet/<CARD-LABEL>"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le gestionnaire de fichiers\n"
+"   2. Déverrouillez l'accès total au système de fichiers\n"
+"   3. Naviguez dans le dossier /media/phablet/<NOM-DE-LA-CARTE>"
 
 #. verification
 #: ../units/touch.pxu:4953
 msgid ""
 "   1. Check that the contents of SD card are visible in the File manager"
 msgstr ""
+"   1. Vérifiez que le contenu de la carte mémoire est visible dans le "
+"gestionnaire de fichiers"
 
 #. summary
 #: ../units/touch.pxu:4960
@@ -5733,6 +6651,8 @@ msgid ""
 "SETUP:\n"
 "   1. Insert SD card containing audio files"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Insérez une carte mémoire contenant des fichiers audio"
 
 #. steps
 #: ../units/touch.pxu:4961
@@ -5740,6 +6660,8 @@ msgid ""
 "ACTIONS:\n"
 "   1. Open the My Music scope"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le moteur de recherche de musique"
 
 #. summary
 #: ../units/touch.pxu:4974
@@ -5752,6 +6674,8 @@ msgid ""
 "SETUP:\n"
 "   1. Insert SD card containing video files"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Insérez une carte mémoire contenant des fichiers vidéo"
 
 #. steps
 #: ../units/touch.pxu:4975
@@ -5759,11 +6683,15 @@ msgid ""
 "ACTIONS:\n"
 "   1. Open the My Videos scope"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le moteur de recherche de vidéos"
 
 #. verification
 #: ../units/touch.pxu:4981
 msgid "   1. When refreshed check that files on the SD card are listed"
 msgstr ""
+"   1. Lors de la réactualisation, vérifiez que les fichiers sur la carte "
+"mémoire sont listés"
 
 #. summary
 #: ../units/touch.pxu:4988
@@ -5776,6 +6704,8 @@ msgid ""
 "SETUP:\n"
 "   1. DUT with mounted SD card"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Montez une carte mémoire dans l'appareil à tester"
 
 #. steps
 #: ../units/touch.pxu:4989
@@ -5783,16 +6713,18 @@ msgid ""
 "ACTIONS:\n"
 "   1. Remove SD card while DUT is on"
 msgstr ""
+"ACTIONS :\n"
+"   1. Enlevez la carte mémoire lorsque l'appareil à tester est allumé"
 
 #. verification
 #: ../units/touch.pxu:4995
 msgid "   1. Card is not corrupted during eject"
-msgstr ""
+msgstr "   1. La carte n'est-elle pas corrompue lors de l'éjection ?"
 
 #. summary
 #: ../units/touch.pxu:5002
 msgid "Format micro SD card"
-msgstr ""
+msgstr "Formatage d'une micro carte mémoire"
 
 #. steps
 #: ../units/touch.pxu:5003
@@ -5801,6 +6733,9 @@ msgid ""
 "   1. Place Micro SD card in DUT\n"
 "   2. Open the External Drives app"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Placez une micro carte mémoire dans l'appareil à tester\n"
+"   2. Ouvrez l'application Disques durs externes"
 
 #. steps
 #: ../units/touch.pxu:5003
@@ -5808,6 +6743,8 @@ msgid ""
 "ACTIONS:\n"
 "   1. Format the SD card from the app"
 msgstr ""
+"ACTIONS :\n"
+"   1. Formatez la carte mémoire à partir de l'application"
 
 #. verification
 #: ../units/touch.pxu:5010
@@ -5816,11 +6753,18 @@ msgid ""
 "   2. Remove SD card from DUT\n"
 "   3. Check the card can be mounted on a Desktop PC"
 msgstr ""
+"   1. Vérifiez que la carte est formatée, c'est-à-dire que tous les fichiers "
+"sont supprimés, etc.\n"
+"   2. Retirez la carte mémoire de l'appareil à tester\n"
+"   3. Vérifiez que la carte peut être montée sur un ordinateur personnel de "
+"bureau"
 
 #. summary
 #: ../units/touch.pxu:5019
 msgid "Copy files from internal storage to sd card using file manager"
 msgstr ""
+"Copiez les fichiers de l'espace de stockage interne à la carte mémoire en "
+"utilisant le gestionnaire de fichiers"
 
 #. steps
 #: ../units/touch.pxu:5020
@@ -5829,6 +6773,9 @@ msgid ""
 "   1. Open the File Manager app\n"
 "   2. Browse a folder in the home directory"
 msgstr ""
+"PRÉALABLES :\n"
+"   1. Ouvrez l'application de gestion des fichiers\n"
+"   2. Naviguez dans un répertoire à partir du dossier personnel"
 
 #. steps
 #: ../units/touch.pxu:5020
@@ -5838,11 +6785,15 @@ msgid ""
 "   2. Change directory to a location on the SD Card\n"
 "   3. From the actions menu select Paste"
 msgstr ""
+"ACTIONS :\n"
+"   1. Faites un appui long sur un fichier et sélectionnez « Copier »\n"
+"   2. Allez sur un répertoire dont l'emplacement est sur la carte mémoire\n"
+"   3. À partir du menu des actions, sélectionnez « Coller »"
 
 #. verification
 #: ../units/touch.pxu:5029
 msgid "   1. Verify that the file is written to the SD Card"
-msgstr ""
+msgstr "   1. Vérifiez que le fichier est écrit sur la carte mémoire"
 
 #. name
 #: ../units/touch.pxu:5034
@@ -5859,17 +6810,20 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:5042
 msgid "   1. File in present on the DUT"
-msgstr ""
+msgstr "   1. Le fichier est-il présent sur l'appareil à tester ?"
 
 #. summary
 #: ../units/touch.pxu:5049
 msgid "Transfer files from the phone using Bluetooth file transfer"
 msgstr ""
+"Transférer des fichiers provenant du téléphone en utilisant le transfert de "
+"fichiers par Bluetooth"
 
 #. verification
 #: ../units/touch.pxu:5051
 msgid "   1. File is present on the desktop PC"
 msgstr ""
+"   1. Le fichier est-il présent sur l'ordinateur personnel de bureau ?"
 
 #. name
 #: ../units/touch.pxu:5058
@@ -5887,4 +6841,4 @@ msgstr ""
 
 #: ../manage.py:26
 msgid "The Ubuntu Touch for Plainbox"
-msgstr ""
+msgstr "La version pour Ubuntu Touch de Plainbox"
