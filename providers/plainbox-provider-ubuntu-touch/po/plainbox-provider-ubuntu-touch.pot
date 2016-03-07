@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-03 14:01+0100\n"
+"POT-Creation-Date: 2016-03-07 15:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,9 +68,9 @@ msgstr ""
 #: ../units/touch.pxu:56
 msgid ""
 "SETUP:\n"
-"   1. Launch the media player begin playing an audio file\n"
-"   2.Tap and pull down the Sound indicator icon in the top right of the menu "
-"bar"
+"   1. Launch the media player and begin playing an audio file\n"
+"   2. Tap and pull down the Sound indicator icon in the top right of the "
+"menu bar"
 msgstr ""
 
 #. steps
@@ -567,7 +567,7 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:416
-msgid "   1. Verify that an notification of the new e-mail is received"
+msgid "   1. Verify that a notification of the new e-mail is received"
 msgstr ""
 
 #. name
@@ -727,7 +727,7 @@ msgid ""
 "ACTIONS:\n"
 "   1. Tap Bluetooth switch to off\n"
 "   2. Navigate to system settings -> Bluetooth\n"
-"   3. Tap Bluetooth switch to off"
+"   3. Tap Bluetooth switch to on"
 msgstr ""
 
 #. verification
@@ -835,7 +835,7 @@ msgstr ""
 #: ../units/touch.pxu:612
 msgid ""
 "ACTIONS:\n"
-"   Ensure it will listed all of the available wireless networks"
+"   Ensure it will list all of the available wireless networks"
 msgstr ""
 
 #. verification
@@ -866,7 +866,7 @@ msgstr ""
 #: ../units/touch.pxu:647
 msgid ""
 "ACTIONS:\n"
-"   1, Disable wireless\n"
+"   1. Disable wireless\n"
 "   2. Re-enable wireless, ensure AP's show up"
 msgstr ""
 
@@ -1033,7 +1033,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:824
 msgid ""
-"   1. Is there a 3G icon show on the indicator bar\n"
+"   1. Is there a 3G icon shown on the indicator bar?\n"
 "   2. Is 3G network connected?"
 msgstr ""
 
@@ -1060,10 +1060,18 @@ msgstr ""
 msgid "Ensure data roaming can be enabled"
 msgstr ""
 
+#. steps
+#: ../units/touch.pxu:851
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Data roaming to ON\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
 #. verification
 #: ../units/touch.pxu:861
 msgid ""
-"   1. Is there a 3G/Roaming icon show on the indicator bar\n"
+"   1. Is there a 3G/Roaming icon shown on the indicator bar?\n"
 "   2. Is 3G network connected?"
 msgstr ""
 
@@ -1076,8 +1084,8 @@ msgstr ""
 #: ../units/touch.pxu:870
 msgid ""
 "ACTIONS:\n"
-"   1. Tap Data roaming to ON\n"
-"   2. Open web-browser to ensure connection is made"
+"   1. Tap Data roaming to OFF\n"
+"   2. Open web-browser to ensure connection is disabled"
 msgstr ""
 
 #. verification
@@ -1158,7 +1166,7 @@ msgstr ""
 
 #. summary
 #: ../units/touch.pxu:949
-msgid "Ensure that it will listed all of detected bt devices"
+msgid "Ensure that all detected Bluetooth devices are listed"
 msgstr ""
 
 #. steps
@@ -1191,7 +1199,7 @@ msgstr ""
 #: ../units/touch.pxu:978
 msgid ""
 "   1. Is it paired to Bluetooth headset successfully?\n"
-"   2. Is there a headset icon show on the menu bar"
+"   2. Is there a headset icon shown on the menu bar?"
 msgstr ""
 
 #. summary
@@ -1270,15 +1278,15 @@ msgstr ""
 
 #. summary
 #: ../units/touch.pxu:1042
-msgid "Ensure that it can login to Ubuntuone"
+msgid "Ensure that you can login to UbuntuOne"
 msgstr ""
 
 #. steps
 #: ../units/touch.pxu:1043
 msgid ""
 "ACTIONS:\n"
-"   1. Tap Ubuntuone icon\n"
-"   2. Input Ubuntuone account and password to login"
+"   1. Tap UbuntuOne icon\n"
+"   2. Input UbuntuOne account and password to login"
 msgstr ""
 
 #. verification
@@ -1353,7 +1361,7 @@ msgstr ""
 
 #. summary
 #: ../units/touch.pxu:1117
-msgid "Ensure that charing status changes when connect the power cable"
+msgid "Ensure that charging status changes with the power cable is connected"
 msgstr ""
 
 #. steps
@@ -1367,9 +1375,10 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:1128
 msgid ""
-"   1. Does the indicator properly update after connect/disconnect power "
-"cable?\n"
-"   2. Does the charing status change after connect/disconnect power cable?"
+"   1. Does the indicator properly update after connecting/disconnecting the "
+"power cable?\n"
+"   2. Does the charging status change after connecting/disconnecting the "
+"power cable?"
 msgstr ""
 
 #. summary
@@ -1789,7 +1798,7 @@ msgstr ""
 
 #. summary
 #: ../units/touch.pxu:1605
-msgid "Ensure that DTMF feature call work as expected"
+msgid "Ensure that DTMF feature call works as expected"
 msgstr ""
 
 #. name
@@ -1984,7 +1993,7 @@ msgid ""
 "   2. Make a MO Call to DUT2\n"
 "   3. When call connected, use DUT3 to call DUT1\n"
 "   3. Verify call waiting feature can work as expected\n"
-"   4. Verify you call answer/on hold/reject the call"
+"   4. Verify you can answer/on hold/reject the call"
 msgstr ""
 
 #. verification
@@ -2053,7 +2062,7 @@ msgid ""
 "ACTIONS:\n"
 "   1. MT call to DUT\n"
 "   2. Toggle hold on\n"
-"   3, Make sure hold is turned on on the phone\n"
+"   3. Make sure hold is turned on on the phone\n"
 "   4. Make sure indicator on phone and app shows hold as on\n"
 "   5. Turn off hold from the phone\n"
 "   6. Make sure indicator on phone and app shows hold is off\n"
@@ -2066,13 +2075,13 @@ msgid ""
 "   1. Is hold turned on?\n"
 "   2. Does phone indicate hold is on?\n"
 "   3. Does turning hold off from the phone turn off hold?\n"
-"   4. When gold is turned off on phone, does the icon in the app reflect its "
+"   4. When hold is turned off on phone, does the icon in the app reflect its "
 "new status?"
 msgstr ""
 
 #. summary
 #: ../units/touch.pxu:2084
-msgid "Ensure sure that speakerphone toggle on/off works in voicemail"
+msgid "Ensure that speakerphone toggle on/off works in voicemail"
 msgstr ""
 
 #. steps
@@ -2108,7 +2117,7 @@ msgid ""
 "ACTIONS:\n"
 "   1. MO call to DUT2\n"
 "   2. Toggle speaker phone on\n"
-"   3, Make sure speakerphone is turned on on the phone\n"
+"   3. Make sure speakerphone is turned on on the phone\n"
 "   4. Make sure indicator on phone and app shows speakerphone as on\n"
 "   5. Turn off speakerphone from the phone\n"
 "   6. Make sure indicator on phone and app shows speakerphone is off\n"
@@ -2133,6 +2142,13 @@ msgstr ""
 #. name
 #: ../units/touch.pxu:2146
 msgid "Telephony/Hardware/Emergency Support (SIM1)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2211
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure the network indicator now shows telephony connection signal"
 msgstr ""
 
 #. name
@@ -2302,11 +2318,6 @@ msgid ""
 "   2. Open web browser, navigate to ubuntu.com"
 msgstr ""
 
-#. verification
-#: ../units/touch.pxu:2392
-msgid "   1. Was ubuntu.com loaded?"
-msgstr ""
-
 #. summary
 #: ../units/touch.pxu:2399
 msgid "Ensure that phone can properly use edge data"
@@ -2356,7 +2367,7 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:2449
-msgid "   1. Was Ubuntu.com loaded?"
+msgid "   1. Was ubuntu.com loaded?"
 msgstr ""
 
 #. summary
@@ -2570,7 +2581,7 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:2681
-msgid "   1. Does failure rate of DUT1 similar to Reference1"
+msgid "   1. Is failure rate of DUT1 similar to Reference1?"
 msgstr ""
 
 #. summary
@@ -2887,12 +2898,44 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:2972
-msgid "   1. Verify that call can be taking correctly on the Bluetooth headset"
+msgid "   1. Verify that call can be taken correctly on the Bluetooth headset"
 msgstr ""
 
 #. name
 #: ../units/touch.pxu:2977
 msgid "Message/SMS/MMS (SIM1)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2984
+msgid ""
+"ACTIONS:\n"
+"   1. Open messaging app\n"
+"   2. Select a contact and send the text\n"
+"   3. Ensure SMS sent correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3003
+msgid ""
+"ACTIONS:\n"
+"   1. Open messaging app\n"
+"   2. Select multiple contacts and send the text\n"
+"   3. Ensure SMS sent correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3055
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Did DUT2 receive two messages?"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3076
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Has every contact received two messages?"
 msgstr ""
 
 #. steps
@@ -3062,7 +3105,7 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:3411
-msgid "   1. Is message displayed correctly"
+msgid "   1. Is the message displayed correctly?"
 msgstr ""
 
 #. summary
@@ -3089,8 +3132,8 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:3431
 msgid ""
-"   1. Is the message displayed correctly\n"
-"   2. Can you click on the URL and it open in the browser"
+"   1. Is the message displayed correctly?\n"
+"   2. Can you click on the URL and open it in the browser?"
 msgstr ""
 
 #. summary
@@ -3958,7 +4001,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:4182
 msgid ""
-"   1. Does the indicator properly update\n"
+"   1. Does the indicator properly update?\n"
 "   2. Did the volume change?"
 msgstr ""
 
@@ -3987,7 +4030,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:4200
 msgid ""
-"   1. Does the indicator properly update\n"
+"   1. Does the indicator properly update?\n"
 "   2. Did the phone muted?"
 msgstr ""
 
@@ -4568,7 +4611,7 @@ msgstr ""
 
 #. summary
 #: ../units/touch.pxu:4643
-msgid "Ensure that the power indicator shows on the screen after dut off"
+msgid "Ensure that the power indicator shows on the screen after DUT off"
 msgstr ""
 
 #. steps
@@ -4595,7 +4638,7 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:4654
-msgid "   1. Is there a power indicator show on the screen?"
+msgid "   1. Is there a power indicator shown on the screen?"
 msgstr ""
 
 #. name
@@ -4854,7 +4897,7 @@ msgstr ""
 #. summary
 #: ../units/touch.pxu:4863
 msgid ""
-"Make sure that music scope can scan and add music file after mtp transfer to "
+"Make sure that music scope can scan and add music file after MTP transfer to "
 "storage"
 msgstr ""
 
@@ -4887,8 +4930,8 @@ msgstr ""
 #. summary
 #: ../units/touch.pxu:4886
 msgid ""
-"Make sure that music scope can scan and add music files that under folders "
-"after mtp transfer to storage"
+"Make sure that music scope can scan and add music files that are under "
+"folders after MTP transfer to storage"
 msgstr ""
 
 #. steps
@@ -5141,7 +5184,7 @@ msgstr ""
 
 #. verification
 #: ../units/touch.pxu:5042
-msgid "   1. File in present on the DUT"
+msgid "   1. File is present on the DUT"
 msgstr ""
 
 #. summary
@@ -5156,7 +5199,7 @@ msgstr ""
 
 #. name
 #: ../units/touch.pxu:5058
-msgid "All Ubuntu Touch Tests"
+msgid "Ubuntu Touch certification tests"
 msgstr ""
 
 #. description
@@ -5164,6 +5207,157 @@ msgstr ""
 msgid ""
 "This test plan selects all the tests required to certify a device with "
 "Ubuntu Touch"
+msgstr ""
+
+#. name
+#: ../units/shakedown.pxu:6
+msgid "Quick return evaluation"
+msgstr ""
+
+#. description
+#: ../units/shakedown.pxu:7
+msgid ""
+"This test plan should be used when the device is returned, to establish if "
+"it was returned because there's a technical problem with the device."
+msgstr ""
+
+#. name
+#: ../units/shakedown.pxu:63
+msgid "Custom shakedown tests"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:69
+msgid "Ensure that DUT can take and store screenshots"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:70
+msgid ""
+"Purpose of this test is to check whether the device can take and store "
+"screenshots"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:73
+msgid ""
+"1. Make sure screen is active 2. Press volume up and volume down buttons "
+"simultaneously"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:76
+msgid "1. Open gallery app 2. Is the screenshot present?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:83
+msgid "Check if DUT warns when SD cards is full"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:84
+msgid ""
+"Purpose of this test is to check whether the device warns the user about SD "
+"card being full."
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:87
+msgid ""
+"1. Prepare SD card with no free space on it. 2. Insert into sd card slot."
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:90
+msgid "1. Does warning about SD card being full show up?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:96
+msgid "Check if battery depletion rate is normal"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:97
+msgid ""
+"Purpose of this test is to make sure that device's battery depletes in a "
+"normal rate"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:100
+msgid ""
+"1. Make sure the battery is fully charged. 2. Open System Settings 3. Open "
+"Security & Privacy 4. Select Phone Locking 5. Select lock interval `never` "
+"6. Leave the device on idle for 30 minutes"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:107
+#, no-c-format
+msgid "1. Check charge level 2. Is it above or equal to 95%?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:114
+msgid "Ensure that sim information can be read"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:115
+msgid ""
+"1. Ensure SIM is present 2. Open System Settings 3. Open About this phone"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:119
+msgid "1. Is SIM present under Phone number?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:125
+msgid "Ensure that DUT can gather APN information"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:126
+msgid ""
+"Purpose of this test is to check if the device can gather APN information"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:128
+msgid ""
+"1. Ensure SIM is present 2. Open System Settings 3. Select Cellular 4. "
+"Select Carrier 5. Open APN menu"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:134
+msgid "1. Is operator's APN shown in the menu?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:140
+msgid "Ensure that DUT can login into APN"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:141
+msgid "Purpose of this test is to check if the device can login into APN"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:143
+msgid ""
+"1. Ensure SIM is present 2. Open System Settings 3. Select Cellular 4. "
+"Select Carrier 5. Open APN menu 6. Select one of the operator's APNs"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:150
+msgid "1. Is checkmark visible on the right of selected APN's name?"
 msgstr ""
 
 #: ../manage.py:26
