@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plainbox-provider-tpm 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-23 18:23+0200\n"
+"POT-Creation-Date: 2016-03-07 15:08+0800\n"
 "PO-Revision-Date: 2015-10-29 22:01+0000\n"
 "Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-15 05:09+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-03-08 05:21+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 "Language: Polish\n"
 
 #: ../manage.py:29
@@ -214,6 +214,23 @@ msgstr "Aktywuj nieaktywny układ TPM za pomocą BIOS'u"
 msgid "This job will reconfigure the TPM chip to be in the Active state."
 msgstr ""
 
+#. steps
+#: ../units/tpm.pxu:58
+msgid ""
+" - Commence the test to restart the machine\n"
+" - Enter BIOS using machine-specific hot-key (typically F1, F2, or delete)\n"
+" - Navigate to TPM menu, the precise location may depend on your BIOS "
+"version\n"
+"   and the make and model of your DUT. On some models it is under the\n"
+"   following menu: Security / Security Chip.\n"
+" - Change the current setting to Active\n"
+" - Save BIOS settings\n"
+" - Power the machine off (NOTE: a reboot may not be sufficient)\n"
+" - Power the machine back on again\n"
+" - Let the machine boot\n"
+" - Restart the testing application"
+msgstr ""
+
 #. summary
 #: ../units/tpm.pxu:88
 msgid "Clear ownership of the TPM chip"
@@ -276,7 +293,10 @@ msgid ""
 "version\n"
 "   and the make and model of your DUT. On some models it is under the\n"
 "   following menu: Security / Security Chip.\n"
-" - Change the current setting to Active\n"
+" - Change the current setting to Active. If it is already in the active "
+"state\n"
+"   then set it to Disabled and then back to Active. This might be a bug in "
+"the BIOS.\n"
 " - Save BIOS settings\n"
 " - Power the machine off (NOTE: a reboot may not be sufficient)\n"
 " - Power the machine back on again\n"
@@ -285,144 +305,144 @@ msgid ""
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:143
+#: ../units/tpm.pxu:144
 msgid "Take ownership of the TPM chip"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:144
+#: ../units/tpm.pxu:145
 msgid ""
 "This job tries to automatically take the ownership of an unowned TPM chip. "
 "It uses well-known owner and SRK secretes (20 bytes of zeros)."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:158
+#: ../units/tpm.pxu:159
 msgid "Collect the output of tpm_version"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:159
+#: ../units/tpm.pxu:160
 msgid ""
 "This job collects the output of \"tpm_version\" for inspection by a "
 "Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:170
+#: ../units/tpm.pxu:171
 msgid "Collect the output of tpm_selftest"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:171
+#: ../units/tpm.pxu:172
 msgid ""
 "This job collects the output of \"tpm_selftest\" for inspection by the "
 "Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:182
+#: ../units/tpm.pxu:183
 msgid "Collect the output of tpm_setactive --status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:183
+#: ../units/tpm.pxu:184
 msgid ""
 "This simply collects the output of \"tpm_setactive --status --well-known\" "
 "for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:194
+#: ../units/tpm.pxu:195
 msgid "Collect the output of tpm_nvinfo"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:195
+#: ../units/tpm.pxu:196
 msgid ""
 "This simply collects the output of \"tpm_nvinfo\" for inspection by a "
 "Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:205
+#: ../units/tpm.pxu:206
 msgid "Collect the output of tpm_restrictpubek --status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:206
+#: ../units/tpm.pxu:207
 msgid ""
 "This simply collects the output of \"tpm_restrictpubek --status --well-"
 "known\" for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:216
+#: ../units/tpm.pxu:217
 msgid "Collect the output of tpm_restrictsrk --status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:217
+#: ../units/tpm.pxu:218
 msgid ""
 "This simply collects the output of \"tpm_restrictsrk --status --well-known\" "
 "for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:227
+#: ../units/tpm.pxu:228
 msgid "Collect the output of tpm_setclearable--status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:228
+#: ../units/tpm.pxu:229
 msgid ""
 "This simply collects the output of \"tpm_setclearable --status --well-"
 "known\" for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:238
+#: ../units/tpm.pxu:239
 msgid "Collect the output of tpm_setenable --status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:239
+#: ../units/tpm.pxu:240
 msgid ""
 "This simply collects the output of \"tpm_setenable --status --well-known\" "
 "for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:249
+#: ../units/tpm.pxu:250
 msgid "Collect the output of tpm_setownable --status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:250
+#: ../units/tpm.pxu:251
 msgid ""
 "This simply collects the output of \"tpm_setownable --status --well-known\" "
 "for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:260
+#: ../units/tpm.pxu:261
 msgid "Collect the output of tpm_setpresence --status --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:261
+#: ../units/tpm.pxu:262
 msgid ""
 "This simply collects the output of \"tpm_setpresence --status --well-known\" "
 "for inspection by a Certification engineer."
 msgstr ""
 
 #. summary
-#: ../units/tpm.pxu:271
+#: ../units/tpm.pxu:272
 msgid "Collect the output of tpm_getpubek --well-known"
 msgstr ""
 
 #. description
-#: ../units/tpm.pxu:272
+#: ../units/tpm.pxu:273
 msgid ""
 "This simply collects the output of \"tpm_getpubek --well-known\" for "
 "inspection by a Certification engineer."
