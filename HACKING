@@ -1,0 +1,53 @@
+Most of the Checkbox-related projects (Checkbox-NG, Plainbox, Checkbox
+providers, etc.) are stored in one Bazaar repository.
+
+You can grab a copy of the code by running:
+
+    bzr branch lp:checkbox
+
+All these projects will now be stored in a checkbox directory on your computer.
+
+Make the modifications you want, and test them befoer submitting them.  You
+should also ensure that you have the latest changes from upstream in your copy
+of the checkbox repository.
+
+    bzr pull
+    bzr commit
+
+If your changes fix an open bug (for instance bug #1552503), you can link your
+commit to it:
+    bzr commit --fixes lp:1552503
+
+You'll have to write a commit title and message explaining what you changed.
+
+For the title, we recommend prefixing it depending on the project you modified.
+For instance, if you did some modifications in the Checkbox provider, your
+commit title should look like:
+
+    provider:checkbox: Fix fwts script
+
+Once this is done, it's time to show your modifications to the World!
+
+With Bazaar you can push your modifications to a personal branch like this:
+
+    bzr push lp:~your-launchpad-id/checkbox/branch-title
+
+For example, in my case:
+
+    bzr push lp:~pierre-equoy/checkbox/fix-lp1552503-fwts_test
+
+Once pushed, the branch will be visible in your Launchpad page at:
+    https://code.launchpad.net/~
+
+From there, you can propose your modifications to be merged in Checkbox main
+repository (aka Checkbox trunk). Select the branch you just pushed, click on
+“Propose for merging” and validate (the default choices should be the right
+ones). This will create a merge proposal you can share with anyone so they can
+review your modification and propose comments.
+
+A notification will also be sent to the Checkbox team to review your
+modifications and approve/comment on it.
+
+I hope this little introduction is clear enough! If you have any questions,
+please let me know here or come on our IRC channel (#checkbox on Freenode) and
+ask around!
