@@ -1,0 +1,951 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-08 15:56+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. description
+#: ../units/snappy.pxu :2
+msgid "Test plan for certification of Snappy Ubuntu Core systems"
+msgstr ""
+
+#. name
+#: ../units/snappy.pxu :4
+msgid "All Snappy Ubuntu Core Certification Tests"
+msgstr ""
+
+#. name
+#: ../units/snappy.pxu :11
+msgid "Tests for Snappy Ubuntu Core devices"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :14
+msgid ""
+"This will test if image can be installed successfully by dd in a live system"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :16
+msgid "1. Follow the installation guide in release note to install the image"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :18
+msgid "Can boot into snappy system after installation"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :25
+msgid "Check ubuntu-core can be updated by snappy update"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :27
+msgid ""
+"1. sudo mount -o remount,rw / 2. sudo vi /etc/system-image/channel.ini 3. "
+"Check version number in both build_number and version_detail, assume it's N "
+"4. Modify version number in both build_number and version_detail to N-1 5. "
+"Reboot the system and log in 6. sudo snappy update 7. Reboot the system and "
+"log in 8. snappy list -v"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :45
+msgid "Check ubuntu-core can be reverted by snappy rollback"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :47
+msgid ""
+"1. Follow the steps in case plano/snappy/update to update ubuntu-core 2. "
+"sudo snappy rollback 3. Reboot the system and log in 4. snappy list -v"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :52
+msgid ""
+"Check ubuntu-core version in the list 1. System is currently boot the ubuntu-"
+"core version N-1 (With a \"\"*\"\" at the end of line) 2. Another ubuntu-"
+"core version is N"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :61
+msgid "Check ubuntu-core can be updated again by snappy update after rollback"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :63
+msgid ""
+"1. Follow the steps in case plano/snappy/rollback to update ubuntu-core and "
+"rollback 2. sudo snappy update 3. Reboot the system and log in 4. snappy "
+"list -v"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :68
+msgid ""
+"Check ubuntu-core version in the list 1. System is currently boot the ubuntu-"
+"core version N (With a \"\"*\"\" at the end of line) 2. Another ubuntu-core "
+"version is N-1"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :77
+msgid ""
+"Check system will rollback to original ubuntu-core if failed to boot the "
+"updated one"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :79
+msgid ""
+"1. Follow the steps in case plano/snappy/update to update ubuntu-core 2. "
+"Download following systemd unit and copy it to user home:\n"
+"    http://people.canonical.com/~jhunt/systemd/conf/deadlock.service\n"
+"3. sudo mount -o remount,rw /writable/cache/system 4. sudo cp deadlock."
+"service /writable/cache/system/lib/systemd/system/ 5. sudo mkdir -p /"
+"writable/cache/system/lib/systemd/system/sysinit.target.requires/ 6. sudo "
+"chroot /writable/cache/system 7. ln -s /lib/systemd/system/deadlock.service /"
+"lib/systemd/system/sysinit.target.requires/deadlock.service 8. Reboot 9. The "
+"boot will hang before reaching a getty login prompt due to deadlock.service "
+"10. Power-cycle the device 11. snappy list -v"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :92
+msgid ""
+"1. Check system can boot at step 10 2. Check system is currently boot the "
+"ubuntu-core version N-1 (With a \"\"*\"\" at the end of line)"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :100
+msgid "Check if user can access the system through ssh from other machine"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :102
+msgid ""
+"1. Execute following command on other machine in same network\n"
+"    ssh [user id]@[ip address of the testing system]\n"
+"2. Enter password to login"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :106
+msgid "Can log into system through ssh from other machine"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :113
+msgid "Check user can access webdm from other machine"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :115
+msgid ""
+"1. Connect ethernet cable before boot 2. Boot into system 3. Browse "
+"following url with browser from other machine in same network\n"
+"    http://[ip address of the testing system]:4200"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :120
+msgid "Can access webdm interface"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :127
+msgid "Check that an external microphone works"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :146
+msgid "Check headphones work"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :148
+msgid ""
+"1. Plug headset to headset port 2. Execute following command:\n"
+" alsamixer\n"
+"3. Use arrow key to adjust volume, m key to mute/unmute 4. Make sure all "
+"channels are not muted and have an appropriate volume 5. Press q to exit "
+"alsamixer 6. Execute following command:\n"
+" arecord | aplay\n"
+"7. Speak in to microphone on headset"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :165
+msgid ""
+"Check bluetooth input device work Since there's only CLI with ubuntu-core, "
+"test keyboard only"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :168
+msgid ""
+"1. Scan nearby devices:\n"
+"    hcitool scan\n"
+"2. Pair a bluetooth input device\n"
+"    bluez-simple-agent hci0 [MAC address of bluetooth input device]\n"
+"3. Set paired input device workable\n"
+"    sudo bluez-test-input connect [MAC address of bluetooth input device]"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :182
+msgid "Check ethernet works by pinging another machine"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :184
+msgid ""
+"1. Make sure ethernet cable is connected and can access internet 2. ping "
+"google.com"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :194
+msgid "Check power led is on when system is powered on"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :196
+msgid "1. Check power led when system is powered on"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :205
+msgid "Check power led is blinking when system is in suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :207
+msgid "1. Suspend the system 2. Check power led when system is in suspend"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :210
+msgid "Power led is blinking when system is in suspend"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :217
+msgid "Check output to display through dvi port"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :219
+msgid "1. Connect display to dvi port 2. Check the display"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :229
+msgid "Check output to display through vga adaptor on dvi port"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :231
+msgid "1. Connect display to vga adaptor on dvi port 2. Check the display"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :241
+msgid "Check user can log into system through serial port from another machine"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :243
+msgid ""
+"1. Connect USB to db9 null modem adapter cable to serial port of test "
+"machine 2. Connect the cable to USB port of another ubuntu machine (client) "
+"3. Install screen on client (if not done in Prerequisite tab) 4. Execute "
+"following command on client:\n"
+" sudo screen /dev/ttyUSB0\n"
+"5. Boot or reboot the test machine 6. Log into the test machine from "
+"terminal on client"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :251
+msgid ""
+"1. Output to client is fine 2. Log into test machine from terminal on client "
+"successfully"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :259
+msgid "Check USB input device works"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :261
+msgid "1. Connect USB keyboard 2. Input somethings with USB keyboard"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :264
+msgid "What just input is displayed correctly"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :271
+msgid "Check system can detect USB storage when inserted"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :273
+msgid "1. Connect USB storage device 2. Check dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :283
+msgid "Check system can read/write to USB storage correctly"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :285
+msgid ""
+"1. Mount USB storage with read/write access 2. Copy a test file to USB "
+"storage 3. diff [copied file] [original file]"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :296
+msgid "Check system can detect revmoal of a USB storage device"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :298
+msgid "1. Disconnect a USB storage device 2. Check dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :308
+msgid "Check system can detect insertion of a USB3 storage device"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :310
+msgid "1. Connect a USB3 storage device 2. Check dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :320
+msgid "Check system can read/write to USB3 storage devices correctly"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :322
+msgid ""
+"1. Mount USB3 storage with read/write access 2. Copy a test file to USB3 "
+"storage 3. diff [copied file] [original file]"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :333
+msgid "Check system can detect USB3 storage remove"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :335
+msgid "1. Disconnect USB3 storage device 2. Check dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :345
+msgid "Check system can poweroff successfully"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :347
+msgid ""
+"1. Execute following command:\n"
+" sudo poweroff"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :350
+msgid "System poweroff successfully"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :357
+msgid "Check system can reboot"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :359
+msgid ""
+"1. Execute following command:\n"
+" sudo reboot"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :362
+msgid "    System reboot into system successfully"
+msgstr ""
+
+#. summary
+#: ../units/snappy.pxu :371
+msgid "Resource job to identify Wi-Fi devices"
+msgstr ""
+
+#. description
+#: ../units/snappy.pxu :372
+msgid "Job to scan for the presence of Wi-Fi network adapters which"
+msgstr ""
+
+#. description
+#: ../units/snappy.pxu :372
+msgid "should then have the following collection of tests run against them."
+msgstr ""
+
+#. summary
+#: ../units/snappy.pxu :378
+msgid "Scan for wireless APs."
+msgstr ""
+
+#. description
+#: ../units/snappy.pxu :403
+msgid "Wireless scanning test. It scans and reports on discovered APs."
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :409
+msgid "Check system can connect to insecure 802.11ac AP"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :411
+msgid ""
+"1. sudo dhclient -r wlan0 2. sudo wpa_supplicant -i wlan 0 -c open_ac.conf & "
+"3. sudo dhclient wlan0 4. ifconfig wlan0 5. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :424
+msgid "Check system can connect to insecure 802.11b/g AP"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :426
+msgid ""
+"1. sudo dhclient -r wlan0 2. sudo wpa_supplicant -i wlan 0 -c open_bg.conf & "
+"3. sudo dhclient wlan0 4. ifconfig wlan0 5. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :439
+msgid "Check system can connect to insecure 802.11n AP"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :441
+msgid ""
+"1. sudo dhclient -r wlan0 2. sudo wpa_supplicant -i wlan 0 -c open_n.conf & "
+"3. sudo dhclient wlan0 4. ifconfig wlan0 5. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :454
+msgid "Check system can connect to 802.11ac AP with wpa security"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :456
+msgid ""
+"1. sudo dhclient -r wlan0 2. sudo wpa_supplicant -i wlan 0 -c wpa_ac.conf & "
+"3. sudo dhclient wlan0 4. ifconfig wlan0 5. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :469
+msgid "Check system can connect to 802.11b/g AP with wpa security"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :471
+msgid ""
+"1. sudo dhclient -r wlan0 2. sudo wpa_supplicant -i wlan 0 -c wpa_bg.conf & "
+"3. sudo dhclient wlan0 4. ifconfig wlan0 5. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :484
+msgid "Check system can connect to 802.11n AP with wpa security"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :486
+msgid ""
+"1. sudo dhclient -r wlan0 2. sudo wpa_supplicant -i wlan 0 -c wpa_n.conf & "
+"3. sudo dhclient wlan0 4. ifconfig wlan0 5. sudo wpa_cli terminate"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :492
+msgid "In step 4, ip address is showed for interface wlan0"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :499
+msgid "Check the system can suspend successfully"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :501
+msgid ""
+"1. Execute the following command:\n"
+" sudo systemctl suspend"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :504
+msgid "System suspends successfully"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :511
+msgid "Check that headphones work after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :513
+msgid ""
+"1. Plug in headset to headset port 2. Execute the following command:\n"
+" alsamixer\n"
+"3. Use arrow key to adjust volume, m key to mute/unmute 4. Make sure all "
+"channels are not muted and have an appropriate volume 5. Press q to exit "
+"alsamixer 6. Suspend the device 7. Resume the device 6. Execute following "
+"command:\n"
+" arecord | aplay\n"
+"7. Speak in to microphone on headset"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :532
+msgid "Check that an external microphone works after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :534
+msgid ""
+"1. Plug headset to headset port 2. Execute following command:\n"
+" alsamixer\n"
+"3. Use arrow key to adjust volume, m key to mute/unmute 4. Make sure all "
+"channels are not muted and have an appropriate volume 5. Press q to exit "
+"alsamixer 6. Suspend the device 7. Resume the device 8. Execute following "
+"command:\n"
+" arecord | aplay\n"
+"9. Speak in to microphone on headset"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :546
+msgid "Verify that your voice is reproduced through the headphones clearly"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :553
+msgid ""
+"Check a bluetooth input device works after suspend Since there's only CLI "
+"with ubuntu-core, test keyboard only"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :556
+msgid ""
+"1. Scan nearby devices:\n"
+"    hcitool scan\n"
+"2. Pair a bluetooth input device\n"
+"    bluez-simple-agent hci0 [MAC address of bluetooth input device]\n"
+"3. Set paired input device workable\n"
+"    sudo bluez-test-input connect [MAC address of bluetooth input device]\n"
+"4. Suspend the device 5. Resume the device"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :565
+msgid "Can input from input device"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :572
+msgid "Check ethernet works after suspend by pinging another machine"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :574
+msgid ""
+"1. Make sure ethernet cable is connected and can access internet 2. Suspend "
+"the device 3. Resume the device 4. ping google.com"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :579
+msgid "Can successfully get ping responses from google.com"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :586
+msgid "Check power led is on when system is powered on after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :588
+msgid ""
+"1. Suspend the device 2. Resume the device 3. Check power led when system is "
+"powered on"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :592
+msgid "Power led is on when system is powered on"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :599
+msgid "Check output to display through dvi port after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :601
+msgid ""
+"1. Connect display to dvi port 2. Check the display 3. Suspend the device 4. "
+"Resume the device"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :613
+msgid "Check output to display through vga adaptor on dvi port after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :615
+msgid ""
+"1. Connect display to vga adaptor on dvi port 2. Check the display 3. "
+"Suspend the device 4. Resume the device"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :620
+msgid "Output to display works"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :627
+msgid ""
+"Check user can still access the test machine through serial port from "
+"another machine"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :629
+msgid ""
+"1. Follow the steps in case plano/serial/console to login from another "
+"machine (client) 2. Execute following command in screen on client:\n"
+"    sudo systemctl suspend\n"
+"3. Resume the test machine 4. Try to run some commands in terminal on client"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :635
+msgid "Can still run commands in terminal on client after suspend"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :642
+msgid "Check USB input device works after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :644
+msgid ""
+"1. Connect USB keyboard 2. Input some characters with the USB keyboard 3. "
+"Suspend the device 4. Wake the device 5. Input some characters with the USB "
+"keyboard"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :650
+msgid "Confirm the characters are displayed correctly"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :657
+msgid "Check system can detect USB storage when inserted after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :659
+msgid ""
+"1. Suspend the device 2. Resume the device 3. Connect USB storage device 4. "
+"Check dmesg"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :664
+msgid "Can find new USB storage device messages in dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :671
+msgid "Check system can read/write to USB storage correctly after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :673
+msgid ""
+"1. Mount USB storage with read/write access 2. Suspend the device 3. Resume "
+"the device 4. Copy a test file to USB storage 5. diff [copied file] "
+"[original file]"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :686
+msgid "Check system can detect revmoal of a USB storage device after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :688
+msgid ""
+"1. Connect a USB storage device 2. Suspend the device 3. Resume the device "
+"4. Disconnect a USB storage device 5. Check dmesg"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :694
+msgid "Can find USB storage device removed messages in dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :701
+msgid ""
+"Check system can detect insertion of a USB3 storage device after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :703
+msgid ""
+"1. Suspend the device 2. Resume the device 3. Connect a USB3 storage device "
+"4. Check dmesg"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :708
+msgid "Can find new USB3 storage device messages in dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :715
+msgid ""
+"Check system can read/write to USB3 storage devices correctly after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :717
+msgid ""
+"1. Mount USB3 storage with read/write access 2. Suspend the device 3. Resume "
+"the device 2. Copy a test file to USB3 storage 3. diff [copied file] "
+"[original file]"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :723
+msgid "Two files are exactly the same, diff returns nothing"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :730
+msgid "Check system can detect USB3 storage removal after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :732
+msgid ""
+"1. Suspend the device 2. Resume the device 1. Disconnect USB3 storage device "
+"2. Check dmesg"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :737
+msgid "Can find USB3 storage device removed messages in dmesg"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :744
+msgid "Check system can find a wireless network AP nearby after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :746
+msgid ""
+"1. sudo wpa_supplicant -i wlan 0 -c scan.conf & 2. Suspend the device 3. "
+"Resume the device 4. sudo wpa_cli scan 5. sudo wpa_cli scan_results 6. sudo "
+"wpa_cli terminate"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :753
+msgid "In step 5, can see nearby wireless network AP"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :760
+msgid "Check system can connect to insecure 802.11ac AP after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :762
+msgid ""
+"1. Suspend the device 2. Resume the device 3. sudo dhclient -r wlan0 4. sudo "
+"wpa_supplicant -i wlan 0 -c open_ac.conf & 5. sudo dhclient wlan0 6. "
+"ifconfig wlan0 7. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :777
+msgid "Check system can connect to insecure 802.11b/g AP after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :779
+msgid ""
+"1. Suspend the device 2. Resume the device 3. sudo dhclient -r wlan0 4. sudo "
+"wpa_supplicant -i wlan 0 -c open_bg.conf & 5. sudo dhclient wlan0 6. "
+"ifconfig wlan0 7. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :794
+msgid "Check system can connect to insecure 802.11n AP after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :796
+msgid ""
+"1. Suspend the device 2. Resume the device 3. sudo dhclient -r wlan0 4. sudo "
+"wpa_supplicant -i wlan 0 -c open_n.conf & 5. sudo dhclient wlan0 6. ifconfig "
+"wlan0 7. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :811
+msgid "Check system can connect to 802.11ac AP with wpa security after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :813
+msgid ""
+"1. Suspend the device 2. Resume the device 3. sudo dhclient -r wlan0 4. sudo "
+"wpa_supplicant -i wlan 0 -c wpa_ac.conf & 5. sudo dhclient wlan0 6. ifconfig "
+"wlan0 7. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :828
+msgid ""
+"Check system can connect to 802.11b/g AP with wpa security after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :830
+msgid ""
+"1. Suspend the device 2. Resume the device 3. sudo dhclient -r wlan0 4. sudo "
+"wpa_supplicant -i wlan 0 -c wpa_bg.conf & 5. sudo dhclient wlan0 6. ifconfig "
+"wlan0 7. sudo wpa_cli terminate"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :845
+msgid "Check system can connect to 802.11n AP with wpa security after suspend"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :847
+msgid ""
+"1. Suspend the device 2. Resume the device 3. sudo dhclient -r wlan0 4. sudo "
+"wpa_supplicant -i wlan 0 -c wpa_n.conf & 5. sudo dhclient wlan0 6. ifconfig "
+"wlan0 7. sudo wpa_cli terminate"
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :855
+msgid "In step 6, ip address is showed for interface wlan0"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :862
+msgid "Check system can suspend 30 times successfully"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :864
+msgid ""
+"1. Execute following command:\n"
+"    sudo systemctl suspend\n"
+"2. Resume the system 3. Repeat steps 1~2 30 times."
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :869
+msgid "System suspend and resume successfully each time"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :876
+msgid "Check system can reboot 30 times successfully"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :878
+msgid ""
+"1. Log into system 2. Execute following command:\n"
+"    sudo reboot\n"
+"3. Repeat steps 1~2 30 times."
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :883
+msgid "System reboot successfully each time"
+msgstr ""
+
+#. purpose
+#: ../units/snappy.pxu :890
+msgid "Check system can poweroff 30 times successfully"
+msgstr ""
+
+#. steps
+#: ../units/snappy.pxu :892
+msgid ""
+"1. Log into system 2. Execute following command:\n"
+"    sudo poweroff\n"
+"3. Boot the system 4. Repeat steps 1~3 30 times."
+msgstr ""
+
+#. verification
+#: ../units/snappy.pxu :898
+msgid "System poweroff successfully each time"
+msgstr ""
+
+#: ../manage.py:27
+msgid "Canonical certification provider for Snappy Ubuntu Core"
+msgstr ""
