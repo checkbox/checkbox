@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-07 15:17+0800\n"
-"PO-Revision-Date: 2016-03-17 19:10+0000\n"
+"PO-Revision-Date: 2016-03-22 21:05+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-03-18 05:18+0000\n"
-"X-Generator: Launchpad (build 17947)\n"
+"X-Launchpad-Export-Date: 2016-03-23 05:16+0000\n"
+"X-Generator: Launchpad (build 17958)\n"
 
 #. name
 #: ../units/touch.pxu:20
@@ -1726,6 +1726,8 @@ msgstr "   Le niveau de charge et le statut s'affichent-ils correctement ?"
 #: ../units/touch.pxu:1117
 msgid "Ensure that charging status changes with the power cable is connected"
 msgstr ""
+"Assurez-vous que le statut de charge change lorsque le câble d'alimentation "
+"est connecté"
 
 #. steps
 #: ../units/touch.pxu:1118
@@ -1746,6 +1748,10 @@ msgid ""
 "   2. Does the charging status change after connecting/disconnecting the "
 "power cable?"
 msgstr ""
+"   1. L'indicateur se met-il correctement à jour après le "
+"branchement/débranchement du câble d'alimentation ?\n"
+"   2. L'état de charge change-il après le branchement/débranchement du câble "
+"d'alimentation ?"
 
 #. summary
 #: ../units/touch.pxu:1155
@@ -3746,6 +3752,8 @@ msgstr ""
 msgid ""
 "   1. Verify that call can be taken correctly on the Bluetooth headset"
 msgstr ""
+"   1. Vérifiez que l'appel peut être passé correctement avec le casque "
+"Bluetooth"
 
 #. name
 #: ../units/touch.pxu:2977
@@ -3760,6 +3768,10 @@ msgid ""
 "   2. Select a contact and send the text\n"
 "   3. Ensure SMS sent correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application Messagerie\n"
+"   2. Sélectionnez un contact et envoyez-lui un message\n"
+"   3. Assurez-vous que le SMS est envoyé correctement"
 
 #. steps
 #: ../units/touch.pxu:3003
@@ -3769,6 +3781,10 @@ msgid ""
 "   2. Select multiple contacts and send the text\n"
 "   3. Ensure SMS sent correctly"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez l'application Messagerie\n"
+"   2. Sélectionnez plusieurs contacts et envoyez-leur un message\n"
+"   3. Assurez-vous que les SMS sont envoyés correctement"
 
 #. verification
 #: ../units/touch.pxu:3055
@@ -3776,6 +3792,8 @@ msgid ""
 "   1. Is SMS sent correctly?\n"
 "   2. Did DUT2 receive two messages?"
 msgstr ""
+"   1. Le SMS est-il envoyé correctement ?\n"
+"   2. Le deuxième appareil à tester a-t-il reçu deux messages ?"
 
 #. verification
 #: ../units/touch.pxu:3076
@@ -3783,6 +3801,8 @@ msgid ""
 "   1. Is SMS sent correctly?\n"
 "   2. Has every contact received two messages?"
 msgstr ""
+"   1. Le SMS est-il envoyé correctement ?\n"
+"   2. Chaque contact a-t-il reçu deux messages ?"
 
 #. steps
 #: ../units/touch.pxu:3171
@@ -4011,7 +4031,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:3411
 msgid "   1. Is the message displayed correctly?"
-msgstr ""
+msgstr "   1. Le message est-il affiché correctement ?"
 
 #. summary
 #: ../units/touch.pxu:3418
@@ -4047,6 +4067,8 @@ msgid ""
 "   1. Is the message displayed correctly?\n"
 "   2. Can you click on the URL and open it in the browser?"
 msgstr ""
+"   1. Le message est-il affiché correctement ?\n"
+"   2. Pouvez-vous cliquer sur l'URL et l'ouvrir dans le navigateur ?"
 
 #. summary
 #: ../units/touch.pxu:3439
@@ -5237,6 +5259,8 @@ msgid ""
 "   1. Does the indicator properly update?\n"
 "   2. Did the volume change?"
 msgstr ""
+"   1. L'indicateur se met-il correctement à jour ?\n"
+"   2. Le volume a-t-il changé ?"
 
 #. summary
 #: ../units/touch.pxu:4190
@@ -5277,6 +5301,8 @@ msgid ""
 "   1. Does the indicator properly update?\n"
 "   2. Did the phone muted?"
 msgstr ""
+"   1. L'indicateur se met-il correctement à jour ?\n"
+"   2. Le téléphone a-t-il été mis en silencieux ?"
 
 #. summary
 #: ../units/touch.pxu:4208
@@ -6023,6 +6049,8 @@ msgstr ""
 #: ../units/touch.pxu:4643
 msgid "Ensure that the power indicator shows on the screen after DUT off"
 msgstr ""
+"Assurez-vous que l'indicateur de batterie s'affiche sur l'écran une fois "
+"l'appareil à tester éteint"
 
 #. steps
 #: ../units/touch.pxu:4644
@@ -6056,7 +6084,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:4654
 msgid "   1. Is there a power indicator shown on the screen?"
-msgstr ""
+msgstr "   1. Un indicateur de batterie est-il affiché sur l'écran ?"
 
 #. name
 #: ../units/touch.pxu:4659
@@ -6415,6 +6443,8 @@ msgid ""
 "Make sure that music scope can scan and add music file after MTP transfer to "
 "storage"
 msgstr ""
+"Assurez-vous que le moteur de recherche de musique peut balayer et ajouter "
+"des fichiers musicaux après un transfert MTP vers un espace de stockage"
 
 #. steps
 #: ../units/touch.pxu:4864
