@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-07 15:17+0800\n"
-"PO-Revision-Date: 2016-03-22 21:05+0000\n"
+"PO-Revision-Date: 2016-03-23 20:19+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-03-23 05:16+0000\n"
+"X-Launchpad-Export-Date: 2016-03-24 05:20+0000\n"
 "X-Generator: Launchpad (build 17958)\n"
 
 #. name
@@ -6492,6 +6492,9 @@ msgid ""
 "Make sure that music scope can scan and add music files that are under "
 "folders after MTP transfer to storage"
 msgstr ""
+"Assurez-vous que le moteur de recherche de musique peut balayer et ajouter "
+"des fichiers musicaux qui sont dans des dossiers après un transfert MTP sur "
+"l'espace de stockage"
 
 #. steps
 #: ../units/touch.pxu:4887
@@ -6823,7 +6826,7 @@ msgstr ""
 #. verification
 #: ../units/touch.pxu:5042
 msgid "   1. File is present on the DUT"
-msgstr ""
+msgstr "   1. Le fichier est-il présent sur l'appareil à tester ?"
 
 #. summary
 #: ../units/touch.pxu:5049
@@ -6841,7 +6844,7 @@ msgstr ""
 #. name
 #: ../units/touch.pxu:5058
 msgid "Ubuntu Touch certification tests"
-msgstr ""
+msgstr "Tests de certification d'Ubuntu Touch"
 
 #. description
 #: ../units/touch.pxu:5059
@@ -6855,7 +6858,7 @@ msgstr ""
 #. name
 #: ../units/shakedown.pxu:6
 msgid "Quick return evaluation"
-msgstr ""
+msgstr "Évaluation rapide après un retour"
 
 #. description
 #: ../units/shakedown.pxu:7
@@ -6863,6 +6866,8 @@ msgid ""
 "This test plan should be used when the device is returned, to establish if "
 "it was returned because there's a technical problem with the device."
 msgstr ""
+"Ce plan de tests devrait être utilisé lorsque l'appareil est renvoyé afin "
+"d'établir s'il a été renvoyé à cause d'un problème technique avec l'appareil."
 
 #. name
 #: ../units/shakedown.pxu:63
@@ -6873,6 +6878,8 @@ msgstr ""
 #: ../units/shakedown.pxu:69
 msgid "Ensure that DUT can take and store screenshots"
 msgstr ""
+"Assurez-vous que l'appareil à tester peut prendre et stocker des captures "
+"d'écran"
 
 #. purpose
 #: ../units/shakedown.pxu:70
@@ -6880,6 +6887,8 @@ msgid ""
 "Purpose of this test is to check whether the device can take and store "
 "screenshots"
 msgstr ""
+"Le but de ce test est de vérifier si l'appareil peut prendre et stocker des "
+"captures d'écran"
 
 #. steps
 #: ../units/shakedown.pxu:73
@@ -6887,16 +6896,22 @@ msgid ""
 "1. Make sure screen is active 2. Press volume up and volume down buttons "
 "simultaneously"
 msgstr ""
+"1. Assurez-vous que l'écran est actif\r\n"
+"2. Appuyez simultanément sur les boutons pour augmenter et diminuer le volume"
 
 #. verification
 #: ../units/shakedown.pxu:76
 msgid "1. Open gallery app 2. Is the screenshot present?"
 msgstr ""
+"1. Ouvrez l'application Galerie\r\n"
+"2. La capture d'écran est-elle présente ?"
 
 #. summary
 #: ../units/shakedown.pxu:83
 msgid "Check if DUT warns when SD cards is full"
 msgstr ""
+"Vérifier si l'appareil à tester émet un avertissement lorsque la carte "
+"mémoire est remplie"
 
 #. purpose
 #: ../units/shakedown.pxu:84
@@ -6904,22 +6919,28 @@ msgid ""
 "Purpose of this test is to check whether the device warns the user about SD "
 "card being full."
 msgstr ""
+"Le but de ce test est de vérifier si l'appareil avertit l'utilisateur "
+"lorsque la carte mémoire est sur le point d'être remplie."
 
 #. steps
 #: ../units/shakedown.pxu:87
 msgid ""
 "1. Prepare SD card with no free space on it. 2. Insert into sd card slot."
 msgstr ""
+"1. Préparez une carte mémoire sans espace libre dessus.\r\n"
+"2. Insérez-la dans la fente de la carte mémoire."
 
 #. verification
 #: ../units/shakedown.pxu:90
 msgid "1. Does warning about SD card being full show up?"
 msgstr ""
+"1. L'avertissement à propos du fait que la carte mémoire est pleine "
+"s'affiche-t-il ?"
 
 #. summary
 #: ../units/shakedown.pxu:96
 msgid "Check if battery depletion rate is normal"
-msgstr ""
+msgstr "Vérifiez si la vitesse de déchargement de la batterie est normal"
 
 #. purpose
 #: ../units/shakedown.pxu:97
@@ -6927,6 +6948,8 @@ msgid ""
 "Purpose of this test is to make sure that device's battery depletes in a "
 "normal rate"
 msgstr ""
+"Le but de ce test est de s'assurer que la batterie de l'appareil se décharge "
+"à une vitesse normale"
 
 #. steps
 #: ../units/shakedown.pxu:100
@@ -6935,28 +6958,41 @@ msgid ""
 "Security & Privacy 4. Select Phone Locking 5. Select lock interval `never` "
 "6. Leave the device on idle for 30 minutes"
 msgstr ""
+"1. Assurez-vous que la batterie est complètement chargée\r\n"
+"2. Ouvrez les Paramètres système\r\n"
+"3. Ouvrez Sécurité & Vie privée\r\n"
+"4. Sélectionnez Verrouillage du téléphone\r\n"
+"5. Sélectionnez l'intervalle de verrouillage « jamais \r\n"
+"6. Laissez l'appareil en veille pendant 30 minutes"
 
 #. verification
 #: ../units/shakedown.pxu:107
 #, no-c-format
 msgid "1. Check charge level 2. Is it above or equal to 95%?"
 msgstr ""
+"1. Vérifiez le niveau de charge\r\n"
+"2. Est-il supérieur ou égal à 95% ?"
 
 #. summary
 #: ../units/shakedown.pxu:114
 msgid "Ensure that sim information can be read"
-msgstr ""
+msgstr "Assurez-vous que les informations de la carte SIM peuvent être lues"
 
 #. steps
 #: ../units/shakedown.pxu:115
 msgid ""
 "1. Ensure SIM is present 2. Open System Settings 3. Open About this phone"
 msgstr ""
+"1. Assurez-vous que la carte SIM est présente\r\n"
+"2. Ouvrez les Paramètres système\r\n"
+"3. Ouvrez À propos de ce téléphone"
 
 #. verification
 #: ../units/shakedown.pxu:119
 msgid "1. Is SIM present under Phone number?"
 msgstr ""
+"1. Les informations relatives à la carte SIM sont-elles présentes sous le "
+"numéro de téléphone ?"
 
 #. summary
 #: ../units/shakedown.pxu:125
