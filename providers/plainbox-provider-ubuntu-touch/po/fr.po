@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-07 15:17+0800\n"
-"PO-Revision-Date: 2016-03-23 20:19+0000\n"
+"PO-Revision-Date: 2016-03-26 19:36+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-03-24 05:20+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-03-27 05:16+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #. name
 #: ../units/touch.pxu:20
@@ -2301,7 +2301,7 @@ msgstr "Téléphonie/Appel de base (SIM1)"
 #. summary
 #: ../units/touch.pxu:1605
 msgid "Ensure that DTMF feature call works as expected"
-msgstr ""
+msgstr "Assurez-vous que les appels par code DTMF fonctionnent correctement"
 
 #. name
 #: ../units/touch.pxu:1806
@@ -6998,12 +6998,16 @@ msgstr ""
 #: ../units/shakedown.pxu:125
 msgid "Ensure that DUT can gather APN information"
 msgstr ""
+"Assurez-vous que l'appareil à tester peut collecter les informations des "
+"noms des points d'accès réseau"
 
 #. purpose
 #: ../units/shakedown.pxu:126
 msgid ""
 "Purpose of this test is to check if the device can gather APN information"
 msgstr ""
+"Le but de ce test est de vérifier si l'appareil peut collecter les "
+"informations des noms des points d'accès réseau"
 
 #. steps
 #: ../units/shakedown.pxu:128
@@ -7011,21 +7015,32 @@ msgid ""
 "1. Ensure SIM is present 2. Open System Settings 3. Select Cellular 4. "
 "Select Carrier 5. Open APN menu"
 msgstr ""
+"1. Assurez-vous que la carte SIM est présente\r\n"
+"2. Ouvrez les Paramètres système\r\n"
+"3. Sélectionnez Cellulaire\r\n"
+"4. Sélectionnez Opérateur\r\n"
+"5. Ouvrez le menu des noms des points d'accès réseau"
 
 #. verification
 #: ../units/shakedown.pxu:134
 msgid "1. Is operator's APN shown in the menu?"
 msgstr ""
+"1. Les noms des points d'accès réseau de l'opérateur sont-ils affichés dans "
+"le menu ?"
 
 #. summary
 #: ../units/shakedown.pxu:140
 msgid "Ensure that DUT can login into APN"
 msgstr ""
+"Assurez-vous que l'appareil à tester peut se connecter aux noms des points "
+"d'accès réseau"
 
 #. purpose
 #: ../units/shakedown.pxu:141
 msgid "Purpose of this test is to check if the device can login into APN"
 msgstr ""
+"Le but de ce test est de vérifier si l'appareil peut se connecter aux noms "
+"des points d'accès réseau"
 
 #. steps
 #: ../units/shakedown.pxu:143
@@ -7033,11 +7048,19 @@ msgid ""
 "1. Ensure SIM is present 2. Open System Settings 3. Select Cellular 4. "
 "Select Carrier 5. Open APN menu 6. Select one of the operator's APNs"
 msgstr ""
+"1. Assurez-vous que la carte SIM est présente\r\n"
+"2. Ouvrez les Paramètre système\r\n"
+"3. Sélectionnez Cellulaire\r\n"
+"4. Sélectionnez Opérateur\r\n"
+"5. Ouvrez le menu des noms des points d'accès réseau\r\n"
+"6. Sélectionnez un des noms des points d'accès réseau de l'opérateur"
 
 #. verification
 #: ../units/shakedown.pxu:150
 msgid "1. Is checkmark visible on the right of selected APN's name?"
 msgstr ""
+"1. La coche est-elle visible sur la droite du nom du point d'accès réseau "
+"sélectionné ?"
 
 #: ../manage.py:26
 msgid "The Ubuntu Touch for Plainbox"
