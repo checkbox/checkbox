@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-07 15:17+0800\n"
-"PO-Revision-Date: 2016-03-26 19:36+0000\n"
+"PO-Revision-Date: 2016-04-03 15:32+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-03-27 05:16+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-04 05:15+0000\n"
+"X-Generator: Launchpad (build 17972)\n"
 
 #. name
 #: ../units/touch.pxu:20
@@ -2564,6 +2564,14 @@ msgid ""
 "   3. Verify call waiting feature can work as expected\n"
 "   4. Verify you can answer/on hold/reject the call"
 msgstr ""
+"ACTIONS :\n"
+"   1. Ouvrez le composeur\n"
+"   2. Appelez le deuxième appareil à tester\n"
+"   3. Lorsque l'appel est connecté, utilisez le troisième appareil à tester "
+"pour appeler le premier\n"
+"   3. Vérifiez que la fonctionnalité de mise en attente fonctionne "
+"correctement\n"
+"   4. Vérifiez que vous pouvez répondre / mettre en attente / refuser l'appel"
 
 #. verification
 #: ../units/touch.pxu:2006
@@ -2655,6 +2663,16 @@ msgid ""
 "   6. Make sure indicator on phone and app shows hold is off\n"
 "   7. Make sure hold is actually off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Passez un appel à l'appareil à tester\n"
+"   2. Basculez en mise en attente\n"
+"   3. Assurez-vous que la mise en attente est activée sur le téléphone\n"
+"   4. Assurez-vous que l'indicateur du téléphone et que l'application "
+"affichent que la mise en attente est activée\n"
+"   5. Désactivez la mise en attente à partir du téléphone\n"
+"   6. Assurez-vous que l'indicateur du téléphone et que l'application "
+"affichent que la mise en attente est désactivée\n"
+"   7. Assurez-vous que la mise en attente est réellement désactivée"
 
 #. verification
 #: ../units/touch.pxu:2074
@@ -2665,11 +2683,19 @@ msgid ""
 "   4. When hold is turned off on phone, does the icon in the app reflect its "
 "new status?"
 msgstr ""
+"   1. La mise en attente est-elle activée ?\n"
+"   2. Le téléphone indique-t-il que la mise en attente est activée ?\n"
+"   3. La désactivation de la mise en attente à partir du téléphone désactive-"
+"t-elle bien la mise en attente ?\n"
+"   4. Lorsque la mise en attente est désactivée à partir du téléphone, "
+"l'icône de l'application reflète-t-elle son nouvel état ?"
 
 #. summary
 #: ../units/touch.pxu:2084
 msgid "Ensure that speakerphone toggle on/off works in voicemail"
 msgstr ""
+"Assurez-vous que l'activation et la désactivation du haut-parleur du "
+"téléphone fonctionne dans la boîte vocale"
 
 #. steps
 #: ../units/touch.pxu:2085
@@ -2726,6 +2752,17 @@ msgid ""
 "   6. Make sure indicator on phone and app shows speakerphone is off\n"
 "   7. Make sure speakerphone is actually off"
 msgstr ""
+"ACTIONS :\n"
+"   1. Appelez le deuxième appareil à tester\n"
+"   2. Activez le haut-parleur du téléphone\n"
+"   3. Assurez-vous que le haut-parleur du téléphone est activé sur le "
+"téléphone\n"
+"   4. Assurez-vous que l'indicateur du téléphone et que l'application "
+"affichent que le haut-parleur du téléphone est activé\n"
+"   5. Désactivez le haut-parleur à partir du téléphone\n"
+"   6. Assurez-vous que l'indicateur du téléphone et que l'application "
+"affichent que le haut-parleur du téléphone est désactivé\n"
+"   7. Assurez-vous que le haut-parleur du téléphone est réellement désactivé"
 
 #. verification
 #: ../units/touch.pxu:2130
@@ -2759,6 +2796,9 @@ msgid ""
 "ACTIONS:\n"
 "   1. Ensure the network indicator now shows telephony connection signal"
 msgstr ""
+"ACTIONS :\n"
+"   1. Assurez-vous que l'indicateur de réseau affiche désormais le signal de "
+"connexion téléphonique"
 
 #. name
 #: ../units/touch.pxu:2260
@@ -3317,6 +3357,8 @@ msgstr ""
 #: ../units/touch.pxu:2681
 msgid "   1. Is failure rate of DUT1 similar to Reference1?"
 msgstr ""
+"   1. Le taux d'échec du premier appareil à tester est-il similaire au "
+"premier appareil de référence ?"
 
 #. summary
 #: ../units/touch.pxu:2688
@@ -6872,7 +6914,7 @@ msgstr ""
 #. name
 #: ../units/shakedown.pxu:63
 msgid "Custom shakedown tests"
-msgstr ""
+msgstr "Tests d'endurance personnalisés"
 
 #. summary
 #: ../units/shakedown.pxu:69
