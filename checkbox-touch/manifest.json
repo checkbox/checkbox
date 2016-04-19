@@ -1,5 +1,9 @@
 {
-    "architecture": ["armhf", "i386", "amd64"],
+    "architecture": [
+        "armhf",
+        "i386",
+        "amd64"
+    ],
     "description": "System testing utility for Ubuntu",
     "framework": "ubuntu-sdk-14.10",
     "hooks": {
@@ -11,7 +15,7 @@
     "maintainer": "Zygmunt Krynicki <zkrynicki@ubuntu.com>",
     "name": "com.ubuntu.checkbox",
     "title": "Checkbox",
-    "version": "1.3.dev0",
+    "version": "1.3.dev",
     "x-source": {
         "vcs-bzr": "lp:checkbox",
         "vcs-bzr-revno": "checkbox-touch-v1.3.dev0"

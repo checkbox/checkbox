@@ -11,7 +11,9 @@ import sys
 import textwrap
 
 from confinement.generate import generate_confinement
+sys.path.append('./py')
 from py.embedded_providers import EmbeddedProvider1PlugInCollection
+from py.checkbox_touch import CheckboxTouchApplication
 
 # DEFAULT_PROVIDERS is a list of providers directory names as listed in
 # ../providers. NOTE: those are directory names, not provider names as reported
@@ -57,6 +59,18 @@ def check_libs_present():
         if not os.path.exists(path):
             raise EnvironmentError(
                 "{} not found!\nHave you run get-libs?".format(path))
+
+
+def check_versions_match(manifest):
+    """Check if version coded in python matches one from manifest.json."""
+    res = CheckboxTouchApplication().get_version_pair()
+    version_from_py = res['result']['application_version']
+
+    if manifest['version'] != version_from_py:
+        raise Exception(
+            ("Version mismatch! Version from checkbox_touch.py: {}, "
+             "version from manifest.json: {}").format(
+                    version_from_py, manifest['version']))
 
 
 def get_revision_string(path='.'):
@@ -140,6 +154,7 @@ def main():
         sys.exit('Provider validation failed.')
 
     current_manifest = json.loads(open('manifest.json', 'rt').read())
+    check_versions_match(current_manifest)
     hooks = {
         'checkbox-touch': current_manifest['hooks']['checkbox-touch']
     }

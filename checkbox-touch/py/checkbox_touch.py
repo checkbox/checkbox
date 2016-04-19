@@ -1,6 +1,6 @@
 # This file is part of Checkbox.
 #
-# Copyright 2014-2015 Canonical Ltd.
+# Copyright 2014-2016 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #   Maciej Kisielewski <maciej.kisielewski@canonical.com>
@@ -35,7 +35,23 @@ import datetime
 import json
 import logging
 import os
-import pyotherside
+try:
+    import pyotherside
+except ImportError:
+    class FakePyOtherSide():
+        """
+        Bogus pyotherside that does nothing.
+
+        CheckboxTouchUI uses pyotherside to propagate the output of running
+        job's command to the QML side.
+
+        pyotherside module is only available when python is run by PyOtherSide;
+        If this module is imported elsewhere (e.g. tests, packaging, etc.),
+        this bogus class is used instead.
+        """
+        def send(self, event, *args):
+            pass
+    pyotherside = FakePyOtherSide()
 import sqlite3
 import re
 import time
