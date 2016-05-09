@@ -70,7 +70,7 @@ def prepare_uris(packages):
         sources_list = open(os.path.join(new_etc_apt, 'sources.list'), "w")
         for source in sources:
             sources_list.write(
-                "deb [arch=armhf] {uri} vivid {repositories}\n".format(
+                "deb [arch=armhf] {uri} wily {repositories}\n".format(
                     uri=source.uri, repositories=source.repositories))
         sources_list.close()
         apt_pkg.config["Apt::Architecture"] = 'armhf'
@@ -164,18 +164,20 @@ def main():
     if args.plainbox_only:
         # skip downloading rest of the libs
         return
-    packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
-                'python3-jinja2', 'python3-markupsafe', 'python3-padme',
-                'python3-requests', 'python3-urllib3', 'python3-guacamole',
-                'python3-requests-oauthlib']
+    packages = [
+        'libpython3.5', 'pyotherside', 'python3-xlsxwriter',
+        'python3-jinja2', 'python3-markupsafe', 'python3-padme',
+        'python3-requests', 'python3-urllib3', 'python3-guacamole',
+        'python3-requests-oauthlib']
     # additional packages needed to support autopilot tests.  these were obtained by
     # running apt-cache depends on python3-autopilot
     if args.get_autopilot:
-        packages += ['python3-autopilot', 'python3-psutil', 'python3-testtools',
-        'python3-pil', 'libjs-jquery', 'libjs-underscore', 'libwebp5',
-        'libwebpmux1', 'python3-decorator', 'python3-testscenarios',
-        'python3-subunit', 'python3-fixtures', 'python3-junitxml',
-        'python3-extras', 'python3-evdev']
+        packages += [
+            'python3-autopilot', 'python3-psutil', 'python3-testtools',
+            'python3-pil', 'libjs-jquery', 'libjs-underscore', 'libwebp5',
+            'libwebpmux1', 'python3-decorator', 'python3-testscenarios',
+            'python3-subunit', 'python3-fixtures', 'python3-junitxml',
+            'python3-extras', 'python3-evdev']
     uris = prepare_uris(packages)
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
