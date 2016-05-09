@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 import argparse
 from contextlib import contextmanager
-from distutils.dir_util import copy_tree
 from datetime import datetime
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
+import stat
 import textwrap
+import tempfile
 
 from confinement.generate import generate_confinement
 sys.path.append('./py')
 from py.embedded_providers import EmbeddedProvider1PlugInCollection
 from py.checkbox_touch import CheckboxTouchApplication
+
+from utils import get_package_from_url_and_extract
+from utils import prepare_uris
+from utils import rsync_tree
 
 # DEFAULT_PROVIDERS is a list of providers directory names as listed in
 # ../providers. NOTE: those are directory names, not provider names as reported
@@ -31,6 +37,21 @@ def chdir(path):
     os.chdir(path)
     yield
     os.chdir(previous_path)
+
+
+def find_executables(path):
+    res = []
+    for node in os.listdir(path):
+        full_path = os.path.join(path, node)
+        if os.path.isdir(full_path):
+            res += find_executables(full_path)
+        else:
+            st = os.stat(full_path)
+            mode = st.st_mode
+            executable = stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
+            if mode & executable:
+                res.append(full_path)
+    return res
 
 
 def get_confined_jobs(path):
@@ -51,7 +72,7 @@ def check_libs_present():
     """
     NECESSARY_PATHS = [
         "lib/arm-linux-gnueabihf/io/thp/pyotherside/libpyothersideplugin.so",
-        "lib/arm-linux-gnueabihf/libpython3.4m.so.1",
+        "lib/arm-linux-gnueabihf/libpython3.5m.so.1",
         "lib/py/plainbox",
         "lib/py/plainbox.egg-info",
         "lib/py/xlsxwriter"]
@@ -134,12 +155,12 @@ def main():
 
     if args.embedded_providers_path is not None:
         for path in args.embedded_providers_path:
-            copy_tree(path, 'providers')
+            rsync_tree(path, 'providers')
 
     if args.provider is not None:
         for path in args.provider:
             target_base_name = os.path.basename(os.path.normpath(path))
-            copy_tree(path, os.path.join('providers', target_base_name))
+            rsync_tree(path, os.path.join('providers', target_base_name))
 
     if args.provider is None and args.embedded_providers_path is None:
         # no user specified providers
@@ -148,10 +169,12 @@ def main():
             for provider in DEFAULT_PROVIDERS:
                 path = os.path.join(os.getcwd(), '..', 'providers', provider)
                 target_base_name = os.path.basename(os.path.normpath(path))
-                copy_tree(path, os.path.join('providers', target_base_name))
+                rsync_tree(path, os.path.join(
+                    'providers', target_base_name))
 
     if not validate_providers():
         sys.exit('Provider validation failed.')
+    extract_dependencies()
 
     current_manifest = json.loads(open('manifest.json', 'rt').read())
     check_versions_match(current_manifest)
@@ -232,6 +255,42 @@ def build_i18n():
             print("Problem encountered while building translations for ",
                   "provider '{}'.".format(provider_dir))
             raise e
+
+def extract_dependencies():
+    print("Extracting dependencies")
+    for provider_dir in os.listdir('providers'):
+        debs = []
+        debs_file = os.path.join('providers', provider_dir, '_extra_debs')
+        if os.path.exists(debs_file):
+            with open(debs_file, 'rt') as f:
+                for deb in f.read().split():
+                    debs.append(deb)
+        uris = prepare_uris(debs)
+        for deb in debs:
+            with tempfile.TemporaryDirectory() as tmp:
+                get_package_from_url_and_extract(uris[deb], tmp)
+                bin_path = os.path.join(tmp, 'usr', 'bin')
+                if os.path.exists(bin_path):
+                    print('copying binaries from {}'.format(tmp))
+                    executables = find_executables(bin_path)
+                    provider_bin = os.path.join(
+                            'providers', provider_dir, 'bin')
+                    if executables:
+                        os.makedirs(provider_bin, exist_ok=True)
+                    for f in executables:
+                        target = os.path.join(
+                            'providers', provider_dir, 'bin',
+                            os.path.split(f)[1])
+                        if os.path.exists(target):
+                            print('Warning! {} already exists and will be'
+                                  ' skipped'.format(target))
+                        else:
+                            shutil.copyfile(f, target)
+                            shutil.copymode(f, target)
+                lib_path = os.path.join(tmp, 'usr', 'lib')
+                if os.path.exists(lib_path):
+                    print('copying libraries from {}'.format(tmp))
+                    rsync_tree(lib_path, 'lib', preserve_symlinks=1)
 
 
 def generate_desktop_file():

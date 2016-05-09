@@ -24,10 +24,7 @@ For typical development iteration, after hacking something in plainbox,
 run ./get-libs --plainbox-only
 """
 
-import apt
-import apt_pkg
 import argparse
-import collections
 import os
 import shutil
 import subprocess
@@ -35,75 +32,10 @@ import sys
 import tarfile
 import tempfile
 import urllib.request
-import zipfile
 
-def copy_tree(src, dest, preserve_symlinks=False):
-    """
-    copy files from src to dest using rsync
-    """
-    links_option = "-l" if preserve_symlinks else "-L"
-    parent_dir = os.path.split(os.path.abspath(dest))[0]
-    # adding trailing slash if it's not already there
-    src = os.path.join(src, '')
-    if not os.path.exists(parent_dir):
-        os.makedirs(parent_dir)
-    subprocess.check_call(["rsync", "-a", links_option, src, dest])
-
-def prepare_uris(get_autopilot):
-    """Prepare cache and generate URIs for all packages."""
-    # additional packages needed to support autopilot tests.  these were obtained by
-    # running apt-cache depends on python3-autopilot
-    ap_packages = ['python3-autopilot', 'python3-psutil', 'python3-testtools', 'python3-pil',
-                'libjs-jquery', 'libjs-underscore', 'libwebp5', 'libwebpmux1', 'python3-decorator',
-                'python3-testscenarios', 'python3-subunit', 'python3-fixtures', 'python3-junitxml',
-                'python3-extras', 'python3-evdev']
-    packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
-                'python3-jinja2', 'python3-markupsafe', 'python3-padme',
-                'python3-requests', 'python3-urllib3', 'python3-guacamole',
-                'python3-requests-oauthlib']
-    if get_autopilot:
-        packages += ap_packages
-    uris = dict()
-    Source = collections.namedtuple('Source', ['uri', 'repositories'])
-    sources = [Source('http://ports.ubuntu.com/ubuntu-ports',
-                         'main restricted universe'),
-               Source('http://ppa.launchpad.net/checkbox-dev/ppa/ubuntu',
-                         'main')]
-    with tempfile.TemporaryDirectory() as tmp:
-        new_etc_apt = os.path.join(tmp, 'etc', 'apt')
-        os.makedirs(new_etc_apt)
-        # copy over trusted.gpg
-        shutil.copyfile('/etc/apt/trusted.gpg',
-                        os.path.join(new_etc_apt, 'trusted.gpg'))
-        # copy over additional keyrings
-        if os.path.exists('/etc/apt/trusted.gpg.d'):
-            shutil.copytree('/etc/apt/trusted.gpg.d',
-                            os.path.join(new_etc_apt, 'trusted.gpg.d'))
-        sources_list = open(os.path.join(new_etc_apt, 'sources.list'), "w")
-        for source in sources:
-            sources_list.write(
-                "deb [arch=armhf] {uri} vivid {repositories}\n".format(
-                    uri=source.uri, repositories=source.repositories))
-        sources_list.close()
-        apt_pkg.config["Apt::Architecture"] = 'armhf'
-        cache = apt.Cache(rootdir=tmp)
-        cache.update()
-        cache.open(None)
-        for pkg in packages:
-            if pkg not in cache or len(cache[pkg].versions) < 1:
-                # package not found
-                raise Exception('Package {0} not found!'.format(pkg))
-            # use first uri available
-            uris[pkg] = cache[pkg].versions[0].uri
-    # return filled dictionary
-    return uris
-
-
-def get_package_from_url_and_extract(url, target_dir):
-    filename = os.path.join(target_dir, url.split('/')[-1])
-    print('retrieving {0}'.format(url))
-    urllib.request.urlretrieve(url, filename)
-    subprocess.check_call(["dpkg", "-x", filename, target_dir])
+from utils import get_package_from_url_and_extract
+from utils import prepare_uris
+from utils import rsync_tree
 
 
 def extract_plainbox(src_tarball, version):
@@ -112,15 +44,15 @@ def extract_plainbox(src_tarball, version):
         members = [member for member in tarball.getmembers()
                    if member.name.startswith(
                        "plainbox-{}/plainbox/".format(version)) or
-                       member.name.startswith(
+                   member.name.startswith(
                        "plainbox-{}/plainbox.egg-info".format(version))]
         tarball.extractall(tmp, members=members)
-        copy_tree(
+        rsync_tree(
             os.path.join(tmp, "plainbox-{}".format(version), "plainbox"),
             os.path.join('lib', 'py', 'plainbox'),
             preserve_symlinks=1)
         # copy plainbox.egg
-        copy_tree(
+        rsync_tree(
             os.path.join(tmp, "plainbox-{}".format(version),
                          'plainbox.egg-info'),
             os.path.join('lib', 'py', 'plainbox.egg-info'),
@@ -176,14 +108,28 @@ def main():
     if args.plainbox_only:
         # skip downloading rest of the libs
         return
-    uris = prepare_uris(args.get_autopilot)
+    packages = [
+        'libpython3.5', 'pyotherside', 'python3-xlsxwriter',
+        'python3-jinja2', 'python3-markupsafe', 'python3-padme',
+        'python3-requests', 'python3-urllib3', 'python3-guacamole',
+        'python3-requests-oauthlib']
+    # additional packages needed to support autopilot tests.  these were obtained by
+    # running apt-cache depends on python3-autopilot
+    if args.get_autopilot:
+        packages += [
+            'python3-autopilot', 'python3-psutil', 'python3-testtools',
+            'python3-pil', 'libjs-jquery', 'libjs-underscore', 'libwebp5',
+            'libwebpmux1', 'python3-decorator', 'python3-testscenarios',
+            'python3-subunit', 'python3-fixtures', 'python3-junitxml',
+            'python3-extras', 'python3-evdev']
+    uris = prepare_uris(packages)
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
     for lib in uris:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(uris[lib], tmp)
             # TODO: remove unwanted files from the extracted tree (e.g. *.h)
-            copy_tree(
+            rsync_tree(
                 os.path.join(tmp, 'usr', 'lib'), 'lib',
                 preserve_symlinks=1)
     # python3_libs_urls contains list of .deb packages that will be downloaded
@@ -205,7 +151,7 @@ def main():
     for pylib in [uris[lib] for lib in python3_libs]:
         with tempfile.TemporaryDirectory() as tmp:
             get_package_from_url_and_extract(pylib, tmp)
-            copy_tree(
+            rsync_tree(
                 os.path.join(tmp, 'usr', 'lib', 'python3',
                              'dist-packages'),
                 os.path.join('lib', 'py'),
@@ -216,7 +162,7 @@ def main():
             tmp, 'usr', 'lib', 'arm-linux-gnueabihf', 'qt5', 'qml')
         dest = os.path.join('lib', 'arm-linux-gnueabihf')
         if os.path.exists(src) and os.path.isdir(src):
-            copy_tree(src, dest, preserve_symlinks=1)
+            rsync_tree(src, dest, preserve_symlinks=1)
 
     # Remove the python3.4 directory
     # currently it only holds a few config-directories with symlinks
