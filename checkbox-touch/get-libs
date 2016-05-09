@@ -49,20 +49,8 @@ def copy_tree(src, dest, preserve_symlinks=False):
         os.makedirs(parent_dir)
     subprocess.check_call(["rsync", "-a", links_option, src, dest])
 
-def prepare_uris(get_autopilot):
+def prepare_uris(packages):
     """Prepare cache and generate URIs for all packages."""
-    # additional packages needed to support autopilot tests.  these were obtained by
-    # running apt-cache depends on python3-autopilot
-    ap_packages = ['python3-autopilot', 'python3-psutil', 'python3-testtools', 'python3-pil',
-                'libjs-jquery', 'libjs-underscore', 'libwebp5', 'libwebpmux1', 'python3-decorator',
-                'python3-testscenarios', 'python3-subunit', 'python3-fixtures', 'python3-junitxml',
-                'python3-extras', 'python3-evdev']
-    packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
-                'python3-jinja2', 'python3-markupsafe', 'python3-padme',
-                'python3-requests', 'python3-urllib3', 'python3-guacamole',
-                'python3-requests-oauthlib']
-    if get_autopilot:
-        packages += ap_packages
     uris = dict()
     Source = collections.namedtuple('Source', ['uri', 'repositories'])
     sources = [Source('http://ports.ubuntu.com/ubuntu-ports',
@@ -176,7 +164,19 @@ def main():
     if args.plainbox_only:
         # skip downloading rest of the libs
         return
-    uris = prepare_uris(args.get_autopilot)
+    packages = ['libpython3.4', 'pyotherside', 'python3-xlsxwriter',
+                'python3-jinja2', 'python3-markupsafe', 'python3-padme',
+                'python3-requests', 'python3-urllib3', 'python3-guacamole',
+                'python3-requests-oauthlib']
+    # additional packages needed to support autopilot tests.  these were obtained by
+    # running apt-cache depends on python3-autopilot
+    if args.get_autopilot:
+        packages += ['python3-autopilot', 'python3-psutil', 'python3-testtools',
+        'python3-pil', 'libjs-jquery', 'libjs-underscore', 'libwebp5',
+        'libwebpmux1', 'python3-decorator', 'python3-testscenarios',
+        'python3-subunit', 'python3-fixtures', 'python3-junitxml',
+        'python3-extras', 'python3-evdev']
+    uris = prepare_uris(packages)
     # libs_urls contains list of .deb packages that will be downloaded and
     # extracted. After extraction contents of ./usr/lib are copied to ./lib
     for lib in uris:
