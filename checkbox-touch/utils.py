@@ -64,7 +64,7 @@ def prepare_uris(packages):
         sources_list = open(os.path.join(new_etc_apt, 'sources.list'), "w")
         for source in sources:
             sources_list.write(
-                "deb [arch=armhf] {uri} xenial {repositories}\n".format(
+                "deb [arch=armhf] {uri} wily {repositories}\n".format(
                     uri=source.uri, repositories=source.repositories))
         sources_list.close()
         apt_pkg.config["Apt::Architecture"] = 'armhf'

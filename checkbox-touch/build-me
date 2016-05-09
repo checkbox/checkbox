@@ -2,7 +2,6 @@
 import argparse
 from contextlib import contextmanager
 from datetime import datetime
-import imp
 import json
 import os
 import re
@@ -18,7 +17,9 @@ sys.path.append('./py')
 from py.embedded_providers import EmbeddedProvider1PlugInCollection
 from py.checkbox_touch import CheckboxTouchApplication
 
-get_libs = imp.load_source('get_libs', './get-libs')
+from utils import get_package_from_url_and_extract
+from utils import prepare_uris
+from utils import rsync_tree
 
 # DEFAULT_PROVIDERS is a list of providers directory names as listed in
 # ../providers. NOTE: those are directory names, not provider names as reported
@@ -154,12 +155,12 @@ def main():
 
     if args.embedded_providers_path is not None:
         for path in args.embedded_providers_path:
-            get_libs.copy_tree(path, 'providers')
+            rsync_tree(path, 'providers')
 
     if args.provider is not None:
         for path in args.provider:
             target_base_name = os.path.basename(os.path.normpath(path))
-            get_libs.copy_tree(path, os.path.join('providers', target_base_name))
+            rsync_tree(path, os.path.join('providers', target_base_name))
 
     if args.provider is None and args.embedded_providers_path is None:
         # no user specified providers
@@ -168,7 +169,7 @@ def main():
             for provider in DEFAULT_PROVIDERS:
                 path = os.path.join(os.getcwd(), '..', 'providers', provider)
                 target_base_name = os.path.basename(os.path.normpath(path))
-                get_libs.copy_tree(path, os.path.join(
+                rsync_tree(path, os.path.join(
                     'providers', target_base_name))
 
     if not validate_providers():
@@ -264,10 +265,10 @@ def extract_dependencies():
             with open(debs_file, 'rt') as f:
                 for deb in f.read().split():
                     debs.append(deb)
-        uris = get_libs.prepare_uris(debs)
+        uris = prepare_uris(debs)
         for deb in debs:
             with tempfile.TemporaryDirectory() as tmp:
-                get_libs.get_package_from_url_and_extract(uris[deb], tmp)
+                get_package_from_url_and_extract(uris[deb], tmp)
                 bin_path = os.path.join(tmp, 'usr', 'bin')
                 if os.path.exists(bin_path):
                     print('copying binaries from {}'.format(tmp))
@@ -289,7 +290,7 @@ def extract_dependencies():
                 lib_path = os.path.join(tmp, 'usr', 'lib')
                 if os.path.exists(lib_path):
                     print('copying libraries from {}'.format(tmp))
-                    get_libs.copy_tree(lib_path, 'lib', preserve_symlinks=1)
+                    rsync_tree(lib_path, 'lib', preserve_symlinks=1)
 
 
 def generate_desktop_file():
