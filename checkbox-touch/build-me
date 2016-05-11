@@ -200,7 +200,7 @@ def main():
         adb_options = []
         if args.s:
             adb_options = ['-s', args.s]
-        install_click(pkg, adb_options)
+        install_click_adb(pkg, adb_options)
 
 
 def validate_providers():
@@ -329,7 +329,7 @@ def build_click():
     return pkg_name
 
 
-def install_click(pkg, adb_options=[]):
+def install_click_adb(pkg, adb_options=[]):
     print('Pushing to the device')
     adb_base = ['adb'] + adb_options
     try:
