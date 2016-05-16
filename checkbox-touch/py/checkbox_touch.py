@@ -301,6 +301,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.assistant.get_category(category_id)
             for category_id in self.assistant.get_participating_categories()
         )]
+        category_info_list.sort(key=lambda ci: (ci['mod_name']))
         return {'category_info_list': category_info_list}
 
     @view
