@@ -23,7 +23,7 @@ Run:
 
     $ ./get-libs
     $ ./build-me --provider \
-    ../providers/plainbox-provider-certification-touch/ --install
+    ../providers/plainbox-provider-ubuntu-touch/ --install
 
 To start testing on the device!
 
@@ -79,7 +79,7 @@ build-me script. E.g.:
 
 .. code-block:: bash
 
-    $ ./build-me --provider ../providers/plainbox-provider-certification-touch
+    $ ./build-me --provider ../providers/plainbox-provider-ubuntu-touch
 
 
 Default Checkbox-Touch settings
