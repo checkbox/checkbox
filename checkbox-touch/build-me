@@ -136,7 +136,17 @@ def main():
     parser.add_argument("-s", action='store', type=str,
                         help=("Serial number of the device to use when using "
                               "adb. Overrides ANDROID_SERIAL"))
+    parser.add_argument("--ssh",
+                        action='store', type=str,
+                        help=("Host to install click on using ssh. Implies"
+                              "--install"))
+    parser.add_argument("--port",
+                        action='store', type=int,
+                        help="Port to use when using ssh. Requires --ssh")
     args = parser.parse_args()
+    if args.port and not args.ssh:
+        parser.error("--port without --ssh doesn't make sense!")
+        return 1
 
     check_libs_present()
 
@@ -196,11 +206,15 @@ def main():
 
     pkg = build_click()
 
-    if args.install:
+    if args.install and not args.ssh:
         adb_options = []
         if args.s:
             adb_options = ['-s', args.s]
-        install_click(pkg, adb_options)
+        install_click_adb(pkg, adb_options)
+
+    if args.ssh:
+        port = args.port or 22
+        install_click_ssh(pkg, args.ssh, port)
 
 
 def validate_providers():
@@ -329,7 +343,7 @@ def build_click():
     return pkg_name
 
 
-def install_click(pkg, adb_options=[]):
+def install_click_adb(pkg, adb_options=[]):
     print('Pushing to the device')
     adb_base = ['adb'] + adb_options
     try:
@@ -344,6 +358,30 @@ def install_click(pkg, adb_options=[]):
                                 path=path)])
     except subprocess.CalledProcessError:
         sys.exit('Error ecountered while installing click package.')
+
+
+def install_click_ssh(pkg, host, port):
+    if host.find('@') < 0:
+        # user not specified, let's add phablet user
+        host = 'phablet@' + host
+    target_path = host+':/tmp'
+    print('Pushing to the device using SSH. {}:{}'.format(host, port))
+    try:
+        subprocess.check_output(
+            ['scp', '-P {}'.format(port), pkg, target_path])
+    except subprocess.CalledProcessError:
+        sys.exit('Error ecountered while pushing to the device.')
+    print('Installing click package')
+    path = '/tmp/' + os.path.basename(pkg)
+    try:
+        subprocess.check_output(
+            ['ssh', '-p {}'.format(port), host,
+             'pkcon install-local --allow-untrusted -p -y {path}'.format(
+                 path=path)])
+    except subprocess.CalledProcessError as exc:
+        print(exc.output.decode('utf-8'))
+        sys.exit('Error ecountered while installing click package. %s' % exc)
+
 
 if __name__ == "__main__":
     main()
