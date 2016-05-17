@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+#
+# This file is part of Checkbox.
+#
+# Copyright 2016 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+"""
+This program generates Ubuntu Location Service tests formatted as plainbox
+jobs. It requires executables ubuntu-location-service-tests package to be
+available in the path.
+
+Number of plainbox jobs generated with this script should match running:
+$ for e in `find . -executable`; do $e --gtest_list_tests 2>/dev/null; done
+|grep '^\ ' |wc -l
+in the ubuntu-location-service-tests bin directory.
+
+Note that for different architectures the binaries names and number of tests
+may vary.
+"""
+
+import os
+import subprocess
+import sys
+
+BINARIES_BLACKLISTED = [
+    'daemon_and_cli_tests', 'acceptance_tests', # all tests from those binaries
+    # require /usr/share/dbus-cpp/session.conf to be present; this file is
+    # normally _installed_ with libdbus-cpp-dev.
+    #'engine_test', # tests from this binary yield 'stack smashing detected'
+    # which is reproducable on desktops
+]
+
+TESTS_BLACKLISTED = [
+    'HardwareAbstractionLayerFixture.time_to_first_fix_cold_start_without_supl_benchmark_requires_hardware',
+    'HardwareAbstractionLayerFixture.time_to_first_fix_cold_start_with_supl_benchmark_requires_hardware',
+    # those two tests when run indoors can run indefinitely
+    'RemoteProviderdTest.AClientReceivesUpdatesFromAnOutOfProcessProvider',
+    # this test also requires /usr/share/dbus-cpp/session.conf
+    'EspooProviderTest.receives_position_updates_requires_daemons',
+    # this test requires X11
+    'AppArmorProfileResolver.libapparmor_profile_resolver_returns_correct_profile_for_unconfined_process',
+    # this test is run as part of checkbox, so apparmor reports app being
+    # checkbox, and not the one that test expects
+]
+
+TESTS_REQUIRING_ROOT = [
+]
+
+def main():
+    uls_binaries = [
+        "acceptance_tests", "boost_ptree_settings_test",
+        "connectivity_manager_test", "controller_test", "criteria_test",
+        "daemon_and_cli_tests", "default_permission_manager_test",
+        "demultiplexing_reporter_test", "engine_test", "espoo_provider_test",
+        "gps_provider_test", "harvester_test", "ichnaea_reporter_test",
+        "position_test", "provider_factory_test",
+        "provider_selection_policy_test", "provider_test",
+        "remote_provider_test", "remote_providerd_test",
+        "time_based_update_policy_test", "trust_store_permission_manager_test",
+        "wgs84_test"]
+    for uls_bin in uls_binaries:
+        if uls_bin in BINARIES_BLACKLISTED:
+            continue
+        output = subprocess.check_output([uls_bin, '--gtest_list_tests'])
+        suite = ''
+        for line in output.decode(sys.stdout.encoding).split('\n'):
+            if not line.startswith(' '):
+                suite = line
+            else:
+                test_name = line.lstrip()
+                full_name = suite + test_name
+                root = 'yes' if full_name in TESTS_REQUIRING_ROOT else 'no'
+                if full_name in TESTS_BLACKLISTED:
+                    continue
+                print('full_name: {}'.format(full_name))
+                print('test_case: {}'.format(test_name))
+                print('binary: {}'.format(uls_bin))
+                print('root: {}'.format(root))
+                if root == 'yes':
+                    print('ld_lib_path: {}'.format(os.environ.get('LD_LIBRARY_PATH') or ''))
+                print()
+
+
+if __name__ == '__main__':
+    main()
