@@ -194,3 +194,37 @@ qml_file: msg-22.qml
 estimated_duration: 20
 imports: from 2015.com.canonical.certification import cellularmodem as modem
 requires: modem.ril1_simPresent == "True"
+
+unit: category
+id: Apparmor
+_name: Apparmor tests
+
+id: app-armor-denial-syslog-save
+category_id: Apparmor
+plugin: shell
+command: cp /var/log/syslog $PLAINBOX_SESSION_SHARE/before-app-armor-denial-syslog
+_description: Job that saves syslog
+flags: preserve-locale
+estimated_duration: 1
+
+id: app-armor-denial
+category_id: Apparmor
+plugin: qml
+_summary: Check denial of access to camera
+_description:
+ This test will launch in confined environment. When asked for permission to
+ use the camera, answer NO. Later, Checkbox will check if apparmor really 
+ blocked access to the camera by checking syslog.
+qml_file: camera_denial.qml
+flags: confined
+estimated_duration: 10
+depends: app-armor-denial-syslog-save
+
+id: app-armor-denial-check
+category_id: Apparmor
+plugin: shell
+command: diff /var/log/syslog $PLAINBOX_SESSION_SHARE/before-app-armor-denial-syslog |grep "app-armor-denial.*answer: denied"
+_description: Job that checks if syslog was updated
+flags: preserve-locale
+estimated_duration: 0.1
+depends: app-armor-denial
