@@ -1,0 +1,32 @@
+unit: category
+id: uls
+_name: Ubuntu Location Service tests
+
+id: uls/uls_resource
+category_id: uls
+plugin: resource
+command: uls_resource
+_summary: Generate Ubuntu Location Services tests
+_description: Generates Ubuntu Location Services tests
+
+unit: template
+template-resource: uls/uls_resource
+id: uls/{binary}_{full_name}
+template-imports: from 2014.com.ubuntu import uls/uls_resource as uls_res
+template-filter: uls_res.root == 'yes'
+category_id: uls
+plugin: shell
+command: LD_LIBRARY_PATH={ld_lib_path}:$LD_LIBRARY_PATH {binary} --gtest_filter={full_name}
+user: root
+_description: {test_case} from Ubuntu Location Service tests
+
+unit: template
+template-resource: uls/uls_resource
+id: uls/{binary}_{full_name}
+template-imports: from 2014.com.ubuntu import uls/uls_resource as uls_res
+template-filter: uls_res.root == 'no'
+category_id: uls
+plugin: shell
+command: {binary} --gtest_filter={full_name}
+_description: {test_case} from Ubuntu Location Service tests
+
