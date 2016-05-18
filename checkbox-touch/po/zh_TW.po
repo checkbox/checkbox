@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-10-15 12:23+0200\n"
-"PO-Revision-Date: 2015-10-14 03:56+0000\n"
+"PO-Revision-Date: 2016-05-18 04:35+0000\n"
 "Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-14 05:13+0000\n"
+"X-Launchpad-Export-Date: 2016-05-18 05:17+0000\n"
 "X-Generator: Launchpad (build 18025)\n"
 
 #: checkbox-touch.qml:70
 msgid "Run Checkbox-Touch in autopilot-testing mode"
-msgstr ""
+msgstr "以 autopilot-testing 模式執行 Checkbox-Touch"
 
 #: checkbox-touch.qml:75
 msgid "Write only warnings and errors to standard error"
-msgstr ""
+msgstr "僅輸出警告與錯誤至標準錯誤"
 
 #: checkbox-touch.qml:81
 msgid "Path to a file containing checkbox-touch settings"
-msgstr ""
+msgstr "checkbox-touch 設定檔的路徑"
 
 #. TRANSLATORS: %1 means program version, %2 repository revision and %3
 #. date when the package was built
@@ -52,7 +52,7 @@ msgstr ""
 
 #: checkbox-touch.qml:289
 msgid "Select test plan"
-msgstr ""
+msgstr "選擇測試計畫"
 
 #: checkbox-touch.qml:316
 msgid "Select categories"
@@ -73,11 +73,11 @@ msgstr "選擇需要重新測試的項目"
 
 #: checkbox-touch.qml:375
 msgid "Finish"
-msgstr ""
+msgstr "結束"
 
 #: checkbox-touch.qml:375
 msgid "Re-run"
-msgstr ""
+msgstr "重新測試"
 
 #: checkbox-touch.qml:415
 msgid "Could not create component '"
@@ -86,20 +86,20 @@ msgstr ""
 #: checkbox-touch.qml:417 components/ErrorLogic.js:13
 #: components/CheckboxTouchApplication.qml:57
 msgid "Quit"
-msgstr ""
+msgstr "離開"
 
 #: checkbox-touch.qml:436
 msgid "Could not resume session."
-msgstr ""
+msgstr "無法恢復工作階段。"
 
 #: checkbox-touch.qml:438 components/ResumeSessionPage.qml:117
 #: components/CheckboxTouchApplication.qml:70
 msgid "Start new session"
-msgstr ""
+msgstr "開始新的工作階段"
 
 #: checkbox-touch.qml:547
 msgid "Reports have been saved to your Documents folder"
-msgstr ""
+msgstr "報告已儲存至您的文件資料夾"
 
 #: checkbox-touch.qml:548 checkbox-touch.qml:567 checkbox-touch.qml:573
 #: components/CbtDialogLogic.js:5 components/PasswordDialog.qml:60
@@ -121,15 +121,15 @@ msgstr "無法傳送報告。原因：\n"
 
 #: confinement/plainbox-confined-shell.qml:97
 msgid "Sending report - you should not see this page :-)"
-msgstr ""
+msgstr "傳送報告中 - 您不應該看到本頁面喔 :-)"
 
 #: components/WelcomePage.qml:35
 msgid "System Testing"
-msgstr ""
+msgstr "系統測試"
 
 #: components/WelcomePage.qml:47 components/AboutPage.qml:39
 msgid "About"
-msgstr ""
+msgstr "關於"
 
 #: components/WelcomePage.qml:73
 msgid "Checkbox is loading..."
@@ -138,20 +138,20 @@ msgstr "Checkbox 載入中..."
 #: components/QmlConfinedPage.qml:40 components/InteractIntroPage.qml:48
 #: components/QmlNativePage.qml:38 components/ManualIntroPage.qml:42
 msgid "Test Description"
-msgstr ""
+msgstr "測試項目敘述"
 
 #: components/QmlConfinedPage.qml:98
 msgid "Waiting for the test to finish"
-msgstr ""
+msgstr "等待測試完成中"
 
 #: components/QmlConfinedPage.qml:107 components/InteractIntroPage.qml:99
 #: components/QmlNativePage.qml:65 components/ManualIntroPage.qml:57
 msgid "Start the test"
-msgstr ""
+msgstr "開始這項測試"
 
 #: components/ResumeSessionPage.qml:39
 msgid "Resume session"
-msgstr ""
+msgstr "恢復工作階段"
 
 #: components/ResumeSessionPage.qml:79
 msgid "Rerun last"
@@ -160,22 +160,22 @@ msgstr ""
 #: components/ResumeSessionPage.qml:98 components/SelectionPage.qml:36
 #: components/ErrorLogic.js:11 components/UserInteractSummaryPage.qml:95
 msgid "Continue"
-msgstr ""
+msgstr "繼續"
 
 #: components/TestVerificationPage.qml:41
 #: components/UserInteractSummaryPage.qml:41
 msgid "Verification"
-msgstr ""
+msgstr "檢驗"
 
 #. TRANSLATORS: this string is on a button that marks the given test as passed
 #: components/TestVerificationPage.qml:72
 msgid "Pass"
-msgstr ""
+msgstr "通過"
 
 #. TRANSLATORS: this string is on a button that marks the given test as failed
 #: components/TestVerificationPage.qml:86
 msgid "Fail"
-msgstr ""
+msgstr "失敗"
 
 #: components/CommandOutputPage.qml:46
 msgid "Command output"
@@ -189,7 +189,7 @@ msgstr "複製"
 #. TRANSLATORS: This is a label on the button that goes back a page
 #: components/CommandOutputPage.qml:98
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #: components/PasswordDialog.qml:47
 msgid "Enter password"
@@ -205,7 +205,7 @@ msgstr "取消"
 
 #: components/SelectionPage.qml:89
 msgid "Toggle selection"
-msgstr ""
+msgstr "切換選擇"
 
 #: components/WebViewer.qml:28
 msgid "Test Report"
@@ -213,20 +213,20 @@ msgstr "測試報告"
 
 #: components/AutomatedTestPage.qml:39
 msgid "Automated test"
-msgstr ""
+msgstr "自動化測試"
 
 #. TRANSLATORS: this string will be followed by either "PASSED" or "FAILED"
 #: components/UserInteractSummaryPage.qml:60
 msgid "This test "
-msgstr ""
+msgstr "此項測試 "
 
 #: components/UserInteractSummaryPage.qml:77
 msgid "PASSED"
-msgstr ""
+msgstr "通過"
 
 #: components/UserInteractSummaryPage.qml:77
 msgid "FAILED"
-msgstr ""
+msgstr "失敗"
 
 #: components/UserInteractSummaryPage.qml:88
 msgid "You can go back to rerun the test or continue to the next test."
@@ -234,7 +234,7 @@ msgstr ""
 
 #: components/actions/SkipAction.qml:33
 msgid "Skip"
-msgstr ""
+msgstr "略過"
 
 #: components/actions/SkipAction.qml:36
 msgid "Do you really want to skip this test?"
@@ -242,11 +242,11 @@ msgstr "您真的想略過本測試嗎？"
 
 #: components/actions/AddCommentAction.qml:31 components/CommentsDialog.qml:54
 msgid "Add comment"
-msgstr ""
+msgstr "加入備註"
 
 #: components/CommentsDialog.qml:66
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: components/ConfirmationDialog.qml:50
 msgid "Are you sure?"
@@ -254,15 +254,15 @@ msgstr "您確定嗎？"
 
 #: components/ConfirmationDialog.qml:69
 msgid "YES"
-msgstr ""
+msgstr "是"
 
 #: components/ConfirmationDialog.qml:78
 msgid "NO"
-msgstr ""
+msgstr "否"
 
 #: components/ConfirmationDialog.qml:93
 msgid "Do not ask me this question again"
-msgstr ""
+msgstr "下次不要再問我這個問題"
 
 #: components/ResultsPage.qml:34
 msgid "Test Results"
@@ -270,27 +270,27 @@ msgstr "測試結果"
 
 #: components/ResultsPage.qml:52 components/AboutPage.qml:81
 msgid "Close"
-msgstr ""
+msgstr "關閉"
 
 #: components/ResultsPage.qml:87
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: components/ResultsPage.qml:131
 msgid "tests passed"
-msgstr ""
+msgstr "項測試通過"
 
 #: components/ResultsPage.qml:142
 msgid "tests failed"
-msgstr ""
+msgstr "項測試失敗"
 
 #: components/ResultsPage.qml:153
 msgid "tests skipped"
-msgstr ""
+msgstr "項測試被略過"
 
 #: components/ResultsPage.qml:162
 msgid "Save detailed report"
-msgstr ""
+msgstr "儲存詳細的報告"
 
 #. TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
 #: components/ResultsPage.qml:171
@@ -307,7 +307,7 @@ msgstr "Plainbox 版本： "
 
 #: components/ErrorDialog.qml:43
 msgid "Um, OK"
-msgstr ""
+msgstr "呃，好"
 
 #: components/ErrorDialog.qml:53 components/ErrorDialog.qml:61
 msgid "Error encountered"
@@ -319,7 +319,7 @@ msgstr ""
 
 #: components/CheckboxTouchApplication.qml:65
 msgid "Could not resume session"
-msgstr ""
+msgstr "無法恢復工作階段"
 
 #: py/sudo_with_pass_ctrl.py:160
 #, python-format
