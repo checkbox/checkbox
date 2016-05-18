@@ -132,7 +132,8 @@ Page {
                 }
                 Text {
                     objectName: "passedLabel"
-                    text: results.totalPassed + " " + i18n.tr("tests passed")
+                    // TRANSLATORS: %1 will be a number, please do not translate it
+                    text: i18n.tr("%1 tests passed").arg(results.totalPassed)
                 }
             }
             Row {
@@ -143,7 +144,8 @@ Page {
                 }
                 Text {
                     objectName: "failedLabel"
-                    text: results.totalFailed + " " + i18n.tr("tests failed")
+                    // TRANSLATORS: %1 will be a number, please do not translate it
+                    text: i18n.tr("%1 tests failed").arg(results.totalFailed)
                 }
             }
             Row {
@@ -154,7 +156,8 @@ Page {
                 }
                 Text {
                     objectName: "skippedLabel"
-                    text: results.totalSkipped + " " + i18n.tr("tests skipped")
+                    // TRANSLATORS: %1 will be a number, please do not translate it
+                    text: i18n.tr("%1 tests skipped").arg(results.totalSkipped)
                 }
             }
         }
@@ -174,7 +177,7 @@ Page {
             unlatchedColor: UbuntuColors.green
             visible: submissionName
             Layout.fillWidth: true
-            // TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
+            // TRANSLATORS: following string will be followed by a service name, e.g. "certification website"
             text: i18n.tr("Submit results to " + submissionName)
             onLatchedClicked: {
                 rerunAction.enabled = false;
