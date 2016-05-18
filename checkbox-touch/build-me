@@ -285,7 +285,6 @@ def extract_dependencies():
                 get_package_from_url_and_extract(uris[deb], tmp)
                 bin_path = os.path.join(tmp, 'usr', 'bin')
                 if os.path.exists(bin_path):
-                    print('copying binaries from {}'.format(tmp))
                     executables = find_executables(bin_path)
                     provider_bin = os.path.join(
                             'providers', provider_dir, 'bin')
@@ -303,7 +302,6 @@ def extract_dependencies():
                             shutil.copymode(f, target)
                 lib_path = os.path.join(tmp, 'usr', 'lib')
                 if os.path.exists(lib_path):
-                    print('copying libraries from {}'.format(tmp))
                     rsync_tree(lib_path, 'lib', preserve_symlinks=1)
 
 
