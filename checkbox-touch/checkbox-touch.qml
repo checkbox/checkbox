@@ -281,7 +281,7 @@ MainView {
         onRerunLast: app.resumeSession(true, processNextTest)
         onContinueSession: app.resumeSession(false, processNextTest)
         resumeText: i18n.tr("Checkbox session got suspended.\nDo you want \
- to rerun last test, continue to the next test, or start a new session?")
+to rerun last test, continue to the next test, or start a new session?")
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
@@ -435,7 +435,7 @@ MainView {
     function createPage(url, test) {
         var pageComponent = Qt.createComponent(Qt.resolvedUrl(url));
         if (pageComponent.status == Component.Error) {
-            var msg = i18n.tr("Could not create component '") + url + "'\n" + pageComponent.errorString();
+            var msg = i18n.tr("Could not create component '%1'\n").arg(url) + pageComponent.errorString();
             console.error(msg);
             ErrorLogic.showError(mainView, msg, Qt.quit, i18n.tr("Quit"));
         } else {
@@ -573,7 +573,7 @@ MainView {
                     }
                     CbtDialogLogic.showDialog(
                         resultsPage,
-                        i18n.tr("Report has been submited.\n" + s),
+                        i18n.tr("Report has been submitted.\n" + s),
                         [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
                 },
                 function(error) {

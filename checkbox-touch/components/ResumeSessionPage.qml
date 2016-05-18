@@ -71,7 +71,7 @@ Page {
             id: deleteIncompleteButton
             objectName: "deleteIncompleteButton"
             visible: incompleteSessionCount > 0
-            text: i18n.tr("Delete incomplete sessions (%0)".arg(incompleteSessionCount))
+            text: i18n.tr("Delete incomplete sessions (%0)").arg(incompleteSessionCount)
             unlatchedColor: UbuntuColors.red
             Layout.fillWidth: true
             onLatchedClicked: {

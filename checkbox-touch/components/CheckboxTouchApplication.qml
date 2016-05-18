@@ -52,7 +52,7 @@ PythonObjectRef {
         }, function(error) {
             console.error("Unable to start session: " + error);
             ErrorLogic.showError(mainView,
-                                 i18n.tr("Could not start a session.  Reason:\n" + error),
+                                 i18n.tr("Could not start a session. Reason:\n" + error),
                                  Qt.quit,
                                  i18n.tr("Quit"));
         });
