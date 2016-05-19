@@ -378,7 +378,7 @@ def install_click_ssh(pkg, host, port):
                  path=path)])
     except subprocess.CalledProcessError as exc:
         print(exc.output.decode('utf-8'))
-        sys.exit('Error ecountered while installing click package. %s' % exc)
+        sys.exit('Error encountered while installing click package. %s' % exc)
 
 
 if __name__ == "__main__":

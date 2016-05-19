@@ -22,8 +22,7 @@ Run:
 .. code-block:: bash
 
     $ ./get-libs
-    $ ./build-me --provider \
-    ../providers/plainbox-provider-ubuntu-touch/ --install
+    $ ./build-me --install
 
 To start testing on the device!
 
@@ -86,7 +85,7 @@ Default Checkbox-Touch settings
 -------------------------------
 During execution of `./build-me` script, `settings.json` file is generated.
 It contains values that Checkbox-Touch will use as its default ones.
-Altough not required, you may edit this file to suit your needs.
+Although not required, you may edit this file to suit your needs.
 
 Further assistance
 ------------------
