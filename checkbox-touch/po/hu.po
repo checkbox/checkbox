@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-10-15 12:23+0200\n"
+"POT-Creation-Date: 2016-05-20 09:30+0800\n"
 "PO-Revision-Date: 2014-09-02 07:21+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-14 05:13+0000\n"
+"X-Launchpad-Export-Date: 2016-05-20 05:15+0000\n"
 "X-Generator: Launchpad (build 18025)\n"
 
 #: checkbox-touch.qml:70
@@ -32,7 +32,7 @@ msgstr ""
 #. TRANSLATORS: %1 means program version, %2 repository revision and %3
 #. date when the package was built
 #. TRANSLATORS: keep the '\n' characters at the end of each line
-#: checkbox-touch.qml:198
+#: checkbox-touch.qml:202
 #, qt-format
 msgid ""
 "Welcome to Checkbox Touch\n"
@@ -40,123 +40,85 @@ msgid ""
 "(%2 %3)"
 msgstr ""
 
-#: checkbox-touch.qml:278
+#: checkbox-touch.qml:283
 msgid ""
-"Previous session did not finish completely.\n"
-"Do you want  to rerun last test, continue to the next test, or start a new "
+"Checkbox session got suspended.\n"
+"Do you want to rerun last test, continue to the next test, or start a new "
 "session?"
 msgstr ""
 
-#: checkbox-touch.qml:289
+#: checkbox-touch.qml:301
 msgid "Select test plan"
 msgstr ""
 
-#: checkbox-touch.qml:316
+#: checkbox-touch.qml:328
 msgid "Select categories"
 msgstr ""
 
-#: checkbox-touch.qml:345
+#: checkbox-touch.qml:363
 msgid "Select tests"
 msgstr ""
 
-#: checkbox-touch.qml:346 components/WelcomePage.qml:79
+#: checkbox-touch.qml:364 components/WelcomePage.qml:79
 #: components/WelcomePage.qml:117
 msgid "Start testing"
 msgstr ""
 
-#: checkbox-touch.qml:373
+#: checkbox-touch.qml:391
 msgid "Select tests to re-run"
 msgstr ""
 
-#: checkbox-touch.qml:375
+#: checkbox-touch.qml:393
 msgid "Finish"
 msgstr ""
 
-#: checkbox-touch.qml:375
+#: checkbox-touch.qml:393
 msgid "Re-run"
 msgstr ""
 
-#: checkbox-touch.qml:415
-msgid "Could not create component '"
+#: checkbox-touch.qml:438
+#, qt-format
+msgid "Could not create component '%1'\n"
 msgstr ""
 
-#: checkbox-touch.qml:417 components/ErrorLogic.js:13
+#: checkbox-touch.qml:440 components/ErrorLogic.js:13
 #: components/CheckboxTouchApplication.qml:57
 msgid "Quit"
 msgstr ""
 
-#: checkbox-touch.qml:436
+#: checkbox-touch.qml:459
 msgid "Could not resume session."
 msgstr ""
 
-#: checkbox-touch.qml:438 components/ResumeSessionPage.qml:117
+#: checkbox-touch.qml:461 components/ResumeSessionPage.qml:132
 #: components/CheckboxTouchApplication.qml:70
 msgid "Start new session"
 msgstr ""
 
-#: checkbox-touch.qml:547
+#: checkbox-touch.qml:556
 msgid "Reports have been saved to your Documents folder"
 msgstr ""
 
-#: checkbox-touch.qml:548 checkbox-touch.qml:567 checkbox-touch.qml:573
-#: components/CbtDialogLogic.js:5 components/PasswordDialog.qml:60
+#: checkbox-touch.qml:557 checkbox-touch.qml:577 checkbox-touch.qml:583
+#: components/CbtDialogLogic.js:5 components/PasswordDialog.qml:62
 #: components/InputDialog.qml:58
 msgid "OK"
 msgstr ""
 
-#: checkbox-touch.qml:548
-msgid "View report"
+#: checkbox-touch.qml:557
+msgid "View Report"
 msgstr ""
 
-#: checkbox-touch.qml:566
-msgid "Report has been submited.\n"
+#: checkbox-touch.qml:576
+msgid "Report has been submitted.\n"
 msgstr ""
 
-#: checkbox-touch.qml:571
-msgid "Could not submit report. Reason:\n"
+#: checkbox-touch.qml:581
+msgid "Could not submit results. Reason:\n"
 msgstr ""
 
-#: confinement/plainbox-confined-shell.qml:97
+#: confinement/plainbox-confined-shell.qml:98
 msgid "Sending report - you should not see this page :-)"
-msgstr ""
-
-#: components/WelcomePage.qml:35
-msgid "System Testing"
-msgstr ""
-
-#: components/WelcomePage.qml:47 components/AboutPage.qml:39
-msgid "About"
-msgstr ""
-
-#: components/WelcomePage.qml:73
-msgid "Checkbox is loading..."
-msgstr ""
-
-#: components/QmlConfinedPage.qml:40 components/InteractIntroPage.qml:48
-#: components/QmlNativePage.qml:38 components/ManualIntroPage.qml:42
-msgid "Test Description"
-msgstr ""
-
-#: components/QmlConfinedPage.qml:98
-msgid "Waiting for the test to finish"
-msgstr ""
-
-#: components/QmlConfinedPage.qml:107 components/InteractIntroPage.qml:99
-#: components/QmlNativePage.qml:65 components/ManualIntroPage.qml:57
-msgid "Start the test"
-msgstr ""
-
-#: components/ResumeSessionPage.qml:39
-msgid "Resume session"
-msgstr ""
-
-#: components/ResumeSessionPage.qml:79
-msgid "Rerun last"
-msgstr ""
-
-#: components/ResumeSessionPage.qml:98 components/SelectionPage.qml:36
-#: components/ErrorLogic.js:11 components/UserInteractSummaryPage.qml:95
-msgid "Continue"
 msgstr ""
 
 #: components/TestVerificationPage.qml:41
@@ -174,6 +136,70 @@ msgstr ""
 msgid "Fail"
 msgstr ""
 
+#: components/WelcomePage.qml:35
+msgid "System Testing"
+msgstr ""
+
+#: components/WelcomePage.qml:47 components/AboutPage.qml:39
+msgid "About"
+msgstr ""
+
+#: components/WelcomePage.qml:73
+msgid "Checkbox is loading..."
+msgstr ""
+
+#: components/QmlConfinedPage.qml:40 components/ManualIntroPage.qml:42
+#: components/InteractIntroPage.qml:48 components/QmlNativePage.qml:38
+msgid "Test Description"
+msgstr ""
+
+#: components/QmlConfinedPage.qml:99
+msgid "Waiting for the test to finish"
+msgstr ""
+
+#: components/QmlConfinedPage.qml:108 components/ManualIntroPage.qml:57
+#: components/InteractIntroPage.qml:99 components/QmlNativePage.qml:66
+msgid "Start the test"
+msgstr ""
+
+#: components/AboutPage.qml:74
+msgid "version: "
+msgstr ""
+
+#: components/AboutPage.qml:75
+msgid "Plainbox version: "
+msgstr ""
+
+#: components/AboutPage.qml:81 components/ResultsPage.qml:61
+msgid "Close"
+msgstr ""
+
+#: components/CommentsDialog.qml:54 components/actions/AddCommentAction.qml:31
+msgid "Add comment"
+msgstr ""
+
+#: components/CommentsDialog.qml:66
+msgid "Done"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:41
+msgid "Resume session"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:74
+#, qt-format
+msgid "Delete incomplete sessions (%1)"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:94
+msgid "Rerun last"
+msgstr ""
+
+#: components/ResumeSessionPage.qml:113 components/ErrorLogic.js:11
+#: components/UserInteractSummaryPage.qml:95 components/SelectionPage.qml:36
+msgid "Continue"
+msgstr ""
+
 #: components/CommandOutputPage.qml:46
 msgid "Command output"
 msgstr ""
@@ -188,28 +214,16 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: components/PasswordDialog.qml:47
-msgid "Enter password"
+#: components/CheckboxTouchApplication.qml:55
+msgid "Could not start a session. Reason:\n"
 msgstr ""
 
-#: components/PasswordDialog.qml:53
-msgid "password"
+#: components/CheckboxTouchApplication.qml:65
+msgid "Could not resume session"
 msgstr ""
 
-#: components/PasswordDialog.qml:72 components/InputDialog.qml:68
-msgid "Cancel"
-msgstr ""
-
-#: components/SelectionPage.qml:89
-msgid "Toggle selection"
-msgstr ""
-
-#: components/WebViewer.qml:28
-msgid "Test Report"
-msgstr ""
-
-#: components/AutomatedTestPage.qml:39
-msgid "Automated test"
+#: components/CheckboxTouchApplication.qml:237
+msgid "No providers available!"
 msgstr ""
 
 #. TRANSLATORS: this string will be followed by either "PASSED" or "FAILED"
@@ -229,20 +243,28 @@ msgstr ""
 msgid "You can go back to rerun the test or continue to the next test."
 msgstr ""
 
-#: components/actions/SkipAction.qml:33
-msgid "Skip"
+#: components/PasswordDialog.qml:47
+msgid "Enter password"
 msgstr ""
 
-#: components/actions/SkipAction.qml:36
-msgid "Do you really want to skip this test?"
+#: components/PasswordDialog.qml:54
+msgid "password"
 msgstr ""
 
-#: components/actions/AddCommentAction.qml:31 components/CommentsDialog.qml:54
-msgid "Add comment"
+#: components/PasswordDialog.qml:75 components/InputDialog.qml:68
+msgid "Cancel"
 msgstr ""
 
-#: components/CommentsDialog.qml:66
-msgid "Done"
+#: components/ErrorDialog.qml:43
+msgid "Um, OK"
+msgstr ""
+
+#: components/ErrorDialog.qml:53 components/ErrorDialog.qml:61
+msgid "Error encountered"
+msgstr ""
+
+#: components/WebViewer.qml:28
+msgid "Test Report"
 msgstr ""
 
 #: components/ConfirmationDialog.qml:50
@@ -261,61 +283,59 @@ msgstr ""
 msgid "Do not ask me this question again"
 msgstr ""
 
-#: components/ResultsPage.qml:34
+#: components/actions/SkipAction.qml:33
+msgid "Skip"
+msgstr ""
+
+#: components/actions/SkipAction.qml:36
+msgid "Do you really want to skip this test?"
+msgstr ""
+
+#: components/ResultsPage.qml:33
 msgid "Test Results"
 msgstr ""
 
-#: components/ResultsPage.qml:52 components/AboutPage.qml:81
-msgid "Close"
+#: components/ResultsPage.qml:55
+msgid "Rerun"
 msgstr ""
 
-#: components/ResultsPage.qml:87
+#: components/ResultsPage.qml:96
 msgid "Summary"
 msgstr ""
 
-#: components/ResultsPage.qml:131
-msgid "tests passed"
+#. TRANSLATORS: %1 will be a number, please do not translate it
+#: components/ResultsPage.qml:136
+#, qt-format
+msgid "%1 tests passed"
 msgstr ""
 
-#: components/ResultsPage.qml:142
-msgid "tests failed"
+#. TRANSLATORS: %1 will be a number, please do not translate it
+#: components/ResultsPage.qml:148
+#, qt-format
+msgid "%1 tests failed"
 msgstr ""
 
-#: components/ResultsPage.qml:153
-msgid "tests skipped"
+#. TRANSLATORS: %1 will be a number, please do not translate it
+#: components/ResultsPage.qml:160
+#, qt-format
+msgid "%1 tests skipped"
 msgstr ""
 
-#: components/ResultsPage.qml:162
+#: components/ResultsPage.qml:169
 msgid "Save detailed report"
 msgstr ""
 
-#. TRANSLATORS: follwing string will be followed by a service name, e.g. "certification website"
-#: components/ResultsPage.qml:171
+#. TRANSLATORS: following string will be followed by a service name, e.g. "certification website"
+#: components/ResultsPage.qml:181
 msgid "Submit results to "
 msgstr ""
 
-#: components/AboutPage.qml:74
-msgid "version: "
+#: components/AutomatedTestPage.qml:39
+msgid "Automated test"
 msgstr ""
 
-#: components/AboutPage.qml:75
-msgid "Plainbox version: "
-msgstr ""
-
-#: components/ErrorDialog.qml:43
-msgid "Um, OK"
-msgstr ""
-
-#: components/ErrorDialog.qml:53 components/ErrorDialog.qml:61
-msgid "Error encountered"
-msgstr ""
-
-#: components/CheckboxTouchApplication.qml:55
-msgid "Could not start a session.  Reason:\n"
-msgstr ""
-
-#: components/CheckboxTouchApplication.qml:65
-msgid "Could not resume session"
+#: components/SelectionPage.qml:111
+msgid "Toggle selection"
 msgstr ""
 
 #: py/sudo_with_pass_ctrl.py:160

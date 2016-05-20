@@ -1,0 +1,5385 @@
+# Chinese (Traditional) translation for checkbox
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the checkbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: checkbox\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-03-07 15:17+0800\n"
+"PO-Revision-Date: 2016-05-19 13:03+0000\n"
+"Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-05-20 05:15+0000\n"
+"X-Generator: Launchpad (build 18025)\n"
+
+#. name
+#: ../units/touch.pxu:20
+msgid "Indicators/Sound indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:26
+msgid "Ensure that sound indicator shows on the menu bar correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:27
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a Sound indicator on the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:33
+msgid "   1. Does sound indicator show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:40
+msgid "Ensure that sound indicator menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:41
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the sound indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:47
+msgid ""
+"   1. Did sound indicator menu launch?\n"
+"   2. Is there a volume slider?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:55
+msgid "Ensure that volume slider bar can be adjusted"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:56
+msgid ""
+"SETUP:\n"
+"   1. Launch the media player and begin playing an audio file\n"
+"   2. Tap and pull down the Sound indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:56
+msgid ""
+"ACTIONS:\n"
+"   1. Tap volume slider and move to maximum\n"
+"   2. Tap volume slider and move to minimum"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:56
+msgid ""
+"TEARDOWN:\n"
+"   Push Sound menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:67
+msgid ""
+"   1. Did the volume level increase?\n"
+"   2. Did the volume level decrease?"
+msgstr ""
+"   1. 音量有上升嗎？\n"
+"   2. 音量有下降嗎？"
+
+#. summary
+#: ../units/touch.pxu:75
+msgid "Ensure the sound indicator icon matches volume level"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:76
+msgid ""
+"ACTIONS:\n"
+"   1. Move the volume slider"
+msgstr ""
+"動作：\n"
+"   1. 拖動音量調整滑桿"
+
+#. verification
+#: ../units/touch.pxu:85
+msgid "   1. Check the sound icon matches the level set on the slider"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:92
+msgid "Ensure that sound settings menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:93
+msgid ""
+"SETUP:\n"
+"   1. Tap and pull down the Sound indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:93
+msgid ""
+"ACTIONS:\n"
+"   1. Tap sound settings button"
+msgstr ""
+"動作：\n"
+"   1. 點擊音量設定按鈕"
+
+#. steps
+#: ../units/touch.pxu:93
+msgid ""
+"TEARDOWN:\n"
+"   Push sound indicator menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:102
+msgid "   1. Did sound settings menu launch?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:107
+msgid "Indicators/Network indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:113
+msgid ""
+"Ensure that both WiFi indicator and cellular indicator show on the menu bar "
+"correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:114
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Ensure WiFi connected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:114
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a WiFi indicator on the menu bar\n"
+"   2. Check if there is a Cellular indicator on the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:125
+msgid "   1. Do both WiFi and Cellular indicators show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:132
+msgid "Ensure that network menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:133
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the network indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:139
+msgid ""
+"   1. Did network indicator menu launch?\n"
+"   2. Is there have detected AP lists?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:147
+msgid "Ensure that system can connect to the WiFi AP successfully"
+msgstr "確定系統可以成功連上 WiFi 無線網路基地台"
+
+#. steps
+#: ../units/touch.pxu:148
+msgid ""
+"ACTIONS:\n"
+"   1. Tap an AP\n"
+"   2. Input password to connect\n"
+"   3. Check network indicator icon"
+msgstr ""
+"動作：\n"
+"   1. 點選一個無線網路基地台\n"
+"   2. 輸入密碼來連線\n"
+"   3. 檢查網路狀態圖示"
+
+#. verification
+#: ../units/touch.pxu:159
+msgid ""
+"   1. Did it pop up a window to input password of this AP?\n"
+"   2. Did it connect to AP successful?\n"
+"   3. Did network icon show correctly as current status"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:168
+msgid "Ensure that flight mode function works"
+msgstr "確定飛航模式能正常運作"
+
+#. steps
+#: ../units/touch.pxu:169
+msgid ""
+"ACTIONS:\n"
+"   1. Enable flight mode"
+msgstr ""
+"動作：\n"
+"   1. 啟動飛航模式"
+
+#. verification
+#: ../units/touch.pxu:175
+msgid ""
+"   1. Did the WiFi turn off?\n"
+"   2. Did the modems turn off?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:183
+msgid "Ensure that WiFi settings menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:184
+msgid ""
+"ACTIONS:\n"
+"   1. Tap WiFi settings button"
+msgstr ""
+"動作：\n"
+"   1. 點擊 WiFi 設定按鈕"
+
+#. verification
+#: ../units/touch.pxu:193
+msgid "   1. Did WiFi settings menu launch?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:200
+msgid "Ensure that cellular settings menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:201
+msgid ""
+"SETUP:\n"
+"   1. Tap and pull down the network indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:201
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Cellular settings button"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:201
+msgid ""
+"TEARDOWN:\n"
+"   Push network indicator menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:210
+msgid "   1. Did cellular settings menu launch?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:215
+msgid "Indicators/Battery indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:221
+msgid "Ensure that battery indicator shows on the menu bar correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:222
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a battery indicator on the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:228
+msgid "   1. Does battery indicator show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:235
+msgid "Ensure that battery indicator menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:236
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the battery indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:242
+msgid ""
+"   1. Did battery indicator menu launch?\n"
+"   2. Is there a charging level slider?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:250
+msgid "Ensure that the current charge level is displayed"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:251
+msgid ""
+"ACTIONS:\n"
+"   1. Check percentage of charge level"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:260
+msgid ""
+"   1. Does the charge level percentage shown match the current status?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:267
+msgid "Ensure that battery settings menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:268
+msgid ""
+"SETUP:\n"
+"   1. Tap and pull down the battery indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:268
+msgid ""
+"ACTIONS:\n"
+"   1. Tap battery settings button"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:268
+msgid ""
+"TEARDOWN:\n"
+"   Push battery indicator menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:277
+msgid "   1. Did battery settings menu launch?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:282
+msgid "Indicators/Upcoming indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:288
+msgid "Ensure that there is a time stamp shows on the menu bar correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:289
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a time stamp on the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:295
+msgid "   1. Does time stamp show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:302
+msgid "Ensure that upcoming indicator menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:303
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the upcoming indicator icon in the top right of the "
+"menu bar\n"
+"   2. Check Time&Date in the top right of the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:310
+msgid ""
+"   1. Did upcoming indicator menu launch?\n"
+"   2. Is there have Time&Date and Clock?\n"
+"   3. Did it show the correct Time&Date?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:319
+msgid "Ensure that Time & Date settings menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:320
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Time & Date icon settings button"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:329
+msgid "   1. Did Time & Date settings menu launch?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:336
+msgid "Ensure that clock app can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:337
+msgid ""
+"SETUP:\n"
+"   1. Tap and pull down the upcoming indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:337
+msgid ""
+"ACTIONS:\n"
+"   1. Tap clock icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:346
+msgid "   1. Did clock app launch?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:351
+msgid "Indicators/Notification center indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:357
+msgid ""
+"Ensure that there is a incoming indicator shows on the menu bar correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:358
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a incoming indicator on the menu bar\n"
+"   2. Send a message to DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:365
+msgid ""
+"   1. Does incoming indicator show correctly?\n"
+"   2. Does incoming indicator turn green?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:373
+msgid "Ensure that incoming indicator menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:374
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the incoming indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:380
+msgid "   Did incoming indicator menu launch?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:387
+msgid "Ensure that incoming message shows correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:388
+msgid ""
+"SETUP:\n"
+"   1. Send a message or make a MT call to DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:388
+msgid ""
+"ACTIONS:\n"
+"   1. Check incoming indicator icon\n"
+"   2. Tap and pull down the incoming indicator icon in the top right of the "
+"menu bar\n"
+"   3. Tap Clear All button"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:388
+msgid ""
+"TEARDOWN:\n"
+"   Push upcoming indicator menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:399
+msgid ""
+"   1. Does incoming indicator icon turn to blue color?\n"
+"   2. Does incoming message call show correctly on the indicator menu?\n"
+"   3. Did all the message cleared?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:408
+msgid "Ensure that push notifications show correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:409
+msgid ""
+"SETUP:\n"
+"   1. Configure a Google account in the Online Accounts\n"
+"   2. Turn on notifications for new mail"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:409
+msgid ""
+"ACTIONS:\n"
+"   1. Send an e-mail to the Google account"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:416
+msgid "   1. Verify that a notification of the new e-mail is received"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:421
+msgid "Indicators/Location indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:427
+msgid "Ensure that location indicator shows on the menu bar correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:428
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a location indicator on the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:434
+msgid "   1. Does location indicator show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:441
+msgid "Ensure that location menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:442
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the location indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:448
+msgid ""
+"   1. Did location indicator menu launch?\n"
+"   2. Is there have location detection switch and GPS switch?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:456
+msgid "Ensure that location detection switch can be turned on/off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:457
+msgid ""
+"SETUP:\n"
+"   1. Tap and pull down the location indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:457
+msgid ""
+"ACTIONS:\n"
+"   1. Tap location detection switch to ON\n"
+"   2. Tap location detection switch to OFF"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:467
+msgid ""
+"   1. Did location detection turn on?\n"
+"   2. Did location detection turn off?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:475
+msgid "Ensure that GPS switch can be turned on/off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:476
+msgid ""
+"ACTIONS:\n"
+"   1. Tap GPS switch to ON\n"
+"   2. Tap GPS switch to OFF"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:476
+msgid ""
+"TEARDOWN:\n"
+"   Push location detection indicator menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:486
+msgid ""
+"   1. Did GPS turn on?\n"
+"   2. Did GPS turn off?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:492
+msgid "Indicators/Bluetooth indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:498
+msgid "Ensure that Bluetooth indicator shows on the menu bar correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:499
+msgid ""
+"SETUP:\n"
+"   Enable Bluetooth"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:499
+msgid ""
+"ACTIONS:\n"
+"   1. Check if there is a Bluetooth indicator on the menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:508
+msgid "   1. Does Bluetooth indicator show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:515
+msgid "Ensure that Bluetooth menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:516
+msgid ""
+"ACTIONS:\n"
+"   1. Tap and pull down the Bluetooth indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:522
+msgid ""
+"   1. Did Bluetooth indicator menu launch?\n"
+"   2. Is there a Bluetooth switch?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:530
+msgid "Ensure that Bluetooth can turn on/off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:531
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Bluetooth switch to off\n"
+"   2. Navigate to system settings -> Bluetooth\n"
+"   3. Tap Bluetooth switch to on"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:542
+msgid ""
+"   1. Did Bluetooth indicator disappear off the menu bar?\n"
+"   2. Did Bluetooth indicator show up on the menu bar?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:550
+msgid "Ensure that Bluetooth settings menu can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:551
+msgid ""
+"SETUP:\n"
+"   1. Tap and pull down the Bluetooth indicator icon in the top right of the "
+"menu bar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:551
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Bluetooth settings button"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:551
+msgid ""
+"TEARDOWN:\n"
+"   Push Bluetooth indicator menu back"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:560
+msgid "   1. Did Bluetooth settings menu launch?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:565
+msgid "System Settings/General"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:571
+msgid "Ensure that the orientation lock works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:572
+msgid ""
+"SETUP:\n"
+"   1. Open System Settings"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:572
+msgid ""
+"ACTIONS:\n"
+"   1. Turn the lock off\n"
+"   2. Check the browser and messaging app for rotation\n"
+"   3. Turn the lock on\n"
+"   4. Check the browser and messaging app for rotation"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:581
+msgid ""
+"   1. Did the apps rotate when the lock was off?\n"
+"   2. Did the apps rotate when the lock was on?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:587
+msgid "System Settings/WiFi"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:593
+msgid "Ensure that the WiFi can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:594
+msgid ""
+"ACTIONS:\n"
+"   1. Tap WiFi icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:604
+msgid "   1. Did the WiFi page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:611
+msgid ""
+"Ensure that wireless is enabled and can list all available access points"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:612
+msgid ""
+"ACTIONS:\n"
+"   Ensure it will list all of the available wireless networks"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:621
+msgid "   1. Are all available wireless networks listed?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:628
+msgid "Ensure that wireless can connect to an access point"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:629
+msgid ""
+"ACTIONS:\n"
+"   1. Select a wireless network to join\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:646
+msgid ""
+"Ensure that wireless can be disabled/re-enabled and still works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:647
+msgid ""
+"ACTIONS:\n"
+"   1. Disable wireless\n"
+"   2. Re-enable wireless, ensure AP's show up"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:657
+msgid ""
+"   1. Did wireless properly disable?\n"
+"   2. Did wireless properly re-enable?\n"
+"   3. Does wireless reconnected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:666
+msgid "Ensure that wireless can connect to an open network"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:667
+msgid ""
+"ACTIONS:\n"
+"   1. Select a wireless network to join with no password\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:684
+msgid "Ensure that wireless can connect to a WEP network"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:685
+msgid ""
+"ACTIONS:\n"
+"   1. Select a wireless network to join with WEP password\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:702
+msgid "Ensure that wireless can connect to a WPA/WPA2 network"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:703
+msgid ""
+"ACTIONS:\n"
+"   1. Select a wireless network to join with WPA/WPA2 password\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:720
+msgid "Ensure that wireless can connect to a 802.11b AP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:721
+msgid ""
+"ACTIONS:\n"
+"   1. Select a 802.11b access point to join\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:738
+msgid "Ensure that wireless can connect to a 802.11g AP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:739
+msgid ""
+"ACTIONS:\n"
+"   1. Select a 802.11g access point to join\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:756
+msgid "Ensure that wireless can connect to a 802.11ac AP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:757
+msgid ""
+"SETUP:\n"
+"   1. Tap WiFi icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:757
+msgid ""
+"ACTIONS:\n"
+"   1. Select a 802.11ac access point to join\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:767
+msgid "   1. Is wireless connected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:774
+msgid "Check WiFi mac address does not change across reboots"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:775
+msgid ""
+"SETUP:\n"
+"   1. Connect to the phone using phablet-shell\n"
+"   2. Note the MAC address using ifconfig or similar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:775
+msgid ""
+"ACTIONS:\n"
+"   1. Reboot the phone\n"
+"   2. Reconnect phablet-shell\n"
+"   3. Check MAC address again"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:784
+msgid "   1. Verify the MAC address did not change"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:789
+msgid "System Settings/Cellular"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:795
+msgid "Ensure that the cellular can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:796
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Cellular icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:806
+msgid "   1. Did the Cellular page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:813
+msgid "Ensure cellular data can be enabled"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:814
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Cellular data to ON\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:824
+msgid ""
+"   1. Is there a 3G icon shown on the indicator bar?\n"
+"   2. Is 3G network connected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:832
+msgid "Ensure cellular data can be disabled"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:833
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Cellular data to OFF\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:843
+msgid "   1. Is 3G network disconnected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:850
+msgid "Ensure data roaming can be enabled"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:851
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Data roaming to ON\n"
+"   2. Open web-browser to ensure connection is made"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:861
+msgid ""
+"   1. Is there a 3G/Roaming icon shown on the indicator bar?\n"
+"   2. Is 3G network connected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:869
+msgid "Ensure data roaming can be disabled"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:870
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Data roaming to OFF\n"
+"   2. Open web-browser to ensure connection is disabled"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:880
+msgid "   1. Is Data roaming closed?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:887
+msgid "Ensure that choose carrier by auto works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:888
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure default Choose Carrier is set to automatically\n"
+"   2. Ensure the connected carrier is correct"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:898
+msgid ""
+"   1. Is system connect to carrier automatically?\n"
+"   2. Does it connected to correct carrier?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:906
+msgid "Ensure that the carrier can be selected by manual"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:907
+msgid ""
+"SETUP:\n"
+"   1. Tap Cellular icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:907
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Manually\n"
+"   2. Tap Carrier\n"
+"   3. Tap Refresh button to get the available carrier list\n"
+"   4. Tap one of available carrier to connect"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:919
+msgid ""
+"   1. Does it listed all of available carriers?\n"
+"   2. Did it connected to selected carrier correctly?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:925
+msgid "System Settings/Bluetooth"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:931
+msgid "Ensure that the Bluetooth can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:932
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Bluetooth icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:942
+msgid "   1. Did the Bluetooth page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:949
+msgid "Ensure that all detected Bluetooth devices are listed"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:950
+msgid ""
+"ACTIONS:\n"
+"   1. Check switch to enable Bluetooth\n"
+"   2. Ensure it will detect and list all the available devices"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:960
+msgid "   1. Does it listed all of available Bluetooth devices?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:967
+msgid "Ensure that it can pair with a Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:968
+msgid ""
+"ACTIONS:\n"
+"   1. Select a Bluetooth headset\n"
+"   2. Input passcode to pair"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:978
+msgid ""
+"   1. Is it paired to Bluetooth headset successfully?\n"
+"   2. Is there a headset icon shown on the menu bar?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:986
+msgid ""
+"Ensure that Bluetooth can be disabled after paired with Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:987
+msgid ""
+"SETUP:\n"
+"   1. Tap Bluetooth icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:987
+msgid ""
+"ACTIONS:\n"
+"   1. Check switch again to disable Bluetooth"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:996
+msgid "   1. Did Bluetooth headset icon disappear from menu bar?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1003
+msgid "Ensure the Bluetooth mac address does not change across reboots"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1004
+msgid ""
+"SETUP:\n"
+"   1. Connect to the device using phablet-shell\n"
+"   2. Note the Bluetooth MAC address using hciconfig or similar"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1004
+msgid ""
+"ACTIONS:\n"
+"   1. Reboot the phone\n"
+"   2. Reconnect phablet-shell\n"
+"   3. Check the Bluetooth MAC address"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1013
+msgid "   1. Verify that the MAC address did not change"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1018
+msgid "System Settings/Accounts"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1024
+msgid "Ensure that the accounts can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1025
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Accounts icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1035
+msgid "   1. Did the Accounts page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1042
+msgid "Ensure that you can login to UbuntuOne"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1043
+msgid ""
+"ACTIONS:\n"
+"   1. Tap UbuntuOne icon\n"
+"   2. Input UbuntuOne account and password to login"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1053
+msgid "   1. Does it successful to login?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1060
+msgid ""
+"Ensure that it can install new app from application scope after logged in"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1061
+msgid ""
+"SETUP:\n"
+"   1. Tap Accounts icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1061
+msgid ""
+"ACTIONS:\n"
+"   1. Tap More suggestion to show available apps\n"
+"   2. Tap an app to install"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1071
+msgid "   1. Did install an app work correctly?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1076
+msgid "System Settings/Battery"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1082
+msgid "Ensure that the battery can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1083
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Battery icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1093
+msgid "   1. Did the Battery page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1100
+msgid "Ensure that both charge level and status are listed correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1101
+msgid ""
+"ACTIONS:\n"
+"   1. Observe the charge level and status"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1110
+msgid "   Are charge level and status both show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1117
+msgid "Ensure that charging status changes with the power cable is connected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1118
+msgid ""
+"ACTIONS:\n"
+"   1. Plug in power cable\n"
+"   2. Unplug power cable"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1128
+msgid ""
+"   1. Does the indicator properly update after connecting/disconnecting the "
+"power cable?\n"
+"   2. Does the charging status change after connecting/disconnecting the "
+"power cable?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1155
+msgid "Ensure that WiFi can be turned on/off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1156
+msgid ""
+"ACTIONS:\n"
+"   1. Tap WiFi switch to turn it off\n"
+"   2. Tap WiFi switch to turn it on"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1166
+msgid ""
+"   1. Does the WiFi indicator properly update?\n"
+"   2. Were you able to enable and disable WiFi?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1174
+msgid "Ensure that Bluetooth can be turned on/off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1175
+msgid ""
+"SETUP:\n"
+"   1. Tap Battery icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1175
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Bluetooth switch to turn it off\n"
+"   2. Tap Bluetooth switch to turn it on"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1185
+msgid ""
+"   1. Does the Bluetooth indicator properly update?\n"
+"   2. Were you able to enable and disable Bluetooth?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1191
+msgid "System Settings/Brightness"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1197
+msgid "Ensure that the brightness can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1198
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Brightness icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1208
+msgid "   1. Did the Brightness page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1215
+msgid "Ensure that display brightness slider can be adjusted"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1216
+msgid ""
+"ACTIONS:\n"
+"   1. Drag the display brightness slider and move to maximum\n"
+"   2. Drag the display brightness slider and move to minimum"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1226
+msgid ""
+"   1. Did screen brightness become lighter?\n"
+"   2. Did screen brightness become dark?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1234
+msgid "Ensure that auto adjust brightness function works correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1235
+msgid ""
+"SETUP:\n"
+"   1. Tap Brightness icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1235
+msgid ""
+"ACTIONS:\n"
+"   1. Check 'Adjust automatically' to enable brightness auto adjusting\n"
+"   2. Check  'Adjust automatically' to disable brightness auto adjusting"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1235
+msgid ""
+"TEARDOWN:\n"
+"   Back to System Settings"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1245
+msgid "   1. Did brightness auto adjusting work?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1250
+msgid "System Settings/Sound settings"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1256
+msgid "Make sure that the sound settings can be opened from system settings."
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1257
+msgid ""
+"SETUP:\n"
+"   1. Slide to show launcher\n"
+"   2. Tap System Settings"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1257
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Sound icon"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1267
+msgid "   1. Did the sound settings page open?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1274
+msgid "Make sure that the ringtone can be previewed"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1275
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Ringtone\n"
+"   2. Tap each ringtone to play\n"
+"   3. Ensure all of the ringtone can be previewed\n"
+"   4. Ensure click stop playing button can stop play the ringtone"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1275
+msgid ""
+"TEARDOWN:\n"
+"   1. Close System Settings"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1287
+msgid ""
+"   1. Can each ringtone be played?\n"
+"   2. Can stop playing button works?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1295
+msgid "Make sure that setting a ringtone works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1296
+msgid ""
+"ACTIONS:\n"
+"   1. Go to Ringtone page\n"
+"   2. Select a ringtone\n"
+"   3. Make a MT call to DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1307
+msgid ""
+"   1. Did the incoming call ringtone has changed to selected ringtone?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1314
+msgid "Make sure the message received notification can be previewed"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1315
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Message received\n"
+"   2. Tap each message sound to play\n"
+"   3. Ensure all of the message sound can be previewed"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1326
+msgid "   1. Can each message sound be played?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1333
+msgid "Make sure that setting a message received notification works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1334
+msgid ""
+"SETUP:\n"
+"   1. Tap Sound icon"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1334
+msgid ""
+"ACTIONS:\n"
+"   1. Go to Message Received page\n"
+"   2. Select a notification sound\n"
+"   3. Send a message to DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1334
+msgid ""
+"TEARDOWN:\n"
+"   1. Close System Settings."
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1345
+msgid "   1. Did the message sound has changed to selected sound?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1350
+msgid "System Settings/Security & Privacy"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1356
+msgid "Ensure that the \"swipe\" lock mechanism works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1357
+msgid ""
+"ACTIONS:\n"
+"   1. Press on Lock security\n"
+"   2. Select Swipe (no security)\n"
+"   3. Lock phone (press power button)"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1367
+msgid ""
+"   1. Unlock phone\n"
+"   2. Did the swipe mechanism work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1375
+msgid "Ensure that the \"4-digit pin code\" lock mechanism works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1376
+msgid ""
+"ACTIONS:\n"
+"   1. Press on Lock security\n"
+"   2. Select 4-digit PIN code\n"
+"   3. Lock phone (press power button)"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1386
+msgid ""
+"   1. Unlock phone\n"
+"   2. Did the PIN code mechanism work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1394
+msgid "Ensure that the \"passphrase\" lock mechanism works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1395
+msgid ""
+"ACTIONS:\n"
+"   1. Press on Lock security\n"
+"   2. Select passphrase\n"
+"   3. Lock phone (press power button)"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1405
+msgid ""
+"   1. Unlock phone\n"
+"   2. Did the passphrase mechanism work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1413
+msgid "Ensure that the idle time before lock can be configured"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1414
+msgid ""
+"SETUP:\n"
+"   1. Open System Settings\n"
+"   2. Open Security & Privacy\n"
+"   3. Select Phone Locking"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1414
+msgid ""
+"ACTIONS:\n"
+"   1. Press on Lock when idle\n"
+"   2. Select several of the timeout periods and test phone follows the "
+"setting"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1423
+msgid ""
+"   1. Leave phone idle\n"
+"   2. Did the phone suspend correctly after configured time?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1429
+msgid "System Settings/Reset Phone"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1435
+msgid "Ensure that the launcher can be reset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1436
+msgid ""
+"SETUP:\n"
+"   1. Pin some applications to the launcher\n"
+"   2. Open System Settings\n"
+"   3. Select Reset phone"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1436
+msgid ""
+"ACTIONS:\n"
+"   1. Select Reset Launcher"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1444
+msgid ""
+"   1. Did the launcher reset so only default selection of apps is pinned?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1451
+msgid "Ensure the phone can be factory reset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1452
+msgid ""
+"SETUP:\n"
+"   1. Make sure some files are present in the users home folder, logs "
+"present in dialer, messages\n"
+"   2. Open System Settings\n"
+"   2. Select Reset phone"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1452
+msgid ""
+"ACTIONS:\n"
+"   1. Select Erase & Reset Everything"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1460
+msgid ""
+"   1. Was the phone reset to factory defaults?\n"
+"   2. Were all files and logs wiped?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1466
+msgid "Telephony/Basic Call (SIM1)"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1605
+msgid "Ensure that DTMF feature call works as expected"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:1806
+msgid "Telephony/Basic Call (SIM2)"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1812
+msgid "Ensure that call out to fixed-line telephone works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1813
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to a fixed-line telephone number\n"
+"   3. Verify call is connected\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1834
+msgid "Ensure that call out to mobile phone number works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1835
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to a mobile phone number (ex:0988888888)\n"
+"   3. Verify call is connected\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1856
+msgid ""
+"Ensure that call out to mobile phone number with country code works as "
+"expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1857
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to a mobile phone number (ex:+886988888888)\n"
+"   3. Verify call is connected\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1878
+msgid ""
+"Ensure that call out to mobile phone number with 00 code works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1879
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to a mobile phone number (ex:00886988888888)\n"
+"   3. Verify call is connected\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1892
+msgid ""
+"   1. Is call connected?\n"
+"   2. Is call quality acceptable?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1900
+msgid "Ensure that receiving a mt call works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1901
+msgid ""
+"ACTIONS:\n"
+"   1. Make a MT call to DUT1\n"
+"   2. Ensure snap decision is shown\n"
+"   3. Ensure phone call can be answered\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1915
+msgid ""
+"   1. Is snap decision shown?\n"
+"   2. Is call answered?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1923
+msgid "Ensure that reject a mt call works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1924
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Prepare two DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1924
+msgid ""
+"ACTIONS:\n"
+"   1. Make a MT call to DUT1\n"
+"   2. Ensure snap decision is shown\n"
+"   3. Ensure phone call can be rejected"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1937
+msgid ""
+"   1. Is snap decision shown?\n"
+"   2. Did call reject work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1945
+msgid "Ensure that STMF feature call work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1946
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to fixed-line telephone that has extension number to input\n"
+"   3. When call connected then enter the extension number\n"
+"   3. Verify call is transferred correctly\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1968
+msgid "Ensure that preset extension number can work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1969
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Prepare a fixed-line telephone with extension number"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1969
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Input phone number with #extension number (ex; 0287296800#123) and "
+"then dial\n"
+"   3. Verify call is transferred correctly\n"
+"   4. Verify audio in/out works"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:1983
+msgid "   1. Is call connected to correct extension?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:1990
+msgid "Ensure that call waiting functions can work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1991
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Prepare three DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:1991
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Make a MO Call to DUT2\n"
+"   3. When call connected, use DUT3 to call DUT1\n"
+"   3. Verify call waiting feature can work as expected\n"
+"   4. Verify you can answer/on hold/reject the call"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2006
+msgid "   1. Is call waiting feature worked?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2013
+msgid "Ensure that call will be dropped if call waiting disabled"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2014
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Disable call waiting"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2014
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to a phone number\n"
+"   3. When call connected, use another phone to call DUT\n"
+"   3. Verify call will be dropped immediately"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2028
+msgid "   1. Is call dropped as expected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2035
+msgid "Ensure that calling voicemail functions as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2036
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call voicemail number\n"
+"   3. Ensure voicemail mailbox is reached\n"
+"   4. Ensure mailbox can be navigated using DTMF"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2049
+msgid ""
+"   1. Is voicemail functioning?\n"
+"   2. Is navigation working via DTMF?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2057
+msgid "Ensure placing a call on hold works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2058
+msgid ""
+"ACTIONS:\n"
+"   1. MT call to DUT\n"
+"   2. Toggle hold on\n"
+"   3. Make sure hold is turned on on the phone\n"
+"   4. Make sure indicator on phone and app shows hold as on\n"
+"   5. Turn off hold from the phone\n"
+"   6. Make sure indicator on phone and app shows hold is off\n"
+"   7. Make sure hold is actually off"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2074
+msgid ""
+"   1. Is hold turned on?\n"
+"   2. Does phone indicate hold is on?\n"
+"   3. Does turning hold off from the phone turn off hold?\n"
+"   4. When hold is turned off on phone, does the icon in the app reflect its "
+"new status?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2084
+msgid "Ensure that speakerphone toggle on/off works in voicemail"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2085
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Call to voicemail\n"
+"   3. Toggle speaker phone on\n"
+"   4. Make sure speakerphone is turned on\n"
+"   5. Make sure indicator on phone shows speakerphone as on\n"
+"   6. Turn off speakerphone from the phone\n"
+"   7. Make sure indicator in app shows speakerphone is off\n"
+"   8. Make sure speakerphone is now off"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2112
+msgid "Ensure that speakerphone toggle on/off works in regular phone call"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2113
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Have two DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2113
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Toggle speaker phone on\n"
+"   3. Make sure speakerphone is turned on on the phone\n"
+"   4. Make sure indicator on phone and app shows speakerphone as on\n"
+"   5. Turn off speakerphone from the phone\n"
+"   6. Make sure indicator on phone and app shows speakerphone is off\n"
+"   7. Make sure speakerphone is actually off"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2130
+msgid ""
+"   1. Is speakerphone turned on?\n"
+"   2. Does phone indicate speakerphone is on?\n"
+"   3. Does turning speakerphone off from the phone turn off speakerphone?\n"
+"   4. When speakerphone is turned off on phone, does the icon in the app "
+"reflect its new status?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2140
+msgid "Ensure that microphone mute works in call"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:2146
+msgid "Telephony/Hardware/Emergency Support (SIM1)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2211
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure the network indicator now shows telephony connection signal"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:2260
+msgid "Telephony/Hardware/Emergency Support (SIM2)"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2266
+msgid "Ensure that an IMEI number is set"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2267
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Enter *#06#"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2267
+msgid ""
+"TEARDOWN:\n"
+"   1. Close dialer"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2277
+msgid "   1. Is it pop up the IMEI number?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2284
+msgid "Ensure that emergency codes are properly set"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2285
+msgid ""
+"SETUP:\n"
+"   remove SIM card"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2285
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Dial emergency number (ex: 000)\n"
+"   3. Ensure emergency call can be called"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2297
+msgid "   1. Is it emergency call connected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2304
+msgid "Ensure that USSD codes function as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2305
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer\n"
+"   2. Dial USSD number (ex: #123)\n"
+"   3. Ensure USSD call can work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2305
+msgid ""
+"TEARDOWN:\n"
+"   1. End call\n"
+"   2. Close dialer"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2317
+msgid "   1. Is call to USSD number worked?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2324
+msgid "Ensure that the network indicator shows connection status"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2325
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure the network indicator now shows telephony connection signal?"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2334
+msgid "   1. Does the network indicator show telephony connection correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2341
+msgid "Ensure that no signal shows when no SIM card inserted"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2342
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is not inserted"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2342
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure the network indicator shows no signal"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2351
+msgid "   1. Does the network indicator show no signal correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2358
+msgid "Ensure that 3G SIM card can be supported"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2359
+msgid ""
+"SETUP:\n"
+"   Insert a 3G SIM card"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2359
+msgid ""
+"ACTIONS:\n"
+"   1. Boot up\n"
+"   2. Ensure system can identify the SIM card"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2369
+msgid "   1. Does 3G SIM card work correctly?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:2374
+msgid "Telephony/Data Support (SIM1)"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2380
+msgid "Ensure that phone can properly use GPRS data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2381
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure that DUT connected to GRPS network\n"
+"   2. Open web browser, navigate to ubuntu.com"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2399
+msgid "Ensure that phone can properly use edge data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2400
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure that DUT connected to Edge network\n"
+"   2. Open web browser, navigate to ubuntu.com"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2418
+msgid "Ensure that phone can properly use 3g data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2419
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure that DUT connected to 3G network\n"
+"   2. Open web browser, navigate to ubuntu.com"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2437
+msgid "Ensure that phone can properly use HSPA data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2438
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is present\n"
+"   Ensure WiFi is not connected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2438
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure that DUT connected to HSPA network\n"
+"   2. Open web browser, navigate to ubuntu.com"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2449
+msgid "   1. Was ubuntu.com loaded?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2456
+msgid "Ensure that connection can switch between WiFi and GPRS"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2457
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is present\n"
+"   Ensure WiFi connected\n"
+"   Ensure DUT connected to GRPS network"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2478
+msgid "Ensure that connection can switch between WiFi and EDGE"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2479
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is present\n"
+"   Ensure WiFi connected\n"
+"   Ensure DUT connected to EDGE network"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2500
+msgid "Ensure that connection can switch between WiFi and 3G"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2501
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is present\n"
+"   Ensure WiFi connected\n"
+"   Ensure DUT connected to 3G network"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2522
+msgid "Ensure that connection can switch between WiFi and HSPA"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2523
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is present\n"
+"   Ensure WiFi connected\n"
+"   Ensure DUT connected to HSPA network"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2523
+msgid ""
+"ACTIONS:\n"
+"   1. Open web browser, navigate to ubuntu.com\n"
+"   2. Disable WiFi\n"
+"   3. Open web browser, navigate to wiki.ubuntu.com"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2536
+msgid ""
+"   1. Was ubuntu.com loaded?\n"
+"   2. Was wiki.ubuntu.com loaded?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2544
+msgid "Ensure that call quality is acceptable in 2G"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2545
+msgid ""
+"SETUP:\n"
+"   Prepare 2 DUT and 2 Reference\n"
+"   Ensure 2G SIM is present"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2564
+msgid "Ensure that call quality is acceptable in 3G"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2565
+msgid ""
+"SETUP:\n"
+"   Prepare 2 DUT and 2 References\n"
+"   Ensure 3G SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2565
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 makes a MO call to DUT2\n"
+"   2. Reference1 makes a MO call to Reference2\n"
+"   3. Compare the call quality between DUT and Reference"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2577
+msgid "   1. Is call quality acceptable?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2584
+msgid "Ensure that data performance is acceptable in GPRS"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2585
+msgid ""
+"SETUP:\n"
+"   Prepare 1 DUT and 1 References\n"
+"   Ensure DUT connected to GPRS network"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2605
+msgid "Ensure that data performance is acceptable in edge"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2606
+msgid ""
+"SETUP:\n"
+"   Prepare 1 DUT and 1 References\n"
+"   Ensure DUT connected to Edge network"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2626
+msgid "Ensure that data performance is acceptable in 3g"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2627
+msgid ""
+"SETUP:\n"
+"   Prepare 1 DUT and 1 References\n"
+"   Ensure DUT connected to 3G network"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2647
+msgid "Ensure that data performance is acceptable in HSPA"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2648
+msgid ""
+"SETUP:\n"
+"   Prepare 1 DUT and 1 References\n"
+"   Ensure DUT connected to HSPA network"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2648
+msgid ""
+"ACTIONS:\n"
+"   1. From DUT, Open web browser and navigate to www.speedtest.net\n"
+"   2. Press test\n"
+"   3. From Ref, Open web browser and navigate to www.speedtest.net\n"
+"   4. Compare both DUT and Reference"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2661
+msgid "   1. Is DUT data performance similar to Reference?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2668
+msgid ""
+"Ensure that the failure rate of call drop in poor signal area is acceptable"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2669
+msgid ""
+"SETUP:\n"
+"   Prepare 2 DUT and 2 References\n"
+"   Ensure 1 DUT and 1 Reference are in poor signal area"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2669
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 makes a MO call to DUT2\n"
+"   2. Reference1 makes a MO call to Reference2\n"
+"   3. Compare the failure rate of call drop between DUT1 and Reference1"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2669
+msgid ""
+"TEARDOWN:\n"
+"   End the calls"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2681
+msgid "   1. Is failure rate of DUT1 similar to Reference1?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2688
+msgid "Ensure that data roaming can work correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2689
+msgid ""
+"SETUP:\n"
+"   Ensure a foreign SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2689
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure that DUT can connect to a roaming 3G network\n"
+"   2. Open web browser, navigate to ubuntu.com"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2689
+msgid ""
+"TEARDOWN:\n"
+"   Close webbrowser"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2699
+msgid ""
+"   1. Does DUT connect to a roaming data network successfully?\n"
+"   2. Was ubuntu.com loaded?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:2705
+msgid "Telephony/Interruptions"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2711
+msgid ""
+"Ensure that SMS alert sound can be played correctly during music playback"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2712
+msgid ""
+"ACTIONS:\n"
+"   1. Launch music player and playback a music file\n"
+"   2. Send a SMS message to DUT\n"
+"   3. Ensure that music playback will be stopped and then play the SMS "
+"receiving alert sound"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2723
+msgid ""
+"   1. Is music playback stopped?\n"
+"   2. Is SMS alert sound played?\n"
+"   3. Is Message indicator show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2732
+msgid ""
+"Ensure that MMS alert sound can be played correctly during music playback"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2733
+msgid ""
+"ACTIONS:\n"
+"   1. Launch music player and playback a music file\n"
+"   2. Send a MMS message to DUT\n"
+"   3. Ensure that music playback will be stopped and then play the MMS "
+"receiving alert sound"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2744
+msgid ""
+"   1. Is music playback stopped?\n"
+"   2. Is MMS alert sound played?\n"
+"   3. Is Message indicator show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2753
+msgid ""
+"Ensure that incoming call ringtone can be played correctly during music "
+"playback"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2754
+msgid ""
+"ACTIONS:\n"
+"   1. Launch music player and playback a music file\n"
+"   2. Make a MO call to DUT\n"
+"   3. Ensure that music playback will be stopped and then play the incoming "
+"call ringtone"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2765
+msgid ""
+"   1. Is music playback stopped?\n"
+"   2. Is incoming call ringtone played?\n"
+"   3. Is call snap decision show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2774
+msgid ""
+"Ensure that SMS alert sound can be played correctly during video playback"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2775
+msgid ""
+"ACTIONS:\n"
+"   1. Launch media player and playback a video file\n"
+"   2. Send a SMS message to DUT\n"
+"   3. Ensure that music playback will be stopped and then play the SMS "
+"receiving alert sound"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2786
+msgid ""
+"   1. Is video playback stopped?\n"
+"   2. Is SMS alert sound played?\n"
+"   3. Is Message indicator show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2795
+msgid ""
+"Ensure that MMS alert sound can be played correctly during video playback"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2796
+msgid ""
+"ACTIONS:\n"
+"   1. Launch media player and playback a video file\n"
+"   2. Send a MMS message to DUT\n"
+"   3. Ensure that music playback will be stopped and then play the MMS "
+"receiving alert sound"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2807
+msgid ""
+"   1. Is video playback stopped?\n"
+"   2. Is MMS alert sound played?\n"
+"   3. Is Message indicator show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2816
+msgid ""
+"Ensure that incoming call ringtone can be played correctly during video "
+"playback"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2817
+msgid ""
+"ACTIONS:\n"
+"   1. Launch media player and playback a video file\n"
+"   2. Make a MO call to DUT\n"
+"   3. Ensure that music playback will be stopped and then play the incoming "
+"call ringtone"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2828
+msgid ""
+"   1. Is video playback stopped?\n"
+"   2. Is incoming call ringtone played?\n"
+"   3. Is call snap decision show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2837
+msgid ""
+"Ensure that incoming call ringtone can be played correctly while browsing "
+"via GPRS data"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2858
+msgid ""
+"Ensure that mo call can be performed correctly while browsing via GPRS data"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2878
+msgid ""
+"Ensure that incoming call ringtone can be played correctly while browsing "
+"via 3g data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2879
+msgid ""
+"ACTIONS:\n"
+"   1. Launch web browser and browse to the www.ubuntu.com\n"
+"   2. Make a MO call to DUT\n"
+"   3. Ensure that the incoming call ringtone is played"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2891
+msgid ""
+"   1. Is incoming call ringtone played?\n"
+"   2. Is call snap decision show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2899
+msgid ""
+"Ensure that mo call can be performed correctly while browsing via 3g data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2900
+msgid ""
+"ACTIONS:\n"
+"   1. Launch web browser and browse to the www.ubuntu.com\n"
+"   2. Make a MO call\n"
+"   3. Ensure that the MO call can be performed"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2912
+msgid "   1. Is MO call performed correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2919
+msgid ""
+"Ensure that incoming call ringtone can be played correctly while playing "
+"streaming video via gprs data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2920
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Connected to GPRS data"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2941
+msgid ""
+"Ensure that mo call can be performed correctly while playing streaming video "
+"via 3g data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2942
+msgid ""
+"SETUP:\n"
+"   1. Ensure SIM is present\n"
+"   2. Connected to 3G data"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2942
+msgid ""
+"ACTIONS:\n"
+"   1. Launch web browser and browse to the www.youtube.com\n"
+"   2. Play a video clip on youtube\n"
+"   2. Make a MO call to DUT\n"
+"   3. Ensure that streaming video is stopped and the incoming call ringtone "
+"is played"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2955
+msgid ""
+"   1. Is streaming video stopped and then incoming call ringtone played?\n"
+"   2. Is call snap decision show up?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:2963
+msgid ""
+"Ensure that call can be taken on Bluetooth headset while downloading a large "
+"file"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2964
+msgid ""
+"SETUP:\n"
+"   1. Pair a Bluetooth headset with the phone\n"
+"   2. Begin downloading a large file with the DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2964
+msgid ""
+"ACTIONS:\n"
+"   1. Make a call to the DUT\n"
+"   2. Answer the call"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:2972
+msgid ""
+"   1. Verify that call can be taken correctly on the Bluetooth headset"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:2977
+msgid "Message/SMS/MMS (SIM1)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:2984
+msgid ""
+"ACTIONS:\n"
+"   1. Open messaging app\n"
+"   2. Select a contact and send the text\n"
+"   3. Ensure SMS sent correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3003
+msgid ""
+"ACTIONS:\n"
+"   1. Open messaging app\n"
+"   2. Select multiple contacts and send the text\n"
+"   3. Ensure SMS sent correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3055
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Did DUT2 receive two messages?"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3076
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Has every contact received two messages?"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3171
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 send SMS message to DUT2 w/ foreign SIM\n"
+"   2. Ensure that send SMS message to foreign SIM works"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:3269
+msgid "Message/SMS/MMS (SIM2)"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3275
+msgid "Ensure that SMS messages can be sent to single contact"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3276
+msgid ""
+"ACTIONS:\n"
+"   1. Opens messaging app\n"
+"   2. Select a contact and send the text\n"
+"   3. Ensure SMS sent correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3287
+msgid "   1. Is SMS sent correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3294
+msgid "Ensure that SMS messages can be sent to multiple contacts"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3295
+msgid ""
+"ACTIONS:\n"
+"   1. Opens messaging app\n"
+"   2. Select multiple contacts and send the text\n"
+"   3. Ensure SMS sent correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3306
+msgid "   1. Is SMS sent to multiple contacts correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3313
+msgid "Ensure that SMS messages can be received correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3314
+msgid ""
+"ACTIONS:\n"
+"   1. DUT2 sent SMS to DUT1\n"
+"   2. Ensure notification is shown when text is received\n"
+"   3. Ensure text is received in messaging app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3326
+msgid "   1. Is SMS received correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3333
+msgid ""
+"Ensure that concatenate SMS message can be sent to single contact (more than "
+"160 characters)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3334
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Input more than 160 characters and send to DUT2\n"
+"   3. Ensure SMS sent to DUT2 correctly\n"
+"   4. Ensure DUT2 received two messages"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3347
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Is DUT2 received two messages?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3355
+msgid ""
+"Ensure that concatenate SMS message can be sent to multiple contacts (more "
+"than 160 characters)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3356
+msgid ""
+"SETUP:\n"
+"   Ensure SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3356
+msgid ""
+"ACTIONS:\n"
+"   1. Opens messaging app\n"
+"   2. Input more than 160 characters and send multiple contacts\n"
+"   3. Ensure SMS sent to multiple contacts correctly\n"
+"   4. Ensure each contact received two messages"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3368
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Is every contact received two messages?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3376
+msgid ""
+"Ensure that SMS message with special characters can be sent correctly (e.g "
+"#.$ å)"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3377
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Input special characters and send to DUT2\n"
+"   3. Ensure SMS sent to DUT2 correctly\n"
+"   4. Ensure DUT2 can display special characters correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3390
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Is special characters displayed correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3398
+msgid ""
+"Ensure that SMS message containing an ampersand (&) in the middle can be "
+"displayed correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3399
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Input some text with an ampersand in the middle\n"
+"   3. Send to DUT2"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3411
+msgid "   1. Is the message displayed correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3418
+msgid "Ensure that SMS message containing a URL can be displayed correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3419
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Input some text and a URL\n"
+"   3. Send to DUT2"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3419
+msgid ""
+"TEARDOWN:\n"
+"   1. Close the messaging app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3431
+msgid ""
+"   1. Is the message displayed correctly?\n"
+"   2. Can you click on the URL and open it in the browser?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3439
+msgid "Ensure that forward SMS message to single contact works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3440
+msgid ""
+"SETUP:\n"
+"   Prepare two DUT\n"
+"   Ensure SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3440
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Sent a SMS message to DUT2\n"
+"   3. While DUT2 received SMS message then forward back to DUT1\n"
+"   4. Ensure DUT2 can forward message to DUT1\n"
+"   5. Ensure DUT1 can receive this message"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3462
+msgid "Ensure that send SMS message to foreign country works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3463
+msgid ""
+"SETUP:\n"
+"   Prepare two DUT, one with foreign SIM\n"
+"   Ensure SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3463
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 send SMS message to DUT2 with foreign SIM\n"
+"   2. Ensure that send SMS message to foreign SIM works"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3474
+msgid ""
+"   1. Is SMS sent correctly?\n"
+"   2. Is DUT2 received message?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3482
+msgid "Ensure that MMS messages can be sent to single contact"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3483
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Send a MMS message with picture, clip file or music file to DUT2\n"
+"   3. Ensure MMS sent correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3495
+msgid "   1. Is MMS sent correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3502
+msgid "Ensure that MMS messages can be sent to multiple contacts"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3503
+msgid ""
+"SETUP:\n"
+"   DUT setup MMS APN\n"
+"   Ensure SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3503
+msgid ""
+"ACTIONS:\n"
+"   1. Open messaging app\n"
+"   2. Select multiple contacts and send MMS\n"
+"   3. Ensure MMS sent correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3512
+msgid "   1. Is MMS sent to multiple contacts correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3519
+msgid "Ensure that MMS messages can be received and played correctly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3520
+msgid ""
+"ACTIONS:\n"
+"   1. DUT2 sent MMS to DUT1\n"
+"   2. Ensure notification is shown when MMS is received\n"
+"   3. Ensure that MMS message can be played correctly"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3532
+msgid ""
+"   1. Is MMS received correctly?\n"
+"   2. Does MMS play correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3540
+msgid "Ensure that forward MMS message to single contact works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3541
+msgid ""
+"SETUP:\n"
+"   Prepare two DUT and setup MMS APN\n"
+"   Ensure SIM is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3541
+msgid ""
+"ACTIONS:\n"
+"   1. DUT1 opens messaging app\n"
+"   2. Sent a MMS message to DUT2\n"
+"   3. While DUT2 received MMS message then forward back to DUT1\n"
+"   4. Ensure DUT2 can forward message to DUT1\n"
+"   5. Ensure DUT1 can receive this message"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3541
+msgid ""
+"TEARDOWN:\n"
+"   1. Close messaging app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3555
+msgid ""
+"   1. Did DUT2 forward message work?\n"
+"   2. Is DUT1 received this message?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:3561
+msgid "Camera/Camera Test"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3567
+msgid "Ensure that camera app can be launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3568
+msgid ""
+"ACTIONS:\n"
+"   1. Tap Camera app from application scope"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3574
+msgid "   1. Did camera app launch?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3581
+msgid "Ensure that the rear camera preview and zoom works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3582
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure camera image is shown\n"
+"   2. Switch camera to rear camera, make sure the view updates\n"
+"   3. Zoom in/out, make sure the view updates"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3593
+msgid "   1. Does the back camera work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3600
+msgid "Ensure that the front camera preview and zoom works"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3601
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure camera image is shown\n"
+"   2. Switch camera to Front camera, make sure the view updates\n"
+"   3. Zoom in/out make sure the view updates"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3612
+msgid "   1. Does the front camera work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3619
+msgid "Ensure that photos can be captured with the rear camera"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3620
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a picture with rear camera\n"
+"   2. Open gallery app, ensure pictures are shown"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3637
+msgid "Ensure that photos can be captured with the front camera"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3638
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a picture with front camera\n"
+"   2. Open gallery app, ensure pictures are shown"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3638
+msgid ""
+"TEARDOWN:\n"
+"   Close camera app, close gallery app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3648
+msgid "   1.Is the picture found in the gallery app?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3655
+msgid "Ensure that video can be captured with the rear camera"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3656
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a video with rear camera\n"
+"   2. Open gallery app, ensure video clips are shown"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3674
+msgid "Ensure that video can be captured with the front camera"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3675
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a video with front camera\n"
+"   2. Open gallery app, ensure video clips are shown"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3685
+msgid ""
+"   1. Is the video captured?\n"
+"   2. Can the video clips be viewed?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3693
+msgid "Ensure that camera flash led can work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3694
+msgid ""
+"ACTIONS:\n"
+"   1. Switch on flash support to auto\n"
+"   2. Take a photo under low light"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3704
+msgid "   1. Does flash led work correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3711
+msgid "Compare front camera photo with reference device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3712
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a picture with front camera of DUT\n"
+"   2. Open photo in gallery app\n"
+"   3. Capture the same (try to maintain same lighting conditions) picture "
+"with front camera of reference Android device\n"
+"   4. Open photo in gallery app of Android device"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3732
+msgid "Compare rear camera photo with reference device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3733
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a picture with rear camera of DUT\n"
+"   2. Open photo in gallery app\n"
+"   3. Capture the same (try to maintain same lighting conditions) picture "
+"with rear camera of reference Android device\n"
+"   4. Open photo in gallery app of Android device"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3745
+msgid ""
+"   1. Compare the quality of the photo\n"
+"   2. Are the photos of similar quality?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3753
+msgid "Compare font camera video with reference device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3754
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a video with front camera of DUT\n"
+"   2. Open video in gallery app\n"
+"   3. Capture the same (try to maintain same lighting conditions) video with "
+"front camera of reference Android device\n"
+"   4. Open video in gallery app of Android device"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3774
+msgid "Compare rear camera video with reference device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3775
+msgid ""
+"ACTIONS:\n"
+"   1. Capture a video with rear camera of DUT\n"
+"   2. Open video in gallery app\n"
+"   3. Capture the same (try to maintain same lighting conditions) video with "
+"rear camera of reference Android device\n"
+"   4. Open video in gallery app of Android device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3775
+msgid ""
+"TEARDOWN:\n"
+"   Close camera app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3787
+msgid ""
+"   1. Compare the quality of the video\n"
+"   2. Are the videos of similar quality?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3795
+msgid ""
+"Ensure the quality/image size of a photo can be configured for front camera"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3796
+msgid ""
+"ACTIONS:\n"
+"   1. Select various image qualities\n"
+"   2. Take a photo with the front camera of DUT"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3811
+msgid ""
+"Ensure the quality/image size of a photo can be configured for rear camera"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3812
+msgid ""
+"SETUP:\n"
+"   Open camera app"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3812
+msgid ""
+"ACTIONS:\n"
+"   1. Select various image qualities\n"
+"   2. Take a photo with the rear camera of DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3819
+msgid ""
+"   1. Examine the captured photos over MTP\n"
+"   2. Verify that the sizes match the selection in the camera app"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:3825
+msgid "Audio/Audio path"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3831
+msgid "Ensure that the internal microphone works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3832
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Speak to internal microphone\n"
+"   3. Ensure DUT2 can hear voice"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3843
+msgid "   1. Did DUT2 hear voice?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3850
+msgid "Ensure that the internal speaker works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3851
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Speak to DUT2\n"
+"   3. Ensure voice come out from internal speaker"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3862
+msgid "   1. Did you hear voice?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3869
+msgid "Ensure that the headset works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3870
+msgid ""
+"SETUP:\n"
+"   1. Have two DUT\n"
+"   2. Plug in a headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3870
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Speak to headset\n"
+"   3. Ensure DUT2 can hear voice\n"
+"   4. Speak to DUT2\n"
+"   5. Ensure voice come out from external speaker"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3870
+msgid ""
+"TEARDOWN:\n"
+"   Unplug the headset"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3884
+msgid "   1. Did both speaker and microphone of headset work correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3891
+msgid "Ensure that Bluetooth headset works as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3892
+msgid ""
+"SETUP:\n"
+"   1. Have two DUT\n"
+"   2. Paired with a Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3892
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Speak to Bluetooth headset\n"
+"   3. Ensure DUT2 can hear voice\n"
+"   4. Speak to DUT2\n"
+"   5. Ensure voice come out from Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3892
+msgid ""
+"TEARDOWN:\n"
+"   Unpair Bluetooth headset"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3906
+msgid ""
+"   1. Did both speaker and microphone of Bluetooth headset work correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3913
+msgid ""
+"Ensure that the audio can be switched from internal to headset during "
+"playing music"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3914
+msgid ""
+"SETUP:\n"
+"   Prepare a headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3914
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. Ensure music come from internal speaker\n"
+"   3. Plug in a headset\n"
+"   4. Ensure music come from headset\n"
+"   5. Unplug the headset\n"
+"   6. Ensure music switch back to internal speaker"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3928
+msgid ""
+"   1. Did the sound can be heard from internal speaker?\n"
+"   2. Did the sound can be heard from headset?\n"
+"   3. Did the sound can be heard from internal speaker?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3937
+msgid ""
+"Ensure that the audio can be switched from internal to Bluetooth headset "
+"during playing music"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3938
+msgid ""
+"SETUP:\n"
+"   Prepare a Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3938
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. Ensure music come from internal speaker\n"
+"   3. Connect to Bluetooth headset\n"
+"   4. Ensure music come from Bluetooth headset\n"
+"   5. Disconnect to Bluetooth Headset\n"
+"   6. Ensure music switch back to internal speaker"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3952
+msgid ""
+"   1. Did the sound can be heard from internal speaker?\n"
+"   2. Did the sound can be heard from Bluetooth headset?\n"
+"   3. Did the sound can be heard from internal speaker?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3961
+msgid ""
+"Ensure that the audio can be switched from internal to headset during a call"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3962
+msgid ""
+"SETUP:\n"
+"   1. Have two DUT\n"
+"   2. Prepare a headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3962
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Ensure both output/input audio come from internal speaker and "
+"microphone\n"
+"   3. Plug in a headset\n"
+"   4. Ensure that both output/input audio come from headset\n"
+"   5. Unplug the headset\n"
+"   6. Ensure that both output/input audio switch back to internal "
+"speaker/microphone"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:3977
+msgid ""
+"   1. Did both output/input audio come from internal speaker?\n"
+"   2. Did both output/input audio come from headset?\n"
+"   3. Did both output/input audio come from internal speaker?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:3986
+msgid ""
+"Ensure that the audio can be switched from internal to Bluetooth headset "
+"during a call"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3987
+msgid ""
+"SETUP:\n"
+"   1. Have two DUT\n"
+"   2. Prepare a Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:3987
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Ensure both output/input audio come from internal speaker and "
+"microphone\n"
+"   3. Pair to a Bluetooth headset\n"
+"   4. Ensure that both output/input audio come from Bluetooth headset\n"
+"   5. Disconnect the Bluetooth headset\n"
+"   6. Ensure that both output/input audio switch back to internal "
+"speaker/microphone"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4002
+msgid ""
+"   1. Did both output/input audio come from internal speaker?\n"
+"   2. Did both output/input audio come from Bluetooth headset?\n"
+"   3. Did both output/input audio come from internal speaker?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4011
+msgid "Ensure that streaming audio muted when receiving an incoming call"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4012
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. MT call to DUT\n"
+"   3. Ensure music will be stopped and ringtone come from internal speaker\n"
+"   4. Answer the call\n"
+"   5. Ensure both internal microphone and speaker work as expected"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4025
+msgid ""
+"   1. Does the streaming music has been stopped and play ringtone from "
+"internal speaker?\n"
+"   2. Does both internal microphone and speaker work during the call?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4033
+msgid "Ensure that streaming audio muted when make an outgoing call"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4034
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. MO call to DUT2\n"
+"   3. Ensure music will be paused and ringing from internal speaker\n"
+"   4. Pick the call from another phone\n"
+"   5. Ensure both internal microphone and speaker work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4034
+msgid ""
+"TEARDOWN:\n"
+"   Disconnect the call"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4047
+msgid ""
+"   1. Does the streaming music has been stopped and play ringing sound from "
+"internal speaker?\n"
+"   2. Does both internal microphone and speaker work during the call?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4053
+msgid "Audio/Volume adjustment"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4059
+msgid "Ensure that volume keys functions work as expected when play music"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4077
+msgid ""
+"Ensure that the volume keys functions work as expected when during a call"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4078
+msgid ""
+"SETUP:\n"
+"   Have two DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4078
+msgid ""
+"ACTIONS:\n"
+"   1. MO call to DUT2\n"
+"   2. Increase/Decrease the volume by pressing the volume keys\n"
+"   3. Ensure that volume indicator changes accordingly\n"
+"   4. Ensure that sound become smaller or louder as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4078
+msgid ""
+"TEARDOWN:\n"
+"   Resume phone volume to default"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4098
+msgid "Ensure that the volume keys functions work with headset"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4120
+msgid ""
+"Ensure that the volume keys functions work with headset after phone resume "
+"from sleep"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4121
+msgid ""
+"SETUP:\n"
+"   Plug in a headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4121
+msgid ""
+"TEARDOWN:\n"
+"   1. Resume phone volume to default\n"
+"   2. Unplug the headset"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4144
+msgid "Ensure that the volume keys functions work with Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4145
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. Increase/Decrease the volume by pressing the volume keys\n"
+"   3. Ensure that volume indicator changes accordingly\n"
+"   4. Ensure that sound become smaller or louder as expected"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4166
+msgid ""
+"Ensure that the volume keys functions work with Bluetooth headset after "
+"phone resume from sleep"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4167
+msgid ""
+"SETUP:\n"
+"   Pair with a Bluetooth headset"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4167
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. Press power button to turn device screen off, and wait for few "
+"seconds\n"
+"   3. Press power button to turn device screen on\n"
+"   4. Increase/Decrease the volume by pressing the volume keys\n"
+"   5. Ensure that volume indicator changes accordingly\n"
+"   6. Ensure that sound become smaller or louder as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4167
+msgid ""
+"TEARDOWN:\n"
+"   1. Resume phone volume to default\n"
+"   2. Unpair the headset"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4182
+msgid ""
+"   1. Does the indicator properly update?\n"
+"   2. Did the volume change?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4190
+msgid "Ensure that the phone will be muted after volume set to minimum"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4191
+msgid ""
+"ACTIONS:\n"
+"   1. Play a music file\n"
+"   2. Press the volume down key several times until volume down to minimum\n"
+"   3. Ensure that volume indicator changes to the mute icon\n"
+"   4. Ensure the phone has muted"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4191
+msgid ""
+"TEARDOWN:\n"
+"   Unmute the phone"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4200
+msgid ""
+"   1. Does the indicator properly update?\n"
+"   2. Did the phone muted?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4208
+msgid ""
+"Ensure that the phone presents a volume warning at near maximum volume"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4209
+msgid ""
+"SETUP:\n"
+"   Set the device to minimum volume"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4209
+msgid ""
+"ACTIONS:\n"
+"   WARNING: DON'T PUT THE HEADPHONES IN EARS\n"
+"   1. Play a music file\n"
+"   2. Press the volume up key until maximum reached\n"
+"   3. Check that a volume warning dialog is presented"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4209
+msgid ""
+"TEARDOWN:\n"
+"   1. Set the volume back to  reasonable level"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4221
+msgid "   1. Was a volume warning presented to the user?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4226
+msgid "Video/Video output"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4232
+msgid "Ensure that video playback work smoothly"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4233
+msgid ""
+"ACTIONS:\n"
+"   1. Play a video file\n"
+"   2. Ensure that video play smoothly on the screen"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4233
+msgid ""
+"TEARDOWN:\n"
+"   End the playback"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4240
+msgid "   1. Does video playback smoothly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4247
+msgid "Ensure that video output is resumed after wake up from sleep mode"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4248
+msgid ""
+"SETUP:\n"
+"   1. Dock phone/plugin HDMI adapter cable"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4248
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure that screen is displayed on external monitor\n"
+"   2. Press power button to enter sleep mode\n"
+"   3. Press power button to resume\n"
+"   4. Ensure that screen is still displayed on external monitor"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4248
+msgid ""
+"TEARDOWN:\n"
+"   Disconnect HDMI cable/dock"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4260
+msgid "   1. Does HDMI screen still display on external monitor?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4265
+msgid "Sensors/Sensors Testing"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4271
+msgid "Ensure accelerometer is functioning"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4272
+msgid ""
+"ACTIONS:\n"
+"   1. Launch an app\n"
+"   2. Change orientation\n"
+"   3. Ensure app orientation is changed"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4272
+msgid ""
+"TEARDOWN:\n"
+"   Close app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4280
+msgid "   1. Is accelerometer working?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4287
+msgid "Ensure proximity sensor is functioning"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4288
+msgid ""
+"SETUP:\n"
+"   SIM card enabled"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4288
+msgid ""
+"ACTIONS:\n"
+"   1. Open dialer app\n"
+"   2. Make a MO call\n"
+"   3. Move phone away from face quickly\n"
+"   4. Ensure screen went from off->on\n"
+"   5. Put hand near phone\n"
+"   6. Ensure screen turns off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4288
+msgid ""
+"TEARDOWN:\n"
+"   End call, close app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4302
+msgid "   1. Is proximity sensor working?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4309
+msgid "Ensure ambient light sensor is working"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4310
+msgid ""
+"ACTIONS:\n"
+"   1. Enable Brightness Adjust automatically from Brightness settings\n"
+"   2. Move phone to a low light place\n"
+"   3. Move phone to a very bright place"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4310
+msgid ""
+"TEARDOWN:\n"
+"   Uncheck brightness adjust automatically"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4318
+msgid "   1. Is ambient light sensor working?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4325
+msgid "Ensure haptics are working"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4326
+msgid ""
+"ACTIONS:\n"
+"   1. Open indicators\n"
+"   2. Switch between indicator tabs, ensure vibration occurs"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4326
+msgid ""
+"TEARDOWN:\n"
+"   Close indicators"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4333
+msgid "   1. Did vibration occur?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4340
+msgid "Ensure GPS is working"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4341
+msgid ""
+"SETUP:\n"
+"   Enable GPS and location detection from location indicator"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4341
+msgid ""
+"ACTIONS:\n"
+"   1. Open a browser and connect to Google Map\n"
+"   2. Tap location detect icon\n"
+"   3. Ensure Google Map can detect your location"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4341
+msgid ""
+"TEARDOWN:\n"
+"   Close browser"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4352
+msgid "   1. Is GPS and location detection working?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4359
+msgid "Ensure gyroscope sensor is working"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4367
+msgid "Ensure compass sensor is working"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4375
+msgid "Ensure gravity sensor is working"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4381
+msgid "Screen/Screen testing"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4387
+msgid "Ensure that no screen flicker is present"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4388
+msgid ""
+"ACTIONS:\n"
+"   1. Use Unity\n"
+"   2. Ensure no screen flicker is present"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4395
+msgid "   1. Is screen flicker present?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4402
+msgid "Ensure that pressing power properly suspends the phone"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4410
+msgid "   1. Is phone suspended?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4417
+msgid "Ensure that the backlight is off when the phone is suspended"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4418
+msgid ""
+"ACTIONS:\n"
+"   1. Press power button\n"
+"   2. Ensure phone is properly suspended, and backlight is off"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4425
+msgid "   1. Is backlight turned off?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4432
+msgid "Ensure that screen brightness can be changed from power indicator"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4433
+msgid ""
+"ACTIONS:\n"
+"   1. Open Battery indicator\n"
+"   2. Swipe brightness level left and right, ensure brightness is changed"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4447
+msgid "Ensure that screen brightness can be changed from system settings"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4448
+msgid ""
+"ACTIONS:\n"
+"   1. Open system settings\n"
+"   2. Open battery page\n"
+"   3. Swipe brightness level left and right, ensure brightness is changed"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4456
+msgid "   1. Is brightness changed?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4463
+msgid "Ensure that MIR is being run"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4464
+msgid ""
+"ACTIONS:\n"
+"   1. Use Unity\n"
+"   2. Run 'ps ax | grep surf', ensure no results"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4471
+msgid "   1. Is MIR running?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4478
+msgid "Ensure the sensitivity of touchscreen"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4479
+msgid ""
+"ACTIONS:\n"
+"   1. Randomly tap the screen, slide the screen\n"
+"   2. Ensure that the the sensitivity of touch screen works as expected"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4486
+msgid "   1. Does the sensitivity of touch screen work as expected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4493
+msgid "Ensure the touchscreen accuracy"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4494
+msgid ""
+"ACTIONS:\n"
+"   1. Open Notes app\n"
+"   2. Launch virtual keyboard\n"
+"   3. Tap each characters\n"
+"   4. Ensure that the accuracy of touch screen is accurate enough"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4503
+msgid "   1. Does the accuracy of touchscreen is accurate enough?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4510
+msgid "Ensure the sensitivity of touchscreen in each edge"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4511
+msgid ""
+"ACTIONS:\n"
+"   1. Randomly tap the screen, slide the screen that near the edge\n"
+"   2. Ensure that the the sensitivity of touch screen works as expected"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4518
+msgid ""
+"   1. Does the sensitivity of touch screen in each edge work as expected?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4525
+msgid "Ensure the touchscreen accuracy in each edge"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4526
+msgid ""
+"ACTIONS:\n"
+"   1. Open Notes app\n"
+"   2. Launch virtual keyboard\n"
+"   3. Tap each characters\n"
+"   4. Ensure that the accuracy of touch screen is accurate enough in each "
+"edge"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4535
+msgid ""
+"   1. Does the accuracy of touchscreen is accurate enough in each edge?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4542
+msgid "Ensure that long press touch screen can work as expected"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4543
+msgid ""
+"SETUP:\n"
+"   Have several apps launched"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4543
+msgid ""
+"ACTIONS:\n"
+"   1. Long press on running app from Apps scope\n"
+"   2. Ensure that it shows a close icon to close this app\n"
+"   3. Long press on an app\n"
+"   4. Ensure that the app will be launch as usual"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4543
+msgid ""
+"TEARDOWN:\n"
+"   Close apps"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4555
+msgid ""
+"   1. Does long press action work as expected?\n"
+"   2. Did app launch after long press?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4561
+msgid "Power Management/Indicator"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4567
+msgid "Ensure that power indicator accurately shows charging status"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4568
+msgid ""
+"ACTIONS:\n"
+"   1. Use Unity\n"
+"   2. Ensure power indicator is showing battery charging\n"
+"   3. Open system settings -> Battery\n"
+"   4. Ensure battery is listed as charging"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4580
+msgid "   1. Is battery shown as charging?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4587
+msgid "Ensure that charging phone functions"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4588
+msgid ""
+"ACTIONS:\n"
+"   1. Charge DUT\n"
+"   2. Unplug phone after some time\n"
+"   3. Ensure battery level actually decreases"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4599
+msgid "   1. Did battery level decrease?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4606
+msgid "Ensure that unplugging from power will change the power indicator"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4607
+msgid ""
+"SETUP:\n"
+"   Power charger is plugged"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4607
+msgid ""
+"ACTIONS:\n"
+"   1. Ensure indicator shows battery charging\n"
+"   2. Unplug charger\n"
+"   3. Ensure indicator now shows battery discharging"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4618
+msgid "   1. Is battery shown as discharging?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4625
+msgid "Ensure it pops up a low battery message"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4626
+msgid ""
+"SETUP:\n"
+"   Power charger not plugged"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4626
+#, no-c-format
+msgid ""
+"ACTIONS:\n"
+"   1. Observe the battery until it less than 10%\n"
+"   2. Ensure it pops up low battery message"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4636
+msgid "   1. Does low battery message show correctly?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4643
+msgid "Ensure that the power indicator shows on the screen after DUT off"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4644
+msgid ""
+"SETUP:\n"
+"   Power charge is plugged"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4644
+msgid ""
+"ACTIONS:\n"
+"   1. Turn off DUT\n"
+"   2. Ensure that it has a power indicator show up"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4644
+msgid ""
+"TEARDOWN:\n"
+"   Power on DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4654
+msgid "   1. Is there a power indicator shown on the screen?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4659
+msgid "Power Management/Power consumption"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4665
+msgid "Ensure that phone full charge time not more than 4hrs"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4666
+#, no-c-format
+msgid ""
+"SETUP:\n"
+"   Discharge phone battery to 0%"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4666
+msgid ""
+"ACTIONS:\n"
+"   1. Plug in power charger to charge the phone\n"
+"   2. Measure the full charge time"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4666
+msgid ""
+"TEARDOWN:\n"
+"   None"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4676
+msgid "   1. Does full charge time is less than 4hrs?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4683
+msgid "Ensure that phone talk time can surpass more than 8hrs"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4684
+msgid ""
+"SETUP:\n"
+"   1. Phone full charged\n"
+"   2. Power charge is not plugged\n"
+"   3. Have two DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4684
+msgid ""
+"ACTIONS:\n"
+"   1. Make a MO call to DUT2\n"
+"   2. Measure the talk time of phone"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4684
+msgid ""
+"TEARDOWN:\n"
+"   End the call"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4696
+msgid "   1. Does talk time surpass than 8hrs?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4701
+msgid "Storage/Internal Storage"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4707
+msgid "Check for full disk warning"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4708
+#, no-c-format
+msgid ""
+"SETUP:\n"
+"   1. Fill the disk to XX% of capacity"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4708
+msgid ""
+"ACTIONS:\n"
+"   1. Begin recording a Video"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4714
+#, no-c-format
+msgid ""
+"   1. Check that when the disk becomes XX% full a warning is displayed to "
+"the user"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4719
+msgid "Storage/MTP File Transfer"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4725
+msgid "DUT connected to USB 2.0 port - recognized as MTP device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4726
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB 2.0 port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Navigate to device\n"
+"   4. Copy file to DUT\n"
+"   5. Copy file from DUT\n"
+"   6. Make sure that copy/remove/modify functions work as expected"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4748
+msgid "DUT connected to USB 2.0 port - large file transfer over MTP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4749
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB 2.0 port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Copy a 4GB file to DUT\n"
+"   4. Make sure that large file can be transfer to DUT\n"
+"   5. Play this video file on DUT"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4771
+msgid "DUT connected to USB 2.0 port - over 100 files to DUT over MTP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4772
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB 2.0 port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Copy a folder with 100 files to DUT\n"
+"   4. Make sure that all the files can be transfer to DUT"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4792
+msgid "DUT connected to USB 3.0 port - recognized as MTP device"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4793
+msgid ""
+"SETUP:\n"
+"   1. Prepare a USB cable"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4793
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB 3.0 port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Navigate to device\n"
+"   4. Copy file to DUT\n"
+"   5. Copy file from DUT\n"
+"   6. Make sure that copy/remove/modify functions work as expected"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4807
+msgid ""
+"   1. Does DUT recognize as MTP device?\n"
+"   2. Did copy/remove/modify functions work?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4815
+msgid "DUT connected to USB 3.0 port - large file transfer over MTP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4816
+msgid ""
+"SETUP:\n"
+"   1. Prepare a USB cable\n"
+"   2. Have a 4GB video file"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4816
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB 3.0 port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Copy a 4GB file to DUT\n"
+"   4. Make sure that large file can be transferred to DUT\n"
+"   5. Play this video file on DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4830
+msgid ""
+"   1. Did large file transfer complete?\n"
+"   2. Can this file be playbacked?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4838
+msgid "DUT connected to USB 3.0 port - over 100 files to DUT over MTP"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4839
+msgid ""
+"SETUP:\n"
+"   1. Prepare a USB cable\n"
+"   2. Have a folder with 100 files"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4839
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB 3.0 port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Copy a folder with 100 files to DUT\n"
+"   4. Make sure that all the files can be transferred to DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4852
+msgid "   1. Did files transfer complete?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4857
+msgid "Storage/MTP Mediascanner Update"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4863
+msgid ""
+"Make sure that music scope can scan and add music file after MTP transfer to "
+"storage"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4864
+msgid ""
+"SETUP:\n"
+"   1. Prepare a USB cable\n"
+"   2. Have several music files"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4864
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Copy music file to /home/phablet/Music/\n"
+"   4. Make sure that music files can be transferred to DUT\n"
+"   5. Launch Music scope"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4878
+msgid ""
+"   1. Did music files transfer complete?\n"
+"   2. Does all the music files appear on the Music scope?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4886
+msgid ""
+"Make sure that music scope can scan and add music files that are under "
+"folders after MTP transfer to storage"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4887
+msgid ""
+"SETUP:\n"
+"   1. Prepare a USB cable\n"
+"   2. Have several folders and each folder contains several music files"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4887
+msgid ""
+"ACTIONS:\n"
+"   1. Connect DUT to a USB port\n"
+"   2. Make sure the DUT has been recognized as MTP device\n"
+"   3. Copy folders to /home/phablet/Music/\n"
+"   4. Make sure that folders can be transferred to DUT\n"
+"   5. Launch Music scope"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4887
+msgid ""
+"TEARDOWN:\n"
+"   1. Disconnect DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4901
+msgid ""
+"   1. Did music files transfer complete?\n"
+"   2. Does music files appear on the Music scope correctly?"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:4907
+msgid "Storage/SD Card"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4913
+msgid "Mounts SD card at boot"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4914
+msgid ""
+"SETUP:\n"
+"   1. Turn off DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4914
+msgid ""
+"ACTIONS:\n"
+"   1. Place SD Card in DUT\n"
+"   2. Turn on DUT"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4921
+msgid "   1. When boot complete is the SD card mounted?"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4928
+msgid "Automount SD card while DUT is on"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4929
+msgid ""
+"SETUP:\n"
+"   1. Turn off DUT\n"
+"   2. Remove SD Card from DUT\n"
+"   3. Power on DUT"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4929
+msgid ""
+"ACTIONS:\n"
+"   1. When DUT is running place SD card in device"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4937
+msgid ""
+"   1. Check that the SD card is detected and notification is displayed"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4944
+msgid "Contents are visible in file manager"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4945
+msgid ""
+"SETUP:\n"
+"   1. Install the File manager application from the store"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4945
+msgid ""
+"ACTIONS:\n"
+"   1. Open file manager\n"
+"   2. Unlock full access to filesystem\n"
+"   3. Browse to /media/phablet/<CARD-LABEL>"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4953
+msgid ""
+"   1. Check that the contents of SD card are visible in the File manager"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4960
+msgid "Audio files are discovered by mediascanner"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4961
+msgid ""
+"SETUP:\n"
+"   1. Insert SD card containing audio files"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4961
+msgid ""
+"ACTIONS:\n"
+"   1. Open the My Music scope"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4974
+msgid "Video files are discovered by mediascanner"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4975
+msgid ""
+"SETUP:\n"
+"   1. Insert SD card containing video files"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4975
+msgid ""
+"ACTIONS:\n"
+"   1. Open the My Videos scope"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4981
+msgid "   1. When refreshed check that files on the SD card are listed"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:4988
+msgid "SD card removal while DUT is on"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4989
+msgid ""
+"SETUP:\n"
+"   1. DUT with mounted SD card"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:4989
+msgid ""
+"ACTIONS:\n"
+"   1. Remove SD card while DUT is on"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:4995
+msgid "   1. Card is not corrupted during eject"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:5002
+msgid "Format micro SD card"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:5003
+msgid ""
+"SETUP:\n"
+"   1. Place Micro SD card in DUT\n"
+"   2. Open the External Drives app"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:5003
+msgid ""
+"ACTIONS:\n"
+"   1. Format the SD card from the app"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:5010
+msgid ""
+"   1. Check that card is formatted - all files are deleted etc\n"
+"   2. Remove SD card from DUT\n"
+"   3. Check the card can be mounted on a Desktop PC"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:5019
+msgid "Copy files from internal storage to sd card using file manager"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:5020
+msgid ""
+"SETUP:\n"
+"   1. Open the File Manager app\n"
+"   2. Browse a folder in the home directory"
+msgstr ""
+
+#. steps
+#: ../units/touch.pxu:5020
+msgid ""
+"ACTIONS:\n"
+"   1. Long press on a file and select Copy\n"
+"   2. Change directory to a location on the SD Card\n"
+"   3. From the actions menu select Paste"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:5029
+msgid "   1. Verify that the file is written to the SD Card"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:5034
+msgid "Storage/Bluetooth File Transfer"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:5040
+msgid "Transfer files to the phone using Bluetooth file transfer"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:5042
+msgid "   1. File is present on the DUT"
+msgstr ""
+
+#. summary
+#: ../units/touch.pxu:5049
+msgid "Transfer files from the phone using Bluetooth file transfer"
+msgstr ""
+
+#. verification
+#: ../units/touch.pxu:5051
+msgid "   1. File is present on the desktop PC"
+msgstr ""
+
+#. name
+#: ../units/touch.pxu:5058
+msgid "Ubuntu Touch certification tests"
+msgstr ""
+
+#. description
+#: ../units/touch.pxu:5059
+msgid ""
+"This test plan selects all the tests required to certify a device with "
+"Ubuntu Touch"
+msgstr ""
+
+#. name
+#: ../units/shakedown.pxu:6
+msgid "Quick return evaluation"
+msgstr ""
+
+#. description
+#: ../units/shakedown.pxu:7
+msgid ""
+"This test plan should be used when the device is returned, to establish if "
+"it was returned because there's a technical problem with the device."
+msgstr ""
+
+#. name
+#: ../units/shakedown.pxu:63
+msgid "Custom shakedown tests"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:69
+msgid "Ensure that DUT can take and store screenshots"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:70
+msgid ""
+"Purpose of this test is to check whether the device can take and store "
+"screenshots"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:73
+msgid ""
+"1. Make sure screen is active 2. Press volume up and volume down buttons "
+"simultaneously"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:76
+msgid "1. Open gallery app 2. Is the screenshot present?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:83
+msgid "Check if DUT warns when SD cards is full"
+msgstr "檢查待測機器在 SD 卡空間耗盡時是否會發出警告"
+
+#. purpose
+#: ../units/shakedown.pxu:84
+msgid ""
+"Purpose of this test is to check whether the device warns the user about SD "
+"card being full."
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:87
+msgid ""
+"1. Prepare SD card with no free space on it. 2. Insert into sd card slot."
+msgstr "1. 準備一張沒有可用空間的 SD 卡。2. 將 SD 卡插入插槽中。"
+
+#. verification
+#: ../units/shakedown.pxu:90
+msgid "1. Does warning about SD card being full show up?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:96
+msgid "Check if battery depletion rate is normal"
+msgstr "檢查電池耗電量是否正常"
+
+#. purpose
+#: ../units/shakedown.pxu:97
+msgid ""
+"Purpose of this test is to make sure that device's battery depletes in a "
+"normal rate"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:100
+msgid ""
+"1. Make sure the battery is fully charged. 2. Open System Settings 3. Open "
+"Security & Privacy 4. Select Phone Locking 5. Select lock interval `never` "
+"6. Leave the device on idle for 30 minutes"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:107
+#, no-c-format
+msgid "1. Check charge level 2. Is it above or equal to 95%?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:114
+msgid "Ensure that sim information can be read"
+msgstr "確定是否能讀取 sim 資訊"
+
+#. steps
+#: ../units/shakedown.pxu:115
+msgid ""
+"1. Ensure SIM is present 2. Open System Settings 3. Open About this phone"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:119
+msgid "1. Is SIM present under Phone number?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:125
+msgid "Ensure that DUT can gather APN information"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:126
+msgid ""
+"Purpose of this test is to check if the device can gather APN information"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:128
+msgid ""
+"1. Ensure SIM is present 2. Open System Settings 3. Select Cellular 4. "
+"Select Carrier 5. Open APN menu"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:134
+msgid "1. Is operator's APN shown in the menu?"
+msgstr ""
+
+#. summary
+#: ../units/shakedown.pxu:140
+msgid "Ensure that DUT can login into APN"
+msgstr ""
+
+#. purpose
+#: ../units/shakedown.pxu:141
+msgid "Purpose of this test is to check if the device can login into APN"
+msgstr ""
+
+#. steps
+#: ../units/shakedown.pxu:143
+msgid ""
+"1. Ensure SIM is present 2. Open System Settings 3. Select Cellular 4. "
+"Select Carrier 5. Open APN menu 6. Select one of the operator's APNs"
+msgstr ""
+
+#. verification
+#: ../units/shakedown.pxu:150
+msgid "1. Is checkmark visible on the right of selected APN's name?"
+msgstr ""
+
+#: ../manage.py:26
+msgid "The Ubuntu Touch for Plainbox"
+msgstr ""
