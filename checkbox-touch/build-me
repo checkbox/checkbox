@@ -323,7 +323,7 @@ def generate_desktop_file(lang=None):
     Type=Application
     X-Ubuntu-Touch=true
     X-Ubuntu-Supported-Orientations=portrait
-    """.format(exec_line))
+    """.format(exec_line)).lstrip()
     import_opts = ['-I lib/py/plainbox/data/plainbox-qml-modules']
     for provider in os.listdir('providers'):
         provider_data_dir = os.path.join('providers', provider, 'data')
