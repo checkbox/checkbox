@@ -185,6 +185,7 @@ def main():
     if not validate_providers():
         sys.exit('Provider validation failed.')
     extract_dependencies()
+    copy_provider_libs()
 
     current_manifest = json.loads(open('manifest.json', 'rt').read())
     check_versions_match(current_manifest)
@@ -303,6 +304,13 @@ def extract_dependencies():
                 lib_path = os.path.join(tmp, 'usr', 'lib')
                 if os.path.exists(lib_path):
                     rsync_tree(lib_path, 'lib', preserve_symlinks=1)
+
+def copy_provider_libs():
+    print("Copy over provider-supplied libs")
+    for provider_dir in os.listdir('providers'):
+        prov_lib = os.path.join('providers', provider_dir, 'lib')
+        if os.path.exists(prov_lib):
+            rsync_tree(prov_lib, 'lib')
 
 
 def generate_desktop_file():
