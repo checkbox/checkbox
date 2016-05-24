@@ -162,6 +162,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self._password = None
         self._timestamp = None
         self._latest_session = None
+        self._available_test_plans = []
         self.test_plan_id = None
         self.resume_candidate_storage = None
         self.assistant.use_alternate_repository(
@@ -259,15 +260,17 @@ class CheckboxTouchApplication(PlainboxApplication):
     @view
     def get_testplans(self):
         """Get the list of available test plans."""
-        test_plan_units = [self.assistant.get_test_plan(tp_id) for tp_id in
-                           self.assistant.get_test_plans()]
+        if not self._available_test_plans:
+            self._available_test_plans = [
+                self.assistant.get_test_plan(tp_id) for tp_id in
+                self.assistant.get_test_plans()]
         return {
             'testplan_info_list': [{
                 "mod_id": tp.id,
                 "mod_name": tp.name,
                 "mod_selected": False,
                 "mod_disabled": False,
-            } for tp in test_plan_units]
+            } for tp in self._available_test_plans]
         }
 
     @view
