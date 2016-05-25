@@ -49,7 +49,7 @@ Item {
 
         Dialog {
             id: dlg
-            title: i18n.tr("")
+            title: ""
             modal: true
 
             ColumnLayout {
