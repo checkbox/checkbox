@@ -297,7 +297,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         """Get categories selection data."""
         category_info_list = [{
             "mod_id": category.id,
-            "mod_name": category.name,
+            "mod_name": category.tr_name(),
             "mod_selected": True,
             "mod_disabled": False,
         } for category in (
