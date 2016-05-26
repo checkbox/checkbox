@@ -12,14 +12,13 @@ import stat
 import textwrap
 import tempfile
 
-from confinement.generate import generate_confinement
-sys.path.append('./py')
-from py.embedded_providers import EmbeddedProvider1PlugInCollection
-from py.checkbox_touch import CheckboxTouchApplication
-
 from utils import get_package_from_url_and_extract
 from utils import prepare_uris
 from utils import rsync_tree
+
+from confinement.generate import generate_confinement
+sys.path.append('./py')
+
 
 # DEFAULT_PROVIDERS is a list of providers directory names as listed in
 # ../providers. NOTE: those are directory names, not provider names as reported
@@ -55,6 +54,7 @@ def find_executables(path):
 
 
 def get_confined_jobs(path):
+    from py.embedded_providers import EmbeddedProvider1PlugInCollection
     collection = EmbeddedProvider1PlugInCollection(path)
     # this should be run within provider's directory, so there should be
     # only one provider loaded
@@ -253,6 +253,7 @@ def build_i18n():
                   "provider '{}'.".format(provider_dir))
             raise e
 
+
 def extract_dependencies():
     print("Extracting dependencies")
     for provider_dir in os.listdir('providers'):
@@ -287,6 +288,7 @@ def extract_dependencies():
                 if os.path.exists(lib_path):
                     rsync_tree(lib_path, 'lib', preserve_symlinks=1)
 
+
 def copy_provider_libs():
     print("Copy over provider-supplied libs")
     for provider_dir in os.listdir('providers'):
@@ -296,7 +298,8 @@ def copy_provider_libs():
 
 
 def generate_desktop_file(lang=None):
-    exec_line = "qmlscene --settings=settings.json {import_options} $@ checkbox-touch.qml"
+    exec_line = ("qmlscene --settings=settings.json "
+                 "{import_options} $@ checkbox-touch.qml")
     if lang:
         exec_line = 'bash -c "LANGUAGE={} {}"'.format(lang, exec_line)
     template = textwrap.dedent("""
@@ -321,6 +324,7 @@ def generate_desktop_file(lang=None):
 
 
 def generate_manifest():
+    from py.checkbox_touch import CheckboxTouchApplication
     res = CheckboxTouchApplication().get_version_pair()
     version = res['result']['application_version']
     hooks = {
