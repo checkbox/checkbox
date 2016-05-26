@@ -190,17 +190,8 @@ def main():
     extract_dependencies()
     copy_provider_libs()
 
-    current_manifest = json.loads(open('manifest.json', 'rt').read())
-    check_versions_match(current_manifest)
-    hooks = {
-        'checkbox-touch': current_manifest['hooks']['checkbox-touch']
-    }
-    for hook in build_confinement(current_manifest['version']):
-        hooks.update(hook)
-    new_manifest = current_manifest.copy()
-    new_manifest['hooks'] = hooks
-    with open('manifest.json', 'wt') as f:
-        f.write(json.dumps(new_manifest, sort_keys=True, indent=4))
+    generate_manifest()
+
     build_i18n()
 
     generate_desktop_file(lang=args.forced_lang)
