@@ -341,6 +341,35 @@ def generate_desktop_file(lang=None):
         f.write(template.format(import_options=" ".join(import_opts)))
 
 
+def generate_manifest():
+    res = CheckboxTouchApplication().get_version_pair()
+    version = res['result']['application_version']
+    hooks = {
+        'checkbox-touch': {
+            'apparmor': 'checkbox-touch.json',
+            'desktop': 'checkbox-touch.desktop'
+        }
+    }
+    for hook in build_confinement(version):
+        hooks.update(hook)
+    manifest = {
+        'architecture': 'armhf',
+        'description': 'System testing utility for Ubuntu',
+        'framework': 'ubuntu-sdk-14.10',
+        'hooks': hooks,
+        'maintainer': 'Checkbox Developers <checkbox-dev@lists.launchpad.net>',
+        'name': 'com.ubuntu.checkbox',
+        'title': 'Checkbox',
+        'version': version,
+        'x-source': {
+            'vcs-bzr': 'lp:checkbox',
+            'vcs-bzr-revno': version
+        }
+    }
+    with open('manifest.json', 'wt') as f:
+        f.write(json.dumps(manifest, sort_keys=True, indent=4))
+
+
 def build_click():
     print('Building click package')
     base_path = os.path.normpath(os.path.join(os.getcwd(), '..'))
