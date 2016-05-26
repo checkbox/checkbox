@@ -79,7 +79,13 @@ MainView {
             name: "settings"
             valueNames: "PATH_TO_SETTINGS"
             help: i18n.tr("Path to a file containing checkbox-touch settings")
-            required: true
+            required: false
+        }
+        Argument {
+            name: "launcher"
+            valueNames: "PATH_TO_LAUNCHER_SETTINGS"
+            help: i18n.tr("Path to a file containing the launcher settings")
+            required: false
         }
     }
 
@@ -90,6 +96,8 @@ MainView {
             appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";
             appSettings["providersDir"] = "tests/autopilot/autopilot-provider";
             appSettings["log-level"] = "warning";
+        } else if (args.values["launcher"]) {
+            appSettings["launcher"] = args.values["launcher"];
         } else {
             // normal execution - load settings.json file
             var xhr = new XMLHttpRequest;
@@ -100,7 +108,7 @@ MainView {
                         var newAppSettings = JSON.parse(xhr.responseText);
                     } catch (x) {
                         // if we cannot parse settings.json, we should leave
-                        // deafult values of appSettings
+                        // default values of appSettings
                         console.error("Could not parse settings.json. Using default values");
                     }
                     // overwrite/add appSettings' attributes that got loaded
@@ -170,7 +178,7 @@ MainView {
         Component.onCompleted: {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
-                construct("checkbox_touch.create_app_object", []);
+                construct("checkbox_touch.create_app_object", [appSettings["launcher"]]);
             });
         }
     }
