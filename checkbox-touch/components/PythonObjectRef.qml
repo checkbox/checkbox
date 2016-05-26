@@ -40,7 +40,7 @@ QtObject {
         if (!py) {
             console.error("Trying to get reference to python object without py initiated!");
         } else {
-            console.info("Getting reference to python object via " + creationMethodName);
+            console.info("Getting reference to python object via " + creationMethodName + ", with args: " + JSON.stringify(args));
             py.call(creationMethodName, args, function(result) {
                 if (!result) {
                     var msg = "Object construction failed. " + creationMethodName + " did not return a valid object";
@@ -57,7 +57,7 @@ QtObject {
     /** Call a method on this object */
     function invoke(func, args, callback) {
         if (py !== null && object !== null) {
-            console.log("invoking " + func + " on object created with" + pythonObjectRef.creationMethodName + ", with args: " + JSON.stringify(args) + " ...");
+            console.log("invoking " + func + " on object created with " + pythonObjectRef.creationMethodName + ", with args: " + JSON.stringify(args) + " ...");
             var callable = py.getattr(object, func);
             if (!callable) {
                 console.log("Unable to invoke " + func + " on object " + JSON.stringify(pythonObjectRef));
