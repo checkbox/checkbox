@@ -12,14 +12,13 @@ import stat
 import textwrap
 import tempfile
 
-from confinement.generate import generate_confinement
-sys.path.append('./py')
-from py.embedded_providers import EmbeddedProvider1PlugInCollection
-from py.checkbox_touch import CheckboxTouchApplication
-
 from utils import get_package_from_url_and_extract
 from utils import prepare_uris
 from utils import rsync_tree
+
+from confinement.generate import generate_confinement
+sys.path.append('./py')
+
 
 # DEFAULT_PROVIDERS is a list of providers directory names as listed in
 # ../providers. NOTE: those are directory names, not provider names as reported
@@ -55,6 +54,7 @@ def find_executables(path):
 
 
 def get_confined_jobs(path):
+    from py.embedded_providers import EmbeddedProvider1PlugInCollection
     collection = EmbeddedProvider1PlugInCollection(path)
     # this should be run within provider's directory, so there should be
     # only one provider loaded
@@ -80,18 +80,6 @@ def check_libs_present():
         if not os.path.exists(path):
             raise EnvironmentError(
                 "{} not found!\nHave you run get-libs?".format(path))
-
-
-def check_versions_match(manifest):
-    """Check if version coded in python matches one from manifest.json."""
-    res = CheckboxTouchApplication().get_version_pair()
-    version_from_py = res['result']['application_version']
-
-    if manifest['version'] != version_from_py:
-        raise Exception(
-            ("Version mismatch! Version from checkbox_touch.py: {}, "
-             "version from manifest.json: {}").format(
-                    version_from_py, manifest['version']))
 
 
 def get_revision_string(path='.'):
@@ -190,17 +178,8 @@ def main():
     extract_dependencies()
     copy_provider_libs()
 
-    current_manifest = json.loads(open('manifest.json', 'rt').read())
-    check_versions_match(current_manifest)
-    hooks = {
-        'checkbox-touch': current_manifest['hooks']['checkbox-touch']
-    }
-    for hook in build_confinement(current_manifest['version']):
-        hooks.update(hook)
-    new_manifest = current_manifest.copy()
-    new_manifest['hooks'] = hooks
-    with open('manifest.json', 'wt') as f:
-        f.write(json.dumps(new_manifest, sort_keys=True, indent=4))
+    generate_manifest()
+
     build_i18n()
 
     generate_desktop_file(lang=args.forced_lang)
@@ -274,6 +253,7 @@ def build_i18n():
                   "provider '{}'.".format(provider_dir))
             raise e
 
+
 def extract_dependencies():
     print("Extracting dependencies")
     for provider_dir in os.listdir('providers'):
@@ -308,6 +288,7 @@ def extract_dependencies():
                 if os.path.exists(lib_path):
                     rsync_tree(lib_path, 'lib', preserve_symlinks=1)
 
+
 def copy_provider_libs():
     print("Copy over provider-supplied libs")
     for provider_dir in os.listdir('providers'):
@@ -317,7 +298,8 @@ def copy_provider_libs():
 
 
 def generate_desktop_file(lang=None):
-    exec_line = "qmlscene --settings=settings.json {import_options} $@ checkbox-touch.qml"
+    exec_line = ("qmlscene --settings=settings.json "
+                 "{import_options} $@ checkbox-touch.qml")
     if lang:
         exec_line = 'bash -c "LANGUAGE={} {}"'.format(lang, exec_line)
     template = textwrap.dedent("""
@@ -339,6 +321,36 @@ def generate_desktop_file(lang=None):
             import_opts.append("-I " + provider_data_dir)
     with open('checkbox-touch.desktop', 'wt', encoding='utf-8') as f:
         f.write(template.format(import_options=" ".join(import_opts)))
+
+
+def generate_manifest():
+    from py.checkbox_touch import CheckboxTouchApplication
+    res = CheckboxTouchApplication().get_version_pair()
+    version = res['result']['application_version']
+    hooks = {
+        'checkbox-touch': {
+            'apparmor': 'checkbox-touch.json',
+            'desktop': 'checkbox-touch.desktop'
+        }
+    }
+    for hook in build_confinement(version):
+        hooks.update(hook)
+    manifest = {
+        'architecture': 'armhf',
+        'description': 'System testing utility for Ubuntu',
+        'framework': 'ubuntu-sdk-14.10',
+        'hooks': hooks,
+        'maintainer': 'Checkbox Developers <checkbox-dev@lists.launchpad.net>',
+        'name': 'com.ubuntu.checkbox',
+        'title': 'Checkbox',
+        'version': version,
+        'x-source': {
+            'vcs-bzr': 'lp:checkbox',
+            'vcs-bzr-revno': version
+        }
+    }
+    with open('manifest.json', 'wt') as f:
+        f.write(json.dumps(manifest, sort_keys=True, indent=4))
 
 
 def build_click():
