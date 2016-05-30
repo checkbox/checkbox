@@ -459,7 +459,7 @@ to rerun last test, continue to the next test, or start a new session?")
 
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
-            if(result.resumable === true) {
+            if (result.resumable === true) {
                 pageStack.clear();
                 pageStack.push(resumeSessionPage);
             } else {

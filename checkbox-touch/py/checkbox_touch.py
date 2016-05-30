@@ -511,7 +511,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     @view
     def export_results(self, output_format, option_list):
-        """Export results to file(s) in the user's 'Documents' directory.."""
+        """Export results to file(s) in the user's 'Documents' directory."""
         self.assistant.finalize_session()
         dirname = self._get_user_directory_documents()
         return self.assistant.export_to_file(
