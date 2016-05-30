@@ -64,6 +64,7 @@ from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.session.assistant import SessionAssistant
+from plainbox.impl.transport import get_all_transports
 import plainbox
 
 from embedded_providers import EmbeddedProvider1PlugInCollection
@@ -195,6 +196,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             configs.append(launcher_definition)
             self.launcher.read(configs)
             self.assistant.use_alternate_configuration(self.launcher)
+            self._prepare_transports()
 
     def __repr__(self):
         return "app"
@@ -547,6 +549,21 @@ class CheckboxTouchApplication(PlainboxApplication):
             transport,
             submission_options
         )
+
+    def _prepare_transports(self):
+        self._available_transports = get_all_transports()
+        self.transports = dict()
+
+    @view
+    def get_certification_transport_config(self):
+        """Returns the c3 (certification) transport configuration."""
+        for report in self.launcher.stock_reports:
+            self._prepare_stock_report(report)
+        if 'c3' in self.launcher.transports:
+            return self.launcher.transports['c3']
+        elif 'c3-staging' in self.launcher.transports:
+            return self.launcher.transports['c3-staging']
+        return {}
 
     @view
     def export_results_with_launcher_settings(self):

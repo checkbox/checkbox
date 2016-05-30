@@ -614,6 +614,25 @@ to rerun last test, continue to the next test, or start a new session?")
             app.getResults(function(results) {
                 var resultsPage = createPage("components/ResultsPage.qml");
                 resultsPage.results = results;
+                app.getCertificationTransportConfig(function(result) {
+                    if (result.type === "certification") {
+                        appSettings["submission"] = {}
+                        appSettings["submission"].type = "c3"
+                        if (result.staging === "yes") {
+                            appSettings["submission"].type = "c3-staging"
+                        }
+                        if (result.secure_id) {
+                            appSettings["submission"].secure_id = result.secure_id
+                        }
+                        else {
+                            appSettings["submission"]["input"] = [{
+                                "paramName": "secure_id",
+                                "prompt": i18n.tr("Enter the Secure ID for the system-under-test:")
+                            }]
+                        }
+                        resultsPage.submissionName = i18n.tr("Certification Site");
+                    }
+                });
                 if (appSettings["submission"]) {
                     resultsPage.submissionName = appSettings["submission"].name;
                 }
