@@ -558,9 +558,9 @@ to rerun last test, continue to the next test, or start a new session?")
             });
         };
         var saveReport = function() {
-            app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
-                var htmlReportUrl = uri;
-                app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+            if (appSettings["launcher"]) {
+                app.exportResultsWithLauncherSettings(function(uri) {
+                    var htmlReportUrl = uri;
                     CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
                                               [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
                                                   var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
@@ -568,7 +568,19 @@ to rerun last test, continue to the next test, or start a new session?")
                                                   pageStack.push(webviewer);
                                               }}]);
                 });
-            });
+            } else {
+                app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
+                    var htmlReportUrl = uri;
+                    app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+                        CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
+                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
+                                                      var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
+                                                      webviewer.uri = htmlReportUrl;
+                                                      pageStack.push(webviewer);
+                                                  }}]);
+                    });
+                });
+            }
         };
         var submitReport = function(resultsPage) {
             // resultsPage param is for having control over unlatching

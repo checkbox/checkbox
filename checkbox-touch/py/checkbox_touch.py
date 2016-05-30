@@ -549,6 +549,79 @@ class CheckboxTouchApplication(PlainboxApplication):
         )
 
     @view
+    def export_results_with_launcher_settings(self):
+        """
+        Export results to file(s) in the user's 'Documents' directory.
+        This method follows the launcher reports configuration.
+        """
+        self.assistant.finalize_session()
+        for report in self.launcher.stock_reports:
+            self._prepare_stock_report(report)
+        # reports are stored in an ordinary dict(), so sorting them ensures
+        # the same order of submitting them between runs.
+        html_url = ""
+        for name, params in sorted(self.launcher.reports.items()):
+            exporter_id = self.launcher.exporters[params['exporter']]['unit']
+            if self.launcher.transports[params['transport']]['type'] == 'file':
+                path = self.launcher.transports[params['transport']]['path']
+                cls = self._available_transports['file']
+                self.transports[params['transport']] = cls(path)
+                transport = self.transports[params['transport']]
+                result = self.assistant.export_to_transport(
+                    exporter_id, transport)
+                if (
+                    result and 'url' in result and
+                    result['url'].endswith('html')
+                ):
+                    html_url = result['url']
+        return html_url
+
+    def _prepare_stock_report(self, report):
+        # this is purposefully not using pythonic dict-keying for better
+        # readability
+        if not self.launcher.transports:
+            self.launcher.transports = dict()
+        if not self.launcher.exporters:
+            self.launcher.exporters = dict()
+        if not self.launcher.reports:
+            self.launcher.reports = dict()
+        if report == 'certification':
+            self.launcher.exporters['hexr'] = {
+                'unit': '2013.com.canonical.plainbox::hexr'}
+            self.launcher.transports['c3'] = {
+                'type': 'certification',
+                'secure_id': self.launcher.transports.get('c3', {}).get(
+                    'secure_id', None)}
+            self.launcher.reports['upload to certification'] = {
+                'transport': 'c3', 'exporter': 'hexr'}
+        elif report == 'certification-staging':
+            self.launcher.exporters['hexr'] = {
+                'unit': '2013.com.canonical.plainbox::hexr'}
+            self.launcher.transports['c3-staging'] = {
+                'type': 'certification',
+                'secure_id': self.launcher.transports.get('c3', {}).get(
+                    'secure_id', None),
+                'staging': 'yes'}
+            self.launcher.reports['upload to certification-staging'] = {
+                'transport': 'c3-staging', 'exporter': 'hexr'}
+        elif report == 'submission_files':
+            timestamp = datetime.datetime.utcnow().isoformat()
+            base_dir = self._get_user_directory_documents()
+            for exporter, file_ext in [('hexr', '.xml'), ('html', '.html'),
+                                       ('xlsx', '.xlsx'), ('tar', '.tar.xz')]:
+                path = os.path.join(base_dir, ''.join(
+                    ['submission_', timestamp, file_ext]))
+                self.launcher.transports['{}_file'.format(exporter)] = {
+                    'type': 'file',
+                    'path': path}
+                self.launcher.exporters[exporter] = {
+                    'unit': '2013.com.canonical.plainbox::{}'.format(exporter)}
+                self.launcher.reports['2_{}_file'.format(exporter)] = {
+                    'transport': '{}_file'.format(exporter),
+                    'exporter': '{}'.format(exporter)
+                }
+
+    @view
     def drop_permissions(self, app_id, services):
         # TODO: use XDG once available
         trust_dbs = {
