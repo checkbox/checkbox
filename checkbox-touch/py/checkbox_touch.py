@@ -32,6 +32,7 @@ sys.path = [item for item in sys.path if not item.startswith('/usr/local')]
 import abc
 import collections
 import datetime
+import fnmatch
 import json
 import logging
 import os
@@ -152,7 +153,7 @@ class CheckboxTouchApplication(PlainboxApplication):
 
     __version__ = (1, 3, 0, 'dev', 0)
 
-    def __init__(self):
+    def __init__(self, launcher_definition=None):
         if plainbox.__version__ < (0, 22):
             raise SystemExit("plainbox 0.22 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
@@ -165,6 +166,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self._available_test_plans = []
         self.test_plan_id = None
         self.resume_candidate_storage = None
+        self.launcher = None
         self.assistant.use_alternate_repository(
             self._get_app_cache_directory())
 
@@ -177,14 +179,38 @@ class CheckboxTouchApplication(PlainboxApplication):
                            ]
         self.assistant.use_alternate_execution_controllers(ctrl_setup_list)
 
+        if launcher_definition:
+            from checkbox_ng.launcher import LauncherDefinition
+            generic_launcher = LauncherDefinition()
+            generic_launcher.read([launcher_definition])
+            config_filename = os.path.expandvars(
+                generic_launcher.config_filename)
+            if not os.path.split(config_filename)[0]:
+                configs = [
+                    '/etc/xdg/{}'.format(config_filename),
+                    os.path.expanduser('~/.config/{}'.format(config_filename))]
+            else:
+                configs = [config_filename]
+            self.launcher = generic_launcher.get_concrete_launcher()
+            configs.append(launcher_definition)
+            self.launcher.read(configs)
+            self.assistant.use_alternate_configuration(self.launcher)
+
     def __repr__(self):
         return "app"
 
     @view
     def load_providers(self, providers_dir):
-        self.assistant.select_providers(
-            '*',
-            additional_providers=self._get_embedded_providers(providers_dir))
+        if self.launcher:
+            self.assistant.select_providers(
+                *self.launcher.providers,
+                additional_providers=self._get_embedded_providers(
+                    providers_dir))
+        else:
+            self.assistant.select_providers(
+                '*',
+                additional_providers=self._get_embedded_providers(
+                    providers_dir))
 
     @view
     def get_version_pair(self):
@@ -261,9 +287,37 @@ class CheckboxTouchApplication(PlainboxApplication):
     def get_testplans(self):
         """Get the list of available test plans."""
         if not self._available_test_plans:
-            self._available_test_plans = [
-                self.assistant.get_test_plan(tp_id) for tp_id in
-                self.assistant.get_test_plans()]
+            if self.launcher:
+                if self.launcher.test_plan_forced:
+                    self._available_test_plans = [
+                        self.assistant.get_test_plan(
+                            self.launcher.test_plan_default_selection)]
+                else:
+                    test_plan_ids = self.assistant.get_test_plans()
+                    filtered_tp_ids = set()
+                    for filter in self.launcher.test_plan_filters:
+                        filtered_tp_ids.update(
+                            fnmatch.filter(test_plan_ids, filter))
+                    filtered_tp_ids = list(filtered_tp_ids)
+                    filtered_tp_ids.sort(
+                        key=lambda tp_id: self.assistant.get_test_plan(
+                            tp_id).name)
+                    self._available_test_plans = [
+                        self.assistant.get_test_plan(tp_id) for tp_id in
+                        filtered_tp_ids]
+                return {
+                    'testplan_info_list': [{
+                        "mod_id": tp.id,
+                        "mod_name": tp.name,
+                        "mod_selected":
+                            tp.id == self.launcher.test_plan_default_selection,
+                        "mod_disabled": False,
+                    } for tp in self._available_test_plans]
+                }
+            else:
+                self._available_test_plans = [
+                    self.assistant.get_test_plan(tp_id) for tp_id in
+                    self.assistant.get_test_plans()]
         return {
             'testplan_info_list': [{
                 "mod_id": tp.id,
