@@ -64,7 +64,7 @@ QtObject {
                 throw "trying to invoke inexistent method"
             }
             py.call(callable,  args, function(response) {
-                console.log(func + " on object created with" + pythonObjectRef.creationMethodName + ", with args: " + JSON.stringify(args) + " returned: " + JSON.stringify(response));
+                console.log(func + " on object created with " + pythonObjectRef.creationMethodName + ", with args: " + JSON.stringify(args) + " returned: " + JSON.stringify(response));
                 callback(response);
             });
         } else {
