@@ -264,6 +264,11 @@ def build_i18n():
                 'providers', provider_dir, 'po', lang) + '.po'
             if os.path.exists(catalog):
                 _update_catalogs(os.path.join('po', lang + '.po'), catalog)
+    # build .mo files
+    try:
+        subprocess.check_output(['make', 'build-translations'])
+    except subprocess.CalledProcessError as exc:
+        sys.exit('Error encountered while building translations. %s' % exc)
 
 
 def _update_catalogs(dest, src):
