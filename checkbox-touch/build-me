@@ -252,6 +252,26 @@ def build_i18n():
             print("Problem encountered while building translations for ",
                   "provider '{}'.".format(provider_dir))
             raise e
+    # merge providers' catalogs to the global checkbox-touch one
+    lang_codes = []
+    for node in os.listdir('po'):
+        base, ext = os.path.splitext(node)
+        if os.path.isfile(os.path.join('po', node)) and ext == '.po':
+            lang_codes.append(base)
+    for provider_dir in os.listdir('providers'):
+        for lang in lang_codes:
+            catalog = os.path.join(
+                'providers', provider_dir, 'po', lang) + '.po'
+            if os.path.exists(catalog):
+                _update_catalogs(os.path.join('po', lang + '.po'), catalog)
+
+
+def _update_catalogs(dest, src):
+    try:
+        subprocess.check_output(['msgcat', '-o', dest, dest, src])
+    except subprocess.CalledProcessError:
+        sys.exit('Error encountered while updating {} with {}!'.format(
+            dest, src))
 
 
 def extract_dependencies():
