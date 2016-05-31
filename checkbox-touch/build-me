@@ -12,6 +12,7 @@ import stat
 import textwrap
 import tempfile
 
+from utils import backedup_dir
 from utils import get_package_from_url_and_extract
 from utils import prepare_uris
 from utils import rsync_tree
@@ -180,14 +181,17 @@ def main():
 
     generate_manifest()
 
-    build_i18n()
+    # build_i18n can modfiy po/*.po files; let's back it up and restore it
+    # after click is built
+    with backedup_dir('po'):
+        build_i18n()
 
-    generate_desktop_file(lang=args.forced_lang)
+        generate_desktop_file(lang=args.forced_lang)
 
-    if not os.path.exists('../build-cbt'):
-        os.makedirs('../build-cbt')
+        if not os.path.exists('../build-cbt'):
+            os.makedirs('../build-cbt')
 
-    pkg = build_click()
+        pkg = build_click()
 
     if args.install and not args.ssh:
         adb_options = []
