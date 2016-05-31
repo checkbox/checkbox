@@ -23,6 +23,7 @@ Common functions used by build-me and get-libs.
 import apt
 import apt_pkg
 import collections
+import contextlib
 import os
 import shutil
 import subprocess
@@ -86,3 +87,13 @@ def get_package_from_url_and_extract(url, target_dir):
     print('retrieving {0}'.format(url))
     urllib.request.urlretrieve(url, filename)
     subprocess.check_call(["dpkg", "-x", filename, target_dir])
+
+
+@contextlib.contextmanager
+def backedup_dir(path):
+    with tempfile.TemporaryDirectory() as tmp:
+        target = os.path.join(tmp, os.path.basename(path))
+        shutil.copytree(path, target)
+        yield
+        shutil.rmtree(path)
+        shutil.copytree(target, path)

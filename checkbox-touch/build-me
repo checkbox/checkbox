@@ -12,6 +12,7 @@ import stat
 import textwrap
 import tempfile
 
+from utils import backedup_dir
 from utils import get_package_from_url_and_extract
 from utils import prepare_uris
 from utils import rsync_tree
@@ -180,14 +181,17 @@ def main():
 
     generate_manifest()
 
-    build_i18n()
+    # build_i18n can modfiy po/*.po files; let's back it up and restore it
+    # after click is built
+    with backedup_dir('po'):
+        build_i18n()
 
-    generate_desktop_file(lang=args.forced_lang)
+        generate_desktop_file(lang=args.forced_lang)
 
-    if not os.path.exists('../build-cbt'):
-        os.makedirs('../build-cbt')
+        if not os.path.exists('../build-cbt'):
+            os.makedirs('../build-cbt')
 
-    pkg = build_click()
+        pkg = build_click()
 
     if args.install and not args.ssh:
         adb_options = []
@@ -252,6 +256,31 @@ def build_i18n():
             print("Problem encountered while building translations for ",
                   "provider '{}'.".format(provider_dir))
             raise e
+    # merge providers' catalogs to the global checkbox-touch one
+    lang_codes = []
+    for node in os.listdir('po'):
+        base, ext = os.path.splitext(node)
+        if os.path.isfile(os.path.join('po', node)) and ext == '.po':
+            lang_codes.append(base)
+    for provider_dir in os.listdir('providers'):
+        for lang in lang_codes:
+            catalog = os.path.join(
+                'providers', provider_dir, 'po', lang) + '.po'
+            if os.path.exists(catalog):
+                _update_catalogs(os.path.join('po', lang + '.po'), catalog)
+    # build .mo files
+    try:
+        subprocess.check_output(['make', 'build-translations'])
+    except subprocess.CalledProcessError as exc:
+        sys.exit('Error encountered while building translations. %s' % exc)
+
+
+def _update_catalogs(dest, src):
+    try:
+        subprocess.check_output(['msgcat', '-o', dest, dest, src])
+    except subprocess.CalledProcessError:
+        sys.exit('Error encountered while updating {} with {}!'.format(
+            dest, src))
 
 
 def extract_dependencies():
