@@ -164,6 +164,16 @@ PythonObjectRef {
             console.error("Unable to export test results");
         });
     }
+    function exportResultsWithLauncherSettings(continuation) {
+        request("export_results_with_launcher_settings", [], continuation, function(error) {
+            console.error("Unable to export test results");
+        });
+    }
+    function getCertificationTransportConfig(continuation) {
+        request("get_certification_transport_config", [], continuation, function(error) {
+            console.error("Unable to check launcher reports");
+        });
+    }
     function submitResults(config, continuation, continuation_error) {
         // Use low-level call as the config may contain sensitive information.
         var callable = py.getattr(object, "submit_results");

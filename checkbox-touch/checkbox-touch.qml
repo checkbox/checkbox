@@ -459,7 +459,7 @@ to rerun last test, continue to the next test, or start a new session?")
 
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
-            if(result.resumable === true) {
+            if (result.resumable === true) {
                 pageStack.clear();
                 pageStack.push(resumeSessionPage);
             } else {
@@ -558,9 +558,9 @@ to rerun last test, continue to the next test, or start a new session?")
             });
         };
         var saveReport = function() {
-            app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
-                var htmlReportUrl = uri;
-                app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+            if (appSettings["launcher"]) {
+                app.exportResultsWithLauncherSettings(function(uri) {
+                    var htmlReportUrl = uri;
                     CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
                                               [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
                                                   var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
@@ -568,7 +568,19 @@ to rerun last test, continue to the next test, or start a new session?")
                                                   pageStack.push(webviewer);
                                               }}]);
                 });
-            });
+            } else {
+                app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
+                    var htmlReportUrl = uri;
+                    app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
+                        CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
+                                                  [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
+                                                      var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
+                                                      webviewer.uri = htmlReportUrl;
+                                                      pageStack.push(webviewer);
+                                                  }}]);
+                    });
+                });
+            }
         };
         var submitReport = function(resultsPage) {
             // resultsPage param is for having control over unlatching
@@ -602,6 +614,25 @@ to rerun last test, continue to the next test, or start a new session?")
             app.getResults(function(results) {
                 var resultsPage = createPage("components/ResultsPage.qml");
                 resultsPage.results = results;
+                app.getCertificationTransportConfig(function(result) {
+                    if (result.type === "certification") {
+                        appSettings["submission"] = {}
+                        appSettings["submission"].type = "c3"
+                        if (result.staging === "yes") {
+                            appSettings["submission"].type = "c3-staging"
+                        }
+                        if (result.secure_id) {
+                            appSettings["submission"].secure_id = result.secure_id
+                        }
+                        else {
+                            appSettings["submission"]["input"] = [{
+                                "paramName": "secure_id",
+                                "prompt": i18n.tr("Enter the Secure ID for the system-under-test:")
+                            }]
+                        }
+                        resultsPage.submissionName = i18n.tr("Certification Site");
+                    }
+                });
                 if (appSettings["submission"]) {
                     resultsPage.submissionName = appSettings["submission"].name;
                 }
