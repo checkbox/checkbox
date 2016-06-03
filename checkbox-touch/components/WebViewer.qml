@@ -35,6 +35,20 @@ Page {
 		id: wv
 		anchors.fill: parent
 		url: ""
+        contextualActions: ActionList {
+            Action {
+                text: i18n.tr("Open in a browser")
+                onTriggered: Qt.openUrlExternally(wv.url)
+            }
+            Action {
+                text: i18n.tr("Go back one page")
+                onTriggered: wv.goBack()
+            }
+            Action {
+                text: i18n.tr("Reload current page")
+                onTriggered: wv.reload()
+            }
+        }
 	}
 
 	onUriChanged: {
