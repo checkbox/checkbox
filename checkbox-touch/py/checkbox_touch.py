@@ -631,8 +631,10 @@ class CheckboxTouchApplication(PlainboxApplication):
                 self.launcher.transports['{}_file'.format(exporter)] = {
                     'type': 'file',
                     'path': path}
-                self.launcher.exporters[exporter] = {
-                    'unit': '2013.com.canonical.plainbox::{}'.format(exporter)}
+                if exporter not in self.launcher.exporters:
+                    self.launcher.exporters[exporter] = {
+                        'unit': '2013.com.canonical.plainbox::{}'.format(
+                            exporter)}
                 self.launcher.reports['2_{}_file'.format(exporter)] = {
                     'transport': '{}_file'.format(exporter),
                     'exporter': '{}'.format(exporter)
