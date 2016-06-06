@@ -157,8 +157,11 @@ class RootViaSudoWithPassExecutionController(
                 job, job_state, config, session_dir, nest_dir)
             with self.temporary_cwd(job, config) as cwd_dir:
                 # run the command
-                logger.debug(_("job[%s] executing %r with env %r in cwd %r"),
-                             job.id, cmd, env, cwd_dir)
+                # TRANSLATORS: Please leave %(CMD)r, %(ENV)r, %(DIR)r as-is
+                logger.debug(_("job[%(ID)s] executing %(CMD)r with env %(ENV)r"\
+                               " in cwd %(DIR)r"),
+                             {"ID": job.id, "CMD": cmd,
+                             "ENV": env, "DIR": cwd_dir})
                 p = subprocess.Popen(cmd, stdin=subprocess.PIPE,
                                      env=env, cwd=cwd_dir)
                 #  sudo manpage explicitly states that \n should be appended
