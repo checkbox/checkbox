@@ -460,8 +460,12 @@ to rerun last test, continue to the next test, or start a new session?")
     function resumeOrStartSession() {
         app.isSessionResumable(function(result) {
             if (result.resumable === true) {
-                pageStack.clear();
-                pageStack.push(resumeSessionPage);
+                if (appSettings.forcedResume) {
+                    app.resumeSession(true, processNextTest)
+                } else {
+                    pageStack.clear();
+                    pageStack.push(resumeSessionPage);
+                }
             } else {
                 if (result.errors_encountered) {
                     ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
