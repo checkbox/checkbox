@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+#
+# This file is part of Checkbox.
+#
+# Copyright 2016 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+import os
+import subprocess
+import sys
+
+BINARIES_BLACKLISTED = [
+    'daemon_test', 'dbus_test'
+    # all tests from above binaries require /usr/share/dbus-cpp/session.conf,
+    # that is unavailable on the device
+]
+
+TESTS_BLACKLISTED = [
+    'RemoteTrustStore.a_store_exposed_to_the_session_can_be_added_to',
+    'RemoteTrustStore.a_store_exposed_to_the_session_can_be_reset',
+    'RemoteTrustStore.added_requests_are_found_by_query_multi_threaded',
+    'RemoteTrustStore.erasing_requests_empties_store',
+    'RemoteTrustStore.limiting_query_to_answer_returns_correct_results',
+    'RemoteTrustStore.limiting_query_to_app_id_returns_correct_results',
+    'RemoteTrustStore.limiting_query_to_feature_returns_correct_results',
+    'RemoteTrustStore.limiting_query_to_time_interval_and_answer_returns_correct_result',
+    'RemoteTrustStore.limiting_query_to_time_interval_returns_correct_result',
+    'DBus.a_service_can_query_a_remote_agent',
+    # above tests fail on missing session.conf, see blacklisted binaries
+    'DefaultPromptProviderHelper.correctly_passes_arguments_to_prompt_executable',
+    'MirAgent.default_agent_works_correctly_against_running_mir_instance_requires_mir',
+    'TrustPrompt.aborts_for_missing_title',
+    # above tests fail on the desktop and fail on a device
+    'TrustStore.added_requests_are_found_by_query',
+    'TrustStore.added_requests_are_found_by_query_multi_threaded',
+    'TrustStore.erasing_requests_empties_store',
+    'TrustStore.limiting_query_to_answer_returns_correct_results',
+    'TrustStore.limiting_query_to_app_id_returns_correct_results',
+    'TrustStore.limiting_query_to_feature_returns_correct_results',
+    'TrustStore.limiting_query_to_time_interval_and_answer_returns_correct_result',
+    'TrustStore.limiting_query_to_time_interval_returns_correct_result',
+    'TrustStore.resetting_the_store_purges_requests',
+    # above tests fail to connect to the database, which I'm guessing is due to
+    # session.conf being not available.
+]
+
+TESTS_REQUIRING_ROOT = [
+]
+
+def main():
+    tst_binaries = [
+        "cached_agent_test", "daemon_test", "dbus_test", "mir_agent_test",
+        "remote_agent_test", "remote_trust_store_test",
+        "request_processor_test", "trust_store_test"]
+    for tst_bin in tst_binaries:
+        if tst_bin in BINARIES_BLACKLISTED:
+            continue
+        output = subprocess.check_output([tst_bin, '--gtest_list_tests'])
+        suite = ''
+        for line in output.decode(sys.stdout.encoding).split('\n'):
+            if not line.startswith(' '):
+                suite = line
+            else:
+                test_name = line.lstrip()
+                full_name = suite + test_name
+                root = 'yes' if full_name in TESTS_REQUIRING_ROOT else 'no'
+                if full_name in TESTS_BLACKLISTED:
+                    continue
+                print('full_name: {}'.format(full_name))
+                print('test_case: {}'.format(test_name))
+                print('binary: {}'.format(tst_bin))
+                print('root: {}'.format(root))
+                if root == 'yes':
+                    print('ld_lib_path: {}'.format(os.environ.get('LD_LIBRARY_PATH') or ''))
+                print()
+
+
+if __name__ == '__main__':
+    main()

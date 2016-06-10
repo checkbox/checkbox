@@ -46,7 +46,12 @@ def find_executables(path):
         if os.path.isdir(full_path):
             res += find_executables(full_path)
         else:
-            st = os.stat(full_path)
+            try:
+                st = os.stat(full_path)
+            except FileNotFoundError:
+                # we might have extracted symlink pointing to 3rd party libs
+                # that we don't care about
+                continue
             mode = st.st_mode
             executable = stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
             if mode & executable:
@@ -296,7 +301,7 @@ def extract_dependencies():
         for deb in debs:
             with tempfile.TemporaryDirectory() as tmp:
                 get_package_from_url_and_extract(uris[deb], tmp)
-                bin_path = os.path.join(tmp, 'usr', 'bin')
+                bin_path = os.path.join(tmp, 'usr')
                 if os.path.exists(bin_path):
                     executables = find_executables(bin_path)
                     provider_bin = os.path.join(
@@ -304,6 +309,8 @@ def extract_dependencies():
                     if executables:
                         os.makedirs(provider_bin, exist_ok=True)
                     for f in executables:
+                        print('found executable : {}'.format(
+                            os.path.split(f)[1]))
                         target = os.path.join(
                             'providers', provider_dir, 'bin',
                             os.path.split(f)[1])
