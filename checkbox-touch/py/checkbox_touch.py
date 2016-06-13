@@ -476,12 +476,14 @@ class CheckboxTouchApplication(PlainboxApplication):
         builder_kwargs = {
             'outcome': test['outcome'],
             'comments': test.get('comments', pod.UNSET),
-            'execution_duration': time.time() - test['start_time']
+            'execution_duration': time.time() - test['start_time'],
+            'return_code': test['result'].return_code
         }
         try:
             # if we're registering skipped test as an outcome of resuming
             # session, the result field of the test object will be missing
             builder_kwargs['io_log_filename'] = test['result'].io_log_filename
+            builder_kwargs['io_log'] = test['result'].io_log
         except KeyError:
             pass
 
