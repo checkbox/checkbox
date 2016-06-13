@@ -34,6 +34,7 @@ try:
 except ImportError:
     posix = None
 import subprocess
+import threading
 
 from plainbox.i18n import gettext as _
 from plainbox.impl.ctrl import CheckBoxDifferentialExecutionController
@@ -137,14 +138,57 @@ class RootViaSudoWithPassExecutionController(
             This directory is used to co-locate some data that is unique to
             this execution as well as data that is shared by all executions.
         :param extcmd_popen:
-            A subprocess.Popen like object - ignored
+            A subprocess.Popen like object
         :returns:
             The return code of the command, as returned by subprocess.call()
-
-        The reason behind not using extcmd_popen is that it doesn't support
-        connecting pipe to stdin of the process it spawns. And this is required
-        for running 'sudo -S'.
         """
+
+        def call(extcmd_popen, *args, **kwargs):
+            """Invoke the desired sub-process and intercept the output."""
+            # Notify that the process is about to start
+            extcmd_popen._delegate.on_begin(args, kwargs)
+            # Setup stdout/stderr redirection
+            kwargs['stdout'] = subprocess.PIPE
+            kwargs['stderr'] = subprocess.PIPE
+            # Start the process
+            proc = extcmd_popen._popen(*args, **kwargs)
+            # Setup all worker threads. By now the pipes have been created and
+            # proc.stdout/proc.stderr point to open pipe objects.
+            stdout_reader = threading.Thread(
+                target=extcmd_popen._read_stream, args=(proc.stdout, "stdout"))
+            stderr_reader = threading.Thread(
+                target=extcmd_popen._read_stream, args=(proc.stderr, "stderr"))
+            queue_worker = threading.Thread(target=extcmd_popen._drain_queue)
+            # Start all workers
+            queue_worker.start()
+            stdout_reader.start()
+            stderr_reader.start()
+            try:
+                while True:
+                    try:
+                        # sudo manpage explicitly states that \n should be
+                        # appended
+                        pass_bytes = bytes(self._password_provider() + '\n',
+                                           'UTF-8')
+                        proc.communicate(input=pass_bytes)
+                        # Break out of the endless loop if it does
+                        break
+                    except KeyboardInterrupt:
+                        # On interrupt send a signal to the process
+                        extcmd_popen._on_keyboard_interrupt(proc)
+                        # And send a notification about this
+                        extcmd_popen._delegate.on_interrupt()
+            finally:
+                # Wait until all worker threads shut down
+                stdout_reader.join()
+                stderr_reader.join()
+                # Tell the queue worker to shut down
+                extcmd_popen._queue.put(None)
+                queue_worker.join()
+            # Notify that the process has finished
+            extcmd_popen._delegate.on_end(proc.returncode)
+            return proc.returncode
+
         if not os.path.isdir(self.get_CHECKBOX_DATA(session_dir)):
             os.makedirs(self.get_CHECKBOX_DATA(session_dir))
         # Setup the executable nest directory
@@ -162,12 +206,8 @@ class RootViaSudoWithPassExecutionController(
                                " in cwd %(DIR)r"),
                              {"ID": job.id, "CMD": cmd,
                              "ENV": env, "DIR": cwd_dir})
-                p = subprocess.Popen(cmd, stdin=subprocess.PIPE,
-                                     env=env, cwd=cwd_dir)
-                #  sudo manpage explicitly states that \n should be appended
-                pass_bytes = bytes(self._password_provider() + '\n', 'UTF-8')
-                p.communicate(input=pass_bytes)
-                return_code = p.returncode
+                return_code = call(extcmd_popen, cmd, stdin=subprocess.PIPE,
+                                   env=env, cwd=cwd_dir)
                 if 'noreturn' in job.get_flag_set():
                     self._halt()
                 return return_code
