@@ -140,6 +140,9 @@ def main():
     parser.add_argument("--forced-lang", action='store', type=str,
                         help=("Force checkbox to run in a given language. "
                               "I.e. pl_PL, zh_CN"))
+    parser.add_argument("--forced-resume", action='store_true',
+                        help=("Force checkbox to always resume session (and "
+                              "rerun the last test)."))
     args = parser.parse_args()
     if args.port and not args.ssh:
         parser.error("--port without --ssh doesn't make sense!")
@@ -154,7 +157,8 @@ def main():
         "revision": get_revision_string(),
         "clickBuildDate": str(datetime.now().date()),
         "testplan": args.testplan,
-        "providersDir": "providers"
+        "providersDir": "providers",
+        "forcedResume": args.forced_resume
     }
     settings_file = open('settings.json', 'w')
     settings_file.write(json.dumps(settings, sort_keys=True, indent=4))
