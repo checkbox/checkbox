@@ -477,16 +477,15 @@ class CheckboxTouchApplication(PlainboxApplication):
             'outcome': test['outcome'],
             'comments': test.get('comments', pod.UNSET),
             'execution_duration': time.time() - test['start_time'],
-            'return_code': test['result'].return_code
         }
-        try:
+        if 'result' in test:
             # if we're registering skipped test as an outcome of resuming
             # session, the result field of the test object will be missing
+            builder_kwargs['return_code'] = test['result'].return_code
             builder_kwargs['io_log_filename'] = test['result'].io_log_filename
             builder_kwargs['io_log'] = test['result'].io_log
-        except KeyError:
-            pass
-
+        else:
+            builder_kwargs['return_code'] = 0
         result = JobResultBuilder(**builder_kwargs).get_result()
         self.assistant.use_job_result(job_id, result)
         self.index += 1
