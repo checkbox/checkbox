@@ -64,7 +64,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         self.pointing_device.click_object(start_btn)
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage', visible=True)
-        self.main_view.get_header().click_action_button('toggleSelectionAction')
+        self._click_action_button('trailingActionBar', 'toggleSelectionAction')
         list_item = category_page.wait_select_single(
             objectName='listItem', item_mod_id=category_id)
         self.pointing_device.click_object(list_item)
@@ -73,7 +73,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         self.pointing_device.click_object(continue_btn)
         test_selection_page = self.app.wait_select_single(
             objectName='testSelectionPage', visible=True)
-        self.main_view.get_header().click_action_button('toggleSelectionAction')
+        self._click_action_button('trailingActionBar', 'toggleSelectionAction')
         # lists are built dynamically, so there is a chance that proxies for
         # qml objects for list items that are down below are not yet present.
         # To make sure everything is loaded and ready, scroll to the bottom
@@ -180,6 +180,11 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         except ImportError:
             return os.path.join(self._get_path_to_app_source(), 'lib', 'py',
                                 'plainbox', 'data', 'plainbox-qml-modules')
+
+    def _click_action_button(self, bar_name, actionName):
+        action_bar = self.app.wait_select_single(
+            objectName=bar_name, visible=True)
+        action_bar.click_action_button(actionName)
 
     def _launch_application_from_phablet(self):
         # On phablet, we only run the tests against the installed click
