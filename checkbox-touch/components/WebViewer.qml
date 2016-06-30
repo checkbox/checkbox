@@ -21,7 +21,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Web 0.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 
 
 Page {

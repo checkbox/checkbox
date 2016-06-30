@@ -26,7 +26,7 @@
 */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
 
 Page {
@@ -38,14 +38,21 @@ Page {
     signal deleteIncomplete();
 
     objectName: "resumeSessionPage"
-    title: i18n.tr("Resume session")
     visible: false
+
+    header: PageHeader {
+        leadingActionBar { actions: [] }
+        title: i18n.tr("Resume session")
+    }
 
     ColumnLayout {
         id: columnLayout
         spacing: units.gu(3)
         anchors {
-            fill: parent
+            top: parent.header.bottom
+            bottom: parent.bottom
+            right: parent.right
+            left: parent.left
             topMargin: units.gu(3)
             bottomMargin: units.gu(3)
             leftMargin: units.gu(1)

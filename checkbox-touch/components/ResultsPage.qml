@@ -26,11 +26,10 @@
 */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
 
 Page {
-    title: i18n.tr("Test Results")
     visible: false
 
     objectName: "resultsPage"
@@ -46,22 +45,27 @@ Page {
         submitResultsButton.unlatch();
     }
 
-    head {
-        actions: [
-            Action {
-                id: rerunAction
-                objectName: "rerunAction"
-                iconName: "view-refresh"
-                text: i18n.tr("Rerun")
-                onTriggered: rerunTests();
-                visible: rerunEnabled
-            },
-            Action {
-                iconName: "close"
-                text: i18n.tr("Close")
-                onTriggered: endTesting();
-            }
-        ]
+    header: PageHeader {
+        title: i18n.tr("Test Results")
+        leadingActionBar { actions: [] }
+        trailingActionBar {
+            objectName: 'trailingActionBar'
+            actions: [
+                Action {
+                    iconName: "close"
+                    text: i18n.tr("Close")
+                    onTriggered: endTesting();
+                },
+                Action {
+                    id: rerunAction
+                    objectName: "rerunAction"
+                    iconName: "view-refresh"
+                    text: i18n.tr("Rerun")
+                    onTriggered: rerunTests();
+                    visible: rerunEnabled
+                }
+            ]
+        }
     }
 
     onResultsChanged: {
@@ -84,7 +88,10 @@ Page {
     ColumnLayout {
         spacing: units.gu(2)
         anchors {
-            fill: parent
+            top: parent.header.bottom
+            right: parent.right
+            left: parent.left
+            bottom: parent.bottom
             topMargin: units.gu(3)
             bottomMargin: units.gu(3)
             leftMargin: units.gu(1)

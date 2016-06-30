@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
 import io.thp.pyotherside 1.4
@@ -50,8 +50,6 @@ MainView {
 
     width: units.gu(100)
     height: units.gu(75)
-
-    useDeprecatedToolbar: false
 
     // appSettings serves as application-wide storage for global variables
     // it has to have at least one entry to be constructed
@@ -433,7 +431,6 @@ to rerun last test, continue to the next test, or start a new session?")
     CommandOutputPage {
         id: commandOutputPage
         visible: false
-        __customHeaderContents: progressHeader;
     }
     /*
      * Create a page from a Component defined in `url` with a common
@@ -450,8 +447,6 @@ to rerun last test, continue to the next test, or start a new session?")
             var pageObject = pageComponent.createObject();
             if (test) {
                 pageObject.test = test;
-                pageObject.__customHeaderContents = progressHeader;
-                progressHeader.update(test)
             }
             return pageObject;
         }
