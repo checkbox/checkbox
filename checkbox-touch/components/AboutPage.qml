@@ -24,7 +24,7 @@
     This page shows version information and contents of AUTHORS file located in top chekckbox-touch directory
 */
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
 
 Page {
@@ -36,12 +36,17 @@ Page {
 
     onVersionInfoChanged: body.generateVersionText()
 
-    title: i18n.tr("About")
+    header: PageHeader {
+       title: i18n.tr("About")
+    }
 
     ColumnLayout {
         spacing: units.gu(3)
         anchors {
-            fill: parent
+            top: header.bottom
+            bottom: aboutPage.bottom
+            right: aboutPage.right
+            left: aboutPage.left
             topMargin: units.gu(3)
             bottomMargin: units.gu(3)
             leftMargin: units.gu(1)

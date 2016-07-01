@@ -26,7 +26,7 @@
 */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
 import Ubuntu.Components.Popups 0.1
 import "actions"
@@ -39,12 +39,22 @@ Page {
     signal continueClicked();
     signal testDone(var test);
 
-    title: i18n.tr("Test Description")
-    head {
-        actions: [
-            AddCommentAction {},
-            SkipAction {}
-        ]
+    onTestChanged: {
+        header.value = test['test_number']
+        header.maximumValue = test['tests_count']
+    }
+    header: ProgressHeader {
+        value: test['test_number']
+        maximumValue: test['tests_count']
+        title: i18n.tr("Test Description")
+        leadingActionBar { actions: [] }
+        trailingActionBar {
+            objectName: 'trailingActionBar'
+            actions: [
+                AddCommentAction {},
+                SkipAction {}
+            ]
+        }
     }
 
     TestPageBody {

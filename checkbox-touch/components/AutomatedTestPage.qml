@@ -20,7 +20,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
 
 /*! \brief Page for Automated Test
@@ -36,9 +36,13 @@ Page {
 
     property var test: { "name": "", "description": "", "test_number": 0, "tests_count": 0}
 
-    title: i18n.tr("Automated test")
-
     visible: false
+
+    header: ProgressHeader {
+        value: test['test_number']
+        maximumValue: test['tests_count']
+        title: i18n.tr("Automated test")
+    }
 
     TestPageBody {
         header: test["name"]

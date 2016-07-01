@@ -24,7 +24,7 @@
 */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 0.1
 import QtQuick.Layouts 1.1
 
@@ -43,18 +43,21 @@ Page {
         textArea.text = "";
     }
 
-    title: i18n.tr("Command output")
-    head {
-        actions: [
-            Action {
-                id: skipAction
-                objectName: "copyOutputAction"
-                iconName: "edit-copy"
-                // TRANSLATORS: a verb (call to action)
-                text: i18n.tr("Copy")
-                onTriggered: Clipboard.push(mimeData)
-            }
-        ]
+    header: PageHeader {
+        title: i18n.tr("Command output")
+        trailingActionBar {
+            objectName: 'trailingActionBar'
+            actions: [
+                Action {
+                    id: copyAction
+                    objectName: "copyOutputAction"
+                    iconName: "edit-copy"
+                    // TRANSLATORS: a verb (call to action)
+                    text: i18n.tr("Copy")
+                    onTriggered: Clipboard.push(mimeData)
+                }
+            ]
+        }
     }
 
     Timer {

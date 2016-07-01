@@ -21,7 +21,7 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
 /*! \brief Selection page
@@ -32,12 +32,14 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 */
 
 Page {
+    id: root
     signal selectionDone(var selected_id_list)
     property string continueText: i18n.tr("Continue")
     readonly property alias model: selectionModel
     property bool onlyOneAllowed: false
     property bool emptyAllowed: false
     property bool largeBuffer: false
+    property string title: ''
 
     visible: false
     flickable: null
@@ -102,25 +104,29 @@ Page {
         }
     }
 
-    head {
-        actions: [
-            Action {
-                id: toggleSelection
-                objectName: "toggleSelectionAction"
-                iconName: "select"
-                text: i18n.tr("Toggle selection")
-                visible: !onlyOneAllowed
-                onTriggered: {
-                    if (state === "empty selection" || state == "disabled only selection") {
-                        selectAll();
-                    }
-                    else if (state === "nonempty selection") {
-                        deselectAll();
-                    }
+    header: PageHeader {
+        title: root.title
+        trailingActionBar {
+            objectName: 'trailingActionBar'
+            actions: [
+                Action {
+                    id: toggleSelection
+                    objectName: "toggleSelectionAction"
+                    iconName: "select"
+                    text: i18n.tr("Toggle selection")
+                    visible: !onlyOneAllowed
+                    onTriggered: {
+                        if (state === "empty selection" || state == "disabled only selection") {
+                            selectAll();
+                        }
+                        else if (state === "nonempty selection") {
+                            deselectAll();
+                        }
 
+                    }
                 }
-            }
-        ]
+            ]
+        }
     }
 
     states: [
@@ -142,8 +148,11 @@ Page {
     ColumnLayout {
         spacing: units.gu(3)
         anchors {
-            fill: parent
-            topMargin: units.gu(3)
+            top: parent.header.bottom
+            bottom: parent.bottom
+            right: parent.right
+            left: parent.left
+            topMargin: units.gu(1)
             bottomMargin: units.gu(3)
             leftMargin: units.gu(1)
             rightMargin: units.gu(1)

@@ -19,7 +19,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         if selectable_object_name is not None:
             self.app.wait_select_single(
                 objectName=selectable_object_name, visible=True)
-        self.main_view.get_header().click_action_button('skip')
+        self._click_action_button('trailingActionBar', 'skip')
         dialog = self.app.wait_select_single(objectName='dialog')
         yes_btn = dialog.select_single(objectName='yesButton')
         self.pointing_device.click_object(yes_btn)
@@ -53,7 +53,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         self.pointing_device.click_object(start_btn)
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage', visible=True)
-        self.main_view.get_header().click_action_button('toggleSelectionAction')
+        self._click_action_button('trailingActionBar', 'toggleSelectionAction')
         category_id = '2015.com.canonical.certification::normal'
         list_item = category_page.wait_select_single(
             objectName='listItem', item_mod_id=category_id)
@@ -226,7 +226,7 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
         self.process_sequence_of_clicks_on_pages(next_steps)
         results_page = self.app.wait_select_single(
             objectName='resultsPage', visible=True)
-        self.main_view.get_header().click_action_button('rerunAction')
+        self._click_action_button('trailingActionBar', 'rerunAction')
         # we now should see a re-run screen; let's select the only test
         rerun_page = self.app.wait_select_single(
             objectName='rerunSelectionPage', visible=True)
@@ -240,7 +240,7 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
         self.process_sequence_of_clicks_on_pages(next_steps)
         results_page = self.app.wait_select_single(
             objectName='resultsPage', visible=True)
-        self.main_view.get_header().click_action_button('rerunAction')
+        self._click_action_button('trailingActionBar', 'rerunAction')
         # we should see the re-run screen again
         rerun_page = self.app.wait_select_single(
             objectName='rerunSelectionPage', visible=True)
@@ -260,7 +260,7 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
         self.process_sequence_of_clicks_on_pages(next_steps)
         results_page = self.app.wait_select_single(
             objectName='resultsPage', visible=True)
-        self.main_view.get_header().click_action_button('rerunAction')
+        self._click_action_button('trailingActionBar', 'rerunAction')
         # we now should see a re-run screen; let's select the only test
         rerun_page = self.app.wait_select_single(
             objectName='rerunSelectionPage', visible=True)

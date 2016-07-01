@@ -21,7 +21,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 
 Page {
     id: welcomePage
@@ -39,16 +39,23 @@ Page {
         startTestButton.unlatch();
         state = "loaded";
     }
-    head {
-        actions: [
-            Action {
-                id: continueAction
-                iconName: "info"
-                text: i18n.tr("About")
-                onTriggered: aboutClicked()
-            }
-        ]
+    header: PageHeader {
+        Component.onCompleted: {
+            console.log('DEPTH: ', pageStack.depth)
+        }
+        leadingActionBar { actions: [] }
+        trailingActionBar {
+            actions: [
+                Action {
+                    id: continueAction
+                    iconName: "info"
+                    text: i18n.tr("About")
+                    onTriggered: aboutClicked()
+                }
+            ]
+        }
     }
+
 
     Label {
         id: welcomeText

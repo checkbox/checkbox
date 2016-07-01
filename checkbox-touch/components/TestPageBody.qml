@@ -25,7 +25,7 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 0.1
 
 ColumnLayout {
@@ -45,7 +45,10 @@ ColumnLayout {
 
     spacing: units.gu(3)
     anchors {
-        fill: parent
+        top: parent.header.bottom
+        right: parent.right
+        left: parent.left
+        bottom: parent.bottom
         topMargin: units.gu(3)
         bottomMargin: units.gu(3)
         leftMargin: units.gu(1)
