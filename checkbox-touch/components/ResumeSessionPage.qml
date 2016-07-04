@@ -33,7 +33,7 @@ Page {
     property alias resumeText: resumeLabel.text
     property var incompleteSessionCount: 0
     signal rerunLast();
-    signal continueSession();
+    signal continueSession(var outcome);
     signal restartSession();
     signal deleteIncomplete();
 
@@ -120,7 +120,7 @@ Page {
                 text: i18n.tr("Continue")
             }
             onLatchedClicked: {
-                continueSession();
+                continueSession('skip');
                 columnLayout.latchGroup();
             }
         }

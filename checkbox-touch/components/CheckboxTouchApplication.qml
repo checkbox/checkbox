@@ -56,8 +56,8 @@ PythonObjectRef {
                                  i18n.tr("Quit"));
         });
     }
-    function resumeSession(rerunLastTest, continuation) {
-        request("resume_session", [rerunLastTest], function(result) {
+    function resumeSession(rerunLastTest, outcome, continuation) {
+        request("resume_session", [rerunLastTest, outcome], function(result) {
             if (!result["session_id"]) {
                 pageStack.pop();
                 ErrorLogic.showError(mainView,
