@@ -147,7 +147,7 @@ class SessionResumeTests(checkbox_touch.ClickAppTestCase):
         self.assertThat(test_name_label.text,
                         Eventually(Equals('autopilot/user-verify-1')))
 
-    def test_continue_after_resume(self):
+    def test_pass_last_after_resume(self):
         self.select_two_tests_and_quit()
         self.launch_application()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
@@ -156,12 +156,76 @@ class SessionResumeTests(checkbox_touch.ClickAppTestCase):
         continue_btn = resume_page.wait_select_single(
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
+        pass_btn = self.app.wait_select_single(
+            objectName='passBtn', visible=True)
+        self.pointing_device.click_object(pass_btn)
         intro_page = self.app.wait_select_single(
             objectName='userInteractVerifyIntroPage', visible=True)
         test_name_label = intro_page.wait_select_single(
             objectName='headerLabel', visible=True)
         self.assertThat(test_name_label.text,
                         Eventually(Equals('autopilot/user-verify-2')))
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        results = {'passed': '3', 'failed': '0', 'skipped': '0'}
+        self.check_results(results)
+
+    def test_skip_last_after_resume(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+        resume_page = self.app.wait_select_single(
+            objectName='resumeSessionPage', visible=True)
+        continue_btn = resume_page.wait_select_single(
+            objectName='continueButton')
+        self.pointing_device.click_object(continue_btn)
+        skip_btn = self.app.wait_select_single(
+            objectName='skipBtn', visible=True)
+        self.pointing_device.click_object(skip_btn)
+        self.pointing_device.click_object(continue_btn)
+        intro_page = self.app.wait_select_single(
+            objectName='userInteractVerifyIntroPage', visible=True)
+        test_name_label = intro_page.wait_select_single(
+            objectName='headerLabel', visible=True)
+        self.assertThat(test_name_label.text,
+                        Eventually(Equals('autopilot/user-verify-2')))
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        results = {'passed': '2', 'failed': '0', 'skipped': '1'}
+        self.check_results(results)
+
+    def test_fail_last_after_resume(self):
+        self.select_two_tests_and_quit()
+        self.launch_application()
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+        resume_page = self.app.wait_select_single(
+            objectName='resumeSessionPage', visible=True)
+        continue_btn = resume_page.wait_select_single(
+            objectName='continueButton')
+        self.pointing_device.click_object(continue_btn)
+        fail_btn = self.app.wait_select_single(
+            objectName='failBtn', visible=True)
+        self.pointing_device.click_object(fail_btn)
+        self.pointing_device.click_object(continue_btn)
+        intro_page = self.app.wait_select_single(
+            objectName='userInteractVerifyIntroPage', visible=True)
+        test_name_label = intro_page.wait_select_single(
+            objectName='headerLabel', visible=True)
+        self.assertThat(test_name_label.text,
+                        Eventually(Equals('autopilot/user-verify-2')))
+        next_steps = [
+            ('userInteractVerifyIntroPage', 'startTestButton'),
+            ('testVerificationPage', 'passButton')
+        ]
+        self.process_sequence_of_clicks_on_pages(next_steps)
+        results = {'passed': '2', 'failed': '1', 'skipped': '0'}
+        self.check_results(results)
 
     def test_restart_after_resume(self):
         self.select_two_tests_and_quit()
