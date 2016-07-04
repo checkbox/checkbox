@@ -280,6 +280,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self._latest_session = session_id
             return {
                 'resumable': True,
+                'running_job_name': session_md.running_job_name,
                 'error_encountered': False,
             }
         else:
