@@ -62,6 +62,7 @@ Page {
         }
 
         function latchGroup() {
+            deleteIncompleteButton.state = "latched";
             rerunButton.state = "latched";
             continueButton.state = "latched";
             restartButton.state = "latched";
