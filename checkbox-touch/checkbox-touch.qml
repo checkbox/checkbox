@@ -284,10 +284,13 @@ MainView {
 
     ResumeSessionPage {
         id: resumeSessionPage
-        onRerunLast: app.resumeSession(true, processNextTest)
-        onContinueSession: app.resumeSession(false, processNextTest)
-        resumeText: i18n.tr("Checkbox session got suspended.\nDo you want \
-to rerun last test, continue to the next test, or start a new session?")
+        property var lastTestName: i18n.tr("unknown")
+        onRerunLast: app.resumeSession(true, undefined, processNextTest)
+        onContinueSession: app.resumeSession(false, outcome, processNextTest)
+        resumeText: i18n.tr("Checkbox session got suspended. \
+Last running job:<br/><b>%1</b><br/> Do you want \
+to rerun last test, continue to the next test, or start a new session?").arg(
+            lastTestName)
         onRestartSession: {
             pageStack.clear();
             pageStack.push(welcomePage);
@@ -456,9 +459,10 @@ to rerun last test, continue to the next test, or start a new session?")
         app.isSessionResumable(function(result) {
             if (result.resumable === true) {
                 if (appSettings.forcedResume) {
-                    app.resumeSession(true, processNextTest)
+                    app.resumeSession(true, undefined, processNextTest)
                 } else {
                     pageStack.clear();
+                    resumeSessionPage.lastTestName = result.running_job_name;
                     pageStack.push(resumeSessionPage);
                 }
             } else {

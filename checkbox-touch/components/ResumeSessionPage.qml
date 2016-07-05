@@ -28,12 +28,14 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
+import "CbtDialogLogic.js" as CbtDialog
 
 Page {
+    id: root
     property alias resumeText: resumeLabel.text
     property var incompleteSessionCount: 0
     signal rerunLast();
-    signal continueSession();
+    signal continueSession(var outcome);
     signal restartSession();
     signal deleteIncomplete();
 
@@ -60,6 +62,7 @@ Page {
         }
 
         function latchGroup() {
+            deleteIncompleteButton.state = "latched";
             rerunButton.state = "latched";
             continueButton.state = "latched";
             restartButton.state = "latched";
@@ -120,8 +123,33 @@ Page {
                 text: i18n.tr("Continue")
             }
             onLatchedClicked: {
-                continueSession();
                 columnLayout.latchGroup();
+                CbtDialog.showDialog(root, i18n.tr('What to do with the last job?'), [
+                    {
+                        'text': i18n.tr('Pass'),
+                        'objectName': 'passBtn',
+                        'color': UbuntuColors.green,
+                        'onClicked': function() {
+                            continueSession('pass')
+                        }
+                    },
+                    {
+                        'text': i18n.tr('Skip'),
+                        'objectName': 'skipBtn',
+                        'color': '#FF9900',
+                        'onClicked': function() {
+                            continueSession('skip')
+                        }
+                    },
+                    {
+                        'text': i18n.tr('Fail'),
+                        'objectName': 'failBtn',
+                        'color': UbuntuColors.red,
+                        'onClicked': function() {
+                            continueSession('fail')
+                        }
+                    },
+                ]);
             }
         }
 

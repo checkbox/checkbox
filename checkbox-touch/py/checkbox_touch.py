@@ -234,14 +234,17 @@ class CheckboxTouchApplication(PlainboxApplication):
         }
 
     @view
-    def resume_session(self, rerun_last_test):
+    def resume_session(self, rerun_last_test, outcome='skip'):
         """
         Resume latest sesssion.
 
         :param rerun_last_test:
             A bool stating whether runtime should repeat the test, that the app
             was executing when it was interrupted.
+        :param outcome:
+            Outcome to set to the last job run. Option useless when rerunning.
         """
+        assert outcome in ['pass', 'skip', 'fail', None]
         metadata = self.assistant.resume_session(self._latest_session)
         app_blob = json.loads(metadata.app_blob.decode("UTF-8"))
         self.index = app_blob['index_in_run_list']
@@ -252,7 +255,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         if not rerun_last_test:
             # Skip current test
             test = self.get_next_test()['result']
-            test['outcome'] = 'skip'
+            test['outcome'] = outcome
             self.register_test_result(test)
         return {
             'session_id': self._latest_session,
@@ -277,6 +280,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             self._latest_session = session_id
             return {
                 'resumable': True,
+                'running_job_name': session_md.running_job_name,
                 'error_encountered': False,
             }
         else:
