@@ -590,14 +590,26 @@ to rerun last test, continue to the next test, or start a new session?").arg(
             getSubmissionInput(function() {
                 app.submitResults(appSettings["submission"], function(reply) {
                     // pretty-stringify reply
-                    var s = ""
+                    var s = "";
+                    var buttons = [];
                     for (var i in reply) {
-                        s += i + ': ' + reply[i] + '\n';
+                        // instead of printing out URL (if present) let's
+                        // create a button that opens the page
+                        if(i == 'url') {
+                            buttons.push({
+                                "text": i18n.tr("Open URL"),
+                                "color": UbuntuColors.green,
+                                "onClicked": function() {
+                                     Qt.openUrlExternally(reply['url']);
+                                }});
+                        } else {
+                            s += i + ': ' + reply[i] + '\n';
+                        }
                     }
+                    buttons.push({"text": i18n.tr("OK"), "color": UbuntuColors.green});
                     CbtDialogLogic.showDialog(
                         resultsPage,
-                        i18n.tr("Report has been submitted.\n" + s),
-                        [{"text": i18n.tr("OK"), "color": UbuntuColors.green}]);
+                        i18n.tr("Report has been submitted.\n" + s), buttons);
                 },
                 function(error) {
                     ErrorLogic.showError(mainView,
