@@ -36,6 +36,7 @@ Page {
     signal selectionDone(var selected_id_list)
     property string continueText: i18n.tr("Continue")
     readonly property alias model: selectionModel
+    property alias keys: keysDelegator
     property bool onlyOneAllowed: false
     property bool emptyAllowed: false
     property bool largeBuffer: false
@@ -138,7 +139,8 @@ Page {
                     visible: !onlyOneAllowed
                     onTriggered: {
                         if (state === "empty selection" || state == "disabled only selection") {
-                            selectAll();
+                            if (!onlyOneAllowed) // still reachable via key shortcut
+                                selectAll();
                         }
                         else if (state === "nonempty selection") {
                             deselectAll();
@@ -177,6 +179,32 @@ Page {
             PropertyChanges { target: continueButton; enabled: true }
          }
     ]
+
+    KeysDelegator {
+        id: keysDelegator
+        onKeyPressed: {
+            var c = event.text
+            if (event.modifiers == 0 && c.search(/[a-z]/, 'i') > -1) {
+                searchBox.insert(searchBox.cursorPosition, c)
+                searchBox.forceActiveFocus();
+                searchBox.visible = true
+                searchBox.focus = true
+            }
+            if (event.key == Qt.Key_Escape) {
+                searchBox.text = '';
+                searchBox.focus = false;
+                searchBox.visible = false;
+            }
+        }
+        Component.onCompleted: {
+            setHandler('alt+c', function() {
+                if (selectedCount > 0) {
+                    gatherSelection();
+                }
+            });
+            setHandler('alt+t', toggleSelection.trigger);
+        }
+    }
 
     ColumnLayout {
         spacing: units.gu(3)
