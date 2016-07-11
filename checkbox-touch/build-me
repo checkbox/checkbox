@@ -16,6 +16,7 @@ from utils import backedup_dir
 from utils import get_package_from_url_and_extract
 from utils import prepare_uris
 from utils import rsync_tree
+from utils import find
 
 from confinement.generate import generate_confinement
 sys.path.append('./py')
@@ -278,10 +279,17 @@ def build_i18n():
             if os.path.exists(catalog):
                 _update_catalogs(os.path.join('po', lang + '.po'), catalog)
     # build .mo files
-    try:
-        subprocess.check_output(['make', 'build-translations'])
-    except subprocess.CalledProcessError as exc:
-        sys.exit('Error encountered while building translations. %s' % exc)
+    for po in find(top='./po', include=['*.po']):
+        lang = os.path.splitext(os.path.basename(po))[0]
+        target_dir = 'share/locale/{}/LC_MESSAGES/'.format(lang)
+        target_file = os.path.join(target_dir, 'com.ubuntu.checkbox.mo')
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
+        try:
+            subprocess.check_output(['msgfmt', '-o', target_file, po])
+        except subprocess.CalledProcessError as exc:
+            sys.exit('Error encountered while creating %s translations. %s' % (
+                target_file, exc))
 
 
 def _update_catalogs(dest, src):
