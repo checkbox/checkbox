@@ -40,12 +40,20 @@ run:
 	/usr/bin/qmlscene $@ checkbox-touch.qml
 
 build-translations: $(MO_FILES)
-	echo $(MO_FILES)
+	@echo "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "Use of this Makefile for i18n tasks is deprecated"
+	@echo "./build-me will build translations for you automatically"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+	@echo $(MO_FILES)
 
 po:
 	mkdir -p $(CURDIR)/po
 
 po/checkbox-touch.pot: $(QMLJS_FILES) $(PY_FILES) | po
+	@echo "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "Use of this Makefile for i18n tasks is deprecated"
+	@echo "Use ./build-me --update-potfile instead"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
 	xgettext -o po/checkbox-touch.pot --qt --c++ --add-comments=TRANSLATORS --keyword=tr --keyword=tr:1,2 $(QMLJS_FILES) --from-code=UTF-8
 	xgettext -o po/checkbox-touch.pot --join-existing --language=python --add-comments=TRANSLATORS --keyword=_ --keyword=N_ $(PY_FILES)
 

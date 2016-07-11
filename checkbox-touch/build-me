@@ -16,6 +16,7 @@ from utils import backedup_dir
 from utils import get_package_from_url_and_extract
 from utils import prepare_uris
 from utils import rsync_tree
+from utils import find
 
 from confinement.generate import generate_confinement
 sys.path.append('./py')
@@ -143,7 +144,12 @@ def main():
     parser.add_argument("--forced-resume", action='store_true',
                         help=("Force checkbox to always resume session (and "
                               "rerun the last test)."))
+    parser.add_argument("--update-potfile", action='store_true',
+                        help=("Updates the potfile and quits"))
     args = parser.parse_args()
+    if args.update_potfile:
+        update_pot()
+        return
     if args.port and not args.ssh:
         parser.error("--port without --ssh doesn't make sense!")
         return 1
@@ -278,10 +284,37 @@ def build_i18n():
             if os.path.exists(catalog):
                 _update_catalogs(os.path.join('po', lang + '.po'), catalog)
     # build .mo files
+    for po in find(top='./po', include=['*.po']):
+        lang = os.path.splitext(os.path.basename(po))[0]
+        target_dir = 'share/locale/{}/LC_MESSAGES/'.format(lang)
+        target_file = os.path.join(target_dir, 'com.ubuntu.checkbox.mo')
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
+        try:
+            subprocess.check_output(['msgfmt', '-o', target_file, po])
+        except subprocess.CalledProcessError as exc:
+            sys.exit('Error encountered while creating %s translations. %s' % (
+                target_file, exc))
+
+
+def update_pot():
+    potfile = 'po/checkbox-touch.pot'
+    print("Updating {}".format(potfile))
+    py_files = find(top='./py', include=['*.py'])
+    py_files += ['build-me', 'get-libs']
+    qmljs_files = find(include=['*.qml', '*.js'], exclude=['./tests/*'])
     try:
-        subprocess.check_output(['make', 'build-translations'])
+        subprocess.check_output(
+            ['xgettext', '-o', potfile, '--qt', '--c++',
+             '--add-comments=TRANSLATORS', '--keyword=tr', '--keyword=tr:1,2',
+             '--from-code=UTF-8'] + qmljs_files)
+        subprocess.check_output(
+            ['xgettext', '-o', potfile, '--join-existing',
+             '--add-comments=TRANSLATORS', '--language=python', '--keyword=_',
+             '--keyword=N_'] + py_files)
     except subprocess.CalledProcessError as exc:
-        sys.exit('Error encountered while building translations. %s' % exc)
+        sys.exit('Error encountered while updating po/checkbox-touch.pot %s' %
+                 exc)
 
 
 def _update_catalogs(dest, src):
