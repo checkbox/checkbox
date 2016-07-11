@@ -87,6 +87,13 @@ MainView {
         }
     }
 
+    KeysDelegator {
+        id: rootKeysDelegator
+    }
+
+    // forward all keypresses to the delegator
+    Keys.onPressed: rootKeysDelegator.keyPress(event)
+
     Component.onCompleted: {
         i18n.domain = "com.ubuntu.checkbox";
         if (args.values["autopilot"]) {
