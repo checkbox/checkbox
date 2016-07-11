@@ -115,7 +115,7 @@ _description:
  This test verifies that you can send an SMS
 qml_file: msg-01.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril0_simPresent == "True"
 
 id: msg-15
@@ -126,7 +126,7 @@ _description:
  This test verifies that you can send an SMS
 qml_file: msg-15.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril1_simPresent == "True"
 
 id: msg-06
@@ -137,7 +137,7 @@ _description:
  This test verifies that you can send an SMS containing special characters
 qml_file: msg-06.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril0_simPresent == "True"
 
 id: msg-20
@@ -148,7 +148,7 @@ _description:
  This test verifies that you can send an SMS containing special characters
 qml_file: msg-20.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril1_simPresent == "True"
 
 id: msg-07
@@ -159,7 +159,7 @@ _description:
  This test verifies that you can send an SMS containing an & (ampersand) and that it is displayed correctly
 qml_file: msg-07.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril0_simPresent == "True"
 
 id: msg-21
@@ -170,7 +170,7 @@ _description:
  This test verifies that you can send an SMS containing an & (ampersand) and that it is displayed correctly
 qml_file: msg-21.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril1_simPresent == "True"
 
 id: msg-08
@@ -181,7 +181,7 @@ _description:
  This test verifies that you can send an SMS containing a URL and some other text and that it is displayed correctly
 qml_file: msg-08.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril0_simPresent == "True"
 
 id: msg-22
@@ -192,7 +192,7 @@ _description:
  This test verifies that you can send an SMS containing a URL and some other text and that it is displayed correctly
 qml_file: msg-22.qml
 estimated_duration: 20
-imports: from 2015.com.canonical.certification import cellularmodem as modem
+imports: from 2014.com.ubuntu import cellularmodem as modem
 requires: modem.ril1_simPresent == "True"
 
 unit: category
