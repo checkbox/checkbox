@@ -66,21 +66,21 @@ Item {
             title: question
 
             Button {
+                id: yesButton
                 text: i18n.tr("YES")
                 objectName: "yesButton"
                 color: UbuntuColors.green
                 onClicked: {
-                    answer(true, checkBox.checked);
-                    PopupUtils.close(dlg);
+                    _giveAnswer(true);
                 }
             }
             Button {
+                id: noButton
                 text: i18n.tr("NO")
                 objectName: "noButton"
                 color: UbuntuColors.red
                 onClicked: {
-                    answer(false, checkBox.checked);
-                    PopupUtils.close(dlg);
+                    _giveAnswer(false);
                 }
             }
 
@@ -101,6 +101,12 @@ Item {
                         }
                     }
                 }
+            }
+            function _giveAnswer(confirmation) {
+                // ensures that dialog is closed
+                answer(confirmation, checkBox.checked);
+                PopupUtils.close(dlg);
+                rootKeysDelegator.activeStack.pop();
             }
         }
     }
