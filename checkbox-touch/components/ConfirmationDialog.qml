@@ -102,6 +102,11 @@ Item {
                     }
                 }
             }
+            Component.onCompleted: {
+                rootKeysDelegator.setHandler('alt+y', confirmationDialog, yesButton.clicked);
+                rootKeysDelegator.setHandler('alt+n', confirmationDialog, noButton.clicked);
+                rootKeysDelegator.activeStack.push(confirmationDialog);
+            }
             function _giveAnswer(confirmation) {
                 // ensures that dialog is closed
                 answer(confirmation, checkBox.checked);
