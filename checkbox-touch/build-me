@@ -305,11 +305,11 @@ def update_pot():
     qmljs_files = find(include=['*.qml', '*.js'], exclude=['./tests/*'])
     try:
         subprocess.check_output(
-            ['xgettext', '-o', potfile, '--qt', '--c++',
+            ['xgettext', '-s', '-o', potfile, '--qt', '--c++',
              '--add-comments=TRANSLATORS', '--keyword=tr', '--keyword=tr:1,2',
              '--from-code=UTF-8'] + qmljs_files)
         subprocess.check_output(
-            ['xgettext', '-o', potfile, '--join-existing',
+            ['xgettext', '-s', '-o', potfile, '--join-existing',
              '--add-comments=TRANSLATORS', '--language=python', '--keyword=_',
              '--keyword=N_'] + py_files)
     except subprocess.CalledProcessError as exc:
