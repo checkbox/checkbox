@@ -144,7 +144,12 @@ def main():
     parser.add_argument("--forced-resume", action='store_true',
                         help=("Force checkbox to always resume session (and "
                               "rerun the last test)."))
+    parser.add_argument("--update-potfile", action='store_true',
+                        help=("Updates the potfile and quits"))
     args = parser.parse_args()
+    if args.update_potfile:
+        update_pot()
+        return
     if args.port and not args.ssh:
         parser.error("--port without --ssh doesn't make sense!")
         return 1
@@ -290,6 +295,26 @@ def build_i18n():
         except subprocess.CalledProcessError as exc:
             sys.exit('Error encountered while creating %s translations. %s' % (
                 target_file, exc))
+
+
+def update_pot():
+    potfile = 'po/checkbox-touch.pot'
+    print("Updating {}".format(potfile))
+    py_files = find(top='./py', include=['*.py'])
+    py_files += ['build-me', 'get-libs']
+    qmljs_files = find(include=['*.qml', '*.js'], exclude=['./tests/*'])
+    try:
+        subprocess.check_output(
+            ['xgettext', '-o', potfile, '--qt', '--c++',
+             '--add-comments=TRANSLATORS', '--keyword=tr', '--keyword=tr:1,2',
+             '--from-code=UTF-8'] + qmljs_files)
+        subprocess.check_output(
+            ['xgettext', '-o', potfile, '--join-existing',
+             '--add-comments=TRANSLATORS', '--language=python', '--keyword=_',
+             '--keyword=N_'] + py_files)
+    except subprocess.CalledProcessError as exc:
+        sys.exit('Error encountered while updating po/checkbox-touch.pot %s' %
+                 exc)
 
 
 def _update_catalogs(dest, src):
