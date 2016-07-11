@@ -205,6 +205,13 @@ MainView {
     PageStack {
         id: pageStack
         Component.onCompleted: push(welcomePage)
+        onCurrentPageChanged: {
+            if (pageStack.depth > 1) {
+                // there was something before, we need to pop it from the kd's activeStack
+                rootKeysDelegator.activeStack.pop();
+            }
+            rootKeysDelegator.activeStack.push(pageStack.currentPage);
+        }
     }
 
     WelcomePage {
