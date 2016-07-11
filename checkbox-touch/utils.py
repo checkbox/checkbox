@@ -24,6 +24,7 @@ import apt
 import apt_pkg
 import collections
 import contextlib
+from fnmatch import fnmatch
 import os
 import shutil
 import subprocess
@@ -97,3 +98,14 @@ def backedup_dir(path):
         yield
         shutil.rmtree(path)
         shutil.copytree(target, path)
+
+
+def find(top='.', include=['*'], exclude=[]):
+    """Poor man's python simplified imitation of GNU find."""
+    results = []
+    for dirpath, dirnames, filenames in os.walk(top):
+        for f in [os.path.join(dirpath, f) for f in filenames]:
+            if (any(fnmatch(f, i) for i in include) and
+                    not any(fnmatch(f, e) for e in exclude)):
+                results.append(f)
+    return results
