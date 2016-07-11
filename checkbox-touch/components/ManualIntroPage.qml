@@ -51,8 +51,12 @@ Page {
         trailingActionBar {
             objectName: 'trailingActionBar'
             actions: [
-                AddCommentAction {},
-                SkipAction {}
+                AddCommentAction {
+                    id: addCommentAction
+                },
+                SkipAction {
+                    id: skipAction
+                }
             ]
         }
     }
@@ -61,6 +65,7 @@ Page {
         header: test["name"]
         body: test["description"]
         Button {
+            id: continueButton
             objectName: "continueButton"
             color: UbuntuColors.green
             Layout.fillWidth: true
@@ -69,5 +74,10 @@ Page {
                 continueClicked();
             }
         }
+    }
+    Component.onCompleted: {
+        rootKeysDelegator.setHandler('alt+s', manualIntroPage, skipAction.trigger);
+        rootKeysDelegator.setHandler('alt+c', manualIntroPage, addCommentAction.trigger);
+        rootKeysDelegator.setHandler('alt+t', manualIntroPage, continueButton.clicked);
     }
 }
