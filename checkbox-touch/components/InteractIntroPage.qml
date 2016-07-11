@@ -57,8 +57,12 @@ Page {
         trailingActionBar {
             objectName: 'trailingActionBar'
             actions: [
-                AddCommentAction {},
-                SkipAction {}
+                AddCommentAction {
+                    id: addCommentAction
+                },
+                SkipAction {
+                    id: skipAction
+                }
             ]
         }
     }
@@ -110,5 +114,10 @@ Page {
                 testStarted();
             }
         }
+    }
+    Component.onCompleted: {
+        rootKeysDelegator.setHandler('alt+s', userInteractVerifyIntroPage, skipAction.trigger);
+        rootKeysDelegator.setHandler('alt+c', userInteractVerifyIntroPage, addCommentAction.trigger);
+        rootKeysDelegator.setHandler('alt+t', userInteractVerifyIntroPage, startTestButton.clicked);
     }
 }
