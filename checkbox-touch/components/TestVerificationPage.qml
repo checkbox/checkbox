@@ -50,13 +50,19 @@ Page {
         trailingActionBar {
             objectName: 'trailingActionBar'
             actions: [
-                AddCommentAction {},
-                SkipAction {}
+                AddCommentAction {
+                    id: addCommentAction
+                },
+                SkipAction {
+                    id: skipAction
+                }
             ]
         }
     }
 
     TestPageBody {
+        id: body
+
         header: test["name"]
         body: test["verificationDescription"]
 
@@ -99,6 +105,13 @@ Page {
             }
         }
     }
+    Component.onCompleted: {
+        rootKeysDelegator.setHandler('alt+s', testVerification, skipAction.trigger);
+        rootKeysDelegator.setHandler('alt+c', testVerification, addCommentAction.trigger);
+        rootKeysDelegator.setHandler('alt+p', testVerification, passButton.clicked);
+        rootKeysDelegator.setHandler('alt+f', testVerification, failButton.clicked);
+    }
+
 
     function latchingTestDone() {
         passButton.state = "latched";
