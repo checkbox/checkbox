@@ -197,12 +197,12 @@ Page {
             }
         }
         Component.onCompleted: {
-            setHandler('alt+c', function() {
-                if (selectedCount > 0) {
-                    gatherSelection();
+            rootKeysDelegator.setHandler('alt+t', root, function() {
+                if (selectedCount > 0 || disabledSelectedCount > 0) {
+                    continueButton.clicked();
                 }
             });
-            setHandler('alt+t', toggleSelection.trigger);
+            rootKeysDelegator.setHandler('ctrl+a', root, toggleSelection.trigger);
         }
     }
 
