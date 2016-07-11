@@ -4,7 +4,28 @@ _description:
 id: qml-tests
 _name: QML-native tests
 estimated_duration: 20
-include: .*
+include:
+ qml-camera-06
+ sensors-01
+ sensors-04
+ screen-08
+ screen-09
+ screen-10
+ screen-11
+ battery-01
+ msg-01
+ msg-15
+ msg-06
+ msg-20
+ msg-07
+ msg-21
+ msg-08
+ msg-22
+ app-armor-denial-syslog-save
+ app-armor-denial
+ app-armor-denial-check
+bootstrap_include:
+ cellularmodem
 
 unit: category
 id: Camera
