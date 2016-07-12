@@ -152,7 +152,7 @@ class CheckboxTouchApplication(PlainboxApplication):
     response data to alter the user interface.
     """
 
-    __version__ = (1, 3, 0, 'dev', 0)
+    __version__ = (1, 4, 0, 'final', 0)
 
     def __init__(self, launcher_definition=None):
         if plainbox.__version__ < (0, 22):
