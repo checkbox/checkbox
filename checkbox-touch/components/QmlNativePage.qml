@@ -59,8 +59,12 @@ Page {
         trailingActionBar {
             objectName: 'trailingActionBar'
             actions: [
-                AddCommentAction {},
-                SkipAction {}
+                AddCommentAction {
+                    id: addCommentAction
+                },
+                SkipAction {
+                    id: skipAction
+                }
             ]
         }
     }
@@ -70,6 +74,7 @@ Page {
         body: test["description"]
 
         LatchButton {
+            id: continueButton
             objectName: "continueButton"
             color: UbuntuColors.green
             Layout.fillWidth: true
@@ -106,5 +111,10 @@ Page {
                 });
             }
         }
+    }
+    Component.onCompleted: {
+        rootKeysDelegator.setHandler('alt+s', qmlNativePage, skipAction.trigger);
+        rootKeysDelegator.setHandler('alt+c', qmlNativePage, addCommentAction.trigger);
+        rootKeysDelegator.setHandler('alt+t', qmlNativePage, continueButton.clicked);
     }
 }

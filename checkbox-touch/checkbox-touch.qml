@@ -87,6 +87,13 @@ MainView {
         }
     }
 
+    KeysDelegator {
+        id: rootKeysDelegator
+    }
+
+    // forward all keypresses to the delegator
+    Keys.onPressed: rootKeysDelegator.keyPress(event)
+
     Component.onCompleted: {
         i18n.domain = "com.ubuntu.checkbox";
         if (args.values["autopilot"]) {
@@ -198,6 +205,13 @@ MainView {
     PageStack {
         id: pageStack
         Component.onCompleted: push(welcomePage)
+        onCurrentPageChanged: {
+            if (pageStack.depth > 1) {
+                // there was something before, we need to pop it from the kd's activeStack
+                rootKeysDelegator.activeStack.pop();
+            }
+            rootKeysDelegator.activeStack.push(pageStack.currentPage);
+        }
     }
 
     WelcomePage {
@@ -310,6 +324,13 @@ to rerun last test, continue to the next test, or start a new session?").arg(
         title: i18n.tr("Select test plan")
         onlyOneAllowed: true
         largeBuffer: args.values["autopilot"]
+        onVisibleChanged: {
+            if (visible) {
+                rootKeysDelegator.onKeyPressed.connect(keys.keyPress)
+            } else {
+                rootKeysDelegator.onKeyPressed.disconnect(keys.keyPress)
+            }
+        }
 
         function setup(testplan_info_list) {
             if (testplan_info_list.length<1) {
@@ -336,6 +357,13 @@ to rerun last test, continue to the next test, or start a new session?").arg(
         objectName: "categorySelectionPage"
         title: i18n.tr("Select categories")
         largeBuffer: args.values["autopilot"]
+        onVisibleChanged: {
+            if (visible) {
+                rootKeysDelegator.onKeyPressed.connect(keys.keyPress)
+            } else {
+                rootKeysDelegator.onKeyPressed.disconnect(keys.keyPress)
+            }
+        }
 
         function setup(continuation) {
             app.getCategories(function(response) {
@@ -372,6 +400,13 @@ to rerun last test, continue to the next test, or start a new session?").arg(
         title: i18n.tr("Select tests")
         continueText: i18n.tr("Start testing")
         largeBuffer: args.values["autopilot"]
+        onVisibleChanged: {
+            if (visible) {
+                rootKeysDelegator.onKeyPressed.connect(keys.keyPress)
+            } else {
+                rootKeysDelegator.onKeyPressed.disconnect(keys.keyPress)
+            }
+        }
 
         function setup(continuation) {
             app.getTests(function(response) {

@@ -124,4 +124,8 @@ Page {
         text: i18n.tr("Start testing")
         onLatchedClicked: startTestingTriggered();
     }
+
+    Component.onCompleted: {
+        rootKeysDelegator.setHandler('alt+t', welcomePage, startTestButton.clicked);
+    }
 }

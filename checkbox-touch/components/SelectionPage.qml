@@ -36,6 +36,7 @@ Page {
     signal selectionDone(var selected_id_list)
     property string continueText: i18n.tr("Continue")
     readonly property alias model: selectionModel
+    property alias keys: keysDelegator
     property bool onlyOneAllowed: false
     property bool emptyAllowed: false
     property bool largeBuffer: false
@@ -44,9 +45,15 @@ Page {
     visible: false
     flickable: null
     property var selectedCount : 0
+    property var filteredSelectedCount: 0
     property var disabledSelectedCount: 0
+    property var filter: new RegExp('.*');
     state : selectedCount > 0 ? "nonempty selection" :
         (disabledSelectedCount > 0 ? "disabled only selection" : "empty selection")
+    ListModel {
+        // This model holds all items that can be selected, even when filtered-out
+        id: selectionModel
+    }
 
     // A function that needs to be called after changes are done to the model
     // to re-count number of selected items on the list
@@ -54,11 +61,27 @@ Page {
         selectedCount = 0;
         disabledSelectedCount = 0;
         for (var i=0; i < selectionModel.count; i++) {
-            if (selectionModel.get(i).mod_selected) {
-                if (selectionModel.get(i).mod_disabled) {
+            var modelItem = selectionModel.get(i);
+            if (modelItem.mod_selected) {
+                if (modelItem.mod_disabled) {
                     disabledSelectedCount++;
                 } else {
                     selectedCount++;
+                }
+            }
+        }
+        updateFilteredModel();
+    }
+    function updateFilteredModel() {
+        filteredSelectionModel.clear();
+        filteredSelectedCount = 0;
+        for (var i=0; i < selectionModel.count; i++) {
+            var modelItem = selectionModel.get(i);
+            modelItem['fullListIndex'] = i;
+            if (modelItem.mod_name.search(filter) > -1) {
+                filteredSelectionModel.append(modelItem);
+                if (modelItem.mod_selected) {
+                    filteredSelectedCount++;
                 }
             }
         }
@@ -77,28 +100,27 @@ Page {
         continueButton.unlatch();
     }
     function deselectAll() {
-        selectedCount = 0;
-        disabledSelectedCount = 0;
-        for (var i=0; i<selectionModel.count; i++) {
-            if (!selectionModel.get(i)["mod_disabled"]) {
-                selectionModel.setProperty(i, "mod_selected", false);
-            } else {
-                if (selectionModel.get(i).mod_selected) {
-                    disabledSelectedCount++;
+        for (var i=0; i<filteredSelectionModel.count; i++) {
+            var modelItem = filteredSelectionModel.get(i);
+            if (!modelItem.mod_disabled) {
+                if (modelItem.mod_selected) {
+                    filteredSelectionModel.setProperty(i, "mod_selected", false);
+                    selectionModel.setProperty(modelItem.fullListIndex, "mod_selected", false);
+                    selectedCount--;
+                    filteredSelectedCount--;
                 }
             }
         }
     }
     function selectAll() {
-        selectedCount = 0;
-        disabledSelectedCount = 0;
-        for (var i=0; i<selectionModel.count; i++) {
-            if (!selectionModel.get(i)["mod_disabled"]) {
-                selectionModel.setProperty(i, "mod_selected", true);
-                selectedCount++;
-            } else {
-                if (selectionModel.get(i).mod_selected) {
-                    disabledSelectedCount++;
+        for (var i=0; i<filteredSelectionModel.count; i++) {
+            var modelItem = filteredSelectionModel.get(i);
+            if (!modelItem.mod_disabled) {
+                if (!modelItem.mod_selected) {
+                    filteredSelectionModel.setProperty(i, "mod_selected", true);
+                    selectionModel.setProperty(modelItem.fullListIndex, "mod_selected", true);
+                    selectedCount++;
+                    filteredSelectedCount++;
                 }
             }
         }
@@ -117,12 +139,25 @@ Page {
                     visible: !onlyOneAllowed
                     onTriggered: {
                         if (state === "empty selection" || state == "disabled only selection") {
-                            selectAll();
+                            if (!onlyOneAllowed) // still reachable via key shortcut
+                                selectAll();
                         }
                         else if (state === "nonempty selection") {
                             deselectAll();
                         }
-
+                    }
+                },
+                Action {
+                    id: findAction
+                    text: i18n.tr("Find")
+                    iconName: 'find'
+                    onTriggered: {
+                        if (!searchBox.visible) {
+                            searchBox.visible = true;
+                            searchBox.forceActiveFocus();
+                        } else {
+                            searchBox.visible = false;
+                        }
                     }
                 }
             ]
@@ -145,6 +180,32 @@ Page {
          }
     ]
 
+    KeysDelegator {
+        id: keysDelegator
+        onKeyPressed: {
+            var c = event.text
+            if (event.modifiers == 0 && c.search(/[a-z]/, 'i') > -1) {
+                searchBox.insert(searchBox.cursorPosition, c)
+                searchBox.forceActiveFocus();
+                searchBox.visible = true
+                searchBox.focus = true
+            }
+            if (event.key == Qt.Key_Escape) {
+                searchBox.text = '';
+                searchBox.focus = false;
+                searchBox.visible = false;
+            }
+        }
+        Component.onCompleted: {
+            rootKeysDelegator.setHandler('alt+t', root, function() {
+                if (selectedCount > 0 || disabledSelectedCount > 0) {
+                    continueButton.clicked();
+                }
+            });
+            rootKeysDelegator.setHandler('ctrl+a', root, toggleSelection.trigger);
+        }
+    }
+
     ColumnLayout {
         spacing: units.gu(3)
         anchors {
@@ -156,6 +217,21 @@ Page {
             bottomMargin: units.gu(3)
             leftMargin: units.gu(1)
             rightMargin: units.gu(1)
+        }
+
+        TextField {
+            id: searchBox
+            Layout.fillWidth: true
+            visible: false
+            onTextChanged: {
+                filter = new RegExp('.*' + text, 'i');
+                updateFilteredModel();
+            }
+            onFocusChanged: {
+                if (text == '' && focus == false) {
+                    visible = false;
+                }
+            }
         }
 
         Component {
@@ -191,7 +267,7 @@ Page {
 
         UbuntuListView {
             model: ListModel {
-                id: selectionModel
+                id: filteredSelectionModel
             }
             objectName: "listView"
             Layout.fillWidth: true
@@ -218,11 +294,23 @@ Page {
                     // Toggle the mod_selected property
                     onClicked: {
                         if (onlyOneAllowed && !checked && selectedCount > 0) {
-                            // clear other selections
                             deselectAll();
+                            // clear other selections on the original list
+                            for (var i=0; i < selectionModel.count; i++) {
+                                var modelItem = selectionModel.get(i);
+                                if (!modelItem.mod_disabled) {
+                                    if (modelItem.mod_selected) {
+                                        selectionModel.setProperty(i, "mod_selected", false);
+                                        selectedCount--;
+                                    }
+                                }
+                            }
                         }
-                        selectionModel.setProperty(index, 'mod_selected', !checked);
+                        filteredSelectionModel.setProperty(index, 'mod_selected', !checked);
                         selectedCount += checked ? 1 : -1;
+                        // propagate selection to the original list
+                        selectionModel.setProperty(fullListIndex, 'mod_selected', checked);
+
                     }
                 }
                 onClicked: checkBox.clicked()
