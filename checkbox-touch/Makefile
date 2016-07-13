@@ -35,6 +35,7 @@ sdist:
 	--exclude=lib --exclude=providers \
 	--exclude=settings.json --exclude=manifest.json \
 	--exclude=checkbox-touch.desktop
+	@gpg --armor --sign --detach-sig dist/checkbox-converged-$(VERSION).tar.gz
 
 run:
 	/usr/bin/qmlscene $@ checkbox-touch.qml
