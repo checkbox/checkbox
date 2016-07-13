@@ -20,7 +20,7 @@ id: Indicators/Sound indicator
 _name: Indicators/Sound indicator
 
 unit: job
-id: ID-Sound-01
+id: touch/ID-Sound-01
 plugin: manual
 category_id: Indicators/Sound indicator
 _summary: Ensure that sound indicator shows on the menu bar correctly
@@ -34,7 +34,7 @@ _verification:
     1. Does sound indicator show correctly?
 
 unit: job
-id: ID-Sound-02
+id: touch/ID-Sound-02
 plugin: manual
 category_id: Indicators/Sound indicator
 _summary: Ensure that sound indicator menu can be launched
@@ -49,7 +49,7 @@ _verification:
     2. Is there a volume slider?
 
 unit: job
-id: ID-Sound-03
+id: touch/ID-Sound-03
 plugin: manual
 category_id: Indicators/Sound indicator
 _summary: Ensure that volume slider bar can be adjusted
@@ -69,7 +69,7 @@ _verification:
     2. Did the volume level decrease?
 
 unit: job
-id: ID-Sound-04
+id: touch/ID-Sound-04
 plugin: manual
 category_id: Indicators/Sound indicator
 _summary: Ensure the sound indicator icon matches volume level
@@ -86,7 +86,7 @@ _verification:
     1. Check the sound icon matches the level set on the slider
 
 unit: job
-id: ID-Sound-05
+id: touch/ID-Sound-05
 plugin: manual
 category_id: Indicators/Sound indicator
 _summary: Ensure that sound settings menu can be launched
@@ -107,7 +107,7 @@ id: Indicators/Network indicator
 _name: Indicators/Network indicator
 
 unit: job
-id: ID-Network-01
+id: touch/ID-Network-01
 plugin: manual
 category_id: Indicators/Network indicator
 _summary: Ensure that both WiFi indicator and cellular indicator show on the menu bar correctly
@@ -126,7 +126,7 @@ _verification:
     1. Do both WiFi and Cellular indicators show correctly?
 
 unit: job
-id: ID-Network-02
+id: touch/ID-Network-02
 plugin: manual
 category_id: Indicators/Network indicator
 _summary: Ensure that network menu can be launched
@@ -141,7 +141,7 @@ _verification:
     2. Is there have detected AP lists?
 
 unit: job
-id: ID-Network-03
+id: touch/ID-Network-03
 plugin: manual
 category_id: Indicators/Network indicator
 _summary: Ensure that system can connect to the WiFi AP successfully
@@ -162,7 +162,7 @@ _verification:
     3. Did network icon show correctly as current status
 
 unit: job
-id: ID-Network-04
+id: touch/ID-Network-04
 plugin: manual
 category_id: Indicators/Network indicator
 _summary: Ensure that flight mode function works
@@ -177,7 +177,7 @@ _verification:
     2. Did the modems turn off?
 
 unit: job
-id: ID-Network-05
+id: touch/ID-Network-05
 plugin: manual
 category_id: Indicators/Network indicator
 _summary: Ensure that WiFi settings menu can be launched
@@ -194,7 +194,7 @@ _verification:
     1. Did WiFi settings menu launch?
 
 unit: job
-id: ID-Network-06
+id: touch/ID-Network-06
 plugin: manual
 category_id: Indicators/Network indicator
 _summary: Ensure that cellular settings menu can be launched
@@ -215,7 +215,7 @@ id: Indicators/Battery indicator
 _name: Indicators/Battery indicator
 
 unit: job
-id: ID-Battery-01
+id: touch/ID-Battery-01
 plugin: manual
 category_id: Indicators/Battery indicator
 _summary: Ensure that battery indicator shows on the menu bar correctly
@@ -229,7 +229,7 @@ _verification:
     1. Does battery indicator show correctly?
 
 unit: job
-id: ID-Battery-02
+id: touch/ID-Battery-02
 plugin: manual
 category_id: Indicators/Battery indicator
 _summary: Ensure that battery indicator menu can be launched
@@ -244,7 +244,7 @@ _verification:
     2. Is there a charging level slider?
 
 unit: job
-id: ID-Battery-03
+id: touch/ID-Battery-03
 plugin: manual
 category_id: Indicators/Battery indicator
 _summary: Ensure that the current charge level is displayed
@@ -261,7 +261,7 @@ _verification:
     1. Does the charge level percentage shown match the current status?
 
 unit: job
-id: ID-Battery-04
+id: touch/ID-Battery-04
 plugin: manual
 category_id: Indicators/Battery indicator
 _summary: Ensure that battery settings menu can be launched
@@ -282,7 +282,7 @@ id: Indicators/Upcoming indicator
 _name: Indicators/Upcoming indicator
 
 unit: job
-id: ID-Upcoming-01
+id: touch/ID-Upcoming-01
 plugin: manual
 category_id: Indicators/Upcoming indicator
 _summary: Ensure that there is a time stamp shows on the menu bar correctly
@@ -296,7 +296,7 @@ _verification:
     1. Does time stamp show correctly?
 
 unit: job
-id: ID-Upcoming-02
+id: touch/ID-Upcoming-02
 plugin: manual
 category_id: Indicators/Upcoming indicator
 _summary: Ensure that upcoming indicator menu can be launched
@@ -313,7 +313,7 @@ _verification:
     3. Did it show the correct Time&Date?
 
 unit: job
-id: ID-Upcoming-03
+id: touch/ID-Upcoming-03
 plugin: manual
 category_id: Indicators/Upcoming indicator
 _summary: Ensure that Time & Date settings menu can be launched
@@ -330,7 +330,7 @@ _verification:
     1. Did Time & Date settings menu launch?
 
 unit: job
-id: ID-Upcoming-04
+id: touch/ID-Upcoming-04
 plugin: manual
 category_id: Indicators/Upcoming indicator
 _summary: Ensure that clock app can be launched
@@ -351,7 +351,7 @@ id: Indicators/Notification center indicator
 _name: Indicators/Notification center indicator
 
 unit: job
-id: ID-Incoming-01
+id: touch/ID-Incoming-01
 plugin: manual
 category_id: Indicators/Notification center indicator
 _summary: Ensure that there is a incoming indicator shows on the menu bar correctly
@@ -367,7 +367,7 @@ _verification:
     2. Does incoming indicator turn green?
 
 unit: job
-id: ID-Incoming-02
+id: touch/ID-Incoming-02
 plugin: manual
 category_id: Indicators/Notification center indicator
 _summary: Ensure that incoming indicator menu can be launched
@@ -381,7 +381,7 @@ _verification:
     Did incoming indicator menu launch?
 
 unit: job
-id: ID-Incoming-03
+id: touch/ID-Incoming-03
 plugin: manual
 category_id: Indicators/Notification center indicator
 _summary: Ensure that incoming message shows correctly
@@ -402,7 +402,7 @@ _verification:
     3. Did all the message cleared?
 
 unit: job
-id: ID-Incoming-04
+id: touch/ID-Incoming-04
 plugin: manual
 category_id: Indicators/Notification center indicator
 _summary: Ensure that push notifications show correctly
@@ -421,7 +421,7 @@ id: Indicators/Location indicator
 _name: Indicators/Location indicator
 
 unit: job
-id: ID-Location-01
+id: touch/ID-Location-01
 plugin: manual
 category_id: Indicators/Location indicator
 _summary: Ensure that location indicator shows on the menu bar correctly
@@ -435,7 +435,7 @@ _verification:
     1. Does location indicator show correctly?
 
 unit: job
-id: ID-Location-02
+id: touch/ID-Location-02
 plugin: manual
 category_id: Indicators/Location indicator
 _summary: Ensure that location menu can be launched
@@ -450,7 +450,7 @@ _verification:
     2. Is there have location detection switch and GPS switch?
 
 unit: job
-id: ID-Location-03
+id: touch/ID-Location-03
 plugin: manual
 category_id: Indicators/Location indicator
 _summary: Ensure that location detection switch can be turned on/off
@@ -469,7 +469,7 @@ _verification:
     2. Did location detection turn off?
 
 unit: job
-id: ID-Location-04
+id: touch/ID-Location-04
 plugin: manual
 category_id: Indicators/Location indicator
 _summary: Ensure that GPS switch can be turned on/off
@@ -492,7 +492,7 @@ id: Indicators/Bluetooth indicator
 _name: Indicators/Bluetooth indicator
 
 unit: job
-id: ID-Bluetooth-01
+id: touch/ID-Bluetooth-01
 plugin: manual
 category_id: Indicators/Bluetooth indicator
 _summary: Ensure that Bluetooth indicator shows on the menu bar correctly
@@ -509,7 +509,7 @@ _verification:
     1. Does Bluetooth indicator show correctly?
 
 unit: job
-id: ID-Bluetooth-02
+id: touch/ID-Bluetooth-02
 plugin: manual
 category_id: Indicators/Bluetooth indicator
 _summary: Ensure that Bluetooth menu can be launched
@@ -524,7 +524,7 @@ _verification:
     2. Is there a Bluetooth switch?
 
 unit: job
-id: ID-Bluetooth-03
+id: touch/ID-Bluetooth-03
 plugin: manual
 category_id: Indicators/Bluetooth indicator
 _summary: Ensure that Bluetooth can turn on/off
@@ -544,7 +544,7 @@ _verification:
     2. Did Bluetooth indicator show up on the menu bar?
 
 unit: job
-id: ID-Bluetooth-04
+id: touch/ID-Bluetooth-04
 plugin: manual
 category_id: Indicators/Bluetooth indicator
 _summary: Ensure that Bluetooth settings menu can be launched
@@ -565,7 +565,7 @@ id: System Settings/General
 _name: System Settings/General
 
 unit: job
-id: Settings-01
+id: touch/Settings-01
 plugin: manual
 category_id: System Settings/General
 _summary: Ensure that the orientation lock works
@@ -587,7 +587,7 @@ id: System Settings/WiFi
 _name: System Settings/WiFi
 
 unit: job
-id: WiFi-01
+id: touch/WiFi-01
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that the WiFi can be opened from system settings.
@@ -605,7 +605,7 @@ _verification:
     1. Did the WiFi page open?
 
 unit: job
-id: WiFi-02
+id: touch/WiFi-02
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless is enabled and can list all available access points
@@ -622,7 +622,7 @@ _verification:
     1. Are all available wireless networks listed?
 
 unit: job
-id: WiFi-03
+id: touch/WiFi-03
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to an access point
@@ -640,7 +640,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-04
+id: touch/WiFi-04
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can be disabled/re-enabled and still works as expected
@@ -660,7 +660,7 @@ _verification:
     3. Does wireless reconnected?
 
 unit: job
-id: WiFi-05
+id: touch/WiFi-05
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to an open network
@@ -678,7 +678,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-06
+id: touch/WiFi-06
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to a WEP network
@@ -696,7 +696,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-07
+id: touch/WiFi-07
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to a WPA/WPA2 network
@@ -714,7 +714,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-08
+id: touch/WiFi-08
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to a 802.11b AP
@@ -732,7 +732,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-09
+id: touch/WiFi-09
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to a 802.11g AP
@@ -750,7 +750,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-10
+id: touch/WiFi-10
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Ensure that wireless can connect to a 802.11ac AP
@@ -768,7 +768,7 @@ _verification:
     1. Is wireless connected?
 
 unit: job
-id: WiFi-11
+id: touch/WiFi-11
 plugin: manual
 category_id: System Settings/WiFi
 _summary: Check WiFi mac address does not change across reboots
@@ -789,7 +789,7 @@ id: System Settings/Cellular
 _name: System Settings/Cellular
 
 unit: job
-id: Cellular-01
+id: touch/Cellular-01
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure that the cellular can be opened from system settings.
@@ -807,7 +807,7 @@ _verification:
     1. Did the Cellular page open?
 
 unit: job
-id: Cellular-02
+id: touch/Cellular-02
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure cellular data can be enabled
@@ -826,7 +826,7 @@ _verification:
     2. Is 3G network connected?
 
 unit: job
-id: Cellular-03
+id: touch/Cellular-03
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure cellular data can be disabled
@@ -844,7 +844,7 @@ _verification:
     1. Is 3G network disconnected?
 
 unit: job
-id: Cellular-04
+id: touch/Cellular-04
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure data roaming can be enabled
@@ -863,7 +863,7 @@ _verification:
     2. Is 3G network connected?
 
 unit: job
-id: Cellular-05
+id: touch/Cellular-05
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure data roaming can be disabled
@@ -881,7 +881,7 @@ _verification:
     1. Is Data roaming closed?
 
 unit: job
-id: Cellular-06
+id: touch/Cellular-06
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure that choose carrier by auto works
@@ -900,7 +900,7 @@ _verification:
     2. Does it connected to correct carrier?
 
 unit: job
-id: Cellular-07
+id: touch/Cellular-07
 plugin: manual
 category_id: System Settings/Cellular
 _summary: Ensure that the carrier can be selected by manual
@@ -925,7 +925,7 @@ id: System Settings/Bluetooth
 _name: System Settings/Bluetooth
 
 unit: job
-id: Bluetooth-01
+id: touch/Bluetooth-01
 plugin: manual
 category_id: System Settings/Bluetooth
 _summary: Ensure that the Bluetooth can be opened from system settings.
@@ -943,7 +943,7 @@ _verification:
     1. Did the Bluetooth page open?
 
 unit: job
-id: Bluetooth-02
+id: touch/Bluetooth-02
 plugin: manual
 category_id: System Settings/Bluetooth
 _summary: Ensure that all detected Bluetooth devices are listed
@@ -961,7 +961,7 @@ _verification:
     1. Does it listed all of available Bluetooth devices?
 
 unit: job
-id: Bluetooth-03
+id: touch/Bluetooth-03
 plugin: manual
 category_id: System Settings/Bluetooth
 _summary: Ensure that it can pair with a Bluetooth headset
@@ -980,7 +980,7 @@ _verification:
     2. Is there a headset icon shown on the menu bar?
 
 unit: job
-id: Bluetooth-04
+id: touch/Bluetooth-04
 plugin: manual
 category_id: System Settings/Bluetooth
 _summary: Ensure that Bluetooth can be disabled after paired with Bluetooth headset
@@ -997,7 +997,7 @@ _verification:
     1. Did Bluetooth headset icon disappear from menu bar?
 
 unit: job
-id: Bluetooth-05
+id: touch/Bluetooth-05
 plugin: manual
 category_id: System Settings/Bluetooth
 _summary: Ensure the Bluetooth mac address does not change across reboots
@@ -1018,7 +1018,7 @@ id: System Settings/Accounts
 _name: System Settings/Accounts
 
 unit: job
-id: Accounts-01
+id: touch/Accounts-01
 plugin: manual
 category_id: System Settings/Accounts
 _summary: Ensure that the accounts can be opened from system settings.
@@ -1036,7 +1036,7 @@ _verification:
     1. Did the Accounts page open?
 
 unit: job
-id: Accounts-02
+id: touch/Accounts-02
 plugin: manual
 category_id: System Settings/Accounts
 _summary: Ensure that you can login to UbuntuOne
@@ -1054,7 +1054,7 @@ _verification:
     1. Does it successful to login?
 
 unit: job
-id: Accounts-03
+id: touch/Accounts-03
 plugin: manual
 category_id: System Settings/Accounts
 _summary: Ensure that it can install new app from application scope after logged in
@@ -1076,7 +1076,7 @@ id: System Settings/Battery
 _name: System Settings/Battery
 
 unit: job
-id: Battery-01
+id: touch/Battery-01
 plugin: manual
 category_id: System Settings/Battery
 _summary: Ensure that the battery can be opened from system settings.
@@ -1094,7 +1094,7 @@ _verification:
     1. Did the Battery page open?
 
 unit: job
-id: Battery-02
+id: touch/Battery-02
 plugin: manual
 category_id: System Settings/Battery
 _summary: Ensure that both charge level and status are listed correctly
@@ -1111,7 +1111,7 @@ _verification:
     Are charge level and status both show correctly?
 
 unit: job
-id: Battery-03
+id: touch/Battery-03
 plugin: manual
 category_id: System Settings/Battery
 _summary: Ensure that charging status changes with the power cable is connected
@@ -1130,7 +1130,7 @@ _verification:
     2. Does the charging status change after connecting/disconnecting the power cable?
 
 unit: job
-id: Battery-04
+id: touch/Battery-04
 plugin: manual
 category_id: System Settings/Battery
 _summary: Ensure that display brightness slider can be adjusted
@@ -1149,7 +1149,7 @@ _verification:
     2. Did screen brightness become dark?
 
 unit: job
-id: Battery-05
+id: touch/Battery-05
 plugin: manual
 category_id: System Settings/Battery
 _summary: Ensure that WiFi can be turned on/off
@@ -1168,7 +1168,7 @@ _verification:
     2. Were you able to enable and disable WiFi?
 
 unit: job
-id: Battery-06
+id: touch/Battery-06
 plugin: manual
 category_id: System Settings/Battery
 _summary: Ensure that Bluetooth can be turned on/off
@@ -1191,7 +1191,7 @@ id: System Settings/Brightness
 _name: System Settings/Brightness
 
 unit: job
-id: Brightness-01
+id: touch/Brightness-01
 plugin: manual
 category_id: System Settings/Brightness
 _summary: Ensure that the brightness can be opened from system settings.
@@ -1209,7 +1209,7 @@ _verification:
     1. Did the Brightness page open?
 
 unit: job
-id: Brightness-02
+id: touch/Brightness-02
 plugin: manual
 category_id: System Settings/Brightness
 _summary: Ensure that display brightness slider can be adjusted
@@ -1228,7 +1228,7 @@ _verification:
     2. Did screen brightness become dark?
 
 unit: job
-id: Brightness-03
+id: touch/Brightness-03
 plugin: manual
 category_id: System Settings/Brightness
 _summary: Ensure that auto adjust brightness function works correctly
@@ -1250,7 +1250,7 @@ id: System Settings/Sound settings
 _name: System Settings/Sound settings
 
 unit: job
-id: Sound-01
+id: touch/Sound-01
 plugin: manual
 category_id: System Settings/Sound settings
 _summary: Make sure that the sound settings can be opened from system settings.
@@ -1268,7 +1268,7 @@ _verification:
     1. Did the sound settings page open?
 
 unit: job
-id: Sound-02
+id: touch/Sound-02
 plugin: manual
 category_id: System Settings/Sound settings
 _summary: Make sure that the ringtone can be previewed
@@ -1289,7 +1289,7 @@ _verification:
     2. Can stop playing button works?
 
 unit: job
-id: Sound-03
+id: touch/Sound-03
 plugin: manual
 category_id: System Settings/Sound settings
 _summary: Make sure that setting a ringtone works
@@ -1308,7 +1308,7 @@ _verification:
     1. Did the incoming call ringtone has changed to selected ringtone?
 
 unit: job
-id: Sound-04
+id: touch/Sound-04
 plugin: manual
 category_id: System Settings/Sound settings
 _summary: Make sure the message received notification can be previewed
@@ -1327,7 +1327,7 @@ _verification:
     1. Can each message sound be played?
 
 unit: job
-id: Sound-05
+id: touch/Sound-05
 plugin: manual
 category_id: System Settings/Sound settings
 _summary: Make sure that setting a message received notification works
@@ -1350,7 +1350,7 @@ id: System Settings/Security & Privacy
 _name: System Settings/Security & Privacy
 
 unit: job
-id: Security-01
+id: touch/Security-01
 plugin: manual
 category_id: System Settings/Security & Privacy
 _summary: Ensure that the "swipe" lock mechanism works
@@ -1369,7 +1369,7 @@ _verification:
     2. Did the swipe mechanism work?
 
 unit: job
-id: Security-02
+id: touch/Security-02
 plugin: manual
 category_id: System Settings/Security & Privacy
 _summary: Ensure that the "4-digit pin code" lock mechanism works
@@ -1388,7 +1388,7 @@ _verification:
     2. Did the PIN code mechanism work?
 
 unit: job
-id: Security-03
+id: touch/Security-03
 plugin: manual
 category_id: System Settings/Security & Privacy
 _summary: Ensure that the "passphrase" lock mechanism works
@@ -1407,7 +1407,7 @@ _verification:
     2. Did the passphrase mechanism work?
 
 unit: job
-id: Security-04
+id: touch/Security-04
 plugin: manual
 category_id: System Settings/Security & Privacy
 _summary: Ensure that the idle time before lock can be configured
@@ -1429,7 +1429,7 @@ id: System Settings/Reset Phone
 _name: System Settings/Reset Phone
 
 unit: job
-id: Reset-01
+id: touch/Reset-01
 plugin: manual
 category_id: System Settings/Reset Phone
 _summary: Ensure that the launcher can be reset
@@ -1445,7 +1445,7 @@ _verification:
     1. Did the launcher reset so only default selection of apps is pinned?
 
 unit: job
-id: Reset-02
+id: touch/Reset-02
 plugin: manual
 category_id: System Settings/Reset Phone
 _summary: Ensure the phone can be factory reset
@@ -1466,7 +1466,7 @@ id: Telephony/Basic Call (SIM1)
 _name: Telephony/Basic Call (SIM1)
 
 unit: job
-id: Tel-01
+id: touch/Tel-01
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that call out to fixed-line telephone works as expected
@@ -1488,7 +1488,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-02
+id: touch/Tel-02
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that call out to mobile phone number works as expected
@@ -1510,7 +1510,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-03
+id: touch/Tel-03
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that call out to mobile phone number with country code works as expected
@@ -1532,7 +1532,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-04
+id: touch/Tel-04
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that call out to mobile phone number with 00 code works as expected
@@ -1554,7 +1554,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-05
+id: touch/Tel-05
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that receiving a mt call works as expected
@@ -1577,7 +1577,7 @@ _verification:
     2. Is call answered?
 
 unit: job
-id: Tel-06
+id: touch/Tel-06
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that reject a mt call works as expected
@@ -1599,7 +1599,7 @@ _verification:
     2. Did call reject work?
 
 unit: job
-id: Tel-07
+id: touch/Tel-07
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that DTMF feature call works as expected
@@ -1622,7 +1622,7 @@ _verification:
     1. Is call connected to correct extension?
 
 unit: job
-id: Tel-08
+id: touch/Tel-08
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that preset extension number can work as expected
@@ -1644,7 +1644,7 @@ _verification:
     1. Is call connected to correct extension?
 
 unit: job
-id: Tel-09
+id: touch/Tel-09
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that call waiting functions can work as expected
@@ -1667,7 +1667,7 @@ _verification:
     1. Is call waiting feature worked?
 
 unit: job
-id: Tel-10
+id: touch/Tel-10
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that call will be dropped if call waiting disabled
@@ -1689,7 +1689,7 @@ _verification:
     1. Is call dropped as expected?
 
 unit: job
-id: Tel-11
+id: touch/Tel-11
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that calling voicemail functions as expected
@@ -1711,7 +1711,7 @@ _verification:
     2. Is navigation working via DTMF?
 
 unit: job
-id: Tel-12
+id: touch/Tel-12
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure placing a call on hold works
@@ -1738,7 +1738,7 @@ _verification:
     4. When hold is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
-id: Tel-13
+id: touch/Tel-13
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that speakerphone toggle on/off works in voicemail
@@ -1766,7 +1766,7 @@ _verification:
     4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
-id: Tel-14
+id: touch/Tel-14
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that speakerphone toggle on/off works in regular phone call
@@ -1794,7 +1794,7 @@ _verification:
     4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
-id: Tel-15
+id: touch/Tel-15
 plugin: manual
 category_id: Telephony/Basic Call (SIM1)
 _summary: Ensure that microphone mute works in call
@@ -1806,7 +1806,7 @@ id: Telephony/Basic Call (SIM2)
 _name: Telephony/Basic Call (SIM2)
 
 unit: job
-id: Tel-16
+id: touch/Tel-16
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that call out to fixed-line telephone works as expected
@@ -1828,7 +1828,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-17
+id: touch/Tel-17
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that call out to mobile phone number works as expected
@@ -1850,7 +1850,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-18
+id: touch/Tel-18
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that call out to mobile phone number with country code works as expected
@@ -1872,7 +1872,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-19
+id: touch/Tel-19
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that call out to mobile phone number with 00 code works as expected
@@ -1894,7 +1894,7 @@ _verification:
     2. Is call quality acceptable?
 
 unit: job
-id: Tel-20
+id: touch/Tel-20
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that receiving a mt call works as expected
@@ -1917,7 +1917,7 @@ _verification:
     2. Is call answered?
 
 unit: job
-id: Tel-21
+id: touch/Tel-21
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that reject a mt call works as expected
@@ -1939,7 +1939,7 @@ _verification:
     2. Did call reject work?
 
 unit: job
-id: Tel-23
+id: touch/Tel-23
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that STMF feature call work as expected
@@ -1962,7 +1962,7 @@ _verification:
     1. Is call connected to correct extension?
 
 unit: job
-id: Tel-24
+id: touch/Tel-24
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that preset extension number can work as expected
@@ -1984,7 +1984,7 @@ _verification:
     1. Is call connected to correct extension?
 
 unit: job
-id: Tel-25
+id: touch/Tel-25
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that call waiting functions can work as expected
@@ -2007,7 +2007,7 @@ _verification:
     1. Is call waiting feature worked?
 
 unit: job
-id: Tel-26
+id: touch/Tel-26
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that call will be dropped if call waiting disabled
@@ -2029,7 +2029,7 @@ _verification:
     1. Is call dropped as expected?
 
 unit: job
-id: Tel-27
+id: touch/Tel-27
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that calling voicemail functions as expected
@@ -2051,7 +2051,7 @@ _verification:
     2. Is navigation working via DTMF?
 
 unit: job
-id: Tel-28
+id: touch/Tel-28
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure placing a call on hold works
@@ -2078,7 +2078,7 @@ _verification:
     4. When hold is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
-id: Tel-29
+id: touch/Tel-29
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that speakerphone toggle on/off works in voicemail
@@ -2106,7 +2106,7 @@ _verification:
     4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
-id: Tel-30
+id: touch/Tel-30
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that speakerphone toggle on/off works in regular phone call
@@ -2134,7 +2134,7 @@ _verification:
     4. When speakerphone is turned off on phone, does the icon in the app reflect its new status?
 
 unit: job
-id: Tel-31
+id: touch/Tel-31
 plugin: manual
 category_id: Telephony/Basic Call (SIM2)
 _summary: Ensure that microphone mute works in call
@@ -2146,7 +2146,7 @@ id: Telephony/Hardware/Emergency Support (SIM1)
 _name: Telephony/Hardware/Emergency Support (SIM1)
 
 unit: job
-id: Tel-32
+id: touch/Tel-32
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
 _summary: Ensure that an IMEI number is set
@@ -2164,7 +2164,7 @@ _verification:
     1. Is it pop up the IMEI number?
 
 unit: job
-id: Tel-33
+id: touch/Tel-33
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
 _summary: Ensure that emergency codes are properly set
@@ -2184,7 +2184,7 @@ _verification:
     1. Is it emergency call connected?
 
 unit: job
-id: Tel-34
+id: touch/Tel-34
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
 _summary: Ensure that USSD codes function as expected
@@ -2204,7 +2204,7 @@ _verification:
     1. Is call to USSD number worked?
 
 unit: job
-id: Tel-35
+id: touch/Tel-35
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
 _summary: Ensure that the network indicator shows connection status
@@ -2221,7 +2221,7 @@ _verification:
     1. Does the network indicator show telephony connection correctly?
 
 unit: job
-id: Tel-36
+id: touch/Tel-36
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
 _summary: Ensure that no signal shows when no SIM card inserted
@@ -2238,7 +2238,7 @@ _verification:
     1. Does the network indicator show no signal correctly?
 
 unit: job
-id: Tel-38
+id: touch/Tel-38
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM1)
 _summary: Ensure that 3G SIM card can be supported
@@ -2260,7 +2260,7 @@ id: Telephony/Hardware/Emergency Support (SIM2)
 _name: Telephony/Hardware/Emergency Support (SIM2)
 
 unit: job
-id: Tel-39
+id: touch/Tel-39
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
 _summary: Ensure that an IMEI number is set
@@ -2278,7 +2278,7 @@ _verification:
     1. Is it pop up the IMEI number?
 
 unit: job
-id: Tel-40
+id: touch/Tel-40
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
 _summary: Ensure that emergency codes are properly set
@@ -2298,7 +2298,7 @@ _verification:
     1. Is it emergency call connected?
 
 unit: job
-id: Tel-41
+id: touch/Tel-41
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
 _summary: Ensure that USSD codes function as expected
@@ -2318,7 +2318,7 @@ _verification:
     1. Is call to USSD number worked?
 
 unit: job
-id: Tel-42
+id: touch/Tel-42
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
 _summary: Ensure that the network indicator shows connection status
@@ -2335,7 +2335,7 @@ _verification:
     1. Does the network indicator show telephony connection correctly?
 
 unit: job
-id: Tel-43
+id: touch/Tel-43
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
 _summary: Ensure that no signal shows when no SIM card inserted
@@ -2352,7 +2352,7 @@ _verification:
     1. Does the network indicator show no signal correctly?
 
 unit: job
-id: Tel-45
+id: touch/Tel-45
 plugin: manual
 category_id: Telephony/Hardware/Emergency Support (SIM2)
 _summary: Ensure that 3G SIM card can be supported
@@ -2374,7 +2374,7 @@ id: Telephony/Data Support (SIM1)
 _name: Telephony/Data Support (SIM1)
 
 unit: job
-id: Tel-46
+id: touch/Tel-46
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that phone can properly use GPRS data
@@ -2393,7 +2393,7 @@ _verification:
     1. Was ubuntu.com loaded?
 
 unit: job
-id: Tel-47
+id: touch/Tel-47
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that phone can properly use edge data
@@ -2412,7 +2412,7 @@ _verification:
     1. Was ubuntu.com loaded?
 
 unit: job
-id: Tel-48
+id: touch/Tel-48
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that phone can properly use 3g data
@@ -2431,7 +2431,7 @@ _verification:
     1. Was ubuntu.com loaded?
 
 unit: job
-id: Tel-49
+id: touch/Tel-49
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that phone can properly use HSPA data
@@ -2450,7 +2450,7 @@ _verification:
     1. Was ubuntu.com loaded?
 
 unit: job
-id: Tel-50
+id: touch/Tel-50
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that connection can switch between WiFi and GPRS
@@ -2472,7 +2472,7 @@ _verification:
     2. Was wiki.ubuntu.com loaded?
 
 unit: job
-id: Tel-51
+id: touch/Tel-51
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that connection can switch between WiFi and EDGE
@@ -2494,7 +2494,7 @@ _verification:
     2. Was wiki.ubuntu.com loaded?
 
 unit: job
-id: Tel-52
+id: touch/Tel-52
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that connection can switch between WiFi and 3G
@@ -2516,7 +2516,7 @@ _verification:
     2. Was wiki.ubuntu.com loaded?
 
 unit: job
-id: Tel-53
+id: touch/Tel-53
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that connection can switch between WiFi and HSPA
@@ -2538,7 +2538,7 @@ _verification:
     2. Was wiki.ubuntu.com loaded?
 
 unit: job
-id: Tel-54
+id: touch/Tel-54
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that call quality is acceptable in 2G
@@ -2558,7 +2558,7 @@ _verification:
     1. Is call quality acceptable?
 
 unit: job
-id: Tel-55
+id: touch/Tel-55
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that call quality is acceptable in 3G
@@ -2578,7 +2578,7 @@ _verification:
     1. Is call quality acceptable?
 
 unit: job
-id: Tel-56
+id: touch/Tel-56
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that data performance is acceptable in GPRS
@@ -2599,7 +2599,7 @@ _verification:
     1. Is DUT data performance similar to Reference?
 
 unit: job
-id: Tel-57
+id: touch/Tel-57
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that data performance is acceptable in edge
@@ -2620,7 +2620,7 @@ _verification:
     1. Is DUT data performance similar to Reference?
 
 unit: job
-id: Tel-58
+id: touch/Tel-58
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that data performance is acceptable in 3g
@@ -2641,7 +2641,7 @@ _verification:
     1. Is DUT data performance similar to Reference?
 
 unit: job
-id: Tel-59
+id: touch/Tel-59
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that data performance is acceptable in HSPA
@@ -2662,7 +2662,7 @@ _verification:
     1. Is DUT data performance similar to Reference?
 
 unit: job
-id: Tel-60
+id: touch/Tel-60
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that the failure rate of call drop in poor signal area is acceptable
@@ -2682,7 +2682,7 @@ _verification:
     1. Is failure rate of DUT1 similar to Reference1?
 
 unit: job
-id: Tel-61
+id: touch/Tel-61
 plugin: manual
 category_id: Telephony/Data Support (SIM1)
 _summary: Ensure that data roaming can work correctly
@@ -2705,7 +2705,7 @@ id: Telephony/Interruptions
 _name: Telephony/Interruptions
 
 unit: job
-id: Tel-62
+id: touch/Tel-62
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that SMS alert sound can be played correctly during music playback
@@ -2726,7 +2726,7 @@ _verification:
     3. Is Message indicator show up?
 
 unit: job
-id: Tel-63
+id: touch/Tel-63
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that MMS alert sound can be played correctly during music playback
@@ -2747,7 +2747,7 @@ _verification:
     3. Is Message indicator show up?
 
 unit: job
-id: Tel-64
+id: touch/Tel-64
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that incoming call ringtone can be played correctly during music playback
@@ -2768,7 +2768,7 @@ _verification:
     3. Is call snap decision show up?
 
 unit: job
-id: Tel-65
+id: touch/Tel-65
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that SMS alert sound can be played correctly during video playback
@@ -2789,7 +2789,7 @@ _verification:
     3. Is Message indicator show up?
 
 unit: job
-id: Tel-66
+id: touch/Tel-66
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that MMS alert sound can be played correctly during video playback
@@ -2810,7 +2810,7 @@ _verification:
     3. Is Message indicator show up?
 
 unit: job
-id: Tel-67
+id: touch/Tel-67
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that incoming call ringtone can be played correctly during video playback
@@ -2831,7 +2831,7 @@ _verification:
     3. Is call snap decision show up?
 
 unit: job
-id: Tel-68
+id: touch/Tel-68
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that incoming call ringtone can be played correctly while browsing via GPRS data
@@ -2852,7 +2852,7 @@ _verification:
     2. Is call snap decision show up?
 
 unit: job
-id: Tel-69
+id: touch/Tel-69
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that mo call can be performed correctly while browsing via GPRS data
@@ -2872,7 +2872,7 @@ _verification:
     1. Is MO call performed correctly?
 
 unit: job
-id: Tel-70
+id: touch/Tel-70
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that incoming call ringtone can be played correctly while browsing via 3g data
@@ -2893,7 +2893,7 @@ _verification:
     2. Is call snap decision show up?
 
 unit: job
-id: Tel-71
+id: touch/Tel-71
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that mo call can be performed correctly while browsing via 3g data
@@ -2913,7 +2913,7 @@ _verification:
     1. Is MO call performed correctly?
 
 unit: job
-id: Tel-72
+id: touch/Tel-72
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that incoming call ringtone can be played correctly while playing streaming video via gprs data
@@ -2935,7 +2935,7 @@ _verification:
     2. Is call snap decision show up?
 
 unit: job
-id: Tel-73
+id: touch/Tel-73
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that mo call can be performed correctly while playing streaming video via 3g data
@@ -2957,7 +2957,7 @@ _verification:
     2. Is call snap decision show up?
 
 unit: job
-id: Tel-74
+id: touch/Tel-74
 plugin: manual
 category_id: Telephony/Interruptions
 _summary: Ensure that call can be taken on Bluetooth headset while downloading a large file
@@ -2977,7 +2977,7 @@ id: Message/SMS/MMS (SIM1)
 _name: Message/SMS/MMS (SIM1)
 
 unit: job
-id: Msg-01
+id: touch/Msg-01
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that SMS messages can be sent to single contact
@@ -2996,7 +2996,7 @@ _verification:
     1. Is SMS sent correctly?
 
 unit: job
-id: Msg-02
+id: touch/Msg-02
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that SMS messages can be sent to multiple contacts
@@ -3015,7 +3015,7 @@ _verification:
     1. Is SMS sent to multiple contacts correctly?
 
 unit: job
-id: Msg-03
+id: touch/Msg-03
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that SMS messages can be received correctly
@@ -3035,7 +3035,7 @@ _verification:
     1. Is SMS received correctly?
 
 unit: job
-id: Msg-04
+id: touch/Msg-04
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that concatenate SMS message can be sent to single contact (more than 160 characters)
@@ -3057,7 +3057,7 @@ _verification:
     2. Did DUT2 receive two messages?
 
 unit: job
-id: Msg-05
+id: touch/Msg-05
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that concatenate SMS message can be sent to multiple contacts (more than 160 characters)
@@ -3078,7 +3078,7 @@ _verification:
     2. Has every contact received two messages?
 
 unit: job
-id: Msg-06
+id: touch/Msg-06
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that SMS message with special characters can be sent correctly (e.g #.$ å)
@@ -3100,7 +3100,7 @@ _verification:
     2. Is special characters displayed correctly?
 
 unit: job
-id: Msg-07
+id: touch/Msg-07
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that SMS message containing an ampersand (&) in the middle can be displayed correctly
@@ -3120,7 +3120,7 @@ _verification:
     1. Is the message displayed correctly?
 
 unit: job
-id: Msg-08
+id: touch/Msg-08
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that SMS message containing a URL can be displayed correctly
@@ -3141,7 +3141,7 @@ _verification:
     2. Can you click on the URL and open it in the browser?
 
 unit: job
-id: Msg-09
+id: touch/Msg-09
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that forward SMS message to single contact works
@@ -3164,7 +3164,7 @@ _verification:
     2. Is DUT1 received this message?
 
 unit: job
-id: Msg-10
+id: touch/Msg-10
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that send SMS message to foreign country works
@@ -3184,7 +3184,7 @@ _verification:
     2. Is DUT2 received message?
 
 unit: job
-id: Msg-11
+id: touch/Msg-11
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that MMS messages can be sent to single contact
@@ -3204,7 +3204,7 @@ _verification:
     1. Is MMS sent correctly?
 
 unit: job
-id: Msg-12
+id: touch/Msg-12
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that MMS messages can be sent to multiple contacts
@@ -3221,7 +3221,7 @@ _verification:
     1. Is MMS sent to multiple contacts correctly?
 
 unit: job
-id: Msg-13
+id: touch/Msg-13
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that MMS messages can be received and played correctly
@@ -3242,7 +3242,7 @@ _verification:
     2. Does MMS play correctly?
 
 unit: job
-id: Msg-14
+id: touch/Msg-14
 plugin: manual
 category_id: Message/SMS/MMS (SIM1)
 _summary: Ensure that forward MMS message to single contact works
@@ -3269,7 +3269,7 @@ id: Message/SMS/MMS (SIM2)
 _name: Message/SMS/MMS (SIM2)
 
 unit: job
-id: Msg-15
+id: touch/Msg-15
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that SMS messages can be sent to single contact
@@ -3288,7 +3288,7 @@ _verification:
     1. Is SMS sent correctly?
 
 unit: job
-id: Msg-16
+id: touch/Msg-16
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that SMS messages can be sent to multiple contacts
@@ -3307,7 +3307,7 @@ _verification:
     1. Is SMS sent to multiple contacts correctly?
 
 unit: job
-id: Msg-17
+id: touch/Msg-17
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that SMS messages can be received correctly
@@ -3327,7 +3327,7 @@ _verification:
     1. Is SMS received correctly?
 
 unit: job
-id: Msg-18
+id: touch/Msg-18
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that concatenate SMS message can be sent to single contact (more than 160 characters)
@@ -3349,7 +3349,7 @@ _verification:
     2. Is DUT2 received two messages?
 
 unit: job
-id: Msg-19
+id: touch/Msg-19
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that concatenate SMS message can be sent to multiple contacts (more than 160 characters)
@@ -3370,7 +3370,7 @@ _verification:
     2. Is every contact received two messages?
 
 unit: job
-id: Msg-20
+id: touch/Msg-20
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that SMS message with special characters can be sent correctly (e.g #.$ å)
@@ -3392,7 +3392,7 @@ _verification:
     2. Is special characters displayed correctly?
 
 unit: job
-id: Msg-21
+id: touch/Msg-21
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that SMS message containing an ampersand (&) in the middle can be displayed correctly
@@ -3412,7 +3412,7 @@ _verification:
     1. Is the message displayed correctly?
 
 unit: job
-id: Msg-22
+id: touch/Msg-22
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that SMS message containing a URL can be displayed correctly
@@ -3433,7 +3433,7 @@ _verification:
     2. Can you click on the URL and open it in the browser?
 
 unit: job
-id: Msg-23
+id: touch/Msg-23
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that forward SMS message to single contact works
@@ -3456,7 +3456,7 @@ _verification:
     2. Is DUT1 received this message?
 
 unit: job
-id: Msg-24
+id: touch/Msg-24
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that send SMS message to foreign country works
@@ -3476,7 +3476,7 @@ _verification:
     2. Is DUT2 received message?
 
 unit: job
-id: Msg-25
+id: touch/Msg-25
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that MMS messages can be sent to single contact
@@ -3496,7 +3496,7 @@ _verification:
     1. Is MMS sent correctly?
 
 unit: job
-id: Msg-26
+id: touch/Msg-26
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that MMS messages can be sent to multiple contacts
@@ -3513,7 +3513,7 @@ _verification:
     1. Is MMS sent to multiple contacts correctly?
 
 unit: job
-id: Msg-27
+id: touch/Msg-27
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that MMS messages can be received and played correctly
@@ -3534,7 +3534,7 @@ _verification:
     2. Does MMS play correctly?
 
 unit: job
-id: Msg-28
+id: touch/Msg-28
 plugin: manual
 category_id: Message/SMS/MMS (SIM2)
 _summary: Ensure that forward MMS message to single contact works
@@ -3561,7 +3561,7 @@ id: Camera/Camera Test
 _name: Camera/Camera Test
 
 unit: job
-id: Camera-01
+id: touch/Camera-01
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that camera app can be launched
@@ -3575,7 +3575,7 @@ _verification:
     1. Did camera app launch?
 
 unit: job
-id: Camera-02
+id: touch/Camera-02
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that the rear camera preview and zoom works
@@ -3594,7 +3594,7 @@ _verification:
     1. Does the back camera work?
 
 unit: job
-id: Camera-03
+id: touch/Camera-03
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that the front camera preview and zoom works
@@ -3613,7 +3613,7 @@ _verification:
     1. Does the front camera work?
 
 unit: job
-id: Camera-04
+id: touch/Camera-04
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that photos can be captured with the rear camera
@@ -3631,7 +3631,7 @@ _verification:
     1.Is the picture found in the gallery app?
 
 unit: job
-id: Camera-05
+id: touch/Camera-05
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that photos can be captured with the front camera
@@ -3649,7 +3649,7 @@ _verification:
     1.Is the picture found in the gallery app?
 
 unit: job
-id: Camera-06
+id: touch/Camera-06
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that video can be captured with the rear camera
@@ -3668,7 +3668,7 @@ _verification:
     2. Can the video clips be viewed?
 
 unit: job
-id: Camera-07
+id: touch/Camera-07
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that video can be captured with the front camera
@@ -3687,7 +3687,7 @@ _verification:
     2. Can the video clips be viewed?
 
 unit: job
-id: Camera-08
+id: touch/Camera-08
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure that camera flash led can work as expected
@@ -3705,7 +3705,7 @@ _verification:
     1. Does flash led work correctly?
 
 unit: job
-id: Camera-09
+id: touch/Camera-09
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Compare front camera photo with reference device
@@ -3726,7 +3726,7 @@ _verification:
     2. Are the photos of similar quality?
 
 unit: job
-id: Camera-10
+id: touch/Camera-10
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Compare rear camera photo with reference device
@@ -3747,7 +3747,7 @@ _verification:
     2. Are the photos of similar quality?
 
 unit: job
-id: Camera-11
+id: touch/Camera-11
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Compare font camera video with reference device
@@ -3768,7 +3768,7 @@ _verification:
     2. Are the videos of similar quality?
 
 unit: job
-id: Camera-12
+id: touch/Camera-12
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Compare rear camera video with reference device
@@ -3789,7 +3789,7 @@ _verification:
     2. Are the videos of similar quality?
 
 unit: job
-id: Camera-13
+id: touch/Camera-13
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure the quality/image size of a photo can be configured for front camera
@@ -3805,7 +3805,7 @@ _verification:
     2. Verify that the sizes match the selection in the camera app
 
 unit: job
-id: Camera-14
+id: touch/Camera-14
 plugin: manual
 category_id: Camera/Camera Test
 _summary: Ensure the quality/image size of a photo can be configured for rear camera
@@ -3825,7 +3825,7 @@ id: Audio/Audio path
 _name: Audio/Audio path
 
 unit: job
-id: Audio-01
+id: touch/Audio-01
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the internal microphone works as expected
@@ -3844,7 +3844,7 @@ _verification:
     1. Did DUT2 hear voice?
 
 unit: job
-id: Audio-02
+id: touch/Audio-02
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the internal speaker works as expected
@@ -3863,7 +3863,7 @@ _verification:
     1. Did you hear voice?
 
 unit: job
-id: Audio-03
+id: touch/Audio-03
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the headset works as expected
@@ -3885,7 +3885,7 @@ _verification:
     1. Did both speaker and microphone of headset work correctly?
 
 unit: job
-id: Audio-04
+id: touch/Audio-04
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that Bluetooth headset works as expected
@@ -3907,7 +3907,7 @@ _verification:
     1. Did both speaker and microphone of Bluetooth headset work correctly?
 
 unit: job
-id: Audio-05
+id: touch/Audio-05
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the audio can be switched from internal to headset during playing music
@@ -3931,7 +3931,7 @@ _verification:
     3. Did the sound can be heard from internal speaker?
 
 unit: job
-id: Audio-06
+id: touch/Audio-06
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the audio can be switched from internal to Bluetooth headset during playing music
@@ -3955,7 +3955,7 @@ _verification:
     3. Did the sound can be heard from internal speaker?
 
 unit: job
-id: Audio-07
+id: touch/Audio-07
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the audio can be switched from internal to headset during a call
@@ -3980,7 +3980,7 @@ _verification:
     3. Did both output/input audio come from internal speaker?
 
 unit: job
-id: Audio-08
+id: touch/Audio-08
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that the audio can be switched from internal to Bluetooth headset during a call
@@ -4005,7 +4005,7 @@ _verification:
     3. Did both output/input audio come from internal speaker?
 
 unit: job
-id: Audio-09
+id: touch/Audio-09
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that streaming audio muted when receiving an incoming call
@@ -4027,7 +4027,7 @@ _verification:
     2. Does both internal microphone and speaker work during the call?
 
 unit: job
-id: Audio-10
+id: touch/Audio-10
 plugin: manual
 category_id: Audio/Audio path
 _summary: Ensure that streaming audio muted when make an outgoing call
@@ -4053,7 +4053,7 @@ id: Audio/Volume adjustment
 _name: Audio/Volume adjustment
 
 unit: job
-id: Audio-14
+id: touch/Audio-14
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that volume keys functions work as expected when play music
@@ -4071,7 +4071,7 @@ _verification:
     2. Did the volume change?
 
 unit: job
-id: Audio-15
+id: touch/Audio-15
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work as expected when during a call
@@ -4092,7 +4092,7 @@ _verification:
     2. Did the volume change?
 
 unit: job
-id: Audio-16
+id: touch/Audio-16
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work with headset
@@ -4114,7 +4114,7 @@ _verification:
     2. Did the volume change?
 
 unit: job
-id: Audio-17
+id: touch/Audio-17
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work with headset after phone resume from sleep
@@ -4138,7 +4138,7 @@ _verification:
     2. Did the volume change?
 
 unit: job
-id: Audio-18
+id: touch/Audio-18
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work with Bluetooth headset
@@ -4160,7 +4160,7 @@ _verification:
     2. Did the volume change?
 
 unit: job
-id: Audio-19
+id: touch/Audio-19
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the volume keys functions work with Bluetooth headset after phone resume from sleep
@@ -4184,7 +4184,7 @@ _verification:
     2. Did the volume change?
 
 unit: job
-id: Audio-20
+id: touch/Audio-20
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the phone will be muted after volume set to minimum
@@ -4202,7 +4202,7 @@ _verification:
     2. Did the phone muted?
 
 unit: job
-id: Audio-21
+id: touch/Audio-21
 plugin: manual
 category_id: Audio/Volume adjustment
 _summary: Ensure that the phone presents a volume warning at near maximum volume
@@ -4226,7 +4226,7 @@ id: Video/Video output
 _name: Video/Video output
 
 unit: job
-id: Video-01
+id: touch/Video-01
 plugin: manual
 category_id: Video/Video output
 _summary: Ensure that video playback work smoothly
@@ -4241,7 +4241,7 @@ _verification:
     1. Does video playback smoothly?
 
 unit: job
-id: Video-02
+id: touch/Video-02
 plugin: manual
 category_id: Video/Video output
 _summary: Ensure that video output is resumed after wake up from sleep mode
@@ -4265,7 +4265,7 @@ id: Sensors/Sensors Testing
 _name: Sensors/Sensors Testing
 
 unit: job
-id: Sensors-01
+id: touch/Sensors-01
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure accelerometer is functioning
@@ -4281,7 +4281,7 @@ _verification:
     1. Is accelerometer working?
 
 unit: job
-id: Sensors-02
+id: touch/Sensors-02
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure proximity sensor is functioning
@@ -4303,7 +4303,7 @@ _verification:
     1. Is proximity sensor working?
 
 unit: job
-id: Sensors-03
+id: touch/Sensors-03
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure ambient light sensor is working
@@ -4319,7 +4319,7 @@ _verification:
     1. Is ambient light sensor working?
 
 unit: job
-id: Sensors-04
+id: touch/Sensors-04
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure haptics are working
@@ -4334,7 +4334,7 @@ _verification:
     1. Did vibration occur?
 
 unit: job
-id: Sensors-05
+id: touch/Sensors-05
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure GPS is working
@@ -4353,7 +4353,7 @@ _verification:
     1. Is GPS and location detection working?
 
 unit: job
-id: Sensors-06
+id: touch/Sensors-06
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure gyroscope sensor is working
@@ -4361,7 +4361,7 @@ _steps:
 _verification:
 
 unit: job
-id: Sensors-07
+id: touch/Sensors-07
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure compass sensor is working
@@ -4369,7 +4369,7 @@ _steps:
 _verification:
 
 unit: job
-id: Sensors-08
+id: touch/Sensors-08
 plugin: manual
 category_id: Sensors/Sensors Testing
 _summary: Ensure gravity sensor is working
@@ -4381,7 +4381,7 @@ id: Screen/Screen testing
 _name: Screen/Screen testing
 
 unit: job
-id: Screen-01
+id: touch/Screen-01
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that no screen flicker is present
@@ -4396,7 +4396,7 @@ _verification:
     1. Is screen flicker present?
 
 unit: job
-id: Screen-02
+id: touch/Screen-02
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that pressing power properly suspends the phone
@@ -4411,7 +4411,7 @@ _verification:
     1. Is phone suspended?
 
 unit: job
-id: Screen-03
+id: touch/Screen-03
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that the backlight is off when the phone is suspended
@@ -4426,7 +4426,7 @@ _verification:
     1. Is backlight turned off?
 
 unit: job
-id: Screen-04
+id: touch/Screen-04
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that screen brightness can be changed from power indicator
@@ -4441,7 +4441,7 @@ _verification:
     1. Is brightness changed?
 
 unit: job
-id: Screen-05
+id: touch/Screen-05
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that screen brightness can be changed from system settings
@@ -4457,7 +4457,7 @@ _verification:
     1. Is brightness changed?
 
 unit: job
-id: Screen-06
+id: touch/Screen-06
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that MIR is being run
@@ -4472,7 +4472,7 @@ _verification:
     1. Is MIR running?
 
 unit: job
-id: Screen-07
+id: touch/Screen-07
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure the sensitivity of touchscreen
@@ -4487,7 +4487,7 @@ _verification:
     1. Does the sensitivity of touch screen work as expected?
 
 unit: job
-id: Screen-08
+id: touch/Screen-08
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure the touchscreen accuracy
@@ -4504,7 +4504,7 @@ _verification:
     1. Does the accuracy of touchscreen is accurate enough?
 
 unit: job
-id: Screen-09
+id: touch/Screen-09
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure the sensitivity of touchscreen in each edge
@@ -4519,7 +4519,7 @@ _verification:
     1. Does the sensitivity of touch screen in each edge work as expected?
 
 unit: job
-id: Screen-10
+id: touch/Screen-10
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure the touchscreen accuracy in each edge
@@ -4536,7 +4536,7 @@ _verification:
     1. Does the accuracy of touchscreen is accurate enough in each edge?
 
 unit: job
-id: Screen-11
+id: touch/Screen-11
 plugin: manual
 category_id: Screen/Screen testing
 _summary: Ensure that long press touch screen can work as expected
@@ -4561,7 +4561,7 @@ id: Power Management/Indicator
 _name: Power Management/Indicator
 
 unit: job
-id: PM-01
+id: touch/PM-01
 plugin: manual
 category_id: Power Management/Indicator
 _summary: Ensure that power indicator accurately shows charging status
@@ -4581,7 +4581,7 @@ _verification:
     1. Is battery shown as charging?
 
 unit: job
-id: PM-02
+id: touch/PM-02
 plugin: manual
 category_id: Power Management/Indicator
 _summary: Ensure that charging phone functions
@@ -4600,7 +4600,7 @@ _verification:
     1. Did battery level decrease?
 
 unit: job
-id: PM-03
+id: touch/PM-03
 plugin: manual
 category_id: Power Management/Indicator
 _summary: Ensure that unplugging from power will change the power indicator
@@ -4619,7 +4619,7 @@ _verification:
     1. Is battery shown as discharging?
 
 unit: job
-id: PM-04
+id: touch/PM-04
 plugin: manual
 category_id: Power Management/Indicator
 _summary: Ensure it pops up a low battery message
@@ -4637,7 +4637,7 @@ _verification:
     1. Does low battery message show correctly?
 
 unit: job
-id: PM-05
+id: touch/PM-05
 plugin: manual
 category_id: Power Management/Indicator
 _summary: Ensure that the power indicator shows on the screen after DUT off
@@ -4659,7 +4659,7 @@ id: Power Management/Power consumption
 _name: Power Management/Power consumption
 
 unit: job
-id: PM-08
+id: touch/PM-08
 plugin: manual
 category_id: Power Management/Power consumption
 _summary: Ensure that phone full charge time not more than 4hrs
@@ -4677,7 +4677,7 @@ _verification:
     1. Does full charge time is less than 4hrs?
 
 unit: job
-id: PM-09
+id: touch/PM-09
 plugin: manual
 category_id: Power Management/Power consumption
 _summary: Ensure that phone talk time can surpass more than 8hrs
@@ -4701,7 +4701,7 @@ id: Storage/Internal Storage
 _name: Storage/Internal Storage
 
 unit: job
-id: Internal-01
+id: touch/Internal-01
 plugin: manual
 category_id: Storage/Internal Storage
 _summary: Check for full disk warning
@@ -4719,7 +4719,7 @@ id: Storage/MTP File Transfer
 _name: Storage/MTP File Transfer
 
 unit: job
-id: MTP-01
+id: touch/MTP-01
 plugin: manual
 category_id: Storage/MTP File Transfer
 _summary: DUT connected to USB 2.0 port - recognized as MTP device
@@ -4742,7 +4742,7 @@ _verification:
     2. Did copy/remove/modify functions work?
 
 unit: job
-id: MTP-02
+id: touch/MTP-02
 plugin: manual
 category_id: Storage/MTP File Transfer
 _summary: DUT connected to USB 2.0 port - large file transfer over MTP
@@ -4765,7 +4765,7 @@ _verification:
     2. Can this file be playbacked?
 
 unit: job
-id: MTP-03
+id: touch/MTP-03
 plugin: manual
 category_id: Storage/MTP File Transfer
 _summary: DUT connected to USB 2.0 port - over 100 files to DUT over MTP
@@ -4786,7 +4786,7 @@ _verification:
     1. Did files transfer complete?
 
 unit: job
-id: MTP-04
+id: touch/MTP-04
 plugin: manual
 category_id: Storage/MTP File Transfer
 _summary: DUT connected to USB 3.0 port - recognized as MTP device
@@ -4809,7 +4809,7 @@ _verification:
     2. Did copy/remove/modify functions work?
 
 unit: job
-id: MTP-05
+id: touch/MTP-05
 plugin: manual
 category_id: Storage/MTP File Transfer
 _summary: DUT connected to USB 3.0 port - large file transfer over MTP
@@ -4832,7 +4832,7 @@ _verification:
     2. Can this file be playbacked?
 
 unit: job
-id: MTP-06
+id: touch/MTP-06
 plugin: manual
 category_id: Storage/MTP File Transfer
 _summary: DUT connected to USB 3.0 port - over 100 files to DUT over MTP
@@ -4857,7 +4857,7 @@ id: Storage/MTP Mediascanner Update
 _name: Storage/MTP Mediascanner Update
 
 unit: job
-id: MU-01
+id: touch/MU-01
 plugin: manual
 category_id: Storage/MTP Mediascanner Update
 _summary: Make sure that music scope can scan and add music file after MTP transfer to storage
@@ -4880,7 +4880,7 @@ _verification:
     2. Does all the music files appear on the Music scope?
 
 unit: job
-id: MU-02
+id: touch/MU-02
 plugin: manual
 category_id: Storage/MTP Mediascanner Update
 _summary: Make sure that music scope can scan and add music files that are under folders after MTP transfer to storage
@@ -4907,7 +4907,7 @@ id: Storage/SD Card
 _name: Storage/SD Card
 
 unit: job
-id: SD-01
+id: touch/SD-01
 plugin: manual
 category_id: Storage/SD Card
 _summary: Mounts SD card at boot
@@ -4922,7 +4922,7 @@ _verification:
     1. When boot complete is the SD card mounted?
 
 unit: job
-id: SD-02
+id: touch/SD-02
 plugin: manual
 category_id: Storage/SD Card
 _summary: Automount SD card while DUT is on
@@ -4938,7 +4938,7 @@ _verification:
     1. Check that the SD card is detected and notification is displayed
 
 unit: job
-id: SD-03
+id: touch/SD-03
 plugin: manual
 category_id: Storage/SD Card
 _summary: Contents are visible in file manager
@@ -4954,7 +4954,7 @@ _verification:
     1. Check that the contents of SD card are visible in the File manager
 
 unit: job
-id: SD-04
+id: touch/SD-04
 plugin: manual
 category_id: Storage/SD Card
 _summary: Audio files are discovered by mediascanner
@@ -4968,7 +4968,7 @@ _verification:
     1. When refreshed check that files on the SD card are listed
 
 unit: job
-id: SD-05
+id: touch/SD-05
 plugin: manual
 category_id: Storage/SD Card
 _summary: Video files are discovered by mediascanner
@@ -4982,7 +4982,7 @@ _verification:
     1. When refreshed check that files on the SD card are listed
 
 unit: job
-id: SD-06
+id: touch/SD-06
 plugin: manual
 category_id: Storage/SD Card
 _summary: SD card removal while DUT is on
@@ -4996,7 +4996,7 @@ _verification:
     1. Card is not corrupted during eject
 
 unit: job
-id: SD-07
+id: touch/SD-07
 plugin: manual
 category_id: Storage/SD Card
 _summary: Format micro SD card
@@ -5013,7 +5013,7 @@ _verification:
     3. Check the card can be mounted on a Desktop PC
 
 unit: job
-id: SD-08
+id: touch/SD-08
 plugin: manual
 category_id: Storage/SD Card
 _summary: Copy files from internal storage to sd card using file manager
@@ -5034,7 +5034,7 @@ id: Storage/Bluetooth File Transfer
 _name: Storage/Bluetooth File Transfer
 
 unit: job
-id: BTFT-01
+id: touch/BTFT-01
 plugin: manual
 category_id: Storage/Bluetooth File Transfer
 _summary: Transfer files to the phone using Bluetooth file transfer
@@ -5043,7 +5043,7 @@ _verification:
     1. File is present on the DUT
 
 unit: job
-id: BTFT-02
+id: touch/BTFT-02
 plugin: manual
 category_id: Storage/Bluetooth File Transfer
 _summary: Transfer files from the phone using Bluetooth file transfer
@@ -5058,7 +5058,7 @@ id: ubuntu-touch
 _name: Ubuntu Touch certification tests
 _description:
  This test plan selects all the tests required to certify a device with Ubuntu Touch
-include: .*
+include: touch/.*
 bootstrap_include:
  uls/uls_resource
  tst/tst_resource
