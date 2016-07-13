@@ -1,7 +1,7 @@
 #!/bin/sh
 # This file is part of Checkbox.
 #
-# Copyright 2014 Canonical Ltd.
+# Copyright 2014-2016 Canonical Ltd.
 # Written by:
 #   Zygmunt Krynicki <zygmunt.krynicki@canonical.com>
 #
@@ -34,7 +34,7 @@ if [ "$PROVIDERPATH" = "" ]; then
     exit 101
 fi
 
-for provider in $CHECKBOX_TOP/providers/plainbox-provider-* $CHECKBOX_TOP/providers/2015.com.canonical.certification:qml-tests; do
+for provider in $CHECKBOX_TOP/providers/plainbox-provider-*; do
     provider=$(basename "$provider")
     echo "I: running 'develop' on $provider"
     ( cd $CHECKBOX_TOP/providers/$provider && python3 manage.py develop --force --directory=$PROVIDERPATH )
