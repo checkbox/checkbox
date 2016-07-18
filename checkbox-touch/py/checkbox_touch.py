@@ -181,7 +181,7 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.assistant.use_alternate_execution_controllers(ctrl_setup_list)
 
         if launcher_definition:
-            from checkbox_ng.launcher import LauncherDefinition
+            from plainbox.impl.launcher import LauncherDefinition
             generic_launcher = LauncherDefinition()
             generic_launcher.read([launcher_definition])
             config_filename = os.path.expandvars(
