@@ -26,11 +26,10 @@ import Ubuntu.Components.Popups 1.3
     \inherits Item
 
     This component is an error reporting dialog.
-    To use this component call showError() from ErrorLogic.js
+
+    To use this component call showError() from DialogMgr object.
     Typical usage is:
-        import "components/ErrorLogic.js" as ErrorLogic
-        (...)
-        ErrorLogic.showError(mainView, "There was something wrong", Qt.quit)
+        dialogMgr.showError(mainView, "There was something wrong", Qt.quit)
 */
 
 Item {

@@ -24,7 +24,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
-import "../ConfirmationLogic.js" as ConfirmationLogic
 
 Action {
     id: skipAction
@@ -36,7 +35,7 @@ Action {
             question : i18n.tr("Do you really want to skip this test?"),
             remember : true,
         }
-        ConfirmationLogic.confirmRequest(mainView,
+        dialogMgr.confirmRequest(mainView,
             confirmationOptions, function(res) {
                 var currentTest = test;
                 if (res) {

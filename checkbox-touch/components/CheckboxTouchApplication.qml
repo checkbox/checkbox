@@ -21,8 +21,6 @@
  */
 
 import QtQuick 2.0
-import "ErrorLogic.js" as ErrorLogic
-
 
 PythonObjectRef {
     id: app
@@ -50,7 +48,7 @@ PythonObjectRef {
             sessionReady();
         }, function(error) {
             console.error("Unable to start session: " + error);
-            ErrorLogic.showError(mainView,
+            dialogMgr.showError(mainView,
                                  i18n.tr("Could not start a session. Reason:\n" + error),
                                  Qt.quit,
                                  i18n.tr("Quit"));
@@ -60,7 +58,7 @@ PythonObjectRef {
         request("resume_session", [rerunLastTest, outcome], function(result) {
             if (!result["session_id"]) {
                 pageStack.pop();
-                ErrorLogic.showError(mainView,
+                dialogMgr.showError(mainView,
                                      i18n.tr("Could not resume session"),
                                      function() {
                                          startSession();
@@ -243,7 +241,7 @@ PythonObjectRef {
 
         }, function(error) {
                 console.error("Unable to load providers: " + error);
-                ErrorLogic.showError(mainView, i18n.tr("No providers available!"), Qt.quit);
+                dialogMgr.showError(mainView, i18n.tr("No providers available!"), Qt.quit);
         });
     }
 }

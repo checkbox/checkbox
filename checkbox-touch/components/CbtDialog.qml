@@ -27,12 +27,12 @@ import QtQuick.Layouts 1.1
     \inherits Item
 
     This component is a general purpose message+buttons dialog.
-    It should be used through API in CbtDialogLogic.js.
+    It should be used through DialogMgr object.
     By default every button in the dialog will close it.
 
     Typical usage:
-            CbtDialog.showDialog(main, i18n.tr("Operation succedded"));
-            CbtDialog.showDialog(main, i18n.tr("Do you want to proceed"), [
+            dialogMgr.showDialog(main, i18n.tr("Operation succedded"));
+            dialogMgr.showDialog(main, i18n.tr("Do you want to proceed"), [
                 {"text": i18n.tr("OK"), "color": "green", "onClicked": function() {console.log("Clicked OK");} },
                 {"text": i18n.tr("Cancel"), "color": "red", "onClicked": function() {console.log("Clicked cancel");} },
             ]);
