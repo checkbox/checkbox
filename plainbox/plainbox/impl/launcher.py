@@ -18,22 +18,22 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-:mod:`checkbox_ng.launcher` -- launcher definition
+:mod:`plainbox.impl.launcher` -- launcher definition
 ==================================================
 """
 
 from gettext import gettext as _
 import logging
 
-from checkbox_ng.config import SECURE_ID_PATTERN
 from plainbox.impl.applogic import PlainBoxConfig
 from plainbox.impl.secure import config
 from plainbox.impl.session.assistant import get_all_sa_flags
 from plainbox.impl.session.assistant import get_known_sa_api_versions
 from plainbox.impl.transport import get_all_transports
+from plainbox.impl.transport import SECURE_ID_PATTERN
 
 
-logger = logging.getLogger("checkbox.ng.launcher")
+logger = logging.getLogger("plainbox.launcher")
 
 
 class LauncherDefinition(PlainBoxConfig):

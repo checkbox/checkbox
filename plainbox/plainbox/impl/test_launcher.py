@@ -17,10 +17,10 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-checkbox_ng.test_launcher
+plainbox.impl.test_launcher
 =========================
 
-Test definitions for checkbox_ng.launcher module
+Test definitions for plainbox.imlp.launcher module
 """
 
 from unittest import TestCase
@@ -28,9 +28,9 @@ from textwrap import dedent
 
 from plainbox.impl.secure.config import Unset
 
-from launcher import LauncherDefinition
-from launcher import LauncherDefinitionLegacy
-from launcher import LauncherDefinition1
+from plainbox.impl.launcher import LauncherDefinition
+from plainbox.impl.launcher import LauncherDefinitionLegacy
+from plainbox.impl.launcher import LauncherDefinition1
 
 
 class LauncherDefinitionTests(TestCase):
