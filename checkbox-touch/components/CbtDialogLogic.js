@@ -1,4 +1,4 @@
-.import Ubuntu.Components.Popups 1.0 as Popups
+.import Ubuntu.Components.Popups 1.3 as Popups
 
 function showDialog(caller, message, buttons) {
     var p = Qt.createComponent(Qt.resolvedUrl("CbtDialog.qml")).createObject(caller);

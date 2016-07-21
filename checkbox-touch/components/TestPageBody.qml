@@ -26,7 +26,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.Popups 1.3
 
 ColumnLayout {
     /* this property is the text to be shown in the top label */

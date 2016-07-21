@@ -1,4 +1,4 @@
-.import Ubuntu.Components.Popups 1.0 as Popups
+.import Ubuntu.Components.Popups 1.3 as Popups
 
 function showError(caller, errorMessage, continuation, finalLabel) {
     // stackDepth keeps track of how many popups are stacked on the screen
