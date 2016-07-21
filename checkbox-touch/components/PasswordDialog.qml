@@ -32,9 +32,9 @@ Item {
 
     /*!
       This alias aids the process of popping up the dialog.
-      Usage: PopupUtils.open(passwordDialog.dialogComponent);
+      Usage: PopupUtils.open(passwordDialog.dialog);
      */
-    property alias dialogComponent: component
+    property alias dialog: component
 
     signal passwordEntered(string password)
     signal dialogCancelled

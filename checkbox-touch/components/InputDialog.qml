@@ -30,9 +30,9 @@ Item {
 
     /*!
       This alias aids the process of popping up the dialog.
-      Usage: PopupUtils.open(inputDialog.dialogComponent);
+      Usage: PopupUtils.open(inputDialog.dialog);
      */
-    property alias dialogComponent: component
+    property alias dialog: component
 
     property string prompt: ""
 

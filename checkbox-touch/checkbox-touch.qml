@@ -537,7 +537,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     };
                     passwordDialog.passwordEntered.connect(rememberContinuation);
                     passwordDialog.dialogCancelled.connect(cancelContinuation);
-                    PopupUtils.open(passwordDialog.dialogComponent);
+                    PopupUtils.open(passwordDialog.dialog);
                     return;
                 }
             }
@@ -776,7 +776,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     test["comments"] = comment;
                     completeTest(test);
                 });
-                PopupUtils.open(commentsDialog.dialogComponent);
+                PopupUtils.open(commentsDialog.dialog);
             } else {
                 completeTest(test);
             }
@@ -800,7 +800,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                 }
                 continuation();
             });
-            PopupUtils.open(dlg.dialogComponent);
+            PopupUtils.open(dlg.dialog);
             return; // inputForm gets precedence over input
         }
 
@@ -826,7 +826,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     cancelContinuation();
                     return;
                 });
-                PopupUtils.open(dlg.dialogComponent);
+                PopupUtils.open(dlg.dialog);
                 return;
             }
             continuation();

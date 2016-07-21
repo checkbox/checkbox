@@ -34,6 +34,6 @@ Action {
         commentsDialog.commentAdded.connect(function(comment) {
             test["comments"] = comment;
         });
-        PopupUtils.open(commentsDialog.dialogComponent);
+        PopupUtils.open(commentsDialog.dialog);
     }
 }

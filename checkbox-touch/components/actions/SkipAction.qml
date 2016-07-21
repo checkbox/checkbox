@@ -48,7 +48,7 @@ Action {
                         testDone(currentTest);
                     };
                     commentsDialog.commentAdded.connect(handler);
-                    PopupUtils.open(commentsDialog.dialogComponent);
+                    PopupUtils.open(commentsDialog.dialog);
                 }
         });
     }
