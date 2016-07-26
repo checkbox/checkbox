@@ -1,0 +1,79 @@
+#!/usr/bin/python
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+Script that release a Launchpad project milestone (including related bugs).
+Meant to be used as part of a checkbox release to the Hardware Certification
+public PPA.
+"""
+
+import sys
+import time
+
+from launchpadlib.launchpad import Launchpad
+from argparse import ArgumentParser
+
+
+def main():
+    parser = ArgumentParser('Release a Launchpad project milestone')
+    parser.add_argument('project_name', metavar='project-name',
+                        help="Unique name of the project")
+    parser.add_argument('--series-name', '-s',
+                        help="Name of the targetted series, default trunk")
+    parser.add_argument('--milestone-name', '-m',
+                        help="Milestone to release")
+    args = parser.parse_args()
+
+    lp = Launchpad.login_with(sys.argv[0], "production")
+    series_name = args.series_name if args.series_name else "trunk"
+    milestone_name = args.milestone_name if args.milestone_name else None
+
+    # Find the project
+    try:
+        project = lp.projects[args.project_name]
+    except KeyError:
+        raise ValueError('No such project: "%s"' % args.project_name)
+
+    # Find the series
+    matching_series = [
+        series for series in project.series if series.name == series_name][-1]
+
+    # Find the milestone
+    matching_milestone = [
+        milestone for milestone in matching_series.active_milestones
+        if milestone.name == milestone_name][-1]
+
+    for bug_task in matching_milestone.searchTasks():
+        if "https://api.launchpad.net/1.0/bugs" not in bug_task.bug.self_link:
+            continue
+        bug_task = lp.load(bug_task.self_link)
+        print "Updating {}".format(bug_task.bug.web_link)
+        bug_task.status = "Fix Released"
+        bug_task.lp_save()
+
+    now = time.strftime('%Y-%m-%d-%X', time.gmtime())
+    matching_milestone.createProductRelease(date_released=now)
+    matching_milestone.is_active = False
+    matching_milestone.lp_save()
+
+    print "DONE"
+
+
+if __name__ == "__main__":
+    sys.exit(main())

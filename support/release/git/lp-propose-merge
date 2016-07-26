@@ -1,0 +1,82 @@
+#!/usr/bin/python
+# This file is part of Checkbox.
+#
+# Copyright 2014 Canonical Ltd.
+# Written by:
+#   Sylvain Pineau <sylvain.pineau@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3,
+# as published by the Free Software Foundation.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+Script that creates a merge proposal in Launchpad.
+Meant to be used as part of a checkbox release to the Hardware Certification
+public PPA to merge release branches in their respective trunks.
+"""
+
+import sys
+
+from argparse import ArgumentParser
+from datetime import datetime
+
+from launchpadlib.launchpad import Launchpad
+
+
+def main():
+    parser = ArgumentParser("A script for proposing release merges "
+                            " in Launchpad.")
+    parser.add_argument('repo',
+                        help="Unique name of the repository")
+    parser.add_argument("--target-branch", "-t", default='master',
+                        help="The target branch to merge into.")
+    parser.add_argument("--proposed-branch", "-p", default='release',
+                        help="The proposed release branch.")
+    parser.add_argument("--release-message", "-m",
+                        help="The release message to include in the "
+                             "merge request")
+    args = parser.parse_args()
+    lp = Launchpad.login_with(sys.argv[0], 'production', version="devel")
+    repo = lp.git_repositories.getByPath(path=args.repo)
+    if not repo:
+        parser.error("{} repo was not found in Launchpad.".format(args.repo))
+    try:
+        proposed_branch = [
+            b for b in repo.branches
+            if args.proposed_branch in b.path.split('/')[-1]][-1]
+    except IndexError:
+        parser.error("{} branch was not found in Launchpad.".format(
+            args.proposed_branch))
+    try:
+        target_branch = [
+            b for b in repo.branches
+            if args.target_branch in b.path.split('/')[-1]][-1]
+    except IndexError:
+        parser.error("{} branch was not found in Launchpad.".format(
+            args.target_branch))
+    if args.release_message:
+        release_message = args.release_message
+    else:
+        release_message = "Release_{}_Week{}".format(
+            datetime.now().isocalendar()[0],
+            datetime.now().isocalendar()[1])
+
+    merge_request = proposed_branch.createMergeProposal(
+        merge_target=target_branch,
+        initial_comment=release_message,
+        commit_message=release_message,
+        needs_review=True)
+    print(merge_request.web_link)
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
