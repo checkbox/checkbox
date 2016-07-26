@@ -20,19 +20,19 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.Popups 1.3
 import QtQuick.Layouts 1.1
 
 /*! \brief Common dialog popup.
     \inherits Item
 
     This component is a general purpose message+buttons dialog.
-    It should be used through API in CbtDialogLogic.js.
+    It should be used through DialogMgr object.
     By default every button in the dialog will close it.
 
     Typical usage:
-            CbtDialog.showDialog(main, i18n.tr("Operation succedded"));
-            CbtDialog.showDialog(main, i18n.tr("Do you want to proceed"), [
+            dialogMgr.showDialog(main, i18n.tr("Operation succedded"));
+            dialogMgr.showDialog(main, i18n.tr("Do you want to proceed"), [
                 {"text": i18n.tr("OK"), "color": "green", "onClicked": function() {console.log("Clicked OK");} },
                 {"text": i18n.tr("Cancel"), "color": "red", "onClicked": function() {console.log("Clicked cancel");} },
             ]);

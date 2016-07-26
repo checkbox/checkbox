@@ -20,7 +20,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.Popups 1.3
 
 /*! \brief Password prompt dialog.
     \inherits Item
@@ -32,9 +32,9 @@ Item {
 
     /*!
       This alias aids the process of popping up the dialog.
-      Usage: PopupUtils.open(passwordDialog.dialogComponent);
+      Usage: PopupUtils.open(passwordDialog.dialog);
      */
-    property alias dialogComponent: component
+    property alias dialog: component
 
     signal passwordEntered(string password)
     signal dialogCancelled

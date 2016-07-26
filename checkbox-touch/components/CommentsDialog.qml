@@ -20,7 +20,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.Popups 1.3
 
 /*! \brief Comment addition dialog.
     \inherits Item
@@ -31,9 +31,9 @@ import Ubuntu.Components.Popups 0.1
 Item {
     id: commentsDialog
     /*!
-      `dialogComponent` alias shortens the code that launches this dialog
+      `dialog` alias shortens the code that launches this dialog
      */
-    property alias dialogComponent: component
+    property alias dialog: component
 
     /*!
       Use this property to populate the textArea that the user will write in.

@@ -21,13 +21,10 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.Popups 1.3
 import QtQuick.Layouts 1.1
 import io.thp.pyotherside 1.4
 import "components"
-import "components/ErrorLogic.js" as ErrorLogic
-import "components/CbtDialogLogic.js" as CbtDialogLogic
-
 
 /*!
     \brief MainView with a Label and Button elements.
@@ -154,7 +151,7 @@ MainView {
 
         onError: {
             console.error("python error: " + traceback);
-            ErrorLogic.showError(mainView, "python error: " + traceback, Qt.quit);
+            dialogMgr.showError(mainView, "python error: " + traceback, Qt.quit);
         }
         onReceived: console.log("pyotherside.send: " + data)
     }
@@ -334,7 +331,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
 
         function setup(testplan_info_list) {
             if (testplan_info_list.length<1) {
-                ErrorLogic.showError(mainView, "Test plan missing", Qt.quit);
+                dialogMgr.showError(mainView, "Test plan missing", Qt.quit);
             }
 
             model.clear();
@@ -465,6 +462,9 @@ to rerun last test, continue to the next test, or start a new session?").arg(
     PasswordDialog {
         id: passwordDialog
     }
+    DialogMgr {
+        id: dialogMgr
+    }
 
     CommandOutputPage {
         id: commandOutputPage
@@ -480,7 +480,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
         if (pageComponent.status == Component.Error) {
             var msg = i18n.tr("Could not create component '%1'\n").arg(url) + pageComponent.errorString();
             console.error(msg);
-            ErrorLogic.showError(mainView, msg, Qt.quit, i18n.tr("Quit"));
+            dialogMgr.showError(mainView, msg, Qt.quit, i18n.tr("Quit"));
         } else {
             var pageObject = pageComponent.createObject();
             if (test) {
@@ -502,7 +502,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                 }
             } else {
                 if (result.errors_encountered) {
-                    ErrorLogic.showError(mainView, i18n.tr("Could not resume session."),
+                    dialogMgr.showError(mainView, i18n.tr("Could not resume session."),
                                          gcAndStartSession(),
                                          i18n.tr("Start new session"));
                 } else {
@@ -537,7 +537,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     };
                     passwordDialog.passwordEntered.connect(rememberContinuation);
                     passwordDialog.dialogCancelled.connect(cancelContinuation);
-                    PopupUtils.open(passwordDialog.dialogComponent);
+                    PopupUtils.open(passwordDialog.dialog);
                     return;
                 }
             }
@@ -599,7 +599,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
             if (appSettings["launcher"]) {
                 app.exportResultsWithLauncherSettings(function(uri) {
                     var htmlReportUrl = uri;
-                    CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
+                    dialogMgr.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
                                               [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
                                                   var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
                                                   webviewer.uri = htmlReportUrl;
@@ -610,7 +610,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                 app.exportResults('2013.com.canonical.plainbox::html', [], function(uri) {
                     var htmlReportUrl = uri;
                     app.exportResults('2013.com.canonical.plainbox::xlsx', ["with-sys-info", "with-summary", "with-job-description", "with-text-attachments", "with-unit-categories"], function(uri) {
-                        CbtDialogLogic.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
+                        dialogMgr.showDialog(mainView, i18n.tr("Reports have been saved to your Documents folder"),
                                                   [{ "text": i18n.tr("OK"), "color": UbuntuColors.green}, {"text": i18n.tr("View Report"), "color": UbuntuColors.green, "onClicked": function(uri) {
                                                       var webviewer = Qt.createComponent(Qt.resolvedUrl("components/WebViewer.qml")).createObject();
                                                       webviewer.uri = htmlReportUrl;
@@ -642,12 +642,12 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                         }
                     }
                     buttons.push({"text": i18n.tr("OK"), "color": UbuntuColors.green});
-                    CbtDialogLogic.showDialog(
+                    dialogMgr.showDialog(
                         resultsPage,
                         i18n.tr("Report has been submitted.\n" + s), buttons);
                 },
                 function(error) {
-                    ErrorLogic.showError(mainView,
+                    dialogMgr.showError(mainView,
                                          i18n.tr("Could not submit results. Reason:\n" + error),
                                          function(){},
                                          i18n.tr("OK"));
@@ -776,7 +776,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     test["comments"] = comment;
                     completeTest(test);
                 });
-                PopupUtils.open(commentsDialog.dialogComponent);
+                PopupUtils.open(commentsDialog.dialog);
             } else {
                 completeTest(test);
             }
@@ -800,7 +800,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                 }
                 continuation();
             });
-            PopupUtils.open(dlg.dialogComponent);
+            PopupUtils.open(dlg.dialog);
             return; // inputForm gets precedence over input
         }
 
@@ -826,7 +826,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     cancelContinuation();
                     return;
                 });
-                PopupUtils.open(dlg.dialogComponent);
+                PopupUtils.open(dlg.dialog);
                 return;
             }
             continuation();

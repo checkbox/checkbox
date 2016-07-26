@@ -28,7 +28,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.1
-import "CbtDialogLogic.js" as CbtDialog
 
 Page {
     id: root
@@ -124,7 +123,7 @@ Page {
             }
             onLatchedClicked: {
                 columnLayout.latchGroup();
-                CbtDialog.showDialog(root, i18n.tr('What to do with the last job?'), [
+                dialogMgr.showDialog(root, i18n.tr('What to do with the last job?'), [
                     {
                         'text': i18n.tr('Pass'),
                         'objectName': 'passBtn',

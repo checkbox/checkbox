@@ -20,7 +20,7 @@
  */
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.Popups 1.3
 
 /*! \brief Simple input dialog.
     \inherits Item
@@ -30,9 +30,9 @@ Item {
 
     /*!
       This alias aids the process of popping up the dialog.
-      Usage: PopupUtils.open(inputDialog.dialogComponent);
+      Usage: PopupUtils.open(inputDialog.dialog);
      */
-    property alias dialogComponent: component
+    property alias dialog: component
 
     property string prompt: ""
 
