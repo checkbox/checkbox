@@ -150,7 +150,11 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         raise StateNotFoundError(*args, **kwargs)
 
     def terminate(self):
-        self.app.process.terminate()
+        if platform.model() == 'Desktop':
+            self.app.process.terminate()
+        else:
+            import subprocess
+            subprocess.call(['pkill', 'qmlscene'])
 
     def _launch_application_from_desktop(self):
         app_qml_source_location = self._get_app_qml_source_path()
