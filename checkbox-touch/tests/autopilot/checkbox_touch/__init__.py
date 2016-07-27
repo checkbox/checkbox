@@ -26,7 +26,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     """Common test case that provides several useful methods for the tests."""
 
     package_id = 'com.ubuntu.checkbox'
-    app_name = 'checkbox-touch'
+    app_name = 'checkbox-touch-autopilot'
 
     def setUp(self):
         super(ClickAppTestCase, self).setUp()
