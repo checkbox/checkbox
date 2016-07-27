@@ -97,7 +97,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         # make sure that test is shown (therefore session has been started)
         self.app.wait_select_single(
             objectName='userInteractVerifyIntroPage', visible=True)
-        self.app.process.terminate()
+        self.terminate()
 
     def process_sequence_of_clicks_on_pages(self, steps):
         """
@@ -148,6 +148,9 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 retries -= 1
                 continue
         raise StateNotFoundError(*args, **kwargs)
+
+    def terminate(self):
+        self.app.process.terminate()
 
     def _launch_application_from_desktop(self):
         app_qml_source_location = self._get_app_qml_source_path()
