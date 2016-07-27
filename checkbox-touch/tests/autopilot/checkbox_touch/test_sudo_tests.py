@@ -37,7 +37,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         mock_template = textwrap.dedent("""
             #!/usr/bin/env python3
             import sys
-            expected_password = 'autopilot'
+            expected_password = '0000'
             given_password = sys.stdin.readlines()[0].strip('\\n')
             if given_password != expected_password:
                 raise SystemExit(1)
@@ -57,7 +57,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         keyboard = Keyboard.create()
         password_box = self.app.wait_select_single(objectName='passwordBox')
         with keyboard.focused_type(password_box) as kb:
-            kb.type("autopilot")
+            kb.type("0000")
         ok_btn = self.app.wait_select_single(objectName='okButton')
         self.pointing_device.click_object(ok_btn)
         results = {'passed': '2', 'failed': '0', 'skipped': '0'}
