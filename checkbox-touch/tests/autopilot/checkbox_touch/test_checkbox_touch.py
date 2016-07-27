@@ -23,7 +23,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         dialog = self.app.wait_select_single(objectName='dialog')
         yes_btn = dialog.select_single(objectName='yesButton')
         self.pointing_device.click_object(yes_btn)
-        keyboard = Keyboard.create('X11')
+        keyboard = Keyboard.create()
         comment_text = self.app.select_single(objectName='commentText')
         with keyboard.focused_type(comment_text) as kb:
             kb.type("Skipped by autopilot!")

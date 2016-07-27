@@ -54,7 +54,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         test_id = '2015.com.canonical.certification::autopilot/sudo-right'
         self.start_and_select_tests(
             '2015.com.canonical.certification::sudo', [test_id])
-        keyboard = Keyboard.create('X11')
+        keyboard = Keyboard.create()
         password_box = self.app.wait_select_single(objectName='passwordBox')
         with keyboard.focused_type(password_box) as kb:
             kb.type("autopilot")
@@ -67,7 +67,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         test_id = '2015.com.canonical.certification::autopilot/sudo-right'
         self.start_and_select_tests(
             '2015.com.canonical.certification::sudo', [test_id])
-        keyboard = Keyboard.create('X11')
+        keyboard = Keyboard.create()
         password_box = self.app.wait_select_single(objectName='passwordBox')
         with keyboard.focused_type(password_box) as kb:
             kb.type("wrong")

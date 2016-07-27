@@ -24,7 +24,7 @@ def get_path_to_source_root():
 class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     """Common test case that provides several useful methods for the tests."""
 
-    package_id = ''  # TODO
+    package_id = 'com.ubuntu.checkbox'
     app_name = 'checkbox-touch'
 
     def setUp(self):
@@ -189,7 +189,10 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     def _launch_application_from_phablet(self):
         # On phablet, we only run the tests against the installed click
         # package.
-        self.app = self.launch_click_package(self.pacakge_id, self.app_name)
+        self.app = self.launch_click_package(
+            self.package_id,
+            self.app_name,
+            emulator_base=emulators.UbuntuUIToolkitEmulatorBase)
 
     @property
     def main_view(self):
