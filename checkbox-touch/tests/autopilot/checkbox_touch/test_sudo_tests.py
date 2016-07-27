@@ -4,6 +4,7 @@ import sys
 import tempfile
 import textwrap
 
+from autopilot import input, platform
 from autopilot.input import Keyboard
 
 import checkbox_touch
@@ -22,10 +23,13 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
     """
 
     def tearDown(self):
-        os.environ['PATH'] = self._original_path
+        if platform.model() == 'Desktop':
+            self.tear_down_mock()
         super().tearDown()
 
     def _launch_application_from_desktop(self):
+		# mock done in setUp would not affect the execution, this is why it has
+		# to be here
         self.setup_mock()
         super()._launch_application_from_desktop()
 
@@ -49,6 +53,9 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         st = os.stat(mock_file)
         os.chmod(mock_file, st.st_mode | stat.S_IEXEC)
         os.environ['PATH'] = tmp_path + os.pathsep + self._original_path
+
+    def tear_down_mock(self):
+        os.environ['PATH'] = self._original_path
 
     def test_smoke(self):
         test_id = '2015.com.canonical.certification::autopilot/sudo-right'
