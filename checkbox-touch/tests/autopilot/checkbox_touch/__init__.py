@@ -5,6 +5,7 @@
 import os
 
 from autopilot import input, platform
+from autopilot.exceptions import StateNotFoundError
 from autopilot.introspection.dbus import StateNotFoundError
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
@@ -79,12 +80,17 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         # To make sure everything is loaded and ready, scroll to the bottom
         list_view = self.app.wait_select_single(
             objectName='listView', visible=True)
-        list_view.swipe_to_bottom()
         for job_id in job_ids:
-            list_item = test_selection_page.wait_select_single(
-                objectName='listItem', item_mod_id=job_id)
-            list_item.swipe_into_view()
-            self.pointing_device.click_object(list_item)
+            found = False
+            while not found:
+                try:
+                    list_item = test_selection_page.select_single(
+                        objectName='listItem', item_mod_id=job_id)
+                    found = True
+                    list_item.swipe_into_view()
+                    self.pointing_device.click_object(list_item)
+                except StateNotFoundError:
+                    list_view.swipe_to_show_more_below()
         continue_btn = test_selection_page.wait_select_single(
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
