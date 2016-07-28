@@ -23,7 +23,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         dialog = self.app.wait_select_single(objectName='dialog')
         yes_btn = dialog.select_single(objectName='yesButton')
         self.pointing_device.click_object(yes_btn)
-        keyboard = Keyboard.create('X11')
+        keyboard = Keyboard.create()
         comment_text = self.app.select_single(objectName='commentText')
         with keyboard.focused_type(comment_text) as kb:
             kb.type("Skipped by autopilot!")
@@ -372,8 +372,8 @@ class GarbageCollectionTests(checkbox_touch.ClickAppTestCase):
         restart_btn = resume_page.wait_select_single(
             objectName='restartButton')
         self.pointing_device.click_object(restart_btn)
-        # quit the app
-        self.app.process.terminate()
+        # restart the app
+        self.terminate()
         self.launch_application()
         # make sure the app still wants to garbage collect some sessions
         # check if the button from session garbage collect popup is visible
@@ -388,8 +388,8 @@ class GarbageCollectionTests(checkbox_touch.ClickAppTestCase):
         self.pointing_device.click_object(delete_btn)
         # make sure the app behaves normally afterwards
         self.skipResumeIfShown()
-        # quit the app
-        self.app.process.terminate()
+        # restart the app
+        self.terminate()
         self.launch_application()
         # make sure that app doens't show garbage collection dialog
         self.app.wait_select_single(

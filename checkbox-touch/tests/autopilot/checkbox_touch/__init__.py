@@ -5,6 +5,7 @@
 import os
 
 from autopilot import input, platform
+from autopilot.exceptions import StateNotFoundError
 from autopilot.introspection.dbus import StateNotFoundError
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
@@ -24,8 +25,8 @@ def get_path_to_source_root():
 class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     """Common test case that provides several useful methods for the tests."""
 
-    package_id = ''  # TODO
-    app_name = 'checkbox-touch'
+    package_id = 'com.ubuntu.checkbox'
+    app_name = 'checkbox-touch-autopilot'
 
     def setUp(self):
         super(ClickAppTestCase, self).setUp()
@@ -79,12 +80,17 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         # To make sure everything is loaded and ready, scroll to the bottom
         list_view = self.app.wait_select_single(
             objectName='listView', visible=True)
-        list_view.swipe_to_bottom()
         for job_id in job_ids:
-            list_item = test_selection_page.wait_select_single(
-                objectName='listItem', item_mod_id=job_id)
-            list_item.swipe_into_view()
-            self.pointing_device.click_object(list_item)
+            found = False
+            while not found:
+                try:
+                    list_item = test_selection_page.select_single(
+                        objectName='listItem', item_mod_id=job_id)
+                    found = True
+                    list_item.swipe_into_view()
+                    self.pointing_device.click_object(list_item)
+                except StateNotFoundError:
+                    list_view.swipe_to_show_more_below()
         continue_btn = test_selection_page.wait_select_single(
             objectName='continueButton')
         self.pointing_device.click_object(continue_btn)
@@ -97,7 +103,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         # make sure that test is shown (therefore session has been started)
         self.app.wait_select_single(
             objectName='userInteractVerifyIntroPage', visible=True)
-        self.app.process.terminate()
+        self.terminate()
 
     def process_sequence_of_clicks_on_pages(self, steps):
         """
@@ -149,6 +155,13 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 continue
         raise StateNotFoundError(*args, **kwargs)
 
+    def terminate(self):
+        if platform.model() == 'Desktop':
+            self.app.process.terminate()
+        else:
+            import subprocess
+            subprocess.call(['pkill', 'qmlscene'])
+
     def _launch_application_from_desktop(self):
         app_qml_source_location = self._get_app_qml_source_path()
         if os.path.exists(app_qml_source_location):
@@ -189,7 +202,10 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     def _launch_application_from_phablet(self):
         # On phablet, we only run the tests against the installed click
         # package.
-        self.app = self.launch_click_package(self.pacakge_id, self.app_name)
+        self.app = self.launch_click_package(
+            self.package_id,
+            self.app_name,
+            emulator_base=emulators.UbuntuUIToolkitEmulatorBase)
 
     @property
     def main_view(self):

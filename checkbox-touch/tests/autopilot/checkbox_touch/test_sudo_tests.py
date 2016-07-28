@@ -4,6 +4,7 @@ import sys
 import tempfile
 import textwrap
 
+from autopilot import input, platform
 from autopilot.input import Keyboard
 
 import checkbox_touch
@@ -22,10 +23,13 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
     """
 
     def tearDown(self):
-        os.environ['PATH'] = self._original_path
+        if platform.model() == 'Desktop':
+            self.tear_down_mock()
         super().tearDown()
 
     def _launch_application_from_desktop(self):
+		# mock done in setUp would not affect the execution, this is why it has
+		# to be here
         self.setup_mock()
         super()._launch_application_from_desktop()
 
@@ -37,7 +41,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         mock_template = textwrap.dedent("""
             #!/usr/bin/env python3
             import sys
-            expected_password = 'autopilot'
+            expected_password = '0000'
             given_password = sys.stdin.readlines()[0].strip('\\n')
             if given_password != expected_password:
                 raise SystemExit(1)
@@ -50,14 +54,17 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         os.chmod(mock_file, st.st_mode | stat.S_IEXEC)
         os.environ['PATH'] = tmp_path + os.pathsep + self._original_path
 
+    def tear_down_mock(self):
+        os.environ['PATH'] = self._original_path
+
     def test_smoke(self):
         test_id = '2015.com.canonical.certification::autopilot/sudo-right'
         self.start_and_select_tests(
             '2015.com.canonical.certification::sudo', [test_id])
-        keyboard = Keyboard.create('X11')
+        keyboard = Keyboard.create()
         password_box = self.app.wait_select_single(objectName='passwordBox')
         with keyboard.focused_type(password_box) as kb:
-            kb.type("autopilot")
+            kb.type("0000")
         ok_btn = self.app.wait_select_single(objectName='okButton')
         self.pointing_device.click_object(ok_btn)
         results = {'passed': '2', 'failed': '0', 'skipped': '0'}
@@ -67,7 +74,7 @@ class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         test_id = '2015.com.canonical.certification::autopilot/sudo-right'
         self.start_and_select_tests(
             '2015.com.canonical.certification::sudo', [test_id])
-        keyboard = Keyboard.create('X11')
+        keyboard = Keyboard.create()
         password_box = self.app.wait_select_single(objectName='passwordBox')
         with keyboard.focused_type(password_box) as kb:
             kb.type("wrong")
