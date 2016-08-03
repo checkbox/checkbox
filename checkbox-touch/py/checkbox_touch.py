@@ -321,7 +321,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                         "mod_selected":
                             tp.id == self.launcher.test_plan_default_selection,
                         "mod_disabled": False,
-                    } for tp in self._available_test_plans]
+                    } for tp in self._available_test_plans],
+                    'forced_selection': self.launcher.test_plan_forced
                 }
             else:
                 self._available_test_plans = [
@@ -333,7 +334,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "mod_name": tp.name,
                 "mod_selected": False,
                 "mod_disabled": False,
-            } for tp in self._available_test_plans]
+            } for tp in self._available_test_plans],
+            'forced_selection': False
         }
 
     @view
@@ -368,7 +370,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             for category_id in self.assistant.get_participating_categories()
         )]
         category_info_list.sort(key=lambda ci: (ci['mod_name']))
-        return {'category_info_list': category_info_list}
+        return {
+            'category_info_list': category_info_list,
+            'forced_selection': self.launcher.test_selection_forced
+        }
 
     @view
     def remember_categories(self, selected_id_list):
@@ -400,7 +405,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             "mod_disabled": job.id in mandatory_jobs,
         } for job in job_units]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
-        return {'test_info_list': test_info_list}
+        return {
+            'test_info_list': test_info_list,
+            'forced_selection': self.launcher.test_selection_forced
+        }
 
     @view
     def get_rerun_candidates(self):
