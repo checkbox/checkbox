@@ -64,6 +64,7 @@ from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
 from plainbox.impl.launcher import DefaultLauncherDefinition
 from plainbox.impl.launcher import LauncherDefinition
+from plainbox.impl.launcher import LauncherDefinitionLegacy
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.session.assistant import SessionAssistant
 from plainbox.impl.transport import get_all_transports
@@ -196,6 +197,11 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.launcher = generic_launcher.get_concrete_launcher()
             configs.append(launcher_definition)
             self.launcher.read(configs)
+            # Checkbox-Converged supports new launcher syntax, so if we have
+            # LauncherDefinitionLegacy as launcher right now, let's replace it
+            # with a default one
+            if type(self.launcher) == LauncherDefinitionLegacy:
+                self.launcher = DefaultLauncherDefinition()
             self.assistant.use_alternate_configuration(self.launcher)
             self._prepare_transports()
         else:
