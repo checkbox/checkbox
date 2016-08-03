@@ -703,8 +703,10 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     if (result.type === "certification") {
                         appSettings["submission"] = {}
                         appSettings["submission"].type = "c3"
+                        appSettings["submission"].name = "c3"
                         if (result.staging === "yes") {
                             appSettings["submission"].type = "c3-staging"
+                            appSettings["submission"].name = "c3-staging"
                         }
                         if (result.secure_id) {
                             appSettings["submission"].secure_id = result.secure_id
