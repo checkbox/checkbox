@@ -57,6 +57,7 @@ MainView {
         "providersDir": "providers",
         "submission": null
     }
+    property var launcherSettings
 
     Arguments {
         id: args
@@ -168,9 +169,13 @@ MainView {
                 "checkbox_touch" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
-            getIncompleteSessions(function(sessions) {
-                incompleteSessions = sessions;
-                resumeSessionPage.incompleteSessionCount = sessions.length;
+            getLauncherSettings(function(res) {
+                launcherSettings = res;
+                getIncompleteSessions(function(sessions) {
+                    incompleteSessions = sessions;
+                    resumeSessionPage.incompleteSessionCount = sessions.length;
+                });
+                resumeOrStartSession();
             });
         }
         onSessionReady: {

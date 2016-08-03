@@ -202,6 +202,11 @@ PythonObjectRef {
             console.error("Unable to remove old sessions")
         });
     }
+    function getLauncherSettings(continuation) {
+        request("get_launcher_settings", [], continuation, function(error) {
+            console.error("Unable to get launcher settings")
+        });
+    }
 
     function rememberPassword(password, continuation) {
         // using low-level py.call() to 'silently' pass password string through pyotherside
