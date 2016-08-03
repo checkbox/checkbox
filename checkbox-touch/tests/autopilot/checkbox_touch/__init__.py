@@ -28,11 +28,24 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     package_id = 'com.ubuntu.checkbox'
     app_name = 'checkbox-touch-autopilot'
 
+    launcher = ''
+
     def setUp(self):
         super(ClickAppTestCase, self).setUp()
         self.pointing_device = input.Pointer(self.input_device_class.create())
+        if self.launcher:
+            link = '/tmp/checkbox_autopilot_launcher'
+            target = os.path.abspath(os.path.join('launchers', self.launcher))
+            if os.path.lexists(link):
+                os.unlink(link)
+            os.symlink(target, link)
         self.launch_application()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+
+    def tearDown(self):
+        if self.launcher:
+            os.unlink('/tmp/checkbox_autopilot_launcher')
+        super(ClickAppTestCase, self).tearDown()
 
     def skipResumeIfShown(self):
         """Skip restart screen if presented."""
