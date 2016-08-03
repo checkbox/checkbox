@@ -180,11 +180,11 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 "only run from source.")
 
     def _get_app_qml_source_path(self):
-        qml_file_name = '{0}.qml'.format(self.app_name)
-        return os.path.join(self._get_path_to_app_source(), qml_file_name)
+        return os.path.join(
+            self._get_path_to_app_source(), 'checkbox-touch.qml')
 
     def _get_path_to_app_source(self):
-        return os.path.join(get_path_to_source_root(), self.app_name)
+        return os.path.join(get_path_to_source_root(), 'checkbox-touch')
 
     def _get_plainbox_qml_modules_path(self):
         try:
