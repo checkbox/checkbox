@@ -197,6 +197,9 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.launcher.read(configs)
             self.assistant.use_alternate_configuration(self.launcher)
             self._prepare_transports()
+        else:
+            from checkbox_ng.launcher import DefaultLauncherDefinition
+            self.launcher = DefaultLauncherDefinition()
 
     def __repr__(self):
         return "app"
