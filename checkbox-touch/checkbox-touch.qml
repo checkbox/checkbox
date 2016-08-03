@@ -172,10 +172,12 @@ MainView {
                 incompleteSessions = sessions;
                 resumeSessionPage.incompleteSessionCount = sessions.length;
             });
-            resumeOrStartSession();
         }
         onSessionReady: {
             welcomePage.enableButton()
+            if (launcherSettings['ui_type'] == 'converged-silent') {
+                welcomePage.startTestingTriggered()
+            }
         }
         Component.onCompleted: {
             // register to py.initiated signal
@@ -505,25 +507,29 @@ to rerun last test, continue to the next test, or start a new session?").arg(
     }
 
     function resumeOrStartSession() {
-        app.isSessionResumable(function(result) {
-            if (result.resumable === true) {
-                if (appSettings.forcedResume) {
-                    app.resumeSession(true, undefined, processNextTest)
+        if (launcherSettings.ui_type == 'converged-silent') {
+            app.startSession()
+        } else {
+            app.isSessionResumable(function(result) {
+                if (result.resumable === true) {
+                    if (appSettings.forcedResume) {
+                        app.resumeSession(true, undefined, processNextTest)
+                    } else {
+                        pageStack.clear();
+                        resumeSessionPage.lastTestName = result.running_job_name;
+                        pageStack.push(resumeSessionPage);
+                    }
                 } else {
-                    pageStack.clear();
-                    resumeSessionPage.lastTestName = result.running_job_name;
-                    pageStack.push(resumeSessionPage);
+                    if (result.errors_encountered) {
+                        dialogMgr.showError(mainView, i18n.tr("Could not resume session."),
+                                             gcAndStartSession(),
+                                             i18n.tr("Start new session"));
+                    } else {
+                        gcAndStartSession();
+                    }
                 }
-            } else {
-                if (result.errors_encountered) {
-                    dialogMgr.showError(mainView, i18n.tr("Could not resume session."),
-                                         gcAndStartSession(),
-                                         i18n.tr("Start new session"));
-                } else {
-                    gcAndStartSession();
-                }
-            }
-        });
+            });
+        }
     }
 
     function processNextTest() {
@@ -561,33 +567,41 @@ to rerun last test, continue to the next test, or start a new session?").arg(
 
     function performTest(test) {
         switch (test['plugin']) {
-            case 'manual':
-                performManualTest(test);
-                break;
-            case 'user-interact-verify':
-                performUserInteractVerifyTest(test);
-                break;
             case 'local':
             case 'shell':
             case 'attachment':
             case 'resource':
                 performAutomatedTest(test);
                 break;
-            case 'user-verify':
-                performUserVerifyTest(test);
-                break;
-            case 'user-interact':
-                performUserInteractTest(test);
-                break;
-            case 'qml':
-                if (test.flags.indexOf("confined") > -1)
-                    performConfinedQmlTest(test);
-                else
-                    performQmlTest(test);
-                break;
             default:
-                test.outcome = "skip";
-                completeTest(test);
+                if (launcherSettings.ui_type !== 'converged-silent') {
+                    switch (test['plugin']) {
+                        case 'manual':
+                            performManualTest(test);
+                            break;
+                        case 'user-interact-verify':
+                            performUserInteractVerifyTest(test);
+                            break;
+                        case 'user-verify':
+                            performUserVerifyTest(test);
+                            break;
+                        case 'user-interact':
+                            performUserInteractTest(test);
+                            break;
+                        case 'qml':
+                            if (test.flags.indexOf("confined") > -1)
+                                performConfinedQmlTest(test);
+                            else
+                                performQmlTest(test);
+                            break;
+                        default:
+                            test.outcome = "skip";
+                            completeTest(test);
+                    }
+                } else {
+                    runTestActivity(test, completeTest);
+                }
+                break;
         }
     }
 
@@ -695,6 +709,10 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                             }]
                         }
                         resultsPage.submissionName = i18n.tr("Certification Site");
+                    }
+                    if (launcherSettings['ui_type'] == 'converged-silent') {
+                        resultsPage.saveReportClicked();
+                        resultsPage.submitReportClicked();
                     }
                 });
                 if (appSettings["submission"]) {
