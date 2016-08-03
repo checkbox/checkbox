@@ -37,12 +37,12 @@ class SecureID(str):
 
     """A Canonical-specific identifier of a particular device."""
 
-    SECURE_ID_PATTERN = r"^[a-zA-Z0-9]{15}$|^[a-zA-Z0-9]{18}$"
+    SECURE_ID_PATTERN = r"^[a-zA-Z0-9]{15,}$"
 
     def __new__(cls, value):
         if not re.match(cls.SECURE_ID_PATTERN, value):
             raise ValueError(
-                _("secure_id must be 15 or 18-character alphanumeric string"))
+                _("secure_id must be 15-character (or more) alphanumeric string"))
         return super().__new__(cls, value)
 
 
