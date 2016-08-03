@@ -218,7 +218,8 @@ def main():
                 'Checkbox-Autopilot',
                 'checkbox-autopilot.desktop',
                 lang='en',
-                exec_flags='--autopilot')
+                exec_flags=('--autopilot '
+                            '--launcher=/tmp/checkbox_autopilot_launcher'))
 
         if not os.path.exists('../build-cbt'):
             os.makedirs('../build-cbt')

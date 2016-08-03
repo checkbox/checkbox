@@ -172,6 +172,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 app_qml_source_location,
                 '--autopilot',
                 '--settings=""',
+                '--launcher=/tmp/checkbox_autopilot_launcher',
                 app_type='qt',
                 emulator_base=emulators.UbuntuUIToolkitEmulatorBase)
         else:
