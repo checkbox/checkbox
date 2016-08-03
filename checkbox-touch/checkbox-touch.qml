@@ -228,6 +228,10 @@ MainView {
                 app.getTestplans(function(response) {
                     var tp_list = response.testplan_info_list;
                     if (tp_list.length === 1) {
+                        // one test plan might be the result of launcher
+                        // preselecting test plan
+                        // default behaviour of c-box-converged is to skip the
+                        // screen if there's only one TP
                         app.rememberTestplan(tp_list[0].mod_id, function() {
                             categorySelectionPage.setup();
                         });
@@ -378,6 +382,13 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     modelUpdated();
                     pageStack.push(categorySelectionPage);
                 }
+                if (response.forced_selection) {
+                    var selection = [];
+                    for(var i=0; i < response.category_info_list.length; i++) {
+                        selection.push(response.category_info_list[i].mod_id);
+                    }
+                    selectionDone(selection);
+                }
                 // if called from welcome page, no continuation is given
                 if (continuation) continuation();
             });
@@ -414,6 +425,9 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                 }
                 modelUpdated();
                 pageStack.push(testSelectionPage);
+                if (response.forced_selection) {
+                    gatherSelection()
+                }
                 continuation();
             });
         }
