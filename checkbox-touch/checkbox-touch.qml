@@ -99,7 +99,8 @@ MainView {
             appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";
             appSettings["providersDir"] = "tests/autopilot/autopilot-provider";
             appSettings["log-level"] = "warning";
-        } else if (args.values["launcher"]) {
+        }
+        if (args.values["launcher"]) {
             appSettings["launcher"] = args.values["launcher"];
         } else {
             // normal execution - load settings.json file
