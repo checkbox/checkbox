@@ -204,8 +204,15 @@ def main():
     with backedup_dir('po'):
         build_i18n()
 
-        generate_desktop_file('Checkbox', 'checkbox-touch.desktop',
-                              lang=args.forced_lang)
+        exec_flags = ''
+        if args.launcher:
+            copy_launcher(args.launcher)
+            exec_flags = '--launcher ./launcher'
+        generate_desktop_file(
+            'Checkbox',
+            'checkbox-touch.desktop',
+             lang=args.forced_lang,
+             exec_flags=exec_flags)
         if args.with_autopilot:
             generate_desktop_file(
                 'Checkbox-Autopilot',
@@ -227,6 +234,17 @@ def main():
     if args.ssh:
         port = args.port or 22
         install_click_ssh(pkg, args.ssh, port)
+
+
+def copy_launcher(launcher_file):
+    target = './launcher'
+    if os.path.exists(target) and os.path.samefile(launcher_file, target):
+        print("Reusing existing './launcher' launcher")
+        return
+    if os.path.exists(target):
+        sys.exit('%s already exists. Aborting!' % target)
+    print('Copying over the launcher')
+    shutil.copyfile(launcher_file, target)
 
 
 def validate_providers():
