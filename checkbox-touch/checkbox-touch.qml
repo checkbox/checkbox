@@ -330,6 +330,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
 
     SelectionPage {
         id: testplanSelectionPage
+        objectName: "testplanSelectionPage"
         title: i18n.tr("Select test plan")
         onlyOneAllowed: true
         largeBuffer: args.values["autopilot"]
