@@ -533,7 +533,8 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP] +
-            stats[IJobResult.OUTCOME_NOT_SUPPORTED]
+            stats[IJobResult.OUTCOME_NOT_SUPPORTED] +
+            stats[IJobResult.OUTCOME_UNDECIDED]
         }
 
     @view
