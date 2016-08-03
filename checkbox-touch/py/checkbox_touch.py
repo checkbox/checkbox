@@ -205,6 +205,15 @@ class CheckboxTouchApplication(PlainboxApplication):
         return "app"
 
     @view
+    def get_launcher_settings(self):
+        # this pseudo-adapter exists so qml can now know some bits about the
+        # launcher, if you need another setting in the QML fron-end, just add
+        # it to the returned dict below
+        return {
+            'ui_type': self.launcher.ui_type,
+        }
+
+    @view
     def load_providers(self, providers_dir):
         if self.launcher:
             self.assistant.select_providers(
