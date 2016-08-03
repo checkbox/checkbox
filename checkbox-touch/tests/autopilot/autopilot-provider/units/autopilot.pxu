@@ -7,6 +7,15 @@ estimated_duration: 60
 include: autopilot/.*
 mandatory_include: mandatory-job
 
+unit: test plan
+_description:
+ Alternative test plan for autopilot
+id: autopilot-alt
+_name: Alternative test plan for autopilot
+include:
+ autopilot/automated-test-that-passes
+estimated_duration: 10
+
 unit: category
 id: normal
 _name: Tests not requiring sudo
