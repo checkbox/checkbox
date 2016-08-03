@@ -68,6 +68,7 @@ class ManagePyProvider1PlugIn(Provider1PlugIn):
             definition = Provider1Definition()
             definition.location = location
             definition.name = setup_kwargs.get('name', None)
+            definition.namespace = setup_kwargs.get('namespace', Unset)
             definition.version = setup_kwargs.get('version', None)
             definition.description = setup_kwargs.get('description', None)
             definition.gettext_domain = setup_kwargs.get(
