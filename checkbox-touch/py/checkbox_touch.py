@@ -62,6 +62,8 @@ from plainbox.abc import IJobResult
 from plainbox.impl import pod
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
+from plainbox.impl.launcher import DefaultLauncherDefinition
+from plainbox.impl.launcher import LauncherDefinition
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.session.assistant import SessionAssistant
 from plainbox.impl.transport import get_all_transports
@@ -181,7 +183,6 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.assistant.use_alternate_execution_controllers(ctrl_setup_list)
 
         if launcher_definition:
-            from plainbox.impl.launcher import LauncherDefinition
             generic_launcher = LauncherDefinition()
             generic_launcher.read([launcher_definition])
             config_filename = os.path.expandvars(
@@ -198,7 +199,6 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.assistant.use_alternate_configuration(self.launcher)
             self._prepare_transports()
         else:
-            from checkbox_ng.launcher import DefaultLauncherDefinition
             self.launcher = DefaultLauncherDefinition()
 
     def __repr__(self):

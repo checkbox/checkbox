@@ -147,6 +147,8 @@ def main():
                         help=("Updates the potfile and quits"))
     parser.add_argument("--with-autopilot", action='store_true',
                         help="Add autopilot hooks to the click")
+    parser.add_argument("--launcher", action='store', type=str,
+                        help=("Launcher file to use"))
     args = parser.parse_args()
     if args.update_potfile:
         update_pot()
