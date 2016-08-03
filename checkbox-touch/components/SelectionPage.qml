@@ -279,6 +279,7 @@ Page {
                 text: mod_name
                 enabled: !mod_disabled
                 property var item_mod_id: mod_id
+                property var item_mod_selected: mod_selected
                 /* Create a checkbox-lookalike that doesn't have the internal onTrigger
                  * signal handler that overrides the binding to the model.mod_selected
                  * property. If we use the normal CheckBox component here then the
