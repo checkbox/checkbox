@@ -53,7 +53,6 @@ MainView {
     property var appSettings: {
         "applicationName" : applicationName,
         "revision": "unknown revision",
-        "testplan": "",
         "providersDir": "providers",
         "submission": null
     }
@@ -96,7 +95,6 @@ MainView {
         i18n.domain = "com.ubuntu.checkbox";
         if (args.values["autopilot"]) {
             // autopilot-testing mode
-            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";
             appSettings["providersDir"] = "tests/autopilot/autopilot-provider";
             appSettings["log-level"] = "warning";
         }
@@ -227,29 +225,22 @@ MainView {
         welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: %1\n(%2 %3)")
             .arg(app.applicationVersion).arg(appSettings.revision).arg(appSettings.clickBuildDate)
         onStartTestingTriggered: {
-            if (appSettings.testplan != "") {
-                app.rememberTestplan(appSettings.testplan, function() {
-                    categorySelectionPage.setup();
-                    enableButton();
-                });
-            } else {
-                app.getTestplans(function(response) {
-                    var tp_list = response.testplan_info_list;
-                    if (tp_list.length === 1) {
-                        // one test plan might be the result of launcher
-                        // preselecting test plan
-                        // default behaviour of c-box-converged is to skip the
-                        // screen if there's only one TP
-                        app.rememberTestplan(tp_list[0].mod_id, function() {
-                            categorySelectionPage.setup();
-                        });
-                    }
-                    else {
-                        testplanSelectionPage.setup(tp_list)
-                    }
-                    enableButton();
-                });
-            }
+            app.getTestplans(function(response) {
+                var tp_list = response.testplan_info_list;
+                if (tp_list.length === 1) {
+                    // one test plan might be the result of launcher
+                    // preselecting test plan
+                    // default behaviour of c-box-converged is to skip the
+                    // screen if there's only one TP
+                    app.rememberTestplan(tp_list[0].mod_id, function() {
+                        categorySelectionPage.setup();
+                    });
+                }
+                else {
+                    testplanSelectionPage.setup(tp_list)
+                }
+                enableButton();
+            });
         }
         onAboutClicked: pageStack.push(aboutPage)
     }
