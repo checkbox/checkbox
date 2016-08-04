@@ -53,10 +53,10 @@ MainView {
     property var appSettings: {
         "applicationName" : applicationName,
         "revision": "unknown revision",
-        "testplan": "",
         "providersDir": "providers",
         "submission": null
     }
+    property var launcherSettings
 
     Arguments {
         id: args
@@ -95,10 +95,10 @@ MainView {
         i18n.domain = "com.ubuntu.checkbox";
         if (args.values["autopilot"]) {
             // autopilot-testing mode
-            appSettings["testplan"] = "2015.com.canonical.certification::checkbox-touch-autopilot";
             appSettings["providersDir"] = "tests/autopilot/autopilot-provider";
             appSettings["log-level"] = "warning";
-        } else if (args.values["launcher"]) {
+        }
+        if (args.values["launcher"]) {
             appSettings["launcher"] = args.values["launcher"];
         } else {
             // normal execution - load settings.json file
@@ -168,14 +168,20 @@ MainView {
                 "checkbox_touch" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
-            getIncompleteSessions(function(sessions) {
-                incompleteSessions = sessions;
-                resumeSessionPage.incompleteSessionCount = sessions.length;
+            getLauncherSettings(function(res) {
+                launcherSettings = res;
+                getIncompleteSessions(function(sessions) {
+                    incompleteSessions = sessions;
+                    resumeSessionPage.incompleteSessionCount = sessions.length;
+                });
+                resumeOrStartSession();
             });
-            resumeOrStartSession();
         }
         onSessionReady: {
             welcomePage.enableButton()
+            if (launcherSettings['ui_type'] == 'converged-silent') {
+                welcomePage.startTestingTriggered()
+            }
         }
         Component.onCompleted: {
             // register to py.initiated signal
@@ -219,25 +225,22 @@ MainView {
         welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: %1\n(%2 %3)")
             .arg(app.applicationVersion).arg(appSettings.revision).arg(appSettings.clickBuildDate)
         onStartTestingTriggered: {
-            if (appSettings.testplan != "") {
-                app.rememberTestplan(appSettings.testplan, function() {
-                    categorySelectionPage.setup();
-                    enableButton();
-                });
-            } else {
-                app.getTestplans(function(response) {
-                    var tp_list = response.testplan_info_list;
-                    if (tp_list.length < 2 && tp_list.length > 0) {
-                        app.rememberTestplan(tp_list[0].mod_id, function() {
-                            categorySelectionPage.setup();
-                        });
-                    }
-                    else {
-                        testplanSelectionPage.setup(tp_list)
-                    }
-                    enableButton();
-                });
-            }
+            app.getTestplans(function(response) {
+                var tp_list = response.testplan_info_list;
+                if (tp_list.length === 1) {
+                    // one test plan might be the result of launcher
+                    // preselecting test plan
+                    // default behaviour of c-box-converged is to skip the
+                    // screen if there's only one TP
+                    app.rememberTestplan(tp_list[0].mod_id, function() {
+                        categorySelectionPage.setup();
+                    });
+                }
+                else {
+                    testplanSelectionPage.setup(tp_list)
+                }
+                enableButton();
+            });
         }
         onAboutClicked: pageStack.push(aboutPage)
     }
@@ -318,6 +321,7 @@ to rerun last test, continue to the next test, or start a new session?").arg(
 
     SelectionPage {
         id: testplanSelectionPage
+        objectName: "testplanSelectionPage"
         title: i18n.tr("Select test plan")
         onlyOneAllowed: true
         largeBuffer: args.values["autopilot"]
@@ -378,6 +382,13 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     modelUpdated();
                     pageStack.push(categorySelectionPage);
                 }
+                if (response.forced_selection) {
+                    var selection = [];
+                    for(var i=0; i < response.category_info_list.length; i++) {
+                        selection.push(response.category_info_list[i].mod_id);
+                    }
+                    selectionDone(selection);
+                }
                 // if called from welcome page, no continuation is given
                 if (continuation) continuation();
             });
@@ -414,6 +425,9 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                 }
                 modelUpdated();
                 pageStack.push(testSelectionPage);
+                if (response.forced_selection) {
+                    gatherSelection()
+                }
                 continuation();
             });
         }
@@ -491,25 +505,29 @@ to rerun last test, continue to the next test, or start a new session?").arg(
     }
 
     function resumeOrStartSession() {
-        app.isSessionResumable(function(result) {
-            if (result.resumable === true) {
-                if (appSettings.forcedResume) {
-                    app.resumeSession(true, undefined, processNextTest)
+        if (launcherSettings.ui_type == 'converged-silent') {
+            app.startSession()
+        } else {
+            app.isSessionResumable(function(result) {
+                if (result.resumable === true) {
+                    if (appSettings.forcedResume) {
+                        app.resumeSession(true, undefined, processNextTest)
+                    } else {
+                        pageStack.clear();
+                        resumeSessionPage.lastTestName = result.running_job_name;
+                        pageStack.push(resumeSessionPage);
+                    }
                 } else {
-                    pageStack.clear();
-                    resumeSessionPage.lastTestName = result.running_job_name;
-                    pageStack.push(resumeSessionPage);
+                    if (result.errors_encountered) {
+                        dialogMgr.showError(mainView, i18n.tr("Could not resume session."),
+                                             gcAndStartSession(),
+                                             i18n.tr("Start new session"));
+                    } else {
+                        gcAndStartSession();
+                    }
                 }
-            } else {
-                if (result.errors_encountered) {
-                    dialogMgr.showError(mainView, i18n.tr("Could not resume session."),
-                                         gcAndStartSession(),
-                                         i18n.tr("Start new session"));
-                } else {
-                    gcAndStartSession();
-                }
-            }
-        });
+            });
+        }
     }
 
     function processNextTest() {
@@ -547,33 +565,41 @@ to rerun last test, continue to the next test, or start a new session?").arg(
 
     function performTest(test) {
         switch (test['plugin']) {
-            case 'manual':
-                performManualTest(test);
-                break;
-            case 'user-interact-verify':
-                performUserInteractVerifyTest(test);
-                break;
             case 'local':
             case 'shell':
             case 'attachment':
             case 'resource':
                 performAutomatedTest(test);
                 break;
-            case 'user-verify':
-                performUserVerifyTest(test);
-                break;
-            case 'user-interact':
-                performUserInteractTest(test);
-                break;
-            case 'qml':
-                if (test.flags.indexOf("confined") > -1)
-                    performConfinedQmlTest(test);
-                else
-                    performQmlTest(test);
-                break;
             default:
-                test.outcome = "skip";
-                completeTest(test);
+                if (launcherSettings.ui_type !== 'converged-silent') {
+                    switch (test['plugin']) {
+                        case 'manual':
+                            performManualTest(test);
+                            break;
+                        case 'user-interact-verify':
+                            performUserInteractVerifyTest(test);
+                            break;
+                        case 'user-verify':
+                            performUserVerifyTest(test);
+                            break;
+                        case 'user-interact':
+                            performUserInteractTest(test);
+                            break;
+                        case 'qml':
+                            if (test.flags.indexOf("confined") > -1)
+                                performConfinedQmlTest(test);
+                            else
+                                performQmlTest(test);
+                            break;
+                        default:
+                            test.outcome = "skip";
+                            completeTest(test);
+                    }
+                } else {
+                    runTestActivity(test, completeTest);
+                }
+                break;
         }
     }
 
@@ -668,8 +694,10 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                     if (result.type === "certification") {
                         appSettings["submission"] = {}
                         appSettings["submission"].type = "c3"
+                        appSettings["submission"].name = "c3"
                         if (result.staging === "yes") {
                             appSettings["submission"].type = "c3-staging"
+                            appSettings["submission"].name = "c3-staging"
                         }
                         if (result.secure_id) {
                             appSettings["submission"].secure_id = result.secure_id
@@ -681,6 +709,10 @@ to rerun last test, continue to the next test, or start a new session?").arg(
                             }]
                         }
                         resultsPage.submissionName = i18n.tr("Certification Site");
+                    }
+                    if (launcherSettings['ui_type'] == 'converged-silent') {
+                        resultsPage.saveReportClicked();
+                        resultsPage.submitReportClicked();
                     }
                 });
                 if (appSettings["submission"]) {

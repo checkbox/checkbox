@@ -62,6 +62,9 @@ from plainbox.abc import IJobResult
 from plainbox.impl import pod
 from plainbox.impl.clitools import ToolBase
 from plainbox.impl.commands.inv_run import SilentUI
+from plainbox.impl.launcher import DefaultLauncherDefinition
+from plainbox.impl.launcher import LauncherDefinition
+from plainbox.impl.launcher import LauncherDefinitionLegacy
 from plainbox.impl.result import JobResultBuilder
 from plainbox.impl.session.assistant import SessionAssistant
 from plainbox.impl.transport import get_all_transports
@@ -181,7 +184,6 @@ class CheckboxTouchApplication(PlainboxApplication):
         self.assistant.use_alternate_execution_controllers(ctrl_setup_list)
 
         if launcher_definition:
-            from plainbox.impl.launcher import LauncherDefinition
             generic_launcher = LauncherDefinition()
             generic_launcher.read([launcher_definition])
             config_filename = os.path.expandvars(
@@ -195,11 +197,27 @@ class CheckboxTouchApplication(PlainboxApplication):
             self.launcher = generic_launcher.get_concrete_launcher()
             configs.append(launcher_definition)
             self.launcher.read(configs)
+            # Checkbox-Converged supports new launcher syntax, so if we have
+            # LauncherDefinitionLegacy as launcher right now, let's replace it
+            # with a default one
+            if type(self.launcher) == LauncherDefinitionLegacy:
+                self.launcher = DefaultLauncherDefinition()
             self.assistant.use_alternate_configuration(self.launcher)
             self._prepare_transports()
+        else:
+            self.launcher = DefaultLauncherDefinition()
 
     def __repr__(self):
         return "app"
+
+    @view
+    def get_launcher_settings(self):
+        # this pseudo-adapter exists so qml can now know some bits about the
+        # launcher, if you need another setting in the QML fron-end, just add
+        # it to the returned dict below
+        return {
+            'ui_type': self.launcher.ui_type,
+        }
 
     @view
     def load_providers(self, providers_dir):
@@ -318,7 +336,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                         "mod_selected":
                             tp.id == self.launcher.test_plan_default_selection,
                         "mod_disabled": False,
-                    } for tp in self._available_test_plans]
+                    } for tp in self._available_test_plans],
+                    'forced_selection': self.launcher.test_plan_forced
                 }
             else:
                 self._available_test_plans = [
@@ -330,7 +349,8 @@ class CheckboxTouchApplication(PlainboxApplication):
                 "mod_name": tp.name,
                 "mod_selected": False,
                 "mod_disabled": False,
-            } for tp in self._available_test_plans]
+            } for tp in self._available_test_plans],
+            'forced_selection': False
         }
 
     @view
@@ -365,7 +385,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             for category_id in self.assistant.get_participating_categories()
         )]
         category_info_list.sort(key=lambda ci: (ci['mod_name']))
-        return {'category_info_list': category_info_list}
+        return {
+            'category_info_list': category_info_list,
+            'forced_selection': self.launcher.test_selection_forced
+        }
 
     @view
     def remember_categories(self, selected_id_list):
@@ -397,7 +420,10 @@ class CheckboxTouchApplication(PlainboxApplication):
             "mod_disabled": job.id in mandatory_jobs,
         } for job in job_units]
         test_info_list.sort(key=lambda ti: (ti['mod_group'], ti['mod_name']))
-        return {'test_info_list': test_info_list}
+        return {
+            'test_info_list': test_info_list,
+            'forced_selection': self.launcher.test_selection_forced
+        }
 
     @view
     def get_rerun_candidates(self):
@@ -513,7 +539,8 @@ class CheckboxTouchApplication(PlainboxApplication):
             'totalPassed': stats[IJobResult.OUTCOME_PASS],
             'totalFailed': stats[IJobResult.OUTCOME_FAIL],
             'totalSkipped': stats[IJobResult.OUTCOME_SKIP] +
-            stats[IJobResult.OUTCOME_NOT_SUPPORTED]
+            stats[IJobResult.OUTCOME_NOT_SUPPORTED] +
+            stats[IJobResult.OUTCOME_UNDECIDED]
         }
 
     @view

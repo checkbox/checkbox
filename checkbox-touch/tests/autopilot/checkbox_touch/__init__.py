@@ -28,11 +28,24 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     package_id = 'com.ubuntu.checkbox'
     app_name = 'checkbox-touch-autopilot'
 
+    launcher = ''
+
     def setUp(self):
         super(ClickAppTestCase, self).setUp()
         self.pointing_device = input.Pointer(self.input_device_class.create())
+        if self.launcher:
+            link = '/tmp/checkbox_autopilot_launcher'
+            target = os.path.abspath(os.path.join('launchers', self.launcher))
+            if os.path.lexists(link):
+                os.unlink(link)
+            os.symlink(target, link)
         self.launch_application()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+
+    def tearDown(self):
+        if self.launcher:
+            os.unlink('/tmp/checkbox_autopilot_launcher')
+        super(ClickAppTestCase, self).tearDown()
 
     def skipResumeIfShown(self):
         """Skip restart screen if presented."""
@@ -63,6 +76,15 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
         start_btn = welcome_page.wait_select_single(
             objectName='startTestButton')
         self.pointing_device.click_object(start_btn)
+        tp_selection_page = self.app.wait_select_single(
+            objectName='testplanSelectionPage', visible=True)
+        tp_item = tp_selection_page.wait_select_single(
+            objectName='listItem', item_mod_id=(
+                '2015.com.canonical.certification::checkbox-touch-autopilot'))
+        self.pointing_device.click_object(tp_item)
+        continue_btn = tp_selection_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage', visible=True)
         self._click_action_button('trailingActionBar', 'toggleSelectionAction')
@@ -172,6 +194,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 app_qml_source_location,
                 '--autopilot',
                 '--settings=""',
+                '--launcher=/tmp/checkbox_autopilot_launcher',
                 app_type='qt',
                 emulator_base=emulators.UbuntuUIToolkitEmulatorBase)
         else:
@@ -180,11 +203,11 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
                 "only run from source.")
 
     def _get_app_qml_source_path(self):
-        qml_file_name = '{0}.qml'.format(self.app_name)
-        return os.path.join(self._get_path_to_app_source(), qml_file_name)
+        return os.path.join(
+            self._get_path_to_app_source(), 'checkbox-touch.qml')
 
     def _get_path_to_app_source(self):
-        return os.path.join(get_path_to_source_root(), self.app_name)
+        return os.path.join(get_path_to_source_root(), 'checkbox-touch')
 
     def _get_plainbox_qml_modules_path(self):
         try:

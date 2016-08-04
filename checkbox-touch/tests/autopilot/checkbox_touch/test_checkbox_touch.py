@@ -51,6 +51,15 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         start_btn = welcome_page.wait_select_single(
             objectName='startTestButton')
         self.pointing_device.click_object(start_btn)
+        tp_selection_page = self.app.wait_select_single(
+            objectName='testplanSelectionPage', visible=True)
+        tp_item = tp_selection_page.wait_select_single(
+            objectName='listItem', item_mod_id=(
+                '2015.com.canonical.certification::checkbox-touch-autopilot'))
+        self.pointing_device.click_object(tp_item)
+        continue_btn = tp_selection_page.wait_select_single(
+            objectName='continueButton', visible=True)
+        self.pointing_device.click_object(continue_btn)
         category_page = self.app.wait_select_single(
             objectName='categorySelectionPage', visible=True)
         self._click_action_button('trailingActionBar', 'toggleSelectionAction')
