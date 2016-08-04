@@ -21,7 +21,7 @@ from setuptools import setup
 
 setup(
     name="canonical-hw-collection",
-    version="1.2",
+    version="1.3",
     url="https://launchpad.net/checkbox/",
     author="Zygmunt Krynicki",
     author_email="zygmunt.krynicki@canonical.com",
@@ -38,7 +38,7 @@ details.
 
 Note that unless you are a Canonical employee, or you've been asked to use
 this tool by a Canonical employee, you will not have much use of the tool.
-None of the data is not publicly available.""",
+None of the data is publicly available.""",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
