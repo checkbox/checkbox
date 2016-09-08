@@ -134,7 +134,7 @@ fix_permissions(){
     # under the branch directory to be owned by the unprivileged user,
     # so stuff can be deleted correctly later.
     echo "[$target] Fixing file permissions in source directory"
-    if ! sudo $LXC_ATTACH --keep-env -n $target_container -- bash -c "chown -R --reference=test-in-lxc.sh $PWD" >$LOG_DIR/$target.fix-perms.log 2>$LOG_DIR/$target.fix-perms.err; then
+    if ! sudo $LXC_ATTACH --keep-env -n $target_container -- bash -c "chown -R --reference=support/test-in-lxc.sh $PWD" >$LOG_DIR/$target.fix-perms.log 2>$LOG_DIR/$target.fix-perms.err; then
         echo "[$target] Unable to fix permissions!"
         echo "[$target] stdout: $(pastebinit $LOG_DIR/$target.fix-perms.log)"
         echo "[$target] stderr: $(pastebinit $LOG_DIR/$target.fix-perms.err)"
