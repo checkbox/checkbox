@@ -70,22 +70,20 @@ def get_plainbox_from_pypi(version='0.22.2'):
         extract_plainbox(filename, version)
 
 
-def get_local_plainbox():
-    # TODO: user shouldn't specify version of local plainbox
-    plainbox_setup_path = os.path.join(os.getcwd(), '..', 'plainbox',
-                                       'setup.py')
+def get_plainbox_from_path(path):
+    path = os.path.expanduser(path)
+    plainbox_setup_path = os.path.join(path, 'setup.py')
     plainbox_version = subprocess.check_output([plainbox_setup_path,
         '--version']).decode(sys.stdout.encoding).strip()
 
-    plainbox_setup_dir = os.path.split(plainbox_setup_path)[0]
     print('building local plainbox')
     ret = subprocess.check_call([plainbox_setup_path, '-q', 'sdist'],
-                                cwd=plainbox_setup_dir)
+                                cwd=path)
     if ret != 0:
         raise Exception(
             "Could not build plainbox using {}. Check above output"
             .format(plainbox_setup_path))
-    filename = os.path.join(plainbox_setup_dir, 'dist', 'plainbox-{}.tar.gz'
+    filename = os.path.join(path, 'dist', 'plainbox-{}.tar.gz'
                             .format(plainbox_version))
     extract_plainbox(filename, plainbox_version)
 
@@ -95,6 +93,8 @@ def main():
     parser.add_argument("--get-pypi-plainbox",
                         action='store_true',
                         help="Use plainbox downloaded from pypi")
+    parser.add_argument("--plainbox-path", action='store', type=str,
+                        help="Location of Plainbox to use", metavar="PATH")
     parser.add_argument("--plainbox-only", action='store_true',
                         help="Get plainbox only")
     parser.add_argument("--get-autopilot",
@@ -103,8 +103,11 @@ def main():
     args = parser.parse_args()
     if args.get_pypi_plainbox:
         get_plainbox_from_pypi()
+    elif args.plainbox_path:
+        get_plainbox_from_path(args.plainbox_path)
     else:
-        get_local_plainbox()
+        raise Exception("You have to supply --plainbox-path or use"
+                        " --get-pypi-plainbox")
     if args.plainbox_only:
         # skip downloading rest of the libs
         return
