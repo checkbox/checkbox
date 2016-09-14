@@ -22,15 +22,6 @@ from confinement.generate import generate_confinement
 sys.path.append('./py')
 
 
-# DEFAULT_PROVIDERS is a list of providers directory names as listed in
-# ../providers. NOTE: those are directory names, not provider names as reported
-# by manage.py info
-
-DEFAULT_PROVIDERS = [
-    "plainbox-provider-ubuntu-touch",
-]
-
-
 @contextmanager
 def chdir(path):
     previous_path = os.getcwd()
@@ -182,15 +173,8 @@ def main():
             target_base_name = os.path.basename(os.path.normpath(path))
             rsync_tree(path, os.path.join('providers', target_base_name))
 
-    if args.provider is None and args.embedded_providers_path is None:
-        # no user specified providers
-        if not os.path.exists('providers') or os.listdir('providers') == []:
-            print("No providers specified; using default providers")
-            for provider in DEFAULT_PROVIDERS:
-                path = os.path.join(os.getcwd(), '..', 'providers', provider)
-                target_base_name = os.path.basename(os.path.normpath(path))
-                rsync_tree(path, os.path.join(
-                    'providers', target_base_name))
+    if not os.path.exists('providers'):
+        sys.exit('No providers available. Exiting!')
 
     if not validate_providers():
         sys.exit('Provider validation failed.')
