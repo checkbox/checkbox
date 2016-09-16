@@ -205,9 +205,6 @@ def main():
                 exec_flags=('--autopilot '
                             '--launcher=/tmp/checkbox_autopilot_launcher'))
 
-        if not os.path.exists('../build-cbt'):
-            os.makedirs('../build-cbt')
-
         pkg = build_click()
 
     if args.install and not args.ssh:
@@ -451,14 +448,8 @@ def generate_manifest(with_autopilot=False):
 
 def build_click():
     print('Building click package')
-    base_path = os.path.normpath(os.path.join(os.getcwd(), '..'))
-    click_source_path = os.path.join(base_path, 'checkbox-touch')
-    out = subprocess.check_output(
-        ['click', 'build', click_source_path],
-        cwd=os.path.join(base_path, 'build-cbt'))
-    pkg_name = os.path.join(
-        base_path, 'build-cbt', re.search(
-            "'\.\/(.*)\.click'", str(out)).group(1) + '.click')
+    out = subprocess.check_output(['click', 'build', '-I', '*.click', '.'])
+    pkg_name = re.search("'\.\/(.*)\.click'", str(out)).group(1) + '.click'
     print('Your click package is available here: {0}'.format(pkg_name))
     return pkg_name
 
