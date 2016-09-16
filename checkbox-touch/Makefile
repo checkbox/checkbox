@@ -20,7 +20,7 @@ VERSION:=$(shell PYTHONPATH=py python3 -c "from py.checkbox_touch import Checkbo
 all:
 
 autopilot:
-	./get-libs
+	./get-libs --plainbox-path ../plainbox
 	chmod +x tests/autopilot/run
 	tests/autopilot/run
 
