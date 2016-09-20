@@ -72,12 +72,16 @@ def main():
                     recipes=', '.join(all_recipe_names)))
 
         text = build_recipe.recipe_text
+        # 0.28.0rc1 → 0.28.0~rc1
         deb_version = re.sub(r"(rc\d+)$", "~\g<0>", args.new_version)
+        # 0.28.0rc1 → 0.28.0_rc1
         deb_tag = re.sub(r"(rc\d+)$", "_\g<0>", args.new_version)
         text = re.sub(r"deb-version .*?~ppa", "deb-version {}~ppa".format(
             deb_version), text)
-        text = re.sub(r"-v\d\S+", "-v{}".format(args.new_version), text)
-        text = re.sub(r"debian-(.*)$", "debian-{}".format(deb_tag), text)
+        # v0.27.0 → v0.28.0rc1
+        text = re.sub(r"v\d\S+", "v{}".format(args.new_version), text)
+        # debian-0.27.0-1 → debian-0.28.0_rc1-1
+        text = re.sub(r"debian-(.*)$", "debian-{}-1".format(deb_tag), text)
         build_recipe.setRecipeText(recipe_text=text)
         if build_recipe:
             for series in build_recipe.distroseries:
