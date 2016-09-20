@@ -493,8 +493,8 @@ if __name__ == "__main__":
             if pack.release_required or pack.ppa_packaging_release_required:
                 name = pack.name
                 bump = "--minor"
-                if name == 'checkbox-converged':
-                    bump = "--micro"
+                #if name == 'checkbox-converged':
+                #    bump = "--micro"
                 current_version = pack.last_stable_trunk_tag.replace(
                     name+"-v", "")
                 log = check_output(
