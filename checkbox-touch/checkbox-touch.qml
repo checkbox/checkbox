@@ -62,7 +62,7 @@ MainView {
         id: args
         Argument {
             name: "autopilot"
-            help: i18n.tr("Run Checkbox-Touch in autopilot-testing mode")
+            help: i18n.tr("Run Checkbox-Converged in autopilot-testing mode")
             required: false
         }
         Argument {
@@ -73,7 +73,7 @@ MainView {
         Argument {
             name: "settings"
             valueNames: "PATH_TO_SETTINGS"
-            help: i18n.tr("Path to a file containing checkbox-touch settings")
+            help: i18n.tr("Path to a file containing checkbox-converged settings")
             required: false
         }
         Argument {
@@ -157,13 +157,13 @@ MainView {
     }
 
     // Component representing our application
-    CheckboxTouchApplication {
+    CheckboxConvergedApplication {
         id: app
         py: py
         property var incompleteSessions: []
         onAppReady: {
             console.log("Plainbox version " + plainboxVersion);
-            console.log("Checkbox Touch version " + applicationVersion);
+            console.log("Checkbox Converged version " + applicationVersion);
             aboutPage.versionInfo = {
                 "converged" : applicationVersion,
                 "plainbox" : plainboxVersion
@@ -222,7 +222,7 @@ MainView {
         // TRANSLATORS: %1 means program version, %2 repository revision and %3
         // date when the package was built
         // TRANSLATORS: keep the '\n' characters at the end of each line
-        welcomeText: i18n.tr("Welcome to Checkbox Touch\nVersion: %1\n(%2 %3)")
+        welcomeText: i18n.tr("Welcome to Checkbox Converged\nVersion: %1\n(%2 %3)")
             .arg(app.applicationVersion).arg(appSettings.revision).arg(appSettings.clickBuildDate)
         onStartTestingTriggered: {
             app.getTestplans(function(response) {

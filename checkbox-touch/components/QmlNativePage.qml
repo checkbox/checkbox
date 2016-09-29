@@ -38,7 +38,7 @@ Page {
 
     Object {
         id: testingShell
-        property string name: "Checkbox-touch qml shell"
+        property string name: "Checkbox-Converged qml shell"
         property alias pageStack: qmlNativePage.pageStack
         property string sessionDir: app.sessionDir
         property var python: app.py

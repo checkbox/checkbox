@@ -32,7 +32,7 @@ MainView {
 
     // information and functionality passed to qml job component
     property var testingShell: {
-        "name": "Checkbox-touch qml confined shell",
+        "name": "Checkbox-Converged qml confined shell",
         "pageStack": pageStack,
         "python": py
     }

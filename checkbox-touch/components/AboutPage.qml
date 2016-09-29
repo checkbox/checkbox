@@ -30,7 +30,7 @@ import QtQuick.Layouts 1.1
 Page {
     id: aboutPage
     property var versionInfo : {
-        "checkbox_touch" : "0.0",
+        "converged_app" : "0.0",
         "plainbox" : "0.0"
     }
 
@@ -75,8 +75,8 @@ Page {
                 property string versionString: "";
                 property string copyrightString: "";
                 function generateVersionText() {
-                    body.versionString = "<center><h1><b>Checkbox Touch</b></h1><p>" +
-                        i18n.tr("version: ") + aboutPage.versionInfo["checkbox_touch"] + "<br/>" +
+                    body.versionString = "<center><h1><b>Checkbox Converged</b></h1><p>" +
+                        i18n.tr("version: ") + aboutPage.versionInfo["converged_app"] + "<br/>" +
                         i18n.tr("Plainbox version: ") + aboutPage.versionInfo["plainbox"] + "<br/></center>";
                 }
             }
