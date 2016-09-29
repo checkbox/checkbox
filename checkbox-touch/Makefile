@@ -34,11 +34,11 @@ sdist:
 	--exclude=__pycache__ --exclude=dist \
 	--exclude=lib --exclude=providers \
 	--exclude=settings.json --exclude=manifest.json \
-	--exclude=checkbox-touch.desktop
+	--exclude=checkbox-converged.desktop
 	@gpg --armor --sign --detach-sig dist/checkbox-converged-$(VERSION).tar.gz
 
 run:
-	/usr/bin/qmlscene $@ checkbox-touch.qml
+	/usr/bin/qmlscene $@ checkbox-converged.qml
 
 build-translations: $(MO_FILES)
 	@echo "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -50,13 +50,13 @@ build-translations: $(MO_FILES)
 po:
 	mkdir -p $(CURDIR)/po
 
-po/checkbox-touch.pot: $(QMLJS_FILES) $(PY_FILES) | po
+po/checkbox-converged.pot: $(QMLJS_FILES) $(PY_FILES) | po
 	@echo "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "Use of this Makefile for i18n tasks is deprecated"
 	@echo "Use ./build-me --update-potfile instead"
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
-	xgettext -o po/checkbox-touch.pot --qt --c++ --add-comments=TRANSLATORS --keyword=tr --keyword=tr:1,2 $(QMLJS_FILES) --from-code=UTF-8
-	xgettext -o po/checkbox-touch.pot --join-existing --language=python --add-comments=TRANSLATORS --keyword=_ --keyword=N_ $(PY_FILES)
+	xgettext -o po/checkbox-converged.pot --qt --c++ --add-comments=TRANSLATORS --keyword=tr --keyword=tr:1,2 $(QMLJS_FILES) --from-code=UTF-8
+	xgettext -o po/checkbox-converged.pot --join-existing --language=python --add-comments=TRANSLATORS --keyword=_ --keyword=N_ $(PY_FILES)
 
 
 $(TRANSLATION_ROOT)/share/locale/%/LC_MESSAGES/$(APP_ID).mo: po/%.po

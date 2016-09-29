@@ -17,7 +17,7 @@
 # you should have received a copy of the gnu general public license
 # along with checkbox.  if not, see <http://www.gnu.org/licenses/>.
 """
-Download and extract .deb packages necessary to run checkbox-touch
+Download and extract .deb packages necessary to run checkbox-converged
 Extraction is done to specific directories as required by click package
 
 For typical development iteration, after hacking something in plainbox,
@@ -89,7 +89,8 @@ def get_plainbox_from_path(path):
 
 
 def main():
-    parser = argparse.ArgumentParser("Get necessary libs for checkbox-touch")
+    parser = argparse.ArgumentParser(
+        "Get necessary libs for checkbox-converged")
     parser.add_argument("--get-pypi-plainbox",
                         action='store_true',
                         help="Use plainbox downloaded from pypi")

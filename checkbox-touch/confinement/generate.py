@@ -44,7 +44,7 @@ DESKTOP = """[Desktop Entry]
 Name=Checkbox-${partial_id}
 Comment=${partial_id} - confined test from Checkbox
 Exec=qmlscene -I lib/py/plainbox/data/plainbox-qml-modules/ -I providers/${provider_name}/data/ --checkbox-name=${full_checkbox_name} --job ../providers/${provider_name}/data/${qml_file} $$@ confinement/plainbox-confined-shell.qml
-Icon=checkbox-touch.svg
+Icon=checkbox-converged.svg
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
@@ -93,7 +93,7 @@ def main():
     parser.add_argument('--checkbox_version', action='store', type=str)
     parser.add_argument('job_ids', nargs='+')
     args = parser.parse_args()
-    checkbox_name = ("com.ubuntu.checkbox_checkbox-touch_" +
+    checkbox_name = ("com.ubuntu.checkbox_checkbox-converged_" +
                      args.checkbox_version)
 
     # check if current dir looks like a provider - very dumb heuristic
@@ -107,7 +107,7 @@ def main():
             provider_name, job, checkbox_name, job + '.qml')
         hooks += json.dumps(hook, sort_keys=True, indent=4)[1:-1]
 
-    print("Add following hooks to your checkbox-touch.manifest:")
+    print("Add following hooks to your checkbox-converged.manifest:")
     print(hooks)
 
 

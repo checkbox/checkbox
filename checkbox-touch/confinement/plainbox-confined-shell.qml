@@ -50,7 +50,7 @@ MainView {
             name: "checkbox-name"
             help: "Qualified name of Checkbox app to send results to"
             required: true
-            valueNames: ["checkbox-touch-x.x.x"]
+            valueNames: ["checkbox-converged-x.x.x"]
         }
     }
 

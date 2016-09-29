@@ -37,7 +37,7 @@ MainView {
     objectName: "mainView"
 
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "com.canonical.certification.checkbox-touch"
+    applicationName: "com.canonical.certification.checkbox-converged"
 
     /*
      This property enables the application to change orientation

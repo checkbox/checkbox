@@ -104,7 +104,7 @@ def get_revision_string(path='.'):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Get necessary libs for checkbox-touch")
+        description="Get necessary libs for checkbox-converged")
     parser.add_argument("--embedded-providers-path", action='store', type=str,
                         nargs='*', help="Paths to directories with providers")
     parser.add_argument("--install",
@@ -194,7 +194,7 @@ def main():
             exec_flags = '--launcher ./launcher'
         generate_desktop_file(
             'Checkbox',
-            'checkbox-touch.desktop',
+            'checkbox-converged.desktop',
              lang=args.forced_lang,
              exec_flags=exec_flags)
         if args.with_autopilot:
@@ -257,7 +257,7 @@ def validate_providers():
 
 def build_confinement(checkbox_version):
     print("Generating confinement")
-    checkbox_name = "com.ubuntu.checkbox_checkbox-touch_" + checkbox_version
+    checkbox_name = "com.ubuntu.checkbox_checkbox-converged_" + checkbox_version
     new_hooks = []
     for provider_dir in os.listdir('providers'):
         with chdir(os.path.join('providers', provider_dir)):
@@ -281,7 +281,7 @@ def build_i18n():
             print("Problem encountered while building translations for ",
                   "provider '{}'.".format(provider_dir))
             raise e
-    # merge providers' catalogs to the global checkbox-touch one
+    # merge providers' catalogs to the global checkbox-converged one
     lang_codes = []
     for node in os.listdir('po'):
         base, ext = os.path.splitext(node)
@@ -308,7 +308,7 @@ def build_i18n():
 
 
 def update_pot():
-    potfile = 'po/checkbox-touch.pot'
+    potfile = 'po/checkbox-converged.pot'
     print("Updating {}".format(potfile))
     py_files = find(top='./py', include=['*.py'])
     py_files += ['build-me', 'get-libs']
@@ -323,7 +323,7 @@ def update_pot():
              '--add-comments=TRANSLATORS', '--language=python', '--keyword=_',
              '--keyword=N_'] + py_files)
     except subprocess.CalledProcessError as exc:
-        sys.exit('Error encountered while updating po/checkbox-touch.pot %s' %
+        sys.exit('Error encountered while updating po/checkbox-converged.pot %s' %
                  exc)
 
 
@@ -388,7 +388,7 @@ def generate_desktop_file(app_name, filename, lang=None,
     Name={name}
     Comment=System testing utility for Ubuntu
     Exec={exec}
-    Icon=checkbox-touch.svg
+    Icon=checkbox-converged.svg
     Terminal=false
     Type=Application
     X-Ubuntu-Touch=true
@@ -400,7 +400,7 @@ def generate_desktop_file(app_name, filename, lang=None,
         if os.path.exists(provider_data_dir):
             import_opts.append("-I " + provider_data_dir)
     exec_line = ("qmlscene {exec_flags} --settings=settings.json "
-                 "{import_options} $@ checkbox-touch.qml")
+                 "{import_options} $@ checkbox-converged.qml")
     if lang:
         exec_line = 'bash -c "LANGUAGE={} {}"'.format(lang, exec_line)
     content = template.format(
@@ -416,14 +416,14 @@ def generate_manifest(with_autopilot=False):
     res = CheckboxConvergedApplication().get_version_pair()
     version = res['result']['application_version']
     hooks = {
-        'checkbox-touch': {
-            'apparmor': 'checkbox-touch.json',
-            'desktop': 'checkbox-touch.desktop'
+        'checkbox-converged': {
+            'apparmor': 'checkbox-converged.json',
+            'desktop': 'checkbox-converged.desktop'
         }
     }
     if with_autopilot:
-        hooks['checkbox-touch-autopilot'] = {
-            'apparmor': 'checkbox-touch.json',
+        hooks['checkbox-converged-autopilot'] = {
+            'apparmor': 'checkbox-converged.json',
             'desktop': 'checkbox-autopilot.desktop'
         }
     for hook in build_confinement(version):
