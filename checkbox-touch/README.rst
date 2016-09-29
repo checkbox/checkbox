@@ -1,5 +1,5 @@
-The (Converging) Checkbox
-=========================
+Checkbox Converged
+==================
 
 This directory contains the implementation of Checkbox. The Ubuntu-SDK based
 touch application that initially, will target the phone form factor (but will
@@ -40,7 +40,7 @@ that's available in the ../plainbox directory.
 Building and installing the click package
 -----------------------------------------
 
-To build Checkbox-Touch click package run:
+To build Checkbox-Converged click package run:
 
 .. code-block:: bash
 
@@ -52,10 +52,10 @@ to build and install the package run:
 
     $ ./build-me --install
 
-Running Checkbox-Touch on a desktop
+Running Checkbox-Converged on a desktop
 -----------------------------------
 
-To run on a desktop run `qmlscene checkbox-touch.qml`
+To run on a desktop run `qmlscene checkbox-converged.qml`
 Note: Make sure you've ran `./get-libs` first.
 
 
@@ -81,10 +81,10 @@ build-me script. E.g.:
     $ ./build-me --provider ../providers/plainbox-provider-ubuntu-touch
 
 
-Default Checkbox-Touch settings
+Default Checkbox-Converged settings
 -------------------------------
 During execution of `./build-me` script, `settings.json` file is generated.
-It contains values that Checkbox-Touch will use as its default ones.
+It contains values that Checkbox-Converged will use as its default ones.
 Although not required, you may edit this file to suit your needs.
 
 Further assistance
@@ -102,13 +102,13 @@ The Release Process
 
 The release process is quite simple. It's also informal as we only did it once or twice
 
-- Tag the tree using the $PRODUCT-v$VERSION scheme (checkbox-touch-v0.1).
+- Tag the tree using the $PRODUCT-v$VERSION scheme (checkbox-converged-v0.1).
 - Build a new click package as outlined above.
 - Test it on some devices to ensure that's it's not horribly broken.
-- Create a release on an appropriate Launchpad milestone on the checkbox-touch
-  project (https://launchpad.net/checkbox-touch). Write a changelog and upload
+- Create a release on an appropriate Launchpad milestone on the checkbox-converged
+  project (https://launchpad.net/checkbox-converged). Write a changelog and upload
   the click package. The changelog should contain link to the version milestone
-  on Launchpad, e.g. https://launchpad.net/checkbox-touch/+milestone/1.1.2
+  on Launchpad, e.g. https://launchpad.net/checkbox-converged/+milestone/1.1.2
 - Join ``#ubuntu-app-devel`` on freenode and figure out who can upload core-dev
   applications. Ask them to upload the new version. Popey declared to do the
   uploads, so start by asking him.
