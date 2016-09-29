@@ -7,10 +7,10 @@ import textwrap
 from autopilot import input, platform
 from autopilot.input import Keyboard
 
-import checkbox_touch
+import checkbox_converged
 
 
-class SudoTestCheckboxTouch(checkbox_touch.ClickAppTestCase):
+class SudoTestCheckboxConverged(checkbox_converged.ClickAppTestCase):
     """
     Tests requiring sudo password.
 

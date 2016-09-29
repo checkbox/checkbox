@@ -4,10 +4,10 @@ from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 from autopilot.input import Keyboard
 
-import checkbox_touch
+import checkbox_converged
 
 
-class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
+class TestCheckboxConverged(checkbox_converged.ClickAppTestCase):
 
     def skip_test(self, selectable_object_name=None):
         """Skip current test using header action.
@@ -36,9 +36,9 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
 
     def test_full_run(self):
         """
-        Test whether typical, full run of checkbox-touch works.
+        Test whether typical, full run of checkbox-converged works.
 
-        This test launches checkbox-touch and runs all tests present in the
+        This test launches checkbox-converged and runs all tests present in the
         autopilot provider. Tests that let user decide the outcome are served
         in three instances; one that user is supposed to pass, one that
         user should skip and the one that user should fail.
@@ -55,7 +55,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
             objectName='testplanSelectionPage', visible=True)
         tp_item = tp_selection_page.wait_select_single(
             objectName='listItem', item_mod_id=(
-                '2015.com.canonical.certification::checkbox-touch-autopilot'))
+                '2015.com.canonical.certification::checkbox-converged-autopilot'))
         self.pointing_device.click_object(tp_item)
         continue_btn = tp_selection_page.wait_select_single(
             objectName='continueButton', visible=True)
@@ -137,7 +137,7 @@ class TestCheckboxTouch(checkbox_touch.ClickAppTestCase):
         self.check_results(results)
 
 
-class SessionResumeTests(checkbox_touch.ClickAppTestCase):
+class SessionResumeTests(checkbox_converged.ClickAppTestCase):
     def test_rerun_after_resume(self):
         self.select_two_tests_and_quit()
         self.launch_application()
@@ -250,7 +250,7 @@ class SessionResumeTests(checkbox_touch.ClickAppTestCase):
         self.assertThat(welcome_page.visible, Eventually(Equals(True)))
 
 
-class CommandOutputTests(checkbox_touch.ClickAppTestCase):
+class CommandOutputTests(checkbox_converged.ClickAppTestCase):
     def test_output_visible_while_automated_test_is_running(self):
         self.start_and_select_tests(
             '2015.com.canonical.certification::normal', [
@@ -287,7 +287,7 @@ class CommandOutputTests(checkbox_touch.ClickAppTestCase):
         self.assertThat(text_area.text, Eventually(Equals("foobar\n")))
 
 
-class RerunTests(checkbox_touch.ClickAppTestCase):
+class RerunTests(checkbox_converged.ClickAppTestCase):
     def test_rerun_after_rerun(self):
         test_id = '2015.com.canonical.certification::autopilot/manual-2'
         self.start_and_select_tests(
@@ -362,7 +362,7 @@ class RerunTests(checkbox_touch.ClickAppTestCase):
         self.process_sequence_of_clicks_on_pages(next_steps)
         self.check_results({'passed': '2', 'failed': '0', 'skipped': '0'})
 
-class GarbageCollectionTests(checkbox_touch.ClickAppTestCase):
+class GarbageCollectionTests(checkbox_converged.ClickAppTestCase):
     def test_garbage_collection_popup_shown(self):
         """Ensure popup is shown when there are candidates for removal."""
         # start a session, then quit the app, to create dangling incomplete

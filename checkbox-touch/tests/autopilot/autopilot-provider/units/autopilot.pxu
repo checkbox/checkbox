@@ -1,8 +1,8 @@
 unit: test plan
 _description:
  Test plan that should be default one run by autopilot.
-id: checkbox-touch-autopilot
-_name: Checkbox-Touch autpoilot self-test
+id: checkbox-converged-autopilot
+_name: Checkbox-Converged autpoilot self-test
 estimated_duration: 60
 include: autopilot/.*
 mandatory_include: mandatory-job
@@ -22,7 +22,7 @@ _name: Tests not requiring sudo
 
 id: autopilot/automated-test-that-fails
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test should be failed automatically.
 plugin: shell
 command: false
@@ -32,7 +32,7 @@ category_id: normal
 
 id: autopilot/automated-test-that-passes
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test should be passed automatically.
 plugin: shell
 command: true
@@ -45,7 +45,7 @@ category_id: normal
 # of them, fail second one, and skip the last one.
 id: autopilot/manual-1
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should pass this test.
 _steps:
  This manual test should be operated by Autopilot.
@@ -60,7 +60,7 @@ category_id: normal
 
 id: autopilot/manual-2
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should fail this test.
 _steps:
  This manual test should be operated by Autopilot.
@@ -75,7 +75,7 @@ category_id: normal
 
 id: autopilot/manual-3
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should skip this test.
 _steps:
  This manual test should be operated by Autopilot.
@@ -93,7 +93,7 @@ category_id: normal
 # Autopilot can pass one of them, fail second one, and skip the last one.
 id: autopilot/user-interact-verify-1
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should pass this test.
 _steps:
  This user-interact-verify test should be operated by Autopilot.
@@ -108,7 +108,7 @@ command: true
 
 id: autopilot/user-interact-verify-2
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should fail this test.
 _steps:
  This user-interact-verify test should be operated by Autopilot.
@@ -123,7 +123,7 @@ command: false
 
 id: autopilot/user-interact-verify-3
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should skip this test.
 _steps:
  This user-interact-verify test should be operated by Autopilot.
@@ -141,7 +141,7 @@ command: true
 # Autopilot can pass one of them, fail second one, and skip the last one.
 id: autopilot/user-verify-1
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should pass this test.
 _verification:
  On this screen Autopilot should select an option that passes the test.
@@ -153,7 +153,7 @@ command: true
 
 id: autopilot/user-verify-2
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should fail this test.
 _verification:
  On this screen Autopilot should select an option that fails the test.
@@ -165,7 +165,7 @@ command: false
 
 id: autopilot/user-verify-3
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  Autopilot should skip this test.
 _verification:
  On this screen Autopilot should select an option that skips the test.
@@ -180,7 +180,7 @@ command: true
 # from the latter group should be skipped by Autopilot test.
 id: autopilot/user-interact-1
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test should be passed automatically.
 _steps:
  This user-interact test should be operated by Autopilot.
@@ -193,7 +193,7 @@ command: true
 
 id: autopilot/user-interact-2
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test should be failed automatically.
 _steps:
  This user-interact test should be operated by Autopilot.
@@ -206,7 +206,7 @@ command: false
 
 id: autopilot/user-interact-3
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test should be skipped before command starts to run.
 _steps:
  This user-interact test should be operated by Autopilot.
@@ -219,7 +219,7 @@ command: true
 
 id: autopilot/print-and-verify
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test will print "foobar" on stdout and outopilot should verify if it was
  printed.
 plugin: user-verify
@@ -230,7 +230,7 @@ category_id: normal
 
 id: autopilot/print-and-sleep
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test will print "foobar" on stdout and sleep for 10 seconds.
 plugin: shell
 command: echo "foobar" && sleep 10
@@ -240,7 +240,7 @@ category_id: normal
 
 id: autopilot/resource-generator
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test will generate resources for other jobs to depend on.
 plugin: resource
 command: echo "resource_string: FooBar"
@@ -250,7 +250,7 @@ category_id: normal
 
 id: autopilot/resource-demanding-1
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test requires resource generated by the 'resource-generator' job to be
  present. If everything works as expected, the resource will be there and this
  job will run, resulting as "pass".
@@ -264,7 +264,7 @@ category_id: normal
 
 id: autopilot/resource-demanding-2
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test requires resource that should not exist, therefore rendering this
  job as not-runnable and skipping it.
 plugin: shell
@@ -277,7 +277,7 @@ category_id: normal
 
 id: autopilot/qml-job
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test runs qml-native job.
 plugin: qml
 qml_file: qml-job.qml
@@ -287,7 +287,7 @@ estimated_duration: 5
 
 id: mandatory-job
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test should always run.
 plugin: shell
 command: true
@@ -302,7 +302,7 @@ _name: Tests run as root
 
 id: autopilot/sudo-right
 _purpose:
- Purpose of this test is to assist Autopilot in testing Checkbox-Touch.
+ Purpose of this test is to assist Autopilot in testing Checkbox-Converged.
  This test runs echo command as root.
 plugin: shell
 user: root

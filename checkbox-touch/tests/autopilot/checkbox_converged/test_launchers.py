@@ -1,6 +1,6 @@
-import checkbox_touch
+import checkbox_converged
 
-class FullAutoLauncherTests(checkbox_touch.ClickAppTestCase):
+class FullAutoLauncherTests(checkbox_converged.ClickAppTestCase):
 
     launcher = 'full-auto'
 
@@ -12,7 +12,7 @@ class FullAutoLauncherTests(checkbox_touch.ClickAppTestCase):
         results = {'passed': '7', 'failed': '2', 'skipped': '13'}
         self.check_results(results)
 
-class ForceTestLauncherTests(checkbox_touch.ClickAppTestCase):
+class ForceTestLauncherTests(checkbox_converged.ClickAppTestCase):
 
     launcher = 'force-test-not-silent'
 
@@ -26,7 +26,7 @@ class ForceTestLauncherTests(checkbox_touch.ClickAppTestCase):
         results = {'passed': '1', 'failed': '0', 'skipped': '0'}
         self.check_results(results)
 
-class PreselectedTPLauncherTests(checkbox_touch.ClickAppTestCase):
+class PreselectedTPLauncherTests(checkbox_converged.ClickAppTestCase):
 
     launcher = 'preselected-tp'
 
@@ -44,7 +44,7 @@ class PreselectedTPLauncherTests(checkbox_touch.ClickAppTestCase):
                 '2015.com.canonical.certification::autopilot-alt'),
             item_mod_selected=True)
 
-class FilteredTPLauncherTests(checkbox_touch.ClickAppTestCase):
+class FilteredTPLauncherTests(checkbox_converged.ClickAppTestCase):
 
     launcher = 'filtered-tp'
 

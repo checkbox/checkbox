@@ -26,7 +26,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
     """Common test case that provides several useful methods for the tests."""
 
     package_id = 'com.ubuntu.checkbox'
-    app_name = 'checkbox-touch-autopilot'
+    app_name = 'checkbox-converged-autopilot'
 
     launcher = ''
 
@@ -80,7 +80,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             objectName='testplanSelectionPage', visible=True)
         tp_item = tp_selection_page.wait_select_single(
             objectName='listItem', item_mod_id=(
-                '2015.com.canonical.certification::checkbox-touch-autopilot'))
+                '2015.com.canonical.certification::checkbox-converged-autopilot'))
         self.pointing_device.click_object(tp_item)
         continue_btn = tp_selection_page.wait_select_single(
             objectName='continueButton', visible=True)
@@ -135,7 +135,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             sequence of (page-objectName, component-objectName) pairs to go
             through.
 
-        Typical run of checkbox-touch requires user to go through a sequence of
+        Typical run of checkbox-converged requires user to go through a sequence of
         pages that have pass/fail buttons on them. This function helps go
         through a sequence like that.
         """
@@ -204,7 +204,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
 
     def _get_app_qml_source_path(self):
         return os.path.join(
-            self._get_path_to_app_source(), 'checkbox-touch.qml')
+            self._get_path_to_app_source(), 'checkbox-converged.qml')
 
     def _get_path_to_app_source(self):
         return os.path.join(get_path_to_source_root(), 'checkbox-touch')

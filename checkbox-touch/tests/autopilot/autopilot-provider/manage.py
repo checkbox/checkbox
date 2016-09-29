@@ -14,9 +14,9 @@ from plainbox.provider_manager import setup, N_
 # (optional)
 
 setup(
-    name='2015.com.canonical.certification:autopilot-touch',
+    name='2015.com.canonical.certification:autopilot-converged',
     version="1.0",
     description=N_(
-        "The 2015.com.canonical.certification:autopilot-touch provider"),
-    gettext_domain="2015_com_canonical_certification_autopilot-touch",
+        "The 2015.com.canonical.certification:autopilot-converged provider"),
+    gettext_domain="2015_com_canonical_certification_autopilot-converged",
 )
