@@ -17,10 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 """
-:mod:`embedded_providers` -- Checkbox-touch-only providers
+:mod:`embedded_providers` -- Checkbox-Converged-only providers
 ===============================================================
 
-This module contains custom providers used by Checkbox-touch
+This module contains custom providers used by Checkbox-Converged
 """
 # NOTE: this is python 3.3 only
 from importlib.machinery import SourceFileLoader

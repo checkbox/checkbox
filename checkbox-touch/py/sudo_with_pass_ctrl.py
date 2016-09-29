@@ -39,7 +39,7 @@ import threading
 from plainbox.i18n import gettext as _
 from plainbox.impl.ctrl import CheckBoxDifferentialExecutionController
 
-logger = logging.getLogger("checkbox_touch.sudo_with_pass_ctrl")
+logger = logging.getLogger("checkbox_converged.sudo_with_pass_ctrl")
 
 
 class RootViaSudoWithPassExecutionController(

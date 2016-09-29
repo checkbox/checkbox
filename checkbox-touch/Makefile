@@ -15,7 +15,7 @@ APP_ID=com.ubuntu.checkbox
 MO_FILES=$(foreach infile,$(basename $(notdir $(wildcard ./po/*.po))),$(TRANSLATION_ROOT)/share/locale/$(infile)/LC_MESSAGES/$(APP_ID).mo)
 QMLJS_FILES:=$(shell find . -name "*.qml" -o -name "*.js" | grep -v ./tests)
 PY_FILES=$(wildcard ./py/*.py) build-me get-libs
-VERSION:=$(shell PYTHONPATH=py python3 -c "from py.checkbox_touch import CheckboxTouchApplication; print(CheckboxTouchApplication().get_version_pair()['result']['application_version'])")
+VERSION:=$(shell PYTHONPATH=py python3 -c "from py.checkbox_touch import CheckboxConvergedApplication; print(CheckboxConvergedApplication().get_version_pair()['result']['application_version'])")
 
 all:
 

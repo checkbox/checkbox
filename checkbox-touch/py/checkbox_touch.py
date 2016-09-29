@@ -43,7 +43,7 @@ except ImportError:
         """
         Bogus pyotherside that does nothing.
 
-        CheckboxTouchUI uses pyotherside to propagate the output of running
+        CheckboxConvergedUI uses pyotherside to propagate the output of running
         job's command to the QML side.
 
         pyotherside module is only available when python is run by PyOtherSide;
@@ -72,12 +72,12 @@ import plainbox
 
 from embedded_providers import EmbeddedProvider1PlugInCollection
 
-_logger = logging.getLogger('checkbox.touch')
+_logger = logging.getLogger('converged')
 
 
-class CheckboxTouchUI(SilentUI):
+class CheckboxConvergedUI(SilentUI):
     """
-    Class that connects checkbox-touch with plainbox.
+    Class that connects checkbox-converged with plainbox.
 
     This class inherits SilentUI as most of the events happening in plainbox
     back-end are handled elsewhere.
@@ -140,9 +140,9 @@ def not_contains(a, b):
     return b not in a
 
 
-class CheckboxTouchApplication(PlainboxApplication):
+class CheckboxConvergedApplication(PlainboxApplication):
     """
-    Class implementing the whole checkbox-touch application logic.
+    Class implementing the whole checkbox-converged application logic.
 
     This class exposes methods that can be called by the javascript embedded
     into many of the QML views. Each method implements a request / response
@@ -162,7 +162,7 @@ class CheckboxTouchApplication(PlainboxApplication):
             raise SystemExit("plainbox 0.22 required, you have {}".format(
                 ToolBase.format_version_tuple(plainbox.__version__)))
         self.assistant = SessionAssistant('checkbox-converged')
-        self.ui = CheckboxTouchUI()
+        self.ui = CheckboxConvergedUI()
         self.index = 0
         self._password = None
         self._timestamp = None
@@ -816,7 +816,7 @@ def get_qml_logger(default_level):
         "critical": logging.CRITICAL,
         "fatal": logging.FATAL})[default_level.lower()]
     logging.basicConfig(level=logging_level, stream=sys.stderr)
-    return logging.getLogger('checkbox.touch.qml')
+    return logging.getLogger('converged.qml')
 
 
-create_app_object = CheckboxTouchApplication
+create_app_object = CheckboxConvergedApplication
