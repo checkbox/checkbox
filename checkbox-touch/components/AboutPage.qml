@@ -21,7 +21,8 @@
 
 /*! \brief Page with version and copyright information
 
-    This page shows version information and contents of AUTHORS file located in top chekckbox-touch directory
+    This page shows version information and contents of AUTHORS file located
+    in the top of Converged tree
 */
 import QtQuick 2.0
 import Ubuntu.Components 1.3
