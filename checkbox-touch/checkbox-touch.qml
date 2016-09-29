@@ -165,7 +165,7 @@ MainView {
             console.log("Plainbox version " + plainboxVersion);
             console.log("Checkbox Touch version " + applicationVersion);
             aboutPage.versionInfo = {
-                "checkbox_touch" : applicationVersion,
+                "converged" : applicationVersion,
                 "plainbox" : plainboxVersion
             };
             getLauncherSettings(function(res) {
@@ -186,7 +186,7 @@ MainView {
         Component.onCompleted: {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
-                construct("checkbox_touch.create_app_object", [appSettings["launcher"]]);
+                construct("converged_app.create_app_object", [appSettings["launcher"]]);
             });
         }
     }
@@ -197,8 +197,8 @@ MainView {
         Component.onCompleted: {
             // register to py.initiated signal
             py.onInitiated.connect(function() {
-                py.importModule("checkbox_touch", function() {
-                    construct("checkbox_touch.get_qml_logger",
+                py.importModule("converged_app", function() {
+                    construct("converged_app.get_qml_logger",
                              [appSettings["log-level"] || "info"]);
                 });
             });

@@ -412,7 +412,7 @@ def generate_desktop_file(app_name, filename, lang=None,
 
 
 def generate_manifest(with_autopilot=False):
-    from py.checkbox_touch import CheckboxConvergedApplication
+    from py.converged_app import CheckboxConvergedApplication
     res = CheckboxConvergedApplication().get_version_pair()
     version = res['result']['application_version']
     hooks = {
