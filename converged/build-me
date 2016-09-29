@@ -1,0 +1,498 @@
+#!/usr/bin/env python3
+import argparse
+from contextlib import contextmanager
+from datetime import datetime
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import stat
+import textwrap
+import tempfile
+
+from utils import backedup_dir
+from utils import get_package_from_url_and_extract
+from utils import prepare_uris
+from utils import rsync_tree
+from utils import find
+
+from confinement.generate import generate_confinement
+sys.path.append('./py')
+
+
+@contextmanager
+def chdir(path):
+    previous_path = os.getcwd()
+    os.chdir(path)
+    yield
+    os.chdir(previous_path)
+
+
+def find_executables(path):
+    res = []
+    for node in os.listdir(path):
+        full_path = os.path.join(path, node)
+        if os.path.isdir(full_path):
+            res += find_executables(full_path)
+        else:
+            try:
+                st = os.stat(full_path)
+            except FileNotFoundError:
+                # we might have extracted symlink pointing to 3rd party libs
+                # that we don't care about
+                continue
+            mode = st.st_mode
+            executable = stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
+            if mode & executable:
+                res.append(full_path)
+    return res
+
+
+def get_confined_jobs(path):
+    from py.embedded_providers import EmbeddedProvider1PlugInCollection
+    collection = EmbeddedProvider1PlugInCollection(path)
+    # this should be run within provider's directory, so there should be
+    # only one provider loaded
+    provider = collection.get_all_plugin_objects()[0]
+    for job in provider.job_list:
+        if job.plugin == 'qml' and 'confined' in job.get_flag_set():
+            yield job
+
+
+def check_libs_present():
+    """
+    Check if paths listed in NECESSARY_PATHS are present.
+    This is a simple heuristic to check if get-libs prior to building
+    click package.
+    """
+    NECESSARY_PATHS = [
+        "lib/arm-linux-gnueabihf/io/thp/pyotherside/libpyothersideplugin.so",
+        "lib/arm-linux-gnueabihf/libpython3.5m.so.1",
+        "lib/py/plainbox",
+        "lib/py/plainbox.egg-info",
+        "lib/py/xlsxwriter"]
+    for path in NECESSARY_PATHS:
+        if not os.path.exists(path):
+            raise EnvironmentError(
+                "{} not found!\nHave you run get-libs?".format(path))
+
+
+def get_revision_string(path='.'):
+    # Try getting revno from bazaar vcs
+    try:
+        revno = int(subprocess.check_output(
+            ["bzr", "revno", path], stderr=subprocess.STDOUT))
+        return "bzr r{}".format(revno)
+    except subprocess.CalledProcessError:
+        # problem encountered when run bzr revno - falling through
+        pass
+
+    # Try getting version from git
+    try:
+        revno = subprocess.check_output(
+            ["git", "-C", path, "show", "-s", "--format=%h", "HEAD"],
+            stderr=subprocess.STDOUT).decode(sys.stdout.encoding).strip()
+        return "git {}".format(revno)
+    except subprocess.CalledProcessError:
+        # problem encountered when run git revision - falling through
+        pass
+
+    return "Unknown revision"
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Get necessary libs for checkbox-converged")
+    parser.add_argument("--embedded-providers-path", action='store', type=str,
+                        nargs='*', help="Paths to directories with providers")
+    parser.add_argument("--install",
+                        action='store_true',
+                        help=("Use adb to push and install click package on"
+                              " the device"))
+    parser.add_argument("--testplan",
+                        action='store', default="", type=str,
+                        help="Test plan to set as the default one")
+    parser.add_argument("--provider",
+                        action='append', type=str,
+                        help=("Path to a provider that should be included. "
+                              "--provider might be used multiple times."))
+    parser.add_argument("-s", action='store', type=str,
+                        help=("Serial number of the device to use when using "
+                              "adb. Overrides ANDROID_SERIAL"))
+    parser.add_argument("--ssh",
+                        action='store', type=str,
+                        help=("Host to install click on using ssh. Implies"
+                              "--install"))
+    parser.add_argument("--port",
+                        action='store', type=int,
+                        help="Port to use when using ssh. Requires --ssh")
+    parser.add_argument("--forced-lang", action='store', type=str,
+                        help=("Force checkbox to run in a given language. "
+                              "I.e. pl_PL, zh_CN"))
+    parser.add_argument("--forced-resume", action='store_true',
+                        help=("Force checkbox to always resume session (and "
+                              "rerun the last test)."))
+    parser.add_argument("--update-potfile", action='store_true',
+                        help=("Updates the potfile and quits"))
+    parser.add_argument("--with-autopilot", action='store_true',
+                        help="Add autopilot hooks to the click")
+    parser.add_argument("--launcher", action='store', type=str,
+                        help=("Launcher file to use"))
+    args = parser.parse_args()
+    if args.update_potfile:
+        update_pot()
+        return
+    if args.port and not args.ssh:
+        parser.error("--port without --ssh doesn't make sense!")
+        return 1
+
+    check_libs_present()
+
+    # generate setting.json
+    settings = {
+        "_comment": "file generated automatically with {0}"
+                    .format(parser.prog),
+        "revision": get_revision_string(),
+        "clickBuildDate": str(datetime.now().date()),
+        "testplan": args.testplan,
+        "providersDir": "providers",
+        "forcedResume": args.forced_resume
+    }
+    settings_file = open('settings.json', 'w')
+    settings_file.write(json.dumps(settings, sort_keys=True, indent=4))
+    settings_file.close()
+
+    if args.embedded_providers_path is not None:
+        for path in args.embedded_providers_path:
+            rsync_tree(path, 'providers')
+
+    if args.provider is not None:
+        for path in args.provider:
+            target_base_name = os.path.basename(os.path.normpath(path))
+            rsync_tree(path, os.path.join('providers', target_base_name))
+
+    if not os.path.exists('providers'):
+        sys.exit('No providers available. Exiting!')
+
+    if not validate_providers():
+        sys.exit('Provider validation failed.')
+    extract_dependencies()
+    copy_provider_libs()
+
+    generate_manifest(with_autopilot=args.with_autopilot)
+
+    # build_i18n can modfiy po/*.po files; let's back it up and restore it
+    # after click is built
+    with backedup_dir('po'):
+        build_i18n()
+
+        exec_flags = ''
+        if args.launcher:
+            copy_launcher(args.launcher)
+            exec_flags = '--launcher ./launcher'
+        generate_desktop_file(
+            'Checkbox',
+            'checkbox-converged.desktop',
+             lang=args.forced_lang,
+             exec_flags=exec_flags)
+        if args.with_autopilot:
+            generate_desktop_file(
+                'Checkbox-Autopilot',
+                'checkbox-autopilot.desktop',
+                lang='en',
+                exec_flags=('--autopilot '
+                            '--launcher=/tmp/checkbox_autopilot_launcher'))
+
+        pkg = build_click()
+
+    if args.install and not args.ssh:
+        adb_options = []
+        if args.s:
+            adb_options = ['-s', args.s]
+        install_click_adb(pkg, adb_options)
+
+    if args.ssh:
+        port = args.port or 22
+        install_click_ssh(pkg, args.ssh, port)
+
+
+def copy_launcher(launcher_file):
+    target = './launcher'
+    if os.path.exists(target) and os.path.samefile(launcher_file, target):
+        print("Reusing existing './launcher' launcher")
+        return
+    if os.path.exists(target):
+        sys.exit('%s already exists. Aborting!' % target)
+    print('Copying over the launcher')
+    shutil.copyfile(launcher_file, target)
+
+
+def validate_providers():
+    print("Validating providers")
+    providers_valid = True
+    for provider_dir in os.listdir('providers'):
+        try:
+            subprocess.check_output(
+                [os.path.join('providers', provider_dir, 'manage.py'),
+                 'validate'], stderr=subprocess.STDOUT)
+        except OSError as e:
+            print(e.strerror)
+            providers_valid = False
+        except subprocess.CalledProcessError as e:
+            output_lines = e.output.decode(sys.stdout.encoding).split('\n')
+            if (len(output_lines) > 0 and
+                    "ImportError: No module named 'plainbox'" in output_lines):
+                    print('Plainbox not found. Install plainbox or run the'
+                          'command from the virtual env.')
+                    return False
+            else:
+                print(("Problem encountered when validating '{}'."
+                       " Output:\n{}").format(
+                    provider_dir, e.output.decode(sys.stdout.encoding)))
+                providers_valid = False
+    return providers_valid
+
+
+def build_confinement(checkbox_version):
+    print("Generating confinement")
+    checkbox_name = "com.ubuntu.checkbox_checkbox-converged_" + checkbox_version
+    new_hooks = []
+    for provider_dir in os.listdir('providers'):
+        with chdir(os.path.join('providers', provider_dir)):
+            for job in get_confined_jobs('.'):
+                print(" job: {}".format(job.id))
+                qml_file = os.path.relpath(
+                    job.qml_file, 'data')
+                new_hooks.append(generate_confinement(
+                    provider_dir, job.partial_id, checkbox_name, qml_file))
+    return new_hooks
+
+
+def build_i18n():
+    print("Building i18n")
+    for provider_dir in os.listdir('providers'):
+        try:
+            subprocess.check_output(
+                [os.path.join('providers', provider_dir, 'manage.py'),
+                 'i18n'], stderr=subprocess.STDOUT)
+        except (OSError, subprocess.CalledProcessError) as e:
+            print("Problem encountered while building translations for ",
+                  "provider '{}'.".format(provider_dir))
+            raise e
+    # merge providers' catalogs to the global checkbox-converged one
+    lang_codes = []
+    for node in os.listdir('po'):
+        base, ext = os.path.splitext(node)
+        if os.path.isfile(os.path.join('po', node)) and ext == '.po':
+            lang_codes.append(base)
+    for provider_dir in os.listdir('providers'):
+        for lang in lang_codes:
+            catalog = os.path.join(
+                'providers', provider_dir, 'po', lang) + '.po'
+            if os.path.exists(catalog):
+                _update_catalogs(os.path.join('po', lang + '.po'), catalog)
+    # build .mo files
+    for po in find(top='./po', include=['*.po']):
+        lang = os.path.splitext(os.path.basename(po))[0]
+        target_dir = 'share/locale/{}/LC_MESSAGES/'.format(lang)
+        target_file = os.path.join(target_dir, 'com.ubuntu.checkbox.mo')
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
+        try:
+            subprocess.check_output(['msgfmt', '-o', target_file, po])
+        except subprocess.CalledProcessError as exc:
+            sys.exit('Error encountered while creating %s translations. %s' % (
+                target_file, exc))
+
+
+def update_pot():
+    potfile = 'po/checkbox-converged.pot'
+    print("Updating {}".format(potfile))
+    py_files = find(top='./py', include=['*.py'])
+    py_files += ['build-me', 'get-libs']
+    qmljs_files = find(include=['*.qml', '*.js'], exclude=['./tests/*'])
+    try:
+        subprocess.check_output(
+            ['xgettext', '-s', '-o', potfile, '--qt', '--c++',
+             '--add-comments=TRANSLATORS', '--keyword=tr', '--keyword=tr:1,2',
+             '--from-code=UTF-8'] + qmljs_files)
+        subprocess.check_output(
+            ['xgettext', '-s', '-o', potfile, '--join-existing',
+             '--add-comments=TRANSLATORS', '--language=python', '--keyword=_',
+             '--keyword=N_'] + py_files)
+    except subprocess.CalledProcessError as exc:
+        sys.exit('Error encountered while updating po/checkbox-converged.pot %s' %
+                 exc)
+
+
+def _update_catalogs(dest, src):
+    try:
+        subprocess.check_output(['msgcat', '-o', dest, dest, src])
+    except subprocess.CalledProcessError:
+        sys.exit('Error encountered while updating {} with {}!'.format(
+            dest, src))
+
+
+def extract_dependencies():
+    print("Extracting dependencies")
+    for provider_dir in os.listdir('providers'):
+        debs = []
+        debs_file = os.path.join('providers', provider_dir, '_extra_debs')
+        if os.path.exists(debs_file):
+            with open(debs_file, 'rt') as f:
+                for deb in f.read().split():
+                    debs.append(deb)
+        uris = prepare_uris(debs)
+        for deb in debs:
+            with tempfile.TemporaryDirectory() as tmp:
+                get_package_from_url_and_extract(uris[deb], tmp)
+                bin_path = os.path.join(tmp, 'usr')
+                if os.path.exists(bin_path):
+                    executables = find_executables(bin_path)
+                    provider_bin = os.path.join(
+                            'providers', provider_dir, 'bin')
+                    if executables:
+                        os.makedirs(provider_bin, exist_ok=True)
+                    for f in executables:
+                        print('found executable : {}'.format(
+                            os.path.split(f)[1]))
+                        target = os.path.join(
+                            'providers', provider_dir, 'bin',
+                            os.path.split(f)[1])
+                        if os.path.exists(target):
+                            print('Warning! {} already exists and will be'
+                                  ' skipped'.format(target))
+                        else:
+                            shutil.copyfile(f, target)
+                            shutil.copymode(f, target)
+                lib_path = os.path.join(tmp, 'usr', 'lib')
+                if os.path.exists(lib_path):
+                    rsync_tree(lib_path, 'lib', preserve_symlinks=1)
+
+
+def copy_provider_libs():
+    print("Copy over provider-supplied libs")
+    for provider_dir in os.listdir('providers'):
+        prov_lib = os.path.join('providers', provider_dir, 'lib')
+        if os.path.exists(prov_lib):
+            rsync_tree(prov_lib, 'lib')
+
+
+def generate_desktop_file(app_name, filename, lang=None,
+                          exec_flags=''):
+    template = textwrap.dedent("""
+    # This file has been generated by build-me script
+    [Desktop Entry]
+    Name={name}
+    Comment=System testing utility for Ubuntu
+    Exec={exec}
+    Icon=checkbox-converged.svg
+    Terminal=false
+    Type=Application
+    X-Ubuntu-Touch=true
+    X-Ubuntu-Supported-Orientations=portrait
+    """).lstrip()
+    import_opts = ['-I lib/py/plainbox/data/plainbox-qml-modules']
+    for provider in os.listdir('providers'):
+        provider_data_dir = os.path.join('providers', provider, 'data')
+        if os.path.exists(provider_data_dir):
+            import_opts.append("-I " + provider_data_dir)
+    exec_line = ("qmlscene {exec_flags} --settings=settings.json "
+                 "{import_options} $@ checkbox-converged.qml")
+    if lang:
+        exec_line = 'bash -c "LANGUAGE={} {}"'.format(lang, exec_line)
+    content = template.format(
+        name=app_name,
+        exec=exec_line.format(
+            exec_flags=exec_flags, import_options=' '.join(import_opts)))
+    with open(filename, 'wt', encoding='utf-8') as f:
+        f.write(content)
+
+
+def generate_manifest(with_autopilot=False):
+    from py.converged_app import CheckboxConvergedApplication
+    res = CheckboxConvergedApplication().get_version_pair()
+    version = res['result']['application_version']
+    hooks = {
+        'checkbox-converged': {
+            'apparmor': 'checkbox-converged.json',
+            'desktop': 'checkbox-converged.desktop'
+        }
+    }
+    if with_autopilot:
+        hooks['checkbox-converged-autopilot'] = {
+            'apparmor': 'checkbox-converged.json',
+            'desktop': 'checkbox-autopilot.desktop'
+        }
+    for hook in build_confinement(version):
+        hooks.update(hook)
+    manifest = {
+        'architecture': 'armhf',
+        'description': 'System testing utility for Ubuntu',
+        'framework': 'ubuntu-sdk-14.10',
+        'hooks': hooks,
+        'maintainer': 'Checkbox Developers <checkbox-dev@lists.launchpad.net>',
+        'name': 'com.ubuntu.checkbox',
+        'title': 'Checkbox',
+        'version': version,
+        'x-source': {
+            'vcs-bzr': 'lp:checkbox',
+            'vcs-bzr-revno': version
+        }
+    }
+    with open('manifest.json', 'wt') as f:
+        f.write(json.dumps(manifest, sort_keys=True, indent=4))
+
+
+def build_click():
+    print('Building click package')
+    out = subprocess.check_output(['click', 'build', '-I', '*.click', '.'])
+    pkg_name = re.search("'\.\/(.*)\.click'", str(out)).group(1) + '.click'
+    print('Your click package is available here: {0}'.format(pkg_name))
+    return pkg_name
+
+
+def install_click_adb(pkg, adb_options=[]):
+    print('Pushing to the device')
+    adb_base = ['adb'] + adb_options
+    try:
+        subprocess.check_output(adb_base + ['push', pkg, '/tmp'])
+    except subprocess.CalledProcessError:
+        sys.exit('Error ecountered while pushing to the device.')
+    print('Installing click package')
+    path = '/tmp/' + os.path.basename(pkg)
+    try:
+        subprocess.check_output(adb_base + ['shell', ('pkcon install-local'
+                                ' --allow-untrusted -p -y {path}').format(
+                                path=path)])
+    except subprocess.CalledProcessError:
+        sys.exit('Error ecountered while installing click package.')
+
+
+def install_click_ssh(pkg, host, port):
+    if host.find('@') < 0:
+        # user not specified, let's add phablet user
+        host = 'phablet@' + host
+    target_path = host+':/tmp'
+    print('Pushing to the device using SSH. {}:{}'.format(host, port))
+    try:
+        subprocess.check_output(
+            ['scp', '-P {}'.format(port), pkg, target_path])
+    except subprocess.CalledProcessError:
+        sys.exit('Error ecountered while pushing to the device.')
+    print('Installing click package')
+    path = '/tmp/' + os.path.basename(pkg)
+    try:
+        subprocess.check_output(
+            ['ssh', '-p {}'.format(port), host,
+             'pkcon install-local --allow-untrusted -p -y {path}'.format(
+                 path=path)])
+    except subprocess.CalledProcessError as exc:
+        print(exc.output.decode('utf-8'))
+        sys.exit('Error encountered while installing click package. %s' % exc)
+
+
+if __name__ == "__main__":
+    main()
