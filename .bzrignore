@@ -46,12 +46,12 @@ checkbox-gui/share
 *.qmlproject.user
 # Ignore SDK builds
 build-checkbox-converged-*
-# Ignore checkbox-touch generated or copied over artifacts
-checkbox-touch/checkbox-converged.desktop
-checkbox-touch/components/vendor/
-checkbox-touch/lib
-checkbox-touch/providers
-checkbox-touch/settings.json
+# Ignore checkbox-converged generated or copied over artifacts
+converged/checkbox-converged.desktop
+converged/components/vendor/
+converged/lib
+converged/providers
+converged/settings.json
 # Ignore c9.io state files
 .c9
 # Ignore any virtualenvs

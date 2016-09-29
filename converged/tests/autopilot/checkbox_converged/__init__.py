@@ -207,7 +207,7 @@ class ClickAppTestCase(base.UbuntuUIToolkitAppTestCase):
             self._get_path_to_app_source(), 'checkbox-converged.qml')
 
     def _get_path_to_app_source(self):
-        return os.path.join(get_path_to_source_root(), 'checkbox-touch')
+        return os.path.join(get_path_to_source_root(), 'converged')
 
     def _get_plainbox_qml_modules_path(self):
         try:
