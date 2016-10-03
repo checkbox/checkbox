@@ -97,8 +97,20 @@ class Release(Command):
 
     def invoked(self, ctx):
         """Method called when the command is invoked."""
+
+        push_commands = []
+        delete_release_branch_commands = []
+        build_commands = []
+        merge_commands = []
+        release_milestone_commands = []
+        sdist_commands = []
+        twine_commands = []
+
         for project in projects:
             # Clone the project source and packaging repositories
+            logger.info("".center(80, '#'))
+            logger.info("# Cloning {} repositories...".format(project))
+            logger.info("".center(80, '#'))
             self.clone(ctx, project)
             logger.info("".center(80, '#'))
             if not self.release_required(ctx, project):
@@ -125,54 +137,92 @@ class Release(Command):
             self.prepare_debian_tarball(ctx, project)
             self.dance(ctx, project)
             # Push code and packaging repositories to Launchpad
-            logger.info("# Review the code and packaging repo "
-                        "then push the updates to Launchpad with:")
-            logger.info("git -C {} push {}/~{}/{} release --tags".format(
+            push_commands.append("git -C {} push {}/~{}/{} release --tags".format(
                 project, self.BASE_URL, ctx.args.target_user, project))
-            logger.info(
+            push_commands.append(
                 "git -C {} push {}/~{}/{}/+git/packaging --all".format(
                     self.packaging, self.BASE_URL,
                     ctx.args.target_user, project))
-            logger.info(
+            push_commands.append(
                 "git -C {} push {}/~{}/{}/+git/packaging --tags".format(
                     self.packaging, self.BASE_URL,
                     ctx.args.target_user, project))
             if ctx.args.mode == 'final':
                 # Propose to merge the release branch into master
-                logger.info(
-                    "# Propose to merge the release branch into master")
-                logger.info(
+                merge_commands.append(
                     "./lp-propose-merge ~{}/{}".format(
                         ctx.args.target_user, project))
                 # Delete the release branch once merged into master
-                logger.info(
-                    "# Delete the release branch once merged into master")
-                logger.info(
+                delete_release_branch_commands.append(
                     "git -C {} push origin --delete release".format(project))
             # Update the PPA recipe and kick-off the build
-            logger.info("# Build the new package in Launchpad PPA")
             if ctx.args.mode == 'rc':
-                logger.info(
+                build_commands.append(
                     "./lp-recipe-update-build {} --recipe {} -n {}".format(
                         project, project+'-testing', self.new_version))
             else:
-                logger.info(
-                    "./lp-recipe-update-build --recipe {} {} -n {}".format(
+                build_commands.append(
+                    "./lp-recipe-update-build {} --recipe {} -n {}".format(
                         project, project+'-stable', self.new_version))
                 # Release the current milestone (final only)
-                logger.info(
-                    "# Release the milestone and upload tarball to Launchpad")
-                logger.info(
+                release_milestone_commands.append(
                     "./lp-release-milestone {} -m {}".format(
                         project, self.new_version))
                 # Upload tarball to Launchpad (final only)
-                logger.info(
+                sdist_commands.append(
                     "lp-project-upload {} {} {}".format(
                         project, self.new_version, self.tarball))
             if os.path.exists(os.path.relpath(project+'/setup.py')):
                 # Upload tarball to PyPI (including RC) for setuptools projects
-                logger.info("# Upload tarball to PyPI")
-                logger.info("twine upload {}".format(self.tarball))
+                twine_commands.append("twine upload {}".format(self.tarball))
+
+		# Display commands to run by user
+        if push_commands:
+            logger.info("".center(80, '#'))
+            logger.info("# Review the code and packaging repo "
+		    			"then push the updates to Launchpad:")
+            logger.info("".center(80, '#'))
+            for command in push_commands:
+                logger.info(command)
+        if merge_commands:
+            logger.info("".center(80, '#'))
+            logger.info(
+                "# Propose to merge the release branches into master:")
+            logger.info("".center(80, '#'))
+            for command in merge_commands:
+                logger.info(command)
+        if delete_release_branch_commands:
+            logger.info("".center(80, '#'))
+            logger.info(
+                "# Delete the release branches once merged into master:")
+            logger.info("".center(80, '#'))
+            for command in delete_release_branch_commands:
+                logger.info(command)
+        if build_commands:
+            logger.info("".center(80, '#'))
+            logger.info("# Build the new packages in Launchpad PPA:")
+            logger.info("".center(80, '#'))
+            for command in build_commands:
+                logger.info(command)
+        if release_milestone_commands:
+            logger.info("".center(80, '#'))
+            logger.info("# Release the milestones in Launchpad:")
+            logger.info("".center(80, '#'))
+            for command in release_milestone_commands:
+                logger.info(command)
+        if sdist_commands:
+            logger.info("".center(80, '#'))
+            logger.info("# Upload the tarballs to Launchpad:")
+            logger.info("".center(80, '#'))
+            for command in sdist_commands:
+                logger.info(command)
+        if twine_commands:
+            logger.info("".center(80, '#'))
+            logger.info("# Upload the tarballs to PyPI:")
+            logger.info("".center(80, '#'))
+            for command in twine_commands:
+                logger.info(command)
+		
 
     def release_required(self, ctx, project):
         """Check both code and packaging repos for new commits."""

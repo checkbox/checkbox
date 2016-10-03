@@ -1,0 +1,121 @@
+Introduction
+============
+
+This document will guide you through the release process for the Checkbox
+projects hosted in Git repositories.
+
+
+Pre-requisites
+==============
+
+Before going on, make sure you have the right tools installed on your computer:
+
+    sudo apt install lptools twine bumpversion git-dpm
+
+Also, make sure Git is properly configured (e.g. user.name and user.e-mail are
+correctly set up) and make sure you have the following environment variables
+set:
+    
+    DEBFULLNAME
+    DEBEMAIL
+
+They are used by git-dpm to generate the changelogs.
+
+
+Launchpad Bugs & Milestones Maintenance
+=======================================
+
+Always maintain a few milestones ahead for each projects
+
+Use the `lp-create-milestone` script like this:
+
+    ./lp-create-milestone plainbox -n 0.57.0 -d 2016-11-24
+
+Check bugs in checkbox-project to see if they can be included in the release
+to come. Some of them could be "In Progress" but with the fix already merged
+in trunk. Update their statuses and milestones.
+
+Review the current milestones content and postpone to the next one the bugs
+not "Fix Committed".
+
+
+Cutting the release
+===================
+
+Release Candidate
+-----------------
+
+Preparation:
+
+Create a dedicated directory that you will keep during all the release (1 week).
+
+    mkdir ~/checkbox_release
+
+Copy all the delivery support scripts to the release directory:
+
+    bzr export /tmp/delivery_tools lp:checkbox
+    cp -rp /tmp/delivery_tools/support/release/* ~/checkbox_release
+
+Move to the release directory
+
+    cd ~/checkbox_release/git
+
+Cut the release, change all package versions to RC and create/apply bzr tags
+for the release candidate:
+
+    ./release_me.py rc
+
+Follow the on-screen instructions given when the scripts ends as nothing will be
+pushed to Launchpad automatically:
+
+    1. Push all the branches (trunk and ppa-packaging*) to their release branches
+       Copy and launch the proposed commands once you're sure that the branches
+       are ok, check versions and tags (for both trunk and packaging branches)
+    2. Update the build recipes and request builds in the testing PPA.
+       Give Launchpad a minute or two before updating the recipes. Again copy
+       and execute the proposed commands.
+
+
+Special case: Cherry pick a bugfix from trunk after having cut the release
+--------------------------------------------------------------------------
+
+A second (or third...) release candidate has to be created for the impacted
+package.
+
+[TODO: Write the documentation to cherry-pick from Git repos]
+
+Finally update the recipe(s) and build again the package(s)
+
+TEST TEST TEST the release candidate(s)!
+
+
+Final release
+-------------
+
+Once testing is done, it's time to release the candidate packages to the stable
+PPA.
+
+Launch the following script to change all package versions to final,
+create/apply the corresponding git tags and update the debian/changelog
+(closing the current entry and open the next dev version):
+
+    cd ~/checkbox_release/git && ./release_me.py final
+
+Follow the on-screen instructions given when the scripts ends as nothing will be
+pushed to lp automatically:
+
+    1. Push all the branches (trunk and ppa-packaging*) to their release branches
+       Copy and launch the proposed commands once you're sure that the branches
+       are ok, check versions and tags (for both trunk and packaging branches)
+    2. Propose to merge the release branches into their non-release branch
+       (e.g lp:checkbox/release has to be merged in trunk)
+       Review the merge request, approve and let pmr do its job.
+    3. Once all release branches are merged, update the build recipes and
+       request builds in the stable PPA.
+       Again copy and execute the proposed commands.
+    4. Release all the milestones and their related bugtasks, e.g:
+
+       ./lp-release-milestone plainbox -m 0.57.0
+
+    5. Upload the signed source tarballs to LP (using lp-project-upload).
+    6. Upload the signed source tarballs to PyPI (using twine).
